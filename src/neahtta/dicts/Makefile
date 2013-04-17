@@ -327,7 +327,7 @@ sanat-lexica: olo-fin.all.xml \
 
 sanat: olo izh liv fin fkv sanat-lexica
 	@echo "*********************************"
-	@echo "** Built targets for valks:    **"
+	@echo "** Built targets for sanat:    **"
 	@echo "**    + olo lexicon            **"
 	@echo "**    + olo analysers          **"
 	@echo "**    + liv analysers          **"
@@ -376,16 +376,18 @@ sanit-lexica: fin-sme.all.xml \
 #
 # As these have different names, they won't be matched by pattern in other install
 # target, so making a target for them here.
-sme-install: n-sme.fst dict-isme-norm.fst some-sme.fst
+sme-install: n-sme.fst dict-isme-norm.fst some-n-sme.fst
 	cp $^ /opt/smi/sme/bin/
 
 ##
 ### #smeanalysers
 ##
 
+
+# NB not copying to fst/ or ifst/ because format is different for these.
 n-sme.fst:
 dict-isme-norm.fst:
-some-sme.fst:
+some-n-sme.fst:
 	@echo "***********************"
 	@echo "** Building sme FSTs **"
 	@echo "***********************"
@@ -393,10 +395,10 @@ some-sme.fst:
 	cd $(GTHOME)/gt/ ; \
 	  make TARGET=sme ; \
 	  cp sme/bin/n-sme.fst  $(TARGET_DIR)/n-sme.fst ; \
-	  cp sme/bin/some-sme.fst  $(TARGET_DIR)/some-sme.fst ; \
+	  cp sme/bin/some-n-sme.fst  $(TARGET_DIR)/some-n-sme.fst ; \
 	  cp sme/bin/dict-isme-norm.fst $(TARGET_DIR)/dict-isme-norm.fst
 
-# This is also different from the rest, involves st/ 
+# This is also different from the rest, involves st/ but, file format is same
 nob: 
 	cd $(GTHOME)/st/nob/src/ ; \
 	  make ; \
@@ -404,18 +406,38 @@ nob:
 	  cp ../bin/inob.fst  $(TARGET_DIR)/ifst/inob.fst
 
 .PHONY: sme
-sme: n-sme.fst dict-isme-norm.fst some-sme.fst
+sme: n-sme.fst \
+	 dict-isme-norm.fst \
+	 some-n-sme.fst
 
 sanit: sme fin nob sanit-lexica
 	@echo "*********************************"
-	@echo "** Built targets for valks:    **"
+	@echo "** Built targets for sanit:    **"
 	@echo "**    + sanit lexica           **"
 	@echo "**    + sme analysers          **"
 	@echo "**    + fin analysers          **"
 	@echo "**    + nob analysers          **"
 	@echo "*********************************"
-	@echo "TODO: install analysers in expected paths"
+	@echo ""
+	@echo "Now install analysers in expected paths."
+	@echo "    sudo make sanit-install"
+	@echo "... or copy the fsts in this dir."
 
+sanit-fin-install: fst/fin.fst ifst/ifin.fst
+	mkdir -p /opt/smi/fin/bin/
+	cp $^ /opt/smi/fin/bin/
+
+sanit-nob-install: fst/nob.fst ifst/inob.fst
+	mkdir -p /opt/smi/nob/bin/
+	cp $^ /opt/smi/nob/bin/
+
+sanit-sme-install: n-sme.fst \
+	               dict-isme-norm.fst \
+	               some-n-sme.fst
+	mkdir -p /opt/smi/sme/bin/
+	cp $^ /opt/smi/sme/bin/
+
+sanit-install: sanit-nob-install sanit-sme-install sanit-fin-install
 
 
 #####
@@ -439,11 +461,8 @@ isma-dict.fst:
 	  cp src/analyser-dict-gt-desc.xfst  $(TARGET_DIR)/dict-sma.fst ; \
 	  cp src/generator-dict-gt-norm.xfst $(TARGET_DIR)/isma-dict.fst
 
-sma-install: dict-sma.fst isma-dict.fst
-	cp $^ /opt/smi/sma/bin/
-
 .PHONY: sma
-sma: sma.fst isma.fst
+sma: dict-sma.fst isma-dict.fst
 
 ##
 ### #baakoehlexica
@@ -466,10 +485,21 @@ baakoeh: sma nob baakoeh-lexica
 	@echo "**    + sma analysers          **"
 	@echo "**    + nob analysers          **"
 	@echo "*********************************"
-	@echo "TODO: install analysers in expected paths"
+	@echo ""
+	@echo "Now install analysers in expected paths"
+	@echo "    make baakoeh-install"
+	@echo "... or copy the fsts in this dir."
 
+baakoeh-nob-install: fst/nob.fst ifst/inob.fst
+	mkdir -p /opt/smi/nob/bin/
+	cp $^ /opt/smi/nob/bin/
 
+baakoeh-sma-install: dict-sma.fst isma-dict.fst
+	mkdir -p /opt/smi/sma/bin/
+	cp $^ /opt/smi/sma/bin/
 
+baakoeh-install: baakoeh-sma-install \
+				 baakoeh-nob-install
 
 #####
 ##### #kyvtargets
@@ -507,7 +537,7 @@ kpv-lexica: kpv-engfinrus.all.xml
 
 kyv: kpv fin kpv-lexica
 	@echo "*********************************"
-	@echo "** Built targets for baakoeh:  **"
+	@echo "** Built targets for kyv:      **"
 	@echo "**    + kyv lexicon            **"
 	@echo "**    + kpv analysers          **"
 	@echo "**    + fin analysers          **"
@@ -518,10 +548,12 @@ kyv: kpv fin kpv-lexica
 # This one sets up dirnames, because can't get dirnames from inverse
 SOURCES = fst/*.fst
 
-.SUFFIXES: .fst .omg
-ISO:
-%.omg: fst/%.fst
-	echo $*
+.SUFFIXES: .fst
+ISO: $(SOURCES)
+	@echo $(foreach fst_file,    \
+					$(SOURCES),  \
+					$(fst_file)  \
+		   )
 
 # mkdir -p /opt/smi/$(notdir $(basename $<))/bin/
 # cp $< /opt/smi/$(notdir $(basename $<))/bin/$(notdir $<)
@@ -563,12 +595,34 @@ install: sme-install sma-install install-analysers
 	@echo "be matched by"
 	@echo " iolo and such, so is it possible to define a length pattern in deps?"
 
+# TODO: here we want to check all of the finalized paths for _installed_ fsts
+#       and also compiled dicts/ to make sure that a given install workds
+
+.PHONY: test-sanit
+test-sanit: 
+	@echo "TODO: "
+
+.PHONY: test-baakoeh
+test-baakoeh: 
+	@echo "TODO: "
+
+.PHONY: test-kyv
+test-kyv: 
+	@echo "TODO: "
+
+.PHONY: test-install
+test-install: test-sanit \
+	 		  test-baakoeh \
+	 		  test-kyv
+	@echo "TODO: "
+
 # TODO: sanit 
 .PHONY: all
 all: init \
 	 vada  \
 	 valks \
 	 sanat \
+	 sanit \
 	 baakoeh \
 	 kyv
 	@echo $(TARGET_DIR)

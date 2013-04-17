@@ -43,10 +43,7 @@ Morphology:
       inverse_tagsep: '+'
   SoMe:
     tool: *LOOKUP
-    # NOTE: some-sme.fst is a copy of n-sme.fst, but compiled with the tag
-    # rewrites, but also with the norwegian-language format tags, otherwise
-    # there will be errors.
-    file: [*OPT, "/sme/bin/some-sme.fst"] 
+    file: [*OPT, "/sme/bin/some-n-sme.fst"] 
     inverse_file: [*OPT, "/sme/bin/dict-isme-norm.fst"]
     format: 'xfst'
     options:
