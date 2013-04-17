@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block extra_css %}
+<style type="text/css">
+.marketing h1 {
+    margin: 0px 0 10px;
+    font-size: 60px;
+    font-weight: 200;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+.marketing h3 {
+    margin: 0px 0 10px;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0px;
+}
+.hero-unit {
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+.green {
+    color: #468847;
+}
+
+.red {
+    color: #b94a48;
+}
+
+.blue {
+    color: #3a87ad;
+}
+
+.yellow {
+    color: rgb(224, 224, 4);
+}
+
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="marketing">
+        <div class="hero-unit">
+          {# Hide this on mobiles, because it is too big, and the name
+             is in the header anyway #}
+          <h1 class="hidden-phone">500</h1>
+          <p class="lead" style="margin-bottom: .25em;">
+              {%- trans -%}Whoops! There was some kind of error.{%- endtrans -%}
+          </p>
+          <pre>{{ error }}</pre>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

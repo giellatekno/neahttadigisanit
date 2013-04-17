@@ -1,0 +1,20 @@
+<p class="lead" style="font-size: 120%">{% trans %}
+We have made some updates to the dictionary, which require you to
+replace your bookmark with a new version.
+{% endtrans %}
+</p>
+
+<h3>Instructions</h3>
+<ol>
+<li>{% trans %}Drag and drop the following link to your Bookmark toolbar,
+    then click it when you are on a page you wish to read. The
+    service will automatically be installed, and you will see a
+    menu icon on the left-hand side of the page.{% endtrans %}
+    
+    <br />
+<p class="label" id="bookmarklet"><a href="javascript:{{- bookmarklet|safe -}}">{% trans %}Read with Neahttadigisánit{% endtrans %}</a></p>
+
+</li>
+<li>Refresh the page, or click the Continue button below, and then click
+    the new bookmark link</li>
+</ol>

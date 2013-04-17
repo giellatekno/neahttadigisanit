@@ -1,0 +1,33 @@
+﻿<div id="digisanit">
+    <h3>Search form</h3>
+    <div class="neahttadigisanit_container">
+      <form id="neahttadigisanit" class="form-inline">
+        <div class="input-prepend input-append">
+          <div class="btn-group">
+            <button class="btn dropdown-toggle" data-toggle="dropdown">
+              <span class="val_name">Giella</span>
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" id="langpairs" role="menu"
+                data-for="target_lang">
+              <li class="selected"><a tabindex="-1" href="#"
+                      data-value="smenob">nordsamisk -> norsk</a></li>
+              <li><a tabindex="-1" href="#"
+                      data-value="smefin">nordsamisk -> finsk</a></li>
+              <li><a tabindex="-1" href="#"
+                      data-value="smesmj">nordsamisk -> lulesamisk</a></li>
+              <li><a tabindex="-1" href="#"
+                      data-value="nobsme">norsk -> nordsamisk</a></li>
+            </ul>
+          <input type="text" name="lookup"
+            placeholder="ohcesátni" style="width: 10em;"></input>
+          <div class="btn-group">
+           <button type="submit" class="btn" name="search">Oza</button>
+          </div>
+          <input type="hidden" name="target_lang" value="smenob"></input>
+        </div>
+        </div>
+       <div id="results"></div>
+     </form>
+  </div>
+</div>

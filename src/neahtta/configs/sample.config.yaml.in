@@ -1,0 +1,290 @@
+# Non-linguistic settings.
+ApplicationSettings:
+  app_name: "Neahttadigisánit"
+  short_name: "sample"
+  default_locale: "se"
+  default_pair: ["sme", "nob"]
+  mobile_default_pair: ["SoMe", "nob"]
+  locales_available:
+    - sme
+    - nob
+    - fin
+  # Meta description and keywords for Google search results.
+  meta_description: >
+     Free, mobile-friendly dictionaries for Olonetsian, Livonian, and Kven.
+  meta_keywords: >
+     kven, olonets, olonetsian, livonian, livvi, liivi 
+
+# For default locals, these must correspond with what exists in the
+# translations/ directory. In the case of languages with a 2-character ISO, use
+# this, instead of the 3-character ISO. There is no connection between these
+# settings and language pair names however, so those may be kept in 3-character
+# format.
+
+# `app_name` is what is displayed in the upper-left corner on every page.
+
+
+##
+### Linguistic settings
+##
+
+# 
+# Some helpful aliases for paths below.
+Tools:
+  xfst_lookup: &LOOKUP '/usr/bin/lookup'
+  gthome: &GTHOME '/home/neahtta/gtsvn'
+  opt: &OPT '/opt/smi'
+
+# Note that YAML doesn't support concatenating strings directly, 
+# so in this case I use list notation. See the examples below.
+#
+# To avoid repeating, feel free to set aliases for things like
+# shared FST format settings.
+
+Morphology:
+  sme:
+    tool: *LOOKUP
+    file: [*OPT, "/sme/bin/n-sme.fst"]
+    inverse_file: [*OPT, "/sme/bin/dict-isme-norm.fst"]
+    format: 'xfst'
+    options: &sme_fst_options
+      compoundBoundary: "  + #"
+      derivationMarker: "suff."
+      tagsep: ' '
+      inverse_tagsep: '+'
+  SoMe:
+    tool: *LOOKUP
+    file: [*OPT, "/sme/bin/some-sme.fst"] 
+    inverse_file: [*OPT, "/sme/bin/dict-isme-norm.fst"]
+    format: 'xfst'
+    options:
+      <<: *sme_fst_options
+  nob:
+    tool: *LOOKUP
+    file: [*GTHOME, '/st/nob/bin/nob.fst']
+    inverse_file: [*GTHOME, '/st/nob/bin/inob.fst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "#+Cmp+"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+
+# TODO: working on either removing these, or making a yaml parser definition to
+# grab one of the strings for inclusion in translation.po files.
+#
+# For now, make sure that some language names are defined for each language in
+# the system. For example, if only one dictionary file is defined, `sme-nob`,
+# there will still need to be a definition for language names for `nob`.
+#
+Languages:
+  - iso: sme
+    name:
+      eng: "Northern Sámi"
+      # TODO: formats for YAML parsing? 
+      # eng: !_ "Northern Sámi"
+      # eng: !!python/gettext "Northern Sámi"
+  - iso: SoMe
+  - iso: nob
+  - iso: fin
+  - iso: sma
+  - iso: eng
+
+# Here are the actual definitions of what dictionaries are available in the
+# system. What is presented in the UI also adheres to the order that is here.
+Dictionaries:
+  - source: sme
+    target: nob
+    path: 'dicts/sme-nob.all.xml'
+  # TODO: need to define language variants here, for now this is hard-coded
+  # in templates.
+  #   variants:
+  #     SoMe:
+  #       sme: 
+  #         fst: 'SmeSoMe'
+
+  - source: SoMe
+    target: nob
+    path: 'dicts/sme-nob.all.xml'
+
+  - source: nob
+    target: sme
+    path: 'dicts/nob-sme.all.xml'
+
+# Define what paradigms are generated for each part of speech, for each
+# language.  Because of the way that paradigm parsing currently works, remove
+# the part of speech from the generated tags, because this is automatically
+# inserted.
+#
+# Currently it is best to keep these paradigms simple. If anything more complex
+# is needed, such as changing Sg to Pl if the lexical entry contains an
+# attribute marking the word as plural only, this can be written with
+# a morphological generation override function.
+#
+# Also, if any paradigms are pregenerated and contained in the lexicon,
+# mark these as having only one form, "Pregenerate", and write a 
+# morphological generation override rule to fetch paradigms from the lexicon
+# and format them into the expected data format.
+#
+# Linguists: do not worry too much about things like +Sg and +Pl mentioned
+# above, but provide the programmers lists for what is needed. Or
+# alternatively, make the programmers to implement something easier. ;)
+#
+# Use the same tag format as the generator expects.
+Paradigms:
+  sme: &smeparadigms
+    PRON: ["Pregenerate"]
+    A:
+      - "Attr"
+      - "Pl+Nom"
+      - "Comp+Attr"
+      - "Comp+Sg+Nom"
+      - "Superl+Sg+Nom"
+
+    NUM:
+      - "Pl+Nom"
+      - "Pl+Gen"
+
+    N:
+      - "Sg+Gen"
+      - "Sg+Ill"
+      - "Pl+Ill"
+    PROP:
+      - "Sg+Gen"
+      - "Sg+Ill"
+      - "Sg+Loc"
+
+    V:
+      - "Ind+Prs+Sg1"
+      - "Ind+Prt+Sg1"
+      - "Ind+Prs+ConNeg"
+
+  SoMe: 
+    <<: *smeparadigms
+  
+  nob:
+    V:
+      - "Imp"
+      - "Ind+Prs"
+      - "Ind+Prt"
+      - "PrfPtc"
+
+#
+# These are not much in use yet, but could be helpful in producing override
+# rules or stripping a particular type of tag from being shown to users.
+TagSets:
+  sme:
+    pos: ["N", "V", "A", "Pr", "Po", "Num"]
+    type: ["NomAg", "G3", "aktor"]
+
+#
+# These tag transforms are used when output from FSTs needs to be transformed
+# for end users. The key is a language pair (sma, nob), where the first language
+# is the language of generation, and the second language is the language of
+# display to users. The same goes for the keys and values in the following
+# dictionary.
+#
+# Use aliases when necessary to save time.
+TagTransforms:
+  (sma, nob):
+    V: "v."
+    N: "s."
+    A: "adj."
+    # TODO: test that it actually goes away
+    NomAg: ""
+    G3: ""
+    G7: ""
+    Adv: "adv."
+
+    v: "v."
+    n: "s."
+    a: "adj."
+    nomag: ""
+    g3: "g3."
+    g7: ""
+    adv: "adv."
+    cc: "konj."
+    cs: "konj."
+    i: "interj."
+    npl: "pl. s."
+    num: "num."
+    pcle: "part."
+    phrase_adv: "adv."
+    phrase_a: "adj."
+    phrase_i: "interj."
+    phrase_n: "s."
+    phrase_prop: "egennavn"
+    po: "postp."
+    pr: "prep."
+    pron: "pron."
+    prop: "egennavn"
+
+  (sme, nob): &smetagrelabels
+    V: "v."
+    N: "s."
+    A: "adj."
+    # TODO: test that it actually goes away
+    NomAg: ""
+    G3: ""
+    G7: ""
+    Adv: "adv."
+
+    v: "v."
+    n: "s."
+    a: "adj."
+    nomag: ""
+    g3: "g3."
+    g7: ""
+    adv: "adv."
+    cc: "konj."
+    cs: "konj."
+    i: "interj."
+    npl: "pl. s."
+    num: "num."
+    pcle: "part."
+    phrase_adv: "adv."
+    phrase_a: "adj."
+    phrase_i: "interj."
+    phrase_n: "s."
+    phrase_prop: "egennavn"
+    po: "postp."
+    pr: "prep."
+    pron: "pron."
+    prop: "egennavn"
+
+  (SoMe, nob):
+    <<: *smetagrelabels
+  
+  (nob, sme):
+    V: "v."
+    N: "s."
+    A: "adj."
+    # TODO: test that it actually goes away
+    NomAg: ""
+    G3: ""
+    G7: ""
+    Adv: "adv."
+
+    v: "v."
+    n: "s."
+    a: "adj."
+    nomag: ""
+    g3: "g3."
+    g7: ""
+    adv: "adv."
+    cc: "konj."
+    cs: "konj."
+    i: "interj."
+    npl: "pl. s."
+    num: "num."
+    pcle: "part."
+    phrase_adv: "adv."
+    phrase_a: "adj."
+    phrase_i: "interj."
+    phrase_n: "s."
+    phrase_prop: "egennavn"
+    po: "postp."
+    pr: "prep."
+    pron: "pron."
+    prop: "egennavn"
+

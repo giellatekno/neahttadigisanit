@@ -1,0 +1,19 @@
+<dl class="dl-horizontal miniparadigm">
+{%- for lemma, tag, form in lexeme.paradigms -%}
+
+    {% if tag %}
+        <dt>{{ ' '.join(tag)|tagfilter(_from, _to)  }}</dt>
+    {% endif %}
+
+    {% if form %}
+    <dd>
+        {%- for f in form -%}
+            {{ f }}<br/>
+        {%- endfor -%}
+    </dd>
+    {% else %}
+        <dd>?</dd>
+    {% endif %}
+{%- endfor -%}
+</dl>
+

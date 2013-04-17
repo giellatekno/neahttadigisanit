@@ -1,0 +1,128 @@
+ApplicationSettings:
+  app_name: "Neahttadigisánit"
+  short_name: "kyv"
+  default_locale: "kpv"
+  default_pair: ["kpv", "fin"]
+  mobile_default_pair: false
+  locales_available:
+    - kpv
+    - fi
+    - en
+  meta_description: >
+      Free online, mobile friendly dictionaries for Nenets
+  meta_keywords: >
+      komi, komi-zyrian, mobile, dictionary, free, russian
+
+Tools:
+  xfst_lookup: &LOOKUP '/usr/bin/lookup'
+  opt: &OPT '/opt/smi/'
+
+Morphology:
+  kpv:
+    tool: *LOOKUP
+    file: [*OPT, '/kpv/bin/kpv.fst']
+    inverse_file: [*OPT, '/kpv/bin/ikpv.fst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  fin:
+    tool: *LOOKUP
+    file: [*OPT, '/fin/bin/fin.fst']
+    inverse_file: [*OPT, '/fin/bin/ifin.fst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+
+Languages:
+  - iso: kpv
+    name: {}
+  - iso: eng
+    name: {}
+  - iso: fin
+    name: {}
+  - iso: rus
+    name: {}
+
+Dictionaries:
+  - source: kpv
+    target: eng
+    path: 'dicts/kpv-engfinrus.all.xml'
+
+  - source: kpv
+    target: fin
+    path: 'dicts/kpv-engfinrus.all.xml'
+
+Paradigms:
+  kpv:
+    PRON:
+      - "Pregenerate"
+    N:
+      - "Sg+Nom"
+      - "Sg+Gen"
+      - "Sg+Abl"
+      - "Sg+Dat"
+      - "Sg+Acc"
+      - "Sg+Ins"
+      - "Sg+Com"
+      - "Sg+Car"
+      - "Sg+Cns"
+      - "Sg+Comp"
+      - "Sg+Ine"
+      - "Sg+Ela"
+      - "Sg+Ill"
+      - "Sg+Apr"
+      - "Sg+Egr"
+      - "Sg+Ter"
+      - "Sg+Prl"
+      - "Pl+Nom"
+      - "Pl+Gen"
+      - "Pl+Abl"
+      - "Pl+Acc"
+      - "Pl+Dat"
+      - "Pl+Comp"
+      - "Pl+Cns"
+      - "Pl+Ins"
+      - "Pl+Ill"
+      - "Pl+Ine"
+      - "Pl+Ela"
+      - "Pl+Car"
+      - "Pl+Egr"
+      - "Pl+Tra"
+      - "Pl+Apr"
+      - "Pl+Ter"
+      - "Pl+Prl"
+    # V:
+    #   - "TV+Ind+Aor+ScSg1"
+
+TagSets:
+  kpv:
+    pos: ["N", "V", "A", "Pr", "Po", "Num"]
+    type: ["NomAg", "G3", "aktor"]
+
+
+# (sourcelang, targlang)
+# V: "v."
+# FST format: "user friendly"
+TagTransforms:
+
+  (kpv, eng):
+    V: "v."
+    N: "n."
+    A: "adj."
+
+  (kpv, fin):
+    V: "v."
+    N: "s."
+    A: "adj."
+
+  (kpv, kpv):
+    V: "v."
+    N: "s."
+    A: "adj."
+

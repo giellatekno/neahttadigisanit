@@ -1,0 +1,194 @@
+fs = require 'fs'
+util = require 'util'
+wrench = require 'wrench'
+{spawn} = require 'child_process'
+{exec} = require 'child_process'
+uglify = require "uglify-js"
+
+# TODO: also minify stylesheet?
+# TODO: include giellatekno license in compiled JS files
+
+deps = [
+  'src/bootstrap-dropdown.js'
+  'src/bootstrap-tooltip.js'
+  'src/bootstrap-popover.js'
+  'src/bootstrap-modal.js'
+  'src/DSt.js'
+  'src/semver.js'
+  'src/rangy-core.js'
+  'src/jquery.neahttadigisanit.js'
+]
+
+
+stylesheets = [
+  'src/bootstrap.custom.css'
+  'src/jquery.neahttadigisanit.css'
+]
+
+appFiles = deps + stylesheets
+
+compiledFiles = [
+  'jquery.neahttadigisanit.css',
+  'jquery.neahttadigisanit.js'
+]
+
+compress = (callback) ->
+  util.print "\n Compressing... bin/jquery.neahttadigisanit.js\n"
+  all = (fs.readFileSync 'bin/jquery.neahttadigisanit.js').toString()
+
+  ast = uglify.parser.parse all
+  out = fs.openSync "bin/jquery.neahttadigisanit.min.js", "w+"
+
+  ast = uglify.uglify.ast_mangle ast
+  ast = uglify.uglify.ast_squeeze ast
+
+  fs.writeSync out, uglify.uglify.gen_code(ast)
+
+  util.print "\n Minified! to jquery.neahttadigisanit.min.js\n"
+
+concatCSS = (callback) ->
+  concated = ''
+  for file in stylesheets
+    out = fs.readFileSync file
+    concated += out
+  fs.writeFileSync 'bin/jquery.neahttadigisanit.css', concated
+
+concat = (callback) ->
+  concated = ''
+  for file in deps
+    newF = fs.readFileSync file
+    concated += newF
+  fs.writeFileSync 'bin/jquery.neahttadigisanit.js', concated
+  fs.unlinkSync 'src/jquery.neahttadigisanit.js'
+  compress()
+
+# zipWordpress = (callback) ->
+#   args = [
+#     'zip'
+#     'bin/wordpress/neahttadigisanit'
+#     'bin/wordpress/neahttadigisanit/*'
+#     'bin/wordpress/neahttadigisanit/img/*'
+#   ]
+#   exec args.join(' ')
+
+build = (callback) ->
+  coffee = spawn 'coffee', ['--compile', '--bare', 'src/jquery.neahttadigisanit.coffee']
+  coffee.stderr.on 'data', (data) ->
+    process.stderr.write data.toString()
+  coffee.stdout.on 'data', (data) ->
+    util.print data.toString()
+  coffee.on 'exit', (code) ->
+    callback?() if code is 0
+    concat()
+
+
+buildChrome = (callback) ->
+  pluginTargetDir = 'bin/chrome/'
+  # copy to bin/chrome/
+
+  # copy compiled files compiledFiles
+  wrench.copyDirSyncRecursive('src/chrome', 'bin/chrome')
+
+  # cp compiledFiles
+  for file in compiledFiles
+    _in = fs.readFileSync 'bin/' + file
+    fs.writeFileSync "bin/chrome/#{file}", _in
+
+buildWordpress = (callback) ->
+  pluginTargetDir = 'bin/wordpress/'
+
+  # copy compiled files compiledFiles
+  wrench.copyDirSyncRecursive('src/wordpress', 'bin/wordpress')
+
+  # cp compiledFiles
+  for file in compiledFiles
+    _in = fs.readFileSync 'bin/' + file
+    fs.writeFileSync "bin/wordpress/neahttadigisanit/#{file}", _in
+
+buildBookmarklet = (callback) ->
+  # dev/jquery.1.7.2.js  (minified)
+  # bin/jquery.neahttadigisanit.min.js 
+  # src/bookmarklet.init.js (not minified)
+  #
+  # TODO: minify bookmark.js to ../static/js/bookmark.min.js
+
+  util.print "\n Compressing... src/neahttadigisanit.init.js\n"
+  all = (fs.readFileSync 'src/neahttadigisanit.init.js').toString()
+
+  ast = uglify.parser.parse all
+  out = fs.openSync "bin/neahttadigisanit.init.min.js", "w+"
+
+  ast = uglify.uglify.ast_mangle ast
+  ast = uglify.uglify.ast_squeeze ast
+
+  # fs.writeSync out, uglify.uglify.gen_code(ast)
+  fs.writeSync out, all
+
+  util.print "\n Minified! to neahttadigisanit.init.min.js\n"
+
+  _fs_nm = (fs.readFileSync 'dev/jquery.1.7.2.js').toString() +
+        (fs.readFileSync 'bin/jquery.neahttadigisanit.js').toString() +
+        (fs.readFileSync 'src/neahttadigisanit.init.js').toString()
+  out_nonmin = fs.openSync "bin/bookmarklet.js", "w+"
+  fs.writeSync out_nonmin, _fs_nm
+
+  _fs = (fs.readFileSync 'dev/jquery.1.7.2.js').toString() +
+        (fs.readFileSync 'bin/jquery.neahttadigisanit.min.js').toString() +
+        (fs.readFileSync 'bin/neahttadigisanit.init.min.js').toString()
+  out = fs.openSync "bin/bookmarklet.min.js", "w+"
+  fs.writeSync out, _fs
+
+  out = fs.openSync "../static/js/bookmarklet.min.js", "w+"
+  fs.writeSync out, _fs
+  out = fs.openSync "../static/js/bookmarklet.js", "w+"
+  fs.writeSync out, _fs_nm
+  util.print "\n Compiled to bin/bookmarklet.min.js and ../static/js/bookmarklet.min.js\n"
+
+  _css = (fs.readFileSync 'bin/jquery.neahttadigisanit.css').toString()
+  _cssout = fs.openSync "../static/css/jquery.neahttadigisanit.css", "w+"
+  fs.writeSync _cssout, _css
+  util.print "\n Copied CSS to ../static/css/jquery.neahttadigisanit.css\n"
+
+
+task 'watch', 'Watch prod source files and build changes', ->
+  invoke 'build'
+  util.log "Watching for changes in src"
+
+  for file in appFiles then do (file) ->
+    fs.watchFile file, (curr, prev) ->
+      if +curr.mtime isnt +prev.mtime
+        util.log "Saw change in #{file}"
+        util.log 'Whoa. Saw a change. Building. Hold plz.'
+        invoke 'build'
+
+task 'min', 'minify compiled *.js file', ->
+  exec "uglifyjs jquery.neahttadigisanit.js -o jquery.neahttadigisanit.min.js", exerr
+
+task 'clean', 'Clean compiled files', ->
+  wrench.rmdirSyncRecursive('bin/')
+  wrench.mkdirSyncRecursive('bin/')
+
+task 'build-chrome', 'Compile the chrome plugin', ->
+  buildChrome()
+  util.print "Everything now in bin/chrome/\n"
+
+task 'build-wordpress', 'Compile the wordpress plugin', ->
+  buildWordpress()
+  # zipWordpress()
+  util.print "Everything now in bin/wordpress/\n, to install in WP, zip the files and upload"
+
+task 'build-bookmarklet', 'Compile the plugin and jQuery to be downloaded by a bookmarklet', ->
+  buildBookmarklet()
+  util.print "Bookmarklet compiled to bin/bookmarklet.min.js"
+
+task "compress", 'Uglify JS', (params)->
+  compress()
+
+task 'build', 'Compile jQuery dependencies and dictapi, and compress', ->
+  build()
+  concatCSS()
+  util.print "Output stored to jquery.neahttadigisanit.js and jquery.neahttadigisanit.css\n"
+  util.print "Be sure also to compile the other targets: build-chrome, build-wordpress, build-bookmarklet if those need to be updated."
+
+
+# vim: set ts=4 sw=4 tw=0 syntax=coffee :

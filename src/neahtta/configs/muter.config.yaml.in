@@ -1,0 +1,153 @@
+ApplicationSettings:
+  app_name: "Neahttadigisánit"
+  short_name: "muter"
+  default_locale: "mrj"
+  default_pair: ["mrj", "fin"]
+  mobile_default_pair: false
+  locales_available:
+    - mrj
+    # TODO: enable once mhr dictionaries work - mhr
+    - fi
+    - en
+  # TODO: more keywords and descriptions
+  meta_description: >
+      Free online, mobile friendly dictionaries for Eastern and Western Mari
+  meta_keywords: >
+      eastern mari, western mari, hill mari, meadow mari, mobile, dictionary, free, russian
+
+Tools:
+  xfst_lookup: &LOOKUP '/usr/bin/lookup'
+  opt: &OPT '/opt/smi/'
+
+Morphology:
+  mrj:
+    tool: *LOOKUP
+    file: [*OPT, '/mrj/bin/mrj.fst']
+    inverse_file: [*OPT, '/mrj/bin/imrj.fst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  # TODO:
+  # mhr:
+  #   tool: *LOOKUP
+  #   file: [*OPT, '/mhr/bin/mhr.fst']
+  #   inverse_file: [*OPT, '/mhr/bin/imhr.fst']
+  #   format: 'xfst'
+  #   options:
+  #     compoundBoundary: "+Use/Circ#"
+  #     derivationMarker: "+Der"
+  #     tagsep: '+'
+  #     inverse_tagsep: '+'
+  fin:
+    tool: *LOOKUP
+    file: [*OPT, '/fin/bin/fin.fst']
+    inverse_file: [*OPT, '/fin/bin/ifin.fst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+
+Languages:
+  - iso: mrj
+    name: {}
+  - iso: mhr
+    name: {}
+  - iso: eng
+    name: {}
+  - iso: fin
+    name: {}
+  - iso: rus
+    name: {}
+
+Dictionaries:
+  - source: mrj
+    target: fin
+    path: 'dicts/mrj-all.xml'
+
+  # - source: mhr
+  #   target: fin
+  #   path: 'dicts/mhr-all.xml'
+
+Paradigms:
+  mrj:
+    PRON:
+      - "Pregenerate"
+    N:
+      - "Sg+Nom"
+      - "Sg+Gen"
+      - "Sg+Acc"
+      - "Sg+Com"
+      - "Sg+Dat"
+      - "Sg+Ine"
+      - "Sg+Ill"
+      - "Sg+Lat"
+      - "Sg+Comp"
+      - "Sg+Abe"
+      - "Pl+Nom"
+      - "Pl+Gen"
+      - "Pl+Acc"
+      - "Pl+Com"
+      - "Pl+Dat"
+      - "Pl+Ine"
+      - "Pl+Ill"
+      - "Pl+Lat"
+      - "Pl+Comp"
+      - "Pl+Abe"
+    V:
+      - "Inf"
+      - "Ind+Prs+Sg1"
+      - "Ind+Prs+Sg2"
+      - "Ind+Prs+Sg3"
+      - "Ind+Prs+Pl1"
+      - "Ind+Prs+Pl2"
+      - "Ind+Prs+Pl3"
+
+  mhr:
+    PRON:
+      - "Pregenerate"
+    N:
+      - "Sg+Nom"
+    V:
+      - "TV+Ind+Aor+ScSg1"
+
+
+TagSets:
+  mrj:
+    pos: ["N", "V", "A", "Pr", "Po", "Num"]
+    type: ["NomAg", "G3", "aktor"]
+  mhr:
+    pos: ["N", "V", "A", "Pr", "Po", "Num"]
+    type: ["NomAg", "G3", "aktor"]
+
+
+# (sourcelang, targlang)
+# V: "v."
+# FST format: "user friendly"
+TagTransforms:
+
+  (mrj, eng):
+    V: "v."
+    N: "n."
+    A: "adj."
+
+  (mrj, fin):
+    V: "v."
+    N: "s."
+    A: "adj."
+
+  (mhr, eng):
+    V: "v."
+    N: "n."
+    A: "adj."
+
+  (mhr, fin):
+    V: "v."
+    N: "s."
+    A: "adj."
+
+

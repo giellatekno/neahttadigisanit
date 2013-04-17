@@ -1,0 +1,227 @@
+ApplicationSettings:
+  app_name: "Nettidigisanat"
+  short_name: "sanat"
+  default_locale: "ru"
+  default_pair: ["olo", "fin"]
+  mobile_default_pair: false
+  locales_available:
+    - fi
+    - lv
+    - ru
+  # TODO: someone will have to decide on the meta keywords and
+  # descriptions for google.
+  meta_description: >
+     Free, mobile-friendly dictionaries for Olonetsian, Livonian, and Kven.
+  meta_keywords: >
+     kven, olonets, olonetsian, livonian, livvi, liivi 
+
+Tools:
+  xfst_lookup: &LOOKUP '/usr/bin/lookup'
+  opt: &OPT '/opt/smi/'
+ 
+Morphology:
+  olo:
+    tool: *LOOKUP
+    file: [*OPT, '/olo/bin/olo.fst']
+    inverse_file: [*OPT, '/olo/bin/iolo.fst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  fin:
+    tool: *LOOKUP
+    file: [*OPT, '/fin/bin/fin.fst']
+    inverse_file: [*OPT, '/fin/bin/ifin.fst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  liv:
+    tool: *LOOKUP
+    file: [*OPT, '/liv/bin/liv.fst']
+    inverse_file: [*OPT, '/liv/bin/iliv.fst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  fkv:
+    tool: *LOOKUP
+    file: [*OPT, '/fkv/bin/fkv.fst']
+    inverse_file: [*OPT, '/fkv/bin/ifkv.fst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  izh:
+    tool: *LOOKUP
+    file: [*OPT, '/izh/bin/izh.fst']
+    inverse_file: [*OPT, '/izh/bin/iizh.fst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+
+Languages:
+  - iso: olo
+  - iso: fin
+  - iso: liv
+  - iso: fkv
+  - iso: izh
+  - iso: nob
+
+# This also dictates the order of the dictionaries in the UI for now.
+Dictionaries:
+  - source: olo
+    target: fin
+    path: 'dicts/olo-fin.all.xml'
+  - source: liv
+    target: fin
+    path: 'dicts/liv-fin.all.xml'
+  - source: izh
+    target: fin
+    path: 'dicts/izh-fin.all.xml'
+  - source: fkv 
+    target: nob
+    path: 'dicts/fkv-nob.all.xml'
+
+
+# Abstracting display formats out here, because there are different
+# requirements for different languages and different wordforms.
+
+# Paradigms for generation on detailed pages. Leave POS out of tags,
+# this is supplied automatically. Otherwise use generation FST tag
+# format.
+Paradigms:
+  olo:
+    PRON:
+      - "Pregenerate"
+    N:
+      - "Sg+Par"
+      - "Sg+Apr"
+      - "Sg+Gen"
+      - "Pl+Par"
+    V:
+      - "Ind+Prs+ScSg1"
+      - "Ind+Prs+ScSg3"
+      - "Ind+Prs+ScPl3"
+      - "Ind+Prt+ScSg1"
+  
+  liv:
+    PRON:
+      - "Pregenerate"
+    N:
+      - "Sg+Nom"
+      - "Sg+Gen"
+      - "Sg+Dat"
+      - "Sg+Ins"
+      - "Sg+Par"
+      - "Sg+Ill"
+      - "Sg+Ela"
+      - "Pl+Nom"
+      - "Pl+Gen"
+      - "Pl+Dat"
+      - "Pl+Ins"
+      - "Pl+Par"
+      - "Pl+Ill"
+      - "Pl+Ela"
+    V:
+      - "Ind+Prs+Sg1"
+      - "Ind+ConNeg+Sg"
+      - "Ind+Prt+Sg1"
+
+  fkv:
+    PRON:
+      - "Pregenerate"
+    N:
+      - "Sg+Par"
+      - "Sg+Gen"
+      - "Pl+Par"
+    V:
+      - "Ind+Prs+Sg1"
+      - "Ind+ConNeg+Sg"
+      - "Ind+Prt+Sg1"
+
+  fin:
+    PRON:
+      - "Pregenerate"
+    N:
+      - "Sg+Par"
+      - "Sg+Gen"
+      - "Pl+Par"
+    V:
+      - "Ind+Prs+Sg1"
+      - "Ind+ConNeg+Sg"
+      - "Ind+Prt+Sg1"
+
+  izh:
+    PRON:
+      - "Pregenerate"
+    N:
+      - "Sg+Par"
+      - "Sg+Gen"
+      - "Pl+Par"
+    V:
+      - "Ind+Prs+Sg1"
+      - "Ind+ConNeg+Sg"
+      - "Ind+Prt+Sg1"
+
+
+
+TagSets:
+  olo:
+    pos: ["N", "V", "A", "Pr", "Po", "Num"]
+    type: ["NomAg", "G3", "aktor"]
+
+# (sourcelang, targlang)
+# V: "v."
+# FST format: "user friendly"
+TagTransforms:
+
+  (olo, rus):
+    V: "v."
+    N: "s."
+    A: "adj."
+
+  (liv, rus):
+    V: "v."
+    N: "s."
+    A: "adj."
+
+  (olo, olo): &olo_olo
+    V: "v."
+    N: "s."
+    A: "adj."
+    Ind: ""
+    Prs: "prs."
+
+  (olo, fin):
+    <<: *olo_olo
+    # NB: example override of inherited key/value pairs
+    Ind: "ind."
+
+  (liv, liv):
+    V: "v."
+    N: "s."
+    A: "adj."
+
+  (fkv, nob):
+    V: "v."
+    N: "s."
+    A: "adj."
+
+  (izh, fin):
+    V: "v."
+    N: "s."
+    A: "adj."
+
+

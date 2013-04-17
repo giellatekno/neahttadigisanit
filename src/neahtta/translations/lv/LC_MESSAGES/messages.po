@@ -1,0 +1,557 @@
+# Latvian translations for PROJECT.
+# Copyright (C) 2013 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2013-04-11 20:00-0500\n"
+"PO-Revision-Date: 2013-03-25 12:21+0200\n"
+"Last-Translator: \n"
+"Language-Team: lv <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 :"
+" 2)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.6\n"
+
+#: language_names.py:10
+msgid "North Sámi"
+msgstr "Ziemeļsāmu"
+
+#: language_names.py:11
+msgid "North Sámi (#SoMe)"
+msgstr "Ziemeļsāmu (#SoMe)"
+
+#: language_names.py:14
+msgid "South Sámi"
+msgstr "Dienvidsāmu"
+
+#: language_names.py:17
+msgid "Komi"
+msgstr "Komiešu"
+
+#: language_names.py:20
+msgid "Kven"
+msgstr "Kvenu"
+
+#: language_names.py:21
+msgid "Livonian"
+msgstr "Lībiešu"
+
+#: language_names.py:22
+msgid "Olonetsian"
+msgstr "Oloņecas karēļu"
+
+#: language_names.py:23
+msgid "Izhorian"
+msgstr "Ižoru"
+
+#: language_names.py:26
+msgid "Erzya Mordvin"
+msgstr "Erzas mordiešu"
+
+#: language_names.py:27
+msgid "Moksha"
+msgstr "Mokšas mordviešu"
+
+#: language_names.py:30
+msgid "Western Mari"
+msgstr "Kalnu mariešu"
+
+#: language_names.py:33
+msgid "Nenets"
+msgstr "Ņencu"
+
+#: language_names.py:36 language_names.py:42
+msgid "Finnish"
+msgstr "Somu"
+
+#: language_names.py:37 language_names.py:43 language_names.py:44
+msgid "Norwegian"
+msgstr "Norvēģu"
+
+#: language_names.py:39 language_names.py:40
+msgid "Russian"
+msgstr "Krievu"
+
+#: language_names.py:45
+msgid "Latvian"
+msgstr "Latviešu"
+
+#: language_names.py:46
+msgid "English"
+msgstr "Angļu"
+
+#: neahtta.py:354 templates/index.html:258
+msgid " is a possible form of ... "
+msgstr "ir iespējamā forma no vārda …"
+
+#: neahtta.py:432
+msgid "Invalid format. Only json and html allowed."
+msgstr "Nederīgs formāts. Tiek atzīts tikai json un html."
+
+#: static/js/bookmarklet.js:1245
+msgid "Á"
+msgstr "Á"
+
+#: static/js/bookmarklet.js:1245
+msgid "Options"
+msgstr "Opcijas"
+
+#: static/js/bookmarklet.js:1245 templates/about.sanit.html:65
+#: templates/base.html:135
+msgid "About"
+msgstr "Par mums"
+
+#: static/js/bookmarklet.js:1245
+msgid "Language"
+msgstr "Valoda"
+
+#: static/js/bookmarklet.js:1245
+msgid "Save"
+msgstr "Saglabāt"
+
+#: static/js/bookmarklet.js:1245
+msgid ""
+"In order to look up a word, hold down the <em>Alt</em> or <em>Option</em>"
+" (⌥) key, and doubleclick on a word. The service will contact the "
+"dictionary, and return a word after a short pause."
+msgstr ""
+"Lai sameklētu vārdu, nospiediet taustiņu <em>Alt</em> vai <em>Option</em>"
+" (⌥) un izdariet dubultklikšķi uz vārda. Pakalpojums savienosies ar "
+"vārdnīcu un pēc īsas pauzes sniegs vārda tulkojumu."
+
+#: static/js/bookmarklet.js:1245
+msgid ""
+"If you find a bug, or if the bookmark does not work on a specific page <a"
+" href=\"mailto:giellatekno@hum.uit.no\">please contact us</a>. Tell us "
+"what page didn't work, or what you did when you discovered the problem."
+msgstr ""
+"Ja jūs atrodas kļūdu vai arī grāmatzīme nedarbojas konkrētajā lapā,  <a "
+"href=\"mailto:giellatekno@hum.uit.no\">lūdzu sazinieties ar mums</a>. "
+
+#: static/js/bookmarklet.js:1294
+msgid "Error!"
+msgstr "Kļūda!"
+
+#: static/js/bookmarklet.js:1294
+msgid "Could not connect to dictionary server"
+msgstr "Neizdevās savienot ar vārdnīcas serveri"
+
+#: static/js/bookmarklet.js:1294
+msgid "Close"
+msgstr "Aizvērt"
+
+#: static/js/bookmarklet.js:1416 static/js/bookmarklet.js:1691
+msgid "Unknown word"
+msgstr "Nezināms vārds"
+
+#: static/js/bookmarklet.js:1417
+msgid "You are using"
+msgstr "Jūs izmantojat"
+
+#: static/js/bookmarklet.js:1419
+msgid "Meaning not found"
+msgstr "Tulkojums netika atrasts"
+
+#: templates/404.html:51
+msgid ""
+"Whoops! The page you requested was not found. If you think you are "
+"receiving this in error, please contact us."
+msgstr ""
+"Oho! Lapa, kuru meklējāt, netika atrasta. Ja uzskatāt, ka šis paziņojums "
+"ir kļūdains, lūdzu sazinieties ar mums. "
+
+#: templates/500.html:51
+msgid "Whoops! There was some kind of error."
+msgstr "Oho! Šeit bija kāda kļūda."
+
+#: templates/about.sanit.html:75
+msgid "A dictionary that understands what you're looking for."
+msgstr "Vārdnīca, kura saprot, ko jūs meklējat."
+
+#: templates/about.sanit.html:76
+msgid "(... And is mobile-friendly!)"
+msgstr "(Un ir draudzīga mobilajiem tālruņiem!)"
+
+#: templates/about.sanit.html:80
+msgid "Free"
+msgstr "Bezmaksas"
+
+#: templates/about.sanit.html:81
+msgid ""
+"Everything (or, well, almost everything) that\n"
+"                    concerns minority languages should be free. Here\n"
+"                    you'll find free dictionaries, and other analytical\n"
+"                    tools."
+msgstr ""
+"Visam (labi, gandrīz visam), kas attiecas uz mazākumtautību valodām, "
+"vajadzētu būt pieejamam bez maksas. Šeit jūs atradīsiet brīvi pieejamas "
+"bezmaksas vārdnīcas un citus analītiskos instrumentus."
+
+#: templates/about.sanit.html:87
+msgid "Open-Source"
+msgstr "Atklātais pirmkods"
+
+#: templates/about.sanit.html:88
+msgid ""
+"Everything here is based on open-source tools. Do you\n"
+"                have an idea for an app or research project that needs\n"
+"                linguistic resources? Visit <a class=\"blue\"\n"
+"                    href=\"http://giellatekno.uit.no/\">Giellatekno</a>'s"
+"\n"
+"                website for information on how to get access to lexicon\n"
+"                files, and morphological and syntactic analyzers."
+msgstr ""
+"Šeit viss ir balstīts uz atklātā pirmkoda instrumentiem. Vai jums ir "
+"ideja par aplikāciju vai pētniecības projektu, kam nepieciešami "
+"lingvistiskie resursi? Apmeklējiet tīmekļa vietni <a class=\"blue\" "
+"href=\"http://giellatekno.uit.no/\">Giellatekno</a>, lai uzzinātu, kā "
+"piekļūt leksikas failiem, kā arī morfoloģiskajam un sintaktiskajam "
+"analizatoram."
+
+#: templates/about.sanit.html:96
+msgid "Linguistic basis"
+msgstr "Lingvistiskā bāze"
+
+#: templates/about.sanit.html:97
+msgid ""
+"Write what you wish, and the dictionary will analyze it to break apart "
+"compound words and find base forms."
+msgstr ""
+"Ierakstiet vārdu un vārdnīca to izanalizēs, sadalot iespējamos salikteņus"
+" un atrodot pamatformas."
+
+#: templates/about.sanit.html:103
+msgid "gå, dra, reise"
+msgstr "iet, doties"
+
+#: templates/about.sanit.html:110
+msgid "Source material"
+msgstr "Avotu materiāli"
+
+#: templates/about.sanit.html:117
+msgid "sme ↔ nob"
+msgstr "ziemeļsāmu ↔ norvēģu"
+
+#: templates/about.sanit.html:118
+msgid ""
+"North Sámi → Norwegian builds on Nils Jernsletten's dictionary "
+"<em>Álgosátnegirji</em>, but here it has been more than doubled in "
+"content."
+msgstr ""
+"Ziemeļsāmu → norvēģu virziens ir veidots uz Nila Jernsletena (Nils "
+"Jernsletten) vārdnīcas <em>Álgosátnegirji</em> bāzes, tomēr šeit tās "
+"saturs ir paplašināts vairāk nekā divas reizes."
+
+#: templates/about.sanit.html:119
+msgid ""
+"Norwegian → North Sámi is a converted version of North Sámi → Norwegian, "
+"but we have also revised the content and added frequent words from "
+"Norwegian."
+msgstr ""
+"Norvēģu → ziemeļsāmu virziens ir apgriezta ziemeļsāmu → norvēģu valodas "
+"vārdnīcas versija, kuru mēs esam rediģējuši un pievienojuši arī biežāk "
+"sastopamos mūsdienu norvēģu valodas vārdus."
+
+#: templates/about.sanit.html:122
+msgid "sma ↔ nob"
+msgstr "dienvidsāmu ↔ norvēģu"
+
+#: templates/about.sanit.html:123
+msgid ""
+"The dictionaries for South Sámi and Norwegian build on material prepared "
+"by Albert Jåma and Tove Brustad in the <a class=\"blue\" "
+"href=\"http://www.ruovatsijte.no/\">Hemnes Sámi Organization</a>, but has"
+" in addition gained words from <a class=\"blue\" "
+"href=\"http://giellatekno.uit.no/\">Giellatekno</a> and <a class=\"blue\""
+" href=\"http://aajege.no/\">Aajege</a>'s work with the Southern Sámi <a "
+"class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
+msgstr ""
+"Dienvidsāmu un norvēģu valodas vārdnīcas ir veidotas, balstoties uz "
+"Alberta Jomas (Albert Jåma) un Tūves Brustades (Tove Brustad) "
+"materiāliem, kas atrodas: <a class=\"blue\" "
+"href=\"http://www.ruovatsijte.no/\">Hemnes sāmu organizācija</a>). Tie ir"
+" papildināti ar vārdiem no <a class=\"blue\" "
+"href=\"http://giellatekno.uit.no/\">Giellatekno</a> un <a class=\"blue\" "
+"href=\"http://aajege.no/\">Aajege</a> darba par dienvidsāmu valodu <a "
+"class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
+
+#: templates/about.sanit.html:126
+msgid "sme ↔ fin"
+msgstr "ziemeļsāmu ↔ somu"
+
+#: templates/about.sanit.html:127
+msgid ""
+"Dictionaries for North Sámi and Finnish are based on lexical material "
+"from the <a class=\"green\" href=\"http://kotus.fi\">Institute for the "
+"Languages of Finland</a>, and from Giellatekno's work with the North Sámi"
+"  <a class=\"green\" href=\"http://oahpa.no\">Oahpa</a>. In addition, we "
+"have included frequent words from North Sámi, but especially from "
+"Finnish."
+msgstr ""
+"Ziemeļsāmu un somu valodas vārdnīcas ir veidotas, balstoties uz leksikas "
+"materiālu, kas izstrādāts <a class=\"green\" "
+"href=\"http://kotus.fi\">Somijas Valodu institūtā</a>, un uz "
+"\"Giellatekno\" ziemeļsāmu valodas projektu <a class=\"green\" "
+"href=\"http://oahpa.no\">Oahpa</a>. Tās esam papildinājuši ar biežāk "
+"lietotajiem ziemeļsāmu un it īpaši ar somu valodas vārdiem."
+
+#: templates/about.sanit.html:128
+msgid "Each of the dictionaries contains about 11,000 base words."
+msgstr "Visās vārdnīcās ir apmēram 11 000 pamatvārdu."
+
+#: templates/about.sanit.html:136
+msgid "More to come..."
+msgstr "Būs vēl…"
+
+#: templates/base.html:127
+msgid "Home"
+msgstr "Sākumlapa"
+
+#: templates/base.html:131
+msgid "Plugins"
+msgstr "Spraudņi"
+
+#: templates/base.html:140
+msgid "Interface language"
+msgstr "Saskarnes valoda"
+
+#: templates/base.html:206
+msgid ""
+"Created with free and open-source language tools from <em><a "
+"href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, a Sámi Language "
+"Technology group at the <a href=\"http://uit.no\">University of "
+"Tromsø</a>."
+msgstr ""
+"Izveidots ar <em><a "
+"href=\"http://giellatekno.uit.no\">Giellatekno</a></em> brīvi pieejamiem "
+"un atklātā pirmkoda valodas instrumentiem. \"Giellatekno\" ir <a "
+"href=\"http://uit.no\">Tromses Universitātes</a> Sāmu valodas "
+"tehnoloģijas pētniecības grupa."
+
+#: templates/index.html:136 templates/index.html:179
+msgid "Other dictionaries"
+msgstr "Citas vārdnīcas"
+
+#: templates/index.html:159 templates/index.html:170
+msgid "Written variant"
+msgstr "Rakstu valodas variants"
+
+#: templates/index.html:161 templates/index.html:172
+msgid "Standard (<em>áčđŋšŧž</em>)"
+msgstr "Standarts (<em>áčđŋšŧž</em>)"
+
+#: templates/index.html:162 templates/index.html:173
+msgid "Social Media (incl. <em>acdnstz</em>)"
+msgstr "Sociālie mediji (incl. <em>acdnstz</em>)"
+
+#: templates/index.html:187
+msgid "Swap"
+msgstr "Pārslēgt"
+
+#: templates/index.html:201
+msgid "ohcansátni"
+msgstr "ohcansátni"
+
+#: templates/index.html:203 templates/word_detail.html:102
+msgid "Search"
+msgstr "Meklēt"
+
+#: templates/index.html:245
+msgid "Definition not found for:"
+msgstr "Nav atrodams tulkojums vārdam:"
+
+#: templates/index.html:284
+#, python-format
+msgid "Word %(input)s not found."
+msgstr "Vārda %(input)s nav atrasts."
+
+#: templates/index.html:293
+msgid ""
+"If you are using a device without a Sámi keyboard, consider using <a "
+"href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
+"<em>acdnstz</em> for <em>áčđŋšŧž</em>."
+msgstr ""
+"Ja jūs izmantojat ierīci bez sāmu valodas tastatūras, apsveriet iespēju "
+"izmantot <a href=\"/SoMe/nob/\">sociālo mediju režīmu</a>, kurš jums "
+"atļauj rakstīt <em>acdnstz</em> <em>áčđŋšŧž</em> vietā."
+
+#: templates/index.html:297
+msgid "Search for a word, or a word form for a word analysis and definition."
+msgstr "Meklēt vārdu vai vārdformu vārda analīzei un tulkojumam."
+
+#: templates/index.html:301
+msgid ""
+"You selected #SoMe, the variant for social media, which means that the "
+"letters acdnstz\n"
+"                                will be accepted as áčđŋšŧž in addition "
+"to their usual values."
+msgstr ""
+"Jūs esat izvēlējies #SoMe, kas ir versija sociālajiem medijiem. Tas "
+"nozīmē, ka burti acdnstz līdzās to parastajai vērtībai tiks akceptēti arī"
+" kā burti áčđŋšŧž."
+
+#: templates/language_select.html:7
+msgid "<span class=\"reposition_hide\">Language</span>"
+msgstr "<span class=\"reposition_hide\">Valoda</span>"
+
+#: templates/more_dictionaries.html:4
+msgid "More dictionaris"
+msgstr "Vairāk vārdnīcu"
+
+#: templates/more_dictionaries.html:23
+msgid ""
+"Neahttadigisánit is available for the following\n"
+"                language groups."
+msgstr ""
+"\"Neahttadigisánit\" ir pieejams šādām\n"
+"                valodu grupām"
+
+#: templates/more_dictionaries.html:31
+msgid ""
+"We're currently working on some new dictionaries for\n"
+"                the following language groups. Since these may not always"
+" be\n"
+"                online, they are not linked here, but please contact us "
+"if you\n"
+"                would like to see a demo!"
+msgstr ""
+"Pašlaik mēs strādājam pie dažām jaunām šādu\n"
+"                valodu grupu vārdnīcām. Tā kā tās ne vienmēr var "
+"atrasties\n"
+"                tiešsaistē, uz tām šeit nav norādītas saites. Ja jūs "
+"vēlaties aplūkot demonstrācijas versiju,\n"
+"                lūdzu sazinieties ar mums!"
+
+#: templates/reader.html:4 templates/reader.html:22
+msgid "Neahttadigisánit Reader"
+msgstr "Neahttadigisánit Reader"
+
+#: templates/reader.html:23
+msgid "WARNING!! We have problems with Internet Explorer 8!"
+msgstr "UZMANĪBU! Mums ir problēmas ar Internet Explorer 8!"
+
+#: templates/reader.html:24
+msgid "Bookmarklet"
+msgstr "Grāmatzīme"
+
+#: templates/reader.html:25
+msgid ""
+"Drag and drop the following link to your Bookmark toolbar,\n"
+"                then click it when you are on a page you wish to read. "
+"The\n"
+"                service will automatically be installed, and you will see"
+" a\n"
+"                menu icon on the left-hand side of the page."
+msgstr ""
+"Ielieciet apakšā esošo saiti savā grāmatzīmju rīkjoslā. Kad atrodaties "
+"lapā, kuru vēlaties lasīt, uzklikšķiniet uz tās. Pakalpojums tiks "
+"instalēts automātiski, un lapas kreisajā malā jūs redzēsiet izvēlnes "
+"ikonu."
+
+#: templates/reader.html:29 templates/reader_update.html:15
+msgid "Read with Neahttadigisánit"
+msgstr "Lasīt ar \"Neahttadigisánit\" vārdnīcas palīdzību"
+
+#: templates/reader.html:30
+msgid ""
+"In order to look up a word, hold Alt or Option (⌥) and double\n"
+"                click the word. The service will will connect to this\n"
+"                website and return dictionary entries after a brief\n"
+"                pause."
+msgstr ""
+"Lai sameklētu vārdu, nospiediet Alt vai Option (⌥) un izdariet "
+"dubultklikšķi uz vārda. Pakalpojums savienosies ar šo tīmekļa vietni un "
+"pēc īsas pauzes sniegs jums attiecīgos vārdnīcas šķirkļus."
+
+#: templates/reader.html:34
+msgid "To change the dictionary, click the menu icon."
+msgstr "Lai nomainītu vārdnīcu, klikšķiniet uz izvēlnes ikonas."
+
+#: templates/reader.html:35
+msgid "Bugs?"
+msgstr "Kļūdas?"
+
+#: templates/reader.html:36
+msgid ""
+"If you encounter bugs, or the bookmarklet does not work on a\n"
+"                particular page, contact us with the page URL or details "
+"of\n"
+"                what you were reading when you encountered the problem."
+msgstr ""
+"Ja jūs atrodat kļūdas vai arī grāmatzīme kādā lapā nedarbojas, "
+"sazinieties ar mums un paziņojiet lapas URL vai arī, ko jūs lasījāt, kad "
+"sastapāties ar šo problēmu."
+
+#: templates/reader.html:39
+msgid ""
+"We do not store any private data, but we do collect\n"
+"                individual dictionary lookups for statistics and to "
+"improve\n"
+"                the dictionary."
+msgstr ""
+"Mēs neuzglabājam privātus datus, taču mēs apkopojam atsevišķu vārdu "
+"meklējumus statistikas vajadzībām un lai uzlabotu  vārdnīcu."
+
+#: templates/reader.html:48
+msgid "Includes"
+msgstr "Iekļauts"
+
+#: templates/reader.html:56
+msgid ""
+"If you are looking for other languages, please see our <a "
+"href=\"/more/\">other dictionaries</a>."
+msgstr ""
+"Ja jūs meklējat citas valodas, lūdzu aplūkojiet mūsu <a "
+"href=\"/more/\">citas vārdnīcas</a>."
+
+#: templates/reader_example.html:32
+msgid "Additional instructions"
+msgstr "Papildu instrukcijas"
+
+#: templates/reader_ie8_notice.html:1
+msgid ""
+"\n"
+"Your web browser is supported, however, you will need to change some\n"
+"options for the Neahttadigisánit Reader to work.\n"
+msgstr ""
+"\n"
+"Jūsu tīmekļa pārlukprogramma tiek atbalstīta, taču jums ir jānomaina "
+"dažas\n"
+"opcijas, lai \"Neahttadigisánit Reader\" darbotos.\n"
+
+#: templates/reader_update.html:1
+msgid ""
+"\n"
+"We have made some updates to the dictionary, which require you to\n"
+"replace your bookmark with a new version.\n"
+msgstr ""
+"\n"
+"Mēs vārdnīcai esam veikuši dažus atjauninājumus, tādēļ jums ir\n"
+"jāaizvieto jūsu grāmatzīme ar jauno versiju.\n"
+
+#: templates/reader_update.html:9
+msgid ""
+"Drag and drop the following link to your Bookmark toolbar,\n"
+"    then click it when you are on a page you wish to read. The\n"
+"    service will automatically be installed, and you will see a\n"
+"    menu icon on the left-hand side of the page."
+msgstr ""
+"Ielieciet sekojošo saiti savā grāmatzīmju rīkjoslā.\n"
+"    Kad atrodaties lapā, kuru vēlaties lasīt, uzklikšķiniet uz tās.\n"
+"    Pakalpojums tiks instalēts automātiski, un lapas kreisajā malā\n"
+"    jūs ieraudzīsiet izvēlnes ikonu."
+
+#: templates/word_detail.html:54
+msgid "is a possible form of ... "
+msgstr "ir iespējamā forma no vārda …"
+
+#: templates/word_detail.html:220
+msgid "More information about this word"
+msgstr "Papildu informācija par šo vārdu."
+

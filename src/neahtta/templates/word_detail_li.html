@@ -1,0 +1,16 @@
+{{ mg.translations }}
+{% if mg.annotations %} ({{ mg.annotations }}){% endif %}
+{%- if mg.examples -%}
+<br />
+<div class="example_set">
+    <blockquote class="examples">
+        <dl>
+            {%- for from, to in mg.examples %}
+            <dt>{{ from }}</dt>
+            <dd>{{ to }}</dd>
+            {%- endfor %}
+        </dl>
+    </blockquote>
+</div>
+{% endif -%}
+

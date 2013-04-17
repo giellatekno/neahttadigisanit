@@ -1,0 +1,168 @@
+# Default locale, but use ISO 2 code or whatever corresponds to what is
+# in the translations directory.
+
+ApplicationSettings:
+  app_name: "Neahttadigisánit"
+  short_name: "baakoeh"
+  default_locale: "sma"
+  default_pair: ["sma", "nob"]
+  mobile_default_pair: false # TODO: spellrelax for sma ["SoMe", "nob"]
+  locales_available:
+    - sma
+    - "no"
+  meta_description: >
+     Gratis online mobilvennlige sørsamiske ordbøker 
+  meta_keywords: >
+     samisk ordbok, på nett, mobil ordbok, ordbok app, sátnegirji,
+     sátnegirjjit sørsamisk, norsk, south sámi, norwegian, sámegiella,
+     sámi language, lullisámegiella, sørsamisk, mobil ordbok
+
+# This option set is not used outside of providing shortcuts for
+# following settings.
+Tools:
+  xfst_lookup: &LOOKUP '/usr/bin/lookup'
+  gthome: &GTHOME '/home/neahtta/gtsvn'
+  opt: &OPT '/opt/smi'
+
+# Morphological system definitions. Since YAML variables aren't able to
+# be used in concatenating strings, certain paths with references must
+# be lists. These are concatenated automatically.
+Morphology:
+  sma:
+    tool: *LOOKUP
+    file: [*OPT, '/sma/bin/dict-sma.fst']
+    inverse_file: [*OPT, '/sma/bin/isma-dict.fst']
+    format: 'xfst'
+    options:
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  nob:
+    tool: *LOOKUP
+    file: [*GTHOME, '/st/nob/bin/nob.fst']
+    inverse_file: [*GTHOME, '/st/nob/bin/inob.fst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "#+Cmp+"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+
+Languages:
+  - iso: nob
+    name:
+      sme: "dárogiella"
+      eng: "Norwegian"
+      nob: "norsk"
+      fin: "norja"
+
+  - iso: fin
+    name:
+      sme: "suomagiella"
+      eng: "Finnish"
+      nob: "finsk"
+      fin: "suomi"
+
+  - iso: sma
+    name:
+      sme: "lullisámegiella"
+      eng: "Southern Sámi"
+      nob: "sørsamisk"
+      fin: "eteläsaame"
+
+# This also dictates the order of the dictionaries in the UI for now.
+Dictionaries:
+
+  - source: sma
+    target: nob
+    path: 'dicts/sma-nob.all.xml'
+
+  - source: nob
+    target: sma
+    path: 'dicts/nob-sma.all.xml'
+
+# Abstracting display formats out here, because there are different
+# requirements for different languages and different wordforms.
+
+# TODO: help text
+Paradigms:
+  sma:
+    PRON:
+      - "Pregenerate"
+    NUM:
+      - "Sg+Gen"
+      - "Sg+Ill"
+      - "Pl+Ill"
+    PROP:
+      - "Sg+Gen"
+      - "Sg+Ill"
+      - "Sg+Ine"
+      - "Sg+Ela"
+    N:
+      - "Sg+Nom"
+      - "Sg+Gen"
+      - "Sg+Ill"
+      - "Pl+Ill"
+    A:
+      - "Sg+Nom"
+      - "Comp+Sg+Nom"
+      - "Superl+Sg+Nom"
+    V:
+      - "Ind+Prs+Sg1"
+      - "Ind+Prs+Sg3"
+      - "Ind+Prs+Pl3"
+      - "Ind+Prt+Sg1"
+      - "ConNeg"
+      - "PrfPrc"
+      - "Ger"
+      - "VGen"
+
+  nob:
+    V:
+      - "Imp"
+      - "Ind+Prs"
+      - "Ind+Prt"
+      - "PrfPtc"
+
+TagSets:
+  sma:
+    pos: ["N", "V", "A", "Pr", "Po", "Num"]
+    type: ["NomAg", "G3", "aktor"]
+
+# Note, these come from dictionary fst, so tag parts are mostly 
+# already translated
+# TODO: i18n
+TagTransforms:
+  (sma, nob):
+    V: "v."
+    N: "s."
+    A: "adj."
+    # TODO: test that it actually goes away
+    NomAg: ""
+    G3: ""
+    G7: ""
+    Adv: "adv."
+
+    v: "v."
+    n: "s."
+    a: "adj."
+    nomag: ""
+    g3: "g3."
+    g7: ""
+    adv: "adv."
+    cc: "konj."
+    cs: "konj."
+    i: "interj."
+    npl: "pl. s."
+    num: "num."
+    pcle: "part."
+    phrase_adv: "adv."
+    phrase_a: "adj."
+    phrase_i: "interj."
+    phrase_n: "s."
+    phrase_prop: "egennavn"
+    po: "postp."
+    pr: "prep."
+    pron: "pron."
+    prop: "egennavn"
+

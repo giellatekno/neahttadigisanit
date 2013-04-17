@@ -1,0 +1,75 @@
+# Vuosttaš neahttasánit server process
+
+## Overview
+
+A service using the [Flask][1] framework to serve up dictionary entries
+using XML lexica and morphological analyzer services. Returns data in
+JSON, and some HTML.
+
+ [1]: http://flask.pocoo.org/
+
+## Installing
+
+Use virtualenv to create an environment with requirements.txt, and set
+up a webserver to direct requests to neahttadigisanit.fcgi.
+
+    pip install -r requirements.txt
+
+### Dependencies to check
+
+* svn up main/words/dicts/
+* svn up main/gt/
+* svn up main/langs
+
+Rebuild the dictionaries using make_dicts.sh, and check the languages in
+app.config.yaml, and recompile the corresponding FSTs.
+
+## Developing
+
+### TODOs
+
+See `TODOs`.
+
+### Modules
+
+#### kursadict.py 
+
+Contains functions for views and endpoints. This is where some of the
+magic happens.
+
+#### config.py
+
+Contains a class for loading and validating configs.
+
+#### morphology.py
+
+Contains tools for handling morphological analysis, generation and
+lemmatization and other things via external processes. Some configs
+are specified in app.config.yaml
+
+#### crossdomain.py 
+
+### Other important things
+
+#### templates/
+
+Format is Jinja2.
+
+Internationalisation is carried out with lang attributes, and the i18n
+class. The value of lang() in body sets the language for the document,
+and translations are written in span elements with class="i18n" and 
+corresponding language ISO code.
+
+	<body lang="nob">
+	    <h1>
+	        <span class="i18n" lang="sme">Bures</span>
+	        <span class="i18n" lang="nob">Hei</span>
+	        <span class="i18n" lang="fin">Moi</span>
+	    </h1>
+	</body>
+
+CSS (static/css/base.css) then handles the display of these via 'feature
+agreement' selectors.  When JavaScript changes body:lang to another
+language, the changes are automatically propagated to all elements with
+class="i18n" and a corresponding language setting.
+

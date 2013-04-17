@@ -1,0 +1,27 @@
+{
+  "name": "Vuosttaš Neahttasánit",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "An online dictionary that uses Giellatekno's linguistic resources.",
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html",
+    "default_title": "Dictionary"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*"],
+      "css": ["jquery.kursadict.css"],
+      "js": ["jquery.1.7.2.js", "jquery.kursadict.js", "background.js"]
+    }
+  ],
+  "permissions": [
+    "tabs",
+    "contextMenus",
+    "notifications",
+    "http://testing.oahpa.no/kursadict/",
+    "http://*/*"
+  ],
+  "web_accessible_resources": ["spinner.gif"],
+  "content_security_policy": "script-src 'self' http://127.0.0.1; object-src 'self'"
+}

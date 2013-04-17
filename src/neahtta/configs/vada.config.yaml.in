@@ -1,0 +1,109 @@
+ApplicationSettings:
+  app_name: "Neahttadigisánit"
+  short_name: "vada"
+  default_locale: "yrk"
+  default_pair: ["yrk", "fin"]
+  mobile_default_pair: false
+  locales_available:
+    - yrk
+    - fi
+    - en
+  meta_description: >
+      Free online, mobile friendly dictionaries for Nenets
+  meta_keywords: >
+      nenets, nenetsi, mobile, dictionary, free, russian
+
+Tools:
+  xfst_lookup: &LOOKUP '/usr/bin/lookup'
+  opt: &OPT '/opt/smi/'
+
+Morphology:
+  yrk:
+    tool: *LOOKUP
+    file: [*OPT, '/yrk/bin/yrk.fst']
+    inverse_file: [*OPT, '/yrk/bin/iyrk.fst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  fin:
+    tool: *LOOKUP
+    file: [*OPT, '/fin/bin/fin.fst']
+    inverse_file: [*OPT, '/fin/bin/ifin.fst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+
+Languages:
+  - iso: yrk
+    name: {}
+  - iso: eng
+    name: {}
+  - iso: fin
+    name: {}
+  - iso: rus
+    name: {}
+
+Dictionaries:
+  - source: yrk
+    target: eng
+    path: 'dicts/yrk-all.xml'
+
+  - source: yrk
+    target: fin
+    path: 'dicts/yrk-all.xml'
+
+Paradigms:
+  yrk:
+    PRON:
+      - "Pregenerate"
+    N:
+      - "Sg+Nom"
+      - "Sg+Dat"
+      - "Pl+Nom"
+      - "Pl+Acc"
+    V:
+      - "TV+Ind+Aor+ScSg1"
+      - "TV+Ind+Aor+ScSg2"
+      - "TV+Ind+Aor+ScSg3"
+      - "TV+Ind+Aor+ScDu1"
+      - "TV+Ind+Aor+ScDu2"
+      - "TV+Ind+Aor+ScDu3"
+      - "TV+Ind+Aor+ScPl1"
+      - "TV+Ind+Aor+ScPl2"
+      - "TV+Ind+Aor+ScPl3"
+      - "TV+Ind+Prt1+ScSg1+OcSg3"
+      - "TV+Ind+Prt1+ScSg1+OcDu3"
+
+
+TagSets:
+  yrk:
+    pos: ["N", "V", "A", "Pr", "Po", "Num"]
+    type: ["NomAg", "G3", "aktor"]
+
+
+# (sourcelang, targlang)
+# V: "v."
+# FST format: "user friendly"
+TagTransforms:
+
+  (yrk, eng):
+    V: "v."
+    N: "n."
+    A: "adj."
+
+  (yrk, fin):
+    V: "v."
+    N: "s."
+    A: "adj."
+
+  (yrk, yrk):
+    V: "v."
+    N: "s."
+    A: "adj."
+

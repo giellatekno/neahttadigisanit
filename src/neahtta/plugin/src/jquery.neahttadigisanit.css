@@ -1,0 +1,169 @@
+/* @override http://localhost:8000/jquery.neahttadigisanit.css */
+
+/*
+ *  Some overrides for bootstrap
+ *
+ */
+
+#webdict_options .well {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
+
+#webdict_options a {
+    text-decoration: none;
+}
+
+#webdict_options ul, #webdict_options ol {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
+
+#webdict_options .control-group label {
+    width: 100px;
+}
+
+#webdict_options .controls {
+    margin-left: 130px;
+    margin-right: 20px;
+}
+
+#webdict_options {
+    position: fixed;
+    left: -5px;
+    top: 20%;
+    width: auto;
+    height: auto;
+    padding: .25em;
+    // opacity: .3;
+}
+
+#webdict_options h1 {
+    margin: .45em 0 ;
+    line-height: 1em;
+}
+
+#webdict_options.open {
+    opacity: 1;
+}
+
+#webdict_options .well {
+    background-color: #EEE ;
+    padding: 7px;
+    border: 1px solid #999;
+    border-left: none;
+}
+
+#webdict_options p {
+	padding: 0 .85em;
+	font-size: 105%;
+    width: 16em;
+    line-height: 1.2em;
+    margin: .4em 0 ;
+}
+
+#webdict_options form label.control-label {
+	font-weight: bold;
+}
+
+#webdict_options ul.nav.nav-pills {
+	margin-bottom: .5em;
+}
+
+button#save {
+	margin-top: .75em;
+}
+
+#webdict_options .trigger a {
+    color: #111;
+
+}
+
+#webdict_options:hover {
+    opacity: 1;
+}
+
+#webdict_options .option_panel {
+//    display: none;    
+}
+
+
+#webdict_options form {
+	padding:  10px;
+}
+
+#webdict_options, .tooltip, .popover {
+    font-family: "Helvetica Neue", "Helvetica", sans-serif;
+}
+
+#results p:first-child {
+    margin-top: .5em;
+}
+
+#results p {
+    padding: 5px 20px;
+    margin:  0 0 0 0;
+    font-size: 100%;
+    font-weight: lighter;
+    font-family: sans-serif;
+}
+
+ul.dropdown-menu[role="menu"] li a {
+	font-family: sans-serif;
+	text-decoration: none;
+}
+
+.popover {
+    font-weight: lighter;
+}
+
+.popover span.tags {
+    font-size: 80%;
+    border-top: 1px solid #ccc;
+    display: block;
+    margin-top: .75em;
+}
+
+.popover h3 {
+}
+.popover p {
+  font-size: 16px !important;
+  margin: 0 0 5px !important;
+  font-weight: 300 !important;
+  line-height: 25px !important;
+  color: #000 !important;
+}
+
+#nds_errors p {
+   padding-top: .5em;
+   margin-left: .75em;
+   font-weight: 300;
+   color: #CCC !important;
+}
+
+.popover-title {
+    text-transform: none !important;
+    color: #000;
+    margin:0 !important;
+    padding:8px 14px !important;
+    font-size:14px !important;
+    font-weight:normal !important;
+    line-height:18px !important;
+    background-color:#f7f7f7 !important;
+    border-bottom:1px solid #ebebeb !important;
+    -webkit-border-radius:5px 5px 0 0 !important;
+    -moz-border-radius:5px 5px 0 0 !important;
+    border-radius:5px 5px 0 0 !important;
+}
+
+.spinner {
+    display: none;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+}
+
+div.well.highlight {
+    background-color: #F88 !important;
+    border: 1px solid #311 !important;
+}

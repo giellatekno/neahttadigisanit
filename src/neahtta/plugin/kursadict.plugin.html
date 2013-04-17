@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <!-- these are not required, but just for demonstration -->
+        <link href="dev/main.css" rel="stylesheet" />
+        <link href="dev/bootstrap/css/bootstrap.css" rel="stylesheet" />
+
+        <!-- These are required for everything to work, but they may be
+             installed somewhere already, if adding to an existing site. -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+        <!-- Here's the important part... -->
+        <link href="bin/jquery.neahttadigisanit.css" rel="stylesheet" />
+        <script type='text/javascript' src='bin/jquery.neahttadigisanit.min.js'></script>
+        <script type='text/javascript'>
+            jQuery(document).ready(function (){
+                // Register the input form with options
+                // NOTE: this doesn't need to be included for mouseclick lookups
+                jQuery('#neahttadigisanit').digiSanit();
+                window.NDS_BOOKMARK_VERSION = "0.0.3" ;
+
+                // Enable options for inline clicking
+                jQuery(document).selectToLookup({
+                  tooltip: true,
+                  displayOptions: true,
+                  spinnerImg: 'dev/img/spinner.gif'
+                });
+            });
+        </script>
+        <!-- end -->
+
+    </head>
+
+    <body>
+        <div id="content">
+            <div class="row">
+                <div class="span9">
+                    <h3>Inline mode</h3>
+                    <p>Hold Alt or option (⌥) while selecting or double clicking
+                        on a word to select it, and a result will appear. To
+                        reveal or dismiss it, simply hover over the now
+                        highlighted word. Language is selected from the form
+                        below.</p>
+                    <blockquote><p>Wikipedia lea friddja diehtosátnegirji badjel 270 gielain.
+                        Dan čállet eaktodáhtolaš geavaheaddjit miehtá máilmmi. Dan
+                        sisdoalu lea lohpi kopieret ja geavahit almmolaččat. Maid
+                        don sáhtát juste dál rievdadit ja dievasmahttit
+                        Wikipedia-artihkkaliid, dahje álggahit áibbas ođđa
+                        artihkkala Wikipediai. Dávjá lea buorre jorgalit
+                        artihkkaliid dáro-, ruoŧa-, suoma-, dahje eŋgelasgiel
+                        Wikipediain. Wikipedia-prošeakta álggii jagis 2001 ja dál
+                        gávdnojit badjel 20 miljovnna artihkkala, main 6,520 leat
+                        davvisámegielat Wikipedias.</p></blockquote>
+                    
+                    <blockquote><p>
+                            Wikipedia har over 22 millioner artikler på
+                            285 språk (per mai 2012). Mer enn 3,9
+                            millioner av disse finnes i den
+                            engelskspråklige utgaven. Den nest største
+                            utgaven er den tyskspråklige utgaven med mer
+                            enn 1,4 millioner artikler. Den tyske
+                            utgaven har også blitt utgitt på DVD. På
+                            tredjeplass kommer den franskspråklige
+                            versjonen, med over 1,2 millioner artikler.
+                            På fjerdeplass kommer den nederlandske
+                            versjonen med over 1 millioner artikler.
+                            Det finnes to utgaver på norsk, én på
+                            bokmål/riksmål og én på nynorsk. Den
+                            førstnevnte har over 361 000 artikler, mens
+                            nynorskutgaven har mer enn 92 000 artikler.
+                            Ifølge Alexa er Wikipedia en av verdens 10
+                            mest besøkte nettsider og den
+                            engelskspråklige versjonen benyttes av 97 %
+                            av alle nettbrukere i USA når de søker
+                            informasjon fra nettbaserte
+                            leksikon.</p></blockquote>
+
+                    <p>This works anywhere you can highlight text, not just in
+                        the above paragraph.</p>
+
+                    <h3>Test cases</h3>
+                    <h4>Firefox has issues with these.</h4>
+                    <ul>
+                        <li>-a eller -e, blir endelsen &#8216;–ii&#8217;
+                            <span style="color: #800000;">skuvla -&gt;
+                                skuvlii, baste -&gt; bastii</span></li>
+                        <li>-i eller -á, blir endelsen &#8216;–ái&#8217;
+                            <span style="color: #800000;">gávpi -&gt;
+                                gávpái, mánná -&gt; mánnái</span></li>
+                        <li>-u eller –o, blir endelsen &#8216;–ui&#8217;
+                            <span style="color: #800000;">báŋku -&gt;
+                                báŋkui, reŋko -&gt; reŋkui</span></li>
+                    </ul>
+                </div>
+                <div class="span3">
+                    <h3>Search form</h3>
+                    <div class="neahttadigisanit_container">
+                      <form id="neahttadigisanit" class="form-inline">
+                        <div class="input-prepend input-append">
+                          <div class="btn-group">
+                            <button class="btn dropdown-toggle" data-toggle="dropdown">
+                              <span class="val_name">Giella</span>
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" id="langpairs" role="menu"
+                                data-for="target_lang">
+                              <li class="selected"><a tabindex="-1" href="#"
+                                      data-value="smenob">nordsamisk -> norsk</a></li>
+                              <li><a tabindex="-1" href="#"
+                                      data-value="smefin">nordsamisk -> finsk</a></li>
+                              <li><a tabindex="-1" href="#"
+                                      data-value="smesmj">nordsamisk -> lulesamisk</a></li>
+                              <li><a tabindex="-1" href="#"
+                                      data-value="nobsme">norsk -> nordsamisk</a></li>
+                            </ul>
+                          <input type="text" name="lookup"
+                            placeholder="ohcesátni" style="width: 10em;"></input>
+                          <div class="btn-group">
+                           <button type="submit" class="btn" name="search">Oza</button>
+                          </div>
+                          <input type="hidden" name="target_lang" value="smenob"></input>
+                        </div>
+                        </div>
+                       <div id="results"></div>
+                     </form>
+                  </div>
+               </div>
+            <div class="row">
+                <div class="span12">
+                <h3>Minor issues</h3>
+                <ul>
+                    <li>Highlighting text to search won't work on mobile
+                        browsers, and another solution will be
+                        necessary</li>
+                </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+

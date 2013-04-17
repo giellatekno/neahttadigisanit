@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}
+ - {% trans %}Neahttadigisánit Reader{% endtrans %}
+{% endblock %}
+
+{% block meta_title %}
+<meta name="title" content="Neahttadigisánit Reader">
+{% endblock %}
+
+{% block meta_description %}
+    <meta name="description" content="Gratis lesehjelp til nordsamisk, sørsamisk, finsk og norsk. Slå opp ord uten å måtte forlate sida som du leser.">
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span5 offset1">
+        <h3>{% trans %}Neahttadigisánit Reader{% endtrans %}</h3>
+            <p><font color="#FF0000">{% trans %}WARNING!! We have problems with Internet Explorer 8!{% endtrans %}</font></p>
+            <h4>{% trans %}Bookmarklet{% endtrans %}</h4>
+            <p>{% trans %}Drag and drop the following link to your Bookmark toolbar,
+                then click it when you are on a page you wish to read. The
+                service will automatically be installed, and you will see a
+                menu icon on the left-hand side of the page.{% endtrans %}</p>
+            <p class="label" id="bookmarklet"><a href="javascript:{{- bookmarklet|safe -}}">{% trans %}Read with Neahttadigisánit{% endtrans %}</a></p>
+            <p>{% trans %}In order to look up a word, hold Alt or Option (⌥) and double
+                click the word. The service will will connect to this
+                website and return dictionary entries after a brief
+                pause.{% endtrans %}</p>
+            <p>{% trans %}To change the dictionary, click the menu icon.{% endtrans %}</p>
+            <h4>{% trans %}Bugs?{% endtrans %}</h4>
+            <p>{% trans %}If you encounter bugs, or the bookmarklet does not work on a
+                particular page, contact us with the page URL or details of
+                what you were reading when you encountered the problem.{% endtrans %}</p>
+            <p>{% trans %}We do not store any private data, but we do collect
+                individual dictionary lookups for statistics and to improve
+                the dictionary.{% endtrans %}</p>
+        </div>
+        <div class="span4">
+            <h3>&nbsp;</h3>
+            <img id="reader_screenshot" src="{{url_for('static', filename='img/reader_example.png')}}" id="uitlogo"></img>
+            <br />
+            <br />
+            <h4>{% trans %}Includes{% endtrans %}</h4>
+            <ul>
+                {% for iso_pair, names in language_pairs.iteritems() %}
+                    <li class="">
+                        <em>{{ iso_pair[0]|iso_to_i18n }} → {{ iso_pair[1]|iso_to_i18n }}</em>
+                    </li>
+                {% endfor %}
+            </ul>
+            <p>{% trans %}If you are looking for other languages, please see our <a href="/more/">other dictionaries</a>.{% endtrans %}</p>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+

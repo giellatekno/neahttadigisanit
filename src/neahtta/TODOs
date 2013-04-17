@@ -1,0 +1,172 @@
+# TODAY
+
+ * TODO: new wordpress release
+
+ * BUG: create_app called twice but only on first post request.
+
+ * change cache settings for plugin js in nginx configs, some browsers are
+   unwilling to get a new version even when it exists.
+
+ * test remaining browser notes
+
+ * refresh settings button in plugin
+
+ * cakefile include build bookmark.min.js
+
+ * other dictionaries page, listing links to other groups
+ 
+ * autocomplete parse only once per file
+
+ * a little advertising and such for the reader and page with content in specific languages 
+   see script in misc/o
+
+   Add text to reader page: "Here are the top websites that people are reading, did you know you can read them too?"
+
+     14 www.ntfk.no
+     14 www.skogholt.org
+     15 yle.fi
+     16 www.sametinget.se
+     17 fi.wikipedia.org
+     19 dagogtid.no
+     20 www.facebook.com
+     23 www.samediggi.no
+     25 samediggi.fi
+     25 sametinget.se
+     28 samisk.karasjok.kommune.no
+     29 www.nrk.no
+     30 www.hs.fi
+     44 sanit.oahpa.no
+     46 giellatekno.uit.no
+     46 www.regjeringen.no
+     56 se.wikipedia.org
+     63 nrk.no
+    161 avvir.no
+    277 skuvla.info
+    582 www.avvir.no
+   3429 kursa.oahpa.no
+
+  For privacy concerns, only include top _domains_ not individual pages. Also,
+  split these out by language pair used in the lookup. above list is just
+  everything in access logs.
+
+## post gtoahpa update notes
+
+ * missing some fsts on gtoahpa - some-sme.fst is now built but with
+   another name, need to make sure that configs get updated so that
+   automatic scripts to copy fsts will copy the new version
+
+ * split sanit_makedict into two for less ambiguity
+
+ * had to force cache to refresh in my browser to make things look
+   alright, could affect others
+
+## post launch TODOs:
+
+ * URLs
+    yrk: vada.oahpa.no
+    mrh, mrj: muter.oahpa.no
+    kpv: kyv.oahpa.no
+
+    myv, mdf: valks.oahpa.no
+    olo, izh, liv, fkv: sanat.oahpa.no
+
+ * bookmark icon for iOS
+
+    /apple-touch-icon-57x57-precomposed.png
+    /apple-touch-icon-57x57.png 
+    /apple-touch-icon-precomposed.png 
+    /apple-touch-icon.png 
+
+ * svn move to apps/neahttadigisánit, apps/nds
+
+ * certificates, nginx configs?
+
+ * translate the mobile bookmark bubble, maybe modify/write one for
+   android, where the process is a little more complex
+ 
+ * do not analyze if miniparadigm exists, e.g., searching for munnje 
+   results in mun, but we only want to see munnje.
+
+ * vise miniparadigmene fra de statiske filene 
+   - sjekk at alle pos er med
+
+ * Link til read i selve ordbok-grensesnittet -- kor?
+   -- "Vil du ha oversatt ord i en tekst?" 
+   -- "Háliidatgo jorgalahttit sániid teavsttas?"
+   -- "Haluatko käännöksen tekstissä esiintyvään sanaan?"
+
+ * Tag part translation/localization: v. Ind Prs Pl3 -> definitions in all languages
+   - main/gt/common/src/tag-no.regex
+
+ * autocomplete SoMe variant
+
+## Next:
+
+ * code for context is in place, just need to go through list of
+   contexts and dictionarywork.html to get them all
+     
+     context="mun"          -- v. prs. s1. - (mun) manan
+     context="bivttas"      -- adj. attr.  - alit (bivttas)
+     context="gápmagat"     -- num. ??     - guovttit (gápmagat)
+
+ * Tag part translation/localization: v. Ind Prs Pl3 -> definitions in all languages
+   - main/gt/common/src/tag-no.regex
+
+ * Glossary page explaining each tag part. 
+
+ * mobile menu language variant display
+
+ * bookmarklet unload on additional click
+   
+ * word test-list - http://giellatekno.uit.no/doc/dicts/checklist.html
+
+ * detailed page needs autocomplete for form
+
+ * dropdown events on mobile are a bit funny for the menu on the
+   detailed view, and it is impossible to select a new language pair
+
+ * use logger's own log message formatter
+
+ -- 
+
+ * Once all this is together, optimize memory usage, with specific
+   attention to gtlab / gtoahpa, may be a better way to have multiple
+   threads/greenlets/etc running while parsing trees into only one
+   thread.
+
+   Note: http://blog.pythonisito.com/2012/07/gevent-and-greenlets.html
+
+## Would be nice
+
+ * Easier means of keeping track of updating FST and lexicon
+   dependencies from svn? or at least checking in svn if there are
+   updates, not necessarily fetching them
+
+ * advanced search form: here we get to have some nerdy linguistic fun.
+
+## Testing notes for JS click plugin:
+
+ * Firefox error - kapittel 4.1 - skuvla -> skuvlii - works, but there's
+   not skuvla
+
+   TODO: test
+
+## Features to develop at some point:
+
+ * Use something other than werkzeug's default cache, once things are
+   ready for actual use.
+
+ * Maybe should provide an individual process for each language pair?
+   Should be easy to split off new processes by pair/endpoint. Note also
+   werkzeug DispatcherMiddleware and PathDispatcher:
+   http://flask.pocoo.org/docs/patterns/appdispatch/
+
+ * added a copy of lookupserv.py, with some tweaks to generalize it for
+   any lookup process. This will speed up lookups tons, since the
+   slowest part is the process starting up. If each Morphology class had
+   its own lookupserv that was automatically launched with the main
+   service, things will go a lot faster. It may be there is a better way
+   to do subprocesses for an application like this, but for now this
+   will work. any improvements will just be drop-in replacements.
+
+

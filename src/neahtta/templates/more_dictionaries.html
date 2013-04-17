@@ -1,0 +1,59 @@
+﻿{% extends 'base.html' %}
+
+{% block title %}
+ - {% trans %}More dictionaris{% endtrans %}
+{% endblock %}
+
+{% block meta_title %}
+{% endblock %}
+
+{% block meta_description %}
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span5 offset1">
+
+            <h3>Other dictionaries</h3>
+
+            <p>{% trans %}Neahttadigisánit is available for the following
+                language groups.{% endtrans %}</p>
+
+            <ul>
+                <li><a href="http://sánit.oahpa.no/">North Sámi</a></li>
+                <li><a href="http://baakoeh.oahpa.no/">South Sámi</a></li>
+            </ul>
+
+            <p>{% trans %}We're currently working on some new dictionaries for
+                the following language groups. Since these may not always be
+                online, they are not linked here, but please contact us if you
+                would like to see a demo!{% endtrans %}
+            </p>
+            <ul>
+                <li><em>Balto-finnic languages</em>: Kven, Olonets, Livonian, and Izhorian.</li>
+                <li><em>Mordvinic languages</em>: Moksha and Erzya.</li>
+
+                <li><em>Mari languages</em>: Eastern and Western.</li>
+                <li><em>Permic languages</em>: Komi-Zyrian</li>
+            </ul>
+
+            <h4>Even more dictionaries...</h4>
+            <p><a href="http://giellatekno.uit.no/">Giellatekno</a> also has
+                other languages and dictionaries that are not yet available in
+                Neahttadigisánit. For a list of all other online dictionaries
+                built with our tools, <a href="http://dicts.uit.no/">see this
+                    list</a>.</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+{# vim: set ts=4 sw=4 tw=72 syntax=jinja : #}

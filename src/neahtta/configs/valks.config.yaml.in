@@ -1,0 +1,162 @@
+ApplicationSettings:
+  app_name: "Neahttadigisánit"
+  short_name: "valks"
+  default_locale: "ru"
+  default_pair: ["myv", "rus"]
+  mobile_default_pair: false
+  locales_available:
+    - myv
+    - mdf
+    - ru
+    - fi
+  meta_description: >
+      Free online, mobile friendly dictionaries for Erzya Mordvin and Moksha
+  meta_keywords: >
+      erzya, ersä, mokša, moksha, erzya mordvin, mobile, dictionary, free
+
+Tools:
+  xfst_lookup: &LOOKUP '/usr/bin/lookup'
+  opt: &OPT '/opt/smi/'
+
+Morphology:
+  myv:
+    tool: *LOOKUP
+    file: [*OPT, '/myv/bin/myv.fst']
+    inverse_file: [*OPT, '/myv/bin/imyv.fst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  mdf:
+    tool: *LOOKUP
+    file: [*OPT, '/mdf/bin/mdf.fst']
+    inverse_file: [*OPT, '/mdf/bin/imdf.fst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  fin:
+    tool: *LOOKUP
+    file: [*OPT, '/fin/bin/fin.fst']
+    inverse_file: [*OPT, '/fin/bin/ifin.fst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+
+Languages:
+  - iso: myv
+    name:
+      eng: "Erzya Mordvin"
+      nob: "Erzya Mordvin"
+      fin: "Erzya Mordvin"
+  - iso: mdf
+    name:
+      eng: "Moksha"
+      nob: "Moksha"
+      fin: "Moksha"
+  - iso: eng
+    name:
+      eng: "english"
+      nob: "english"
+      fin: "english"
+  - iso: fin
+    name:
+      eng: "finnish"
+      nob: "finnish"
+      fin: "finnish"
+  - iso: rus
+    name:
+      eng: "russian"
+      nob: "russian"
+      fin: "russian"
+
+Dictionaries:
+  - source: myv
+    target: eng
+    path: 'dicts/myv-all.xml'
+
+  - source: myv
+    target: fin
+    path: 'dicts/myv-all.xml'
+
+  - source: myv
+    target: rus
+    path: 'dicts/myv-all.xml'
+
+  - source: mdf
+    target: fin
+    path: 'dicts/mdf-all.xml'
+
+Paradigms:
+  myv:
+    PRON:
+      - "Pregenerate"
+    N:
+      - "Sg+Nom+Indef"
+      - "Pl+Nom+Indef"
+      - "Ela+Indef"
+    A:
+      - "Der/MWN+N+Sg+Nom+Indef"
+      - "Der/MWN+N+Pl+Gen+Indef"
+      - "Der/MWN+N+Sg+Ela+Indef"
+    V:
+      - "Der/Омс+Inf+Ill"
+      - "Ind+Prt1+ScSg3"
+  mdf:
+    PRON:
+      - "Pregenerate"
+    N:
+      - "Sg+Nom+Indef"
+      - "Pl+Nom+Indef"
+      - "Ela+Indef"
+    A:
+      - "Der/MWN+N+Sg+Nom+Indef"
+      - "Der/MWN+N+Pl+Gen+Indef"
+      - "Der/MWN+N+Sg+Ela+Indef"
+    V:
+      - "Inf"
+      - "Ind+Prt1+ScSg3"
+
+
+
+TagSets:
+  myv:
+    pos: ["N", "V", "A", "Pr", "Po", "Num"]
+    type: ["NomAg", "G3", "aktor"]
+  mdf:
+    pos: ["N", "V", "A", "Pr", "Po", "Num"]
+    type: ["NomAg", "G3", "aktor"]
+
+
+# (sourcelang, targlang)
+# V: "v."
+# FST format: "user friendly"
+TagTransforms:
+
+  (myv, rus):
+    V: "v."
+    N: "s."
+    A: "adj."
+
+  (mdf, rus):
+    V: "v."
+    N: "s."
+    A: "adj."
+
+  (myv, myv):
+    V: "v."
+    N: "s."
+    A: "adj."
+
+  (mdf, mdf):
+    V: "v."
+    N: "s."
+    A: "adj."
+

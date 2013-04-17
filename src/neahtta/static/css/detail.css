@@ -1,0 +1,105 @@
+/* @override 
+	http://localhost:5000/static/css/detail.css
+	http://digitesting.oahpa.no/static/css/detail.css
+*/
+
+div.lexeme {
+    border-bottom: 5px solid #EEE;
+    margin-bottom: 15px;
+}
+
+.well dd {
+    word-wrap: break-word;
+}
+
+.miniparadigm dd {
+    white-space: nowrap;
+}
+
+ul.meanings {
+    list-style-type: circle;
+}
+
+ul.meanings li {
+    font-size: 120%;
+}
+
+ul.meanings li {
+	color: #000;
+}
+
+dl.miniparadigm {
+	margin-left: 1em;
+}
+
+dl.miniparadigm dd {
+	position: relative;
+}
+
+dl dd .extraexpand .extralabel {
+	position: absolute;
+	right: -100px;
+	top: 0px;
+}
+
+dl.miniparadigm dt {
+	text-overflow: none !important;
+}
+
+.extralabel {
+	display: none;
+}
+
+.extra_forms {
+	display: none;
+}
+
+dl.possible_analyses dd {
+	margin-left: 0;
+	padding-left: 0;
+}
+ul.possible_forms {
+	list-style-type: none; 
+	margin-left: 0em;
+}
+
+ul.possible_forms li {
+	margin-left: 0;
+}
+
+@media (max-width: 550px) {
+	.lexeme p.lead {
+		margin-bottom: .5em;
+	}
+	
+	ul.meanings {
+		margin-left: 2.5em;
+	}
+	
+	/* Fix display of mini-paradigm for mobile width */
+	.lexeme > div {
+		position: inherit;
+	}
+	
+	.miniparadigm {
+		position: relative;
+		left: -10px;
+		margin-top: 1.5em;
+		padding: 0 0 0 0;
+	}
+	
+	.dl-horizontal dt {
+    	float: left;
+    	width: auto;
+    	clear: none;
+    	text-align: left;
+	}
+  
+	.dl-horizontal dd {
+		margin-left: 11em;
+	}
+	
+	form#neahttadigisanit input[type="text"] {
+		max-width: 8em;
+	}
+}

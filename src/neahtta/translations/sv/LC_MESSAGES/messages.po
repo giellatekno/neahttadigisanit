@@ -1,0 +1,514 @@
+# Swedish translations for PROJECT.
+# Copyright (C) 2013 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2013-04-11 20:00-0500\n"
+"PO-Revision-Date: 2013-02-01 01:55-0600\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: sv <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.6\n"
+
+#: language_names.py:10
+msgid "North Sámi"
+msgstr "Nordsamiska"
+
+#: language_names.py:11
+msgid "North Sámi (#SoMe)"
+msgstr "Nordsamiska (#SoMe)"
+
+#: language_names.py:14
+msgid "South Sámi"
+msgstr "Sydsamiska"
+
+#: language_names.py:17
+msgid "Komi"
+msgstr ""
+
+#: language_names.py:20
+msgid "Kven"
+msgstr "Kvenska"
+
+#: language_names.py:21
+msgid "Livonian"
+msgstr "Liviska"
+
+#: language_names.py:22
+msgid "Olonetsian"
+msgstr "Olonetsiska"
+
+#: language_names.py:23
+msgid "Izhorian"
+msgstr "Ingriska"
+
+#: language_names.py:26
+msgid "Erzya Mordvin"
+msgstr "Erzjamordvinska"
+
+#: language_names.py:27
+msgid "Moksha"
+msgstr ""
+
+#: language_names.py:30
+msgid "Western Mari"
+msgstr "Västmariska"
+
+#: language_names.py:33
+msgid "Nenets"
+msgstr "Nenetsiska"
+
+#: language_names.py:36 language_names.py:42
+msgid "Finnish"
+msgstr "Finska"
+
+#: language_names.py:37 language_names.py:43 language_names.py:44
+msgid "Norwegian"
+msgstr "Norska"
+
+#: language_names.py:39 language_names.py:40
+msgid "Russian"
+msgstr "Ryska"
+
+#: language_names.py:45
+msgid "Latvian"
+msgstr "Lettiska"
+
+#: language_names.py:46
+msgid "English"
+msgstr "Engelska"
+
+#: neahtta.py:354 templates/index.html:258
+msgid " is a possible form of ... "
+msgstr " är en möjlig form av ... "
+
+#: neahtta.py:432
+msgid "Invalid format. Only json and html allowed."
+msgstr "Ogiltigt format. Bara json och html tillåtit"
+
+#: static/js/bookmarklet.js:1245
+msgid "Á"
+msgstr ""
+
+#: static/js/bookmarklet.js:1245
+msgid "Options"
+msgstr ""
+
+#: static/js/bookmarklet.js:1245 templates/about.sanit.html:65
+#: templates/base.html:135
+msgid "About"
+msgstr "Om oss"
+
+#: static/js/bookmarklet.js:1245
+msgid "Language"
+msgstr "Språk"
+
+#: static/js/bookmarklet.js:1245
+msgid "Save"
+msgstr "Spara"
+
+#: static/js/bookmarklet.js:1245
+msgid ""
+"In order to look up a word, hold down the <em>Alt</em> or <em>Option</em>"
+" (⌥) key, and doubleclick on a word. The service will contact the "
+"dictionary, and return a word after a short pause."
+msgstr ""
+"För att slå upp ett ord håller du dere <em>Alt</em> eller <em>Option</em>"
+"\n"
+" (⌥) och duppeltklickar på ordet. Tjänsten ansluter till sidan och\n"
+"returnerar inom kort med et uppslag ur ordboken."
+
+#: static/js/bookmarklet.js:1245
+msgid ""
+"If you find a bug, or if the bookmark does not work on a specific page <a"
+" href=\"mailto:giellatekno@hum.uit.no\">please contact us</a>. Tell us "
+"what page didn't work, or what you did when you discovered the problem."
+msgstr ""
+
+#: static/js/bookmarklet.js:1294
+msgid "Error!"
+msgstr ""
+
+#: static/js/bookmarklet.js:1294
+msgid "Could not connect to dictionary server"
+msgstr ""
+
+#: static/js/bookmarklet.js:1294
+msgid "Close"
+msgstr "Stäng"
+
+#: static/js/bookmarklet.js:1416 static/js/bookmarklet.js:1691
+msgid "Unknown word"
+msgstr "Okänd ord"
+
+#: static/js/bookmarklet.js:1417
+msgid "You are using"
+msgstr "Du använder"
+
+#: static/js/bookmarklet.js:1419
+msgid "Meaning not found"
+msgstr ""
+
+#: templates/404.html:51
+msgid ""
+"Whoops! The page you requested was not found. If you think you are "
+"receiving this in error, please contact us."
+msgstr ""
+"Oj då! Sidan du frågade efter kunde inte hittas. Om du tycker du inte "
+"borde få det här felmeddelandet, så var god kontakta oss."
+
+#: templates/500.html:51
+msgid "Whoops! There was some kind of error."
+msgstr "Hoppsan! Nu har något gått snett."
+
+#: templates/about.sanit.html:75
+msgid "A dictionary that understands what you're looking for."
+msgstr "En ordbok som förstår vad du letar efter."
+
+#: templates/about.sanit.html:76
+msgid "(... And is mobile-friendly!)"
+msgstr "(... Och är mobiltelefon-vänlig!)"
+
+#: templates/about.sanit.html:80
+msgid "Free"
+msgstr "Gratis"
+
+#: templates/about.sanit.html:81
+msgid ""
+"Everything (or, well, almost everything) that\n"
+"                    concerns minority languages should be free. Here\n"
+"                    you'll find free dictionaries, and other analytical\n"
+"                    tools."
+msgstr ""
+"Allt (eller nästan allt, i varje fall) som\n"
+"gäller minoritetsspråk borda vara gratis. Här\n"
+"hittar du gratis och fria ordböcker och andra analysverktyg."
+
+#: templates/about.sanit.html:87
+msgid "Open-Source"
+msgstr "Öppen källkod"
+
+#: templates/about.sanit.html:88
+msgid ""
+"Everything here is based on open-source tools. Do you\n"
+"                have an idea for an app or research project that needs\n"
+"                linguistic resources? Visit <a class=\"blue\"\n"
+"                    href=\"http://giellatekno.uit.no/\">Giellatekno</a>'s"
+"\n"
+"                website for information on how to get access to lexicon\n"
+"                files, and morphological and syntactic analyzers."
+msgstr ""
+"Allt här är baserad på öppen källkod. Har du en idé till en\n"
+"app eller forskningsprojekt som behöver språkliga resurser?\n"
+"Se <a class=\"blue\" href=\"http://giellatekno.uit.no/\">Giellateknos</a>"
+"\n"
+"webbplats för information om hur du får tillgång till lexiconfiler och\n"
+"morfologiska och syntaktiska analysatorer."
+
+#: templates/about.sanit.html:96
+msgid "Linguistic basis"
+msgstr "Lingvistisk grund"
+
+#: templates/about.sanit.html:97
+msgid ""
+"Write what you wish, and the dictionary will analyze it to break apart "
+"compound words and find base forms."
+msgstr ""
+"Skriv vilked ord du vill, och ordboken kommer att analysera den, ta isär "
+"sammansatta ord och hitta basformer."
+
+#: templates/about.sanit.html:103
+msgid "gå, dra, reise"
+msgstr "gå, dra, reise"
+
+#: templates/about.sanit.html:110
+msgid "Source material"
+msgstr ""
+
+#: templates/about.sanit.html:117
+msgid "sme ↔ nob"
+msgstr ""
+
+#: templates/about.sanit.html:118
+msgid ""
+"North Sámi → Norwegian builds on Nils Jernsletten's dictionary "
+"<em>Álgosátnegirji</em>, but here it has been more than doubled in "
+"content."
+msgstr ""
+
+#: templates/about.sanit.html:119
+msgid ""
+"Norwegian → North Sámi is a converted version of North Sámi → Norwegian, "
+"but we have also revised the content and added frequent words from "
+"Norwegian."
+msgstr ""
+
+#: templates/about.sanit.html:122
+msgid "sma ↔ nob"
+msgstr ""
+
+#: templates/about.sanit.html:123
+msgid ""
+"The dictionaries for South Sámi and Norwegian build on material prepared "
+"by Albert Jåma and Tove Brustad in the <a class=\"blue\" "
+"href=\"http://www.ruovatsijte.no/\">Hemnes Sámi Organization</a>, but has"
+" in addition gained words from <a class=\"blue\" "
+"href=\"http://giellatekno.uit.no/\">Giellatekno</a> and <a class=\"blue\""
+" href=\"http://aajege.no/\">Aajege</a>'s work with the Southern Sámi <a "
+"class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
+msgstr ""
+
+#: templates/about.sanit.html:126
+msgid "sme ↔ fin"
+msgstr ""
+
+#: templates/about.sanit.html:127
+msgid ""
+"Dictionaries for North Sámi and Finnish are based on lexical material "
+"from the <a class=\"green\" href=\"http://kotus.fi\">Institute for the "
+"Languages of Finland</a>, and from Giellatekno's work with the North Sámi"
+"  <a class=\"green\" href=\"http://oahpa.no\">Oahpa</a>. In addition, we "
+"have included frequent words from North Sámi, but especially from "
+"Finnish."
+msgstr ""
+
+#: templates/about.sanit.html:128
+msgid "Each of the dictionaries contains about 11,000 base words."
+msgstr "Varje ordbok innehåller ca 11 000 grundord."
+
+#: templates/about.sanit.html:136
+msgid "More to come..."
+msgstr "Mer kommer..."
+
+#: templates/base.html:127
+msgid "Home"
+msgstr "Hem"
+
+#: templates/base.html:131
+msgid "Plugins"
+msgstr "Plugins"
+
+#: templates/base.html:140
+msgid "Interface language"
+msgstr "Gränssnittspråk"
+
+#: templates/base.html:206
+msgid ""
+"Created with free and open-source language tools from <em><a "
+"href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, a Sámi Language "
+"Technology group at the <a href=\"http://uit.no\">University of "
+"Tromsø</a>."
+msgstr ""
+"Skapad med språkverktyg grundat på fri och öppen källkod från <em><a "
+"href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, Senter for "
+"samisk språkteknologi vid <a href=\"http://uit.no\">Universitetet i "
+"Tromsö</a>."
+
+#: templates/index.html:136 templates/index.html:179
+msgid "Other dictionaries"
+msgstr ""
+
+#: templates/index.html:159 templates/index.html:170
+msgid "Written variant"
+msgstr ""
+
+#: templates/index.html:161 templates/index.html:172
+msgid "Standard (<em>áčđŋšŧž</em>)"
+msgstr ""
+
+#: templates/index.html:162 templates/index.html:173
+msgid "Social Media (incl. <em>acdnstz</em>)"
+msgstr ""
+
+#: templates/index.html:187
+msgid "Swap"
+msgstr ""
+
+#: templates/index.html:201
+msgid "ohcansátni"
+msgstr ""
+
+#: templates/index.html:203 templates/word_detail.html:102
+msgid "Search"
+msgstr "Sök"
+
+#: templates/index.html:245
+msgid "Definition not found for:"
+msgstr ""
+
+#: templates/index.html:284
+#, python-format
+msgid "Word %(input)s not found."
+msgstr "Ord %(input)s hittades inte."
+
+#: templates/index.html:293
+msgid ""
+"If you are using a device without a Sámi keyboard, consider using <a "
+"href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
+"<em>acdnstz</em> for <em>áčđŋšŧž</em>."
+msgstr ""
+
+#: templates/index.html:297
+msgid "Search for a word, or a word form for a word analysis and definition."
+msgstr "Sök efter ett ord eller en ordform för en ordanalys och definition."
+
+#: templates/index.html:301
+msgid ""
+"You selected #SoMe, the variant for social media, which means that the "
+"letters acdnstz\n"
+"                                will be accepted as áčđŋšŧž in addition "
+"to their usual values."
+msgstr ""
+
+#: templates/language_select.html:7
+msgid "<span class=\"reposition_hide\">Language</span>"
+msgstr ""
+
+#: templates/more_dictionaries.html:4
+msgid "More dictionaris"
+msgstr ""
+
+#: templates/more_dictionaries.html:23
+msgid ""
+"Neahttadigisánit is available for the following\n"
+"                language groups."
+msgstr ""
+
+#: templates/more_dictionaries.html:31
+msgid ""
+"We're currently working on some new dictionaries for\n"
+"                the following language groups. Since these may not always"
+" be\n"
+"                online, they are not linked here, but please contact us "
+"if you\n"
+"                would like to see a demo!"
+msgstr ""
+
+#: templates/reader.html:4 templates/reader.html:22
+msgid "Neahttadigisánit Reader"
+msgstr "Neahttadigisánit Läsordbok"
+
+#: templates/reader.html:23
+msgid "WARNING!! We have problems with Internet Explorer 8!"
+msgstr ""
+
+#: templates/reader.html:24
+msgid "Bookmarklet"
+msgstr "Bokmärke"
+
+#: templates/reader.html:25
+msgid ""
+"Drag and drop the following link to your Bookmark toolbar,\n"
+"                then click it when you are on a page you wish to read. "
+"The\n"
+"                service will automatically be installed, and you will see"
+" a\n"
+"                menu icon on the left-hand side of the page."
+msgstr ""
+"Dra och släpp fäljande länk till din bokmärkelinje,\n"
+"klicka på den när du är på en sida som du vill läsa.\n"
+"Tjänsten installeras automatiskt, och du kommer at se en\n"
+"meny-ikon längst til vänster på sidan."
+
+#: templates/reader.html:29 templates/reader_update.html:15
+msgid "Read with Neahttadigisánit"
+msgstr "Läs med  Neahttadigisánit"
+
+#: templates/reader.html:30
+msgid ""
+"In order to look up a word, hold Alt or Option (⌥) and double\n"
+"                click the word. The service will will connect to this\n"
+"                website and return dictionary entries after a brief\n"
+"                pause."
+msgstr ""
+"För att slå upp ett ord håller du dere <em>Alt</em> eller <em>Option</em>"
+"\n"
+" (⌥) och duppeltklickar på ordet. Tjänsten ansluter till sidan och\n"
+"returnerar inom kort med et uppslag ur ordboken."
+
+#: templates/reader.html:34
+msgid "To change the dictionary, click the menu icon."
+msgstr ""
+
+#: templates/reader.html:35
+msgid "Bugs?"
+msgstr "Fel?"
+
+#: templates/reader.html:36
+msgid ""
+"If you encounter bugs, or the bookmarklet does not work on a\n"
+"                particular page, contact us with the page URL or details "
+"of\n"
+"                what you were reading when you encountered the problem."
+msgstr ""
+"Om du påträffar fel eller bokmärket inte fungerar på en viss sida,\n"
+"kontakta oss med webbadress eller berätta vad du läste när du stötte på "
+"problem."
+
+#: templates/reader.html:39
+msgid ""
+"We do not store any private data, but we do collect\n"
+"                individual dictionary lookups for statistics and to "
+"improve\n"
+"                the dictionary."
+msgstr ""
+"Vi sparar inte några privata data, men vi samlar\n"
+"individuella ordboksuppslagningar fär statistik, och\n"
+"för att förbättra ordboken."
+
+#: templates/reader.html:48
+msgid "Includes"
+msgstr ""
+
+#: templates/reader.html:56
+msgid ""
+"If you are looking for other languages, please see our <a "
+"href=\"/more/\">other dictionaries</a>."
+msgstr ""
+
+#: templates/reader_example.html:32
+msgid "Additional instructions"
+msgstr ""
+
+#: templates/reader_ie8_notice.html:1
+msgid ""
+"\n"
+"Your web browser is supported, however, you will need to change some\n"
+"options for the Neahttadigisánit Reader to work.\n"
+msgstr ""
+
+#: templates/reader_update.html:1
+msgid ""
+"\n"
+"We have made some updates to the dictionary, which require you to\n"
+"replace your bookmark with a new version.\n"
+msgstr ""
+
+#: templates/reader_update.html:9
+#, fuzzy
+msgid ""
+"Drag and drop the following link to your Bookmark toolbar,\n"
+"    then click it when you are on a page you wish to read. The\n"
+"    service will automatically be installed, and you will see a\n"
+"    menu icon on the left-hand side of the page."
+msgstr ""
+"Dra och släpp fäljande länk till din bokmärkelinje,\n"
+"klicka på den när du är på en sida som du vill läsa.\n"
+"Tjänsten installeras automatiskt, och du kommer at se en\n"
+"meny-ikon längst til vänster på sidan."
+
+#: templates/word_detail.html:54
+msgid "is a possible form of ... "
+msgstr "er en mäjlig form av ... "
+
+#: templates/word_detail.html:220
+msgid "More information about this word"
+msgstr "Mer inmormation om detta ord"
+

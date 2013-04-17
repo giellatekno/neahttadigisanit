@@ -1,0 +1,26 @@
+﻿{%- if tx.link -%}
+    {% set link_target = "/detail/%s/%s/%s.html?no_compounds=true&lemma_match=true" % (_to, _from, tx.tx) %}
+    {{ tx.target_formatted|sneak_in_link(link_target)|safe }}
+{%- else -%}
+    {{ tx.target_formatted }}
+{%- endif -%}
+
+{% if tx.re %} ({% for annotation in tx.re %}{{ annotation }}{% endfor %}){% endif %}
+{% if tx.examples %}
+    <div class="example_set">
+        {# 
+        <div class="button-padding">
+            <button class="btn btn-small visible-phone">Examples</button>
+        </div>
+        <blockquote class="examples hidden-phone">
+        #}
+        <blockquote class="examples">
+        <dl>
+            # for f_ex, t_ex in tx.examples
+            <dt>{{ f_ex }}</dt>
+            <dd>{{ t_ex }}</dd>
+            # endfor
+        </dl>
+        </blockquote>
+    </div>
+{% endif %}

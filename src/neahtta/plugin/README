@@ -1,0 +1,159 @@
+# What is this?
+
+This is a module for providing access to a dictionary API, giving users access
+to lexical information without need to understand what word or wordform they
+are looking at.
+
+## Goals and TODOs
+
+- TODO: hs.fi has problems showing the options tab, should be a good place to test
+
+- TODO: recompile bootstrap from less with specific namespace to ensure
+        that style changes only occur in webdict_options and the popup.
+
+- TODO: test function for changing hostname of API
+
+- TODO: Internationalization of help text to nob, sme, fin, other languages
+  supported
+
+- TODO: Alternate means of triggering lookups so that there is no necessity
+  to hold Alt/Opt while clicking, for devices that do not have this.
+  Potentially also, displaying the result lookup in another format for
+  mobile devices (Popup banner fixed to the bottom edge?).
+
+
+## Installation of plugin for a specific site
+
+See `kursadict.plugin.html` for an example of the bare minimum. Note the code
+required for the search form.
+
+## Developing
+
+### Developing with the core files 
+
+You will need some tools to help develop and compile the modules here, namely
+node.js and npm. Otherwise, this module uses both JavaScript, and CoffeeScript[1],
+the latter of which is a fabulous (completely) JavaScript compliant abstraction
+from JavaScript which makes many programming concepts more accessible. It is
+kind of another language, but not really, and is very easy to switch over to
+using.
+
+    [1]: http://coffeescript.org
+
+Coffeescript quickly compiles into JavaScript, but in addition, there are some
+other handy tools available in the Node.js 'system' that are necessary for 
+compiling the modules here into a minimum of files, and a variety of targets.
+
+#### node.js and npm
+
+Install these first, and then run
+
+    npm install
+
+Which will read package.json, and install the development packages to help
+
+#### Cake
+
+... is just a build system like Make, but for node/coffeescript
+projects. It facilitates compiling and combining all the
+dependencies into two files.
+
+    cake build
+
+Will compile for all targets.
+
+## Twitter Bootstrap
+
+Twitter Bootstrap is in use for CSS and JavaScript conveniences like popups,
+tooltips, and form elements. There is also a little custom code to handle
+dropdown buttons in forms.
+
+If this needs to be included in a place where Bootstrap's CSS reset (and
+basically its full install) would mess with local stylesheets too much, it is
+necessary to use a subset of Bootstrap which is downloadable from their website.
+
+However, note that the sample HTML file here includes the full bootstrap CSS, 
+which can be disabled for testing, but also note that the JS utilities from 
+Bootstrap and jQuery are compiled in to the final .js file, with one exception:
+the base jQuery library is not included (yet?). These dependencies are clearly
+listed in the HTML file to show how installation of the module works.
+
+So...
+
+If you need to make changes and require more parts of Twitter Bootstrap, 
+here is the list of things that are in use here. Unfortunately Bootstrap 
+provides no easy way to check off everything you need
+
+http://twitter.github.com/bootstrap/customize.html#variables
+
+Uncheck everything, and select:
+
+Base CSS
+ * Labels and badges
+ * Forms
+ * Buttons
+ * Icons
+
+Components
+ * Button groups and dropdowns
+ * Navs, tabs, and pills
+ * Navbar
+ * Alerts
+
+Miscellaneous
+ * Wells
+ * Close icon
+
+JS Components
+ * Tooltips
+ * Popovers
+ * Dropdowns
+
+2 jQuery Plugins
+ * Modals
+ * Dropdowns
+ * Tooltips
+ * Popovers
+ * Buttons
+ * Typeahead
+
+### Bookmarklet development
+
+For Neahttadigisanit there is a bookmarklet that users may install in their
+browser's bookmark bar. The bookmarklet javascript that they include in the
+bookmark simply downloads a compiled javascript file that includes jquery, the
+neahttadigisanit jquery plugin (henceforth plugin code), and a short
+initialization file which calls the rest of the plugin and allows the user to
+begin looking up files. The Cakefile thus has a build target
+`build-bookmarklet`, which handles this.
+
+One of the special bits of this is that the API hostname is not defined in the
+plugin code, but defined within the bookmarklet javascript... This is to make
+testing and development easier.
+
+The code for the actual bookmarklet that downloads the file is instead stored
+within neahtta.py, since compiling it is a little more of a specific process.
+
+### Browser plugin development
+
+Some of this material was somehow hard to find.
+
+* Chrome: https://developer.chrome.com/extensions/
+* Firefox: https://addons.mozilla.org/en-US/developers/docs/sdk/1.11/
+* Safari: http://developer.apple.com/library/safari/#documentation/Tools/Conceptual/SafariExtensionGuide/Introduction/Introduction.html
+
+Might consider using FireBreath once the concept in Chrome is complete,
+FireBreath allows for simultaneous development of a plugin in several browsers
+concurrently.
+
+* http://www.firebreath.org/
+
+### Wordpress plugin development
+
+`cake build`, followed by `cake build-wordpress`.
+
+#### Gotchas
+
+* PHP: make sure there are no spaces or newlines after the `?>` in 
+  any of the PHP files, or wordpress will freak out and nothing will load.
+

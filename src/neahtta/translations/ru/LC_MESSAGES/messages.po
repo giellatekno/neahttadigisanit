@@ -1,0 +1,547 @@
+# Russian translations for PROJECT.
+# Copyright (C) 2013 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2013-04-11 20:00-0500\n"
+"PO-Revision-Date: 2013-03-03 15:39+0200\n"
+"Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
+"Language-Team: ru <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.6\n"
+
+#: language_names.py:10
+msgid "North Sámi"
+msgstr "Северно-саамский"
+
+#: language_names.py:11
+msgid "North Sámi (#SoMe)"
+msgstr "Северно-саамский (#SoMe)"
+
+#: language_names.py:14
+msgid "South Sámi"
+msgstr "Южно-саамский"
+
+#: language_names.py:17
+msgid "Komi"
+msgstr "Коми"
+
+#: language_names.py:20
+msgid "Kven"
+msgstr "Квен"
+
+#: language_names.py:21
+msgid "Livonian"
+msgstr "Лив"
+
+#: language_names.py:22
+msgid "Olonetsian"
+msgstr "Ливвиковский"
+
+#: language_names.py:23
+msgid "Izhorian"
+msgstr "Ижорский"
+
+#: language_names.py:26
+msgid "Erzya Mordvin"
+msgstr "Эрзянский"
+
+#: language_names.py:27
+msgid "Moksha"
+msgstr "Мокша"
+
+#: language_names.py:30
+msgid "Western Mari"
+msgstr "Горномарийский"
+
+#: language_names.py:33
+msgid "Nenets"
+msgstr "Ненецкий"
+
+#: language_names.py:36 language_names.py:42
+msgid "Finnish"
+msgstr "Финский"
+
+#: language_names.py:37 language_names.py:43 language_names.py:44
+msgid "Norwegian"
+msgstr "Норвежский"
+
+#: language_names.py:39 language_names.py:40
+msgid "Russian"
+msgstr "Русский"
+
+#: language_names.py:45
+msgid "Latvian"
+msgstr "Латвийский"
+
+#: language_names.py:46
+msgid "English"
+msgstr "Английслий"
+
+#: neahtta.py:354 templates/index.html:258
+msgid " is a possible form of ... "
+msgstr "форма на левой стороне образованна из формы правой стороны"
+
+#: neahtta.py:432
+msgid "Invalid format. Only json and html allowed."
+msgstr "Недопустимый формат. Только json и html допустимые."
+
+#: static/js/bookmarklet.js:1245
+msgid "Á"
+msgstr ""
+
+#: static/js/bookmarklet.js:1245
+msgid "Options"
+msgstr ""
+
+#: static/js/bookmarklet.js:1245 templates/about.sanit.html:65
+#: templates/base.html:135
+msgid "About"
+msgstr "Про нас"
+
+#: static/js/bookmarklet.js:1245
+msgid "Language"
+msgstr "Язык"
+
+#: static/js/bookmarklet.js:1245
+msgid "Save"
+msgstr ""
+
+#: static/js/bookmarklet.js:1245
+#, fuzzy
+msgid ""
+"In order to look up a word, hold down the <em>Alt</em> or <em>Option</em>"
+" (⌥) key, and doubleclick on a word. The service will contact the "
+"dictionary, and return a word after a short pause."
+msgstr ""
+"Для того, чтобы найти слово, удерживая Alt или Option (⌥) и дважды \n"
+"                 нажмите на слово. Служба будет подключаться к этому \n"
+"                 сайту и записи возвращения словаря после краткой \n"
+"                 паузы."
+
+#: static/js/bookmarklet.js:1245
+msgid ""
+"If you find a bug, or if the bookmark does not work on a specific page <a"
+" href=\"mailto:giellatekno@hum.uit.no\">please contact us</a>. Tell us "
+"what page didn't work, or what you did when you discovered the problem."
+msgstr ""
+
+#: static/js/bookmarklet.js:1294
+msgid "Error!"
+msgstr ""
+
+#: static/js/bookmarklet.js:1294
+msgid "Could not connect to dictionary server"
+msgstr ""
+
+#: static/js/bookmarklet.js:1294
+msgid "Close"
+msgstr ""
+
+#: static/js/bookmarklet.js:1416 static/js/bookmarklet.js:1691
+msgid "Unknown word"
+msgstr ""
+
+#: static/js/bookmarklet.js:1417
+msgid "You are using"
+msgstr ""
+
+#: static/js/bookmarklet.js:1419
+#, fuzzy
+msgid "Meaning not found"
+msgstr "Значение не нашлось для:"
+
+#: templates/404.html:51
+msgid ""
+"Whoops! The page you requested was not found. If you think you are "
+"receiving this in error, please contact us."
+msgstr ""
+"Ого! Запрашиваемая Вами страница не найдена. Если вы думаете, что вы "
+"получаете эту ошибку, пожалуйста, свяжитесь с нами."
+
+#: templates/500.html:51
+msgid "Whoops! There was some kind of error."
+msgstr ""
+
+#: templates/about.sanit.html:75
+msgid "A dictionary that understands what you're looking for."
+msgstr "Словарь, который понимает, что ищешь."
+
+#: templates/about.sanit.html:76
+msgid "(... And is mobile-friendly!)"
+msgstr "(... И для мобильных устройств!)"
+
+#: templates/about.sanit.html:80
+msgid "Free"
+msgstr "Бесплатный"
+
+#: templates/about.sanit.html:81
+msgid ""
+"Everything (or, well, almost everything) that\n"
+"                    concerns minority languages should be free. Here\n"
+"                    you'll find free dictionaries, and other analytical\n"
+"                    tools."
+msgstr ""
+"Все (или, ну, почти все), что касается\n"
+"                     языков меньшинств должно быть бесплатным. Здесь \n"
+"                     Вы найдете бесплатные словари, и другие инструменты"
+" \n"
+"                     для анализа."
+
+#: templates/about.sanit.html:87
+msgid "Open-Source"
+msgstr "Открытые источники"
+
+#: templates/about.sanit.html:88
+msgid ""
+"Everything here is based on open-source tools. Do you\n"
+"                have an idea for an app or research project that needs\n"
+"                linguistic resources? Visit <a class=\"blue\"\n"
+"                    href=\"http://giellatekno.uit.no/\">Giellatekno</a>'s"
+"\n"
+"                website for information on how to get access to lexicon\n"
+"                files, and morphological and syntactic analyzers."
+msgstr ""
+"Здесь все основано на открытом исходном коде. Если у Вас \n"
+"                 есть идея для приложения или исследовательского проекта,"
+" который \n"
+"                 нуждается языковых ресурсах? Посетите веб-сайт \n"
+"                 <a class=\"blue\" href=\"http://giellatekno.uit.no/\"> "
+"Giellatekno </a> \n"
+"                  для получения информации о том, как получить доступ к "
+"лексике \n"
+"                 файлов, и морфологических и синтаксических анализаторов."
+
+#: templates/about.sanit.html:96
+msgid "Linguistic basis"
+msgstr "Лингвистические основы"
+
+#: templates/about.sanit.html:97
+msgid ""
+"Write what you wish, and the dictionary will analyze it to break apart "
+"compound words and find base forms."
+msgstr "Пишешь что хочешь, словарь сам делит слова на части и делает им анализ."
+
+#: templates/about.sanit.html:103
+msgid "gå, dra, reise"
+msgstr "идти, ходить, ехать, ездить"
+
+#: templates/about.sanit.html:110
+msgid "Source material"
+msgstr "Источники для материала"
+
+#: templates/about.sanit.html:117
+msgid "sme ↔ nob"
+msgstr "sme ↔ nob"
+
+#: templates/about.sanit.html:118
+msgid ""
+"North Sámi → Norwegian builds on Nils Jernsletten's dictionary "
+"<em>Álgosátnegirji</em>, but here it has been more than doubled in "
+"content."
+msgstr ""
+"Северно-саамский → Норвежский опирается на словарь Нильс Ернслеттен в "
+"<em>Álgosátnegirji </em>, а здесь он был более чем в два раза больше по "
+"содержанию."
+
+#: templates/about.sanit.html:119
+msgid ""
+"Norwegian → North Sámi is a converted version of North Sámi → Norwegian, "
+"but we have also revised the content and added frequent words from "
+"Norwegian."
+msgstr ""
+"Норвежско → Северно-саамский преобразованная версия Северно-саамско → "
+"Норвежского, но мы также пересмотрели содержание и добавили частые слова "
+"из норвежского."
+
+#: templates/about.sanit.html:122
+msgid "sma ↔ nob"
+msgstr "sma ↔ nob"
+
+#: templates/about.sanit.html:123
+msgid ""
+"The dictionaries for South Sámi and Norwegian build on material prepared "
+"by Albert Jåma and Tove Brustad in the <a class=\"blue\" "
+"href=\"http://www.ruovatsijte.no/\">Hemnes Sámi Organization</a>, but has"
+" in addition gained words from <a class=\"blue\" "
+"href=\"http://giellatekno.uit.no/\">Giellatekno</a> and <a class=\"blue\""
+" href=\"http://aajege.no/\">Aajege</a>'s work with the Southern Sámi <a "
+"class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
+msgstr ""
+"Словари для Южно-саамского и норвежского строятся на материале, "
+"подготовленном Альберт Джама и Туве Брустада в <a class=\"blue\" "
+"href=\"http://www.ruovatsijte.no/\"> организации Гемнес саами </a>, но в "
+"дополнение получили слова из работ <a class=\"blue\" "
+"href=\"http://giellatekno.uit.no/\"> Giellatekno </a> и <a class=\"blue\""
+" href=\"http://aajege.no/\">Aajege</a>\" с южным саамским <a "
+"class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
+
+#: templates/about.sanit.html:126
+msgid "sme ↔ fin"
+msgstr "sme ↔ fin"
+
+#: templates/about.sanit.html:127
+msgid ""
+"Dictionaries for North Sámi and Finnish are based on lexical material "
+"from the <a class=\"green\" href=\"http://kotus.fi\">Institute for the "
+"Languages of Finland</a>, and from Giellatekno's work with the North Sámi"
+"  <a class=\"green\" href=\"http://oahpa.no\">Oahpa</a>. In addition, we "
+"have included frequent words from North Sámi, but especially from "
+"Finnish."
+msgstr ""
+"Словари для северно-саамского и финского основаны на лексическом "
+"материале из <a class=\"green\" href=\"http://kotus.fi\"> Института Языки"
+" Финляндии</a>, и от автора работы в Giellatekno с северно-саамским <a "
+"class=\"green\" href=\"http://oahpa.no\"> Oahpa </a>. Кроме того, мы "
+"включили частые слова из северно-саамского, но особенно из финского."
+
+#: templates/about.sanit.html:128
+msgid "Each of the dictionaries contains about 11,000 base words."
+msgstr "Каждый из словарей содержит около 11.000 базовых слов."
+
+#: templates/about.sanit.html:136
+msgid "More to come..."
+msgstr "Еще не все..."
+
+#: templates/base.html:127
+msgid "Home"
+msgstr "Домашняя страница"
+
+#: templates/base.html:131
+msgid "Plugins"
+msgstr "Плагин"
+
+#: templates/base.html:140
+msgid "Interface language"
+msgstr "язык интерфейса"
+
+#: templates/base.html:206
+msgid ""
+"Created with free and open-source language tools from <em><a "
+"href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, a Sámi Language "
+"Technology group at the <a href=\"http://uit.no\">University of "
+"Tromsø</a>."
+msgstr ""
+"Создано с бесплатным и с открытым исходным кодом языков из <em> <a "
+"href=\"http://giellatekno.uit.no\"> Giellatekno </a> </em>, технологии "
+"группы языков саами в <a href=\"http://uit.no\"> университете Тромса "
+"</a>."
+
+#: templates/index.html:136 templates/index.html:179
+msgid "Other dictionaries"
+msgstr ""
+
+#: templates/index.html:159 templates/index.html:170
+msgid "Written variant"
+msgstr "Писменный вариант"
+
+#: templates/index.html:161 templates/index.html:172
+msgid "Standard (<em>áčđŋšŧž</em>)"
+msgstr "Стандартный вариант (<em>áčđŋšŧž</em>)"
+
+#: templates/index.html:162 templates/index.html:173
+msgid "Social Media (incl. <em>acdnstz</em>)"
+msgstr "Социальная медия (включая. <em>acdnstz</em>)"
+
+#: templates/index.html:187
+msgid "Swap"
+msgstr "Поменять"
+
+#: templates/index.html:201
+msgid "ohcansátni"
+msgstr ""
+
+#: templates/index.html:203 templates/word_detail.html:102
+msgid "Search"
+msgstr "Искать"
+
+#: templates/index.html:245
+msgid "Definition not found for:"
+msgstr "Значение не нашлось для:"
+
+#: templates/index.html:284
+#, python-format
+msgid "Word %(input)s not found."
+msgstr "Слово %(input)s не нашлось."
+
+#: templates/index.html:293
+msgid ""
+"If you are using a device without a Sámi keyboard, consider using <a "
+"href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
+"<em>acdnstz</em> for <em>áčđŋšŧž</em>."
+msgstr ""
+"Если используешь средство без саамской клавиатуры, можешь использовать <a"
+" href=\"/SoMe/nob/\">модель социальной медии</a>, где пишешь "
+"<em>acdnstz</em> вместо <em>áčđŋšŧž</em>."
+
+#: templates/index.html:297
+msgid "Search for a word, or a word form for a word analysis and definition."
+msgstr "Поиск слова или словоформы для анализа слов и определений."
+
+#: templates/index.html:301
+msgid ""
+"You selected #SoMe, the variant for social media, which means that the "
+"letters acdnstz\n"
+"                                will be accepted as áčđŋšŧž in addition "
+"to their usual values."
+msgstr ""
+"Вы выбрали #SoMe, вариант для социальных медий, а это значит, что буквы "
+"acdnstz \n"
+"                                 будут приниматься в качестве áčđŋšŧž "
+"дополнения к своим обычным значениям."
+
+#: templates/language_select.html:7
+msgid "<span class=\"reposition_hide\">Language</span>"
+msgstr ""
+
+#: templates/more_dictionaries.html:4
+msgid "More dictionaris"
+msgstr ""
+
+#: templates/more_dictionaries.html:23
+msgid ""
+"Neahttadigisánit is available for the following\n"
+"                language groups."
+msgstr ""
+
+#: templates/more_dictionaries.html:31
+msgid ""
+"We're currently working on some new dictionaries for\n"
+"                the following language groups. Since these may not always"
+" be\n"
+"                online, they are not linked here, but please contact us "
+"if you\n"
+"                would like to see a demo!"
+msgstr ""
+
+#: templates/reader.html:4 templates/reader.html:22
+msgid "Neahttadigisánit Reader"
+msgstr "Neahttadigisánit программа чтения"
+
+#: templates/reader.html:23
+msgid "WARNING!! We have problems with Internet Explorer 8!"
+msgstr "ВНИМАНИЕ! У нас есть проблемы с Internet Explorer 8!"
+
+#: templates/reader.html:24
+msgid "Bookmarklet"
+msgstr "Букмарклет"
+
+#: templates/reader.html:25
+msgid ""
+"Drag and drop the following link to your Bookmark toolbar,\n"
+"                then click it when you are on a page you wish to read. "
+"The\n"
+"                service will automatically be installed, and you will see"
+" a\n"
+"                menu icon on the left-hand side of the page."
+msgstr ""
+"Перетащите следующую ссылку на панель инструментов закладки, \n"
+"                 затем, когда вы находитесь на странице и хотите читать,\n"
+"                 служба будет автоматически установлена, и вы увидите, \n"
+"                 значок меню на левой стороне страницы."
+
+#: templates/reader.html:29 templates/reader_update.html:15
+msgid "Read with Neahttadigisánit"
+msgstr "Читайте с программой Neahttadigisánit"
+
+#: templates/reader.html:30
+msgid ""
+"In order to look up a word, hold Alt or Option (⌥) and double\n"
+"                click the word. The service will will connect to this\n"
+"                website and return dictionary entries after a brief\n"
+"                pause."
+msgstr ""
+"Для того, чтобы найти слово, удерживая Alt или Option (⌥) и дважды \n"
+"                 нажмите на слово. Служба будет подключаться к этому \n"
+"                 сайту и записи возвращения словаря после краткой \n"
+"                 паузы."
+
+#: templates/reader.html:34
+msgid "To change the dictionary, click the menu icon."
+msgstr "Чтобы поменять словарь, щелкните значок меню."
+
+#: templates/reader.html:35
+msgid "Bugs?"
+msgstr "Ошибки?"
+
+#: templates/reader.html:36
+msgid ""
+"If you encounter bugs, or the bookmarklet does not work on a\n"
+"                particular page, contact us with the page URL or details "
+"of\n"
+"                what you were reading when you encountered the problem."
+msgstr ""
+"Если вы обнаружите ошибки или закладка не работает на \n"
+"                 определенной странице, свяжитесь с нами и дайте URL "
+"страницы или деталей \n"
+"                 того, что вы читали, когда вы столкнулись с проблемой."
+
+#: templates/reader.html:39
+msgid ""
+"We do not store any private data, but we do collect\n"
+"                individual dictionary lookups for statistics and to "
+"improve\n"
+"                the dictionary."
+msgstr ""
+"Мы не храним никаких личных данных, но мы собираем \n"
+"                 индивидуальный поиск слов для статистики и для улучшения"
+" \n"
+"                словаря."
+
+#: templates/reader.html:48
+msgid "Includes"
+msgstr ""
+
+#: templates/reader.html:56
+msgid ""
+"If you are looking for other languages, please see our <a "
+"href=\"/more/\">other dictionaries</a>."
+msgstr ""
+
+#: templates/reader_example.html:32
+msgid "Additional instructions"
+msgstr ""
+
+#: templates/reader_ie8_notice.html:1
+msgid ""
+"\n"
+"Your web browser is supported, however, you will need to change some\n"
+"options for the Neahttadigisánit Reader to work.\n"
+msgstr ""
+
+#: templates/reader_update.html:1
+msgid ""
+"\n"
+"We have made some updates to the dictionary, which require you to\n"
+"replace your bookmark with a new version.\n"
+msgstr ""
+
+#: templates/reader_update.html:9
+#, fuzzy
+msgid ""
+"Drag and drop the following link to your Bookmark toolbar,\n"
+"    then click it when you are on a page you wish to read. The\n"
+"    service will automatically be installed, and you will see a\n"
+"    menu icon on the left-hand side of the page."
+msgstr ""
+"Перетащите следующую ссылку на панель инструментов закладки, \n"
+"                 затем, когда вы находитесь на странице и хотите читать,\n"
+"                 служба будет автоматически установлена, и вы увидите, \n"
+"                 значок меню на левой стороне страницы."
+
+#: templates/word_detail.html:54
+msgid "is a possible form of ... "
+msgstr "форма на левой стороне образованна из формы правой стороны"
+
+#: templates/word_detail.html:220
+msgid "More information about this word"
+msgstr "Подробнее об этом слове"
+

@@ -1,0 +1,552 @@
+# Finnish translations for PROJECT.
+# Copyright (C) 2013 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2013-04-11 20:00-0500\n"
+"PO-Revision-Date: 2013-03-17 12:43+0200\n"
+"Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
+"Language-Team: fi <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.6\n"
+
+#: language_names.py:10
+msgid "North Sámi"
+msgstr "pohjoissaame"
+
+#: language_names.py:11
+msgid "North Sámi (#SoMe)"
+msgstr "pohjoissaame (#SoMe)"
+
+#: language_names.py:14
+msgid "South Sámi"
+msgstr "eteläsaame"
+
+#: language_names.py:17
+msgid "Komi"
+msgstr "komi"
+
+#: language_names.py:20
+msgid "Kven"
+msgstr "kveeni"
+
+#: language_names.py:21
+msgid "Livonian"
+msgstr "liivi"
+
+#: language_names.py:22
+msgid "Olonetsian"
+msgstr "livvi"
+
+#: language_names.py:23
+msgid "Izhorian"
+msgstr "inkeroinen"
+
+#: language_names.py:26
+msgid "Erzya Mordvin"
+msgstr "ersä"
+
+#: language_names.py:27
+msgid "Moksha"
+msgstr "mokša"
+
+#: language_names.py:30
+msgid "Western Mari"
+msgstr "vuorimari"
+
+#: language_names.py:33
+msgid "Nenets"
+msgstr "nenetsi"
+
+#: language_names.py:36 language_names.py:42
+msgid "Finnish"
+msgstr "suomi"
+
+#: language_names.py:37 language_names.py:43 language_names.py:44
+msgid "Norwegian"
+msgstr "norja"
+
+#: language_names.py:39 language_names.py:40
+msgid "Russian"
+msgstr "venäjä"
+
+#: language_names.py:45
+msgid "Latvian"
+msgstr "latvia"
+
+#: language_names.py:46
+msgid "English"
+msgstr "englanti"
+
+#: neahtta.py:354 templates/index.html:258
+msgid " is a possible form of ... "
+msgstr " on mahdollinen muoto sanasta ... "
+
+#: neahtta.py:432
+msgid "Invalid format. Only json and html allowed."
+msgstr "Kelvoton muoto. Hyväksytään vain json ja html"
+
+#: static/js/bookmarklet.js:1245
+msgid "Á"
+msgstr ""
+
+#: static/js/bookmarklet.js:1245
+msgid "Options"
+msgstr "Vaihtoehtoja"
+
+#: static/js/bookmarklet.js:1245 templates/about.sanit.html:65
+#: templates/base.html:135
+msgid "About"
+msgstr "Meistä"
+
+#: static/js/bookmarklet.js:1245
+msgid "Language"
+msgstr "Kieli"
+
+#: static/js/bookmarklet.js:1245
+msgid "Save"
+msgstr "Tallenna"
+
+#: static/js/bookmarklet.js:1245
+msgid ""
+"In order to look up a word, hold down the <em>Alt</em> or <em>Option</em>"
+" (⌥) key, and doubleclick on a word. The service will contact the "
+"dictionary, and return a word after a short pause."
+msgstr ""
+"Etsiäksesi sanaa, paina <em>Alt</em> tai <em>Option</em> (⌥) ja "
+"kaksoisklikkaa\n"
+"sanaa. Palvelu ottaa yhteyttä tähän nettisivuun ja antaa sinulle\n"
+"käännöksen lyhyen tauon jälkeen."
+
+#: static/js/bookmarklet.js:1245
+msgid ""
+"If you find a bug, or if the bookmark does not work on a specific page <a"
+" href=\"mailto:giellatekno@hum.uit.no\">please contact us</a>. Tell us "
+"what page didn't work, or what you did when you discovered the problem."
+msgstr ""
+
+#: static/js/bookmarklet.js:1294
+msgid "Error!"
+msgstr "Virhe!"
+
+#: static/js/bookmarklet.js:1294
+msgid "Could not connect to dictionary server"
+msgstr "Emme pystyneet yhdistämään sanakirjapalvelimeen"
+
+#: static/js/bookmarklet.js:1294
+msgid "Close"
+msgstr "Sulje"
+
+#: static/js/bookmarklet.js:1416 static/js/bookmarklet.js:1691
+msgid "Unknown word"
+msgstr "Tuntematon sana"
+
+#: static/js/bookmarklet.js:1417
+msgid "You are using"
+msgstr "Sinä käytät"
+
+#: static/js/bookmarklet.js:1419
+msgid "Meaning not found"
+msgstr "Käännös ei löydetty sanalle tai sanoille"
+
+#: templates/404.html:51
+msgid ""
+"Whoops! The page you requested was not found. If you think you are "
+"receiving this in error, please contact us."
+msgstr ""
+"Oho! Etsimääsi sivua ei löytynyt. Jos olet sitä mieltä, että sivun olisi "
+"pitänyt löytyä, ota yhteyttä meihin."
+
+#: templates/500.html:51
+msgid "Whoops! There was some kind of error."
+msgstr "Hetkinen! Nyt jotain meni pieleen."
+
+#: templates/about.sanit.html:75
+msgid "A dictionary that understands what you're looking for."
+msgstr "Sanakirja, joka ymmärtää, mitä etsit."
+
+#: templates/about.sanit.html:76
+msgid "(... And is mobile-friendly!)"
+msgstr "(... ja on kännykkä-ystävällinen!)"
+
+#: templates/about.sanit.html:80
+msgid "Free"
+msgstr "Ilmainen"
+
+#: templates/about.sanit.html:81
+msgid ""
+"Everything (or, well, almost everything) that\n"
+"                    concerns minority languages should be free. Here\n"
+"                    you'll find free dictionaries, and other analytical\n"
+"                    tools."
+msgstr ""
+"Kaiken (tai ainakin melkein kaiken), mikä\n"
+"koskee vähemmistökieliä, pitäisi olla ilmaista.\n"
+"Tästä löydät vapaat ja ilmaiset sanakirjat, ja\n"
+"muita analyysityökaluja."
+
+#: templates/about.sanit.html:87
+msgid "Open-Source"
+msgstr "Avoin lähdekoodi"
+
+#: templates/about.sanit.html:88
+msgid ""
+"Everything here is based on open-source tools. Do you\n"
+"                have an idea for an app or research project that needs\n"
+"                linguistic resources? Visit <a class=\"blue\"\n"
+"                    href=\"http://giellatekno.uit.no/\">Giellatekno</a>'s"
+"\n"
+"                website for information on how to get access to lexicon\n"
+"                files, and morphological and syntactic analyzers."
+msgstr ""
+"Kaikki tässä perustuu avoimeen lähdekoodiin. Jos suunnittelet\n"
+"appin tekemistä tai tutkimusprojektia, mihin tarvitset lingvistisiä\n"
+"resursseja, niin  <a class=\"blue\"\n"
+"                href=\"http://giellatekno.uit.no/\">Giellatekno</a>\n"
+"kotisivulta löydät tietoja sanalistojen ja morfologisten\n"
+"ja syntaktisten analysaattorien käytöstä."
+
+#: templates/about.sanit.html:96
+msgid "Linguistic basis"
+msgstr "Lingvistinen perusta"
+
+#: templates/about.sanit.html:97
+msgid ""
+"Write what you wish, and the dictionary will analyze it to break apart "
+"compound words and find base forms."
+msgstr ""
+"Kirjoita haluamasi sana, ja sanakirja analysoi sitä ja jakaa\n"
+"mahdolliset yhdyssanat osiinsa."
+
+#: templates/about.sanit.html:103
+msgid "gå, dra, reise"
+msgstr "mennä, lähteä"
+
+#: templates/about.sanit.html:110
+msgid "Source material"
+msgstr "Lähdemateriaalia"
+
+#: templates/about.sanit.html:117
+msgid "sme ↔ nob"
+msgstr "Pohjoissaame ↔ norja"
+
+#: templates/about.sanit.html:118
+msgid ""
+"North Sámi → Norwegian builds on Nils Jernsletten's dictionary "
+"<em>Álgosátnegirji</em>, but here it has been more than doubled in "
+"content."
+msgstr ""
+"Pohjoissaame → norja perustuu Nils Jernslettenin sanakirjaan "
+"<em>Álgosátnegirji</em>, mutta sisältä on kaksinkertaistettu."
+
+#: templates/about.sanit.html:119
+msgid ""
+"Norwegian → North Sámi is a converted version of North Sámi → Norwegian, "
+"but we have also revised the content and added frequent words from "
+"Norwegian."
+msgstr ""
+"Norja → pohjoissaame on käännetty versio Pohjoissaame → norja "
+"-sanakirjasta, mutta me olemme myös lisännet tavallisia norjalaisia "
+"sanoja. Sanakirja tunnistaa myös tavallisimmat nykynorjan sanat ja "
+"taivutusmuodot."
+
+#: templates/about.sanit.html:122
+msgid "sma ↔ nob"
+msgstr "Eteläsaame ↔ norja"
+
+#: templates/about.sanit.html:123
+msgid ""
+"The dictionaries for South Sámi and Norwegian build on material prepared "
+"by Albert Jåma and Tove Brustad in the <a class=\"blue\" "
+"href=\"http://www.ruovatsijte.no/\">Hemnes Sámi Organization</a>, but has"
+" in addition gained words from <a class=\"blue\" "
+"href=\"http://giellatekno.uit.no/\">Giellatekno</a> and <a class=\"blue\""
+" href=\"http://aajege.no/\">Aajege</a>'s work with the Southern Sámi <a "
+"class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
+msgstr ""
+"Eteläsaame - norja -sanakirjat perustuvat  Albert Jåman ja Tove Brustadin"
+" materiaaliin (ks. <a class=\"blue\" "
+"href=\"http://www.ruovatsijte.no/\">Hemnes Samiske Forening</a>) sen "
+"lisäksi on lisätty sanoja <a class=\"blue\" "
+"href=\"http://giellatekno.uit.no/\">Giellateknon</a> ja <a class=\"blue\""
+" href=\"http://aajege.no/\">Aajegen</a> työstä eteläsaamen <a "
+"class=\"blue\" href=\"http://oahpa.no\">Oahpan</a> parissa."
+
+#: templates/about.sanit.html:126
+msgid "sme ↔ fin"
+msgstr "Pohjoissaame ↔ suomi"
+
+#: templates/about.sanit.html:127
+msgid ""
+"Dictionaries for North Sámi and Finnish are based on lexical material "
+"from the <a class=\"green\" href=\"http://kotus.fi\">Institute for the "
+"Languages of Finland</a>, and from Giellatekno's work with the North Sámi"
+"  <a class=\"green\" href=\"http://oahpa.no\">Oahpa</a>. In addition, we "
+"have included frequent words from North Sámi, but especially from "
+"Finnish."
+msgstr ""
+"Pohjoissaame-norja-pohjoissaame-sanakirjat perustuvat <a class=\"green\" "
+"href=\"http://kotus.fi\">Kotimaisten kielten tutkimuskeskuksen</a> <a "
+"class=\"green\" href=\"kaino.kotus.fi/algu/\">Álgu</a>-projektin "
+"sanastoihin ja Giellateknon työhön pohjoissaamen <a class=\"green\" "
+"href=\"http://oahpa.no\">Oahpan</a> parissa. Sen lisäksi olemme lisännet "
+"tavallisia suomenkielisiä sanoja. "
+
+#: templates/about.sanit.html:128
+msgid "Each of the dictionaries contains about 11,000 base words."
+msgstr "Jokainen sanakirja sisältaa n. 11000 hakusanaa. "
+
+#: templates/about.sanit.html:136
+msgid "More to come..."
+msgstr "Lisää tulossa..."
+
+#: templates/base.html:127
+msgid "Home"
+msgstr "Koti"
+
+#: templates/base.html:131
+msgid "Plugins"
+msgstr "Laajennuksia"
+
+#: templates/base.html:140
+msgid "Interface language"
+msgstr "Käyttöliittymän kieli"
+
+#: templates/base.html:206
+msgid ""
+"Created with free and open-source language tools from <em><a "
+"href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, a Sámi Language "
+"Technology group at the <a href=\"http://uit.no\">University of "
+"Tromsø</a>."
+msgstr ""
+"Luotu  <em><a "
+"href=\"http://giellatekno.uit.no/index.fin.html\">Giellateknon</a></em> "
+"vapaan ja avoimen lähdekoodin avulla. Giellatekno on  <a "
+"href=\"http://uit.no\">Tromssan yliopiston</a> kieliteknologian "
+"tutkimusryhmä."
+
+#: templates/index.html:136 templates/index.html:179
+msgid "Other dictionaries"
+msgstr "Muita sanakirjoja"
+
+#: templates/index.html:159 templates/index.html:170
+msgid "Written variant"
+msgstr "Kirjakielen versio"
+
+#: templates/index.html:161 templates/index.html:172
+msgid "Standard (<em>áčđŋšŧž</em>)"
+msgstr "Standardi (<em>áčđŋšŧž</em>)"
+
+#: templates/index.html:162 templates/index.html:173
+msgid "Social Media (incl. <em>acdnstz</em>)"
+msgstr "Sosiaalimedia (myös <em>acdnstz</em>)"
+
+#: templates/index.html:187
+msgid "Swap"
+msgstr "Vaihda"
+
+#: templates/index.html:201
+msgid "ohcansátni"
+msgstr "hakusana"
+
+#: templates/index.html:203 templates/word_detail.html:102
+msgid "Search"
+msgstr "Etsi"
+
+#: templates/index.html:245
+msgid "Definition not found for:"
+msgstr "Käännös ei löydetty sanalle tai sanoille"
+
+#: templates/index.html:284
+#, python-format
+msgid "Word %(input)s not found."
+msgstr "Sanaa %(input%) ei löytynyt."
+
+#: templates/index.html:293
+msgid ""
+"If you are using a device without a Sámi keyboard, consider using <a "
+"href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
+"<em>acdnstz</em> for <em>áčđŋšŧž</em>."
+msgstr ""
+"Jos käytät laitetta ilman saamen näppäimistöä, voit harkita käyttämään "
+"href=\"/SoMe/nob/\">sosiaalimediamoduksen</a>, joka mahdollistaa "
+"kirjainten <em>acdnstz</em> kirjoittaminen <em>áčđŋšŧž</em> sijalle."
+
+#: templates/index.html:297
+msgid "Search for a word, or a word form for a word analysis and definition."
+msgstr "Etsi sanaa tai sanamuotoa analyysia ja käännöstä varten."
+
+#: templates/index.html:301
+msgid ""
+"You selected #SoMe, the variant for social media, which means that the "
+"letters acdnstz\n"
+"                                will be accepted as áčđŋšŧž in addition "
+"to their usual values."
+msgstr ""
+"Valitsit #SoMe, eli sosiaalisen median versio. Se tarkoittaa, ettö "
+"kirjaimet acdnstz hyväksytään kirjainten\n"
+" áčđŋšŧž versioina, tavallisen tulkintansa lisäksi."
+
+#: templates/language_select.html:7
+msgid "<span class=\"reposition_hide\">Language</span>"
+msgstr "<span class=\"reposition_hide\">Kieli</span>"
+
+#: templates/more_dictionaries.html:4
+msgid "More dictionaris"
+msgstr "Lisää sanakirjoja"
+
+#: templates/more_dictionaries.html:23
+msgid ""
+"Neahttadigisánit is available for the following\n"
+"                language groups."
+msgstr ""
+"Neahttadigisánit on saatavana seuraaville\n"
+"kieliryhmille."
+
+#: templates/more_dictionaries.html:31
+msgid ""
+"We're currently working on some new dictionaries for\n"
+"                the following language groups. Since these may not always"
+" be\n"
+"                online, they are not linked here, but please contact us "
+"if you\n"
+"                would like to see a demo!"
+msgstr ""
+"Sanakirjat seuraaville kielipareille ovat tekeillä."
+"Koska ne eivät aina ole online-tilassa, me emme ole"
+"laatineet niihin linkkejä. Ota yhteyttä jos haluat"
+"nähdä koeversion."
+
+#: templates/reader.html:4 templates/reader.html:22
+msgid "Neahttadigisánit Reader"
+msgstr "Neahttadigisánit Lukija"
+
+#: templates/reader.html:23
+msgid "WARNING!! We have problems with Internet Explorer 8!"
+msgstr "VAROITUS! Meillä on ongelmia Internet Explorer 8:n kanssa!"
+
+#: templates/reader.html:24
+msgid "Bookmarklet"
+msgstr "Sovelluskirjanmerkki"
+
+#: templates/reader.html:25
+msgid ""
+"Drag and drop the following link to your Bookmark toolbar,\n"
+"                then click it when you are on a page you wish to read. "
+"The\n"
+"                service will automatically be installed, and you will see"
+" a\n"
+"                menu icon on the left-hand side of the page."
+msgstr ""
+"Raahaa alla oleva punainen linkki Kirjanmerkki-valikkoosi.\n"
+"Kun olet nettisivulla, jota haluat lukea, klikkaat kirjanmerkkiä.\n"
+"Lukusanakirja asennetaan automaattisesti, ja näet valikkosymbolin\n"
+"<em>Á</em> sivun vasemassa reunassa."
+
+#: templates/reader.html:29 templates/reader_update.html:15
+msgid "Read with Neahttadigisánit"
+msgstr "Lue Neahttadigisánit-sanakirjan avulla"
+
+#: templates/reader.html:30
+msgid ""
+"In order to look up a word, hold Alt or Option (⌥) and double\n"
+"                click the word. The service will will connect to this\n"
+"                website and return dictionary entries after a brief\n"
+"                pause."
+msgstr ""
+"Etsiäksesi sanaa, paina <em>Alt</em> tai <em>Option</em> (⌥) ja "
+"kaksoisklikkaa\n"
+"sanaa. Palvelu ottaa yhteyttä tähän nettisivuun ja antaa sinulle\n"
+"käännöksen lyhyen tauon jälkeen."
+
+#: templates/reader.html:34
+msgid "To change the dictionary, click the menu icon."
+msgstr "Vaihtaakseesi sanakirjan, klikkaa ikoni"
+
+#: templates/reader.html:35
+msgid "Bugs?"
+msgstr "Virheitä?"
+
+#: templates/reader.html:36
+msgid ""
+"If you encounter bugs, or the bookmarklet does not work on a\n"
+"                particular page, contact us with the page URL or details "
+"of\n"
+"                what you were reading when you encountered the problem."
+msgstr ""
+"Jos löydät virheitä, tai jos kirjanmerkki ei toimii tietyllä\n"
+"nettisivulla, voit ottaa yhteyttä meihin, ja kertoa sivun URL\n"
+"ja mitä olit lukemassa kun sanakirja ei toiminut."
+
+#: templates/reader.html:39
+msgid ""
+"We do not store any private data, but we do collect\n"
+"                individual dictionary lookups for statistics and to "
+"improve\n"
+"                the dictionary."
+msgstr ""
+"Me emme tallenna yksityisiä tietoja, mutta keräamme\n"
+"yksittäisiä sanahakuja tilastoa ja sanakirjan\n"
+"parantamista varten."
+
+#: templates/reader.html:48
+msgid "Includes"
+msgstr "Sisältä"
+
+#: templates/reader.html:56
+msgid ""
+"If you are looking for other languages, please see our <a "
+"href=\"/more/\">other dictionaries</a>."
+msgstr ""
+"Jos etsit muita kieliä, niin katso myös <a "
+"href=\"/more/\">muita sanakirjojamme</a>."
+
+#: templates/reader_example.html:32
+msgid "Additional instructions"
+msgstr "Lisäselityksiä"
+
+#: templates/reader_ie8_notice.html:1
+msgid ""
+"\n"
+"Your web browser is supported, however, you will need to change some\n"
+"options for the Neahttadigisánit Reader to work.\n"
+msgstr ""
+"Nettiselaimesi tuetaan, mutta sinun pitää vaihtaa pari asetusta\n"
+"ennen kuin Neahttadigisánit Reader toimii.\n"
+
+#: templates/reader_update.html:1
+msgid ""
+"\n"
+"We have made some updates to the dictionary, which require you to\n"
+"replace your bookmark with a new version.\n"
+msgstr ""
+"Olemme uudistaneet sanakirjan. Sen takia sinun pitää poistaa"
+"kirjanmerkki ja korvata se uudella kirjanmerkillä."
+
+#: templates/reader_update.html:9
+msgid ""
+"Drag and drop the following link to your Bookmark toolbar,\n"
+"    then click it when you are on a page you wish to read. The\n"
+"    service will automatically be installed, and you will see a\n"
+"    menu icon on the left-hand side of the page."
+msgstr ""
+"Raahaa alla oleva punainen linkki Kirjanmerkki-valikkoosi.\n"
+"Kun olet nettisivulla, jota haluat lukea, klikkaat kirjanmerkkiä.\n"
+"Lukusanakirja asennetaan automaattisesti, ja näet valikkosymbolin\n"
+" sivun vasemassa reunassa."
+
+#: templates/word_detail.html:54
+msgid "is a possible form of ... "
+msgstr "on mahdollinen muoto sanasta ..."
+
+#: templates/word_detail.html:220
+msgid "More information about this word"
+msgstr "Lisätietoa tästä sanasta"
+
