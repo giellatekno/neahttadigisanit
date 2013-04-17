@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-04-11 20:00-0500\n"
+"POT-Creation-Date: 2013-04-17 16:00-0500\n"
 "PO-Revision-Date: 2013-03-14 16:53-0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: yrk <LL@li.org>\n"
@@ -18,80 +18,81 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: language_names.py:10
-msgid "North Sámi"
-msgstr ""
-
-#: language_names.py:11
-msgid "North Sámi (#SoMe)"
-msgstr ""
-
-#: language_names.py:14
-msgid "South Sámi"
-msgstr ""
-
-#: language_names.py:17
-msgid "Komi"
-msgstr ""
-
-#: language_names.py:20
-msgid "Kven"
-msgstr ""
-
-#: language_names.py:21
-msgid "Livonian"
-msgstr ""
-
-#: language_names.py:22
-msgid "Olonetsian"
-msgstr ""
-
-#: language_names.py:23
-msgid "Izhorian"
-msgstr ""
-
-#: language_names.py:26
-msgid "Erzya Mordvin"
-msgstr ""
-
-#: language_names.py:27
-msgid "Moksha"
-msgstr ""
-
-#: language_names.py:30
-msgid "Western Mari"
-msgstr ""
-
-#: language_names.py:33
-msgid "Nenets"
-msgstr ""
-
-#: language_names.py:36 language_names.py:42
-msgid "Finnish"
-msgstr ""
-
-#: language_names.py:37 language_names.py:43 language_names.py:44
-msgid "Norwegian"
-msgstr ""
-
-#: language_names.py:39 language_names.py:40
-msgid "Russian"
-msgstr ""
-
-#: language_names.py:45
-msgid "Latvian"
-msgstr ""
-
-#: language_names.py:46
-msgid "English"
-msgstr ""
-
-#: neahtta.py:354 templates/index.html:258
+#: neahtta.py:367 templates/index.html:258
 msgid " is a possible form of ... "
 msgstr ""
 
-#: neahtta.py:432
+#: neahtta.py:445
 msgid "Invalid format. Only json and html allowed."
+msgstr ""
+
+#: configs/language_names.py:10 configs/language_names.py:11
+msgid "North Sámi"
+msgstr ""
+
+#: configs/language_names.py:12
+msgid "North Sámi (#SoMe)"
+msgstr ""
+
+#: configs/language_names.py:15
+msgid "South Sámi"
+msgstr ""
+
+#: configs/language_names.py:18
+msgid "Komi"
+msgstr ""
+
+#: configs/language_names.py:21
+msgid "Kven"
+msgstr ""
+
+#: configs/language_names.py:22
+msgid "Livonian"
+msgstr ""
+
+#: configs/language_names.py:23
+msgid "Olonetsian"
+msgstr ""
+
+#: configs/language_names.py:24
+msgid "Izhorian"
+msgstr ""
+
+#: configs/language_names.py:27
+msgid "Erzya Mordvin"
+msgstr ""
+
+#: configs/language_names.py:28
+msgid "Moksha"
+msgstr ""
+
+#: configs/language_names.py:31
+msgid "Western Mari"
+msgstr ""
+
+#: configs/language_names.py:34
+msgid "Nenets"
+msgstr ""
+
+#: configs/language_names.py:37 configs/language_names.py:43
+msgid "Finnish"
+msgstr ""
+
+#: configs/language_names.py:38 configs/language_names.py:44
+#: configs/language_names.py:45
+msgid "Norwegian"
+msgstr ""
+
+#: configs/language_names.py:40 configs/language_names.py:41
+msgid "Russian"
+msgstr ""
+
+#: configs/language_names.py:46
+msgid "Latvian"
+msgstr ""
+
+#: configs/language_names.py:47
+msgid "English"
 msgstr ""
 
 #: static/js/bookmarklet.js:1245
@@ -351,26 +352,6 @@ msgstr ""
 msgid "<span class=\"reposition_hide\">Language</span>"
 msgstr ""
 
-#: templates/more_dictionaries.html:4
-msgid "More dictionaris"
-msgstr ""
-
-#: templates/more_dictionaries.html:23
-msgid ""
-"Neahttadigisánit is available for the following\n"
-"                language groups."
-msgstr ""
-
-#: templates/more_dictionaries.html:31
-msgid ""
-"We're currently working on some new dictionaries for\n"
-"                the following language groups. Since these may not always"
-" be\n"
-"                online, they are not linked here, but please contact us "
-"if you\n"
-"                would like to see a demo!"
-msgstr ""
-
 #: templates/reader.html:4 templates/reader.html:22
 msgid "Neahttadigisánit Reader"
 msgstr ""
@@ -472,4 +453,23 @@ msgstr ""
 #: templates/word_detail.html:220
 msgid "More information about this word"
 msgstr ""
+
+#~ msgid "More dictionaris"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Neahttadigisánit is available for the following\n"
+#~ "                language groups."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "We're currently working on some new dictionaries for\n"
+#~ "                the following language groups."
+#~ " Since these may not always be\n"
+#~ ""
+#~ "                online, they are not "
+#~ "linked here, but please contact us "
+#~ "if you\n"
+#~ "                would like to see a demo!"
+#~ msgstr ""
 
