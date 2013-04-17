@@ -212,10 +212,10 @@ class AutocompleteTrie(XMLDict):
         return (e.text for e in self.tree.findall('e/lg/l') if e.text)
 
     def autocomplete(self, query):
-        if not self.trie:
-            return []
-        else:
-            return sorted(list(self.trie.autocomplete(query)))
+        if self.trie:
+            if hasattr(self.trie, 'autocomplete'):
+                return sorted(list(self.trie.autocomplete(query)))
+        return []
 
     def __init__(self, *args, **kwargs):
         super(AutocompleteTrie, self).__init__(*args, **kwargs)

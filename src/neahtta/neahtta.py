@@ -37,7 +37,7 @@ def create_app():
     """ Set up the Flask app, cache, read app configuration file, and
     other things.
     """
-    from morpho_lexicon import MorphoLexicon
+    from morpholex import MorphoLexicon
     # TODO: this is called twice sometimes, slowdowns have been reduced,
     # but don't know why yet. Need to check. It only happens on the
     # first POST lookup, however...
@@ -95,7 +95,7 @@ def iso_filter(_iso):
     localization that runs off of CSS selectors, in order to include the
     3 digit ISO into the <body /> @lang attribute.
     """
-    from language_names import ISO_TRANSFORMS
+    from configs.language_names import ISO_TRANSFORMS
     return ISO_TRANSFORMS.get(_iso, _iso)
 
 @app.babel.localeselector
@@ -160,12 +160,12 @@ def define_app_meta_keywords():
 
 @app.template_filter('iso_to_language_own_name')
 def iso_to_language_own_name(_iso):
-    from language_names import LOCALISATION_NAMES_BY_LANGUAGE
+    from configs.language_names import LOCALISATION_NAMES_BY_LANGUAGE
     return LOCALISATION_NAMES_BY_LANGUAGE.get(_iso, _iso)
 
 @app.template_filter('iso_to_i18n')
 def append_language_names_i18n(s):
-    from language_names import NAMES
+    from configs.language_names import NAMES
     return NAMES.get(s, s)
 
 @app.template_filter('to_xml_string')
@@ -710,7 +710,7 @@ def bookmarklet_example_page():
                           )
 
 def fetch_messages(locale=app.config.default_locale):
-    from polib import pofile
+    from i18n.polib import pofile
 
     try:
         _pofile = pofile('translations/%s/LC_MESSAGES/messages.po' % locale)
@@ -730,7 +730,7 @@ def bookmarklet_configs():
     and internationalization strings.
     """
     from flaskext.babel import get_locale
-    from language_names import NAMES
+    from configs.language_names import NAMES
 
     has_callback = request.args.get('callback', False)
     sess_lang = request.args.get('language', get_locale())
