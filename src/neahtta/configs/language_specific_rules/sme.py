@@ -7,7 +7,7 @@
 
 from logging import getLogger
 
-from morphology import generation_overrides as rewrites
+from morphology import generation_overrides as morphology
 from lexicon import lexicon_overrides as lexicon
 from morpholex import morpholex_overrides as morpholex
 
@@ -69,7 +69,7 @@ def some_pos_to_fst(*args, **kwargs):
 # TODO: may no longer need to remove elements from tags now that those
 # that are presented to users come directly from the pretty presentation
 # analyzer, however other languages may need this, so here is a model.
-# @rewrites.post_analysis_processor_for_iso('sme')
+# @morphology.post_analysis_processor_for_iso('sme')
 # def test_f(generated_forms, *input_args, **input_kwargs):
 #     exclusions = [
 #         'Ani', 'Body', 'Build', 'Clth', 'Edu', 'Event', 'Fem',
@@ -81,7 +81,7 @@ def some_pos_to_fst(*args, **kwargs):
 
 # TODO: simplify this decorator process. really only need
 # pregenerate_sme(node) -> returning analyses
-@rewrites.pregenerated_form_selector('sme')
+@morphology.pregenerated_form_selector('sme')
 def pregenerate_sme(form, tags, node):
     _has_mini_paradigm = node.xpath('.//mini_paradigm[1]')
 
@@ -112,7 +112,7 @@ def pregenerate_sme(form, tags, node):
     return form, tags, node, analyses
 
 
-@rewrites.tag_filter_for_iso('sme')
+@morphology.tag_filter_for_iso('sme')
 def lexicon_pos_to_fst(form, tags, node=None):
 
     new_tags = []
@@ -124,7 +124,7 @@ def lexicon_pos_to_fst(form, tags, node=None):
 
     return form, new_tags, node
 
-@rewrites.tag_filter_for_iso('sme')
+@morphology.tag_filter_for_iso('sme')
 def impersonal_verbs(form, tags, node=None):
     if len(node) > 0:
         context = node.xpath('.//l/@context')
@@ -140,7 +140,7 @@ def impersonal_verbs(form, tags, node=None):
 
     return form, tags, node
 
-@rewrites.tag_filter_for_iso('sme')
+@morphology.tag_filter_for_iso('sme')
 def reciprocal_verbs(form, tags, node=None):
     if len(node) > 0:
         context = node.xpath('.//l/@context')
@@ -156,7 +156,7 @@ def reciprocal_verbs(form, tags, node=None):
 
     return form, tags, node
 
-@rewrites.tag_filter_for_iso('sme')
+@morphology.tag_filter_for_iso('sme')
 def common_noun_pluralia_tanta(form, tags, node):
     """ Pluralia tanta common noun
 
@@ -174,7 +174,7 @@ def common_noun_pluralia_tanta(form, tags, node):
 
     return form, tags, node
 
-@rewrites.tag_filter_for_iso('sme')
+@morphology.tag_filter_for_iso('sme')
 def proper_noun_pluralia_tanta(form, tags, node):
     """ Pluralia tanta
 
@@ -196,7 +196,7 @@ def proper_noun_pluralia_tanta(form, tags, node):
 
     return form, tags, node
 
-@rewrites.tag_filter_for_iso('sme')
+@morphology.tag_filter_for_iso('sme')
 def compound_numerals(form, tags, node):
     if len(node) > 0:
         if 'num' in node.xpath('.//l/@pos'):
@@ -230,7 +230,7 @@ context_for_tags = {
 
 }
 
-@rewrites.postgeneration_filter_for_iso('sme')
+@morphology.postgeneration_filter_for_iso('sme')
 def verb_context(generated_result, *generation_input_args):
     # lemma = generation_input_args[0]
     # tags  = generation_input_args[1]
@@ -266,6 +266,93 @@ def verb_context(generated_result, *generation_input_args):
 
     return map(apply_context, generated_result)
 
-# TODO: post-generated tag rewrites for sme, because FST must have
+# TODO: post-generated tag morphology for sme, because FST must have
 # +These+Kinds+Of+Tags
-# @rewrites.postgeneration_filter_for_iso('sme')
+# @morphology.postgeneration_filter_for_iso('sme')
+
+
+@morpholex.post_morpho_lexicon_override('sme')
+def remove_analyses_for_lemma_ref(xml, fst):
+    if xml is None or fst is None:
+        return None
+
+    _str_norm = 'string(normalize-space(%s))'
+
+    # TODO: group xml nodes by lemma
+
+    # if there is an entry that is an analysis and the set contains
+    # another entry with its matching lemma, then discard the entries
+    # that are the lemma, and discard the analyses, and display only the
+    # one lemma_ref entry.
+
+    from collections import defaultdict
+    nodes_by_lemma = defaultdict(list)
+
+    for e in xml:
+        lemma = e.xpath(_str_norm % 'lg/l/text()')
+        lemma_ref_lemma = e.xpath(_str_norm % 'lg/lemma_ref/text()')
+
+        if lemma_ref_lemma:
+            nodes_by_lemma[lemma_ref_lemma].append(
+                (e, True)
+            )
+        elif lemma:
+            nodes_by_lemma[lemma].append(
+                (e, False)
+            )
+
+    def node_lg_l_matches_str(n, s):
+        lg_l = n.xpath(
+            _str_norm % 'lg/l/text()'
+        )
+        return lg_l == s
+
+
+    return_nodes = []
+    for lemma, nodes in nodes_by_lemma.iteritems():
+        # get the lemma_ref node
+        lemma_ref_node = filter( lambda (n, is_lemma_ref): is_lemma_ref
+                               , nodes
+                               )
+        if len(lemma_ref_node) == 0:
+            return_nodes.append([node for node, _ in nodes])
+            continue
+        # if it exists... 
+        if len(lemma_ref_node) > 0:
+            _l_node, _is_l_ref = lemma_ref_node[0]
+            lemma_ref_lemma = _l_node.xpath(
+                _str_norm % 'lg/lemma_ref/text()'
+            )
+
+            # Match nodes by lg_l vs. lemma_ref_string
+            _match = lambda (m_n, _): \
+                node_lg_l_matches_str(m_n, lemma_ref_lemma)
+            lemmas_matching = filter( _match, nodes )
+            # If there is a lemma for the lemma_ref string ...
+            if len(lemmas_matching) > 0:
+                # include the lemma_ref node in output
+                return_nodes.append(_l_node)
+
+                def analysis_lemma_is_not(analysis):
+                    return lemma_ref_lemma != analysis.lemma
+
+                # wipe out analyses in fst for a lemma if there is a lemma_ref
+                fst = filter( analysis_lemma_is_not
+                            , fst
+                            )
+
+    if len(return_nodes) == 0:
+        return_nodes = xml
+
+    if isinstance(return_nodes, list) and isinstance(return_nodes[0], list):
+        return_nodes = sum(return_nodes, [])
+
+    return return_nodes, fst
+
+# TODO: same for SoMe
+
+# TODO: general thing to not display analyses for specific parts of
+# speech, must be registered after above fx because we still want
+# analyses to filter out lemmas and lemma_refs
+
+# TODO: display paradigm even for lemma_ref entries?
