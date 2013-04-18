@@ -65,7 +65,7 @@ class Tag(object):
         self.parts = self.tag_string.split(sep)
         if isinstance(tagsets, Tagsets):
             self.sets = tagsets.sets
-        elif isinstance(sets, dict):
+        elif isinstance(tagsets, dict):
             self.sets = tagsets
         else:
             self.sets = tagsets
@@ -166,10 +166,12 @@ class GenerationOverrides(object):
         def decorate(*input_args, **input_kwargs):
             generated_forms = function(*input_args, **input_kwargs)
             for f in self.postanalyzers[lang_code]:
-                generated_forms = f(generated_forms, *input_args, **input_kwargs)
+                generated_forms = f( generated_forms
+                                   , *input_args
+                                   , **input_kwargs
+                                   )
             return generated_forms
         return decorate
-
 
     def apply_pregenerated_forms(self, lang_code, function):
         def decorate(*args):

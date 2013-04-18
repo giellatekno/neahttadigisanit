@@ -2,7 +2,7 @@
 {%- for lemma, tag, form in lexeme.paradigms -%}
 
     {% if tag %}
-        <dt>{{ ' '.join(tag)|tagfilter(_from, _to)  }}</dt>
+        <dt>{{ tag|tagfilter(_from, _to)  }}</dt>
     {% endif %}
 
     {% if form %}

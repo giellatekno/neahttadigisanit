@@ -58,7 +58,7 @@
                 <dd>
                     <ul class="possible_forms">
                         {% for lemma, pos, tag in forms %}
-                            <li>{{ pos|tagfilter(_from, _to) }} {{ tag|tagfilter(_from, _to) }}</li>
+                            <li>{{ tag|tagfilter(_from, _to) }}</li>
                         {% endfor %}
                     </ul>
                 </dd>
