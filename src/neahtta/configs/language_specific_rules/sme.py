@@ -270,13 +270,13 @@ def verb_context(generated_result, *generation_input_args):
 # +These+Kinds+Of+Tags
 # @morphology.postgeneration_filter_for_iso('sme')
 
+_str_norm = 'string(normalize-space(%s))'
 
 @morpholex.post_morpho_lexicon_override('sme')
 def remove_analyses_for_lemma_ref(xml, fst):
     if xml is None or fst is None:
         return None
 
-    _str_norm = 'string(normalize-space(%s))'
 
     # TODO: group xml nodes by lemma
 
@@ -349,10 +349,41 @@ def remove_analyses_for_lemma_ref(xml, fst):
 
     return return_nodes, fst
 
-# TODO: same for SoMe
+@morpholex.post_morpho_lexicon_override('sme')
+def remove_analyses_for_specific_closed_classes(xml, fst):
+    """ Remove analyses from list that contain specific POS type.
+    NB: this must be registered after remove_analyses_for_lemma_ref,
+    because that function depends on analyses still existing to some of
+    these types
+    """
 
-# TODO: general thing to not display analyses for specific parts of
-# speech, must be registered after above fx because we still want
-# analyses to filter out lemmas and lemma_refs
+    if xml is None or fst is None:
+        return None
+
+    restrict_pos_type = [ 'Pers'
+                        , 'Dem'
+                        , 'Rel'
+                        , 'Refl'
+                        , 'Recipr'
+                        , 'Neg'
+                        ]
+    restrict_lemmas = [ 'leat'
+                      ]
+
+    for e in xml:
+        _pos_type = e.xpath(_str_norm % 'lg/l/@type')
+        _lemma = e.xpath(_str_norm % 'lg/l/text()')
+
+        if _pos_type in restrict_pos_type:
+            restrict_lemmas.append(_lemma)
+
+    def lemma_not_in_list(form):
+        return form.lemma not in restrict_lemmas
+
+    fst = filter(lemma_not_in_list, fst)
+
+    return xml, fst
+
+# TODO: same for SoMe
 
 # TODO: display paradigm even for lemma_ref entries?
