@@ -299,32 +299,32 @@ izh: fst/izh.fst
 ### #sanatlexica
 ##
 
-olo-fin.all.xml: $(GTHOME)/langs/olo/src/morphology/stems/*.xml
+olo-fin.xml: $(GTHOME)/langs/olo/src/morphology/stems/*.xml
 	mkdir olo
 	cp $^ olo/
 	$(SAXON) inDir=$(pwd)/olo/ > $@
 	rm -rf olo/
 
-fkv-nob.all.xml: $(GTHOME)/words/dicts/fkvnob/src/
+fkv-nob.xml: $(GTHOME)/words/dicts/fkvnob/src/
 	$(SAXON) inDir=$^ > $@
 
-liv-fin.all.xml: $(GTHOME)/langs/liv/src/morphology/stems/*.xml
+liv.all.xml: $(GTHOME)/langs/liv/src/morphology/stems/*.xml
 	mkdir liv
 	cp $^ liv/
 	$(SAXON) inDir=$(pwd)/liv/ > $@
 	rm -rf liv/
 
-izh-fin.all.xml: $(GTHOME)/langs/izh/src/morphology/stems/*.xml
+izh-fin.xml: $(GTHOME)/langs/izh/src/morphology/stems/*.xml
 	mkdir izh
 	cp $^ izh/
 	$(SAXON) inDir=$(pwd)/izh/ > $@
 	rm -rf izh/
 
 .PHONY: sanat-lexica
-sanat-lexica: olo-fin.all.xml \
-			  liv-fin.all.xml \
-			  izh-fin.all.xml \
-			  fkv-nob.all.xml
+sanat-lexica: olo-fin.xml \
+			  liv.all.xml \
+			  izh-fin.xml \
+			  fkv-nob.xml
 
 sanat: olo izh liv fin fkv sanat-lexica
 	@echo "*********************************"
