@@ -22,6 +22,7 @@ NAMES = dict([
     ('liv', _(u"Livonian")),
     ('olo', _(u"Olonetsian")),
     ('izh', _(u"Izhorian")),
+    ('est', _(u"Estonian")),
 
     # valks
     ('myv', _(u"Erzya Mordvin")),
@@ -44,6 +45,7 @@ NAMES = dict([
     ('no', _(u"Norwegian")),
     ('nob', _(u"Norwegian")),
     ('lv', _(u"Latvian")),
+    ('lav', _(u"Latvian")),
     ('eng', _(u"English")),
 ])
 
@@ -62,12 +64,14 @@ LOCALISATION_NAMES_BY_LANGUAGE = dict([
     ('mrj', u"Кырык мары йӹлмӹ"), # TODO: flag
     ('yrk', u"Ненэць вада"),
     ('lv', u"Latviešu valoda"),
+    ('lav', u"Latviešu valoda"),
     ('liv', u"Līvõ kēļ"), # TODO: flag
     ('kpv', u"Коми кыв"), # TODO: flag
     ('izh', u"Ižoran keel"), # TODO: flag
     ('fkv', u"Kveenin kieli"), # TODO: flag
     ('fi', u"Suomi"),
     ('eng', u"English"),
+    ('est', u"Estonian"), # TODO: flag
 ])
 
 # Only put the exceptional ISOs here
@@ -76,4 +80,6 @@ ISO_TRANSFORMS = dict([
     ('no', 'nob'),
     ('fi', 'fin'),
     ('en', 'eng'),
+    ('et', 'est'),
+    ('lv', 'lav'),
 ])

@@ -36,7 +36,7 @@ Morphology:
     inverse_file: [*OPT, '/fin/bin/ifin.fst']
     format: 'xfst'
     options:
-      compoundBoundary: "+Use/Circ#"
+      compoundBoundary: "#"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
@@ -78,21 +78,29 @@ Languages:
   - iso: fkv
   - iso: izh
   - iso: nob
+  - iso: est
+  - iso: lav
 
 # This also dictates the order of the dictionaries in the UI for now.
 Dictionaries:
   - source: olo
     target: fin
-    path: 'dicts/olo-fin.all.xml'
+    path: 'dicts/olo-fin.xml'
   - source: liv
     target: fin
-    path: 'dicts/liv-fin.all.xml'
+    path: 'dicts/liv.all.xml'
+  - source: liv
+    target: est
+    path: 'dicts/liv.all.xml'
+  - source: liv
+    target: lav
+    path: 'dicts/liv.all.xml'
   - source: izh
     target: fin
-    path: 'dicts/izh-fin.all.xml'
+    path: 'dicts/izh-fin.xml'
   - source: fkv 
     target: nob
-    path: 'dicts/fkv-nob.all.xml'
+    path: 'dicts/fkv-nob.xml'
 
 
 # Abstracting display formats out here, because there are different
@@ -187,6 +195,154 @@ TagSets:
 # FST format: "user friendly"
 TagTransforms:
 
+  (zzz, fin): &to_fin
+    # pos
+    "V": "v."
+    "N": "n."
+    "A": "a."
+    "Num": "num."
+    "Adv": "adv."
+    "Pron": "pron."
+    "Pcle": "pcle."
+    "Interj": "interj."
+    "CC": "cc."
+    "CS": "cs."
+    "Po": "po."
+    "Pr": "pr."
+    # prop
+    "Prop": "prop."
+    # pers
+    "Pers": "pers."
+    "Dem": "dem."
+    "Interr": "interr."
+    "Rel": "rel."
+    "Qu": "qu."
+    "Refl": "refl."
+    "Recipr": "recipr."
+    "Indef": "indef."
+    # numtype
+    "Card": "card."
+    "Ord": "ord."
+
+    "Pref": "pref."
+
+    "Suff": "suff."
+    "Punct": "punct."
+    # number
+    "Sg": "sg."
+    "Pl": "pl."
+    # case
+    "Nom": "nom."
+    "Par": "par."
+    "Gen": "gen."
+    "Ine": "ine."
+    "Ela": "ela."
+    "Ill": "ill."
+    "Ade": "ade."
+    "Abl": "abl."
+    "All": "all."
+    "Ess": "ess."
+    "Ins": "ins."
+    "Abe": "abe."
+    "Tra": "tra."
+    "Com": "com."
+    "Lat": "lat."
+    "Acc": "acc."
+    "Prl": "prl."
+    "Distr": "distr."
+    "Tempr": "tempr."
+    # possessive
+    "PxSg1": "pxsg1."
+    "PxSg2": "pxsg2."
+    "PxSg3": "pxsg3."
+    "PxPl1": "pxpl1."
+    "PxPl2": "pxpl2."
+    "PxPl3": "pxpl3."
+    "Px3": "px3."
+    # der-s
+    "Der/s": "Der/s"
+    # voice
+    "Act": "act."
+    "Pass": "pass."
+    # tense
+    "Prs": "prs."
+    "Prt": "prt."
+    # mood
+    "Ind": "ind."
+    "Cond": "cond."
+    "Pot": "pot."
+    "Imprt": "imprt."
+    "Optat": "optat."
+    "Eventv": "eventv."
+    # person-number
+    "Sg1": "sg1."
+    "Sg2": "sg2."
+    "Sg3": "sg3."
+    "Pl1": "pl1."
+    "Pl2": "pl2."
+    "Pl3": "pl3."
+    # neg
+    "ConNeg": "conneg."
+    "Neg": "neg."
+    # infinitives
+    "InfA": "a.inf."
+    "InfE": "e.inf."
+    "InfMa": "ma.inf."
+    "Der/minen": "Der/minen"
+    "Der/maisilla": "Der/maisilla"
+
+    # participles
+    "PrfPrc": "prfprc."
+    "PrsPrc": "prsprc."
+    "NegPrc": "negprc."
+    "AgPrc": "agprc."
+    # adj
+    "Comp": "comp."
+    "Sup": "sup."
+    # foc
+    "Foc/han": "Foc/han"
+    "Foc/kaan": "Foc/kaan"
+    "Foc/kin": "Foc/kin"
+    "Foc/pa": "Foc/pa"
+    "Foc/s": "Foc/s"
+    "Foc/ka": "Foc/ka"
+    # question
+    "Qst": "qst."
+    # der
+    "Der/sti": "Der/sti"
+    "Der/ja": "Der/ja"
+    "Der/inen": "Der/inen"
+    "Der/lainen": "Der/lainen"
+    "Der/tar": "Der/tar"
+    "Der/llinen": "Der/llinen"
+    "Der/ton": "Der/ton"
+    "Der/tse": "Der/tse"
+    "Der/vs": "Der/vs"
+    "Der/u": "Der/u"
+    "Der/ttain": "Der/ttain"
+    "Der/ttaa": "Der/ttaa"
+    "Der/tattaa": "Der/tattaa"
+    "Der/tatuttaa": "Der/tatuttaa"
+    "Der/uus": "Der/uus"
+    "Use/Sub": "Use/Sub"
+    "Use/Marg": "Use/Marg"
+    "Use/Rare": "Use/Rare"
+
+    # dialectical
+    "Dial": "dial."
+    "Dial/Standard": "Dial/Standard"
+    "Dial/East": "Dial/East"
+    "Dial/West": "Dial/West"
+    "Dial/Southwest": "Dial/Southwest"
+    "Dial/Häme": "Dial/Häme"
+    "Dial/Eteläpohjalaiset": "Dial/Eteläpohjalaiset"
+    "Dial/Keskipohjalaiset": "Dial/Keskipohjalaiset"
+    "Dial/Peräpohjalaiset": "Dial/Peräpohjalaiset"
+    "Dial/North": "Dial/North"
+    "Dial/Savo": "Dial/Savo"
+    "Dial/Southeast": "Dial/Southeast"
+
+
   (olo, rus):
     V: "v."
     N: "s."
@@ -205,6 +361,7 @@ TagTransforms:
     Prs: "prs."
 
   (olo, fin):
+    <<: *to_fin
     <<: *olo_olo
     # NB: example override of inherited key/value pairs
     Ind: "ind."
@@ -220,6 +377,7 @@ TagTransforms:
     A: "adj."
 
   (izh, fin):
+    <<: *to_fin
     V: "v."
     N: "s."
     A: "adj."
