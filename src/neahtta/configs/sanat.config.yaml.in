@@ -70,6 +70,16 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
+  nob:
+    tool: *LOOKUP
+    file: [*OPT, '/nob/bin/nob.fst']
+    inverse_file: [*OPT, '/nob/bin/inob.fst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "#+Cmp+"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
 
 Languages:
   - iso: olo
@@ -101,6 +111,9 @@ Dictionaries:
   - source: fkv 
     target: nob
     path: 'dicts/fkv-nob.xml'
+  - source: nob
+    target: fkv
+    path: 'dicts/nob-fkv.xml'
 
 
 # Abstracting display formats out here, because there are different

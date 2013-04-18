@@ -308,6 +308,17 @@ olo-fin.xml: $(GTHOME)/langs/olo/src/morphology/stems/*.xml
 fkv-nob.xml: $(GTHOME)/words/dicts/fkvnob/src/
 	$(SAXON) inDir=$^ > $@
 
+# NOTE: some temporary fixes to add usage to everything, and include <lg>
+# node
+nob-fkv.xml: $(GTHOME)/words/dicts/nobfkv/src/
+	$(SAXON) inDir=$^ > $@.tmp
+	cat $@.tmp | sed 's/<e>/<e usage="vd">/g' | \
+				 sed 's/  <l /  <lg><l /g'    | \
+				 sed 's/<\/l>/<\/l><\/lg>/g'  | \
+				 xmllint --format - \
+		   	 	 > $@
+	rm $@.tmp
+
 liv.all.xml: $(GTHOME)/langs/liv/src/morphology/stems/*.xml
 	mkdir liv
 	cp $^ liv/
@@ -324,7 +335,8 @@ izh-fin.xml: $(GTHOME)/langs/izh/src/morphology/stems/*.xml
 sanat-lexica: olo-fin.xml \
 			  liv.all.xml \
 			  izh-fin.xml \
-			  fkv-nob.xml
+			  fkv-nob.xml \
+			  nob-fkv.xml
 
 sanat: olo izh liv fin fkv sanat-lexica
 	@echo "*********************************"
