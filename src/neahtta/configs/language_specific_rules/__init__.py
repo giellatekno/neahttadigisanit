@@ -1,5 +1,4 @@
 """
-
 This module is for organizing language-specific differences between
 morphology and lexicon, and is currently used mostly for managing
 systematic changes in generation paradigms based on the lexicon.
@@ -15,7 +14,6 @@ importing the following module to produce replacement functions.
     from morphology import generation_overrides as rewrites
 
 """
-
 
 from sme import *
 from sma import *

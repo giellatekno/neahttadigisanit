@@ -3,6 +3,9 @@ import sys
 
 from flask import Config
 
+# Import configs stuff to register overrides
+from configs import *
+
 import yaml
 
 def gettext_yaml_wrapper(loader, node):

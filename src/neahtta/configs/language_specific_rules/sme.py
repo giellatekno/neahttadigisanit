@@ -1,5 +1,4 @@
-# -*- encoding: utf-8 -*-
-
+﻿# -*- encoding: utf-8 -*-
 # NOTE: if copying this for a new language, remember to make sure that
 # it's being imported in __init__.py
 
@@ -10,6 +9,7 @@ from logging import getLogger
 
 from morphology import generation_overrides as rewrites
 from lexicon import lexicon_overrides as lexicon
+from morpholex import morpholex_overrides as morpholex
 
 LEX_TO_FST = {
     'a': 'A',

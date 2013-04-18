@@ -616,7 +616,6 @@ test-install: test-sanit \
 	 		  test-kyv
 	@echo "TODO: "
 
-# TODO: sanit 
 .PHONY: all
 all: init \
 	 vada  \

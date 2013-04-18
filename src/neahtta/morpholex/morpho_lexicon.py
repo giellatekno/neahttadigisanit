@@ -7,6 +7,45 @@
 # Will need to operate on the output of lookup(), and this is language
 # specific, so decorator registry thing is probably good here.
 
+class MorphoLexiconOverrides(object):
+
+    def override_results(self, function):
+        """ This runs the morpholex lookup, and passes the output
+        through the a set of functions to process the output.
+        """
+        def decorate(wordform, **input_kwargs):
+            _from = input_kwargs.get('source_lang')
+
+            xml_result, fst_result = function(wordform, **input_kwargs)
+
+            for f in self.override_functions[_from]:
+                new_res = f(xml_result, fst_result)
+                if new_res is not None:
+                    xml_result, fst_result = new_res
+                else:
+                    continue
+
+            return xml_result, fst_result
+
+        return decorate
+
+    def post_morpho_lexicon_override(self, function):
+        """ Registry function """
+        def wrapper(override_function):
+            self.override_functions[language_iso]\
+                .append(override_function)
+            print '%s morpholex overrides: registered - %s' % \
+                    ( language_iso
+                    , override_function.__name__
+                    )
+        return wrapper
+
+    def __init__(self):
+        from collections import defaultdict
+        self.override_functions = defaultdict(list)
+
+morpholex_overrides = MorphoLexiconOverrides()
+
 class MorphoLexicon(object):
     morphology_kwarg_names = [
         'split_compounds',
@@ -83,86 +122,10 @@ class MorphoLexicon(object):
         else:
             return list(set(xml_results)), analyses
 
-
     def __init__(self, config):
         self.analyzers = config.morphologies
         self.lexicon = config.lexicon
 
-
-# if __name__ == "__main__":
-#     from neahtta import app
-# 
-#     from lexicon import SimpleJSON
-# 
-#     tests = [
-#         # 'jietnadeapmi',
-#         # 'lahka',
-#         # 'dahkat',
-#         # 'diehtit',
-#         # u'oađđit',
-#         # u'spábbačiekčangilvu',
-#         u'juovlaspábbačiekčangilvu',
-#         u'diehtosátnegirji'
-#     ]
-# 
-#     morph_kwargs = {
-#         'source_lang': 'sme',
-#         'target_lang': 'nob',
-# 
-#         'split_compounds': True,
-#         'non_compound_only': True,
-#         'no_derivations': True,
-#     }
-# 
-#     mlex = MorphoLexicon(app.config)
-#     for test in tests:
-#         xml_nodes, tags = mlex.lookup(test, **morph_kwargs)
-#         print xml_nodes
-#         print list(SimpleJSON(xml_nodes))
-#     raw_input()
-# 
-#     tests = [
-#         'vite',
-#         u'nær',
-#         'gjøre',
-#         'uttale',
-#     ]
-# 
-#     morph_kwargs = {
-#         'source_lang': 'nob',
-#         'target_lang': 'sme',
-# 
-#         'split_compounds': True,
-#         'non_compound_only': True,
-#         'no_derivations': True,
-#     }
-# 
-#     mlex = MorphoLexicon(app.config)
-#     for test in tests:
-#         xml_nodes = mlex.lookup(test, **morph_kwargs)
-#         print list(SimpleJSON(xml_nodes))
-#     raw_input()
-# 
-#     tests = [
-#         u'aehtjaahka',
-#         u'gööktesh',
-#         u'göövtedh',
-#     ]
-# 
-#     morph_kwargs = {
-#         'source_lang': 'sma',
-#         'target_lang': 'nob',
-# 
-#         'split_compounds': True,
-#         'non_compound_only': True,
-#         'no_derivations': True,
-#     }
-# 
-#     mlex = MorphoLexicon(app.config)
-#     for test in tests:
-#         xml_nodes = mlex.lookup(test, **morph_kwargs)
-#         pres_kwargs = {'target_lang': morph_kwargs.get('target_lang')}
-#         print list(SimpleJSON(xml_nodes, **pres_kwargs))
-#     raw_input()
-
-
+        self.lookup = morpholex_overrides.override_results(
+            self.lookup
+        )

@@ -12,19 +12,20 @@ def compilemessages(app):
     """ TODO: pybabel compile -d translations
     """
     def action():
-        raise NotImplementedError
+        print """ You might be looking for this ...
+            - pybabel compile -d translations
+        """
+        return False
     return action
-        
 
 @manager.register('makemessages')
 def hello(app):
-    """ TODO: two steps
-        - pybabel extract -F babel.cfg -k lazy_gettext -o messages.pot .
-        - pybabel update -i messages.pot -d translations
-    """
     def action():
-        # Do actual command stuff here
-        raise NotImplementedError
+        """ You might be looking for this ...
+            - pybabel extract -F babel.cfg -k lazy_gettext -o translations/messages.pot .
+            - pybabel update -i translations/messages.pot -d translations
+        """
+        return False
     return action
 
 if __name__ == "__main__":

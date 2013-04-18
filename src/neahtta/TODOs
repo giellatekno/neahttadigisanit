@@ -1,4 +1,27 @@
+# Commits
+
+ * fix paths of fsts to use opt by default, less need to customise
+
+
 # TODAY
+
+ * See bugs 
+   
+   lex and morph / pregenerated paradigms
+
+    sme - Do not show analyses for following PoS:
+
+    > 
+    > Pers
+    > Dem
+    > Rel
+    > Refl
+    > Recipr
+    > Neg
+    > 
+    > Dessuten "leat"
+
+    sme - munnje has analysis, but also lemma-ref with mun
 
  * TODO: new wordpress release
 

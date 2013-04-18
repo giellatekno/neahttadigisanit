@@ -50,8 +50,8 @@ Morphology:
       <<: *sme_fst_options
   nob:
     tool: *LOOKUP
-    file: [*GTHOME, '/st/nob/bin/nob.fst']
-    inverse_file: [*GTHOME, '/st/nob/bin/inob.fst']
+    file: [*OPT, '/nob/bin/nob.fst']
+    inverse_file: [*OPT, '/nob/bin/inob.fst']
     format: 'xfst'
     options:
       compoundBoundary: "#+Cmp+"
@@ -60,8 +60,8 @@ Morphology:
       inverse_tagsep: '+'
   fin:
     tool: *LOOKUP
-    file: [*GTHOME, '/langs/fin/src/analyser-gt-desc.xfst']
-    inverse_file: [*GTHOME, '/langs/fin/src/generator-gt-norm.xfst']
+    file: [*OPT, '/fin/bin/fin.fst']
+    inverse_file: [*OPT, '/fin/bin/ifin.fst']
     format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"
