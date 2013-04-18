@@ -229,12 +229,15 @@ def tagfilter_conf(filters, s):
 
 @app.template_filter('tagfilter')
 def tagfilter(s, lang_iso, targ_lang):
+    from morphology import Tag
 
     filters = app.config.tag_filters.get((lang_iso, targ_lang), False)
 
     if filters:
         return tagfilter_conf(filters, s)
     else:
+        if isinstance(s, Tag):
+            return s.sep.join(s)
         return s
 
 
@@ -579,7 +582,10 @@ def wordDetail(from_language, to_language, wordform, format):
                 error_msg += "\n" + '\n'.join(node_texts)
                 abort(500, error_msg)
 
-            paradigm = lang_paradigms.get(pos, False)
+            # try with pos, fallback to upper
+            paradigm = lang_paradigms.get(
+                pos, lang_paradigms.get(pos.upper(), False)
+            )
 
             if paradigm:
                 _pos_type = [pos]
