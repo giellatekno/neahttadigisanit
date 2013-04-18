@@ -8,19 +8,7 @@
  * See bugs 
    
    1598 - in prog
-    - next need to not show analyses for all of following PoS
-        sme - Do not show analyses for following PoS:
-
-        > 
-        > Pers
-        > Dem
-        > Rel
-        > Refl
-        > Recipr
-        > Neg
-        > 
-        > Dessuten "leat"
-    - display pregenerated paradigms for lemma_ref words too
+    - miniparadigm still showing ellipsis on long tags...
 
  * TODO: new wordpress release
 
