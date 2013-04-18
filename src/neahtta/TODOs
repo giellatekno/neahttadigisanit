@@ -7,21 +7,20 @@
 
  * See bugs 
    
-   lex and morph / pregenerated paradigms
+   1598 - in prog
+    - next need to not show analyses for all of following PoS
+        sme - Do not show analyses for following PoS:
 
-    sme - Do not show analyses for following PoS:
-
-    > 
-    > Pers
-    > Dem
-    > Rel
-    > Refl
-    > Recipr
-    > Neg
-    > 
-    > Dessuten "leat"
-
-    sme - munnje has analysis, but also lemma-ref with mun
+        > 
+        > Pers
+        > Dem
+        > Rel
+        > Refl
+        > Recipr
+        > Neg
+        > 
+        > Dessuten "leat"
+    - display pregenerated paradigms for lemma_ref words too
 
  * TODO: new wordpress release
 

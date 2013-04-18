@@ -29,8 +29,9 @@ class MorphoLexiconOverrides(object):
 
         return decorate
 
-    def post_morpho_lexicon_override(self, function):
-        """ Registry function """
+    def post_morpho_lexicon_override(self, language_iso):
+        """ Use this function to register functions as part of this
+        override """
         def wrapper(override_function):
             self.override_functions[language_iso]\
                 .append(override_function)
