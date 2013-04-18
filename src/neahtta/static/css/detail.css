@@ -42,8 +42,12 @@ dl dd .extraexpand .extralabel {
 	top: 0px;
 }
 
+
 dl.miniparadigm dt {
-	text-overflow: none !important;
+	text-overflow: "asdf";
+	font-size: 90%;
+	font-weight: light;
+	letter-spacing: -px;
 }
 
 .extralabel {

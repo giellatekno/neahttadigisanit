@@ -1,0 +1,61 @@
+﻿// For Firefox: reenable buttons when back button is pressed
+$(window).bind("unload", function() {
+    $('input').attr('readonly', false);
+    $('button').attr('disabled', false);
+});
+
+$(document).ready( function() {
+    $('input[name="lookup"]').typeahead({
+        items: 5,
+        source: function (typeahead, query) {
+            if (query.length > 1) {
+                var _from = typeahead.$element.attr('data-language-from')
+                    , _to = typeahead.$element.attr('data-language-to')
+                    , url = '/autocomplete/' + _from + '/' + _to + '/'
+                    ;
+                return $.get(url, { lookup: query }, function (data) {
+                    return typeahead.process(data);
+                });
+            } else {
+                return [] ;
+            }
+        }
+    });
+    $('input').focus(function(evt) {
+        $('input').attr('readonly', false);
+        $('button').attr('disabled', false);
+    });
+    // Discourage submission if there is nothing to submit
+    $('form').submit(function(evt) {
+        var inputs = $(evt.target).find('input[type="text"]')
+          , submit = $(evt.target).find('button[type="submit"]')
+          ;
+        for (_i = 0, _len = inputs.length; _i < _len; _i++) {
+            i = inputs[_i];
+            if ($(i).val().length === 0) {
+                return false;
+            } else {
+                continue;
+            }
+        }
+        inputs.prop("readonly", true);
+        submit.prop("disabled", true);
+    });
+
+    // $('.example_set button').click(function(evt) {
+    // 	var target = $(evt.target).parents('.example_set')
+    // 	                          .find('blockquote.examples') ;
+    // 	console.log(target) ;
+    // 	if (target.hasClass('hidden-phone')) {
+    // 	    target.hide();
+    // 	    target.removeClass('hidden-phone') ;
+    // 	    target.slideDown() ;
+    // 	} else {
+    // 	    target.slideUp(400, function(){
+    // 	        target.hide();
+    // 	        target.addClass('hidden-phone') ;
+    // 	    }) ;
+    // 	}
+    // });
+});
+

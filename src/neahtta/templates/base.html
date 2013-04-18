@@ -32,79 +32,26 @@
 	    <link rel="shortcut icon" href="{{url_for('static', filename='favicon.ico')}}" type="image/x-icon">
 	    <link rel="icon" href="{{url_for('static', filename='favicon.ico')}}" type="image/x-icon">
 
-        {# TODO: meta keywords and description
-        <meta name="keywords" content="samisk ordbok,nordsamisk,sørsamisk,finsk,norsk">
-        <!-- In each language, with 2-char ISO -->
-        <meta name="description" lang="se" content="">
-        <meta name="description" lang="fi" content="">
-        <meta name="description" lang="no" content="">
-        <meta name="description" lang="sv" content="">
-        <meta name="description" lang="en" content="">
-        #}
-
         <link href="{{url_for('static', filename='css/bootstrap.css')}}" rel="stylesheet" />
         <link href="{{url_for('static', filename='css/bootstrap-responsive.css')}}" rel="stylesheet" />
+        <link href="{{url_for('static', filename='css/base.css')}}" rel="stylesheet" />
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-        <script type="text/javascript" src="{{url_for('static', filename='js/DSt.js')}}"></script>
-        
+        {% block extra_css %}
+        {% endblock %}
+
         <!--[if lt IE 9]>
               <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
             <![endif]-->
 
-        <link href="{{url_for('static', filename='css/base.css')}}" rel="stylesheet" />
-
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script type="text/javascript" src="{{url_for('static', filename='js/DSt.js')}}"></script>
         <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-collapse.js')}}"></script>
         <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-dropdown.js')}}"></script>
-        {% block extra_css %}
-        {% endblock %}
 
-        <script type="text/javascript">
-            // TODO: update
-            // Language select
-            // $(document).ready(function(){
-            // 	var has_lang = DSt.get('nds-ui-lang');
-            // 	if (has_lang) {
-            // 	    $('body').prop('lang', has_lang);
-            // 	}
-            // 	$('#language_select a.lang').click( function(evt) {
-            // 		var lang = $(evt.target) ;
-            // 		var iso  = lang.attr('data-lang');
-            // 		DSt.set('nds-ui-lang', iso);
-            // 		$('body').prop('lang', iso);
-            // 		return false;
-            // 	});
-            // });
-{#
-            var _im_listening = false;
-            $(document).ready(function(){
-                $(window).resize(function(o){
-                    $('a.last').html(window.outerHeight);
+        {# Not actually in use
+        <script type="text/javascript" src="{{url_for('static', filename='js/base.js')}}"></script>
+        #}
 
-                });
-                $("input").focus(function(o){
-                    $('#keyboard').show();
-                    // $('#keyboard').css({top:window.outerHeight + "px"});
-                    var _h = window.outerHeight - $('#keyboard').height();
-                    $('#keyboard').css({top: _h-100})
-
-                    if (!_im_listening) {
-                        $('#keyboard a').click(function(_char){
-                            _im_listening = true;
-                            var _val = $(o.target).val()
-                              , _c   = $(_char.target).attr('data-char')
-                              ;
-                            $(o.target).val(_val + _c)
-                                       .trigger("keyup")
-                                       .focus()
-                                       ;
-                            return false;
-                        });
-                    }
-                });
-            });
-#}
-        </script>
         {% block extra_js %}
         {% endblock %}
 
