@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-""" 
+"""
 sma-specific overrides, and pregenerated paradigm selection.
 
 A set of lexicon-related language specific rules, provided by
@@ -45,12 +45,8 @@ def format_source_sma(ui_lang, e):
     _pos = e.xpath(_str_norm % 'lg/l/@pos')
 
     if _pos:
-        print _pos
         filters = app.config.tag_filters.get(('sma', 'nob'))
-        print filters
-
         paren_args.append(tagfilter_conf(filters, _pos))
-        print paren_args
 
     if _class:
         paren_args.append(_class.lower())
@@ -67,7 +63,6 @@ LEX_TO_FST = {
     'a': 'A',
     'adv': 'Adv',
     'n': 'N',
-    # TODO: npl filter
     'npl': 'N',
     'num': 'Num',
     'prop': 'Prop',
