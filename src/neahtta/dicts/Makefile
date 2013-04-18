@@ -305,6 +305,8 @@ olo-fin.all.xml: $(GTHOME)/langs/olo/src/morphology/stems/*.xml
 	$(SAXON) inDir=$(pwd)/olo/ > $@
 	rm -rf olo/
 
+fkv-nob.all.xml: $(GTHOME)/words/dicts/fkvnob/src/
+	$(SAXON) inDir=$^ > $@
 
 liv-fin.all.xml: $(GTHOME)/langs/liv/src/morphology/stems/*.xml
 	mkdir liv
@@ -321,9 +323,8 @@ izh-fin.all.xml: $(GTHOME)/langs/izh/src/morphology/stems/*.xml
 .PHONY: sanat-lexica
 sanat-lexica: olo-fin.all.xml \
 			  liv-fin.all.xml \
-			  izh-fin.all.xml
-
-# TODO: fkv
+			  izh-fin.all.xml \
+			  fkv-nob.all.xml
 
 sanat: olo izh liv fin fkv sanat-lexica
 	@echo "*********************************"
@@ -340,9 +341,31 @@ sanat: olo izh liv fin fkv sanat-lexica
 	@echo "**   (izh = Izhorian)          **"
 	@echo "**   (fkv = Kven)              **"
 	@echo "*********************************"
-	@echo "TODO: install analysers in expected paths"
+	@echo ""
+	@echo "Now install analysers in expected paths."
+	@echo "    sudo make sanat-install"
+	@echo "... or copy the fsts in this dir."
 
+sanat-olo-install: fst/olo.fst ifst/iolo.fst
+	mkdir -p /opt/smi/olo/bin/
+	cp $^ /opt/smi/olo/bin/
 
+sanat-liv-install: fst/liv.fst ifst/iliv.fst
+	mkdir -p /opt/smi/liv/bin/
+	cp $^ /opt/smi/liv/bin/
+
+sanat-izh-install: fst/izh.fst ifst/iizh.fst
+	mkdir -p /opt/smi/izh/bin/
+	cp $^ /opt/smi/izh/bin/
+
+sanat-fkv-install: fst/fkv.fst ifst/ifkv.fst
+	mkdir -p /opt/smi/fkv/bin/
+	cp $^ /opt/smi/fkv/bin/
+
+sanat-install: sanat-olo-install \
+   			   sanat-liv-install \
+   			   sanat-izh-install \
+   			   sanat-fkv-install
 
 #####
 ##### #sanittargets
