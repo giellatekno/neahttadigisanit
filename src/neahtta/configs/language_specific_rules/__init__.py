@@ -11,7 +11,7 @@ they're registered when starting the web service.
 New files should be imported here, and should also begin generally by
 importing the following module to produce replacement functions.
 
-    from morphology import generation_overrides as rewrites
+    from morphology import generation_overrides
 
 """
 

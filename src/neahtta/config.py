@@ -189,6 +189,16 @@ class Config(Config):
         return language_pairs
 
     @property
+    def tagset_definitions(self):
+        if self._tagset_definitions:
+            return self._tagset_definitions
+
+        sets = self.yaml.get('TagSets')
+
+        self._tagset_definitions = sets
+        return sets
+
+    @property
     def pair_definitions(self):
         from collections import OrderedDict
 
@@ -274,8 +284,13 @@ class Config(Config):
             if 'options' in _kwargs_in:
                 kwargs['options'] = _kwargs_in['options']
 
+            # TODO: tagsets
+            tagsets = self.tagset_definitions.get(iso, {})
             self._morphologies[iso] = \
-                m_format(**kwargs) >> Morphology(iso, cache=morph_cache)
+                m_format(**kwargs) >> Morphology( iso
+                                                , cache=morph_cache
+                                                , tagsets=tagsets
+                                                )
 
         return self._morphologies
 
@@ -314,6 +329,7 @@ class Config(Config):
         self._languages               = False
         self._pair_definitions        = False
         self._dictionaries            = False
+        self._tagset_definitions      = False
         self._reversable_dictionaries = False
         self._paradigms               = False
         self._baseforms               = False

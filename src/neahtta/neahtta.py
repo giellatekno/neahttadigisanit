@@ -203,14 +203,19 @@ def tagfilter_conf(filters, s):
     """ A helper function for filters to extract app.config from the
     function for import in other modules.
     """
+    from morphology import Tag
     if not s:
         return s
 
     filtered = []
+
     if isinstance(s, list):
         parts = s
+    elif isinstance(s, Tag):
+        parts = list(s)
     else:
         parts = s.split(' ')
+
     for part in parts:
         # try part, and if it doesn't work, then try part.lower()
         _f_part = filters.get( part
@@ -811,7 +816,7 @@ def indexWithLangs(_from, _to):
                                          , split_compounds=True
                                          )
 
-        analyses = [(lem.input, lem.lemma, [lem.pos] + lem.tag)
+        analyses = [(lem.input, lem.lemma, list(lem.tag))
                     for lem in analyses]
 
         fmtkwargs = { 'target_lang': _to

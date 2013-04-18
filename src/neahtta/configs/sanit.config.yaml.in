@@ -189,8 +189,20 @@ Paradigms:
 
 TagSets:
   sme:
-    pos: ["N", "V", "A", "Pr", "Po", "Num"]
-    type: ["NomAg", "G3", "aktor"]
+    pos: [
+      "N", "V", "A", "Pr", "Po", "Num", 
+      
+      "pron.", "subst.", "verb", "adj."
+    ]
+    type: ["NomAg", "G3", "aktor", "res."]
+    # Do not display analyses with these tag parts
+    hideanalysis: 
+      - "dem."
+      - "neg."
+      - "pers."
+      - "pron."
+      - "refl."
+      - "res."
 
 # Note, these come from dictionary fst, so tag parts are mostly 
 # already translated

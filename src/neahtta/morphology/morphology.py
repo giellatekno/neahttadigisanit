@@ -59,16 +59,29 @@ class Tag(object):
     Also, will need some sort of lexicon lookup definition in configs,
     to describe how to bring these items together.
     """
-    def __init__(self, string, sep):
+    def __init__(self, string, sep, tagsets={}):
         self.tag_string = string
         self.sep = sep
         self.parts = self.tag_string.split(sep)
+        if isinstance(tagsets, Tagsets):
+            self.sets = tagsets.sets
+        elif isinstance(sets, dict):
+            self.sets = tagsets
+        else:
+            self.sets = tagsets
 
     def __getitem__(self, b):
         """ Overloading the xor operator to produce the tag piece that
         belongs to a given tagset. """
-        if not isinstance(b, Tagset):
-            raise TypeError("Second value must be a tagset")
+        if isinstance(b, int):
+            return self.parts[b]
+        if isinstance(b, str) or isinstance(b, unicode):
+            b = self.sets.get(b, False)
+            if not b:
+                _s = ', '.join(self.sets.keys())
+                raise IndexError("Invalid tagset. Choose one of: %s" % _s)
+        elif isinstance(b, Tagset):
+            pass
         return self.getTagByTagset(b)
 
     def __iter__(self):
@@ -76,6 +89,9 @@ class Tag(object):
             yield x
 
     def __str__(self):
+        return '<Tag: %s>' % self.sep.join(self.parts)
+
+    def __repr__(self):
         return '<Tag: %s>' % self.sep.join(self.parts)
 
     def getTagByTagset(self, tagset):
@@ -354,6 +370,15 @@ class XFST(object):
         else:
             return False
 
+    def tagStringToTag(self, parts, tagsets={}, inverse=False):
+        if inverse:
+            delim = self.options.get('inverse_tagsep',
+                self.options.get('tagsep', '+'))
+        else:
+            delim = self.options.get('tagsep', '+')
+        tag = delim.join(parts)
+        return Tag(tag, delim, tagsets=tagsets)
+
     def formatTag(self, parts, inverse=False):
         if inverse:
             delim = self.options.get('inverse_tagsep',
@@ -489,10 +514,12 @@ class Morphology(object):
         """ For a wordform, return a list of lemmas
         """
         class Lemma(object):
+            """ Lemma class that is bound to the morphology
+            """
             def __key(lem_obj):
                 return ( lem_obj.lemma
                        , lem_obj.pos
-                       , self.tool.formatTag(lem_obj.tag)
+                       , self.tool.formatTag(lem_obj.tag_raw)
                        )
 
             def __eq__(x, y):
@@ -511,10 +538,14 @@ class Morphology(object):
                 _tag = unicode(_tag).encode('utf-8')
                 return '<Lemma: %s, %s, %s>' % (_lem, _pos, _tag)
 
-            def __init__(lem_obj, lemma, pos='', tag=[''], _input=False):
+            def __init__(lem_obj, lemma, pos='',
+                         tag=[''], fulltag=[''], _input=False):
                 lem_obj.lemma = lemma
                 lem_obj.pos = pos
-                lem_obj.tag = tag
+                lem_obj.tag_raw = tag
+                lem_obj.tag = self.tool.tagStringToTag( fulltag
+                                                      , tagsets=self.tagsets
+                                                      )
                 lem_obj.input = _input
 
         def remove_compound_analyses(_a):
@@ -581,7 +612,10 @@ class Morphology(object):
                     _lem      = _an_parts[0]
                     _pos      = _an_parts[1]
                     _analysis = _an_parts[2::]
-                    lem = Lemma(_lem, _pos, _analysis, form)
+                    _fulltag  = _an_parts[1::]
+                    lem = Lemma( _lem, _pos, _analysis
+                               , fulltag=_fulltag, _input=form
+                               )
                 lemmas.add(lem)
 
         return list(lemmas)

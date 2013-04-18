@@ -344,14 +344,26 @@ def remove_analyses_for_lemma_ref(xml, fst):
     if len(return_nodes) == 0:
         return_nodes = xml
 
-    if isinstance(return_nodes, list) and isinstance(return_nodes[0], list):
-        return_nodes = sum(return_nodes, [])
+    if len(return_nodes) > 0:
+        if isinstance(return_nodes, list) and isinstance(return_nodes[0], list):
+            return_nodes = sum(return_nodes, [])
+    else:
+        return_nodes = []
 
     return return_nodes, fst
 
 @morpholex.post_morpho_lexicon_override('sme')
 def remove_analyses_for_specific_closed_classes(xml, fst):
-    """ Remove analyses from list that contain specific POS type.
+    """ Remove analyses from list when the XML entry
+    contains a specific PoS type.
+
+    This has to be done in two steps:
+        * check for xml entries containing the types
+        * filter out the matching lemma from those entries
+
+          or: remove analyses that have a member of the hideanalysis
+              tagset
+
     NB: this must be registered after remove_analyses_for_lemma_ref,
     because that function depends on analyses still existing to some of
     these types
@@ -360,13 +372,14 @@ def remove_analyses_for_specific_closed_classes(xml, fst):
     if xml is None or fst is None:
         return None
 
-    restrict_pos_type = [ 'Pers'
+    restrict_xml_type = [ 'Pers'
                         , 'Dem'
                         , 'Rel'
                         , 'Refl'
                         , 'Recipr'
                         , 'Neg'
                         ]
+
     restrict_lemmas = [ 'leat'
                       ]
 
@@ -374,13 +387,27 @@ def remove_analyses_for_specific_closed_classes(xml, fst):
         _pos_type = e.xpath(_str_norm % 'lg/l/@type')
         _lemma = e.xpath(_str_norm % 'lg/l/text()')
 
-        if _pos_type in restrict_pos_type:
+        if _pos_type in restrict_xml_type:
             restrict_lemmas.append(_lemma)
 
-    def lemma_not_in_list(form):
-        return form.lemma not in restrict_lemmas
+    def lemma_not_in_list(lemma):
+        _lemma = lemma.lemma not in restrict_lemmas
+        return _lemma
 
-    fst = filter(lemma_not_in_list, fst)
+    def hideanalysis_tagset(lemma):
+        _hide = lemma.tag['hideanalysis']
+        _hide_analysis = True
+        if _hide:
+            if len(_hide) > 0:
+                _hide_analysis = False
+
+        return _hide_analysis
+
+    fst = filter( hideanalysis_tagset
+                , filter( lemma_not_in_list
+                        , fst
+                        )
+                )
 
     return xml, fst
 

@@ -14,4 +14,7 @@ __all__ = [ 'XFST'
           , 'OBT'
           , 'Morphology'
           , 'generation_overrides'
+          , 'Tag'
+          , 'Tagsets'
+          , 'Tagset'
           ]
