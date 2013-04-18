@@ -64,7 +64,7 @@ Morphology:
     inverse_file: [*OPT, '/fin/bin/ifin.fst']
     format: 'xfst'
     options:
-      compoundBoundary: "+Use/Circ#"
+      compoundBoundary: "#"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
