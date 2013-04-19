@@ -27,13 +27,13 @@ class LexiconOverrides(object):
     ### Here are the functions that apply all the rules
     ##
 
-    def format_source(self, lang_iso, ui_lang, e, default_str):
+    def format_source(self, lang_iso, ui_lang, e, target_lang, default_str):
         """ Find the function decorated by
                 @overrides.entry_source_formatter(iso)
             and run the function on an XML node.
         """
         if lang_iso in self.source_formatters:
-            return self.source_formatters.get(lang_iso)(ui_lang, e) \
+            return self.source_formatters.get(lang_iso)(ui_lang, e, target_lang) \
                 or default_str
         return default_str
 

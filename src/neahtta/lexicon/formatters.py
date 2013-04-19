@@ -243,7 +243,7 @@ class FrontPageFormat(EntryNodeIterator):
             default_format = lemma
 
         source_formatted = lexicon_overrides.format_source(
-            source_lang, ui_lang, e, default_format
+            source_lang, ui_lang, e, target_lang, default_format
         )
 
         return { 'left': lemma

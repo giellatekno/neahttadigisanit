@@ -33,7 +33,7 @@ from morphology import generation_overrides as rewrites
 from lexicon import lexicon_overrides
 
 @lexicon_overrides.entry_source_formatter('sma')
-def format_source_sma(ui_lang, e):
+def format_source_sma(ui_lang, e, target_lang):
     from neahtta import tagfilter_conf
     from neahtta import app
 

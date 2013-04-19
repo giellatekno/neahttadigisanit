@@ -389,3 +389,42 @@ def remove_analyses_for_specific_closed_classes(xml, fst):
 
 # TODO: same for SoMe
 
+@lexicon.entry_source_formatter('sme')
+def format_source_sme(ui_lang, e, target_lang):
+    from neahtta import tagfilter_conf
+    from neahtta import app
+
+    paren_args = []
+
+    _str_norm = 'string(normalize-space(%s))'
+    _lemma = e.xpath(_str_norm % 'lg/l/text()')
+    _class = e.xpath(_str_norm % 'lg/l/@class')
+    _pos = e.xpath(_str_norm % 'lg/l/@pos')
+
+    _lemma_ref = e.xpath(_str_norm % 'lg/lemma_ref/text()')
+    if _lemma_ref:
+        _link_targ = u'/detail/%s/%s/%s.html' % ('sme', target_lang, _lemma_ref)
+        _lemma_ref_link = u'<a href="%s"/>%s</a>' % (_link_targ, _lemma_ref)
+        _lemma_ref_link = u'<span class="lemma_ref"> → '  + _lemma_ref_link
+        _lemma_ref_link += u'</span>'
+
+    else:
+        _lemma_ref_link = ''
+
+    if _pos:
+        filters = app.config.tag_filters.get(('sme', ui_lang))
+        if filters:
+            paren_args.append(tagfilter_conf(filters, _pos))
+        else:
+            paren_args.append(_pos)
+
+    if _class:
+        paren_args.append(_class.lower())
+
+    if len(paren_args) > 0:
+        thing = '%s (%s)' % (_lemma, ', '.join(paren_args))
+        return thing + _lemma_ref_link
+    else:
+        return _lemma
+
+    return None
