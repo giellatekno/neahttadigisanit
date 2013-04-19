@@ -405,7 +405,7 @@ def format_source_sme(ui_lang, e, target_lang):
     if _lemma_ref:
         _link_targ = u'/detail/%s/%s/%s.html' % ('sme', target_lang, _lemma_ref)
         _lemma_ref_link = u'<a href="%s"/>%s</a>' % (_link_targ, _lemma_ref)
-        _lemma_ref_link = u'<span class="lemma_ref"> → '  + _lemma_ref_link
+        _lemma_ref_link = u'<span class="see_also"> → '  + _lemma_ref_link
         _lemma_ref_link += u'</span>'
 
     else:

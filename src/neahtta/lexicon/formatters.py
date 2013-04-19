@@ -163,6 +163,28 @@ class DetailedFormat(EntryNodeIterator):
                      ]
         entry_hash = str('-'.join(entry_hash).__hash__())
 
+        # node, and default format for if a formatter doesn't exist for
+        # iso
+        from neahtta import tagfilter
+
+        source_lang = self.query_kwargs.get('source_lang')
+        target_lang = self.query_kwargs.get('target_lang')
+        ui_lang = self.query_kwargs.get('ui_lang')
+
+        if lemma and lemma_pos:
+            default_format = "%s (%s)" % ( lemma
+                                         , tagfilter( lemma_pos
+                                                    , source_lang
+                                                    , target_lang
+                                                    )
+                                         )
+        elif lemma and not lemma_pos:
+            default_format = lemma
+
+        source_formatted = lexicon_overrides.format_source(
+            source_lang, ui_lang, e, target_lang, default_format
+        )
+
         return { 'lemma': lemma
                , 'lemma_context': lemma_context
                , 'pos': lemma_pos
@@ -171,6 +193,7 @@ class DetailedFormat(EntryNodeIterator):
                , 'type': lemma_type
                , 'node': e
                , 'entry_hash': entry_hash
+               , 'source_formatted': source_formatted
                }
 
 class FrontPageFormat(EntryNodeIterator):

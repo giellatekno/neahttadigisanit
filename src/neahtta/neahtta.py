@@ -516,7 +516,11 @@ def wordDetail(from_language, to_language, wordform, format):
 
         # TODO: move generation to detailed format? thus node correct
         # pos, tags, etc., are available
-        res = list(DetailedFormat(xml_nodes, target_lang=to_language))
+        res = list(DetailedFormat( xml_nodes
+                                 , target_lang=to_language
+                                 , source_lang=from_language
+                                 , ui_lang=iso_filter(session.get('locale', to_language))
+                                 ))
 
         lex_results = []
         for r in res:

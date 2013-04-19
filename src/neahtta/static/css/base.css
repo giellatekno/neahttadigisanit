@@ -266,8 +266,13 @@ img.i18n_flag {
 }
 
 .other_link {
-    font-variant: italic;
+    font-style: italic;
     margin-left: 1em;
+}
+
+.see_also, .see_also a {
+    font-size: 90%;
+    font-style: italic; 
 }
 
 @media (max-width: 767px) {

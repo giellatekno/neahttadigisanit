@@ -85,11 +85,14 @@
                         {% include 'detail_paradigm_dl.html' %}
                     </div>
                 {% endif %}
+                {#
                 {% if lexeme.input[1] %}
                     <p class="lead">{{ lexeme.input[0] }} ({{ lexeme.input[1]|tagfilter(_from, _to) }}) </p>
                 {% else %}
                     <p class="lead">{{ lexeme.input[0] }} ({{ lexeme.entries.lookups[0].pos|tagfilter(_from, _to) }}) </p>
                 {% endif %}
+                #}
+                <p class="lead">{{ lexeme.entries.source_formatted|safe }}</p>
 
                 <ul class="meanings">
                     {% for mg in lexeme.entries.meaningGroups %}
