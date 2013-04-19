@@ -433,12 +433,21 @@ some-n-sme.fst:
 	  cp sme/bin/some-n-sme.fst  $(TARGET_DIR)/some-n-sme.fst ; \
 	  cp sme/bin/dict-isme-norm.fst $(TARGET_DIR)/dict-isme-norm.fst
 
-# This is also different from the rest, involves st/ but, file format is same
-nob: 
-	cd $(GTHOME)/st/nob/src/ ; \
-	  make ; \
-	  cp ../bin/nob.fst   $(TARGET_DIR)/fst/nob.fst ; \
-	  cp ../bin/inob.fst  $(TARGET_DIR)/ifst/inob.fst
+
+fst/nob.fst:
+	@echo "***********************"
+	@echo "** Building nob FSTs **"
+	@echo "***********************"
+	@echo ""
+	cd $(GTHOME)/langs/nob/ ; \
+	  ./autogen.sh ; \
+	  ./configure  ; \
+	  make  ; \
+	  cp src/analyser-gt-desc.xfst  $(TARGET_DIR)/fst/nob.fst ; \
+	  cp src/generator-gt-norm.xfst $(TARGET_DIR)/ifst/inob.fst
+
+.PHONY: nob
+nob: fst/nob.fst
 
 .PHONY: sme
 sme: n-sme.fst \
