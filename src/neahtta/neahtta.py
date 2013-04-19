@@ -59,7 +59,7 @@ def create_app():
     app.config = Config('.', defaults=app.config)
     app.config.from_envvar('NDS_CONFIG')
 
-    app.morpholexicon = MorphoLexicon(app.config, cache=app.cache)
+    app.morpholexicon = MorphoLexicon(app.config)
 
     try:
         with open('secret_key.do.not.check.in', 'r') as F:
