@@ -273,17 +273,13 @@ def verb_context(generated_result, *generation_input_args):
 _str_norm = 'string(normalize-space(%s))'
 
 @morpholex.post_morpho_lexicon_override('sme')
-def remove_analyses_for_lemma_ref(xml, fst):
+def remove_analyses_for_analyzed_forms_with_lemma_ref(xml, fst):
+    """ If there is an entry that is an analysis and the set contains
+    another entry with its matching lemma discard the analyses.
+    """
+
     if xml is None or fst is None:
         return None
-
-
-    # TODO: group xml nodes by lemma
-
-    # if there is an entry that is an analysis and the set contains
-    # another entry with its matching lemma, then discard the entries
-    # that are the lemma, and discard the analyses, and display only the
-    # one lemma_ref entry.
 
     from collections import defaultdict
     nodes_by_lemma = defaultdict(list)
@@ -301,23 +297,15 @@ def remove_analyses_for_lemma_ref(xml, fst):
                 (e, False)
             )
 
-    def node_lg_l_matches_str(n, s):
-        lg_l = n.xpath(
-            _str_norm % 'lg/l/text()'
-        )
-        return lg_l == s
+    def lg_l_matches_str(n, s):
+        return n.xpath(_str_norm % 'lg/l/text()') == s
 
-
-    return_nodes = []
     for lemma, nodes in nodes_by_lemma.iteritems():
         # get the lemma_ref node
         lemma_ref_node = filter( lambda (n, is_lemma_ref): is_lemma_ref
                                , nodes
                                )
-        if len(lemma_ref_node) == 0:
-            return_nodes.append([node for node, _ in nodes])
-            continue
-        # if it exists... 
+
         if len(lemma_ref_node) > 0:
             _l_node, _is_l_ref = lemma_ref_node[0]
             lemma_ref_lemma = _l_node.xpath(
@@ -326,13 +314,10 @@ def remove_analyses_for_lemma_ref(xml, fst):
 
             # Match nodes by lg_l vs. lemma_ref_string
             _match = lambda (m_n, _): \
-                node_lg_l_matches_str(m_n, lemma_ref_lemma)
+                lg_l_matches_str(m_n, lemma_ref_lemma)
             lemmas_matching = filter( _match, nodes )
             # If there is a lemma for the lemma_ref string ...
             if len(lemmas_matching) > 0:
-                # include the lemma_ref node in output
-                return_nodes.append(_l_node)
-
                 def analysis_lemma_is_not(analysis):
                     return lemma_ref_lemma != analysis.lemma
 
@@ -341,16 +326,7 @@ def remove_analyses_for_lemma_ref(xml, fst):
                             , fst
                             )
 
-    if len(return_nodes) == 0:
-        return_nodes = xml
-
-    if len(return_nodes) > 0:
-        if isinstance(return_nodes, list) and isinstance(return_nodes[0], list):
-            return_nodes = sum(return_nodes, [])
-    else:
-        return_nodes = []
-
-    return return_nodes, fst
+    return xml, fst
 
 @morpholex.post_morpho_lexicon_override('sme')
 def remove_analyses_for_specific_closed_classes(xml, fst):
@@ -413,4 +389,3 @@ def remove_analyses_for_specific_closed_classes(xml, fst):
 
 # TODO: same for SoMe
 
-# TODO: display paradigm even for lemma_ref entries?
