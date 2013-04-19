@@ -59,7 +59,7 @@ def create_app():
     app.config = Config('.', defaults=app.config)
     app.config.from_envvar('NDS_CONFIG')
 
-    app.morpholexicon = MorphoLexicon(app.config)
+    app.morpholexicon = MorphoLexicon(app.config, cache=app.cache)
 
     try:
         with open('secret_key.do.not.check.in', 'r') as F:
@@ -468,8 +468,9 @@ def wordDetail(from_language, to_language, wordform, format):
     # Do we want to analyze compounds?
     no_compounds = request.args.get('no_compounds', False)
 
+    ui_lang = iso_filter(session.get('locale', to_language))
     # Cache key by URL
-    entry_cache_key = u'%s?%s' % (request.path, request.query_string)
+    entry_cache_key = u'%s?%s?%s' % (request.path, request.query_string, ui_lang)
 
     if no_compounds or lemma_match or e_node:
         want_more_detail = True
