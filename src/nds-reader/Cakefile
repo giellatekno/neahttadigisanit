@@ -138,14 +138,15 @@ buildBookmarklet = (callback) ->
   out = fs.openSync "bin/bookmarklet.min.js", "w+"
   fs.writeSync out, _fs
 
-  out = fs.openSync "../static/js/bookmarklet.min.js", "w+"
+  out = fs.openSync "../neahtta/static/js/bookmarklet.min.js", "w+"
   fs.writeSync out, _fs
-  out = fs.openSync "../static/js/bookmarklet.js", "w+"
+  out = fs.openSync "../neahtta/static/js/bookmarklet.js", "w+"
   fs.writeSync out, _fs_nm
-  util.print "\n Compiled to bin/bookmarklet.min.js and ../static/js/bookmarklet.min.js\n"
+  util.print """\n Compiled to bin/bookmarklet.min.js and
+    ../static/js/bookmarklet.min.js\n"""
 
   _css = (fs.readFileSync 'bin/jquery.neahttadigisanit.css').toString()
-  _cssout = fs.openSync "../static/css/jquery.neahttadigisanit.css", "w+"
+  _cssout = fs.openSync "../neahtta/static/css/jquery.neahttadigisanit.css", "w+"
   fs.writeSync _cssout, _css
   util.print "\n Copied CSS to ../static/css/jquery.neahttadigisanit.css\n"
 
