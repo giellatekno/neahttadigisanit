@@ -785,7 +785,6 @@ dd {
   overflow: hidden;
   clear: left;
   text-align: right;
-  text-overflow: ellipsis;
   white-space: nowrap;
 }
 

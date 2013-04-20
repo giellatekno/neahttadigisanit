@@ -3,6 +3,10 @@
 	http://digitesting.oahpa.no/static/css/detail.css
 */
 
+.dl-horizontal dt {
+  text-overflow: no;
+}
+
 div.lexeme {
     border-bottom: 5px solid #EEE;
     margin-bottom: 15px;

@@ -7,6 +7,11 @@
     top: -6000px;
 }
 
+.dl-horizontal dt {
+  text-overflow: no !important;
+}
+
+
 .container-fluid {
 	padding: 0 0;
 }
