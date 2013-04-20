@@ -10,17 +10,8 @@ class LexiconOverrides(object):
     provide special handling of tags. One class instantiated in
     morphology module: `generation_overrides`.
 
-        @generation_overrides.tag_filter_for_iso('sme')
-        def someFunction(form, tags, xml_node):
-            ... some processing on tags, may be conditional, etc.
-            return form, tags, xml_node
-
-    Each time morphology.generation is run, the args will be passed
-    through all of these functions in the order that they were
-    registered, allowing for language-specific conditional rules for
-    filtering.
-
-    There is also a post-generation tag rewrite decorator registry function.
+    Current practice is to store these in language-specific modules within
+    :py:module:`configs.language_specific_rules`...
     """
 
     ##
@@ -110,7 +101,28 @@ class LexiconOverrides(object):
         return wrapper
 
     def pre_lookup_tag_rewrite_for_iso(self, language_iso):
-        """ Register a function for a language ISO
+        """ Register a function for a language ISO to adjust tags used in
+        FSTs for use in lexicon lookups.
+
+        >>> @lexicon_overrides.pre_lookup_tag_rewrite_for_iso('sme')
+        >>> def someFunction(*args, **kwargs):
+        >>>     ... some processing on tags, may be conditional, etc.
+        >>>     return args, kwargs
+
+        A typical example usage would be:
+
+        >>> @lexicon.pre_lookup_tag_rewrite_for_iso('sme')
+        >>> def pos_to_fst(*args, **kwargs):
+        >>>     if 'lemma' in kwargs and 'pos' in kwargs:
+        >>>         _k = kwargs['pos'].replace('.', '').replace('+', '')
+        >>>         new_pos = LEX_TO_FST.get(_k, False)
+        >>>         if new_pos:
+        >>>             kwargs['pos'] = new_pos
+        >>>     return args, kwargs
+
+        Thus replacing the FST output containing 'egen' as a POS to
+        'Prop' so that it may be found in a lexical entry containing
+        a 'Prop' attribute.
         """
         def wrapper(restrictor_function):
             self.prelookup_processors[language_iso]\

@@ -113,10 +113,10 @@ class GenerationOverrides(object):
     provide special handling of tags. One class instantiated in
     morphology module: `generation_overrides`.
 
-        @generation_overrides.tag_filter_for_iso('sme')
-        def someFunction(form, tags, xml_node):
-            ... some processing on tags, may be conditional, etc.
-            return form, tags, xml_node
+    >>> @generation_overrides.tag_filter_for_iso('sme')
+    >>> def someFunction(form, tags, xml_node):
+    >>>     ... some processing on tags, may be conditional, etc.
+    >>>     return form, tags, xml_node
 
     Each time morphology.generation is run, the args will be passed
     through all of these functions in the order that they were

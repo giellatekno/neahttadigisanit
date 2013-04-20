@@ -1,12 +1,11 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 """
-A service that provides JSON and RESTful lookups to webdict xml trie
-files.
+A service that provides JSON and RESTful lookups to GT-style XML lexica,
+with preprocessing from morphological analysers implemented as FSTs.
 
 This is the main file which handles initializing the app and providing
-endpoint functionality. Documentation on installing and maintaining
-config files is elsewhere.
+endpoint functionality.
 
 """
 
@@ -139,10 +138,16 @@ def append_session_globals():
 
 @app.context_processor
 def add_languages():
+    """ Add internationalization languages to global context for
+    templates.
+    """
     return dict(internationalizations=app.config.locales_available)
 
 @app.context_processor
 def define_app_name():
+    """ Add the custom app name from configs to global context for
+    templates.
+    """
     return dict(app_name=app.config.app_name)
 
 @app.context_processor

@@ -2,6 +2,7 @@
 """
 
 from morphology import ( Tagsets
+                       , Tagset
                        , Tag
                        , XFST
                        , OBT
