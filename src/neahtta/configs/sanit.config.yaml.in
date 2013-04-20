@@ -616,6 +616,7 @@ TagTransforms:
     # voice
     "Act": "act."
     "Pass": "pass."
+    "Pss": "pass."
     # tense
     "Prs": "prs."
     "Prt": "prt."
@@ -633,6 +634,7 @@ TagTransforms:
     "Pl1": "pl1."
     "Pl2": "pl2."
     "Pl3": "pl3."
+    "Pe4": "pe4."
     # neg
     "ConNeg": "conneg."
     "Neg": "neg."
