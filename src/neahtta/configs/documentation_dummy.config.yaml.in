@@ -91,44 +91,8 @@ Languages:
 
 # Here are the actual definitions of what dictionaries are available in the
 # system. What is presented in the UI also adheres to the order that is here.
-Dictionaries:
-  - source: sme
-    target: nob
-    path: 'dicts/sme-nob.all.xml'
-  # TODO: need to define language variants here, for now this is hard-coded
-  # in templates.
-  #   variants:
-  #     SoMe:
-  #       sme: 
-  #         fst: 'SmeSoMe'
+Dictionaries: []
 
-  - source: SoMe
-    target: nob
-    path: 'dicts/sme-nob.all.xml'
-
-  - source: nob
-    target: sme
-    path: 'dicts/nob-sme.all.xml'
-
-# Define what paradigms are generated for each part of speech, for each
-# language.  Because of the way that paradigm parsing currently works, remove
-# the part of speech from the generated tags, because this is automatically
-# inserted.
-#
-# Currently it is best to keep these paradigms simple. If anything more complex
-# is needed, such as changing Sg to Pl if the lexical entry contains an
-# attribute marking the word as plural only, this can be written with
-# a morphological generation override function.
-#
-# Also, if any paradigms are pregenerated and contained in the lexicon,
-# mark these as having only one form, "Pregenerate", and write a 
-# morphological generation override rule to fetch paradigms from the lexicon
-# and format them into the expected data format.
-#
-# Linguists: do not worry too much about things like +Sg and +Pl mentioned
-# above, but provide the programmers lists for what is needed. Or
-# alternatively, make the programmers to implement something easier. ;)
-#
 # Use the same tag format as the generator expects.
 Paradigms:
   sme: &smeparadigms
@@ -286,4 +250,5 @@ TagTransforms:
     pr: "prep."
     pron: "pron."
     prop: "egennavn"
+
 

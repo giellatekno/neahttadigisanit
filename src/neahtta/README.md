@@ -19,15 +19,21 @@ For more information on package dependencies, see `requirements.txt`.
 
 ## Installing
 
-Use virtualenv to create an environment with requirements.txt, and set
-up a webserver to direct requests to neahttadigisanit.fcgi.
+Use [virtualenv][venv] to create an environment with requirements.txt, and set up a
+webserver to direct requests to neahttadigisanit.fcgi. The virtualenv could
+really go anywhere, but I find it useful to keep it in a local directory so
+that I always know where it is.
 
+    virtualenv .env
+    . .env/bin/activate
     pip install -r requirements.txt
 
 If more requirements become necessary, be sure to update the file and check it
 in.
 
     pip freeze > requirements.txt
+
+ [venv]: http://www.virtualenv.org/
 
 ### Lexical and linguistic dependencies to check
 
