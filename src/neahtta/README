@@ -1,4 +1,11 @@
-# Vuosttaš neahttasánit server process
+Neahttadigisánit
+================
+
+This is programmer-directed information, for development. If curious about
+linguist-oriented and maintainer documentation, see
+[neahttadigisanit][nds_doc].
+
+  [nds_doc]: http://giellatekno.uit.no/doc/dicts/neahttadigisanit.html
 
 ## Overview
 
@@ -8,6 +15,8 @@ JSON, and some HTML.
 
  [1]: http://flask.pocoo.org/
 
+For more information on package dependencies, see `requirements.txt`.
+
 ## Installing
 
 Use virtualenv to create an environment with requirements.txt, and set
@@ -15,14 +24,23 @@ up a webserver to direct requests to neahttadigisanit.fcgi.
 
     pip install -r requirements.txt
 
-### Dependencies to check
+If more requirements become necessary, be sure to update the file and check it
+in.
 
-* svn up main/words/dicts/
-* svn up main/gt/
-* svn up main/langs
+    pip freeze > requirements.txt
 
-Rebuild the dictionaries using make_dicts.sh, and check the languages in
-app.config.yaml, and recompile the corresponding FSTs.
+### Lexical and linguistic dependencies to check
+
+ * svn up main/words/dicts/
+ * svn up main/gt/
+ * svn up main/langs
+
+#### Makefile
+
+The Makefile in `neahtta/dicts/` can be used to generate dictionary XML files,
+and also to compile and manage the installation of FSTs and other morphologies.
+
+See `make help` for more information.
 
 ## Developing
 
@@ -30,46 +48,28 @@ app.config.yaml, and recompile the corresponding FSTs.
 
 See `TODOs`.
 
-### Modules
+### Module-specific documentation.
 
-#### kursadict.py 
+For Python-module specific documentation, see the docstrings available in the
+individual Python files. A short overview follows:
 
-Contains functions for views and endpoints. This is where some of the
-magic happens.
+ * `neahtta.py` - initialization of Flask app, endpoints.
+ * `config.py` and `configs/` - app configuration, yaml parsing, and yaml files
+ * `configs/language_specific_rules` - directory for storing language-specific
+   display, morphology and lexicon overrides.
+ * `configs/language_names.py` - ISO names and 2-char -> 3-char definitions
+ * `translations/` - i18n/i10n/localization details and .po files.
+ * `lexicon/` - XML parsing
+ * `morphology/` - FST parsing, lemmatization modules
+ * `morpholex/` - Thing that ties these two together
+ * `static/` - js, css, img, etc.
+ * `templates/` - jinja2 templates for endpoints.
+ * `dicts/` - path where XML files are typically stored
 
-#### config.py
+### XML format
 
-Contains a class for loading and validating configs.
+See http://giellatekno.uit.no/doc/dicts/dictionarywork.html
 
-#### morphology.py
 
-Contains tools for handling morphological analysis, generation and
-lemmatization and other things via external processes. Some configs
-are specified in app.config.yaml
-
-#### crossdomain.py 
-
-### Other important things
-
-#### templates/
-
-Format is Jinja2.
-
-Internationalisation is carried out with lang attributes, and the i18n
-class. The value of lang() in body sets the language for the document,
-and translations are written in span elements with class="i18n" and 
-corresponding language ISO code.
-
-	<body lang="nob">
-	    <h1>
-	        <span class="i18n" lang="sme">Bures</span>
-	        <span class="i18n" lang="nob">Hei</span>
-	        <span class="i18n" lang="fin">Moi</span>
-	    </h1>
-	</body>
-
-CSS (static/css/base.css) then handles the display of these via 'feature
-agreement' selectors.  When JavaScript changes body:lang to another
-language, the changes are automatically propagated to all elements with
-class="i18n" and a corresponding language setting.
-
+<!---  
+vim: set ts=4 sw=4 tw=0 syntax=markdown : -->

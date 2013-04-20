@@ -38,7 +38,7 @@
 ###         
 ###         #Globaltargets
 
-# TODO: test GTHOME, GTCORE, GTSHARE
+# TODO: test vars GTHOME, GTCORE, GTSHARE
 # TODO: run a check on svn directories to print out what is updated since the
 #       last build of the various targets.
 
@@ -121,7 +121,7 @@ yrk-all.xml: $(GTHOME)/langs/yrk/src/morphology/stems/*.xml
 yrk-lexicon: yrk-all.xml
 
 .PHONY: vada
-vada: yrk fin yrk-lexicon
+vada: init yrk fin yrk-lexicon
 	@echo "*********************************"
 	@echo "** Built targets for vada:     **"
 	@echo "**    + yrk lexicon            **"
@@ -198,7 +198,7 @@ myv-lexicon: myv-all.xml
 mdf-lexicon: mdf-all.xml
 	
 .PHONY: valks
-valks: myv mdf fin myv-lexicon mdf-lexicon
+valks: init myv mdf fin myv-lexicon mdf-lexicon
 	@echo "*********************************"
 	@echo "** Built targets for valks:    **"
 	@echo "**    + myv, mdf lexica        **"
@@ -338,10 +338,13 @@ sanat-lexica: olo-fin.xml \
 			  fkv-nob.xml \
 			  nob-fkv.xml
 
-sanat: olo izh liv fin fkv sanat-lexica
+sanat: init olo izh liv fin fkv sanat-lexica
 	@echo "*********************************"
 	@echo "** Built targets for sanat:    **"
 	@echo "**    + olo lexicon            **"
+	@echo "**    + fkv lexica             **"
+	@echo "**    + liv lexicon            **"
+	@echo "**    + izh lexicon            **"
 	@echo "**    + olo analysers          **"
 	@echo "**    + liv analysers          **"
 	@echo "**    + izh analysers          **"
@@ -356,7 +359,7 @@ sanat: olo izh liv fin fkv sanat-lexica
 	@echo ""
 	@echo "Now install analysers in expected paths."
 	@echo "    sudo make sanat-install"
-	@echo "... or copy the fsts in this dir."
+	@echo "... or copy the fsts in fst/ and ifst/ to their right places."
 
 sanat-olo-install: fst/olo.fst ifst/iolo.fst
 	mkdir -p /opt/smi/olo/bin/
@@ -454,7 +457,7 @@ sme: n-sme.fst \
 	 dict-isme-norm.fst \
 	 some-n-sme.fst
 
-sanit: sme fin nob sanit-lexica
+sanit: init sme fin nob sanit-lexica
 	@echo "*********************************"
 	@echo "** Built targets for sanit:    **"
 	@echo "**    + sanit lexica           **"
@@ -465,7 +468,7 @@ sanit: sme fin nob sanit-lexica
 	@echo ""
 	@echo "Now install analysers in expected paths."
 	@echo "    sudo make sanit-install"
-	@echo "... or copy the fsts in this dir."
+	@echo "... or copy the fsts in fst/ and ifst/ to their right places."
 
 sanit-fin-install: fst/fin.fst ifst/ifin.fst
 	mkdir -p /opt/smi/fin/bin/
@@ -522,7 +525,7 @@ nob-sma.all.xml: $(GTHOME)/words/dicts/nobsma/src/
 baakoeh-lexica: sma-nob.all.xml \
 				nob-sma.all.xml
 
-baakoeh: sma nob baakoeh-lexica
+baakoeh: init sma nob baakoeh-lexica
 	@echo "*********************************"
 	@echo "** Built targets for baakoeh:  **"
 	@echo "**    + baakoeh lexica         **"
@@ -532,7 +535,7 @@ baakoeh: sma nob baakoeh-lexica
 	@echo ""
 	@echo "Now install analysers in expected paths"
 	@echo "    make baakoeh-install"
-	@echo "... or copy the fsts in this dir."
+	@echo "... or copy the fsts in fst/ and ifst/ to their right places."
 
 baakoeh-nob-install: fst/nob.fst ifst/inob.fst
 	mkdir -p /opt/smi/nob/bin/
@@ -579,7 +582,7 @@ kpv-engfinrus.all.xml: $(GTHOME)/words/dicts/kom2X/src/
 .PHONY: kpv-lexica
 kpv-lexica: kpv-engfinrus.all.xml
 
-kyv: kpv fin kpv-lexica
+kyv: init kpv fin kpv-lexica
 	@echo "*********************************"
 	@echo "** Built targets for kyv:      **"
 	@echo "**    + kyv lexicon            **"
@@ -623,12 +626,36 @@ else
 init:
 	mkdir fst
 	mkdir ifst
+	@echo ""
+	@echo ""
+	@echo "Is saxon9.lib in the path somewhere?"
+	@echo ""
+	@echo ""
 endif
 
 .PHONY: help
 .DEFAULT: help
 help:
-	@echo "OMG"
+	@echo "There are several targets for building lexica, FSTs, and installing"
+	@echo "FSTs. The main targets to be concerned with are: "
+	@echo ""
+	@echo " * make sanit"
+	@echo " * make baakoeh"
+	@echo " * make valks"
+	@echo " * make vada"
+	@echo " * make kyv"
+	@echo ""
+	@echo "If running one of these commands complains about missing directories "
+	@echo "run the following first:"
+	@echo "   make init"
+	@echo ""
+	@echo "To install FSTs to /opt/smi/ paths and automatically create any missing"
+	@echo "directories:"
+	@echo ""
+	@echo " * make sanit-install"
+	@echo " * make baakoeh-install"
+	@echo ""
+	@echo "NB! Make sure you have saxon9.jar in ~/lib/ !"
 
 .PHONY: install
 install: sme-install sma-install install-analysers

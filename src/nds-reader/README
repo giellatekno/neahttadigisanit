@@ -6,20 +6,18 @@ are looking at.
 
 ## Goals and TODOs
 
-- TODO: hs.fi has problems showing the options tab, should be a good place to test
-
 - TODO: recompile bootstrap from less with specific namespace to ensure
         that style changes only occur in webdict_options and the popup.
 
 - TODO: test function for changing hostname of API
 
-- TODO: Internationalization of help text to nob, sme, fin, other languages
-  supported
-
 - TODO: Alternate means of triggering lookups so that there is no necessity
   to hold Alt/Opt while clicking, for devices that do not have this.
   Potentially also, displaying the result lookup in another format for
   mobile devices (Popup banner fixed to the bottom edge?).
+
+- TODO: automatic compiling of bookmarklet bookmark source-- currently it's
+  kind of a trick, but fortunately does not need to be updated frequently.
 
 
 ## Installation of plugin for a specific site
@@ -133,20 +131,6 @@ testing and development easier.
 
 The code for the actual bookmarklet that downloads the file is instead stored
 within neahtta.py, since compiling it is a little more of a specific process.
-
-### Browser plugin development
-
-Some of this material was somehow hard to find.
-
-* Chrome: https://developer.chrome.com/extensions/
-* Firefox: https://addons.mozilla.org/en-US/developers/docs/sdk/1.11/
-* Safari: http://developer.apple.com/library/safari/#documentation/Tools/Conceptual/SafariExtensionGuide/Introduction/Introduction.html
-
-Might consider using FireBreath once the concept in Chrome is complete,
-FireBreath allows for simultaneous development of a plugin in several browsers
-concurrently.
-
-* http://www.firebreath.org/
 
 ### Wordpress plugin development
 
