@@ -48,13 +48,14 @@ Install these first, and then run
 
     npm install
 
-Which will read package.json, and install the development packages to help
+Which will read package.json, and install the development packages to compile
+all the dependencies to one JS file.
 
 #### Cake
 
 ... is just a build system like Make, but for node/coffeescript
-projects. It facilitates compiling and combining all the
-dependencies into two files.
+projects. It facilitates compiling and combining all the dependencies
+into two files.
 
     cake build
 

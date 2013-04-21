@@ -1,0 +1,82 @@
+#!/bin/sh
+# chkconfig: 2345 95 20
+# description: python/fastcgi processes for NDS-sanit
+# processname: nds-sanit
+
+. /etc/rc.d/init.d/functions
+
+PROJNAME='nds-sanit/fastcgi'
+
+ADDRESS='127.0.0.1'
+SERVER_PORT='8765'
+
+# NB: don't forget to change pidfile if copying this for a new config.
+SERVER_PID="/home/path/to/proj/dir/sanit-pidfile.pid"
+
+# Project's virtualenv
+ENVLOC="/home/path/to/proj/dir/.env/"
+PROJECTLOC="/home/path/to/proj/dir/"
+MANAGELOC="$PROJECTLOC/manage.py"
+
+# Config file associated with the instance
+
+NDS_CONFIG="$PROJECTLOC/configs/sanit.config.yaml"
+
+BASE_CMD="$ENVLOC/bin/python $MANAGELOC runfcgi --method=prefork --host=$ADDRESS --port=$SERVER_PORT --pidfile=$SERVER_PID --daemonize"
+
+start_server () {
+  if [ -f $1 ]; then
+    #pid exists, check if running
+    if [ "$(ps -p `cat $1` | wc -l)" -gt 1 ]; then
+  	action $"Starting $PROJNAME -- ${ADDRESS}:${2}..." /bin/false
+        echo " * Server already running on ${ADDRESS}:${2}"
+       return
+    fi
+  fi
+  cd $PROJECTLOC
+  . $ENVLOC/bin/activate
+  export NDS_CONFIG=$NDS_CONFIG
+  $BASE_CMD
+  action $"Starting $PROJNAME -- ${ADDRESS}:${2}..." /bin/true
+}
+
+restart_server () {
+  PID=`cat $1`
+  kill -1 $PID
+  action $"Sending SIGHUP to $PROJNAME -- ${ADDRESS}:${2}..." /bin/true
+}
+
+stop_server (){
+  if [ -f $1 ] && [ "$(ps -p `cat $1` | wc -l)" -gt 1 ]; then
+    kill `cat $1`
+    rm $1
+    export NDS_CONFIG=''
+    action $"Stopping $PROJNAME -- ${ADDRESS}:${2}..." /bin/true
+  else 
+    action $"Stopping $PROJNAME -- ${ADDRESS}:${2}..." /bin/false
+    if [ -f $1 ]; then
+      echo " * Server ${ADDRESS}:${2} not running"
+    else
+      echo " * No pid file found for server ${ADDRESS}:${2}"
+    fi
+  fi
+}
+
+case "$1" in
+'start')
+  start_server $SERVER_PID $SERVER_PORT 
+  ;;
+'stop')
+  stop_server $SERVER_PID $SERVER_PORT
+  ;;
+'restart')
+  stop_server $SERVER_PID $SERVER_PORT
+  sleep 2
+  start_server $SERVER_PID $SERVER_PORT 
+  ;;
+*)
+  echo "Usage: $0 { start | stop | restart }"
+  ;;
+esac
+
+exit 0

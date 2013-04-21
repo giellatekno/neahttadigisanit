@@ -1,8 +1,7 @@
 
-def flatten(_list):
-    return list(sum(_list, []))
-
 from lexicon import lexicon_overrides
+from morphology.utils import tagfilter
+from utils.data import flatten
 
 class EntryNodeIterator(object):
     """ A class for iterating through the result of an LXML XPath query,
@@ -165,7 +164,6 @@ class DetailedFormat(EntryNodeIterator):
 
         # node, and default format for if a formatter doesn't exist for
         # iso
-        from neahtta import tagfilter
 
         source_lang = self.query_kwargs.get('source_lang')
         target_lang = self.query_kwargs.get('target_lang')
@@ -250,7 +248,6 @@ class FrontPageFormat(EntryNodeIterator):
 
         # node, and default format for if a formatter doesn't exist for
         # iso
-        from neahtta import tagfilter
 
         source_lang = self.query_kwargs.get('source_lang')
         target_lang = self.query_kwargs.get('target_lang')

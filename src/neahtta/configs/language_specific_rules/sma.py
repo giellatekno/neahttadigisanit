@@ -31,11 +31,11 @@ Example target string formatting function:
 
 from morphology import generation_overrides as rewrites
 from lexicon import lexicon_overrides
+from flask import current_app
 
 @lexicon_overrides.entry_source_formatter('sma')
 def format_source_sma(ui_lang, e, target_lang):
     from neahtta import tagfilter_conf
-    from neahtta import app
 
     paren_args = []
 
@@ -45,7 +45,7 @@ def format_source_sma(ui_lang, e, target_lang):
     _pos = e.xpath(_str_norm % 'lg/l/@pos')
 
     if _pos:
-        filters = app.config.tag_filters.get(('sma', 'nob'))
+        filters = current_app.config.tag_filters.get(('sma', 'nob'))
         paren_args.append(tagfilter_conf(filters, _pos))
 
     if _class:

@@ -1,4 +1,4 @@
-﻿# -*- encoding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 # NOTE: if copying this for a new language, remember to make sure that
 # it's being imported in __init__.py
 
@@ -391,8 +391,8 @@ def remove_analyses_for_specific_closed_classes(xml, fst):
 
 @lexicon.entry_source_formatter('sme')
 def format_source_sme(ui_lang, e, target_lang):
-    from neahtta import tagfilter_conf
-    from neahtta import app
+    from morphology.utils import tagfilter_conf
+    from flask import current_app
 
     paren_args = []
 
@@ -412,7 +412,7 @@ def format_source_sme(ui_lang, e, target_lang):
         _lemma_ref_link = ''
 
     if _pos:
-        filters = app.config.tag_filters.get(('sme', ui_lang))
+        filters = current_app.config.tag_filters.get(('sme', ui_lang))
         if filters:
             paren_args.append(tagfilter_conf(filters, _pos))
         else:
