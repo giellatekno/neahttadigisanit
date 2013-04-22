@@ -6,6 +6,15 @@ are looking at.
 
 ## Goals and TODOs
 
+- TODO: need to modularize a bit, as this is getting unwieldy
+        a good thing to use seems to be stitch: 
+        https://github.com/sstephenson/stitch/
+        
+        - however, it seems like it takes a good amount of work to convert this
+        to something more modular, so, maybe best to wait until it becomes
+        unavoidable
+
+
 - TODO: recompile bootstrap from less with specific namespace to ensure
         that style changes only occur in webdict_options and the popup.
 
