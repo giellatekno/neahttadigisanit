@@ -111,10 +111,11 @@ jQuery(document).ready ($) ->
               <a href="#" data-target="#options">#{ _("Options") }</a>
             </li>
             <li><a href="#" data-target="#about">#{ _("About") }</a></li>
+            <li style="display: none;" id="debug"><a href="#" data-target="#advanced">#{ _("Advanced") }</a></li>
           </ul>
           <div id="options" class="minipanel">
             <form class="">
-              <label class="control-label" for="inputEmail">#{ _("Language") }</label>
+              <label class="control-label" for="inputEmail">#{ _("Dictionary") }</label>
               <select type="radio" 
                      name="language_pair">
               #{makeLanguageOption(opts.dictionaries)}
@@ -123,11 +124,27 @@ jQuery(document).ready ($) ->
               <button type="submit" class="btn" id="save">#{_('Save')}</button>
             </form>
           </div>
+          <div id="advanced" style="display: none;" class="minipanel">
+            <br />
+            <strong>Advanced settings</strong>
+            <p>This deletes all stored settings, dictionary names, and translations of the application.</p>
+            <a href="#" type="submit" class="btn btn-small" id="refresh_settings">#{_('Refresh settings')}</a>
+            <br />
+            <br />
+            <strong>Hostname:</strong>
+            <blockquote><pre>#{API_HOST}</pre></blockquote>
+            <strong>Alerts:</strong>
+            <p>Display an alert for debugging.</p>
+            <a href="#" type="submit" class="btn btn-small" id="display_update_window">#{_('Update detected')}</a>
+            <a href="#" type="submit" class="btn btn-small" id="display_ie8_warning_window">#{_('IE8 Warning')}</a>
+            <br />
+            <br />
+          </div>
           <div id="about" style="display: none;" class="minipanel">
-          <p>#{ _("In order to look up a word, hold down the <em>Alt</em> or <em>Option</em> (⌥) key, and doubleclick on a word. The service will contact the dictionary, and return a word after a short pause.") }</p>
-          <p> </p>
-          <p>#{ _('If you find a bug, or if the bookmark does not work on a specific page <a href="mailto:giellatekno@hum.uit.no">please contact us</a>. Tell us what page didn\'t work, or what you did when you discovered the problem.') }
-          </p>
+              <p>#{ _("In order to look up a word, hold down the <em>Alt</em> or <em>Option</em> (⌥) key, and doubleclick on a word. The service will contact the dictionary, and return a word after a short pause.") }</p>
+              <p> </p>
+              <p>#{ _('If you find a bug, or if the bookmark does not work on a specific page <a href="mailto:giellatekno@hum.uit.no">please contact us</a>. Tell us what page didn\'t work, or what you did when you discovered the problem.') }
+              </p>
           </div>
         </div>
       </div>
@@ -157,6 +174,23 @@ jQuery(document).ready ($) ->
         optsp = el.find('div.option_panel')
         optsp.toggle()
         el.find('a.close').toggle()
+        return false
+
+      el.find('a#refresh_settings').click () ->
+        DSt.set('digisanit-select-langpair', null)
+        DSt.set('nds-languages', null)
+        DSt.set('nds-localization', null)
+        DSt.set('nds-stored-config', null)
+        el.find('#advanced').append $('<p />').html("Reload the plugin...")
+        # window.location.reload()
+        return false
+
+      el.find('a#display_update_window').click () ->
+        window.newVersionNotify()
+        return false
+      
+      el.find('a#display_ie8_warning_window').click () ->
+        window.ie8Notify()
         return false
 
       el.find('select[name="language_pair"]').change (e) ->
@@ -419,6 +453,8 @@ jQuery(document).ready ($) ->
       )
       return false
 
+    window.newVersionNotify = newVersionNotify
+
     ie8Notify = () ->
       $.getJSON(
         'http://localhost:5000/read/ie8_instructions/json/' + '?callback=?'
@@ -437,6 +473,7 @@ jQuery(document).ready ($) ->
       )
       return true
 
+    window.ie8Notify = ie8Notify
 
     # This runs after either we get the response from the server about
     # language pairs and internationalization, or recover it from local
@@ -463,6 +500,11 @@ jQuery(document).ready ($) ->
 
         if evt.altKey
           element = evt.target
+          within_options = $(element).parents('#webdict_options')
+          console.log within_options
+          if within_options.length > 0
+          	$(within_options[0]).find('#debug').show()
+          	return false
           range = getFirstRange()
           string = cloneContents(range)
           if range and string
