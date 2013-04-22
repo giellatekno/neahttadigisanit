@@ -9,20 +9,20 @@ uglify = require "uglify-js"
 # TODO: include giellatekno license in compiled JS files
 
 deps = [
-  'src/bootstrap-dropdown.js'
-  'src/bootstrap-tooltip.js'
-  'src/bootstrap-popover.js'
-  'src/bootstrap-modal.js'
-  'src/DSt.js'
-  'src/semver.js'
-  'src/rangy-core.js'
+  'src/libs/bootstrap-dropdown.js'
+  'src/libs/bootstrap-tooltip.js'
+  'src/libs/bootstrap-popover.js'
+  'src/libs/bootstrap-modal.js'
+  'src/libs/DSt.js'
+  'src/libs/semver.js'
+  'src/libs/rangy-core.js'
   'src/jquery.neahttadigisanit.js'
 ]
 
 
 stylesheets = [
-  'src/bootstrap.custom.css'
-  'src/jquery.neahttadigisanit.css'
+  'src/css/bootstrap.custom.css'
+  'src/css/jquery.neahttadigisanit.css'
 ]
 
 appFiles = deps + stylesheets
