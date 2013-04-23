@@ -1,13 +1,31 @@
+# New language / linguistic todos 
+
+ * example words for about pages
+ * kpv <l /> node pos attr needs to be changed up a bit so PoS matches
+   up, switch -SG and etc., to another attribute 
+ * layout bugs out with mrj because about text is too long
+ * mhr/fin - PoS missing from <l /> node, needs to be moved from <pos> node
+ * mhr name? likely not the same as mrj
+
+ * go through contexts for sme and sma 
+   contexts and dictionarywork.html to get them all
+     
+     context="mun"          -- v. prs. s1. - (mun) manan
+     context="bivttas"      -- adj. attr.  - alit (bivttas)
+     context="gápmagat"     -- num. ??     - guovttit (gápmagat)
+
 # TODAY
+
+ * ie8 rendering bug on flag lists in header on main page, but not on about page
+
+ * debug view for language configs, so people can peek at what paradigms
+   are to be generated, tag sets, etc., analyzers exist, lexica exist
+
+ * detail view, include generation info in opt+shift+? debug
 
  * See bugs 
    
-   1598 - in prog
-    - miniparadigm still showing ellipsis on long tags...
-
- * TODO: new wordpress release
-
- * BUG: create_app called twice but only on first post request.
+ * new wordpress release
 
  * change cache settings for plugin js in nginx configs, some browsers are
    unwilling to get a new version even when it exists.
@@ -56,26 +74,7 @@
   split these out by language pair used in the lookup. above list is just
   everything in access logs.
 
-## post gtoahpa update notes
-
- * missing some fsts on gtoahpa - some-sme.fst is now built but with
-   another name, need to make sure that configs get updated so that
-   automatic scripts to copy fsts will copy the new version
-
- * split sanit_makedict into two for less ambiguity
-
- * had to force cache to refresh in my browser to make things look
-   alright, could affect others
-
 ## post launch TODOs:
-
- * URLs
-    yrk: vada.oahpa.no
-    mrh, mrj: muter.oahpa.no
-    kpv: kyv.oahpa.no
-
-    myv, mdf: valks.oahpa.no
-    olo, izh, liv, fkv: sanat.oahpa.no
 
  * bookmark icon for iOS
 
@@ -84,50 +83,27 @@
     /apple-touch-icon-precomposed.png 
     /apple-touch-icon.png 
 
- * svn move to apps/neahttadigisánit, apps/nds
-
- * certificates, nginx configs?
+ * gtweb: certificates
 
  * translate the mobile bookmark bubble, maybe modify/write one for
    android, where the process is a little more complex
  
- * do not analyze if miniparadigm exists, e.g., searching for munnje 
-   results in mun, but we only want to see munnje.
-
- * vise miniparadigmene fra de statiske filene 
-   - sjekk at alle pos er med
-
  * Link til read i selve ordbok-grensesnittet -- kor?
    -- "Vil du ha oversatt ord i en tekst?" 
    -- "Háliidatgo jorgalahttit sániid teavsttas?"
    -- "Haluatko käännöksen tekstissä esiintyvään sanaan?"
 
- * Tag part translation/localization: v. Ind Prs Pl3 -> definitions in all languages
-   - main/gt/common/src/tag-no.regex
-
  * autocomplete SoMe variant
 
 ## Next:
 
- * code for context is in place, just need to go through list of
-   contexts and dictionarywork.html to get them all
-     
-     context="mun"          -- v. prs. s1. - (mun) manan
-     context="bivttas"      -- adj. attr.  - alit (bivttas)
-     context="gápmagat"     -- num. ??     - guovttit (gápmagat)
-
- * Tag part translation/localization: v. Ind Prs Pl3 -> definitions in all languages
-   - main/gt/common/src/tag-no.regex
-
  * Glossary page explaining each tag part. 
 
- * mobile menu language variant display
+ * mobile menu language variant display (e.g. SoMe vs. Norm)
 
  * bookmarklet unload on additional click
    
  * word test-list - http://giellatekno.uit.no/doc/dicts/checklist.html
-
- * detailed page needs autocomplete for form
 
  * dropdown events on mobile are a bit funny for the menu on the
    detailed view, and it is impossible to select a new language pair
@@ -145,35 +121,22 @@
 
 ## Would be nice
 
- * Easier means of keeping track of updating FST and lexicon
-   dependencies from svn? or at least checking in svn if there are
-   updates, not necessarily fetching them
+ * Makefile: check which FST and lexica are updated on svn up, and then
+   automatically rebuild all
 
  * advanced search form: here we get to have some nerdy linguistic fun.
 
-## Testing notes for JS click plugin:
-
- * Firefox error - kapittel 4.1 - skuvla -> skuvlii - works, but there's
-   not skuvla
-
-   TODO: test
-
 ## Features to develop at some point:
 
- * Use something other than werkzeug's default cache, once things are
-   ready for actual use.
+ * Use something other than werkzeug's default cache
 
  * Maybe should provide an individual process for each language pair?
    Should be easy to split off new processes by pair/endpoint. Note also
    werkzeug DispatcherMiddleware and PathDispatcher:
    http://flask.pocoo.org/docs/patterns/appdispatch/
 
- * added a copy of lookupserv.py, with some tweaks to generalize it for
-   any lookup process. This will speed up lookups tons, since the
-   slowest part is the process starting up. If each Morphology class had
-   its own lookupserv that was automatically launched with the main
-   service, things will go a lot faster. It may be there is a better way
-   to do subprocesses for an application like this, but for now this
-   will work. any improvements will just be drop-in replacements.
+ * getting near the time to adapt version of lookupserv.py that is checked in
+   for actual use. spawn it on process run, so that no one needs to think/worry
+   that it exists aside from looking at process hierarchy in htop
 
 
