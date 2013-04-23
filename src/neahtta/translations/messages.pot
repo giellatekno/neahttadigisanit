@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-04-20 22:51-0500\n"
+"POT-Creation-Date: 2013-04-23 18:32-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,28 +66,32 @@ msgstr ""
 msgid "Western Mari"
 msgstr ""
 
-#: configs/language_names.py:35
+#: configs/language_names.py:33
+msgid "Eastern Mari"
+msgstr ""
+
+#: configs/language_names.py:36
 msgid "Nenets"
 msgstr ""
 
-#: configs/language_names.py:38 configs/language_names.py:44
+#: configs/language_names.py:39 configs/language_names.py:45
 msgid "Finnish"
 msgstr ""
 
-#: configs/language_names.py:39 configs/language_names.py:45
-#: configs/language_names.py:46
+#: configs/language_names.py:40 configs/language_names.py:46
+#: configs/language_names.py:47
 msgid "Norwegian"
 msgstr ""
 
-#: configs/language_names.py:41 configs/language_names.py:42
+#: configs/language_names.py:42 configs/language_names.py:43
 msgid "Russian"
 msgstr ""
 
-#: configs/language_names.py:47 configs/language_names.py:48
+#: configs/language_names.py:48 configs/language_names.py:49
 msgid "Latvian"
 msgstr ""
 
-#: configs/language_names.py:49
+#: configs/language_names.py:50
 msgid "English"
 msgstr ""
 
@@ -100,17 +104,34 @@ msgid "Options"
 msgstr ""
 
 #: static/js/bookmarklet.js:1245 templates/about.baakoeh.html:7
-#: templates/about.sanat.html:7 templates/about.sanit.html:7
-#: templates/base.html:82
+#: templates/about.muter.html:7 templates/about.sanat.html:7
+#: templates/about.sanit.html:7 templates/about.vada.html:7
+#: templates/about.valks.html:7 templates/base.html:82
 msgid "About"
 msgstr ""
 
 #: static/js/bookmarklet.js:1245
-msgid "Language"
+msgid "Advanced"
+msgstr ""
+
+#: static/js/bookmarklet.js:1245
+msgid "Dictionary"
 msgstr ""
 
 #: static/js/bookmarklet.js:1245
 msgid "Save"
+msgstr ""
+
+#: static/js/bookmarklet.js:1245
+msgid "Refresh settings"
+msgstr ""
+
+#: static/js/bookmarklet.js:1245
+msgid "Update detected"
+msgstr ""
+
+#: static/js/bookmarklet.js:1245
+msgid "IE8 Warning"
 msgstr ""
 
 #: static/js/bookmarklet.js:1245
@@ -127,27 +148,27 @@ msgid ""
 "what page didn't work, or what you did when you discovered the problem."
 msgstr ""
 
-#: static/js/bookmarklet.js:1294
+#: static/js/bookmarklet.js:1310
 msgid "Error!"
 msgstr ""
 
-#: static/js/bookmarklet.js:1294
+#: static/js/bookmarklet.js:1310
 msgid "Could not connect to dictionary server"
 msgstr ""
 
-#: static/js/bookmarklet.js:1294
+#: static/js/bookmarklet.js:1310
 msgid "Close"
 msgstr ""
 
-#: static/js/bookmarklet.js:1416 static/js/bookmarklet.js:1691
+#: static/js/bookmarklet.js:1432 static/js/bookmarklet.js:1715
 msgid "Unknown word"
 msgstr ""
 
-#: static/js/bookmarklet.js:1417
+#: static/js/bookmarklet.js:1433
 msgid "You are using"
 msgstr ""
 
-#: static/js/bookmarklet.js:1419
+#: static/js/bookmarklet.js:1435
 msgid "Meaning not found"
 msgstr ""
 
@@ -161,23 +182,27 @@ msgstr ""
 msgid "Whoops! There was some kind of error."
 msgstr ""
 
-#: templates/about.baakoeh.html:17 templates/about.sanat.html:17
-#: templates/about.sanit.html:17
+#: templates/about.baakoeh.html:17 templates/about.muter.html:17
+#: templates/about.sanat.html:17 templates/about.sanit.html:17
+#: templates/about.vada.html:17 templates/about.valks.html:17
 msgid "A dictionary that understands what you're looking for."
 msgstr ""
 
-#: templates/about.baakoeh.html:18 templates/about.sanat.html:18
-#: templates/about.sanit.html:18
+#: templates/about.baakoeh.html:18 templates/about.muter.html:18
+#: templates/about.sanat.html:18 templates/about.sanit.html:18
+#: templates/about.vada.html:18 templates/about.valks.html:18
 msgid "(... And is mobile-friendly!)"
 msgstr ""
 
-#: templates/about.baakoeh.html:22 templates/about.sanat.html:22
-#: templates/about.sanit.html:22
+#: templates/about.baakoeh.html:22 templates/about.muter.html:22
+#: templates/about.sanat.html:22 templates/about.sanit.html:22
+#: templates/about.vada.html:22 templates/about.valks.html:22
 msgid "Free"
 msgstr ""
 
-#: templates/about.baakoeh.html:23 templates/about.sanat.html:23
-#: templates/about.sanit.html:23
+#: templates/about.baakoeh.html:23 templates/about.muter.html:23
+#: templates/about.sanat.html:23 templates/about.sanit.html:23
+#: templates/about.vada.html:23 templates/about.valks.html:23
 msgid ""
 "Everything (or, well, almost everything) that\n"
 "                    concerns minority languages should be free. Here\n"
@@ -185,13 +210,15 @@ msgid ""
 "                    tools."
 msgstr ""
 
-#: templates/about.baakoeh.html:29 templates/about.sanat.html:29
-#: templates/about.sanit.html:29
+#: templates/about.baakoeh.html:29 templates/about.muter.html:29
+#: templates/about.sanat.html:29 templates/about.sanit.html:29
+#: templates/about.vada.html:29 templates/about.valks.html:29
 msgid "Open-Source"
 msgstr ""
 
-#: templates/about.baakoeh.html:30 templates/about.sanat.html:30
-#: templates/about.sanit.html:30
+#: templates/about.baakoeh.html:30 templates/about.muter.html:30
+#: templates/about.sanat.html:30 templates/about.sanit.html:30
+#: templates/about.vada.html:30 templates/about.valks.html:30
 msgid ""
 "Everything here is based on open-source tools. Do you\n"
 "                have an idea for an app or research project that needs\n"
@@ -202,56 +229,53 @@ msgid ""
 "                files, and morphological and syntactic analyzers."
 msgstr ""
 
-#: templates/about.baakoeh.html:38 templates/about.sanat.html:38
-#: templates/about.sanit.html:38
+#: templates/about.baakoeh.html:38 templates/about.muter.html:38
+#: templates/about.sanat.html:38 templates/about.sanit.html:38
+#: templates/about.vada.html:38 templates/about.valks.html:38
 msgid "Linguistic basis"
 msgstr ""
 
-#: templates/about.baakoeh.html:39 templates/about.sanat.html:39
-#: templates/about.sanit.html:39
+#: templates/about.baakoeh.html:39 templates/about.muter.html:39
+#: templates/about.sanat.html:39 templates/about.sanit.html:39
+#: templates/about.vada.html:39 templates/about.valks.html:39
 msgid ""
 "Write what you wish, and the dictionary will analyze it to break apart "
 "compound words and find base forms."
 msgstr ""
 
-#: templates/about.baakoeh.html:45 templates/about.sanat.html:45
-#: templates/about.sanit.html:45
+#: templates/about.baakoeh.html:45 templates/about.sanit.html:45
 msgid "gå, dra, reise"
 msgstr ""
 
-#: templates/about.baakoeh.html:52 templates/about.sanat.html:52
-#: templates/about.sanit.html:52
+#: templates/about.baakoeh.html:52 templates/about.muter.html:52
+#: templates/about.sanat.html:52 templates/about.sanit.html:52
+#: templates/about.vada.html:52 templates/about.valks.html:52
 msgid "Source material"
 msgstr ""
 
-#: templates/about.baakoeh.html:59 templates/about.sanat.html:59
-#: templates/about.sanit.html:59
+#: templates/about.baakoeh.html:59 templates/about.sanit.html:59
 msgid "sme ↔ nob"
 msgstr ""
 
-#: templates/about.baakoeh.html:60 templates/about.sanat.html:60
-#: templates/about.sanit.html:60
+#: templates/about.baakoeh.html:60 templates/about.sanit.html:60
 msgid ""
 "North Sámi → Norwegian builds on Nils Jernsletten's dictionary "
 "<em>Álgosátnegirji</em>, but here it has been more than doubled in "
 "content."
 msgstr ""
 
-#: templates/about.baakoeh.html:61 templates/about.sanat.html:61
-#: templates/about.sanit.html:61
+#: templates/about.baakoeh.html:61 templates/about.sanit.html:61
 msgid ""
 "Norwegian → North Sámi is a converted version of North Sámi → Norwegian, "
 "but we have also revised the content and added frequent words from "
 "Norwegian."
 msgstr ""
 
-#: templates/about.baakoeh.html:64 templates/about.sanat.html:64
-#: templates/about.sanit.html:64
+#: templates/about.baakoeh.html:64 templates/about.sanit.html:64
 msgid "sma ↔ nob"
 msgstr ""
 
-#: templates/about.baakoeh.html:65 templates/about.sanat.html:65
-#: templates/about.sanit.html:65
+#: templates/about.baakoeh.html:65 templates/about.sanit.html:65
 msgid ""
 "The dictionaries for South Sámi and Norwegian build on material prepared "
 "by Albert Jåma and Tove Brustad in the <a class=\"blue\" "
@@ -262,13 +286,11 @@ msgid ""
 "class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
 msgstr ""
 
-#: templates/about.baakoeh.html:68 templates/about.sanat.html:68
-#: templates/about.sanit.html:68
+#: templates/about.baakoeh.html:68 templates/about.sanit.html:68
 msgid "sme ↔ fin"
 msgstr ""
 
-#: templates/about.baakoeh.html:69 templates/about.sanat.html:69
-#: templates/about.sanit.html:69
+#: templates/about.baakoeh.html:69 templates/about.sanit.html:69
 msgid ""
 "Dictionaries for North Sámi and Finnish are based on lexical material "
 "from the <a class=\"green\" href=\"http://kotus.fi\">Institute for the "
@@ -278,14 +300,132 @@ msgid ""
 "Finnish."
 msgstr ""
 
-#: templates/about.baakoeh.html:70 templates/about.sanat.html:70
-#: templates/about.sanit.html:70
+#: templates/about.baakoeh.html:70 templates/about.sanit.html:70
 msgid "Each of the dictionaries contains about 11,000 base words."
 msgstr ""
 
-#: templates/about.baakoeh.html:78 templates/about.sanat.html:78
-#: templates/about.sanit.html:78
+#: templates/about.baakoeh.html:78 templates/about.muter.html:81
+#: templates/about.sanat.html:88 templates/about.sanit.html:78
+#: templates/about.vada.html:78 templates/about.valks.html:90
 msgid "More to come..."
+msgstr ""
+
+#: templates/about.muter.html:45 templates/about.vada.html:45
+#: templates/about.valks.html:45
+msgid "mennä, lähteä, kulkea"
+msgstr ""
+
+#: templates/about.muter.html:59
+msgid "mrj ↔ fin"
+msgstr ""
+
+#: templates/about.muter.html:60
+msgid ""
+"Dictionaries for Hill Mari and Finnish are based\n"
+"                    on lexical material from a large array of "
+"dictionaries and\n"
+"                    written literature from the 20th and 21th centuries. "
+"A\n"
+"                    note-worthy dictionary is the Hill Mari - Russian\n"
+"                    dictionary by Anna A. Savatkova (1981). Translation "
+"work is\n"
+"                    being conducted at\n"
+"                the University of Helsinki by Julia Kuprina with funding "
+"from\n"
+"                the Kone Foundation."
+msgstr ""
+
+#: templates/about.sanat.html:45
+msgid "mennä, tapahtua, viedä, johtaa, edistyä"
+msgstr ""
+
+#: templates/about.sanat.html:59
+msgid "liv ↔ fin"
+msgstr ""
+
+#: templates/about.sanat.html:60
+msgid ""
+"Dictionaries for Livonian and Finnish are based\n"
+"                on the lexical materials and scientific research behind "
+"the\n"
+"                Livonian-Estonian-Latvian dictionary by Tiit-Rein Viitso "
+"and\n"
+"                Valts Ernštreits. Finnish translation work, content "
+"analysis\n"
+"                and coordination is being continued in Helsinki by Renate"
+"\n"
+"                Blumberga with funding from the Kone Foundation."
+msgstr ""
+
+#: templates/about.sanat.html:69
+msgid "olo ↔ fin"
+msgstr ""
+
+#: templates/about.sanat.html:70
+msgid ""
+"Dictionaries for Livvi Karelian (Olonets) and\n"
+"                Finnish are based on lexical material from the Livvi "
+"language\n"
+"                newspaper \"Oma mua\" and a large array of dictionaries.\n"
+"                Translation work is being conducted at the University of\n"
+"                Helsinki by Timo Rantakaulio with funding from the Kone\n"
+"                Foundation."
+msgstr ""
+
+#: templates/about.vada.html:59
+msgid "yrk ↔ fin"
+msgstr ""
+
+#: templates/about.vada.html:60
+msgid ""
+"Dictionaries for Nenets and Finnish are based on\n"
+"                the lexical materials and scientific research by Natalia "
+"M.\n"
+"                Tereschenko, Tapani Salminen and Sven-Erik Soosaar. "
+"Finnish\n"
+"                translation work is being done in Tallin by Sven-Erik "
+"Soosaar\n"
+"                with funding from the Kone Foundation."
+msgstr ""
+
+#: templates/about.valks.html:59
+msgid "myv ↔ fin"
+msgstr ""
+
+#: templates/about.valks.html:60
+msgid ""
+"Dictionaries for Erzya and Finnish are based on\n"
+"                lexical material from a large array of dictionaries and "
+"written\n"
+"                literature from the 20th and 21th centuries. Initial "
+"Finnish\n"
+"                translations have been added from the content of the\n"
+"                Erzya-Finnish dictionary by Jaana Niemi and Mihail Mosin "
+"at the\n"
+"                Universities in Turku and Saransk. There are additions "
+"being\n"
+"                made on the basis of ongoing translation work at the "
+"University\n"
+"                of Helsinki."
+msgstr ""
+
+#: templates/about.valks.html:70
+msgid "mdf ↔ fin"
+msgstr ""
+
+#: templates/about.valks.html:71
+msgid ""
+"Dictionaries for Moksha and Finnish are based on\n"
+"                lexical material from a large array of dictionaries and "
+"written\n"
+"                literature from the 20th and 21th centuries. Initial "
+"Finnish\n"
+"                translations have been added from the content of the\n"
+"                Moksha-Finnish dictionary by Eeva Herrala and Aleksandr\n"
+"                Feoktistov at the Universities in Turku and Saransk.\n"
+"                Translation work is being continued at the University of\n"
+"                Helsinki by Merja Salo with funding from the Kone "
+"Foundation."
 msgstr ""
 
 #: templates/base.html:74
@@ -545,187 +685,6 @@ msgstr ""
 
 #: templates/word_detail.html:188
 msgid "More information about this word"
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:313
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:313
-msgid "usage: "
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:821
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:821
-msgid ".__call__() not defined"
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:1105
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:1105
-#, python-format
-msgid "unknown parser %r (choices: %s)"
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:1146
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:1146
-#, python-format
-msgid "argument \"-\" with mode %r"
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:1349
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:1349
-#, python-format
-msgid "cannot merge actions - two groups are named %r"
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:1387
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:1387
-msgid "'required' is an invalid argument for positionals"
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:1407
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:1407
-#, python-format
-msgid "invalid option string %r: must start with a character %r"
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:1428
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:1428
-#, python-format
-msgid "dest= is required for options like %r"
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:1445
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:1445
-#, python-format
-msgid "invalid conflict_resolution value: %r"
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:1463
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:1463
-#, python-format
-msgid "conflicting option string(s): %s"
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:1526
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:1526
-msgid "mutually exclusive arguments must be optional"
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:1596
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:1596
-msgid "positional arguments"
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:1597
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:1597
-msgid "optional arguments"
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:1615
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:1615
-msgid "show this help message and exit"
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:1621
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:1621
-msgid "show program's version number and exit"
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:1653
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:1653
-msgid "cannot have multiple subparser arguments"
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:1705
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:1705
-#, python-format
-msgid "unrecognized arguments: %s"
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:1802
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:1802
-#, python-format
-msgid "not allowed with argument %s"
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:1848
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:1862
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:1848
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:1862
-#, python-format
-msgid "ignored explicit argument %r"
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:1952
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:1952
-msgid "too few arguments"
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:1959
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:1959
-#, python-format
-msgid "argument %s is required"
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:1973
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:1973
-#, python-format
-msgid "one of the arguments %s is required"
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:2019
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:2019
-msgid "expected one argument"
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:2020
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:2020
-msgid "expected at most one argument"
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:2021
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:2021
-msgid "expected at least one argument"
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:2023
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:2023
-#, python-format
-msgid "expected %s argument(s)"
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:2080
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:2080
-#, python-format
-msgid "ambiguous option: %s could match %s"
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:2142
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:2142
-#, python-format
-msgid "unexpected option string: %s"
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:2243
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:2243
-#, python-format
-msgid "%r is not callable"
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:2259
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:2259
-#, python-format
-msgid "invalid %s value: %r"
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:2269
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:2269
-#, python-format
-msgid "invalid choice: %r (choose from %s)"
-msgstr ""
-
-#: tmp/gunicorn-0.17.2/build/lib/gunicorn/argparse_compat.py:2362
-#: tmp/gunicorn-0.17.2/gunicorn/argparse_compat.py:2362
-#, python-format
-msgid "%s: error: %s\n"
 msgstr ""
 
 #: views/main.py:89
