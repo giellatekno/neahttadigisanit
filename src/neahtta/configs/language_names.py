@@ -30,6 +30,7 @@ NAMES = dict([
 
     # muter
     ('mrj', _(u"Western Mari")),
+    ('mhr', _(u"Eastern Mari")),
 
     # vada
     ('yrk', _(u"Nenets")),
