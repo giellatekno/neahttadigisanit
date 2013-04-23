@@ -130,9 +130,16 @@ vada: init yrk fin yrk-lexicon
 	@echo "*********************************"
 	@echo "**   (yrk = Nenets)            **"
 	@echo "*********************************"
-	@echo "TODO: install analysers in expected paths"
+	@echo ""
+	@echo "Now install analysers in expected paths."
+	@echo "    sudo make vada-install"
+	@echo "... or copy the fsts in fst/ and ifst/ to their right places."
 
+vada-yrk-install: fst/yrk.fst ifst/iyrk.fst
+	mkdir -p /opt/smi/yrk/bin/
+	cp $^ /opt/smi/yrk/bin/
 
+vada-install: vada-yrk-install
 
 
 
@@ -209,10 +216,27 @@ valks: init myv mdf fin myv-lexicon mdf-lexicon
 	@echo "**   (myv = Erzya)             **"
 	@echo "**   (mdf = Moksha)            **"
 	@echo "*********************************"
-	@echo "TODO: install analysers in expected paths"
+	@echo ""
+	@echo "Now install analysers in expected paths."
+	@echo "    sudo make valks-install"
+	@echo "... or copy the fsts in fst/ and ifst/ to their right places."
 
 
+valks-fin-install: fst/fin.fst ifst/ifin.fst
+	mkdir -p /opt/smi/fin/bin/
+	cp $^ /opt/smi/fin/bin/
 
+valks-myv-install: fst/myv.fst ifst/imyv.fst
+	mkdir -p /opt/smi/myv/bin/
+	cp $^ /opt/smi/myv/bin/
+
+valks-mdf-install: fst/mdf.fst ifst/imdf.fst
+	mkdir -p /opt/smi/mdf/bin/
+	cp $^ /opt/smi/mdf/bin/
+
+valks-install: valks-myv-install \
+			   valks-mdf-install \
+			   valks-fin-install
 
 
 #####
