@@ -8,6 +8,7 @@
 
 ###         #Analyzers
 ###          #finanalysers
+###          #rusanalysers TODO
 ###         
 ###         #vadatargets
 ###          #yrkanalysers
@@ -16,6 +17,11 @@
 ###         #valkstargets
 ###          #myvanalysers
 ###          #mdfanalysers
+###         
+###         #mutertargets
+###          #mhranalysers
+###          #mrjanalysers
+###          #muterlexicon
 ###         
 ###         #sanattargets
 ###          #oloanalysers
@@ -77,6 +83,27 @@ fst/fin.fst:
 
 .PHONY: fin
 fin: fst/fin.fst
+
+# TODO: actually in st
+
+##
+### #rusanalysers
+##
+
+fst/rus.fst:
+	@echo "***********************"
+	@echo "** Building rus FSTs **"
+	@echo "***********************"
+	@echo ""
+	cd $(GTHOME)/langs/rus/ ; \
+	  ./autogen.sh ; \
+	  ./configure  ; \
+	  make ; \
+	  cp src/analyser-gt-desc.xfst  $(TARGET_DIR)/fst/rus.fst ; \
+	  cp src/generator-gt-norm.xfst $(TARGET_DIR)/ifst/irus.fst
+
+.PHONY: rus
+rus: fst/rus.fst
 
 
 
@@ -140,6 +167,120 @@ vada-yrk-install: fst/yrk.fst ifst/iyrk.fst
 	cp $^ /opt/smi/yrk/bin/
 
 vada-install: vada-yrk-install
+
+#####
+##### #mutertargets
+#####
+
+##
+### #mhranalysers
+##
+
+fst/mhr.fst:
+	@echo "***********************"
+	@echo "** Building mhr FSTs **"
+	@echo "***********************"
+	@echo ""
+	cd $(GTHOME)/langs/mhr/ ; \
+	  ./autogen.sh ; \
+	  ./configure  ; \
+	  make ; \
+	  cp src/analyser-gt-desc.xfst  $(TARGET_DIR)/fst/mhr.fst ; \
+	  cp src/generator-gt-norm.xfst $(TARGET_DIR)/ifst/imhr.fst
+
+##
+### #mrjanalysers
+##
+
+fst/mrj.fst:
+	@echo "***********************"
+	@echo "** Building mrj FSTs **"
+	@echo "***********************"
+	@echo ""
+	cd $(GTHOME)/langs/mrj/ ; \
+	  ./autogen.sh ; \
+	  ./configure  ; \
+	  make ; \
+	  cp src/analyser-gt-desc.xfst  $(TARGET_DIR)/fst/mrj.fst ; \
+	  cp src/generator-gt-norm.xfst $(TARGET_DIR)/ifst/imrj.fst
+
+.PHONY: mhr
+mhr: fst/mhr.fst
+
+.PHONY: mrj
+mrj: fst/mrj.fst
+
+##
+### #muterlexicon
+##
+
+
+mrj-all.xml: $(GTHOME)/langs/mrj/src/morphology/stems/*.xml
+	@echo "**************************"
+	@echo "** Building mrj lexicon **"
+	@echo "**************************"
+	@echo ""
+	mkdir mrj
+	cp $^ mrj/
+	$(SAXON) inDir=$(pwd)/mrj/ > mrj-all.xml
+	rm -rf mrj/
+
+mhr-all.xml: $(GTHOME)/langs/mhr/src/morphology/stems/*.xml
+	@echo "**************************"
+	@echo "** Building mhr lexicon **"
+	@echo "**************************"
+	@echo ""
+	mkdir mhr
+	cp $^ mhr/
+	$(SAXON) inDir=$(pwd)/mhr/ > mhr-all.xml
+	rm -rf mhr/
+
+.PHONY: muter-lexicon
+muter-lexicon: mhr-all.xml mrj-all.xml
+
+# TODO: rus
+.PHONY: muter
+muter: init mrj mhr fin muter-lexicon
+	@echo "*********************************"
+	@echo "** Built targets for muter:     **"
+	@echo "**    + mhr lexicon            **"
+	@echo "**    + mrj lexicon            **"
+	@echo "**    + mhr analysers          **"
+	@echo "**    + mrj analysers          **"
+	@echo "**    + rus analysers TODO     **"
+	@echo "**    + fin analysers          **"
+	@echo "*********************************"
+	@echo "**   (mhr = Eastern Mari)      **"
+	@echo "**   (mrj = Western Mari)      **"
+	@echo "*********************************"
+	@echo ""
+	@echo "Now install analysers in expected paths."
+	@echo "    sudo make muter-install"
+	@echo "... or copy the fsts in fst/ and ifst/ to their right places."
+
+muter-mhr-install: fst/mhr.fst ifst/imhr.fst
+	mkdir -p /opt/smi/mhr/bin/
+	cp $^ /opt/smi/mhr/bin/
+
+muter-mrj-install: fst/mrj.fst ifst/imrj.fst
+	mkdir -p /opt/smi/mrj/bin/
+	cp $^ /opt/smi/mrj/bin/
+
+# muter-rus-install: fst/rus.fst ifst/irus.fst
+muter-rus-install:
+	@echo "TODO: rus"
+	# mkdir -p /opt/smi/rus/bin/
+	# cp $^ /opt/smi/rus/bin/
+
+muter-fin-install: fst/fin.fst ifst/ifin.fst
+	mkdir -p /opt/smi/fin/bin/
+	cp $^ /opt/smi/fin/bin/
+
+muter-install: muter-fin-install \
+               muter-rus-install \
+               muter-mrj-install \
+               muter-mhr-install
+
 
 
 
@@ -613,8 +754,21 @@ kyv: init kpv fin kpv-lexica
 	@echo "**    + kpv analysers          **"
 	@echo "**    + fin analysers          **"
 	@echo "*********************************"
-	@echo "TODO: install analysers in expected paths"
+	@echo ""
+	@echo "Now install analysers in expected paths."
+	@echo "    sudo make kyv-install"
+	@echo "... or copy the fsts in fst/ and ifst/ to their right places."
 
+
+kyv-fin-install: fst/fin.fst ifst/ifin.fst
+	mkdir -p /opt/smi/fin/bin/
+	cp $^ /opt/smi/fin/bin/
+
+kyv-kpv-install: fst/kpv.fst ifst/ikpv.fst
+	mkdir -p /opt/smi/kpv/bin/
+	cp $^ /opt/smi/kpv/bin/
+
+kyv-install: kyv-kpv-install kyv-fin-install
 
 # This one sets up dirnames, because can't get dirnames from inverse
 SOURCES = fst/*.fst
@@ -718,6 +872,7 @@ all: init \
 	 sanat \
 	 sanit \
 	 baakoeh \
-	 kyv
+	 kyv \
+	 muter
 	@echo $(TARGET_DIR)
 
