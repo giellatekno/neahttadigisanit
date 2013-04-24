@@ -53,6 +53,11 @@ SAXON := java -Xmx2048m -cp ~/lib/saxon9.jar \
 		 -Dfile.encoding=UTF8 net.sf.saxon.Transform \
 		 -it:main $(COLLECT_PARTS)
 
+COLLECT_PARTS_SME_NOB := $(GTHOME)/words/dicts/scripts/collect-dict-parts-smenob.xsl
+SAXON_SME_NOB := java -Xmx2048m -cp ~/lib/saxon9.jar \
+		 -Dfile.encoding=UTF8 net.sf.saxon.Transform \
+		 -it:main $(COLLECT_PARTS_SME_NOB)
+
 TARGET_DIR := $(shell pwd)
 pwd := $(shell pwd)
 
@@ -556,8 +561,9 @@ sanat-install: sanat-olo-install \
 ##
 
 # NB: these are different than the langs/ lexica
+# also, need to filter here
 sme-nob.all.xml: $(GTHOME)/words/dicts/smenob/src/
-	$(SAXON) inDir=$^ > $@
+	$(SAXON_SME_NOB) inDir=$^ | grep -v 'dict="no"' > $@
 
 sme-fin.all.xml: $(GTHOME)/words/dicts/smefin/src/
 	$(SAXON) inDir=$^ > $@
