@@ -14,6 +14,19 @@
      context="bivttas"      -- adj. attr.  - alit (bivttas)
      context="gápmagat"     -- num. ??     - guovttit (gápmagat)
 
+# sme-nob rules to write
+
+ * attribute: illpl="no" entries -> remove generated illative plural from paradigm
+    eahketroađđi
+ * attribute: pg="no" -> no paradigm
+ * attribute: attr="no" -> show no attr form
+ * variants: lg/l/lsub -> show as alternate spelling
+ * generation: vmax
+ * see also: <l_ref>
+         <l pos="CC">dahje</l>
+         <l_ref>vai_cc</l_ref>
+
+
 # TODAY
 
  * ie8 rendering bug on flag lists in header on main page, but not on about page
