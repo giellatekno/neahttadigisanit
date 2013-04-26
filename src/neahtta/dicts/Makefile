@@ -150,10 +150,10 @@ yrk-all.xml: $(GTHOME)/langs/yrk/src/morphology/stems/*.xml
 	rm -rf yrk/
 
 .PHONY: yrk-lexicon
-yrk-lexicon: yrk-all.xml
+vada-lexica: yrk-all.xml
 
 .PHONY: vada
-vada: init yrk fin yrk-lexicon
+vada: init yrk fin vada-lexica
 	@echo "*********************************"
 	@echo "** Built targets for vada:     **"
 	@echo "**    + yrk lexicon            **"
@@ -349,9 +349,12 @@ myv-lexicon: myv-all.xml
 
 .PHONY: mdf-lexicon
 mdf-lexicon: mdf-all.xml
+
+.PHONY: valks-lexica
+valks-lexica:  myv-lexicon mdf-lexicon
 	
 .PHONY: valks
-valks: init myv mdf fin myv-lexicon mdf-lexicon
+valks: init myv mdf fin valks-lexica
 	@echo "*********************************"
 	@echo "** Built targets for valks:    **"
 	@echo "**    + myv, mdf lexica        **"
@@ -751,9 +754,9 @@ kpv-engfinrus.all.xml: $(GTHOME)/words/dicts/kom2X/src/
 ##
 
 .PHONY: kpv-lexica
-kpv-lexica: kpv-engfinrus.all.xml
+kyv-lexica: kpv-engfinrus.all.xml
 
-kyv: init kpv fin kpv-lexica
+kyv: init kpv fin kyv-lexica
 	@echo "*********************************"
 	@echo "** Built targets for kyv:      **"
 	@echo "**    + kyv lexicon            **"
@@ -838,6 +841,14 @@ help:
 	@echo ""
 	@echo " * make sanit-install"
 	@echo " * make baakoeh-install"
+	@echo ""
+	@echo "To compile only the lexica, append -lexica to the target name:"
+	@echo ""
+	@echo " * make sanit-lexica"
+	@echo " * make baakoeh-lexica"
+	@echo " * make valks-lexica"
+	@echo " * make vada-lexica"
+	@echo " * make kyv-lexica"
 	@echo ""
 	@echo "NB! Make sure you have saxon9.jar in ~/lib/ !"
 
