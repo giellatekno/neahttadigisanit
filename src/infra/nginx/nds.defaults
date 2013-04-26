@@ -1,0 +1,21 @@
+# NB: removing actual users and paths because these are in public SVN, 
+
+root /home/path/to/proj/dir/ ;
+listen 80 ;
+
+error_page 500 502 503 504 /500.html ;
+
+location = /500.html {
+    root /var/www/maintenance ;
+}
+
+location = /404.html {
+    root /var/www/404.html ;
+}
+
+location = /static {
+    alias /home/path/to/proj/dir/static ;
+    # expires 30d;
+    access_log        off;
+}
+

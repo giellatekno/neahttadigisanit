@@ -11,7 +11,13 @@ Here are some example files to help the process.
 
  * nds-sanit - An example init.d service definition
 
+ * nginx/ - contains include files required for nds.nginx.conf, but be sure to
+   check everything before implementing it in an actual installation. Some
+   names and variables are changed to be general or vague.
+
 ## Automatically restarting processes
+
+TODO: rewrite for fedora
 
 ### chkconfig
 

@@ -1,12 +1,16 @@
 #!/bin/sh
-# chkconfig: 2345 95 20
-# description: python/fastcgi processes for NDS-sanit
-# processname: nds-sanit
+# nds-sanit	Manage NDS processes for Sanat.
+# 
+# chkconfig:    2345 95 20
+#
+# description: 	python/fastcgi processes for NDS-sanit
+# 
+# processname: 	nds-sanit
 
+# source function library
 . /etc/rc.d/init.d/functions
 
 PROJNAME='nds-sanit/fastcgi'
-
 ADDRESS='127.0.0.1'
 SERVER_PORT='8765'
 
@@ -14,7 +18,7 @@ SERVER_PORT='8765'
 SERVER_PID="/home/path/to/proj/dir/sanit-pidfile.pid"
 
 # Project's virtualenv
-ENVLOC="/home/path/to/proj/dir/.env/"
+ENVLOC="/home/USER/env/"
 PROJECTLOC="/home/path/to/proj/dir/"
 MANAGELOC="$PROJECTLOC/manage.py"
 
@@ -24,20 +28,24 @@ NDS_CONFIG="$PROJECTLOC/configs/sanit.config.yaml"
 
 BASE_CMD="$ENVLOC/bin/python $MANAGELOC runfcgi --method=prefork --host=$ADDRESS --port=$SERVER_PORT --pidfile=$SERVER_PID --daemonize"
 
+RETVAL=0
+
 start_server () {
   if [ -f $1 ]; then
     #pid exists, check if running
     if [ "$(ps -p `cat $1` | wc -l)" -gt 1 ]; then
   	action $"Starting $PROJNAME -- ${ADDRESS}:${2}..." /bin/false
-        echo " * Server already running on ${ADDRESS}:${2}"
+        echo -n " * Server already running on ${ADDRESS}:${2}"
        return
     fi
   fi
   cd $PROJECTLOC
   . $ENVLOC/bin/activate
   export NDS_CONFIG=$NDS_CONFIG
-  $BASE_CMD
-  action $"Starting $PROJNAME -- ${ADDRESS}:${2}..." /bin/true
+  $BASE_CMD && success || failure
+  RETVAL=$?
+  echo -n $"Starting $PROJNAME -- ${ADDRESS}:${2}..." $?
+  echo
 }
 
 restart_server () {
@@ -55,9 +63,9 @@ stop_server (){
   else 
     action $"Stopping $PROJNAME -- ${ADDRESS}:${2}..." /bin/false
     if [ -f $1 ]; then
-      echo " * Server ${ADDRESS}:${2} not running"
+      echo -n " * Server ${ADDRESS}:${2} not running"
     else
-      echo " * No pid file found for server ${ADDRESS}:${2}"
+      echo -n " * No pid file found for server ${ADDRESS}:${2}"
     fi
   fi
 }
@@ -75,8 +83,8 @@ case "$1" in
   start_server $SERVER_PID $SERVER_PORT 
   ;;
 *)
-  echo "Usage: $0 { start | stop | restart }"
+  echo -n "Usage: $0 { start | stop | restart }"
   ;;
 esac
 
-exit 0
+exit $RETVAL
