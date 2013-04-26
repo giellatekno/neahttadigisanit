@@ -31,16 +31,16 @@ Morphology:
       tagsep: '+'
       inverse_tagsep: '+'
   # TODO:
-  # mhr:
-  #   tool: *LOOKUP
-  #   file: [*OPT, '/mhr/bin/mhr.fst']
-  #   inverse_file: [*OPT, '/mhr/bin/imhr.fst']
-  #   format: 'xfst'
-  #   options:
-  #     compoundBoundary: "+Use/Circ#"
-  #     derivationMarker: "+Der"
-  #     tagsep: '+'
-  #     inverse_tagsep: '+'
+  mhr:
+    tool: *LOOKUP
+    file: [*OPT, '/mhr/bin/mhr.fst']
+    inverse_file: [*OPT, '/mhr/bin/imhr.fst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
   fin:
     tool: *LOOKUP
     file: [*OPT, '/fin/bin/fin.fst']
@@ -69,9 +69,9 @@ Dictionaries:
     target: fin
     path: 'dicts/mrj-all.xml'
 
-  # - source: mhr
-  #   target: fin
-  #   path: 'dicts/mhr-all.xml'
+  - source: mhr
+    target: fin
+    path: 'dicts/mhr-all.xml'
 
 Paradigms:
   mrj:
@@ -112,8 +112,23 @@ Paradigms:
       - "Pregenerate"
     N:
       - "Sg+Nom"
+      - "Sg+Gen"
+      - "Sg+Acc"
+      - "Sg+Com"
+      - "Sg+Dat"
+      - "Sg+Ine"
+      - "Sg+Ill"
+      - "Sg+Lat"
+      - "Sg+Comp"
+      - "Sg+Abe"
     V:
-      - "TV+Ind+Aor+ScSg1"
+      - "Inf"
+      - "Ind+NonPst+Sg1"
+      - "Ind+NonPst+Sg2"
+      - "Ind+NonPst+Sg3"
+      - "Ind+NonPst+Pl1"
+      - "Ind+NonPst+Pl2"
+      - "Ind+NonPst+Pl3"
 
 
 TagSets:
