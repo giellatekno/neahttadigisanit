@@ -68,9 +68,8 @@ msgid "Western Mari"
 msgstr "vuorimari"
 
 #: configs/language_names.py:33
-#, fuzzy
 msgid "Eastern Mari"
-msgstr "vuorimari"
+msgstr "niittymari"
 
 #: configs/language_names.py:36
 msgid "Nenets"
@@ -114,7 +113,7 @@ msgstr "Meistä"
 
 #: static/js/bookmarklet.js:1245
 msgid "Advanced"
-msgstr ""
+msgstr "Lisävalintoja"
 
 #: static/js/bookmarklet.js:1245
 #, fuzzy
@@ -127,15 +126,15 @@ msgstr "Tallenna"
 
 #: static/js/bookmarklet.js:1245
 msgid "Refresh settings"
-msgstr ""
+msgstr "Päivitä asetukset"
 
 #: static/js/bookmarklet.js:1245
 msgid "Update detected"
-msgstr ""
+msgstr "Päivitys havaittu"
 
 #: static/js/bookmarklet.js:1245
 msgid "IE8 Warning"
-msgstr ""
+msgstr "IE8-varoitus"
 
 #: static/js/bookmarklet.js:1245
 msgid ""
@@ -154,6 +153,9 @@ msgid ""
 " href=\"mailto:giellatekno@hum.uit.no\">please contact us</a>. Tell us "
 "what page didn't work, or what you did when you discovered the problem."
 msgstr ""
+"Jos löydät virheen, tai jos kirjamerkki ei toimi tietyllä sivulla, voit "
+"<a href=\"mailto:giellatekno@hum.uit.no\">ottaa yhteyttä meihin</a>. Kerro "
+"minkä sivun kanssa oli ongelmia, tai mitä teit huomatessasi ongelman."
 
 #: static/js/bookmarklet.js:1310
 msgid "Error!"
@@ -375,6 +377,9 @@ msgid ""
 "from\n"
 "                the Kone Foundation."
 msgstr ""
+"Vuorimari-suomi-sanakirjat perustuvat moneen sanakirjaan, esim. "
+"Anna A. Savatkovan vuorimari-venäjä-sanakirjaan vuodelta 1981. "
+"Käännöstyön tekee Helsingin yliopiston Julia Kuprina Kone-säätiön rahoituksella."
 
 #: templates/about.sanat.html:45
 msgid "mennä, tapahtua, viedä, johtaa, edistyä"
