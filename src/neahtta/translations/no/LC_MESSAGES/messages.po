@@ -51,9 +51,8 @@ msgid "Izhorian"
 msgstr "Ingrisk"
 
 #: configs/language_names.py:25
-#, fuzzy
 msgid "Estonian"
-msgstr "Livisk"
+msgstr "Estisk"
 
 #: configs/language_names.py:28
 msgid "Erzya Mordvin"
@@ -68,9 +67,8 @@ msgid "Western Mari"
 msgstr "Vestmarisk"
 
 #: configs/language_names.py:33
-#, fuzzy
 msgid "Eastern Mari"
-msgstr "Vestmarisk"
+msgstr "Østmarisk"
 
 #: configs/language_names.py:36
 msgid "Nenets"
@@ -114,7 +112,7 @@ msgstr "Om oss"
 
 #: static/js/bookmarklet.js:1245
 msgid "Advanced"
-msgstr ""
+msgstr "Avansert"
 
 #: static/js/bookmarklet.js:1245
 #, fuzzy
@@ -127,15 +125,15 @@ msgstr "Lagre"
 
 #: static/js/bookmarklet.js:1245
 msgid "Refresh settings"
-msgstr ""
+msgstr "Oppdater innstillinger"
 
 #: static/js/bookmarklet.js:1245
 msgid "Update detected"
-msgstr ""
+msgstr "Vi har funnet ei oppdatering"
 
 #: static/js/bookmarklet.js:1245
 msgid "IE8 Warning"
-msgstr ""
+msgstr "IE8-advarsel"
 
 #: static/js/bookmarklet.js:1245
 msgid ""
@@ -154,6 +152,10 @@ msgid ""
 " href=\"mailto:giellatekno@hum.uit.no\">please contact us</a>. Tell us "
 "what page didn't work, or what you did when you discovered the problem."
 msgstr ""
+"Hvis du finner en feil, eller hvis bokmerket ikke fungerer på ei viss "
+"side, så vær snill og <a href=\"mailto:giellatekno@hum.uit.no\">kontakt oss</a>. "
+"Fortell oss hvilken side som ikke fungerte, eller hva du gjorde da du "
+"oppdaga problemet."
 
 #: static/js/bookmarklet.js:1310
 msgid "Error!"
@@ -396,6 +398,11 @@ msgid ""
 "\n"
 "                Blumberga with funding from the Kone Foundation."
 msgstr ""
+"Ordbøkene for livisk og finsk er basert på materiale og vitenskapelig "
+"forsking bak den livisk-estisk-latviske ordboka av Tiit-Rein Viitso "
+"og Valts Ernštreits. Finsk oversettelsesarbeid, innholdsanalyse og "
+"koordinering blir gjort i Helsingfors av Renate Blumberga med "
+"finansiering av Kone-stiftelsen."
 
 #: templates/about.sanat.html:69
 #, fuzzy
@@ -412,7 +419,7 @@ msgid ""
 "                Helsinki by Timo Rantakaulio with funding from the Kone\n"
 "                Foundation."
 msgstr ""
-
+"Ordbøkene for 
 #: templates/about.vada.html:59
 #, fuzzy
 msgid "yrk ↔ fin"
@@ -577,6 +584,7 @@ msgid ""
 "Neahttadigisánit is available for the following\n"
 "                language groups."
 msgstr ""
+"Neahttadigisánit er tilgjengelig for følgende språkgrupper."
 
 #: templates/more_dictionaries.html:31
 msgid ""
@@ -587,45 +595,48 @@ msgid ""
 "if you\n"
 "                would like to see a demo!"
 msgstr ""
+"Vi arbeider for tida med å legge til nye ordbøker for følgende "
+"språkgrupper. I og med at de ikke alltid vil være online har vi "
+"ikke lenke til dem her, men kontakt oss gjerne hvis du vil se dem!"
 
 #: templates/more_dictionaries.html:37
 msgid "Balto-finnic languages"
-msgstr ""
+msgstr "østersjøfinske språk"
 
 #: templates/more_dictionaries.html:38
 #, fuzzy
 msgid "Olonets"
-msgstr "Livvisk"
+msgstr "livvisk"
 
 #: templates/more_dictionaries.html:38
 msgid "and"
-msgstr ""
+msgstr "og"
 
 #: templates/more_dictionaries.html:39
 msgid "Mordvinic languages"
-msgstr ""
+msgstr "mordvinske språk"
 
 #: templates/more_dictionaries.html:39
 msgid "Erzya"
-msgstr ""
+msgstr "erzja"
 
 #: templates/more_dictionaries.html:41
 #, fuzzy
 msgid "Mari languages"
-msgstr "Språk"
+msgstr "mariske språk"
 
 #: templates/more_dictionaries.html:41
 msgid "Eastern and Western."
-msgstr ""
+msgstr "øst- og vest-"
 
 #: templates/more_dictionaries.html:42
 #, fuzzy
 msgid "Permic languages"
-msgstr "Grensesnittspråk"
+msgstr "permiske språk"
 
 #: templates/more_dictionaries.html:42
 msgid "Komi-Zyrian"
-msgstr ""
+msgstr "komisyrjensk"
 
 #: templates/more_dictionaries.html:45
 #, fuzzy
@@ -643,6 +654,10 @@ msgid ""
 "href=\"http://dicts.uit.no/\">see this\n"
 "                    list</a>."
 msgstr ""
+"<a href=\"http://giellatekno.uit.no/\">Giellatekno</a> har også "
+"andre språk og ordbøker som fremdeles ikke er tilgjengelige i "
+"Neahttadigisánit. Ei liste over alle andre nettordbøker som har "
+"blitt bygd med våre verktøy finner du <a href=\"http://dicts.uit.no/\">her</a>."
 
 #: templates/reader.html:4 templates/reader.html:22
 msgid "Neahttadigisánit Reader"
@@ -727,6 +742,8 @@ msgid ""
 "If you are looking for other languages, please see our <a "
 "href=\"/more/\">other dictionaries</a>."
 msgstr ""
+"Hvis du leter etter andre språk kan du se våre "
+" <a href=\"/more/\">andre ordbøker</a>."
 
 #: templates/reader_example.html:32
 msgid "Additional instructions"
