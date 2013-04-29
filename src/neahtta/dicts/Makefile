@@ -42,6 +42,11 @@
 ###          #kpvanalysers
 ###          #kyvlexica
 ###         
+###         #ereytargets
+###          #somanalysers
+###          #somlexica
+###         
+###         
 ###         #Globaltargets
 
 # TODO: test vars GTHOME, GTCORE, GTSHARE
@@ -721,6 +726,59 @@ baakoeh-sma-install: dict-sma.fst isma-dict.fst
 
 baakoeh-install: baakoeh-sma-install \
 				 baakoeh-nob-install
+
+
+#####
+##### #ereytargets
+#####
+
+##
+### #somanalysers
+##
+
+som.fst:
+isom.fst:
+	@echo "***********************"
+	@echo "** Building som FSTs **"
+	@echo "***********************"
+	@echo ""
+	cd ~/somorph-priv.git/src/ ; \
+	  make  ; \
+	  cd .. ; \
+	  cp bin/som.fst  $(TARGET_DIR)/fst/som.fst ; \
+	  cp bin/isom.fst $(TARGET_DIR)/ifst/isom.fst
+
+.PHONY: som
+som: som.fst isom.fst
+
+som.all.xml: ~/somorph-priv.git/xml/
+	$(SAXON) inDir=$^ > $@
+
+##
+### #ereylexica
+##
+
+.PHONY: som-lexica
+erey-lexica: som.all.xml
+
+erey: init som fin erey-lexica
+	@echo "*********************************"
+	@echo "** Built targets for erey:     **"
+	@echo "**    + erey lexicon           **"
+	@echo "**    + som analysers          **"
+	@echo "*********************************"
+	@echo ""
+	@echo "Now install analysers in expected paths."
+	@echo "    sudo make erey-install"
+	@echo "... or copy the fsts in fst/ and ifst/ to their right places."
+
+
+erey-som-install: fst/som.fst ifst/isom.fst
+	mkdir -p /opt/smi/som/bin/
+	cp $^ /opt/smi/som/bin/
+
+erey-install: erey-som-install
+
 
 #####
 ##### #kyvtargets
