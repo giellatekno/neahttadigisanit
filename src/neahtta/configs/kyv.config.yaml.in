@@ -1,11 +1,11 @@
 ApplicationSettings:
   app_name: "Neahttadigisánit"
   short_name: "kyv"
-  default_locale: "kpv"
+  default_locale: "kv"
   default_pair: ["kpv", "fin"]
   mobile_default_pair: false
   locales_available:
-    - kpv
+    - kv
     - fi
     - en
   meta_description: >
