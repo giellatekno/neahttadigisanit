@@ -115,27 +115,27 @@ msgstr "Про нас"
 
 #: static/js/bookmarklet.js:1245
 msgid "Advanced"
-msgstr ""
+msgstr "Расширенный"
 
 #: static/js/bookmarklet.js:1245
 msgid "Dictionary"
-msgstr ""
+msgstr "Словарь"
 
 #: static/js/bookmarklet.js:1245
 msgid "Save"
-msgstr ""
+msgstr "Сохранить"
 
 #: static/js/bookmarklet.js:1245
 msgid "Refresh settings"
-msgstr ""
+msgstr "Настройки обновления"
 
 #: static/js/bookmarklet.js:1245
 msgid "Update detected"
-msgstr ""
+msgstr "Обновление обнаружено"
 
 #: static/js/bookmarklet.js:1245
 msgid "IE8 Warning"
-msgstr ""
+msgstr "Предупреждение IE8"
 
 #: static/js/bookmarklet.js:1245
 #, fuzzy
@@ -158,23 +158,23 @@ msgstr ""
 
 #: static/js/bookmarklet.js:1310
 msgid "Error!"
-msgstr ""
+msgstr "Ошибка!"
 
 #: static/js/bookmarklet.js:1310
 msgid "Could not connect to dictionary server"
-msgstr ""
+msgstr "Не мог соединиться с сервером словаря"
 
 #: static/js/bookmarklet.js:1310
 msgid "Close"
-msgstr ""
+msgstr "Закрыть"
 
 #: static/js/bookmarklet.js:1432 static/js/bookmarklet.js:1715
 msgid "Unknown word"
-msgstr ""
+msgstr "Неизвестное слово"
 
 #: static/js/bookmarklet.js:1433
 msgid "You are using"
-msgstr ""
+msgstr "Используете"
 
 #: static/js/bookmarklet.js:1435
 #, fuzzy
@@ -191,7 +191,7 @@ msgstr ""
 
 #: templates/500.html:51
 msgid "Whoops! There was some kind of error."
-msgstr ""
+msgstr "Возгласы! Была некоторая ошибка."
 
 #: templates/about.baakoeh.html:17 templates/about.muter.html:17
 #: templates/about.sanat.html:17 templates/about.sanit.html:17
@@ -361,7 +361,7 @@ msgstr ""
 #: templates/about.muter.html:59
 #, fuzzy
 msgid "mrj ↔ fin"
-msgstr "sme ↔ fin"
+msgstr "Горномарийский ↔ финский"
 
 #: templates/about.muter.html:60
 msgid ""
@@ -386,7 +386,7 @@ msgstr ""
 #: templates/about.sanat.html:59
 #, fuzzy
 msgid "liv ↔ fin"
-msgstr "sme ↔ fin"
+msgstr "Ливский ↔ финский"
 
 #: templates/about.sanat.html:60
 msgid ""
@@ -405,7 +405,7 @@ msgstr ""
 #: templates/about.sanat.html:69
 #, fuzzy
 msgid "olo ↔ fin"
-msgstr "sme ↔ fin"
+msgstr "Ливвиковский ↔ финский"
 
 #: templates/about.sanat.html:70
 msgid ""
@@ -421,7 +421,7 @@ msgstr ""
 #: templates/about.vada.html:59
 #, fuzzy
 msgid "yrk ↔ fin"
-msgstr "sme ↔ fin"
+msgstr "Ненецкий ↔ финский"
 
 #: templates/about.vada.html:60
 msgid ""
@@ -438,7 +438,7 @@ msgstr ""
 #: templates/about.valks.html:59
 #, fuzzy
 msgid "myv ↔ fin"
-msgstr "sme ↔ fin"
+msgstr "эрзянский ↔ финский"
 
 #: templates/about.valks.html:60
 msgid ""
@@ -460,7 +460,7 @@ msgstr ""
 #: templates/about.valks.html:70
 #, fuzzy
 msgid "mdf ↔ fin"
-msgstr "sme ↔ fin"
+msgstr "мокшанский ↔ финский"
 
 #: templates/about.valks.html:71
 msgid ""
@@ -524,7 +524,7 @@ msgstr "Поменять"
 
 #: templates/index.html:90
 msgid "ohcansátni"
-msgstr ""
+msgstr "Слово искании"
 
 #: templates/index.html:92 templates/word_detail.html:67
 msgid "Search"
@@ -575,7 +575,7 @@ msgstr ""
 
 #: templates/more_dictionaries.html:4
 msgid "More dictionaris"
-msgstr ""
+msgstr "Больше словарей"
 
 #: templates/more_dictionaries.html:23
 msgid ""
@@ -595,7 +595,7 @@ msgstr ""
 
 #: templates/more_dictionaries.html:37
 msgid "Balto-finnic languages"
-msgstr ""
+msgstr "Прибалтийско-финские языки"
 
 #: templates/more_dictionaries.html:38
 #, fuzzy
@@ -604,37 +604,37 @@ msgstr "Ливвиковский"
 
 #: templates/more_dictionaries.html:38
 msgid "and"
-msgstr ""
+msgstr "и"
 
 #: templates/more_dictionaries.html:39
 msgid "Mordvinic languages"
-msgstr ""
+msgstr "Мордовские языки"
 
 #: templates/more_dictionaries.html:39
 msgid "Erzya"
-msgstr ""
+msgstr "Эрзянский язык"
 
 #: templates/more_dictionaries.html:41
 #, fuzzy
 msgid "Mari languages"
-msgstr "Язык"
+msgstr "Марийские языки"
 
 #: templates/more_dictionaries.html:41
 msgid "Eastern and Western."
-msgstr ""
+msgstr "лугово-восточний и горномарийский"
 
 #: templates/more_dictionaries.html:42
 #, fuzzy
 msgid "Permic languages"
-msgstr "язык интерфейса"
+msgstr "Пермские языки"
 
 #: templates/more_dictionaries.html:42
 msgid "Komi-Zyrian"
-msgstr ""
+msgstr "Коми-зырянский"
 
 #: templates/more_dictionaries.html:45
 msgid "Even more dictionaries..."
-msgstr ""
+msgstr "Еще больше словарей"
 
 #: templates/more_dictionaries.html:46
 msgid ""

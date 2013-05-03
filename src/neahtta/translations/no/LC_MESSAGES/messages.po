@@ -115,9 +115,8 @@ msgid "Advanced"
 msgstr "Avansert"
 
 #: static/js/bookmarklet.js:1245
-#, fuzzy
 msgid "Dictionary"
-msgstr "Andre ordbøker"
+msgstr "Ordbok"
 
 #: static/js/bookmarklet.js:1245
 msgid "Save"
@@ -356,9 +355,8 @@ msgid "mennä, lähteä, kulkea"
 msgstr ""
 
 #: templates/about.muter.html:59
-#, fuzzy
 msgid "mrj ↔ fin"
-msgstr "Nordsamisk ↔ finsk"
+msgstr "Vestmarisk ↔ finsk"
 
 #: templates/about.muter.html:60
 msgid ""
@@ -375,15 +373,20 @@ msgid ""
 "from\n"
 "                the Kone Foundation."
 msgstr ""
+"Ordbøker for vestmarisk og finsk er basert på leksikalsk materiale "
+"fra mange ordbøker, og fra skriftlig materiale fra 1900- og 2000-tallet. "
+"Ei spesielt viktig ordbok har vært Anna A. Savatkova si Vestmarisk - "
+"russisk fra 1981. Oversettelsesarbeidet blir utført av Julia Kuprina "
+"ved Universitetet i Helsingfors, med finansiering av Kone-stiftelsen."
+
 
 #: templates/about.sanat.html:45
 msgid "mennä, tapahtua, viedä, johtaa, edistyä"
 msgstr ""
 
 #: templates/about.sanat.html:59
-#, fuzzy
 msgid "liv ↔ fin"
-msgstr "Nordsamisk ↔ finsk"
+msgstr "Livisk ↔ finsk"
 
 #: templates/about.sanat.html:60
 msgid ""
@@ -405,9 +408,8 @@ msgstr ""
 "finansiering av Kone-stiftelsen."
 
 #: templates/about.sanat.html:69
-#, fuzzy
 msgid "olo ↔ fin"
-msgstr "Nordsamisk ↔ finsk"
+msgstr "Livvisk ↔ finsk"
 
 #: templates/about.sanat.html:70
 msgid ""
@@ -419,11 +421,16 @@ msgid ""
 "                Helsinki by Timo Rantakaulio with funding from the Kone\n"
 "                Foundation."
 msgstr ""
-"Ordbøkene for 
+"Ordbøkene for livvisk (olonetsisk) og finsk er basert på leksikalske "
+"kilder fra den livviske avisa \"Oma mua\" og fra mange ulike ordbøker. "
+" Oversettelsesarbeidet blir utført av Timo Rantakaulio "
+"ved Universitetet i Helsingfors, med finansiering av Kone-stiftelsen."
+
+
+
 #: templates/about.vada.html:59
-#, fuzzy
 msgid "yrk ↔ fin"
-msgstr "Nordsamisk ↔ finsk"
+msgstr "Nenetsisk ↔ finsk"
 
 #: templates/about.vada.html:60
 msgid ""
@@ -436,11 +443,17 @@ msgid ""
 "Soosaar\n"
 "                with funding from the Kone Foundation."
 msgstr ""
+"Ordbøkene for nenetsisk og finsk er basert på leksikalske "
+"kilder og vitenskapelig arbeid utført av Natalia M. Tereshchenko, "
+"Tapani Salminen og Sven-Erik Soosaar. "
+" Oversettelsesarbeidet blir utført av Sven-Erik Soosaar "
+"ved Universitetet i Helsingfors, med finansiering av Kone-stiftelsen."
+
+
 
 #: templates/about.valks.html:59
-#, fuzzy
 msgid "myv ↔ fin"
-msgstr "Nordsamisk ↔ finsk"
+msgstr "Erzjamordvinsk ↔ finsk"
 
 #: templates/about.valks.html:60
 msgid ""
@@ -458,11 +471,17 @@ msgid ""
 "University\n"
 "                of Helsinki."
 msgstr ""
+"Ordbøkene for erzja og finsk er basert på leksikalske "
+"kilder fra mange ulike ordbøker og litteratur fra 1900- og 2000-tallet. "
+"Grunnoversettelser har blitt lagt til  fra den erzja-finske ordboka "
+"til Jaana Niemi og Mihail Mosin ved universiteta i Åbo og Saransk. "
+" Oversettelsesarbeid blir nå utført "
+"ved Universitetet i Helsingfors, med finansiering av Kone-stiftelsen."
+
 
 #: templates/about.valks.html:70
-#, fuzzy
 msgid "mdf ↔ fin"
-msgstr "Nordsamisk ↔ finsk"
+msgstr "Moksjamordvinsk ↔ finsk"
 
 #: templates/about.valks.html:71
 msgid ""
@@ -478,6 +497,12 @@ msgid ""
 "                Helsinki by Merja Salo with funding from the Kone "
 "Foundation."
 msgstr ""
+"Ordbøkene for moksja og finsk er basert på leksikalske "
+"kilder fra mange ulike ordbøker og litteratur fra 1900- og 2000-tallet. "
+"Grunnoversettelser har blitt lagt til  fra den moksja-finske ordboka "
+"til Eeva Herrala og Aleksandr Feoktistov ved universiteta i Åbo og Saransk. "
+" Oversettelsesarbeidet blir utført av Merja Salo "
+"ved Universitetet i Helsingfors, med finansiering av Kone-stiftelsen."
 
 #: templates/base.html:74
 msgid "Home"
@@ -575,7 +600,6 @@ msgid "<span class=\"reposition_hide\">Language</span>"
 msgstr "<span class=\"reposition_hide\">Språk</span>"
 
 #: templates/more_dictionaries.html:4
-#, fuzzy
 msgid "More dictionaris"
 msgstr "Andre ordbøker"
 
@@ -604,7 +628,6 @@ msgid "Balto-finnic languages"
 msgstr "østersjøfinske språk"
 
 #: templates/more_dictionaries.html:38
-#, fuzzy
 msgid "Olonets"
 msgstr "livvisk"
 
@@ -621,7 +644,6 @@ msgid "Erzya"
 msgstr "erzja"
 
 #: templates/more_dictionaries.html:41
-#, fuzzy
 msgid "Mari languages"
 msgstr "mariske språk"
 
@@ -630,7 +652,6 @@ msgid "Eastern and Western."
 msgstr "øst- og vest-"
 
 #: templates/more_dictionaries.html:42
-#, fuzzy
 msgid "Permic languages"
 msgstr "permiske språk"
 
@@ -639,9 +660,8 @@ msgid "Komi-Zyrian"
 msgstr "komisyrjensk"
 
 #: templates/more_dictionaries.html:45
-#, fuzzy
 msgid "Even more dictionaries..."
-msgstr "Andre ordbøker"
+msgstr "Og enda flere ordbøker..."
 
 #: templates/more_dictionaries.html:46
 msgid ""
