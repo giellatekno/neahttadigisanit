@@ -129,9 +129,8 @@ msgid "Advanced"
 msgstr "Lisävalintoja"
 
 #: static/js/bookmarklet.js:1245
-#, fuzzy
 msgid "Dictionary"
-msgstr "Muita sanakirjoja"
+msgstr "Sanakirja"
 
 #: static/js/bookmarklet.js:1245
 msgid "Save"
@@ -534,7 +533,6 @@ msgid "<span class=\"reposition_hide\">Language</span>"
 msgstr "<span class=\"reposition_hide\">Kieli</span>"
 
 #: templates/more_dictionaries.html:4
-#, fuzzy
 msgid "More dictionaris"
 msgstr "Muita sanakirjoja"
 
@@ -559,7 +557,6 @@ msgid "Balto-finnic languages"
 msgstr "itämerensuomalaiset kielet"
 
 #: templates/more_dictionaries.html:38
-#, fuzzy
 msgid "Olonets"
 msgstr "livvi"
 
@@ -589,12 +586,11 @@ msgstr "Permiläiskielet"
 
 #: templates/more_dictionaries.html:42
 msgid "Komi-Zyrian"
-msgstr "syrjäänin komi"
+msgstr "komisyrjääni"
 
 #: templates/more_dictionaries.html:45
-#, fuzzy
 msgid "Even more dictionaries..."
-msgstr "Muita sanakirjoja"
+msgstr "Ja vielä sanakirjoja..."
 
 #: templates/more_dictionaries.html:46
 msgid ""

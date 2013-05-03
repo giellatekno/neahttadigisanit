@@ -51,9 +51,8 @@ msgid "Izhorian"
 msgstr "Inkeroisgiella"
 
 #: configs/language_names.py:25
-#, fuzzy
 msgid "Estonian"
-msgstr "Liivigiella"
+msgstr "Esttegiella"
 
 #: configs/language_names.py:28
 msgid "Erzya Mordvin"
@@ -65,12 +64,11 @@ msgstr "Mokšagiella"
 
 #: configs/language_names.py:32
 msgid "Western Mari"
-msgstr "Oarjemarigiella"
+msgstr "Várremarigiella"
 
 #: configs/language_names.py:33
-#, fuzzy
 msgid "Eastern Mari"
-msgstr "Oarjemarigiella"
+msgstr "Niitomarigiella"
 
 #: configs/language_names.py:36
 msgid "Nenets"
@@ -157,7 +155,7 @@ msgstr ""
 
 #: static/js/bookmarklet.js:1310
 msgid "Error!"
-msgstr ""
+msgstr "Feaila!"
 
 #: static/js/bookmarklet.js:1310
 msgid "Could not connect to dictionary server"
@@ -355,7 +353,7 @@ msgstr ""
 #: templates/about.muter.html:59
 #, fuzzy
 msgid "mrj ↔ fin"
-msgstr "Davvisámegiella ↔ suomagiella"
+msgstr "Várremarigiella ↔ suomagiella"
 
 #: templates/about.muter.html:60
 msgid ""
@@ -380,7 +378,7 @@ msgstr ""
 #: templates/about.sanat.html:59
 #, fuzzy
 msgid "liv ↔ fin"
-msgstr "Davvisámegiella ↔ suomagiella"
+msgstr "Liivigiella ↔ suomagiella"
 
 #: templates/about.sanat.html:60
 msgid ""
@@ -399,7 +397,7 @@ msgstr ""
 #: templates/about.sanat.html:69
 #, fuzzy
 msgid "olo ↔ fin"
-msgstr "Davvisámegiella ↔ suomagiella"
+msgstr "Livvigiella ↔ suomagiella"
 
 #: templates/about.sanat.html:70
 msgid ""
@@ -415,7 +413,7 @@ msgstr ""
 #: templates/about.vada.html:59
 #, fuzzy
 msgid "yrk ↔ fin"
-msgstr "Davvisámegiella ↔ suomagiella"
+msgstr "Nenecagiella ↔ suomagiella"
 
 #: templates/about.vada.html:60
 msgid ""
@@ -432,7 +430,7 @@ msgstr ""
 #: templates/about.valks.html:59
 #, fuzzy
 msgid "myv ↔ fin"
-msgstr "Davvisámegiella ↔ suomagiella"
+msgstr "Ersagiella ↔ suomagiella"
 
 #: templates/about.valks.html:60
 msgid ""
@@ -454,7 +452,7 @@ msgstr ""
 #: templates/about.valks.html:70
 #, fuzzy
 msgid "mdf ↔ fin"
-msgstr "Davvisámegiella ↔ suomagiella"
+msgstr "Mokšagiella ↔ suomagiella"
 
 #: templates/about.valks.html:71
 msgid ""
@@ -589,7 +587,7 @@ msgstr ""
 
 #: templates/more_dictionaries.html:37
 msgid "Balto-finnic languages"
-msgstr ""
+msgstr "Nuortamearasuopmelaš gielat"
 
 #: templates/more_dictionaries.html:38
 #, fuzzy
@@ -598,32 +596,32 @@ msgstr "Aunusgárjilgiella"
 
 #: templates/more_dictionaries.html:38
 msgid "and"
-msgstr ""
+msgstr "ja"
 
 #: templates/more_dictionaries.html:39
 msgid "Mordvinic languages"
-msgstr ""
+msgstr "Mordvagielat"
 
 #: templates/more_dictionaries.html:39
 msgid "Erzya"
-msgstr ""
+msgstr "Ersagiella"
 
 #: templates/more_dictionaries.html:41
 #, fuzzy
 msgid "Mari languages"
-msgstr "Giella"
+msgstr "Marigielat"
 
 #: templates/more_dictionaries.html:41
 msgid "Eastern and Western."
-msgstr ""
+msgstr "Niito- ja várregielat"
 
 #: templates/more_dictionaries.html:42
 msgid "Permic languages"
-msgstr ""
+msgstr "Permelaš gielat"
 
 #: templates/more_dictionaries.html:42
 msgid "Komi-Zyrian"
-msgstr ""
+msgstr "Komigiella"
 
 #: templates/more_dictionaries.html:45
 #, fuzzy
