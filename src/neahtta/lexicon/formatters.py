@@ -121,7 +121,13 @@ class SimpleJSON(EntryNodeIterator):
         lemma, lemma_pos, lemma_context, _, lemma_hid = self.l_node(e)
         tgs, ts = self.tg_nodes(e)
 
+        # TODO: format source in JSON view
+        # target_formatted = lexicon_overrides.format_target(
+        #     self.query_kwargs.get('source_lang'), self.query_kwargs.get('target_lang'),
+        #     self.query_kwargs.get('ui_lang'), e, tg, text
+        # )
         translations = map(self.find_translation_text, tgs)
+
         right_text = flatten([a for a, b, c in translations])
         right_langs = flatten([c for a, b, c in translations])
 
