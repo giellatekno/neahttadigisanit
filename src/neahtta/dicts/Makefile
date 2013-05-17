@@ -175,6 +175,7 @@ vada: init yrk fin vada-lexica
 vada-yrk-install: fst/yrk.fst ifst/iyrk.fst
 	mkdir -p /opt/smi/yrk/bin/
 	cp $^ /opt/smi/yrk/bin/
+	chmod a+x /opt/smi/yrk/bin/*.fst
 
 vada-install: vada-yrk-install
 
@@ -271,10 +272,12 @@ muter: init mrj mhr fin muter-lexicon
 muter-mhr-install: fst/mhr.fst ifst/imhr.fst
 	mkdir -p /opt/smi/mhr/bin/
 	cp $^ /opt/smi/mhr/bin/
+	chmod a+x /opt/smi/mhr/bin/*.fst
 
 muter-mrj-install: fst/mrj.fst ifst/imrj.fst
 	mkdir -p /opt/smi/mrj/bin/
 	cp $^ /opt/smi/mrj/bin/
+	chmod a+x /opt/smi/mrj/bin/*.fst
 
 # muter-rus-install: fst/rus.fst ifst/irus.fst
 muter-rus-install:
@@ -285,6 +288,7 @@ muter-rus-install:
 muter-fin-install: fst/fin.fst ifst/ifin.fst
 	mkdir -p /opt/smi/fin/bin/
 	cp $^ /opt/smi/fin/bin/
+	chmod a+x /opt/smi/fin/bin/*.fst
 
 muter-install: muter-fin-install \
                muter-rus-install \
@@ -379,14 +383,17 @@ valks: init myv mdf fin valks-lexica
 valks-fin-install: fst/fin.fst ifst/ifin.fst
 	mkdir -p /opt/smi/fin/bin/
 	cp $^ /opt/smi/fin/bin/
+	chmod a+x /opt/smi/fin/bin/*.fst
 
 valks-myv-install: fst/myv.fst ifst/imyv.fst
 	mkdir -p /opt/smi/myv/bin/
 	cp $^ /opt/smi/myv/bin/
+	chmod a+x /opt/smi/myv/bin/*.fst
 
 valks-mdf-install: fst/mdf.fst ifst/imdf.fst
 	mkdir -p /opt/smi/mdf/bin/
 	cp $^ /opt/smi/mdf/bin/
+	chmod a+x /opt/smi/mdf/bin/*.fst
 
 valks-install: valks-myv-install \
 			   valks-mdf-install \
@@ -542,18 +549,22 @@ sanat: init olo izh liv fin fkv sanat-lexica
 sanat-olo-install: fst/olo.fst ifst/iolo.fst
 	mkdir -p /opt/smi/olo/bin/
 	cp $^ /opt/smi/olo/bin/
+	chmod a+x /opt/smi/olo/bin/*.fst
 
 sanat-liv-install: fst/liv.fst ifst/iliv.fst
 	mkdir -p /opt/smi/liv/bin/
 	cp $^ /opt/smi/liv/bin/
+	chmod a+x /opt/smi/liv/bin/*.fst
 
 sanat-izh-install: fst/izh.fst ifst/iizh.fst
 	mkdir -p /opt/smi/izh/bin/
 	cp $^ /opt/smi/izh/bin/
+	chmod a+x /opt/smi/izh/bin/*.fst
 
 sanat-fkv-install: fst/fkv.fst ifst/ifkv.fst
 	mkdir -p /opt/smi/fkv/bin/
 	cp $^ /opt/smi/fkv/bin/
+	chmod a+x /opt/smi/fkv/bin/*.fst
 
 sanat-install: sanat-olo-install \
    			   sanat-liv-install \
@@ -595,6 +606,7 @@ sanit-lexica: fin-sme.all.xml \
 # target, so making a target for them here.
 sme-install: n-sme.fst dict-isme-norm.fst some-n-sme.fst
 	cp $^ /opt/smi/sme/bin/
+	chmod a+x /opt/smi/sme/bin/*.fst
 
 ##
 ### #smeanalysers
@@ -652,16 +664,19 @@ sanit: init sme fin nob sanit-lexica
 sanit-fin-install: fst/fin.fst ifst/ifin.fst
 	mkdir -p /opt/smi/fin/bin/
 	cp $^ /opt/smi/fin/bin/
+	chmod a+x /opt/smi/fin/bin/*.fst
 
 sanit-nob-install: fst/nob.fst ifst/inob.fst
 	mkdir -p /opt/smi/nob/bin/
 	cp $^ /opt/smi/nob/bin/
+	chmod a+x /opt/smi/nob/bin/*.fst
 
 sanit-sme-install: n-sme.fst \
 	               dict-isme-norm.fst \
 	               some-n-sme.fst
 	mkdir -p /opt/smi/sme/bin/
 	cp $^ /opt/smi/sme/bin/
+	chmod a+x /opt/smi/sme/bin/*.fst
 
 sanit-install: sanit-nob-install sanit-sme-install sanit-fin-install
 
@@ -719,10 +734,12 @@ baakoeh: init sma nob baakoeh-lexica
 baakoeh-nob-install: fst/nob.fst ifst/inob.fst
 	mkdir -p /opt/smi/nob/bin/
 	cp $^ /opt/smi/nob/bin/
+	chmod a+x /opt/smi/nob/bin/*.fst
 
 baakoeh-sma-install: dict-sma.fst isma-dict.fst
 	mkdir -p /opt/smi/sma/bin/
 	cp $^ /opt/smi/sma/bin/
+	chmod a+x /opt/smi/sma/bin/*.fst
 
 baakoeh-install: baakoeh-sma-install \
 				 baakoeh-nob-install
@@ -743,7 +760,7 @@ isom.fst:
 	@echo "***********************"
 	@echo ""
 	cd ~/somorph-priv.git/src/ ; \
-	  make  ; \
+	  make all ; \
 	  cd .. ; \
 	  cp bin/som.fst  $(TARGET_DIR)/fst/som.fst ; \
 	  cp bin/isom.fst $(TARGET_DIR)/ifst/isom.fst
@@ -776,6 +793,7 @@ erey: init som fin erey-lexica
 erey-som-install: fst/som.fst ifst/isom.fst
 	mkdir -p /opt/smi/som/bin/
 	cp $^ /opt/smi/som/bin/
+	chmod a+x /opt/smi/som/bin/*.fst
 
 erey-install: erey-som-install
 
@@ -830,10 +848,12 @@ kyv: init kpv fin kyv-lexica
 kyv-fin-install: fst/fin.fst ifst/ifin.fst
 	mkdir -p /opt/smi/fin/bin/
 	cp $^ /opt/smi/fin/bin/
+	chmod a+x /opt/smi/fin/bin/*.fst
 
 kyv-kpv-install: fst/kpv.fst ifst/ikpv.fst
 	mkdir -p /opt/smi/kpv/bin/
 	cp $^ /opt/smi/kpv/bin/
+	chmod a+x /opt/smi/kpv/bin/*.fst
 
 kyv-install: kyv-kpv-install kyv-fin-install
 
@@ -911,7 +931,7 @@ help:
 	@echo "NB! Make sure you have saxon9.jar in ~/lib/ !"
 
 .PHONY: install
-install: sme-install sma-install install-analysers
+install: sanit-install baakoeh-install valks-install vada-install kyv-install
 	@echo "TODO: "
 	@echo "This will copy the analysers that have been built locally here"
 	@echo "to respective dirs in /opt/smi/"
