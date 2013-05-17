@@ -34,6 +34,7 @@ Morphology:
     inverse_file: [*OPT, '/sma/bin/isma-dict.fst']
     format: 'xfst'
     options:
+      compoundBoundary: "+Cmp#"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
