@@ -139,6 +139,10 @@ class DetailedFormat(EntryNodeIterator):
         lemma, lemma_pos, lemma_context, lemma_type, lemma_hid = self.l_node(e)
         tgs, ts = self.tg_nodes(e)
 
+        source_lang = self.query_kwargs.get('source_lang')
+        target_lang = self.query_kwargs.get('target_lang')
+        ui_lang = self.query_kwargs.get('ui_lang')
+
         meaningGroups = []
         for tg in tgs:
             text, annotations, lang = self.find_translation_text(tg)
@@ -146,9 +150,15 @@ class DetailedFormat(EntryNodeIterator):
                 text = ', '.join(text)
             if isinstance(annotations, list):
                 annotations = ', '.join(annotations)
+
+            target_formatted = lexicon_overrides.format_target(
+                source_lang, target_lang,
+                ui_lang, e, tg, text
+            )
+
             meaningGroups.append(
                 { 'annotations': annotations
-                , 'translations': text
+                , 'translations': target_formatted
                 , 'examples': self.examples(tg)
                 , 'language': lang
                 }
@@ -165,9 +175,6 @@ class DetailedFormat(EntryNodeIterator):
         # node, and default format for if a formatter doesn't exist for
         # iso
 
-        source_lang = self.query_kwargs.get('source_lang')
-        target_lang = self.query_kwargs.get('target_lang')
-        ui_lang = self.query_kwargs.get('ui_lang')
 
         if lemma and lemma_pos:
             default_format = "%s (%s)" % ( lemma
@@ -182,6 +189,7 @@ class DetailedFormat(EntryNodeIterator):
         source_formatted = lexicon_overrides.format_source(
             source_lang, ui_lang, e, target_lang, default_format
         )
+
 
         return { 'lemma': lemma
                , 'lemma_context': lemma_context
