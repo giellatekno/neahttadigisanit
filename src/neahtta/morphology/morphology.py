@@ -186,53 +186,57 @@ class GenerationOverrides(object):
     ### Here are the decorators
     ##
 
-    def post_analysis_processor_for_iso(self, language_iso):
+    def post_analysis_processor_for_iso(self, *language_isos):
         """ For language specific processing after analysis is completed,
         for example, stripping tags before presentation to users.
         """
         def wrapper(postanalysis_function):
-            self.postanalyzers[language_iso].append(postanalysis_function)
-            print '%s overrides: registered post-analysis processor - %s' % \
-                  ( language_iso
-                  , postanalysis_function.__name__
-                  )
+            for language_iso in language_isos:
+                self.postanalyzers[language_iso].append(postanalysis_function)
+                print '%s overrides: registered post-analysis processor - %s' % \
+                      ( language_iso
+                      , postanalysis_function.__name__
+                      )
         return wrapper
 
-    def pregenerated_form_selector(self, language_iso):
+    def pregenerated_form_selector(self, *language_isos):
         """ The function that this decorates is used to select and
         construct a pregenerated paradigm for a given word and XML node.
 
         Only one may be defined.
         """
         def wrapper(pregenerated_selector_function):
-            self.pregenerators[language_iso] = pregenerated_selector_function
-            print '%s overrides: registered static paradigm selector - %s' % \
-                  ( language_iso
-                  , pregenerated_selector_function.__name__
-                  )
+            for language_iso in language_isos:
+                self.pregenerators[language_iso] = pregenerated_selector_function
+                print '%s overrides: registered static paradigm selector - %s' % \
+                      ( language_iso
+                      , pregenerated_selector_function.__name__
+                      )
         return wrapper
 
-    def tag_filter_for_iso(self, language_iso):
+    def tag_filter_for_iso(self, *language_isos):
         """ Register a function for a language ISO
         """
         def wrapper(restrictor_function):
-            self.registry[language_iso].append(restrictor_function)
-            print '%s overrides: registered pregeneration tag filterer - %s' %\
-                  ( language_iso
-                  , restrictor_function.__name__
-                  )
+            for language_iso in language_isos:
+                self.registry[language_iso].append(restrictor_function)
+                print '%s overrides: registered pregeneration tag filterer - %s' %\
+                      ( language_iso
+                      , restrictor_function.__name__
+                      )
         return wrapper
 
-    def postgeneration_filter_for_iso(self, language_iso):
+    def postgeneration_filter_for_iso(self, *language_isos):
         """ Register a function for a language ISO
         """
         def wrapper(restrictor_function):
-            self.postgeneration_processors[language_iso]\
-                .append(restrictor_function)
-            print '%s overrides: registered entry context formatter - %s' %\
-                  ( language_iso
-                  , restrictor_function.__name__
-                  )
+            for language_iso in language_isos:
+                self.postgeneration_processors[language_iso]\
+                    .append(restrictor_function)
+                print '%s overrides: registered entry context formatter - %s' %\
+                      ( language_iso
+                      , restrictor_function.__name__
+                      )
         return wrapper
 
     def __init__(self):

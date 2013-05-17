@@ -17,7 +17,7 @@ Example source formatting function:
 
 Example target string formatting function:
 
-    @lexicon_overrides.entry_target_formatter('sme')
+    @lexicon_overrides.entry_target_formatter('sme', 'nob')
     def format_target_sme(ui_lang, entry_node, tg_node):
         # do some processing on the entry and tg node ...
         if successful:

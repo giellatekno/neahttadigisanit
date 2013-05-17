@@ -58,7 +58,7 @@ class LexiconOverrides(object):
     ### Here are the decorators
     ##
 
-    def entry_source_formatter(self, language_iso):
+    def entry_source_formatter(self, *language_isos):
         """ Register a function for a language ISO.
 
         Functions decorated by this registry decorator should take one
@@ -70,37 +70,39 @@ class LexiconOverrides(object):
 
         """
         def wrapper(formatter_function):
-            if language_iso in self.source_formatters:
-                print ' * OBS! Source formatter already registered for %s.' % \
-                    language_iso
-                print '   ignoring redefinition on <%s>.' % \
-                    restrictor_function.__name__
-            else:
-                self.source_formatters[language_iso] = formatter_function
-                print '%s formatter: entry formatter for source - %s' %\
-                      ( language_iso
-                      , formatter_function.__name__
-                      )
+            for language_iso in language_isos:
+                if language_iso in self.source_formatters:
+                    print ' * OBS! Source formatter already registered for %s.' % \
+                        language_iso
+                    print '   ignoring redefinition on <%s>.' % \
+                        restrictor_function.__name__
+                else:
+                    self.source_formatters[language_iso] = formatter_function
+                    print '%s formatter: entry formatter for source - %s' %\
+                          ( language_iso
+                          , formatter_function.__name__
+                          )
         return wrapper
 
-    def entry_target_formatter(self, src_iso, targ_iso):
+    def entry_target_formatter(self, *iso_pairs):
         """ Register a function for a language ISO
         """
         def wrapper(formatter_function):
-            if (src_iso, targ_iso) in self.target_formatters:
-                print ' * OBS! Target formatter already registered for %s.' % \
-                    language_iso
-                print '   ignoring redefinition on <%s>.' % \
-                    formatter_function.__name__
-            else:
-                self.target_formatters[(src_iso, targ_iso)] = formatter_function
-                print '%s formatter: entry formatter for target - %s' %\
-                      ( '%s - %s' % (src_iso, targ_iso)
-                      , formatter_function.__name__
-                      )
+            for (src_iso, targ_iso) in iso_pairs:
+                if (src_iso, targ_iso) in self.target_formatters:
+                    print ' * OBS! Target formatter already registered for %s.' % \
+                        language_iso
+                    print '   ignoring redefinition on <%s>.' % \
+                        formatter_function.__name__
+                else:
+                    self.target_formatters[(src_iso, targ_iso)] = formatter_function
+                    print '%s formatter: entry formatter for target - %s' %\
+                          ( '%s - %s' % (src_iso, targ_iso)
+                          , formatter_function.__name__
+                          )
         return wrapper
 
-    def pre_lookup_tag_rewrite_for_iso(self, language_iso):
+    def pre_lookup_tag_rewrite_for_iso(self, *language_isos):
         """ Register a function for a language ISO to adjust tags used in
         FSTs for use in lexicon lookups.
 
@@ -125,12 +127,13 @@ class LexiconOverrides(object):
         a 'Prop' attribute.
         """
         def wrapper(restrictor_function):
-            self.prelookup_processors[language_iso]\
-                .append(restrictor_function)
-            print '%s overrides: lexicon pre-lookup arg rewriter - %s' %\
-                  ( language_iso
-                  , restrictor_function.__name__
-                  )
+            for language_iso in language_isos:
+                self.prelookup_processors[language_iso]\
+                    .append(restrictor_function)
+                print '%s overrides: lexicon pre-lookup arg rewriter - %s' %\
+                      ( language_iso
+                      , restrictor_function.__name__
+                      )
         return wrapper
 
     def __init__(self):

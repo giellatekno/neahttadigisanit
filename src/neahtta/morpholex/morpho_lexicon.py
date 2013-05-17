@@ -29,16 +29,17 @@ class MorphoLexiconOverrides(object):
 
         return decorate
 
-    def post_morpho_lexicon_override(self, language_iso):
+    def post_morpho_lexicon_override(self, *language_isos):
         """ Use this function to register functions as part of this
         override """
         def wrapper(override_function):
-            self.override_functions[language_iso]\
-                .append(override_function)
-            print '%s morpholex overrides: registered - %s' % \
-                    ( language_iso
-                    , override_function.__name__
-                    )
+            for language_iso in language_isos:
+                self.override_functions[language_iso]\
+                    .append(override_function)
+                print '%s morpholex overrides: registered - %s' % \
+                        ( language_iso
+                        , override_function.__name__
+                        )
         return wrapper
 
     def __init__(self):

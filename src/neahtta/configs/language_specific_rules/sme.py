@@ -42,20 +42,8 @@ morph_log = getLogger('morphology')
 # NOTE: some mwe will mess things up here a bit, in that pos is
 # passed in with part of the mwe. Thus, if there is no POS, do
 # nothing.
-@lexicon.pre_lookup_tag_rewrite_for_iso('sme')
+@lexicon.pre_lookup_tag_rewrite_for_iso(*['sme', 'SoMe'])
 def pos_to_fst(*args, **kwargs):
-    if 'lemma' in kwargs and 'pos' in kwargs:
-        _k = kwargs['pos'].replace('.', '').replace('+', '')
-        new_pos = LEX_TO_FST.get(_k, False)
-        if new_pos:
-            kwargs['pos'] = new_pos
-        else:
-            morph_log.error("Missing LEX_TO_FST pair for %s" % _k.encode('utf-8'))
-            morph_log.error("in morphology.morphological_definitions.sme")
-    return args, kwargs
-
-@lexicon.pre_lookup_tag_rewrite_for_iso('SoMe')
-def some_pos_to_fst(*args, **kwargs):
     if 'lemma' in kwargs and 'pos' in kwargs:
         _k = kwargs['pos'].replace('.', '').replace('+', '')
         new_pos = LEX_TO_FST.get(_k, False)
@@ -81,7 +69,7 @@ def some_pos_to_fst(*args, **kwargs):
 
 # TODO: simplify this decorator process. really only need
 # pregenerate_sme(node) -> returning analyses
-@morphology.pregenerated_form_selector('sme')
+@morphology.pregenerated_form_selector(*['sme', 'SoMe'])
 def pregenerate_sme(form, tags, node):
     _has_mini_paradigm = node.xpath('.//mini_paradigm[1]')
 
@@ -112,7 +100,7 @@ def pregenerate_sme(form, tags, node):
     return form, tags, node, analyses
 
 
-@morphology.tag_filter_for_iso('sme')
+@morphology.tag_filter_for_iso(*['sme', 'SoMe'])
 def lexicon_pos_to_fst(form, tags, node=None):
 
     new_tags = []
@@ -124,7 +112,7 @@ def lexicon_pos_to_fst(form, tags, node=None):
 
     return form, new_tags, node
 
-@morphology.tag_filter_for_iso('sme')
+@morphology.tag_filter_for_iso(*['sme', 'SoMe'])
 def impersonal_verbs(form, tags, node=None):
     if len(node) > 0:
         context = node.xpath('.//l/@context')
@@ -140,7 +128,7 @@ def impersonal_verbs(form, tags, node=None):
 
     return form, tags, node
 
-@morphology.tag_filter_for_iso('sme')
+@morphology.tag_filter_for_iso(*['sme', 'SoMe'])
 def reciprocal_verbs(form, tags, node=None):
     if len(node) > 0:
         context = node.xpath('.//l/@context')
@@ -156,7 +144,7 @@ def reciprocal_verbs(form, tags, node=None):
 
     return form, tags, node
 
-@morphology.tag_filter_for_iso('sme')
+@morphology.tag_filter_for_iso(*['sme', 'SoMe'])
 def common_noun_pluralia_tanta(form, tags, node):
     """ Pluralia tanta common noun
 
@@ -174,7 +162,7 @@ def common_noun_pluralia_tanta(form, tags, node):
 
     return form, tags, node
 
-@morphology.tag_filter_for_iso('sme')
+@morphology.tag_filter_for_iso(*['sme', 'SoMe'])
 def proper_noun_pluralia_tanta(form, tags, node):
     """ Pluralia tanta
 
@@ -196,7 +184,7 @@ def proper_noun_pluralia_tanta(form, tags, node):
 
     return form, tags, node
 
-@morphology.tag_filter_for_iso('sme')
+@morphology.tag_filter_for_iso(*['sme', 'SoMe'])
 def compound_numerals(form, tags, node):
     if len(node) > 0:
         if 'num' in node.xpath('.//l/@pos'):
@@ -230,7 +218,7 @@ context_for_tags = {
 
 }
 
-@morphology.postgeneration_filter_for_iso('sme')
+@morphology.postgeneration_filter_for_iso(*['sme', 'SoMe'])
 def verb_context(generated_result, *generation_input_args):
     # lemma = generation_input_args[0]
     # tags  = generation_input_args[1]
@@ -272,7 +260,7 @@ def verb_context(generated_result, *generation_input_args):
 
 _str_norm = 'string(normalize-space(%s))'
 
-@morpholex.post_morpho_lexicon_override('sme')
+@morpholex.post_morpho_lexicon_override(*['sme', 'SoMe'])
 def remove_analyses_for_analyzed_forms_with_lemma_ref(xml, fst):
     """ If there is an entry that is an analysis and the set contains
     another entry with its matching lemma discard the analyses.
@@ -328,7 +316,8 @@ def remove_analyses_for_analyzed_forms_with_lemma_ref(xml, fst):
 
     return xml, fst
 
-@morpholex.post_morpho_lexicon_override('sme')
+# TODO: 
+@morpholex.post_morpho_lexicon_override(*['sme', 'SoMe'])
 def remove_analyses_for_specific_closed_classes(xml, fst):
     """ Remove analyses from list when the XML entry
     contains a specific PoS type.
@@ -387,10 +376,16 @@ def remove_analyses_for_specific_closed_classes(xml, fst):
 
     return xml, fst
 
-# TODO: same for SoMe
 
-@lexicon.entry_source_formatter('sme')
+@lexicon.entry_source_formatter(*['sme', 'SoMe'])
 def format_source_sme(ui_lang, e, target_lang):
+    """ Format the source for a variety of parameters. Here:
+
+         * Include @pos and @class attributes
+         * if there is a lemma_ref, then we provide the link to that
+           entry too (e.g., munnje)
+
+    """
     from morphology.utils import tagfilter_conf
     from flask import current_app
 
@@ -428,3 +423,23 @@ def format_source_sme(ui_lang, e, target_lang):
         return _lemma
 
     return None
+
+@lexicon.entry_target_formatter(('sme', 'nob'), ('SoMe', 'nob'))
+def format_target_sme(ui_lang, e, tg):
+    """ Display reg attribute in translations, but only for N Prop
+
+        Return the formatted string.
+    """
+    _str_norm = 'string(normalize-space(%s))'
+
+    _type = e.xpath(_str_norm % 'lg/l/@type')
+    _pos = e.xpath(_str_norm % 'lg/l/@pos')
+
+    if _pos == 'N' and _type == 'Prop':
+        _t_lemma = tg.xpath(_str_norm % 't/text()')
+        _reg = tg.xpath(_str_norm % 't/@reg')
+        if _reg:
+            return "%s (%s)" % (_t_lemma, _reg)
+
+    return None
+
