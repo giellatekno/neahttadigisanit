@@ -213,7 +213,8 @@ class FrontPageFormat(EntryNodeIterator):
         # e node, tg node, default text for when formatter doesn't
         # exist for current iso
         target_formatted = lexicon_overrides.format_target(
-            self.query_kwargs.get('target_lang'), ui_lang, e, tg, text
+            self.query_kwargs.get('source_lang'), self.query_kwargs.get('target_lang'),
+            ui_lang, e, tg, text
         )
 
         right_node = { 'tx': text

@@ -28,13 +28,13 @@ class LexiconOverrides(object):
                 or default_str
         return default_str
 
-    def format_target(self, lang_iso, ui_lang, e, tg, default_str):
+    def format_target(self, src_iso, targ_iso, ui_lang, e, tg, default_str):
         """ Find the function decorated by
                 @overrides.entry_source_formatter(iso)
             and run the function on an XML node.
         """
-        if lang_iso in self.target_formatters:
-            return self.target_formatters.get(lang_iso)(ui_lang, e, tg) \
+        if (src_iso, targ_iso) in self.target_formatters:
+            return self.target_formatters.get((src_iso, targ_iso))(ui_lang, e, tg) \
                 or default_str
         return default_str
 
@@ -83,20 +83,20 @@ class LexiconOverrides(object):
                       )
         return wrapper
 
-    def entry_target_formatter(self, language_iso):
+    def entry_target_formatter(self, src_iso, targ_iso):
         """ Register a function for a language ISO
         """
         def wrapper(formatter_function):
-            if language_iso in self.target_formatters:
+            if (src_iso, targ_iso) in self.target_formatters:
                 print ' * OBS! Target formatter already registered for %s.' % \
                     language_iso
                 print '   ignoring redefinition on <%s>.' % \
                     formatter_function.__name__
             else:
-                self.target_formatters[language_iso] = formatter_function
+                self.target_formatters[(src_iso, targ_iso)] = formatter_function
                 print '%s formatter: entry formatter for target - %s' %\
-                      ( language_iso
-                      , restrictor_function.__name__
+                      ( '%s - %s' % (src_iso, targ_iso)
+                      , formatter_function.__name__
                       )
         return wrapper
 
