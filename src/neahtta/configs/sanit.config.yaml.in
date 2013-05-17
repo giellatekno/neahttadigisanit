@@ -188,7 +188,7 @@ Paradigms:
       - "PrfPtc"
 
 TagSets:
-  sme:
+  sme: &smetagsets
     pos: [
       "N", "V", "A", "Pr", "Po", "Num", 
       
@@ -203,6 +203,8 @@ TagSets:
       - "pron."
       - "refl."
       - "res."
+  SoMe:
+    <<: *smetagsets
 
 # Note, these come from dictionary fst, so tag parts are mostly 
 # already translated
