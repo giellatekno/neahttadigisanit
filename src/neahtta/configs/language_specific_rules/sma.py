@@ -35,7 +35,7 @@ from flask import current_app
 
 @lexicon_overrides.entry_source_formatter('sma')
 def format_source_sma(ui_lang, e, target_lang):
-    from neahtta import tagfilter_conf
+    from morphology.utils import tagfilter_conf
 
     paren_args = []
 
