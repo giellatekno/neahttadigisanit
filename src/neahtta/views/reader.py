@@ -1,6 +1,7 @@
 from flask import ( request
                   , Response
                   , json
+                  , session
                   , render_template
                   , current_app
                   )
@@ -9,6 +10,7 @@ from . import blueprint
 
 from utils.json import fmtForCallback
 from utils.logger import logSimpleLookups
+from i18n.utils import iso_filter
 
 from morphology.utils import tagfilter
 from flaskext.babel import gettext as _
@@ -68,14 +70,17 @@ def lookupWord(from_language, to_language):
     if analyses:
         def filterPOSAndTag(analysis):
             filtered_pos = tagfilter(analysis.pos, from_language, to_language)
-            joined = filtered_pos + ' ' + ' '.join(analysis.tag)
+            joined = ' '.join(analysis.tag)
             return (analysis.lemma, joined)
         tags = map(filterPOSAndTag, analyses)
     else:
         tags = []
 
+    ui_lang = iso_filter(session.get('locale', to_language))
     result = SimpleJSON( xml_nodes
                        , target_lang=to_language
+                       , source_lang=from_language
+                       , ui_lang=ui_lang
                        )
 
     result = map(filterPOS, list(result))
