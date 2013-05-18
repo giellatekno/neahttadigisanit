@@ -112,7 +112,7 @@ msgstr "Min birra"
 
 #: static/js/bookmarklet.js:1245
 msgid "Language"
-msgstr "Giela"
+msgstr "Giella"
 
 #: static/js/bookmarklet.js:1245
 msgid "Save"
