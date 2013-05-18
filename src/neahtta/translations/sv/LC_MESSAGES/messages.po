@@ -113,7 +113,6 @@ msgid "About"
 msgstr "Om oss"
 
 #: static/js/bookmarklet.js:1245
-#, fuzzy
 msgid "Language"
 msgstr "Språk"
 

@@ -114,9 +114,8 @@ msgid "About"
 msgstr "Про нас"
 
 #: static/js/bookmarklet.js:1245
-#, fuzzy
 msgid "Language"
-msgstr "Марийские языки"
+msgstr "Язык"
 
 #: static/js/bookmarklet.js:1245
 msgid "Save"

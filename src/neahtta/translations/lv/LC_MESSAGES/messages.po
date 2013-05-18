@@ -114,7 +114,6 @@ msgid "About"
 msgstr "Par mums"
 
 #: static/js/bookmarklet.js:1245
-#, fuzzy
 msgid "Language"
 msgstr "Valoda"
 

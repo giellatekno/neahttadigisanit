@@ -111,9 +111,8 @@ msgid "About"
 msgstr "Meistä"
 
 #: static/js/bookmarklet.js:1245
-#, fuzzy
 msgid "Language"
-msgstr "Marilaiskielet"
+msgstr "Kieli"
 
 #: static/js/bookmarklet.js:1245
 msgid "Save"

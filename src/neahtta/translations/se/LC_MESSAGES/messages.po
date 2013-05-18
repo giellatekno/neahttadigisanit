@@ -111,9 +111,8 @@ msgid "About"
 msgstr "Min birra"
 
 #: static/js/bookmarklet.js:1245
-#, fuzzy
 msgid "Language"
-msgstr "Marigielat"
+msgstr "Giela"
 
 #: static/js/bookmarklet.js:1245
 msgid "Save"

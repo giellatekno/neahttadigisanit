@@ -111,7 +111,6 @@ msgid "About"
 msgstr "Минденек"
 
 #: static/js/bookmarklet.js:1245
-#, fuzzy
 msgid "Language"
 msgstr "Келесь"
 
