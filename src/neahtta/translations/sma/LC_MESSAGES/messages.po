@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-04-23 18:32-0500\n"
+"POT-Creation-Date: 2013-05-18 18:53+0200\n"
 "PO-Revision-Date: 2013-02-01 01:54-0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: sma <LL@li.org>\n"
@@ -112,27 +112,11 @@ msgid "About"
 msgstr ""
 
 #: static/js/bookmarklet.js:1245
-msgid "Advanced"
-msgstr ""
-
-#: static/js/bookmarklet.js:1245
-msgid "Dictionary"
+msgid "Language"
 msgstr ""
 
 #: static/js/bookmarklet.js:1245
 msgid "Save"
-msgstr ""
-
-#: static/js/bookmarklet.js:1245
-msgid "Refresh settings"
-msgstr ""
-
-#: static/js/bookmarklet.js:1245
-msgid "Update detected"
-msgstr ""
-
-#: static/js/bookmarklet.js:1245
-msgid "IE8 Warning"
 msgstr ""
 
 #: static/js/bookmarklet.js:1245
@@ -149,27 +133,27 @@ msgid ""
 "what page didn't work, or what you did when you discovered the problem."
 msgstr ""
 
-#: static/js/bookmarklet.js:1310
+#: static/js/bookmarklet.js:1294
 msgid "Error!"
 msgstr ""
 
-#: static/js/bookmarklet.js:1310
+#: static/js/bookmarklet.js:1294
 msgid "Could not connect to dictionary server"
 msgstr ""
 
-#: static/js/bookmarklet.js:1310
+#: static/js/bookmarklet.js:1294
 msgid "Close"
 msgstr ""
 
-#: static/js/bookmarklet.js:1432 static/js/bookmarklet.js:1715
+#: static/js/bookmarklet.js:1416 static/js/bookmarklet.js:1691
 msgid "Unknown word"
 msgstr ""
 
-#: static/js/bookmarklet.js:1433
+#: static/js/bookmarklet.js:1417
 msgid "You are using"
 msgstr ""
 
-#: static/js/bookmarklet.js:1435
+#: static/js/bookmarklet.js:1419
 msgid "Meaning not found"
 msgstr ""
 
@@ -482,7 +466,7 @@ msgstr ""
 msgid "Definition not found for:"
 msgstr ""
 
-#: templates/index.html:147 views/reader.py:96
+#: templates/index.html:147 views/reader.py:101
 msgid " is a possible form of ... "
 msgstr ""
 
@@ -692,99 +676,18 @@ msgstr ""
 msgid "Invalid format. Only json and html allowed."
 msgstr ""
 
-#~ msgid "usage: "
+#~ msgid "Advanced"
 #~ msgstr ""
 
-#~ msgid ".__call__() not defined"
+#~ msgid "Dictionary"
 #~ msgstr ""
 
-#~ msgid "unknown parser %r (choices: %s)"
+#~ msgid "Refresh settings"
 #~ msgstr ""
 
-#~ msgid "argument \"-\" with mode %r"
+#~ msgid "Update detected"
 #~ msgstr ""
 
-#~ msgid "cannot merge actions - two groups are named %r"
-#~ msgstr ""
-
-#~ msgid "'required' is an invalid argument for positionals"
-#~ msgstr ""
-
-#~ msgid "invalid option string %r: must start with a character %r"
-#~ msgstr ""
-
-#~ msgid "dest= is required for options like %r"
-#~ msgstr ""
-
-#~ msgid "invalid conflict_resolution value: %r"
-#~ msgstr ""
-
-#~ msgid "conflicting option string(s): %s"
-#~ msgstr ""
-
-#~ msgid "mutually exclusive arguments must be optional"
-#~ msgstr ""
-
-#~ msgid "positional arguments"
-#~ msgstr ""
-
-#~ msgid "optional arguments"
-#~ msgstr ""
-
-#~ msgid "show this help message and exit"
-#~ msgstr ""
-
-#~ msgid "show program's version number and exit"
-#~ msgstr ""
-
-#~ msgid "cannot have multiple subparser arguments"
-#~ msgstr ""
-
-#~ msgid "unrecognized arguments: %s"
-#~ msgstr ""
-
-#~ msgid "not allowed with argument %s"
-#~ msgstr ""
-
-#~ msgid "ignored explicit argument %r"
-#~ msgstr ""
-
-#~ msgid "too few arguments"
-#~ msgstr ""
-
-#~ msgid "argument %s is required"
-#~ msgstr ""
-
-#~ msgid "one of the arguments %s is required"
-#~ msgstr ""
-
-#~ msgid "expected one argument"
-#~ msgstr ""
-
-#~ msgid "expected at most one argument"
-#~ msgstr ""
-
-#~ msgid "expected at least one argument"
-#~ msgstr ""
-
-#~ msgid "expected %s argument(s)"
-#~ msgstr ""
-
-#~ msgid "ambiguous option: %s could match %s"
-#~ msgstr ""
-
-#~ msgid "unexpected option string: %s"
-#~ msgstr ""
-
-#~ msgid "%r is not callable"
-#~ msgstr ""
-
-#~ msgid "invalid %s value: %r"
-#~ msgstr ""
-
-#~ msgid "invalid choice: %r (choose from %s)"
-#~ msgstr ""
-
-#~ msgid "%s: error: %s\n"
+#~ msgid "IE8 Warning"
 #~ msgstr ""
 

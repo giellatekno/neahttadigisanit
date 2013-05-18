@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-04-23 18:32-0500\n"
+"POT-Creation-Date: 2013-05-18 18:53+0200\n"
 "PO-Revision-Date: 2013-02-01 01:54-0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: no <LL@li.org>\n"
@@ -111,28 +111,13 @@ msgid "About"
 msgstr "Om oss"
 
 #: static/js/bookmarklet.js:1245
-msgid "Advanced"
-msgstr "Avansert"
-
-#: static/js/bookmarklet.js:1245
-msgid "Dictionary"
-msgstr "Ordbok"
+#, fuzzy
+msgid "Language"
+msgstr "mariske språk"
 
 #: static/js/bookmarklet.js:1245
 msgid "Save"
 msgstr "Lagre"
-
-#: static/js/bookmarklet.js:1245
-msgid "Refresh settings"
-msgstr "Oppdater innstillinger"
-
-#: static/js/bookmarklet.js:1245
-msgid "Update detected"
-msgstr "Vi har funnet ei oppdatering"
-
-#: static/js/bookmarklet.js:1245
-msgid "IE8 Warning"
-msgstr "IE8-advarsel"
 
 #: static/js/bookmarklet.js:1245
 msgid ""
@@ -152,31 +137,31 @@ msgid ""
 "what page didn't work, or what you did when you discovered the problem."
 msgstr ""
 "Hvis du finner en feil, eller hvis bokmerket ikke fungerer på ei viss "
-"side, så vær snill og <a href=\"mailto:giellatekno@hum.uit.no\">kontakt oss</a>. "
-"Fortell oss hvilken side som ikke fungerte, eller hva du gjorde da du "
-"oppdaga problemet."
+"side, så vær snill og <a href=\"mailto:giellatekno@hum.uit.no\">kontakt "
+"oss</a>. Fortell oss hvilken side som ikke fungerte, eller hva du gjorde "
+"da du oppdaga problemet."
 
-#: static/js/bookmarklet.js:1310
+#: static/js/bookmarklet.js:1294
 msgid "Error!"
 msgstr "Feil!"
 
-#: static/js/bookmarklet.js:1310
+#: static/js/bookmarklet.js:1294
 msgid "Could not connect to dictionary server"
 msgstr "Vi er ikke i stand til å forbinde til ordboksserveren"
 
-#: static/js/bookmarklet.js:1310
+#: static/js/bookmarklet.js:1294
 msgid "Close"
 msgstr "Lukk"
 
-#: static/js/bookmarklet.js:1432 static/js/bookmarklet.js:1715
+#: static/js/bookmarklet.js:1416 static/js/bookmarklet.js:1691
 msgid "Unknown word"
 msgstr "Ukjent ord"
 
-#: static/js/bookmarklet.js:1433
+#: static/js/bookmarklet.js:1417
 msgid "You are using"
 msgstr "Du bruker"
 
-#: static/js/bookmarklet.js:1435
+#: static/js/bookmarklet.js:1419
 msgid "Meaning not found"
 msgstr "Vi fant ingen oversetting"
 
@@ -373,12 +358,11 @@ msgid ""
 "from\n"
 "                the Kone Foundation."
 msgstr ""
-"Ordbøker for vestmarisk og finsk er basert på leksikalsk materiale "
-"fra mange ordbøker, og fra skriftlig materiale fra 1900- og 2000-tallet. "
-"Ei spesielt viktig ordbok har vært Anna A. Savatkova si Vestmarisk - "
-"russisk fra 1981. Oversettelsesarbeidet blir utført av Julia Kuprina "
-"ved Universitetet i Helsingfors, med finansiering av Kone-stiftelsen."
-
+"Ordbøker for vestmarisk og finsk er basert på leksikalsk materiale fra "
+"mange ordbøker, og fra skriftlig materiale fra 1900- og 2000-tallet. Ei "
+"spesielt viktig ordbok har vært Anna A. Savatkova si Vestmarisk - russisk"
+" fra 1981. Oversettelsesarbeidet blir utført av Julia Kuprina ved "
+"Universitetet i Helsingfors, med finansiering av Kone-stiftelsen."
 
 #: templates/about.sanat.html:45
 msgid "mennä, tapahtua, viedä, johtaa, edistyä"
@@ -402,8 +386,8 @@ msgid ""
 "                Blumberga with funding from the Kone Foundation."
 msgstr ""
 "Ordbøkene for livisk og finsk er basert på materiale og vitenskapelig "
-"forsking bak den livisk-estisk-latviske ordboka av Tiit-Rein Viitso "
-"og Valts Ernštreits. Finsk oversettelsesarbeid, innholdsanalyse og "
+"forsking bak den livisk-estisk-latviske ordboka av Tiit-Rein Viitso og "
+"Valts Ernštreits. Finsk oversettelsesarbeid, innholdsanalyse og "
 "koordinering blir gjort i Helsingfors av Renate Blumberga med "
 "finansiering av Kone-stiftelsen."
 
@@ -422,11 +406,9 @@ msgid ""
 "                Foundation."
 msgstr ""
 "Ordbøkene for livvisk (olonetsisk) og finsk er basert på leksikalske "
-"kilder fra den livviske avisa \"Oma mua\" og fra mange ulike ordbøker. "
-" Oversettelsesarbeidet blir utført av Timo Rantakaulio "
-"ved Universitetet i Helsingfors, med finansiering av Kone-stiftelsen."
-
-
+"kilder fra den livviske avisa \"Oma mua\" og fra mange ulike ordbøker.  "
+"Oversettelsesarbeidet blir utført av Timo Rantakaulio ved Universitetet i"
+" Helsingfors, med finansiering av Kone-stiftelsen."
 
 #: templates/about.vada.html:59
 msgid "yrk ↔ fin"
@@ -443,13 +425,11 @@ msgid ""
 "Soosaar\n"
 "                with funding from the Kone Foundation."
 msgstr ""
-"Ordbøkene for nenetsisk og finsk er basert på leksikalske "
-"kilder og vitenskapelig arbeid utført av Natalia M. Tereshchenko, "
-"Tapani Salminen og Sven-Erik Soosaar. "
-" Oversettelsesarbeidet blir utført av Sven-Erik Soosaar "
-"ved Universitetet i Helsingfors, med finansiering av Kone-stiftelsen."
-
-
+"Ordbøkene for nenetsisk og finsk er basert på leksikalske kilder og "
+"vitenskapelig arbeid utført av Natalia M. Tereshchenko, Tapani Salminen "
+"og Sven-Erik Soosaar.  Oversettelsesarbeidet blir utført av Sven-Erik "
+"Soosaar ved Universitetet i Helsingfors, med finansiering av Kone-"
+"stiftelsen."
 
 #: templates/about.valks.html:59
 msgid "myv ↔ fin"
@@ -471,13 +451,12 @@ msgid ""
 "University\n"
 "                of Helsinki."
 msgstr ""
-"Ordbøkene for erzja og finsk er basert på leksikalske "
-"kilder fra mange ulike ordbøker og litteratur fra 1900- og 2000-tallet. "
-"Grunnoversettelser har blitt lagt til  fra den erzja-finske ordboka "
-"til Jaana Niemi og Mihail Mosin ved universiteta i Åbo og Saransk. "
-" Oversettelsesarbeid blir nå utført "
-"ved Universitetet i Helsingfors, med finansiering av Kone-stiftelsen."
-
+"Ordbøkene for erzja og finsk er basert på leksikalske kilder fra mange "
+"ulike ordbøker og litteratur fra 1900- og 2000-tallet. Grunnoversettelser"
+" har blitt lagt til  fra den erzja-finske ordboka til Jaana Niemi og "
+"Mihail Mosin ved universiteta i Åbo og Saransk.  Oversettelsesarbeid blir"
+" nå utført ved Universitetet i Helsingfors, med finansiering av Kone-"
+"stiftelsen."
 
 #: templates/about.valks.html:70
 msgid "mdf ↔ fin"
@@ -497,12 +476,12 @@ msgid ""
 "                Helsinki by Merja Salo with funding from the Kone "
 "Foundation."
 msgstr ""
-"Ordbøkene for moksja og finsk er basert på leksikalske "
-"kilder fra mange ulike ordbøker og litteratur fra 1900- og 2000-tallet. "
-"Grunnoversettelser har blitt lagt til  fra den moksja-finske ordboka "
-"til Eeva Herrala og Aleksandr Feoktistov ved universiteta i Åbo og Saransk. "
-" Oversettelsesarbeidet blir utført av Merja Salo "
-"ved Universitetet i Helsingfors, med finansiering av Kone-stiftelsen."
+"Ordbøkene for moksja og finsk er basert på leksikalske kilder fra mange "
+"ulike ordbøker og litteratur fra 1900- og 2000-tallet. Grunnoversettelser"
+" har blitt lagt til  fra den moksja-finske ordboka til Eeva Herrala og "
+"Aleksandr Feoktistov ved universiteta i Åbo og Saransk.  "
+"Oversettelsesarbeidet blir utført av Merja Salo ved Universitetet i "
+"Helsingfors, med finansiering av Kone-stiftelsen."
 
 #: templates/base.html:74
 msgid "Home"
@@ -561,7 +540,7 @@ msgstr "Søk"
 msgid "Definition not found for:"
 msgstr "Vi fant ingen oversetting for:"
 
-#: templates/index.html:147 views/reader.py:96
+#: templates/index.html:147 views/reader.py:101
 msgid " is a possible form of ... "
 msgstr " er en mulig form av ... "
 
@@ -607,8 +586,7 @@ msgstr "Andre ordbøker"
 msgid ""
 "Neahttadigisánit is available for the following\n"
 "                language groups."
-msgstr ""
-"Neahttadigisánit er tilgjengelig for følgende språkgrupper."
+msgstr "Neahttadigisánit er tilgjengelig for følgende språkgrupper."
 
 #: templates/more_dictionaries.html:31
 msgid ""
@@ -620,8 +598,8 @@ msgid ""
 "                would like to see a demo!"
 msgstr ""
 "Vi arbeider for tida med å legge til nye ordbøker for følgende "
-"språkgrupper. I og med at de ikke alltid vil være online har vi "
-"ikke lenke til dem her, men kontakt oss gjerne hvis du vil se dem!"
+"språkgrupper. I og med at de ikke alltid vil være online har vi ikke "
+"lenke til dem her, men kontakt oss gjerne hvis du vil se dem!"
 
 #: templates/more_dictionaries.html:37
 msgid "Balto-finnic languages"
@@ -674,10 +652,10 @@ msgid ""
 "href=\"http://dicts.uit.no/\">see this\n"
 "                    list</a>."
 msgstr ""
-"<a href=\"http://giellatekno.uit.no/\">Giellatekno</a> har også "
-"andre språk og ordbøker som fremdeles ikke er tilgjengelige i "
-"Neahttadigisánit. Ei liste over alle andre nettordbøker som har "
-"blitt bygd med våre verktøy finner du <a href=\"http://dicts.uit.no/\">her</a>."
+"<a href=\"http://giellatekno.uit.no/\">Giellatekno</a> har også andre "
+"språk og ordbøker som fremdeles ikke er tilgjengelige i Neahttadigisánit."
+" Ei liste over alle andre nettordbøker som har blitt bygd med våre "
+"verktøy finner du <a href=\"http://dicts.uit.no/\">her</a>."
 
 #: templates/reader.html:4 templates/reader.html:22
 msgid "Neahttadigisánit Reader"
@@ -762,8 +740,8 @@ msgid ""
 "If you are looking for other languages, please see our <a "
 "href=\"/more/\">other dictionaries</a>."
 msgstr ""
-"Hvis du leter etter andre språk kan du se våre "
-" <a href=\"/more/\">andre ordbøker</a>."
+"Hvis du leter etter andre språk kan du se våre  <a href=\"/more/\">andre "
+"ordbøker</a>."
 
 #: templates/reader_example.html:32
 msgid "Additional instructions"
@@ -811,99 +789,18 @@ msgstr "Mer informasjon om dette ordet"
 msgid "Invalid format. Only json and html allowed."
 msgstr "Ugyldig format. Bare json og html er tillatt."
 
-#~ msgid "usage: "
-#~ msgstr ""
+#~ msgid "Advanced"
+#~ msgstr "Avansert"
 
-#~ msgid ".__call__() not defined"
-#~ msgstr ""
+#~ msgid "Dictionary"
+#~ msgstr "Ordbok"
 
-#~ msgid "unknown parser %r (choices: %s)"
-#~ msgstr ""
+#~ msgid "Refresh settings"
+#~ msgstr "Oppdater innstillinger"
 
-#~ msgid "argument \"-\" with mode %r"
-#~ msgstr ""
+#~ msgid "Update detected"
+#~ msgstr "Vi har funnet ei oppdatering"
 
-#~ msgid "cannot merge actions - two groups are named %r"
-#~ msgstr ""
-
-#~ msgid "'required' is an invalid argument for positionals"
-#~ msgstr ""
-
-#~ msgid "invalid option string %r: must start with a character %r"
-#~ msgstr ""
-
-#~ msgid "dest= is required for options like %r"
-#~ msgstr ""
-
-#~ msgid "invalid conflict_resolution value: %r"
-#~ msgstr ""
-
-#~ msgid "conflicting option string(s): %s"
-#~ msgstr ""
-
-#~ msgid "mutually exclusive arguments must be optional"
-#~ msgstr ""
-
-#~ msgid "positional arguments"
-#~ msgstr ""
-
-#~ msgid "optional arguments"
-#~ msgstr ""
-
-#~ msgid "show this help message and exit"
-#~ msgstr ""
-
-#~ msgid "show program's version number and exit"
-#~ msgstr ""
-
-#~ msgid "cannot have multiple subparser arguments"
-#~ msgstr ""
-
-#~ msgid "unrecognized arguments: %s"
-#~ msgstr ""
-
-#~ msgid "not allowed with argument %s"
-#~ msgstr ""
-
-#~ msgid "ignored explicit argument %r"
-#~ msgstr ""
-
-#~ msgid "too few arguments"
-#~ msgstr ""
-
-#~ msgid "argument %s is required"
-#~ msgstr ""
-
-#~ msgid "one of the arguments %s is required"
-#~ msgstr ""
-
-#~ msgid "expected one argument"
-#~ msgstr ""
-
-#~ msgid "expected at most one argument"
-#~ msgstr ""
-
-#~ msgid "expected at least one argument"
-#~ msgstr ""
-
-#~ msgid "expected %s argument(s)"
-#~ msgstr ""
-
-#~ msgid "ambiguous option: %s could match %s"
-#~ msgstr ""
-
-#~ msgid "unexpected option string: %s"
-#~ msgstr ""
-
-#~ msgid "%r is not callable"
-#~ msgstr ""
-
-#~ msgid "invalid %s value: %r"
-#~ msgstr ""
-
-#~ msgid "invalid choice: %r (choose from %s)"
-#~ msgstr ""
-
-#~ msgid "%s: error: %s\n"
-#~ msgstr ""
+#~ msgid "IE8 Warning"
+#~ msgstr "IE8-advarsel"
 

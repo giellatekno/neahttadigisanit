@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-04-23 18:32-0500\n"
+"POT-Creation-Date: 2013-05-18 18:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -111,27 +111,11 @@ msgid "About"
 msgstr ""
 
 #: static/js/bookmarklet.js:1245
-msgid "Advanced"
-msgstr ""
-
-#: static/js/bookmarklet.js:1245
-msgid "Dictionary"
+msgid "Language"
 msgstr ""
 
 #: static/js/bookmarklet.js:1245
 msgid "Save"
-msgstr ""
-
-#: static/js/bookmarklet.js:1245
-msgid "Refresh settings"
-msgstr ""
-
-#: static/js/bookmarklet.js:1245
-msgid "Update detected"
-msgstr ""
-
-#: static/js/bookmarklet.js:1245
-msgid "IE8 Warning"
 msgstr ""
 
 #: static/js/bookmarklet.js:1245
@@ -148,27 +132,27 @@ msgid ""
 "what page didn't work, or what you did when you discovered the problem."
 msgstr ""
 
-#: static/js/bookmarklet.js:1310
+#: static/js/bookmarklet.js:1294
 msgid "Error!"
 msgstr ""
 
-#: static/js/bookmarklet.js:1310
+#: static/js/bookmarklet.js:1294
 msgid "Could not connect to dictionary server"
 msgstr ""
 
-#: static/js/bookmarklet.js:1310
+#: static/js/bookmarklet.js:1294
 msgid "Close"
 msgstr ""
 
-#: static/js/bookmarklet.js:1432 static/js/bookmarklet.js:1715
+#: static/js/bookmarklet.js:1416 static/js/bookmarklet.js:1691
 msgid "Unknown word"
 msgstr ""
 
-#: static/js/bookmarklet.js:1433
+#: static/js/bookmarklet.js:1417
 msgid "You are using"
 msgstr ""
 
-#: static/js/bookmarklet.js:1435
+#: static/js/bookmarklet.js:1419
 msgid "Meaning not found"
 msgstr ""
 
@@ -481,7 +465,7 @@ msgstr ""
 msgid "Definition not found for:"
 msgstr ""
 
-#: templates/index.html:147 views/reader.py:96
+#: templates/index.html:147 views/reader.py:101
 msgid " is a possible form of ... "
 msgstr ""
 
