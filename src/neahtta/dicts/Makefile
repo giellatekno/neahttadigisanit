@@ -247,7 +247,7 @@ mhr-all.xml: $(GTHOME)/langs/mhr/src/morphology/stems/*.xml
 	rm -rf mhr/
 
 .PHONY: muter-lexicon
-muter-lexicon: mhr-all.xml mrj-all.xml
+muter-lexica: mhr-all.xml mrj-all.xml
 
 # TODO: rus
 .PHONY: muter
@@ -361,7 +361,7 @@ mdf-lexicon: mdf-all.xml
 
 .PHONY: valks-lexica
 valks-lexica:  myv-lexicon mdf-lexicon
-	
+
 .PHONY: valks
 valks: init myv mdf fin valks-lexica
 	@echo "*********************************"
@@ -567,9 +567,9 @@ sanat-fkv-install: fst/fkv.fst ifst/ifkv.fst
 	chmod a+x /opt/smi/fkv/bin/*.fst
 
 sanat-install: sanat-olo-install \
-   			   sanat-liv-install \
-   			   sanat-izh-install \
-   			   sanat-fkv-install
+			   sanat-liv-install \
+			   sanat-izh-install \
+			   sanat-fkv-install
 
 #####
 ##### #sanittargets
