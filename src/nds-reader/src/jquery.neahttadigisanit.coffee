@@ -50,7 +50,9 @@ jQuery(document).ready ($) ->
 
   # API_HOST = "http://sanit.oahpa.no/"
   # API_HOST = "http://localhost:5000/"
+  #
   # Check for the
+  #
   API_HOST = window.NDS_API_HOST || API_HOST
 
   SHORT_NAME = API_HOST
@@ -503,7 +505,6 @@ jQuery(document).ready ($) ->
         if evt.altKey
           element = evt.target
           within_options = $(element).parents('#webdict_options')
-          console.log within_options
           if within_options.length > 0
           	$(within_options[0]).find('#debug').show()
           	return false
