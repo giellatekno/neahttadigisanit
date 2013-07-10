@@ -223,29 +223,32 @@ class DetailedFormat(EntryNodeIterator):
 class FrontPageFormat(EntryNodeIterator):
 
     def clean_tg_node(self, e, tg):
+        from functools import partial
+
         ui_lang = self.query_kwargs.get('ui_lang')
 
-        text, annotations, lang = self.find_translation_text(tg)
+        texts, annotations, lang = self.find_translation_text(tg)
 
         link = True
 
-        if isinstance(text, list):
-            if len(text) > 1:
-                link = False
-            text = ', '.join(text)
-        else:
-            link = True
+        if not isinstance(texts, list):
+            texts = [texts]
 
         # e node, tg node, default text for when formatter doesn't
         # exist for current iso
-        target_formatted = lexicon_overrides.format_target(
-            self.query_kwargs.get('source_lang'), self.query_kwargs.get('target_lang'),
-            ui_lang, e, tg, text
-        )
 
-        right_node = { 'tx': text
+        # Apply to each translation text separately 
+        target_formatter = partial( lexicon_overrides.format_target
+                                  , self.query_kwargs.get('source_lang')
+                                  , self.query_kwargs.get('target_lang')
+                                  , ui_lang
+                                  , e
+                                  , tg
+                                  )
+        target_formatted = map(target_formatter, texts)
+
+        right_node = { 'tx': ', '.join(texts)
                      , 're': annotations
-                     , 'link': link
                      , 'examples': self.examples(tg)
                      , 'target_formatted': target_formatted
                      }

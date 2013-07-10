@@ -5,9 +5,11 @@
            data-toggle="dropdown"
            href="#">
             {% trans %}<span class="reposition_hide">Language</span>{% endtrans %}
+            <span class="flags_list">
             {% for iso in internationalizations %}
                 <img class="i18n_flag" src="{{url_for('static', filename='img/flags/' + iso + '_20x15.png')}}"></img>
             {% endfor %}
+            </span>
             <b class="caret"></b>
           </a>
         <ul class="dropdown-menu">
