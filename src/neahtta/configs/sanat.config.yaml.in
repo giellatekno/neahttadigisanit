@@ -5,9 +5,10 @@ ApplicationSettings:
   default_pair: ["olo", "fin"]
   mobile_default_pair: false
   locales_available:
-    - fi
-    - lv
-    - ru
+    - "fi"
+    - "lv"
+    - "ru"
+    - "no"
   # TODO: someone will have to decide on the meta keywords and
   # descriptions for google.
   meta_description: >
@@ -56,7 +57,7 @@ Morphology:
     inverse_file: [*OPT, '/fkv/bin/ifkv.fst']
     format: 'xfst'
     options:
-      compoundBoundary: "+Use/Circ#"
+      compoundBoundary: "+Cmp#"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
@@ -96,9 +97,11 @@ Dictionaries:
   - source: olo
     target: fin
     path: 'dicts/olo-fin.xml'
+    reversable: true
   - source: liv
     target: fin
     path: 'dicts/liv.all.xml'
+    reversable: true
   - source: liv
     target: est
     path: 'dicts/liv.all.xml'
