@@ -35,6 +35,9 @@ NAMES = dict([
     # vada
     ('yrk', _(u"Nenets")),
 
+    # saan
+    ('sms', _(u"Skolt Sámi")),
+
     # target languages
     ('fin', _(u"Finnish")),
     ('nob', _(u"Norwegian")),
@@ -73,6 +76,7 @@ LOCALISATION_NAMES_BY_LANGUAGE = dict([
     ('fi', u"Suomi"),
     ('eng', u"English"),
     ('est', u"Estonian"), # TODO: flag
+    ('sms', u"sääˊmǩiõll"),
 ])
 
 # Only put the exceptional ISOs here

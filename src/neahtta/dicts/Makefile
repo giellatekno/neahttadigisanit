@@ -115,6 +115,67 @@ fst/rus.fst:
 .PHONY: rus
 rus: fst/rus.fst
 
+#####
+##### #saantargets
+#####
+
+##
+### #smsanalysers
+##
+
+fst/sms.fst:
+	@echo "***********************"
+	@echo "** Building sms FSTs **"
+	@echo "***********************"
+	@echo ""
+	cd $(GTHOME)/langs/sms/ ; \
+	  ./autogen.sh ; \
+	  ./configure  ; \
+	  make ; \
+	  cp src/analyser-gt-desc.xfst  $(TARGET_DIR)/fst/sms.fst ; \
+	  cp src/generator-gt-norm.xfst $(TARGET_DIR)/ifst/isms.fst
+
+.PHONY: sms
+sms: fst/sms.fst
+
+##
+### #saanlexicon
+##
+
+sms-all.xml: $(GTHOME)/langs/sms/src/morphology/stems/*.xml
+	@echo "**************************"
+	@echo "** Building sms lexicon **"
+	@echo "**************************"
+	@echo ""
+	mkdir sms
+	cp $^ sms/
+	$(SAXON) inDir=$(pwd)/sms/ > sms-all.xml
+	rm -rf sms/
+
+.PHONY: sms-lexicon
+saan-lexica: sms-all.xml
+
+.PHONY: saan
+saan: init sms fin saan-lexica
+	@echo "*********************************"
+	@echo "** Built targets for saan:     **"
+	@echo "**    + sms lexicon            **"
+	@echo "**    + sms analysers          **"
+	@echo "**    + fin analysers          **"
+	@echo "*********************************"
+	@echo "**   (sms = Skolt)             **"
+	@echo "*********************************"
+	@echo ""
+	@echo "Now install analysers in expected paths."
+	@echo "    sudo make saan-install"
+	@echo "... or copy the fsts in fst/ and ifst/ to their right places."
+
+saan-sms-install: fst/sms.fst ifst/isms.fst
+	mkdir -p /opt/smi/sms/bin/
+	cp $^ /opt/smi/sms/bin/
+	chmod a+x /opt/smi/sms/bin/*.fst
+
+saan-install: saan-sms-install
 
 
 #####
