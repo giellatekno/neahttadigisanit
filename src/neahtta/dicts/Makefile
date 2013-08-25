@@ -10,6 +10,10 @@
 ###          #finanalysers
 ###          #rusanalysers TODO
 ###         
+###         #saantargets
+###          #smsanalysers
+###          #saanlexicon
+###         
 ###         #vadatargets
 ###          #yrkanalysers
 ###          #vadalexicon
@@ -114,6 +118,8 @@ fst/rus.fst:
 
 .PHONY: rus
 rus: fst/rus.fst
+
+
 
 #####
 ##### #saantargets
