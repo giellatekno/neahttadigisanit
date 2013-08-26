@@ -48,10 +48,21 @@ Languages:
     name: {}
   - iso: rus
     name: {}
+  - iso: nob
+    name: {}
 
 Dictionaries:
   - source: sms
     target: fin
+    path: 'dicts/sms-all.xml'
+  - source: sms
+    target: eng
+    path: 'dicts/sms-all.xml'
+  - source: sms
+    target: rus
+    path: 'dicts/sms-all.xml'
+  - source: sms
+    target: nob
     path: 'dicts/sms-all.xml'
 
 Paradigms:
