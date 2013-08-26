@@ -1,4 +1,8 @@
 # -*- encoding: utf-8 -*-
+""" Various rules for displaying ``sme`` entries properly, and
+connecting FST to Lexicon.
+"""
+
 # NOTE: if copying this for a new language, remember to make sure that
 # it's being imported in __init__.py
 
@@ -44,6 +48,8 @@ morph_log = getLogger('morphology')
 # nothing.
 @lexicon.pre_lookup_tag_rewrite_for_iso(*['sme', 'SoMe'])
 def pos_to_fst(*args, **kwargs):
+    """ TODO: document.
+    """
     if 'lemma' in kwargs and 'pos' in kwargs:
         _k = kwargs['pos'].replace('.', '').replace('+', '')
         new_pos = LEX_TO_FST.get(_k, False)
@@ -71,6 +77,11 @@ def pos_to_fst(*args, **kwargs):
 # pregenerate_sme(node) -> returning analyses
 @morphology.pregenerated_form_selector(*['sme', 'SoMe'])
 def pregenerate_sme(form, tags, node):
+    """ **pregenerated form selector**: mini_paradigm / lemma_ref
+
+    If mini_paradigm and lemma_ref exist for this node, then grab
+    analyses and tags from the node, instead of from the FST.
+    """
     _has_mini_paradigm = node.xpath('.//mini_paradigm[1]')
 
     _has_lemma_ref     = node.xpath('.//lemma_ref')
@@ -102,6 +113,10 @@ def pregenerate_sme(form, tags, node):
 
 @morphology.tag_filter_for_iso(*['sme', 'SoMe'])
 def lexicon_pos_to_fst(form, tags, node=None):
+    """ **tag filter**: Lexicon -> FST changes.
+    
+    Change POS to be compatible with FST for when they are not.
+    """
 
     new_tags = []
     for t in tags:
@@ -114,6 +129,11 @@ def lexicon_pos_to_fst(form, tags, node=None):
 
 @morphology.tag_filter_for_iso(*['sme', 'SoMe'])
 def impersonal_verbs(form, tags, node=None):
+    """ **tag filter**: Impersonal verbs
+
+    If ``@context`` is **upers** or **dat**, then use only Sg3 and
+    ConNeg forms.
+    """
     if len(node) > 0:
         context = node.xpath('.//l/@context')
 
@@ -130,6 +150,10 @@ def impersonal_verbs(form, tags, node=None):
 
 @morphology.tag_filter_for_iso(*['sme', 'SoMe'])
 def reciprocal_verbs(form, tags, node=None):
+    """ **tag filter**: Reciprocal verbs
+
+    If 'sii' is in the @context, then we want a different paradigm.
+    """
     if len(node) > 0:
         context = node.xpath('.//l/@context')
 
@@ -146,7 +170,7 @@ def reciprocal_verbs(form, tags, node=None):
 
 @morphology.tag_filter_for_iso(*['sme', 'SoMe'])
 def common_noun_pluralia_tanta(form, tags, node):
-    """ Pluralia tanta common noun
+    """ **tag filter**: Pluralia tanta common noun
 
     `ruossalassánit` with <l nr="Pl" /> requires only plural
     paradigm.
@@ -164,7 +188,7 @@ def common_noun_pluralia_tanta(form, tags, node):
 
 @morphology.tag_filter_for_iso(*['sme', 'SoMe'])
 def proper_noun_pluralia_tanta(form, tags, node):
-    """ Pluralia tanta
+    """ **tag filter**: pluralia tanta
 
     `Gállábártnit` with <l nr="Pl" /> requires only plural
     paradigm.
@@ -186,6 +210,11 @@ def proper_noun_pluralia_tanta(form, tags, node):
 
 @morphology.tag_filter_for_iso(*['sme', 'SoMe'])
 def compound_numerals(form, tags, node):
+    """ **Tag filter**
+
+    Filters tags before generation, in this case, we provide some extra
+    tags for Num.
+    """
     if len(node) > 0:
         if 'num' in node.xpath('.//l/@pos'):
             tags = [
@@ -220,8 +249,20 @@ context_for_tags = {
 
 @morphology.postgeneration_filter_for_iso(*['sme', 'SoMe'])
 def verb_context(generated_result, *generation_input_args):
-    # lemma = generation_input_args[0]
-    # tags  = generation_input_args[1]
+    """ **Post-generation filter***
+
+    Include context for verbs in the text displayed in paradigm
+    generation. The rule in this case is rather complex, and looks at
+    the tag used in generation.
+
+    Possible contexts:
+      * (mun) dieđán
+      * (dat) ciellá
+      * (sii) deaivvadit
+      * (odne) bieggá
+      * (ikte) biekkai
+      * (ii) biekka
+    """
     node  = generation_input_args[2]
 
     if len(node) == 0:
@@ -262,8 +303,11 @@ _str_norm = 'string(normalize-space(%s))'
 
 @morpholex.post_morpho_lexicon_override(*['sme', 'SoMe'])
 def remove_analyses_for_analyzed_forms_with_lemma_ref(xml, fst):
-    """ If there is an entry that is an analysis and the set contains
-    another entry with its matching lemma discard the analyses.
+    """ **Post morpho-lexicon override**
+
+    If there is an entry that is an analysis and the set of XML entries
+    resulting from the lookup contains another entry with its matching
+    lemma, then discard the analyses.
     """
 
     if xml is None or fst is None:
@@ -316,22 +360,21 @@ def remove_analyses_for_analyzed_forms_with_lemma_ref(xml, fst):
 
     return xml, fst
 
-# TODO: 
 @morpholex.post_morpho_lexicon_override(*['sme', 'SoMe'])
 def remove_analyses_for_specific_closed_classes(xml, fst):
-    """ Remove analyses from list when the XML entry
-    contains a specific PoS type.
+    """ **Post morpho-lexicon override**
+
+    Remove analyses from list when the XML entry contains a specific PoS
+    type.
 
     This has to be done in two steps:
-        * check for xml entries containing the types
-        * filter out the matching lemma from those entries
+     * check for xml entries containing the types
+     * filter out the matching lemma from those entries, *or*, remove
+       analyses that have a member of the hideanalysis tagset
 
-          or: remove analyses that have a member of the hideanalysis
-              tagset
-
-    NB: this must be registered after remove_analyses_for_lemma_ref,
+    NB: this must be registered after ``remove_analyses_for_lemma_ref``,
     because that function depends on analyses still existing to some of
-    these types
+    these types.
     """
 
     if xml is None or fst is None:
@@ -379,12 +422,13 @@ def remove_analyses_for_specific_closed_classes(xml, fst):
 
 @lexicon.entry_source_formatter(*['sme', 'SoMe'])
 def format_source_sme(ui_lang, e, target_lang):
-    """ Format the source for a variety of parameters. Here:
+    """ **Entry source formatter**
 
-         * Include @pos and @class attributes
-         * if there is a lemma_ref, then we provide the link to that
-           entry too (e.g., munnje)
+    Format the source for a variety of parameters. Here:
 
+     * Include @pos and @class attributes
+     * if there is a lemma_ref, then we provide the link to that
+       entry too (e.g., munnje)
     """
     from morphology.utils import tagfilter_conf
     from flask import current_app
@@ -426,9 +470,10 @@ def format_source_sme(ui_lang, e, target_lang):
 
 @lexicon.entry_target_formatter(('sme', 'nob'), ('SoMe', 'nob'))
 def format_target_sme(ui_lang, e, tg):
-    """ Display reg attribute in translations, but only for N Prop
+    """**Entry target translation formatter**
 
-        Return the formatted string.
+    Display @reg (region) attribute in translations, but only for ``N
+    Prop``.
     """
     _str_norm = 'string(normalize-space(%s))'
 
@@ -442,4 +487,3 @@ def format_target_sme(ui_lang, e, tg):
             return "%s (%s)" % (_t_lemma, _reg)
 
     return None
-
