@@ -15,5 +15,49 @@ importing the following module to produce replacement functions.
 
 """
 
-from sme import *
-from sma import *
+from importlib import import_module
+import os
+import sys
+
+cwd = os.getcwd()
+configs_path = cwd + '/configs/language_specific_rules/'
+
+def _getlangs():
+    def _popname(n):
+        name, _, suffix = n.partition('.')
+        return name
+
+    filenames = [f for f in os.listdir(configs_path)
+                 if f.endswith('.py') and not f.startswith(('.', '__'))
+                ]
+
+    return map(_popname, filenames)
+
+def _import(m):
+    return import_module('.' + m, 'configs.language_specific_rules')
+
+def load_overrides(app):
+    config_languages = set(app.config.languages.keys())
+    languages_in_dir = set(_getlangs())
+
+    languages_to_override = list(
+        config_languages & languages_in_dir
+    )
+
+    if len(languages_to_override) == 0:
+        _msg = ("* No overrides. If this is not what you want, check\n"
+                "  that the language in question is defined in the present config\n"
+                "  file, and that the language ISO matches the ISOs in \n"
+                "  configs/language_specific_configs/ \n"
+                " \n"
+                "   Languages in config file: %s\n"
+                "   Overrides available for: %s\n"
+               )
+        print >> sys.stderr, _msg % ( ', '.join(config_languages)
+                                    , ', '.join(languages_in_dir)
+                                    )
+
+    language_overrides = []
+    for m in languages_to_override:
+        language_overrides.append(_import(m))
+    return language_overrides

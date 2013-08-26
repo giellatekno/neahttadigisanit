@@ -54,15 +54,10 @@ Morphology:
 
 Languages:
   - iso: mrj
-    name: {}
   - iso: mhr
-    name: {}
   - iso: eng
-    name: {}
   - iso: fin
-    name: {}
   - iso: rus
-    name: {}
 
 Dictionaries:
   - source: mrj

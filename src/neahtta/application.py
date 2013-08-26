@@ -85,6 +85,7 @@ def create_app():
     other things.
     """
     import views
+    import configs
 
     from morpholex import MorphoLexicon
 
@@ -108,6 +109,10 @@ def create_app():
     app.config['cache'] = cache
     app.config = Config('.', defaults=app.config)
     app.config.from_envvar('NDS_CONFIG')
+
+    # Register language specific config information
+    app.register_blueprint(configs.blueprint)
+    app.config.overrides = configs.blueprint.load_language_overrides(app)
 
     app.morpholexicon = MorphoLexicon(app.config)
 
