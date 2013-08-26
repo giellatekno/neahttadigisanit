@@ -1,5 +1,23 @@
 # New language / linguistic todos 
 
+ * sjekk usage="vd" on <t /> node
+
+   <e>
+      <lg>
+         <l pos="N">dagens</l>
+      </lg>
+      <mg>
+         <tg xml:lang="sme">
+            <t pos="A" usage="vd" freq="2247">otná</t>
+            <t pos="A" usage="vd" freq="684">otnáš</t>
+            <xg>
+               <x>Har du dagens avis?</x>
+               <xt>Leago dus otná/otnáš áviisa?</xt>
+            </xg>
+         </tg>
+      </mg>
+   </e>
+
  * example words for about pages
  * kpv <l /> node pos attr needs to be changed up a bit so PoS matches
    up, switch -SG and etc., to another attribute 
@@ -28,6 +46,8 @@
 
 
 # TODAY
+
+ * update reversed to work with new structures -> finkpv
 
  * ie8 rendering bug on flag lists in header on main page, but not on about page
 
