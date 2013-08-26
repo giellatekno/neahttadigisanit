@@ -41,15 +41,10 @@ Morphology:
 
 Languages:
   - iso: sms
-    name: {}
   - iso: eng
-    name: {}
   - iso: fin
-    name: {}
   - iso: rus
-    name: {}
   - iso: nob
-    name: {}
 
 Dictionaries:
   - source: sms

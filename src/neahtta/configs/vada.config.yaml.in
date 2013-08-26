@@ -41,13 +41,9 @@ Morphology:
 
 Languages:
   - iso: yrk
-    name: {}
   - iso: eng
-    name: {}
   - iso: fin
-    name: {}
   - iso: rus
-    name: {}
 
 Dictionaries:
   - source: yrk

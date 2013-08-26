@@ -1,30 +1,27 @@
 ApplicationSettings:
-  app_name: "Nettidigisanat"
-  short_name: "sanat"
-  default_locale: "ru"
-  default_pair: ["olo", "fin"]
+  app_name: "Neahttadigisánit"
+  short_name: "vada"
+  default_locale: "yrk"
+  default_pair: ["yrk", "fin"]
   mobile_default_pair: false
   locales_available:
-    - "fi"
-    - "lv"
-    - "ru"
-    - "no"
-  # TODO: someone will have to decide on the meta keywords and
-  # descriptions for google.
+    - yrk
+    - fi
+    - en
   meta_description: >
-     Free, mobile-friendly dictionaries for Olonetsian, Livonian, and Kven.
+      Free online, mobile friendly dictionaries for Nenets
   meta_keywords: >
-     kven, olonets, olonetsian, livonian, livvi, liivi 
+      nenets, nenetsi, mobile, dictionary, free, russian
 
 Tools:
   xfst_lookup: &LOOKUP '/usr/bin/lookup'
   opt: &OPT '/opt/smi/'
- 
+
 Morphology:
-  olo:
+  yrk:
     tool: *LOOKUP
-    file: [*OPT, '/olo/bin/olo.fst']
-    inverse_file: [*OPT, '/olo/bin/iolo.fst']
+    file: [*OPT, '/yrk/bin/yrk.fst']
+    inverse_file: [*OPT, '/yrk/bin/iyrk.fst']
     format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -37,365 +34,72 @@ Morphology:
     inverse_file: [*OPT, '/fin/bin/ifin.fst']
     format: 'xfst'
     options:
-      compoundBoundary: "#"
-      derivationMarker: "+Der"
-      tagsep: '+'
-      inverse_tagsep: '+'
-  liv:
-    tool: *LOOKUP
-    file: [*OPT, '/liv/bin/liv.fst']
-    inverse_file: [*OPT, '/liv/bin/iliv.fst']
-    format: 'xfst'
-    options:
       compoundBoundary: "+Use/Circ#"
-      derivationMarker: "+Der"
-      tagsep: '+'
-      inverse_tagsep: '+'
-  fkv:
-    tool: *LOOKUP
-    file: [*OPT, '/fkv/bin/fkv.fst']
-    inverse_file: [*OPT, '/fkv/bin/ifkv.fst']
-    format: 'xfst'
-    options:
-      compoundBoundary: "+Cmp#"
-      derivationMarker: "+Der"
-      tagsep: '+'
-      inverse_tagsep: '+'
-  izh:
-    tool: *LOOKUP
-    file: [*OPT, '/izh/bin/izh.fst']
-    inverse_file: [*OPT, '/izh/bin/iizh.fst']
-    format: 'xfst'
-    options:
-      compoundBoundary: "+Use/Circ#"
-      derivationMarker: "+Der"
-      tagsep: '+'
-      inverse_tagsep: '+'
-  nob:
-    tool: *LOOKUP
-    file: [*OPT, '/nob/bin/nob.fst']
-    inverse_file: [*OPT, '/nob/bin/inob.fst']
-    format: 'xfst'
-    options:
-      compoundBoundary: "#+Cmp+"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
 
 Languages:
-  - iso: olo
+  - iso: yrk
+  - iso: eng
   - iso: fin
-  - iso: liv
-  - iso: fkv
-  - iso: izh
-  - iso: nob
-  - iso: est
-  - iso: lav
+  - iso: rus
 
-# This also dictates the order of the dictionaries in the UI for now.
 Dictionaries:
-  - source: olo
-    target: fin
-    path: 'dicts/olo-fin.xml'
-    reversable: true
-  - source: liv
-    target: fin
-    path: 'dicts/liv.all.xml'
-    reversable: true
-  - source: liv
-    target: est
-    path: 'dicts/liv.all.xml'
-  - source: liv
-    target: lav
-    path: 'dicts/liv.all.xml'
-  - source: izh
-    target: fin
-    path: 'dicts/izh-fin.xml'
-  - source: fkv 
-    target: nob
-    path: 'dicts/fkv-nob.xml'
-  - source: nob
-    target: fkv
-    path: 'dicts/nob-fkv.xml'
+  - source: yrk
+    target: eng
+    path: 'dicts/yrk-all.xml'
 
+  - source: yrk
+    target: fin
+    path: 'dicts/yrk-all.xml'
 
-# Abstracting display formats out here, because there are different
-# requirements for different languages and different wordforms.
-
-# Paradigms for generation on detailed pages. Leave POS out of tags,
-# this is supplied automatically. Otherwise use generation FST tag
-# format.
 Paradigms:
-  olo:
-    PRON:
-      - "Pregenerate"
-    N:
-      - "Sg+Par"
-      - "Sg+Apr"
-      - "Sg+Gen"
-      - "Pl+Par"
-    V:
-      - "Ind+Prs+ScSg1"
-      - "Ind+Prs+ScSg3"
-      - "Ind+Prs+ScPl3"
-      - "Ind+Prt+ScSg1"
-  
-  liv:
+  yrk:
     PRON:
       - "Pregenerate"
     N:
       - "Sg+Nom"
-      - "Sg+Gen"
       - "Sg+Dat"
-      - "Sg+Ins"
-      - "Sg+Par"
-      - "Sg+Ill"
-      - "Sg+Ela"
       - "Pl+Nom"
-      - "Pl+Gen"
-      - "Pl+Dat"
-      - "Pl+Ins"
-      - "Pl+Par"
-      - "Pl+Ill"
-      - "Pl+Ela"
+      - "Pl+Acc"
     V:
-      - "Ind+Prs+Sg1"
-      - "Ind+ConNeg+Sg"
-      - "Ind+Prt+Sg1"
-
-  fkv:
-    PRON:
-      - "Pregenerate"
-    N:
-      - "Sg+Par"
-      - "Sg+Gen"
-      - "Pl+Par"
-    V:
-      - "Ind+Prs+Sg1"
-      - "Ind+ConNeg+Sg"
-      - "Ind+Prt+Sg1"
-
-  fin:
-    PRON:
-      - "Pregenerate"
-    N:
-      - "Sg+Par"
-      - "Sg+Gen"
-      - "Pl+Par"
-    V:
-      - "Ind+Prs+Sg1"
-      - "Ind+ConNeg+Sg"
-      - "Ind+Prt+Sg1"
-
-  izh:
-    PRON:
-      - "Pregenerate"
-    N:
-      - "Sg+Par"
-      - "Sg+Gen"
-      - "Pl+Par"
-    V:
-      - "Ind+Prs+Sg1"
-      - "Ind+ConNeg+Sg"
-      - "Ind+Prt+Sg1"
-
+      - "TV+Ind+Aor+ScSg1"
+      - "TV+Ind+Aor+ScSg2"
+      - "TV+Ind+Aor+ScSg3"
+      - "TV+Ind+Aor+ScDu1"
+      - "TV+Ind+Aor+ScDu2"
+      - "TV+Ind+Aor+ScDu3"
+      - "TV+Ind+Aor+ScPl1"
+      - "TV+Ind+Aor+ScPl2"
+      - "TV+Ind+Aor+ScPl3"
+      - "TV+Ind+Prt1+ScSg1+OcSg3"
+      - "TV+Ind+Prt1+ScSg1+OcDu3"
 
 
 TagSets:
-  olo:
+  yrk:
     pos: ["N", "V", "A", "Pr", "Po", "Num"]
     type: ["NomAg", "G3", "aktor"]
+
 
 # (sourcelang, targlang)
 # V: "v."
 # FST format: "user friendly"
 TagTransforms:
 
-  (zzz, fin): &to_fin
-    # pos
-    "V": "v."
-    "N": "n."
-    "A": "a."
-    "Num": "num."
-    "Adv": "adv."
-    "Pron": "pron."
-    "Pcle": "pcle."
-    "Interj": "interj."
-    "CC": "cc."
-    "CS": "cs."
-    "Po": "po."
-    "Pr": "pr."
-    # prop
-    "Prop": "prop."
-    # pers
-    "Pers": "pers."
-    "Dem": "dem."
-    "Interr": "interr."
-    "Rel": "rel."
-    "Qu": "qu."
-    "Refl": "refl."
-    "Recipr": "recipr."
-    "Indef": "indef."
-    # numtype
-    "Card": "card."
-    "Ord": "ord."
+  (yrk, eng):
+    V: "v."
+    N: "n."
+    A: "adj."
 
-    "Pref": "pref."
-
-    "Suff": "suff."
-    "Punct": "punct."
-    # number
-    "Sg": "sg."
-    "Pl": "pl."
-    # case
-    "Nom": "nom."
-    "Par": "par."
-    "Gen": "gen."
-    "Ine": "ine."
-    "Ela": "ela."
-    "Ill": "ill."
-    "Ade": "ade."
-    "Abl": "abl."
-    "All": "all."
-    "Ess": "ess."
-    "Ins": "ins."
-    "Abe": "abe."
-    "Tra": "tra."
-    "Com": "com."
-    "Lat": "lat."
-    "Acc": "acc."
-    "Prl": "prl."
-    "Distr": "distr."
-    "Tempr": "tempr."
-    # possessive
-    "PxSg1": "pxsg1."
-    "PxSg2": "pxsg2."
-    "PxSg3": "pxsg3."
-    "PxPl1": "pxpl1."
-    "PxPl2": "pxpl2."
-    "PxPl3": "pxpl3."
-    "Px3": "px3."
-    # der-s
-    "Der/s": "Der/s"
-    # voice
-    "Act": "act."
-    "Pass": "pass."
-    # tense
-    "Prs": "prs."
-    "Prt": "prt."
-    # mood
-    "Ind": "ind."
-    "Cond": "cond."
-    "Pot": "pot."
-    "Imprt": "imprt."
-    "Optat": "optat."
-    "Eventv": "eventv."
-    # person-number
-    "Sg1": "sg1."
-    "Sg2": "sg2."
-    "Sg3": "sg3."
-    "Pl1": "pl1."
-    "Pl2": "pl2."
-    "Pl3": "pl3."
-    # neg
-    "ConNeg": "conneg."
-    "Neg": "neg."
-    # infinitives
-    "InfA": "a.inf."
-    "InfE": "e.inf."
-    "InfMa": "ma.inf."
-    "Der/minen": "Der/minen"
-    "Der/maisilla": "Der/maisilla"
-
-    # participles
-    "PrfPrc": "prfprc."
-    "PrsPrc": "prsprc."
-    "NegPrc": "negprc."
-    "AgPrc": "agprc."
-    # adj
-    "Comp": "comp."
-    "Sup": "sup."
-    # foc
-    "Foc/han": "Foc/han"
-    "Foc/kaan": "Foc/kaan"
-    "Foc/kin": "Foc/kin"
-    "Foc/pa": "Foc/pa"
-    "Foc/s": "Foc/s"
-    "Foc/ka": "Foc/ka"
-    # question
-    "Qst": "qst."
-    # der
-    "Der/sti": "Der/sti"
-    "Der/ja": "Der/ja"
-    "Der/inen": "Der/inen"
-    "Der/lainen": "Der/lainen"
-    "Der/tar": "Der/tar"
-    "Der/llinen": "Der/llinen"
-    "Der/ton": "Der/ton"
-    "Der/tse": "Der/tse"
-    "Der/vs": "Der/vs"
-    "Der/u": "Der/u"
-    "Der/ttain": "Der/ttain"
-    "Der/ttaa": "Der/ttaa"
-    "Der/tattaa": "Der/tattaa"
-    "Der/tatuttaa": "Der/tatuttaa"
-    "Der/uus": "Der/uus"
-    "Use/Sub": "Use/Sub"
-    "Use/Marg": "Use/Marg"
-    "Use/Rare": "Use/Rare"
-
-    # dialectical
-    "Dial": "dial."
-    "Dial/Standard": "Dial/Standard"
-    "Dial/East": "Dial/East"
-    "Dial/West": "Dial/West"
-    "Dial/Southwest": "Dial/Southwest"
-    "Dial/Häme": "Dial/Häme"
-    "Dial/Eteläpohjalaiset": "Dial/Eteläpohjalaiset"
-    "Dial/Keskipohjalaiset": "Dial/Keskipohjalaiset"
-    "Dial/Peräpohjalaiset": "Dial/Peräpohjalaiset"
-    "Dial/North": "Dial/North"
-    "Dial/Savo": "Dial/Savo"
-    "Dial/Southeast": "Dial/Southeast"
-
-
-  (olo, rus):
+  (yrk, fin):
     V: "v."
     N: "s."
     A: "adj."
 
-  (liv, rus):
+  (yrk, yrk):
     V: "v."
     N: "s."
     A: "adj."
-
-  (olo, olo): &olo_olo
-    V: "v."
-    N: "s."
-    A: "adj."
-    Ind: ""
-    Prs: "prs."
-
-  (olo, fin):
-    <<: *to_fin
-    <<: *olo_olo
-    # NB: example override of inherited key/value pairs
-    Ind: "ind."
-
-  (liv, liv):
-    V: "v."
-    N: "s."
-    A: "adj."
-
-  (fkv, nob):
-    V: "v."
-    N: "s."
-    A: "adj."
-
-  (izh, fin):
-    <<: *to_fin
-    V: "v."
-    N: "s."
-    A: "adj."
-
 

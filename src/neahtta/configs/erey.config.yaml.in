@@ -39,11 +39,8 @@ Morphology:
 
 Languages:
   - iso: som
-    name: {}
   - iso: eng
-    name: {}
   - iso: fin
-    name: {}
 
 Dictionaries:
   - source: som
