@@ -193,6 +193,8 @@ class GenerationOverrides(object):
         def wrapper(postanalysis_function):
             for language_iso in language_isos:
                 self.postanalyzers[language_iso].append(postanalysis_function)
+                self.postanalyzers_doc[language_iso].append((postanalysis_function.__name__,
+                                                             postanalysis_function.__doc__))
                 print '%s overrides: registered post-analysis processor - %s' % \
                       ( language_iso
                       , postanalysis_function.__name__
@@ -208,6 +210,8 @@ class GenerationOverrides(object):
         def wrapper(pregenerated_selector_function):
             for language_iso in language_isos:
                 self.pregenerators[language_iso] = pregenerated_selector_function
+                self.pregenerators_doc[language_iso] = [(pregenerated_selector_function.__name__,
+                                                         pregenerated_selector_function.__doc__)]
                 print '%s overrides: registered static paradigm selector - %s' % \
                       ( language_iso
                       , pregenerated_selector_function.__name__
@@ -220,6 +224,11 @@ class GenerationOverrides(object):
         def wrapper(restrictor_function):
             for language_iso in language_isos:
                 self.registry[language_iso].append(restrictor_function)
+                self.tag_filter_doc[language_iso].append(
+                    ( restrictor_function.__name__
+                    , restrictor_function.__doc__
+                    )
+                )
                 print '%s overrides: registered pregeneration tag filterer - %s' %\
                       ( language_iso
                       , restrictor_function.__name__
@@ -233,6 +242,9 @@ class GenerationOverrides(object):
             for language_iso in language_isos:
                 self.postgeneration_processors[language_iso]\
                     .append(restrictor_function)
+                self.postgeneration_processors_doc[language_iso]\
+                    .append((restrictor_function.__name__,
+                             restrictor_function.__doc__))
                 print '%s overrides: registered entry context formatter - %s' %\
                       ( language_iso
                       , restrictor_function.__name__
@@ -243,10 +255,14 @@ class GenerationOverrides(object):
         from collections import defaultdict
 
         self.registry      = defaultdict(list)
+        self.tag_filter_doc  = defaultdict(list)
         self.pregenerators = defaultdict(list)
+        self.pregenerators_doc = defaultdict(list)
         self.postanalyzers = defaultdict(list)
+        self.postanalyzers_doc = defaultdict(list)
 
         self.postgeneration_processors = defaultdict(list)
+        self.postgeneration_processors_doc = defaultdict(list)
 
 generation_overrides = GenerationOverrides()
 

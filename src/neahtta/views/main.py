@@ -393,6 +393,71 @@ def about():
         )
         return render_template('about.sanit.html')
 
+def gen_doc(from_language, docs_list):
+    _docs = []
+    for lx, fxs in docs_list.iteritems():
+        if lx != from_language:
+            continue
+
+        keys = ('name', 'doc')
+        functions = [(fx, unicode(d.decode('utf-8')).strip()) for fx, d in fxs]
+
+        functions = [dict(zip(keys, d)) for d in functions]
+
+        # TODO: find decorated function doc
+        doc = {
+            'name': lx,
+            'main_doc': "TODO", #  mod.__doc__,
+            'functions': functions
+        }
+
+        _docs.append(doc)
+    return _docs
+
+@blueprint.route('/config_doc/<from_language>/', methods=['GET'])
+def config_doc(from_language):
+    """ Quick overview of language-specific details.
+    """
+    excludes = [
+        '__builtins__',
+        '__doc__',
+        '__file__',
+        '__package__',
+    ]
+
+    override_mods = current_app.config.overrides
+
+    from morphology import generation_overrides
+    from lexicon import lexicon_overrides
+    from morpholex import morpholex_overrides
+
+    generation_docs = gen_doc(from_language, generation_overrides.tag_filter_doc)
+    pregen_doc = gen_doc(from_language, generation_overrides.pregenerators_doc)
+    postanalysis_doc = gen_doc(from_language, generation_overrides.postanalyzers_doc)
+    postgen_doc = gen_doc(from_language, generation_overrides.postgeneration_processors_doc)
+
+    # TODO: lexicon overrides
+    # TODO: morpholexicon overrides
+
+    # TODO: filter paradigms, tag_filters
+
+    paradigms = current_app.config.paradigms.get(from_language, {})
+    tag_transforms = current_app.config.tag_filters
+    languages = []
+
+    return render_template( 'config_doc.html'
+
+                          , generation_docs=generation_docs
+                          , pregen_doc=pregen_doc
+                          , postanalysis_doc=postanalysis_doc
+                          , postgen_doc=postgen_doc
+
+                          , paradigms=paradigms
+                          , tag_transforms=tag_transforms
+                          , languages=languages
+                          , lang_name=from_language
+                          )
+
 
 @blueprint.route('/plugins/', methods=['GET'])
 def plugins():
