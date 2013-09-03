@@ -1,0 +1,163 @@
+﻿{% extends 'base.html' %}
+
+{% block title %}
+ - {% trans %}Neahttadigisánit{% endtrans %} debug info
+{% endblock %}
+
+{% block meta_title %}
+<meta name="title" content="Neahttadigisánit debug info">
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}
+
+{# TODO: 
+  http://getbootstrap.com/2.3.2/javascript.html#collapse
+
+  or 
+
+  http://getbootstrap.com/2.3.2/javascript.html#scrollspy
+#}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span8">
+            <h3>Language-specific rules for {{ lang_name }}</h3>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span8">
+            <h3>Paradigms for {{ lang_name }}</h3>
+            <p>NB: these default paradigms may be overriden by functions below...</p>
+        </div>
+    </div>
+
+    {% for pos, tags in paradigms.iteritems() %}
+    <div class="row-fluid">
+        <div class="span2">
+            <strong>{{ pos }}</strong>
+        </div>
+        <div class="span10">
+            <ul>
+                {% for t in tags %}
+                <li>{{ t }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endfor %}
+
+    {% for l in generation_docs %}
+        <div class="row-fluid">
+            <div class="span8">
+                <h3>Paradigm override functions {{ l.name }}</h3>
+            </div>
+        </div>
+
+        {% for func in l.functions %}
+        <div class="row-fluid">
+            <div class="span3">
+                {{ func.name }}
+            </div>
+            <div class="span9">
+                <pre>
+                {{ func.doc|safe }}
+                </pre>
+            </div>
+        </div>
+        {% endfor %}
+    {% endfor %}
+
+    {% for l in pregen_doc %}
+        <div class="row-fluid">
+            <div class="span8">
+                <h3>Pregenerated form selection {{ l.name }}</h3>
+            </div>
+        </div>
+
+        {% for func in l.functions %}
+        <div class="row-fluid">
+            <div class="span3">
+                {{ func.name }}
+            </div>
+            <div class="span9">
+                <pre>
+                {{ func.doc|safe }}
+                </pre>
+            </div>
+        </div>
+        {% endfor %}
+    {% endfor %}
+
+    {% for l in postgen_doc %}
+        <div class="row-fluid">
+            <div class="span8">
+                <h3>Post-generation overrides {{ l.name }}</h3>
+            </div>
+        </div>
+
+        {% for func in l.functions %}
+        <div class="row-fluid">
+            <div class="span3">
+                {{ func.name }}
+            </div>
+            <div class="span9">
+                <pre>
+                {{ func.doc|safe }}
+                </pre>
+            </div>
+        </div>
+        {% endfor %}
+    {% endfor %}
+
+    {% for l in postanalysis_doc %}
+        <div class="row-fluid">
+            <div class="span8">
+                <h3>Post-analysis overrides {{ l.name }}</h3>
+            </div>
+        </div>
+
+        {% for func in l.functions %}
+        <div class="row-fluid">
+            <div class="span3">
+                {{ func.name }}
+            </div>
+            <div class="span9">
+                <pre>
+                {{ func.doc|safe }}
+                </pre>
+            </div>
+        </div>
+        {% endfor %}
+    {% endfor %}
+
+    <div class="row-fluid">
+        <div class="span8">
+            <h3>User-friendly tags</h3>
+            <p>NB: these default paradigms may be overriden by functions below...</p>
+        </div>
+    </div>
+
+    {% for langpair, tags in tag_transforms.iteritems() %}
+    <div class="row-fluid">
+        <div class="span2">
+            <strong><a href="#">{{ langpair[0] }} &rarr; {{ langpair[1] }}</a></strong>
+        </div>
+        <div class="span10">
+            <ul>
+                {% for d, t in tags.iteritems() %}
+                <li>{{ d }} &rarr; {{ t }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endfor %}
+
+
+</div>
+
+{% endblock %}
+
+
