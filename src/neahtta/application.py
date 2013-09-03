@@ -2,6 +2,10 @@ __all__ = [
     'create_app'
 ]
 
+ADMINS = [
+    'ryan.txanson+nds@gmail.com',
+]
+
 import sys
 import logging
 import urllib
@@ -127,5 +131,21 @@ def create_app():
         sys.exit()
 
     app = register_babel(app)
+
+    from logging import FileHandler
+    from logging.handlers import SMTPHandler
+    from socket import gethostname
+
+    if app.debug:
+        mail_handler = FileHandler('debug_email_log.txt')
+    else:
+        _admins = ADMINS + app.config.admins
+        mail_handler = SMTPHandler('127.0.0.1',
+                                   "server-error@%s" % gethostname(),
+                                   ADMINS, "NDS-%s Failed" %  app.config.short_name)
+
+    mail_handler.setLevel(logging.ERROR)
+
+    app.logger.addHandler(mail_handler)
 
     return app

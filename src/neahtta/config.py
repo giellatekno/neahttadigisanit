@@ -55,6 +55,15 @@ class Config(Config):
                                self.filename)
 
     @property
+    def admins(self):
+        _p = self.yaml.get('ApplicationSettings', {})\
+                      .get('admins_to_email', False)
+        if _p:
+            return _p
+        else:
+            return []
+
+    @property
     def short_name(self):
         _p = self.yaml.get('ApplicationSettings', {})\
                       .get('short_name', False)
