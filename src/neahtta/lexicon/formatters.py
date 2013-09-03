@@ -2,6 +2,7 @@
 from lexicon import lexicon_overrides
 from morphology.utils import tagfilter
 from utils.data import flatten
+from flask import current_app
 
 class EntryNodeIterator(object):
     """ A class for iterating through the result of an LXML XPath query,
@@ -53,8 +54,34 @@ class EntryNodeIterator(object):
         return tgs, ts
 
     def examples(self, tg):
-        _ex = [ (xg.find('x').text, xg.find('xt').text)
-                for xg in tg.findall('xg') ]
+        _ex = []
+
+        possible_errors = False
+        for xg in tg.findall('xg'):
+            _x = xg.find('x')
+            _xt = xg.find('xt')
+
+            if _x is not None and hasattr(_x, 'text'):
+                _x_tx = _x.text
+            else:
+                _x_tx = ''
+                possible_errors = True
+
+            if _xt is not None and hasattr(_xt, 'text'):
+                _xt_tx = _xt.text
+            else:
+                _xt_tx = ''
+                possible_errors = True
+
+            _ex.append((_x_tx, _xt_tx))
+
+        if possible_errors:
+            from lxml import etree
+            error_xml = etree.tostring(tg, pretty_print=True, encoding="utf-8")
+            current_app.logger.error(
+                "Potential XML formatting problem\n\n%s" % error_xml.strip()
+            )
+
         if len(_ex) == 0:
             return False
         else:
