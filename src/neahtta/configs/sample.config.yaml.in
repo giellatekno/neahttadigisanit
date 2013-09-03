@@ -5,6 +5,11 @@ ApplicationSettings:
   default_locale: "se"
   default_pair: ["sme", "nob"]
   mobile_default_pair: ["SoMe", "nob"]
+  # These are the people who will be emailed when there is an error. NB:
+  # it may be useful to use aliases, e.g., my.email+alias@gmail.com in
+  # order to make filtering errors more easy.
+  admins_to_email:
+    - "someone.goes.here@email.com"
   locales_available:
     - sme
     - nob

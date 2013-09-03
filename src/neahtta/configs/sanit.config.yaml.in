@@ -7,6 +7,8 @@ ApplicationSettings:
   default_locale: "se"
   default_pair: ["sme", "nob"]
   mobile_default_pair: ["SoMe", "nob"]
+  # admins_to_email:
+  #   - "someone.goes.here@email.com"
   locales_available:
     - "se"
     - "no"
