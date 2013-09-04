@@ -12,6 +12,7 @@ from flask import ( request
                   , session
                   , render_template
                   , abort
+                  , redirect
                   )
 
 def to_xml_string(n):
