@@ -1,5 +1,10 @@
 ﻿{% for part in tx.target_formatted -%}
-    {%- set link_target = "/detail/%s/%s/%s.html?no_compounds=true&lemma_match=true" % (_to, _from, part) -%}
+    {%- if _from == 'SoMe' -%}
+        {%- set _fr = 'sme' -%}
+    {%- else -%}
+        {%- set _fr = _from -%}
+    {%- endif -%}
+    {%- set link_target = "/detail/%s/%s/%s.html?no_compounds=true&lemma_match=true" % (_to, _fr, part) -%}
     {{ part|sneak_in_link(link_target)|safe }}
     {%- if not loop.last %}, {% endif -%}
 {%- endfor %}
