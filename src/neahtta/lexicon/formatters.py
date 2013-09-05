@@ -88,6 +88,13 @@ class EntryNodeIterator(object):
             return _ex
 
     def find_translation_text(self, tg):
+        """ This parses a <tg /> node and returns text, annotations, xml:lang.
+
+        Annotations means here: tg/re, tg/te, or tg/tf. If there is no
+        <t /> node, we try to fall back to using one of these,
+        otherwise, pick the <t /> node and use the annotations as
+        definition.
+        """
 
         def orFalse(l):
             if len(l) > 0:
@@ -124,7 +131,11 @@ class EntryNodeIterator(object):
 
         lang = tg.xpath('@xml:lang')
 
-        annotations = [a for a in [te_text, re_text, tf_text] if a.strip()]
+        annotations = []
+        for a in [te_text, re_text, tf_text]:
+            if a is not None:
+                if a.strip():
+                    annotations.append(a)
 
         return text, annotations, lang
 
@@ -137,8 +148,21 @@ class EntryNodeIterator(object):
         self.query_kwargs = query_kwargs
 
     def __iter__(self):
+        from lxml import etree
         for node in self.nodes:
-            yield self.clean(node)
+            try:
+                yield self.clean(node)
+            except Exception, e:
+                import traceback
+                import sys
+                exc_type, exc_value, exc_traceback = sys.exc_info()
+                tb_str = traceback.format_exception(exc_type, exc_value, exc_traceback)
+                error_xml = etree.tostring(node, pretty_print=True, encoding="utf-8")
+                current_app.logger.error(
+                    "Potential XML formatting problem\n\n%s\n\n%s" % (error_xml.strip(), ''.join(tb_str))
+                )
+                continue
+
 
 class SimpleJSON(EntryNodeIterator):
     """ A simple JSON-ready format for /lookups/
