@@ -1,0 +1,80 @@
+ApplicationSettings:
+  app_name: "Neahttadigisánit"
+  short_name: "pikiskwewina"
+  default_locale: "crk"
+  default_pair: ["crk", "eng"]
+  mobile_default_pair: false
+  locales_available:
+    - crk
+    - en
+  meta_description: >
+      Free online, mobile friendly dictionaries for Plains Cree
+  meta_keywords: >
+      plains cree, mobile, dictionary, free
+
+Tools:
+  xfst_lookup: &LOOKUP '/usr/bin/lookup'
+  opt: &OPT '/opt/smi/'
+
+Morphology:
+  crk:
+    tool: *LOOKUP
+    file: [*OPT, '/crk/bin/crk.fst']
+    inverse_file: [*OPT, '/crk/bin/icrk.fst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  eng:
+    tool: *LOOKUP
+    file: [*OPT, '/eng/bin/eng.fst']
+    inverse_file: [*OPT, '/eng/bin/ieng.fst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+
+Languages:
+  - iso: crk
+    name: {}
+  - iso: eng
+    name: {}
+
+Dictionaries:
+  - source: crk
+    target: eng
+    path: 'dicts/crk-all.xml'
+
+Paradigms:
+  crk:
+    PRON:
+      - "Pregenerate"
+    V:
+     - "Ind+Prs+Sg1"
+     - "Ind+Prs+Sg2"
+     - "Ind+Prs+Sg3"
+     - "Ind+Prs+Pl1"
+     - "Ind+Prs+Pl2"
+     - "Ind+Prs+Pl3"
+
+TagSets:
+  crk:
+    pos: ["N", "V", "Num"]
+    type: ["NomAg"]
+
+
+# (sourcelang, targlang)
+# V: "v."
+# FST format: "user friendly"
+TagTransforms:
+
+  (crk, eng):
+    V: "v."
+    N: "n."
+
+
+
