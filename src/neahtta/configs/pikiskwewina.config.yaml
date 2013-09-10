@@ -1,37 +1,36 @@
 ApplicationSettings:
   app_name: "Neahttadigisánit"
-  short_name: "saan"
-  default_locale: "sms"
-  default_pair: ["sms", "fin"]
+  short_name: "pikiskwewina"
+  default_locale: "crk"
+  default_pair: ["crk", "eng"]
   mobile_default_pair: false
   locales_available:
-    - sms
-    - fi
+    - crk
     - en
   meta_description: >
-      Free online, mobile friendly dictionaries for Nenets
+      Free online, mobile friendly dictionaries for Plains Cree
   meta_keywords: >
-      nenets, nenetsi, mobile, dictionary, free, russian
+      plains cree, mobile, dictionary, free
 
 Tools:
   xfst_lookup: &LOOKUP '/usr/bin/lookup'
   opt: &OPT '/opt/smi/'
 
 Morphology:
-  sms:
+  crk:
     tool: *LOOKUP
-    file: [*OPT, '/sms/bin/sms.fst']
-    inverse_file: [*OPT, '/sms/bin/isms.fst']
+    file: [*OPT, '/crk/bin/crk.fst']
+    inverse_file: [*OPT, '/crk/bin/icrk.fst']
     format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
-  fin:
+  eng:
     tool: *LOOKUP
-    file: [*OPT, '/fin/bin/fin.fst']
-    inverse_file: [*OPT, '/fin/bin/ifin.fst']
+    file: [*OPT, '/eng/bin/eng.fst']
+    inverse_file: [*OPT, '/eng/bin/ieng.fst']
     format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -40,33 +39,18 @@ Morphology:
       inverse_tagsep: '+'
 
 Languages:
-  - iso: sms
+  - iso: crk
     name: {}
   - iso: eng
     name: {}
-  - iso: fin
-    name: {}
-  - iso: rus
-    name: {}
-  - iso: nob
-    name: {}
 
 Dictionaries:
-  - source: sms
-    target: fin
-    path: 'dicts/sms-all.xml'
-  - source: sms
+  - source: crk
     target: eng
-    path: 'dicts/sms-all.xml'
-  - source: sms
-    target: rus
-    path: 'dicts/sms-all.xml'
-  - source: sms
-    target: nob
-    path: 'dicts/sms-all.xml'
+    path: 'dicts/crk-all.xml'
 
 Paradigms:
-  sms:
+  crk:
     PRON:
       - "Pregenerate"
     V:
@@ -76,12 +60,11 @@ Paradigms:
      - "Ind+Prs+Pl1"
      - "Ind+Prs+Pl2"
      - "Ind+Prs+Pl3"
-     - "Ind+Prs+4"
 
 TagSets:
-  sms:
-    pos: ["N", "V", "A", "Pr", "Po", "Num"]
-    type: ["NomAg", "G3", "aktor"]
+  crk:
+    pos: ["N", "V", "Num"]
+    type: ["NomAg"]
 
 
 # (sourcelang, targlang)
@@ -89,18 +72,9 @@ TagSets:
 # FST format: "user friendly"
 TagTransforms:
 
-  (sms, eng):
+  (crk, eng):
     V: "v."
     N: "n."
-    A: "adj."
 
-  (sms, fin):
-    V: "v."
-    N: "s."
-    A: "adj."
 
-  (sms, sms):
-    V: "v."
-    N: "s."
-    A: "adj."
 
