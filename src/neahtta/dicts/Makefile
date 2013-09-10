@@ -10,6 +10,10 @@
 ###          #finanalysers
 ###          #rusanalysers TODO
 ###         
+###         #pikiskwewinatargets
+###          #crkanalysers
+###          #pikiskwewinalexicon
+###         
 ###         #saantargets
 ###          #smsanalysers
 ###          #saanlexicon
@@ -119,6 +123,69 @@ fst/rus.fst:
 .PHONY: rus
 rus: fst/rus.fst
 
+
+
+#####
+##### #pikiskwewinatargets
+#####
+
+##
+### #crkanalysers
+##
+
+fst/crk.fst:
+	@echo "***********************"
+	@echo "** Building crk FSTs **"
+	@echo "***********************"
+	@echo ""
+	cd $(GTHOME)/langs/crk/ ; \
+	  ./autogen.sh ; \
+	  ./configure  ; \
+	  make ; \
+	  cp src/analyser-gt-desc.xfst  $(TARGET_DIR)/fst/crk.fst ; \
+	  cp src/generator-gt-norm.xfst $(TARGET_DIR)/ifst/icrk.fst
+
+.PHONY: crk
+crk: fst/crk.fst
+
+##
+### #pikiskwewinalexicon
+##
+
+crk-all.xml: $(GTHOME)/words/dicts/crkeng/src/*.xml
+	@echo "**************************"
+	@echo "** Building crk lexicon **"
+	@echo "**************************"
+	@echo ""
+	mkdir crk
+	cp $^ crk/
+	$(SAXON) inDir=$(pwd)/crk/ > crk-all.xml
+	rm -rf crk/
+
+.PHONY: crk-lexicon
+pikiskwewina-lexica: crk-all.xml
+
+.PHONY: pikiskwewina
+pikiskwewina: init crk fin pikiskwewina-lexica
+	@echo "*************************************"
+	@echo "** Built targets for pikiskwewina: **"
+	@echo "**    + crk lexicon                **"
+	@echo "**    + crk analysers              **"
+	@echo "**    + eng analysers              **"
+	@echo "*************************************"
+	@echo "**   (crk = Plains Cree)           **"
+	@echo "*************************************"
+	@echo ""
+	@echo "Now install analysers in expected paths."
+	@echo "    sudo make pikiskwewina-install"
+	@echo "... or copy the fsts in fst/ and ifst/ to their right places."
+
+pikiskwewina-crk-install: fst/crk.fst ifst/icrk.fst
+	mkdir -p /opt/smi/crk/bin/
+	cp $^ /opt/smi/crk/bin/
+	chmod a+x /opt/smi/crk/bin/*.fst
+
+pikiskwewina-install: pikiskwewina-crk-install
 
 
 #####
