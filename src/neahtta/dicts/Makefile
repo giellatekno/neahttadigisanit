@@ -157,10 +157,7 @@ crk-all.xml: $(GTHOME)/words/dicts/crkeng/src/*.xml
 	@echo "** Building crk lexicon **"
 	@echo "**************************"
 	@echo ""
-	mkdir crk
-	cp $^ crk/
-	$(SAXON) inDir=$(pwd)/crk/ > crk-all.xml
-	rm -rf crk/
+	$(SAXON) inDir=$(GTHOME)/words/dicts/crkeng/src/ > crk-all.xml
 
 .PHONY: crk-lexicon
 pikiskwewina-lexica: crk-all.xml
