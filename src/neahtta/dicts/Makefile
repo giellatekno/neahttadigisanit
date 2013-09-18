@@ -721,8 +721,12 @@ sme-fin.all.xml: $(GTHOME)/words/dicts/smefin/src/
 fin-sme.all.xml: $(GTHOME)/words/dicts/finsme/src/
 	$(SAXON) inDir=$^ > $@
 
-nob-sme.all.xml: $(GTHOME)/words/dicts/nobsme/src/
-	$(SAXON) inDir=$^ > $@
+nob-sme.all.xml: $(GTHOME)/words/dicts/nobsme/
+	mkdir -p tmp/nobsme/
+	cp $^/src/* tmp/nobsme/
+	cp $^/src_gt-only/* tmp/nobsme/
+	cp $^/src_gt-fad_merged/* tmp/nobsme/
+	$(SAXON) inDir=`pwd`/tmp/nobsme/ > $@
 
 sanit-lexica: fin-sme.all.xml \
 			  nob-sme.all.xml \
