@@ -727,6 +727,7 @@ nob-sme.all.xml: $(GTHOME)/words/dicts/nobsme/
 	cp $^/src_gt-only/* tmp/nobsme/
 	cp $^/src_gt-fad_merged/* tmp/nobsme/
 	$(SAXON) inDir=`pwd`/tmp/nobsme/ > $@
+	rm -rf tmp/nobsme/
 
 sanit-lexica: fin-sme.all.xml \
 			  nob-sme.all.xml \
