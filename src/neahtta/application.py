@@ -143,6 +143,7 @@ def create_app():
         mail_handler = SMTPHandler('127.0.0.1',
                                    "server-error@%s" % gethostname(),
                                    ADMINS, "NDS-%s Failed" %  app.config.short_name)
+        app.logger.smtp_handler = mail_handler
 
     mail_handler.setLevel(logging.ERROR)
 

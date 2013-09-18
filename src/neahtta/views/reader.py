@@ -46,8 +46,21 @@ def lookupWord(from_language, to_language):
     has_callback            = request.args.get('callback', False)
     pretty                  = request.args.get('pretty', False)
 
-    if lookup_key is False:
-        return json.dumps(" * lookup undefined")
+    # Sometimes due to probably weird client-side behavior, the lookup
+    # key is set but set to nothing, as such we need to return a
+    # response when this happens, but the response is nothing.
+    if lookup_key is False or not lookup_key.strip():
+
+        data = json.dumps({ 'result': []
+                          , 'tags': []
+                          , 'tag_msg': ""
+                          , 'success': False
+                          })
+
+        return Response( response=data
+                       , status=200
+                       , mimetype="application/json"
+                       )
 
     def filterPOS(r):
         def fixTag(t):

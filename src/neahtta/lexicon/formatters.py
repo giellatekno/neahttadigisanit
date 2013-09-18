@@ -79,7 +79,7 @@ class EntryNodeIterator(object):
             from lxml import etree
             error_xml = etree.tostring(tg, pretty_print=True, encoding="utf-8")
             current_app.logger.error(
-                "Potential XML formatting problem\n\n%s" % error_xml.strip()
+                "Potential XML formatting problem on <xg /> node\n\n%s" % error_xml.strip()
             )
 
         if len(_ex) == 0:
@@ -159,7 +159,7 @@ class EntryNodeIterator(object):
                 tb_str = traceback.format_exception(exc_type, exc_value, exc_traceback)
                 error_xml = etree.tostring(node, pretty_print=True, encoding="utf-8")
                 current_app.logger.error(
-                    "Potential XML formatting problem\n\n%s\n\n%s" % (error_xml.strip(), ''.join(tb_str))
+                    "Potential XML formatting problem somewhere in... \n\n%s\n\n%s" % (error_xml.strip(), ''.join(tb_str))
                 )
                 continue
 
@@ -282,8 +282,18 @@ class FrontPageFormat(EntryNodeIterator):
 
         link = True
 
-        if not isinstance(texts, list):
-            texts = [texts]
+        if texts:
+            if not isinstance(texts, list):
+                texts = [texts]
+        else:
+            from lxml import etree
+            error_xml = etree.tostring(e, pretty_print=True, encoding="utf-8")
+            current_app.logger.error(
+                "Potential XML formatting problem while processing <tg /> nodes.\n\n" + \
+                error_xml.strip()
+            )
+
+            texts = []
 
         # e node, tg node, default text for when formatter doesn't
         # exist for current iso
