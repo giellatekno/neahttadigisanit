@@ -44,6 +44,8 @@ def hello(app):
             i_file_path = ''.join(v.get('inverse_file'))
             file_exists   = 'MISSING: '
             i_file_exists = 'MISSING: '
+            dates = 'UPDATED: ?'
+            i_dates = 'UPDATED: ?'
             try:
                 with open(file_path):
                     file_exists = 'FOUND:   '
