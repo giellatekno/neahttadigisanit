@@ -82,7 +82,7 @@ msgstr ""
 #: configs/language_names.py:40 configs/language_names.py:46
 #: configs/language_names.py:47
 msgid "Norwegian"
-msgstr ""
+msgstr "Daaroengïele"
 
 #: configs/language_names.py:42 configs/language_names.py:43
 msgid "Russian"
@@ -109,11 +109,11 @@ msgstr ""
 #: templates/about.sanit.html:7 templates/about.vada.html:7
 #: templates/about.valks.html:7 templates/base.html:82
 msgid "About"
-msgstr ""
+msgstr "Mijjen bïjre"
 
 #: static/js/bookmarklet.js:1245
 msgid "Language"
-msgstr ""
+msgstr "Gïele"
 
 #: static/js/bookmarklet.js:1245
 msgid "Save"
@@ -415,11 +415,11 @@ msgstr ""
 
 #: templates/base.html:74
 msgid "Home"
-msgstr ""
+msgstr "Gåatan"
 
 #: templates/base.html:78
 msgid "Plugins"
-msgstr ""
+msgstr "Lohkemeviehkie"
 
 #: templates/base.html:87
 msgid "Interface language"
@@ -436,7 +436,7 @@ msgstr ""
 #: templates/index.html:25 templates/index.html:68
 #: templates/more_dictionaries.html:21
 msgid "Other dictionaries"
-msgstr ""
+msgstr "Jeatjah baakoegærjah"
 
 #: templates/index.html:48 templates/index.html:59
 msgid "Written variant"
@@ -452,7 +452,7 @@ msgstr ""
 
 #: templates/index.html:76
 msgid "Swap"
-msgstr ""
+msgstr "Jarkelh"
 
 #: templates/index.html:90
 msgid "ohcansátni"
@@ -460,15 +460,15 @@ msgstr ""
 
 #: templates/index.html:92 templates/word_detail.html:67
 msgid "Search"
-msgstr ""
+msgstr "Ohtsh"
 
 #: templates/index.html:134
 msgid "Definition not found for:"
-msgstr ""
+msgstr "Idtjimh jarkoestimmiem gaavnh daan baakose:"
 
 #: templates/index.html:147 views/reader.py:101
 msgid " is a possible form of ... "
-msgstr ""
+msgstr "Daate sån baakoehammoe daehtie baakoste"
 
 #: templates/index.html:173
 #, python-format
@@ -484,7 +484,7 @@ msgstr ""
 
 #: templates/index.html:186
 msgid "Search for a word, or a word form for a word analysis and definition."
-msgstr ""
+msgstr "Ohtsh baakoem jallh baakoehammoem juktie jarkoestimmiem jïh tjïelkestimmiem åadtjoeh."
 
 #: templates/index.html:190
 msgid ""
@@ -500,7 +500,7 @@ msgstr ""
 
 #: templates/more_dictionaries.html:4
 msgid "More dictionaris"
-msgstr ""
+msgstr "Jeatjah baakoegærjah"
 
 #: templates/more_dictionaries.html:23
 msgid ""
@@ -680,7 +680,7 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "Dictionary"
-#~ msgstr ""
+#~ msgstr "Baakoegærja"
 
 #~ msgid "Refresh settings"
 #~ msgstr ""
