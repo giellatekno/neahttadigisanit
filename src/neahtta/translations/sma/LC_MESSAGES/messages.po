@@ -430,10 +430,12 @@ msgid ""
 "href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, a Sámi Language "
 "Technology group at the <a href=\"http://uit.no\">University of "
 "Tromsø</a>."
-msgstr "Gïeleteknoven gïeledïrregi åesehts jïh " 
-"ræhpas gaaltijistie dorjeldahkesne. " 
-"<em><a href="\http://giellatekno.uit.no\">Giellatekno</a></em> " 
-"Saemien gïeleteknologijen jarnge, <a href=\"http://uit.no\">Tromsø universiteetesne</a>."
+msgstr "Gïeleteknoven gïeledïrregi åesehts jïh ræhpas gaaltijistie dorjeldahkesne. <em><a "
+"href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, Saemien "
+"gïeleteknologijen jarnge <a href=\"http://uit.no\">Tromsø "
+"universiteetesne</a>."
+
+
 
 #: templates/index.html:25 templates/index.html:68
 #: templates/more_dictionaries.html:21

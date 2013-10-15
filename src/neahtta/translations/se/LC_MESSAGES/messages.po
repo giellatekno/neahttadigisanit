@@ -472,7 +472,7 @@ msgid ""
 "Tromsø</a>."
 msgstr ""
 "Ráhkaduvvon <em><a "
-"\"href=\"http://giellatekno.uit.no\">Giellatekno</a></em> nuvttá ja rabas"
+"href=\"http://giellatekno.uit.no\">Giellatekno</a></em> nuvttá ja rabas"
 " gáldokoda reaidduiguin. Giellatekno lea <a href=\"http://uit.no\">Romssa"
 " universitehta</a> sámi giellateknologiija joavku."
 
