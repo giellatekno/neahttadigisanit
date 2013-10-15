@@ -10,6 +10,8 @@ ApplicationSettings:
   locales_available:
     - sma
     - "no"
+  app_meta_title: >
+     Sørsamiske ordbøker 
   meta_description: >
      Gratis online mobilvennlige sørsamiske ordbøker 
   meta_keywords: >

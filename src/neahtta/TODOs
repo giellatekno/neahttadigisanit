@@ -1,65 +1,13 @@
-# New language / linguistic todos 
-
- * sjekk usage="vd" on <t /> node
-
-   <e>
-      <lg>
-         <l pos="N">dagens</l>
-      </lg>
-      <mg>
-         <tg xml:lang="sme">
-            <t pos="A" usage="vd" freq="2247">otná</t>
-            <t pos="A" usage="vd" freq="684">otnáš</t>
-            <xg>
-               <x>Har du dagens avis?</x>
-               <xt>Leago dus otná/otnáš áviisa?</xt>
-            </xg>
-         </tg>
-      </mg>
-   </e>
-
- * example words for about pages
- * kpv <l /> node pos attr needs to be changed up a bit so PoS matches
-   up, switch -SG and etc., to another attribute 
- * layout bugs out with mrj because about text is too long
- * mhr/fin - PoS missing from <l /> node, needs to be moved from <pos> node
- * mhr name? likely not the same as mrj
-
- * go through contexts for sme and sma 
-   contexts and dictionarywork.html to get them all
-     
-     context="mun"          -- v. prs. s1. - (mun) manan
-     context="bivttas"      -- adj. attr.  - alit (bivttas)
-     context="gápmagat"     -- num. ??     - guovttit (gápmagat)
-
-# sme-nob rules to write
-
- * attribute: illpl="no" entries -> remove generated illative plural from paradigm
-    eahketroađđi
- * attribute: pg="no" -> no paradigm
- * attribute: attr="no" -> show no attr form
- * variants: lg/l/lsub -> show as alternate spelling
- * generation: vmax
- * see also: <l_ref>
-         <l pos="CC">dahje</l>
-         <l_ref>vai_cc</l_ref>
-
-
 # TODAY
 
  * update reversed to work with new structures -> finkpv
 
  * ie8 rendering bug on flag lists in header on main page, but not on about page
 
- * debug view for language configs, so people can peek at what paradigms
-   are to be generated, tag sets, etc., analyzers exist, lexica exist
-
  * detail view, include generation info in opt+shift+? debug
 
  * See bugs 
    
- * new wordpress release
-
  * change cache settings for plugin js in nginx configs, some browsers are
    unwilling to get a new version even when it exists.
 
@@ -156,6 +104,10 @@
 
  * Makefile: check which FST and lexica are updated on svn up, and then
    automatically rebuild all
+
+ * developer- and linguist-friendly templates for editing how words are
+  presented ; multimethods + jinja - prefer more templates instead of many
+  if/else statements for attributes?
 
  * advanced search form: here we get to have some nerdy linguistic fun.
 

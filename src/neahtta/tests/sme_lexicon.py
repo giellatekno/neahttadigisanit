@@ -15,6 +15,9 @@ wordforms_that_shouldnt_fail = [
     ( ('nob', 'sme'), 'forbi'),
     ( ('nob', 'sme'), 'stige'),
 
+    # This one contains a blank definition node, but translations.
+    ( ('nob', 'sme'), 'sette'),
+
     # Copied some words from a previous test log. May need to go through
     # these and do things about results instead of just testing that
     # 404s and 500s aren't returned

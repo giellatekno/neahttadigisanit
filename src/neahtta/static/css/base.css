@@ -99,8 +99,16 @@ div.results ol {
     margin-left: 2em;
 }
 
-h4#dict_title {
+h4.dict_title {
     margin-top: 0px;
+}
+
+#left_nav h4.dict_title {
+    font-weight: 300;
+    text-indent: .75em;
+    letter-spacing: 1px;
+    color: #393;
+    font-size: 115%;
 }
 
 .dropdown-menu .active > a, .dropdown-menu .active > a:hover {
@@ -347,7 +355,7 @@ img.i18n_flag {
         display: none;
     }
 	
-	h4#dict_title {
+	h4.dict_title {
 		font-size: 115%;
 		text-align: right;
 		margin-bottom: 0em;

@@ -13,7 +13,8 @@ ApplicationSettings:
     - "se"
     - "no"
     - "fi"
-
+  app_meta_title: >
+     Nordsamiske ordbøker 
   meta_description: >
      Gratis online mobilvennlige nordsamiske ordbøker 
   meta_keywords: >

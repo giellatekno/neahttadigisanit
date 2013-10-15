@@ -3,9 +3,7 @@
     <link href="{{url_for('static', filename='css/about.css')}}" rel="stylesheet" />
 {% endblock %}
 
-{% block title %}
- - {% trans %}About{% endtrans %}
-{% endblock %}
+{% block title -%}{% trans %}About{% endtrans %} :: {% endblock %}
 
 {% block content %}
 <div class="container-fluid">

@@ -7,7 +7,11 @@
         {# TODO: enable indexing by removing following #}
         <meta name="robots" content="index">
         {% block meta_title %}
-        <meta name="title" content="{{ app_name }}">
+            {% if app_meta_title %}
+                <meta name="title" content="{{ app_name }} - {{ app_meta_title }}">
+            {% else %}
+                <meta name="title" content="{{ app_name }}">
+            {% endif %}
         {% endblock %}
 
         {% block meta_description %}
@@ -27,7 +31,14 @@
                 south sámi, norwegian, finnish, sámegiella, sámi language,
                 lullisámegiella, sørsamisk, mobil ordbok">
         {% endif %}
-        <title>{{ app_name }}{% block title %}{% endblock %}</title>
+
+        {% if app_meta_title %}
+            {% set app_name_desc = app_name + ' - ' + app_meta_title %}
+        {% else %}
+            {% set app_name_desc = app_name %}
+        {% endif %}
+
+        <title>{% block title %}{% endblock %}{{ app_name_desc }}</title>
 
 	    <link rel="shortcut icon" href="{{url_for('static', filename='favicon.ico')}}" type="image/x-icon">
 	    <link rel="icon" href="{{url_for('static', filename='favicon.ico')}}" type="image/x-icon">

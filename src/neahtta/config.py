@@ -108,6 +108,17 @@ class Config(Config):
                                self.filename)
 
     @property
+    def app_meta_title(self):
+        _p = self.yaml.get('ApplicationSettings', {})\
+                      .get('app_meta_title', False)
+        if _p:
+            return _p
+        else:
+            raise RuntimeError('app_meta_title not specified in '
+                               'config file %s, in ApplicationSettings.' %
+                               self.filename)
+
+    @property
     def mobile_redirect_pair(self):
         _p = self.yaml.get('ApplicationSettings', {})\
                       .get('mobile_default_pair', None)
