@@ -28,7 +28,7 @@ msgstr ""
 
 #: configs/language_names.py:15 templates/more_dictionaries.html:28
 msgid "South Sámi"
-msgstr "Saemiengïele"
+msgstr "Åarjelsaemiengïele"
 
 #: configs/language_names.py:18
 msgid "Komi"
