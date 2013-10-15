@@ -28,7 +28,7 @@ msgstr ""
 
 #: configs/language_names.py:15 templates/more_dictionaries.html:28
 msgid "South Sámi"
-msgstr ""
+msgstr "Saemiengïele"
 
 #: configs/language_names.py:18
 msgid "Komi"
@@ -430,7 +430,10 @@ msgid ""
 "href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, a Sámi Language "
 "Technology group at the <a href=\"http://uit.no\">University of "
 "Tromsø</a>."
-msgstr ""
+msgstr "Gïeleteknoven gïeledïrregi åesehts jïh ræhpas gaaltijistie " 
+"dorjeldahkesne. <em><a "
+"href=\"http://giellatekno.uit.no\">Giellatekno</a></em> Saemien " 
+"gïeleteknologijen jarnge, <a href=\"http://uit.no\">Tromsø universiteetesne</a>. "
 
 #: templates/index.html:25 templates/index.html:68
 #: templates/more_dictionaries.html:21
@@ -467,7 +470,7 @@ msgstr "Idtjimh jarkoestimmiem gaavnh daan baakose:"
 
 #: templates/index.html:147 views/reader.py:101
 msgid " is a possible form of ... "
-msgstr "Daate sån baakoehammoe daehtie baakoste"
+msgstr " sån baakoehammoe daehtie baakoste"
 
 #: templates/index.html:173
 #, python-format
