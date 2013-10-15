@@ -135,7 +135,7 @@ msgstr ""
 
 #: static/js/bookmarklet.js:1294
 msgid "Error!"
-msgstr ""
+msgstr "Fiejlie!"
 
 #: static/js/bookmarklet.js:1294
 msgid "Could not connect to dictionary server"
