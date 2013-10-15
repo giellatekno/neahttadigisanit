@@ -431,9 +431,7 @@ msgid ""
 "Technology group at the <a href=\"http://uit.no\">University of "
 "Tromsø</a>."
 msgstr "Gïeleteknoven gïeledïrregi åesehts jïh ræhpas gaaltijistie dorjeldahkesne. <em><a "
-"href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, Saemien "
-"gïeleteknologijen jarnge <a href=\"http://uit.no\">Tromsø "
-"universiteetesne</a>."
+"href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, Saemien gïeleteknologijen jarnge <a href=\"http://uit.no\">Tromsø universiteetesne</a>."
 
 
 
