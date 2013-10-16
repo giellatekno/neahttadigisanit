@@ -49,7 +49,7 @@ def format_source_sma(ui_lang, e, target_lang):
         paren_args.append(tagfilter_conf(filters, _pos))
 
     if _class:
-        paren_args.append(_class.lower())
+        paren_args.append(_class)
 
     if len(paren_args) > 0:
         return '%s (%s)' % (_lemma, ', '.join(paren_args))
