@@ -1,4 +1,13 @@
-# TODAY
+# Before conference
+
+ * Revise english translations, make available in sánit.
+   - flag
+
+ * baakoeh: Nehtedigibaakoeh - digibaakoeh gaskeviermesne
+
+ * bugs in bugzilla
+
+# Misc
 
  * update reversed to work with new structures -> finkpv
 
@@ -108,6 +117,19 @@
  * developer- and linguist-friendly templates for editing how words are
   presented ; multimethods + jinja - prefer more templates instead of many
   if/else statements for attributes?
+
+ * tagsets for selecting POS from analyses & specifying what parts of
+   tags should be used for lookups, with fallbacks if they don't exist.
+   (i.e., take POS and Valence if both exist in analysis, if only POS, use
+   that)
+
+   - sma: +1+V, +2+V; one fix is to remove from FST, so that +V is first
+          element, other option would be to improve the lookup system.
+
+   - maybe thinking about a solution to this will help generalise other
+     things for more languages, allowing language-specific configuration
+     of what elements from the analysis must be used to look up words in
+     the lexicon
 
  * advanced search form: here we get to have some nerdy linguistic fun.
 
