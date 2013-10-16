@@ -10,6 +10,7 @@ NAMES = dict([
     ('sme', _(u"North Sámi")),
     ('se', _(u"North Sámi")),
     ('SoMe', _(u"North Sámi (#SoMe)")),
+    ('en', _(u"English")),
 
     # baakoeh
     ('sma', _(u"South Sámi")),
@@ -77,6 +78,7 @@ LOCALISATION_NAMES_BY_LANGUAGE = dict([
     ('eng', u"English"),
     ('est', u"Estonian"), # TODO: flag
     ('sms', u"sääˊmǩiõll"),
+    ('en', u"English"),
 ])
 
 # Only put the exceptional ISOs here
@@ -87,4 +89,5 @@ ISO_TRANSFORMS = dict([
     ('en', 'eng'),
     ('et', 'est'),
     ('lv', 'lav'),
+    ('en', 'eng'),
 ])
