@@ -2,7 +2,7 @@
 # in the translations directory.
 
 ApplicationSettings:
-  app_name: "Neahttadigisánit"
+  app_name: "Nehtedigibaakoeh"
   short_name: "baakoeh"
   default_locale: "sma"
   default_pair: ["sma", "nob"]
@@ -42,8 +42,8 @@ Morphology:
       inverse_tagsep: '+'
   nob:
     tool: *LOOKUP
-    file: [*GTHOME, '/st/nob/bin/nob.fst']
-    inverse_file: [*GTHOME, '/st/nob/bin/inob.fst']
+    file: [*OPT, '/nob/bin/nob.fst']
+    inverse_file: [*OPT, '/nob/bin/inob.fst']
     format: 'xfst'
     options:
       compoundBoundary: "#+Cmp+"
