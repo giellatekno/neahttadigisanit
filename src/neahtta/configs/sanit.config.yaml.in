@@ -13,6 +13,7 @@ ApplicationSettings:
     - "se"
     - "no"
     - "fi"
+    - "en"
   app_meta_title: >
      Nordsamiske ordbøker 
   meta_description: >
