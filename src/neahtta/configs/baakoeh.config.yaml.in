@@ -163,6 +163,12 @@ TagTransforms:
     pr: "prep."
     pron: "pron."
     prop: "egennavn"
+    i: "I"
+    ii: "II"
+    iii: "III"
+    iv: "IV"
+    v: "V"
+    vi: "VI"
 
     # taken from tag-no.regex, these are the things that need relabeling
     # in generation
