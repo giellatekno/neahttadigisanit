@@ -130,7 +130,7 @@ Paradigms:
 TagSets:
   sma:
     pos: ["N", "V", "A", "Pr", "Po", "Num"]
-    type: ["NomAg", "G3", "aktor"]
+    type: ["NomAg", "aktor"]
 
 # Note, these come from dictionary fst, so tag parts are mostly 
 # already translated

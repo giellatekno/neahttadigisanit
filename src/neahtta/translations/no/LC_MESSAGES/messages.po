@@ -75,9 +75,8 @@ msgid "Nenets"
 msgstr "Nenetsisk"
 
 #: configs/language_names.py:39
-#, fuzzy
 msgid "Skolt Sámi"
-msgstr "Sørsamisk"
+msgstr "Østsamisk"
 
 #: configs/language_names.py:42 configs/language_names.py:48
 msgid "Finnish"
@@ -120,7 +119,6 @@ msgid "Advanced"
 msgstr ""
 
 #: static/js/bookmarklet.js:1245
-#, fuzzy
 msgid "Dictionary"
 msgstr "Andre ordbøker"
 
@@ -529,14 +527,12 @@ msgstr ""
 "Tromsø</a>."
 
 #: templates/config_doc.html:4
-#, fuzzy
 msgid "Neahttadigisánit"
 msgstr "Neahttadigisánit Lesehjelper"
 
 #: templates/index.html:19 templates/index.html:35
-#, fuzzy
 msgid "Dictionaries"
-msgstr "Andre ordbøker"
+msgstr "Ordbøker"
 
 #: templates/index.html:26 templates/index.html:70
 #: templates/more_dictionaries.html:21
@@ -595,7 +591,6 @@ msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr "Søk etter et ord eller ei ordform for å få analyse og betydning."
 
 #: templates/index.html:192
-#, fuzzy
 msgid ""
 "You selected #SoMe, the variant for social media, which means that the "
 "letters acdnstz\n"

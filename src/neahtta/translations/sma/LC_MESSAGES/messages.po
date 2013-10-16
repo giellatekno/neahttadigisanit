@@ -75,9 +75,8 @@ msgid "Nenets"
 msgstr ""
 
 #: configs/language_names.py:39
-#, fuzzy
 msgid "Skolt Sámi"
-msgstr "Åarjelsaemiengïele"
+msgstr "Luvliesaemiengïele"
 
 #: configs/language_names.py:42 configs/language_names.py:48
 msgid "Finnish"
@@ -120,9 +119,8 @@ msgid "Advanced"
 msgstr ""
 
 #: static/js/bookmarklet.js:1245
-#, fuzzy
 msgid "Dictionary"
-msgstr "Jeatjah baakoegærjah"
+msgstr "Baakoegærja"
 
 #: static/js/bookmarklet.js:1245
 msgid "Save"
@@ -464,9 +462,8 @@ msgid "Neahttadigisánit"
 msgstr ""
 
 #: templates/index.html:19 templates/index.html:35
-#, fuzzy
 msgid "Dictionaries"
-msgstr "Jeatjah baakoegærjah"
+msgstr "Baakoegærjah"
 
 #: templates/index.html:26 templates/index.html:70
 #: templates/more_dictionaries.html:21
