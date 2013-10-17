@@ -552,7 +552,7 @@ msgstr ""
 
 #: templates/index.html:188
 msgid "Search for a word, or a word form for a word analysis and definition."
-msgstr "Oza sáni, vej. sojahuvvon sátnehápmi, mii dalle sihke analyserejuvvo ja jorgaluvvo."
+msgstr "Oza sáni, vej. sojahuvvon sátnehámi, mii dalle sihke analyserejuvvo ja jorgaluvvo."
 
 #: templates/index.html:192
 msgid ""
