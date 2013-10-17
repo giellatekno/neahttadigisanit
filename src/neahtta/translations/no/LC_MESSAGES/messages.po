@@ -588,7 +588,7 @@ msgstr ""
 
 #: templates/index.html:188
 msgid "Search for a word, or a word form for a word analysis and definition."
-msgstr "Søk etter et ord, det kan være en bøyd form, som da blir både analysert og oversatt."
+msgstr "Søk etter et ord, evt. en bøyd form, som da blir både analysert og oversatt."
 
 #: templates/index.html:192
 msgid ""
