@@ -487,8 +487,7 @@ msgid ""
 msgstr ""
 "Ráhkaduvvon <em><a "
 "href=\"http://giellatekno.uit.no\">Giellatekno</a></em> nuvttá ja rabas "
-"gáldokoda reaidduiguin. Giellatekno lea <a href=\"http://uit.no\">Romssa "
-"universitehta</a> sámi giellateknologiija joavku."
+"gáldokoda reaidduiguin. Giellatekno lea <a href=\"http://uit.no\">UiT Norgga árktalaš universtehta</a> sámi giellateknologiija joavku."
 
 #: templates/config_doc.html:4
 msgid "Neahttadigisánit"

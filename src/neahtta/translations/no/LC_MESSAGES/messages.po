@@ -523,8 +523,7 @@ msgid ""
 msgstr ""
 "Laga med språkverktøy basert på gratis og åpen kildekode fra <em><a "
 "href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, Senter for "
-"samisk språkteknologi ved <a href=\"http://uit.no\">Universitetet i "
-"Tromsø</a>."
+"samisk språkteknologi ved <a href=\"http://uit.no\">UiT Norges arktiske universitet</a>."
 
 #: templates/config_doc.html:4
 msgid "Neahttadigisánit"

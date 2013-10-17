@@ -471,8 +471,7 @@ msgid ""
 "Tromsø</a>."
 msgstr ""
 "Created with free and open-source language tools from <em><a "
-"href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, Centre for Saami Language Technology at the <a href=\"http://uit.no\">University of "
-"Tromsø</a>."
+"href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, Centre for Saami Language Technology at the <a href=\"http://uit.no\">UiT The Arctic University of Norway</a>."
 
 #: templates/config_doc.html:4
 msgid "Neahttadigisánit"
