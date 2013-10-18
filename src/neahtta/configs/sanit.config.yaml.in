@@ -323,7 +323,7 @@ TagTransforms:
     "PrfPrc": "perf.part."
     "Sup": "supinum"
     "VGen": "verbgen."
-    "VAbess": "verbabess."
+    "VAbess": "verbabess. = uten å"
     "Actio": "aktio"
     "ABBR": "fork."
     "CLB": "setn.gr."
