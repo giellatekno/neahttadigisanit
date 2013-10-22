@@ -498,7 +498,7 @@ msgstr ""
 
 #: templates/config_doc.html:4
 msgid "Neahttadigisánit"
-msgstr ""
+msgstr "Nedtedigibaakoeh"
 
 #: templates/index.html:19 templates/index.html:35
 msgid "Dictionaries"
@@ -527,7 +527,7 @@ msgstr "Jarkelh"
 
 #: templates/index.html:92
 msgid "ohcansátni"
-msgstr "søkeord"
+msgstr "ohtsemebaakoe"
 
 #: templates/index.html:94 templates/word_detail.html:67
 msgid "Search"
@@ -645,7 +645,7 @@ msgstr ""
 
 #: templates/reader.html:3 templates/reader.html:20
 msgid "Neahttadigisánit Reader"
-msgstr ""
+msgstr "Nedtedigibaakoeh lesehjelp"
 
 #: templates/reader.html:21
 msgid "WARNING!! We have problems with Internet Explorer 8!"
