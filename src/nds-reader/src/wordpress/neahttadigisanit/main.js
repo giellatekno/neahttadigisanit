@@ -1,3 +1,5 @@
+// TODO: define hostname via WP config
+window.NDS_BOOKMARK_VERSION = '0.0.3' ;
 jQuery(document).ready(function (){
     // Register the input form with options
     // NOTE: this doesn't need to be included for mouseclick lookups

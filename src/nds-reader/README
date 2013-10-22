@@ -6,6 +6,9 @@ are looking at.
 
 ## Goals and TODOs
 
+- TODO: wordpress plugin needs to have an option in the UI to define the host.
+        beware NDS_BOOKMARK_VERSION; should disable this check for wordpress
+
 - TODO: need to modularize a bit, as this is getting unwieldy
         a good thing to use seems to be stitch: 
         https://github.com/sstephenson/stitch/
