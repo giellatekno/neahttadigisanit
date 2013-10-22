@@ -539,7 +539,7 @@ msgstr "Idtjimh jarkoestimmiem gaavnh daan baakose:"
 
 #: templates/index.html:149 views/reader.py:115
 msgid " is a possible form of ... "
-msgstr " sån baakoehammoe daehtie baakoste"
+msgstr " Dïhte sån baakoehammoe daehtie baakoste"
 
 #: templates/index.html:175
 #, python-format
