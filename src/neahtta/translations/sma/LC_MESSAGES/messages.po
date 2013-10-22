@@ -124,7 +124,7 @@ msgstr "Baakoegærja"
 
 #: static/js/bookmarklet.js:1245
 msgid "Save"
-msgstr ""
+msgstr "Lagre"
 
 #: static/js/bookmarklet.js:1245
 msgid "Refresh settings"
@@ -144,6 +144,10 @@ msgid ""
 " (⌥) key, and doubleclick on a word. The service will contact the "
 "dictionary, and return a word after a short pause."
 msgstr ""
+"For å slå opp et ord holder du <em>Alt</em> eller <em>Option</em> (⌥) "
+"nede\n"
+"og dobbelklikker på ordet. Tjenesten vil kontakte denne nettsida\n"
+"og returnere ordboksoppslag etter en kort pause."
 
 #: static/js/bookmarklet.js:1245
 msgid ""
@@ -151,6 +155,10 @@ msgid ""
 " href=\"mailto:giellatekno@hum.uit.no\">please contact us</a>. Tell us "
 "what page didn't work, or what you did when you discovered the problem."
 msgstr ""
+"Hvis du finner en feil, eller hvis bokmerket ikke fungerer på ei viss "
+"side, så vær snill og <a href=\"mailto:giellatekno@hum.uit.no\">kontakt "
+"oss</a>. Fortell oss hvilken side som ikke fungerte, eller hva du gjorde "
+"da du oppdaga problemet."
 
 #: static/js/bookmarklet.js:1310
 msgid "Error!"
@@ -158,51 +166,53 @@ msgstr "Fiejlie!"
 
 #: static/js/bookmarklet.js:1310
 msgid "Could not connect to dictionary server"
-msgstr ""
+msgstr "Vi er ikke i stand til å forbinde til ordboksserveren"
 
 #: static/js/bookmarklet.js:1310
 msgid "Close"
-msgstr ""
+msgstr "Lukk"
 
 #: static/js/bookmarklet.js:1432 static/js/bookmarklet.js:1714
 msgid "Unknown word"
-msgstr ""
+msgstr "Ukjent ord"
 
 #: static/js/bookmarklet.js:1433
 msgid "You are using"
-msgstr ""
+msgstr "Du bruker"
 
 #: static/js/bookmarklet.js:1435
 msgid "Meaning not found"
-msgstr ""
+msgstr "Vi fant ingen oversetting"
 
 #: templates/404.html:51
 msgid ""
 "Whoops! The page you requested was not found. If you think you are "
 "receiving this in error, please contact us."
 msgstr ""
+"Oi! Vi fant ikke sida du så etter. Hvis du tror dette er på grunn av en "
+"feil vil vi bli glad om du kontakter oss."
 
 #: templates/500.html:51
 msgid "Whoops! There was some kind of error."
-msgstr ""
+msgstr "Oops! Nå skjedde det visst en feil."
 
 #: templates/about.baakoeh.html:15 templates/about.muter.html:15
 #: templates/about.sanat.html:15 templates/about.sanit.html:15
 #: templates/about.vada.html:17 templates/about.valks.html:17
 msgid "A dictionary that understands what you're looking for."
-msgstr ""
+msgstr "Ei ordbok som forstår hva du leter etter."
 
 #: templates/about.baakoeh.html:16 templates/about.muter.html:16
 #: templates/about.sanat.html:16 templates/about.sanit.html:16
 #: templates/about.vada.html:18 templates/about.valks.html:18
 msgid "(... And is mobile-friendly!)"
-msgstr ""
+msgstr "(... og er tilpassa mobiltelefonen!)"
 
 #: templates/about.baakoeh.html:20 templates/about.muter.html:20
 #: templates/about.sanat.html:20 templates/about.sanit.html:20
 #: templates/about.vada.html:22 templates/about.valks.html:22
 msgid "Free"
-msgstr ""
+msgstr "Gratis"
 
 #: templates/about.baakoeh.html:21 templates/about.muter.html:21
 #: templates/about.sanat.html:21 templates/about.sanit.html:21
@@ -213,12 +223,16 @@ msgid ""
 "                    you'll find free dictionaries, and other analytical\n"
 "                    tools."
 msgstr ""
+"Alt (eller i alle fall nesten alt) som\n"
+"har med minoritetsspråk å gjøre burde være\n"
+"gratis og fritt tilgjengelig. Her finner du\n"
+"frie ordbøker, og andre analyseverktøy."
 
 #: templates/about.baakoeh.html:27 templates/about.muter.html:27
 #: templates/about.sanat.html:27 templates/about.sanit.html:27
 #: templates/about.vada.html:29 templates/about.valks.html:29
 msgid "Open-Source"
-msgstr ""
+msgstr "Åpen kildekode"
 
 #: templates/about.baakoeh.html:28 templates/about.muter.html:28
 #: templates/about.sanat.html:28 templates/about.sanit.html:28
@@ -232,12 +246,18 @@ msgid ""
 "                website for information on how to get access to lexicon\n"
 "                files, and morphological and syntactic analyzers."
 msgstr ""
+"Alt her er basert på åpen kildekode. Har du ideer for\n"
+"en app eller et forskingsprosjekt som trenger lingvistiske\n"
+"ressurser? Se <a class=\"blue\"\n"
+" href=\"http://giellatekno.uit.no/\">Giellateknos</a>\n"
+"nettside for å få vite hvordan du kan få tilgang til leksikonfiler\n"
+"og morfologiske og syntaktiske analyseprogram."
 
 #: templates/about.baakoeh.html:36 templates/about.muter.html:36
 #: templates/about.sanat.html:36 templates/about.sanit.html:36
 #: templates/about.vada.html:38 templates/about.valks.html:38
 msgid "Linguistic basis"
-msgstr ""
+msgstr "Lingvistisk basis"
 
 #: templates/about.baakoeh.html:37 templates/about.muter.html:37
 #: templates/about.sanat.html:37 templates/about.sanit.html:37
@@ -246,20 +266,22 @@ msgid ""
 "Write what you wish, and the dictionary will analyze it to break apart "
 "compound words and find base forms."
 msgstr ""
+"Skriv hvilket ord du vil, og ordboka vil analysere det, ta eventuelle "
+"sammensetningsdeler fra hverandre, og finne grunnforma."
 
 #: templates/about.baakoeh.html:43 templates/about.sanit.html:43
 msgid "gå, dra, reise"
-msgstr ""
+msgstr "gå, dra, reise"
 
 #: templates/about.baakoeh.html:50 templates/about.muter.html:50
 #: templates/about.sanat.html:50 templates/about.sanit.html:50
 #: templates/about.vada.html:52 templates/about.valks.html:52
 msgid "Source material"
-msgstr ""
+msgstr "Kildematerial"
 
 #: templates/about.baakoeh.html:57 templates/about.sanit.html:57
 msgid "sme ↔ nob"
-msgstr ""
+msgstr "Nordsamisk ↔ norsk"
 
 #: templates/about.baakoeh.html:58 templates/about.sanit.html:58
 msgid ""
@@ -267,6 +289,8 @@ msgid ""
 "<em>Álgosátnegirji</em>, but here it has been more than doubled in "
 "content."
 msgstr ""
+"Nordsamisk → norsk bygger på Nils Jernsletten si ordbok Álgosátnegirji, "
+"men er mer enn fordobla."
 
 #: templates/about.baakoeh.html:59 templates/about.sanit.html:59
 msgid ""
@@ -274,10 +298,12 @@ msgid ""
 "but we have also revised the content and added frequent words from "
 "Norwegian."
 msgstr ""
+"Norsk → nordsamisk er en snudd versjon av Nordsamisk-norsk, der vi i "
+"tillegg har revidert artiklene, og lagt til frekvente ord fra norsk."
 
 #: templates/about.baakoeh.html:62 templates/about.sanit.html:62
 msgid "sma ↔ nob"
-msgstr ""
+msgstr "Sørsamisk ↔ norsk"
 
 #: templates/about.baakoeh.html:63 templates/about.sanit.html:63
 msgid ""
@@ -289,10 +315,17 @@ msgid ""
 " href=\"http://aajege.no/\">Aajege</a>'s work with the Southern Sámi <a "
 "class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
 msgstr ""
+"Ordbøkene mellom sørsamisk og norsk bygger på materiale utarbeidet av "
+"Albert Jåma og Tove Brustad, tilgjengelig fra <a class=\"blue\" "
+"href=\"http://www.ruovatsijte.no/\">Hemnes Samiske Forening</a>, men har "
+"i tillegg fått ord fra <a class=\"blue\" "
+"href=\"http://giellatekno.uit.no/\">Giellatekno</a> og <a class=\"blue\" "
+"href=\"http://aajege.no/\">Aajege</a> sitt arbeid med sørsamisk <a "
+"class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>. "
 
 #: templates/about.baakoeh.html:66 templates/about.sanit.html:66
 msgid "sme ↔ fin"
-msgstr ""
+msgstr "Nordsamisk ↔ finsk"
 
 #: templates/about.baakoeh.html:67 templates/about.sanit.html:67
 msgid ""
@@ -303,16 +336,22 @@ msgid ""
 "have included frequent words from North Sámi, but especially from "
 "Finnish."
 msgstr ""
+"Ordbøkene mellom nordsamisk og finsk bygger på ordmateriale fra <a "
+"class=\"green\" href=\"http://kotus.fi\">Forskingscentralen för de "
+"inhemska språken</a> i Helsingfors, fra Giellatekno sitt arbeid med "
+"nordsamisk <a class=\"green\" href=\"http://oahpa.no\">Oahpa</a>. I "
+"tillegg har vi lagt til frekvente ord fra nordsamisk og særlig fra finsk."
+
 
 #: templates/about.baakoeh.html:68 templates/about.sanit.html:68
 msgid "Each of the dictionaries contains about 11,000 base words."
-msgstr ""
+msgstr "Hver av ordbøkene inneholder ca. 11000 grunnord."
 
 #: templates/about.baakoeh.html:76 templates/about.muter.html:79
 #: templates/about.sanat.html:86 templates/about.sanit.html:76
 #: templates/about.vada.html:78 templates/about.valks.html:90
 msgid "More to come..."
-msgstr ""
+msgstr "Mer på vei..."
 
 #: templates/about.muter.html:43 templates/about.vada.html:45
 #: templates/about.valks.html:45

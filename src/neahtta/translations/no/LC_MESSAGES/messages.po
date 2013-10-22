@@ -341,7 +341,7 @@ msgstr ""
 "inhemska språken</a> i Helsingfors, fra Giellatekno sitt arbeid med "
 "nordsamisk <a class=\"green\" href=\"http://oahpa.no\">Oahpa</a>. I "
 "tillegg har vi lagt til frekvente ord fra nordsamisk og særlig fra finsk."
-" "
+
 
 #: templates/about.baakoeh.html:68 templates/about.sanit.html:68
 msgid "Each of the dictionaries contains about 11,000 base words."
