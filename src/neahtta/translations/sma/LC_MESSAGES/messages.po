@@ -671,7 +671,7 @@ msgstr ""
 
 #: templates/reader.html:27 templates/reader_update.html:15
 msgid "Read with Neahttadigisánit"
-msgstr "Les med Neahttadigisánit"
+msgstr "Les med Nedtedigibaakoeh"
 
 #: templates/reader.html:28
 msgid ""
