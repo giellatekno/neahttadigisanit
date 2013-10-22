@@ -2,7 +2,7 @@
 # in the translations directory.
 
 ApplicationSettings:
-  app_name: "Nehtedigibaakoeh"
+  app_name: "Nedtedigibaakoeh"
   short_name: "baakoeh"
   default_locale: "sma"
   default_pair: ["sma", "nob"]
