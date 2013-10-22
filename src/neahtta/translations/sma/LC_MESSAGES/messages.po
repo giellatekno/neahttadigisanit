@@ -648,6 +648,7 @@ msgstr ""
 
 #: templates/reader.html:32
 msgid "To change the dictionary, click the menu icon."
+msgstr ""
 "Du kan skifte språk i ordboka ved å klikke på \"\n"
 "\"menyikonet (<em>Á</em>)."
 
