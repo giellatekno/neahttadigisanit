@@ -224,7 +224,7 @@ msgid ""
 "                    tools."
 msgstr ""
 "Alt (eller i alle fall nesten alt) som\n"
-"har med minoritetsspråk å gjøre burde være\n"
+"har med minoritetsspråk å gjøre, burde være\n"
 "gratis og fritt tilgjengelig. Her finner du\n"
 "frie ordbøker, og andre analyseverktøy."
 
@@ -277,7 +277,7 @@ msgstr "gå, dra, reise"
 #: templates/about.sanat.html:50 templates/about.sanit.html:50
 #: templates/about.vada.html:52 templates/about.valks.html:52
 msgid "Source material"
-msgstr "Kildematerial"
+msgstr "Kildemateriale"
 
 #: templates/about.baakoeh.html:57 templates/about.sanit.html:57
 msgid "sme ↔ nob"
@@ -539,7 +539,7 @@ msgstr "Idtjimh jarkoestimmiem gaavnh daan baakose:"
 
 #: templates/index.html:149 views/reader.py:115
 msgid " is a possible form of ... "
-msgstr " Dïhte sån baakoehammoe daehtie baakoste"
+msgstr "\nDïhte sån baakoehammoe daehtie baakoste"
 
 #: templates/index.html:175
 #, python-format
