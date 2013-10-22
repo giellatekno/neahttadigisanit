@@ -488,7 +488,7 @@ msgstr "Jarkelh"
 
 #: templates/index.html:92
 msgid "ohcansátni"
-msgstr ""
+msgstr "søkeord"
 
 #: templates/index.html:94 templates/word_detail.html:67
 msgid "Search"
@@ -505,7 +505,7 @@ msgstr " sån baakoehammoe daehtie baakoste"
 #: templates/index.html:175
 #, python-format
 msgid "Word %(input)s not found."
-msgstr ""
+msgstr "Ordet %(input)s ikke funnet."
 
 #: templates/index.html:184
 msgid ""
@@ -610,11 +610,11 @@ msgstr ""
 
 #: templates/reader.html:21
 msgid "WARNING!! We have problems with Internet Explorer 8!"
-msgstr ""
+msgstr "ADVARSEL!! Vi har problemer med Internet Explorer 8!"
 
 #: templates/reader.html:22
 msgid "Bookmarklet"
-msgstr ""
+msgstr "Bokmerke"
 
 #: templates/reader.html:23
 msgid ""
@@ -625,10 +625,14 @@ msgid ""
 " a\n"
 "                menu icon on the left-hand side of the page."
 msgstr ""
+"Dra og dropp den røde lenka til bokmerke-/favoritter-linja di,\n"
+"deretter klikker du på den hver gang du har funnet ei side\n"
+"du gjerne vil lese. Tjenesten vil bli installert automatisk,\n"
+"og du ser et menyikon (<em>Á</em>) på venstre side av nettsida."
 
 #: templates/reader.html:27 templates/reader_update.html:15
 msgid "Read with Neahttadigisánit"
-msgstr ""
+msgstr "Les med Neahttadigisánit"
 
 #: templates/reader.html:28
 msgid ""
@@ -637,14 +641,19 @@ msgid ""
 "                website and return dictionary entries after a brief\n"
 "                pause."
 msgstr ""
+"For å slå opp et ord holder du <em>Alt</em> eller <em>Option</em> (⌥) "
+"nede\n"
+"og dobbelklikker på ordet. Tjenesten vil kontakte denne nettsida\n"
+"og returnere ordboksoppslag etter en kort pause."
 
 #: templates/reader.html:32
 msgid "To change the dictionary, click the menu icon."
-msgstr ""
+"Du kan skifte språk i ordboka ved å klikke på \"\n"
+"\"menyikonet (<em>Á</em>)."
 
 #: templates/reader.html:33
 msgid "Bugs?"
-msgstr ""
+msgstr "Feil?"
 
 #: templates/reader.html:34
 msgid ""
@@ -653,6 +662,9 @@ msgid ""
 "of\n"
 "                what you were reading when you encountered the problem."
 msgstr ""
+"Hvis du finner feil, eller hvis bokmerket ikke fungerer for\n"
+"ei viss side må du gjerne kontakte oss. Si i tilfelle fra hvilken\n"
+"side det gjaldt eller hva som var problemet."
 
 #: templates/reader.html:37
 msgid ""
@@ -661,20 +673,25 @@ msgid ""
 "improve\n"
 "                the dictionary."
 msgstr ""
+"Vi lagrer ingen private data eller individuelle brukerdata, men\n"
+"vi samler statistikk over hvilke ordboksoppslag som blir gjort,\n"
+"for å rette mangler og forbedre ordboka."
 
 #: templates/reader.html:46
 msgid "Includes"
-msgstr ""
+msgstr "Inkluderer"
 
 #: templates/reader.html:54
 msgid ""
 "If you are looking for other languages, please see our <a "
 "href=\"/more/\">other dictionaries</a>."
 msgstr ""
+"Hvis du leter etter andre språk kan du se våre  <a href=\"/more/\">andre "
+"ordbøker</a>."
 
 #: templates/reader_example.html:32
 msgid "Additional instructions"
-msgstr ""
+msgstr "Tilleggsinstrukser"
 
 #: templates/reader_ie8_notice.html:1
 msgid ""
@@ -682,6 +699,8 @@ msgid ""
 "Your web browser is supported, however, you will need to change some\n"
 "options for the Neahttadigisánit Reader to work.\n"
 msgstr ""
+"Nettleseren din er støttet, men du må endre noen\n"
+"innstillnger for å få ordboka til å fungere.\n"
 
 #: templates/reader_update.html:1
 msgid ""
@@ -689,6 +708,8 @@ msgid ""
 "We have made some updates to the dictionary, which require you to\n"
 "replace your bookmark with a new version.\n"
 msgstr ""
+"Vi har gjort noen oppdateringer til ordboka, så du må kaste\n"
+"det gamle bokmerket og dra bokmerket opp til bokmerkelinja på nytt.\n"
 
 #: templates/reader_update.html:9
 msgid ""
@@ -697,18 +718,22 @@ msgid ""
 "    service will automatically be installed, and you will see a\n"
 "    menu icon on the left-hand side of the page."
 msgstr ""
+"Dra og dropp den røde lenka til bokmerke-/favoritter-linja di,\n"
+"deretter klikker du på den hver gang du har funnet ei side\n"
+"du gjerne vil lese. Tjenesten vil bli installert automatisk,\n"
+"og du ser et menyikon (<em>Á</em>) på venstre side av nettsida."
 
 #: templates/word_detail.html:19
 msgid "is a possible form of ... "
-msgstr ""
+msgstr "er ei mulig form av ... "
 
 #: templates/word_detail.html:188
 msgid "More information about this word"
-msgstr ""
+msgstr "Mer informasjon om dette ordet"
 
 #: views/main.py:90
 msgid "Invalid format. Only json and html allowed."
-msgstr ""
+msgstr "Ugyldig format. Bare json og html er tillatt."
 
 #~ msgid "Language"
 #~ msgstr "Gïele"
