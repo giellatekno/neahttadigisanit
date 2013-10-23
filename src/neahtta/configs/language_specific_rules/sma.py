@@ -159,3 +159,10 @@ def sma_common_noun_pluralia_tanta(form, tags, node):
             ]
 
     return form, tags, node
+
+from common import remove_blank
+
+morphology.postgeneration_filter_for_iso(
+    'sma',
+)(remove_blank)
+

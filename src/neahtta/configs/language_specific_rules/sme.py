@@ -114,7 +114,7 @@ def pregenerate_sme(form, tags, node):
 @morphology.tag_filter_for_iso(*['sme', 'SoMe'])
 def lexicon_pos_to_fst(form, tags, node=None):
     """ **tag filter**: Lexicon -> FST changes.
-    
+
     Change POS to be compatible with FST for when they are not.
     """
 
@@ -487,3 +487,11 @@ def format_target_sme(ui_lang, e, tg):
             return "%s (%s)" % (_t_lemma, _reg)
 
     return None
+
+from common import remove_blank
+
+morphology.postgeneration_filter_for_iso(
+    'sme',
+    'SoMe'
+)(remove_blank)
+
