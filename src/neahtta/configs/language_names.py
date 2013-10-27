@@ -39,6 +39,12 @@ NAMES = dict([
     # saan
     ('sms', _(u"Skolt Sámi")),
 
+    # pikiskwewina
+    ('crk', _(u"Plains Cree")),
+
+    # guusaaw
+    ('hdn', _(u"Northern Haida")),
+
     # target languages
     ('fin', _(u"Finnish")),
     ('nob', _(u"Norwegian")),
