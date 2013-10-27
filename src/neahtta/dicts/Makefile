@@ -10,6 +10,10 @@
 ###          #finanalysers
 ###          #rusanalysers TODO
 ###         
+###         #guusaawtargets
+###          #hdnanalysers
+###          #guusaawlexicon
+###         
 ###         #pikiskwewinatargets
 ###          #crkanalysers
 ###          #pikiskwewinalexicon
@@ -126,6 +130,68 @@ rus: tmp_fst/rus.fst
 
 
 #####
+##### #guusaawtargets
+#####
+
+##
+### #hdnanalysers
+##
+
+fst/hdn.fst:
+	@echo "***********************"
+	@echo "** Building hdn FSTs **"
+	@echo "***********************"
+	@echo ""
+	cd $(GTHOME)/langs/hdn/ ; \
+	  ./autogen.sh ; \
+	  ./configure  ; \
+	  make ; \
+	  cp src/analyser-gt-desc.xfst  $(TARGET_DIR)/fst/hdn.fst ; \
+	  cp src/generator-gt-norm.xfst $(TARGET_DIR)/ifst/ihdn.fst
+
+.PHONY: hdn
+hdn: fst/hdn.fst
+
+##
+### #guusaawlexicon
+##
+
+hdn-all.xml: $(GTHOME)/words/dicts/hdneng/src/*.xml
+	@echo "**************************"
+	@echo "** Building hdn lexicon **"
+	@echo "**************************"
+	@echo ""
+	$(SAXON) inDir=$(GTHOME)/words/dicts/hdneng/src/ > hdn-all.xml
+
+.PHONY: hdn-lexicon
+guusaaw-lexica: hdn-all.xml
+
+.PHONY: guusaaw
+guusaaw: init hdn fin guusaaw-lexica
+	@echo "*************************************"
+	@echo "** Built targets for guusaaw:      **"
+	@echo "**    + hdn lexicon                **"
+	@echo "**    + hdn analysers              **"
+	@echo "**    + eng analysers              **"
+	@echo "*************************************"
+	@echo "**   (hdn = Northern Haida)        **"
+	@echo "*************************************"
+	@echo ""
+	@echo "Now install analysers in expected paths."
+	@echo "    sudo make guusaaw-install"
+	@echo "... or copy the fsts in fst/ and ifst/ to their right places."
+
+guusaaw-hdn-install: fst/hdn.fst ifst/ihdn.fst
+	mkdir -p /opt/smi/hdn/bin/
+	cp $^ /opt/smi/hdn/bin/
+	chmod a+x /opt/smi/hdn/bin/*.fst
+
+guusaaw-install: guusaaw-hdn-install
+
+
+
+
+#####
 ##### #pikiskwewinatargets
 #####
 
@@ -163,7 +229,7 @@ crk-all.xml: $(GTHOME)/words/dicts/crkeng/src/*.xml
 pikiskwewina-lexica: crk-all.xml
 
 .PHONY: pikiskwewina
-pikiskwewina: init crk fin pikiskwewina-lexica
+pikiskwewina: init crk eng pikiskwewina-lexica
 	@echo "*************************************"
 	@echo "** Built targets for pikiskwewina: **"
 	@echo "**    + crk lexicon                **"
