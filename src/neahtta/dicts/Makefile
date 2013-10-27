@@ -146,11 +146,11 @@ fst/hdn.fst:
 	  ./autogen.sh ; \
 	  ./configure  ; \
 	  make ; \
-	  cp src/analyser-gt-desc.xfst  $(TARGET_DIR)/fst/hdn.fst ; \
-	  cp src/generator-gt-norm.xfst $(TARGET_DIR)/ifst/ihdn.fst
+	  cp src/analyser-gt-desc.xfst  $(TARGET_DIR)/tmp_fst/hdn.fst ; \
+	  cp src/generator-gt-norm.xfst $(TARGET_DIR)/tmp_ifst/ihdn.fst
 
 .PHONY: hdn
-hdn: fst/hdn.fst
+hdn: tmp_fst/hdn.fst
 
 ##
 ### #guusaawlexicon
@@ -167,7 +167,7 @@ hdn-all.xml: $(GTHOME)/words/dicts/hdneng/src/*.xml
 guusaaw-lexica: hdn-all.xml
 
 .PHONY: guusaaw
-guusaaw: init hdn fin guusaaw-lexica
+guusaaw: init hdn eng guusaaw-lexica
 	@echo "*************************************"
 	@echo "** Built targets for guusaaw:      **"
 	@echo "**    + hdn lexicon                **"
@@ -179,9 +179,9 @@ guusaaw: init hdn fin guusaaw-lexica
 	@echo ""
 	@echo "Now install analysers in expected paths."
 	@echo "    sudo make guusaaw-install"
-	@echo "... or copy the fsts in fst/ and ifst/ to their right places."
+	@echo "... or copy the fsts in tmp_fst/ and tmp_ifst/ to their right places."
 
-guusaaw-hdn-install: fst/hdn.fst ifst/ihdn.fst
+guusaaw-hdn-install: tmp_fst/hdn.fst tmp_ifst/ihdn.fst
 	mkdir -p /opt/smi/hdn/bin/
 	cp $^ /opt/smi/hdn/bin/
 	chmod a+x /opt/smi/hdn/bin/*.fst
