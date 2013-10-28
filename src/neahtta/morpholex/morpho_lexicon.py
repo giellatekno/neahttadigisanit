@@ -16,16 +16,16 @@ class MorphoLexiconOverrides(object):
         def decorate(wordform, **input_kwargs):
             _from = input_kwargs.get('source_lang')
 
-            xml_result, fst_result = function(wordform, **input_kwargs)
+            entries_and_tags = function(wordform, **input_kwargs)
 
             for f in self.override_functions[_from]:
-                new_res = f(xml_result, fst_result)
+                new_res = f(entries_and_tags)
                 if new_res is not None:
-                    xml_result, fst_result = new_res
+                    entries_and_tags = new_res
                 else:
                     continue
 
-            return xml_result, fst_result
+            return entries_and_tags
 
         return decorate
 
@@ -82,24 +82,39 @@ class MorphoLexicon(object):
         except AttributeError:
             analyses = []
 
-        if analyses:
-            lookup_lemmas = [l.lemma for l in analyses]
-        else:
-            analyses = []
+        # if analyses:
+        #     lookup_lemmas = [l.lemma for l in analyses]
+        # else:
+        #     analyses = []
 
-        xml_results = []
-        for analysis in list(set(analyses)):
-            lex_kwargs = {
-                'lemma': analysis.lemma,
-                'pos': analysis.pos,
-                'pos_type': False,
-            }
-            xml_result = self.lexicon.lookup( source_lang
-                                            , target_lang
-                                            , **lex_kwargs
-                                            )
-            if xml_result:
-                xml_results.extend(xml_result)
+        entries_and_tags = []
+        if analyses:
+            for analysis in list(set(analyses)):
+                lex_kwargs = {
+                    'lemma': analysis.lemma,
+                    'pos': analysis.pos,
+                    'pos_type': False,
+                }
+                xml_result = self.lexicon.lookup( source_lang
+                                                , target_lang
+                                                , **lex_kwargs
+                                                )
+                if xml_result:
+                    for e in xml_result:
+                        entries_and_tags.append((e, analysis))
+
+        # group by entry
+
+        from itertools import groupby
+        from operator import itemgetter
+
+        results = []
+        for grouper, grouped in groupby(entries_and_tags, itemgetter(0)):
+            analyses = [an for _, an in grouped if an is not None]
+            results.append((grouper, analyses))
+
+        entries_and_tags = results
+
 
         no_analysis_xml = self.lexicon.lookup( source_lang
                                              , target_lang
@@ -107,22 +122,23 @@ class MorphoLexicon(object):
                                              )
 
         if no_analysis_xml:
-            xml_results.extend(no_analysis_xml)
+            for e in no_analysis_xml:
+                entries_and_tags.append((e, [None]))
 
         # TODO: may need to do the same for derivation?
         # NOTE: test with things that will never return results just to
         # make sure recursion doesn't get carried away.
-        if (len(xml_results) == 0) and ('non_compound_only' in kwargs):
+        if (len(entries_and_tags) == 0) and ('non_compound_only' in kwargs):
             if kwargs['non_compound_only']:
                 new_kwargs = kwargs.copy()
                 new_kwargs.pop('non_compound_only')
                 return self.lookup(wordform, **new_kwargs)
             else:
-                return [], []
-        elif (len(xml_results) == 0) and not analyses:
-            return [], []
+                return []
+        elif (len(entries_and_tags) == 0) and not analyses:
+            return []
         else:
-            return list(set(xml_results)), analyses
+            return entries_and_tags
 
     def __init__(self, config):
         self.analyzers = config.morphologies

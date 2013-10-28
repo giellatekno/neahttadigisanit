@@ -73,25 +73,30 @@ def lookupWord(from_language, to_language):
 
     mlex = current_app.morpholexicon
 
-    xml_nodes, analyses = mlex.lookup( lookup_key
-                                     , source_lang=from_language
-                                     , target_lang=to_language
-                                     , split_compounds=True
-                                     , non_compound_only=True
-                                     , no_derivations=True
-                                     )
+    entries_and_tags = mlex.lookup( lookup_key
+                                  , source_lang=from_language
+                                  , target_lang=to_language
+                                  , split_compounds=True
+                                  , non_compound_only=True
+                                  , no_derivations=True
+                                  )
 
-    if analyses:
-        def filterPOSAndTag(analysis):
-            filtered_pos = tagfilter(analysis.pos, from_language, to_language)
-            joined = ' '.join(analysis.tag)
-            return (analysis.lemma, joined)
-        tags = map(filterPOSAndTag, analyses)
-    else:
-        tags = []
+    def filterPOSAndTag(analysis):
+        filtered_pos = tagfilter(analysis.pos, from_language, to_language)
+        joined = ' '.join(analysis.tag)
+        return (analysis.lemma, joined)
+
+    analyses = [lem for e, lems in entries_and_tags
+                for lem in lems
+                if lem is not None]
+
+    tags = map(
+        filterPOSAndTag,
+        analyses
+    )
 
     ui_lang = iso_filter(session.get('locale', to_language))
-    result = SimpleJSON( xml_nodes
+    result = SimpleJSON( [e for e, analyses in entries_and_tags]
                        , target_lang=to_language
                        , source_lang=from_language
                        , ui_lang=ui_lang

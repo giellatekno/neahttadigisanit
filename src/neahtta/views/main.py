@@ -327,14 +327,17 @@ def indexWithLangs(_from, _to):
 
         mlex = current_app.morpholexicon
 
-        xml_nodes, analyses = mlex.lookup( lookup_val
-                                         , source_lang=_from
-                                         , target_lang=_to
-                                         , split_compounds=True
-                                         )
+        entries_and_tags = mlex.lookup( lookup_val
+                                      , source_lang=_from
+                                      , target_lang=_to
+                                      , split_compounds=True
+                                      )
 
-        analyses = [(lem.input, lem.lemma, list(lem.tag))
-                    for lem in analyses]
+        analyses  = [ (lem.input, lem.lemma, list(lem.tag))
+                      for _, lems in entries_and_tags
+                      for lem in lems
+                      if lem is not None
+                    ]
 
         fmtkwargs = { 'target_lang': _to
                     , 'source_lang': _from
@@ -342,7 +345,8 @@ def indexWithLangs(_from, _to):
                     }
 
         # [(lemma, XMLNodes)] -> [(lemma, generator(AlmostJSON))]
-        formatted_results = list(FrontPageFormat(xml_nodes, **fmtkwargs))
+        unique_entries = list(set([e for e, _ in entries_and_tags]))
+        formatted_results = list(FrontPageFormat(unique_entries, **fmtkwargs))
 
         # When to display unknowns
         successful_entry_exists = False

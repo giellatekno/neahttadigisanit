@@ -8,7 +8,7 @@ for this documentation, but for now ...
 
 Example source formatting function:
 
-    @lexicon_overrides.entry_source_formatter('sme')
+    @lexicon.entry_source_formatter('sme')
     def format_source_sme(ui_lang, entry_node):
         # do some processing on the entry node ...
         if successful:
@@ -17,7 +17,7 @@ Example source formatting function:
 
 Example target string formatting function:
 
-    @lexicon_overrides.entry_target_formatter('sme', 'nob')
+    @lexicon.entry_target_formatter('sme', 'nob')
     def format_target_sme(ui_lang, entry_node, tg_node):
         # do some processing on the entry and tg node ...
         if successful:
@@ -29,11 +29,11 @@ Example target string formatting function:
 # NOTE: if copying this for a new language, remember to make sure that
 # it's being imported in __init__.py
 
-from morphology import generation_overrides as rewrites
-from lexicon import lexicon_overrides
+from morphology import generation_overrides as morphology
+from lexicon import lexicon as lexicon
 from flask import current_app
 
-@lexicon_overrides.entry_source_formatter('sma')
+@lexicon.entry_source_formatter('sma')
 def format_source_sma(ui_lang, e, target_lang):
     from morphology.utils import tagfilter_conf
 
@@ -80,7 +80,7 @@ LEX_TO_FST = {
     'v': 'V',
 }
 
-@rewrites.pregenerated_form_selector('sma')
+@morphology.pregenerated_form_selector('sma')
 def pregenerate_sma(form, tags, node):
     _has_mini_paradigm = node.xpath('.//mini_paradigm[1]')
 
@@ -110,7 +110,7 @@ def pregenerate_sma(form, tags, node):
 
     return form, tags, node, analyses
 
-@rewrites.tag_filter_for_iso('sma')
+@morphology.tag_filter_for_iso('sma')
 def lexicon_pos_to_fst_sma(form, tags, node=None):
 
     new_tags = []
@@ -122,7 +122,7 @@ def lexicon_pos_to_fst_sma(form, tags, node=None):
 
     return form, new_tags, node
 
-@rewrites.tag_filter_for_iso('sma')
+@morphology.tag_filter_for_iso('sma')
 def include_hid_in_gen(form, tags, node):
     new_tags = tags[:]
 
@@ -137,7 +137,7 @@ def include_hid_in_gen(form, tags, node):
 
     return form, new_tags, node
 
-@rewrites.tag_filter_for_iso('sma')
+@morphology.tag_filter_for_iso('sma')
 def proper_nouns(form, tags, node):
     if len(node) > 0:
         pos = node.xpath('.//l/@pos')
@@ -153,7 +153,7 @@ def proper_nouns(form, tags, node):
     return form, tags, node
 
 
-@rewrites.tag_filter_for_iso('sma')
+@morphology.tag_filter_for_iso('sma')
 def sma_common_noun_pluralia_tanta(form, tags, node):
     if len(node) > 0:
         num = node.xpath('.//l/@num')
@@ -173,7 +173,7 @@ def sma_common_noun_pluralia_tanta(form, tags, node):
 
 from common import remove_blank
 
-rewrites.postgeneration_filter_for_iso(
+morphology.postgeneration_filter_for_iso(
     'sma',
 )(remove_blank)
 

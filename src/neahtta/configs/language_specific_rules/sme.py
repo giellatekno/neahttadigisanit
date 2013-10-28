@@ -303,6 +303,7 @@ _str_norm = 'string(normalize-space(%s))'
 
 # commented out; Bug 1719
 
+### NB: if commenting back in, argument structure for decorator function is changed.
 ### @morpholex.post_morpho_lexicon_override(*['sme', 'SoMe'])
 ### def remove_analyses_for_analyzed_forms_with_lemma_ref(xml, fst):
 ###     """ **Post morpho-lexicon override**
@@ -364,6 +365,7 @@ _str_norm = 'string(normalize-space(%s))'
 
 # commented out; bug 1719
 
+### NB: if commenting back in, argument structure for decorator function is changed.
 ### @morpholex.post_morpho_lexicon_override(*['sme', 'SoMe'])
 ### def remove_analyses_for_specific_closed_classes(xml, fst):
 ###     """ **Post morpho-lexicon override**
