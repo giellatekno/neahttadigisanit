@@ -75,7 +75,7 @@
                 <span>{{ iso_pair[0]|iso_to_i18n }} → {{ iso_pair[1]|iso_to_i18n }}</span>
                 {% endif %}
                 {% endfor -%}
-                <span style="font-size: 80%">(<a href="/{{ _to }}/{{ _from }}/">⇄ {% trans %}Swap{% endtrans %}</a>)</span></h4>
+                <span class="swaplink" style="font-size: 80%">(<a href="/{{ _to }}/{{ _from }}/">⇄ {% trans %}Swap{% endtrans %}</a>)</span></h4>
 
             <div class="row-fluid">
                 <div class="span8">
@@ -134,7 +134,7 @@
                                             {% for grouper, forms in lookup.analyses|groupby('lemma') %}
                                                 {% for lemmagroup, lemmafs in forms|groupby('pos') %}
                                                     <dt>{{ grouper }}</dt>
-                                                    <dt>
+                                                    <dd>
                                                         <ul class="possible_forms">
                                                             {% for lem in lemmafs %}
                                                             <li>{{ ' '.join(lem.tag)|tagfilter(_from, _to) }}</li>
@@ -207,7 +207,7 @@
                 {% endif %}
             {% endif %}
             {% if show_info %}
-                <div class="alert alert-success">
+                <div class="alert alert-success intro-note">
                     {% if _from == 'sme' %}
                     <p class="visible-phone visible-tablet">
                         {% trans %}If you are using a device without a Sámi keyboard, consider using <a href="/SoMe/nob/">social media mode</a>, which allows you to type <em>acdnstz</em> for <em>áčđŋšŧž</em>.{% endtrans %}

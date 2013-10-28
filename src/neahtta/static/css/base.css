@@ -1,5 +1,9 @@
 /* @override http://localhost:5000/static/css/base.css */
 
+html, body {
+    height: 100%;
+}
+
 .reposition_hide {
     position: absolute;
 
@@ -84,7 +88,7 @@ ul.nav-stacked li.active span {
 }
 
 #wrap {
-    min-height: 400px;
+    padding-bottom: 180px;
 }
 
 content .page-header {
@@ -101,6 +105,12 @@ div.results ol {
 
 h4.dict_title {
     margin-top: 0px;
+    font-weight: 400;
+    color: #666;
+}
+
+.swaplink {
+    margin-left: .25em;
 }
 
 #left_nav h4.dict_title {
@@ -211,7 +221,7 @@ ul.unknown_lexemes {
     display: none;
     position: fixed;
     top: 20px;
-    // bottom: 0;
+    bottom: 0;
     margin-bottom:0;
 }
 
@@ -246,14 +256,14 @@ ul.unknown_lexemes {
 footer {
     background-color: #BBB;
     border-top: 1px solid #888;
-    position: relative;
-    height: 150px;
+    height: 180px;
 
-    // padding-top: 15px;
-    // padding-bottom: 25px;
-    // 
-    // margin-top: -150px;
-    // clear: both; 
+    padding-top: 15px;
+    padding-bottom: 25px;
+    
+    position: relative;
+    margin-top: -180px;
+    clear: both; 
 }
 
 .footer {
@@ -279,16 +289,27 @@ footer {
     position: relative;
 }
 
+.grid_analyses dt, .grid_analyses ul, .grid_analyses li {
+    margin-left: 0 !important;
+}
+
+.grid_analyses dt {
+    font-size: 90%;
+    font-weight: 500;
+}
+
 .valign_block {
     position: relative;
 }
 
+.intro-note {
+    max-width: 300px;
+}
+
 p.analysis_note {
-    font-size: 100%;
+    font-size:  90%;
     line-height: 1.3em;
     color: #444;
-    border-bottom: #DDD 1px solid;
-    padding-bottom: 3px;
     display: block;
     position: absolute;
     bottom: 0px;
@@ -319,12 +340,12 @@ img.i18n_flag {
 
 @media (max-width: 767px) {
   /* Unfloat the back to top link in footer */
-  // .footer {
-  //   margin-left: -20px;
-  //   margin-right: -20px;
-  //   padding-left: 20px;
-  //   padding-right: 20px;
-  // }
+  .footer {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
   .footer p {
     margin-bottom: 9px;
   }
@@ -336,8 +357,8 @@ img.i18n_flag {
 @media (max-width: 480px) {
   /* Tighten up footer */
   .footer {
-    // padding-top: 20px;
-    // padding-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 
   form#neahttasaanit {
@@ -374,8 +395,8 @@ img.i18n_flag {
     footer {
         margin-left: -20px;
         margin-right: -20px;
-    //     padding: 0 40px;
-    //     padding-bottom: 35px;
+        padding: 0 40px;
+        padding-bottom: 35px;
     }
 }
 
@@ -405,8 +426,8 @@ img.i18n_flag {
     footer {
         margin-left: -20px;
         margin-right: -20px;
-    //     padding: 0 40px;
-    //     padding-bottom: 35px;
+        padding: 0 40px;
+        padding-bottom: 35px;
     }
     
     p.lead {
