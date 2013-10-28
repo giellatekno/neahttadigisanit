@@ -44,6 +44,16 @@ def format_source_sma(ui_lang, e, target_lang):
     _class = e.xpath(_str_norm % 'lg/l/@class')
     _pos = e.xpath(_str_norm % 'lg/l/@pos')
 
+    _lemma_ref = e.xpath(_str_norm % 'lg/lemma_ref/text()')
+    if _lemma_ref:
+        _link_targ = u'/detail/%s/%s/%s.html' % ('sma', target_lang, _lemma_ref)
+        _lemma_ref_link = u'<a href="%s"/>%s</a>' % (_link_targ, _lemma_ref)
+        _lemma_ref_link = u'<span class="see_also"> → '  + _lemma_ref_link
+        _lemma_ref_link += u'</span>'
+
+    else:
+        _lemma_ref_link = ''
+
     if _pos:
         filters = current_app.config.tag_filters.get(('sma', 'nob'))
         paren_args.append(tagfilter_conf(filters, _pos))
@@ -52,7 +62,8 @@ def format_source_sma(ui_lang, e, target_lang):
         paren_args.append(_class)
 
     if len(paren_args) > 0:
-        return '%s (%s)' % (_lemma, ', '.join(paren_args))
+        entry_string = '%s (%s)' % (_lemma, ', '.join(paren_args))
+        return entry_string + _lemma_ref_link
     else:
         return _lemma
 
