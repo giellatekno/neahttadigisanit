@@ -30,19 +30,28 @@ BASE_CMD="$ENVLOC/bin/python $MANAGELOC runfcgi --method=prefork --host=$ADDRESS
 
 RETVAL=0
 
+if [[ "$USER" == "neahtta" ]]
+then
+    DAEMONIZE="daemon "
+else
+    DAEMONIZE="daemon --user=neahtta "
+fi
+
+DAEMON_BASE_CMD="$DAEMONIZE$BASE_CMD"
+
 start_server () {
   if [ -f $1 ]; then
     #pid exists, check if running
     if [ "$(ps -p `cat $1` | wc -l)" -gt 1 ]; then
   	action $"Starting $PROJNAME -- ${ADDRESS}:${2}..." /bin/false
-        echo -n " * Server already running on ${ADDRESS}:${2}"
+       echo -n " * Server already running on ${ADDRESS}:${2}"
        return
     fi
   fi
   cd $PROJECTLOC
   . $ENVLOC/bin/activate
   export NDS_CONFIG=$NDS_CONFIG
-  $BASE_CMD && success || failure
+  $DAEMON_BASE_CMD && success || failure
   RETVAL=$?
   echo -n $"Starting $PROJNAME -- ${ADDRESS}:${2}..." $?
   echo
