@@ -1,4 +1,33 @@
-# Tools for compiling dictionaries automatically.
+""" Tools for compiling dictionaries automatically.
+
+Fabric will automatically execute sets of commands remotely, and will
+log in via SSH automatically to do this, assuming you have the proper
+credentials.
+
+To install Fabric, follow the instructions on the website:
+
+    http://fabfile.org/
+
+Then run the following to check that it works.
+
+    fab --list
+
+
+## Basic commands
+
+This is a list of commands to automatize the management of
+NDS. Basic operations are listed below, however with some hints:
+
+
+    $ fab compile_dictionary:valks
+    $ fab compile_dictionary:vada
+
+    $ fab compile_fst:crk
+
+    etc...
+
+"""
+
 from fabric.decorators import roles
 from fabric.api import ( cd
                        , sudo
@@ -64,16 +93,19 @@ def update_translations():
 
 @roles('gtweb')
 def compile_dictionary(dictionary='x'):
-    """ Compile a dictionary project on the server.
+    """ Compile a dictionary project on the server, and restart the
+    corresponding service.
 
         $ fab compile_dictionary:DICT
+
+    # TODO: restarting doesn't actually work yet.
+
     """
 
     hup = False
 
     update_gtsvn()
 
-    # TODO: need a make path to clean existing dictionary
     with cd(DICT_PATH):
         run("svn up Makefile")
         make_clean = run("make rm-%s-lexica" % dictionary)
