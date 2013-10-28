@@ -159,15 +159,18 @@ hdn: tmp_fst/hdn.fst
 ### #guusaawlexicon
 ##
 
-hdn-all.xml: $(GTHOME)/words/dicts/hdneng/src/*.xml
+hdn.all.xml: $(GTHOME)/words/dicts/hdneng/src/*.xml
 	@echo "**************************"
 	@echo "** Building hdn lexicon **"
 	@echo "**************************"
 	@echo ""
-	$(SAXON) inDir=$(GTHOME)/words/dicts/hdneng/src/ > hdn-all.xml
+	$(SAXON) inDir=$(GTHOME)/words/dicts/hdneng/src/ > hdn.all.xml
 
-.PHONY: hdn-lexicon
-guusaaw-lexica: hdn-all.xml
+.PHONY: guusaaw-lexicon
+guusaaw-lexica: hdn.all.xml
+
+rm-guusaaw-lexica: 
+	rm hdn.all.xml
 
 .PHONY: guusaaw
 guusaaw: init hdn eng guusaaw-lexica
@@ -230,6 +233,9 @@ crk-all.xml: $(GTHOME)/words/dicts/crkeng/src/*.xml
 
 .PHONY: crk-lexicon
 pikiskwewina-lexica: crk-all.xml
+
+rm-pikiskwewina-lexica:
+	rm crk-all.xml
 
 .PHONY: pikiskwewina
 pikiskwewina: init crk eng pikiskwewina-lexica
@@ -294,6 +300,9 @@ sms-all.xml: $(GTHOME)/langs/sms/src/morphology/stems/*.xml
 .PHONY: sms-lexicon
 saan-lexica: sms-all.xml
 
+rm-saan-lexica: 
+	rm sms-all.xml
+
 .PHONY: saan
 saan: init sms fin saan-lexica
 	@echo "*********************************"
@@ -356,6 +365,9 @@ yrk-all.xml: $(GTHOME)/langs/yrk/src/morphology/stems/*.xml
 
 .PHONY: yrk-lexicon
 vada-lexica: yrk-all.xml
+
+rm-vada-lexica: 
+	rm yrk-all.xml
 
 .PHONY: vada
 vada: init yrk fin vada-lexica
@@ -448,6 +460,9 @@ mhr-all.xml: $(GTHOME)/langs/mhr/src/morphology/stems/*.xml
 
 .PHONY: muter-lexicon
 muter-lexica: mhr-all.xml mrj-all.xml
+
+rm-muter-lexica: 
+	rm mhr-all.xml mrj-all.xml
 
 # TODO: rus
 .PHONY: muter
@@ -561,6 +576,9 @@ mdf-lexicon: mdf-all.xml
 
 .PHONY: valks-lexica
 valks-lexica:  myv-lexicon mdf-lexicon
+
+rm-valks-lexica:
+	myv-lexicon mdf-lexicon
 
 .PHONY: valks
 valks: init myv mdf fin valks-lexica
@@ -723,6 +741,9 @@ sanat-lexica: olo-fin.xml \
 			  fkv-nob.xml \
 			  nob-fkv.xml
 
+rm-sanat-lexica: 
+	rm olo-fin.xml liv.all.xml izh-fin.xml fkv-nob.xml nob-fkv.xml
+
 sanat: init olo izh liv fin fkv sanat-lexica
 	@echo "*********************************"
 	@echo "** Built targets for sanat:    **"
@@ -802,6 +823,9 @@ sanit-lexica: fin-sme.all.xml \
 			  nob-sme.all.xml \
 			  sme-fin.all.xml \
 			  sme-nob.all.xml
+
+rm-sanit-lexica: 
+	rm fin-sme.all.xml nob-sme.all.xml sme-fin.all.xml sme-nob.all.xml
 
 # NB: sme analyzer build is different, as well as target fst file names
 # also there is one additional analyser that comes out of this, which is
@@ -924,6 +948,9 @@ nob-sma.all.xml: $(GTHOME)/words/dicts/nobsma/src/
 baakoeh-lexica: sma-nob.all.xml \
 				nob-sma.all.xml
 
+rm-baakoeh-lexica: 
+	rm sma-nob.all.xml nob-sma.all.xml
+
 baakoeh: init sma nob baakoeh-lexica
 	@echo "*********************************"
 	@echo "** Built targets for baakoeh:  **"
@@ -983,6 +1010,9 @@ som.all.xml: ~/somorph-priv.git/xml/
 .PHONY: som-lexica
 erey-lexica: som.all.xml
 
+rm-erey-lexica:
+	rm som.all.xml
+
 erey: init som fin erey-lexica
 	@echo "*********************************"
 	@echo "** Built targets for erey:     **"
@@ -1025,40 +1055,6 @@ tmp_fst/hdn.fst:
 .PHONY: hdn
 hdn: tmp_fst/hdn.fst ihdn.fst
 
-hdn.all.xml: $(GTHOME)/words/dicts/hdneng/src/*.xml
-	@echo "**************************"
-	@echo "** Building crk lexicon **"
-	@echo "**************************"
-	@echo ""
-	$(SAXON) inDir=$(GTHOME)/words/dicts/hdneng/src/ > hdn.all.xml
-
-##
-### #guusaawlexica
-##
-
-.PHONY: hdn-lexica
-guusaaw-lexica: hdn.all.xml
-
-guusaaw: init hdn fin guusaaw-lexica
-	@echo "*********************************"
-	@echo "** Built targets for guusaaw:     **"
-	@echo "**    + guusaaw lexicon           **"
-	@echo "**    + hdn analysers          **"
-	@echo "*********************************"
-	@echo ""
-	@echo "Now install analysers in expected paths."
-	@echo "    sudo make guusaaw-install"
-	@echo "... or copy the fsts in tmp_fst/ and tmp_ifst/ to their right places."
-
-
-guusaaw-hdn-install: tmp_fst/hdn.fst tmp_ifst/ihdn.fst
-	mkdir -p /opt/smi/hdn/bin/
-	cp $^ /opt/smi/hdn/bin/
-	chmod a+x /opt/smi/hdn/bin/*.fst
-
-guusaaw-install: guusaaw-hdn-install
-
-
 
 #####
 ##### #kyvtargets
@@ -1093,6 +1089,9 @@ kpv-engfinrus.all.xml: $(GTHOME)/words/dicts/kom2X/src/
 
 .PHONY: kpv-lexica
 kyv-lexica: kpv-engfinrus.all.xml
+
+rm-kyv-lexica:
+	rm kpv-engfinrus.all.xml
 
 kyv: init kpv fin kyv-lexica
 	@echo "*********************************"
