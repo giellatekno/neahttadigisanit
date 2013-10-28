@@ -852,9 +852,9 @@ some-n-sme.fst:
 	@echo ""
 	cd $(GTHOME)/gt/ ; \
 	  make TARGET=sme ; \
-	  cp sme/bin/n-sme.fst  $(TARGET_DIR)/n-sme.fst ; \
-	  cp sme/bin/some-n-sme.fst  $(TARGET_DIR)/some-n-sme.fst ; \
-	  cp sme/bin/dict-isme-norm.fst $(TARGET_DIR)/dict-isme-norm.fst
+	  cp sme/bin/n-sme.fst  /tmp/misc_fst/n-sme.fst ; \
+	  cp sme/bin/some-n-sme.fst  /tmp/misc_fst/some-n-sme.fst ; \
+	  cp sme/bin/dict-isme-norm.fst /tmp/misc_fst/dict-isme-norm.fst
 
 
 /tmp/tmp_fst/nob.fst:
@@ -900,9 +900,9 @@ sanit-nob-install: /tmp/tmp_fst/nob.fst /tmp/tmp_ifst/inob.fst
 	cp $^ /opt/smi/nob/bin/
 	chmod a+x /opt/smi/nob/bin/*.fst
 
-sanit-sme-install: n-sme.fst \
-	               dict-isme-norm.fst \
-	               some-n-sme.fst
+sanit-sme-install: /tmp/misc_fst/n-sme.fst \
+	               /tmp/misc_fst/dict-isme-norm.fst \
+	               /tmp/misc_fst/some-n-sme.fst
 	mkdir -p /opt/smi/sme/bin/
 	cp $^ /opt/smi/sme/bin/
 	chmod a+x /opt/smi/sme/bin/*.fst
@@ -928,8 +928,8 @@ isma-dict.fst:
 	  ./autogen.sh ; \
 	  ./configure  ; \
 	  make  ; \
-	  cp src/analyser-dict-gt-desc.xfst  $(TARGET_DIR)/dict-sma.fst ; \
-	  cp src/generator-dict-gt-norm.xfst $(TARGET_DIR)/isma-dict.fst
+	  cp src/analyser-dict-gt-desc.xfst  /tmp/misc_fst/dict-sma.fst ; \
+	  cp src/generator-dict-gt-norm.xfst /tmp/misc_fst/isma-dict.fst
 
 .PHONY: sma
 sma: dict-sma.fst isma-dict.fst
@@ -968,7 +968,7 @@ baakoeh-nob-install: /tmp/tmp_fst/nob.fst /tmp/tmp_ifst/inob.fst
 	cp $^ /opt/smi/nob/bin/
 	chmod a+x /opt/smi/nob/bin/*.fst
 
-baakoeh-sma-install: dict-sma.fst isma-dict.fst
+baakoeh-sma-install: /tmp/misc_fst/dict-sma.fst /tmp/misc_fst/isma-dict.fst
 	mkdir -p /opt/smi/sma/bin/
 	cp $^ /opt/smi/sma/bin/
 	chmod a+x /opt/smi/sma/bin/*.fst
@@ -1152,6 +1152,7 @@ else
 init:
 	mkdir /tmp/tmp_fst
 	mkdir /tmp/tmp_ifst
+	mkdir /tmp/misc_fst
 	@echo ""
 	@echo ""
 	@echo "Is saxon9.lib in the path somewhere?"
@@ -1160,7 +1161,7 @@ init:
 endif
 
 clean:
-	rm -rf /tmp/tmp_fst /tmp/tmp_ifst
+	rm -rf /tmp/tmp_fst /tmp/tmp_ifst /tmp/misc_fst
 
 .PHONY: help
 .DEFAULT: help
