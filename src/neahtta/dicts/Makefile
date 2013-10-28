@@ -178,7 +178,6 @@ guusaaw: init hdn eng guusaaw-lexica
 	@echo "** Built targets for guusaaw:      **"
 	@echo "**    + hdn lexicon                **"
 	@echo "**    + hdn analysers              **"
-	@echo "**    + eng analysers              **"
 	@echo "*************************************"
 	@echo "**   (hdn = Northern Haida)        **"
 	@echo "*************************************"
