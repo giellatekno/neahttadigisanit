@@ -300,6 +300,7 @@ def more_dictionaries():
 @blueprint.route('/<_from>/<_to>/', methods=['GET', 'POST'])
 def indexWithLangs(_from, _to):
     from lexicon import FrontPageFormat
+    from operator import itemgetter
 
     # mobile test for most common browsers
     mobile = False
@@ -333,29 +334,38 @@ def indexWithLangs(_from, _to):
                                       , split_compounds=True
                                       )
 
-        analyses  = [ (lem.input, lem.lemma, list(lem.tag))
-                      for _, lems in entries_and_tags
-                      for lem in lems
-                      if lem is not None
-                    ]
+        analyses = sum(map(itemgetter(1), entries_and_tags), [])
+
+        # Keep these around for the mobile analyses box
+        analyses = [ (lem.input, lem.lemma, list(lem.tag))
+                     for lem in analyses
+                   ]
 
         fmtkwargs = { 'target_lang': _to
                     , 'source_lang': _from
                     , 'ui_lang': iso_filter(session.get('locale', _to))
                     }
 
+
         # [(lemma, XMLNodes)] -> [(lemma, generator(AlmostJSON))]
-        unique_entries = list(set([e for e, _ in entries_and_tags]))
-        formatted_results = list(FrontPageFormat(unique_entries, **fmtkwargs))
+        formatted_results = []
+        for result, morph_analyses in entries_and_tags:
+            formatted_results.extend(FrontPageFormat(
+                [result],
+                additional_template_kwargs={'analyses': morph_analyses},
+                **fmtkwargs
+            ))
 
         # When to display unknowns
         successful_entry_exists = False
         if len(formatted_results) > 0:
             successful_entry_exists = True
 
+        def sort_entry(r):
+            return r.get('left')
+
         results = sorted( formatted_results
-                        , key=lambda (r): len(r.get('left'))
-                        , reverse=True
+                        , key=sort_entry
                         )
 
         results = [ {'input': lookup_val, 'lookups': results} ]

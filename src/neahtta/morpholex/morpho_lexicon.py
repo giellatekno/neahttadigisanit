@@ -103,19 +103,6 @@ class MorphoLexicon(object):
                     for e in xml_result:
                         entries_and_tags.append((e, analysis))
 
-        # group by entry
-
-        from itertools import groupby
-        from operator import itemgetter
-
-        results = []
-        for grouper, grouped in groupby(entries_and_tags, itemgetter(0)):
-            analyses = [an for _, an in grouped if an is not None]
-            results.append((grouper, analyses))
-
-        entries_and_tags = results
-
-
         no_analysis_xml = self.lexicon.lookup( source_lang
                                              , target_lang
                                              , wordform
@@ -123,7 +110,26 @@ class MorphoLexicon(object):
 
         if no_analysis_xml:
             for e in no_analysis_xml:
-                entries_and_tags.append((e, [None]))
+                entries_and_tags.append((e, None))
+
+        # group by entry
+
+        from itertools import groupby
+        from operator import itemgetter
+
+        results = []
+        _by_entry = itemgetter(0)
+
+        sorted_grouped_entries = groupby(
+            sorted(entries_and_tags, key=_by_entry),
+            _by_entry)
+
+        for grouper, grouped in sorted_grouped_entries:
+            analyses = [an for _, an in grouped if an is not None]
+            results.append((grouper, analyses))
+
+        entries_and_tags = results
+
 
         # TODO: may need to do the same for derivation?
         # NOTE: test with things that will never return results just to

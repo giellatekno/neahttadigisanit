@@ -77,62 +77,91 @@
                 {% endfor -%}
                 <span style="font-size: 80%">(<a href="/{{ _to }}/{{ _from }}/">⇄ {% trans %}Swap{% endtrans %}</a>)</span></h4>
 
-            <form id="neahttasaanit" class="form-inline"
-                method="post"
-                action="/{{ _from }}/{{ _to }}/">
-                <div class="input-append">
-                    <input type="text" 
-                           name="lookup" 
-                           autocorrect="off"
-                           autocapitalize="off"
-                           autocomplete="off"
-                           data-language-from="{{ _from }}"
-                           data-language-to="{{ _to }}"
-                           {% if user_input -%}value="{{ user_input }}"{% endif %}
-                           placeholder="{% trans %}ohcansátni{% endtrans %}"></input>
-                           <button type="submit" class="btn" name="search">
-                               <span>{% trans %}Search{% endtrans %}</span>
-                           </button>
+            <div class="row-fluid">
+                <div class="span8">
+                    <form id="neahttasaanit" class="form-inline"
+                        method="post"
+                        action="/{{ _from }}/{{ _to }}/">
+                        <div class="input-append">
+                            <input type="text" 
+                                   name="lookup" 
+                                   autocorrect="off"
+                                   autocapitalize="off"
+                                   autocomplete="off"
+                                   data-language-from="{{ _from }}"
+                                   data-language-to="{{ _to }}"
+                                   {% if user_input -%}value="{{ user_input }}"{% endif %}
+                                   placeholder="{% trans %}ohcansátni{% endtrans %}"></input>
+                                   <button type="submit" class="btn" name="search">
+                                       <span>{% trans %}Search{% endtrans %}</span>
+                                   </button>
+                        </div>
+                    </form>
                 </div>
-            </form>
+                <div class="span4 hidden-phone valign_block">
+                    {% if analyses %}
+                        <p class="analysis_note"><em>{{ user_input }}</em>{% trans user_input=user_input %} is a possible form of ... {% endtrans %}</p>
+                    {% endif %}
+                </div>
+            </div>
+
 
             {# TODO: deep link needs to go to specific lexeme when it comes from the front page #}
             {% if word_searches %}
                 <div class="results">
-                    <div class="row-fluid">
-                        <div class="span8">
                         {% for lexeme in word_searches %}
-                        {% if lexeme.lookups %}
-                            {% for lookup in lexeme.lookups %}
-                                {% if _from == "SoMe" %}
-                                    {% set link_target = "/detail/sme/%s/%s.html?e_node=%s" % (_to, lookup.left, lookup.entry_hash) %}
-                                {% else %}
-                                    {% set link_target = "/detail/%s/%s/%s.html?e_node=%s" % (_from, _to, lookup.left, lookup.entry_hash) %}
+                            {% if lexeme.lookups %}
+                                {% for lookup in lexeme.lookups %}
+                                    <div class="row-fluid entry_row">
+                                        <div class="span8">
+                                        {% if _from == "SoMe" %}
+                                            {% set link_target = "/detail/sme/%s/%s.html?e_node=%s" % (_to, lookup.left, lookup.entry_hash) %}
+                                        {% else %}
+                                            {% set link_target = "/detail/%s/%s/%s.html?e_node=%s" % (_from, _to, lookup.left, lookup.entry_hash) %}
+                                        {% endif %}
+
+                                        <p>{{ lookup.source_formatted|sneak_in_link(link_target)|safe }}
+
+                                        <ol>{%- for tx in lookup.right -%}
+                                                <li>
+                                                    {%- include 'main_page_li.html' -%}
+                                                </li>
+                                            {%- endfor -%}
+                                        </ol>
+                                        </div>
+                                        <div class="span4 hidden-phone">
+                                            <dl class="possible_analyses grid_analyses">
+                                            {% for grouper, forms in lookup.analyses|groupby('lemma') %}
+                                                {% for lemmagroup, lemmafs in forms|groupby('pos') %}
+                                                    <dt>{{ grouper }}</dt>
+                                                    <dt>
+                                                        <ul class="possible_forms">
+                                                            {% for lem in lemmafs %}
+                                                            <li>{{ ' '.join(lem.tag)|tagfilter(_from, _to) }}</li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </dd>
+                                                {% endfor %}
+                                            {% endfor %}
+                                            </dl>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                {% if errors %}
+                                    <div class="alert">
+                                        <ul>
+                                            {% for error in errors %}
+                                            <li>{{ error }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
                                 {% endif %}
-
-                                <p>{{ lookup.source_formatted|sneak_in_link(link_target)|safe }}
-
-                                <ol>{%- for tx in lookup.right -%}
-                                        <li>
-                                            {%- include 'main_page_li.html' -%}
-                                        </li>
-                                    {%- endfor -%}
-                                </ol>
-                            {% endfor %}
-                        {% else %}
-                            {% if errors %}
-                                <div class="alert">
-                                    <ul>
-                                        {% for error in errors %}
-                                        <li>{{ error }}</li>
-                                        {% endfor %}
-                                    </ul>
-                                </div>
                             {% endif %}
-                        {% endif %}
                         {% endfor %}
 
                         {% if not successful_entry_exists %}
+                            <div class="span8">
                             <p>{% trans %}Definition not found for:{% endtrans %}</p>
                             <ul class="unknown_lexemes">
                             {% for lexeme in word_searches %}
@@ -140,34 +169,34 @@
                             {% endfor %}
                             </ul>
                             <p class="lead">&nbsp;</p>
+                            </div>
                         {% endif %}
                         </div>
 
-                        <div class="span4">
-                            {%- if analyses %}
-                            <div class="well">
-                                <p style="font-size: 95%;"><em>{{ user_input }}</em>{% trans user_input=user_input %} is a possible form of ... {% endtrans %}</p>
-                                <dl class="possible_analyses">
-                                    {% for grouper, forms in analyses|groupby(0) %}
-                                        {% for lemmagroup, lemmafs in forms|groupby(1) %}
-                                            <dt>{{ lemmagroup }}</dt>
-                                            <dt>
-                                                <ul class="possible_forms">
-                                                    {% for form, lemma, tag in lemmafs %}
-                                                        <li>{{ ' '.join(tag)|tagfilter(_from, _to) }}</li>
-                                                    {% endfor %}
-                                                </ul>
-                                            </dd>
-                                        {% endfor %}
-                                    {% endfor %}
-                                </dl>
-                            </div>
-                            {%- endif -%}
-                        </div>
-
-                    
                     </div>
                 </div>
+
+                {%- if analyses %}
+                <div class="visible-phone">
+                    <div class="well">
+                        <p style="font-size: 95%;"><em>{{ user_input }}</em>{% trans user_input=user_input %} is a possible form of ... {% endtrans %}</p>
+                        <dl class="possible_analyses">
+                            {% for grouper, forms in analyses|groupby(0) %}
+                                {% for lemmagroup, lemmafs in forms|groupby(1) %}
+                                    <dt>{{ lemmagroup }}</dt>
+                                    <dt>
+                                        <ul class="possible_forms">
+                                            {% for form, lemma, tag in lemmafs %}
+                                                <li>{{ ' '.join(tag)|tagfilter(_from, _to) }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </dd>
+                                {% endfor %}
+                            {% endfor %}
+                        </dl>
+                    </div>
+                </div>
+                {%- endif -%}
             {% else %}
                 {% if not show_info %}
                 <div class="alert alert-error">

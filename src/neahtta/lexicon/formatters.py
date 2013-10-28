@@ -146,6 +146,11 @@ class EntryNodeIterator(object):
             self.nodes = nodes
         self.query_args = query_args
         self.query_kwargs = query_kwargs
+        self.additional_template_kwargs = {}
+
+        if 'additional_template_kwargs' in query_kwargs:
+            self.additional_template_kwargs = query_kwargs.get('additional_template_kwargs')
+            query_kwargs.pop('additional_template_kwargs')
 
     def __iter__(self):
         from lxml import etree
@@ -357,12 +362,15 @@ class FrontPageFormat(EntryNodeIterator):
             source_lang, ui_lang, e, target_lang, default_format
         )
 
-        return { 'left': lemma
-               , 'source_formatted': source_formatted
-               , 'context': lemma_context
-               , 'pos': lemma_pos
-               , 'right': right_nodes
-               , 'lang': right_langs
-               , 'hid': lemma_hid
-               , 'entry_hash': entry_hash
-               }
+        formatted_dict = { 'left': lemma
+                         , 'source_formatted': source_formatted
+                         , 'context': lemma_context
+                         , 'pos': lemma_pos
+                         , 'right': right_nodes
+                         , 'lang': right_langs
+                         , 'hid': lemma_hid
+                         , 'entry_hash': entry_hash
+                         }
+
+        formatted_dict.update(self.additional_template_kwargs)
+        return formatted_dict

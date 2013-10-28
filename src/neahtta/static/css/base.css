@@ -126,6 +126,9 @@ dl.possible_analyses dt {
     font-style: italic;
     font-weight: 400;
 }
+dl.possible_analyses.grid_analyses {
+    margin-top: 0;
+}
 dl.possible_analyses dd {
     margin-left: 0;
     padding-left: 0;
@@ -272,6 +275,26 @@ footer {
   padding-left: 0;
 }
 
+.analysis_grid {
+    position: relative;
+}
+
+.valign_block {
+    position: relative;
+}
+
+p.analysis_note {
+    font-size: 100%;
+    line-height: 1.3em;
+    color: #444;
+    border-bottom: #DDD 1px solid;
+    padding-bottom: 3px;
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    margin-bottom: 0px;
+}
+
 img.i18n_flag {
   width: 20px;
   border: 1px solid #BBB;
@@ -288,6 +311,12 @@ img.i18n_flag {
     font-style: italic; 
 }
 
+@media (min-width: 767px) {
+    .entry_row {
+        margin-bottom: 1em;
+    }
+}
+
 @media (max-width: 767px) {
   /* Unfloat the back to top link in footer */
   // .footer {
@@ -298,6 +327,9 @@ img.i18n_flag {
   // }
   .footer p {
     margin-bottom: 9px;
+  }
+  .entry_row {
+      display: inline;
   }
 }
 
@@ -397,9 +429,9 @@ img.i18n_flag {
 		margin-top: 1em;
 		margin-bottom: 1em;
 	}
-	
-	.results ol:last-child {
-		margin-bottom: 2.5em;
-		margin-top: 1em;
+
+	.analysis_box {
+	    margin-top: 1em;
 	}
+	
 }
