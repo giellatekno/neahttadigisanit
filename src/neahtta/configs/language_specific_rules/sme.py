@@ -301,123 +301,127 @@ def verb_context(generated_result, *generation_input_args):
 
 _str_norm = 'string(normalize-space(%s))'
 
-@morpholex.post_morpho_lexicon_override(*['sme', 'SoMe'])
-def remove_analyses_for_analyzed_forms_with_lemma_ref(xml, fst):
-    """ **Post morpho-lexicon override**
+# commented out; Bug 1719
 
-    If there is an entry that is an analysis and the set of XML entries
-    resulting from the lookup contains another entry with its matching
-    lemma, then discard the analyses.
-    """
+### @morpholex.post_morpho_lexicon_override(*['sme', 'SoMe'])
+### def remove_analyses_for_analyzed_forms_with_lemma_ref(xml, fst):
+###     """ **Post morpho-lexicon override**
+### 
+###     If there is an entry that is an analysis and the set of XML entries
+###     resulting from the lookup contains another entry with its matching
+###     lemma, then discard the analyses.
+###     """
+### 
+###     if xml is None or fst is None:
+###         return None
+### 
+###     from collections import defaultdict
+###     nodes_by_lemma = defaultdict(list)
+### 
+###     for e in xml:
+###         lemma = e.xpath(_str_norm % 'lg/l/text()')
+###         lemma_ref_lemma = e.xpath(_str_norm % 'lg/lemma_ref/text()')
+### 
+###         if lemma_ref_lemma:
+###             nodes_by_lemma[lemma_ref_lemma].append(
+###                 (e, True)
+###             )
+###         elif lemma:
+###             nodes_by_lemma[lemma].append(
+###                 (e, False)
+###             )
+### 
+###     def lg_l_matches_str(n, s):
+###         return n.xpath(_str_norm % 'lg/l/text()') == s
+### 
+###     for lemma, nodes in nodes_by_lemma.iteritems():
+###         # get the lemma_ref node
+###         lemma_ref_node = filter( lambda (n, is_lemma_ref): is_lemma_ref
+###                                , nodes
+###                                )
+### 
+###         if len(lemma_ref_node) > 0:
+###             _l_node, _is_l_ref = lemma_ref_node[0]
+###             lemma_ref_lemma = _l_node.xpath(
+###                 _str_norm % 'lg/lemma_ref/text()'
+###             )
+### 
+###             # Match nodes by lg_l vs. lemma_ref_string
+###             _match = lambda (m_n, _): \
+###                 lg_l_matches_str(m_n, lemma_ref_lemma)
+###             lemmas_matching = filter( _match, nodes )
+###             # If there is a lemma for the lemma_ref string ...
+###             if len(lemmas_matching) > 0:
+###                 def analysis_lemma_is_not(analysis):
+###                     return lemma_ref_lemma != analysis.lemma
+### 
+###                 # wipe out analyses in fst for a lemma if there is a lemma_ref
+###                 fst = filter( analysis_lemma_is_not
+###                             , fst
+###                             )
+### 
+###     return xml, fst
 
-    if xml is None or fst is None:
-        return None
+# commented out; bug 1719
 
-    from collections import defaultdict
-    nodes_by_lemma = defaultdict(list)
-
-    for e in xml:
-        lemma = e.xpath(_str_norm % 'lg/l/text()')
-        lemma_ref_lemma = e.xpath(_str_norm % 'lg/lemma_ref/text()')
-
-        if lemma_ref_lemma:
-            nodes_by_lemma[lemma_ref_lemma].append(
-                (e, True)
-            )
-        elif lemma:
-            nodes_by_lemma[lemma].append(
-                (e, False)
-            )
-
-    def lg_l_matches_str(n, s):
-        return n.xpath(_str_norm % 'lg/l/text()') == s
-
-    for lemma, nodes in nodes_by_lemma.iteritems():
-        # get the lemma_ref node
-        lemma_ref_node = filter( lambda (n, is_lemma_ref): is_lemma_ref
-                               , nodes
-                               )
-
-        if len(lemma_ref_node) > 0:
-            _l_node, _is_l_ref = lemma_ref_node[0]
-            lemma_ref_lemma = _l_node.xpath(
-                _str_norm % 'lg/lemma_ref/text()'
-            )
-
-            # Match nodes by lg_l vs. lemma_ref_string
-            _match = lambda (m_n, _): \
-                lg_l_matches_str(m_n, lemma_ref_lemma)
-            lemmas_matching = filter( _match, nodes )
-            # If there is a lemma for the lemma_ref string ...
-            if len(lemmas_matching) > 0:
-                def analysis_lemma_is_not(analysis):
-                    return lemma_ref_lemma != analysis.lemma
-
-                # wipe out analyses in fst for a lemma if there is a lemma_ref
-                fst = filter( analysis_lemma_is_not
-                            , fst
-                            )
-
-    return xml, fst
-
-@morpholex.post_morpho_lexicon_override(*['sme', 'SoMe'])
-def remove_analyses_for_specific_closed_classes(xml, fst):
-    """ **Post morpho-lexicon override**
-
-    Remove analyses from list when the XML entry contains a specific PoS
-    type.
-
-    This has to be done in two steps:
-     * check for xml entries containing the types
-     * filter out the matching lemma from those entries, *or*, remove
-       analyses that have a member of the hideanalysis tagset
-
-    NB: this must be registered after ``remove_analyses_for_lemma_ref``,
-    because that function depends on analyses still existing to some of
-    these types.
-    """
-
-    if xml is None or fst is None:
-        return None
-
-    restrict_xml_type = [ 'Pers'
-                        , 'Dem'
-                        , 'Rel'
-                        , 'Refl'
-                        , 'Recipr'
-                        , 'Neg'
-                        ]
-
-    restrict_lemmas = [ 'leat'
-                      ]
-
-    for e in xml:
-        _pos_type = e.xpath(_str_norm % 'lg/l/@type')
-        _lemma = e.xpath(_str_norm % 'lg/l/text()')
-
-        if _pos_type in restrict_xml_type:
-            restrict_lemmas.append(_lemma)
-
-    def lemma_not_in_list(lemma):
-        _lemma = lemma.lemma not in restrict_lemmas
-        return _lemma
-
-    def hideanalysis_tagset(lemma):
-        _hide = lemma.tag['hideanalysis']
-        _hide_analysis = True
-        if _hide:
-            if len(_hide) > 0:
-                _hide_analysis = False
-
-        return _hide_analysis
-
-    fst = filter( hideanalysis_tagset
-                , filter( lemma_not_in_list
-                        , fst
-                        )
-                )
-
-    return xml, fst
+### @morpholex.post_morpho_lexicon_override(*['sme', 'SoMe'])
+### def remove_analyses_for_specific_closed_classes(xml, fst):
+###     """ **Post morpho-lexicon override**
+### 
+###     Remove analyses from list when the XML entry contains a specific PoS
+###     type.
+### 
+###     This has to be done in two steps:
+###      * check for xml entries containing the types
+###      * filter out the matching lemma from those entries, *or*, remove
+###        analyses that have a member of the hideanalysis tagset
+### 
+###     NB: this must be registered after ``remove_analyses_for_analyzed_forms_with_lemma_ref``,
+###     because that function depends on analyses still existing to some of
+###     these types.
+###     """
+### 
+###     if xml is None or fst is None:
+###         return None
+### 
+###     restrict_xml_type = [ 'Pers'
+###                         , 'Dem'
+###                         , 'Rel'
+###                         , 'Refl'
+###                         , 'Recipr'
+###                         , 'Neg'
+###                         ]
+### 
+###     restrict_lemmas = [ 'leat'
+###                       ]
+### 
+###     for e in xml:
+###         _pos_type = e.xpath(_str_norm % 'lg/l/@type')
+###         _lemma = e.xpath(_str_norm % 'lg/l/text()')
+### 
+###         if _pos_type in restrict_xml_type:
+###             restrict_lemmas.append(_lemma)
+### 
+###     def lemma_not_in_list(lemma):
+###         _lemma = lemma.lemma not in restrict_lemmas
+###         return _lemma
+### 
+###     def hideanalysis_tagset(lemma):
+###         _hide = lemma.tag['hideanalysis']
+###         _hide_analysis = True
+###         if _hide:
+###             if len(_hide) > 0:
+###                 _hide_analysis = False
+### 
+###         return _hide_analysis
+### 
+###     fst = filter( hideanalysis_tagset
+###                 , filter( lemma_not_in_list
+###                         , fst
+###                         )
+###                 )
+### 
+###     return xml, fst
 
 
 @lexicon.entry_source_formatter(*['sme', 'SoMe'])
