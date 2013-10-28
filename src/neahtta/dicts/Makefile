@@ -58,6 +58,9 @@
 ###          #somanalysers
 ###          #somlexica
 ###         
+###         #guusaawtargets
+###          #hdnanalysers
+###          #hdnlexica
 ###         
 ###         #Globaltargets
 
@@ -998,6 +1001,63 @@ erey-som-install: tmp_fst/som.fst tmp_ifst/isom.fst
 	chmod a+x /opt/smi/som/bin/*.fst
 
 erey-install: erey-som-install
+
+#####
+##### #guusaawtargets
+#####
+
+##
+### #hdnanalysers
+##
+
+tmp_fst/hdn.fst:
+	@echo "***********************"
+	@echo "** Building hdn FSTs **"
+	@echo "***********************"
+	@echo ""
+	cd $(GTHOME)/langs/hdn/ ; \
+	  ./autogen.sh ; \
+	  ./configure  ; \
+	  make ; \
+	  cp src/analyser-gt-desc.xfst  $(TARGET_DIR)/tmp_fst/hdn.fst ; \
+	  cp src/generator-gt-norm.xfst $(TARGET_DIR)/tmp_ifst/ihdn.fst
+
+.PHONY: hdn
+hdn: tmp_fst/hdn.fst ihdn.fst
+
+hdn.all.xml: $(GTHOME)/words/dicts/hdneng/src/*.xml
+	@echo "**************************"
+	@echo "** Building crk lexicon **"
+	@echo "**************************"
+	@echo ""
+	$(SAXON) inDir=$(GTHOME)/words/dicts/hdneng/src/ > hdn.all.xml
+
+##
+### #guusaawlexica
+##
+
+.PHONY: hdn-lexica
+guusaaw-lexica: hdn.all.xml
+
+guusaaw: init hdn fin guusaaw-lexica
+	@echo "*********************************"
+	@echo "** Built targets for guusaaw:     **"
+	@echo "**    + guusaaw lexicon           **"
+	@echo "**    + hdn analysers          **"
+	@echo "*********************************"
+	@echo ""
+	@echo "Now install analysers in expected paths."
+	@echo "    sudo make guusaaw-install"
+	@echo "... or copy the fsts in tmp_fst/ and tmp_ifst/ to their right places."
+
+
+guusaaw-hdn-install: tmp_fst/hdn.fst tmp_ifst/ihdn.fst
+	mkdir -p /opt/smi/hdn/bin/
+	cp $^ /opt/smi/hdn/bin/
+	chmod a+x /opt/smi/hdn/bin/*.fst
+
+guusaaw-install: guusaaw-hdn-install
+
 
 
 #####

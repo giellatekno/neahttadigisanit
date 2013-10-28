@@ -1,0 +1,65 @@
+ApplicationSettings:
+  app_name: "Neahttadigisánit"
+  short_name: "guusaaw"
+  default_locale: "en"
+  default_pair: ["hdn", "eng"]
+  mobile_default_pair: false
+  locales_available:
+    - en
+  meta_description: >
+      Free online, mobile friendly dictionaries for Haida
+  meta_keywords: >
+      Haida, haida dictionary, haida language
+
+Tools:
+  xfst_lookup: &LOOKUP '/usr/bin/lookup'
+  opt: &OPT '/opt/smi/'
+
+Morphology:
+  hdn:
+    tool: *LOOKUP
+    file: [*OPT, '/hdn/bin/hdn.fst']
+    inverse_file: [*OPT, '/hdn/bin/ihdn.fst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+
+Languages:
+  - iso: hdn
+  - iso: eng
+
+Dictionaries:
+  - source: hdn
+    target: eng
+    path: 'dicts/hdn.all.xml'
+
+paradigms:
+  hdn:
+      # PRON:
+      #   - "Pregenerate"
+    N:
+      - "Sg+Def+Abs"
+      - "Sg+Def+Nom"
+    V:
+      - "Inf"
+      - "Imper+Sg"
+      - "Imper+Pl"
+
+TagSets:
+  hdn:
+    pos: ["N", "V", "A", "Adp", "Num"]
+    type: ["Attr", "Coll"]
+
+
+# (sourcelang, targlang)
+# V: "v."
+# FST format: "user friendly"
+TagTransforms:
+
+  (hdn, eng):
+    V: "v."
+    N: "n."
+    A: "adj."

@@ -58,6 +58,7 @@ NAMES = dict([
     ('lv', _(u"Latvian")),
     ('lav', _(u"Latvian")),
     ('eng', _(u"English")),
+    ('hdn', _(u"Haida")),
 ])
 
 LOCALISATION_NAMES_BY_LANGUAGE = dict([
@@ -84,6 +85,7 @@ LOCALISATION_NAMES_BY_LANGUAGE = dict([
     ('eng', u"English"),
     ('est', u"Estonian"), # TODO: flag
     ('sms', u"sääˊmǩiõll"),
+    ('hdn', u"X̲aat Kíl"),
     ('en', u"English"),
 ])
 
