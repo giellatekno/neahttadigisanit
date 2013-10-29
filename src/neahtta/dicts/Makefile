@@ -58,10 +58,6 @@
 ###          #somanalysers
 ###          #somlexica
 ###         
-###         #guusaawtargets
-###          #hdnanalysers
-###          #hdnlexica
-###         
 ###         #Globaltargets
 
 # TODO: test vars GTHOME, GTCORE, GTSHARE
@@ -140,7 +136,7 @@ rus: /tmp/tmp_fst/rus.fst
 ### #hdnanalysers
 ##
 
-fst/hdn.fst:
+/tmp/tmp_fst/hdn.fst:
 	@echo "***********************"
 	@echo "** Building hdn FSTs **"
 	@echo "***********************"
@@ -1030,30 +1026,6 @@ erey-som-install: /tmp/tmp_fst/som.fst /tmp/tmp_ifst/isom.fst
 	chmod a+x /opt/smi/som/bin/*.fst
 
 erey-install: erey-som-install
-
-#####
-##### #guusaawtargets
-#####
-
-##
-### #hdnanalysers
-##
-
-/tmp/tmp_fst/hdn.fst:
-	@echo "***********************"
-	@echo "** Building hdn FSTs **"
-	@echo "***********************"
-	@echo ""
-	cd $(GTHOME)/langs/hdn/ ; \
-	  ./autogen.sh ; \
-	  ./configure  ; \
-	  make ; \
-	  cp src/analyser-gt-desc.xfst  /tmp/tmp_fst/hdn.fst ; \
-	  cp src/generator-gt-norm.xfst /tmp/tmp_ifst/ihdn.fst
-
-.PHONY: hdn
-hdn: /tmp/tmp_fst/hdn.fst ihdn.fst
-
 
 #####
 ##### #kyvtargets
