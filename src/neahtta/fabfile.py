@@ -12,12 +12,10 @@ Then run the following to check that it works.
 
     fab --list
 
-
 ## Basic commands
 
 This is a list of commands to automatize the management of
 NDS. Basic operations are listed below, however with some hints:
-
 
     $ fab compile_dictionary:valks
     $ fab compile_dictionary:vada
@@ -26,14 +24,26 @@ NDS. Basic operations are listed below, however with some hints:
 
     etc...
 
+NB: no gtoahpa targets here yet.
+
+
+# TODO: fix permissions?
+
+group permissions for neahtta to /opt/smi/LANG/
+
+chmod -R g+w /opt/smi/LANG/
+chgrp -R neahtta /opt/smi/LANG/
+
 """
 
 from fabric.decorators import roles
 from fabric.api import ( cd
-                       , sudo
                        , run
                        , env
                        )
+from fabric.operations import ( sudo )
+
+from fabric.colors import red, green, cyan
 
 env.roledefs.update({
     'gtweb': ['neahtta@gtweb.uit.no',],
@@ -59,26 +69,50 @@ def hup_all():
     # TODO: need to be another user to run sudo service nds-* stop ;
     # start
 
-    with cd(NEAHTTA_PATH):
-        run('ls -c1 *.pid')
+    services = [
+        'guusaaw',
+        'valks',
+        'vada',
+        'sanat',
+        'muter',
+        'saan',
+        'pikiskwewina',
+        'kyv',
+    ]
+
+    for service in services:
+        restart_service(service)
+
 
 @roles('gtweb')
 def update_gtsvn():
     with cd(SVN_PATH):
+        print(cyan("** svn up **"))
         run('svn up gt gtcore langs words')
 
 @roles('gtweb')
-def hup_service(dictionary='x'):
-    """ hup actually won't work with NDS yet, but out of expectation
-    that it will eventually, and for familiarity that's what this is
-    called.
+def restart_service(dictionary='x'):
+    """ Restarts the services.
     """
 
     # TODO: need to be another user to run sudo service nds-* stop ;
     # start
 
+    fail = False
     with cd(NEAHTTA_PATH):
-        run("ls -c1 %s-pidfile.pid" % dictionary)
+        print(cyan("** Restarting service for <%s> **" % dictionary))
+        stop = run("sudo service nds-%s stop" % dictionary)
+        if not stop.failed:
+            start = run("sudo service nds-%s start" % dictionary)
+            if not start.failed:
+                print(green("** <%s> Service has restarted successfully **" % dictionary))
+            else:
+                fail = True
+        else:
+            fail = True
+
+    if fail:
+        print(red("** something went wrong while restarting <%s> **" % dictionary))
 
 @roles('gtweb')
 def update_translations():
@@ -103,10 +137,12 @@ def compile_dictionary(dictionary='x'):
     """
 
     hup = False
+    failed = False
 
     update_gtsvn()
 
     with cd(DICT_PATH):
+        print(cyan("** Compiling lexicon <%s> **" % dictionary))
         run("svn up Makefile")
         make_clean = run("make rm-%s-lexica" % dictionary)
 
@@ -114,9 +150,14 @@ def compile_dictionary(dictionary='x'):
 
         if not result.failed:
             hup = True
+        else:
+            failed = True
 
     if hup:
-        hup_service(dictionary)
+        restart_service(dictionary)
+
+    if failed:
+        print(red("** Something went wrong while compiling <%s> **" % dictionary))
 
 @roles('gtweb')
 def compile(dictionary='x'):
@@ -126,6 +167,7 @@ def compile(dictionary='x'):
     """
 
     hup = False
+    failed = False
 
     update_gtsvn()
 
@@ -133,13 +175,25 @@ def compile(dictionary='x'):
     with cd(DICT_PATH):
         run("svn up Makefile")
 
+        print(cyan("** Compiling lexicon and FSTs for <%s> **" % dictionary))
         result = run("make %s" % dictionary)
 
         if not result.failed:
             hup = True
+            print(cyan("** Installing FSTs for <%s> **" % dictionary))
+            result = run("make %s-install" % dictionary)
+            if not result.failed:
+                hup = True
+            else:
+                failed = True
+        else:
+            failed = True
 
     if hup:
-        hup_service(dictionary)
+        restart_service(dictionary)
+
+    if failed:
+        print(red("** Something went wrong while compiling <%s> **" % dictionary))
 
 @roles('gtweb')
 def compile_fst(iso='x'):
@@ -155,9 +209,10 @@ def compile_fst(iso='x'):
     # TODO: need a make path to clean existing dictionary
     with cd(DICT_PATH):
         run("svn up Makefile")
+        print(cyan("** Compiling FST for <%s> **" % iso))
         make_fsts = run("make %s" % iso)
+        if make_fsts.failed:
+            print(red("** Something went wrong while compiling <%s> **" % iso))
+        else:
+            print(cyan("** FST <%s> compiled **" % iso))
 
-# TODO: 
-#  * fab build-lexicon gtweb DICT
-#  * fab build-fst gtweb ISO
-#  * fab 
