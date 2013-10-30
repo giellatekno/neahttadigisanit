@@ -81,7 +81,6 @@ define compile-lexicon =
 	$(SAXON)
 endef
 
-
 #####
 ##### #Analyzers used in nearly everything
 #####
@@ -185,7 +184,6 @@ guusaaw: init hdn eng guusaaw-lexica
 guusaaw-hdn-install: /tmp/tmp_fst/hdn.fst /tmp/tmp_ifst/ihdn.fst
 	mkdir -p /opt/smi/hdn/bin/
 	cp $^ /opt/smi/hdn/bin/
-	chmod a+x /opt/smi/hdn/bin/*.fst
 
 guusaaw-install: guusaaw-hdn-install
 
@@ -250,7 +248,6 @@ pikiskwewina: init crk eng pikiskwewina-lexica
 pikiskwewina-crk-install: /tmp/tmp_fst/crk.fst /tmp/tmp_ifst/icrk.fst
 	mkdir -p /opt/smi/crk/bin/
 	cp $^ /opt/smi/crk/bin/
-	chmod a+x /opt/smi/crk/bin/*.fst
 
 pikiskwewina-install: pikiskwewina-crk-install
 
@@ -316,7 +313,6 @@ saan: init sms fin saan-lexica
 saan-sms-install: /tmp/tmp_fst/sms.fst /tmp/tmp_ifst/isms.fst
 	mkdir -p /opt/smi/sms/bin/
 	cp $^ /opt/smi/sms/bin/
-	chmod a+x /opt/smi/sms/bin/*.fst
 
 saan-install: saan-sms-install
 
@@ -382,7 +378,6 @@ vada: init yrk fin vada-lexica
 vada-yrk-install: /tmp/tmp_fst/yrk.fst /tmp/tmp_ifst/iyrk.fst
 	mkdir -p /opt/smi/yrk/bin/
 	cp $^ /opt/smi/yrk/bin/
-	chmod a+x /opt/smi/yrk/bin/*.fst
 
 vada-install: vada-yrk-install
 
@@ -482,12 +477,10 @@ muter: init mrj mhr fin muter-lexicon
 muter-mhr-install: /tmp/tmp_fst/mhr.fst /tmp/tmp_ifst/imhr.fst
 	mkdir -p /opt/smi/mhr/bin/
 	cp $^ /opt/smi/mhr/bin/
-	chmod a+x /opt/smi/mhr/bin/*.fst
 
 muter-mrj-install: /tmp/tmp_fst/mrj.fst /tmp/tmp_ifst/imrj.fst
 	mkdir -p /opt/smi/mrj/bin/
 	cp $^ /opt/smi/mrj/bin/
-	chmod a+x /opt/smi/mrj/bin/*.fst
 
 # muter-rus-install: /tmp/tmp_fst/rus.fst /tmp/tmp_ifst/irus.fst
 muter-rus-install:
@@ -498,7 +491,6 @@ muter-rus-install:
 muter-fin-install: /tmp/tmp_fst/fin.fst /tmp/tmp_ifst/ifin.fst
 	mkdir -p /opt/smi/fin/bin/
 	cp $^ /opt/smi/fin/bin/
-	chmod a+x /opt/smi/fin/bin/*.fst
 
 muter-install: muter-fin-install \
                muter-rus-install \
@@ -563,17 +555,10 @@ mdf-all.xml: $(GTHOME)/langs/mdf/src/morphology/stems/*.xml
 	$(SAXON) inDir=$(pwd)/mdf/ > mdf-all.xml
 	rm -rf mdf/
 
-.PHONY: myv-lexicon
-myv-lexicon: myv-all.xml
-
-.PHONY: mdf-lexicon
-mdf-lexicon: mdf-all.xml
-
-.PHONY: valks-lexica
-valks-lexica:  myv-lexicon mdf-lexicon
+valks-lexica:  myv-all.xml mdf-all.xml
 
 rm-valks-lexica:
-	myv-lexicon mdf-lexicon
+	rm -rf myv-all.xml mdf-all.xml	
 
 .PHONY: valks
 valks: init myv mdf fin valks-lexica
@@ -596,17 +581,14 @@ valks: init myv mdf fin valks-lexica
 valks-fin-install: /tmp/tmp_fst/fin.fst /tmp/tmp_ifst/ifin.fst
 	mkdir -p /opt/smi/fin/bin/
 	cp $^ /opt/smi/fin/bin/
-	chmod a+x /opt/smi/fin/bin/*.fst
 
 valks-myv-install: /tmp/tmp_fst/myv.fst /tmp/tmp_ifst/imyv.fst
 	mkdir -p /opt/smi/myv/bin/
 	cp $^ /opt/smi/myv/bin/
-	chmod a+x /opt/smi/myv/bin/*.fst
 
 valks-mdf-install: /tmp/tmp_fst/mdf.fst /tmp/tmp_ifst/imdf.fst
 	mkdir -p /opt/smi/mdf/bin/
 	cp $^ /opt/smi/mdf/bin/
-	chmod a+x /opt/smi/mdf/bin/*.fst
 
 valks-install: valks-myv-install \
 			   valks-mdf-install \
@@ -765,22 +747,18 @@ sanat: init olo izh liv fin fkv sanat-lexica
 sanat-olo-install: /tmp/tmp_fst/olo.fst /tmp/tmp_ifst/iolo.fst
 	mkdir -p /opt/smi/olo/bin/
 	cp $^ /opt/smi/olo/bin/
-	chmod a+x /opt/smi/olo/bin/*.fst
 
 sanat-liv-install: /tmp/tmp_fst/liv.fst /tmp/tmp_ifst/iliv.fst
 	mkdir -p /opt/smi/liv/bin/
 	cp $^ /opt/smi/liv/bin/
-	chmod a+x /opt/smi/liv/bin/*.fst
 
 sanat-izh-install: /tmp/tmp_fst/izh.fst /tmp/tmp_ifst/iizh.fst
 	mkdir -p /opt/smi/izh/bin/
 	cp $^ /opt/smi/izh/bin/
-	chmod a+x /opt/smi/izh/bin/*.fst
 
 sanat-fkv-install: /tmp/tmp_fst/fkv.fst /tmp/tmp_ifst/ifkv.fst
 	mkdir -p /opt/smi/fkv/bin/
 	cp $^ /opt/smi/fkv/bin/
-	chmod a+x /opt/smi/fkv/bin/*.fst
 
 sanat-install: sanat-olo-install \
 			   sanat-liv-install \
@@ -830,7 +808,6 @@ rm-sanit-lexica:
 # target, so making a target for them here.
 sme-install: n-sme.fst dict-isme-norm.fst some-n-sme.fst
 	cp $^ /opt/smi/sme/bin/
-	chmod a+x /opt/smi/sme/bin/*.fst
 
 ##
 ### #smeanalysers
@@ -888,19 +865,16 @@ sanit: init sme fin nob sanit-lexica
 sanit-fin-install: /tmp/tmp_fst/fin.fst /tmp/tmp_ifst/ifin.fst
 	mkdir -p /opt/smi/fin/bin/
 	cp $^ /opt/smi/fin/bin/
-	chmod a+x /opt/smi/fin/bin/*.fst
 
 sanit-nob-install: /tmp/tmp_fst/nob.fst /tmp/tmp_ifst/inob.fst
 	mkdir -p /opt/smi/nob/bin/
 	cp $^ /opt/smi/nob/bin/
-	chmod a+x /opt/smi/nob/bin/*.fst
 
 sanit-sme-install: /tmp/misc_fst/n-sme.fst \
 	               /tmp/misc_fst/dict-isme-norm.fst \
 	               /tmp/misc_fst/some-n-sme.fst
 	mkdir -p /opt/smi/sme/bin/
 	cp $^ /opt/smi/sme/bin/
-	chmod a+x /opt/smi/sme/bin/*.fst
 
 sanit-install: sanit-nob-install sanit-sme-install sanit-fin-install
 
@@ -961,12 +935,10 @@ baakoeh: init sma nob baakoeh-lexica
 baakoeh-nob-install: /tmp/tmp_fst/nob.fst /tmp/tmp_ifst/inob.fst
 	mkdir -p /opt/smi/nob/bin/
 	cp $^ /opt/smi/nob/bin/
-	chmod a+x /opt/smi/nob/bin/*.fst
 
 baakoeh-sma-install: /tmp/misc_fst/dict-sma.fst /tmp/misc_fst/isma-dict.fst
 	mkdir -p /opt/smi/sma/bin/
 	cp $^ /opt/smi/sma/bin/
-	chmod a+x /opt/smi/sma/bin/*.fst
 
 baakoeh-install: baakoeh-sma-install \
 				 baakoeh-nob-install
@@ -1023,7 +995,6 @@ erey: init som fin erey-lexica
 erey-som-install: /tmp/tmp_fst/som.fst /tmp/tmp_ifst/isom.fst
 	mkdir -p /opt/smi/som/bin/
 	cp $^ /opt/smi/som/bin/
-	chmod a+x /opt/smi/som/bin/*.fst
 
 erey-install: erey-som-install
 
@@ -1080,12 +1051,10 @@ kyv: init kpv fin kyv-lexica
 kyv-fin-install: /tmp/tmp_fst/fin.fst /tmp/tmp_ifst/ifin.fst
 	mkdir -p /opt/smi/fin/bin/
 	cp $^ /opt/smi/fin/bin/
-	chmod a+x /opt/smi/fin/bin/*.fst
 
 kyv-kpv-install: /tmp/tmp_fst/kpv.fst /tmp/tmp_ifst/ikpv.fst
 	mkdir -p /opt/smi/kpv/bin/
 	cp $^ /opt/smi/kpv/bin/
-	chmod a+x /opt/smi/kpv/bin/*.fst
 
 kyv-install: kyv-kpv-install kyv-fin-install
 
