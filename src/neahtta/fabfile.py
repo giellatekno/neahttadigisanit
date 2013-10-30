@@ -61,6 +61,12 @@ NEAHTTA_PATH = USER_PATH + '/neahtta'
 I18N_PATH = USER_PATH + '/neahtta/translations'
 
 @roles('gtweb')
+def chk_svnversion():
+    with cd(SVN_PATH):
+        print(cyan("** svn up **"))
+        run('svn up gt gtcore langs words')
+
+@roles('gtweb')
 def update_gtsvn():
     with cd(SVN_PATH):
         print(cyan("** svn up **"))
@@ -186,7 +192,11 @@ def compile_fst(iso='x'):
     with cd(DICT_PATH):
         run("svn up Makefile")
         print(cyan("** Compiling FST for <%s> **" % iso))
+
+        clear_tmp = run("make rm-%s" % iso)
+
         make_fsts = run("make %s" % iso)
+
         if make_fsts.failed:
             print(red("** Something went wrong while compiling <%s> **" % iso))
         else:

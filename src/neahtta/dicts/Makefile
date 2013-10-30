@@ -102,7 +102,11 @@ endef
 	  cp src/generator-gt-norm.xfst /tmp/tmp_ifst/ifin.fst
 
 .PHONY: fin
-fin: /tmp/tmp_fst/fin.fst
+fin: /tmp/tmp_fst/fin.fst /tmp/tmp_ifst/ifin.fst
+
+rm-fin: 
+	rm -rf /tmp/tmp_fst/fin.fst /tmp/tmp_ifst/ifin.fst
+
 
 # TODO: actually in st
 
@@ -123,7 +127,11 @@ fin: /tmp/tmp_fst/fin.fst
 	  cp src/generator-gt-norm.xfst /tmp/tmp_ifst/irus.fst
 
 .PHONY: rus
-rus: /tmp/tmp_fst/rus.fst
+rus: /tmp/tmp_fst/rus.fst /tmp/tmp_ifst/irus.fst
+
+rm-rus: 
+	rm -rf /tmp/tmp_fst/rus.fst /tmp/tmp_ifst/irus.fst
+
 
 
 
@@ -148,7 +156,11 @@ rus: /tmp/tmp_fst/rus.fst
 	  cp src/generator-gt-norm.xfst /tmp/tmp_ifst/ihdn.fst
 
 .PHONY: hdn
-hdn: /tmp/tmp_fst/hdn.fst
+hdn: /tmp/tmp_fst/hdn.fst /tmp/tmp_ifst/ihdn.fst
+
+rm-hdn: 
+	rm -rf /tmp/tmp_fst/hdn.fst /tmp/tmp_ifst/ihdn.fst
+
 
 ##
 ### #guusaawlexicon
@@ -211,7 +223,11 @@ guusaaw-install: guusaaw-hdn-install
 	  cp src/generator-gt-norm.xfst /tmp/tmp_ifst/icrk.fst
 
 .PHONY: crk
-crk: /tmp/tmp_fst/crk.fst
+crk: /tmp/tmp_fst/crk.fst /tmp/tmp_ifst/icrk.fst
+
+rm-crk: 
+	rm -rf /tmp/tmp_fst/crk.fst /tmp/tmp_ifst/icrk.fst
+
 
 ##
 ### #pikiskwewinalexicon
@@ -273,7 +289,11 @@ pikiskwewina-install: pikiskwewina-crk-install
 	  cp src/generator-gt-norm.xfst /tmp/tmp_ifst/isms.fst
 
 .PHONY: sms
-sms: /tmp/tmp_fst/sms.fst
+sms: /tmp/tmp_fst/sms.fst /tmp/tmp_ifst/isms.fst
+
+rm-sms: 
+	rm -rf /tmp/tmp_fst/sms.fst /tmp/tmp_ifst/isms.fst
+
 
 ##
 ### #saanlexicon
@@ -338,7 +358,11 @@ saan-install: saan-sms-install
 	  cp src/generator-gt-norm.xfst /tmp/tmp_ifst/iyrk.fst
 
 .PHONY: yrk
-yrk: /tmp/tmp_fst/yrk.fst
+yrk: /tmp/tmp_fst/yrk.fst /tmp/tmp_ifst/iyrk.fst
+
+rm-yrk: 
+	rm -rf /tmp/tmp_fst/yrk.fst /tmp/tmp_ifst/iyrk.fst
+
 
 ##
 ### #vadalexicon
@@ -418,10 +442,18 @@ vada-install: vada-yrk-install
 	  cp src/generator-gt-norm.xfst /tmp/tmp_ifst/imrj.fst
 
 .PHONY: mhr
-mhr: /tmp/tmp_fst/mhr.fst
+mhr: /tmp/tmp_fst/mhr.fst /tmp/tmp_ifst/imhr.fst
+
+rm-mhr: 
+	rm -rf /tmp/tmp_fst/mhr.fst /tmp/tmp_ifst/imhr.fst
+
 
 .PHONY: mrj
-mrj: /tmp/tmp_fst/mrj.fst
+mrj: /tmp/tmp_fst/mrj.fst /tmp/tmp_ifst/imrj.fst
+
+rm-mrj: 
+	rm -rf /tmp/tmp_fst/mrj.fst /tmp/tmp_ifst/imrj.fst
+
 
 ##
 ### #muterlexicon
@@ -454,7 +486,6 @@ muter-lexica: mhr-all.xml mrj-all.xml
 rm-muter-lexica: 
 	@rm -rf mhr-all.xml mrj-all.xml
 
-# TODO: rus
 .PHONY: muter
 muter: init mrj mhr fin muter-lexicon
 	@echo "*********************************"
@@ -521,7 +552,11 @@ muter-install: muter-fin-install \
 	  cp src/generator-gt-norm.xfst /tmp/tmp_ifst/imyv.fst
 
 .PHONY: myv
-myv: /tmp/tmp_fst/myv.fst
+myv: /tmp/tmp_fst/myv.fst /tmp/tmp_ifst/imyv.fst
+
+rm-myv: 
+	rm -rf /tmp/tmp_fst/myv.fst /tmp/tmp_ifst/imyv.fst
+
 
 
 ##
@@ -541,7 +576,11 @@ myv: /tmp/tmp_fst/myv.fst
 	  cp src/generator-gt-norm.xfst /tmp/tmp_ifst/imdf.fst
 
 .PHONY: mdf
-mdf: /tmp/tmp_fst/mdf.fst
+mdf: /tmp/tmp_fst/mdf.fst /tmp/tmp_ifst/imdf.fst
+
+rm-mdf: 
+	rm -rf /tmp/tmp_fst/mdf.fst /tmp/tmp_ifst/imdf.fst
+
 
 myv-all.xml: $(GTHOME)/langs/myv/src/morphology/stems/*.xml
 	mkdir myv
@@ -616,7 +655,11 @@ valks-install: valks-myv-install \
 	  cp src/generator-gt-norm.xfst /tmp/tmp_ifst/iolo.fst
 
 .PHONY: olo
-olo: /tmp/tmp_fst/olo.fst
+olo: /tmp/tmp_fst/olo.fst /tmp/tmp_ifst/iolo.fst
+
+rm-olo: 
+	rm -rf /tmp/tmp_fst/olo.fst /tmp/tmp_ifst/iolo.fst
+
 
 ##
 ### #livanalysers
@@ -635,7 +678,11 @@ olo: /tmp/tmp_fst/olo.fst
 	  cp src/generator-gt-norm.xfst /tmp/tmp_ifst/iliv.fst
 
 .PHONY: liv
-liv: /tmp/tmp_fst/liv.fst
+liv: /tmp/tmp_fst/liv.fst /tmp/tmp_ifst/iliv.fst
+
+rm-liv: 
+	rm -rf /tmp/tmp_fst/liv.fst /tmp/tmp_ifst/iliv.fst
+
 
 ##
 ### #fkvanalysers
@@ -654,7 +701,11 @@ liv: /tmp/tmp_fst/liv.fst
 	  cp src/generator-gt-norm.xfst /tmp/tmp_ifst/ifkv.fst
 
 .PHONY: fkv
-fkv: /tmp/tmp_fst/fkv.fst
+fkv: /tmp/tmp_fst/fkv.fst /tmp/tmp_ifst/ifkv.fst
+
+rm-fkv: 
+	rm -rf /tmp/tmp_fst/fkv.fst /tmp/tmp_ifst/ifkv.fst
+
 
 ##
 ### #izhanalysers
@@ -673,7 +724,11 @@ fkv: /tmp/tmp_fst/fkv.fst
 	  cp src/generator-gt-norm.xfst /tmp/tmp_ifst/iizh.fst
 
 .PHONY: izh
-izh: /tmp/tmp_fst/izh.fst
+izh: /tmp/tmp_fst/izh.fst /tmp/tmp_ifst/iizh.fst
+
+rm-izh: 
+	rm -rf /tmp/tmp_fst/izh.fst /tmp/tmp_ifst/iizh.fst
+
 
 ##
 ### #sanatlexica
@@ -815,9 +870,9 @@ sme-install: n-sme.fst dict-isme-norm.fst some-n-sme.fst
 
 
 # NB not copying to /tmp/tmp_fst/ or /tmp/tmp_ifst/ because format is different for these.
-n-sme.fst:
-dict-isme-norm.fst:
-some-n-sme.fst:
+/tmp/misc_fst/n-sme.fst:
+/tmp/misc_fst/dict-isme-norm.fst:
+/tmp/misc_fst/some-n-sme.fst:
 	@echo "***********************"
 	@echo "** Building sme FSTs **"
 	@echo "***********************"
@@ -842,12 +897,19 @@ some-n-sme.fst:
 	  cp src/generator-gt-norm.xfst /tmp/tmp_ifst/inob.fst
 
 .PHONY: nob
-nob: /tmp/tmp_fst/nob.fst
+nob: /tmp/tmp_fst/nob.fst /tmp/tmp_ifst/inob.fst
+
+rm-nob: 
+	rm -rf /tmp/tmp_fst/nob.fst /tmp/tmp_ifst/inob.fst
+
 
 .PHONY: sme
-sme: n-sme.fst \
-	 dict-isme-norm.fst \
-	 some-n-sme.fst
+sme: /tmp/misc_fst/n-sme.fst \
+	 /tmp/misc_fst/dict-isme-norm.fst \
+	 /tmp/misc_fst/some-n-sme.fst
+
+rm-sme:
+	rm -rf /tmp/misc_fst/n-sme.fst /tmp/misc_fst/dict-isme-norm.fst /tmp/misc_fst/some-n-sme.fst
 
 sanit: init sme fin nob sanit-lexica
 	@echo "*********************************"
@@ -887,8 +949,8 @@ sanit-install: sanit-nob-install sanit-sme-install sanit-fin-install
 ### #smaanalysers
 ##
 
-dict-sma.fst:
-isma-dict.fst:
+/tmp/misc_fst/dict-sma.fst:
+/tmp/misc_fst/isma-dict.fst:
 	@echo "***********************"
 	@echo "** Building sma FSTs **"
 	@echo "***********************"
@@ -896,12 +958,16 @@ isma-dict.fst:
 	cd $(GTHOME)/langs/sma/ ; \
 	  ./autogen.sh ; \
 	  ./configure  ; \
-	  make  ; \
+	  make ; \
 	  cp src/analyser-dict-gt-desc.xfst  /tmp/misc_fst/dict-sma.fst ; \
 	  cp src/generator-dict-gt-norm.xfst /tmp/misc_fst/isma-dict.fst
 
 .PHONY: sma
-sma: dict-sma.fst isma-dict.fst
+sma: /tmp/misc_fst/dict-sma.fst /tmp/misc_fst/isma-dict.fst
+
+rm-sma:
+	rm -rf /tmp/misc_fst/dict-sma.fst /tmp/misc_fst/isma-dict.fst
+
 
 ##
 ### #baakoehlexica
@@ -967,6 +1033,10 @@ isom.fst:
 .PHONY: som
 som: som.fst isom.fst
 
+rm-som:
+	rm -rf som.fst isom.fst
+
+
 som.all.xml: ~/somorph-priv.git/xml/
 	$(SAXON) inDir=$^ > $@
 
@@ -1021,6 +1091,9 @@ ikpv.fst:
 
 .PHONY: kpv
 kpv: kpv.fst ikpv.fst
+
+rm-kpv:
+	rm -rf kpv.fst ikpv.fst
 
 kpv-engfinrus.all.xml: $(GTHOME)/words/dicts/kom2X/src/
 	$(SAXON) inDir=$^ > $@
