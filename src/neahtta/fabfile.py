@@ -49,8 +49,9 @@ env.roledefs.update({
     'gtweb': ['neahtta@gtweb.uit.no',],
 })
 
-env.use_ssh_config = True
+env.hosts = ['neahtta@gtweb.uit.no',]
 
+env.use_ssh_config = True
 # env.key_filename = '~/.ssh/neahtta'
 
 USER_PATH = '/home/neahtta'
@@ -58,31 +59,6 @@ SVN_PATH = USER_PATH + '/gtsvn'
 DICT_PATH = USER_PATH + '/neahtta/dicts'
 NEAHTTA_PATH = USER_PATH + '/neahtta'
 I18N_PATH = USER_PATH + '/neahtta/translations'
-
-@roles('gtweb')
-def hup_all():
-    """ hup actually won't work with NDS yet, but out of expectation
-    that it will eventually, and for familiarity that's what this is
-    called.
-    """
-
-    # TODO: need to be another user to run sudo service nds-* stop ;
-    # start
-
-    services = [
-        'guusaaw',
-        'valks',
-        'vada',
-        'sanat',
-        'muter',
-        'saan',
-        'pikiskwewina',
-        'kyv',
-    ]
-
-    for service in services:
-        restart_service(service)
-
 
 @roles('gtweb')
 def update_gtsvn():
