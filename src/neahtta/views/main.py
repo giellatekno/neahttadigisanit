@@ -84,6 +84,7 @@ def wordDetail(from_language, to_language, wordform, format):
 
     """
     from lexicon import DetailedFormat
+    from operator import itemgetter
 
     user_input = wordform
     if not format in ['json', 'html']:
@@ -144,16 +145,19 @@ def wordDetail(from_language, to_language, wordform, format):
             _non_d = False
 
         mlex = current_app.morpholexicon
-        xml_nodes, analyses = mlex.lookup( wordform
-                                         , source_lang=from_language
-                                         , target_lang=to_language
-                                         , split_compounds=_split
-                                         , non_compounds_only=_non_c
-                                         , no_derivations=_non_d
-                                         )
+        entries_and_tags = mlex.lookup( wordform
+                                       , source_lang=from_language
+                                       , target_lang=to_language
+                                       , split_compounds=_split
+                                       , non_compounds_only=_non_c
+                                       , no_derivations=_non_d
+                                       )
 
         # TODO: move generation to detailed format? thus node correct
         # pos, tags, etc., are available
+        xml_nodes = map(itemgetter(0), entries_and_tags)
+        analyses = sum(map(itemgetter(1), entries_and_tags), [])
+
         res = list(DetailedFormat( xml_nodes
                                  , target_lang=to_language
                                  , source_lang=from_language
