@@ -95,9 +95,9 @@
                                 {% block extra_nav %}
                                 {# TODO: locales available #}
                                 {% endblock %}
-                                <li class="display-phone hidden-tablet hidden-desktop"><span>{% trans %}Interface language{% endtrans %}</span></li>
+                                <li class="display-phone hidden-tablet visible-mid hidden-desktop"><span>{% trans %}Interface language{% endtrans %}</span></li>
                                 {% for iso in internationalizations %}
-                                <li class="display-phone hidden-tablet hidden-desktop">
+                                <li class="display-phone hidden-tablet visible-mid hidden-desktop">
                                     <a href="/locale/{{ iso }}/">
                                         <img class="i18n_flag" src="{{url_for('static', filename='img/flags/' + iso + '_20x15.png')}}"></img> {{ iso|iso_to_language_own_name }}</a>
                                 </li>
