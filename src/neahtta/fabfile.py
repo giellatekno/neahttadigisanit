@@ -14,25 +14,21 @@ Then run the following to check that it works.
 
 ## Basic commands
 
-This is a list of commands to automatize the management of
-NDS. Basic operations are listed below, however with some hints:
+In order to perform a task for a specific instance, you must specify a
+few things.
 
-    $ fab compile_dictionary:valks
-    $ fab compile_dictionary:vada
+    fab LOCATION DICT TASKS
 
-    $ fab compile_fst:crk
+So, to compile the lexicon locally for baakoeh, you would run:
 
-    etc...
+    $ fab local baakoeh compile_dictionary
 
-NB: no gtoahpa targets here yet.
+To do the same remotely, and restart the service, you would run:
 
+    $ fab gtweb sanat compile_dictionary restart_service
 
-# TODO: fix permissions?
-
-group permissions for neahtta to /opt/smi/LANG/
-
-chmod -R g+w /opt/smi/LANG/
-chgrp -R neahtta /opt/smi/LANG/
+With the latter, Fabric will connect via SSH and run commands remotely.
+You may be asked for your SSH password.
 
 """
 
@@ -66,6 +62,57 @@ running_service = [
 
 # set up environments
 # Assume local unless otherwise noted
+
+@task
+def baakoeh():
+    """ Configure for baakoeh """
+    env.current_dict = "baakoeh"
+
+@task
+def sanit():
+    """ Configure for sanit """
+    env.current_dict = "sanit"
+
+@task
+def valks():
+    """ Configure for valks """
+    env.current_dict = "valks"
+
+@task
+def guusaaw():
+    """ Configure for guusaaw """
+    env.current_dict = "guusaaw"
+
+@task
+def kyv():
+    """ Configure for kyv """
+    env.current_dict = "kyv"
+
+@task
+def muter():
+    """ Configure for muter """
+    env.current_dict = "muter"
+
+@task
+def pikiskwewina():
+    """ Configure for pikiskwewina """
+    env.current_dict = "pikiskwewina"
+
+@task
+def saan():
+    """ Configure for saan """
+    env.current_dict = "saan"
+
+@task
+def sanat():
+    """ Configure for sanat """
+    env.current_dict = "sanat"
+
+@task
+def vada():
+    """ Configure for vada """
+    env.current_dict = "vada"
+
 
 @task
 def local(*args, **kwargs):
@@ -104,6 +151,21 @@ def gtweb():
 
     env.make_cmd = "make -f " + os.path.join(env.dict_path, 'Makefile')
 
+@task
+def gtoahpa():
+    """ Run a command remotely on gtweb
+    """
+    env.run = run
+    env.hosts = ['neahtta@gtoahpa.uit.no']
+    env.path_base = '/home/neahtta'
+
+    env.svn_path = env.path_base + '/gtsvn'
+    env.dict_path = env.path_base + '/neahtta/dicts'
+    env.neahtta_path = env.path_base + '/neahtta'
+    env.i18n_path = env.path_base + '/neahtta/translations'
+
+    env.make_cmd = "make -f " + os.path.join(env.dict_path, 'Makefile')
+
 
 @task
 def update_gtsvn():
@@ -112,17 +174,20 @@ def update_gtsvn():
         env.run('svn up gt gtcore langs words')
 
 @task
-def restart_service(dictionary='x'):
+def restart_service(dictionary=False):
     """ Restarts the services.
     """
 
-    # TODO: need to be another user to run sudo service nds-* stop ;
-    # start
+    if not dictionary:
+        dictionary = env.current_dict
 
     fail = False
-    if env.real_hostname not in running_service:
-        print(green("** No need to restart, nds-<%s> not available on this host. **" % dictionary))
-        return
+
+    # Not a big issue, but figure this out for local development.
+    # if env.real_hostname not in running_service:
+    #     print env.real_hostname
+    #     print(green("** No need to restart, nds-<%s> not available on this host. **" % dictionary))
+    #     return
 
     with cd(env.neahtta_path):
         print(cyan("** Restarting service for <%s> **" % dictionary))
@@ -151,7 +216,7 @@ def update_translations():
     hup_all()
 
 @task
-def compile_dictionary(dictionary='x'):
+def compile_dictionary(dictionary=False, restart=False):
     """ Compile a dictionary project on the server, and restart the
     corresponding service.
 
@@ -164,9 +229,11 @@ def compile_dictionary(dictionary='x'):
     hup = False
     failed = False
 
+    if not dictionary:
+        dictionary = env.current_dict
+
     update_gtsvn()
 
-    print env.dict_path
     with cd(env.dict_path):
         env.run("svn up Makefile")
 
@@ -184,7 +251,7 @@ def compile_dictionary(dictionary='x'):
         print(red("** Something went wrong while compiling <%s> **" % dictionary))
 
 @task
-def compile(dictionary='x'):
+def compile(dictionary=False):
     """ Compile a dictionary, fsts and lexica, on the server.
 
         $ fab compile:DICT
@@ -192,6 +259,9 @@ def compile(dictionary='x'):
 
     hup = False
     failed = False
+
+    if not dictionary:
+        dictionary = env.current_dict
 
     update_gtsvn()
 
@@ -228,7 +298,10 @@ def compile_fst(iso='x'):
 
     hup = False
 
-    # update_gtsvn()
+    if not dictionary:
+        dictionary = env.current_dict
+
+    update_gtsvn()
 
     # TODO: need a make path to clean existing dictionary
     with cd(env.dict_path):
