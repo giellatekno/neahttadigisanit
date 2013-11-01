@@ -36,43 +36,82 @@ chgrp -R neahtta /opt/smi/LANG/
 
 """
 
+import os
+
 from fabric.decorators import roles
+
 from fabric.api import ( cd
                        , run
+                       , local
                        , env
+                       , task
                        )
+
 from fabric.operations import ( sudo )
 
 from fabric.colors import red, green, cyan
 
-env.roledefs.update({
-    'gtweb': ['neahtta@gtweb.uit.no',],
-})
-
-env.hosts = ['neahtta@gtweb.uit.no',]
-
 env.use_ssh_config = True
 # env.key_filename = '~/.ssh/neahtta'
 
-USER_PATH = '/home/neahtta'
-SVN_PATH = USER_PATH + '/gtsvn'
-DICT_PATH = USER_PATH + '/neahtta/dicts'
-NEAHTTA_PATH = USER_PATH + '/neahtta'
-I18N_PATH = USER_PATH + '/neahtta/translations'
+import socket
+env.real_hostname = socket.gethostname()
 
-@roles('gtweb')
-def chk_svnversion():
-    with cd(SVN_PATH):
-        print(cyan("** svn up **"))
-        run('svn up gt gtcore langs words')
+# Hosts that have an nds- init.d script
+running_service = [
+    'gtweb.uit.no',
+    'gtlab.uit.no',
+    'gtoahpa.uit.no'
+]
 
-@roles('gtweb')
+# set up environments
+# Assume local unless otherwise noted
+
+@task
+def local(*args, **kwargs):
+    """ Run a command using the local environment.
+    """
+    from fabric.operations import local as lrun
+    import os
+
+    env.run = lrun
+    env.hosts = ['localhost']
+
+    gthome = os.environ.get('GTHOME')
+    env.path_base = os.getcwd()
+
+    env.svn_path = gthome
+    env.dict_path = os.path.join(env.path_base, 'dicts')
+    env.neahtta_path = env.path_base
+    env.i18n_path = os.path.join(env.path_base, 'translations')
+
+    # Make command needs to include explicit path to file, because of
+    # fabric.
+    env.make_cmd = "make -f " + os.path.join(env.dict_path, 'Makefile')
+
+@task
+def gtweb():
+    """ Run a command remotely on gtweb
+    """
+    env.run = run
+    env.hosts = ['neahtta@gtweb.uit.no']
+    env.path_base = '/home/neahtta'
+
+    env.svn_path = env.path_base + '/gtsvn'
+    env.dict_path = env.path_base + '/neahtta/dicts'
+    env.neahtta_path = env.path_base + '/neahtta'
+    env.i18n_path = env.path_base + '/neahtta/translations'
+
+    env.make_cmd = "make -f " + os.path.join(env.dict_path, 'Makefile')
+
+
+@task
 def update_gtsvn():
-    with cd(SVN_PATH):
+    with cd(env.svn_path):
         print(cyan("** svn up **"))
-        run('svn up gt gtcore langs words')
+        env.run('svn up gt gtcore langs words')
 
-@roles('gtweb')
+@task
 def restart_service(dictionary='x'):
     """ Restarts the services.
     """
@@ -81,11 +120,15 @@ def restart_service(dictionary='x'):
     # start
 
     fail = False
-    with cd(NEAHTTA_PATH):
+    if env.real_hostname not in running_service:
+        print(green("** No need to restart, nds-<%s> not available on this host. **" % dictionary))
+        return
+
+    with cd(env.neahtta_path):
         print(cyan("** Restarting service for <%s> **" % dictionary))
-        stop = run("sudo service nds-%s stop" % dictionary)
+        stop = env.run("sudo service nds-%s stop" % dictionary)
         if not stop.failed:
-            start = run("sudo service nds-%s start" % dictionary)
+            start = env.run("sudo service nds-%s start" % dictionary)
             if not start.failed:
                 print(green("** <%s> Service has restarted successfully **" % dictionary))
             else:
@@ -96,18 +139,18 @@ def restart_service(dictionary='x'):
     if fail:
         print(red("** something went wrong while restarting <%s> **" % dictionary))
 
-@roles('gtweb')
+@task
 def update_translations():
 
-    with cd(I18N_PATH):
-        run('svn up')
+    with cd(env.i18n_path):
+        env.run('svn up')
 
-    with cd(NEAHTTA_PATH):
-        run('pybabel compile -d translations')
+    with cd(env.neahtta_path):
+        env.run('pybabel compile -d translations')
 
     hup_all()
 
-@roles('gtweb')
+@task
 def compile_dictionary(dictionary='x'):
     """ Compile a dictionary project on the server, and restart the
     corresponding service.
@@ -123,12 +166,11 @@ def compile_dictionary(dictionary='x'):
 
     update_gtsvn()
 
-    with cd(DICT_PATH):
-        print(cyan("** Compiling lexicon <%s> **" % dictionary))
-        run("svn up Makefile")
-        make_clean = run("make rm-%s-lexica" % dictionary)
+    print env.dict_path
+    with cd(env.dict_path):
+        env.run("svn up Makefile")
 
-        result = run("make %s-lexica" % dictionary)
+        result = env.run(env.make_cmd + " %s-lexica" % dictionary)
 
         if not result.failed:
             hup = True
@@ -141,7 +183,7 @@ def compile_dictionary(dictionary='x'):
     if failed:
         print(red("** Something went wrong while compiling <%s> **" % dictionary))
 
-@roles('gtweb')
+@task
 def compile(dictionary='x'):
     """ Compile a dictionary, fsts and lexica, on the server.
 
@@ -154,16 +196,16 @@ def compile(dictionary='x'):
     update_gtsvn()
 
     # TODO: need a make path to clean existing dictionary
-    with cd(DICT_PATH):
-        run("svn up Makefile")
+    with cd(env.dict_path):
+        env.run("svn up Makefile")
 
         print(cyan("** Compiling lexicon and FSTs for <%s> **" % dictionary))
-        result = run("make %s" % dictionary)
+        result = env.run(env.make_cmd + " %s" % dictionary)
 
         if not result.failed:
             hup = True
             print(cyan("** Installing FSTs for <%s> **" % dictionary))
-            result = run("make %s-install" % dictionary)
+            result = env.run(env.make_cmd + " %s-install" % dictionary)
             if not result.failed:
                 hup = True
             else:
@@ -177,7 +219,7 @@ def compile(dictionary='x'):
     if failed:
         print(red("** Something went wrong while compiling <%s> **" % dictionary))
 
-@roles('gtweb')
+@task
 def compile_fst(iso='x'):
     """ Compile a dictionary project on the server.
 
@@ -186,16 +228,16 @@ def compile_fst(iso='x'):
 
     hup = False
 
-    update_gtsvn()
+    # update_gtsvn()
 
     # TODO: need a make path to clean existing dictionary
-    with cd(DICT_PATH):
-        run("svn up Makefile")
+    with cd(env.dict_path):
+        # env.run("svn up Makefile")
         print(cyan("** Compiling FST for <%s> **" % iso))
 
-        clear_tmp = run("make rm-%s" % iso)
+        clear_tmp = env.run(env.make_cmd + " rm-%s" % iso)
 
-        make_fsts = run("make %s" % iso)
+        make_fsts = env.run(env.make_cmd + " %s" % iso)
 
         if make_fsts.failed:
             print(red("** Something went wrong while compiling <%s> **" % iso))
