@@ -926,7 +926,10 @@ fin-sme.all.xml: $(GTHOME)/words/dicts/finsme/src/
 	-@cp $@ $@.$(shell date +%s).bak
 	$(SAXON) inDir=$^ > $@
 
-nob-sme.all.xml: $(GTHOME)/words/dicts/nobsme/
+nob-sme.all.xml: $(GTHOME)/words/dicts/nobsme/ \
+				 $(GTHOME)/words/dicts/nobsme/src/*.xml \
+				 $(GTHOME)/words/dicts/nobsme/src_gt-only/*.xml \
+				 $(GTHOME)/words/dicts/nobsme/src_gt-fad_merged/*.xml
 	@echo "******************************"
 	@echo "** Building nob-sme lexicon **"
 	@echo "******************************"
@@ -934,18 +937,19 @@ nob-sme.all.xml: $(GTHOME)/words/dicts/nobsme/
 	@echo "******************************"
 	@echo ""
 	mkdir -p tmp/nobsme/
-	cp $^/src/* tmp/nobsme/
-	cp $^/src_gt-only/* tmp/nobsme/
-	cp $^/src_gt-fad_merged/* tmp/nobsme/
+	cp $</src/* tmp/nobsme/
+	cp $</src_gt-only/* tmp/nobsme/
+	cp $</src_gt-fad_merged/* tmp/nobsme/
 	$(SAXON) inDir=`pwd`/tmp/nobsme/ > $@
 	rm -rf tmp/nobsme/
 
+.PHONY: sanit-lexica
 sanit-lexica: fin-sme.all.xml \
 			  nob-sme.all.xml \
 			  sme-fin.all.xml \
 			  sme-nob.all.xml
 
-rm-sanit-lexica: 
+rm-sanit-lexica:
 	@rm -rf fin-sme.all.xml nob-sme.all.xml sme-fin.all.xml sme-nob.all.xml
 
 # NB: sme analyzer build is different, as well as target fst file names
@@ -992,7 +996,7 @@ sme-install: n-sme.fst dict-isme-norm.fst some-n-sme.fst
 .PHONY: nob
 nob: /tmp/tmp_fst/nob.fst /tmp/tmp_ifst/inob.fst
 
-rm-nob: 
+rm-nob:
 	rm -rf /tmp/tmp_fst/nob.fst /tmp/tmp_ifst/inob.fst
 
 
