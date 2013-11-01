@@ -77,6 +77,8 @@ SAXON_SME_NOB := java -Xmx2048m -cp ~/lib/saxon9.jar \
 TARGET_DIR := $(shell pwd)
 pwd := $(shell pwd)
 
+TIMESTAMP := $(shell date +%s)
+
 define compile-lexicon =
 	$(SAXON)
 endef
@@ -237,7 +239,10 @@ crk-all.xml: $(GTHOME)/words/dicts/crkeng/src/*.xml
 	@echo "**************************"
 	@echo "** Building crk lexicon **"
 	@echo "**************************"
+	@echo "** Backup made (.bak)   **"
+	@echo "**************************"
 	@echo ""
+	-@cp $@ $@.$(shell date +%s).bak
 	$(SAXON) inDir=$(GTHOME)/words/dicts/crkeng/src/ > crk-all.xml
 
 .PHONY: crk-lexicon
@@ -303,7 +308,10 @@ sms-all.xml: $(GTHOME)/langs/sms/src/morphology/stems/*.xml
 	@echo "**************************"
 	@echo "** Building sms lexicon **"
 	@echo "**************************"
+	@echo "** Backup made (.bak)   **"
+	@echo "**************************"
 	@echo ""
+	-@cp $@ $@.$(shell date +%s).bak
 	mkdir sms
 	cp $^ sms/
 	$(SAXON) inDir=$(pwd)/sms/ > sms-all.xml
@@ -372,7 +380,10 @@ yrk-all.xml: $(GTHOME)/langs/yrk/src/morphology/stems/*.xml
 	@echo "**************************"
 	@echo "** Building yrk lexicon **"
 	@echo "**************************"
+	@echo "** Backup made (.bak)   **"
+	@echo "**************************"
 	@echo ""
+	-@cp $@ $@.$(shell date +%s).bak
 	mkdir yrk
 	cp $^ yrk/
 	$(SAXON) inDir=$(pwd)/yrk/ > yrk-all.xml
@@ -464,7 +475,10 @@ mrj-all.xml: $(GTHOME)/langs/mrj/src/morphology/stems/*.xml
 	@echo "**************************"
 	@echo "** Building mrj lexicon **"
 	@echo "**************************"
+	@echo "** Backup made (.bak)   **"
+	@echo "**************************"
 	@echo ""
+	-@cp $@ $@.$(shell date +%s).bak
 	mkdir mrj
 	cp $^ mrj/
 	$(SAXON) inDir=$(pwd)/mrj/ > mrj-all.xml
@@ -474,7 +488,10 @@ mhr-all.xml: $(GTHOME)/langs/mhr/src/morphology/stems/*.xml
 	@echo "**************************"
 	@echo "** Building mhr lexicon **"
 	@echo "**************************"
+	@echo "** Backup made (.bak)   **"
+	@echo "**************************"
 	@echo ""
+	-@cp $@ $@.$(shell date +%s).bak
 	mkdir mhr
 	cp $^ mhr/
 	$(SAXON) inDir=$(pwd)/mhr/ > mhr-all.xml
@@ -583,12 +600,26 @@ rm-mdf:
 
 
 myv-all.xml: $(GTHOME)/langs/myv/src/morphology/stems/*.xml
+	@echo "**************************"
+	@echo "** Building myv lexicon **"
+	@echo "**************************"
+	@echo "** Backup made (.bak)   **"
+	@echo "**************************"
+	@echo ""
+	-@cp $@ $@.$(shell date +%s).bak
 	mkdir myv
 	cp $^ myv/
 	$(SAXON) inDir=$(pwd)/myv/ > myv-all.xml
 	rm -rf myv/
 
 mdf-all.xml: $(GTHOME)/langs/mdf/src/morphology/stems/*.xml
+	@echo "**************************"
+	@echo "** Building mdf lexicon **"
+	@echo "**************************"
+	@echo "** Backup made (.bak)   **"
+	@echo "**************************"
+	@echo ""
+	-@cp $@ $@.$(shell date +%s).bak
 	mkdir mdf
 	cp $^ mdf/
 	$(SAXON) inDir=$(pwd)/mdf/ > mdf-all.xml
@@ -735,17 +766,38 @@ rm-izh:
 ##
 
 olo-fin.xml: $(GTHOME)/langs/olo/src/morphology/stems/*.xml
+	@echo "**************************"
+	@echo "** Building olo lexicon **"
+	@echo "**************************"
+	@echo "** Backup made (.bak)   **"
+	@echo "**************************"
+	@echo ""
+	-@cp $@ $@.$(shell date +%s).bak
 	mkdir olo
 	cp $^ olo/
 	$(SAXON) inDir=$(pwd)/olo/ > $@
 	rm -rf olo/
 
 fkv-nob.xml: $(GTHOME)/words/dicts/fkvnob/src/
+	@echo "**************************"
+	@echo "** Building fkv lexicon **"
+	@echo "**************************"
+	@echo "** Backup made (.bak)   **"
+	@echo "**************************"
+	@echo ""
+	-@cp $@ $@.$(shell date +%s).bak
 	$(SAXON) inDir=$^ > $@
 
 # NOTE: some temporary fixes to add usage to everything, and include <lg>
 # node
 nob-fkv.xml: $(GTHOME)/words/dicts/nobfkv/src/
+	@echo "******************************"
+	@echo "** Building nob-fkv lexicon **"
+	@echo "******************************"
+	@echo "** Backup made (.bak)       **"
+	@echo "******************************"
+	@echo ""
+	-@cp $@ $@.$(shell date +%s).bak
 	$(SAXON) inDir=$^ > $@.tmp
 	cat $@.tmp | sed 's/<e>/<e usage="vd">/g' | \
 				 sed 's/  <l /  <lg><l /g'    | \
@@ -755,12 +807,26 @@ nob-fkv.xml: $(GTHOME)/words/dicts/nobfkv/src/
 	rm $@.tmp
 
 liv.all.xml: $(GTHOME)/langs/liv/src/morphology/stems/*.xml
+	@echo "**************************"
+	@echo "** Building liv lexicon **"
+	@echo "**************************"
+	@echo "** Backup made (.bak)   **"
+	@echo "**************************"
+	@echo ""
+	-@cp $@ $@.$(shell date +%s).bak
 	mkdir liv
 	cp $^ liv/
 	$(SAXON) inDir=$(pwd)/liv/ > $@
 	rm -rf liv/
 
 izh-fin.xml: $(GTHOME)/langs/izh/src/morphology/stems/*.xml
+	@echo "**************************"
+	@echo "** Building izh lexicon **"
+	@echo "**************************"
+	@echo "** Backup made (.bak)   **"
+	@echo "**************************"
+	@echo ""
+	-@cp $@ $@.$(shell date +%s).bak
 	mkdir izh
 	cp $^ izh/
 	$(SAXON) inDir=$(pwd)/izh/ > $@
@@ -831,15 +897,42 @@ sanat-install: sanat-olo-install \
 # NB: these are different than the langs/ lexica
 # also, need to filter here
 sme-nob.all.xml: $(GTHOME)/words/dicts/smenob/src/
+	@echo "******************************"
+	@echo "** Building sme-nob lexicon **"
+	@echo "******************************"
+	@echo "** Backup made (.bak)       **"
+	@echo "******************************"
+	@echo ""
+	-@cp $@ $@.$(shell date +%s).bak
 	$(SAXON_SME_NOB) inDir=$^ | grep -v 'dict="no"' > $@
 
 sme-fin.all.xml: $(GTHOME)/words/dicts/smefin/src/
+	@echo "******************************"
+	@echo "** Building sme-fin lexicon **"
+	@echo "******************************"
+	@echo "** Backup made (.bak)       **"
+	@echo "******************************"
+	@echo ""
+	-@cp $@ $@.$(shell date +%s).bak
 	$(SAXON) inDir=$^ > $@
 
 fin-sme.all.xml: $(GTHOME)/words/dicts/finsme/src/
+	@echo "******************************"
+	@echo "** Building fin-sme lexicon **"
+	@echo "******************************"
+	@echo "** Backup made (.bak)       **"
+	@echo "******************************"
+	@echo ""
+	-@cp $@ $@.$(shell date +%s).bak
 	$(SAXON) inDir=$^ > $@
 
 nob-sme.all.xml: $(GTHOME)/words/dicts/nobsme/
+	@echo "******************************"
+	@echo "** Building nob-sme lexicon **"
+	@echo "******************************"
+	@echo "** Backup made (.bak)       **"
+	@echo "******************************"
+	@echo ""
 	mkdir -p tmp/nobsme/
 	cp $^/src/* tmp/nobsme/
 	cp $^/src_gt-only/* tmp/nobsme/
@@ -975,9 +1068,23 @@ rm-sma:
 
 # NB: these are more similar to sme lexicon, but FST differs.
 sma-nob.all.xml: $(GTHOME)/words/dicts/smanob/src/
+	@echo "******************************"
+	@echo "** Building sma-nob lexicon **"
+	@echo "******************************"
+	@echo "** Backup made (.bak)       **"
+	@echo "******************************"
+	@echo ""
+	-@cp $@ $@.$(shell date +%s).bak
 	$(SAXON) inDir=$^ > $@
 
 nob-sma.all.xml: $(GTHOME)/words/dicts/nobsma/src/
+	@echo "******************************"
+	@echo "** Building nob-sma lexicon **"
+	@echo "******************************"
+	@echo "** Backup made (.bak)       **"
+	@echo "******************************"
+	@echo ""
+	-@cp $@ $@.$(shell date +%s).bak
 	$(SAXON) inDir=$^ > $@
 
 baakoeh-lexica: sma-nob.all.xml \
@@ -1096,13 +1203,20 @@ rm-kpv:
 	rm -rf kpv.fst ikpv.fst
 
 kpv-engfinrus.all.xml: $(GTHOME)/words/dicts/kom2X/src/
+	@echo "**************************"
+	@echo "** Building kpv lexicon **"
+	@echo "**************************"
+	@echo "** Backup made (.bak)   **"
+	@echo "**************************"
+	@echo ""
+	-@cp $@ $@.$(shell date +%s).bak
 	$(SAXON) inDir=$^ > $@
 
 ##
 ### #kyvlexica
 ##
 
-.PHONY: kpv-lexica
+.PHONY: kyv-lexica
 kyv-lexica: kpv-engfinrus.all.xml
 
 rm-kyv-lexica:
