@@ -162,7 +162,10 @@ class EntryNodeIterator(object):
                 import sys
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 tb_str = traceback.format_exception(exc_type, exc_value, exc_traceback)
-                error_xml = etree.tostring(node, pretty_print=True, encoding="utf-8")
+                if node is not None:
+                    error_xml = etree.tostring(node, pretty_print=True, encoding="utf-8")
+                else:
+                    error_xml = 'No entry for lookup'
                 current_app.logger.error(
                     "Potential XML formatting problem somewhere in... \n\n%s\n\n%s" % (error_xml.strip(), ''.join(tb_str))
                 )

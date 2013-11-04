@@ -102,6 +102,8 @@ class MorphoLexicon(object):
                 if xml_result:
                     for e in xml_result:
                         entries_and_tags.append((e, analysis))
+                else:
+                    entries_and_tags.append((None, analysis))
 
         no_analysis_xml = self.lexicon.lookup( source_lang
                                              , target_lang
@@ -129,7 +131,6 @@ class MorphoLexicon(object):
             results.append((grouper, analyses))
 
         entries_and_tags = results
-
 
         # TODO: may need to do the same for derivation?
         # NOTE: test with things that will never return results just to

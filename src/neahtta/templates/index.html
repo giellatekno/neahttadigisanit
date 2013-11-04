@@ -105,7 +105,6 @@
                 </div>
             </div>
 
-
             {# TODO: deep link needs to go to specific lexeme when it comes from the front page #}
             {% if word_searches %}
                 <div class="results">
@@ -170,7 +169,46 @@
                             </ul>
                             <p class="lead">&nbsp;</p>
                             </div>
+                            <div class="span4 hidden-phone">
+                                <dl class="possible_analyses grid_analyses">
+                                {% for grouper, forms in analyses_without_lex|groupby('lemma') %}
+                                    {% for lemmagroup, lemmafs in forms|groupby('pos') %}
+                                        <dt>{{ grouper }}</dt>
+                                        <dd>
+                                            <ul class="possible_forms">
+                                                {% for lem in lemmafs %}
+                                                <li>{{ ' '.join(lem.tag)|tagfilter(_from, _to) }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        </dd>
+                                    {% endfor %}
+                                {% endfor %}
+                                </dl>
+                            </div>
+                        {% else %}
+                            <div class="row-fluid entry_row">
+                                <div class="span8">
+                                    <p class="lead">&nbsp;</p>
+                                </div>
+                                <div class="span4 hidden-phone">
+                                    <dl class="possible_analyses grid_analyses">
+                                    {% for grouper, forms in analyses_without_lex|groupby('lemma') %}
+                                        {% for lemmagroup, lemmafs in forms|groupby('pos') %}
+                                            <dt>{{ grouper }}</dt>
+                                            <dd>
+                                                <ul class="possible_forms">
+                                                    {% for lem in lemmafs %}
+                                                    <li>{{ ' '.join(lem.tag)|tagfilter(_from, _to) }}</li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </dd>
+                                        {% endfor %}
+                                    {% endfor %}
+                                    </dl>
+                                </div>
+                            </div>
                         {% endif %}
+
                         </div>
 
                     </div>

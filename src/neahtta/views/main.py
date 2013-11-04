@@ -353,12 +353,16 @@ def indexWithLangs(_from, _to):
 
         # [(lemma, XMLNodes)] -> [(lemma, generator(AlmostJSON))]
         formatted_results = []
+        analyses_without_lex = []
         for result, morph_analyses in entries_and_tags:
-            formatted_results.extend(FrontPageFormat(
-                [result],
-                additional_template_kwargs={'analyses': morph_analyses},
-                **fmtkwargs
-            ))
+            if result is not None:
+                formatted_results.extend(FrontPageFormat(
+                    [result],
+                    additional_template_kwargs={'analyses': morph_analyses},
+                    **fmtkwargs
+                ))
+            else:
+                analyses_without_lex.extend(morph_analyses)
 
         # When to display unknowns
         successful_entry_exists = False
@@ -392,6 +396,7 @@ def indexWithLangs(_from, _to):
                           , user_input=lookup_val
                           , word_searches=results
                           , analyses=analyses
+                          , analyses_without_lex=analyses_without_lex
                           , errors=errors
                           , show_info=show_info
                           , zip=zipNoTruncate
