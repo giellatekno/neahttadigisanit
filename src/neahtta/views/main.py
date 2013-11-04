@@ -315,6 +315,7 @@ def indexWithLangs(_from, _to):
     if request.user_agent.platform == 'iphone':
         iphone = True
 
+    analyses_without_lex = []
     mlex = current_app.morpholexicon
 
     user_input = lookup_val = request.form.get('lookup', False)
