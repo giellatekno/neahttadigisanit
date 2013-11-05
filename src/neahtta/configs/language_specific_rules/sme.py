@@ -425,6 +425,41 @@ _str_norm = 'string(normalize-space(%s))'
 ### 
 ###     return xml, fst
 
+SME_NOB_DICTS = [
+    ('sme', 'nob'),
+    ('SoMe', 'nob'),
+]
+
+NOB_SME = [
+    ('nob', 'sme'),
+]
+
+@lexicon.postlookup_filters_for_lexicon(*SME_NOB_DICTS)
+def usage_vd_only_for_entry(lexicon, nodelist, lookup_kwargs):
+    def filter_node(n):
+        return n.get('usage', '') == 'vd'
+    return filter(filter_node, nodelist)
+
+@lexicon.postlookup_filters_for_lexicon(*NOB_SME)
+def clean_tgs_with_no_usage_vd(lexicon, nodelist, lookup_kwargs):
+    """ A little node manipulation to remove <t /> nodes without
+    usage=vd.
+
+    Basically: go through all <mg />/<tg />, iterate <t />, and if it is
+    not usage=vd, remove it; then if this results in the <tg /> having
+    no entries, clear.
+    """
+    def clean_tgs(n):
+        for tg in n.xpath('./mg/tg'):
+            _ts = tg.xpath('./t')
+            for t in _ts:
+                if not t.get('usage', '') == 'vd':
+                    tg.remove(t)
+            _ts = tg.xpath('./t')
+            if len(_ts) == 0:
+                tg.clear()
+        return n
+    return map(clean_tgs, nodelist)
 
 @lexicon.entry_source_formatter(*['sme', 'SoMe'])
 def format_source_sme(ui_lang, e, target_lang):

@@ -38,7 +38,7 @@ class LexiconOverrides(object):
                 or default_str
         return default_str
 
-    def process_prelookups(self, function):
+    def process_prelookups(self, lexicon_language_pairs, function):
         """ This runs the generator function, and applies all of the
         function contexts to the output. Or in other words, this
         decorator works on the output of the decorated function, but
@@ -46,12 +46,24 @@ class LexiconOverrides(object):
         function in the registry.
         """
         def decorate(*args, **kwargs):
+            lang_pair = lexicon_language_pairs.get(args)
             _from = args[0]
             newargs = args
             newkwargs = kwargs
             for f in self.prelookup_processors[_from]:
                 newargs, newkwargs = f(*newargs, **newkwargs)
             return function(*newargs, **newkwargs)
+        return decorate
+
+    def process_postlookups(self, lexicon_language_pairs, function):
+        """ Lexicon lookups are passed through all of these functions
+        """
+        def decorate(*lang_pair_args, **kwargs):
+            lang_pair = lexicon_language_pairs.get(lang_pair_args)
+            result_nodes = function(*lang_pair_args, **kwargs)
+            for f in self.postlookup_filters[lang_pair_args]:
+                result_nodes = f(lang_pair, result_nodes, kwargs)
+            return result_nodes
         return decorate
 
     ##
@@ -136,14 +148,38 @@ class LexiconOverrides(object):
                       )
         return wrapper
 
+    def postlookup_filters_for_lexicon(self, *lexica):
+        """ Register a function for a language ISO to adjust tags used
+        in FSTs for use in lexicon lookups. The decorator function takes
+        a tuple for every function that the decorator should be applied
+        to
+
+        >>> @lexicon_overrides.lookup_filters_for_lexicon(('sme', 'nob'))
+        >>> def someFunction(nodelist):
+        >>>     ... some processing on tags, may be conditional, etc.
+        >>>     return nodelist
+
+        """
+        def wrapper(restrictor_function):
+            for lexicon in lexica:
+                self.postlookup_filters[lexicon]\
+                    .append(restrictor_function)
+                print '%s overrides: lexicon lookup filter - %s' %\
+                      ( lexicon
+                      , restrictor_function.__name__
+                      )
+        return wrapper
+
     def __init__(self):
         from collections import defaultdict
 
         self.prelookup_processors = defaultdict(list)
         self.target_formatters = defaultdict(bool)
         self.source_formatters = defaultdict(bool)
+        self.postlookup_filters = defaultdict(list)
 
 lexicon_overrides = LexiconOverrides()
+
 
 PARSED_TREES = {}
 
@@ -283,7 +319,6 @@ class ReverseLookups(XMLDict):
 
     def lookupLemma(self, lemma):
         _xpath = [ './/e[mg/tg/t/text() = "%s"' % lemma
-                 , '@usage = "vd"'
                  , 'not(@reverse)]'
                  ]
         _xpath = ' and '.join(_xpath)
@@ -292,7 +327,6 @@ class ReverseLookups(XMLDict):
     def lookupLemmaPOS(self, lemma, pos):
         _xpath = ' and '.join(
             [ './/e[mg/tg/t/text() = "%s"' % lemma
-            , '@usage = "vd"'
             , 'not(@reverse)'
             , 'mg/tg/t/@pos = "%s"]' % pos.lower()
             ]
@@ -309,8 +343,12 @@ class Lexicon(object):
               for k, v in settings.dictionaries.iteritems() ]
         )
 
-        self.lookup = lexicon_overrides.process_prelookups(
-            self.lookup
+        self.lookup = lexicon_overrides.process_postlookups(
+            language_pairs,
+            lexicon_overrides.process_prelookups(
+                language_pairs,
+                self.lookup
+            )
         )
 
         self.language_pairs = language_pairs
