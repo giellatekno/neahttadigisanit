@@ -438,7 +438,10 @@ NOB_SME = [
 def usage_vd_only_for_entry(lexicon, nodelist, lookup_kwargs):
     def filter_node(n):
         return n.get('usage', '') == 'vd'
-    return filter(filter_node, nodelist)
+    if nodelist:
+        return filter(filter_node, nodelist)
+    else:
+        return nodelist
 
 @lexicon.postlookup_filters_for_lexicon(*NOB_SME)
 def clean_tgs_with_no_usage_vd(lexicon, nodelist, lookup_kwargs):
