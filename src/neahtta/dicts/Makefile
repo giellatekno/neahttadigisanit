@@ -936,6 +936,7 @@ nob-sme.all.xml: $(GTHOME)/words/dicts/nobsme/ \
 	@echo "** Backup made (.bak)       **"
 	@echo "******************************"
 	@echo ""
+	-@rm -rf tmp/nobsme/
 	mkdir -p tmp/nobsme/
 	cp $</src/* tmp/nobsme/
 	cp $</src_gt-only/* tmp/nobsme/
@@ -1062,6 +1063,7 @@ sanit-install: sanit-nob-install sanit-sme-install sanit-fin-install
 .PHONY: sma
 sma: /tmp/misc_fst/dict-sma.fst /tmp/misc_fst/isma-dict.fst
 
+.PHONY: rm-sma
 rm-sma:
 	rm -rf /tmp/misc_fst/dict-sma.fst /tmp/misc_fst/isma-dict.fst
 

@@ -131,6 +131,7 @@ TagSets:
   sma:
     pos: ["N", "V", "A", "Pr", "Po", "Num"]
     type: ["NomAg", "aktor"]
+    homonyms: ["Hom1", "Hom2"]
 
 # Note, these come from dictionary fst, so tag parts are mostly 
 # already translated

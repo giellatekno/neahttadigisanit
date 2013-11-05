@@ -51,7 +51,7 @@ def pos_to_fst(*args, **kwargs):
     """ TODO: document.
     """
     if 'lemma' in kwargs and 'pos' in kwargs:
-        _k = kwargs['pos'].replace('.', '').replace('+', '')
+        _k = kwargs.get('pos', '').replace('.', '').replace('+', '')
         new_pos = LEX_TO_FST.get(_k, False)
         if new_pos:
             kwargs['pos'] = new_pos
@@ -459,7 +459,9 @@ def clean_tgs_with_no_usage_vd(lexicon, nodelist, lookup_kwargs):
             if len(_ts) == 0:
                 tg.clear()
         return n
-    return map(clean_tgs, nodelist)
+    if nodelist:
+        return map(clean_tgs, nodelist)
+    return nodelist
 
 @lexicon.entry_source_formatter(*['sme', 'SoMe'])
 def format_source_sme(ui_lang, e, target_lang):

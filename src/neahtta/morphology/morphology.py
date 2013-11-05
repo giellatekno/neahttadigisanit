@@ -568,6 +568,10 @@ class Morphology(object):
                 lem_obj.tag = self.tool.tagStringToTag( fulltag
                                                       , tagsets=self.tagsets
                                                       )
+                if 'pos' in lem_obj.tag:
+                    lem_obj.pos = lem_obj.tag['pos']
+                else:
+                    lem_obj.pos = lem_obj.tag.parts[0]
                 lem_obj.input = _input
 
         def remove_compound_analyses(_a):

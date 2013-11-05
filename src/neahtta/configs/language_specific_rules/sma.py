@@ -30,7 +30,7 @@ Example target string formatting function:
 # it's being imported in __init__.py
 
 from morphology import generation_overrides as morphology
-from lexicon import lexicon as lexicon
+from lexicon import lexicon_overrides as lexicon
 from flask import current_app
 
 @lexicon.entry_source_formatter('sma')
