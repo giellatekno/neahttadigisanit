@@ -194,9 +194,9 @@ Paradigms:
 TagSets:
   sme: &smetagsets
     pos: [
-      "N", "V", "A", "Pr", "Po", "Num", 
+      "N", "V", "A", "Pr", "Po", "Num", "CS", "CC",
       
-      "pron.", "subst.", "verb", "adj."
+      "pron.", "subst.", "verb", "adj.", "konj."
     ]
     type: ["NomAg", "G3", "aktor", "res."]
     # Do not display analyses with these tag parts
