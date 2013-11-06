@@ -1,9 +1,22 @@
 # -*- encoding: utf-8 -*-
-# This is a temporary solution until I figure out the right way of
-# getting Babel to compile strings out of app.config.yaml
+"""This handles language name translation, and ISO transforms. When
+adding new languages for dictionaries, their names will need to appear
+here; and when adding new languages as internationalisation languages,
+their names will need to be here too.
 
-# Here are all the names of the languages used in dictionaries, for
-# internationalization.
+1. NAMES - Pairs of ISOs and language names marked for translation, such
+   that a line appears in each *.po file, where the names will be
+   translated
+
+2. LOCALISATION_NAMES_BY_LANGUAGE - Pairs of ISOs and language names in
+   the language itself. These names will be used in the localisations menu on the site.
+
+3. ISO_TRANSFORMS - sometimes ISOs need to be transformed between
+   2-character format and 3-character format, so if a language has a
+   2-character version, we need the other as well.
+
+"""
+
 from flaskext.babel import lazy_gettext as _
 NAMES = dict([
     # sanit
@@ -64,28 +77,25 @@ NAMES = dict([
 ])
 
 LOCALISATION_NAMES_BY_LANGUAGE = dict([
-    # TODO: where I was unsure about language names, I included some
-    # form of "kieli", so, someone should check what the common practice
-    # is amongst these language groups.
     ('sme', u"Davvisámegiella"),
     ('se', u"Davvisámegiella"),
     ('sma', u"Åarjelsaemien gïele"),
     ('ru', u"Руский"),
-    ('olo', u"Livvin kieli"), # TODO: flag
+    ('olo', u"Livvin kieli"),
     ('no', u"Norsk"),
     ('myv', u"Эрзянь кель"),
-    ('mdf', u"Мокшень кяль"), # TODO: flag
-    ('mrj', u"Кырык мары йӹлмӹ"), # TODO: flag
+    ('mdf', u"Мокшень кяль"),
+    ('mrj', u"Кырык мары йӹлмӹ"),
     ('yrk', u"Ненэць вада"),
     ('lv', u"Latviešu valoda"),
     ('lav', u"Latviešu valoda"),
-    ('liv', u"Līvõ kēļ"), # TODO: flag
-    ('kpv', u"Коми кыв"), # TODO: flag
-    ('izh', u"Ižoran keel"), # TODO: flag
-    ('fkv', u"Kveenin kieli"), # TODO: flag
+    ('liv', u"Līvõ kēļ"),
+    ('kpv', u"Коми кыв"),
+    ('izh', u"Ižoran keel"),
+    ('fkv', u"Kveenin kieli"),
     ('fi', u"Suomi"),
     ('eng', u"English"),
-    ('est', u"Estonian"), # TODO: flag
+    ('est', u"Estonian"),
     ('sms', u"sääˊmǩiõll"),
     ('hdn', u"X̲aat Kíl"),
     ('en', u"English"),
