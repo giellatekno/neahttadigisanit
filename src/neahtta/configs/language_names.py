@@ -60,6 +60,7 @@ NAMES = dict([
     ('lav', _(u"Latvian")),
     ('eng', _(u"English")),
     ('hdn', _(u"Haida")),
+    ('fra', _(u"French")),
 ])
 
 LOCALISATION_NAMES_BY_LANGUAGE = dict([
