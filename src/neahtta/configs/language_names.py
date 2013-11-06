@@ -87,6 +87,7 @@ LOCALISATION_NAMES_BY_LANGUAGE = dict([
     ('sms', u"sääˊmǩiõll"),
     ('hdn', u"X̲aat Kíl"),
     ('en', u"English"),
+    ('en', u"Français"),
 ])
 
 # Only put the exceptional ISOs here
@@ -98,4 +99,5 @@ ISO_TRANSFORMS = dict([
     ('et', 'est'),
     ('lv', 'lav'),
     ('en', 'eng'),
+    ('fr', 'fra'),
 ])
