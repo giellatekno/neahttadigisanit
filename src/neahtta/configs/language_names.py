@@ -28,6 +28,7 @@ NAMES = dict([
     # valks
     ('myv', _(u"Erzya Mordvin")),
     ('mdf', _(u"Moksha")),
+    ('fra', _(u"French")),
 
     # muter
     ('mrj', _(u"Western Mari")),
