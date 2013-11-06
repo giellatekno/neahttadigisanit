@@ -89,7 +89,7 @@ LOCALISATION_NAMES_BY_LANGUAGE = dict([
     ('sms', u"sääˊmǩiõll"),
     ('hdn', u"X̲aat Kíl"),
     ('en', u"English"),
-    ('en', u"Français"),
+    ('fr', u"Français"),
 ])
 
 # Only put the exceptional ISOs here
