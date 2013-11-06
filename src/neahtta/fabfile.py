@@ -226,7 +226,6 @@ def compile_dictionary(dictionary=False, restart=False):
 
     """
 
-    hup = False
     failed = False
 
     if not dictionary:
@@ -239,19 +238,17 @@ def compile_dictionary(dictionary=False, restart=False):
 
         result = env.run(env.make_cmd + " %s-lexica" % dictionary)
 
-        if not result.failed:
-            hup = True
-        else:
+        if result.failed:
             failed = True
 
-    if hup:
+    if restart:
         restart_service(dictionary)
 
     if failed:
         print(red("** Something went wrong while compiling <%s> **" % dictionary))
 
 @task
-def compile(dictionary=False):
+def compile(dictionary=False,restart=False):
     """ Compile a dictionary, fsts and lexica, on the server.
 
         $ fab compile:DICT
@@ -273,17 +270,14 @@ def compile(dictionary=False):
         result = env.run(env.make_cmd + " %s" % dictionary)
 
         if not result.failed:
-            hup = True
             print(cyan("** Installing FSTs for <%s> **" % dictionary))
             result = env.run(env.make_cmd + " %s-install" % dictionary)
-            if not result.failed:
-                hup = True
-            else:
+            if result.failed:
                 failed = True
         else:
             failed = True
 
-    if hup:
+    if restart:
         restart_service(dictionary)
 
     if failed:
