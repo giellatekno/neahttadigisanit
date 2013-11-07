@@ -20,71 +20,71 @@ msgstr ""
 #: configs/language_names.py:23 configs/language_names.py:24
 #: templates/more_dictionaries.html:27
 msgid "North Sámi"
-msgstr ""
+msgstr "Same du nord"
 
 #: configs/language_names.py:25
 msgid "North Sámi (#SoMe)"
-msgstr ""
+msgstr "Same du nord (#SoMe)"
 
 #: configs/language_names.py:26 configs/language_names.py:74
 msgid "English"
-msgstr ""
+msgstr "Anglais"
 
 #: configs/language_names.py:29 templates/more_dictionaries.html:28
 msgid "South Sámi"
-msgstr ""
+msgstr "Same du sud"
 
 #: configs/language_names.py:32
 msgid "Komi"
-msgstr ""
+msgstr "Komi"
 
 #: configs/language_names.py:35 templates/more_dictionaries.html:38
 msgid "Kven"
-msgstr ""
+msgstr "Kvène"
 
 #: configs/language_names.py:36 templates/more_dictionaries.html:38
 msgid "Livonian"
-msgstr ""
+msgstr "Live"
 
 #: configs/language_names.py:37
 msgid "Olonetsian"
-msgstr ""
+msgstr "Olonetsien"
 
 #: configs/language_names.py:38 templates/more_dictionaries.html:38
 msgid "Izhorian"
-msgstr ""
+msgstr "Ingrien"
 
 #: configs/language_names.py:39
 msgid "Estonian"
-msgstr ""
+msgstr "Estonien"
 
 #: configs/language_names.py:42
 msgid "Erzya Mordvin"
-msgstr ""
+msgstr "Erzya"
 
 #: configs/language_names.py:43 templates/more_dictionaries.html:39
 msgid "Moksha"
-msgstr ""
+msgstr "Mokcha"
 
 #: configs/language_names.py:44 configs/language_names.py:76
 msgid "French"
-msgstr ""
+msgstr "Français"
 
 #: configs/language_names.py:47
 msgid "Western Mari"
-msgstr ""
+msgstr "Mari des montagnes"
 
 #: configs/language_names.py:48
 msgid "Eastern Mari"
-msgstr ""
+msgstr "Mari des prairies"
 
 #: configs/language_names.py:51
 msgid "Nenets"
-msgstr ""
+msgstr "Nénètse"
 
 #: configs/language_names.py:54
 msgid "Skolt Sámi"
-msgstr ""
+msgstr "Same de Skolt"
 
 #: configs/language_names.py:57
 msgid "Plains Cree"
@@ -92,20 +92,20 @@ msgstr ""
 
 #: configs/language_names.py:60
 msgid "Northern Haida"
-msgstr ""
+msgstr "Haida du nord"
 
 #: configs/language_names.py:63 configs/language_names.py:69
 msgid "Finnish"
-msgstr ""
+msgstr "Finnois"
 
 #: configs/language_names.py:64 configs/language_names.py:70
 #: configs/language_names.py:71
 msgid "Norwegian"
-msgstr ""
+msgstr "Norvégien"
 
 #: configs/language_names.py:66 configs/language_names.py:67
 msgid "Russian"
-msgstr ""
+msgstr "Russe"
 
 #: configs/language_names.py:72 configs/language_names.py:73
 msgid "Latvian"
