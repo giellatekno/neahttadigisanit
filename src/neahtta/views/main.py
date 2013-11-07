@@ -162,6 +162,7 @@ def wordDetail(from_language, to_language, wordform, format):
                                  , target_lang=to_language
                                  , source_lang=from_language
                                  , ui_lang=iso_filter(session.get('locale', to_language))
+                                 , user_input=user_input
                                  ))
 
         lex_results = []

@@ -1,8 +1,10 @@
-
 from lexicon import lexicon_overrides
 from morphology.utils import tagfilter
 from utils.data import flatten
 from flask import current_app
+
+class FormattingError(Exception):
+    pass
 
 class EntryNodeIterator(object):
     """ A class for iterating through the result of an LXML XPath query,
@@ -143,7 +145,7 @@ class EntryNodeIterator(object):
         if not nodes or len(nodes) == 0:
             self.nodes = []
         else:
-            self.nodes = nodes
+            self.nodes = [a for a in nodes if a is not None]
         self.query_args = query_args
         self.query_kwargs = query_kwargs
         self.additional_template_kwargs = {}

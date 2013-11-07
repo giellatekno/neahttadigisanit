@@ -100,6 +100,7 @@ def lookupWord(from_language, to_language):
                        , target_lang=to_language
                        , source_lang=from_language
                        , ui_lang=ui_lang
+                       , user_input=user_input
                        )
 
     result = map(filterPOS, list(result))
