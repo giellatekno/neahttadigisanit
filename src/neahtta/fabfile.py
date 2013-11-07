@@ -292,8 +292,7 @@ def compile_fst(iso='x'):
 
     hup = False
 
-    if not dictionary:
-        dictionary = env.current_dict
+    dictionary = env.current_dict
 
     update_gtsvn()
 
@@ -311,3 +310,16 @@ def compile_fst(iso='x'):
         else:
             print(cyan("** FST <%s> compiled **" % iso))
 
+@task
+def test_configuration():
+    # TODO: this assumes virtualenv is enabled, need to explicitly enable
+    _dict = env.current_dict
+    with cd(env.dict_path):
+        print(cyan("** Checking paths and testing XML for <%s> **" % _dict))
+
+        cmd ="NDS_CONFIG=configs/%s.config.yaml python manage.py chk-fst-paths"
+        test_cmd = env.run(cmd % _dict)
+        if test_cmd.failed:
+            print(red("** Something went wrong while testing <%s> **" % _dict))
+        else:
+            print(cyan("** Everything seems to work **" % _dict))
