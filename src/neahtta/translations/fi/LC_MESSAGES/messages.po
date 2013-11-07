@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-11-06 23:52+0100\n"
+"POT-Creation-Date: 2013-11-07 00:41-0600\n"
 "PO-Revision-Date: 2013-11-07 00:14+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: fi <LL@li.org>\n"
@@ -18,97 +18,101 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: configs/language_names.py:10 configs/language_names.py:11
+#: configs/language_names.py:23 configs/language_names.py:24
 #: templates/more_dictionaries.html:27
 msgid "North Sámi"
 msgstr "Pohjoissaame"
 
-#: configs/language_names.py:12
+#: configs/language_names.py:25
 msgid "North Sámi (#SoMe)"
 msgstr "Pohjoissaame (#SoMe)"
 
-#: configs/language_names.py:13 configs/language_names.py:60
+#: configs/language_names.py:26 configs/language_names.py:74
 msgid "English"
 msgstr "Englanti"
 
-#: configs/language_names.py:16 templates/more_dictionaries.html:28
+#: configs/language_names.py:29 templates/more_dictionaries.html:28
 msgid "South Sámi"
 msgstr "Eteläsaame"
 
-#: configs/language_names.py:19
+#: configs/language_names.py:32
 msgid "Komi"
 msgstr "Komi"
 
-#: configs/language_names.py:22 templates/more_dictionaries.html:38
+#: configs/language_names.py:35 templates/more_dictionaries.html:38
 msgid "Kven"
 msgstr "Kveeni"
 
-#: configs/language_names.py:23 templates/more_dictionaries.html:38
+#: configs/language_names.py:36 templates/more_dictionaries.html:38
 msgid "Livonian"
 msgstr "Liivi"
 
-#: configs/language_names.py:24
+#: configs/language_names.py:37
 msgid "Olonetsian"
 msgstr "Livvi"
 
-#: configs/language_names.py:25 templates/more_dictionaries.html:38
+#: configs/language_names.py:38 templates/more_dictionaries.html:38
 msgid "Izhorian"
 msgstr "Inkeroinen"
 
-#: configs/language_names.py:26
+#: configs/language_names.py:39
 msgid "Estonian"
 msgstr "Viro"
 
-#: configs/language_names.py:29
+#: configs/language_names.py:42
 msgid "Erzya Mordvin"
 msgstr "Ersä"
 
-#: configs/language_names.py:30 templates/more_dictionaries.html:39
+#: configs/language_names.py:43 templates/more_dictionaries.html:39
 msgid "Moksha"
 msgstr "Moksha"
 
-#: configs/language_names.py:33
+#: configs/language_names.py:44 configs/language_names.py:76
+msgid "French"
+msgstr ""
+
+#: configs/language_names.py:47
 msgid "Western Mari"
 msgstr "Vuorimari"
 
-#: configs/language_names.py:34
+#: configs/language_names.py:48
 msgid "Eastern Mari"
 msgstr "Niittymari"
 
-#: configs/language_names.py:37
+#: configs/language_names.py:51
 msgid "Nenets"
 msgstr "Nenetsi"
 
-#: configs/language_names.py:40
+#: configs/language_names.py:54
 msgid "Skolt Sámi"
 msgstr "Koltansaame"
 
-#: configs/language_names.py:43
+#: configs/language_names.py:57
 msgid "Plains Cree"
 msgstr ""
 
-#: configs/language_names.py:46
+#: configs/language_names.py:60
 msgid "Northern Haida"
 msgstr "Pohjoishaida"
 
-#: configs/language_names.py:49 configs/language_names.py:55
+#: configs/language_names.py:63 configs/language_names.py:69
 msgid "Finnish"
 msgstr "Suomi"
 
-#: configs/language_names.py:50 configs/language_names.py:56
-#: configs/language_names.py:57
+#: configs/language_names.py:64 configs/language_names.py:70
+#: configs/language_names.py:71
 msgid "Norwegian"
 msgstr "Norja"
 
-#: configs/language_names.py:52 configs/language_names.py:53
+#: configs/language_names.py:66 configs/language_names.py:67
 msgid "Russian"
 msgstr "Venäjä"
 
-#: configs/language_names.py:58 configs/language_names.py:59
+#: configs/language_names.py:72 configs/language_names.py:73
 msgid "Latvian"
 msgstr "Latvia"
 
-#: configs/language_names.py:61
+#: configs/language_names.py:75
 msgid "Haida"
 msgstr ""
 
@@ -536,6 +540,10 @@ msgstr ""
 
 #: templates/language_select.html:7
 msgid "<span class=\"reposition_hide\">Language</span>"
+msgstr ""
+
+#: templates/language_select_noflags.html:7
+msgid "Language"
 msgstr ""
 
 #: templates/more_dictionaries.html:4

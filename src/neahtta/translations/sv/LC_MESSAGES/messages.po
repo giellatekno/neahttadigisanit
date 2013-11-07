@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-10-16 15:15-0500\n"
+"POT-Creation-Date: 2013-11-07 00:41-0600\n"
 "PO-Revision-Date: 2013-02-01 01:55-0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: sv <LL@li.org>\n"
@@ -17,90 +17,106 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: configs/language_names.py:10 configs/language_names.py:11
+#: configs/language_names.py:23 configs/language_names.py:24
 #: templates/more_dictionaries.html:27
 msgid "North Sámi"
 msgstr "Nordsamiska"
 
-#: configs/language_names.py:12
+#: configs/language_names.py:25
 msgid "North Sámi (#SoMe)"
 msgstr "Nordsamiska (#SoMe)"
 
-#: configs/language_names.py:15 templates/more_dictionaries.html:28
+#: configs/language_names.py:26 configs/language_names.py:74
+msgid "English"
+msgstr "Engelska"
+
+#: configs/language_names.py:29 templates/more_dictionaries.html:28
 msgid "South Sámi"
 msgstr "Sydsamiska"
 
-#: configs/language_names.py:18
+#: configs/language_names.py:32
 msgid "Komi"
 msgstr ""
 
-#: configs/language_names.py:21 templates/more_dictionaries.html:38
+#: configs/language_names.py:35 templates/more_dictionaries.html:38
 msgid "Kven"
 msgstr "Kvenska"
 
-#: configs/language_names.py:22 templates/more_dictionaries.html:38
+#: configs/language_names.py:36 templates/more_dictionaries.html:38
 msgid "Livonian"
 msgstr "Liviska"
 
-#: configs/language_names.py:23
+#: configs/language_names.py:37
 msgid "Olonetsian"
 msgstr "Olonetsiska"
 
-#: configs/language_names.py:24 templates/more_dictionaries.html:38
+#: configs/language_names.py:38 templates/more_dictionaries.html:38
 msgid "Izhorian"
 msgstr "Ingriska"
 
-#: configs/language_names.py:25
+#: configs/language_names.py:39
 #, fuzzy
 msgid "Estonian"
 msgstr "Liviska"
 
-#: configs/language_names.py:28
+#: configs/language_names.py:42
 msgid "Erzya Mordvin"
 msgstr "Erzjamordvinska"
 
-#: configs/language_names.py:29 templates/more_dictionaries.html:39
+#: configs/language_names.py:43 templates/more_dictionaries.html:39
 msgid "Moksha"
 msgstr ""
 
-#: configs/language_names.py:32
+#: configs/language_names.py:44 configs/language_names.py:76
+msgid "French"
+msgstr ""
+
+#: configs/language_names.py:47
 msgid "Western Mari"
 msgstr "Västmariska"
 
-#: configs/language_names.py:33
+#: configs/language_names.py:48
 #, fuzzy
 msgid "Eastern Mari"
 msgstr "Västmariska"
 
-#: configs/language_names.py:36
+#: configs/language_names.py:51
 msgid "Nenets"
 msgstr "Nenetsiska"
 
-#: configs/language_names.py:39
+#: configs/language_names.py:54
 #, fuzzy
 msgid "Skolt Sámi"
 msgstr "Sydsamiska"
 
-#: configs/language_names.py:42 configs/language_names.py:48
+#: configs/language_names.py:57
+msgid "Plains Cree"
+msgstr ""
+
+#: configs/language_names.py:60
+msgid "Northern Haida"
+msgstr ""
+
+#: configs/language_names.py:63 configs/language_names.py:69
 msgid "Finnish"
 msgstr "Finska"
 
-#: configs/language_names.py:43 configs/language_names.py:49
-#: configs/language_names.py:50
+#: configs/language_names.py:64 configs/language_names.py:70
+#: configs/language_names.py:71
 msgid "Norwegian"
 msgstr "Norska"
 
-#: configs/language_names.py:45 configs/language_names.py:46
+#: configs/language_names.py:66 configs/language_names.py:67
 msgid "Russian"
 msgstr "Ryska"
 
-#: configs/language_names.py:51 configs/language_names.py:52
+#: configs/language_names.py:72 configs/language_names.py:73
 msgid "Latvian"
 msgstr "Lettiska"
 
-#: configs/language_names.py:53
-msgid "English"
-msgstr "Engelska"
+#: configs/language_names.py:75
+msgid "Haida"
+msgstr ""
 
 #: static/js/bookmarklet.js:1245
 msgid "Á"
@@ -506,39 +522,39 @@ msgstr ""
 msgid "Swap"
 msgstr ""
 
-#: templates/index.html:92
+#: templates/index.html:94
 msgid "ohcansátni"
 msgstr ""
 
-#: templates/index.html:94 templates/word_detail.html:67
+#: templates/index.html:96 templates/word_detail.html:67
 msgid "Search"
 msgstr "Sök"
 
-#: templates/index.html:136
-msgid "Definition not found for:"
-msgstr ""
-
-#: templates/index.html:149 views/reader.py:115
+#: templates/index.html:103 templates/index.html:220 views/reader.py:120
 msgid " is a possible form of ... "
 msgstr " är en möjlig form av ... "
 
-#: templates/index.html:175
+#: templates/index.html:164
+msgid "Definition not found for:"
+msgstr ""
+
+#: templates/index.html:242
 #, python-format
 msgid "Word %(input)s not found."
 msgstr "Ord %(input)s hittades inte."
 
-#: templates/index.html:184
+#: templates/index.html:251
 msgid ""
 "If you are using a device without a Sámi keyboard, consider using <a "
 "href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
 "<em>acdnstz</em> for <em>áčđŋšŧž</em>."
 msgstr ""
 
-#: templates/index.html:188
+#: templates/index.html:255
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr "Sök efter ett ord eller en ordform för en ordanalys och definition."
 
-#: templates/index.html:192
+#: templates/index.html:259
 msgid ""
 "You selected #SoMe, the variant for social media, which means that the "
 "letters acdnstz\n"
@@ -549,6 +565,11 @@ msgstr ""
 #: templates/language_select.html:7
 msgid "<span class=\"reposition_hide\">Language</span>"
 msgstr ""
+
+#: templates/language_select_noflags.html:7
+#, fuzzy
+msgid "Language"
+msgstr "Språk"
 
 #: templates/more_dictionaries.html:4
 msgid "More dictionaris"
@@ -746,19 +767,7 @@ msgstr "er en mäjlig form av ... "
 msgid "More information about this word"
 msgstr "Mer inmormation om detta ord"
 
-#: views/main.py:90
+#: views/main.py:91
 msgid "Invalid format. Only json and html allowed."
 msgstr "Ogiltigt format. Bara json och html tillåtit"
-
-#~ msgid "Language"
-#~ msgstr "Språk"
-
-#~ msgid ""
-#~ "You selected #SoMe, the variant for "
-#~ "social media, which means that the "
-#~ "letters acdnstz\n"
-#~ "                                will be accepted "
-#~ "as áčđŋšŧž in addition to their "
-#~ "usual values."
-#~ msgstr ""
 
