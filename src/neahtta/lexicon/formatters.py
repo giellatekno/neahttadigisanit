@@ -166,8 +166,9 @@ class EntryNodeIterator(object):
                     error_xml = etree.tostring(node, pretty_print=True, encoding="utf-8")
                 else:
                     error_xml = 'No entry for lookup'
+                msg_args = (error_xml.strip(), ''.join(tb_str), repr(self.query_args), repr(self.query_kwargvs))
                 current_app.logger.error(
-                    "Potential XML formatting problem somewhere in... \n\n%s\n\n%s" % (error_xml.strip(), ''.join(tb_str))
+                    "Potential XML formatting problem somewhere in... \n\n%s\n\n%s\n\n%s\n\n%s" % msg_args
                 )
                 continue
 
@@ -298,6 +299,8 @@ class FrontPageFormat(EntryNodeIterator):
             error_xml = etree.tostring(e, pretty_print=True, encoding="utf-8")
             current_app.logger.error(
                 "Potential XML formatting problem while processing <tg /> nodes.\n\n" + \
+                repr(self.query_kwargs) + "\n\n" + \
+                repr(self.query_args) + "\n\n" + \
                 error_xml.strip()
             )
 

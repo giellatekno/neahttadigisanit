@@ -349,6 +349,7 @@ def indexWithLangs(_from, _to):
         fmtkwargs = { 'target_lang': _to
                     , 'source_lang': _from
                     , 'ui_lang': iso_filter(session.get('locale', _to))
+                    , 'user_input': lookup_val
                     }
 
 
