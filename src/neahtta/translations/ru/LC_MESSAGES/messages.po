@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
 #
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-10-16 15:15-0500\n"
-"PO-Revision-Date: 2013-03-03 15:39+0200\n"
-"Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
+"POT-Creation-Date: 2013-11-06 23:52+0100\n"
+"PO-Revision-Date: 2013-11-07 00:14+0100\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: ru <LL@li.org>\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
@@ -21,87 +22,96 @@ msgstr ""
 #: configs/language_names.py:10 configs/language_names.py:11
 #: templates/more_dictionaries.html:27
 msgid "North Sámi"
-msgstr "Северно-саамский"
+msgstr ""
 
 #: configs/language_names.py:12
 msgid "North Sámi (#SoMe)"
-msgstr "Северно-саамский (#SoMe)"
+msgstr ""
 
-#: configs/language_names.py:15 templates/more_dictionaries.html:28
+#: configs/language_names.py:13 configs/language_names.py:60
+msgid "English"
+msgstr ""
+
+#: configs/language_names.py:16 templates/more_dictionaries.html:28
 msgid "South Sámi"
-msgstr "Южно-саамский"
+msgstr ""
 
-#: configs/language_names.py:18
+#: configs/language_names.py:19
 msgid "Komi"
-msgstr "Коми"
-
-#: configs/language_names.py:21 templates/more_dictionaries.html:38
-msgid "Kven"
-msgstr "Квен"
+msgstr ""
 
 #: configs/language_names.py:22 templates/more_dictionaries.html:38
+msgid "Kven"
+msgstr ""
+
+#: configs/language_names.py:23 templates/more_dictionaries.html:38
 msgid "Livonian"
-msgstr "Лив"
+msgstr ""
 
-#: configs/language_names.py:23
+#: configs/language_names.py:24
 msgid "Olonetsian"
-msgstr "Ливвиковский"
+msgstr ""
 
-#: configs/language_names.py:24 templates/more_dictionaries.html:38
+#: configs/language_names.py:25 templates/more_dictionaries.html:38
 msgid "Izhorian"
-msgstr "Ижорский"
+msgstr ""
 
-#: configs/language_names.py:25
-#, fuzzy
+#: configs/language_names.py:26
 msgid "Estonian"
-msgstr "Лив"
+msgstr ""
 
-#: configs/language_names.py:28
+#: configs/language_names.py:29
 msgid "Erzya Mordvin"
-msgstr "Эрзянский"
+msgstr ""
 
-#: configs/language_names.py:29 templates/more_dictionaries.html:39
+#: configs/language_names.py:30 templates/more_dictionaries.html:39
 msgid "Moksha"
-msgstr "Мокша"
-
-#: configs/language_names.py:32
-msgid "Western Mari"
-msgstr "Горномарийский"
+msgstr ""
 
 #: configs/language_names.py:33
-#, fuzzy
+msgid "Western Mari"
+msgstr ""
+
+#: configs/language_names.py:34
 msgid "Eastern Mari"
-msgstr "Горномарийский"
+msgstr ""
 
-#: configs/language_names.py:36
+#: configs/language_names.py:37
 msgid "Nenets"
-msgstr "Ненецкий"
+msgstr ""
 
-#: configs/language_names.py:39
-#, fuzzy
+#: configs/language_names.py:40
 msgid "Skolt Sámi"
-msgstr "Южно-саамский"
+msgstr ""
 
-#: configs/language_names.py:42 configs/language_names.py:48
+#: configs/language_names.py:43
+msgid "Plains Cree"
+msgstr ""
+
+#: configs/language_names.py:46
+msgid "Northern Haida"
+msgstr ""
+
+#: configs/language_names.py:49 configs/language_names.py:55
 msgid "Finnish"
-msgstr "Финский"
+msgstr ""
 
-#: configs/language_names.py:43 configs/language_names.py:49
-#: configs/language_names.py:50
+#: configs/language_names.py:50 configs/language_names.py:56
+#: configs/language_names.py:57
 msgid "Norwegian"
-msgstr "Норвежский"
+msgstr ""
 
-#: configs/language_names.py:45 configs/language_names.py:46
+#: configs/language_names.py:52 configs/language_names.py:53
 msgid "Russian"
-msgstr "Русский"
+msgstr ""
 
-#: configs/language_names.py:51 configs/language_names.py:52
+#: configs/language_names.py:58 configs/language_names.py:59
 msgid "Latvian"
-msgstr "Латвийский"
+msgstr ""
 
-#: configs/language_names.py:53
-msgid "English"
-msgstr "Английслий"
+#: configs/language_names.py:61
+msgid "Haida"
+msgstr ""
 
 #: static/js/bookmarklet.js:1245
 msgid "Á"
@@ -116,20 +126,19 @@ msgstr ""
 #: templates/about.sanit.html:6 templates/about.vada.html:7
 #: templates/about.valks.html:7 templates/base.html:93
 msgid "About"
-msgstr "Про нас"
+msgstr ""
 
 #: static/js/bookmarklet.js:1245
 msgid "Advanced"
 msgstr ""
 
 #: static/js/bookmarklet.js:1245
-#, fuzzy
 msgid "Dictionary"
-msgstr "Больше словарей"
+msgstr ""
 
 #: static/js/bookmarklet.js:1245
 msgid "Save"
-msgstr "Сохранить"
+msgstr ""
 
 #: static/js/bookmarklet.js:1245
 msgid "Refresh settings"
@@ -144,16 +153,11 @@ msgid "IE8 Warning"
 msgstr ""
 
 #: static/js/bookmarklet.js:1245
-#, fuzzy
 msgid ""
 "In order to look up a word, hold down the <em>Alt</em> or <em>Option</em>"
 " (⌥) key, and doubleclick on a word. The service will contact the "
 "dictionary, and return a word after a short pause."
 msgstr ""
-"Для того, чтобы найти слово, удерживая Alt или Option (⌥) и дважды \n"
-"                 нажмите на слово. Служба будет подключаться к этому \n"
-"                 сайту и записи возвращения словаря после краткой \n"
-"                 паузы."
 
 #: static/js/bookmarklet.js:1245
 msgid ""
@@ -164,58 +168,55 @@ msgstr ""
 
 #: static/js/bookmarklet.js:1310
 msgid "Error!"
-msgstr "Ошибка!"
+msgstr ""
 
 #: static/js/bookmarklet.js:1310
 msgid "Could not connect to dictionary server"
-msgstr "Не мог соединиться с сервером словаря"
+msgstr ""
 
 #: static/js/bookmarklet.js:1310
 msgid "Close"
-msgstr "Закрыть"
+msgstr ""
 
 #: static/js/bookmarklet.js:1432 static/js/bookmarklet.js:1714
 msgid "Unknown word"
-msgstr "Неизвестное слово"
+msgstr ""
 
 #: static/js/bookmarklet.js:1433
 msgid "You are using"
-msgstr "Используете"
+msgstr ""
 
 #: static/js/bookmarklet.js:1435
-#, fuzzy
 msgid "Meaning not found"
-msgstr "Значение не нашлось для:"
+msgstr ""
 
 #: templates/404.html:51
 msgid ""
 "Whoops! The page you requested was not found. If you think you are "
 "receiving this in error, please contact us."
 msgstr ""
-"Ого! Запрашиваемая Вами страница не найдена. Если вы думаете, что вы "
-"получаете эту ошибку, пожалуйста, свяжитесь с нами."
 
 #: templates/500.html:51
 msgid "Whoops! There was some kind of error."
-msgstr "Возгласы! Была некоторая ошибка."
+msgstr ""
 
 #: templates/about.baakoeh.html:15 templates/about.muter.html:15
 #: templates/about.sanat.html:15 templates/about.sanit.html:15
 #: templates/about.vada.html:17 templates/about.valks.html:17
 msgid "A dictionary that understands what you're looking for."
-msgstr "Словарь, который понимает, что ищешь."
+msgstr ""
 
 #: templates/about.baakoeh.html:16 templates/about.muter.html:16
 #: templates/about.sanat.html:16 templates/about.sanit.html:16
 #: templates/about.vada.html:18 templates/about.valks.html:18
 msgid "(... And is mobile-friendly!)"
-msgstr "(... И для мобильных устройств!)"
+msgstr ""
 
 #: templates/about.baakoeh.html:20 templates/about.muter.html:20
 #: templates/about.sanat.html:20 templates/about.sanit.html:20
 #: templates/about.vada.html:22 templates/about.valks.html:22
 msgid "Free"
-msgstr "Бесплатный"
+msgstr ""
 
 #: templates/about.baakoeh.html:21 templates/about.muter.html:21
 #: templates/about.sanat.html:21 templates/about.sanit.html:21
@@ -226,17 +227,12 @@ msgid ""
 "                    you'll find free dictionaries, and other analytical\n"
 "                    tools."
 msgstr ""
-"Все (или, ну, почти все), что касается\n"
-"                     языков меньшинств должно быть бесплатным. Здесь \n"
-"                     Вы найдете бесплатные словари, и другие инструменты"
-" \n"
-"                     для анализа."
 
 #: templates/about.baakoeh.html:27 templates/about.muter.html:27
 #: templates/about.sanat.html:27 templates/about.sanit.html:27
 #: templates/about.vada.html:29 templates/about.valks.html:29
 msgid "Open-Source"
-msgstr "Открытые источники"
+msgstr ""
 
 #: templates/about.baakoeh.html:28 templates/about.muter.html:28
 #: templates/about.sanat.html:28 templates/about.sanit.html:28
@@ -250,21 +246,12 @@ msgid ""
 "                website for information on how to get access to lexicon\n"
 "                files, and morphological and syntactic analyzers."
 msgstr ""
-"Здесь все основано на открытом исходном коде. Если у Вас \n"
-"                 есть идея для приложения или исследовательского проекта,"
-" который \n"
-"                 нуждается языковых ресурсах? Посетите веб-сайт \n"
-"                 <a class=\"blue\" href=\"http://giellatekno.uit.no/\"> "
-"Giellatekno </a> \n"
-"                  для получения информации о том, как получить доступ к "
-"лексике \n"
-"                 файлов, и морфологических и синтаксических анализаторов."
 
 #: templates/about.baakoeh.html:36 templates/about.muter.html:36
 #: templates/about.sanat.html:36 templates/about.sanit.html:36
 #: templates/about.vada.html:38 templates/about.valks.html:38
 msgid "Linguistic basis"
-msgstr "Лингвистические основы"
+msgstr ""
 
 #: templates/about.baakoeh.html:37 templates/about.muter.html:37
 #: templates/about.sanat.html:37 templates/about.sanit.html:37
@@ -272,21 +259,21 @@ msgstr "Лингвистические основы"
 msgid ""
 "Write what you wish, and the dictionary will analyze it to break apart "
 "compound words and find base forms."
-msgstr "Пишешь что хочешь, словарь сам делит слова на части и делает им анализ."
+msgstr ""
 
 #: templates/about.baakoeh.html:43 templates/about.sanit.html:43
 msgid "gå, dra, reise"
-msgstr "идти, ходить, ехать, ездить"
+msgstr ""
 
 #: templates/about.baakoeh.html:50 templates/about.muter.html:50
 #: templates/about.sanat.html:50 templates/about.sanit.html:50
 #: templates/about.vada.html:52 templates/about.valks.html:52
 msgid "Source material"
-msgstr "Источники для материала"
+msgstr ""
 
 #: templates/about.baakoeh.html:57 templates/about.sanit.html:57
 msgid "sme ↔ nob"
-msgstr "sme ↔ nob"
+msgstr ""
 
 #: templates/about.baakoeh.html:58 templates/about.sanit.html:58
 msgid ""
@@ -294,9 +281,6 @@ msgid ""
 "<em>Álgosátnegirji</em>, but here it has been more than doubled in "
 "content."
 msgstr ""
-"Северно-саамский → Норвежский опирается на словарь Нильс Ернслеттен в "
-"<em>Álgosátnegirji </em>, а здесь он был более чем в два раза больше по "
-"содержанию."
 
 #: templates/about.baakoeh.html:59 templates/about.sanit.html:59
 msgid ""
@@ -304,13 +288,10 @@ msgid ""
 "but we have also revised the content and added frequent words from "
 "Norwegian."
 msgstr ""
-"Норвежско → Северно-саамский преобразованная версия Северно-саамско → "
-"Норвежского, но мы также пересмотрели содержание и добавили частые слова "
-"из норвежского."
 
 #: templates/about.baakoeh.html:62 templates/about.sanit.html:62
 msgid "sma ↔ nob"
-msgstr "sma ↔ nob"
+msgstr ""
 
 #: templates/about.baakoeh.html:63 templates/about.sanit.html:63
 msgid ""
@@ -322,17 +303,10 @@ msgid ""
 " href=\"http://aajege.no/\">Aajege</a>'s work with the Southern Sámi <a "
 "class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
 msgstr ""
-"Словари для Южно-саамского и норвежского строятся на материале, "
-"подготовленном Альберт Джама и Туве Брустада в <a class=\"blue\" "
-"href=\"http://www.ruovatsijte.no/\"> организации Гемнес саами </a>, но в "
-"дополнение получили слова из работ <a class=\"blue\" "
-"href=\"http://giellatekno.uit.no/\"> Giellatekno </a> и <a class=\"blue\""
-" href=\"http://aajege.no/\">Aajege</a>\" с южным саамским <a "
-"class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
 
 #: templates/about.baakoeh.html:66 templates/about.sanit.html:66
 msgid "sme ↔ fin"
-msgstr "sme ↔ fin"
+msgstr ""
 
 #: templates/about.baakoeh.html:67 templates/about.sanit.html:67
 msgid ""
@@ -343,21 +317,16 @@ msgid ""
 "have included frequent words from North Sámi, but especially from "
 "Finnish."
 msgstr ""
-"Словари для северно-саамского и финского основаны на лексическом "
-"материале из <a class=\"green\" href=\"http://kotus.fi\"> Института Языки"
-" Финляндии</a>, и от автора работы в Giellatekno с северно-саамским <a "
-"class=\"green\" href=\"http://oahpa.no\"> Oahpa </a>. Кроме того, мы "
-"включили частые слова из северно-саамского, но особенно из финского."
 
 #: templates/about.baakoeh.html:68 templates/about.sanit.html:68
 msgid "Each of the dictionaries contains about 11,000 base words."
-msgstr "Каждый из словарей содержит около 11.000 базовых слов."
+msgstr ""
 
 #: templates/about.baakoeh.html:76 templates/about.muter.html:79
 #: templates/about.sanat.html:86 templates/about.sanit.html:76
 #: templates/about.vada.html:78 templates/about.valks.html:90
 msgid "More to come..."
-msgstr "Еще не все..."
+msgstr ""
 
 #: templates/about.muter.html:43 templates/about.vada.html:45
 #: templates/about.valks.html:45
@@ -365,9 +334,8 @@ msgid "mennä, lähteä, kulkea"
 msgstr ""
 
 #: templates/about.muter.html:57
-#, fuzzy
 msgid "mrj ↔ fin"
-msgstr "Горномарийский ↔ финский"
+msgstr ""
 
 #: templates/about.muter.html:58
 msgid ""
@@ -390,9 +358,8 @@ msgid "mennä, tapahtua, viedä, johtaa, edistyä"
 msgstr ""
 
 #: templates/about.sanat.html:57
-#, fuzzy
 msgid "liv ↔ fin"
-msgstr "Ливский ↔ финский"
+msgstr ""
 
 #: templates/about.sanat.html:58
 msgid ""
@@ -409,9 +376,8 @@ msgid ""
 msgstr ""
 
 #: templates/about.sanat.html:67
-#, fuzzy
 msgid "olo ↔ fin"
-msgstr "Ливвиковский ↔ финский"
+msgstr ""
 
 #: templates/about.sanat.html:68
 msgid ""
@@ -425,9 +391,8 @@ msgid ""
 msgstr ""
 
 #: templates/about.vada.html:59
-#, fuzzy
 msgid "yrk ↔ fin"
-msgstr "Ненецкий ↔ финский"
+msgstr ""
 
 #: templates/about.vada.html:60
 msgid ""
@@ -442,9 +407,8 @@ msgid ""
 msgstr ""
 
 #: templates/about.valks.html:59
-#, fuzzy
 msgid "myv ↔ fin"
-msgstr "эрзянский ↔ финский"
+msgstr ""
 
 #: templates/about.valks.html:60
 msgid ""
@@ -464,9 +428,8 @@ msgid ""
 msgstr ""
 
 #: templates/about.valks.html:70
-#, fuzzy
 msgid "mdf ↔ fin"
-msgstr "мокшанский ↔ финский"
+msgstr ""
 
 #: templates/about.valks.html:71
 msgid ""
@@ -485,15 +448,15 @@ msgstr ""
 
 #: templates/base.html:85
 msgid "Home"
-msgstr "Домашняя страница"
+msgstr ""
 
 #: templates/base.html:89
 msgid "Plugins"
-msgstr "Плагин"
+msgstr ""
 
 #: templates/base.html:98
 msgid "Interface language"
-msgstr "язык интерфейса"
+msgstr ""
 
 #: templates/base.html:164
 msgid ""
@@ -502,20 +465,14 @@ msgid ""
 "Technology group at the <a href=\"http://uit.no\">University of "
 "Tromsø</a>."
 msgstr ""
-"Создано с бесплатным и с открытым исходным кодом языков из <em> <a "
-"href=\"http://giellatekno.uit.no\"> Giellatekno </a> </em>, технологии "
-"группы языков саами в <a href=\"http://uit.no\"> университете Тромса "
-"</a>."
 
 #: templates/config_doc.html:4
-#, fuzzy
 msgid "Neahttadigisánit"
-msgstr "Neahttadigisánit программа чтения"
+msgstr ""
 
 #: templates/index.html:19 templates/index.html:35
-#, fuzzy
 msgid "Dictionaries"
-msgstr "Больше словарей"
+msgstr ""
 
 #: templates/index.html:26 templates/index.html:70
 #: templates/more_dictionaries.html:21
@@ -524,67 +481,59 @@ msgstr ""
 
 #: templates/index.html:50 templates/index.html:61
 msgid "Written variant"
-msgstr "Писменный вариант"
+msgstr ""
 
 #: templates/index.html:52 templates/index.html:63
 msgid "Standard (<em>áčđŋšŧž</em>)"
-msgstr "Стандартный вариант (<em>áčđŋšŧž</em>)"
+msgstr ""
 
 #: templates/index.html:53 templates/index.html:64
 msgid "Social Media (incl. <em>acdnstz</em>)"
-msgstr "Социальная медия (включая. <em>acdnstz</em>)"
+msgstr ""
 
 #: templates/index.html:78
 msgid "Swap"
-msgstr "Поменять"
+msgstr ""
 
-#: templates/index.html:92
+#: templates/index.html:94
 msgid "ohcansátni"
-msgstr "Слово искании"
+msgstr ""
 
-#: templates/index.html:94 templates/word_detail.html:67
+#: templates/index.html:96 templates/word_detail.html:67
 msgid "Search"
-msgstr "Искать"
+msgstr ""
 
-#: templates/index.html:136
-msgid "Definition not found for:"
-msgstr "Значение не нашлось для:"
-
-#: templates/index.html:149 views/reader.py:115
+#: templates/index.html:103 templates/index.html:220 views/reader.py:120
 msgid " is a possible form of ... "
-msgstr "форма на левой стороне образованна из формы правой стороны"
+msgstr ""
 
-#: templates/index.html:175
+#: templates/index.html:164
+msgid "Definition not found for:"
+msgstr ""
+
+#: templates/index.html:242
 #, python-format
 msgid "Word %(input)s not found."
-msgstr "Слово %(input)s не нашлось."
+msgstr ""
 
-#: templates/index.html:184
+#: templates/index.html:251
 msgid ""
 "If you are using a device without a Sámi keyboard, consider using <a "
 "href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
 "<em>acdnstz</em> for <em>áčđŋšŧž</em>."
 msgstr ""
-"Если используешь средство без саамской клавиатуры, можешь использовать <a"
-" href=\"/SoMe/nob/\">модель социальной медии</a>, где пишешь "
-"<em>acdnstz</em> вместо <em>áčđŋšŧž</em>."
 
-#: templates/index.html:188
+#: templates/index.html:255
 msgid "Search for a word, or a word form for a word analysis and definition."
-msgstr "Поиск слова или словоформы для анализа слов и определений."
+msgstr ""
 
-#: templates/index.html:192
-#, fuzzy
+#: templates/index.html:259
 msgid ""
 "You selected #SoMe, the variant for social media, which means that the "
 "letters acdnstz\n"
 "                            will be accepted as áčđŋšŧž in addition to "
 "their usual values."
 msgstr ""
-"Вы выбрали #SoMe, вариант для социальных медий, а это значит, что буквы "
-"acdnstz \n"
-"                                 будут приниматься в качестве áčđŋšŧž "
-"дополнения к своим обычным значениям."
 
 #: templates/language_select.html:7
 msgid "<span class=\"reposition_hide\">Language</span>"
@@ -592,7 +541,7 @@ msgstr ""
 
 #: templates/more_dictionaries.html:4
 msgid "More dictionaris"
-msgstr "Больше словарей"
+msgstr ""
 
 #: templates/more_dictionaries.html:23
 msgid ""
@@ -612,46 +561,43 @@ msgstr ""
 
 #: templates/more_dictionaries.html:37
 msgid "Balto-finnic languages"
-msgstr "Прибалтийско-финские языки"
+msgstr ""
 
 #: templates/more_dictionaries.html:38
-#, fuzzy
 msgid "Olonets"
-msgstr "Ливвиковский"
+msgstr ""
 
 #: templates/more_dictionaries.html:38
 msgid "and"
-msgstr "и"
+msgstr ""
 
 #: templates/more_dictionaries.html:39
 msgid "Mordvinic languages"
-msgstr "Мордовские языки"
+msgstr ""
 
 #: templates/more_dictionaries.html:39
 msgid "Erzya"
-msgstr "Эрзянский язык"
+msgstr ""
 
 #: templates/more_dictionaries.html:41
-#, fuzzy
 msgid "Mari languages"
-msgstr "Марийские языки"
+msgstr ""
 
 #: templates/more_dictionaries.html:41
 msgid "Eastern and Western."
-msgstr "лугово-восточний и горномарийский"
+msgstr ""
 
 #: templates/more_dictionaries.html:42
-#, fuzzy
 msgid "Permic languages"
-msgstr "Пермские языки"
+msgstr ""
 
 #: templates/more_dictionaries.html:42
 msgid "Komi-Zyrian"
-msgstr "Коми-зырянский"
+msgstr ""
 
 #: templates/more_dictionaries.html:45
 msgid "Even more dictionaries..."
-msgstr "Еще больше словарей"
+msgstr ""
 
 #: templates/more_dictionaries.html:46
 msgid ""
@@ -667,15 +613,15 @@ msgstr ""
 
 #: templates/reader.html:3 templates/reader.html:20
 msgid "Neahttadigisánit Reader"
-msgstr "Neahttadigisánit программа чтения"
+msgstr ""
 
 #: templates/reader.html:21
 msgid "WARNING!! We have problems with Internet Explorer 8!"
-msgstr "ВНИМАНИЕ! У нас есть проблемы с Internet Explorer 8!"
+msgstr ""
 
 #: templates/reader.html:22
 msgid "Bookmarklet"
-msgstr "Букмарклет"
+msgstr ""
 
 #: templates/reader.html:23
 msgid ""
@@ -686,14 +632,10 @@ msgid ""
 " a\n"
 "                menu icon on the left-hand side of the page."
 msgstr ""
-"Перетащите следующую ссылку на панель инструментов закладки, \n"
-"                 затем, когда вы находитесь на странице и хотите читать,\n"
-"                 служба будет автоматически установлена, и вы увидите, \n"
-"                 значок меню на левой стороне страницы."
 
 #: templates/reader.html:27 templates/reader_update.html:15
 msgid "Read with Neahttadigisánit"
-msgstr "Читайте с программой Neahttadigisánit"
+msgstr ""
 
 #: templates/reader.html:28
 msgid ""
@@ -702,18 +644,14 @@ msgid ""
 "                website and return dictionary entries after a brief\n"
 "                pause."
 msgstr ""
-"Для того, чтобы найти слово, удерживая Alt или Option (⌥) и дважды \n"
-"                 нажмите на слово. Служба будет подключаться к этому \n"
-"                 сайту и записи возвращения словаря после краткой \n"
-"                 паузы."
 
 #: templates/reader.html:32
 msgid "To change the dictionary, click the menu icon."
-msgstr "Чтобы поменять словарь, щелкните значок меню."
+msgstr ""
 
 #: templates/reader.html:33
 msgid "Bugs?"
-msgstr "Ошибки?"
+msgstr ""
 
 #: templates/reader.html:34
 msgid ""
@@ -722,10 +660,6 @@ msgid ""
 "of\n"
 "                what you were reading when you encountered the problem."
 msgstr ""
-"Если вы обнаружите ошибки или закладка не работает на \n"
-"                 определенной странице, свяжитесь с нами и дайте URL "
-"страницы или деталей \n"
-"                 того, что вы читали, когда вы столкнулись с проблемой."
 
 #: templates/reader.html:37
 msgid ""
@@ -734,10 +668,6 @@ msgid ""
 "improve\n"
 "                the dictionary."
 msgstr ""
-"Мы не храним никаких личных данных, но мы собираем \n"
-"                 индивидуальный поиск слов для статистики и для улучшения"
-" \n"
-"                словаря."
 
 #: templates/reader.html:46
 msgid "Includes"
@@ -768,30 +698,22 @@ msgid ""
 msgstr ""
 
 #: templates/reader_update.html:9
-#, fuzzy
 msgid ""
 "Drag and drop the following link to your Bookmark toolbar,\n"
 "    then click it when you are on a page you wish to read. The\n"
 "    service will automatically be installed, and you will see a\n"
 "    menu icon on the left-hand side of the page."
 msgstr ""
-"Перетащите следующую ссылку на панель инструментов закладки, \n"
-"                 затем, когда вы находитесь на странице и хотите читать,\n"
-"                 служба будет автоматически установлена, и вы увидите, \n"
-"                 значок меню на левой стороне страницы."
 
 #: templates/word_detail.html:19
 msgid "is a possible form of ... "
-msgstr "форма на левой стороне образованна из формы правой стороны"
+msgstr ""
 
 #: templates/word_detail.html:188
 msgid "More information about this word"
-msgstr "Подробнее об этом слове"
+msgstr ""
 
-#: views/main.py:90
+#: views/main.py:91
 msgid "Invalid format. Only json and html allowed."
-msgstr "Недопустимый формат. Только json и html допустимые."
-
-#~ msgid "Language"
-#~ msgstr "Язык"
+msgstr ""
 

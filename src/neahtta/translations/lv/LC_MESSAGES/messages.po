@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-10-16 15:15-0500\n"
+"POT-Creation-Date: 2013-11-06 23:52+0100\n"
 "PO-Revision-Date: 2013-03-25 12:21+0200\n"
 "Last-Translator: \n"
 "Language-Team: lv <LL@li.org>\n"
@@ -27,81 +27,93 @@ msgstr "Ziemeļsāmu"
 msgid "North Sámi (#SoMe)"
 msgstr "Ziemeļsāmu (#SoMe)"
 
-#: configs/language_names.py:15 templates/more_dictionaries.html:28
+#: configs/language_names.py:13 configs/language_names.py:60
+msgid "English"
+msgstr "Angļu"
+
+#: configs/language_names.py:16 templates/more_dictionaries.html:28
 msgid "South Sámi"
 msgstr "Dienvidsāmu"
 
-#: configs/language_names.py:18
+#: configs/language_names.py:19
 msgid "Komi"
 msgstr "Komiešu"
 
-#: configs/language_names.py:21 templates/more_dictionaries.html:38
+#: configs/language_names.py:22 templates/more_dictionaries.html:38
 msgid "Kven"
 msgstr "Kvenu"
 
-#: configs/language_names.py:22 templates/more_dictionaries.html:38
+#: configs/language_names.py:23 templates/more_dictionaries.html:38
 msgid "Livonian"
 msgstr "Lībiešu"
 
-#: configs/language_names.py:23
+#: configs/language_names.py:24
 msgid "Olonetsian"
 msgstr "Oloņecas karēļu"
 
-#: configs/language_names.py:24 templates/more_dictionaries.html:38
+#: configs/language_names.py:25 templates/more_dictionaries.html:38
 msgid "Izhorian"
 msgstr "Ižoru"
 
-#: configs/language_names.py:25
+#: configs/language_names.py:26
 #, fuzzy
 msgid "Estonian"
 msgstr "Lībiešu"
 
-#: configs/language_names.py:28
+#: configs/language_names.py:29
 msgid "Erzya Mordvin"
 msgstr "Erzas mordiešu"
 
-#: configs/language_names.py:29 templates/more_dictionaries.html:39
+#: configs/language_names.py:30 templates/more_dictionaries.html:39
 msgid "Moksha"
 msgstr "Mokšas mordviešu"
 
-#: configs/language_names.py:32
+#: configs/language_names.py:33
 msgid "Western Mari"
 msgstr "Kalnu mariešu"
 
-#: configs/language_names.py:33
+#: configs/language_names.py:34
 #, fuzzy
 msgid "Eastern Mari"
 msgstr "Kalnu mariešu"
 
-#: configs/language_names.py:36
+#: configs/language_names.py:37
 msgid "Nenets"
 msgstr "Ņencu"
 
-#: configs/language_names.py:39
+#: configs/language_names.py:40
 #, fuzzy
 msgid "Skolt Sámi"
 msgstr "Dienvidsāmu"
 
-#: configs/language_names.py:42 configs/language_names.py:48
+#: configs/language_names.py:43
+msgid "Plains Cree"
+msgstr ""
+
+#: configs/language_names.py:46
+msgid "Northern Haida"
+msgstr ""
+
+#: configs/language_names.py:49 configs/language_names.py:55
 msgid "Finnish"
 msgstr "Somu"
 
-#: configs/language_names.py:43 configs/language_names.py:49
-#: configs/language_names.py:50
+#: configs/language_names.py:50 configs/language_names.py:56
+#: configs/language_names.py:57
 msgid "Norwegian"
 msgstr "Norvēģu"
 
-#: configs/language_names.py:45 configs/language_names.py:46
+#: configs/language_names.py:52 configs/language_names.py:53
 msgid "Russian"
 msgstr "Krievu"
 
-#: configs/language_names.py:51 configs/language_names.py:52
+#: configs/language_names.py:58 configs/language_names.py:59
 msgid "Latvian"
 msgstr "Latviešu"
 
-#: configs/language_names.py:53
-msgid "English"
-msgstr "Angļu"
+#: configs/language_names.py:61
+msgid "Haida"
+msgstr ""
 
 #: static/js/bookmarklet.js:1245
 msgid "Á"
@@ -537,28 +549,28 @@ msgstr "Sociālie mediji (incl. <em>acdnstz</em>)"
 msgid "Swap"
 msgstr "Pārslēgt"
 
-#: templates/index.html:92
+#: templates/index.html:94
 msgid "ohcansátni"
 msgstr "ohcansátni"
 
-#: templates/index.html:94 templates/word_detail.html:67
+#: templates/index.html:96 templates/word_detail.html:67
 msgid "Search"
 msgstr "Meklēt"
 
-#: templates/index.html:136
-msgid "Definition not found for:"
-msgstr "Nav atrodams tulkojums vārdam:"
-
-#: templates/index.html:149 views/reader.py:115
+#: templates/index.html:103 templates/index.html:220 views/reader.py:120
 msgid " is a possible form of ... "
 msgstr "ir iespējamā forma no vārda …"
 
-#: templates/index.html:175
+#: templates/index.html:164
+msgid "Definition not found for:"
+msgstr "Nav atrodams tulkojums vārdam:"
+
+#: templates/index.html:242
 #, python-format
 msgid "Word %(input)s not found."
 msgstr "Vārda %(input)s nav atrasts."
 
-#: templates/index.html:184
+#: templates/index.html:251
 msgid ""
 "If you are using a device without a Sámi keyboard, consider using <a "
 "href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
@@ -568,11 +580,11 @@ msgstr ""
 "izmantot <a href=\"/SoMe/nob/\">sociālo mediju režīmu</a>, kurš jums "
 "atļauj rakstīt <em>acdnstz</em> <em>áčđŋšŧž</em> vietā."
 
-#: templates/index.html:188
+#: templates/index.html:255
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr "Meklēt vārdu vai vārdformu vārda analīzei un tulkojumam."
 
-#: templates/index.html:192
+#: templates/index.html:259
 #, fuzzy
 msgid ""
 "You selected #SoMe, the variant for social media, which means that the "
@@ -792,10 +804,7 @@ msgstr "ir iespējamā forma no vārda …"
 msgid "More information about this word"
 msgstr "Papildu informācija par šo vārdu."
 
-#: views/main.py:90
+#: views/main.py:91
 msgid "Invalid format. Only json and html allowed."
 msgstr "Nederīgs formāts. Tiek atzīts tikai json un html."
-
-#~ msgid "Language"
-#~ msgstr "Valoda"
 

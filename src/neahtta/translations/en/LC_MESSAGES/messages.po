@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
 #
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-10-16 15:15-0500\n"
-"PO-Revision-Date: 2013-10-16 18:36-0500\n"
+"POT-Creation-Date: 2013-11-06 23:52+0100\n"
+"PO-Revision-Date: 2013-11-07 00:14+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
@@ -20,83 +21,95 @@ msgstr ""
 #: configs/language_names.py:10 configs/language_names.py:11
 #: templates/more_dictionaries.html:27
 msgid "North Sámi"
-msgstr "North Saami"
+msgstr ""
 
 #: configs/language_names.py:12
 msgid "North Sámi (#SoMe)"
-msgstr "North Saami (#SoMe)"
+msgstr ""
 
-#: configs/language_names.py:15 templates/more_dictionaries.html:28
+#: configs/language_names.py:13 configs/language_names.py:60
+msgid "English"
+msgstr ""
+
+#: configs/language_names.py:16 templates/more_dictionaries.html:28
 msgid "South Sámi"
-msgstr "South Saami"
+msgstr ""
 
-#: configs/language_names.py:18
+#: configs/language_names.py:19
 msgid "Komi"
 msgstr ""
 
-#: configs/language_names.py:21 templates/more_dictionaries.html:38
+#: configs/language_names.py:22 templates/more_dictionaries.html:38
 msgid "Kven"
 msgstr ""
 
-#: configs/language_names.py:22 templates/more_dictionaries.html:38
+#: configs/language_names.py:23 templates/more_dictionaries.html:38
 msgid "Livonian"
 msgstr ""
 
-#: configs/language_names.py:23
+#: configs/language_names.py:24
 msgid "Olonetsian"
 msgstr ""
 
-#: configs/language_names.py:24 templates/more_dictionaries.html:38
+#: configs/language_names.py:25 templates/more_dictionaries.html:38
 msgid "Izhorian"
 msgstr ""
 
-#: configs/language_names.py:25
+#: configs/language_names.py:26
 msgid "Estonian"
 msgstr ""
 
-#: configs/language_names.py:28
+#: configs/language_names.py:29
 msgid "Erzya Mordvin"
 msgstr ""
 
-#: configs/language_names.py:29 templates/more_dictionaries.html:39
+#: configs/language_names.py:30 templates/more_dictionaries.html:39
 msgid "Moksha"
 msgstr ""
 
-#: configs/language_names.py:32
+#: configs/language_names.py:33
 msgid "Western Mari"
 msgstr ""
 
-#: configs/language_names.py:33
+#: configs/language_names.py:34
 msgid "Eastern Mari"
 msgstr ""
 
-#: configs/language_names.py:36
+#: configs/language_names.py:37
 msgid "Nenets"
 msgstr ""
 
-#: configs/language_names.py:39
+#: configs/language_names.py:40
 msgid "Skolt Sámi"
-msgstr "Skolt Saami"
+msgstr ""
 
-#: configs/language_names.py:42 configs/language_names.py:48
+#: configs/language_names.py:43
+msgid "Plains Cree"
+msgstr ""
+
+#: configs/language_names.py:46
+msgid "Northern Haida"
+msgstr ""
+
+#: configs/language_names.py:49 configs/language_names.py:55
 msgid "Finnish"
 msgstr ""
 
-#: configs/language_names.py:43 configs/language_names.py:49
-#: configs/language_names.py:50
+#: configs/language_names.py:50 configs/language_names.py:56
+#: configs/language_names.py:57
 msgid "Norwegian"
 msgstr ""
 
-#: configs/language_names.py:45 configs/language_names.py:46
+#: configs/language_names.py:52 configs/language_names.py:53
 msgid "Russian"
 msgstr ""
 
-#: configs/language_names.py:51 configs/language_names.py:52
+#: configs/language_names.py:58 configs/language_names.py:59
 msgid "Latvian"
 msgstr ""
 
-#: configs/language_names.py:53
-msgid "English"
+#: configs/language_names.py:61
+msgid "Haida"
 msgstr ""
 
 #: static/js/bookmarklet.js:1245
@@ -267,9 +280,6 @@ msgid ""
 "<em>Álgosátnegirji</em>, but here it has been more than doubled in "
 "content."
 msgstr ""
-"North Saami → Norwegian builds on Nils Jernsletten's dictionary "
-"<em>Álgosátnegirji</em>, but here it has been more than doubled in "
-"content."
 
 #: templates/about.baakoeh.html:59 templates/about.sanit.html:59
 msgid ""
@@ -277,9 +287,6 @@ msgid ""
 "but we have also revised the content and added frequent words from "
 "Norwegian."
 msgstr ""
-"Norwegian → North Saami is a converted version of North Saami → Norwegian, "
-"but we have also revised the content and added frequent words from "
-"Norwegian."
 
 #: templates/about.baakoeh.html:62 templates/about.sanit.html:62
 msgid "sma ↔ nob"
@@ -295,13 +302,6 @@ msgid ""
 " href=\"http://aajege.no/\">Aajege</a>'s work with the Southern Sámi <a "
 "class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
 msgstr ""
-"The dictionaries for South Sámi and Norwegian build on material prepared "
-"by Albert Jåma and Tove Brustad in the <a class=\"blue\" "
-"href=\"http://www.ruovatsijte.no/\">Hemnes Saami Organization</a>, but has"
-" in addition gained words from <a class=\"blue\" "
-"href=\"http://giellatekno.uit.no/\">Giellatekno</a> and <a class=\"blue\""
-" href=\"http://aajege.no/\">Aajege</a>'s work with the South Saami <a "
-"class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
 
 #: templates/about.baakoeh.html:66 templates/about.sanit.html:66
 msgid "sme ↔ fin"
@@ -316,12 +316,6 @@ msgid ""
 "have included frequent words from North Sámi, but especially from "
 "Finnish."
 msgstr ""
-"Dictionaries for North Saami and Finnish are based on lexical material "
-"from the <a class=\"green\" href=\"http://kotus.fi\">Institute for the "
-"Languages of Finland</a>, and from Giellatekno's work with the North Saami"
-"  <a class=\"green\" href=\"http://oahpa.no\">Oahpa</a>. In addition, we "
-"have included frequent words from North Saami, but especially from "
-"Finnish."
 
 #: templates/about.baakoeh.html:68 templates/about.sanit.html:68
 msgid "Each of the dictionaries contains about 11,000 base words."
@@ -470,8 +464,6 @@ msgid ""
 "Technology group at the <a href=\"http://uit.no\">University of "
 "Tromsø</a>."
 msgstr ""
-"Created with free and open-source language tools from <em><a "
-"href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, Centre for Saami Language Technology at the <a href=\"http://uit.no\">UiT The Arctic University of Norway</a>."
 
 #: templates/config_doc.html:4
 msgid "Neahttadigisánit"
@@ -502,42 +494,39 @@ msgstr ""
 msgid "Swap"
 msgstr ""
 
-#: templates/index.html:92
+#: templates/index.html:94
 msgid "ohcansátni"
 msgstr ""
 
-#: templates/index.html:94 templates/word_detail.html:67
+#: templates/index.html:96 templates/word_detail.html:67
 msgid "Search"
 msgstr ""
 
-#: templates/index.html:136
-msgid "Definition not found for:"
-msgstr ""
-
-#: templates/index.html:149 views/reader.py:115
+#: templates/index.html:103 templates/index.html:220 views/reader.py:120
 msgid " is a possible form of ... "
 msgstr ""
 
-#: templates/index.html:175
+#: templates/index.html:164
+msgid "Definition not found for:"
+msgstr ""
+
+#: templates/index.html:242
 #, python-format
 msgid "Word %(input)s not found."
 msgstr ""
 
-#: templates/index.html:184
+#: templates/index.html:251
 msgid ""
 "If you are using a device without a Sámi keyboard, consider using <a "
 "href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
 "<em>acdnstz</em> for <em>áčđŋšŧž</em>."
 msgstr ""
-"If you are using a device without a Saami keyboard, consider using <a "
-"href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
-"<em>acdnstz</em> for <em>áčđŋšŧž</em>."
 
-#: templates/index.html:188
+#: templates/index.html:255
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
 
-#: templates/index.html:192
+#: templates/index.html:259
 msgid ""
 "You selected #SoMe, the variant for social media, which means that the "
 "letters acdnstz\n"
@@ -723,7 +712,7 @@ msgstr ""
 msgid "More information about this word"
 msgstr ""
 
-#: views/main.py:90
+#: views/main.py:91
 msgid "Invalid format. Only json and html allowed."
 msgstr ""
 
