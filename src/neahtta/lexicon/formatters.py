@@ -166,7 +166,7 @@ class EntryNodeIterator(object):
                     error_xml = etree.tostring(node, pretty_print=True, encoding="utf-8")
                 else:
                     error_xml = 'No entry for lookup'
-                msg_args = (error_xml.strip(), ''.join(tb_str), repr(self.query_args), repr(self.query_kwargvs))
+                msg_args = (error_xml.strip(), ''.join(tb_str), repr(self.query_args), repr(self.query_kwargs))
                 current_app.logger.error(
                     "Potential XML formatting problem somewhere in... \n\n%s\n\n%s\n\n%s\n\n%s" % msg_args
                 )
