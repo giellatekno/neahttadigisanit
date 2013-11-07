@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
@@ -133,7 +132,7 @@ msgstr ""
 
 #: static/js/bookmarklet.js:1245
 msgid "Dictionary"
-msgstr ""
+msgstr "Dictionnaire"
 
 #: static/js/bookmarklet.js:1245
 msgid "Save"
@@ -167,7 +166,7 @@ msgstr ""
 
 #: static/js/bookmarklet.js:1310
 msgid "Error!"
-msgstr ""
+msgstr "Erreur!"
 
 #: static/js/bookmarklet.js:1310
 msgid "Could not connect to dictionary server"
@@ -471,7 +470,7 @@ msgstr ""
 
 #: templates/index.html:19 templates/index.html:35
 msgid "Dictionaries"
-msgstr ""
+msgstr "Dictionnaires"
 
 #: templates/index.html:26 templates/index.html:70
 #: templates/more_dictionaries.html:21
