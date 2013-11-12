@@ -282,6 +282,8 @@ def compile(dictionary=False,restart=False):
 
     if failed:
         print(red("** Something went wrong while compiling <%s> **" % dictionary))
+    else:
+        print(cyan("** <%s> FSTs and Lexicon compiled okay, should be safe to restart. **" % dictionary))
 
 @task
 def compile_fst(iso='x'):
@@ -322,4 +324,4 @@ def test_configuration():
         if test_cmd.failed:
             print(red("** Something went wrong while testing <%s> **" % _dict))
         else:
-            print(cyan("** Everything seems to work **" % _dict))
+            print(cyan("** Everything seems to work **"))
