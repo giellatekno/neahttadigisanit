@@ -1,5 +1,6 @@
 ApplicationSettings:
   app_name: "Neahttadigisánit"
+  app_meta_title: "Neahttadigisánit"
   short_name: "valks"
   default_locale: "ru"
   default_pair: ["myv", "rus"]
@@ -9,6 +10,7 @@ ApplicationSettings:
     - mdf
     - ru
     - fi
+    - fr
   meta_description: >
       Free online, mobile friendly dictionaries for Erzya Mordvin and Moksha
   meta_keywords: >
@@ -76,6 +78,11 @@ Languages:
       eng: "russian"
       nob: "russian"
       fin: "russian"
+  - iso: fra
+    name:
+      eng: "french"
+      nob: "fransk"
+      fin: "ranska"
 
 Dictionaries:
   - source: myv
@@ -90,8 +97,16 @@ Dictionaries:
     target: rus
     path: 'dicts/myv-all.xml'
 
+  - source: myv
+    target: fra
+    path: 'dicts/myv-all.xml'
+
   - source: mdf
     target: fin
+    path: 'dicts/mdf-all.xml'
+
+  - source: mdf
+    target: fra
     path: 'dicts/mdf-all.xml'
 
 Paradigms:
