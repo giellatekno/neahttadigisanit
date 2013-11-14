@@ -134,7 +134,9 @@ def local(*args, **kwargs):
 
     # Make command needs to include explicit path to file, because of
     # fabric.
-    env.make_cmd = "make -f " + os.path.join(env.dict_path, 'Makefile')
+    env.make_cmd = "make -C %s -f %s" % ( env.dict_path
+                                        , os.path.join(env.dict_path, 'Makefile')
+                                        )
 
 @task
 def gtweb():
@@ -149,7 +151,9 @@ def gtweb():
     env.neahtta_path = env.path_base + '/neahtta'
     env.i18n_path = env.path_base + '/neahtta/translations'
 
-    env.make_cmd = "make -f " + os.path.join(env.dict_path, 'Makefile')
+    env.make_cmd = "make -C %s -f %s" % ( env.dict_path
+                                        , os.path.join(env.dict_path, 'Makefile')
+                                        )
 
 @task
 def gtoahpa():
@@ -164,8 +168,9 @@ def gtoahpa():
     env.neahtta_path = env.path_base + '/neahtta'
     env.i18n_path = env.path_base + '/neahtta/translations'
 
-    env.make_cmd = "make -f " + os.path.join(env.dict_path, 'Makefile')
-
+    env.make_cmd = "make -C %s -f %s" % ( env.dict_path
+                                        , os.path.join(env.dict_path, 'Makefile')
+                                        )
 
 @task
 def update_gtsvn():
