@@ -175,8 +175,17 @@ def gtoahpa():
 @task
 def update_gtsvn():
     with cd(env.svn_path):
+	paths = [
+		'gt/',
+		'gtcore/',
+		'langs/',
+		'words/',
+	]
         print(cyan("** svn up **"))
-        env.run('svn up gt gtcore langs words')
+	for p in paths:
+		_p = os.path.join(env.svn_path, p)
+		with cd(_p):
+			env.run('svn up ' + _p)
 
 @task
 def restart_service(dictionary=False):
@@ -311,6 +320,7 @@ def compile_fst(iso='x'):
         clear_tmp = env.run(env.make_cmd + " rm-%s" % iso)
 
         make_fsts = env.run(env.make_cmd + " %s" % iso)
+        make_fsts = env.run(env.make_cmd + " %s-%s-install" % (dictionary, iso))
 
         if make_fsts.failed:
             print(red("** Something went wrong while compiling <%s> **" % iso))
