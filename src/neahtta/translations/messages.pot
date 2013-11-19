@@ -59,7 +59,7 @@ msgid "Estonian"
 msgstr ""
 
 #: configs/language_names.py:42
-msgid "Erzya Mordvin"
+msgid "Erzya"
 msgstr ""
 
 #: configs/language_names.py:43 templates/more_dictionaries.html:39
@@ -691,14 +691,12 @@ msgstr ""
 
 #: templates/reader_ie8_notice.html:1
 msgid ""
-"\n"
 "Your web browser is supported, however, you will need to change some\n"
 "options for the Neahttadigisánit Reader to work.\n"
 msgstr ""
 
 #: templates/reader_update.html:1
 msgid ""
-"\n"
 "We have made some updates to the dictionary, which require you to\n"
 "replace your bookmark with a new version.\n"
 msgstr ""

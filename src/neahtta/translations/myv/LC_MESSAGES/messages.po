@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2013-11-07 00:41-0600\n"
-"PO-Revision-Date: 2013-11-07 09:59+0200\n"
+"PO-Revision-Date: 2013-11-19 09:01+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language-Team: myv <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -114,7 +114,7 @@ msgstr "Латышень кель"
 
 #: configs/language_names.py:75
 msgid "Haida"
-msgstr "Хаида"
+msgstr "Хайда"
 
 #: static/js/bookmarklet.js:1245
 msgid "Á"
