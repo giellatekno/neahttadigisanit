@@ -4,6 +4,9 @@
 ##                   ##
 #######################
 
+# TODO: generalize FST compile, and include dependencies so updates are
+# detected
+
 # Some helpful tags for jumping around
 
 ###         #Analyzers
@@ -83,32 +86,43 @@ define compile-lexicon =
 	$(SAXON)
 endef
 
+
+# Split up incoming langs from secondexpansion, convert to make targets and target specific variable
+compile_langs_fsts: $(foreach lang, $(GT_COMPILE_LANGS), langs/$(lang)/src/analyser-gt-desc.xfst)
+compile_langs_fsts: $(langs)
+	@echo $*
+	@echo "***********************"
+	@echo "** Building $(GT_COMPILE_LANGS) FSTs **"
+	@echo "***********************"
+	@echo ""
+	for ll in $(GT_COMPILE_LANGS) ; do \
+ 		if ! test -e "$(GTHOME)/langs/$$ll/src/Makefile" ; then \
+ 			cd $(GTHOME)/langs/$$ll ; ./autogen.sh ; ./configure ; \
+ 		fi ; \
+ 		cd $(GTHOME)/langs/$$ll ; make ; \
+	    cp $(GTHOME)/langs/$$ll/src/analyser-gt-desc.xfst  /tmp/tmp_fst/$$ll.fst ; \
+	    cp $(GTHOME)/langs/$$ll/src/generator-gt-norm.xfst /tmp/tmp_ifst/i$$ll.fst ; \
+	done 
+
+
+install_langs_fsts: $(foreach lang, $(GT_COMPILE_LANGS), langs/$(lang)/src/analyser-gt-desc.xfst)
+install_langs_fsts: $(langs)
+	@echo $*
+	@echo "***********************"
+	@echo "** Copying to target for: $(GT_COMPILE_LANGS) **"
+	@echo "***********************"
+	@echo ""
+	for ll in $(GT_COMPILE_LANGS) ; do \
+		mkdir -p /opt/smi/$$ll/bin/ ; \
+		cp /tmp/tmp_fst/$$ll.fst /opt/smi/$$ll/bin/ ; \
+		cp /tmp/tmp_ifst/i$$ll.fst /opt/smi/$$ll/bin/ ; \
+	done 
+
+
+
 #####
 ##### #Analyzers used in nearly everything
 #####
-
-##
-### #finanalysers
-##
-
-/tmp/tmp_fst/fin.fst:
-	@echo "***********************"
-	@echo "** Building fin FSTs **"
-	@echo "***********************"
-	@echo ""
-	cd $(GTHOME)/langs/fin/ ; \
-	  ./autogen.sh ; \
-	  ./configure  ; \
-	  make ; \
-	  cp src/analyser-gt-desc.xfst  /tmp/tmp_fst/fin.fst ; \
-	  cp src/generator-gt-norm.xfst /tmp/tmp_ifst/ifin.fst
-
-.PHONY: fin
-fin: /tmp/tmp_fst/fin.fst /tmp/tmp_ifst/ifin.fst
-
-rm-fin: 
-	rm -rf /tmp/tmp_fst/fin.fst /tmp/tmp_ifst/ifin.fst
-
 
 # TODO: actually in st
 
@@ -181,8 +195,13 @@ guusaaw-lexica: hdn.all.xml
 rm-guusaaw-lexica: 
 	@rm -rf hdn.all.xml
 
+.PHONY: guusaaw-install
+guusaaw-install: GT_COMPILE_LANGS := hdn
+guusaaw-install: guusaaw-hdn-install
+
 .PHONY: guusaaw
-guusaaw: init hdn eng guusaaw-lexica
+guusaaw: GT_COMPILE_LANGS := hdn
+guusaaw: init guusaaw-lexica compile_langs_fsts
 	@echo "*************************************"
 	@echo "** Built targets for guusaaw:      **"
 	@echo "**    + hdn lexicon                **"
@@ -195,41 +214,10 @@ guusaaw: init hdn eng guusaaw-lexica
 	@echo "    sudo make guusaaw-install"
 	@echo "... or copy the fsts in /tmp/tmp_fst/ and /tmp/tmp_ifst/ to their right places."
 
-guusaaw-hdn-install: /tmp/tmp_fst/hdn.fst /tmp/tmp_ifst/ihdn.fst
-	mkdir -p /opt/smi/hdn/bin/
-	cp $^ /opt/smi/hdn/bin/
-
-guusaaw-install: guusaaw-hdn-install
-
-
-
 
 #####
 ##### #pikiskwewinatargets
 #####
-
-##
-### #crkanalysers
-##
-
-/tmp/tmp_fst/crk.fst:
-	@echo "***********************"
-	@echo "** Building crk FSTs **"
-	@echo "***********************"
-	@echo ""
-	cd $(GTHOME)/langs/crk/ ; \
-	  ./autogen.sh ; \
-	  ./configure  ; \
-	  make ; \
-	  cp src/analyser-gt-desc.xfst  /tmp/tmp_fst/crk.fst ; \
-	  cp src/generator-gt-norm.xfst /tmp/tmp_ifst/icrk.fst
-
-.PHONY: crk
-crk: /tmp/tmp_fst/crk.fst /tmp/tmp_ifst/icrk.fst
-
-rm-crk: 
-	rm -rf /tmp/tmp_fst/crk.fst /tmp/tmp_ifst/icrk.fst
-
 
 ##
 ### #pikiskwewinalexicon
@@ -248,11 +236,18 @@ crk-all.xml: $(GTHOME)/words/dicts/crkeng/src/*.xml
 .PHONY: crk-lexicon
 pikiskwewina-lexica: crk-all.xml
 
+.PHONY: rm-pikiswkewina-lexica
 rm-pikiskwewina-lexica:
 	@rm -rf crk-all.xml
 
+
+.PHONY: pikiskwewina-install
+pikiskwewina-install: GT_COMPILE_LANGS := crk
+pikiskwewina-install: install_langs_fsts
+
 .PHONY: pikiskwewina
-pikiskwewina: init crk eng pikiskwewina-lexica
+pikiskwewina: GT_COMPILE_LANGS := crk
+pikiskwewina: init pikiskwewina-lexica compile_langs_fsts
 	@echo "*************************************"
 	@echo "** Built targets for pikiskwewina: **"
 	@echo "**    + crk lexicon                **"
@@ -266,44 +261,15 @@ pikiskwewina: init crk eng pikiskwewina-lexica
 	@echo "    sudo make pikiskwewina-install"
 	@echo "... or copy the fsts in /tmp/tmp_fst/ and /tmp/tmp_ifst/ to their right places."
 
-pikiskwewina-crk-install: /tmp/tmp_fst/crk.fst /tmp/tmp_ifst/icrk.fst
-	mkdir -p /opt/smi/crk/bin/
-	cp $^ /opt/smi/crk/bin/
-
-pikiskwewina-install: pikiskwewina-crk-install
-
-
 #####
 ##### #saantargets
 #####
 
 ##
-### #smsanalysers
-##
-
-/tmp/tmp_fst/sms.fst:
-	@echo "***********************"
-	@echo "** Building sms FSTs **"
-	@echo "***********************"
-	@echo ""
-	cd $(GTHOME)/langs/sms/ ; \
-	  ./autogen.sh ; \
-	  ./configure  ; \
-	  make ; \
-	  cp src/analyser-gt-desc.xfst  /tmp/tmp_fst/sms.fst ; \
-	  cp src/generator-gt-norm.xfst /tmp/tmp_ifst/isms.fst
-
-.PHONY: sms
-sms: /tmp/tmp_fst/sms.fst /tmp/tmp_ifst/isms.fst
-
-rm-sms: 
-	rm -rf /tmp/tmp_fst/sms.fst /tmp/tmp_ifst/isms.fst
-
-
-##
 ### #saanlexicon
 ##
 
+# TODO: problem
 sms-all.xml: $(GTHOME)/langs/sms/src/morphology/stems/*.xml
 	@echo "**************************"
 	@echo "** Building sms lexicon **"
@@ -323,8 +289,14 @@ saan-lexica: sms-all.xml
 rm-saan-lexica: 
 	@rm -rf sms-all.xml
 
+
+.PHONY: saan-install
+saan-install: GT_COMPILE_LANGS := sms fin
+saan-install: install_langs_fsts 
+
 .PHONY: saan
-saan: init sms fin saan-lexica
+saan: GT_COMPILE_LANGS := sms fin
+saan: init compile_langs_fsts saan-lexica
 	@echo "*********************************"
 	@echo "** Built targets for saan:     **"
 	@echo "**    + sms lexicon            **"
@@ -338,39 +310,10 @@ saan: init sms fin saan-lexica
 	@echo "    sudo make saan-install"
 	@echo "... or copy the fsts in /tmp/tmp_fst/ and /tmp/tmp_ifst/ to their right places."
 
-saan-sms-install: /tmp/tmp_fst/sms.fst /tmp/tmp_ifst/isms.fst
-	mkdir -p /opt/smi/sms/bin/
-	cp $^ /opt/smi/sms/bin/
-
-saan-install: saan-sms-install
-
 
 #####
 ##### #vadatargets
 #####
-
-##
-### #yrkanalysers
-##
-
-/tmp/tmp_fst/yrk.fst:
-	@echo "***********************"
-	@echo "** Building yrk FSTs **"
-	@echo "***********************"
-	@echo ""
-	cd $(GTHOME)/langs/yrk/ ; \
-	  ./autogen.sh ; \
-	  ./configure  ; \
-	  make ; \
-	  cp src/analyser-gt-desc.xfst  /tmp/tmp_fst/yrk.fst ; \
-	  cp src/generator-gt-norm.xfst /tmp/tmp_ifst/iyrk.fst
-
-.PHONY: yrk
-yrk: /tmp/tmp_fst/yrk.fst /tmp/tmp_ifst/iyrk.fst
-
-rm-yrk: 
-	rm -rf /tmp/tmp_fst/yrk.fst /tmp/tmp_ifst/iyrk.fst
-
 
 ##
 ### #vadalexicon
@@ -395,8 +338,13 @@ vada-lexica: yrk-all.xml
 rm-vada-lexica: 
 	@rm -rf yrk-all.xml
 
+.PHONY: vada-install
+vada-install: GT_COMPILE_LANGS := yrk fin
+vada-install: install_langs_fsts 
+
 .PHONY: vada
-vada: init yrk fin vada-lexica
+vada: GT_COMPILE_LANGS := yrk fin
+vada: init vada-lexica compile_langs_fsts
 	@echo "*********************************"
 	@echo "** Built targets for vada:     **"
 	@echo "**    + yrk lexicon            **"
@@ -410,61 +358,9 @@ vada: init yrk fin vada-lexica
 	@echo "    sudo make vada-install"
 	@echo "... or copy the fsts in /tmp/tmp_fst/ and /tmp/tmp_ifst/ to their right places."
 
-vada-yrk-install: /tmp/tmp_fst/yrk.fst /tmp/tmp_ifst/iyrk.fst
-	mkdir -p /opt/smi/yrk/bin/
-	cp $^ /opt/smi/yrk/bin/
-
-vada-install: vada-yrk-install
-
 #####
 ##### #mutertargets
 #####
-
-##
-### #mhranalysers
-##
-
-/tmp/tmp_fst/mhr.fst:
-	@echo "***********************"
-	@echo "** Building mhr FSTs **"
-	@echo "***********************"
-	@echo ""
-	cd $(GTHOME)/langs/mhr/ ; \
-	  ./autogen.sh ; \
-	  ./configure  ; \
-	  make ; \
-	  cp src/analyser-gt-desc.xfst  /tmp/tmp_fst/mhr.fst ; \
-	  cp src/generator-gt-norm.xfst /tmp/tmp_ifst/imhr.fst
-
-##
-### #mrjanalysers
-##
-
-/tmp/tmp_fst/mrj.fst:
-	@echo "***********************"
-	@echo "** Building mrj FSTs **"
-	@echo "***********************"
-	@echo ""
-	cd $(GTHOME)/langs/mrj/ ; \
-	  ./autogen.sh ; \
-	  ./configure  ; \
-	  make ; \
-	  cp src/analyser-gt-desc.xfst  /tmp/tmp_fst/mrj.fst ; \
-	  cp src/generator-gt-norm.xfst /tmp/tmp_ifst/imrj.fst
-
-.PHONY: mhr
-mhr: /tmp/tmp_fst/mhr.fst /tmp/tmp_ifst/imhr.fst
-
-rm-mhr: 
-	rm -rf /tmp/tmp_fst/mhr.fst /tmp/tmp_ifst/imhr.fst
-
-
-.PHONY: mrj
-mrj: /tmp/tmp_fst/mrj.fst /tmp/tmp_ifst/imrj.fst
-
-rm-mrj: 
-	rm -rf /tmp/tmp_fst/mrj.fst /tmp/tmp_ifst/imrj.fst
-
 
 ##
 ### #muterlexicon
@@ -503,8 +399,13 @@ muter-lexica: mhr-all.xml mrj-all.xml
 rm-muter-lexica: 
 	@rm -rf mhr-all.xml mrj-all.xml
 
+.PHONY: muter-install
+muter-install: GT_COMPILE_LANGS := mrj mhr fin 
+muter-install: install_langs_fsts
+
 .PHONY: muter
-muter: init mrj mhr fin muter-lexicon
+muter: GT_COMPILE_LANGS := mrj mhr fin 
+muter: init muter-lexicon compile_langs_fsts
 	@echo "*********************************"
 	@echo "** Built targets for muter:     **"
 	@echo "**    + mhr lexicon            **"
@@ -522,81 +423,9 @@ muter: init mrj mhr fin muter-lexicon
 	@echo "    sudo make muter-install"
 	@echo "... or copy the fsts in /tmp/tmp_fst/ and /tmp/tmp_ifst/ to their right places."
 
-muter-mhr-install: /tmp/tmp_fst/mhr.fst /tmp/tmp_ifst/imhr.fst
-	mkdir -p /opt/smi/mhr/bin/
-	cp $^ /opt/smi/mhr/bin/
-
-muter-mrj-install: /tmp/tmp_fst/mrj.fst /tmp/tmp_ifst/imrj.fst
-	mkdir -p /opt/smi/mrj/bin/
-	cp $^ /opt/smi/mrj/bin/
-
-# muter-rus-install: /tmp/tmp_fst/rus.fst /tmp/tmp_ifst/irus.fst
-muter-rus-install:
-	@echo "TODO: rus"
-	# mkdir -p /opt/smi/rus/bin/
-	# cp $^ /opt/smi/rus/bin/
-
-muter-fin-install: /tmp/tmp_fst/fin.fst /tmp/tmp_ifst/ifin.fst
-	mkdir -p /opt/smi/fin/bin/
-	cp $^ /opt/smi/fin/bin/
-
-muter-install: muter-fin-install \
-               muter-rus-install \
-               muter-mrj-install \
-               muter-mhr-install
-
-
-
-
 #####
 ##### #valkstargets
 #####
-
-##
-### #myvanalysers
-##
-
-/tmp/tmp_fst/myv.fst:
-	@echo "***********************"
-	@echo "** Building myv FSTs **"
-	@echo "***********************"
-	@echo ""
-	cd $(GTHOME)/langs/myv/ ; \
-	  ./autogen.sh ; \
-	  ./configure  ; \
-	  make ; \
-	  cp src/analyser-gt-desc.xfst  /tmp/tmp_fst/myv.fst ; \
-	  cp src/generator-gt-norm.xfst /tmp/tmp_ifst/imyv.fst
-
-.PHONY: myv
-myv: /tmp/tmp_fst/myv.fst /tmp/tmp_ifst/imyv.fst
-
-rm-myv: 
-	rm -rf /tmp/tmp_fst/myv.fst /tmp/tmp_ifst/imyv.fst
-
-
-
-##
-### #mdfanalysers
-##
-
-/tmp/tmp_fst/mdf.fst:
-	@echo "***********************"
-	@echo "** Building mdf FSTs **"
-	@echo "***********************"
-	@echo ""
-	cd $(GTHOME)/langs/mdf/ ; \
-	  ./autogen.sh ; \
-	  ./configure  ; \
-	  make  ; \
-	  cp src/analyser-gt-desc.xfst  /tmp/tmp_fst/mdf.fst ; \
-	  cp src/generator-gt-norm.xfst /tmp/tmp_ifst/imdf.fst
-
-.PHONY: mdf
-mdf: /tmp/tmp_fst/mdf.fst /tmp/tmp_ifst/imdf.fst
-
-rm-mdf: 
-	rm -rf /tmp/tmp_fst/mdf.fst /tmp/tmp_ifst/imdf.fst
 
 
 myv-all.xml: $(GTHOME)/langs/myv/src/morphology/stems/*.xml
@@ -630,8 +459,13 @@ valks-lexica:  myv-all.xml mdf-all.xml
 rm-valks-lexica:
 	rm -rf myv-all.xml mdf-all.xml	
 
+.PHONY: valks-install
+valks-install: GT_COMPILE_LANGS := fin myv mdf
+valks-install: install_langs_fsts 
+
 .PHONY: valks
-valks: init myv mdf fin valks-lexica
+valks: GT_COMPILE_LANGS := fin myv mdf
+valks: init valks-lexica compile_langs_fsts
 	@echo "*********************************"
 	@echo "** Built targets for valks:    **"
 	@echo "**    + myv, mdf lexica        **"
@@ -647,119 +481,9 @@ valks: init myv mdf fin valks-lexica
 	@echo "    sudo make valks-install"
 	@echo "... or copy the fsts in /tmp/tmp_fst/ and /tmp/tmp_ifst/ to their right places."
 
-
-valks-fin-install: /tmp/tmp_fst/fin.fst /tmp/tmp_ifst/ifin.fst
-	mkdir -p /opt/smi/fin/bin/
-	cp $^ /opt/smi/fin/bin/
-
-valks-myv-install: /tmp/tmp_fst/myv.fst /tmp/tmp_ifst/imyv.fst
-	mkdir -p /opt/smi/myv/bin/
-	cp $^ /opt/smi/myv/bin/
-
-valks-mdf-install: /tmp/tmp_fst/mdf.fst /tmp/tmp_ifst/imdf.fst
-	mkdir -p /opt/smi/mdf/bin/
-	cp $^ /opt/smi/mdf/bin/
-
-valks-install: valks-myv-install \
-			   valks-mdf-install \
-			   valks-fin-install
-
-
 #####
 ##### #sanattargets
 #####
-
-##
-### #oloanalysers
-##
-
-/tmp/tmp_fst/olo.fst:
-	@echo "***********************"
-	@echo "** Building olo FSTs **"
-	@echo "***********************"
-	@echo ""
-	cd $(GTHOME)/langs/olo/ ; \
-	  ./autogen.sh ; \
-	  ./configure  ; \
-	  make  ; \
-	  cp src/analyser-gt-desc.xfst  /tmp/tmp_fst/olo.fst ; \
-	  cp src/generator-gt-norm.xfst /tmp/tmp_ifst/iolo.fst
-
-.PHONY: olo
-olo: /tmp/tmp_fst/olo.fst /tmp/tmp_ifst/iolo.fst
-
-rm-olo: 
-	rm -rf /tmp/tmp_fst/olo.fst /tmp/tmp_ifst/iolo.fst
-
-
-##
-### #livanalysers
-##
-
-/tmp/tmp_fst/liv.fst:
-	@echo "***********************"
-	@echo "** Building liv FSTs **"
-	@echo "***********************"
-	@echo ""
-	cd $(GTHOME)/langs/liv/ ; \
-	  ./autogen.sh ; \
-	  ./configure  ; \
-	  make  ; \
-	  cp src/analyser-gt-desc.xfst  /tmp/tmp_fst/liv.fst ; \
-	  cp src/generator-gt-norm.xfst /tmp/tmp_ifst/iliv.fst
-
-.PHONY: liv
-liv: /tmp/tmp_fst/liv.fst /tmp/tmp_ifst/iliv.fst
-
-rm-liv: 
-	rm -rf /tmp/tmp_fst/liv.fst /tmp/tmp_ifst/iliv.fst
-
-
-##
-### #fkvanalysers
-##
-
-/tmp/tmp_fst/fkv.fst:
-	@echo "***********************"
-	@echo "** Building fkv FSTs **"
-	@echo "***********************"
-	@echo ""
-	cd $(GTHOME)/langs/fkv/ ; \
-	  ./autogen.sh ; \
-	  ./configure  ; \
-	  make  ; \
-	  cp src/analyser-gt-desc.xfst  /tmp/tmp_fst/fkv.fst ; \
-	  cp src/generator-gt-norm.xfst /tmp/tmp_ifst/ifkv.fst
-
-.PHONY: fkv
-fkv: /tmp/tmp_fst/fkv.fst /tmp/tmp_ifst/ifkv.fst
-
-rm-fkv: 
-	rm -rf /tmp/tmp_fst/fkv.fst /tmp/tmp_ifst/ifkv.fst
-
-
-##
-### #izhanalysers
-##
-
-/tmp/tmp_fst/izh.fst:
-	@echo "***********************"
-	@echo "** Building izh FSTs **"
-	@echo "***********************"
-	@echo ""
-	cd $(GTHOME)/langs/izh/ ; \
-	  ./autogen.sh ; \
-	  ./configure  ; \
-	  make  ; \
-	  cp src/analyser-gt-desc.xfst  /tmp/tmp_fst/izh.fst ; \
-	  cp src/generator-gt-norm.xfst /tmp/tmp_ifst/iizh.fst
-
-.PHONY: izh
-izh: /tmp/tmp_fst/izh.fst /tmp/tmp_ifst/iizh.fst
-
-rm-izh: 
-	rm -rf /tmp/tmp_fst/izh.fst /tmp/tmp_ifst/iizh.fst
-
 
 ##
 ### #sanatlexica
@@ -842,7 +566,13 @@ sanat-lexica: olo-fin.xml \
 rm-sanat-lexica: 
 	@rm -rf olo-fin.xml liv.all.xml izh-fin.xml fkv-nob.xml nob-fkv.xml
 
-sanat: init olo izh liv fin fkv sanat-lexica
+.PHONY: sanat-install
+sanat-install: GT_COMPILE_LANGS := olo liv izh fkv
+sanat-install: install_langs_fsts 
+
+.PHONY: sanat
+sanat: GT_COMPILE_LANGS := olo izh liv fin fkv
+sanat: init sanat-lexica compile_langs_fsts
 	@echo "*********************************"
 	@echo "** Built targets for sanat:    **"
 	@echo "**    + olo lexicon            **"
@@ -864,27 +594,6 @@ sanat: init olo izh liv fin fkv sanat-lexica
 	@echo "Now install analysers in expected paths."
 	@echo "    sudo make sanat-install"
 	@echo "... or copy the fsts in /tmp/tmp_fst/ and /tmp/tmp_ifst/ to their right places."
-
-sanat-olo-install: /tmp/tmp_fst/olo.fst /tmp/tmp_ifst/iolo.fst
-	mkdir -p /opt/smi/olo/bin/
-	cp $^ /opt/smi/olo/bin/
-
-sanat-liv-install: /tmp/tmp_fst/liv.fst /tmp/tmp_ifst/iliv.fst
-	mkdir -p /opt/smi/liv/bin/
-	cp $^ /opt/smi/liv/bin/
-
-sanat-izh-install: /tmp/tmp_fst/izh.fst /tmp/tmp_ifst/iizh.fst
-	mkdir -p /opt/smi/izh/bin/
-	cp $^ /opt/smi/izh/bin/
-
-sanat-fkv-install: /tmp/tmp_fst/fkv.fst /tmp/tmp_ifst/ifkv.fst
-	mkdir -p /opt/smi/fkv/bin/
-	cp $^ /opt/smi/fkv/bin/
-
-sanat-install: sanat-olo-install \
-			   sanat-liv-install \
-			   sanat-izh-install \
-			   sanat-fkv-install
 
 #####
 ##### #sanittargets
@@ -966,7 +675,6 @@ sme-install: n-sme.fst dict-isme-norm.fst some-n-sme.fst
 ### #smeanalysers
 ##
 
-
 # NB not copying to /tmp/tmp_fst/ or /tmp/tmp_ifst/ because format is different for these.
 /tmp/misc_fst/n-sme.fst:
 /tmp/misc_fst/dict-isme-norm.fst:
@@ -977,28 +685,10 @@ sme-install: n-sme.fst dict-isme-norm.fst some-n-sme.fst
 	@echo ""
 	cd $(GTHOME)/gt/ ; \
 	  make TARGET=sme ; \
+	  mkdir -p /tmp/misc_fst ; \
 	  cp sme/bin/n-sme.fst  /tmp/misc_fst/n-sme.fst ; \
 	  cp sme/bin/some-n-sme.fst  /tmp/misc_fst/some-n-sme.fst ; \
 	  cp sme/bin/dict-isme-norm.fst /tmp/misc_fst/dict-isme-norm.fst
-
-
-/tmp/tmp_fst/nob.fst:
-	@echo "***********************"
-	@echo "** Building nob FSTs **"
-	@echo "***********************"
-	@echo ""
-	cd $(GTHOME)/langs/nob/ ; \
-	  ./autogen.sh ; \
-	  ./configure  ; \
-	  make  ; \
-	  cp src/analyser-gt-desc.xfst  /tmp/tmp_fst/nob.fst ; \
-	  cp src/generator-gt-norm.xfst /tmp/tmp_ifst/inob.fst
-
-.PHONY: nob
-nob: /tmp/tmp_fst/nob.fst /tmp/tmp_ifst/inob.fst
-
-rm-nob:
-	rm -rf /tmp/tmp_fst/nob.fst /tmp/tmp_ifst/inob.fst
 
 
 .PHONY: sme
@@ -1009,7 +699,16 @@ sme: /tmp/misc_fst/n-sme.fst \
 rm-sme:
 	rm -rf /tmp/misc_fst/n-sme.fst /tmp/misc_fst/dict-isme-norm.fst /tmp/misc_fst/some-n-sme.fst
 
-sanit: init sme fin nob sanit-lexica
+# NB: sme has own needs
+.PHONY: sanit-install
+sanit-install: GT_COMPILE_LANGS := fin nob
+sanit-install: sanit-sme-install install_langs_fsts
+
+# TODO: nb, sme has its own path, is not included in GT_COMPILE_LANGS because
+# it isn't in main/langs/ yet.
+.PHONY: sanit
+sanit: GT_COMPILE_LANGS := fin nob
+sanit: init sme sanit-lexica compile_langs_fsts
 	@echo "*********************************"
 	@echo "** Built targets for sanit:    **"
 	@echo "**    + sanit lexica           **"
@@ -1022,22 +721,11 @@ sanit: init sme fin nob sanit-lexica
 	@echo "    sudo make sanit-install"
 	@echo "... or copy the fsts in /tmp/tmp_fst/ and /tmp/tmp_ifst/ to their right places."
 
-sanit-fin-install: /tmp/tmp_fst/fin.fst /tmp/tmp_ifst/ifin.fst
-	mkdir -p /opt/smi/fin/bin/
-	cp $^ /opt/smi/fin/bin/
-
-sanit-nob-install: /tmp/tmp_fst/nob.fst /tmp/tmp_ifst/inob.fst
-	mkdir -p /opt/smi/nob/bin/
-	cp $^ /opt/smi/nob/bin/
-
 sanit-sme-install: /tmp/misc_fst/n-sme.fst \
 	               /tmp/misc_fst/dict-isme-norm.fst \
 	               /tmp/misc_fst/some-n-sme.fst
 	mkdir -p /opt/smi/sme/bin/
 	cp $^ /opt/smi/sme/bin/
-
-sanit-install: sanit-nob-install sanit-sme-install sanit-fin-install
-
 
 #####
 ##### #baakoehtargets
@@ -1046,22 +734,6 @@ sanit-install: sanit-nob-install sanit-sme-install sanit-fin-install
 ##
 ### #smaanalysers
 ##
-
-/tmp/misc_fst/dict-sma.fst:
-/tmp/misc_fst/isma-dict.fst:
-	@echo "***********************"
-	@echo "** Building sma FSTs **"
-	@echo "***********************"
-	@echo ""
-	cd $(GTHOME)/langs/sma/ ; \
-	  ./autogen.sh ; \
-	  ./configure  ; \
-	  make ; \
-	  cp src/analyser-dict-gt-desc.xfst  /tmp/misc_fst/dict-sma.fst ; \
-	  cp src/generator-dict-gt-norm.xfst /tmp/misc_fst/isma-dict.fst
-
-.PHONY: sma
-sma: /tmp/misc_fst/dict-sma.fst /tmp/misc_fst/isma-dict.fst
 
 .PHONY: rm-sma
 rm-sma:
@@ -1099,7 +771,13 @@ baakoeh-lexica: sma-nob.all.xml \
 rm-baakoeh-lexica: 
 	@rm -rf sma-nob.all.xml nob-sma.all.xml
 
-baakoeh: init sma nob baakoeh-lexica
+.PHONY: baakoeh-install
+baakoeh-install: GT_COMPILE_LANGS := sma nob
+baakoeh-install: install_langs_fsts 
+
+.PHONY: baakoeh
+baakoeh: GT_COMPILE_LANGS := sma nob
+baakoeh: init baakoeh-lexica compile_langs_fsts
 	@echo "*********************************"
 	@echo "** Built targets for baakoeh:  **"
 	@echo "**    + baakoeh lexica         **"
@@ -1111,44 +789,9 @@ baakoeh: init sma nob baakoeh-lexica
 	@echo "    make baakoeh-install"
 	@echo "... or copy the fsts in /tmp/tmp_fst/ and /tmp/tmp_ifst/ to their right places."
 
-baakoeh-nob-install: /tmp/tmp_fst/nob.fst /tmp/tmp_ifst/inob.fst
-	mkdir -p /opt/smi/nob/bin/
-	cp $^ /opt/smi/nob/bin/
-
-baakoeh-sma-install: /tmp/misc_fst/dict-sma.fst /tmp/misc_fst/isma-dict.fst
-	mkdir -p /opt/smi/sma/bin/
-	cp $^ /opt/smi/sma/bin/
-
-baakoeh-install: baakoeh-sma-install \
-				 baakoeh-nob-install
-
-
 #####
 ##### #ereytargets
 #####
-
-##
-### #somanalysers
-##
-
-som.fst:
-isom.fst:
-	@echo "***********************"
-	@echo "** Building som FSTs **"
-	@echo "***********************"
-	@echo ""
-	cd ~/somorph-priv.git/src/ ; \
-	  make all ; \
-	  cd .. ; \
-	  cp bin/som.fst  /tmp/tmp_fst/som.fst ; \
-	  cp bin/isom.fst /tmp/tmp_ifst/isom.fst
-
-.PHONY: som
-som: som.fst isom.fst
-
-rm-som:
-	rm -rf som.fst isom.fst
-
 
 som.all.xml: ~/somorph-priv.git/xml/
 	$(SAXON) inDir=$^ > $@
@@ -1163,7 +806,13 @@ erey-lexica: som.all.xml
 rm-erey-lexica:
 	@rm -rf som.all.xml
 
-erey: init som fin erey-lexica
+.PHONY: erey-install
+erey-install: GT_COMPILE_LANGS := som fin
+erey-install: erey install_langs_fsts 
+
+.PHONY: erey
+erey: GT_COMPILE_LANGS := som fin
+erey: init erey-lexica compile_langs_fsts
 	@echo "*********************************"
 	@echo "** Built targets for erey:     **"
 	@echo "**    + erey lexicon           **"
@@ -1174,13 +823,6 @@ erey: init som fin erey-lexica
 	@echo "    sudo make erey-install"
 	@echo "... or copy the fsts in /tmp/tmp_fst/ and /tmp/tmp_ifst/ to their right places."
 
-
-erey-som-install: /tmp/tmp_fst/som.fst /tmp/tmp_ifst/isom.fst
-	mkdir -p /opt/smi/som/bin/
-	cp $^ /opt/smi/som/bin/
-
-erey-install: erey-som-install
-
 #####
 ##### #kyvtargets
 #####
@@ -1188,25 +830,6 @@ erey-install: erey-som-install
 ##
 ### #kpvanalysers
 ##
-
-kpv.fst:
-ikpv.fst:
-	@echo "***********************"
-	@echo "** Building kpv FSTs **"
-	@echo "***********************"
-	@echo ""
-	cd $(GTHOME)/langs/kpv/ ; \
-	  ./autogen.sh ; \
-	  ./configure  ; \
-	  make  ; \
-	  cp src/analyser-gt-desc.xfst  /tmp/tmp_fst/kpv.fst ; \
-	  cp src/generator-gt-norm.xfst /tmp/tmp_ifst/ikpv.fst
-
-.PHONY: kpv
-kpv: kpv.fst ikpv.fst
-
-rm-kpv:
-	rm -rf kpv.fst ikpv.fst
 
 kpv-engfinrus.all.xml: $(GTHOME)/words/dicts/kom2X/src/
 	@echo "**************************"
@@ -1228,7 +851,13 @@ kyv-lexica: kpv-engfinrus.all.xml
 rm-kyv-lexica:
 	@rm -rf kpv-engfinrus.all.xml
 
-kyv: init kpv fin kyv-lexica
+.PHONY: kyv-install
+kyv-install: GT_COMPILE_LANGS := kpv fin
+kyv-install: install_langs_fsts
+
+.PHONY: kyv
+kyv: GT_COMPILE_LANGS := kpv fin
+kyv: init kyv-lexica compile_langs_fsts
 	@echo "*********************************"
 	@echo "** Built targets for kyv:      **"
 	@echo "**    + kyv lexicon            **"
@@ -1239,38 +868,6 @@ kyv: init kpv fin kyv-lexica
 	@echo "Now install analysers in expected paths."
 	@echo "    sudo make kyv-install"
 	@echo "... or copy the fsts in /tmp/tmp_fst/ and /tmp/tmp_ifst/ to their right places."
-
-
-kyv-fin-install: /tmp/tmp_fst/fin.fst /tmp/tmp_ifst/ifin.fst
-	mkdir -p /opt/smi/fin/bin/
-	cp $^ /opt/smi/fin/bin/
-
-kyv-kpv-install: /tmp/tmp_fst/kpv.fst /tmp/tmp_ifst/ikpv.fst
-	mkdir -p /opt/smi/kpv/bin/
-	cp $^ /opt/smi/kpv/bin/
-
-kyv-install: kyv-kpv-install kyv-fin-install
-
-# This one sets up dirnames, because can't get dirnames from inverse
-SOURCES = /tmp/tmp_fst/*.fst
-
-.SUFFIXES: .fst
-ISO: $(SOURCES)
-	@echo $(foreach fst_file,    \
-					$(SOURCES),  \
-					$(fst_file)  \
-		   )
-
-# mkdir -p /opt/smi/$(notdir $(basename $<))/bin/
-# cp $< /opt/smi/$(notdir $(basename $<))/bin/$(notdir $<)
-
-iISO:
-/opt/smi/%/bin/%.fst: /tmp/tmp_ifst/%.fst
-	@echo $<
-	@printf "mkdir -p /opt/smi/$(basename $^)/bin"
-	@printf "cp $< $^"
-
-install-analysers: ISO iISO
 
 #####
 ##### #Globaltargets
