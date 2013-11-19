@@ -4,68 +4,33 @@
 ##                   ##
 #######################
 
-# TODO: generalize FST compile, and include dependencies so updates are
-# detected
-
 # Some helpful tags for jumping around
 
-###         #Analyzers
-###          #finanalysers
-###          #rusanalysers TODO
-###         
 ###         #guusaawtargets
-###          #hdnanalysers
-###          #guusaawlexicon
 ###         
 ###         #pikiskwewinatargets
-###          #crkanalysers
-###          #pikiskwewinalexicon
 ###         
 ###         #saantargets
-###          #smsanalysers
-###          #saanlexicon
 ###         
 ###         #vadatargets
-###          #yrkanalysers
-###          #vadalexicon
 ###         
 ###         #valkstargets
-###          #myvanalysers
-###          #mdfanalysers
 ###         
 ###         #mutertargets
-###          #mhranalysers
-###          #mrjanalysers
-###          #muterlexicon
 ###         
 ###         #sanattargets
-###          #oloanalysers
-###          #livanalysers
-###          #fkvanalysers
-###          #izhanalysers
-###          #sanatlexica
 ###         
 ###         #sanittargets
-###          #sanitlexica
 ###          #smeanalysers
+###          #sanitlexica
 ###         
 ###         #baakoehtargets
-###          #smaanalysers
-###          #baakoehlexica
 ###         
 ###         #kyvtargets
-###          #kpvanalysers
-###          #kyvlexica
 ###         
 ###         #ereytargets
-###          #somanalysers
-###          #somlexica
 ###         
 ###         #Globaltargets
-
-# TODO: test vars GTHOME, GTCORE, GTSHARE
-# TODO: run a check on svn directories to print out what is updated since the
-#       last build of the various targets.
 
 COLLECT_PARTS := $(GTHOME)/words/dicts/scripts/collect-dict-parts.xsl 
 SAXON := java -Xmx2048m -cp ~/lib/saxon9.jar \
@@ -86,8 +51,21 @@ define compile-lexicon =
 	$(SAXON)
 endef
 
+# This is a generalized target to compile a list of languages defined in a
+# target-specific variable for each NDS instance (valks, sanit, etc.). Note,
+# this only works with new-infra language (~/gtsvn/langs/), so languages
+# outside will need to have their own build target.
+#
+# To use this on any given target, set the variable, and call this as a
+# dependency
+#
+# .PHONY: dict_project_name
+# dict_project_name: GT_COMPILE_LANGS := iso1 iso2
+# dict_project_name: dict_project_name-lexica compile_langs_fsts
+# 	@echo "Usual target stuff goes here..." 
+#
+# Or just see one of the languages below and copy...
 
-# Split up incoming langs from secondexpansion, convert to make targets and target specific variable
 compile_langs_fsts: $(foreach lang, $(GT_COMPILE_LANGS), langs/$(lang)/src/analyser-gt-desc.xfst)
 compile_langs_fsts: $(langs)
 	@echo $*
@@ -95,6 +73,8 @@ compile_langs_fsts: $(langs)
 	@echo "** Building $(GT_COMPILE_LANGS) FSTs **"
 	@echo "***********************"
 	@echo ""
+	mkdir -p /tmp/tmp_fst/
+	mkdir -p /tmp/tmp_ifst/
 	for ll in $(GT_COMPILE_LANGS) ; do \
  		if ! test -e "$(GTHOME)/langs/$$ll/src/Makefile" ; then \
  			cd $(GTHOME)/langs/$$ll ; ./autogen.sh ; ./configure ; \
@@ -103,7 +83,6 @@ compile_langs_fsts: $(langs)
 	    cp $(GTHOME)/langs/$$ll/src/analyser-gt-desc.xfst  /tmp/tmp_fst/$$ll.fst ; \
 	    cp $(GTHOME)/langs/$$ll/src/generator-gt-norm.xfst /tmp/tmp_ifst/i$$ll.fst ; \
 	done 
-
 
 install_langs_fsts: $(foreach lang, $(GT_COMPILE_LANGS), langs/$(lang)/src/analyser-gt-desc.xfst)
 install_langs_fsts: $(langs)
@@ -118,69 +97,9 @@ install_langs_fsts: $(langs)
 		cp /tmp/tmp_ifst/i$$ll.fst /opt/smi/$$ll/bin/ ; \
 	done 
 
-
-
-#####
-##### #Analyzers used in nearly everything
-#####
-
-# TODO: actually in st
-
-##
-### #rusanalysers
-##
-
-/tmp/tmp_fst/rus.fst:
-	@echo "***********************"
-	@echo "** Building rus FSTs **"
-	@echo "***********************"
-	@echo ""
-	cd $(GTHOME)/langs/rus/ ; \
-	  ./autogen.sh ; \
-	  ./configure  ; \
-	  make ; \
-	  cp src/analyser-gt-desc.xfst  /tmp/tmp_fst/rus.fst ; \
-	  cp src/generator-gt-norm.xfst /tmp/tmp_ifst/irus.fst
-
-.PHONY: rus
-rus: /tmp/tmp_fst/rus.fst /tmp/tmp_ifst/irus.fst
-
-rm-rus: 
-	rm -rf /tmp/tmp_fst/rus.fst /tmp/tmp_ifst/irus.fst
-
-
-
-
 #####
 ##### #guusaawtargets
 #####
-
-##
-### #hdnanalysers
-##
-
-/tmp/tmp_fst/hdn.fst:
-	@echo "***********************"
-	@echo "** Building hdn FSTs **"
-	@echo "***********************"
-	@echo ""
-	cd $(GTHOME)/langs/hdn/ ; \
-	  ./autogen.sh ; \
-	  ./configure  ; \
-	  make ; \
-	  cp src/analyser-gt-desc.xfst  /tmp/tmp_fst/hdn.fst ; \
-	  cp src/generator-gt-norm.xfst /tmp/tmp_ifst/ihdn.fst
-
-.PHONY: hdn
-hdn: /tmp/tmp_fst/hdn.fst /tmp/tmp_ifst/ihdn.fst
-
-rm-hdn: 
-	rm -rf /tmp/tmp_fst/hdn.fst /tmp/tmp_ifst/ihdn.fst
-
-
-##
-### #guusaawlexicon
-##
 
 hdn.all.xml: $(GTHOME)/words/dicts/hdneng/src/*.xml
 	@echo "**************************"
@@ -201,7 +120,7 @@ guusaaw-install: guusaaw-hdn-install
 
 .PHONY: guusaaw
 guusaaw: GT_COMPILE_LANGS := hdn
-guusaaw: init guusaaw-lexica compile_langs_fsts
+guusaaw: guusaaw-lexica compile_langs_fsts
 	@echo "*************************************"
 	@echo "** Built targets for guusaaw:      **"
 	@echo "**    + hdn lexicon                **"
@@ -218,10 +137,6 @@ guusaaw: init guusaaw-lexica compile_langs_fsts
 #####
 ##### #pikiskwewinatargets
 #####
-
-##
-### #pikiskwewinalexicon
-##
 
 crk-all.xml: $(GTHOME)/words/dicts/crkeng/src/*.xml
 	@echo "**************************"
@@ -247,7 +162,7 @@ pikiskwewina-install: install_langs_fsts
 
 .PHONY: pikiskwewina
 pikiskwewina: GT_COMPILE_LANGS := crk
-pikiskwewina: init pikiskwewina-lexica compile_langs_fsts
+pikiskwewina: pikiskwewina-lexica compile_langs_fsts
 	@echo "*************************************"
 	@echo "** Built targets for pikiskwewina: **"
 	@echo "**    + crk lexicon                **"
@@ -265,12 +180,7 @@ pikiskwewina: init pikiskwewina-lexica compile_langs_fsts
 ##### #saantargets
 #####
 
-##
-### #saanlexicon
-##
-
-# TODO: problem
-sms-all.xml: $(GTHOME)/langs/sms/src/morphology/stems/*.xml
+sms-all.xml: $(GTHOME)/words/dicts/sms2X/src/*.xml
 	@echo "**************************"
 	@echo "** Building sms lexicon **"
 	@echo "**************************"
@@ -289,14 +199,13 @@ saan-lexica: sms-all.xml
 rm-saan-lexica: 
 	@rm -rf sms-all.xml
 
-
 .PHONY: saan-install
 saan-install: GT_COMPILE_LANGS := sms fin
 saan-install: install_langs_fsts 
 
 .PHONY: saan
 saan: GT_COMPILE_LANGS := sms fin
-saan: init compile_langs_fsts saan-lexica
+saan: compile_langs_fsts saan-lexica
 	@echo "*********************************"
 	@echo "** Built targets for saan:     **"
 	@echo "**    + sms lexicon            **"
@@ -310,14 +219,9 @@ saan: init compile_langs_fsts saan-lexica
 	@echo "    sudo make saan-install"
 	@echo "... or copy the fsts in /tmp/tmp_fst/ and /tmp/tmp_ifst/ to their right places."
 
-
 #####
 ##### #vadatargets
 #####
-
-##
-### #vadalexicon
-##
 
 yrk-all.xml: $(GTHOME)/langs/yrk/src/morphology/stems/*.xml
 	@echo "**************************"
@@ -344,7 +248,7 @@ vada-install: install_langs_fsts
 
 .PHONY: vada
 vada: GT_COMPILE_LANGS := yrk fin
-vada: init vada-lexica compile_langs_fsts
+vada: vada-lexica compile_langs_fsts
 	@echo "*********************************"
 	@echo "** Built targets for vada:     **"
 	@echo "**    + yrk lexicon            **"
@@ -361,11 +265,6 @@ vada: init vada-lexica compile_langs_fsts
 #####
 ##### #mutertargets
 #####
-
-##
-### #muterlexicon
-##
-
 
 mrj-all.xml: $(GTHOME)/langs/mrj/src/morphology/stems/*.xml
 	@echo "**************************"
@@ -405,14 +304,14 @@ muter-install: install_langs_fsts
 
 .PHONY: muter
 muter: GT_COMPILE_LANGS := mrj mhr fin 
-muter: init muter-lexicon compile_langs_fsts
+muter: rus muter-lexicon compile_langs_fsts
 	@echo "*********************************"
 	@echo "** Built targets for muter:     **"
 	@echo "**    + mhr lexicon            **"
 	@echo "**    + mrj lexicon            **"
 	@echo "**    + mhr analysers          **"
 	@echo "**    + mrj analysers          **"
-	@echo "**    + rus analysers TODO     **"
+	@echo "**    + rus analysers          **"
 	@echo "**    + fin analysers          **"
 	@echo "*********************************"
 	@echo "**   (mhr = Eastern Mari)      **"
@@ -426,7 +325,6 @@ muter: init muter-lexicon compile_langs_fsts
 #####
 ##### #valkstargets
 #####
-
 
 myv-all.xml: $(GTHOME)/langs/myv/src/morphology/stems/*.xml
 	@echo "**************************"
@@ -465,7 +363,7 @@ valks-install: install_langs_fsts
 
 .PHONY: valks
 valks: GT_COMPILE_LANGS := fin myv mdf
-valks: init valks-lexica compile_langs_fsts
+valks: valks-lexica compile_langs_fsts
 	@echo "*********************************"
 	@echo "** Built targets for valks:    **"
 	@echo "**    + myv, mdf lexica        **"
@@ -484,10 +382,6 @@ valks: init valks-lexica compile_langs_fsts
 #####
 ##### #sanattargets
 #####
-
-##
-### #sanatlexica
-##
 
 olo-fin.xml: $(GTHOME)/langs/olo/src/morphology/stems/*.xml
 	@echo "**************************"
@@ -572,7 +466,7 @@ sanat-install: install_langs_fsts
 
 .PHONY: sanat
 sanat: GT_COMPILE_LANGS := olo izh liv fin fkv
-sanat: init sanat-lexica compile_langs_fsts
+sanat: sanat-lexica compile_langs_fsts
 	@echo "*********************************"
 	@echo "** Built targets for sanat:    **"
 	@echo "**    + olo lexicon            **"
@@ -704,11 +598,11 @@ rm-sme:
 sanit-install: GT_COMPILE_LANGS := fin nob
 sanit-install: sanit-sme-install install_langs_fsts
 
-# TODO: nb, sme has its own path, is not included in GT_COMPILE_LANGS because
+# NB: sme has its own path, is not included in GT_COMPILE_LANGS because
 # it isn't in main/langs/ yet.
 .PHONY: sanit
 sanit: GT_COMPILE_LANGS := fin nob
-sanit: init sme sanit-lexica compile_langs_fsts
+sanit: sme sanit-lexica compile_langs_fsts
 	@echo "*********************************"
 	@echo "** Built targets for sanit:    **"
 	@echo "**    + sanit lexica           **"
@@ -730,19 +624,6 @@ sanit-sme-install: /tmp/misc_fst/n-sme.fst \
 #####
 ##### #baakoehtargets
 #####
-
-##
-### #smaanalysers
-##
-
-.PHONY: rm-sma
-rm-sma:
-	rm -rf /tmp/misc_fst/dict-sma.fst /tmp/misc_fst/isma-dict.fst
-
-
-##
-### #baakoehlexica
-##
 
 # NB: these are more similar to sme lexicon, but FST differs.
 sma-nob.all.xml: $(GTHOME)/words/dicts/smanob/src/
@@ -777,7 +658,7 @@ baakoeh-install: install_langs_fsts
 
 .PHONY: baakoeh
 baakoeh: GT_COMPILE_LANGS := sma nob
-baakoeh: init baakoeh-lexica compile_langs_fsts
+baakoeh: baakoeh-lexica compile_langs_fsts
 	@echo "*********************************"
 	@echo "** Built targets for baakoeh:  **"
 	@echo "**    + baakoeh lexica         **"
@@ -812,7 +693,7 @@ erey-install: erey install_langs_fsts
 
 .PHONY: erey
 erey: GT_COMPILE_LANGS := som fin
-erey: init erey-lexica compile_langs_fsts
+erey: erey-lexica compile_langs_fsts
 	@echo "*********************************"
 	@echo "** Built targets for erey:     **"
 	@echo "**    + erey lexicon           **"
@@ -827,10 +708,6 @@ erey: init erey-lexica compile_langs_fsts
 ##### #kyvtargets
 #####
 
-##
-### #kpvanalysers
-##
-
 kpv-engfinrus.all.xml: $(GTHOME)/words/dicts/kom2X/src/
 	@echo "**************************"
 	@echo "** Building kpv lexicon **"
@@ -840,10 +717,6 @@ kpv-engfinrus.all.xml: $(GTHOME)/words/dicts/kom2X/src/
 	@echo ""
 	-@cp $@ $@.$(shell date +%s).bak
 	$(SAXON) inDir=$^ > $@
-
-##
-### #kyvlexica
-##
 
 .PHONY: kyv-lexica
 kyv-lexica: kpv-engfinrus.all.xml
@@ -857,7 +730,7 @@ kyv-install: install_langs_fsts
 
 .PHONY: kyv
 kyv: GT_COMPILE_LANGS := kpv fin
-kyv: init kyv-lexica compile_langs_fsts
+kyv: kyv-lexica compile_langs_fsts
 	@echo "*********************************"
 	@echo "** Built targets for kyv:      **"
 	@echo "**    + kyv lexicon            **"
@@ -872,23 +745,6 @@ kyv: init kyv-lexica compile_langs_fsts
 #####
 ##### #Globaltargets
 #####
-
-INITTED := $(wildcard /tmp/tmp_fst)
-
-ifneq ($(strip $(INITTED)),)
-init:
-	@echo "Already initted..."
-else
-init:
-	mkdir /tmp/tmp_fst
-	mkdir /tmp/tmp_ifst
-	mkdir /tmp/misc_fst
-	@echo ""
-	@echo ""
-	@echo "Is saxon9.lib in the path somewhere?"
-	@echo ""
-	@echo ""
-endif
 
 clean:
 	rm -rf /tmp/tmp_fst /tmp/tmp_ifst /tmp/misc_fst
@@ -905,12 +761,7 @@ help:
 	@echo " * make vada"
 	@echo " * make kyv"
 	@echo ""
-	@echo "If running one of these commands complains about missing directories "
-	@echo "run the following first:"
-	@echo "   make init"
-	@echo ""
-	@echo "To install FSTs to /opt/smi/ paths and automatically create any missing"
-	@echo "directories:"
+	@echo "To install FSTs to /opt/smi/ paths:"
 	@echo ""
 	@echo " * make sanit-install"
 	@echo " * make baakoeh-install"
@@ -924,18 +775,6 @@ help:
 	@echo " * make kyv-lexica"
 	@echo ""
 	@echo "NB! Make sure you have saxon9.jar in ~/lib/ !"
-
-.PHONY: install
-install: sanit-install baakoeh-install valks-install vada-install kyv-install
-	@echo "TODO: "
-	@echo "This will copy the analysers that have been built locally here"
-	@echo "to respective dirs in /opt/smi/"
-	@echo "NB: sme-install, sma-install have separate patterns. also izh might"
-	@echo "be matched by"
-	@echo " iolo and such, so is it possible to define a length pattern in deps?"
-
-# TODO: here we want to check all of the finalized paths for _installed_ fsts
-#       and also compiled dicts/ to make sure that a given install workds
 
 .PHONY: test-sanit
 test-sanit: 
@@ -956,8 +795,7 @@ test-install: test-sanit \
 	@echo "TODO: "
 
 .PHONY: all
-all: init \
-	 vada  \
+all: vada  \
 	 valks \
 	 sanat \
 	 sanit \
