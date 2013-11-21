@@ -577,9 +577,9 @@ sme-install: n-sme.fst dict-isme-norm.fst some-n-sme.fst
 	@echo "** Building sme FSTs **"
 	@echo "***********************"
 	@echo ""
+	-@mkdir -p /tmp/misc_fst/
 	cd $(GTHOME)/gt/ ; \
 	  make TARGET=sme ; \
-	  mkdir -p /tmp/misc_fst ; \
 	  cp sme/bin/n-sme.fst  /tmp/misc_fst/n-sme.fst ; \
 	  cp sme/bin/some-n-sme.fst  /tmp/misc_fst/some-n-sme.fst ; \
 	  cp sme/bin/dict-isme-norm.fst /tmp/misc_fst/dict-isme-norm.fst
