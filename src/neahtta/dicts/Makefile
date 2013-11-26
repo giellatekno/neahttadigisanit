@@ -303,8 +303,8 @@ muter-install: GT_COMPILE_LANGS := mrj mhr fin
 muter-install: install_langs_fsts
 
 .PHONY: muter
-muter: GT_COMPILE_LANGS := mrj mhr fin 
-muter: rus muter-lexicon compile_langs_fsts
+muter: GT_COMPILE_LANGS := mrj mhr fin rus
+muter: muter-lexicon compile_langs_fsts
 	@echo "*********************************"
 	@echo "** Built targets for muter:     **"
 	@echo "**    + mhr lexicon            **"
