@@ -56,9 +56,8 @@ msgid "Izhorian"
 msgstr "Ižoru"
 
 #: configs/language_names.py:39
-#, fuzzy
 msgid "Estonian"
-msgstr "Lībiešu"
+msgstr "Estų"
 
 #: configs/language_names.py:42
 msgid "Erzya Mordvin"
@@ -74,29 +73,27 @@ msgstr ""
 
 #: configs/language_names.py:47
 msgid "Western Mari"
-msgstr "Kalnu mariešu"
+msgstr "Vakarų mariešu"
 
 #: configs/language_names.py:48
-#, fuzzy
 msgid "Eastern Mari"
-msgstr "Kalnu mariešu"
+msgstr "Rytų mariešu"
 
 #: configs/language_names.py:51
 msgid "Nenets"
 msgstr "Ņencu"
 
 #: configs/language_names.py:54
-#, fuzzy
 msgid "Skolt Sámi"
-msgstr "Dienvidsāmu"
+msgstr "Skolto sāmu"
 
 #: configs/language_names.py:57
 msgid "Plains Cree"
-msgstr ""
+msgstr "Līdzenumu krī"
 
 #: configs/language_names.py:60
 msgid "Northern Haida"
-msgstr ""
+msgstr "Ziemeļhaida"
 
 #: configs/language_names.py:63 configs/language_names.py:69
 msgid "Finnish"
@@ -139,9 +136,8 @@ msgid "Advanced"
 msgstr ""
 
 #: static/js/bookmarklet.js:1245
-#, fuzzy
 msgid "Dictionary"
-msgstr "Citas vārdnīcas"
+msgstr "Vārdnīca"
 
 #: static/js/bookmarklet.js:1245
 msgid "Save"
@@ -379,9 +375,8 @@ msgid "mennä, lähteä, kulkea"
 msgstr ""
 
 #: templates/about.muter.html:57
-#, fuzzy
 msgid "mrj ↔ fin"
-msgstr "ziemeļsāmu ↔ somu"
+msgstr "vakarų marių ↔ somu"
 
 #: templates/about.muter.html:58
 msgid ""
@@ -404,9 +399,8 @@ msgid "mennä, tapahtua, viedä, johtaa, edistyä"
 msgstr ""
 
 #: templates/about.sanat.html:57
-#, fuzzy
 msgid "liv ↔ fin"
-msgstr "ziemeļsāmu ↔ somu"
+msgstr "Lyvių ↔ somu"
 
 #: templates/about.sanat.html:58
 msgid ""
@@ -423,9 +417,8 @@ msgid ""
 msgstr ""
 
 #: templates/about.sanat.html:67
-#, fuzzy
 msgid "olo ↔ fin"
-msgstr "ziemeļsāmu ↔ somu"
+msgstr "Liudikų ↔ somu"
 
 #: templates/about.sanat.html:68
 msgid ""
@@ -462,9 +455,8 @@ msgid ""
 msgstr ""
 
 #: templates/about.vada.html:59
-#, fuzzy
 msgid "yrk ↔ fin"
-msgstr "ziemeļsāmu ↔ somu"
+msgstr "Nencų ↔ somu"
 
 #: templates/about.vada.html:60
 msgid ""
@@ -479,9 +471,8 @@ msgid ""
 msgstr ""
 
 #: templates/about.valks.html:59
-#, fuzzy
 msgid "myv ↔ fin"
-msgstr "ziemeļsāmu ↔ somu"
+msgstr "Erzių ↔ somu"
 
 #: templates/about.valks.html:60
 msgid ""
@@ -501,9 +492,8 @@ msgid ""
 msgstr ""
 
 #: templates/about.valks.html:70
-#, fuzzy
 msgid "mdf ↔ fin"
-msgstr "ziemeļsāmu ↔ somu"
+msgstr "Mokšų ↔ somu"
 
 #: templates/about.valks.html:71
 msgid ""
@@ -546,14 +536,12 @@ msgstr ""
 "tehnoloģijas pētniecības grupa."
 
 #: templates/config_doc.html:4
-#, fuzzy
 msgid "Neahttadigisánit"
 msgstr "Neahttadigisánit Reader"
 
 #: templates/index.html:19 templates/index.html:35
-#, fuzzy
 msgid "Dictionaries"
-msgstr "Citas vārdnīcas"
+msgstr "Vārdnīcas"
 
 #: templates/index.html:26 templates/index.html:70
 #: templates/more_dictionaries.html:21
@@ -612,7 +600,6 @@ msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr "Meklēt vārdu vai vārdformu vārda analīzei un tulkojumam."
 
 #: templates/index.html:259
-#, fuzzy
 msgid ""
 "You selected #SoMe, the variant for social media, which means that the "
 "letters acdnstz\n"
@@ -628,12 +615,10 @@ msgid "<span class=\"reposition_hide\">Language</span>"
 msgstr "<span class=\"reposition_hide\">Valoda</span>"
 
 #: templates/language_select_noflags.html:7
-#, fuzzy
 msgid "Language"
 msgstr "Valoda"
 
 #: templates/more_dictionaries.html:4
-#, fuzzy
 msgid "More dictionaris"
 msgstr "Citas vārdnīcas"
 
@@ -658,7 +643,6 @@ msgid "Balto-finnic languages"
 msgstr ""
 
 #: templates/more_dictionaries.html:38
-#, fuzzy
 msgid "Olonets"
 msgstr "Oloņecas karēļu"
 
@@ -675,30 +659,26 @@ msgid "Erzya"
 msgstr ""
 
 #: templates/more_dictionaries.html:41
-#, fuzzy
 msgid "Mari languages"
-msgstr "Valoda"
+msgstr "Marių kalbos"
 
 #: templates/more_dictionaries.html:41
 msgid "Eastern and Western."
 msgstr ""
 
 #: templates/more_dictionaries.html:42
-#, fuzzy
 msgid "Permic languages"
-msgstr "Saskarnes valoda"
+msgstr "Permių kalbos"
 
 #: templates/more_dictionaries.html:42
 msgid "Komi-Zyrian"
-msgstr ""
+msgstr "Komių-Zyrianų"
 
 #: templates/more_dictionaries.html:45
-#, fuzzy
 msgid "Even more dictionaries..."
 msgstr "Citas vārdnīcas"
 
 #: templates/more_dictionaries.html:46
-msgid ""
 "<a href=\"http://giellatekno.uit.no/\">Giellatekno</a> also has\n"
 "                other languages and dictionaries that are not yet "
 "available in\n"

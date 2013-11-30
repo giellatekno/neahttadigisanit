@@ -156,7 +156,6 @@ msgid "IE8 Warning"
 msgstr ""
 
 #: static/js/bookmarklet.js:1245
-#, fuzzy
 msgid ""
 "In order to look up a word, hold down the <em>Alt</em> or <em>Option</em>"
 " (⌥) key, and doubleclick on a word. The service will contact the "
@@ -195,7 +194,6 @@ msgid "You are using"
 msgstr "Используете"
 
 #: static/js/bookmarklet.js:1435
-#, fuzzy
 msgid "Meaning not found"
 msgstr "Значение не нашлось для:"
 
@@ -537,19 +535,17 @@ msgstr ""
 "</a>."
 
 #: templates/config_doc.html:4
-#, fuzzy
 msgid "Neahttadigisánit"
 msgstr "Neahttadigisánit программа чтения"
 
 #: templates/index.html:19 templates/index.html:35
-#, fuzzy
 msgid "Dictionaries"
-msgstr "Больше словарей"
+msgstr "Словарей"
 
 #: templates/index.html:26 templates/index.html:70
 #: templates/more_dictionaries.html:21
 msgid "Other dictionaries"
-msgstr ""
+msgstr "Другие словарей"
 
 #: templates/index.html:50 templates/index.html:61
 msgid "Written variant"
@@ -603,7 +599,6 @@ msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr "Поиск слова или словоформы для анализа слов и определений."
 
 #: templates/index.html:259
-#, fuzzy
 msgid ""
 "You selected #SoMe, the variant for social media, which means that the "
 "letters acdnstz\n"
@@ -612,7 +607,7 @@ msgid ""
 msgstr ""
 "Вы выбрали #SoMe, вариант для социальных медий, а это значит, что буквы "
 "acdnstz \n"
-"                                 будут приниматься в качестве áčđŋšŧž "
+"будут приниматься в качестве áčđŋšŧž "
 "дополнения к своим обычным значениям."
 
 #: templates/language_select.html:7
@@ -798,7 +793,6 @@ msgid ""
 msgstr ""
 
 #: templates/reader_update.html:9
-#, fuzzy
 msgid ""
 "Drag and drop the following link to your Bookmark toolbar,\n"
 "    then click it when you are on a page you wish to read. The\n"

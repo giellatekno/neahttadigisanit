@@ -611,9 +611,8 @@ msgid "<span class=\"reposition_hide\">Language</span>"
 msgstr ""
 
 #: templates/language_select_noflags.html:7
-#, fuzzy
 msgid "Language"
-msgstr "Marigielat"
+msgstr "Giella"
 
 #: templates/more_dictionaries.html:4
 msgid "More dictionaris"

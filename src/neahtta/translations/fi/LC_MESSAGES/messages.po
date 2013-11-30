@@ -88,7 +88,7 @@ msgstr "Koltansaame"
 
 #: configs/language_names.py:57
 msgid "Plains Cree"
-msgstr ""
+msgstr "Plains cree"
 
 #: configs/language_names.py:60
 msgid "Northern Haida"
@@ -117,11 +117,11 @@ msgstr "Haida"
 
 #: static/js/bookmarklet.js:1245
 msgid "Á"
-msgstr ""
+msgstr "Á"
 
 #: static/js/bookmarklet.js:1245
 msgid "Options"
-msgstr ""
+msgstr "Vaihtoehdot"
 
 #: static/js/bookmarklet.js:1245 templates/about.baakoeh.html:6
 #: templates/about.muter.html:6 templates/about.sanat.html:6
@@ -144,11 +144,11 @@ msgstr "Tallenna"
 
 #: static/js/bookmarklet.js:1245
 msgid "Refresh settings"
-msgstr ""
+msgstr "Päivitä asetukset"
 
 #: static/js/bookmarklet.js:1245
 msgid "Update detected"
-msgstr ""
+msgstr "Päivitä löydetyt"
 
 #: static/js/bookmarklet.js:1245
 msgid "IE8 Warning"
@@ -159,7 +159,9 @@ msgid ""
 "In order to look up a word, hold down the <em>Alt</em> or <em>Option</em>"
 " (⌥) key, and doubleclick on a word. The service will contact the "
 "dictionary, and return a word after a short pause."
-msgstr ""
+msgstr "Tarkistaaksesi sana, pidä <em>Alt</em> tai "
+"<em>Option</em> (⌥), ja kaksoisklikkaa sitä. Ohjelma ottaa "
+"yhteyttä sanakirjaan, ja antaa käännöksen pienen viiven jälkeen."
 
 #: static/js/bookmarklet.js:1245
 msgid ""
@@ -167,6 +169,9 @@ msgid ""
 " href=\"mailto:giellatekno@hum.uit.no\">please contact us</a>. Tell us "
 "what page didn't work, or what you did when you discovered the problem."
 msgstr ""
+"Jos löydät virheen, tai jos kirjainmerkki ei toimi tietyllä sivulla, "
+"<a href=\"mailto:giellatekno@hum.uit.no\">ota yhteyttä meihin</a>. Kerro "
+"mikä sivu ei toiminnut, tai mitä teit kun törmäsit ongelmaan."
 
 #: static/js/bookmarklet.js:1310
 msgid "Error!"
@@ -174,7 +179,7 @@ msgstr "Virhe!"
 
 #: static/js/bookmarklet.js:1310
 msgid "Could not connect to dictionary server"
-msgstr ""
+msgstr "Emme pystyneet yhdistämään sanakirjan palvelimeen"
 
 #: static/js/bookmarklet.js:1310
 msgid "Close"
@@ -197,28 +202,30 @@ msgid ""
 "Whoops! The page you requested was not found. If you think you are "
 "receiving this in error, please contact us."
 msgstr ""
+"Hupsis! Emme löytäneet etsimäsi sivua. Ota yhteyttä meihin, jos luulet, "
+"että tämä virheilmoitus itse on virheelinen.
 
 #: templates/500.html:51
 msgid "Whoops! There was some kind of error."
-msgstr ""
+msgstr "Hupsis! Nyt kyllä jotain kummallista tapahtui..."
 
 #: templates/about.baakoeh.html:15 templates/about.muter.html:15
 #: templates/about.sanat.html:15 templates/about.sanit.html:15
 #: templates/about.vada.html:17 templates/about.valks.html:17
 msgid "A dictionary that understands what you're looking for."
-msgstr ""
+msgstr "Sanakirja, joka ymmärtää, mitä etsit.."
 
 #: templates/about.baakoeh.html:16 templates/about.muter.html:16
 #: templates/about.sanat.html:16 templates/about.sanit.html:16
 #: templates/about.vada.html:18 templates/about.valks.html:18
 msgid "(... And is mobile-friendly!)"
-msgstr ""
+msgstr "(... ja on kännykkä-ystävällinen!)"
 
 #: templates/about.baakoeh.html:20 templates/about.muter.html:20
 #: templates/about.sanat.html:20 templates/about.sanit.html:20
 #: templates/about.vada.html:22 templates/about.valks.html:22
 msgid "Free"
-msgstr ""
+msgstr "Vapaa"
 
 #: templates/about.baakoeh.html:21 templates/about.muter.html:21
 #: templates/about.sanat.html:21 templates/about.sanit.html:21

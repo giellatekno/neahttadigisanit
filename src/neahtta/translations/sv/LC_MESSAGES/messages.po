@@ -55,9 +55,8 @@ msgid "Izhorian"
 msgstr "Ingriska"
 
 #: configs/language_names.py:39
-#, fuzzy
 msgid "Estonian"
-msgstr "Liviska"
+msgstr "Estniska"
 
 #: configs/language_names.py:42
 msgid "Erzya Mordvin"
@@ -76,18 +75,16 @@ msgid "Western Mari"
 msgstr "Västmariska"
 
 #: configs/language_names.py:48
-#, fuzzy
 msgid "Eastern Mari"
-msgstr "Västmariska"
+msgstr "Östmariska"
 
 #: configs/language_names.py:51
 msgid "Nenets"
 msgstr "Nenetsiska"
 
 #: configs/language_names.py:54
-#, fuzzy
 msgid "Skolt Sámi"
-msgstr "Sydsamiska"
+msgstr "Skoltsamiska"
 
 #: configs/language_names.py:57
 msgid "Plains Cree"
@@ -516,13 +513,12 @@ msgstr ""
 "Tromsö</a>."
 
 #: templates/config_doc.html:4
-#, fuzzy
 msgid "Neahttadigisánit"
 msgstr "Neahttadigisánit Läsordbok"
 
 #: templates/index.html:19 templates/index.html:35
 msgid "Dictionaries"
-msgstr ""
+msgstr "Ordböcker"
 
 #: templates/index.html:26 templates/index.html:70
 #: templates/more_dictionaries.html:21
@@ -590,13 +586,12 @@ msgid "<span class=\"reposition_hide\">Language</span>"
 msgstr ""
 
 #: templates/language_select_noflags.html:7
-#, fuzzy
 msgid "Language"
 msgstr "Språk"
 
 #: templates/more_dictionaries.html:4
 msgid "More dictionaris"
-msgstr ""
+msgstr "Flera ordböcker"
 
 #: templates/more_dictionaries.html:23
 msgid ""
@@ -619,7 +614,6 @@ msgid "Balto-finnic languages"
 msgstr ""
 
 #: templates/more_dictionaries.html:38
-#, fuzzy
 msgid "Olonets"
 msgstr "Olonetsiska"
 
@@ -636,26 +630,24 @@ msgid "Erzya"
 msgstr ""
 
 #: templates/more_dictionaries.html:41
-#, fuzzy
 msgid "Mari languages"
-msgstr "Språk"
+msgstr "Mariska språk"
 
 #: templates/more_dictionaries.html:41
 msgid "Eastern and Western."
 msgstr ""
 
 #: templates/more_dictionaries.html:42
-#, fuzzy
 msgid "Permic languages"
-msgstr "Gränssnittspråk"
+msgstr "Permiska språk"
 
 #: templates/more_dictionaries.html:42
 msgid "Komi-Zyrian"
-msgstr ""
+msgstr "Komisyrjänska"
 
 #: templates/more_dictionaries.html:45
 msgid "Even more dictionaries..."
-msgstr ""
+msgstr "Även flera ordböcker"
 
 #: templates/more_dictionaries.html:46
 msgid ""
@@ -770,7 +762,6 @@ msgid ""
 msgstr ""
 
 #: templates/reader_update.html:9
-#, fuzzy
 msgid ""
 "Drag and drop the following link to your Bookmark toolbar,\n"
 "    then click it when you are on a page you wish to read. The\n"
