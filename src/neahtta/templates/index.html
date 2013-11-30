@@ -75,7 +75,12 @@
                 <span>{{ iso_pair[0]|iso_to_i18n }} → {{ iso_pair[1]|iso_to_i18n }}</span>
                 {% endif %}
                 {% endfor -%}
-                <span class="swaplink" style="font-size: 80%">(<a href="/{{ _to }}/{{ _from }}/">⇄ {% trans %}Swap{% endtrans %}</a>)</span></h4>
+
+                {% if _from == 'SoMe' %}
+                    <span class="swaplink" style="font-size: 80%">(<a href="/{{ _to }}/sme/">⇄ {% trans %}Swap{% endtrans %}</a>)</span></h4>
+                {% else %}
+                    <span class="swaplink" style="font-size: 80%">(<a href="/{{ _to }}/{{ _from }}/">⇄ {% trans %}Swap{% endtrans %}</a>)</span></h4>
+                {% endif %}
 
             <div class="row-fluid form-row">
                 <div class="span8">
