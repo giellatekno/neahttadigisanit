@@ -79,7 +79,11 @@
                 {% if _from == 'SoMe' %}
                     <span class="swaplink" style="font-size: 80%">(<a href="/{{ _to }}/sme/">⇄ {% trans %}Swap{% endtrans %}</a>)</span></h4>
                 {% else %}
-                    <span class="swaplink" style="font-size: 80%">(<a href="/{{ _to }}/{{ _from }}/">⇄ {% trans %}Swap{% endtrans %}</a>)</span></h4>
+                    {% if _to == 'sme' and mobile %}
+                        <span class="swaplink" style="font-size: 80%">(<a href="/SoMe/{{ _from }}/">⇄ {% trans %}Swap{% endtrans %}</a>)</span></h4>
+                    {% else %}
+                        <span class="swaplink" style="font-size: 80%">(<a href="/{{ _to }}/{{ _from }}/">⇄ {% trans %}Swap{% endtrans %}</a>)</span></h4>
+                    {% endif %}
                 {% endif %}
 
             <div class="row-fluid form-row">
