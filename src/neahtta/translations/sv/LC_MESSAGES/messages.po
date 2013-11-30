@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-11-07 00:41-0600\n"
+"POT-Creation-Date: 2013-11-30 00:08-0600\n"
 "PO-Revision-Date: 2013-02-01 01:55-0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: sv <LL@li.org>\n"
@@ -345,7 +345,7 @@ msgid "Each of the dictionaries contains about 11,000 base words."
 msgstr "Varje ordbok innehåller ca 11 000 grundord."
 
 #: templates/about.baakoeh.html:76 templates/about.muter.html:79
-#: templates/about.sanat.html:86 templates/about.sanit.html:76
+#: templates/about.sanat.html:86 templates/about.sanit.html:84
 #: templates/about.vada.html:78 templates/about.valks.html:90
 msgid "More to come..."
 msgstr "Mer kommer..."
@@ -410,6 +410,29 @@ msgid ""
 "                Translation work is being conducted at the University of\n"
 "                Helsinki by Timo Rantakaulio with funding from the Kone\n"
 "                Foundation."
+msgstr ""
+
+#: templates/about.sanit.html:72
+msgid "Find a problem?"
+msgstr ""
+
+#: templates/about.sanit.html:73
+msgid ""
+"If you find any bugs, please get in touch with us. Describe the problem,\n"
+"            and tell us what web browser or mobile phone you were using, "
+"or what word you\n"
+"            were searching for when you encountered the problem."
+msgstr ""
+
+#: templates/about.sanit.html:77
+msgid "Contact us"
+msgstr ""
+
+#: templates/about.sanit.html:79
+msgid ""
+"Need more dictionaries? <a href=\"http://dicts.uit.no/\">Here's our full "
+"list</a>, and more\n"
+"            resources."
 msgstr ""
 
 #: templates/about.vada.html:59
@@ -530,7 +553,7 @@ msgstr ""
 msgid "Search"
 msgstr "Sök"
 
-#: templates/index.html:103 templates/index.html:220 views/reader.py:120
+#: templates/index.html:103 templates/index.html:220 views/reader.py:121
 msgid " is a possible form of ... "
 msgstr " är en möjlig form av ... "
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-11-07 00:41-0600\n"
+"POT-Creation-Date: 2013-11-30 00:08-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,7 +59,7 @@ msgid "Estonian"
 msgstr ""
 
 #: configs/language_names.py:42
-msgid "Erzya"
+msgid "Erzya Mordvin"
 msgstr ""
 
 #: configs/language_names.py:43 templates/more_dictionaries.html:39
@@ -325,7 +325,7 @@ msgid "Each of the dictionaries contains about 11,000 base words."
 msgstr ""
 
 #: templates/about.baakoeh.html:76 templates/about.muter.html:79
-#: templates/about.sanat.html:86 templates/about.sanit.html:76
+#: templates/about.sanat.html:86 templates/about.sanit.html:84
 #: templates/about.vada.html:78 templates/about.valks.html:90
 msgid "More to come..."
 msgstr ""
@@ -390,6 +390,29 @@ msgid ""
 "                Translation work is being conducted at the University of\n"
 "                Helsinki by Timo Rantakaulio with funding from the Kone\n"
 "                Foundation."
+msgstr ""
+
+#: templates/about.sanit.html:72
+msgid "Find a problem?"
+msgstr ""
+
+#: templates/about.sanit.html:73
+msgid ""
+"If you find any bugs, please get in touch with us. Describe the problem,\n"
+"            and tell us what web browser or mobile phone you were using, "
+"or what word you\n"
+"            were searching for when you encountered the problem."
+msgstr ""
+
+#: templates/about.sanit.html:77
+msgid "Contact us"
+msgstr ""
+
+#: templates/about.sanit.html:79
+msgid ""
+"Need more dictionaries? <a href=\"http://dicts.uit.no/\">Here's our full "
+"list</a>, and more\n"
+"            resources."
 msgstr ""
 
 #: templates/about.vada.html:59
@@ -505,7 +528,7 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: templates/index.html:103 templates/index.html:220 views/reader.py:120
+#: templates/index.html:103 templates/index.html:220 views/reader.py:121
 msgid " is a possible form of ... "
 msgstr ""
 
@@ -691,12 +714,14 @@ msgstr ""
 
 #: templates/reader_ie8_notice.html:1
 msgid ""
+"\n"
 "Your web browser is supported, however, you will need to change some\n"
 "options for the Neahttadigisánit Reader to work.\n"
 msgstr ""
 
 #: templates/reader_update.html:1
 msgid ""
+"\n"
 "We have made some updates to the dictionary, which require you to\n"
 "replace your bookmark with a new version.\n"
 msgstr ""
