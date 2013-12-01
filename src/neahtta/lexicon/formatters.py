@@ -289,6 +289,9 @@ class FrontPageFormat(EntryNodeIterator):
 
         ui_lang = self.query_kwargs.get('ui_lang')
 
+        # TODO: detect if there are texts vs. annotations only,
+        # still need to run those through
+
         texts, annotations, lang = self.find_translation_text(tg)
 
         link = True
@@ -296,6 +299,9 @@ class FrontPageFormat(EntryNodeIterator):
         if texts:
             if not isinstance(texts, list):
                 texts = [texts]
+        elif annotations:
+            if not isinstance(annotations, list):
+                annotations = [annotations]
         else:
             from lxml import etree
             error_xml = etree.tostring(e, pretty_print=True, encoding="utf-8")
@@ -319,12 +325,48 @@ class FrontPageFormat(EntryNodeIterator):
                                   , e
                                   , tg
                                   )
-        target_formatted = map(target_formatter, texts)
+
+        def add_link(_p):
+            if '<a ' in _p or '</a>' in _p:
+                return _p
+
+            # TODO: will need a more lasting solution... 
+            src_lang = self.query_kwargs.get('source_lang')
+            if src_lang == 'SoMe':
+                src_lang = 'sme'
+
+            _url  = [ 'detail'
+                    , self.query_kwargs.get('target_lang')
+                    , src_lang
+                    , '%s.html?no_compounds=true&lemma_match=true' % _p
+                    ]
+            _url =  '/' + '/'.join(_url)
+            link =  "<a href='%s'>%s</a>" % (_url, _p)
+            return link
+
+        # problem: no <t /> nodes available here for til_/fra_ref words
+
+        if len(texts) > 0:
+            # TODO: does this not actually pass texts ?
+            target_formatted = map(target_formatter, texts)
+        elif len(annotations) > 0:
+            # target_formatter expects some default text to be passed in
+            # the event that no formatting is able to be made
+            target_formatted = map(target_formatter, annotations)
+
+        # If there were changes, then we want to give absolute control
+        # on this string to the formatter.
+        target_reformatted = False
+        if set(target_formatted) != set(texts):
+            target_reformatted = True
+
+        target_formatted = map(add_link, target_formatted)
 
         right_node = { 'tx': ', '.join(texts)
                      , 're': annotations
+                     , 'target_reformatted': target_reformatted
                      , 'examples': self.examples(tg)
-                     , 'target_formatted': target_formatted
+                     , 'target_formatted': ', '.join(target_formatted)
                      }
 
         return right_node, lang

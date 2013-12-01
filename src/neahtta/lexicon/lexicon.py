@@ -103,7 +103,7 @@ class LexiconOverrides(object):
             for (src_iso, targ_iso) in iso_pairs:
                 if (src_iso, targ_iso) in self.target_formatters:
                     print ' * OBS! Target formatter already registered for %s.' % \
-                        language_iso
+                        repr((src_iso, targ_iso))
                     print '   ignoring redefinition on <%s>.' % \
                         formatter_function.__name__
                 else:
