@@ -254,6 +254,17 @@ class XMLDict(object):
                          , _type=_type
                          )
 
+    def lookupOtherLemmaAttr(self, attr_name, attr_value):
+        attr_name = '@' + attr_name
+        _xp = etree.XPath(
+            ".//e[lg/l/%s = %s" % (attr_name, attr_value)
+            , namespaces={'re': regexpNS}
+        )
+        return self.XPath( self.lemmaOtherAttr
+                         , attr_name=attr_name
+                         , attr_value=attr_value
+                         )
+
 class AutocompleteTrie(XMLDict):
 
     @property
@@ -364,18 +375,21 @@ class Lexicon(object):
 
         self.autocomplete_tries = autocomplete_tries
 
-    def get_lookup_type(self, lexicon, lemma, pos, pos_type):
+    def get_lookup_type(self, lexicon, lemma, pos, pos_type, lem_args):
         args = ( bool(lemma)
                , bool(pos)
                , bool(pos_type)
+               , bool(lem_args)
                )
 
-        funcs = { (True, False, False): lexicon.lookupLemma
-                , (True, True, False):  lexicon.lookupLemmaPOS
-                , (True, True, True):   lexicon.lookupLemmaPOSAndType
+        funcs = { (True, False, False, False): lexicon.lookupLemma
+                , (True, True, False, False):  lexicon.lookupLemmaPOS
+                , (True, True, True, False):   lexicon.lookupLemmaPOSAndType
+                , (False, False, False, True): lexicon.lookupOtherLemmaAttr
                 }
 
         largs = [lemma]
+
         if pos:
             largs.append(pos)
         if pos_type:
@@ -385,14 +399,14 @@ class Lexicon(object):
 
     def lookup(self, _from, _to, lemma,
                pos=False, pos_type=False,
-               _format=False):
+               _format=False, lemma_args=False):
 
         _dict = self.language_pairs.get((_from, _to), False)
 
         if not _dict:
             raise Exception("Undefined language pair %s %s" % (_from, _to))
 
-        _lookup_func, largs = self.get_lookup_type(_dict, lemma, pos, pos_type)
+        _lookup_func, largs = self.get_lookup_type(_dict, lemma, pos, pos_type, lem_args)
 
         if not _lookup_func:
             raise Exception(

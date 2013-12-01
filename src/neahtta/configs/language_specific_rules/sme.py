@@ -541,38 +541,38 @@ def format_target_sme(ui_lang, e, tg):
 
     return None
 
-# @lexicon.entry_target_formatter(('nob', 'sme'))
-# def format_fra_ref_links(ui_lang, e, tg):
-#     """**Entry target translation formatter**
-# 
-#     Display @reg (region) attribute in translations, but only for ``N
-#     Prop``.
-#     """
-#     # print 'format_fra_ref_links'
-#     _str_norm = 'string(normalize-space(%s))'
-# 
-#     _fra_ref = tg.xpath(_str_norm % 're/@fra_ref')
-#     _fra_text = tg.xpath(_str_norm % 're/text()')
-# 
-#     # print ''
-#     # print _fra_text
-#     # print _fra_ref
-# 
-#     if _fra_ref is not None:
-#         print "zomg fra-ref"
-#         if len(_fra_ref) > 0:
-#             return "<a href='?lookup=&l_til_ref=%s'>%s</a> &rarr;" % (_fra_ref, _fra_text)
-# 
-#     _type = e.xpath(_str_norm % 'lg/l/@type')
-#     _pos = e.xpath(_str_norm % 'lg/l/@pos')
-# 
-#     if _pos == 'N' and _type == 'Prop':
-#         _t_lemma = tg.xpath(_str_norm % 't/text()')
-#         _reg = tg.xpath(_str_norm % 't/@reg')
-#         if _reg:
-#             return "%s (%s)" % (_t_lemma, _reg)
-# 
-#     return _fra_text
+@lexicon.entry_target_formatter(('nob', 'sme'))
+def format_fra_ref_links(ui_lang, e, tg):
+    """**Entry target translation formatter**
+
+    Display @reg (region) attribute in translations, but only for ``N
+    Prop``.
+    """
+    # print 'format_fra_ref_links'
+    _str_norm = 'string(normalize-space(%s))'
+
+    _fra_ref = tg.xpath(_str_norm % 're/@fra_ref')
+    _fra_text = tg.xpath(_str_norm % 're/text()')
+
+    # print ''
+    # print _fra_text
+    # print _fra_ref
+
+    if _fra_ref is not None:
+        print "zomg fra-ref"
+        if len(_fra_ref) > 0:
+            return "<a href='?lookup=&l_til_ref=%s'>%s</a> &rarr;" % (_fra_ref, _fra_text)
+
+    _type = e.xpath(_str_norm % 'lg/l/@type')
+    _pos = e.xpath(_str_norm % 'lg/l/@pos')
+
+    if _pos == 'N' and _type == 'Prop':
+        _t_lemma = tg.xpath(_str_norm % 't/text()')
+        _reg = tg.xpath(_str_norm % 't/@reg')
+        if _reg:
+            return "%s (%s)" % (_t_lemma, _reg)
+
+    return _fra_text
 
 from common import remove_blank
 

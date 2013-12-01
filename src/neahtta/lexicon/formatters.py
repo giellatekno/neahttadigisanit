@@ -213,7 +213,6 @@ class SimpleJSON(EntryNodeIterator):
                , 'hid': lemma_hid
                }
 
-
 class DetailedFormat(EntryNodeIterator):
     def clean(self, e):
         lemma, lemma_pos, lemma_context, lemma_type, lemma_hid = self.l_node(e)
