@@ -408,6 +408,126 @@ def indexWithLangs(_from, _to):
                           , iphone=iphone
                           )
 
+accepted_lemma_args = {
+    'l_til_ref': 'til_ref',
+}
+
+# For direct links, form submission.
+@blueprint.route('/<_from>/<_to>/ref/', methods=['GET'])
+def indexWithLangsToReference(_from, _to):
+    from lexicon import FrontPageFormat
+    from operator import itemgetter
+
+    # mobile test for most common browsers
+    mobile = False
+    if request.user_agent.platform in ['iphone', 'android']:
+        mobile = True
+
+    iphone = False
+    if request.user_agent.platform == 'iphone':
+        iphone = True
+
+    analyses_without_lex = []
+    mlex = current_app.morpholexicon
+
+    user_input = lookup_val = request.form.get('lookup', False)
+
+    if (_from, _to) not in current_app.config.dictionaries:
+        abort(404)
+
+    successful_entry_exists = False
+    errors = []
+
+    results = False
+    analyses = False
+
+    lemma_lookup_args = {}
+    for k, v in request.args.iteritems():
+        if k in accepted_lemma_args:
+            lemma_lookup_args[accepted_lemma_args.get(k)] = v
+
+    if lemma_lookup_args:
+
+        mlex = current_app.morpholexicon
+
+        entries_and_tags = mlex.lookup( ''
+                                      , source_lang=_from
+                                      , target_lang=_to
+                                      , split_compounds=True
+                                      , lemma_attrs=lemma_lookup_args
+                                      )
+
+        analyses = sum(map(itemgetter(1), entries_and_tags), [])
+
+        # Keep these around for the mobile analyses box
+        analyses = [ (lem.input, lem.lemma, list(lem.tag))
+                     for lem in analyses
+                   ]
+
+        fmtkwargs = { 'target_lang': _to
+                    , 'source_lang': _from
+                    , 'ui_lang': iso_filter(session.get('locale', _to))
+                    , 'user_input': lookup_val
+                    }
+
+        if lemma_lookup_args:
+            fmtkwargs['lemma_attrs'] = lemma_lookup_args
+
+        # [(lemma, XMLNodes)] -> [(lemma, generator(AlmostJSON))]
+        formatted_results = []
+        analyses_without_lex = []
+        for result, morph_analyses in entries_and_tags:
+            if result is not None:
+                formatted_results.extend(FrontPageFormat(
+                    [result],
+                    additional_template_kwargs={'analyses': morph_analyses},
+                    **fmtkwargs
+                ))
+            else:
+                analyses_without_lex.extend(morph_analyses)
+
+        # When to display unknowns
+        successful_entry_exists = False
+        if len(formatted_results) > 0:
+            successful_entry_exists = True
+
+        def sort_entry(r):
+            return r.get('left')
+
+        results = sorted( formatted_results
+                        , key=sort_entry
+                        )
+
+        results = [ {'input': lookup_val, 'lookups': results} ]
+
+        # TODO: how to log this
+        # logIndexLookups(user_input, results, _from, _to)
+
+        show_info = False
+    else:
+        user_input = ''
+        show_info = True
+
+    if len(errors) == 0:
+        errors = False
+
+    # TODO: include form analysis of user input #formanalysis
+    return render_template( 'index.html'
+                          , language_pairs=current_app.config.pair_definitions
+                          , _from=_from
+                          , _to=_to
+                          , user_input=lookup_val
+                          , word_searches=results
+                          , analyses=analyses
+                          , analyses_without_lex=analyses_without_lex
+                          , errors=errors
+                          , show_info=show_info
+                          , zip=zipNoTruncate
+                          , successful_entry_exists=successful_entry_exists
+                          , mobile=mobile
+                          , iphone=iphone
+                          )
+
 @blueprint.route('/about/', methods=['GET'])
 def about():
     from jinja2 import TemplateNotFound

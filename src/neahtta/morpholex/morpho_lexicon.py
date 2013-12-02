@@ -68,6 +68,9 @@ class MorphoLexicon(object):
         target_lang = kwargs.get('target_lang')
 
         morph_kwargs = {}
+        lemma_attrs = {}
+        if 'lemma_attrs' in kwargs:
+            lemma_attrs = kwargs.pop('lemma_attrs')
 
         for k, v in kwargs.iteritems():
             if k in self.morphology_kwarg_names:
@@ -108,6 +111,7 @@ class MorphoLexicon(object):
         no_analysis_xml = self.lexicon.lookup( source_lang
                                              , target_lang
                                              , wordform
+                                             , lemma_attrs=lemma_attrs
                                              )
 
         if no_analysis_xml:

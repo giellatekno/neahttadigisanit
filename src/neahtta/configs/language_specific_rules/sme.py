@@ -559,9 +559,8 @@ def format_fra_ref_links(ui_lang, e, tg):
     # print _fra_ref
 
     if _fra_ref is not None:
-        print "zomg fra-ref"
         if len(_fra_ref) > 0:
-            return "<a href='?lookup=&l_til_ref=%s'>%s</a> &rarr;" % (_fra_ref, _fra_text)
+            return "<a href='/nob/sme/ref/?l_til_ref=%s'>%s</a> &rarr;" % (_fra_ref, _fra_text)
 
     _type = e.xpath(_str_norm % 'lg/l/@type')
     _pos = e.xpath(_str_norm % 'lg/l/@pos')

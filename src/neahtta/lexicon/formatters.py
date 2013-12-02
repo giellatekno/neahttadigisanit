@@ -17,7 +17,10 @@ class EntryNodeIterator(object):
 
     def l_node(self, entry):
         l = entry.find('lg/l')
-        lemma = l.text
+        try:
+            lemma = l.text
+        except:
+            lemma = ''
         pos = l.get('pos')
         context = l.get('context')
         type = l.get('type')
@@ -396,6 +399,7 @@ class FrontPageFormat(EntryNodeIterator):
 
         source_lang = self.query_kwargs.get('source_lang')
         target_lang = self.query_kwargs.get('target_lang')
+        lemma_attrs = self.query_kwargs.get('lemma_attrs', False)
 
         if lemma and lemma_pos:
             default_format = "%s (%s)" % ( lemma
@@ -406,6 +410,8 @@ class FrontPageFormat(EntryNodeIterator):
                                          )
         elif lemma and not lemma_pos:
             default_format = lemma
+        elif lemma_attrs:
+            default_format = ''
 
         source_formatted = lexicon_overrides.format_source(
             source_lang, ui_lang, e, target_lang, default_format

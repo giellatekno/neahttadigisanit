@@ -183,6 +183,8 @@ lexicon_overrides = LexiconOverrides()
 
 PARSED_TREES = {}
 
+regexpNS = "http://exslt.org/regular-expressions"
+
 class XMLDict(object):
     """ XML dictionary class. Initiate with a file path or an already parsed
     tree, exposes methods for searching in XML.
@@ -204,7 +206,6 @@ class XMLDict(object):
         self.xpath_evaluator = etree.XPathDocumentEvaluator(self.tree)
 
         # Initialize XPath queries
-        regexpNS = "http://exslt.org/regular-expressions"
 
         self.lemmaStartsWith = etree.XPath(
             './/e[starts-with(lg/l/text(), $lemma)]'
@@ -254,16 +255,16 @@ class XMLDict(object):
                          , _type=_type
                          )
 
-    def lookupOtherLemmaAttr(self, attr_name, attr_value):
-        attr_name = '@' + attr_name
-        _xp = etree.XPath(
-            ".//e[lg/l/%s = %s" % (attr_name, attr_value)
-            , namespaces={'re': regexpNS}
-        )
-        return self.XPath( self.lemmaOtherAttr
-                         , attr_name=attr_name
-                         , attr_value=attr_value
-                         )
+    def lookupOtherLemmaAttr(self, **attrs):
+        attr_conditions = []
+        for k, v in attrs.iteritems():
+            attr_conditions.append("lg/l/@%s = '%s'" % (k, v))
+        attr_conditions = ' and '.join(attr_conditions)
+
+        # .//e[lg/l/@til_ref = 'omtopersoner' and lg/l/@til_ref = 'omtopersoner']
+        _xpath_expr = ".//e[%s]" % attr_conditions
+        _xp = etree.XPath(_xpath_expr , namespaces={'re': regexpNS})
+        return _xp(self.tree)
 
 class AutocompleteTrie(XMLDict):
 
@@ -399,14 +400,14 @@ class Lexicon(object):
 
     def lookup(self, _from, _to, lemma,
                pos=False, pos_type=False,
-               _format=False, lemma_args=False):
+               _format=False, lemma_attrs=False):
 
         _dict = self.language_pairs.get((_from, _to), False)
 
         if not _dict:
             raise Exception("Undefined language pair %s %s" % (_from, _to))
 
-        _lookup_func, largs = self.get_lookup_type(_dict, lemma, pos, pos_type, lem_args)
+        _lookup_func, largs = self.get_lookup_type(_dict, lemma, pos, pos_type, lemma_attrs)
 
         if not _lookup_func:
             raise Exception(
@@ -416,7 +417,10 @@ class Lexicon(object):
                 , pos_type )
             )
 
-        result = _lookup_func(*largs)
+        if lemma_attrs:
+            result = _lookup_func(**lemma_attrs)
+        else:
+            result = _lookup_func(*largs)
 
         if len(result) == 0:
             return False
