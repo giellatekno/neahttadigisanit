@@ -1,29 +1,47 @@
+* 
 
+* need to hide 'more information' link when there isn't actually more information
+  - kind of tricky to implement, the easy way might make things slower,
+    but a more involved way just takes more thinking
 
-* need to recheck compounds and derivation replacement thing
+* some tags are too long for the field, but overflow is hidden
+  - f.eks.)
+      http://localhost:5000/detail/sme/nob/goabbat%20guoibm%C3%A1me.html?no_compounds=true&lemma_match=true
+
+     --
+      pron. resipr. 1.p.tot. Acc/G ... 
+     --
+
+* need to recheck compounds and derivation filtering
   - not working?
 
-* tag in definition not going through tag transforms
+  - oahpásmahttit -> oahpásmuvvat
 
-* remove links on definition if the lemma has a til_ref, because these
-  also don't go anywhere
+    $ lookup -flags mbTT analyser-dict-gt-norm.xfst
+    0%>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 100%
+    oahpásmahttit
+    oahpásmahttit   oahpásmahttit   +?
 
-* need something to show in the form as someone is clicking through the
-  links (maybe just 'hverandre'-- orig_entry)
+    ^C
+    pyry@lolcat-2:~/gtsvn/langs/sme/src$ lookup -flags mbTT analyser-gt-norm.xfst
+    0%>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>100%
+    oahpásmahttit
+    oahpásmahttit   oahpásmuvvat+V+IV+Der/ahtti+V+Inf
+    oahpásmahttit   oahpásmuvvat+V+IV+Der/ahtti+V+Imprt+Pl2
+    oahpásmahttit   oahpásmuvvat+V+IV+Der/ahtti+V+Ind+Prs+Pl1
+    oahpásmahttit   oahpásmuvvat+V+IV+Der/ahtti+V+Der/NomAg+N+Pl+Nom
+
+ - but analyser-gt-norm probably has too much output or something to be used currently? 
 
 * autocomplete needs to not collect entries that have til_ref;
   maybe this will be a language-specific setting
 
-* hverandre and other stuff for the detailed view doesn't work as well
+* hverandre and other stuff for the detailed view doesn't work
 
-changes:
-
- * hverandre needs to have a til_ref of itself so it's findable from the
-   other entries that refer back to it
 
 # Misc
 
- * update reversed to work with new structures -> finkpv
+ * update reversed to work with new structures -> fin-kpv
 
  * ie8 rendering bug on flag lists in header on main page, but not on about page
 
