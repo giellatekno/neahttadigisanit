@@ -413,9 +413,33 @@ class FrontPageFormat(EntryNodeIterator):
         elif lemma_attrs:
             default_format = ''
 
+        def add_link(_p):
+            """ If there's a link already, then don't add one,
+            otherwise...
+            """
+
+            if '<a ' in _p or '</a>' in _p:
+                return _p
+
+            # TODO: will need a more lasting solution... 
+            src_lang = self.query_kwargs.get('source_lang')
+            if src_lang == 'SoMe':
+                src_lang = 'sme'
+
+            _url  = [ 'detail'
+                    , src_lang
+                    , self.query_kwargs.get('target_lang')
+                    , '%s.html?e_node=%s' % (lemma, entry_hash)
+                    ]
+            _url =  '/' + '/'.join(_url)
+            link =  "<a href='%s'>%s</a>" % (_url, _p)
+            return link
+
         source_formatted = lexicon_overrides.format_source(
             source_lang, ui_lang, e, target_lang, default_format
         )
+
+        source_formatted = add_link(source_formatted)
 
         formatted_dict = { 'left': lemma
                          , 'source_formatted': source_formatted

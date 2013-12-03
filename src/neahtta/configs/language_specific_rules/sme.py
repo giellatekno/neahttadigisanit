@@ -494,6 +494,9 @@ def format_source_sme(ui_lang, e, target_lang):
     _pos = e.xpath(_str_norm % 'lg/l/@pos')
 
     _lemma_ref = e.xpath(_str_norm % 'lg/lemma_ref/text()')
+
+    _til_ref = e.xpath(_str_norm % 'lg/l/@til_ref')
+
     if _lemma_ref:
         _link_targ = u'/detail/%s/%s/%s.html' % ('sme', target_lang, _lemma_ref)
         _lemma_ref_link = u'<a href="%s"/>%s</a>' % (_link_targ, _lemma_ref)
@@ -518,6 +521,41 @@ def format_source_sme(ui_lang, e, target_lang):
         return thing + _lemma_ref_link
     else:
         return _lemma
+
+    return None
+
+@lexicon.entry_source_formatter('nob')
+def format_source_nob(ui_lang, e, target_lang):
+    """ **Entry source formatter**
+
+    Format the source for a variety of parameters. Here:
+
+     * Include @pos and @class attributes
+     * if there is a lemma_ref, then we provide the link to that
+       entry too (e.g., munnje)
+    """
+    from morphology.utils import tagfilter_conf
+    from flask import current_app
+
+    paren_args = []
+
+    _str_norm = 'string(normalize-space(%s))'
+    _lemma = e.xpath(_str_norm % 'lg/l/text()')
+    _class = e.xpath(_str_norm % 'lg/l/@class')
+    _pos = e.xpath(_str_norm % 'lg/l/@pos')
+
+    _lemma_ref = e.xpath(_str_norm % 'lg/lemma_ref/text()')
+
+    _til_ref = e.xpath(_str_norm % 'lg/l/@til_ref')
+    _orig_entry = e.xpath(_str_norm % 'lg/l/@orig_entry')
+    print _til_ref
+
+    if (_til_ref is not None) and (_orig_entry is not None):
+        print "omg til_ref"
+        print _til_ref
+        print _orig_entry
+        _link_return = "/nob/sme/ref/?l_til_ref=%s" % _til_ref
+        return "<a href='%s'>&larr; </a> %s" % (_link_return, _lemma)
 
     return None
 

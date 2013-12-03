@@ -122,13 +122,8 @@
                                 {% for lookup in lexeme.lookups %}
                                     <div class="row-fluid entry_row">
                                         <div class="span8">
-                                        {% if _from == "SoMe" %}
-                                            {% set link_target = "/detail/sme/%s/%s.html?e_node=%s" % (_to, lookup.left, lookup.entry_hash) %}
-                                        {% else %}
-                                            {% set link_target = "/detail/%s/%s/%s.html?e_node=%s" % (_from, _to, lookup.left, lookup.entry_hash) %}
-                                        {% endif %}
 
-                                        <p>{{ lookup.source_formatted|sneak_in_link(link_target)|safe }}
+                                        <p>{{ lookup.source_formatted|safe }}
 
                                         <ol>{%- for tx in lookup.right -%}
                                                 <li>
