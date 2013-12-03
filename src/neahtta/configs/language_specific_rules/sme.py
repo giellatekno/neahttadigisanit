@@ -501,9 +501,8 @@ def format_source_sme(ui_lang, e, target_lang):
     if _lemma_ref:
         _link_targ = u'/detail/%s/%s/%s.html' % ('sme', target_lang, _lemma_ref)
         _lemma_ref_link = u'<a href="%s"/>%s</a>' % (_link_targ, _lemma_ref)
-        _lemma_ref_link = u'<span class="see_also"> → '  + _lemma_ref_link
+        _lemma_ref_link = u'<span class="see_also"> &rarr; '  + _lemma_ref_link
         _lemma_ref_link += u'</span>'
-
     else:
         _lemma_ref_link = ''
 
@@ -550,9 +549,19 @@ def format_source_nob(ui_lang, e, target_lang):
     _til_ref = e.xpath(_str_norm % 'lg/l/@til_ref')
     _orig_entry = e.xpath(_str_norm % 'lg/l/@orig_entry')
 
+    tag_filter = current_app.config.tag_filters.get(('sme', 'nob'))
     if _til_ref and _orig_entry:
         _link_return = "/nob/sme/ref/?l_til_ref=%s" % _orig_entry
-        return "<a href='%s'>&larr; </a> %s" % (_link_return, _lemma)
+        _link = "<a href='%s'>%s</a>" % (_link_return, _orig_entry)
+        _lemma_ref_link = u'<span class="see_also"> &rarr; '  + _link
+        _lemma_ref_link += u'</span>'
+        _transl_pos = "(%s)" % tag_filter.get(_pos)
+        _new_str = [ _lemma
+                   , _transl_pos
+                   , _lemma_ref_link
+                   ]
+        _new_str = ' '.join(_new_str)
+        return _new_str
 
     return None
 
