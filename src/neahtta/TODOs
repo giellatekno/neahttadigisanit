@@ -1,13 +1,25 @@
-# Before conference
 
- * translation string for Á in plugin
 
- * Revise english translations, make available in sánit.
-   - flag
+* need to recheck compounds and derivation replacement thing
+  - not working?
 
- * baakoeh: Nehtedigibaakoeh - digibaakoeh gaskeviermesne
+* tag in definition not going through tag transforms
 
- * bugs in bugzilla
+* remove links on definition if the lemma has a til_ref, because these
+  also don't go anywhere
+
+* need something to show in the form as someone is clicking through the
+  links (maybe just 'hverandre'-- orig_entry)
+
+* autocomplete needs to not collect entries that have til_ref;
+  maybe this will be a language-specific setting
+
+* hverandre and other stuff for the detailed view doesn't work as well
+
+changes:
+
+ * hverandre needs to have a til_ref of itself so it's findable from the
+   other entries that refer back to it
 
 # Misc
 

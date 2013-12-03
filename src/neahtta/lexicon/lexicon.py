@@ -272,6 +272,7 @@ class AutocompleteTrie(XMLDict):
     def allLemmas(self):
         """ Returns iterator for all lemmas.
         """
+        # TODO: ignore til_ref things
         return (e.text for e in self.tree.findall('e/lg/l') if e.text)
 
     def autocomplete(self, query):

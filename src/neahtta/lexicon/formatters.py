@@ -272,7 +272,6 @@ class DetailedFormat(EntryNodeIterator):
             source_lang, ui_lang, e, target_lang, default_format
         )
 
-
         return { 'lemma': lemma
                , 'lemma_context': lemma_context
                , 'pos': lemma_pos

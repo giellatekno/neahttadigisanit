@@ -289,9 +289,10 @@ def verb_context(generated_result, *generation_input_args):
         context_formatter = context_for_tags.get((context, tag), False)
         if context_formatter:
             formatted = []
-            for f in forms:
-                f = context_formatter % {'word_form': f}
-                formatted.append(f)
+            if forms:
+                for f in forms:
+                    f = context_formatter % {'word_form': f}
+                    formatted.append(f)
             formatted_forms = formatted
         else:
             formatted_forms = forms
@@ -548,13 +549,9 @@ def format_source_nob(ui_lang, e, target_lang):
 
     _til_ref = e.xpath(_str_norm % 'lg/l/@til_ref')
     _orig_entry = e.xpath(_str_norm % 'lg/l/@orig_entry')
-    print _til_ref
 
-    if (_til_ref is not None) and (_orig_entry is not None):
-        print "omg til_ref"
-        print _til_ref
-        print _orig_entry
-        _link_return = "/nob/sme/ref/?l_til_ref=%s" % _til_ref
+    if _til_ref and _orig_entry:
+        _link_return = "/nob/sme/ref/?l_til_ref=%s" % _orig_entry
         return "<a href='%s'>&larr; </a> %s" % (_link_return, _lemma)
 
     return None
@@ -609,7 +606,7 @@ def format_fra_ref_links(ui_lang, e, tg):
         if _reg:
             return "%s (%s)" % (_t_lemma, _reg)
 
-    return _fra_text
+    return None
 
 from common import remove_blank
 
@@ -618,4 +615,3 @@ morphology.postgeneration_filter_for_iso(
     'sme',
     'SoMe'
 )(remove_blank)
-
