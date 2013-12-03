@@ -347,6 +347,7 @@ class FrontPageFormat(EntryNodeIterator):
 
         # problem: no <t /> nodes available here for til_/fra_ref words
 
+        target_formatted = []
         if len(texts) > 0:
             # TODO: does this not actually pass texts ?
             target_formatted = map(target_formatter, texts)
@@ -357,7 +358,7 @@ class FrontPageFormat(EntryNodeIterator):
 
         # If there were changes, then we want to give absolute control
         # on this string to the formatter.
-        target_reformatted = False
+        target_reformatted = []
         if set(target_formatted) != set(texts):
             target_reformatted = True
 
