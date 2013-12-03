@@ -569,26 +569,28 @@ sme-install: n-sme.fst dict-isme-norm.fst some-n-sme.fst
 ### #smeanalysers
 ##
 
-# NB not copying to /tmp/tmp_fst/ or /tmp/tmp_ifst/ because format is different for these.
-/tmp/misc_fst/n-sme.fst:
+# copy above and use new files from langs infra.
+
+/tmp/misc_fst/sme.fst:
 /tmp/misc_fst/dict-isme-norm.fst:
-/tmp/misc_fst/some-n-sme.fst:
+/tmp/misc_fst/some-sme.fst:
 	@echo "***********************"
 	@echo "** Building sme FSTs **"
 	@echo "***********************"
 	@echo ""
 	-@mkdir -p /tmp/misc_fst/
-	cd $(GTHOME)/gt/ ; \
-	  make TARGET=sme ; \
-	  cp sme/bin/n-sme.fst  /tmp/misc_fst/n-sme.fst ; \
-	  cp sme/bin/some-n-sme.fst  /tmp/misc_fst/some-n-sme.fst ; \
-	  cp sme/bin/dict-isme-norm.fst /tmp/misc_fst/dict-isme-norm.fst
-
+	if ! test -e "$(GTHOME)/langs/sme/Makefile" ; then \
+		cd $(GTHOME)/langs/sme ; ./autogen.sh ; ./configure --enable-dicts ; \
+	fi ; \
+	cd $(GTHOME)/langs/sme ; make ; \
+	cp $(GTHOME)/langs/sme/src/analyser-dict-gt-norm.xfst  /tmp/misc_fst/sme.fst ; \
+	cp $(GTHOME)/langs/sme/src/analyser-dict-gt-desc.xfst  /tmp/misc_fst/some-sme.fst ; \
+	cp $(GTHOME)/langs/sme/src/generator-dict-gt-norm.xfst /tmp/misc_fst/dict-isme-norm.fst ; \
 
 .PHONY: sme
-sme: /tmp/misc_fst/n-sme.fst \
+sme: /tmp/misc_fst/sme.fst \
 	 /tmp/misc_fst/dict-isme-norm.fst \
-	 /tmp/misc_fst/some-n-sme.fst
+	 /tmp/misc_fst/some-sme.fst
 
 rm-sme:
 	rm -rf /tmp/misc_fst/n-sme.fst /tmp/misc_fst/dict-isme-norm.fst /tmp/misc_fst/some-n-sme.fst
@@ -615,9 +617,9 @@ sanit: sme sanit-lexica compile_langs_fsts
 	@echo "    sudo make sanit-install"
 	@echo "... or copy the fsts in /tmp/tmp_fst/ and /tmp/tmp_ifst/ to their right places."
 
-sanit-sme-install: /tmp/misc_fst/n-sme.fst \
+sanit-sme-install: /tmp/misc_fst/sme.fst \
 	               /tmp/misc_fst/dict-isme-norm.fst \
-	               /tmp/misc_fst/some-n-sme.fst
+	               /tmp/misc_fst/some-sme.fst
 	mkdir -p /opt/smi/sme/bin/
 	cp $^ /opt/smi/sme/bin/
 

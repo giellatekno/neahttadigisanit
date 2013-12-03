@@ -37,17 +37,17 @@ Tools:
 Morphology:
   sme:
     tool: *LOOKUP
-    file: [*OPT, "/sme/bin/n-sme.fst"]
+    file: [*OPT, "/sme/bin/sme.fst"]
     inverse_file: [*OPT, "/sme/bin/dict-isme-norm.fst"]
     format: 'xfst'
     options: &sme_fst_options
-      compoundBoundary: "  + #"
-      derivationMarker: "suff."
-      tagsep: ' '
+      compoundBoundary: "#"
+      derivationMarker: "+Der"
+      tagsep: '+'
       inverse_tagsep: '+'
   SoMe:
     tool: *LOOKUP
-    file: [*OPT, "/sme/bin/some-n-sme.fst"] 
+    file: [*OPT, "/sme/bin/some-sme.fst"] 
     inverse_file: [*OPT, "/sme/bin/dict-isme-norm.fst"]
     format: 'xfst'
     options:
