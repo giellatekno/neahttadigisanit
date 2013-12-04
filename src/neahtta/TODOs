@@ -1,4 +1,5 @@
-* 
+
+* test autocomplete filtering more
 
 * need to hide 'more information' link when there isn't actually more information
   - kind of tricky to implement, the easy way might make things slower,
@@ -13,7 +14,8 @@
      --
 
 * need to recheck compounds and derivation filtering
-  - not working?
+  - build two new analysers, unchecked in patch in dictionary-include.am
+    and Makefile.am seems to fix the issue
 
   - oahpásmahttit -> oahpásmuvvat
 
@@ -35,6 +37,10 @@
 
 * autocomplete needs to not collect entries that have til_ref;
   maybe this will be a language-specific setting
+
+   - might be tricky, 'cause autocomplete is parsed before filters and
+     such are read, perhaps better to just have an xpath string as a
+     setting or something.
 
 * hverandre and other stuff for the detailed view doesn't work
 
