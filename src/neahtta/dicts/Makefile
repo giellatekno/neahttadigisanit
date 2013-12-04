@@ -583,8 +583,8 @@ sme-install: n-sme.fst dict-isme-norm.fst some-n-sme.fst
 		cd $(GTHOME)/langs/sme ; ./autogen.sh ; ./configure --enable-dicts ; \
 	fi ; \
 	cd $(GTHOME)/langs/sme ; make ; \
-	cp $(GTHOME)/langs/sme/src/analyser-dict-gt-norm.xfst  /tmp/misc_fst/sme.fst ; \
-	cp $(GTHOME)/langs/sme/src/analyser-dict-gt-desc.xfst  /tmp/misc_fst/some-sme.fst ; \
+	cp $(GTHOME)/langs/sme/src/analyser-dict-gt-desc.xfst  /tmp/misc_fst/sme.fst ; \
+	cp $(GTHOME)/langs/sme/src/analyser-dict-gt-desc-mobile.xfst  /tmp/misc_fst/some-sme.fst ; \
 	cp $(GTHOME)/langs/sme/src/generator-dict-gt-norm.xfst /tmp/misc_fst/dict-isme-norm.fst ; \
 
 .PHONY: sme
