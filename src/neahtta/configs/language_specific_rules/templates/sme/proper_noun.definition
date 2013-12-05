@@ -1,0 +1,14 @@
+﻿description: |
+  "Target language definition pattern to display region for proper
+  nouns"
+lexicon_filters:
+  pos: N
+  type: Prop
+  sem_type: plc
+morphology_filters:
+  pos: N
+  type: Prop
+entry_args:
+  region: "./tg/t/@reg"
+--
+{{ lemma }} ({{ entry_args.region }})
