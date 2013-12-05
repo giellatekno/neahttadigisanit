@@ -1,0 +1,26 @@
+﻿description: "For displaying pregenerated paradigms for an entry."
+lexicon_filters:
+  pos: Pron
+  type: Dem
+  extra:
+    mini_paradigm: "./e/lg/mini_paradigm"
+morphology_filters: False
+entry_template_context:
+  mini_paradigm: "./e/lg/mini_paradigm"
+  analyses: "./e/lg/analysis"
+  lemma_ref: "./e/lg/lemma_ref"
+--
+
+{# inserted within entry paradigm <dl /> #}
+
+{% for analysis in mini_paradigm|xpath:".//analysis" %}
+
+    {% set tag = analysis|xpath:".//@ms"|split:"_" %}
+    {% set wfs = analysis|xpath:".//wordform/text()" %}
+
+    {% if len(tag) > 0 %}
+        {# needs actual definitionlist markup #}
+        {{ something_goes_here }}, {% for t in tag %}{{ t|format }}{{% endfor %}
+    {% endif %}
+
+{% endfor %}
