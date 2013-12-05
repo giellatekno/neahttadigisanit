@@ -562,7 +562,7 @@ rm-sanit-lexica:
 #
 # As these have different names, they won't be matched by pattern in other install
 # target, so making a target for them here.
-sme-install: n-sme.fst dict-isme-norm.fst some-n-sme.fst
+sme-install: dict-sme.fst dict-isme-norm.fst some-n-sme.fst
 	cp $^ /opt/smi/sme/bin/
 
 ##
@@ -571,7 +571,7 @@ sme-install: n-sme.fst dict-isme-norm.fst some-n-sme.fst
 
 # copy above and use new files from langs infra.
 
-/tmp/misc_fst/sme.fst:
+/tmp/misc_fst/dict-sme.fst:
 /tmp/misc_fst/dict-isme-norm.fst:
 /tmp/misc_fst/some-sme.fst:
 	@echo "***********************"
@@ -583,17 +583,17 @@ sme-install: n-sme.fst dict-isme-norm.fst some-n-sme.fst
 		cd $(GTHOME)/langs/sme ; ./autogen.sh ; ./configure --enable-dicts ; \
 	fi ; \
 	cd $(GTHOME)/langs/sme ; make ; \
-	cp $(GTHOME)/langs/sme/src/analyser-dict-gt-desc.xfst  /tmp/misc_fst/sme.fst ; \
+	cp $(GTHOME)/langs/sme/src/analyser-dict-gt-desc.xfst  /tmp/misc_fst/dict-sme.fst ; \
 	cp $(GTHOME)/langs/sme/src/analyser-dict-gt-desc-mobile.xfst  /tmp/misc_fst/some-sme.fst ; \
 	cp $(GTHOME)/langs/sme/src/generator-dict-gt-norm.xfst /tmp/misc_fst/dict-isme-norm.fst ; \
 
 .PHONY: sme
-sme: /tmp/misc_fst/sme.fst \
+sme: /tmp/misc_fst/dict-sme.fst \
 	 /tmp/misc_fst/dict-isme-norm.fst \
 	 /tmp/misc_fst/some-sme.fst
 
 rm-sme:
-	rm -rf /tmp/misc_fst/n-sme.fst /tmp/misc_fst/dict-isme-norm.fst /tmp/misc_fst/some-n-sme.fst
+	rm -rf /tmp/misc_fst/dict-sme.fst /tmp/misc_fst/dict-isme-norm.fst /tmp/misc_fst/some-n-sme.fst
 
 # NB: sme has own needs
 .PHONY: sanit-install
@@ -617,7 +617,7 @@ sanit: sme sanit-lexica compile_langs_fsts
 	@echo "    sudo make sanit-install"
 	@echo "... or copy the fsts in /tmp/tmp_fst/ and /tmp/tmp_ifst/ to their right places."
 
-sanit-sme-install: /tmp/misc_fst/sme.fst \
+sanit-sme-install: /tmp/misc_fst/dict-sme.fst \
 	               /tmp/misc_fst/dict-isme-norm.fst \
 	               /tmp/misc_fst/some-sme.fst
 	mkdir -p /opt/smi/sme/bin/
