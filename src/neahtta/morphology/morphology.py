@@ -531,6 +531,8 @@ class Morphology(object):
         _is_cached = self.cache.set(key, reformatted)
         return reformatted
 
+    # TODO: option, or separate function to also return discarded to
+    # find out what's been removed to hide more_info link 
     def lemmatize(self, form, split_compounds=False,
                   non_compound_only=False, no_derivations=False):
         """ For a wordform, return a list of lemmas
