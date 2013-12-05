@@ -461,6 +461,10 @@ img.i18n_flag {
 		margin-bottom: 1em;
 	}
 
+	.results ol li {
+	    margin-bottom: .4em;
+	}
+
 	.analysis_box {
 	    margin-top: 1em;
 	}
