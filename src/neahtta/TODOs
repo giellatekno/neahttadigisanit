@@ -111,6 +111,10 @@
 
  4.) define how tags should be shown to users-- translation to localisation langs
 
+... Also this should all be central and easy to find. Also, what happens when
+the lexicon is a TSV? 
+
+    http://giellatekno.uit.no/bugzilla/show_bug.cgi?id=1745
 
 # Misc
 
