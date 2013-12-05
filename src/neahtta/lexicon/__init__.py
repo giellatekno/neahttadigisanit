@@ -1,4 +1,4 @@
-from lexicon import Lexicon, lexicon_overrides, LexiconOverrides
+from lexicon import Lexicon, lexicon_overrides, LexiconOverrides, autocomplete_filters
 from formatters import *
 
 __all__ = [ 'Lexicon'
@@ -7,5 +7,6 @@ __all__ = [ 'Lexicon'
           , 'SimpleJSON'
           , 'FrontPageFormat'
           , 'lexicon_overrides'
+          , 'autocomplete_filters'
           , 'DetailedFormat'
           ]

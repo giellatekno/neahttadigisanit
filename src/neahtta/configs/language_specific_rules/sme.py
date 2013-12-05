@@ -13,6 +13,7 @@ from logging import getLogger
 
 from morphology import generation_overrides as morphology
 from lexicon import lexicon_overrides as lexicon
+from lexicon import autocomplete_filters as autocomplete_filters
 from morpholex import morpholex_overrides as morpholex
 
 LEX_TO_FST = {
@@ -65,6 +66,11 @@ def pos_to_fst(*args, **kwargs):
             morph_log.error("Missing LEX_TO_FST pair for %s" % _k.encode('utf-8'))
             morph_log.error("in morphology.morphological_definitions.sme")
     return args, kwargs
+
+@autocomplete_filters.autocomplete_filter_for_lang(('nob', 'sme'))
+def remove_orig_entry(entries):
+	_entries = [e for e in entries if 'orig_entry' not in e.attrib]
+	return _entries
 
 # TODO: may no longer need to remove elements from tags now that those
 # that are presented to users come directly from the pretty presentation

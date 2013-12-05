@@ -266,14 +266,36 @@ class XMLDict(object):
         _xp = etree.XPath(_xpath_expr , namespaces={'re': regexpNS})
         return _xp(self.tree)
 
+class AutocompleteFilters(object):
+
+    def autocomplete_filter_for_lang(self, language_iso):
+        def wrapper(filter_function):
+            self._filters[language_iso].append(filter_function)
+            print '%s filter: autocomplete entry filter for language - %s' % \
+                  ( language_iso
+                  , filter_function.__name__
+                  )
+        return wrapper
+
+    def __init__(self, *args, **kwargs):
+        from collections import defaultdict
+        self._filters = defaultdict(list)
+
+autocomplete_filters = AutocompleteFilters()
+
 class AutocompleteTrie(XMLDict):
 
     @property
     def allLemmas(self):
         """ Returns iterator for all lemmas.
         """
-        # TODO: ignore til_ref things
-        return (e.text for e in self.tree.findall('e/lg/l') if e.text)
+        entries = self.tree.findall('e/lg/l')
+        filters = autocomplete_filters._filters.get(self.language_pair, [])
+        if len(filters) > 0:
+            for f in filters:
+                entries = f(entries)
+        lemma_strings = (e.text for e in entries if e.text)
+        return lemma_strings
 
     def autocomplete(self, query):
         if self.trie:
@@ -282,6 +304,9 @@ class AutocompleteTrie(XMLDict):
         return []
 
     def __init__(self, *args, **kwargs):
+        if 'language_pair' in kwargs:
+            self.language_pair = kwargs.pop('language_pair')
+
         super(AutocompleteTrie, self).__init__(*args, **kwargs)
 
         from trie import Trie
@@ -302,7 +327,6 @@ class AutocompleteTrie(XMLDict):
 
         else:
             self.trie = PARSED_TREES[filename]
-
 
 class ReverseLookups(XMLDict):
     """
@@ -373,6 +397,7 @@ class Lexicon(object):
                 fname = settings.dictionaries.get(k)
                 autocomplete_tries[k] = AutocompleteTrie( tree=has_root.tree
                                                         , filename=fname
+                                                        , language_pair=k
                                                         )
 
         self.autocomplete_tries = autocomplete_tries
