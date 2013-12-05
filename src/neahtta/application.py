@@ -113,10 +113,11 @@ def create_app():
     app.config['cache'] = cache
     app.config = Config('.', defaults=app.config)
     app.config.from_envvar('NDS_CONFIG')
+    app.config.overrides = configs.blueprint.load_language_overrides(app)
+    app.config.prepare_lexica()
 
     # Register language specific config information
     app.register_blueprint(configs.blueprint)
-    app.config.overrides = configs.blueprint.load_language_overrides(app)
 
     app.morpholexicon = MorphoLexicon(app.config)
 
