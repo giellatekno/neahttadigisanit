@@ -1,4 +1,5 @@
 
+
 * test autocomplete filtering more
 
 * need to hide 'more information' link when there isn't actually more information
@@ -43,6 +44,72 @@
      setting or something.
 
 * hverandre and other stuff for the detailed view doesn't work
+
+# General design stuff
+
+
+  example from detailed view:
+    - lexicon( xml -> parser )
+                + language specific formatting (chance for markup)
+    - 
+
+    - user query -> view -> lexicon lookup results -> formatter ->
+      view does some more things, sorting, object manipulation
+      -> templates
+
+    - templates obviously handle markup
+
+  this is too much, but it happened because a lot of functionality was
+  developed on the fly. now that all the needs from the lexicon and
+  morphology are clear, it needs to be improved and simplified.
+
+   - morphology needs:
+     - 
+
+   - lexicon needs:
+
+     - lexicon-specific formatting must be turned into something the
+     application can display.
+
+     - lexicon-specific tags must be turned into something morphology
+     can operate on without much effort from a programmer
+
+     - room for entry/word-class specific formatting stuff
+
+   - linguist needs:
+
+     - choose how to display a specific entry type based on knowledge of
+       lexicon and morphology, without much effort from the programmer
+
+        - pos=N, type=Prop and has @reg; -> display l/text() with l/@reg
+        - pos=N, type=Prop and has @reg; -> display l/text() with l/@reg
+
+
+     - able to programmatically define links to other entries
+
+     - able to define what paradigm to generate and show with the entry
+       - interact with morphology and tags without having to know how
+         all the (python) code works
+
+## 
+
+ 1.) define connections between morphology and lexicon
+     - what tags and attributes differ, and how should they be used to
+       look up a word
+     - define tag sets so that they may be used in rules
+     - define alphabetic order for language
+     - 
+
+ 2.) define how lexicon entries are displayed to users, based on entry
+     and morphology attributes
+
+     - capability to also add links to different entries
+     - when to hide morphological results
+     - when to hide tag pieces from users if they can't be altered in the morph.
+
+ 3.) define what forms are generated for the entry type
+
+ 4.) define how tags should be shown to users-- translation to localisation langs
 
 
 # Misc
