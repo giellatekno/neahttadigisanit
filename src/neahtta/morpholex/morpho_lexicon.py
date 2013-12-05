@@ -79,6 +79,14 @@ class MorphoLexicon(object):
         # TODO: if analyses dropping componuds results in lexicalized
         # form that does not exist in lexicon, then fall back to
         # compounds?
+
+        # TODO: to hide more_info link properly, we still need to know
+        # what information has been stripped away in morph_kwargs and
+        # lex_kwargs, so a count of discarded results for at least one
+        # of these would be good.  -- alternative is to run the lookup
+        # twice, which might take too much time if someone's hitting
+        # detail frequently.
+
         analyzer = self.analyzers.get(source_lang)
         try:
             analyses = analyzer.lemmatize(wordform, **morph_kwargs)

@@ -146,12 +146,12 @@ def wordDetail(from_language, to_language, wordform, format):
 
         mlex = current_app.morpholexicon
         entries_and_tags = mlex.lookup( wordform
-                                       , source_lang=from_language
-                                       , target_lang=to_language
-                                       , split_compounds=_split
-                                       , non_compounds_only=_non_c
-                                       , no_derivations=_non_d
-                                       )
+                                      , source_lang=from_language
+                                      , target_lang=to_language
+                                      , split_compounds=_split
+                                      , non_compounds_only=_non_c
+                                      , no_derivations=_non_d
+                                      )
 
         # TODO: move generation to detailed format? thus node correct
         # pos, tags, etc., are available

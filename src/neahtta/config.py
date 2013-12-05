@@ -363,7 +363,9 @@ class Config(Config):
         self.test(silent=True)
         # Prepare lexica
 
+        return True
+
+    def prepare_lexica(self):
         from lexicon import Lexicon
         self.lexicon = Lexicon(self)
 
-        return True
