@@ -37,7 +37,7 @@ Tools:
 Morphology:
   sme:
     tool: *LOOKUP
-    file: [*OPT, "/sme/bin/sme.fst"]
+    file: [*OPT, "/sme/bin/dict-sme.fst"]
     inverse_file: [*OPT, "/sme/bin/dict-isme-norm.fst"]
     format: 'xfst'
     options: &sme_fst_options
