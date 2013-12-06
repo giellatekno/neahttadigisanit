@@ -8,7 +8,7 @@ lexicon_filters:
 morphology_filters:
   pos: N
   type: Prop
-entry_args:
+entry_template_context:
   region: "./tg/t/@reg"
 --
 {{ lemma }} ({{ entry_args.region }})

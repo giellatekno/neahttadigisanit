@@ -16,7 +16,7 @@ entry_template_context:
 {% for analysis in mini_paradigm|xpath:".//analysis" %}
 
     {% set tag = analysis|xpath:".//@ms"|split:"_" %}
-    {% set wfs = analysis|xpath:".//wordform/text()" %}
+    {% set wordform = analysis|xpath:".//wordform/text()" %}
 
     {% if len(tag) > 0 %}
         {# needs actual definitionlist markup #}

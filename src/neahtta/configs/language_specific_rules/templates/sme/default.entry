@@ -1,7 +1,7 @@
 description: |
   "Default display type for lemmas, if no other templates have matching
   filters. NB: xpath_args relative to <e /> node."
-entry_args:
+entry_template_context:
   pos: "./e/lg/l/@pos"
   type: "./e/lg/l/@type"
 --

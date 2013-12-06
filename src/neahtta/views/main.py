@@ -321,7 +321,7 @@ def indexWithLangs(_from, _to):
 
     user_input = lookup_val = request.form.get('lookup', False)
 
-    if (_from, _to) not in current_app.config.dictionaries:
+    if (_from, _to) not in current_app.config.dictionaries and (_from, _to) not in current_app.config.variant_dictionaries:
         abort(404)
 
     successful_entry_exists = False
@@ -334,6 +334,8 @@ def indexWithLangs(_from, _to):
 
         mlex = current_app.morpholexicon
 
+        # if (_from, _to) in current_app.config.variant_dictionaries:
+        # 	_orig_from 
         entries_and_tags = mlex.lookup( lookup_val
                                       , source_lang=_from
                                       , target_lang=_to
@@ -394,6 +396,7 @@ def indexWithLangs(_from, _to):
     # TODO: include form analysis of user input #formanalysis
     return render_template( 'index.html'
                           , language_pairs=current_app.config.pair_definitions
+                          , variant_dictionaries=current_app.config.variant_dictionaries
                           , _from=_from
                           , _to=_to
                           , user_input=lookup_val

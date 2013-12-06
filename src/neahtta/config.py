@@ -209,6 +209,48 @@ class Config(Config):
         return language_pairs
 
     @property
+    def variant_dictionaries(self):
+        from collections import OrderedDict
+        if hasattr(self, '_variant_dictionaries'):
+            return self._variant_dictionaries
+
+        dicts = self.yaml.get('Dictionaries')
+        language_pairs = OrderedDict()
+        for item in dicts:
+            source = item.get('source')
+            target = item.get('target')
+            path = item.get('path')
+            variants = item.get('input_variants')
+            if variants:
+                for v in variants:
+                    if v.get('short_name') != source:
+                        language_pairs[(v.get('short_name'), target)] = {
+                            'orig_pair': (source, target),
+                            'path': path,
+                        }
+
+        self._variant_dictionaries = language_pairs
+        return language_pairs
+
+    @property
+    def input_variants(self):
+        from collections import OrderedDict
+        if self._input_variants:
+            return self._input_variants
+
+        dicts = self.yaml.get('Dictionaries')
+        language_pairs = OrderedDict()
+        for item in dicts:
+            source = item.get('source')
+            target = item.get('target')
+            input_variants = item.get('input_variants', False)
+            if input_variants:
+                language_pairs[(source, target)] = input_variants
+
+        self._input_variants = language_pairs
+        return language_pairs
+
+    @property
     def tagset_definitions(self):
         if self._tagset_definitions:
             return self._tagset_definitions
@@ -238,11 +280,15 @@ class Config(Config):
                     print >> sys.stderr, "Check Languages in app.config.yaml"
                     sys.exit()
 
-                _names_by_iso = {}
+                _pair_options = {
+                    'langs': {}
+                }
                 for iso in _lang_isos:
-                    _names_by_iso[iso] = (_from_langs[iso], _to_langs[iso])
+                    _pair_options['langs'][iso] = (_from_langs[iso], _to_langs[iso])
 
-                _par_defs[key] = _names_by_iso
+                _pair_options['input_variants'] = self.input_variants.get(key, False)
+
+                _par_defs[key] = _pair_options
 
             for k, v in self.dictionaries.iteritems():
                 self._pair_definitions[k] = _par_defs[k]
@@ -349,6 +395,7 @@ class Config(Config):
         self._languages               = False
         self._pair_definitions        = False
         self._dictionaries            = False
+        self._input_variants          = False
         self._tagset_definitions      = False
         self._reversable_dictionaries = False
         self._paradigms               = False

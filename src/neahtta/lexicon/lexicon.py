@@ -380,15 +380,26 @@ class Lexicon(object):
               for k, v in settings.dictionaries.iteritems() ]
         )
 
+
+        alternate_dicts = dict(
+            [ (k, XMLDict(filename=v.get('path')))
+              for k, v in settings.variant_dictionaries.iteritems() ]
+        )
+
+        # language_pairs.update(alternate_dicts)
+        langs_and_alternates = {}
+        langs_and_alternates.update(language_pairs)
+        langs_and_alternates.update(alternate_dicts)
+
         self.lookup = lexicon_overrides.process_postlookups(
-            language_pairs,
+            langs_and_alternates,
             lexicon_overrides.process_prelookups(
-                language_pairs,
+                langs_and_alternates,
                 self.lookup
             )
         )
 
-        self.language_pairs = language_pairs
+        self.language_pairs = langs_and_alternates
 
         autocomplete_tries = {}
         for k, v in language_pairs.iteritems():

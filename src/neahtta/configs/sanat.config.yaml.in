@@ -52,6 +52,17 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
+  SoMe-liv:
+    tool: *LOOKUP
+    variant: "liv"
+    file: [*OPT, '/liv/bin/liv-mobile.xfst']
+    inverse_file: [*OPT, '/liv/bin/iliv.fst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
   fkv:
     tool: *LOOKUP
     file: [*OPT, '/fkv/bin/fkv.fst']
@@ -87,6 +98,7 @@ Languages:
   - iso: olo
   - iso: fin
   - iso: liv
+  - iso: SoMe-liv
   - iso: fkv
   - iso: izh
   - iso: nob
@@ -101,9 +113,25 @@ Dictionaries:
   - source: liv
     target: fin
     path: 'dicts/liv.all.xml'
+    input_variants:
+      - type: "standard"
+        description: "Standard (äǟ)"
+        # NB: must be same as analyser name
+        short_name: "liv"
+      - type: "mobile"
+        description: "Mobile friendly (a &rarr; ä ~ ǟ)"
+        short_name: "SoMe-liv"
   - source: liv
     target: est
     path: 'dicts/liv.all.xml'
+    input_variants:
+      - type: "standard"
+        description: "Standard (äǟ)"
+        # NB: must be same as analyser name
+        short_name: "liv"
+      - type: "mobile"
+        description: "Mobile friendly (a &rarr; ä ~ ǟ)"
+        short_name: "SoMe-liv"
   - source: liv
     target: lav
     path: 'dicts/liv.all.xml'
@@ -201,6 +229,15 @@ Paradigms:
 
 
 TagSets:
+  liv: &livtagsets
+    pos: [
+      "N", "V", "A", "Pr", "Po", "Num", "CS", "CC",
+      
+      "pron.", "subst.", "verb", "adj.", "konj."
+    ]
+    type: ["NomAg", "G3", "aktor", "res."]
+  SoMe-liv: 
+    <<: *livtagsets
   olo:
     pos: ["N", "V", "A", "Pr", "Po", "Num"]
     type: ["NomAg", "G3", "aktor"]

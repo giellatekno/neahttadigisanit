@@ -4,6 +4,10 @@
 ##                   ##
 #######################
 
+# TODO: when templates are updated, not everything is noticed in make
+# process for main/langs/, so it might be necessary to do a distclean,
+# and reautogen from time to time
+
 # Some helpful tags for jumping around
 
 ###         #guusaawtargets

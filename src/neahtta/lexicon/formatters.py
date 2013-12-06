@@ -216,6 +216,11 @@ class SimpleJSON(EntryNodeIterator):
                , 'hid': lemma_hid
                }
 
+# TODO: adding hverandre functionality requires some additional
+# attributes to be available, but this formatter class is annoying,
+# and a good argument for how this should all just be handled by xslt or
+# some template thing instead.
+
 class DetailedFormat(EntryNodeIterator):
     def clean(self, e):
         lemma, lemma_pos, lemma_context, lemma_type, lemma_hid = self.l_node(e)

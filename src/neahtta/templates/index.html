@@ -17,11 +17,27 @@
 {% block extra_nav %}
         {# Dictionaries #}
         <li class="display-phone hidden-tablet visible-mid hidden-desktop"><span>{% trans %}Dictionaries{% endtrans %}</span></li>
-        {% for iso_pair, names in language_pairs.iteritems() %}
+        {% for iso_pair, pair_options in language_pairs.iteritems() %}
             <li class="visible-thin visible-mid hidden-desktop hidden-tablet {%- if iso_pair[0] == _from and iso_pair[1] == _to %} active{% endif -%}">
                 <a href="/{{ iso_pair[0] }}/{{ iso_pair[1] }}/">
                 <span>{{ iso_pair[0]|iso_to_i18n }} → {{ iso_pair[1]|iso_to_i18n }}</span>
                 </a></li>
+            {% if pair_options.input_variants %}
+                {% for variant in pair_options.input_variants %}
+                    {% if iso_pair != (variant.short_name, iso_pair[1]) %}
+                        <li class="visible-thin visible-mid hidden-desktop hidden-tablet {%- if variant.short_name == _from and iso_pair[1] == _to %} active{% endif -%}">
+                            <a href="/{{ variant.short_name }}/{{ iso_pair[1] }}/">
+                            <span>{{ variant.short_name|iso_to_i18n }} → {{ iso_pair[1]|iso_to_i18n }}</span>
+                            </a></li>
+                    {% endif %}
+                    {#
+                    <li{% if _from == variant.short_name %} class="active"{% endif %}>
+                        <a href="/{{ variant.short_name }}/{{ _to }}">{{ variant.description|safe }}</a>
+                    </li>
+                    #}
+                {% endfor %}
+            {% endif %}
+
         {% endfor %}
         <li class="visible-thin hidden-desktop hidden-tablet hidden-mid"><a href="/more/">{% trans %}Other dictionaries{% endtrans %}</a></li>
 {% endblock %}
@@ -34,28 +50,79 @@
         <div class="span4 hidden-phone hidden-mid" id="left_nav">
             <h4 class="dict_title">{% trans %}Dictionaries{% endtrans %}</h4>
             <ul class="nav nav-collapse nav-tabs nav-stacked">
-            {% for iso_pair, names in language_pairs.iteritems() %}
-                {% if iso_pair[0] != "SoMe" %}
-                    <li class="{%- if iso_pair[0] == _from and iso_pair[1] == _to %} active{% endif -%}">
-                        <a href="/{{ iso_pair[0] }}/{{ iso_pair[1] }}/">
-                        <span>{{ iso_pair[0]|iso_to_i18n }} → {{ iso_pair[1]|iso_to_i18n }}</span>
-                        </a>
-                    </li>
+
+            {% if variant_dictionaries %}
+                {%- if variant_dictionaries.get((_from, _to)) -%}
+                    {% set is_variant = true %}
+                    {% set var = variant_dictionaries.get((_from, _to)) %}
+                    {% set orig_pair = var.get('orig_pair') %}
+                {% else %}
+                    {% set is_variant = false %}
+                    {% set orig_pair = () %}
                 {% endif %}
-                {# Start a new nav if there are variants #}
-                {# TODO: include in mobile menu somehow #}
-                {# TODO: make this work from config settings, for now hard-coded #}
-                {%- if iso_pair[0] in ['sme', 'SoMe'] and iso_pair[1] == 'nob' and iso_pair[0] == _from and iso_pair[1] == _to %}
-                    </ul>
-                    <span class="nav-header variantnote">{% trans %}Written variant{% endtrans %}</span>
-                    <ul class="nav nav-collapse nav-tabs nav-stacked subnavcoloring">
-                        <li{% if _from == "sme" %} class="active"{% endif %}><a href="/sme/nob/">{% trans %}Standard (<em>áčđŋšŧž</em>){% endtrans %}</a></li>
-                        <li{% if _from == "SoMe" %} class="active"{% endif %}><a href="/SoMe/nob/">{% trans %}Social Media (incl. <em>acdnstz</em>){% endtrans %}</a></li>
-                    </ul>
-                    <ul class="nav nav-collapse nav-tabs nav-stacked">
+            {% endif %}
+
+
+            {% for iso_pair, pair_options in language_pairs.iteritems() %}
+
+                {%- if pair_options.input_variants -%}
+                    {% set has_variant = true  %}
+                {%- else -%}
+                    {% set has_variant = false %}
                 {%- endif -%}
 
+                {% if not is_variant %}
+                    {%- if iso_pair[0] == _from and iso_pair[1] == _to %}
+                        <li class="active">
+                    {% else -%}
+                        <li>
+                    {% endif -%}
+                {% elif is_variant -%}
+                    {%- if iso_pair[1] == orig_pair[1] and iso_pair[0] == orig_pair[0] %}
+                        <li class="active">
+                    {% else -%}
+                        <li>
+                    {% endif -%}
+                {% else -%}
+                    <li>
+                {% endif %}
 
+                    <a href="/{{ iso_pair[0] }}/{{ iso_pair[1] }}/">
+                    <span>{{ iso_pair[0]|iso_to_i18n }} &rarr; {{ iso_pair[1]|iso_to_i18n }}</span>
+                    </a>
+                </li>
+
+                {# Start a new nav if there are variants #}
+                {% if has_variant %}
+                    {# Only display if the pair is the current one the user is looking at #}
+                    {%- if iso_pair[0] == _from and iso_pair[1] == _to or orig_pair == iso_pair %}
+                        </ul>
+                        <span class="nav-header variantnote">{% trans %}Written variant{% endtrans %}</span>
+                        <ul class="nav nav-collapse nav-tabs nav-stacked subnavcoloring">
+                            {% for variant in pair_options.input_variants %}
+                                <li{% if _from == variant.short_name %} class="active"{% endif %}>
+                                    <a href="/{{ variant.short_name }}/{{ _to }}">{{ variant.description|safe }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <ul class="nav nav-collapse nav-tabs nav-stacked">
+                    {%- endif -%}
+                {%- else -%}
+                    {# maintain original SoMe/sme stuff for now, until yaml config is completely in order #}
+                    {#
+                    {%- if iso_pair[0] in ['sme', 'SoMe'] and iso_pair[1] == 'nob' and iso_pair[0] == _from and iso_pair[1] == _to %}
+                        </ul>
+                        <span class="nav-header variantnote">{% trans %}Written variant{% endtrans %}</span>
+                        <ul class="nav nav-collapse nav-tabs nav-stacked subnavcoloring">
+                            <li{% if _from == "sme" %} class="active"{% endif %}><a href="/sme/nob/">{% trans %}Standard (<em>áčđŋšŧž</em>){% endtrans %}</a></li>
+                            <li{% if _from == "SoMe" %} class="active"{% endif %}><a href="/SoMe/nob/">{% trans %}Social Media (incl. <em>acdnstz</em>){% endtrans %}</a></li>
+                        </ul>
+                        <ul class="nav nav-collapse nav-tabs nav-stacked">
+                    {%- endif -%}
+                    #}
+                {%- endif -%}
+
+                {#
                 {%- if iso_pair[0] in ['sme', 'SoMe'] and iso_pair[1] == 'fin' and iso_pair[0] == _from and iso_pair[1] == _to %}
                     </ul>
                     <span class="nav-header variantnote">{% trans %}Written variant{% endtrans %}</span>
@@ -65,19 +132,41 @@
                     </ul>
                     <ul class="nav nav-collapse nav-tabs nav-stacked">
                 {%- endif -%}
+                #}
             {% endfor %}
             </ul>
             <p><a href="/more/" class="other_link">{% trans %}Other dictionaries{% endtrans %}</a></p>
         </div>
         <div class="span8">
-            <h4 class="dict_title">{%- for iso_pair, names in language_pairs.iteritems() %}
-                {% if iso_pair[0] == _from and iso_pair[1] == _to %}
-                <span>{{ iso_pair[0]|iso_to_i18n }} → {{ iso_pair[1]|iso_to_i18n }}</span>
-                {% endif %}
-                {% endfor -%}
+            <h4 class="dict_title">
+                <span>{{ _from|iso_to_i18n }} → {{ _to|iso_to_i18n }}</span>
 
-                {% if _from == 'SoMe' %}
-                    <span class="swaplink" style="font-size: 80%">(<a href="/{{ _to }}/sme/">⇄ {% trans %}Swap{% endtrans %}</a>)</span></h4>
+                {# figure out if there's a variant, and if the reverse has
+                variants, because if mobile, we want to force mobile variant in
+                swap #}
+                {% if variant_dictionaries %}
+                    {% set reverse_has_variant = false %}
+                    {%- if variant_dictionaries.get((_from, _to)) -%}
+                        {% set is_variant = true %}
+                        {% set var = variant_dictionaries.get((_from, _to)) %}
+                        {% set orig_pair = var.get('orig_pair') %}
+                        {% set vars = language_pairs.get((_to, _from), False) %}
+                        {% if vars %}
+                            {% if vars[1].input_variants 5}
+                                {% set reverse_has_variant = true %}
+                            {% endif %}
+                        {% endif %}
+                        {% set orig_pair = var.get('orig_pair') %}
+                    {% else %}
+                        {% set is_variant = false %}
+                        {% set orig_pair = () %}
+                    {% endif %}
+                {% endif %}
+
+                {# TODO: generalize swap #}
+                {# TODO: reverse_has_variant is tricky
+                {% if is_variant %}
+                    <span class="swaplink" style="font-size: 80%">(<a href="/{{ _to }}/{{ orig_pair[0] }}/">⇄ {% trans %}Swap{% endtrans %}</a>)</span></h4>
                 {% else %}
                     {% if _to == 'sme' and mobile %}
                         <span class="swaplink" style="font-size: 80%">(<a href="/SoMe/{{ _from }}/">⇄ {% trans %}Swap{% endtrans %}</a>)</span></h4>

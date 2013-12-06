@@ -1,7 +1,7 @@
 description: |
   "Default display type for definitions, if there are no other matched
   filters. NB: xpath_args relative to <tg /> node."
-entry_args:
+entry_template_context:
   explanation: "./tg/t/re"
 --
 {{ lemma }} ({{ entry_args.explanation }})

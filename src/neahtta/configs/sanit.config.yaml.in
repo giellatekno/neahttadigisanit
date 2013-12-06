@@ -49,6 +49,7 @@ Morphology:
     tool: *LOOKUP
     file: [*OPT, "/sme/bin/some-sme.fst"] 
     inverse_file: [*OPT, "/sme/bin/dict-isme-norm.fst"]
+    variant: "sme"
     format: 'xfst'
     options:
       <<: *sme_fst_options
@@ -83,6 +84,7 @@ Languages:
       fin: "pohjoissaame"
 
   - iso: SoMe
+    variant: "sme"
     name:
       sme: "davvisámegiella (#SoMe)"
       eng: "Northern Sámi (#SoMe)"
@@ -116,6 +118,15 @@ Dictionaries:
   - source: sme
     target: nob
     path: 'dicts/sme-nob.all.xml'
+    # TODO:, replace SoMe with this
+    # TODO: need to be able to localize description strings first though
+    # input_variants:
+    #   - type: "standard"
+    #     description: "standard TODO"
+    #     short_name: "sme"
+    #   - type: "mobile"
+    #     description: "mobile TODO"
+    #     short_name: "SoMe"
 
   - source: SoMe
     target: nob
