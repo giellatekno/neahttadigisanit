@@ -1,4 +1,6 @@
 
+* POS needs to be selected by tagset always, not by being the first tag in
+  order. reduces requirement that analyser have special tagsets itself
 
 * test autocomplete filtering more
 
@@ -125,7 +127,7 @@ the lexicon is a TSV?
  * detail view, include generation info in opt+shift+? debug
 
  * See bugs 
-   
+ 
  * change cache settings for plugin js in nginx configs, some browsers are
    unwilling to get a new version even when it exists.
 
