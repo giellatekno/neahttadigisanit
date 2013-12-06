@@ -137,7 +137,7 @@ TagSets:
 # already translated
 # TODO: i18n
 TagTransforms:
-  (sma, nob):
+  (sma, nob): &smatagrelabels
     V: "v."
     N: "s."
     A: "adj."
@@ -256,3 +256,5 @@ TagTransforms:
     "PUNCT": "tegn"
     "Dimin": "dim."
 
+  (nob, sma):
+    <<: *smatagrelabels
