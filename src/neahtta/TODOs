@@ -5,6 +5,10 @@
    	 returning results
    - detailed view needs redirecting
    - API lookup doesn't work yet
+   - perhaps there's some funky character encoding thing going on where
+   	 some are combining and some are not
+   - Yes, encoding issue between lexicon and FST. new organization works
+   	 in sme
 
 * POS needs to be selected by tagset always, not by being the first tag in
   order. reduces requirement that analyser have special tagsets itself
