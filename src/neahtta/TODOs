@@ -1,4 +1,11 @@
 
+* generalizing SoMe to a language variant feature: 
+   - some problematic thing with how lexicon lookups are performed.
+   	 can't get agār from agar in liv, even though the analyser is working and
+   	 returning results
+   - detailed view needs redirecting
+   - API lookup doesn't work yet
+
 * POS needs to be selected by tagset always, not by being the first tag in
   order. reduces requirement that analyser have special tagsets itself
 
