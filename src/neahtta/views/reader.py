@@ -36,7 +36,8 @@ def lookupWord(from_language, to_language):
     """
     from lexicon import SimpleJSON
 
-    if (from_language, to_language) not in current_app.config.dictionaries:
+    if (from_language, to_language) not in current_app.config.dictionaries and \
+       (from_language, to_language) not in current_app.config.variant_dictionaries:
         abort(404)
 
     success = False
@@ -237,13 +238,33 @@ def bookmarklet_configs():
 
     translated_messages = fetch_messages(sess_lang)
 
-    dictionaries = [
-        { 'from': {'iso': _from, 'name': unicode(NAMES.get(_from))}
-        , 'to':   {'iso': _to,   'name': unicode(NAMES.get(_to))}
-        , 'uri': "/lookup/%s/%s/" % (_from, _to)
-        }
-        for _from, _to in current_app.config.dictionaries.keys()
-    ]
+    dictionaries = []
+
+    prepared = []
+
+    for (_from, _to), pair_options in current_app.config.dictionaries.iteritems():
+        prepared.append((_from, _to))
+        dictionaries.append(
+            { 'from': {'iso': _from, 'name': unicode(NAMES.get(_from))}
+            , 'to':   {'iso': _to,   'name': unicode(NAMES.get(_to))}
+            , 'uri': "/lookup/%s/%s/" % (_from, _to)
+            }
+        )
+
+        _has_variant = current_app.config.pair_definitions.get((_from, _to), {}) \
+                                         .get('input_variants', False)
+
+        if _has_variant:
+            for variant in _has_variant:
+                v_from = variant.get('short_name')
+                if not (v_from, _to) in prepared:
+                    dictionaries.append(
+                        { 'from': {'iso': v_from, 'name': unicode(NAMES.get(v_from))}
+                        , 'to':   {'iso': _to,    'name': unicode(NAMES.get(_to))}
+                        , 'uri': "/lookup/%s/%s/" % (_from, _to)
+                        }
+                    )
+                    prepared.append((v_from, _to))
 
     data = { 'dictionaries': dictionaries
            , 'localization': translated_messages
