@@ -183,33 +183,6 @@ def reader_update_json():
                    , mimetype="application/json"
                    )
 
-### @blueprint.route('/read/debug/', methods=['GET'])
-### def bookmarklet_debug():
-###     from bookmarklet_code import bookmarklet_escaped
-###     bkmklt = bookmarklet_escaped.replace( 'sanit.oahpa.no'
-###                                         , 'localhost%3A5000'
-###                                         )\
-###                                 .replace( 'bookmarklet.min.js'
-###                                         , 'bookmarklet.js'
-###                                         )
-###     return render_template('reader.html', bookmarklet=bkmklt)
-
-### @blueprint.route('/read/example/', methods=['GET'])
-### def bookmarklet_example_page():
-###     from bookmarklet_code import bookmarklet_escaped
-###     bkmklt = bookmarklet_escaped.replace( 'sanit.oahpa.no'
-###                                         , 'localhost%3A5000'
-###                                         )\
-###                                 .replace( 'bookmarklet.min.js'
-###                                         , 'bookmarklet.js'
-###                                         )
-###     hostname = request.host
-###     return render_template( 'reader_example.html'
-###                           , bookmarklet_local=bkmklt
-###                           , bookmarklet=bookmarklet_escaped
-###                           , hostname=hostname
-###                           )
-
 def fetch_messages(locale):
     from i18n.polib import pofile
 

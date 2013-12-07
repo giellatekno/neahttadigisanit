@@ -30,11 +30,6 @@
                             <span>{{ variant.short_name|iso_to_i18n }} → {{ iso_pair[1]|iso_to_i18n }}</span>
                             </a></li>
                     {% endif %}
-                    {#
-                    <li{% if _from == variant.short_name %} class="active"{% endif %}>
-                        <a href="/{{ variant.short_name }}/{{ _to }}">{{ variant.description|safe }}</a>
-                    </li>
-                    #}
                 {% endfor %}
             {% endif %}
 
@@ -51,24 +46,12 @@
             <h4 class="dict_title">{% trans %}Dictionaries{% endtrans %}</h4>
             <ul class="nav nav-collapse nav-tabs nav-stacked">
 
-            {% if variant_dictionaries %}
-                {%- if variant_dictionaries.get((_from, _to)) -%}
-                    {% set is_variant = true %}
-                    {% set var = variant_dictionaries.get((_from, _to)) %}
-                    {% set orig_pair = var.get('orig_pair') %}
-                {% else %}
-                    {% set is_variant = false %}
-                    {% set orig_pair = () %}
-                {% endif %}
-            {% endif %}
-
-
             {% for iso_pair, pair_options in language_pairs.iteritems() %}
 
                 {%- if pair_options.input_variants -%}
-                    {% set has_variant = true  %}
+                    {% set pair_has_variant = true  %}
                 {%- else -%}
-                    {% set has_variant = false %}
+                    {% set pair_has_variant = false %}
                 {%- endif -%}
 
                 {% if not is_variant %}
@@ -93,7 +76,7 @@
                 </li>
 
                 {# Start a new nav if there are variants #}
-                {% if has_variant %}
+                {% if pair_has_variant %}
                     {# Only display if the pair is the current one the user is looking at #}
                     {%- if iso_pair[0] == _from and iso_pair[1] == _to or orig_pair == iso_pair %}
                         </ul>
@@ -107,32 +90,8 @@
                         </ul>
                         <ul class="nav nav-collapse nav-tabs nav-stacked">
                     {%- endif -%}
-                {%- else -%}
-                    {# maintain original SoMe/sme stuff for now, until yaml config is completely in order #}
-                    {#
-                    {%- if iso_pair[0] in ['sme', 'SoMe'] and iso_pair[1] == 'nob' and iso_pair[0] == _from and iso_pair[1] == _to %}
-                        </ul>
-                        <span class="nav-header variantnote">{% trans %}Written variant{% endtrans %}</span>
-                        <ul class="nav nav-collapse nav-tabs nav-stacked subnavcoloring">
-                            <li{% if _from == "sme" %} class="active"{% endif %}><a href="/sme/nob/">{% trans %}Standard (<em>áčđŋšŧž</em>){% endtrans %}</a></li>
-                            <li{% if _from == "SoMe" %} class="active"{% endif %}><a href="/SoMe/nob/">{% trans %}Social Media (incl. <em>acdnstz</em>){% endtrans %}</a></li>
-                        </ul>
-                        <ul class="nav nav-collapse nav-tabs nav-stacked">
-                    {%- endif -%}
-                    #}
                 {%- endif -%}
 
-                {#
-                {%- if iso_pair[0] in ['sme', 'SoMe'] and iso_pair[1] == 'fin' and iso_pair[0] == _from and iso_pair[1] == _to %}
-                    </ul>
-                    <span class="nav-header variantnote">{% trans %}Written variant{% endtrans %}</span>
-                    <ul class="nav nav-collapse nav-tabs nav-stacked subnavcoloring">
-                        <li{% if _from == "sme" %} class="active"{% endif %}><a href="/sme/nob/">{% trans %}Standard (<em>áčđŋšŧž</em>){% endtrans %}</a></li>
-                        <li{% if _from == "SoMe" %} class="active"{% endif %}><a href="/SoMe/fin/">{% trans %}Social Media (incl. <em>acdnstz</em>){% endtrans %}</a></li>
-                    </ul>
-                    <ul class="nav nav-collapse nav-tabs nav-stacked">
-                {%- endif -%}
-                #}
             {% endfor %}
             </ul>
             <p><a href="/more/" class="other_link">{% trans %}Other dictionaries{% endtrans %}</a></p>
@@ -144,43 +103,16 @@
                 {# figure out if there's a variant, and if the reverse has
                 variants, because if mobile, we want to force mobile variant in
                 swap #}
-                {% if variant_dictionaries %}
-                    {% set reverse_has_variant = false %}
-                    {%- if variant_dictionaries.get((_from, _to)) -%}
-                        {% set is_variant = true %}
-                        {% set var = variant_dictionaries.get((_from, _to)) %}
-                        {% set orig_pair = var.get('orig_pair') %}
-                        {% set vars = language_pairs.get((_to, _from), False) %}
-                        {% if vars %}
-                            {% if vars[1].input_variants 5}
-                                {% set reverse_has_variant = true %}
-                            {% endif %}
-                        {% endif %}
-                        {% set orig_pair = var.get('orig_pair') %}
-                    {% else %}
-                        {% set is_variant = false %}
-                        {% set orig_pair = () %}
-                    {% endif %}
-                {% endif %}
 
                 {# TODO: generalize swap #}
-                {# TODO: reverse_has_variant is tricky
-                {% if is_variant %}
-                    <span class="swaplink" style="font-size: 80%">(<a href="/{{ _to }}/{{ orig_pair[0] }}/">⇄ {% trans %}Swap{% endtrans %}</a>)</span></h4>
-                {% else %}
-                    {% if _to == 'sme' and mobile %}
-                        <span class="swaplink" style="font-size: 80%">(<a href="/SoMe/{{ _from }}/">⇄ {% trans %}Swap{% endtrans %}</a>)</span></h4>
-                    {% else %}
-                        <span class="swaplink" style="font-size: 80%">(<a href="/{{ _to }}/{{ _from }}/">⇄ {% trans %}Swap{% endtrans %}</a>)</span></h4>
-                    {% endif %}
-                {% endif %}
+                {# TODO: reverse_has_variant is tricky #}
+                <span class="swaplink" style="font-size: 80%">(<a href="/{{ swap_from }}/{{ swap_to }}/">⇄ {% trans %}Swap{% endtrans %}</a>)</span></h4>
 
             <div class="row-fluid form-row">
                 <div class="span8">
                     <form id="neahttasaanit" class="form-inline"
                         method="post"
-                        action="/{{ _from }}/{{ _to }}/">
-                        <div class="input-append">
+                        action="/{{ _from }}/{{ _to }}/"> <div class="input-append">
                             <input type="text" 
                                    name="lookup" 
                                    autocorrect="off"

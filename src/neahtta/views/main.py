@@ -295,8 +295,6 @@ def wordDetail(from_language, to_language, wordform, format):
                               , zip=zipNoTruncate
                               )
 
-
-
 @blueprint.route('/more/', methods=['GET'])
 def more_dictionaries():
     return render_template('more_dictionaries.html')

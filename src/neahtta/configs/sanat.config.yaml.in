@@ -52,10 +52,9 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
-  SoMe-liv:
+  livM:
     tool: *LOOKUP
-    variant: "liv"
-    file: [*OPT, '/liv/bin/liv-mobile.xfst']
+    file: [*OPT, '/liv/bin/some-liv.fst']
     inverse_file: [*OPT, '/liv/bin/iliv.fst']
     format: 'xfst'
     options:
@@ -98,7 +97,7 @@ Languages:
   - iso: olo
   - iso: fin
   - iso: liv
-  - iso: SoMe-liv
+  - iso: livM
   - iso: fkv
   - iso: izh
   - iso: nob
@@ -120,7 +119,7 @@ Dictionaries:
         short_name: "liv"
       - type: "mobile"
         description: "Mobile friendly (a &rarr; ä ~ ǟ)"
-        short_name: "SoMe-liv"
+        short_name: "livM"
   - source: liv
     target: est
     path: 'dicts/liv.all.xml'

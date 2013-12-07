@@ -87,7 +87,6 @@ class MorphoLexicon(object):
         # twice, which might take too much time if someone's hitting
         # detail frequently.
 
-        print source_lang
         analyzer = self.analyzers.get(source_lang)
         try:
             analyses = analyzer.lemmatize(wordform, **morph_kwargs)

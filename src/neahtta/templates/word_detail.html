@@ -50,11 +50,20 @@
 
                 {# TODO: i18n #}
                 {# TODO: dropdown select to language pair for form submit #}
-                {% for iso_pair, names in language_pairs.iteritems() %}
+                {% for iso_pair, pair_options in language_pairs.iteritems() %}
                  <li class="selected{%- if iso_pair[0] == _from and iso_pair[1] == _to %} active{% endif -%}"><a tabindex="-1" href="#"
                          data-value="{{ iso_pair[0]}}-{{ iso_pair[1] }}">
                         <span>{{ iso_pair[0]|iso_to_i18n }} ↔ {{ iso_pair[1]|iso_to_i18n }}</span>
                     </a></li>
+                    {% if pair_options.input_variants %}
+                        {% for variant in pair_options.input_variants %}
+                            {% if iso_pair != (variant.short_name, iso_pair[1]) %}
+                                 <li class="selected{%- if variant.short_name == _from and iso_pair[1] == _to %} active{% endif -%}"><a tabindex="-1" href="#"
+                                         data-value="{{ variant.short_name}}-{{ iso_pair[1] }}">
+                                        <span>{{ variant.short_name|iso_to_i18n }} ↔ {{ iso_pair[1]|iso_to_i18n }}</span>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 {% endfor %}
                </ul>
              </div>
