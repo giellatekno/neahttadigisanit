@@ -8,6 +8,11 @@
 
 DEBUG = False
 
+# TODO: doesn't recognize translation comments yet, but I'm not really
+# in need of these
+# TODO: in order to work this needs to be a legit python package, 
+#  http://babel.edgewall.org/wiki/Documentation/0.9/messages.html#id1
+# TODO: line numbers seem to be off
 def extract_yaml(fileobj, keywords, comment_tags, options):
     """Extract messages from YAML source code.
 
@@ -91,6 +96,9 @@ def extract_yaml(fileobj, keywords, comment_tags, options):
                     translator_comments.append((token.lineno, value.strip()))
                     break
 
+        # The yaml lexer doesn't recognize multiline comments, so, fun
+        # times
+
         # elif token_type == 'multilinecomment':
         #     # only one multi-line comment may preceed a translation
         #     translator_comments = []
@@ -111,16 +119,17 @@ def extract_yaml(fileobj, keywords, comment_tags, options):
                 if DEBUG:
                     print call_stack, 'funcname, got quote'
                     print new_value
-                if last_argument is not None:
-                    print '  last arg'
-                    messages.append(last_argument)
-                    last_argument = ''
-                if len(messages) > 1:
-                    messages = tuple(messages)
-                elif messages:
-                    messages = messages[0]
-                else:
-                    messages = None
+
+                # if last_argument is not None:
+                #     print '  last arg'
+                #     messages.append(last_argument)
+                #     last_argument = ''
+                # if len(messages) > 1:
+                #     messages = tuple(messages)
+                # elif messages:
+                #     messages = messages[0]
+                # else:
+                #     messages = None
 
                 # Comments don't apply unless they immediately precede the
                 # message
