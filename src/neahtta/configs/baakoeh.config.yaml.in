@@ -33,7 +33,7 @@ Morphology:
   sma:
     tool: *LOOKUP
     file: [*OPT, '/sma/bin/dict-sma.fst']
-    inverse_file: [*OPT, '/sma/bin/isma-dict.fst']
+    inverse_file: [*OPT, '/sma/bin/dict-isma-norm.fst']
     format: 'xfst'
     options:
       compoundBoundary: "+Cmp#"
