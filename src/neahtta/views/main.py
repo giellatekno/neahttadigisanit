@@ -131,6 +131,11 @@ def wordDetail(from_language, to_language, wordform, format):
 
     if cached_result is None:
 
+        if (from_language, to_language) not in current_app.config.dictionaries and \
+           (from_language, to_language)     in current_app.config.variant_dictionaries:
+            var = current_app.config.variant_dictionaries.get((from_language, to_language))
+            (from_language, to_language) = var.get('orig_pair')
+
         lang_paradigms = current_app.config.paradigms.get(from_language)
         if not lang_paradigms:
             unsupportedLang(', no paradigm defined.')
