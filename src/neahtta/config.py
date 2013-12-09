@@ -10,11 +10,11 @@ import yaml
 
 def gettext_yaml_wrapper(loader, node):
     from flaskext.babel import lazy_gettext as _
-    return _(node.value)
+    return node.value
 
 # TODO: make this work, or figure out how babel wants a parser for yaml
 # constructed.
-yaml.add_constructor('!_', gettext_yaml_wrapper)
+yaml.add_constructor('!gettext', gettext_yaml_wrapper)
 
 class Config(Config):
     """ An object for exposing the settings in app.config.yaml in a nice
