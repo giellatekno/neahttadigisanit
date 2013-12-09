@@ -85,8 +85,8 @@ compile_langs_fsts: $(langs)
  			cd $(GTHOME)/langs/$$ll ; ./autogen.sh ; ./configure --enable-dicts ; \
  		fi ; \
  		cd $(GTHOME)/langs/$$ll ; make ; \
-	    cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc.xfst  /tmp/tmp_fst/$$ll.fst ; \
-	    cp $(GTHOME)/langs/$$ll/src/generator-gt-norm.xfst /tmp/tmp_ifst/i$$ll.fst ; \
+	    cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc.xfst  /tmp/tmp_fst/dict-$$ll.fst ; \
+	    cp $(GTHOME)/langs/$$ll/src/generator-gt-norm.xfst /tmp/tmp_ifst/dict-i$$ll-norm.fst ; \
 		cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc-mobile.xfst  /tmp/misc_fst/some-$$ll.fst 2>/dev/null || : ; \
 	done 
 
@@ -99,8 +99,8 @@ install_langs_fsts: $(langs)
 	@echo ""
 	for ll in $(GT_COMPILE_LANGS) ; do \
 		mkdir -p /opt/smi/$$ll/bin/ ; \
-		cp /tmp/tmp_fst/$$ll.fst /opt/smi/$$ll/bin/ ; \
-		cp /tmp/tmp_ifst/i$$ll.fst /opt/smi/$$ll/bin/ ; \
+		cp /tmp/tmp_fst/dict-$$ll.fst /opt/smi/$$ll/bin/ ; \
+		cp /tmp/tmp_ifst/dict-i$$ll-norm.fst /opt/smi/$$ll/bin/ ; \
 		cp /tmp/misc_fst/some-$$ll.fst /opt/smi/$$ll/bin/ 2>/dev/null || : ; \
 	done 
 
