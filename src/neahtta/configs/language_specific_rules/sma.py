@@ -123,7 +123,15 @@ def lexicon_pos_to_fst_sma(form, tags, node=None):
     return form, new_tags, node
 
 @morphology.tag_filter_for_iso('sma')
-def include_hid_in_gen(form, tags, node):
+def add_homonymy_tag(form, tags, node):
+    """ **Tag filter: homonym tags**
+
+    If the entry selected has @hid, we need to insert this in order to
+    generate the forms properly
+    
+        govledh+Hom1+V+TV+Ind+Prs+Sg3 
+
+    """
     new_tags = tags[:]
 
     if len(node) > 0:
@@ -170,6 +178,8 @@ def sma_common_noun_pluralia_tanta(form, tags, node):
             ]
 
     return form, tags, node
+
+
 
 from common import remove_blank
 
