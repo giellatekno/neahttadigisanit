@@ -143,6 +143,10 @@ TagTransforms:
     A: "adj."
     NomAg: ""
     Adv: "adv."
+    Hom1: ""
+    Hom2: ""
+    TV: "tr."
+    IV: "intr."
 
     v: "v."
     n: "s."
