@@ -20,8 +20,8 @@ Tools:
 Morphology:
   yrk:
     tool: *LOOKUP
-    file: [*OPT, '/yrk/bin/yrk.fst']
-    inverse_file: [*OPT, '/yrk/bin/iyrk.fst']
+    file: [*OPT, '/yrk/bin/dict-yrk.fst']
+    inverse_file: [*OPT, '/yrk/bin/dict-iyrk-norm.fst']
     format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -30,8 +30,8 @@ Morphology:
       inverse_tagsep: '+'
   fin:
     tool: *LOOKUP
-    file: [*OPT, '/fin/bin/fin.fst']
-    inverse_file: [*OPT, '/fin/bin/ifin.fst']
+    file: [*OPT, '/fin/bin/dict-fin.fst']
+    inverse_file: [*OPT, '/fin/bin/dict-ifin-norm.fst']
     format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"

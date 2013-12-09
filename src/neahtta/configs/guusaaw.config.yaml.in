@@ -18,8 +18,8 @@ Tools:
 Morphology:
   hdn:
     tool: *LOOKUP
-    file: [*OPT, '/hdn/bin/hdn.fst']
-    inverse_file: [*OPT, '/hdn/bin/ihdn.fst']
+    file: [*OPT, '/hdn/bin/dict-hdn.fst']
+    inverse_file: [*OPT, '/hdn/bin/dict-ihdn-norm.fst']
     format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"

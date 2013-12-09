@@ -20,8 +20,8 @@ Tools:
 Morphology:
   kpv:
     tool: *LOOKUP
-    file: [*OPT, '/kpv/bin/kpv.fst']
-    inverse_file: [*OPT, '/kpv/bin/ikpv.fst']
+    file: [*OPT, '/kpv/bin/dict-kpv.fst']
+    inverse_file: [*OPT, '/kpv/bin/dict-ikpv-norm.fst']
     format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -30,8 +30,8 @@ Morphology:
       inverse_tagsep: '+'
   fin:
     tool: *LOOKUP
-    file: [*OPT, '/fin/bin/fin.fst']
-    inverse_file: [*OPT, '/fin/bin/ifin.fst']
+    file: [*OPT, '/fin/bin/dict-fin.fst']
+    inverse_file: [*OPT, '/fin/bin/dict-ifin-norm.fst']
     format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"

@@ -54,8 +54,8 @@ Morphology:
       <<: *sme_fst_options
   nob:
     tool: *LOOKUP
-    file: [*OPT, '/nob/bin/nob.fst']
-    inverse_file: [*OPT, '/nob/bin/inob.fst']
+    file: [*OPT, '/nob/bin/dict-nob.fst']
+    inverse_file: [*OPT, '/nob/bin/dict-inob-norm.fst']
     format: 'xfst'
     options:
       compoundBoundary: "#+Cmp+"
@@ -64,8 +64,8 @@ Morphology:
       inverse_tagsep: '+'
   fin:
     tool: *LOOKUP
-    file: [*OPT, '/fin/bin/fin.fst']
-    inverse_file: [*OPT, '/fin/bin/ifin.fst']
+    file: [*OPT, '/fin/bin/dict-fin.fst']
+    inverse_file: [*OPT, '/fin/bin/dict-ifin-norm.fst']
     format: 'xfst'
     options:
       compoundBoundary: "#"

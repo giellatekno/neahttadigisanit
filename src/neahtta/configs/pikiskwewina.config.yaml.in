@@ -19,8 +19,8 @@ Tools:
 Morphology:
   crk:
     tool: *LOOKUP
-    file: [*OPT, '/crk/bin/crk.fst']
-    inverse_file: [*OPT, '/crk/bin/icrk.fst']
+    file: [*OPT, '/crk/bin/dict-crk.fst']
+    inverse_file: [*OPT, '/crk/bin/dict-icrk-norm.fst']
     format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -29,8 +29,8 @@ Morphology:
       inverse_tagsep: '+'
   eng:
     tool: *LOOKUP
-    file: [*OPT, '/eng/bin/eng.fst']
-    inverse_file: [*OPT, '/eng/bin/ieng.fst']
+    file: [*OPT, '/eng/bin/dict-eng.fst']
+    inverse_file: [*OPT, '/eng/bin/dict-ieng-norm.fst']
     format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"

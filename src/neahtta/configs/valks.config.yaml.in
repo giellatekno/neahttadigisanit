@@ -23,8 +23,8 @@ Tools:
 Morphology:
   myv:
     tool: *LOOKUP
-    file: [*OPT, '/myv/bin/myv.fst']
-    inverse_file: [*OPT, '/myv/bin/imyv.fst']
+    file: [*OPT, '/myv/bin/dict-myv.fst']
+    inverse_file: [*OPT, '/myv/bin/dict-imyv-norm.fst']
     format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -33,8 +33,8 @@ Morphology:
       inverse_tagsep: '+'
   mdf:
     tool: *LOOKUP
-    file: [*OPT, '/mdf/bin/mdf.fst']
-    inverse_file: [*OPT, '/mdf/bin/imdf.fst']
+    file: [*OPT, '/mdf/bin/dict-mdf.fst']
+    inverse_file: [*OPT, '/mdf/bin/dict-imdf-norm.fst']
     format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -43,8 +43,8 @@ Morphology:
       inverse_tagsep: '+'
   fin:
     tool: *LOOKUP
-    file: [*OPT, '/fin/bin/fin.fst']
-    inverse_file: [*OPT, '/fin/bin/ifin.fst']
+    file: [*OPT, '/fin/bin/dict-fin.fst']
+    inverse_file: [*OPT, '/fin/bin/dict-ifin-norm.fst']
     format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"

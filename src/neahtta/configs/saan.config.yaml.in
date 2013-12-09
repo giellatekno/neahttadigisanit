@@ -20,8 +20,8 @@ Tools:
 Morphology:
   sms:
     tool: *LOOKUP
-    file: [*OPT, '/sms/bin/sms.fst']
-    inverse_file: [*OPT, '/sms/bin/isms.fst']
+    file: [*OPT, '/sms/bin/dict-sms.fst']
+    inverse_file: [*OPT, '/sms/bin/dict-isms-norm.fst']
     format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -30,8 +30,8 @@ Morphology:
       inverse_tagsep: '+'
   fin:
     tool: *LOOKUP
-    file: [*OPT, '/fin/bin/fin.fst']
-    inverse_file: [*OPT, '/fin/bin/ifin.fst']
+    file: [*OPT, '/fin/bin/dict-fin.fst']
+    inverse_file: [*OPT, '/fin/bin/dict-ifin-norm.fst']
     format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"

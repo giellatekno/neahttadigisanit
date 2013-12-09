@@ -24,8 +24,8 @@ Tools:
 Morphology:
   olo:
     tool: *LOOKUP
-    file: [*OPT, '/olo/bin/olo.fst']
-    inverse_file: [*OPT, '/olo/bin/iolo.fst']
+    file: [*OPT, '/olo/bin/dict-olo.fst']
+    inverse_file: [*OPT, '/olo/bin/dict-iolo-norm.fst']
     format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -34,8 +34,8 @@ Morphology:
       inverse_tagsep: '+'
   fin:
     tool: *LOOKUP
-    file: [*OPT, '/fin/bin/fin.fst']
-    inverse_file: [*OPT, '/fin/bin/ifin.fst']
+    file: [*OPT, '/fin/bin/dict-fin.fst']
+    inverse_file: [*OPT, '/fin/bin/dict-ifin-norm.fst']
     format: 'xfst'
     options:
       compoundBoundary: "#"
@@ -44,8 +44,8 @@ Morphology:
       inverse_tagsep: '+'
   liv:
     tool: *LOOKUP
-    file: [*OPT, '/liv/bin/liv.fst']
-    inverse_file: [*OPT, '/liv/bin/iliv.fst']
+    file: [*OPT, '/liv/bin/dict-liv.fst']
+    inverse_file: [*OPT, '/liv/bin/dict-iliv-norm.fst']
     format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -55,7 +55,7 @@ Morphology:
   livM:
     tool: *LOOKUP
     file: [*OPT, '/liv/bin/some-liv.fst']
-    inverse_file: [*OPT, '/liv/bin/iliv.fst']
+    inverse_file: [*OPT, '/liv/bin/dict-iliv-norm.fst']
     format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -64,8 +64,8 @@ Morphology:
       inverse_tagsep: '+'
   fkv:
     tool: *LOOKUP
-    file: [*OPT, '/fkv/bin/fkv.fst']
-    inverse_file: [*OPT, '/fkv/bin/ifkv.fst']
+    file: [*OPT, '/fkv/bin/dict-fkv.fst']
+    inverse_file: [*OPT, '/fkv/bin/dict-ifkv-norm.fst']
     format: 'xfst'
     options:
       compoundBoundary: "+Cmp#"
@@ -74,8 +74,8 @@ Morphology:
       inverse_tagsep: '+'
   izh:
     tool: *LOOKUP
-    file: [*OPT, '/izh/bin/izh.fst']
-    inverse_file: [*OPT, '/izh/bin/iizh.fst']
+    file: [*OPT, '/izh/bin/dict-izh.fst']
+    inverse_file: [*OPT, '/izh/bin/dict-iizh-norm.fst']
     format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -84,8 +84,8 @@ Morphology:
       inverse_tagsep: '+'
   nob:
     tool: *LOOKUP
-    file: [*OPT, '/nob/bin/nob.fst']
-    inverse_file: [*OPT, '/nob/bin/inob.fst']
+    file: [*OPT, '/nob/bin/dict-nob.fst']
+    inverse_file: [*OPT, '/nob/bin/dict-inob-norm.fst']
     format: 'xfst'
     options:
       compoundBoundary: "#+Cmp+"
