@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-11-30 00:08-0600\n"
+"POT-Creation-Date: 2013-12-08 19:37-0600\n"
 "PO-Revision-Date: 2013-08-26 23:23+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: sms <LL@li.org>\n"
@@ -27,7 +27,7 @@ msgstr ""
 msgid "North Sámi (#SoMe)"
 msgstr ""
 
-#: configs/language_names.py:26 configs/language_names.py:74
+#: configs/language_names.py:26 configs/language_names.py:75
 msgid "English"
 msgstr ""
 
@@ -43,76 +43,81 @@ msgstr ""
 msgid "Kven"
 msgstr ""
 
-#: configs/language_names.py:36 templates/more_dictionaries.html:38
+#: configs/language_names.py:36 configs/language_names.py:37
+#: templates/more_dictionaries.html:38
 msgid "Livonian"
 msgstr ""
 
 #: configs/language_names.py:37
+msgid "mobile friendly"
+msgstr ""
+
+#: configs/language_names.py:38
 msgid "Olonetsian"
 msgstr ""
 
-#: configs/language_names.py:38 templates/more_dictionaries.html:38
+#: configs/language_names.py:39 templates/more_dictionaries.html:38
 msgid "Izhorian"
 msgstr ""
 
-#: configs/language_names.py:39
+#: configs/language_names.py:40
 msgid "Estonian"
 msgstr ""
 
-#: configs/language_names.py:42
+#: configs/language_names.py:43
 msgid "Erzya Mordvin"
 msgstr ""
 
-#: configs/language_names.py:43 templates/more_dictionaries.html:39
+#: configs/language_names.py:44 templates/more_dictionaries.html:39
 msgid "Moksha"
 msgstr ""
 
-#: configs/language_names.py:44 configs/language_names.py:76
+#: configs/language_names.py:45 configs/language_names.py:77
 msgid "French"
 msgstr ""
 
-#: configs/language_names.py:47
+#: configs/language_names.py:48
 msgid "Western Mari"
 msgstr ""
 
-#: configs/language_names.py:48
+#: configs/language_names.py:49
 msgid "Eastern Mari"
 msgstr ""
 
-#: configs/language_names.py:51
+#: configs/language_names.py:52
 msgid "Nenets"
 msgstr ""
 
-#: configs/language_names.py:54
+#: configs/language_names.py:55
 msgid "Skolt Sámi"
 msgstr ""
 
-#: configs/language_names.py:57
+#: configs/language_names.py:58
 msgid "Plains Cree"
 msgstr ""
 
-#: configs/language_names.py:60
+#: configs/language_names.py:61
 msgid "Northern Haida"
 msgstr ""
 
-#: configs/language_names.py:63 configs/language_names.py:69
+#: configs/language_names.py:64 configs/language_names.py:70
 msgid "Finnish"
 msgstr ""
 
-#: configs/language_names.py:64 configs/language_names.py:70
-#: configs/language_names.py:71
+#: configs/language_names.py:65 configs/language_names.py:71
+#: configs/language_names.py:72
 msgid "Norwegian"
 msgstr ""
 
-#: configs/language_names.py:66 configs/language_names.py:67
+#: configs/language_names.py:67 configs/language_names.py:68
 msgid "Russian"
 msgstr ""
 
-#: configs/language_names.py:72 configs/language_names.py:73
+#: configs/language_names.py:73 configs/language_names.py:74
 msgid "Latvian"
 msgstr ""
 
-#: configs/language_names.py:75
+#: configs/language_names.py:76
 msgid "Haida"
 msgstr ""
 
@@ -326,8 +331,8 @@ msgid "Each of the dictionaries contains about 11,000 base words."
 msgstr ""
 
 #: templates/about.baakoeh.html:76 templates/about.muter.html:79
-#: templates/about.sanat.html:86 templates/about.sanit.html:84
-#: templates/about.vada.html:78 templates/about.valks.html:90
+#: templates/about.sanat.html:86 templates/about.vada.html:78
+#: templates/about.valks.html:90
 msgid "More to come..."
 msgstr ""
 
@@ -393,27 +398,27 @@ msgid ""
 "                Foundation."
 msgstr ""
 
-#: templates/about.sanit.html:72
+#: templates/about.sanit.html:73
 msgid "Find a problem?"
 msgstr ""
 
-#: templates/about.sanit.html:73
+#: templates/about.sanit.html:74
 msgid ""
 "If you find any bugs, please get in touch with us. Describe the problem,\n"
-"            and tell us what web browser or mobile phone you were using, "
-"or what word you\n"
-"            were searching for when you encountered the problem."
+"                and tell us what web browser or mobile phone you were "
+"using, or what word you\n"
+"                were searching for when you encountered the problem."
 msgstr ""
 
-#: templates/about.sanit.html:77
+#: templates/about.sanit.html:79 templates/about.sanit.html:84
 msgid "Contact us"
 msgstr ""
 
-#: templates/about.sanit.html:79
+#: templates/about.sanit.html:89
 msgid ""
 "Need more dictionaries? <a href=\"http://dicts.uit.no/\">Here's our full "
 "list</a>, and more\n"
-"            resources."
+"                resources."
 msgstr ""
 
 #: templates/about.vada.html:59
@@ -496,64 +501,56 @@ msgstr ""
 msgid "Neahttadigisánit"
 msgstr ""
 
-#: templates/index.html:19 templates/index.html:35
+#: templates/index.html:19 templates/index.html:46
 msgid "Dictionaries"
 msgstr ""
 
-#: templates/index.html:26 templates/index.html:70
+#: templates/index.html:37 templates/index.html:97
 #: templates/more_dictionaries.html:21
 msgid "Other dictionaries"
 msgstr ""
 
-#: templates/index.html:50 templates/index.html:61
+#: templates/index.html:83
 msgid "Written variant"
 msgstr ""
 
-#: templates/index.html:52 templates/index.html:63
-msgid "Standard (<em>áčđŋšŧž</em>)"
-msgstr ""
-
-#: templates/index.html:53 templates/index.html:64
-msgid "Social Media (incl. <em>acdnstz</em>)"
-msgstr ""
-
-#: templates/index.html:78
+#: templates/index.html:109
 msgid "Swap"
 msgstr ""
 
-#: templates/index.html:94
+#: templates/index.html:124
 msgid "ohcansátni"
 msgstr ""
 
-#: templates/index.html:96 templates/word_detail.html:67
+#: templates/index.html:126 templates/word_detail.html:76
 msgid "Search"
 msgstr ""
 
-#: templates/index.html:103 templates/index.html:220 views/reader.py:121
+#: templates/index.html:133 templates/index.html:245 views/reader.py:122
 msgid " is a possible form of ... "
 msgstr ""
 
-#: templates/index.html:164
+#: templates/index.html:189
 msgid "Definition not found for:"
 msgstr ""
 
-#: templates/index.html:242
+#: templates/index.html:267
 #, python-format
 msgid "Word %(input)s not found."
 msgstr ""
 
-#: templates/index.html:251
+#: templates/index.html:276
 msgid ""
 "If you are using a device without a Sámi keyboard, consider using <a "
 "href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
 "<em>acdnstz</em> for <em>áčđŋšŧž</em>."
 msgstr ""
 
-#: templates/index.html:255
+#: templates/index.html:280
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
 
-#: templates/index.html:259
+#: templates/index.html:284
 msgid ""
 "You selected #SoMe, the variant for social media, which means that the "
 "letters acdnstz\n"
@@ -739,11 +736,34 @@ msgstr ""
 msgid "is a possible form of ... "
 msgstr ""
 
-#: templates/word_detail.html:188
+#: templates/word_detail.html:197
 msgid "More information about this word"
 msgstr ""
 
-#: views/main.py:91
+#: views/main.py:93
 msgid "Invalid format. Only json and html allowed."
 msgstr ""
+
+#~ msgid ""
+#~ "If you find any bugs, please get"
+#~ " in touch with us. Describe the "
+#~ "problem,\n"
+#~ "            and tell us what web "
+#~ "browser or mobile phone you were "
+#~ "using, or what word you\n"
+#~ "            were searching for when you encountered the problem."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Need more dictionaries? <a "
+#~ "href=\"http://dicts.uit.no/\">Here's our full "
+#~ "list</a>, and more\n"
+#~ "            resources."
+#~ msgstr ""
+
+#~ msgid "Standard (<em>áčđŋšŧž</em>)"
+#~ msgstr ""
+
+#~ msgid "Social Media (incl. <em>acdnstz</em>)"
+#~ msgstr ""
 
