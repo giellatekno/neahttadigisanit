@@ -1,5 +1,6 @@
 ApplicationSettings:
   app_name: "Neahttadigisánit"
+  app_meta_title: "Neahttadigisánit"
   short_name: "kyv"
   default_locale: "kv"
   default_pair: ["kpv", "fin"]
@@ -12,6 +13,9 @@ ApplicationSettings:
       Free online, mobile friendly dictionaries for Nenets
   meta_keywords: >
       komi, komi-zyrian, mobile, dictionary, free, russian
+  admins_to_email:
+    - "rueter.jack@gmail.com"
+    - "trond.trosterud@uit.no"
 
 Tools:
   xfst_lookup: &LOOKUP '/usr/bin/lookup'
@@ -97,8 +101,15 @@ Paradigms:
       - "Pl+Apr"
       - "Pl+Ter"
       - "Pl+Prl"
-    # V:
-    #   - "TV+Ind+Aor+ScSg1"
+    V:
+      - "Inf"
+      - "Ind+Prs+Sg1"
+      - "Ind+Prs+Sg2"
+      - "Ind+Prs+Sg3"
+      - "Ind+Prs+Pl1"
+      - "Ind+Prs+Pl2"
+      - "Ind+Prs+Pl3"
+
 
 TagSets:
   kpv:
