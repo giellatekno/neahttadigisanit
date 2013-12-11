@@ -112,4 +112,5 @@ ISO_TRANSFORMS = dict([
     ('lv', 'lav'),
     ('en', 'eng'),
     ('fr', 'fra'),
+    ('kv', 'kpv'),
 ])
