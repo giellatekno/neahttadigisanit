@@ -28,10 +28,6 @@ definition_exists_tests = [
     #  lang    pair    search    definition lemmas
     #                            
 
-    # мортъясыԍ       морт+N+Pl+Ela
-    # мортлаԋ 
-    #       морсъяслысь         морс
-
     # testing that molotsov orthography works and returns lookups 
     ( ('kpvS', 'fin'), u'морсјаслыԍ', u'mehu'),
     ( ('kpvS', 'fin'), u'морсъяслысь', u'mehu'),

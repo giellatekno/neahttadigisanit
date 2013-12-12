@@ -5,6 +5,13 @@ import neahtta
 import unittest
 import tempfile
 
+from .lexicon import ( BasicTests
+                     , WordLookupTests
+                     , WordLookupDetailTests
+                     , WordLookupAPITests
+                     , WordLookupAPIDefinitionTests
+                     )
+
 wordforms_that_shouldnt_fail = [
     ( ('sme', 'nob'), u'sihke'),
     ( ('sme', 'nob'), u'mannat'),
@@ -686,33 +693,7 @@ wordforms_that_shouldnt_fail = [
 # things correctly
 
 
-class WordLookupTests(unittest.TestCase):
-
-    def setUp(self):
-        _app = neahtta.app
-        # Turn on debug to disable SMTP logging
-        _app.debug = True
-        _app.logger.removeHandler(_app.logger.smtp_handler)
-
-        # Disable caching
-        _app.caching_enabled = False
-        self.app = _app.test_client()
-
-    def test_api_null_lookup(self):
-        """ Test that a null lookup to the api doesn't return a 500
-        """
-        url = "/lookup/sme/nob/?callback=jQuery3094203984029384&lookup=&lemmatize=true"
-
-        rv = self.app.get(url)
-        self.assertEqual(rv.status_code, 200)
-
-    def test_api_lookup(self):
-        """ Test that a null lookup to the api doesn't return a 500
-        """
-        url = "/lookup/sme/nob/?callback=jQuery3094203984029384&lookup=mannat&lemmatize=true"
-
-        rv = self.app.get(url)
-        self.assertEqual(rv.status_code, 200)
+class WordLookupTests(WordLookupTests):
 
     def test_single_word(self):
         """ Test that the basic idea of testing will work.
@@ -729,37 +710,8 @@ class WordLookupTests(unittest.TestCase):
         assert u'både' in rv.data.decode('utf-8')
         self.assertEqual(rv.status_code, 200)
 
-    def test_all_words_for_no_404s(self):
-        for lang_pair, form in wordforms_that_shouldnt_fail[1::]:
-            print "testing: %s / %s" % (repr(lang_pair), repr(form))
-            base = '/%s/%s/' % lang_pair
-            rv = self.app.post(base, data={
-                'lookup': form,
-            })
+class WordLookupDetailTests(WordLookupDetailTests):
+	wordforms_that_shouldnt_fail = wordforms_that_shouldnt_fail
 
-            self.assertEqual(rv.status_code, 200)
-
-class WordLookupDetailTests(WordLookupTests):
-
-    def test_all_words_for_no_404s(self):
-        for lang_pair, form in wordforms_that_shouldnt_fail[1::]:
-            _from, _to = lang_pair
-            base = '/detail/%s/%s/%s.html' % (_from, _to, form)
-            print "testing: %s " % base
-            rv = self.app.get(base)
-
-            self.assertEqual(rv.status_code, 200)
-
-class WordLookupAPITests(WordLookupTests):
-
-    def test_all_words_for_no_404s(self):
-        from urllib import urlencode
-        for lang_pair, form in wordforms_that_shouldnt_fail[1::]:
-            _from, _to = lang_pair
-            base = u'/lookup/%s/%s/?' % (_from, _to)
-            url = base + urlencode({'lookup': form.encode('utf-8')})
-            print "testing: %s " % url
-            rv = self.app.get(url)
-            print "  got: %d bytes" % len(rv.data)
-
-            self.assertEqual(rv.status_code, 200)
+class WordLookupAPITests(WordLookupAPITests):
+	wordforms_that_shouldnt_fail = wordforms_that_shouldnt_fail
