@@ -733,9 +733,13 @@ kyv-lexica: kpv-engfinrus.all.xml
 rm-kyv-lexica:
 	@rm -rf kpv-engfinrus.all.xml
 
+.PHONY: copy_molotsov
+copy_molotsov: $(GTHOME)/langs/kpv/src/analyser-dict-gt-desc-molotsov.xfst
+	cp $^ /opt/smi/kpv/bin/dict-kpv-molotsov.fst
+
 .PHONY: kyv-install
 kyv-install: GT_COMPILE_LANGS := kpv fin
-kyv-install: install_langs_fsts
+kyv-install: install_langs_fsts copy_molotsov
 
 .PHONY: kyv
 kyv: GT_COMPILE_LANGS := kpv fin
