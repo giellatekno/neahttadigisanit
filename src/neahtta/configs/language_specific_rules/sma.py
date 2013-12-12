@@ -128,8 +128,8 @@ def add_homonymy_tag(form, tags, node):
 
     If the entry selected has @hid, we need to insert this in order to
     generate the forms properly
-    
-        govledh+Hom1+V+TV+Ind+Prs+Sg3 
+
+        govledh+Hom1+V+TV+Ind+Prs+Sg3
 
     """
     new_tags = tags[:]

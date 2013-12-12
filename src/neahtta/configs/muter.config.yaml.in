@@ -1,5 +1,6 @@
 ApplicationSettings:
   app_name: "Neahttadigisánit"
+  app_meta_title: "Neahttadigisánit"
   short_name: "muter"
   default_locale: "mrj"
   default_pair: ["mrj", "fin"]

@@ -34,6 +34,7 @@ NAMES = dict([
     # sanat
     ('fkv', _(u"Kven")),
     ('liv', _(u"Livonian")),
+    ('livM', _(u"Livonian") + " (" + _("mobile friendly") + ")"),
     ('olo', _(u"Olonetsian")),
     ('izh', _(u"Izhorian")),
     ('est', _(u"Estonian")),
