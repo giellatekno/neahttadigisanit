@@ -30,6 +30,7 @@ NAMES = dict([
 
     # kyv
     ('kpv', _(u"Komi")),
+    ('kpvS', _(u"Komi") + " (" + _("Molotsov orthography") + ")"),
 
     # sanat
     ('fkv', _(u"Kven")),
@@ -92,6 +93,7 @@ LOCALISATION_NAMES_BY_LANGUAGE = dict([
     ('lav', u"Latviešu valoda"),
     ('liv', u"Līvõ kēļ"),
     ('kpv', u"Коми кыв"),
+    ('kpvS', u"Коми кыв (Молодцов ортография)"),
     ('izh', u"Ižoran keel"),
     ('fkv', u"Kveenin kieli"),
     ('fi', u"Suomi"),
