@@ -70,6 +70,11 @@ class Tag(object):
         else:
             self.sets = tagsets
 
+    def __contains__(self, b):
+        if isinstance(b, str) or isinstance(b, unicode):
+            return self.sets.get(b, False)
+        return False
+
     def __getitem__(self, b):
         """ Overloading the xor operator to produce the tag piece that
         belongs to a given tagset. """
