@@ -34,37 +34,6 @@ from lexicon import lexicon_overrides as lexicon
 from flask import current_app
 from morpholex import morpholex_overrides as morpholex
 
-# NB: if commenting back in, argument structure for decorator function is changed.
-@morpholex.post_morpho_lexicon_override('sma')
-def match_homonymy_entries(entries_and_tags):
-    """ **Post morpho-lexicon override**
-
-    If there is an entry that is an analysis and the set of XML entries
-    resulting from the lookup contains another entry with its matching
-    lemma, then discard the analyses.
-    """
-
-    filtered_results = []
-
-    for entry, analyses in entries_and_tags:
-        if entry is not None:
-            entry_hid = entry.find('lg/l').attrib.get('hid', False)
-            if entry_hid:
-                # Sometimes tags don't have hid, but entry does. Thus:
-                tag_hids = [x for x in [a.tag['homonyms'] for a in analyses]
-                            if x is not None]
-                if len(tag_hids) > 0:
-                    # if they do, we do this
-                    if entry_hid in tag_hids:
-                        filtered_results.append((entry, analyses))
-                else:
-                    filtered_results.append((entry, analyses))
-            else:
-                filtered_results.append((entry, analyses))
-        else:
-            filtered_results.append((entry, analyses))
-
-    return filtered_results
 
 @lexicon.entry_source_formatter('sma')
 def format_source_sma(ui_lang, e, target_lang):
@@ -162,6 +131,10 @@ def add_homonymy_tag(form, tags, node):
     If the entry selected has @hid, we need to insert this in order to
     generate the forms properly
 
+        govledh+V+TV+Ind+Prs+Sg3
+
+        ->
+
         govledh+Hom1+V+TV+Ind+Prs+Sg3
 
     """
@@ -193,7 +166,6 @@ def proper_nouns(form, tags, node):
 
     return form, tags, node
 
-
 @morphology.tag_filter_for_iso('sma')
 def sma_common_noun_pluralia_tanta(form, tags, node):
     if len(node) > 0:
@@ -212,11 +184,13 @@ def sma_common_noun_pluralia_tanta(form, tags, node):
 
     return form, tags, node
 
-
-
-from common import remove_blank
+from common import remove_blank, match_homonymy_entries
 
 morphology.postgeneration_filter_for_iso(
     'sma',
 )(remove_blank)
+
+morpholex.post_morpho_lexicon_override(
+    'sma'
+)(match_homonymy_entries)
 
