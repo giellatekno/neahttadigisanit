@@ -212,10 +212,12 @@
           break
 
         case 9: // tab
-        case 13: // enter
           if (!this.shown) return
           this.select()
           break
+
+        case 13: // enter
+          true
 
         case 27: // escape
           this.hide()
