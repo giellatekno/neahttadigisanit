@@ -36,6 +36,16 @@ wordforms_that_shouldnt_fail = [
 ]
 
 
+definition_exists_tests = [
+    #  lang    pair    search    definition lemmas
+    #                            
+
+    # test hid works: guvlieh is unambiguously høre, govloeh is
+    # unambiguously hørest
+    ( ('sma', 'nob'), u'guvlieh', u'høre'),
+    ( ('sma', 'nob'), u'govloeh', u'høres'),
+]
+
 # TODO: testcase for null lookup-- is returning 500 but should not be,
 # but also need to make sure this fix sticks around.
 
@@ -62,6 +72,9 @@ class BasicTests(BasicTests):
         assert u'vi' in rv.data.decode('utf-8')
         self.assertEqual(rv.status_code, 200)
 
+
+class WordLookupAPIDefinitionTests(WordLookupAPIDefinitionTests):
+	definition_exists_tests = definition_exists_tests
 
 class WordLookupDetailTests(WordLookupDetailTests):
 	wordforms_that_shouldnt_fail = wordforms_that_shouldnt_fail

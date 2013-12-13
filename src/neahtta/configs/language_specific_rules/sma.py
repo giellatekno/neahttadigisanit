@@ -32,6 +32,30 @@ Example target string formatting function:
 from morphology import generation_overrides as morphology
 from lexicon import lexicon_overrides as lexicon
 from flask import current_app
+from morpholex import morpholex_overrides as morpholex
+
+# NB: if commenting back in, argument structure for decorator function is changed.
+@morpholex.post_morpho_lexicon_override('sma')
+def match_homonymy_entries(entries_and_tags):
+    """ **Post morpho-lexicon override**
+
+    If there is an entry that is an analysis and the set of XML entries
+    resulting from the lookup contains another entry with its matching
+    lemma, then discard the analyses.
+    """
+
+    filtered_results = []
+
+    for entry, analyses in entries_and_tags:
+        entry_hid = entry.find('lg/l').attrib.get('hid', '')
+        if entry_hid:
+            tag_hids = [a.tag['homonyms'] for a in analyses]
+            if entry_hid in tag_hids:
+                filtered_results.append((entry, analyses))
+        else:
+            filtered_results.append((entry, analyses))
+
+    return filtered_results
 
 @lexicon.entry_source_formatter('sma')
 def format_source_sma(ui_lang, e, target_lang):
