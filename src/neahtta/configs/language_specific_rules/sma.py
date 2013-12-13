@@ -47,10 +47,19 @@ def match_homonymy_entries(entries_and_tags):
     filtered_results = []
 
     for entry, analyses in entries_and_tags:
-        entry_hid = entry.find('lg/l').attrib.get('hid', '')
-        if entry_hid:
-            tag_hids = [a.tag['homonyms'] for a in analyses]
-            if entry_hid in tag_hids:
+        if entry is not None:
+            entry_hid = entry.find('lg/l').attrib.get('hid', False)
+            if entry_hid:
+                # Sometimes tags don't have hid, but entry does. Thus:
+                tag_hids = [x for x in [a.tag['homonyms'] for a in analyses]
+                            if x is not None]
+                if len(tag_hids) > 0:
+                    # if they do, we do this
+                    if entry_hid in tag_hids:
+                        filtered_results.append((entry, analyses))
+                else:
+                    filtered_results.append((entry, analyses))
+            else:
                 filtered_results.append((entry, analyses))
         else:
             filtered_results.append((entry, analyses))
