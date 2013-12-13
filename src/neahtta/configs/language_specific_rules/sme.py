@@ -37,6 +37,7 @@ LEX_TO_FST = {
     'subst': 'N',
     'v': 'V',
     'verb': 'V',
+    '': '',
 }
 
 morph_log = getLogger('morphology')
@@ -58,8 +59,13 @@ def pos_to_fst(*args, **kwargs):
     """ TODO: document.
     """
     if 'lemma' in kwargs and 'pos' in kwargs:
-        _k = kwargs.get('pos', '').replace('.', '').replace('+', '')
-        new_pos = LEX_TO_FST.get(_k, False)
+        _k = kwargs.get('pos', '')
+        if _k is not None:
+            _k = _k.replace('.', '').replace('+', '')
+            new_pos = LEX_TO_FST.get(_k, False)
+        else:
+            _k = False
+            new_pos = False
         if new_pos:
             kwargs['pos'] = new_pos
         else:
@@ -69,8 +75,8 @@ def pos_to_fst(*args, **kwargs):
 
 @autocomplete_filters.autocomplete_filter_for_lang(('nob', 'sme'))
 def remove_orig_entry(entries):
-	_entries = [e for e in entries if 'orig_entry' not in e.attrib]
-	return _entries
+    _entries = [e for e in entries if 'orig_entry' not in e.attrib]
+    return _entries
 
 # TODO: may no longer need to remove elements from tags now that those
 # that are presented to users come directly from the pretty presentation
