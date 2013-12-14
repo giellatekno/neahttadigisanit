@@ -146,12 +146,24 @@
 
                                         <p>{{ lookup.source_formatted|safe }}
 
-                                        <ol>{%- for tx in lookup.right -%}
-                                                <li>
-                                                    {%- include 'main_page_li.html' -%}
-                                                </li>
-                                            {%- endfor -%}
-                                        </ol>
+                                        {% if lookup.right|length == 1 %}
+                                            <ul class="meanings">
+                                        {% else %}
+                                            <ol class="meanings">
+                                        {% endif %}
+
+                                        {%- for tx in lookup.right -%}
+                                            <li>
+                                                {%- include 'main_page_li.html' -%}
+                                            </li>
+                                        {%- endfor -%}
+
+                                        {% if lookup.right|length == 1 %}
+                                            </ul>
+                                        {% else %}
+                                            </ol>
+                                        {% endif %}
+
                                         </div>
                                         <div class="span4 hidden-phone">
                                             <dl class="possible_analyses grid_analyses">

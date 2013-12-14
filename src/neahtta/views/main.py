@@ -3,6 +3,8 @@ from flask import current_app
 
 import sys
 
+import simplejson
+
 from logging import getLogger
 
 from utils.logger import *
@@ -12,6 +14,7 @@ from utils.encoding import *
 
 from flask import ( request
                   , session
+                  , Response
                   , render_template
                   , abort
                   , redirect
@@ -105,6 +108,60 @@ def wordDetail(from_language, to_language, wordform, format):
     # From the front page-- match the hash of the lxml element
     e_node = request.args.get('e_node', False)
 
+    def pickleable_result(_results):
+        pickleable = []
+        for j in _results:
+            _j = j.copy()
+            _j.pop('node')
+            analyses = []
+            for a in _j.get('analyses', []):
+                # TODO: tag formatter
+                analyses.append((a.lemma, a.tag.tag_string))
+            _j['analyses'] = analyses
+            pickleable.append(_j)
+        return pickleable
+
+    def _byPOS(r):
+        if r.get('input')[1].upper() == pos_filter.upper():
+            return True
+        else:
+            return False
+
+    def _byLemma(r):
+        if r.get('input')[0] == wordform:
+            return True
+        else:
+            return False
+
+    def _byNodeHash(r):
+        node = r.get('entry_hash')
+        if node == e_node:
+            return True
+        else:
+            return False
+
+    def default_result(r):
+        return r
+
+    entry_filters = [default_result]
+
+    if e_node:
+        entry_filters.append(_byNodeHash)
+
+    if pos_filter:
+        entry_filters.append(_byPOS)
+
+    if lemma_match:
+        entry_filters.append(_byLemma)
+
+    def filter_entries_for_view(entries):
+        _entries = []
+        for f in entry_filters:
+            _entries = filter(f, entries)
+        return _entries
+
+    has_analyses = False
+
     # Do we want to analyze compounds?
     no_compounds = request.args.get('no_compounds', False)
 
@@ -131,11 +188,15 @@ def wordDetail(from_language, to_language, wordform, format):
 
     if cached_result is None:
 
+        # Use the original language pair if the user has selected a
+        # variant
+
         if (from_language, to_language) not in current_app.config.dictionaries and \
            (from_language, to_language)     in current_app.config.variant_dictionaries:
             var = current_app.config.variant_dictionaries.get((from_language, to_language))
             (from_language, to_language) = var.get('orig_pair')
 
+        # Generation paradigms, and generation options
         lang_paradigms = current_app.config.paradigms.get(from_language)
         if not lang_paradigms:
             unsupportedLang(', no paradigm defined.')
@@ -160,117 +221,73 @@ def wordDetail(from_language, to_language, wordform, format):
                                       , no_derivations=_non_d
                                       )
 
-        # TODO: move generation to detailed format? thus node correct
-        # pos, tags, etc., are available
-        xml_nodes = map(itemgetter(0), entries_and_tags)
         analyses = sum(map(itemgetter(1), entries_and_tags), [])
 
-        res = list(DetailedFormat( xml_nodes
-                                 , target_lang=to_language
-                                 , source_lang=from_language
-                                 , ui_lang=iso_filter(session.get('locale', to_language))
-                                 , user_input=user_input
-                                 ))
+        fmtkwargs = { 'target_lang': to_language
+                    , 'source_lang': from_language
+                    , 'ui_lang': iso_filter(session.get('locale', to_language))
+                    , 'user_input': wordform
+                    }
 
-        lex_results = []
-        for r in res:
-            lemma = r.get('lemma')
-            pos = r.get('pos')
-            _type = r.get('type')
-            input_info = (lemma, pos, '', _type)
-            lex_results.append({
-                'entries': r,
-                'input': input_info,
-            })
+        # [(lemma, XMLNodes)] -> [(lemma, generator(AlmostJSON))]
+        formatted_results = []
+        analyses_without_lex = []
+        for result, morph_analyses in entries_and_tags:
+            if result is not None:
+                word_template_kwargs = {
+                    'analyses': morph_analyses
+                }
 
-        def _byPOS(r):
-            if r.get('input')[1].upper() == pos_filter.upper():
-                return True
+                _formatted = list(DetailedFormat(
+                    [result],
+                    additional_template_kwargs=word_template_kwargs,
+                    **fmtkwargs
+                ))
+
+                _formatted_with_paradigms = []
+
+                for r in filter_entries_for_view(_formatted):
+                    lemma, pos, tag, _type = r.get('input')
+                    node = r.get('node')
+
+                    # try with pos, fallback to upper
+                    paradigm = lang_paradigms.get(
+                        pos, lang_paradigms.get(pos.upper(), False)
+                    )
+
+                    if paradigm:
+                        _pos_type = [pos]
+                        if _type:
+                            _pos_type.append(_type)
+                        form_tags = [_pos_type + _t.split('+') for _t in paradigm]
+
+                        _generated = morph.generate(lemma, form_tags, node)
+                    else:
+                        _generated = False
+
+                    r['paradigm'] = _generated
+                    _formatted_with_paradigms.append(r)
+                formatted_results.extend(_formatted_with_paradigms)
             else:
-                return False
-
-        def _byLemma(r):
-            if r.get('input')[0] == wordform:
-                return True
-            else:
-                return False
-
-        def _byNodeHash(r):
-            node = r.get('entries').get('entry_hash')
-            if node == e_node:
-                return True
-            else:
-                return False
-
-        if e_node:
-            lex_results = filter(_byNodeHash, lex_results)
-        if pos_filter:
-            lex_results = filter(_byPOS, lex_results)
-        if lemma_match:
-            lex_results = filter(_byLemma, lex_results)
+                analyses_without_lex.extend(morph_analyses)
 
         analyses = [(l.lemma, l.pos, l.tag) for l in analyses]
 
-        try:
-            node_texts = map(to_xml_string, lex_results)
-        except:
-            node_texts = []
-
-        detailed_result = {
-            "input": wordform,
-            "analyses": analyses,
-            "lexicon": lex_results,
-            "node_texts": node_texts
-        }
-
-        # Generate each paradigm.
-        for _r in lex_results:
-            lemma, pos, tag, _type = _r.get('input')
-            try:
-                node = _r.get('entries').get('node')
-            except:
-                node = False
-
-            if pos is None:
-                error_msg = "POS for entry is None\n"
-                error_msg += "\n" + '\n'.join(node_texts)
-                abort(500, error_msg)
-
-            # try with pos, fallback to upper
-            paradigm = lang_paradigms.get(
-                pos, lang_paradigms.get(pos.upper(), False)
-            )
-
-            if paradigm:
-                _pos_type = [pos]
-                if _type:
-                    _pos_type.append(_type)
-                form_tags = [_pos_type + _t.split('+') for _t in paradigm]
-
-                _generate = morph.generate(lemma, form_tags, node)
-                _r['paradigms'] = _generate
-            else:
-                _r['paradigms'] = False
+        detailed_result = pickleable_result(formatted_results)
 
         current_app.cache.set(entry_cache_key, detailed_result)
     else:
         detailed_result = cached_result
 
-    _lookup = detailed_result.get('lexicon')
-
-    if len(_lookup) > 0:
+    # This ugly bit is just for compiling the use log entry
+    if len(detailed_result) > 0:
         success = True
-        result_lemmas = list(set([
-            entry['input'][0] for entry in detailed_result['lexicon']
-        ]))
-        _meanings = []
-        for lexeme in detailed_result['lexicon']:
-            if lexeme['entries']:
-                _entry_tx = []
-                for mg in lexeme['entries']['meaningGroups']:
-                    _entry_tx.append(mg['translations'])
-                _meanings.append(_entry_tx)
-        tx_set = '; '.join([', '.join(a) for a in _meanings])
+        result_lemmas = []
+        tx_set = []
+        for d in detailed_result:
+            tx_set.append(', '.join([t.get('tx') for t in d.get('right', []) if t.get('tx', False)]))
+            result_lemmas.append(d.get('input')[0])
+        tx_set = '; '.join(tx_set)
     else:
         success = False
         result_lemmas = ['-']
@@ -286,12 +303,22 @@ def wordDetail(from_language, to_language, wordform, format):
                  )
 
     if format == 'json':
-        result = json.dumps({
+        result = simplejson.dumps({
             "success": True,
             "result": detailed_result
         })
-        return result
+        return Response( response=result
+                       , status=200
+                       , mimetype="application/json"
+                       )
+
     elif format == 'html':
+
+        for result in detailed_result:
+            if result.get('analyses'):
+                if len(result.get('analyses')) > 0:
+                    has_analyses = True
+
         return render_template( 'word_detail.html'
                               , language_pairs=current_app.config.pair_definitions
                               , result=detailed_result
@@ -300,6 +327,7 @@ def wordDetail(from_language, to_language, wordform, format):
                               , _to=to_language
                               , more_detail_link=want_more_detail
                               , zip=zipNoTruncate
+                              , has_analyses=has_analyses
                               )
 
 @blueprint.route('/more/', methods=['GET'])

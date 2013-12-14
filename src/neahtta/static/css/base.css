@@ -129,6 +129,9 @@ h4.dict_title {
     background-image: -o-linear-gradient(top, #CCC, #DDD);
     background-image: linear-gradient(to bottom, #CCC, #DDD);
 }
+ul.meanings {
+    list-style-type: circle;
+}
 
 /* NOTE: make smaller */
 dl.possible_analyses dt {

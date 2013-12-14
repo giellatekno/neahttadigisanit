@@ -1,5 +1,5 @@
 <dl class="dl-horizontal miniparadigm">
-{%- for lemma, tag, form in lexeme.paradigms -%}
+{%- for lemma, tag, form in lexeme.paradigm -%}
 
     {% if tag %}
         <dt>{{ tag|tagfilter(_from, _to)  }}</dt>

@@ -33,9 +33,9 @@
     {%- endif -%}
 {% endblock %}
 
-{% block content_left %}
+{% block content %}
     <div class="row-fluid">
-       <div class="span12">
+       <div class="span8">
            <form id="neahttadigisanit" class="form-inline pull-left"
                method="post"
                action="/{{ _from }}/{{ _to }}/">
@@ -80,117 +80,72 @@
           <div id="results"></div>
         </form>
        </div>
+       <div class="span3 offset1 hidden-phone valign_block">
+           {% if has_analyses %}
+               <p class="analysis_note"><em>{{ user_input }}</em>{% trans user_input=user_input %} is a possible form of ... {% endtrans %}</p>
+           {% endif %}
+       </div>
        <br />
     </div>
 
-    {% for lexeme in result.lexicon %}
-    <div class="row-fluid lexeme">
-        {% if lexeme.entries %}
-            <div class="span12">
-                {# This is the non-mobile version, otherwise we display it below #}
-                {% set context = lexeme.entries.lemma_context %}
-                {% if lexeme.paradigms %}
-                    <div class="pull-right hidden-phone floatingparadigm">
-                        {% include 'detail_paradigm_dl.html' %}
-                    </div>
-                {% endif %}
-                {#
-                {% if lexeme.input[1] %}
-                    <p class="lead">{{ lexeme.input[0] }} ({{ lexeme.input[1]|tagfilter(_from, _to) }}) </p>
-                {% else %}
-                    <p class="lead">{{ lexeme.input[0] }} ({{ lexeme.entries.lookups[0].pos|tagfilter(_from, _to) }}) </p>
-                {% endif %}
-                #}
-                <p class="lead">{{ lexeme.entries.source_formatted|safe }}</p>
+    {% for lexeme in result %}
+    <div class="row-fluid">
+        <div class="span8 lexeme">
+            {# This is the non-mobile version, otherwise we display it below #}
+            {% set context = lexeme.context %}
+            {% if lexeme.paradigm %}
+                <div class="pull-right hidden-phone floatingparadigm">
+                    {% include 'detail_paradigm_dl.html' %}
+                </div>
+            {% endif %}
 
+            <p class="lead">{{ lexeme.source_formatted|safe }}</p>
+
+            {% if lexeme.right|length == 1 %}
                 <ul class="meanings">
-                    {% for mg in lexeme.entries.meaningGroups %}
-                        <li>{% include 'word_detail_li.html' %}</li>
-                    {% endfor %}
+            {% else %}
+                <ol class="meanings">
+            {% endif %}
+
+            {% for tx in lexeme.right %}
+                <li>{% include 'word_detail_li.html' %}</li>
+            {% endfor %}
+
+            {% if lexeme.right|length == 1 %}
                 </ul>
+            {% else %}
+                </ol>
+            {% endif %}
 
-                {# This is the non-mobile version, otherwise we display it below #}
-                {% set context = lexeme.entries.lemma_context %}
-                {% if lexeme.paradigms %}
-                    <div class="pull-left visible-phone">
-                        {% include 'detail_paradigm_dl.html' %}
-                    </div>
-                {% endif %}
-            </div>
+            {# This is the non-mobile version, otherwise we display it below #}
+            {% set context = lexeme.context %}
+            {% if lexeme.paradigm %}
+                <div class="pull-left visible-phone">
+                    {% include 'detail_paradigm_dl.html' %}
+                </div>
+            {% endif %}
+        </div>
 
+        <div class="span3 offset1 hidden-phone">
+            <dl class="possible_analyses grid_analyses">
+            {% for grouper, forms in lexeme.analyses|groupby(0) %}
+                {% for lemmagroup, lemmafs in forms|groupby(0) %}
+                    <dt>{{ grouper }}</dt>
+                    <dd>
+                        <ul class="possible_forms">
+                            {% for lem, tag in lemmafs %}
+                                <li>{{ tag }}</li>
+                            {% endfor %}
+                        </ul>
+                    </dd>
+                {% endfor %}
+            {% endfor %}
+            </dl>
+        </div>
 
-        {% endif %}
-        
     </div>
     {% endfor %}
-
-    <div id="xml-debug" class="debug-hidden" style="display: none;">
-        <h4>XML Entries</h4>
-        {% for node_text in result.node_texts %}
-        <pre><code>{{ node_text }}</code></pre>
-        {% endfor %}
-    </div>
     
-    <style>
-        /* Responsive tests
-        ------------------------- */
-        .responsive-utilities-test {
-          margin-top: 5px;
-          margin-left: 0;
-          list-style: none;
-          overflow: hidden; /* clear floats */
-        }
-        .responsive-utilities-test li {
-          position: relative;
-          float: left;
-          width: 25%;
-          height: 43px;
-          font-size: 14px;
-          font-weight: bold;
-          line-height: 43px;
-          color: #999;
-          text-align: center;
-          border: 1px solid #ddd;
-          -webkit-border-radius: 4px;
-             -moz-border-radius: 4px;
-                  border-radius: 4px;
-        }
-        .responsive-utilities-test li + li {
-          margin-left: 10px;
-        }
-        .responsive-utilities-test span {
-          position: absolute;
-          top:    -1px;
-          left:   -1px;
-          right:  -1px;
-          bottom: -1px;
-          -webkit-border-radius: 4px;
-             -moz-border-radius: 4px;
-                  border-radius: 4px;
-        }
-        .responsive-utilities-test span {
-          color: #468847;
-          background-color: #dff0d8;
-          border: 1px solid #d6e9c6;
-        }
-    </style>
-
-    <div id="responsive_test" class="debug-hidden" style="display: none;">
-        <h3>Responsive test</h3>
-        <h4>Visible on...</h4>
-        <ul class="responsive-utilities-test">
-          <li>Phone<span class="visible-phone">&#10004; Phone</span></li>
-          <li>Tablet<span class="visible-tablet">&#10004; Tablet</span></li>
-          <li>Desktop<span class="visible-desktop">&#10004; Desktop</span></li>
-        </ul>
-        <h4>Hidden on...</h4>
-        <ul class="responsive-utilities-test hidden-on">
-          <li>Phone<span class="hidden-phone">&#10004; Phone</span></li>
-          <li>Tablet<span class="hidden-tablet">&#10004; Tablet</span></li>
-          <li>Desktop<span class="hidden-desktop">&#10004; Desktop</span></li>
-        </ul>
-    </div>
-
     {% if more_detail_link %}
         <p>
             <a href="/detail/{{ _from }}/{{ _to }}/{{ user_input }}.html">

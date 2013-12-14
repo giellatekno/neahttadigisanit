@@ -216,78 +216,6 @@ class SimpleJSON(EntryNodeIterator):
                , 'hid': lemma_hid
                }
 
-# TODO: adding hverandre functionality requires some additional
-# attributes to be available, but this formatter class is annoying,
-# and a good argument for how this should all just be handled by xslt or
-# some template thing instead.
-
-class DetailedFormat(EntryNodeIterator):
-    def clean(self, e):
-        lemma, lemma_pos, lemma_context, lemma_type, lemma_hid = self.l_node(e)
-        tgs, ts = self.tg_nodes(e)
-
-        source_lang = self.query_kwargs.get('source_lang')
-        target_lang = self.query_kwargs.get('target_lang')
-        ui_lang = self.query_kwargs.get('ui_lang')
-
-        meaningGroups = []
-        for tg in tgs:
-            text, annotations, lang = self.find_translation_text(tg)
-            if isinstance(text, list):
-                text = ', '.join(text)
-            if isinstance(annotations, list):
-                annotations = ', '.join(annotations)
-
-            target_formatted = lexicon_overrides.format_target(
-                source_lang, target_lang,
-                ui_lang, e, tg, text
-            )
-
-            meaningGroups.append(
-                { 'annotations': annotations
-                , 'translations': target_formatted
-                , 'examples': self.examples(tg)
-                , 'language': lang
-                }
-            )
-
-        # Make our own hash, 'cause lxml won't
-        entry_hash = [ unicode(lemma)
-                     , unicode(lemma_context)
-                     , unicode(lemma_pos)
-                     , ','.join(sorted([t['translations'] for t in meaningGroups]))
-                     ]
-        entry_hash = str('-'.join(entry_hash).__hash__())
-
-        # node, and default format for if a formatter doesn't exist for
-        # iso
-
-
-        if lemma and lemma_pos:
-            default_format = "%s (%s)" % ( lemma
-                                         , tagfilter( lemma_pos
-                                                    , source_lang
-                                                    , target_lang
-                                                    )
-                                         )
-        elif lemma and not lemma_pos:
-            default_format = lemma
-
-        source_formatted = lexicon_overrides.format_source(
-            source_lang, ui_lang, e, target_lang, default_format
-        )
-
-        return { 'lemma': lemma
-               , 'lemma_context': lemma_context
-               , 'pos': lemma_pos
-               , 'hid': lemma_hid
-               , 'meaningGroups': meaningGroups
-               , 'type': lemma_type
-               , 'node': e
-               , 'entry_hash': entry_hash
-               , 'source_formatted': source_formatted
-               }
-
 class FrontPageFormat(EntryNodeIterator):
 
     def clean_tg_node(self, e, tg):
@@ -458,3 +386,79 @@ class FrontPageFormat(EntryNodeIterator):
 
         formatted_dict.update(self.additional_template_kwargs)
         return formatted_dict
+
+# TODO: adding hverandre functionality requires some additional
+# attributes to be available, but this formatter class is annoying,
+# and a good argument for how this should all just be handled by xslt or
+# some template thing instead.
+
+class DetailedFormat(FrontPageFormat):
+
+    def clean(self, e):
+        lemma, lemma_pos, lemma_context, lemma_type, lemma_hid = self.l_node(e)
+        tgs, ts = self.tg_nodes(e)
+
+        ui_lang = self.query_kwargs.get('ui_lang')
+
+        _right = map( lambda tg: self.clean_tg_node(e, tg)
+                    , tgs
+                    )
+
+        right_langs = [lang for _, lang in _right]
+        right_nodes = [fmt_node for fmt_node, _ in _right]
+
+        # Make our own hash, 'cause lxml won't
+        entry_hash = [ unicode(lemma)
+                     , unicode(lemma_context)
+                     , unicode(lemma_pos)
+                     , ','.join(sorted([t['tx'] for t in right_nodes]))
+                     ]
+        entry_hash = str('-'.join(entry_hash).__hash__())
+
+        # node, and default format for if a formatter doesn't exist for
+        # iso
+
+        source_lang = self.query_kwargs.get('source_lang')
+        target_lang = self.query_kwargs.get('target_lang')
+        lemma_attrs = self.query_kwargs.get('lemma_attrs', False)
+
+        if lemma and lemma_pos:
+            default_format = "%s (%s)" % ( lemma
+                                         , tagfilter( lemma_pos
+                                                    , source_lang
+                                                    , target_lang
+                                                    )
+                                         )
+        elif lemma and not lemma_pos:
+            default_format = lemma
+        elif lemma_attrs:
+            default_format = ''
+
+        def add_link(_p):
+            """ If there's a link already, then don't add one,
+            otherwise...
+            """
+            return _p
+
+        source_formatted = lexicon_overrides.format_source(
+            source_lang, ui_lang, e, target_lang, default_format
+        )
+
+        source_formatted = add_link(source_formatted)
+
+        formatted_dict = { 'left': lemma
+                         , 'source_formatted': source_formatted
+                         , 'context': lemma_context
+                         , 'pos': lemma_pos
+                         , 'right': right_nodes
+                         , 'lang': right_langs
+                         , 'hid': lemma_hid
+                         , 'entry_hash': entry_hash
+
+                         , 'input': (lemma, lemma_pos, '', lemma_type)
+                         , 'node': e
+                         }
+
+        formatted_dict.update(self.additional_template_kwargs)
+        return formatted_dict
+
