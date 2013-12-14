@@ -1,14 +1,20 @@
+* yaml - translation strings
+* detail view userfriendly tag transformation
 
-* generalizing SoMe to a language variant feature: 
-   - some problematic thing with how lexicon lookups are performed.
-   	 can't get agār from agar in liv, even though the analyser is working and
-   	 returning results
-   - detailed view needs redirecting
-   - API lookup doesn't work yet
-   - perhaps there's some funky character encoding thing going on where
-   	 some are combining and some are not
-   - Yes, encoding issue between lexicon and FST. new organization works
-   	 in sme
+* positioning of paradigm:
+     http://localhost:5000/detail/sme/nob/guhtet%20guimmiideaset.html?no_compounds=true&lemma_match=true
+
+* hverandre redirects to front page from detail view link-- should
+  match.
+
+* autocomplete - enter should select if navigating through box
+* alignment of analyses on detailed page
+
+* POS has become part of the link on the front page: fix
+
+* mobile width - paradigm appears below horizontal line 
+* mobile width horizontal <dl /> is not always good
+* font size of examples on detail page?
 
 * POS needs to be selected by tagset always, not by being the first tag in
   order. reduces requirement that analyser have special tagsets itself
@@ -27,39 +33,7 @@
       pron. resipr. 1.p.tot. Acc/G ... 
      --
 
-* need to recheck compounds and derivation filtering
-  - build two new analysers, unchecked in patch in dictionary-include.am
-    and Makefile.am seems to fix the issue
-
-  - oahpásmahttit -> oahpásmuvvat
-
-    $ lookup -flags mbTT analyser-dict-gt-norm.xfst
-    0%>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 100%
-    oahpásmahttit
-    oahpásmahttit   oahpásmahttit   +?
-
-    ^C
-    pyry@lolcat-2:~/gtsvn/langs/sme/src$ lookup -flags mbTT analyser-gt-norm.xfst
-    0%>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>100%
-    oahpásmahttit
-    oahpásmahttit   oahpásmuvvat+V+IV+Der/ahtti+V+Inf
-    oahpásmahttit   oahpásmuvvat+V+IV+Der/ahtti+V+Imprt+Pl2
-    oahpásmahttit   oahpásmuvvat+V+IV+Der/ahtti+V+Ind+Prs+Pl1
-    oahpásmahttit   oahpásmuvvat+V+IV+Der/ahtti+V+Der/NomAg+N+Pl+Nom
-
- - but analyser-gt-norm probably has too much output or something to be used currently? 
-
-* autocomplete needs to not collect entries that have til_ref;
-  maybe this will be a language-specific setting
-
-   - might be tricky, 'cause autocomplete is parsed before filters and
-     such are read, perhaps better to just have an xpath string as a
-     setting or something.
-
-* hverandre and other stuff for the detailed view doesn't work
-
 # General design stuff
-
 
   example from detailed view:
     - lexicon( xml -> parser )
