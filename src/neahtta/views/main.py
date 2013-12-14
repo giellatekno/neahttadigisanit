@@ -273,7 +273,9 @@ def wordDetail(from_language, to_language, wordform, format):
 
         analyses = [(l.lemma, l.pos, l.tag) for l in analyses]
 
-        detailed_result = pickleable_result(formatted_results)
+        detailed_result = sorted( pickleable_result(formatted_results)
+                                , key=lambda x: x.get('lemma')
+                                )
 
         current_app.cache.set(entry_cache_key, detailed_result)
     else:
@@ -370,8 +372,6 @@ def indexWithLangs(_from, _to):
 
         mlex = current_app.morpholexicon
 
-        # if (_from, _to) in current_app.config.variant_dictionaries:
-        #   _orig_from 
         entries_and_tags = mlex.lookup( lookup_val
                                       , source_lang=_from
                                       , target_lang=_to
@@ -600,9 +600,6 @@ def indexWithLangsToReference(_from, _to):
                         )
 
         results = [ {'input': lookup_val, 'lookups': results} ]
-
-        # TODO: how to log this
-        # logIndexLookups(user_input, results, _from, _to)
 
         show_info = False
     else:
