@@ -299,7 +299,7 @@ context_for_tags = {
 def word_generation_context(generated_result, *generation_input_args):
     """ **Post-generation filter***
 
-    Include context for verbs in the text displayed in paradigm
+    Include context for words in the text displayed in paradigm
     generation. The rule in this case is rather complex, and looks at
     the tag used in generation.
 
@@ -310,6 +310,7 @@ def word_generation_context(generated_result, *generation_input_args):
       * (odne) bieggá
       * (ikte) biekkai
       * (ii) biekka
+
     """
     node  = generation_input_args[2]
 
