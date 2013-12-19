@@ -10,6 +10,7 @@ from .lexicon import ( BasicTests
                      , WordLookupDetailTests
                      , WordLookupAPITests
                      , WordLookupAPIDefinitionTests
+                     , ParadigmGenerationTests
                      )
 
 wordforms_that_shouldnt_fail = [
@@ -692,8 +693,48 @@ wordforms_that_shouldnt_fail = [
 # TODO: use api lookups to determine that rule overrides are formatting
 # things correctly
 
+def form_contains(_test_set):
+    """ A function that wraps a set, and then tests that the paradigm
+    generation output partially intersects. """
+
+    def test_contains(paradigm):
+        """
+        [
+            ["roa\u0111\u0111i", ["N", "Sg", "Gen"], ["roa\u0111i"]],
+            ["roa\u0111\u0111i", ["N", "Sg", "Ill"], ["roa\u0111\u0111\u00e1i"]],
+            ["roa\u0111\u0111i", ["N", "Pl", "Ill"], ["ro\u0111iide"]]
+        ]
+        """
+        forms = set(sum([fs for lemma, tag, fs in paradigm], []))
+        print '   forms = ' + ', '.join(forms)
+        print '   forms & [%s]' % ', '.join(_test_set)
+        return bool(forms & _test_set)
+
+    return test_contains
+
+def form_doesnt_contain(_test_set):
+    """ A function that wraps a set, and then tests that the paradigm
+    generation output partially intersects. """
+
+    def test_doesnt_contain(paradigm):
+        """
+        paradigm = [
+            ["roa\u0111\u0111i", ["N", "Sg", "Gen"], ["roa\u0111i"]],
+            ["roa\u0111\u0111i", ["N", "Sg", "Ill"], ["roa\u0111\u0111\u00e1i"]],
+            ["roa\u0111\u0111i", ["N", "Pl", "Ill"], ["ro\u0111iide"]]
+        ]
+        """
+        forms = set(sum([fs for lemma, tag, fs in paradigm], []))
+        print '   forms = ' + ', '.join(forms)
+        print '   forms do not contain [%s]' % ', '.join(_test_set)
+        return len(_test_set & forms) == 0
+
+    return test_doesnt_contain
 
 # TODO: testcase for miniparadigms, both pregenerated:
+
+paradigm_generation_tests = [
+    # source, target, lemma, error_msg, paradigm_test
 
 ###  - http://localhost:5000/detail/sme/nob/iige.json
 ###  - localhost:5000/detail/sme/nob/manne.json
@@ -704,23 +745,49 @@ wordforms_that_shouldnt_fail = [
 ###     - http://localhost:5000/detail/sme/nob/ruoksat.json
 ###     - test that context is found as well as paradigm
 ###     - test that +Use/NGminip forms are not generated
+    ('sme', 'nob', u'heittot',
+            "Dialectical forms present",
+            form_doesnt_contain(set([u"heittohat", u"heittohut", u"heittohit"]))),
 
 ###  - A + context="bivttas":  heittot
 ###     - http://localhost:5000/detail/sme/nob/heittot.html
 
+    ('sme', 'nob', u'heittot',
+            "Context missing",
+            form_contains(set([u"heittogis (bivttas)"]))),
+
 ###  - A + context="báddi":  guhkki
 ###     - http://localhost:5000/detail/sme/nob/guhkki.html
+
+    ('sme', 'nob', u'guhkki',
+            "Context missing",
+            form_contains(set([u"guhkes (báddi)"]))),
 
 ###  - Num + context="gápmagat":  guokte
 ###     - http://localhost:5000/detail/sme/nob/guokte.html
 
+    ('sme', 'nob', u'guokte',
+            "Context missing",
+            form_contains(set([u"guovttit (gápmagat)"]))),
+
 ###  - N + illpl="no": eahketroađđi, sihkarvuohta, skuvlaáigi
+
+    ('sme', 'nob', u'eahketroađđi',
+            "Illative plural present",
+            form_doesnt_contain(set([u'eahketrođiide']))),
 
 ###  - N Prop Sg: Norga, Ruoŧŧa
 ###     - http://localhost:5000/detail/sme/nob/Ruoŧŧa.html
+    ('sme', 'nob', u'Ruoŧŧa',
+            "Forms not generated",
+            form_contains(set([u'Ruoŧa bokte', u'Ruŧŧii', u'Ruoŧas']))),
 
 ###  - N Prop Pl: Iččát
 ###     - <l pos="N" type="Prop" nr="Pl">Iččát</l>
+
+    ('sme', 'nob', u'Iččát',
+            "Forms not generated",
+            form_contains(set([u'Iččáid bokte', u'Iččáide', u'Iččáin']))),
 
 ###  - V: boahtit
 ###     - check context, and paradigm: 
@@ -733,7 +800,7 @@ wordforms_that_shouldnt_fail = [
 
 ###  - N
 
-
+]
 
 
 class WordLookupTests(WordLookupTests):
@@ -754,7 +821,10 @@ class WordLookupTests(WordLookupTests):
         self.assertEqual(rv.status_code, 200)
 
 class WordLookupDetailTests(WordLookupDetailTests):
-	wordforms_that_shouldnt_fail = wordforms_that_shouldnt_fail
+    wordforms_that_shouldnt_fail = wordforms_that_shouldnt_fail
 
 class WordLookupAPITests(WordLookupAPITests):
-	wordforms_that_shouldnt_fail = wordforms_that_shouldnt_fail
+    wordforms_that_shouldnt_fail = wordforms_that_shouldnt_fail
+
+class ParadigmGenerationTests(ParadigmGenerationTests):
+	paradigm_generation_tests = paradigm_generation_tests

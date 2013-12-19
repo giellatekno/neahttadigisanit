@@ -112,3 +112,23 @@ class WordLookupAPIDefinitionTests(WordLookupTests):
             print '--'
 
 
+class ParadigmGenerationTests(WordLookupTests):
+
+    def test_all_words_for_no_404s(self):
+        for (source, target, lemma, error_msg, test_func) in self.paradigm_generation_tests:
+            base = '/detail/%s/%s/%s.json' % (source, target, lemma, )
+            print "testing: %s " % base
+            rv = self.app.get(base)
+            result = simplejson.loads(rv.data)
+
+            definitions = []
+            for r in result.get('result'):
+                print '--'
+                if r.get('left') == lemma:
+                    print 'paradigm: '
+                    for a in r.get('paradigm'):
+                        print '  ' + repr(a)
+                    test_result = test_func(r.get('paradigm'))
+                    self.assertTrue(test_result, 'Generation error: ' + error_msg)
+
+            # self.assertEqual(rv.status_code, 200)
