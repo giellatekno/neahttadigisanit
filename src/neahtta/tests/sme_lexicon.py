@@ -693,6 +693,49 @@ wordforms_that_shouldnt_fail = [
 # things correctly
 
 
+# TODO: testcase for miniparadigms, both pregenerated:
+
+###  - http://localhost:5000/detail/sme/nob/iige.json
+###  - localhost:5000/detail/sme/nob/manne.json
+
+# ... and automatically generated
+
+###  - A: 
+###     - http://localhost:5000/detail/sme/nob/ruoksat.json
+###     - test that context is found as well as paradigm
+###     - test that +Use/NGminip forms are not generated
+
+###  - A + context="bivttas":  heittot
+###     - http://localhost:5000/detail/sme/nob/heittot.html
+
+###  - A + context="báddi":  guhkki
+###     - http://localhost:5000/detail/sme/nob/guhkki.html
+
+###  - Num + context="gápmagat":  guokte
+###     - http://localhost:5000/detail/sme/nob/guokte.html
+
+###  - N + illpl="no": eahketroađđi, sihkarvuohta, skuvlaáigi
+
+###  - N Prop Sg: Norga, Ruoŧŧa
+###     - http://localhost:5000/detail/sme/nob/Ruoŧŧa.html
+
+###  - N Prop Pl: Iččát
+###     - <l pos="N" type="Prop" nr="Pl">Iččát</l>
+
+###  - V: boahtit
+###     - check context, and paradigm: 
+###     - http://localhost:5000/detail/sme/nob/boahtit.json
+
+###  - V + context="dat", v + context="sii"
+###     - check context, and that paradigm is not generated for 1st person
+###     - http://localhost:5000/detail/sme/nob/ciellat.html
+###     - http://localhost:5000/detail/sme/nob/deaivvadit.html
+
+###  - N
+
+
+
+
 class WordLookupTests(WordLookupTests):
 
     def test_single_word(self):
