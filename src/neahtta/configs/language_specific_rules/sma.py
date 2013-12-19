@@ -84,7 +84,6 @@ def word_generation_context(generated_result, *generation_input_args):
         context_formatter = context_for_tags.get(
             (context, tag), False
         )
-        print context_formatter
         if context_formatter:
             formatted = []
             if forms:
