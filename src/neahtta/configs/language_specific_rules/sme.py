@@ -170,10 +170,9 @@ def impersonal_verbs(form, tags, node=None):
 
 @morphology.tag_filter_for_iso(*['sme', 'SoMe'])
 def noillative_nouns(form, tags, node=None):
-    """ **tag filter**: Impersonal verbs
+    """ **tag filter**: nouns with no illative plural
 
-    If ``@context`` is **upers** or **dat**, then use only Sg3 and
-    ConNeg forms.
+    If ``@illpl`` is **no**, and ``@pos`` is **N**, then remove ill pl.
     """
     if len(node) > 0:
         illpl = node.xpath('.//l/@illpl')
