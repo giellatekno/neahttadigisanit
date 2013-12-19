@@ -10,6 +10,9 @@ from .lexicon import ( BasicTests
                      , WordLookupDetailTests
                      , WordLookupAPITests
                      , WordLookupAPIDefinitionTests
+                     , ParadigmGenerationTests
+                     , form_contains
+                     , form_doesnt_contain
                      )
 
 wordforms_that_shouldnt_fail = [
@@ -54,6 +57,36 @@ definition_exists_tests = [
 # TODO: use api lookups to determine that rule overrides are formatting
 # things correctly
 
+# TODO: for sma
+paradigm_generation_tests = [
+###  - A: 
+###     - http://localhost:5000/detail/sme/nob/ruoksat.json
+###     - test that context is found as well as paradigm
+###     - test that +Use/NGminip forms are not generated
+    ('sma', 'nob', u'heittot',
+            "Dialectical forms present",
+            form_doesnt_contain(set([u"heittohat", u"heittohut", u"heittohit"]))),
+
+
+
+###  - V + context0"upers"
+
+    ('sma', 'nob', u'lïgkedh',
+            "Impersonal verbs generate personal forms",
+            form_doesnt_contain(set([u"lïgkem"]))),
+
+
+
+###  - N Prop: Nöörje
+    ('sma', 'nob', u'Nöörje',
+            "Prop forms context missing",
+            form_contains(set([u'Nöörjen baaktoe', u'Nöörjese', u'Nöörjesne', u'Nöörjeste']))),
+
+###  - N Prop Pl: Bealjehkh
+    ('sma', 'nob', u'Bealjehkh',
+            "Prop forms context missing",
+            form_contains(set([u'Bealjehki baaktoe', u'Bealjehkidie', u'Bealjehkinie', u'Bealjehkijstie']))),
+]
 
 class BasicTests(BasicTests):
 
@@ -81,3 +114,6 @@ class WordLookupDetailTests(WordLookupDetailTests):
 
 class WordLookupAPITests(WordLookupAPITests):
 	wordforms_that_shouldnt_fail = wordforms_that_shouldnt_fail
+
+class ParadigmGenerationTests(ParadigmGenerationTests):
+	paradigm_generation_tests = paradigm_generation_tests

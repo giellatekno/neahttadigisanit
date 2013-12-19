@@ -11,6 +11,8 @@ from .lexicon import ( BasicTests
                      , WordLookupAPITests
                      , WordLookupAPIDefinitionTests
                      , ParadigmGenerationTests
+                     , form_contains
+                     , form_doesnt_contain
                      )
 
 wordforms_that_shouldnt_fail = [
@@ -693,44 +695,6 @@ wordforms_that_shouldnt_fail = [
 # TODO: use api lookups to determine that rule overrides are formatting
 # things correctly
 
-def form_contains(_test_set):
-    """ A function that wraps a set, and then tests that the paradigm
-    generation output partially intersects. """
-
-    def test_contains(paradigm):
-        """
-        [
-            ["roa\u0111\u0111i", ["N", "Sg", "Gen"], ["roa\u0111i"]],
-            ["roa\u0111\u0111i", ["N", "Sg", "Ill"], ["roa\u0111\u0111\u00e1i"]],
-            ["roa\u0111\u0111i", ["N", "Pl", "Ill"], ["ro\u0111iide"]]
-        ]
-        """
-        forms = set(sum([fs for lemma, tag, fs in paradigm], []))
-        print '   forms = ' + ', '.join(forms)
-        print '   forms & [%s]' % ', '.join(_test_set)
-        return bool(forms & _test_set)
-
-    return test_contains
-
-def form_doesnt_contain(_test_set):
-    """ A function that wraps a set, and then tests that the paradigm
-    generation output partially intersects. """
-
-    def test_doesnt_contain(paradigm):
-        """
-        paradigm = [
-            ["roa\u0111\u0111i", ["N", "Sg", "Gen"], ["roa\u0111i"]],
-            ["roa\u0111\u0111i", ["N", "Sg", "Ill"], ["roa\u0111\u0111\u00e1i"]],
-            ["roa\u0111\u0111i", ["N", "Pl", "Ill"], ["ro\u0111iide"]]
-        ]
-        """
-        forms = set(sum([fs for lemma, tag, fs in paradigm], []))
-        print '   forms = ' + ', '.join(forms)
-        print '   forms do not contain [%s]' % ', '.join(_test_set)
-        return len(_test_set & forms) == 0
-
-    return test_doesnt_contain
-
 # TODO: testcase for miniparadigms, both pregenerated:
 
 paradigm_generation_tests = [
@@ -793,12 +757,18 @@ paradigm_generation_tests = [
 ###     - check context, and paradigm: 
 ###     - http://localhost:5000/detail/sme/nob/boahtit.json
 
+# TODO: this test
+
 ###  - V + context="dat", v + context="sii"
 ###     - check context, and that paradigm is not generated for 1st person
 ###     - http://localhost:5000/detail/sme/nob/ciellat.html
 ###     - http://localhost:5000/detail/sme/nob/deaivvadit.html
 
+# TODO: this test
+
 ###  - N
+
+# TODO: find most common kinds of nouns
 
 ]
 

@@ -4,6 +4,45 @@ import unittest
 import tempfile
 import simplejson
 
+def form_contains(_test_set):
+    """ A function that wraps a set, and then tests that the paradigm
+    generation output partially intersects. """
+
+    def test_contains(paradigm):
+        """
+        [
+            ["roa\u0111\u0111i", ["N", "Sg", "Gen"], ["roa\u0111i"]],
+            ["roa\u0111\u0111i", ["N", "Sg", "Ill"], ["roa\u0111\u0111\u00e1i"]],
+            ["roa\u0111\u0111i", ["N", "Pl", "Ill"], ["ro\u0111iide"]]
+        ]
+        """
+        forms = set(sum([fs for lemma, tag, fs in paradigm], []))
+        print '   forms = ' + ', '.join(forms)
+        print '   forms & [%s]' % ', '.join(_test_set)
+        return bool(forms & _test_set)
+
+    return test_contains
+
+def form_doesnt_contain(_test_set):
+    """ A function that wraps a set, and then tests that the paradigm
+    generation output partially intersects. """
+
+    def test_doesnt_contain(paradigm):
+        """
+        paradigm = [
+            ["roa\u0111\u0111i", ["N", "Sg", "Gen"], ["roa\u0111i"]],
+            ["roa\u0111\u0111i", ["N", "Sg", "Ill"], ["roa\u0111\u0111\u00e1i"]],
+            ["roa\u0111\u0111i", ["N", "Pl", "Ill"], ["ro\u0111iide"]]
+        ]
+        """
+        forms = set(sum([fs for lemma, tag, fs in paradigm], []))
+        print '   forms = ' + ', '.join(forms)
+        print '   forms do not contain [%s]' % ', '.join(_test_set)
+        return len(_test_set & forms) == 0
+
+    return test_doesnt_contain
+
+
 class WordLookupTests(unittest.TestCase):
 
     def setUp(self):
