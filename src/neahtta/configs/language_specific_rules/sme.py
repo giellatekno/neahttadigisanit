@@ -265,10 +265,20 @@ context_for_tags = {
     ("upers", "V+Ind+Prt+Sg1"):       "(ikte) %(word_form)s",
     ("upers", "V+Ind+Prs+ConNeg"):    "(ii) %(word_form)s",
 
+    # EX: heittot
+    ("bivttas", "A+Attr"):    "%(word_form)s (%(context)s)",
+
+    # EX: guhkki/guhkkes 
+    (u"báddi", "A+Attr"):     "%(word_form)s (%(context)s)",
+
+    # EX: guokte
+    (u"gápmagat", "Num+Pl+Nom"): u"%(word_form)s (gápmagat)",
+    (u"gápmagat", "Num+Pl+Gen"): u"%(word_form)s (gápmagiid)",
+
 }
 
 @morphology.postgeneration_filter_for_iso(*['sme', 'SoMe'])
-def verb_context(generated_result, *generation_input_args):
+def word_generation_context(generated_result, *generation_input_args):
     """ **Post-generation filter***
 
     Include context for verbs in the text displayed in paradigm
@@ -304,7 +314,7 @@ def verb_context(generated_result, *generation_input_args):
             formatted = []
             if forms:
                 for f in forms:
-                    f = context_formatter % {'word_form': f}
+                    f = context_formatter % {'word_form': f, 'context': context}
                     formatted.append(f)
             formatted_forms = formatted
         else:
