@@ -40,6 +40,8 @@ context_for_tags = {
     (u"gápmagat", "Num+Pl+Nom"): u"%(word_form)s (gápmagat)",
     (u"gápmagat", "Num+Pl+Gen"): u"%(word_form)s (gápmagiid)",
 
+    (u"NONE", "N+Prop+Sg+Gen"): u"%(word_form)s baaktoe",
+
     # TODO: generic available if no context="mun" equivalent
     # EX: båetedh
     # ("NONE", "V+Ind+Prs+Sg1"):        u"(daan biejjien manne) %(word_form)s",
@@ -241,7 +243,7 @@ def proper_nouns(form, tags, node):
         pos = node.xpath('.//l/@pos')
         _type = node.xpath('.//l/@type')
 
-        if ("prop" in pos) or ("prop" in _type):
+        if ("N" in pos) or ("Prop" in _type):
             tags = [
                 'N+Prop+Sg+Gen'.split('+'),
                 'N+Prop+Sg+Ill'.split('+'),
