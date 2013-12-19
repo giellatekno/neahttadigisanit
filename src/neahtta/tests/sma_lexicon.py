@@ -63,17 +63,13 @@ paradigm_generation_tests = [
 ###     - http://localhost:5000/detail/sme/nob/ruoksat.json
 ###     - test that context is found as well as paradigm
 ###     - test that +Use/NGminip forms are not generated
-    ('sma', 'nob', u'heittot',
-            "Dialectical forms present",
-            form_doesnt_contain(set([u"heittohat", u"heittohut", u"heittohit"]))),
 
 
+###  - V + context="upers"
 
-###  - V + context0"upers"
-
-    ('sma', 'nob', u'lïgkedh',
-            "Impersonal verbs generate personal forms",
-            form_doesnt_contain(set([u"lïgkem"]))),
+#     ('sma', 'nob', u'lïgkedh',
+#             "Impersonal verbs generate personal forms",
+#             form_doesnt_contain(set([u"lïgkem"]))),
 
 
 
