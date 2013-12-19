@@ -169,6 +169,25 @@ def impersonal_verbs(form, tags, node=None):
     return form, tags, node
 
 @morphology.tag_filter_for_iso(*['sme', 'SoMe'])
+def noillative_nouns(form, tags, node=None):
+    """ **tag filter**: Impersonal verbs
+
+    If ``@context`` is **upers** or **dat**, then use only Sg3 and
+    ConNeg forms.
+    """
+    if len(node) > 0:
+        illpl = node.xpath('.//l/@illpl')
+        pos = node.xpath('.//l/@pos')
+
+        if ("N" in pos) and ("no" in illpl):
+            new_tags = [ t for t in tags
+                         if not (('Pl' in t) and ('Ill' in t))
+                       ]
+            return form, new_tags, node
+
+    return form, tags, node
+
+@morphology.tag_filter_for_iso(*['sme', 'SoMe'])
 def reciprocal_verbs(form, tags, node=None):
     """ **tag filter**: Reciprocal verbs
 
