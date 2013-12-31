@@ -121,3 +121,11 @@ And you may also refer to the lexicon match result:
 
     {{ lemma }}+N+Prop+Sem/{{ lexicon.sem_type }}+Sg+Nom
 
+## Things to think about
+
+Pregenerated paradigms could be accomplished by a template, but it would
+be fairly complex, and thus would require good access to `lxml` nodes
+without lots of complex template tags and custom filters. 
+
+For ease of template use, lots of string(normalize-space()) will need to
+be done on certain XPATH-provided variables.

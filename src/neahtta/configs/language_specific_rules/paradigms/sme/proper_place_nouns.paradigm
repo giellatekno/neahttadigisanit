@@ -1,0 +1,19 @@
+﻿analyzer:
+  tag: N+Prop+Sem/Plc+Sg+Nom
+lexicon:
+  XPATH:
+    sem_type: ".//l/@sem_type"
+    nr: ".//l/@nr"
+  sem_type: 
+    - "Plc"
+    - "Something"
+--
+{% if lexicon.nr %}
+{{ lemma }}+N+Prop+Sem/Plc+{{ lexicon.nr }}+Gen
+{{ lemma }}+N+Prop+Sem/Plc+{{ lexicon.nr }}+Loc
+{{ lemma }}+N+Prop+Sem/Plc+{{ lexicon.nr }}+Ill
+{% else %}
+{{ lemma }}+N+Prop+Sem/Plc+Sg+Gen
+{{ lemma }}+N+Prop+Sem/Plc+Sg+Loc
+{{ lemma }}+N+Prop+Sem/Plc+Sg+Ill
+{% endif %}
