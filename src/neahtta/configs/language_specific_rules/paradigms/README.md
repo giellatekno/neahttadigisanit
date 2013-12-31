@@ -123,9 +123,21 @@ And you may also refer to the lexicon match result:
 
 ## Things to think about
 
-Pregenerated paradigms could be accomplished by a template, but it would
+* Pregenerated paradigms could be accomplished by a template, but it would
 be fairly complex, and thus would require good access to `lxml` nodes
 without lots of complex template tags and custom filters. 
 
-For ease of template use, lots of string(normalize-space()) will need to
+* For ease of template use, lots of string(normalize-space()) will need to
 be done on certain XPATH-provided variables.
+
+* Most paradigms will actually be able to be cached, if there are no
+  variables, but template evaluation should be really fast anyway
+
+* Conditions should be all 'compiled' into some python function at
+  runtime so that there's no need to constantly reevaluate and reload
+  paradigm files.
+
+* Tagsets are important, but where will these come in? Also, should be
+  possible to define certain variables that will always be included via
+  XPATH in some language-specific 'global' file. These can be extended
+  and overridden by each individual paradigm template file.
