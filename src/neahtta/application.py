@@ -115,11 +115,17 @@ def create_app():
     app.config.from_envvar('NDS_CONFIG')
     app.config.overrides = configs.blueprint.load_language_overrides(app)
     app.config.prepare_lexica()
+    # app.config.read_paradigm_directory(app)
 
     # Register language specific config information
     app.register_blueprint(configs.blueprint)
 
     app.morpholexicon = MorphoLexicon(app.config)
+
+    from configs.paradigms import ParadigmConfig
+
+    pc = ParadigmConfig(app)
+    app.morpholexicon.paradigms = pc
 
     try:
         with open('secret_key.do.not.check.in', 'r') as F:

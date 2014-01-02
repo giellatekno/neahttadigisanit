@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import sys
+import sys, os
 
 from flask import Config
 
@@ -129,6 +129,7 @@ class Config(Config):
                                'config file %s, in ApplicationSettings.'
                                ' If none, specify with false.' %
                                self.filename)
+
 
     @property
     def paradigms(self):

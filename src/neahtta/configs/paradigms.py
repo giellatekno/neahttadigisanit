@@ -253,7 +253,7 @@ class ParadigmConfig(object):
         self._app = app
         self.read_paradigm_directory()
 
-    def get_paradigm(self, language, node, analyses):
+    def get_paradigm(self, language, node, analyses, debug=False):
         """ .. py:function:: get_paradigm(language, node, analyses)
 
         Render a paradigm if one exists for language.
@@ -290,6 +290,8 @@ class ParadigmConfig(object):
 
         if len(possible_matches) > 0:
             count, context, template = possible_matches[0]
+            if debug:
+                print >> sys.stderr, context
 
             template_context = {}
             template_context.update(context)

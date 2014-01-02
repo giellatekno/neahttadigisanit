@@ -147,82 +147,82 @@ def lexicon_pos_to_fst(form, tags, node=None):
 
     return form, new_tags, node
 
-@morphology.tag_filter_for_iso(*['sme', 'SoMe'])
-def impersonal_verbs(form, tags, node=None):
-    """ **tag filter**: Impersonal verbs
+# @morphology.tag_filter_for_iso(*['sme', 'SoMe'])
+# def impersonal_verbs(form, tags, node=None):
+#     """ **tag filter**: Impersonal verbs
 
-    If ``@context`` is **upers** or **dat**, then use only Sg3 and
-    ConNeg forms.
-    """
-    if len(node) > 0:
-        context = node.xpath('.//l/@context')
+#     If ``@context`` is **upers** or **dat**, then use only Sg3 and
+#     ConNeg forms.
+#     """
+#     if len(node) > 0:
+#         context = node.xpath('.//l/@context')
 
-        if ("upers" in context) or ("dat" in context):
-            new_tags = [
-                'V+Ind+Prs+Sg3'.split('+'),
-                'V+Ind+Prt+Sg3'.split('+'),
-                'V+Ind+Prs+ConNeg'.split('+'),
-            ]
+#         if ("upers" in context) or ("dat" in context):
+#             new_tags = [
+#                 'V+Ind+Prs+Sg3'.split('+'),
+#                 'V+Ind+Prt+Sg3'.split('+'),
+#                 'V+Ind+Prs+ConNeg'.split('+'),
+#             ]
 
-            return form, new_tags, node
+#             return form, new_tags, node
 
-    return form, tags, node
+#     return form, tags, node
 
-@morphology.tag_filter_for_iso(*['sme', 'SoMe'])
-def noillative_nouns(form, tags, node=None):
-    """ **tag filter**: nouns with no illative plural
+# @morphology.tag_filter_for_iso(*['sme', 'SoMe'])
+# def noillative_nouns(form, tags, node=None):
+#     """ **tag filter**: nouns with no illative plural
 
-    If ``@illpl`` is **no**, and ``@pos`` is **N**, then remove ill pl.
-    """
-    if len(node) > 0:
-        illpl = node.xpath('.//l/@illpl')
-        pos = node.xpath('.//l/@pos')
+#     If ``@illpl`` is **no**, and ``@pos`` is **N**, then remove ill pl.
+#     """
+#     if len(node) > 0:
+#         illpl = node.xpath('.//l/@illpl')
+#         pos = node.xpath('.//l/@pos')
 
-        if ("N" in pos) and ("no" in illpl):
-            new_tags = [ t for t in tags
-                         if not (('Pl' in t) and ('Ill' in t))
-                       ]
-            return form, new_tags, node
+#         if ("N" in pos) and ("no" in illpl):
+#             new_tags = [ t for t in tags
+#                          if not (('Pl' in t) and ('Ill' in t))
+#                        ]
+#             return form, new_tags, node
 
-    return form, tags, node
+#     return form, tags, node
 
-@morphology.tag_filter_for_iso(*['sme', 'SoMe'])
-def reciprocal_verbs(form, tags, node=None):
-    """ **tag filter**: Reciprocal verbs
+# @morphology.tag_filter_for_iso(*['sme', 'SoMe'])
+# def reciprocal_verbs(form, tags, node=None):
+#     """ **tag filter**: Reciprocal verbs
 
-    If 'sii' is in the @context, then we want a different paradigm.
-    """
-    if len(node) > 0:
-        context = node.xpath('.//l/@context')
+#     If 'sii' is in the @context, then we want a different paradigm.
+#     """
+#     if len(node) > 0:
+#         context = node.xpath('.//l/@context')
 
-        if ("sii" in context):
-            new_tags = [
-                'V+Ind+Prs+Pl3'.split('+'),
-                'V+Ind+Prt+Pl3'.split('+'),
-                'V+Ind+Prs+ConNeg'.split('+'),
-            ]
+#         if ("sii" in context):
+#             new_tags = [
+#                 'V+Ind+Prs+Pl3'.split('+'),
+#                 'V+Ind+Prt+Pl3'.split('+'),
+#                 'V+Ind+Prs+ConNeg'.split('+'),
+#             ]
 
-            return form, new_tags, node
+#             return form, new_tags, node
 
-    return form, tags, node
+#     return form, tags, node
 
-@morphology.tag_filter_for_iso(*['sme', 'SoMe'])
-def common_noun_pluralia_tanta(form, tags, node):
-    """ **tag filter**: Pluralia tanta common noun
+# @morphology.tag_filter_for_iso(*['sme', 'SoMe'])
+# def common_noun_pluralia_tanta(form, tags, node):
+#     """ **tag filter**: Pluralia tanta common noun
 
-    `ruossalassánit` with <l nr="Pl" /> requires only plural
-    paradigm.
-    """
-    if len(node) > 0:
-        nr = node.xpath('.//l/@nr')
-        if ("pl" in nr) or ("Pl" in nr):
-            tags = [
-                'N+Pl+Nom'.split('+'),
-                'N+Pl+Ill'.split('+'),
-                'N+Pl+Loc'.split('+'),
-            ]
+#     `ruossalassánit` with <l nr="Pl" /> requires only plural
+#     paradigm.
+#     """
+#     if len(node) > 0:
+#         nr = node.xpath('.//l/@nr')
+#         if ("pl" in nr) or ("Pl" in nr):
+#             tags = [
+#                 'N+Pl+Nom'.split('+'),
+#                 'N+Pl+Ill'.split('+'),
+#                 'N+Pl+Loc'.split('+'),
+#             ]
 
-    return form, tags, node
+#     return form, tags, node
 
 @morphology.tag_filter_for_iso(*['sme', 'SoMe'])
 def proper_noun_pluralia_tanta(form, tags, node):

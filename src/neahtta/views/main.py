@@ -250,20 +250,26 @@ def wordDetail(from_language, to_language, wordform, format):
                     lemma, pos, tag, _type = r.get('input')
                     node = r.get('node')
 
-                    # try with pos, fallback to upper
-                    paradigm = lang_paradigms.get(
-                        pos, lang_paradigms.get(pos.upper(), False)
+                    paradigm_from_file = mlex.paradigms.get_paradigm(
+                        from_language, node, morph_analyses
                     )
-
-                    if paradigm:
-                        _pos_type = [pos]
-                        if _type:
-                            _pos_type.append(_type)
-                        form_tags = [_pos_type + _t.split('+') for _t in paradigm]
-
-                        _generated = morph.generate(lemma, form_tags, node)
+                    if paradigm_from_file:
+                        _generated = morph.generate_string(paradigm_from_file, node)
                     else:
-                        _generated = False
+                        # try with pos, fallback to upper
+                        paradigm = lang_paradigms.get(
+                            pos, lang_paradigms.get(pos.upper(), False)
+                        )
+
+                        if paradigm:
+                            _pos_type = [pos]
+                            if _type:
+                                _pos_type.append(_type)
+                            form_tags = [_pos_type + _t.split('+') for _t in paradigm]
+
+                            _generated = morph.generate(lemma, form_tags, node)
+                        else:
+                            _generated = False
 
                     r['paradigm'] = _generated
                     _formatted_with_paradigms.append(r)

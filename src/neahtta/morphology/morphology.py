@@ -378,6 +378,15 @@ class XFST(object):
             self.logger.error(msg.strip())
         return self.clean(output)
 
+    def inverselookup_by_string(self, lookup_string):
+        import sys
+        if not self.icmd:
+            print >> sys.stderr, " * Inverse lookups not available."
+            return False
+
+        output, err = self._exec(lookup_string, cmd=self.icmd)
+        return self.clean(output)
+
     def inverselookup(self, lemma, tags):
         import sys
         if not self.icmd:
@@ -482,6 +491,59 @@ class OBT(XFST):
         self.options = options
 
 class Morphology(object):
+
+    def generate_string(self, generation_string, node=None, pregenerated=None):
+        """ Run the lookup command, parse output into
+            [(lemma, ['Verb', 'Inf'], ['form1', 'form2'])]
+
+            If pregenerated, we pass the forms in using the same
+            structure as the analyzed output. The purpose here is that
+            pregenerated forms in lexicon may differ from language to
+            language, and we want to allow processing for that to occur
+            elsewhere.
+
+            TODO: cache pregenerated forms, return them.
+
+        """
+        if len(node) > 0:
+            key = self.generate_cache_key_from_str(generation_string, node)
+        else:
+            key = self.generate_cache_key_from_str(lemma, tagsets)
+
+        _is_cached = self.cache.get(key)
+        if _is_cached:
+            return _is_cached
+
+        if pregenerated:
+            _is_cached = self.cache.set(key, pregenerated)
+            return pregenerated
+
+        res = self.tool.inverselookup_by_string(generation_string)
+        reformatted = []
+        for tag, forms in res:
+            unknown = False
+            for f in forms:
+                # TODO: how does OBT handle unknown?
+                if '+?' in f:
+                    unknown = True
+                    msg = self.tool.__class__.__name__ + ': ' + \
+                         tag + '\t' + '|'.join(forms)
+                    self.tool.logger.error(msg)
+
+            if not unknown:
+                parts = self.tool.splitAnalysis(tag, inverse=True)
+                lemma = parts[0]
+                tag = parts[1::]
+                reformatted.append((lemma, tag, forms))
+            else:
+                parts = self.tool.splitAnalysis(tag, inverse=True)
+                lemma = parts[0]
+                tag = parts[1::]
+                forms = False
+                reformatted.append((lemma, tag, forms))
+
+        _is_cached = self.cache.set(key, reformatted)
+        return reformatted
 
     def generate(self, lemma, tagsets, node=None, pregenerated=None):
         """ Run the lookup command, parse output into
@@ -652,6 +714,19 @@ class Morphology(object):
                 lemmas.add(lem)
 
         return list(lemmas)
+
+    def generate_cache_key_from_str(self, gen_str, node=False):
+        """ key is something like generation-LANG-nodehash-TAG|TAG|TAG
+        """
+        import hashlib
+
+        _cache_key = hashlib.md5()
+        _cache_key.update('generation-%s-' % self.langcode)
+        if len(node) > 0:
+            node_hash = node.__hash__()
+            _cache_key.update(str(node_hash))
+        _cache_key.update(gen_str.encode('utf-8'))
+        return _cache_key.hexdigest()
 
     def generate_cache_key(self, lemma, generation_tags, node=False):
         """ key is something like generation-LANG-nodehash-TAG|TAG|TAG
