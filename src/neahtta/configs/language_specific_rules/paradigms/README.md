@@ -1,4 +1,4 @@
-﻿# This also doesn't work.
+﻿# Paradigm generation
 
 Managing paradigms and generation is currently not a straightforward
 task, but it needs to be, and a file-based approach might work well as
@@ -23,6 +23,9 @@ of ordering of the rules in order to get them to be applied properly,
 i.e., there is hopefully no overlap in subsets. If there is, filesystem
 ordering could be used to get out of this.
 
+Symlinks are tolerated, so if multiple language variants need to use the same
+rule set, simply make a symlink between the directories.
+
 ## Paradigm file structure
 
 Paradigm files are structured the same as templates: one part is YAML,
@@ -31,10 +34,11 @@ if the first part's (YAML) conditions are matched, then we use the
 paradigm following.
 
     morphology:
-      pos: N
+      pos: "N"
     lexicon:
-      pos: N
-      type: Prop
+      XPATH:
+        type: ".//l/@type"
+      sem_type: "Prop"
     --
     {{ lemma }}+N+Prop+Sem/Plc+Sg+Gen
     {{ lemma }}+N+Prop+Sem/Plc+Sg+Ill
@@ -48,20 +52,20 @@ ways. Analyzer conditions may be specified in the `analyzer` key,
 and each key under that may be a tagset and a value, or a whole tag:
 
     morphology:
-      pos: V
+      pos: "V"
       infinitive: true
 
     ... is the same as ...
 
     morphology:
-      tag: V+Inf
+      tag: "V+Inf"
 
     ... or ... 
 
     morphology:
       tag: 
-        - V+Inf1
-        - V+Inf2
+        - "V+Inf1"
+        - "V+Inf2"
 
 Either a value may be specified, or boolean 'true', which stands for
 'any member of the tag set is present'. A list may also be specified, 
@@ -79,11 +83,6 @@ to a specific lemma.
 The lexicon is also usable for providing conditions for a particular
 paradigm. Some predefined keys are available, and it is also possible
 to use XPATH statements to test against individual XML entries.
-
-    lexicon:
-      lemma: "diehtit"
-      pos: "V"
-      val: "TV"
 
     lexicon:
       XPATH:
@@ -104,7 +103,6 @@ user-inputted wordform, if the analyzer rules find a matching analysis,
 and the lexicon rules find a matching lexicon entry, then the paradigm
 will be used for the entries where these align.
 
-
 ## Paradigm definition
 
 Paradigm definition is mostly plaintext, but since it is a template, it
@@ -117,27 +115,9 @@ Certain variables are available by default:
 
   - `lemma`
 
-And you may also refer to the lexicon match result:
-
-    {{ lemma }}+N+Prop+Sem/{{ lexicon.sem_type }}+Sg+Nom
-
 ## Things to think about
 
 * Pregenerated paradigms could be accomplished by a template, but it would
   be fairly complex, and thus would require good access to `lxml` nodes
   without lots of complex template tags and custom filters. 
 
-* For ease of template use, lots of string(normalize-space()) will need to
-  be done on certain XPATH-provided variables.
-
-* Most paradigms will actually be able to be cached, if there are no
-  variables, but template evaluation should be really fast anyway
-
-* Conditions should be all 'compiled' into some python function at
-  runtime so that there's no need to constantly reevaluate and reload
-  paradigm files.
-
-* Tagsets are important, but where will these come in? Also, should be
-  possible to define certain variables that will always be included via
-  XPATH in some language-specific 'global' file. These can be extended
-  and overridden by each individual paradigm template file.
