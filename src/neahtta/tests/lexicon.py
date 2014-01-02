@@ -54,6 +54,7 @@ class WordLookupTests(unittest.TestCase):
         # Disable caching
         _app.caching_enabled = False
         self.app = _app.test_client()
+        self.current_app = _app
 
 class BasicTests(WordLookupTests):
     def test_api_null_lookup(self):

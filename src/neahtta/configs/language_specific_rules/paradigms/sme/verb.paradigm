@@ -1,0 +1,7 @@
+﻿name: "General verb paradigm"
+morphology:
+  pos: V
+--
+{{ lemma }}+V+Ind+Prs+Sg1
+{{ lemma }}+V+Ind+Prt+Sg1
+{{ lemma }}+V+Ind+Prs+ConNeg

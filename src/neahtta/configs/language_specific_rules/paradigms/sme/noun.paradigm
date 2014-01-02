@@ -1,0 +1,7 @@
+﻿name: "General noun paradigm"
+morphology:
+  pos: N
+--
+{{ lemma }}+N+Sg+Gen
+{{ lemma }}+N+Sg+Ill
+{{ lemma }}+N+Pl+Ill

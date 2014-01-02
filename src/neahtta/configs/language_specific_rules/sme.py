@@ -237,13 +237,25 @@ def proper_noun_pluralia_tanta(form, tags, node):
     if len(node) > 0:
         _type = node.xpath('.//l/@type')
         nr = node.xpath('.//l/@nr')
+
+        _str_norm = 'string(normalize-space(%s))'
+        _sem_type = node.xpath(_str_norm % './/l/@sem_type')
+
+        print nr
         if (("pl" in nr) or ("Pl" in nr)) and ("Prop" in _type):
             tags = [
-                'N+Prop+Pl+Gen'.split('+'),
-                'N+Prop+Pl+Ill'.split('+'),
-                'N+Prop+Pl+Loc'.split('+'),
+                'N+Prop+Sem/Plc+Pl+Gen'.split('+'),
+                'N+Prop+Sem/Plc+Pl+Ill'.split('+'),
+                'N+Prop+Sem/Plc+Pl+Loc'.split('+'),
+            ]
+        else:
+            tags = [
+                'N+Prop+Sem/Plc+Sg+Gen'.split('+'),
+                'N+Prop+Sem/Plc+Sg+Ill'.split('+'),
+                'N+Prop+Sem/Plc+Sg+Loc'.split('+'),
             ]
 
+    print form, tags, node
     return form, tags, node
 
 @morphology.tag_filter_for_iso(*['sme', 'SoMe'])

@@ -1,0 +1,6 @@
+name: "General numeral paradigm"
+morphology:
+  pos: Num
+--
+{{ lemma }}+Num+Sg+Nom
+{{ lemma }}+Num+Sg+Gen

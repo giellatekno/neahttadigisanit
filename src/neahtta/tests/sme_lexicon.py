@@ -797,4 +797,26 @@ class WordLookupAPITests(WordLookupAPITests):
     wordforms_that_shouldnt_fail = wordforms_that_shouldnt_fail
 
 class ParadigmGenerationTests(ParadigmGenerationTests):
-	paradigm_generation_tests = paradigm_generation_tests
+    paradigm_generation_tests = paradigm_generation_tests
+
+class NewParadigmGenerationTests(WordLookupTests):
+
+    def test_misc_paradigms(self):
+        from configs.paradigms import ParadigmConfig
+
+        lookups = self.current_app.morpholexicon.lookup('mannat', source_lang='sme', target_lang='nob') \
+                + self.current_app.morpholexicon.lookup(u'Ráisa', source_lang='sme', target_lang='nob') \
+                + self.current_app.morpholexicon.lookup(u'dálkkádagat', source_lang='sme', target_lang='nob')
+
+
+        pc = self.current_app.morpholexicon.paradigms
+        # print self.current_app
+        # pc = ParadigmConfig()
+        for node, analyses in lookups:
+            print "Testing: ", node, analyses
+            print pc.get_paradigm('sme', node, analyses)
+            print '--'
+
+
+
+

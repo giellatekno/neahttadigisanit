@@ -243,6 +243,11 @@ def proper_nouns(form, tags, node):
         pos = node.xpath('.//l/@pos')
         _type = node.xpath('.//l/@type')
 
+        _str_norm = 'string(normalize-space(%s))'
+        _sem_type = node.xpath(_str_norm % './/l/@sem_type')
+
+        print _sem_type
+
         if ("N" in pos) or ("Prop" in _type):
             tags = [
                 'N+Prop+Sg+Gen'.split('+'),

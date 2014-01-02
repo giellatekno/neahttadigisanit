@@ -30,7 +30,7 @@ and the other part is data in Jinja form. Essentially what this says is,
 if the first part's (YAML) conditions are matched, then we use the
 paradigm following.
 
-    analyzer:
+    morphology:
       pos: N
     lexicon:
       pos: N
@@ -47,18 +47,18 @@ Conditions that are possible to match on are set up in a variety of
 ways. Analyzer conditions may be specified in the `analyzer` key,
 and each key under that may be a tagset and a value, or a whole tag:
 
-    analyzer:
+    morphology:
       pos: V
       infinitive: true
 
     ... is the same as ...
 
-    analyzer:
+    morphology:
       tag: V+Inf
 
     ... or ... 
 
-    analyzer:
+    morphology:
       tag: 
         - V+Inf1
         - V+Inf2
@@ -71,7 +71,7 @@ One other key that might be used for the analyzer is 'lemma', which is
 also present for lexicon, assuming that you only want the rule to apply
 to a specific lemma.
 
-    analyzer:
+    morphology:
       lemma: "diehtit"
 
 ## Lexicon conditions
@@ -124,11 +124,11 @@ And you may also refer to the lexicon match result:
 ## Things to think about
 
 * Pregenerated paradigms could be accomplished by a template, but it would
-be fairly complex, and thus would require good access to `lxml` nodes
-without lots of complex template tags and custom filters. 
+  be fairly complex, and thus would require good access to `lxml` nodes
+  without lots of complex template tags and custom filters. 
 
 * For ease of template use, lots of string(normalize-space()) will need to
-be done on certain XPATH-provided variables.
+  be done on certain XPATH-provided variables.
 
 * Most paradigms will actually be able to be cached, if there are no
   variables, but template evaluation should be really fast anyway
