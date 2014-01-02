@@ -33,12 +33,18 @@ and the other part is data in Jinja form. Essentially what this says is,
 if the first part's (YAML) conditions are matched, then we use the
 paradigm following.
 
+    name: "Proper noun paradigm."
+    description: |
+      Generate the proper noun if the entry contains sem_type="Prop" or
+      "prop"
     morphology:
       pos: "N"
     lexicon:
       XPATH:
         type: ".//l/@type"
-      sem_type: "Prop"
+      sem_type: 
+        - "Prop"
+        - "prop"
     --
     {{ lemma }}+N+Prop+Sem/Plc+Sg+Gen
     {{ lemma }}+N+Prop+Sem/Plc+Sg+Ill
