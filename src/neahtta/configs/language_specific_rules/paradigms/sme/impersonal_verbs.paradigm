@@ -1,0 +1,16 @@
+name: "Reciprocal verb paradigm"
+description: |
+  Use Sg3 for paradigm for impersonal verbs
+  ex.) arvit, ránodit, soaiggáhallat
+morphology:
+  pos: V
+lexicon:
+  XPATH:
+    context: './/l/@context'
+  context:
+    - "upers"
+    - "dat"
+--
+{{ lemma }}+V+Ind+Prs+Sg3
+{{ lemma }}+V+Ind+Prt+Sg3
+{{ lemma }}+V+Ind+Prs+ConNeg

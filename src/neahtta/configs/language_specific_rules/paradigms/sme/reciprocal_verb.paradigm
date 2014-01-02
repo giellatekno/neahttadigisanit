@@ -1,0 +1,14 @@
+name: "Reciprocal verb paradigm"
+description: "Use Pl3 for paradigm for reciprocal verbs, such as `deaivvadit`"
+morphology:
+  pos: V
+lexicon:
+  XPATH:
+    context: './/l/@context'
+  context:
+    - "sii"
+--
+{{ lemma }}+V+Ind+Prs+Pl3
+{{ lemma }}+V+Ind+Prt+Pl3
+{{ lemma }}+V+Ind+Prs+ConNeg
+

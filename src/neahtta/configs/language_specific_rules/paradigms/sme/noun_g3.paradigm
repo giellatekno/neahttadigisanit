@@ -1,0 +1,11 @@
+name: "Noun+G3 paradigm"
+morphology:
+  pos: N
+lexicon:
+  XPATH:
+    type: ".//l/@type"
+  type: "G3"
+--
+{{ lemma }}+N+G3+Sg+Gen
+{{ lemma }}+N+G3+Sg+Ill
+{{ lemma }}+N+G3+Pl+Ill
