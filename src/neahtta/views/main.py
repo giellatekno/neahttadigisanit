@@ -90,6 +90,7 @@ def wordDetail(from_language, to_language, wordform, format):
     """
     from lexicon import DetailedFormat
     from operator import itemgetter
+    import simplejson as json
 
     user_input = wordform
     if not format in ['json', 'html']:
@@ -198,8 +199,6 @@ def wordDetail(from_language, to_language, wordform, format):
 
         # Generation paradigms, and generation options
         lang_paradigms = current_app.config.paradigms.get(from_language)
-        if not lang_paradigms:
-            unsupportedLang(', no paradigm defined.')
 
         morph = current_app.config.morphologies.get(from_language, False)
 
