@@ -253,7 +253,8 @@ def wordDetail(from_language, to_language, wordform, format):
                         from_language, node, morph_analyses
                     )
                     if paradigm_from_file:
-                        _generated = morph.generate_string(paradigm_from_file, node)
+                        form_tags = [_t.split('+')[1::] for _t in paradigm_from_file.splitlines()]
+                        _generated = morph.generate(lemma, form_tags, node)
                     else:
                         # try with pos, fallback to upper
                         paradigm = lang_paradigms.get(

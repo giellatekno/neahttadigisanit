@@ -140,11 +140,12 @@ class GenerationOverrides(object):
         registry, and applies it to the input arguments of the decorated
         function.
         """
-        def decorate(*args):
+        def decorate(*args, **kwargs):
             newargs = args
+            newkwargs = kwargs
             for f in self.registry[lang_code]:
-                newargs = f(*newargs)
-            return function(*newargs)
+                newargs = f(*newargs, **newkwargs)
+            return function(*newargs, **newkwargs)
         return decorate
 
     def process_generation_output(self, lang_code, function):
@@ -154,10 +155,10 @@ class GenerationOverrides(object):
         also captures the input arguments, making them available to each
         function in the registry.
         """
-        def decorate(*input_args):
-            generated_forms = function(*input_args)
+        def decorate(*input_args, **input_kwargs):
+            generated_forms = function(*input_args, **input_kwargs)
             for f in self.postgeneration_processors[lang_code]:
-                generated_forms = f(generated_forms, *input_args)
+                generated_forms = f(generated_forms, *input_args, **input_kwargs)
             return generated_forms
         return decorate
 
@@ -179,12 +180,13 @@ class GenerationOverrides(object):
         return decorate
 
     def apply_pregenerated_forms(self, lang_code, function):
-        def decorate(*args):
+        def decorate(*args, **kwargs):
             newargs = args
+            newkwargs = kwargs
             f = self.pregenerators.get(lang_code, False)
             if f:
-                newargs = f(*newargs)
-            return function(*newargs)
+                newargs = f(*newargs, **newkwargs)
+            return function(*newargs, **newkwargs)
         return decorate
 
     ##
@@ -492,59 +494,6 @@ class OBT(XFST):
 
 class Morphology(object):
 
-    def generate_string(self, generation_string, node=None, pregenerated=None):
-        """ Run the lookup command, parse output into
-            [(lemma, ['Verb', 'Inf'], ['form1', 'form2'])]
-
-            If pregenerated, we pass the forms in using the same
-            structure as the analyzed output. The purpose here is that
-            pregenerated forms in lexicon may differ from language to
-            language, and we want to allow processing for that to occur
-            elsewhere.
-
-            TODO: cache pregenerated forms, return them.
-
-        """
-        if len(node) > 0:
-            key = self.generate_cache_key_from_str(generation_string, node)
-        else:
-            key = self.generate_cache_key_from_str(lemma, tagsets)
-
-        _is_cached = self.cache.get(key)
-        if _is_cached:
-            return _is_cached
-
-        if pregenerated:
-            _is_cached = self.cache.set(key, pregenerated)
-            return pregenerated
-
-        res = self.tool.inverselookup_by_string(generation_string)
-        reformatted = []
-        for tag, forms in res:
-            unknown = False
-            for f in forms:
-                # TODO: how does OBT handle unknown?
-                if '+?' in f:
-                    unknown = True
-                    msg = self.tool.__class__.__name__ + ': ' + \
-                         tag + '\t' + '|'.join(forms)
-                    self.tool.logger.error(msg)
-
-            if not unknown:
-                parts = self.tool.splitAnalysis(tag, inverse=True)
-                lemma = parts[0]
-                tag = parts[1::]
-                reformatted.append((lemma, tag, forms))
-            else:
-                parts = self.tool.splitAnalysis(tag, inverse=True)
-                lemma = parts[0]
-                tag = parts[1::]
-                forms = False
-                reformatted.append((lemma, tag, forms))
-
-        _is_cached = self.cache.set(key, reformatted)
-        return reformatted
-
     def generate(self, lemma, tagsets, node=None, pregenerated=None):
         """ Run the lookup command, parse output into
             [(lemma, ['Verb', 'Inf'], ['form1', 'form2'])]
@@ -715,19 +664,6 @@ class Morphology(object):
 
         return list(lemmas)
 
-    def generate_cache_key_from_str(self, gen_str, node=False):
-        """ key is something like generation-LANG-nodehash-TAG|TAG|TAG
-        """
-        import hashlib
-
-        _cache_key = hashlib.md5()
-        _cache_key.update('generation-%s-' % self.langcode)
-        if len(node) > 0:
-            node_hash = node.__hash__()
-            _cache_key.update(str(node_hash))
-        _cache_key.update(gen_str.encode('utf-8'))
-        return _cache_key.hexdigest()
-
     def generate_cache_key(self, lemma, generation_tags, node=False):
         """ key is something like generation-LANG-nodehash-TAG|TAG|TAG
         """
@@ -755,6 +691,7 @@ class Morphology(object):
         self.generate = generation_overrides.process_generation_output(
             languagecode, self.generate
         )
+
         self.lemmatize = generation_overrides.process_analysis_output(
             languagecode, self.lemmatize
         )
