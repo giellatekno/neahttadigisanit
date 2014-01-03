@@ -1,0 +1,17 @@
+name: "proper place nouns - tanta pluralia"
+morphology:
+  pos: N
+  type: Prop
+lexicon:
+  XPATH:
+    sem_type: ".//l/@sem_type"
+    nr: ".//l/@nr"
+    type: ".//l/@type"
+  sem_type: "Plc"
+  nr: "Pl"
+  type: "Prop"
+--
+{{ lemma }}+N+Prop+Sem/Plc+Pl+Gen
+{{ lemma }}+N+Prop+Sem/Plc+Pl+Ill
+{{ lemma }}+N+Prop+Sem/Plc+Pl+Ine
+{{ lemma }}+N+Prop+Sem/Plc+Pl+Ela

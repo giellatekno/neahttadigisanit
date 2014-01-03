@@ -819,12 +819,14 @@ class NewParadigmGenerationTests(WordLookupTests):
         lookups = self.current_app.morpholexicon.lookup('mannat', source_lang='sme', target_lang='nob') \
                 + self.current_app.morpholexicon.lookup(u'Ráisa', source_lang='sme', target_lang='nob') \
                 + self.current_app.morpholexicon.lookup(u'dálkkádagat', source_lang='sme', target_lang='nob') \
-                + self.current_app.morpholexicon.lookup(u'álgoálbmotášši', source_lang='sme', target_lang='nob')
+                + self.current_app.morpholexicon.lookup(u'álgoálbmotášši', source_lang='sme', target_lang='nob') \
+                + self.current_app.morpholexicon.lookup(u'Dálmmát', source_lang='sme', target_lang='nob') \
+                + self.current_app.morpholexicon.lookup(u'Gállábártnit', source_lang='sme', target_lang='nob')
 
 
         pc = self.current_app.morpholexicon.paradigms
         # print self.current_app
-        # pc = ParadigmConfig()
+        pc = ParadigmConfig(app=None, debug=True)
         for node, analyses in lookups:
             print "Testing: ", node, analyses
             print pc.get_paradigm('sme', node, analyses, debug=True)

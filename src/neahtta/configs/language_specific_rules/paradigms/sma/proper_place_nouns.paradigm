@@ -1,0 +1,13 @@
+name: "proper place nouns"
+morphology:
+  pos: N
+  type: Prop
+lexicon:
+  XPATH:
+    sem_type: ".//l/@sem_type"
+  sem_type: "Plc"
+--
+{{ lemma }}+N+Prop+Sem/Plc+Sg+Gen
+{{ lemma }}+N+Prop+Sem/Plc+Sg+Ill
+{{ lemma }}+N+Prop+Sem/Plc+Sg+Ine
+{{ lemma }}+N+Prop+Sem/Plc+Sg+Ela

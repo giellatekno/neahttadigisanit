@@ -40,7 +40,8 @@ context_for_tags = {
     (u"gápmagat", "Num+Pl+Nom"): u"%(word_form)s (gápmagat)",
     (u"gápmagat", "Num+Pl+Gen"): u"%(word_form)s (gápmagiid)",
 
-    (u"NONE", "N+Prop+Sg+Gen"): u"%(word_form)s baaktoe",
+    (u"NONE", "N+Prop+Sem/Plc+Sg+Gen"): u"%(word_form)s baaktoe",
+    (u"NONE", "N+Prop+Sem/Plc+Pl+Gen"): u"%(word_form)s baaktoe",
 
     # TODO: generic available if no context="mun" equivalent
     # EX: båetedh
@@ -67,6 +68,10 @@ def word_generation_context(generated_result, *generation_input_args):
       * (mun) dieđán
     """
     node  = generation_input_args[2]
+
+    # TODO: for some reason not running...
+    print generated_result
+    print generation_input_args
 
     if len(node) == 0:
         return generated_result
@@ -100,26 +105,8 @@ def word_generation_context(generated_result, *generation_input_args):
 
         return (lemma, tag, formatted_forms)
 
+    print generated_result
     return map(apply_context, generated_result)
-
-# TODO: check first.
-
-# @morphology.tag_filter_for_iso('sma')
-# def impersonal_verbs(form, tags, node=None):
-#     """ **tag filter**: Impersonal verbs
-# 
-#     If ``@context`` is **upers** or **dat**, then use only Sg3 and
-#     ConNeg forms.
-#     """
-#     if len(node) > 0:
-#         context = node.xpath('.//l/@context')
-# 
-#         if ("upers" in context):
-#             new_tags = [t for t in tags if 'Sg1' not in t]
-# 
-#             return form, new_tags, node
-# 
-#     return form, tags, node
 
 @lexicon.entry_source_formatter('sma')
 def format_source_sma(ui_lang, e, target_lang):
@@ -157,16 +144,15 @@ def format_source_sma(ui_lang, e, target_lang):
 
     return None
 
-
-LEX_TO_FST = {
-    'a': 'A',
-    'adv': 'Adv',
-    'n': 'N',
-    'npl': 'N',
-    'num': 'Num',
-    'prop': 'Prop',
-    'v': 'V',
-}
+# LEX_TO_FST = {
+#     'a': 'A',
+#     'adv': 'Adv',
+#     'n': 'N',
+#     'npl': 'N',
+#     'num': 'Num',
+#     'prop': 'Prop',
+#     'v': 'V',
+# }
 
 @morphology.pregenerated_form_selector('sma')
 def pregenerate_sma(form, tags, node):
@@ -197,83 +183,6 @@ def pregenerate_sma(form, tags, node):
     analyses = map(analysis_node, mp.xpath('.//analysis'))
 
     return form, tags, node, analyses
-
-@morphology.tag_filter_for_iso('sma')
-def lexicon_pos_to_fst_sma(form, tags, node=None):
-
-    new_tags = []
-    for t in tags:
-        _t = []
-        for p in t:
-            _t.append(LEX_TO_FST.get(p, p))
-        new_tags.append(_t)
-
-    return form, new_tags, node
-
-@morphology.tag_filter_for_iso('sma')
-def add_homonymy_tag(form, tags, node):
-    """ **Tag filter: homonym tags**
-
-    If the entry selected has @hid, we need to insert this in order to
-    generate the forms properly
-
-        govledh+V+TV+Ind+Prs+Sg3
-
-        ->
-
-        govledh+Hom1+V+TV+Ind+Prs+Sg3
-
-    """
-    new_tags = tags[:]
-
-    if len(node) > 0:
-        hid = node.xpath('.//l/@hid')
-        if hid:
-            hid = hid[0]
-            new_tags = []
-            for tag in tags:
-                ntag = [hid] + tag
-                new_tags.append(ntag)
-
-    return form, new_tags, node
-
-@morphology.tag_filter_for_iso('sma')
-def proper_nouns(form, tags, node):
-    if len(node) > 0:
-        pos = node.xpath('.//l/@pos')
-        _type = node.xpath('.//l/@type')
-
-        _str_norm = 'string(normalize-space(%s))'
-        _sem_type = node.xpath(_str_norm % './/l/@sem_type')
-
-        print _sem_type
-
-        if ("N" in pos) or ("Prop" in _type):
-            tags = [
-                'N+Prop+Sg+Gen'.split('+'),
-                'N+Prop+Sg+Ill'.split('+'),
-                'N+Prop+Sg+Ine'.split('+'),
-            ]
-
-    return form, tags, node
-
-@morphology.tag_filter_for_iso('sma')
-def sma_common_noun_pluralia_tanta(form, tags, node):
-    if len(node) > 0:
-        num = node.xpath('.//l/@num')
-        nr  = node.xpath('.//l/@nr')
-        numera = False
-        if len(num) > 0:
-            numera = num[0].lower()
-        if len(nr) > 0:
-            numera = nr[0].lower()
-        if numera == "pl":
-            tags = [
-                '+'.join(tag).replace('Sg', 'Pl').split('+')
-                for tag in tags
-            ]
-
-    return form, tags, node
 
 from common import remove_blank, match_homonymy_entries
 

@@ -146,11 +146,12 @@ class LexiconRuleSet(object):
 
         extracted_context = {}
 
-        for k, v in self.xpath_contexts.iteritems():
-            _v = v(node)
-            if not _v:
-                _v = False
-            extracted_context[k] = _v
+        if node is not None:
+            for k, v in self.xpath_contexts.iteritems():
+                _v = v(node)
+                if not _v:
+                    _v = False
+                extracted_context[k] = _v
 
         return extracted_context
 
@@ -160,14 +161,21 @@ class LexiconRuleSet(object):
 
         # prepare xpath context
         # run comps with xpath_context
-        xpath_context = self.extract_context(node)
+        if node is not None:
+            xpath_context = self.extract_context(node)
 
-        self._evals = [comp.compare(node, analyses, xpath_context) for comp in self.comps]
+            self._evals = [comp.compare(node, analyses, xpath_context) for comp in self.comps]
 
-        truth = all([t for t, c in self._evals])
-        contexts = [c for t, c in self._evals if t] + list(xpath_context.iteritems())
+            truth = all([t for t, c in self._evals])
+            contexts = [c for t, c in self._evals if t] + list(xpath_context.iteritems())
 
-        return truth, contexts
+            return truth, contexts
+        return (False, [])
+
+class NullRule(object):
+    def compare(self, node, analyses):
+        return (False, [])
+
 
 class TagSetRule(object):
     """ This rule compares a tagset, and looks to see if there are any
@@ -195,7 +203,7 @@ class TagSetRule(object):
 
 class ParadigmRuleSet(object):
 
-    def __init__(self, rule_def):
+    def __init__(self, rule_def, debug=False):
         """ .. py:function:: __init__(self, rule_def)
 
         Parses a python dict of the rule definition, and returns
@@ -205,14 +213,17 @@ class ParadigmRuleSet(object):
         :param dict rule_def: Parsed YAML rule definition
         """
 
+        self.debug = debug
+
         lex = rule_def.get('lexicon', False)
         morph = rule_def.get('morphology', False)
+        self.name = rule_def.get('name', 'NO NAME')
 
         # List of functions, for which all() must return True or False
         self.comps = []
 
         if not lex and not morph:
-            self.comps = [lambda x, y: (False, [])]
+            self.comps = [NullRule()]
             lex = {}
             morph = {}
 
@@ -236,8 +247,16 @@ class ParadigmRuleSet(object):
             Returns a tuple (Truth, Context); Context is a dict
         """
 
+        if self.debug:
+            print >> sys.stderr, "Searching for paradigm in %s." % self.name
         for analysis in analyses:
-            self._evals = [comp.compare(node, [analysis]) for comp in self.comps]
+
+            if self.debug:
+                print >> sys.stderr, analysis
+
+            self._evals = [ comp.compare(node, [analysis])
+                            for comp in self.comps
+                          ]
 
             truth = all([t for t, c in self._evals])
             contexts = [c for t, c in self._evals if t]
@@ -249,7 +268,8 @@ class ParadigmConfig(object):
     """ A class for providing directory-based paradigm definitions.
     """
 
-    def __init__(self, app=None):
+    def __init__(self, app=None, debug=False):
+        self.debug = debug
         self._app = app
         self.read_paradigm_directory()
 
@@ -271,6 +291,9 @@ class ParadigmConfig(object):
         # Need to order possible matches by most extensive match, then
         # return that one.
 
+        # TODO: there's also the chance that multiple analyses have
+        # their own matces too, not just multiple rules.
+
         possible_matches = []
 
         for paradigm_rule in self.paradigm_rules.get(language, []):
@@ -287,6 +310,8 @@ class ParadigmConfig(object):
 
         # Sort by count, and pick the first
         possible_matches = sorted(possible_matches, key=itemgetter(0), reverse=True)
+        if self.debug:
+            print >> sys.stderr, " - Possible matches: %d" % len(possible_matches)
 
         if len(possible_matches) > 0:
             count, context, template = possible_matches[0]
@@ -388,7 +413,7 @@ class ParadigmConfig(object):
 
             name = condition_yaml.get('name')
             desc = condition_yaml.get('desc', '')
-            parsed_condition = { 'condition': ParadigmRuleSet(condition_yaml)
+            parsed_condition = { 'condition': ParadigmRuleSet(condition_yaml, debug=self.debug)
                                , 'template': jinja_env.from_string(paradigm_string_txt.strip())
                                , 'name': name
                                , 'description': desc

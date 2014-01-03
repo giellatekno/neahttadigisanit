@@ -1,0 +1,15 @@
+name: "common nouns - tanta pluralia"
+morphology:
+  pos: N
+  number: Pl
+lexicon:
+  XPATH:
+    num: ".//l/@num"
+  num: 
+    - "Pl"
+    - "pl"
+--
+{{ lemma }}+N+Pl+Gen
+{{ lemma }}+N+Pl+Ill
+{{ lemma }}+N+Pl+Ine
+{{ lemma }}+N+Pl+Ela

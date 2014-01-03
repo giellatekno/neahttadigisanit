@@ -1,0 +1,19 @@
+name: "verb homonymy (plus valence)"
+morphology:
+  pos: V
+lexicon:
+  XPATH:
+    homonymy: ".//l/@hid"
+    valence: ".//l/@type"
+  homonymy:
+    - "Hom1"
+    - "Hom2"
+--
+{{ lemma }}+{{ homonymy }}+V+{{ valence }}+Ind+Prs+Sg1
+{{ lemma }}+{{ homonymy }}+V+{{ valence }}+Ind+Prs+Sg3
+{{ lemma }}+{{ homonymy }}+V+{{ valence }}+Ind+Prs+Pl3
+{{ lemma }}+{{ homonymy }}+V+{{ valence }}+Ind+Prt+Sg1
+{{ lemma }}+{{ homonymy }}+V+{{ valence }}+ConNeg
+{{ lemma }}+{{ homonymy }}+V+{{ valence }}+PrfPrc
+{{ lemma }}+{{ homonymy }}+V+{{ valence }}+Ger
+{{ lemma }}+{{ homonymy }}+V+{{ valence }}+VGen

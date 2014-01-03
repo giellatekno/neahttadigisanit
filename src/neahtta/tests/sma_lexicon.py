@@ -66,12 +66,34 @@ paradigm_generation_tests = [
 
 
 ###  - V + context="upers"
+    ('sma', 'nob', u'mutskedh',
+            "upers not generated",
+            form_contains(set([u'mutskie']))),
 
 #     ('sma', 'nob', u'lïgkedh',
 #             "Impersonal verbs generate personal forms",
 #             form_doesnt_contain(set([u"lïgkem"]))),
 
+###  - V + Homonymy: svijredh
+    ('sma', 'nob', u'svijredh',
+            "hom2 generated wrong",
+            form_contains(set([u'svijrem']))),
 
+###  - N Pl: - common noun tanta pluralia - aajkoehkadtjh
+    ('sma', 'nob', u'aajkoehkadtjh',
+            "Prop pl forms missing",
+            form_contains(set([]))),
+
+
+###  - N Prop: Nöörje
+    ('sma', 'nob', u'Nöörje',
+            "Prop does not generate",
+            form_contains(set([u'Nöörjese', u'Nöörjesne', u'Nöörjeste']))),
+
+###  - N Prop Pl: Bealjehkh
+    ('sma', 'nob', u'Bealjehkh',
+            "Prop pl forms missing",
+            form_contains(set([u'Bealjehkidie', u'Bealjehkinie', u'Bealjehkijstie']))),
 
 ###  - N Prop: Nöörje
     ('sma', 'nob', u'Nöörje',

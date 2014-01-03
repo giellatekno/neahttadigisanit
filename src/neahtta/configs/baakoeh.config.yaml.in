@@ -89,49 +89,14 @@ Dictionaries:
 
 # TODO: help text
 Paradigms:
-  sma:
-    PRON:
-      - "Pregenerate"
-    NUM:
-      - "Sg+Gen"
-      - "Sg+Ill"
-      - "Pl+Ill"
-    PROP:
-      - "Sg+Gen"
-      - "Sg+Ill"
-      - "Sg+Ine"
-      - "Sg+Ela"
-    N:
-      - "Sg+Nom"
-      - "Sg+Gen"
-      - "Sg+Ill"
-      - "Pl+Ill"
-    A:
-      - "Sg+Nom"
-      - "Comp+Sg+Nom"
-      - "Superl+Sg+Nom"
-    V:
-      - "Ind+Prs+Sg1"
-      - "Ind+Prs+Sg3"
-      - "Ind+Prs+Pl3"
-      - "Ind+Prt+Sg1"
-      - "ConNeg"
-      - "PrfPrc"
-      - "Ger"
-      - "VGen"
-
-  nob:
-    V:
-      - "Imp"
-      - "Ind+Prs"
-      - "Ind+Prt"
-      - "PrfPtc"
+ "": ""
 
 TagSets:
   sma:
     pos: ["N", "V", "A", "Pr", "Po", "Num"]
-    type: ["NomAg", "aktor"]
+    type: ["NomAg", "aktor", "Prop"]
     homonyms: ["Hom1", "Hom2"]
+    number: ["Pl", "Sg"]
 
 # Note, these come from dictionary fst, so tag parts are mostly 
 # already translated
