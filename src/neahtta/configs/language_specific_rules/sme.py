@@ -224,39 +224,39 @@ def lexicon_pos_to_fst(form, tags, node=None):
 
 #     return form, tags, node
 
-@morphology.tag_filter_for_iso(*['sme', 'SoMe'])
-def proper_noun_pluralia_tanta(form, tags, node):
-    """ **tag filter**: pluralia tanta
+# @morphology.tag_filter_for_iso(*['sme', 'SoMe'])
+# def proper_noun_pluralia_tanta(form, tags, node):
+#     """ **tag filter**: pluralia tanta
 
-    `Gállábártnit` with <l nr="Pl" /> requires only plural
-    paradigm.
+#     `Gállábártnit` with <l nr="Pl" /> requires only plural
+#     paradigm.
 
-    Note, there is a singularia tanta, but this may require a separate
-    rule, as it mostly concerns pronouns.
-    """
-    if len(node) > 0:
-        _type = node.xpath('.//l/@type')
-        nr = node.xpath('.//l/@nr')
+#     Note, there is a singularia tanta, but this may require a separate
+#     rule, as it mostly concerns pronouns.
+#     """
+#     if len(node) > 0:
+#         _type = node.xpath('.//l/@type')
+#         nr = node.xpath('.//l/@nr')
 
-        _str_norm = 'string(normalize-space(%s))'
-        _sem_type = node.xpath(_str_norm % './/l/@sem_type')
+#         _str_norm = 'string(normalize-space(%s))'
+#         _sem_type = node.xpath(_str_norm % './/l/@sem_type')
 
-        print nr
-        if (("pl" in nr) or ("Pl" in nr)) and ("Prop" in _type):
-            tags = [
-                'N+Prop+Sem/Plc+Pl+Gen'.split('+'),
-                'N+Prop+Sem/Plc+Pl+Ill'.split('+'),
-                'N+Prop+Sem/Plc+Pl+Loc'.split('+'),
-            ]
-        else:
-            tags = [
-                'N+Prop+Sem/Plc+Sg+Gen'.split('+'),
-                'N+Prop+Sem/Plc+Sg+Ill'.split('+'),
-                'N+Prop+Sem/Plc+Sg+Loc'.split('+'),
-            ]
+#         print nr
+#         if (("pl" in nr) or ("Pl" in nr)) and ("Prop" in _type):
+#             tags = [
+#                 'N+Prop+Sem/Plc+Pl+Gen'.split('+'),
+#                 'N+Prop+Sem/Plc+Pl+Ill'.split('+'),
+#                 'N+Prop+Sem/Plc+Pl+Loc'.split('+'),
+#             ]
+#         else:
+#             tags = [
+#                 'N+Prop+Sem/Plc+Sg+Gen'.split('+'),
+#                 'N+Prop+Sem/Plc+Sg+Ill'.split('+'),
+#                 'N+Prop+Sem/Plc+Sg+Loc'.split('+'),
+#             ]
 
-    print form, tags, node
-    return form, tags, node
+#     print form, tags, node
+#     return form, tags, node
 
 @morphology.tag_filter_for_iso(*['sme', 'SoMe'])
 def compound_numerals(form, tags, node):

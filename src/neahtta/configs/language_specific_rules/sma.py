@@ -69,10 +69,6 @@ def word_generation_context(generated_result, *generation_input_args):
     """
     node  = generation_input_args[2]
 
-    # TODO: for some reason not running...
-    print generated_result
-    print generation_input_args
-
     if len(node) == 0:
         return generated_result
 
@@ -105,7 +101,6 @@ def word_generation_context(generated_result, *generation_input_args):
 
         return (lemma, tag, formatted_forms)
 
-    print generated_result
     return map(apply_context, generated_result)
 
 @lexicon.entry_source_formatter('sma')
