@@ -1,0 +1,7 @@
+name: "verbs"
+morphology:
+  pos: V
+--
+{{ lemma }}+V+Act+Ind+Prs+Sg1
+{{ lemma }}+V+Act+Ind+Prt+Sg3
+{{ lemma }}+V+Pss+Ind+Prt+Pe4

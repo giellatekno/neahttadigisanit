@@ -136,10 +136,10 @@ Dictionaries:
       # "mobile" is important, otherwise templates and swapping won't
       # work
       - type: "standard"
-        description: "standard TODO"
+        description: "Standárda (<em>áčđŋšŧž</em>)"
         short_name: "sme"
       - type: "mobile"
-        description: "mobile TODO"
+        description: "Sosiála media (maiddái <em>acdnstz</em>)"
         short_name: "SoMe"
 
   - source: fin
@@ -151,54 +151,7 @@ Dictionaries:
 
 # for help see sample config file.
 Paradigms:
-  fin:
-    N:
-      - "Sg+Par"
-      - "Sg+Gen"
-      - "Pl+Par"
-    V:
-      - "Act+Ind+Prt+Sg1"
-      - "Act+Ind+Pst+Sg3"
-      - "Pss+Ind+Prt+Pe4"
-
-  sme: &smeparadigms
-    PRON:
-      - "Pregenerate"
-    A:
-      - "Attr"
-      - "Pl+Nom"
-      - "Comp+Attr"
-      - "Comp+Sg+Nom"
-      - "Superl+Sg+Nom"
-
-    NUM:
-      - "Pl+Nom"
-      - "Pl+Gen"
-
-    # N+G3 is generated using morphological overrides (sme.py)
-    N:
-      - "Sg+Gen"
-      - "Sg+Ill"
-      - "Pl+Ill"
-    PROP:
-      - "Sg+Gen"
-      - "Sg+Ill"
-      - "Sg+Loc"
-
-    V:
-      - "Ind+Prs+Sg1"
-      - "Ind+Prt+Sg1"
-      - "Ind+Prs+ConNeg"
-
-  SoMe: 
-    <<: *smeparadigms
-  
-  nob:
-    V:
-      - "Imp"
-      - "Ind+Prs"
-      - "Ind+Prt"
-      - "PrfPtc"
+  "": ""
 
 TagSets:
   sme: &smetagsets
@@ -207,7 +160,10 @@ TagSets:
       
       "pron.", "subst.", "verb", "adj.", "konj."
     ]
-    type: ["NomAg", "G3", "aktor", "res."]
+    type: ["NomAg", "G3", "aktor", "res.", "Prop", "prop."]
+    possessive: ["PxSg2"]
+    number: ["Sg", "Pl"]
+    semantics: [ "Sem/Plc", "Sem/Obj" ]
     # Do not display analyses with these tag parts
     hideanalysis: 
       - "dem."

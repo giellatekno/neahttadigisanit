@@ -224,7 +224,7 @@ class ParadigmRuleSet(object):
         self.debug = debug
 
         lex = rule_def.get('lexicon', False)
-        morph = rule_def.get('morphology', False)
+        morph = rule_def.get('morphology', )
         self.name = rule_def.get('name', 'NO NAME')
 
         # List of functions, for which all() must return True or False
@@ -242,8 +242,9 @@ class ParadigmRuleSet(object):
             self.comps.append(TagRule(morph.get('tag')))
             morph.pop('tag')
 
-        for k, v in morph.iteritems():
-            self.comps.append(TagSetRule(k, v))
+        if morph:
+            for k, v in morph.iteritems():
+                self.comps.append(TagSetRule(k, v))
 
         if lex:
             lex_rule = LexiconRuleSet(lex)
@@ -272,6 +273,8 @@ class ParadigmRuleSet(object):
             if self.debug and truth:
                 print >> sys.stderr, "Found matching paradigm in %s." % self.name
             return truth, context
+
+        return False, []
 
 class ParadigmConfig(object):
     """ A class for providing directory-based paradigm definitions.

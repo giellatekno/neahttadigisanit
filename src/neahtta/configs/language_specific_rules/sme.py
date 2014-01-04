@@ -58,7 +58,7 @@ morph_log = getLogger('morphology')
 def pos_to_fst(*args, **kwargs):
     """ For synchronizing PoS between lexicon and FST. Should be less
     necessary now.
-    
+
     TODO: generalize to a setting in .yaml or somewhere.
     """
     if 'lemma' in kwargs and 'pos' in kwargs:
@@ -133,27 +133,6 @@ def lexicon_pos_to_fst(form, tags, node=None):
         new_tags.append(_t)
 
     return form, new_tags, node
-
-# @morphology.tag_filter_for_iso(*['sme', 'SoMe'])
-# def impersonal_verbs(form, tags, node=None):
-#     """ **tag filter**: Impersonal verbs
-
-#     If ``@context`` is **upers** or **dat**, then use only Sg3 and
-#     ConNeg forms.
-#     """
-#     if len(node) > 0:
-#         context = node.xpath('.//l/@context')
-
-#         if ("upers" in context) or ("dat" in context):
-#             new_tags = [
-#                 'V+Ind+Prs+Sg3'.split('+'),
-#                 'V+Ind+Prt+Sg3'.split('+'),
-#                 'V+Ind+Prs+ConNeg'.split('+'),
-#             ]
-
-#             return form, new_tags, node
-
-#     return form, tags, node
 
 # @morphology.tag_filter_for_iso(*['sme', 'SoMe'])
 # def noillative_nouns(form, tags, node=None):
@@ -291,6 +270,10 @@ context_for_tags = {
     # EX: guokte
     (u"gápmagat", "Num+Pl+Nom"): u"%(word_form)s (gápmagat)",
     (u"gápmagat", "Num+Pl+Gen"): u"%(word_form)s (gápmagiid)",
+
+    # EX: Ruoŧŧa, Iččát
+    ("NONE", "N+Prop+Sem/Plc+Pl+Gen"): u"%(word_form)s (bokte)",
+    ("NONE", "N+Prop+Sem/Plc+Sg+Gen"): u"%(word_form)s (bokte)",
 
 }
 

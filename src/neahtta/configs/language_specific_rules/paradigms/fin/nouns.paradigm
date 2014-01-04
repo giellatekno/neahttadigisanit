@@ -1,0 +1,7 @@
+name: "common nouns"
+morphology:
+  pos: N
+--
+{{ lemma }}+N+Sg+Par
+{{ lemma }}+N+Sg+Gen
+{{ lemma }}+N+Pl+Par

@@ -835,8 +835,8 @@ class ParadigmSelectionTest(WordLookupTests):
         pc = ParadigmConfig(app=None, debug=True)
         for node, analyses in lookups:
             print "Testing: ", node, analyses
-            for a in analyses:
-                print " - " + repr(a.tag.matching_tagsets())
+            # for a in analyses:
+            #     print " - " + repr(a.tag.matching_tagsets())
             print pc.get_paradigm('sme', node, analyses, debug=True)
             print '--'
 
