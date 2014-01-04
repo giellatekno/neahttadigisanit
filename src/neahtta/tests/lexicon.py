@@ -16,7 +16,7 @@ def form_contains(_test_set):
             ["roa\u0111\u0111i", ["N", "Pl", "Ill"], ["ro\u0111iide"]]
         ]
         """
-        forms = set(sum([fs for lemma, tag, fs in paradigm], []))
+        forms = set(sum([fs for lemma, tag, fs in paradigm if fs], []))
         print '   forms = ' + ', '.join(forms)
         print '   forms & [%s]' % ', '.join(_test_set)
         return bool(forms & _test_set)

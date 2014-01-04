@@ -28,33 +28,24 @@ wordforms_that_shouldnt_fail = [
 # NB: make sure word strings are unicode, marked with u.
 
 definition_exists_tests = [
-    #  lang    pair    search    definition lemmas
-    #                            
-
-    # testing that molotsov orthography works and returns lookups 
-    ( ('kpvS', 'fin'), u'морсјаслыԍ', u'mehu'),
-    ( ('kpvS', 'fin'), u'морсъяслысь', u'mehu'),
-    ( ('kpvS', 'fin'), u'мортлаԋ', u'ihminen'),
-    ( ('kpvS', 'fin'), u'бюҗет', u'budjetti'),
-
 ]
 
 paradigm_generation_tests = [
     # source, target, lemma, error_msg, paradigm_test
 
 ###  - V: 
-    ('kpv', 'fin', u'мунны',
-            "kpv verbs not generating",
-            form_contains(set([u"муна"]))),
+    ('mhr', 'fin', u'каяш',
+            "mhr verbs not generating",
+            form_contains(set([u"каям", u"каеш"]))),
 
-###  - N + context="bivttas":  heittot
-###     - http://localhost:5000/detail/sme/nob/heittot.html
+###  - N:
 
-    ('kpv', 'fin', u'морс',
-            "kpv nouns not generating",
-            form_contains(set([u"морслӧн"]))),
+    ('mhr', 'fin', u'сок',
+            "mhr nouns not generating",
+            form_contains(set([u"сокын", u"сокге"]))),
 
 ]
+
 class WordLookupAPIDefinitionTests(WordLookupAPIDefinitionTests):
 	definition_exists_tests = definition_exists_tests
 
@@ -66,4 +57,3 @@ class WordLookupAPITests(WordLookupAPITests):
 
 class ParadigmGenerationTests(ParadigmGenerationTests):
     paradigm_generation_tests = paradigm_generation_tests
-

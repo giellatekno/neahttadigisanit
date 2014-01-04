@@ -7,6 +7,9 @@ import tempfile
 from .lexicon import ( WordLookupDetailTests
                      , WordLookupAPITests
                      , WordLookupAPIDefinitionTests
+                     , ParadigmGenerationTests
+                     , form_contains
+                     , form_doesnt_contain
                      )
 
 # These should not produce a 404.
@@ -38,6 +41,23 @@ definition_exists_tests = [
 
 ]
 
+paradigm_generation_tests = [
+    # source, target, lemma, error_msg, paradigm_test
+
+###  - V: 
+    ('mrj', 'fin', u'лӓктӓш',
+            "mrj verbs not generating",
+            form_contains(set([u"лӓктӓм", u"лӓктеш"]))),
+
+###  - N + context="bivttas":  heittot
+###     - http://localhost:5000/detail/sme/nob/heittot.html
+
+    ('mrj', 'fin', u'книгӓ',
+            "mrj nouns not generating",
+            form_contains(set([u"книгӓн", u"книгӓге"]))),
+
+]
+
 class WordLookupAPIDefinitionTests(WordLookupAPIDefinitionTests):
 	definition_exists_tests = definition_exists_tests
 
@@ -46,3 +66,7 @@ class WordLookupDetailTests(WordLookupDetailTests):
 
 class WordLookupAPITests(WordLookupAPITests):
 	wordforms_that_shouldnt_fail = wordforms_that_shouldnt_fail
+
+class ParadigmGenerationTests(ParadigmGenerationTests):
+    paradigm_generation_tests = paradigm_generation_tests
+

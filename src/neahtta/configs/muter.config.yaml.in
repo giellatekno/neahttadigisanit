@@ -69,64 +69,6 @@ Dictionaries:
     target: fin
     path: 'dicts/mhr-all.xml'
 
-Paradigms:
-  mrj:
-    PRON:
-      - "Pregenerate"
-    N:
-      - "Sg+Nom"
-      - "Sg+Gen"
-      - "Sg+Acc"
-      - "Sg+Com"
-      - "Sg+Dat"
-      - "Sg+Ine"
-      - "Sg+Ill"
-      - "Sg+Lat"
-      - "Sg+Comp"
-      - "Sg+Abe"
-      - "Pl+Nom"
-      - "Pl+Gen"
-      - "Pl+Acc"
-      - "Pl+Com"
-      - "Pl+Dat"
-      - "Pl+Ine"
-      - "Pl+Ill"
-      - "Pl+Lat"
-      - "Pl+Comp"
-      - "Pl+Abe"
-    V:
-      - "Inf"
-      - "Ind+Prs+Sg1"
-      - "Ind+Prs+Sg2"
-      - "Ind+Prs+Sg3"
-      - "Ind+Prs+Pl1"
-      - "Ind+Prs+Pl2"
-      - "Ind+Prs+Pl3"
-
-  mhr:
-    PRON:
-      - "Pregenerate"
-    N:
-      - "Sg+Nom"
-      - "Sg+Gen"
-      - "Sg+Acc"
-      - "Sg+Com"
-      - "Sg+Dat"
-      - "Sg+Ine"
-      - "Sg+Ill"
-      - "Sg+Lat"
-      - "Sg+Comp"
-      - "Sg+Abe"
-    V:
-      - "Inf"
-      - "Ind+NonPst+Sg1"
-      - "Ind+NonPst+Sg2"
-      - "Ind+NonPst+Sg3"
-      - "Ind+NonPst+Pl1"
-      - "Ind+NonPst+Pl2"
-      - "Ind+NonPst+Pl3"
-
-
 TagSets:
   mrj:
     pos: ["N", "V", "A", "Pr", "Po", "Num"]
