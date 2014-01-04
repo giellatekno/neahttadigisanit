@@ -87,10 +87,6 @@ Dictionaries:
 # Abstracting display formats out here, because there are different
 # requirements for different languages and different wordforms.
 
-# TODO: help text
-Paradigms:
- "": ""
-
 TagSets:
   sma:
     pos: ["N", "V", "A", "Pr", "Po", "Num"]

@@ -149,10 +149,6 @@ Dictionaries:
 # Abstracting display formats out here, because there are different
 # requirements for different languages and different wordforms.
 
-# for help see sample config file.
-Paradigms:
-  "": ""
-
 TagSets:
   sme: &smetagsets
     pos: [
