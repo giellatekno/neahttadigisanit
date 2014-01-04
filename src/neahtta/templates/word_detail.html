@@ -61,6 +61,7 @@
                                  <li class="selected{%- if variant.short_name == _from and iso_pair[1] == _to %} active{% endif -%}"><a tabindex="-1" href="#"
                                          data-value="{{ variant.short_name}}-{{ iso_pair[1] }}">
                                         <span>{{ variant.short_name|iso_to_i18n }} ↔ {{ iso_pair[1]|iso_to_i18n }}</span>
+                                    </a>
                             {% endif %}
                         {% endfor %}
                     {% endif %}
