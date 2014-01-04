@@ -99,6 +99,13 @@ class Tag(object):
     def __repr__(self):
         return '<Tag: %s>' % self.sep.join(self.parts)
 
+    def matching_tagsets(self):
+        ms = {}
+        for key in self.sets.keys():
+            if self[key]:
+                ms[key] = self[key]
+        return ms
+
     def getTagByTagset(self, tagset):
         for p in self.parts:
             if p in tagset.members:

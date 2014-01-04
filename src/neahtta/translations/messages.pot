@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-12-08 19:37-0600\n"
+"POT-Creation-Date: 2013-12-14 16:57-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,7 @@ msgstr ""
 msgid "North Sámi (#SoMe)"
 msgstr ""
 
-#: configs/language_names.py:26 configs/language_names.py:75
+#: configs/language_names.py:26 configs/language_names.py:76
 msgid "English"
 msgstr ""
 
@@ -34,89 +34,93 @@ msgstr ""
 msgid "South Sámi"
 msgstr ""
 
-#: configs/language_names.py:32
+#: configs/language_names.py:32 configs/language_names.py:33
 msgid "Komi"
 msgstr ""
 
-#: configs/language_names.py:35 templates/more_dictionaries.html:38
+#: configs/language_names.py:33
+msgid "Molotsov orthography"
+msgstr ""
+
+#: configs/language_names.py:36 templates/more_dictionaries.html:38
 msgid "Kven"
 msgstr ""
 
-#: configs/language_names.py:36 configs/language_names.py:37
+#: configs/language_names.py:37 configs/language_names.py:38
 #: templates/more_dictionaries.html:38
 msgid "Livonian"
 msgstr ""
 
-#: configs/language_names.py:37
+#: configs/language_names.py:38
 msgid "mobile friendly"
 msgstr ""
 
-#: configs/language_names.py:38
+#: configs/language_names.py:39
 msgid "Olonetsian"
 msgstr ""
 
-#: configs/language_names.py:39 templates/more_dictionaries.html:38
+#: configs/language_names.py:40 templates/more_dictionaries.html:38
 msgid "Izhorian"
 msgstr ""
 
-#: configs/language_names.py:40
+#: configs/language_names.py:41
 msgid "Estonian"
 msgstr ""
 
-#: configs/language_names.py:43
+#: configs/language_names.py:44
 msgid "Erzya Mordvin"
 msgstr ""
 
-#: configs/language_names.py:44 templates/more_dictionaries.html:39
+#: configs/language_names.py:45 templates/more_dictionaries.html:39
 msgid "Moksha"
 msgstr ""
 
-#: configs/language_names.py:45 configs/language_names.py:77
+#: configs/language_names.py:46 configs/language_names.py:78
 msgid "French"
 msgstr ""
 
-#: configs/language_names.py:48
+#: configs/language_names.py:49
 msgid "Western Mari"
 msgstr ""
 
-#: configs/language_names.py:49
+#: configs/language_names.py:50
 msgid "Eastern Mari"
 msgstr ""
 
-#: configs/language_names.py:52
+#: configs/language_names.py:53
 msgid "Nenets"
 msgstr ""
 
-#: configs/language_names.py:55
+#: configs/language_names.py:56
 msgid "Skolt Sámi"
 msgstr ""
 
-#: configs/language_names.py:58
+#: configs/language_names.py:59
 msgid "Plains Cree"
 msgstr ""
 
-#: configs/language_names.py:61
+#: configs/language_names.py:62
 msgid "Northern Haida"
 msgstr ""
 
-#: configs/language_names.py:64 configs/language_names.py:70
+#: configs/language_names.py:65 configs/language_names.py:71
 msgid "Finnish"
 msgstr ""
 
-#: configs/language_names.py:65 configs/language_names.py:71
-#: configs/language_names.py:72
+#: configs/language_names.py:66 configs/language_names.py:72
+#: configs/language_names.py:73
 msgid "Norwegian"
 msgstr ""
 
-#: configs/language_names.py:67 configs/language_names.py:68
+#: configs/language_names.py:68 configs/language_names.py:69
 msgid "Russian"
 msgstr ""
 
-#: configs/language_names.py:73 configs/language_names.py:74
+#: configs/language_names.py:74 configs/language_names.py:75
 msgid "Latvian"
 msgstr ""
 
-#: configs/language_names.py:76
+#: configs/language_names.py:77
 msgid "Haida"
 msgstr ""
 
@@ -525,31 +529,32 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: templates/index.html:133 templates/index.html:245 views/reader.py:122
+#: templates/index.html:133 templates/index.html:257
+#: templates/word_detail.html:85 views/reader.py:122
 msgid " is a possible form of ... "
 msgstr ""
 
-#: templates/index.html:189
+#: templates/index.html:201
 msgid "Definition not found for:"
 msgstr ""
 
-#: templates/index.html:267
+#: templates/index.html:279
 #, python-format
 msgid "Word %(input)s not found."
 msgstr ""
 
-#: templates/index.html:276
+#: templates/index.html:288
 msgid ""
 "If you are using a device without a Sámi keyboard, consider using <a "
 "href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
 "<em>acdnstz</em> for <em>áčđŋšŧž</em>."
 msgstr ""
 
-#: templates/index.html:280
+#: templates/index.html:292
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
 
-#: templates/index.html:284
+#: templates/index.html:296
 msgid ""
 "You selected #SoMe, the variant for social media, which means that the "
 "letters acdnstz\n"
@@ -735,11 +740,11 @@ msgstr ""
 msgid "is a possible form of ... "
 msgstr ""
 
-#: templates/word_detail.html:197
+#: templates/word_detail.html:152
 msgid "More information about this word"
 msgstr ""
 
-#: views/main.py:93
+#: views/main.py:96
 msgid "Invalid format. Only json and html allowed."
 msgstr ""
 

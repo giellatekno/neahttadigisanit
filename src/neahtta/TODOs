@@ -22,8 +22,7 @@
 * test autocomplete filtering more
 
 * need to hide 'more information' link when there isn't actually more information
-  - kind of tricky to implement, the easy way might make things slower,
-    but a more involved way just takes more thinking
+  - probably slightly easier now
 
 * some tags are too long for the field, but overflow is hidden
   - f.eks.)
