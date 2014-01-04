@@ -136,7 +136,7 @@ class Config(Config):
         if self._paradigms:
             return self._paradigms
 
-        lang_paradigms = self.yaml.get('Paradigms')
+        lang_paradigms = self.yaml.get('Paradigms', {})
 
         self._paradigms = lang_paradigms
         return self._paradigms

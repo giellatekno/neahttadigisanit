@@ -91,60 +91,10 @@ Dictionaries:
     path: 'dicts/kpv-engfinrus.all.xml'
     input_variants: *KOMI_VARIANTS
 
-Paradigms:
-  kpv:
-    PRON:
-      - "Pregenerate"
-    N:
-      - "Sg+Nom"
-      - "Sg+Gen"
-      - "Sg+Abl"
-      - "Sg+Dat"
-      - "Sg+Acc"
-      - "Sg+Ins"
-      - "Sg+Com"
-      - "Sg+Car"
-      - "Sg+Cns"
-      - "Sg+Comp"
-      - "Sg+Ine"
-      - "Sg+Ela"
-      - "Sg+Ill"
-      - "Sg+Apr"
-      - "Sg+Egr"
-      - "Sg+Ter"
-      - "Sg+Prl"
-      - "Pl+Nom"
-      - "Pl+Gen"
-      - "Pl+Abl"
-      - "Pl+Acc"
-      - "Pl+Dat"
-      - "Pl+Comp"
-      - "Pl+Cns"
-      - "Pl+Ins"
-      - "Pl+Ill"
-      - "Pl+Ine"
-      - "Pl+Ela"
-      - "Pl+Car"
-      - "Pl+Egr"
-      - "Pl+Tra"
-      - "Pl+Apr"
-      - "Pl+Ter"
-      - "Pl+Prl"
-    V:
-      - "Inf"
-      - "Ind+Prs+Sg1"
-      - "Ind+Prs+Sg2"
-      - "Ind+Prs+Sg3"
-      - "Ind+Prs+Pl1"
-      - "Ind+Prs+Pl2"
-      - "Ind+Prs+Pl3"
-
-
 TagSets:
   kpv:
     pos: ["N", "V", "A", "Pr", "Po", "Num"]
     type: ["NomAg", "G3", "aktor"]
-
 
 # (sourcelang, targlang)
 # V: "v."
