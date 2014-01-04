@@ -753,9 +753,14 @@ paradigm_generation_tests = [
             "Forms not generated",
             form_contains(set([u'Iččáid bokte', u'Iččáide', u'Iččáin']))),
 
-    ('sme', 'nob', u'mannat', 
+    ('sme', 'nob', u'mannat',
             "Forms not generated",
             form_contains(set([u'manan']))),
+
+    ('sme', 'nob', u'deaivvadit',
+            "Overgenerating forms",
+            form_doesnt_contain(set([u'deaivvadan']))),
+
     #     u'Ráisa', 
     #     u'dálkkádagat', 
     #     u'deaivvadit' - check that Pl3 deaivvadedje and deaivvadit are
@@ -807,7 +812,7 @@ class WordLookupAPITests(WordLookupAPITests):
 class ParadigmGenerationTests(ParadigmGenerationTests):
     paradigm_generation_tests = paradigm_generation_tests
 
-class NewParadigmGenerationTests(WordLookupTests):
+class ParadigmSelectionTest(WordLookupTests):
     """ These are really only for testing specifics in the paradigm
     directory structure the code, and don't need to be run as generation
     as a whole is tested above.
@@ -821,7 +826,8 @@ class NewParadigmGenerationTests(WordLookupTests):
                 + self.current_app.morpholexicon.lookup(u'dálkkádagat', source_lang='sme', target_lang='nob') \
                 + self.current_app.morpholexicon.lookup(u'álgoálbmotášši', source_lang='sme', target_lang='nob') \
                 + self.current_app.morpholexicon.lookup(u'Dálmmát', source_lang='sme', target_lang='nob') \
-                + self.current_app.morpholexicon.lookup(u'Gállábártnit', source_lang='sme', target_lang='nob')
+                + self.current_app.morpholexicon.lookup(u'Gállábártnit', source_lang='sme', target_lang='nob') \
+                + self.current_app.morpholexicon.lookup(u'Iččát', source_lang='sme', target_lang='nob')
 
 
         pc = self.current_app.morpholexicon.paradigms
@@ -829,6 +835,8 @@ class NewParadigmGenerationTests(WordLookupTests):
         pc = ParadigmConfig(app=None, debug=True)
         for node, analyses in lookups:
             print "Testing: ", node, analyses
+            for a in analyses:
+                print " - " + repr(a.tag.matching_tagsets())
             print pc.get_paradigm('sme', node, analyses, debug=True)
             print '--'
 

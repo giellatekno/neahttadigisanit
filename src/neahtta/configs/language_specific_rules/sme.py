@@ -56,7 +56,10 @@ morph_log = getLogger('morphology')
 # nothing.
 @lexicon.pre_lookup_tag_rewrite_for_iso(*['sme', 'SoMe'])
 def pos_to_fst(*args, **kwargs):
-    """ TODO: document.
+    """ For synchronizing PoS between lexicon and FST. Should be less
+    necessary now.
+    
+    TODO: generalize to a setting in .yaml or somewhere.
     """
     if 'lemma' in kwargs and 'pos' in kwargs:
         _k = kwargs.get('pos', '')
@@ -79,22 +82,6 @@ def remove_orig_entry(entries):
     _entries = [e for e in entries if 'orig_entry' not in e.attrib]
     return _entries
 
-# TODO: may no longer need to remove elements from tags now that those
-# that are presented to users come directly from the pretty presentation
-# analyzer, however other languages may need this, so here is a model.
-
-# @morphology.post_analysis_processor_for_iso('sme')
-# def test_f(generated_forms, *input_args, **input_kwargs):
-#     exclusions = [
-#         'Ani', 'Body', 'Build', 'Clth', 'Edu', 'Event', 'Fem',
-#         'Food', 'Group', 'Hum', 'Mal', 'Measr', 'Obj', 'Org',
-#         'Plant', 'Plc', 'Route', 'Sur', 'Time', 'Txt', 'Veh', 'Wpn',
-#         'Wthr', 'Allegro', 'v1', 'v2', 'v3', 'v4',
-#     ]
-#     return generated_forms
-
-# TODO: simplify this decorator process. really only need
-# pregenerate_sme(node) -> returning analyses
 @morphology.pregenerated_form_selector(*['sme', 'SoMe'])
 def pregenerate_sme(form, tags, node):
     """ **pregenerated form selector**: mini_paradigm / lemma_ref
@@ -356,10 +343,6 @@ def word_generation_context(generated_result, *generation_input_args):
         return (lemma, tag, formatted_forms)
 
     return map(apply_context, generated_result)
-
-# TODO: post-generated tag morphology for sme, because FST must have
-# +These+Kinds+Of+Tags
-# @morphology.postgeneration_filter_for_iso('sme')
 
 _str_norm = 'string(normalize-space(%s))'
 

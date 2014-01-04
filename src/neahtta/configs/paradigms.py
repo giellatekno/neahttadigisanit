@@ -49,6 +49,10 @@ class TagRule(object):
     """
 
     def __init__(self, tag):
+
+        if isinstance(tag, str):
+            tag = unicode(tag)
+
         self.tag = tag
 
         if isinstance(tag, str) or isinstance(tag, unicode):
@@ -81,6 +85,8 @@ class LexRule(object):
 
     def __init__(self, lex_key, lex_value):
         self.key = lex_key
+        if isinstance(lex_value, str):
+            tag = unicode(lex_value)
         self.value = lex_value
 
         if isinstance(lex_value, str) or isinstance(lex_value, unicode):
@@ -184,6 +190,8 @@ class TagSetRule(object):
 
     def __init__(self, tagset, value):
         self.tagset = tagset
+        if isinstance(value, unicode):
+            value = unicode(value)
         self.tagset_value = value
 
         if isinstance(value, str) or isinstance(value, unicode):
@@ -223,6 +231,7 @@ class ParadigmRuleSet(object):
         self.comps = []
 
         if not lex and not morph:
+            print >> sys.stderr, "Missing morphology or lexicon rule context in <%s>" % self.name
             self.comps = [NullRule()]
             lex = {}
             morph = {}
@@ -247,8 +256,6 @@ class ParadigmRuleSet(object):
             Returns a tuple (Truth, Context); Context is a dict
         """
 
-        if self.debug:
-            print >> sys.stderr, "Searching for paradigm in %s." % self.name
         for analysis in analyses:
 
             if self.debug:
@@ -262,6 +269,8 @@ class ParadigmRuleSet(object):
             contexts = [c for t, c in self._evals if t]
 
             context = dict(sum(contexts, []))
+            if self.debug and truth:
+                print >> sys.stderr, "Found matching paradigm in %s." % self.name
             return truth, context
 
 class ParadigmConfig(object):

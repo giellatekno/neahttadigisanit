@@ -4,3 +4,5 @@ morphology:
 --
 {{ lemma }}+Num+Sg+Nom
 {{ lemma }}+Num+Sg+Gen
+{{ lemma }}+Num+Pl+Nom
+{{ lemma }}+Num+Pl+Gen
