@@ -37,8 +37,9 @@ from morpholex import morpholex_overrides as morpholex
 # TODO: for sma
 context_for_tags = {
     # EX: guokte
-    (u"gápmagat", "Num+Pl+Nom"): u"%(word_form)s (gápmagat)",
-    (u"gápmagat", "Num+Pl+Gen"): u"%(word_form)s (gápmagiid)",
+    # TODO: need sma forms
+    # (u"gápmagat", "Num+Pl+Nom"): u"%(word_form)s (gápmagat)",
+    # (u"gápmagat", "Num+Pl+Gen"): u"%(word_form)s (gápmagiid)",
 
     (u"NONE", "N+Prop+Sem/Plc+Sg+Gen"): u"%(word_form)s baaktoe",
     (u"NONE", "N+Prop+Sem/Plc+Pl+Gen"): u"%(word_form)s baaktoe",
