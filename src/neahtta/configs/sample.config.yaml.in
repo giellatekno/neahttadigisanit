@@ -115,64 +115,6 @@ Dictionaries:
     target: sme
     path: 'dicts/nob-sme.all.xml'
 
-# Define what paradigms are generated for each part of speech, for each
-# language.  Because of the way that paradigm parsing currently works, remove
-# the part of speech from the generated tags, because this is automatically
-# inserted.
-#
-# Currently it is best to keep these paradigms simple. If anything more complex
-# is needed, such as changing Sg to Pl if the lexical entry contains an
-# attribute marking the word as plural only, this can be written with
-# a morphological generation override function.
-#
-# Also, if any paradigms are pregenerated and contained in the lexicon,
-# mark these as having only one form, "Pregenerate", and write a 
-# morphological generation override rule to fetch paradigms from the lexicon
-# and format them into the expected data format.
-#
-# Linguists: do not worry too much about things like +Sg and +Pl mentioned
-# above, but provide the programmers lists for what is needed. Or
-# alternatively, make the programmers to implement something easier. ;)
-#
-# Use the same tag format as the generator expects.
-Paradigms:
-  sme: &smeparadigms
-    PRON: ["Pregenerate"]
-    A:
-      - "Attr"
-      - "Pl+Nom"
-      - "Comp+Attr"
-      - "Comp+Sg+Nom"
-      - "Superl+Sg+Nom"
-
-    NUM:
-      - "Pl+Nom"
-      - "Pl+Gen"
-
-    N:
-      - "Sg+Gen"
-      - "Sg+Ill"
-      - "Pl+Ill"
-    PROP:
-      - "Sg+Gen"
-      - "Sg+Ill"
-      - "Sg+Loc"
-
-    V:
-      - "Ind+Prs+Sg1"
-      - "Ind+Prt+Sg1"
-      - "Ind+Prs+ConNeg"
-
-  SoMe: 
-    <<: *smeparadigms
-  
-  nob:
-    V:
-      - "Imp"
-      - "Ind+Prs"
-      - "Ind+Prt"
-      - "PrfPtc"
-
 #
 # These are not much in use yet, but could be helpful in producing override
 # rules or stripping a particular type of tag from being shown to users.
