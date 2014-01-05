@@ -93,53 +93,6 @@ Languages:
 # system. What is presented in the UI also adheres to the order that is here.
 Dictionaries: []
 
-# Use the same tag format as the generator expects.
-Paradigms:
-  sme: &smeparadigms
-    PRON: ["Pregenerate"]
-    A:
-      - "Attr"
-      - "Pl+Nom"
-      - "Comp+Attr"
-      - "Comp+Sg+Nom"
-      - "Superl+Sg+Nom"
-
-    NUM:
-      - "Pl+Nom"
-      - "Pl+Gen"
-
-    N:
-      - "Sg+Gen"
-      - "Sg+Ill"
-      - "Pl+Ill"
-    PROP:
-      - "Sg+Gen"
-      - "Sg+Ill"
-      - "Sg+Loc"
-
-    V:
-      - "Ind+Prs+Sg1"
-      - "Ind+Prt+Sg1"
-      - "Ind+Prs+ConNeg"
-
-  SoMe: 
-    <<: *smeparadigms
-  
-  nob:
-    V:
-      - "Imp"
-      - "Ind+Prs"
-      - "Ind+Prt"
-      - "PrfPtc"
-
-#
-# These are not much in use yet, but could be helpful in producing override
-# rules or stripping a particular type of tag from being shown to users.
-TagSets:
-  sme:
-    pos: ["N", "V", "A", "Pr", "Po", "Num"]
-    type: ["NomAg", "G3", "aktor"]
-
 #
 # These tag transforms are used when output from FSTs needs to be transformed
 # for end users. The key is a language pair (sma, nob), where the first language

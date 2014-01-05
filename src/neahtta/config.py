@@ -256,7 +256,21 @@ class Config(Config):
         if self._tagset_definitions:
             return self._tagset_definitions
 
-        sets = self.yaml.get('TagSets')
+        tagset_path = os.path.join( os.getcwd()
+                                  , 'configs/language_specific_rules/tagsets/'
+                                  )
+
+        available_langs = self.languages
+
+        sets = {}
+
+        for _p, dirs, files in os.walk(tagset_path):
+            for f in files:
+                if f.endswith('.tagset'):
+                    language = f.partition('.')[0]
+                    tagset_path = os.path.join(_p, f)
+                    tagset_yaml = yaml.load(open(tagset_path, 'r').read())
+                    sets[language] = tagset_yaml
 
         self._tagset_definitions = sets
         return sets

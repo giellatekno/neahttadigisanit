@@ -69,15 +69,6 @@ Dictionaries:
     target: fin
     path: 'dicts/mhr-all.xml'
 
-TagSets:
-  mrj:
-    pos: ["N", "V", "A", "Pr", "Po", "Num"]
-    type: ["NomAg", "G3", "aktor"]
-  mhr:
-    pos: ["N", "V", "A", "Pr", "Po", "Num"]
-    type: ["NomAg", "G3", "aktor"]
-
-
 # (sourcelang, targlang)
 # V: "v."
 # FST format: "user friendly"

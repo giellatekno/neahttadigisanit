@@ -116,14 +116,6 @@ Dictionaries:
     path: 'dicts/nob-sme.all.xml'
 
 #
-# These are not much in use yet, but could be helpful in producing override
-# rules or stripping a particular type of tag from being shown to users.
-TagSets:
-  sme:
-    pos: ["N", "V", "A", "Pr", "Po", "Num"]
-    type: ["NomAg", "G3", "aktor"]
-
-#
 # These tag transforms are used when output from FSTs needs to be transformed
 # for end users. The key is a language pair (sma, nob), where the first language
 # is the language of generation, and the second language is the language of

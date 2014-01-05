@@ -84,16 +84,6 @@ Dictionaries:
     target: sma
     path: 'dicts/nob-sma.all.xml'
 
-# Abstracting display formats out here, because there are different
-# requirements for different languages and different wordforms.
-
-TagSets:
-  sma:
-    pos: ["N", "V", "A", "Pr", "Po", "Num"]
-    type: ["NomAg", "aktor", "Prop"]
-    homonyms: ["Hom1", "Hom2"]
-    number: ["Pl", "Sg"]
-
 # Note, these come from dictionary fst, so tag parts are mostly 
 # already translated
 # TODO: i18n

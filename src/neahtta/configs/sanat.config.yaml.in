@@ -154,24 +154,6 @@ Dictionaries:
 # this is supplied automatically. Otherwise use generation FST tag
 # format.
 
-TagSets:
-  liv: &livtagsets
-    pos: [
-      "N", "V", "A", "Pr", "Po", "Num", "CS", "CC",
-      
-      "pron.", "subst.", "verb", "adj.", "konj."
-    ]
-    type: ["NomAg", "G3", "aktor", "res."]
-  SoMe-liv: 
-    <<: *livtagsets
-  olo:
-    pos: ["N", "V", "A", "Pr", "Po", "Num"]
-    type: ["NomAg", "G3", "aktor"]
-  fkv:
-    pos: ["N", "V", "A", "Pr", "Po", "Num"]
-  izh:
-    pos: ["N", "V", "A", "Pr", "Po", "Num"]
-
 # (sourcelang, targlang)
 # V: "v."
 # FST format: "user friendly"

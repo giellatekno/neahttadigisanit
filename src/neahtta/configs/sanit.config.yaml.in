@@ -149,28 +149,6 @@ Dictionaries:
 # Abstracting display formats out here, because there are different
 # requirements for different languages and different wordforms.
 
-TagSets:
-  sme: &smetagsets
-    pos: [
-      "N", "V", "A", "Pr", "Po", "Num", "CS", "CC",
-      
-      "pron.", "subst.", "verb", "adj.", "konj."
-    ]
-    type: ["NomAg", "G3", "aktor", "res.", "Prop", "prop."]
-    possessive: ["PxSg2"]
-    number: ["Sg", "Pl"]
-    semantics: [ "Sem/Plc", "Sem/Obj" ]
-    # Do not display analyses with these tag parts
-    hideanalysis: 
-      - "dem."
-      - "neg."
-      - "pers."
-      - "pron."
-      - "refl."
-      - "res."
-  SoMe:
-    <<: *smetagsets
-
 # Note, these come from dictionary fst, so tag parts are mostly 
 # already translated
 TagTransforms:

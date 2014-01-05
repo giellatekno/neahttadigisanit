@@ -60,25 +60,6 @@ Dictionaries:
     target: nob
     path: 'dicts/sms-all.xml'
 
-Paradigms:
-  sms:
-    PRON:
-      - "Pregenerate"
-    V:
-     - "Ind+Prs+Sg1"
-     - "Ind+Prs+Sg2"
-     - "Ind+Prs+Sg3"
-     - "Ind+Prs+Pl1"
-     - "Ind+Prs+Pl2"
-     - "Ind+Prs+Pl3"
-     - "Ind+Prs+4"
-
-TagSets:
-  sms:
-    pos: ["N", "V", "A", "Pr", "Po", "Num"]
-    type: ["NomAg", "G3", "aktor"]
-
-
 # (sourcelang, targlang)
 # V: "v."
 # FST format: "user friendly"

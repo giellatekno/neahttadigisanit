@@ -1,0 +1,38 @@
+﻿pos:
+ - "N"
+ - "V"
+ - "A"
+ - "Pr"
+ - "Po"
+ - "Num"
+ - "CS"
+ - "CC"
+ - "pron."
+ - "subst."
+ - "verb"
+ - "adj."
+ - "konj."
+type: 
+ - "NomAg"
+ - "G3"
+ - "aktor"
+ - "res."
+ - "Prop"
+ - "prop."
+possessive: 
+ - "PxSg2"
+number: 
+ - "Sg"
+ - "Pl"
+semantics: 
+ - "Sem/Plc"
+ - "Sem/Obj"
+# Do not display analyses with these tag parts
+hideanalysis: 
+  - "dem."
+  - "neg."
+  - "pers."
+  - "pron."
+  - "refl."
+  - "res."
+

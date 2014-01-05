@@ -91,11 +91,6 @@ Dictionaries:
     path: 'dicts/kpv-engfinrus.all.xml'
     input_variants: *KOMI_VARIANTS
 
-TagSets:
-  kpv:
-    pos: ["N", "V", "A", "Pr", "Po", "Num"]
-    type: ["NomAg", "G3", "aktor"]
-
 # (sourcelang, targlang)
 # V: "v."
 # FST format: "user friendly"

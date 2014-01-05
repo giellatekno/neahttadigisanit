@@ -49,24 +49,6 @@ Dictionaries:
     target: eng
     path: 'dicts/crk-all.xml'
 
-Paradigms:
-  crk:
-    PRON:
-      - "Pregenerate"
-    V:
-     - "Ind+Prs+Sg1"
-     - "Ind+Prs+Sg2"
-     - "Ind+Prs+Sg3"
-     - "Ind+Prs+Pl1"
-     - "Ind+Prs+Pl2"
-     - "Ind+Prs+Pl3"
-
-TagSets:
-  crk:
-    pos: ["N", "V", "Num"]
-    type: ["NomAg"]
-
-
 # (sourcelang, targlang)
 # V: "v."
 # FST format: "user friendly"

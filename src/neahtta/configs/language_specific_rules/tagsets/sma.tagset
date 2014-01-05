@@ -1,0 +1,5 @@
+﻿pos: ["N", "V", "A", "Pr", "Po", "Num"]
+type: ["NomAg", "aktor", "Prop"]
+homonyms: ["Hom1", "Hom2"]
+number: ["Pl", "Sg"]
+

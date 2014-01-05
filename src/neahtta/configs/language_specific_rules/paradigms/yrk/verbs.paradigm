@@ -1,0 +1,16 @@
+name: "transitive verbs"
+morphology:
+  pos: V
+  valence: TV
+--
+{{ lemma }}+V+TV+Ind+Aor+ScSg1
+{{ lemma }}+V+TV+Ind+Aor+ScSg2
+{{ lemma }}+V+TV+Ind+Aor+ScSg3
+{{ lemma }}+V+TV+Ind+Aor+ScDu1
+{{ lemma }}+V+TV+Ind+Aor+ScDu2
+{{ lemma }}+V+TV+Ind+Aor+ScDu3
+{{ lemma }}+V+TV+Ind+Aor+ScPl1
+{{ lemma }}+V+TV+Ind+Aor+ScPl2
+{{ lemma }}+V+TV+Ind+Aor+ScPl3
+{{ lemma }}+V+TV+Ind+Prt1+ScSg1+OcSg3
+{{ lemma }}+V+TV+Ind+Prt1+ScSg1+OcDu3

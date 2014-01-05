@@ -109,47 +109,6 @@ Dictionaries:
     target: fra
     path: 'dicts/mdf-all.xml'
 
-Paradigms:
-  myv:
-    PRON:
-      - "Pregenerate"
-    N:
-      - "Sg+Nom+Indef"
-      - "Pl+Nom+Indef"
-      - "Ela+Indef"
-    A:
-      - "Der/MWN+N+Sg+Nom+Indef"
-      - "Der/MWN+N+Pl+Gen+Indef"
-      - "Der/MWN+N+Sg+Ela+Indef"
-    V:
-      - "Der/Омс+Inf+Ill"
-      - "Ind+Prt1+ScSg3"
-  mdf:
-    PRON:
-      - "Pregenerate"
-    N:
-      - "Sg+Nom+Indef"
-      - "Pl+Nom+Indef"
-      - "Ela+Indef"
-    A:
-      - "Der/MWN+N+Sg+Nom+Indef"
-      - "Der/MWN+N+Pl+Gen+Indef"
-      - "Der/MWN+N+Sg+Ela+Indef"
-    V:
-      - "Inf"
-      - "Ind+Prt1+ScSg3"
-
-
-
-TagSets:
-  myv:
-    pos: ["N", "V", "A", "Pr", "Po", "Num"]
-    type: ["NomAg", "G3", "aktor"]
-  mdf:
-    pos: ["N", "V", "A", "Pr", "Po", "Num"]
-    type: ["NomAg", "G3", "aktor"]
-
-
 # (sourcelang, targlang)
 # V: "v."
 # FST format: "user friendly"
