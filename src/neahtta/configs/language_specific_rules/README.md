@@ -20,6 +20,14 @@ Each of these are documented in their relevant directories, but a quick overview
    [Jinja templates][jinja] to structure paradigms, and [YAML][yaml]
    to produce conditions for their use. Most templates will be simple, but
    `sme` contains some more advanced examples.
+ * **Python-based overrides** - These are more varied in what they do:
+   - Pregenerated form selection (generator override, lexicon -> paradigm)
+   - Morphology <-> Lexicon tag synchronization
+   - Autocomplete filtering
+   - Paradigm form context (`(odne dat) VERB`, see `template/README.md` for future ideas)
+   - Lexicon entry lookup filtering (excluding entries without `usage="vd"`)
+   - Entry display formatting (a great candidate for making a template-based solution,
+     see `templates/README.md` for ideas)
 
   [jinja]: http://jinja.pocoo.org/docs/templates/
   [yaml]: http://en.wikipedia.org/wiki/YAML
