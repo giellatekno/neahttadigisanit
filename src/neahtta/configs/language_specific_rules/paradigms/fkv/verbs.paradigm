@@ -4,4 +4,4 @@ morphology:
 --
 {{ lemma }}+V+Act+Ind+Prs+Sg1
 {{ lemma }}+V+Act+Ind+Prs+ConNeg
-{{ lemma }}+V+Pss+Ind+Prt+Pe4
+{{ lemma }}+V+Act+Ind+Prt+Sg1

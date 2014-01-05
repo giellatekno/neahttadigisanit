@@ -143,7 +143,9 @@ Dictionaries:
   - source: nob
     target: fkv
     path: 'dicts/nob-fkv.xml'
-
+  - source: izh
+    target: fin
+    path: 'dicts/izh-fin.xml'
 
 # Abstracting display formats out here, because there are different
 # requirements for different languages and different wordforms.
@@ -151,81 +153,6 @@ Dictionaries:
 # Paradigms for generation on detailed pages. Leave POS out of tags,
 # this is supplied automatically. Otherwise use generation FST tag
 # format.
-Paradigms:
-  olo:
-    PRON:
-      - "Pregenerate"
-    N:
-      - "Sg+Par"
-      - "Sg+Apr"
-      - "Sg+Gen"
-      - "Pl+Par"
-    V:
-      - "Ind+Prs+ScSg1"
-      - "Ind+Prs+ScSg3"
-      - "Ind+Prs+ScPl3"
-      - "Ind+Prt+ScSg1"
-  
-  liv:
-    PRON:
-      - "Pregenerate"
-    N:
-      - "Sg+Nom"
-      - "Sg+Gen"
-      - "Sg+Dat"
-      - "Sg+Ins"
-      - "Sg+Par"
-      - "Sg+Ill"
-      - "Sg+Ela"
-      - "Pl+Nom"
-      - "Pl+Gen"
-      - "Pl+Dat"
-      - "Pl+Ins"
-      - "Pl+Par"
-      - "Pl+Ill"
-      - "Pl+Ela"
-    V:
-      - "Ind+Prs+Sg1"
-      - "Ind+ConNeg+Sg"
-      - "Ind+Prt+Sg1"
-
-  fkv:
-    PRON:
-      - "Pregenerate"
-    N:
-      - "Sg+Par"
-      - "Sg+Gen"
-      - "Pl+Par"
-    V:
-      - "Act+Ind+Prs+Sg1"
-      - "Act+Ind+Prs+ConNeg"
-      - "Act+Ind+Prt+Sg1"
-
-  fin:
-    PRON:
-      - "Pregenerate"
-    N:
-      - "Sg+Par"
-      - "Sg+Gen"
-      - "Pl+Par"
-    V:
-      - "Ind+Prs+Sg1"
-      - "Ind+ConNeg+Sg"
-      - "Ind+Prt+Sg1"
-
-  izh:
-    PRON:
-      - "Pregenerate"
-    N:
-      - "Sg+Par"
-      - "Sg+Gen"
-      - "Pl+Par"
-    V:
-      - "Ind+Prs+Sg1"
-      - "Ind+ConNeg+Sg"
-      - "Ind+Prt+Sg1"
-
-
 
 TagSets:
   liv: &livtagsets
@@ -240,6 +167,10 @@ TagSets:
   olo:
     pos: ["N", "V", "A", "Pr", "Po", "Num"]
     type: ["NomAg", "G3", "aktor"]
+  fkv:
+    pos: ["N", "V", "A", "Pr", "Po", "Num"]
+  izh:
+    pos: ["N", "V", "A", "Pr", "Po", "Num"]
 
 # (sourcelang, targlang)
 # V: "v."
