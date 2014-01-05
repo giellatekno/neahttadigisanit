@@ -45,13 +45,13 @@ context_for_tags = {
 
     # TODO: generic available if no context="mun" equivalent
     # EX: båetedh
-    # ("NONE", "V+Ind+Prs+Sg1"):        u"(daan biejjien manne) %(word_form)s",
-    # ("NONE", "V+Ind+Prs+Sg3"):        u"(daan biejjien dïhte) %(word_form)s",
-    # ("NONE", "V+Ind+Prs+Pl3"):        u"(daan biejjien dat) %(word_form)s",
-    # ("NONE", "V+Ind+Prt+Sg1"):        u"(jååktan manne) %(word_form)s",
-    # ("NONE", "V+ConNeg"):             u"(ij) %(word_form)s",
-    # ("NONE", "V+PrfPrc"):             u"(lea) %(word_form)s",
-    # ("NONE", "V+Ger"):                u"(lea) %(word_form)s",
+    ("NONE", "V+Ind+Prs+Sg1"):        u"(daan biejjien manne) %(word_form)s",
+    ("NONE", "V+Ind+Prs+Sg3"):        u"(daan biejjien dïhte) %(word_form)s",
+    ("NONE", "V+Ind+Prs+Pl3"):        u"(daan biejjien dat) %(word_form)s",
+    ("NONE", "V+Ind+Prt+Sg1"):        u"(jååktan manne) %(word_form)s",
+    ("NONE", "V+ConNeg"):             u"(ij) %(word_form)s",
+    ("NONE", "V+PrfPrc"):             u"(lea) %(word_form)s",
+    ("NONE", "V+Ger"):                u"(lea) %(word_form)s",
 
 }
 
