@@ -29,10 +29,10 @@ semantics:
  - "Sem/Obj"
 # Do not display analyses with these tag parts
 hideanalysis: 
-  - "dem."
-  - "neg."
-  - "pers."
-  - "pron."
-  - "refl."
-  - "res."
+ - "dem."
+ - "neg."
+ - "pers."
+ - "pron."
+ - "refl."
+ - "res."
 
