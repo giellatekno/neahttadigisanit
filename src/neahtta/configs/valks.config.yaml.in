@@ -14,7 +14,11 @@ ApplicationSettings:
   meta_description: >
       Free online, mobile friendly dictionaries for Erzya Mordvin and Moksha
   meta_keywords: >
-      erzya, ersä, mokša, moksha, erzya mordvin, mobile, dictionary, free
+      erzya, ersä, mokša, moksha, erzya mordvin, moksha mordvin, mobile,
+      эрзя, мокша, русский, зрзянский, мокшанский, валкс, финский,
+      sanakirjat, sanakirja, словарь, dictionary, free, erza, français,
+      mokcha, finnois, эрзянь, мокшень, рузонь, финнэнь, финнонь,
+      французонь, англань
 
 Tools:
   xfst_lookup: &LOOKUP '/usr/bin/lookup'
@@ -57,30 +61,30 @@ Languages:
     name:
       eng: "Erzya Mordvin"
       nob: "Erzya Mordvin"
-      fin: "Erzya Mordvin"
+      fin: "ersä"
   - iso: mdf
     name:
-      eng: "Moksha"
+      eng: "Moksha Mordvin"
       nob: "Moksha"
-      fin: "Moksha"
+      fin: "mokša"
   - iso: eng
     name:
-      eng: "english"
-      nob: "english"
-      fin: "english"
+      eng: "English"
+      nob: "engelsk"
+      fin: "englanti"
   - iso: fin
     name:
-      eng: "finnish"
-      nob: "finnish"
-      fin: "finnish"
+      eng: "Finnish"
+      nob: "finsk"
+      fin: "suomi"
   - iso: rus
     name:
-      eng: "russian"
-      nob: "russian"
-      fin: "russian"
+      eng: "Russian"
+      nob: "ryssk"
+      fin: "venäjä"
   - iso: fra
     name:
-      eng: "french"
+      eng: "French"
       nob: "fransk"
       fin: "ranska"
 
@@ -115,6 +119,8 @@ Dictionaries:
 TagTransforms:
 
   (myv, rus):
+    # Should these be Russian abbreviations and where else should they
+    # be changed 2014-01-07 гл., сущ., прил.
     V: "v."
     N: "s."
     A: "adj."
@@ -125,6 +131,7 @@ TagTransforms:
     A: "adj."
 
   (myv, myv):
+    # 2014-01-07 why are these self pairs? 
     V: "v."
     N: "s."
     A: "adj."
