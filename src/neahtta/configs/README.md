@@ -275,3 +275,15 @@ what they do.
 
 When done with these steps, be sure to add the new files and directories
 to SVN and check them in.
+
+### 5.) Paradigm bonus material: wordform contexts
+
+**Intended**: Linguists
+
+Paradigm contexts give additional information to users about how
+wordforms are intended to be used.  Information about these is also
+maintained in the paradigms readme.
+
+    configs/language_specific_rules/paradigms/README.md
+
+
