@@ -1,5 +1,6 @@
 ApplicationSettings:
   app_name: "Neahttadigisánit"
+  app_meta_title: "Neahttadigisánit"
   short_name: "vada"
   default_locale: "yrk"
   default_pair: ["yrk", "fin"]

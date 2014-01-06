@@ -1,15 +1,16 @@
 ApplicationSettings:
   app_name: "Neahttadigisánit"
   short_name: "guusaaw"
-  default_locale: "en"
+  default_locale: "hdn"
   default_pair: ["hdn", "eng"]
   mobile_default_pair: false
   locales_available:
+    - hdn
     - en
   meta_description: >
-      Free online, mobile friendly dictionaries for Haida
+      Free online, mobile friendly dictionaries for Northern Haida
   meta_keywords: >
-      Haida, haida dictionary, haida language
+      northern haida, mobile, dictionary, free
 
 Tools:
   xfst_lookup: &LOOKUP '/usr/bin/lookup'
@@ -26,32 +27,44 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
+  eng:
+    tool: *LOOKUP
+    file: [*OPT, '/eng/bin/eng.fst']
+    inverse_file: [*OPT, '/eng/bin/ieng.fst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
 
 Languages:
   - iso: hdn
+    name:
+      eng: "Northern Haida"
   - iso: eng
+    name:
+      eng: "English"
 
 Dictionaries:
   - source: hdn
     target: eng
     path: 'dicts/hdn.all.xml'
 
-paradigms:
+Paradigms:
   hdn:
-      # PRON:
-      #   - "Pregenerate"
-    N:
-      - "Sg+Def+Abs"
-      - "Sg+Def+Nom"
+    PRON:
+      - "Pregenerate"
     V:
-      - "Inf"
-      - "Imper+Sg"
-      - "Imper+Pl"
+     - "SFut"
+     - "Dpast"
+     - "Neg+SFut"
+     - "Hab+Dpast"
 
 TagSets:
   hdn:
-    pos: ["N", "V", "A", "Adp", "Num"]
-    type: ["Attr", "Coll"]
+    pos: ["N", "V", "Num"]
+    type: ["NomAg"]
 
 
 # (sourcelang, targlang)
@@ -60,6 +73,24 @@ TagSets:
 TagTransforms:
 
   (hdn, eng):
-    V: "v."
-    N: "n."
-    A: "adj."
+    V: "verb"
+    N: "noun"
+    Basic: "basic"
+    Prs: "present"
+    Hab: "habitual"
+    Neg: "negative"
+    DPast: "dpast"
+    PHab: "phab"
+    SFut: "sfuture"
+    IFut: "ifuture"
+    NFut: "nfuture"
+    3Pl: "3rd plural"
+    YesNo: "yes-no"
+    Cmd: "cmd"
+    Qst: "question"
+    PlCmd: "pl cmd"
+    IncCmd: "inc cmd"
+    
+
+
+

@@ -58,35 +58,11 @@ Morphology:
 
 Languages:
   - iso: myv
-    name:
-      eng: "Erzya Mordvin"
-      nob: "Erzya Mordvin"
-      fin: "ersä"
   - iso: mdf
-    name:
-      eng: "Moksha Mordvin"
-      nob: "Moksha"
-      fin: "mokša"
   - iso: eng
-    name:
-      eng: "English"
-      nob: "engelsk"
-      fin: "englanti"
   - iso: fin
-    name:
-      eng: "Finnish"
-      nob: "finsk"
-      fin: "suomi"
   - iso: rus
-    name:
-      eng: "Russian"
-      nob: "ryssk"
-      fin: "venäjä"
   - iso: fra
-    name:
-      eng: "French"
-      nob: "fransk"
-      fin: "ranska"
 
 Dictionaries:
   - source: myv
