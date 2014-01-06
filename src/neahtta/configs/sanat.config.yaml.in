@@ -143,9 +143,6 @@ Dictionaries:
   - source: nob
     target: fkv
     path: 'dicts/nob-fkv.xml'
-  - source: izh
-    target: fin
-    path: 'dicts/izh-fin.xml'
 
 # Abstracting display formats out here, because there are different
 # requirements for different languages and different wordforms.
