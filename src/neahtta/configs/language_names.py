@@ -24,6 +24,7 @@ NAMES = dict([
     ('se', _(u"North Sámi")),
     ('SoMe', _(u"North Sámi (#SoMe)")),
     ('en', _(u"English")),
+    ('hun', _(u"Hungarian")),
 
     # baakoeh
     ('sma', _(u"South Sámi")),
@@ -31,6 +32,7 @@ NAMES = dict([
     # kyv
     ('kpv', _(u"Komi")),
     ('kpvS', _(u"Komi") + " (" + _("Molotsov orthography") + ")"),
+    ('udm', _(u"Udmurt")),
 
     # sanat
     ('fkv', _(u"Kven")),
@@ -94,6 +96,7 @@ LOCALISATION_NAMES_BY_LANGUAGE = dict([
     ('liv', u"Līvõ kēļ"),
     ('kpv', u"Коми кыв"),
     ('kpvS', u"Коми кыв (Молодцов ортография)"),
+    ('udm', u"Удмурт кыл"),
     ('izh', u"Ižoran keel"),
     ('fkv', u"Kveenin kieli"),
     ('fi', u"Suomi"),
@@ -103,6 +106,7 @@ LOCALISATION_NAMES_BY_LANGUAGE = dict([
     ('hdn', u"X̲aat Kíl"),
     ('en', u"English"),
     ('fr', u"Français"),
+    ('hun', u"Magyar"),
 ])
 
 # Only put the exceptional ISOs here
@@ -116,4 +120,5 @@ ISO_TRANSFORMS = dict([
     ('en', 'eng'),
     ('fr', 'fra'),
     ('kv', 'kpv'),
+    ('hu', 'hun'),
 ])

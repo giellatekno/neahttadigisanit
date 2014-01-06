@@ -727,22 +727,35 @@ kpv-engfinrus.all.xml: $(GTHOME)/words/dicts/kom2X/src/
 	-@cp $@ $@.$(shell date +%s).bak
 	$(SAXON) inDir=$^ > $@
 
+udm-all.xml: $(GTHOME)/langs/udm/src/morphology/stems/*.xml
+	@echo "**************************"
+	@echo "** Building udm lexicon **"
+	@echo "**************************"
+	@echo "** Backup made (.bak)   **"
+	@echo "**************************"
+	@echo ""
+	-@cp $@ $@.$(shell date +%s).bak
+	mkdir udm
+	cp $^ udm/
+	$(SAXON) inDir=$(pwd)/udm/ > udm-all.xml
+	rm -rf udm/
+
 .PHONY: kyv-lexica
-kyv-lexica: kpv-engfinrus.all.xml
+kyv-lexica: kpv-engfinrus.all.xml udm-all.xml
 
 rm-kyv-lexica:
-	@rm -rf kpv-engfinrus.all.xml
+	@rm -rf kpv-engfinrus.all.xml udm-all.xml
 
 .PHONY: copy_molotsov
 copy_molotsov: $(GTHOME)/langs/kpv/src/analyser-dict-gt-desc-molotsov.xfst
 	cp $^ /opt/smi/kpv/bin/dict-kpv-molotsov.fst
 
 .PHONY: kyv-install
-kyv-install: GT_COMPILE_LANGS := kpv fin
+kyv-install: GT_COMPILE_LANGS := kpv fin udm
 kyv-install: install_langs_fsts copy_molotsov
 
 .PHONY: kyv
-kyv: GT_COMPILE_LANGS := kpv fin
+kyv: GT_COMPILE_LANGS := kpv fin udm
 kyv: kyv-lexica compile_langs_fsts
 	@echo "*********************************"
 	@echo "** Built targets for kyv:      **"

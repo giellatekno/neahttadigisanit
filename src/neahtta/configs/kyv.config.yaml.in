@@ -9,6 +9,7 @@ ApplicationSettings:
     - kv
     - fi
     - en
+    - ru
   meta_description: >
       Free online, mobile friendly dictionaries for Komi-Zyrian
   meta_keywords: >
@@ -42,6 +43,16 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
+  udm:
+    tool: *LOOKUP
+    file: [*OPT, '/udm/bin/dict-udm.fst']
+    inverse_file: [*OPT, '/udm/bin/dict-iudm-norm.fst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
   kpvS:
     tool: *LOOKUP
     file: [*OPT, '/kpv/bin/dict-kpv-molotsov.fst']
@@ -65,13 +76,11 @@ Morphology:
 
 Languages:
   - iso: kpv
-    name: {}
+  - iso: udm
   - iso: eng
-    name: {}
   - iso: fin
-    name: {}
   - iso: rus
-    name: {}
+  - iso: hun
 
 Dictionaries:
   - source: kpv
@@ -90,6 +99,19 @@ Dictionaries:
     target: fin
     path: 'dicts/kpv-engfinrus.all.xml'
     input_variants: *KOMI_VARIANTS
+
+  - source: kpv
+    target: rus
+    path: 'dicts/kpv-engfinrus.all.xml'
+    input_variants: *KOMI_VARIANTS
+
+  - source: udm
+    target: hun
+    path: 'dicts/udm-all.xml'
+
+  - source: udm
+    target: fin
+    path: 'dicts/udm-all.xml'
 
 # (sourcelang, targlang)
 # V: "v."

@@ -286,4 +286,3 @@ maintained in the paradigms readme.
 
     configs/language_specific_rules/paradigms/README.md
 
-

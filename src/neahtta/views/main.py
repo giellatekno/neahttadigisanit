@@ -198,7 +198,7 @@ def wordDetail(from_language, to_language, wordform, format):
             (from_language, to_language) = var.get('orig_pair')
 
         # Generation paradigms, and generation options
-        lang_paradigms = current_app.config.paradigms.get(from_language)
+        lang_paradigms = current_app.config.paradigms.get(from_language, {})
 
         morph = current_app.config.morphologies.get(from_language, False)
 
@@ -256,20 +256,21 @@ def wordDetail(from_language, to_language, wordform, format):
                         form_tags = [_t.split('+')[1::] for _t in paradigm_from_file.splitlines()]
                         _generated = morph.generate(lemma, form_tags, node)
                     else:
-                        # try with pos, fallback to upper
-                        paradigm = lang_paradigms.get(
-                            pos, lang_paradigms.get(pos.upper(), False)
-                        )
+                        _generated = False
+                        # # try with pos, fallback to upper
+                        # paradigm = lang_paradigms.get(
+                        #     pos, lang_paradigms.get(pos.upper(), False)
+                        # )
 
-                        if paradigm:
-                            _pos_type = [pos]
-                            if _type:
-                                _pos_type.append(_type)
-                            form_tags = [_pos_type + _t.split('+') for _t in paradigm]
+                        # if paradigm:
+                        #     _pos_type = [pos]
+                        #     if _type:
+                        #         _pos_type.append(_type)
+                        #     form_tags = [_pos_type + _t.split('+') for _t in paradigm]
 
-                            _generated = morph.generate(lemma, form_tags, node)
-                        else:
-                            _generated = False
+                        #     _generated = morph.generate(lemma, form_tags, node)
+                        # else:
+                        #     _generated = False
 
                     r['paradigm'] = _generated
                     _formatted_with_paradigms.append(r)
