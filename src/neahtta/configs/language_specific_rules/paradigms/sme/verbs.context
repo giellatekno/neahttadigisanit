@@ -1,4 +1,8 @@
-﻿- entry_context: "mun"
+﻿##
+### Standard verb context
+##
+
+- entry_context: "mun"
   tag_context: "V+Ind+Prs+Sg1"
   template: "(odne mun) {{ word_form }}"
 
@@ -24,8 +28,7 @@
   tag_context: "V+Ind+Prs+ConNeg"
   template: "(ii) {{ word_form }}"
 
-#    # EX: deaivvadit
-#    # TODO: requires a tag filter above to include Pl3 in paradigm
+# EX: deaivvadit
 
 - entry_context: "sii"
   tag_context: "V+Ind+Prs+Pl3"
@@ -39,7 +42,7 @@
   tag_context: "V+Ind+Prs+ConNeg"
   template: "(eai) {{ word_form }}"
 
-# EX: bieggat TODO: doesn't seem to be working
+# EX: bieggat
 
 - entry_context: "upers"
   tag_context: "V+Ind+Prs+Sg3"
