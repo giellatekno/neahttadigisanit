@@ -142,6 +142,74 @@ class Config(Config):
         return self._paradigms
 
     @property
+    def paradigm_contexts(self):
+        from collections import defaultdict
+
+        if hasattr(self, '_paradigm_contexts'):
+            return self._paradigm_contexts
+
+        paradigm_path = os.path.join( os.getcwd()
+                                    , 'configs/language_specific_rules/paradigms/'
+                                    )
+
+        available_langs = self.languages
+
+        lang_directories = [ p for p in os.listdir(paradigm_path)
+                             if p in available_langs ]
+
+        self._paradigm_contexts = defaultdict(dict)
+
+        _lang_files = {}
+        for lang in lang_directories:
+            _lang_path = os.path.join( paradigm_path
+                                     , lang
+                                     )
+            _lang_paradigm_files = []
+
+            for _p, dirs, files in os.walk(_lang_path):
+                for f in files:
+                    if f.endswith('.context'):
+                        _lang_paradigm_files.append(
+                            os.path.join(_p, f)
+                        )
+
+            _lang_files[lang] = _lang_paradigm_files
+
+        jinja_env = self.get('jinja_env')
+        def reformat_context_set(filepath, _sets):
+            parsed_sets = {}
+            if _sets is None:
+                return {}
+
+            for s in _sets:
+                entry_c = s.get('entry_context', None)
+                if entry_c == 'None':
+                    entry_c = None
+
+                tag_c = s.get('tag_context', None)
+                if tag_c == 'None':
+                    tag_c = None
+
+                template = s.get('template')
+
+                if tag_c is None:
+                    print >> sys.stderr, "Missing tag context in <%s>" % filepath
+
+                parsed_sets[(entry_c, tag_c)] = jinja_env.from_string(template)
+            return parsed_sets
+
+        for language, files in _lang_files.iteritems():
+            for f in files:
+                tagset_path = os.path.join(_p, f)
+
+                file_context_set = yaml.load(open(tagset_path, 'r').read())
+                self._paradigm_contexts[language].update(
+                    reformat_context_set(tagset_path, file_context_set)
+                )
+
+        return self._paradigm_contexts
+
+    @property
     def reversable_dictionaries(self):
         if self._reversable_dictionaries:
             return self._reversable_dictionaries
@@ -365,7 +433,6 @@ class Config(Config):
             if 'options' in _kwargs_in:
                 kwargs['options'] = _kwargs_in['options']
 
-            # TODO: tagsets
             tagsets = self.tagset_definitions.get(iso, {})
             self._morphologies[iso] = \
                 m_format(**kwargs) >> Morphology( iso
