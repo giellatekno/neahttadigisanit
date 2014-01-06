@@ -413,7 +413,7 @@ class ParadigmConfig(object):
 
     def read_paradigm_file(self, jinja_env, path):
         with open(path, 'r') as F:
-            _raw = F.read()
+            _raw = F.read().decode('utf-8')
         return self.parse_paradigm_string(jinja_env, _raw)
 
     def parse_paradigm_string(self, jinja_env, p_string):
