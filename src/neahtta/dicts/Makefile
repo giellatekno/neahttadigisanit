@@ -187,7 +187,7 @@ pikiskwewina: pikiskwewina-lexica compile_langs_fsts
 ##### #saantargets
 #####
 
-sms-all.xml: $(GTHOME)/words/dicts/sms2X/src/*.xml
+sms-all.xml: $(GTHOME)/words/dicts/sms2X/src/cmn/*.xml
 	@echo "**************************"
 	@echo "** Building sms lexicon **"
 	@echo "**************************"
