@@ -4,3 +4,4 @@ morphology:
 --
 {{ lemma }}+V+Der/Омс+Inf+Ill
 {{ lemma }}+V+Ind+Prt1+ScSg3
+{{ lemma }}+V+Conj+ScSg3
