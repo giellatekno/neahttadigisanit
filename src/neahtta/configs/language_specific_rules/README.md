@@ -5,7 +5,8 @@ to configure a language for use in Neahttadigisánit.
 
  1.) Tagsets (`tagsets/`)
  2.) Paradigms (`paradigms/`)
- 3.) Python-based morphological and lexical overrides (`ISO.py`)
+ 3.) Paradigm contexts (`paradigms/*.context`)
+ 4.) Python-based morphological and lexical overrides (`ISO.py`)
 
 All of these are meant for easy editing, but in practice, those that are not
 Python files are the easiest, and linguists are encouraged to take a look and
@@ -20,11 +21,12 @@ Each of these are documented in their relevant directories, but a quick overview
    [Jinja templates][jinja] to structure paradigms, and [YAML][yaml]
    to produce conditions for their use. Most templates will be simple, but
    `sme` contains some more advanced examples.
+ * **Paradigm contexts** - Allows for added control over display of generated
+   wordforms, adding helpful pronoun, adverb contexts, etc.
  * **Python-based overrides** - These are more varied in what they do:
    - Pregenerated form selection (generator override, lexicon -> paradigm)
    - Morphology <-> Lexicon tag synchronization
    - Autocomplete filtering
-   - Paradigm form context (`(odne dat) VERB`, see `template/README.md` for future ideas)
    - Lexicon entry lookup filtering (excluding entries without `usage="vd"`)
    - Entry display formatting (a great candidate for making a template-based solution,
      see `templates/README.md` for ideas)
