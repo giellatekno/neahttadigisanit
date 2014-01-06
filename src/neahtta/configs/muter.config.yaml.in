@@ -31,7 +31,6 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
-  # TODO:
   mhr:
     tool: *LOOKUP
     file: [*OPT, '/mhr/bin/dict-mhr.fst']
