@@ -1,0 +1,55 @@
+﻿- entry_context: "mun"
+  tag_context: "V+Ind+Prs+Sg1"
+  template: "(odne mun) {{ word_form }}"
+
+- entry_context: "mun"
+  tag_context: "V+Ind+Prt+Sg1"
+  template: "(ikte mun) {{ word_form }}"
+
+- entry_context: "mun"
+  tag_context: "V+Ind+Prs+ConNeg"
+  template: "(in) {{ word_form }}"
+
+# EX: ciellat
+
+- entry_context: "dat"
+  tag_context: "V+Ind+Prs+Sg3"
+  template: "(odne dat) {{ word_form }}"
+
+- entry_context: "dat"
+  tag_context: "V+Ind+Prt+Sg3"
+  template: "(ikte dat) {{ word_form }}"
+
+- entry_context: "dat"
+  tag_context: "V+Ind+Prs+ConNeg"
+  template: "(ii) {{ word_form }}"
+
+#    # EX: deaivvadit
+#    # TODO: requires a tag filter above to include Pl3 in paradigm
+
+- entry_context: "sii"
+  tag_context: "V+Ind+Prs+Pl3"
+  template: "(odne sii) {{ word_form }}"
+
+- entry_context: "sii"
+  tag_context: "V+Ind+Prt+Pl3"
+  template: "(ikte sii) {{ word_form }}"
+
+- entry_context: "sii"
+  tag_context: "V+Ind+Prs+ConNeg"
+  template: "(eai) {{ word_form }}"
+
+# EX: bieggat TODO: doesn't seem to be working
+
+- entry_context: "upers"
+  tag_context: "V+Ind+Prs+Sg3"
+  template: "(odne) {{ word_form }}"
+
+- entry_context: "upers"
+  tag_context: "V+Ind+Prt+Sg3"
+  template: "(ikte) {{ word_form }}"
+
+- entry_context: "upers"
+  tag_context: "V+Ind+Prs+ConNeg"
+  template: "(ii) {{ word_form }}"
+

@@ -84,7 +84,7 @@ class Tag(object):
             b = self.sets.get(b, False)
             if not b:
                 _s = ', '.join(self.sets.keys())
-                raise IndexError("Invalid tagset. Choose one of: %s" % _s)
+                raise IndexError("Invalid tagset <%s>. Choose one of: %s" % (b, _s))
         elif isinstance(b, Tagset):
             pass
         return self.getTagByTagset(b)
@@ -119,6 +119,63 @@ class Tag(object):
         [<Tag: N>, <Tag: N+Sg+Nom>]
         """
         raise NotImplementedError
+
+def word_generation_context(generated_result, *generation_input_args, **generation_kwargs):
+    """ **Post-generation filter***
+
+    Include context for verbs in the text displayed in paradigm
+    generation. The rule in this case is rather complex, and looks at
+    the tag used in generation.
+
+    Possible contexts:
+      * (mun) dieđán
+    """
+    language = generation_kwargs.get('language')
+
+    from jinja2 import Template
+    from flask import current_app
+
+    context_for_tags = current_app.config.paradigm_contexts.get(language, {})
+
+    node  = generation_input_args[2]
+
+    if len(node) == 0:
+        return generated_result
+
+    context = node.xpath('.//l/@context')
+
+    if len(context) > 0:
+        context = context[0]
+    else:
+        context = None
+
+    def apply_context(form):
+        lemma, tag, forms = form
+        tag = '+'.join(tag)
+
+        context_formatter = context_for_tags.get(
+            (context, tag), False
+        )
+        if context_formatter:
+            formatted = []
+            if forms:
+                for f in forms:
+                    _kwargs = {'word_form': f, 'context': context}
+                    if isinstance(context_formatter, Template):
+                        f = context_formatter.render(**_kwargs)
+                    else:
+                        f = context_formatter % _kwargs
+                    formatted.append(f)
+            formatted_forms = formatted
+        else:
+            formatted_forms = forms
+
+        tag = tag.split('+')
+
+        return (lemma, tag, formatted_forms)
+
+    return map(apply_context, generated_result)
+
 
 class GenerationOverrides(object):
     """ Class for collecting functions marked with decorators that
@@ -166,6 +223,10 @@ class GenerationOverrides(object):
             generated_forms = function(*input_args, **input_kwargs)
             for f in self.postgeneration_processors[lang_code]:
                 generated_forms = f(generated_forms, *input_args, **input_kwargs)
+            for f in self.postgeneration_processors['all']:
+                input_kwargs['language'] = lang_code
+                if f not in self.postgeneration_processors[lang_code]:
+                    generated_forms = f(generated_forms, *input_args, **input_kwargs)
             return generated_forms
         return decorate
 
@@ -276,6 +337,10 @@ class GenerationOverrides(object):
         self.postanalyzers_doc = defaultdict(list)
 
         self.postgeneration_processors = defaultdict(list)
+        self.postgeneration_processors['all'] = [
+            word_generation_context
+        ]
+
         self.postgeneration_processors_doc = defaultdict(list)
 
 generation_overrides = GenerationOverrides()

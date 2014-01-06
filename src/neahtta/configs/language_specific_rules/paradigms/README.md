@@ -1,4 +1,9 @@
-﻿# Paradigm generation
+﻿# Contents
+
+ * Paradigm generation
+ * Paradigm wordform context
+
+# Paradigm generation
 
 Managing paradigms and generation is currently not a straightforward
 task, but it needs to be, and a file-based approach might work well as
@@ -126,4 +131,57 @@ Certain variables are available by default:
 * Pregenerated paradigms could be accomplished by a template, but it would
   be fairly complex, and thus would require good access to `lxml` nodes
   without lots of complex template tags and custom filters. 
+
+# Paradigm contexts
+
+For now this isn't entirely in line with the way Paradigm Generation
+works, but it should be good enough for linguists to see the pattern and
+work accordingly.
+
+`.context` files in each directory control what is displayed with the
+generated wordform. The filename may be anything, so long as the suffix
+is `.context`. For convenience, `sme` and `sma` match filenames between
+paradigms and context, but there is no need to do so, and one `.context`
+file could be used for everything.
+
+## File structure
+
+Context files are simply a YAML list, and each item is a dictionary
+with the following keys:
+ 
+ * `entry_context` - matches the `@context` attribute on each `<l />`
+   node. Set to a string, or None
+ * `tag_context` - matches the tag used in generation. String. Must be
+   set to something, as none would overgenerate.
+ * `template` - jinja-format string, which accepts certain variables:
+   + `word_form` - inserts the wordform
+   + `context` - inserts the context (usually not necessary)
+
+Some examples:
+
+    - entry_context: "sii"
+      tag_context: "V+Ind+Prs+Pl3"
+      template: "(odne sii) {{ word_form }}"
+
+The above would thus generate:
+
+    (odne sii) deaivvadit
+
+Example without entry_context:
+
+    - entry_context: None
+      tag_context: "V+Ind+Prs+Sg1"
+      template: "(daan biejjien manne) {{ word_form }}"
+
+Note the lack of quotes around `None`.
+
+Otherwise, see the checked in files for more examples.
+
+### Programmer todos
+
+TODO: function currently assumes tag separator is +, use the tag
+separator defined in morphology
+
+TODO: maybe consider making this work similarly to paradigm generation,
+so that tagsets may be used if needed.
 

@@ -425,8 +425,9 @@ class ParadigmConfig(object):
 
             name = condition_yaml.get('name')
             desc = condition_yaml.get('desc', '')
+            parsed_template = jinja_env.from_string(paradigm_string_txt.strip())
             parsed_condition = { 'condition': ParadigmRuleSet(condition_yaml, debug=self.debug)
-                               , 'template': jinja_env.from_string(paradigm_string_txt.strip())
+                               , 'template': parsed_template
                                , 'name': name
                                , 'description': desc
                                }

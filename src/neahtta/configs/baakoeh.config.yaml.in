@@ -53,25 +53,8 @@ Morphology:
 
 Languages:
   - iso: nob
-    name:
-      sme: "dárogiella"
-      eng: "Norwegian"
-      nob: "norsk"
-      fin: "norja"
-
   - iso: fin
-    name:
-      sme: "suomagiella"
-      eng: "Finnish"
-      nob: "finsk"
-      fin: "suomi"
-
   - iso: sma
-    name:
-      sme: "lullisámegiella"
-      eng: "Southern Sámi"
-      nob: "sørsamisk"
-      fin: "eteläsaame"
 
 # This also dictates the order of the dictionaries in the UI for now.
 Dictionaries:

@@ -1,0 +1,27 @@
+- entry_context: None
+  tag_context: "V+Ind+Prs+Sg1"
+  template: "(daan biejjien manne) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+Ind+Prs+Sg3"
+  template: "(daan biejjien dïhte) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+Ind+Prs+Pl3"
+  template: "(daan biejjien dat) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+Ind+Prt+Sg1"
+  template: "(jååktan manne) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+ConNeg"
+  template: "(ij) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+PrfPrc"
+  template: "(lea) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+Ger"
+  template: "(lea) {{ word_form }}"
