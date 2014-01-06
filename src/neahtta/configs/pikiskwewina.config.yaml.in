@@ -1,5 +1,6 @@
 ApplicationSettings:
   app_name: "Neahttadigisánit"
+  app_meta_title: "Neahttadigisánit"
   short_name: "pikiskwewina"
   default_locale: "crk"
   default_pair: ["crk", "eng"]
@@ -40,9 +41,7 @@ Morphology:
 
 Languages:
   - iso: crk
-    name: {}
   - iso: eng
-    name: {}
 
 Dictionaries:
   - source: crk
