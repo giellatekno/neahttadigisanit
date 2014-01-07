@@ -101,7 +101,7 @@ install_langs_fsts: $(langs)
 		mkdir -p /opt/smi/$$ll/bin/ ; \
 		cp /tmp/tmp_fst/dict-$$ll.fst /opt/smi/$$ll/bin/ ; \
 		cp /tmp/tmp_ifst/dict-i$$ll-norm.fst /opt/smi/$$ll/bin/ ; \
-		cp /tmp/misc_fst/some-$$ll.fst /opt/smi/$$ll/bin/ 2>/dev/null || : ; \
+		cp /tmp/misc_fst/dict-$$ll-mobile.fst /opt/smi/$$ll/bin/ 2>/dev/null || : ; \
 	done 
 
 #####
