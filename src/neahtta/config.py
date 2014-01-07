@@ -143,6 +143,9 @@ class Config(Config):
 
     @property
     def paradigm_contexts(self):
+        """ This reads the `paradigms` directory and loads all of the
+        paradigm files for languages active in dictionary set.
+        """
         from collections import defaultdict
 
         if hasattr(self, '_paradigm_contexts'):
@@ -230,28 +233,6 @@ class Config(Config):
         return language_pairs
 
     @property
-    def tag_filters(self):
-        if not self._tag_filters:
-            tag_filters = self.yaml.get('TagTransforms')
-
-            self._tag_filters = {}
-            for k, v in tag_filters.iteritems():
-                try:
-                    _new_k = k.replace('(', '').replace(')', '')
-                    _f, _, _t = _new_k.partition(',')
-                    _f = _f.strip()
-                    _t = _t.strip()
-                except Exception:
-                    raise RuntimeError('Error parsing language pair key'
-                                       ' for %s in TagTransforms. '
-                                       'Use format (sme, nob). In file'
-                                       ' %s' %
-                                       (k, self.filename))
-
-                self._tag_filters[(_f, _t)] = v
-        return self._tag_filters
-
-    @property
     def languages(self):
         if not self._languages:
             self._languages = {}
@@ -320,7 +301,51 @@ class Config(Config):
         return language_pairs
 
     @property
+    def tag_filters(self):
+        """ Reads the `tagsets` directory for tagsets active in the
+        dictionary set.
+        """
+        if hasattr(self, '_tag_filters'):
+            return self._tag_filters
+
+        _path = os.path.join( os.getcwd()
+                            , 'configs/language_specific_rules/user_friendly_tags/'
+                            )
+
+        available_langs = self.languages
+
+        filter_sets = {}
+
+        def format_yaml(_yaml):
+            _yaml_sets = {}
+            for _set in _yaml.get('Relabel'):
+                source = _set.get('source_morphology')
+                target = _set.get('target_ui_language')
+                tags = _set.get('tags')
+                if source in self.languages:
+                    _yaml_sets[(source, target)] = tags
+            return _yaml_sets
+
+        for _p, dirs, files in os.walk(_path):
+            print >> sys.stderr, files
+            for f in files:
+                if f.endswith('.relabel'):
+                    print " * Reading tagset in <%s> " % f
+                    relabel_path = os.path.join(_p, f)
+                    relabel_yaml = format_yaml(
+                        yaml.load(open(relabel_path, 'r').read())
+                    )
+                    filter_sets.update(relabel_yaml)
+                    print "   - added: []"
+
+        self._tag_filters = filter_sets
+        return self._tag_filters
+
+    @property
     def tagset_definitions(self):
+        """ Reads the `tagsets` directory for tagsets active in the
+        dictionary set.
+        """
         if self._tagset_definitions:
             return self._tagset_definitions
 
@@ -483,7 +508,6 @@ class Config(Config):
         self._paradigms               = False
         self._baseforms               = False
         self._morphologies            = False
-        self._tag_filters             = False
 
         with open(filename, 'r') as F:
             config = yaml.load(F)
