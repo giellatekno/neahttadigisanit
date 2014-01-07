@@ -1,3 +1,7 @@
+* tag transforms need to be moved out of config files, because these
+  are more likely to have lots of edits, and the process of copying *.in
+  files to *.yaml to update linguistics stuff is super irritating
+
 * yaml - translation strings
 * detail view userfriendly tag transformation
 
