@@ -205,7 +205,12 @@ class Config(Config):
             for f in files:
                 tagset_path = os.path.join(_p, f)
 
-                file_context_set = yaml.load(open(tagset_path, 'r').read())
+                try:
+                    file_context_set = yaml.load(open(tagset_path, 'r').read())
+                except Exception, e:
+                    print " * YAML parsing error in <%s>\n\n" % tagset_path
+                    print e
+                    sys.exit()
                 self._paradigm_contexts[language].update(
                     reformat_context_set(tagset_path, file_context_set)
                 )
@@ -331,9 +336,14 @@ class Config(Config):
                 if f.endswith('.relabel'):
                     print " * Reading tagset in <%s> " % f
                     relabel_path = os.path.join(_p, f)
-                    relabel_yaml = format_yaml(
-                        yaml.load(open(relabel_path, 'r').read())
-                    )
+                    try:
+                        relabel_yaml = format_yaml(
+                            yaml.load(open(relabel_path, 'r').read())
+                        )
+                    except Exception, e:
+                        print " * YAML parsing error in <%s>\n\n" % relabel_path
+                        print e
+                        sys.exit()
                     filter_sets.update(relabel_yaml)
                     print "   - found: " + ', '.join(
                         [k[0] + ' -> ' + k[1] for k in relabel_yaml.keys()]
@@ -363,7 +373,12 @@ class Config(Config):
                 if f.endswith('.tagset'):
                     language = f.partition('.')[0]
                     tagset_path = os.path.join(_p, f)
-                    tagset_yaml = yaml.load(open(tagset_path, 'r').read())
+                    try:
+                        tagset_yaml = yaml.load(open(tagset_path, 'r').read())
+                    except Exception, e:
+                        print " * YAML parsing error in <%s>\n\n" % tagset_path
+                        print e
+                        sys.exit()
                     sets[language] = tagset_yaml
 
         self._tagset_definitions = sets
