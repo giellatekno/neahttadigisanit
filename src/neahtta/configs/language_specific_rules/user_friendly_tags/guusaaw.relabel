@@ -1,0 +1,22 @@
+﻿Relabel:
+  - source_morphology: 'hdn'
+    target_ui_language: 'eng'
+    tags: 
+      V: "verb"
+      N: "noun"
+      Basic: "basic"
+      Prs: "present"
+      Hab: "habitual"
+      Neg: "negative"
+      DPast: "dpast"
+      PHab: "phab"
+      SFut: "sfuture"
+      IFut: "ifuture"
+      NFut: "nfuture"
+      3Pl: "3rd plural"
+      YesNo: "yes-no"
+      Cmd: "cmd"
+      Qst: "question"
+      PlCmd: "pl cmd"
+      IncCmd: "inc cmd"
+    
