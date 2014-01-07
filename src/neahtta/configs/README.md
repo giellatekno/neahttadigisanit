@@ -185,37 +185,6 @@ so, `"sme"`, or `"SoMe"`, or `udmM`.
         short_name: "SoMe"
 
 
-#### `TagTransforms` section
-
-**Intended**: Linguists
-
-The purpose of this section is to translate tag pieces to a
-user-friendly format, and alternatively, remove them from being
-displayed. See other language configurations for an idea, but following
-is a short example.
-
-    TagTransforms:
-      # (source_language_fst, user_interface_language):
-      #  "FSTOUTPUT": "user sees this"
-      #  "DO_NOT_DISPLAY": ""
-
-      (sme, nob):
-        "V": "v."
-        "N": "s."
-        "A": "adj."
-
-      (fin, sme):
-        "V": "v."
-        "N": "n."
-
-Each piece of the tag will be split by the tag separater defined in the
-Morphology section for the language. Empty values may be used to avoid
-displaying this piece of the tag, for instance when the FST needs to
-output a tag for certain display rules or paradigm generation, but the
-user does not need to see these anyway. 
-
-* language variant names in language_names
-
 ### 3.) Define language names and translation strings
 
 **Intended**: Linguists
@@ -256,19 +225,17 @@ ISO, we must have these defined here.
     ('fi', 'fin'),
     ('en', 'eng'),
 
-### 4.) Define tagsets, and paradigms
+### 4.) Define tagsets, and paradigms, user-friendly tag relabels
 
 **Intended**: Linguists
 
 If you wish to have paradigms visible in the language, you will need two
 things: 
 
- * `Tagsets`
- * `.paradigm` files
-
-For more information on these, see the readme in
-`configs/language_specific_rules/README.md`, and
-`configs/language_specific_rules/paradigms/README.md`.
+ * `Tagsets` files: `configs/language_specific_rules/tagsets/README.md`
+ * `.paradigm` files: `configs/language_specific_rules/paradigms/README.md`
+ * `.context` files: `configs/language_specific_rules/paradigms/README.md`
+ * `.relabel` files: `configs/language_specific_rules/user_friendly_tags/README.md`
 
 The easiest means of course is to look at existing languages and copy
 what they do.
