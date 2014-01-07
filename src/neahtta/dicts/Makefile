@@ -87,7 +87,7 @@ compile_langs_fsts: $(langs)
  		cd $(GTHOME)/langs/$$ll ; make ; \
 	    cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc.xfst  /tmp/tmp_fst/dict-$$ll.fst ; \
 	    cp $(GTHOME)/langs/$$ll/src/generator-gt-norm.xfst /tmp/tmp_ifst/dict-i$$ll-norm.fst ; \
-		cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc-mobile.xfst  /tmp/misc_fst/some-$$ll.fst 2>/dev/null || : ; \
+		cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc-mobile.xfst  /tmp/misc_fst/dict-$$ll-mobile.fst 2>/dev/null || : ; \
 	done 
 
 install_langs_fsts: $(foreach lang, $(GT_COMPILE_LANGS), langs/$(lang)/src/analyser-gt-desc.xfst)
