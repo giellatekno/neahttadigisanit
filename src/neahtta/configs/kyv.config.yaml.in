@@ -115,38 +115,3 @@ Dictionaries:
     target: fin
     path: 'dicts/udm-all.xml'
 
-# (sourcelang, targlang)
-# V: "v."
-# FST format: "user friendly"
-TagTransforms:
-
-  (kpv, eng):
-    V: "v."
-    N: "n."
-    A: "adj."
-
-  (kpv, fin):
-    V: "v."
-    N: "s."
-    A: "adj."
-
-  (kpv, kpv):
-    V: "кадакыв"
-    N: "эмакыв"
-    A: "кывберд"
-
-  (kpv, rus):
-    V: "гл."
-    N: "сущ."
-    A: "прил."
-
-  (udm, rus):
-    V: "гл."
-    N: "сущ."
-    A: "прил."
-
-  (udm, udm):
-    V: "v."
-    N: "s."
-    A: "adj."
-

@@ -68,29 +68,3 @@ Dictionaries:
     target: fin
     path: 'dicts/mhr-all.xml'
 
-# (sourcelang, targlang)
-# V: "v."
-# FST format: "user friendly"
-TagTransforms:
-
-  (mrj, eng):
-    V: "v."
-    N: "n."
-    A: "adj."
-
-  (mrj, fin):
-    V: "v."
-    N: "s."
-    A: "adj."
-
-  (mhr, eng):
-    V: "v."
-    N: "n."
-    A: "adj."
-
-  (mhr, fin):
-    V: "v."
-    N: "s."
-    A: "adj."
-
-
