@@ -111,11 +111,11 @@ def create_app():
 
     app.cache = cache
     app.config['cache'] = cache
+    app.config['jinja_env'] = app.jinja_env
     app.config = Config('.', defaults=app.config)
     app.config.from_envvar('NDS_CONFIG')
     app.config.overrides = configs.blueprint.load_language_overrides(app)
     app.config.prepare_lexica()
-    # app.config.read_paradigm_directory(app)
 
     # Register language specific config information
     app.register_blueprint(configs.blueprint)
