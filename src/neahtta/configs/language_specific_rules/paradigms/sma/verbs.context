@@ -1,3 +1,7 @@
+# There are a lot here because tag context doesn't support anything more
+# complex than a full string yet. Once this is fixed, we can make the
+# rules easier and fewer
+
 - entry_context: None
   tag_context: "V+Ind+Prs+Sg1"
   template: "(daan biejjien manne) {{ word_form }}"
@@ -25,3 +29,107 @@
 - entry_context: None
   tag_context: "V+Ger"
   template: "(lea) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+VGen"
+  template: "(lea) {{ word_form }}"
+
+
+- entry_context: None
+  tag_context: "V+TV+Ind+Prs+Sg1"
+  template: "(daan biejjien manne) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+TV+Ind+Prs+Sg3"
+  template: "(daan biejjien dïhte) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+TV+Ind+Prs+Pl3"
+  template: "(daan biejjien dat) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+TV+Ind+Prt+Sg1"
+  template: "(jååktan manne) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+TV+ConNeg"
+  template: "(ij) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+TV+PrfPrc"
+  template: "(lea) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+TV+Ger"
+  template: "(lea) {{ word_form }}"
+
+
+- entry_context: None
+  tag_context: "V+IV+Ind+Prs+Sg1"
+  template: "(daan biejjien manne) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+IV+Ind+Prs+Sg3"
+  template: "(daan biejjien dïhte) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+IV+Ind+Prs+Pl3"
+  template: "(daan biejjien dat) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+IV+Ind+Prt+Sg1"
+  template: "(jååktan manne) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+IV+ConNeg"
+  template: "(ij) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+IV+PrfPrc"
+  template: "(lea) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+IV+Ger"
+  template: "(lea) {{ word_form }}"
+
+
+- entry_context: None
+  tag_context: "Hom2+V+IV+Ind+Prs+Sg1"
+  template: "(daan biejjien manne) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom2+V+IV+Ind+Prs+Sg3"
+  template: "(daan biejjien dïhte) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom2+V+IV+Ind+Prs+Pl3"
+  template: "(daan biejjien dat) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom2+V+IV+Ind+Prt+Sg1"
+  template: "(jååktan manne) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom2+V+IV+ConNeg"
+  template: "(ij) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom2+V+IV+PrfPrc"
+  template: "(lea) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom2+V+IV+Ger"
+  template: "(lea) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom2+V+IV+PrfPrc"
+  template: "(lea) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom2+V+IV+Ger"
+  template: "(lea) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom2+V+IV+VGen"
+  template: "(lea) {{ word_form }}"
+
