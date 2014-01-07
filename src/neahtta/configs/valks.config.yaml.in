@@ -95,19 +95,17 @@ Dictionaries:
 TagTransforms:
 
   (myv, rus):
-    # Should these be Russian abbreviations and where else should they
-    # be changed 2014-01-07 гл., сущ., прил.
-    V: "v."
-    N: "s."
-    A: "adj."
+    V: "гл."
+    N: "сущ."
+    A: "прил."
 
   (mdf, rus):
-    V: "v."
-    N: "s."
-    A: "adj."
+    V: "гл."
+    N: "сущ."
+    A: "прил."
 
   (myv, myv):
-    # 2014-01-07 why are these self pairs? 
+    # 2014-01-07 why are these self pairs? - For Erzya-lang abbrs 
     V: "v."
     N: "s."
     A: "adj."
