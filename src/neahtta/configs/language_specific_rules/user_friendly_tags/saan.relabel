@@ -1,0 +1,23 @@
+Relabel:
+  - source_morphology: 'sms'
+    target_ui_language: 'eng'
+    tags:
+      V: "v."
+      N: "n."
+      A: "adj."
+
+  - source_morphology: 'sms'
+    target_ui_language: 'fin'
+    tags:
+      V: "v."
+      N: "s."
+      A: "adj."
+
+  - source_morphology: 'sms'
+    target_ui_language: 'sms'
+    tags:
+      V: "v."
+      N: "s."
+      A: "adj."
+
+

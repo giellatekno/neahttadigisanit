@@ -55,23 +55,3 @@ Dictionaries:
     target: fin
     path: 'dicts/yrk-all.xml'
 
-# (sourcelang, targlang)
-# V: "v."
-# FST format: "user friendly"
-TagTransforms:
-
-  (yrk, eng):
-    V: "v."
-    N: "n."
-    A: "adj."
-
-  (yrk, fin):
-    V: "v."
-    N: "s."
-    A: "adj."
-
-  (yrk, yrk):
-    V: "v."
-    N: "s."
-    A: "adj."
-

@@ -89,29 +89,3 @@ Dictionaries:
     target: fra
     path: 'dicts/mdf-all.xml'
 
-# (sourcelang, targlang)
-# V: "v."
-# FST format: "user friendly"
-TagTransforms:
-
-  (myv, rus):
-    V: "гл."
-    N: "сущ."
-    A: "прил."
-
-  (mdf, rus):
-    V: "гл."
-    N: "сущ."
-    A: "прил."
-
-  (myv, myv):
-    # 2014-01-07 why are these self pairs? - For Erzya-lang abbrs 
-    V: "v."
-    N: "s."
-    A: "adj."
-
-  (mdf, mdf):
-    V: "v."
-    N: "s."
-    A: "adj."
-

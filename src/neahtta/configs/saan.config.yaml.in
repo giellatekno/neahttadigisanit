@@ -60,23 +60,3 @@ Dictionaries:
     target: nob
     path: 'dicts/sms-all.xml'
 
-# (sourcelang, targlang)
-# V: "v."
-# FST format: "user friendly"
-TagTransforms:
-
-  (sms, eng):
-    V: "v."
-    N: "n."
-    A: "adj."
-
-  (sms, fin):
-    V: "v."
-    N: "s."
-    A: "adj."
-
-  (sms, sms):
-    V: "v."
-    N: "s."
-    A: "adj."
-

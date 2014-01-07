@@ -322,12 +322,11 @@ class Config(Config):
                 source = _set.get('source_morphology')
                 target = _set.get('target_ui_language')
                 tags = _set.get('tags')
-                if source in self.languages:
+                if source in self.languages.keys() and target in self.languages.keys():
                     _yaml_sets[(source, target)] = tags
             return _yaml_sets
 
         for _p, dirs, files in os.walk(_path):
-            print >> sys.stderr, files
             for f in files:
                 if f.endswith('.relabel'):
                     print " * Reading tagset in <%s> " % f
@@ -336,7 +335,9 @@ class Config(Config):
                         yaml.load(open(relabel_path, 'r').read())
                     )
                     filter_sets.update(relabel_yaml)
-                    print "   - added: []"
+                    print "   - found: " + ', '.join(
+                        [k[0] + ' -> ' + k[1] for k in relabel_yaml.keys()]
+                    )
 
         self._tag_filters = filter_sets
         return self._tag_filters
@@ -521,4 +522,5 @@ class Config(Config):
     def prepare_lexica(self):
         from lexicon import Lexicon
         self.lexicon = Lexicon(self)
+        self.tag_filters
 
