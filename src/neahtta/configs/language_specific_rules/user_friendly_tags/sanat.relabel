@@ -175,13 +175,13 @@ Relabel:
   - source_morphology: 'olo'
     target_ui_language: 'olo'
     tags:
-      <<: *olo_olo
+      <<: *olo_to_olo
 
   - source_morphology: 'olo'
     target_ui_language: 'fin'
     tags:
       <<: *tags_to_fin
-      <<: *olo_olo
+      <<: *olo_to_olo
       # NB: example override of inherited key/value pairs
       Ind: "ind."
 
