@@ -114,6 +114,8 @@ paradigm_generation_tests = [
 
 class BasicTests(BasicTests):
 
+    wordforms_that_shouldnt_fail = wordforms_that_shouldnt_fail
+
     def test_single_word(self):
         """ Test that the basic idea of testing will work.
             If there's a problem here, this is a problem. ;)
@@ -131,13 +133,13 @@ class BasicTests(BasicTests):
 
 
 class WordLookupAPIDefinitionTests(WordLookupAPIDefinitionTests):
-	definition_exists_tests = definition_exists_tests
+    definition_exists_tests = definition_exists_tests
 
 class WordLookupDetailTests(WordLookupDetailTests):
-	wordforms_that_shouldnt_fail = wordforms_that_shouldnt_fail
+    wordforms_that_shouldnt_fail = wordforms_that_shouldnt_fail
 
 class WordLookupAPITests(WordLookupAPITests):
-	wordforms_that_shouldnt_fail = wordforms_that_shouldnt_fail
+    wordforms_that_shouldnt_fail = wordforms_that_shouldnt_fail
 
 class ParadigmGenerationTests(ParadigmGenerationTests):
-	paradigm_generation_tests = paradigm_generation_tests
+    paradigm_generation_tests = paradigm_generation_tests
