@@ -45,8 +45,9 @@ from fabric.api import ( cd
 
 from fabric.operations import ( sudo )
 
-from fabric.colors import red, green, cyan
+from fabric.colors import red, green, cyan, yellow
 
+env.no_svn_up = False
 env.use_ssh_config = True
 # env.key_filename = '~/.ssh/neahtta'
 
@@ -92,6 +93,11 @@ def kyv():
 def muter():
     """ Configure for muter """
     env.current_dict = "muter"
+
+@task
+def no_svn_up():
+    """ Configure for muter """
+    env.no_svn_up = True
 
 @task
 def pikiskwewina():
@@ -174,18 +180,22 @@ def gtoahpa():
 
 @task
 def update_gtsvn():
+    if env.no_svn_up:
+        print(yellow("** skipping svn up **"))
+        return
+
     with cd(env.svn_path):
-	paths = [
-		'gt/',
-		'gtcore/',
-		'langs/',
-		'words/',
-	]
+        paths = [
+            'gt/',
+            'gtcore/',
+            'langs/',
+            'words/',
+        ]
         print(cyan("** svn up **"))
-	for p in paths:
-		_p = os.path.join(env.svn_path, p)
-		with cd(_p):
-			env.run('svn up ' + _p)
+    for p in paths:
+        _p = os.path.join(env.svn_path, p)
+        with cd(_p):
+            env.run('svn up ' + _p)
 
 @task
 def restart_service(dictionary=False):
@@ -278,7 +288,10 @@ def compile(dictionary=False,restart=False):
 
     # TODO: need a make path to clean existing dictionary
     with cd(env.dict_path):
-        env.run("svn up Makefile")
+        if env.no_svn_up:
+            print(yellow("** Skipping svn up of Makefile"))
+        else:
+            env.run("svn up Makefile")
 
         print(cyan("** Compiling lexicon and FSTs for <%s> **" % dictionary))
         result = env.run(env.make_cmd + " %s" % dictionary)
@@ -340,3 +353,4 @@ def test_configuration():
             print(red("** Something went wrong while testing <%s> **" % _dict))
         else:
             print(cyan("** Everything seems to work **"))
+
