@@ -112,7 +112,9 @@
                 <div class="span8">
                     <form id="neahttasaanit" class="form-inline"
                         method="post"
-                        action="/{{ _from }}/{{ _to }}/"> <div class="input-append">
+                        action="/{{ _from }}/{{ _to }}/"> 
+                        
+                        <div class="input-append">
                             <input type="text" 
                                    name="lookup" 
                                    autocorrect="off"
@@ -122,10 +124,39 @@
                                    data-language-to="{{ _to }}"
                                    {% if user_input -%}value="{{ user_input }}"{% endif %}
                                    placeholder="{% trans %}ohcansátni{% endtrans %}"></input>
-                                   <button type="submit" class="btn" name="search">
-                                       <span>{% trans %}Search{% endtrans %}</span>
-                                   </button>
+                                   {# TODO: show text search only if the dictionary supports this #}
+                                   {% if current_pair_settings.show_korp_search %}
+                                       <div class="btn-group display-phone hidden-desktop hidden-tablet">
+                                           <button type="submit" class="btn" name="search">
+                                               <span>{% trans %}Search{% endtrans %}</span>
+                                           </button>
+                                           <button class="btn dropdown-toggle" data-toggle="dropdown">
+                                              <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#" 
+                                                       data-search-url="http://gtweb.uit.no/korp/#page=0&search=word|USER_INPUT"
+                                                       class="korp_search">{% trans %}Search texts{% endtrans %} (Korp)</a></li>
+                                            </ul>
+                                       </div>
+                                       <button type="submit" class="btn hidden-phone" name="search">
+                                           <span>{% trans %}Search{% endtrans %}</span>
+                                       </button>
+                                   {% else %}
+                                       <button type="submit" class="btn" name="search">
+                                           <span>{% trans %}Search{% endtrans %}</span>
+                                       </button>
+                                  {% endif %}
                         </div>
+                       {% if current_pair_settings.show_korp_search %}
+                           <a type="alternate_search" 
+                                   class="btn hidden-phone display-tablet korp_search" 
+                                   name="korp_search" 
+                                   data-search-url="http://gtweb.uit.no/korp/#page=0&search=word|USER_INPUT"
+                                   >
+                               {% trans %}Search texts{% endtrans %}
+                           </a>
+                       {% endif %}
                     </form>
                 </div>
                 <div class="span4 hidden-phone valign_block">

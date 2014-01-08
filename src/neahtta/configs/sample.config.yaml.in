@@ -75,20 +75,13 @@ Morphology:
       tagsep: '+'
       inverse_tagsep: '+'
 
-# TODO: working on either removing these, or making a yaml parser definition to
-# grab one of the strings for inclusion in translation.po files.
-#
-# For now, make sure that some language names are defined for each language in
-# the system. For example, if only one dictionary file is defined, `sme-nob`,
-# there will still need to be a definition for language names for `nob`.
+# For now, make sure that all languages that will be available are
+# defined here.  example, if only one dictionary file is defined,
+# `sme-nob`, there will still need to be a definition for language names
+# for `nob`.
 #
 Languages:
   - iso: sme
-    name:
-      eng: "Northern Sámi"
-      # TODO: formats for YAML parsing? 
-      # eng: !_ "Northern Sámi"
-      # eng: !!python/gettext "Northern Sámi"
   - iso: SoMe
   - iso: nob
   - iso: fin
@@ -100,12 +93,20 @@ Dictionaries:
   - source: sme
     target: nob
     path: 'dicts/sme-nob.all.xml'
-  # TODO: need to define language variants here, for now this is hard-coded
-  # in templates.
-  #   variants:
-  #     SoMe:
-  #       sme: 
-  #         fst: 'SmeSoMe'
+    # This key may be present and set to True and False, or missing--
+    # default is False
+    show_korp_search: True
+    # If there are any input variants, specify this. NB: 'standard' and
+    # 'mobile' are special values for `type`, and used in presenting
+    # mobile users the correct default pair. If a variant is anything
+    # other than the standard or mobile, use something else.
+    input_variants:
+      - type: "standard"
+        description: !gettext "Standárda (<em>áčđŋšŧž</em>)"
+        short_name: "sme"
+      - type: "mobile"
+        description: !gettext "Sosiála media (maiddái <em>acdnstz</em>)"
+        short_name: "SoMe"
 
   - source: SoMe
     target: nob

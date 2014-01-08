@@ -470,10 +470,12 @@ def indexWithLangs(_from, _to):
         _reverse_is_variant = current_app.config.variant_dictionaries.get( orig_pair
                                                                          , False
                                                                          )
+        pair_settings = current_app.config.pair_definitions[orig_pair]
     else:
         _reverse_is_variant = current_app.config.variant_dictionaries.get( (_to, _from)
                                                                          , False
                                                                          )
+        pair_settings = current_app.config.pair_definitions[(_from, _to)]
 
     _reverse_variants = reverse_pair.get('input_variants', False)
 
@@ -491,6 +493,7 @@ def indexWithLangs(_from, _to):
     else:
         if is_variant:
             swap_to, swap_from = orig_pair
+
 
     # TODO: include form analysis of user input #formanalysis
     return render_template( 'index.html'
@@ -514,6 +517,7 @@ def indexWithLangs(_from, _to):
                           , successful_entry_exists=successful_entry_exists
                           , mobile=mobile
                           , iphone=iphone
+                          , current_pair_settings=pair_settings
                           )
 
 accepted_lemma_args = {
@@ -723,6 +727,7 @@ def index():
 
     default_from, default_to = current_app.config.default_language_pair
     mobile_redir = current_app.config.mobile_redirect_pair
+    pair_settings = current_app.config.pair_definitions[(default_from, default_to)]
 
     iphone = False
     if request.user_agent.platform == 'iphone':
@@ -743,6 +748,7 @@ def index():
 
     return render_template( 'index.html'
                           , language_pairs=current_app.config.pair_definitions
+                          , current_pair_settings=pair_settings
                           , _from=default_from
                           , _to=default_to
                           , swap_from=default_to

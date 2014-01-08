@@ -391,8 +391,9 @@ class Config(Config):
         if not self._pair_definitions:
             self._pair_definitions = OrderedDict()
             _par_defs = {}
-            for key, path in self.dictionaries.iteritems():
-                _from, _to = key
+            for dict_def in self.yaml.get('Dictionaries'):
+                _from, _to = dict_def.get('source'), dict_def.get('target')
+                key = (_from, _to)
                 _from_langs = self.languages[_from]
                 _to_langs = self.languages[_to]
                 _lang_isos = set(_from_langs.keys()) & set(_to_langs.keys())
@@ -405,7 +406,8 @@ class Config(Config):
                     sys.exit()
 
                 _pair_options = {
-                    'langs': {}
+                    'langs': {},
+                    'show_korp_search': dict_def.get('show_korp_search', False)
                 }
                 for iso in _lang_isos:
                     _pair_options['langs'][iso] = (_from_langs[iso], _to_langs[iso])
