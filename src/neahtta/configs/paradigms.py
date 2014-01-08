@@ -312,7 +312,17 @@ class ParadigmConfig(object):
             condition = paradigm_rule.get('condition')
             template = paradigm_rule.get('template')
 
-            truth, context = condition.evaluate(node, analyses)
+            try:
+                truth, context = condition.evaluate(node, analyses)
+            except Exception, e:
+                print e
+                print 'Exception in compiling rule or evaluating.'
+                print '  ' + paradigm_rule.get('path')
+                print '  node:'
+                print node
+                print '  analyses:'
+                print analyses
+                raise e
 
             # We have a match, so count how extensive it was.
             if truth:
@@ -414,9 +424,9 @@ class ParadigmConfig(object):
     def read_paradigm_file(self, jinja_env, path):
         with open(path, 'r') as F:
             _raw = F.read().decode('utf-8')
-        return self.parse_paradigm_string(jinja_env, _raw)
+        return self.parse_paradigm_string(jinja_env, _raw, path)
 
-    def parse_paradigm_string(self, jinja_env, p_string):
+    def parse_paradigm_string(self, jinja_env, p_string, path):
         condition_yaml, __, paradigm_string_txt = p_string.partition('--')
 
         parsed_condition = False
@@ -430,6 +440,7 @@ class ParadigmConfig(object):
                                , 'template': parsed_template
                                , 'name': name
                                , 'description': desc
+                               , 'path': path
                                }
 
         return parsed_condition
