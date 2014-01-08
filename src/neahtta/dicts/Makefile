@@ -536,23 +536,19 @@ fin-sme.all.xml: $(GTHOME)/words/dicts/finsme/src/
 	-@cp $@ $@.$(shell date +%s).bak
 	$(SAXON) inDir=$^ > $@
 
-nob-sme.all.xml: $(GTHOME)/words/dicts/nobsme/ \
-				 $(GTHOME)/words/dicts/nobsme/src/*.xml \
-				 $(GTHOME)/words/dicts/nobsme/src_gt-only/*.xml \
-				 $(GTHOME)/words/dicts/nobsme/src_gt-fad_merged/*.xml
+nob-sme.all.xml: $(GTHOME)/words/dicts/nobsme/src/*.xml
 	@echo "******************************"
 	@echo "** Building nob-sme lexicon **"
 	@echo "******************************"
 	@echo "** Backup made (.bak)       **"
 	@echo "******************************"
 	@echo ""
-	-@rm -rf tmp/nobsme/
-	mkdir -p tmp/nobsme/
-	cp $</src/* tmp/nobsme/
-	cp $</src_gt-only/* tmp/nobsme/
-	cp $</src_gt-fad_merged/* tmp/nobsme/
-	$(SAXON) inDir=`pwd`/tmp/nobsme/ > $@
-	rm -rf tmp/nobsme/
+	-@cp $@ $@.$(shell date +%s).bak
+	mkdir nobsme
+	cp $^ nobsme/
+	$(SAXON) inDir=$(pwd)/nobsme/ > $@
+	rm -rf nobsme/
+
 
 .PHONY: sanit-lexica
 sanit-lexica: fin-sme.all.xml \
