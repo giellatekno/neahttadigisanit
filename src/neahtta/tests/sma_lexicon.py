@@ -77,12 +77,12 @@ paradigm_generation_tests = [
 ###  - V + Homonymy: svijredh
     ('sma', 'nob', u'svijredh',
             "hom2 generated wrong",
-            form_contains(set([u'svijrem']))),
+            form_contains(set([u'(daan biejjien manne) svijrem']))),
 
 ###  - N Pl: - common noun tanta pluralia - aajkoehkadtjh
     ('sma', 'nob', u'aajkoehkadtjh',
             "Prop pl forms missing",
-            form_contains(set([]))),
+            form_contains(set([u'aajkoehkadtji', u'aajkoehkadjijste']))),
 
 
 ###  - N Prop: Nöörje
@@ -93,7 +93,7 @@ paradigm_generation_tests = [
 ###  - N Prop Pl: Bealjehkh
     ('sma', 'nob', u'Bealjehkh',
             "Prop pl forms missing",
-            form_contains(set([u'Bealjehkidie', u'Bealjehkinie', u'Bealjehkijstie']))),
+            form_contains(set([u'Bealjahkidie', u'Bealjahkinie', u'Bealjahkijstie']))),
 
 ###  - N Prop: Nöörje
     ('sma', 'nob', u'Nöörje',
@@ -103,7 +103,13 @@ paradigm_generation_tests = [
 ###  - N Prop Pl: Bealjehkh
     ('sma', 'nob', u'Bealjehkh',
             "Prop forms context missing",
-            form_contains(set([u'Bealjehki baaktoe', u'Bealjehkidie', u'Bealjehkinie', u'Bealjehkijstie']))),
+            form_contains(set([u'Bealjehki baaktoe', u'Bealjahkidie', u'Bealjahkinie', u'Bealjahkijstie']))),
+
+###  - N Prop + Sem/Org: Stoerredigkie
+    ('sma', 'nob', u'Stoerredigkie',
+            "Prop forms context missing",
+            form_contains(set([u'Stoerredigkien', u'Stoerredægkan', u'Stoerredigkeste']))),
+
 ]
 
 class BasicTests(BasicTests):
