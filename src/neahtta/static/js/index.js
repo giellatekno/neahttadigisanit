@@ -25,6 +25,17 @@ $(document).ready( function() {
         $('input').attr('readonly', false);
         $('button').attr('disabled', false);
     });
+
+    // Korp search redirect
+    $('.korp_search').click(function(evt) {
+        var search_url = $(evt.target).attr('data-search-url')
+          , user_input = $('input[type="text"]').val()
+
+        var redirect_url = search_url.replace('USER_INPUT', user_input);
+        window.location = redirect_url;
+        return evt.preventDefault();
+    });
+
     // Discourage submission if there is nothing to submit
     $('form').submit(function(evt) {
         var inputs = $(evt.target).find('input[type="text"]')

@@ -390,6 +390,12 @@ img.i18n_flag {
   }
 }
 
+@media (min-width: 550px) and (max-width: 978px) {
+  form#neahttasaanit input {
+    width: 140px;
+  }
+}
+
 @media (max-width: 979px) {
     p.analysis_note {
         font-size: 85% !important;
