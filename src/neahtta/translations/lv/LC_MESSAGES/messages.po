@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-12-08 19:37-0600\n"
+"POT-Creation-Date: 2014-01-09 16:33-0600\n"
 "PO-Revision-Date: 2013-03-25 12:21+0200\n"
 "Last-Translator: \n"
 "Language-Team: lv <LL@li.org>\n"
@@ -27,98 +27,110 @@ msgstr "Ziemeļsāmu"
 msgid "North Sámi (#SoMe)"
 msgstr "Ziemeļsāmu (#SoMe)"
 
-#: configs/language_names.py:26 configs/language_names.py:75
+#: configs/language_names.py:26 configs/language_names.py:78
 msgid "English"
 msgstr "Angļu"
 
-#: configs/language_names.py:29 templates/more_dictionaries.html:28
+#: configs/language_names.py:27
+msgid "Hungarian"
+msgstr ""
+
+#: configs/language_names.py:30 templates/more_dictionaries.html:28
 msgid "South Sámi"
 msgstr "Dienvidsāmu"
 
-#: configs/language_names.py:32
+#: configs/language_names.py:33 configs/language_names.py:34
 msgid "Komi"
 msgstr "Komiešu"
 
-#: configs/language_names.py:35 templates/more_dictionaries.html:38
+#: configs/language_names.py:34
+msgid "Molotsov orthography"
+msgstr ""
+
+#: configs/language_names.py:35
+msgid "Udmurt"
+msgstr ""
+
+#: configs/language_names.py:38 templates/more_dictionaries.html:38
 msgid "Kven"
 msgstr "Kvenu"
 
-#: configs/language_names.py:36 configs/language_names.py:37
+#: configs/language_names.py:39 configs/language_names.py:40
 #: templates/more_dictionaries.html:38
 msgid "Livonian"
 msgstr "Lībiešu"
 
-#: configs/language_names.py:37
+#: configs/language_names.py:40
 #, fuzzy
 msgid "mobile friendly"
 msgstr "(Un ir draudzīga mobilajiem tālruņiem!)"
 
-#: configs/language_names.py:38
+#: configs/language_names.py:41
 msgid "Olonetsian"
 msgstr "Oloņecas karēļu"
 
-#: configs/language_names.py:39 templates/more_dictionaries.html:38
+#: configs/language_names.py:42 templates/more_dictionaries.html:38
 msgid "Izhorian"
 msgstr "Ižoru"
 
-#: configs/language_names.py:40
+#: configs/language_names.py:43
 msgid "Estonian"
 msgstr "Estų"
 
-#: configs/language_names.py:43
+#: configs/language_names.py:46
 msgid "Erzya Mordvin"
 msgstr "Erzas mordiešu"
 
-#: configs/language_names.py:44 templates/more_dictionaries.html:39
+#: configs/language_names.py:47 templates/more_dictionaries.html:39
 msgid "Moksha"
 msgstr "Mokšas mordviešu"
 
-#: configs/language_names.py:45 configs/language_names.py:77
+#: configs/language_names.py:48 configs/language_names.py:80
 msgid "French"
 msgstr ""
 
-#: configs/language_names.py:48
+#: configs/language_names.py:51
 msgid "Western Mari"
 msgstr "Vakarų mariešu"
 
-#: configs/language_names.py:49
+#: configs/language_names.py:52
 msgid "Eastern Mari"
 msgstr "Rytų mariešu"
 
-#: configs/language_names.py:52
+#: configs/language_names.py:55
 msgid "Nenets"
 msgstr "Ņencu"
 
-#: configs/language_names.py:55
+#: configs/language_names.py:58
 msgid "Skolt Sámi"
 msgstr "Skolto sāmu"
 
-#: configs/language_names.py:58
+#: configs/language_names.py:61
 msgid "Plains Cree"
 msgstr "Līdzenumu krī"
 
-#: configs/language_names.py:61
+#: configs/language_names.py:64
 msgid "Northern Haida"
 msgstr "Ziemeļhaida"
 
-#: configs/language_names.py:64 configs/language_names.py:70
+#: configs/language_names.py:67 configs/language_names.py:73
 msgid "Finnish"
 msgstr "Somu"
 
-#: configs/language_names.py:65 configs/language_names.py:71
-#: configs/language_names.py:72
+#: configs/language_names.py:68 configs/language_names.py:74
+#: configs/language_names.py:75
 msgid "Norwegian"
 msgstr "Norvēģu"
 
-#: configs/language_names.py:67 configs/language_names.py:68
+#: configs/language_names.py:70 configs/language_names.py:71
 msgid "Russian"
 msgstr "Krievu"
 
-#: configs/language_names.py:73 configs/language_names.py:74
+#: configs/language_names.py:76 configs/language_names.py:77
 msgid "Latvian"
 msgstr "Latviešu"
 
-#: configs/language_names.py:76
+#: configs/language_names.py:79
 msgid "Haida"
 msgstr ""
 
@@ -562,28 +574,38 @@ msgstr "Rakstu valodas variants"
 msgid "Swap"
 msgstr "Pārslēgt"
 
-#: templates/index.html:124
+#: templates/index.html:126
 msgid "ohcansátni"
 msgstr "ohcansátni"
 
-#: templates/index.html:126 templates/word_detail.html:76
+#: templates/index.html:131 templates/index.html:143 templates/index.html:147
+#: templates/word_detail.html:77
 msgid "Search"
 msgstr "Meklēt"
 
-#: templates/index.html:133 templates/index.html:245 views/reader.py:122
+#: templates/index.html:139 templates/index.html:157
+msgid "Search texts"
+msgstr ""
+
+#: templates/index.html:164 templates/index.html:310
+#: templates/word_detail.html:86 views/reader.py:122
 msgid " is a possible form of ... "
 msgstr "ir iespējamā forma no vārda …"
 
-#: templates/index.html:189
+#: templates/index.html:209 templates/index.html:281
+msgid "Texts"
+msgstr ""
+
+#: templates/index.html:244
 msgid "Definition not found for:"
 msgstr "Nav atrodams tulkojums vārdam:"
 
-#: templates/index.html:267
+#: templates/index.html:332
 #, python-format
 msgid "Word %(input)s not found."
 msgstr "Vārda %(input)s nav atrasts."
 
-#: templates/index.html:276
+#: templates/index.html:341
 msgid ""
 "If you are using a device without a Sámi keyboard, consider using <a "
 "href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
@@ -593,11 +615,11 @@ msgstr ""
 "izmantot <a href=\"/SoMe/nob/\">sociālo mediju režīmu</a>, kurš jums "
 "atļauj rakstīt <em>acdnstz</em> <em>áčđŋšŧž</em> vietā."
 
-#: templates/index.html:280
+#: templates/index.html:345
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr "Meklēt vārdu vai vārdformu vārda analīzei un tulkojumam."
 
-#: templates/index.html:284
+#: templates/index.html:349
 msgid ""
 "You selected #SoMe, the variant for social media, which means that the "
 "letters acdnstz\n"
@@ -811,34 +833,11 @@ msgstr ""
 msgid "is a possible form of ... "
 msgstr "ir iespējamā forma no vārda …"
 
-#: templates/word_detail.html:197
+#: templates/word_detail.html:153
 msgid "More information about this word"
 msgstr "Papildu informācija par šo vārdu."
 
-#: views/main.py:93
+#: views/main.py:97
 msgid "Invalid format. Only json and html allowed."
 msgstr "Nederīgs formāts. Tiek atzīts tikai json un html."
-
-#~ msgid ""
-#~ "If you find any bugs, please get"
-#~ " in touch with us. Describe the "
-#~ "problem,\n"
-#~ "            and tell us what web "
-#~ "browser or mobile phone you were "
-#~ "using, or what word you\n"
-#~ "            were searching for when you encountered the problem."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Need more dictionaries? <a "
-#~ "href=\"http://dicts.uit.no/\">Here's our full "
-#~ "list</a>, and more\n"
-#~ "            resources."
-#~ msgstr ""
-
-#~ msgid "Standard (<em>áčđŋšŧž</em>)"
-#~ msgstr "Standarts (<em>áčđŋšŧž</em>)"
-
-#~ msgid "Social Media (incl. <em>acdnstz</em>)"
-#~ msgstr "Sociālie mediji (incl. <em>acdnstz</em>)"
 

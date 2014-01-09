@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-12-08 19:37-0600\n"
+"POT-Creation-Date: 2014-01-09 16:33-0600\n"
 "PO-Revision-Date: 2013-04-24 16:42-0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: mhr <LL@li.org>\n"
@@ -27,97 +27,109 @@ msgstr ""
 msgid "North Sámi (#SoMe)"
 msgstr ""
 
-#: configs/language_names.py:26 configs/language_names.py:75
+#: configs/language_names.py:26 configs/language_names.py:78
 msgid "English"
 msgstr ""
 
-#: configs/language_names.py:29 templates/more_dictionaries.html:28
+#: configs/language_names.py:27
+msgid "Hungarian"
+msgstr ""
+
+#: configs/language_names.py:30 templates/more_dictionaries.html:28
 msgid "South Sámi"
 msgstr ""
 
-#: configs/language_names.py:32
+#: configs/language_names.py:33 configs/language_names.py:34
 msgid "Komi"
 msgstr ""
 
-#: configs/language_names.py:35 templates/more_dictionaries.html:38
+#: configs/language_names.py:34
+msgid "Molotsov orthography"
+msgstr ""
+
+#: configs/language_names.py:35
+msgid "Udmurt"
+msgstr ""
+
+#: configs/language_names.py:38 templates/more_dictionaries.html:38
 msgid "Kven"
 msgstr ""
 
-#: configs/language_names.py:36 configs/language_names.py:37
+#: configs/language_names.py:39 configs/language_names.py:40
 #: templates/more_dictionaries.html:38
 msgid "Livonian"
 msgstr ""
 
-#: configs/language_names.py:37
+#: configs/language_names.py:40
 msgid "mobile friendly"
 msgstr ""
 
-#: configs/language_names.py:38
+#: configs/language_names.py:41
 msgid "Olonetsian"
 msgstr ""
 
-#: configs/language_names.py:39 templates/more_dictionaries.html:38
+#: configs/language_names.py:42 templates/more_dictionaries.html:38
 msgid "Izhorian"
 msgstr ""
 
-#: configs/language_names.py:40
+#: configs/language_names.py:43
 msgid "Estonian"
 msgstr ""
 
-#: configs/language_names.py:43
+#: configs/language_names.py:46
 msgid "Erzya Mordvin"
 msgstr ""
 
-#: configs/language_names.py:44 templates/more_dictionaries.html:39
+#: configs/language_names.py:47 templates/more_dictionaries.html:39
 msgid "Moksha"
 msgstr ""
 
-#: configs/language_names.py:45 configs/language_names.py:77
+#: configs/language_names.py:48 configs/language_names.py:80
 msgid "French"
 msgstr ""
 
-#: configs/language_names.py:48
+#: configs/language_names.py:51
 msgid "Western Mari"
 msgstr ""
 
-#: configs/language_names.py:49
+#: configs/language_names.py:52
 msgid "Eastern Mari"
 msgstr ""
 
-#: configs/language_names.py:52
+#: configs/language_names.py:55
 msgid "Nenets"
 msgstr ""
 
-#: configs/language_names.py:55
+#: configs/language_names.py:58
 msgid "Skolt Sámi"
 msgstr ""
 
-#: configs/language_names.py:58
+#: configs/language_names.py:61
 msgid "Plains Cree"
 msgstr ""
 
-#: configs/language_names.py:61
+#: configs/language_names.py:64
 msgid "Northern Haida"
 msgstr ""
 
-#: configs/language_names.py:64 configs/language_names.py:70
+#: configs/language_names.py:67 configs/language_names.py:73
 msgid "Finnish"
 msgstr ""
 
-#: configs/language_names.py:65 configs/language_names.py:71
-#: configs/language_names.py:72
+#: configs/language_names.py:68 configs/language_names.py:74
+#: configs/language_names.py:75
 msgid "Norwegian"
 msgstr ""
 
-#: configs/language_names.py:67 configs/language_names.py:68
+#: configs/language_names.py:70 configs/language_names.py:71
 msgid "Russian"
 msgstr ""
 
-#: configs/language_names.py:73 configs/language_names.py:74
+#: configs/language_names.py:76 configs/language_names.py:77
 msgid "Latvian"
 msgstr ""
 
-#: configs/language_names.py:76
+#: configs/language_names.py:79
 msgid "Haida"
 msgstr ""
 
@@ -518,39 +530,49 @@ msgstr ""
 msgid "Swap"
 msgstr ""
 
-#: templates/index.html:124
+#: templates/index.html:126
 msgid "ohcansátni"
 msgstr ""
 
-#: templates/index.html:126 templates/word_detail.html:76
+#: templates/index.html:131 templates/index.html:143 templates/index.html:147
+#: templates/word_detail.html:77
 msgid "Search"
 msgstr ""
 
-#: templates/index.html:133 templates/index.html:245 views/reader.py:122
+#: templates/index.html:139 templates/index.html:157
+msgid "Search texts"
+msgstr ""
+
+#: templates/index.html:164 templates/index.html:310
+#: templates/word_detail.html:86 views/reader.py:122
 msgid " is a possible form of ... "
 msgstr ""
 
-#: templates/index.html:189
+#: templates/index.html:209 templates/index.html:281
+msgid "Texts"
+msgstr ""
+
+#: templates/index.html:244
 msgid "Definition not found for:"
 msgstr ""
 
-#: templates/index.html:267
+#: templates/index.html:332
 #, python-format
 msgid "Word %(input)s not found."
 msgstr ""
 
-#: templates/index.html:276
+#: templates/index.html:341
 msgid ""
 "If you are using a device without a Sámi keyboard, consider using <a "
 "href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
 "<em>acdnstz</em> for <em>áčđŋšŧž</em>."
 msgstr ""
 
-#: templates/index.html:280
+#: templates/index.html:345
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
 
-#: templates/index.html:284
+#: templates/index.html:349
 msgid ""
 "You selected #SoMe, the variant for social media, which means that the "
 "letters acdnstz\n"
@@ -736,34 +758,11 @@ msgstr ""
 msgid "is a possible form of ... "
 msgstr ""
 
-#: templates/word_detail.html:197
+#: templates/word_detail.html:153
 msgid "More information about this word"
 msgstr ""
 
-#: views/main.py:93
+#: views/main.py:97
 msgid "Invalid format. Only json and html allowed."
 msgstr ""
-
-#~ msgid ""
-#~ "If you find any bugs, please get"
-#~ " in touch with us. Describe the "
-#~ "problem,\n"
-#~ "            and tell us what web "
-#~ "browser or mobile phone you were "
-#~ "using, or what word you\n"
-#~ "            were searching for when you encountered the problem."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Need more dictionaries? <a "
-#~ "href=\"http://dicts.uit.no/\">Here's our full "
-#~ "list</a>, and more\n"
-#~ "            resources."
-#~ msgstr ""
-
-#~ msgid "Standard (<em>áčđŋšŧž</em>)"
-#~ msgstr ""
-
-#~ msgid "Social Media (incl. <em>acdnstz</em>)"
-#~ msgstr ""
 
