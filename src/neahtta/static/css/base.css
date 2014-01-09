@@ -252,6 +252,11 @@ ul.unknown_lexemes {
     margin-left: 1em;
 }
 
+.lemma_action {
+    font-size: 85%;
+    margin-left: 4em;
+}
+
 
 /* Footer
 -------------------------------------------------- */
