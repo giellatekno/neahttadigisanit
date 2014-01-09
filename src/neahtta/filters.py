@@ -1,6 +1,8 @@
 def register_filters(app):
 
     from flask import render_template
+    import urllib as urllib
+    from markupsafe import Markup
 
     @app.errorhandler(404)
     def page_not_found(e):
