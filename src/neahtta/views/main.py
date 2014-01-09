@@ -329,6 +329,7 @@ def wordDetail(from_language, to_language, wordform, format):
                 if len(result.get('analyses')) > 0:
                     has_analyses = True
 
+        pair_settings = current_app.config.pair_definitions[(from_language, to_language)]
         return render_template( 'word_detail.html'
                               , language_pairs=current_app.config.pair_definitions
                               , result=detailed_result
@@ -338,6 +339,7 @@ def wordDetail(from_language, to_language, wordform, format):
                               , more_detail_link=want_more_detail
                               , zip=zipNoTruncate
                               , has_analyses=has_analyses
+                              , current_pair_settings=pair_settings
                               )
 
 @blueprint.route('/more/', methods=['GET'])

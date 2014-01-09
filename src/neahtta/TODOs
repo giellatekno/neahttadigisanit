@@ -1,20 +1,8 @@
-* tag transforms need to be moved out of config files, because these
-  are more likely to have lots of edits, and the process of copying *.in
-  files to *.yaml to update linguistics stuff is super irritating
+* tests should be yamlized too, and need clearer error messages. 
 
 * yaml - translation strings
-* detail view userfriendly tag transformation
-
-* positioning of paradigm:
-     http://localhost:5000/detail/sme/nob/guhtet%20guimmiideaset.html?no_compounds=true&lemma_match=true
-
-* hverandre redirects to front page from detail view link-- should
-  match.
 
 * autocomplete - enter should select if navigating through box
-* alignment of analyses on detailed page
-
-* POS has become part of the link on the front page: fix
 
 * mobile width - paradigm appears below horizontal line 
 * mobile width horizontal <dl /> is not always good

@@ -4,6 +4,59 @@ import unittest
 import tempfile
 import simplejson
 
+class YamlTests(object):
+
+    yaml_file = ''
+
+    @property
+    def parsed_yaml(self):
+        import yaml
+        if hasattr(self, '_parsed_yaml'):
+            return self._parsed_yaml
+        with open(self.yaml_file, 'r') as F:
+            _p = yaml.load(F.read().decode('utf-8'))
+        self._parsed_yaml = _p
+        return self._parsed_yaml
+
+    @property
+    def wordforms_that_shouldnt_fail(self):
+        def parse_item(i):
+            return ((i[0], i[1]), i[2])
+        return map(parse_item, self.parsed_yaml.get('LookupTests'))
+
+    @property
+    def paradigm_generation_tests(self):
+        if hasattr(self, '_paradigm_generation_tests'):
+            return self._paradigm_generation_tests
+
+        _tests = []
+
+        def read_test_item(i):
+            _fst = i.get('lexicon')[0]
+            _snd = i.get('lexicon')[1]
+            _thrd = i.get('search')
+            _frth = i.get('fail_message')
+
+            for t, vs in i.get('test').iteritems():
+                if t == 'form_doesnt_contain':
+                    test_func = form_doesnt_contain
+                if t == 'form_contains':
+                    test_func = form_contains
+                _fth = test_func(set(vs))
+
+                return (_fst, _snd, _thrd, _frth)
+            else:
+                return ()
+
+
+        self._paradigm_generation_tests = map(
+            read_test_item,
+            self.parsed_yaml.get('ParadigmGeneration')
+        )
+
+        return self._paradigm_generation_tests
+
+
 def form_contains(_test_set):
     """ A function that wraps a set, and then tests that the paradigm
     generation output partially intersects. """
