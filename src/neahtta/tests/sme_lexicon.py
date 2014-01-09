@@ -704,6 +704,12 @@ paradigm_generation_tests = [
 ###  - localhost:5000/detail/sme/nob/manne.json
 
 # ... and automatically generated
+###  - Pregenerated forms from mini_paradigm
+
+    ('sme', 'nob', u'mun',
+            "Not generating from mini_paradigm",
+            form_contains(set([u'munnje', u'mus', u'munin']))),
+
 
 ###  - A: 
 ###     - http://localhost:5000/detail/sme/nob/ruoksat.json
