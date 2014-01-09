@@ -132,11 +132,11 @@
             {% for grouper, forms in lexeme.analyses|groupby(0) %}
                 {% for lemmagroup, lemmafs in forms|groupby(0) %}
                     {% if current_pair_settings.show_korp_search %}
-                        {# http://gtweb.uit.no/korp/#search-tab=0&search=cqp|[word = "dagai"] [pos = "V"]&page=0
+                        {# http://gtweb.uit.no/korp/#search-tab=0&search=cqp|[lemma = "dagai"] [pos = "V"]&page=0
                          #}
                          {% if lemmagroup and grouper %}
                             {% set search_url = "http://gtweb.uit.no/korp/#search-tab=0&page=0&search=" %}
-                            {% set search_query = 'cqp|[word = "' + grouper + '"] [pos = "' + lemmagroup + '"]' %}
+                            {% set search_query = 'cqp|[lemma = "' + grouper + '"] [pos = "' + lemmagroup + '"]' %}
                             <dt>{{ grouper }} <a class="korp_search lemma_action detail" href="{{ search_url }}{{ search_query|urlencode }}">{% trans %}Texts{% endtrans %} &rarr;</a></dt>
                         {% else %}
                             <dt>{{ grouper }}</dt>
