@@ -61,6 +61,10 @@ running_service = [
     'gtoahpa.uit.no'
 ]
 
+no_fst_install = [
+    'gtoahpa.uit.no',
+]
+
 # set up environments
 # Assume local unless otherwise noted
 
@@ -281,8 +285,9 @@ def compile(dictionary=False,restart=False):
 
         $ fab compile:DICT
 
-        NB: if the hostname is gtoahpa.uit.no, only the lexicon will be
-        compiled
+        NB: if the hostname is gtoahpa.uit.no (set in no_fst_install
+        list above), only the lexicon will be compiled, FSTs will not be
+        compiled or installed.
     """
 
     hup = False
@@ -295,14 +300,13 @@ def compile(dictionary=False,restart=False):
 
     update_gtsvn()
 
-    # TODO: need a make path to clean existing dictionary
     with cd(env.dict_path):
         if env.no_svn_up:
             print(yellow("** Skipping svn up of Makefile"))
         else:
             env.run("svn up Makefile")
 
-        if env.real_hostname == 'gtoahpa.uit.no':
+        if env.real_hostname in no_fst_install:
             print(yellow("** Skip FST compile for gtoahpa **"))
             print(cyan("** Compiling lexicon for <%s> **" % dictionary))
             result = env.run(env.make_cmd + " %s-lexica" % dictionary)
