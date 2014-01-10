@@ -288,7 +288,7 @@ def compile(dictionary=False,restart=False):
     hup = False
     failed = False
 
-    print(cyan("Executing on <%s>" % env.host))
+    print(cyan("Executing on <%s>" % env.real_hostname))
 
     if not dictionary:
         dictionary = env.current_dict
