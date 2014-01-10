@@ -67,11 +67,15 @@ running_service = [
 @task
 def baakoeh():
     """ Configure for baakoeh """
+    # TODO: change on gtoahpa.uit.no: compile only does dictionary, not
+    # fst
     env.current_dict = "baakoeh"
 
 @task
 def sanit():
     """ Configure for sanit """
+    # TODO: change on gtoahpa.uit.no: compile only does dictionary, not
+    # fst
     env.current_dict = "sanit"
 
 @task
@@ -281,6 +285,8 @@ def compile(dictionary=False,restart=False):
     hup = False
     failed = False
 
+    print(cyan("Executing on <%s>" % env.host))
+
     if not dictionary:
         dictionary = env.current_dict
 
@@ -293,14 +299,22 @@ def compile(dictionary=False,restart=False):
         else:
             env.run("svn up Makefile")
 
-        print(cyan("** Compiling lexicon and FSTs for <%s> **" % dictionary))
-        result = env.run(env.make_cmd + " %s" % dictionary)
+        if env.host == 'gtoahpa.uit.no':
+            print(yellow("** Skip FST compile for gtoahpa **"))
+            print(cyan("** Compiling lexicon for <%s> **" % dictionary))
+            result = env.run(env.make_cmd + " %s-lexica" % dictionary)
+            skip_fst = True
+        else:
+            skip_fst = False
+            print(cyan("** Compiling lexicon and FSTs for <%s> **" % dictionary))
+            result = env.run(env.make_cmd + " %s" % dictionary)
 
         if not result.failed:
-            print(cyan("** Installing FSTs for <%s> **" % dictionary))
-            result = env.run(env.make_cmd + " %s-install" % dictionary)
-            if result.failed:
-                failed = True
+            if not skip_fst:
+                print(cyan("** Installing FSTs for <%s> **" % dictionary))
+                result = env.run(env.make_cmd + " %s-install" % dictionary)
+                if result.failed:
+                    failed = True
         else:
             failed = True
 
