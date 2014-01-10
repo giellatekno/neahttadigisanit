@@ -151,6 +151,7 @@ def local(*args, **kwargs):
     env.make_cmd = "make -C %s -f %s" % ( env.dict_path
                                         , os.path.join(env.dict_path, 'Makefile')
                                         )
+    env.remote_no_fst = False
 
 @task
 def gtweb():
@@ -168,6 +169,7 @@ def gtweb():
     env.make_cmd = "make -C %s -f %s" % ( env.dict_path
                                         , os.path.join(env.dict_path, 'Makefile')
                                         )
+    env.remote_no_fst = False
 
 @task
 def gtoahpa():
@@ -185,6 +187,7 @@ def gtoahpa():
     env.make_cmd = "make -C %s -f %s" % ( env.dict_path
                                         , os.path.join(env.dict_path, 'Makefile')
                                         )
+    env.remote_no_fst = True
 
 @task
 def update_gtsvn():
@@ -306,7 +309,7 @@ def compile(dictionary=False,restart=False):
         else:
             env.run("svn up Makefile")
 
-        if env.real_hostname in no_fst_install:
+        if env.real_hostname in no_fst_install or env.remote_no_fst:
             print(yellow("** Skip FST compile for gtoahpa **"))
             print(cyan("** Compiling lexicon for <%s> **" % dictionary))
             result = env.run(env.make_cmd + " %s-lexica" % dictionary)
