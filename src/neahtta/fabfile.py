@@ -280,6 +280,9 @@ def compile(dictionary=False,restart=False):
     """ Compile a dictionary, fsts and lexica, on the server.
 
         $ fab compile:DICT
+
+        NB: if the hostname is gtoahpa.uit.no, only the lexicon will be
+        compiled
     """
 
     hup = False
@@ -299,7 +302,7 @@ def compile(dictionary=False,restart=False):
         else:
             env.run("svn up Makefile")
 
-        if env.host == 'gtoahpa.uit.no':
+        if env.real_hostname == 'gtoahpa.uit.no':
             print(yellow("** Skip FST compile for gtoahpa **"))
             print(cyan("** Compiling lexicon for <%s> **" % dictionary))
             result = env.run(env.make_cmd + " %s-lexica" % dictionary)
