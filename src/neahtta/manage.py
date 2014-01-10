@@ -31,7 +31,7 @@ def hello(app):
     return action
 
 @manager.register('chk-fst-paths')
-def hello(app):
+def chk_fst_paths(app):
 
     def get_dates(_file):
         import os.path, time
