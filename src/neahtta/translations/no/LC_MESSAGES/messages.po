@@ -622,7 +622,7 @@ msgstr "Søk"
 
 #: templates/index.html:139 templates/index.html:157
 msgid "Search texts"
-msgstr ""
+msgstr "Let i tekst"
 
 #: templates/index.html:164 templates/index.html:310
 #: templates/word_detail.html:86 views/reader.py:122
@@ -631,7 +631,7 @@ msgstr " er en mulig form av ... "
 
 #: templates/index.html:209 templates/index.html:281
 msgid "Texts"
-msgstr ""
+msgstr "I tekster"
 
 #: templates/index.html:244
 msgid "Definition not found for:"
@@ -656,7 +656,8 @@ msgstr ""
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
 "Søk etter et ord, evt. en bøyd form, som da blir både analysert og "
-"oversatt."
+"oversatt. Du kan også lete i tekster, enten etter ordformen, eller " 
+"etter grunnordet, når ordet er analysert."
 
 #: templates/index.html:349
 msgid ""

@@ -579,7 +579,7 @@ msgstr "Oza"
 
 #: templates/index.html:139 templates/index.html:157
 msgid "Search texts"
-msgstr ""
+msgstr "Oza teavsttain"
 
 #: templates/index.html:164 templates/index.html:310
 #: templates/word_detail.html:86 views/reader.py:122
@@ -588,7 +588,7 @@ msgstr " lea vejolaččat dán sáni hápmi:"
 
 #: templates/index.html:209 templates/index.html:281
 msgid "Texts"
-msgstr ""
+msgstr "Teavsttain"
 
 #: templates/index.html:244
 msgid "Definition not found for:"
@@ -613,7 +613,8 @@ msgstr ""
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
 "Oza sáni, vej. sojahuvvon sátnehámi, mii dalle sihke analyserejuvvo ja "
-"jorgaluvvo."
+"jorgaluvvo. Don sáhtát ohcat sáni teavsttain, juogo sátnehámi, dahje "
+"vuođđohámi, maŋŋelgo sátni lea analyserejuvvon."
 
 #: templates/index.html:349
 msgid ""
