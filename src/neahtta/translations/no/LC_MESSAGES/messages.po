@@ -622,7 +622,7 @@ msgstr "Søk"
 
 #: templates/index.html:139 templates/index.html:157
 msgid "Search texts"
-msgstr "Let i tekst"
+msgstr "Søk i tekst"
 
 #: templates/index.html:164 templates/index.html:310
 #: templates/word_detail.html:86 views/reader.py:122
@@ -657,7 +657,7 @@ msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
 "Søk etter et ord, evt. en bøyd form, som da blir både analysert og "
 "oversatt. Ved å klikke på ordet, får du informasjon om bøyning. "
-"Du kan også lete i tekster, enten etter ordformen, eller " 
+"Du kan også søke i tekster, enten etter ordformen, eller " 
 "etter grunnordet, når ordet er analysert."
 
 #: templates/index.html:349
