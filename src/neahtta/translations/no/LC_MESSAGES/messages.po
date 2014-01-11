@@ -808,7 +808,7 @@ msgstr "Nettleserstøtte"
 
 #: templates/reader.html:33
 msgid "The reader is supported in the following browsers:"
-msgstr "Lesehjelpen fungerer følgende nettlesere:"
+msgstr "Lesehjelper fungerer med følgende nettlesere:"
 
 #: templates/reader.html:35
 msgid "Chrome (version 20 and newer)"
