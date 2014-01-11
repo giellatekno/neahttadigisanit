@@ -804,27 +804,27 @@ msgstr ""
 
 #: templates/reader.html:32
 msgid "Browser support"
-msgstr ""
+msgstr "Nettleserstøtte"
 
 #: templates/reader.html:33
 msgid "The reader is supported in the following browsers:"
-msgstr ""
+msgstr "Lesehjelpen fungerer følgende nettlesere:"
 
 #: templates/reader.html:35
 msgid "Chrome (version 20 and newer)"
-msgstr ""
+msgstr "Chrome (versjon 20 eller nyere)"
 
 #: templates/reader.html:36
 msgid "Internet Explorer (version 9 and newer)"
-msgstr ""
+msgstr "Internet Explorer (versjon 9 eller nyere)"
 
 #: templates/reader.html:37
 msgid "Firefox (version 18 and newer)"
-msgstr ""
+msgstr "Firefox (versjon 18 eller nyere)"
 
 #: templates/reader.html:38
 msgid "Opera (version 16 and newer)"
-msgstr ""
+msgstr "Opera (versjon 16 eller nyere)"
 
 #: templates/reader.html:40
 msgid "Bugs?"

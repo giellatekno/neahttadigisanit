@@ -753,27 +753,27 @@ msgstr "Sáhtát lonuhit sátnegirjji <em>Á</em>-fálus."
 
 #: templates/reader.html:32
 msgid "Browser support"
-msgstr ""
+msgstr "Neahttalohkkiid doarjja"
 
 #: templates/reader.html:33
 msgid "The reader is supported in the following browsers:"
-msgstr ""
+msgstr "Lohkanveahkki doabimá dáin neahttalohkkiin:"
 
 #: templates/reader.html:35
 msgid "Chrome (version 20 and newer)"
-msgstr ""
+msgstr "Chrome (veršuvdna 20 dahje ođđasat)"
 
 #: templates/reader.html:36
 msgid "Internet Explorer (version 9 and newer)"
-msgstr ""
+msgstr "Internet Explorer (veršuvdna 9 dahje ođđasat)"
 
 #: templates/reader.html:37
 msgid "Firefox (version 18 and newer)"
-msgstr ""
+msgstr "Firefox (veršuvdna 18 dahje ođđasat)"
 
 #: templates/reader.html:38
 msgid "Opera (version 16 and newer)"
-msgstr ""
+msgstr "Opera (veršuvdna 16 dahje ođđasat)"
 
 #: templates/reader.html:40
 msgid "Bugs?"
