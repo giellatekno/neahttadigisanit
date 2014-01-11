@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-01-09 16:33-0600\n"
+"POT-Creation-Date: 2014-01-11 17:16-0600\n"
 "PO-Revision-Date: 2013-03-25 12:21+0200\n"
 "Last-Translator: \n"
 "Language-Team: lv <LL@li.org>\n"
@@ -557,55 +557,38 @@ msgstr ""
 msgid "Neahttadigisánit"
 msgstr "Neahttadigisánit Reader"
 
-#: templates/index.html:19 templates/index.html:46
+#: templates/index.html:19 templates/word_detail.html:20
+msgid "Texts"
+msgstr ""
+
+#: templates/index.html:49 templates/left_dictionary_list.html:1
 msgid "Dictionaries"
 msgstr "Vārdnīcas"
 
-#: templates/index.html:37 templates/index.html:97
+#: templates/index.html:67 templates/left_dictionary_list.html:52
 #: templates/more_dictionaries.html:21
 msgid "Other dictionaries"
 msgstr "Citas vārdnīcas"
 
-#: templates/index.html:83
-msgid "Written variant"
-msgstr "Rakstu valodas variants"
-
-#: templates/index.html:109
+#: templates/index.html:88
 msgid "Swap"
 msgstr "Pārslēgt"
 
-#: templates/index.html:126
-msgid "ohcansátni"
-msgstr "ohcansátni"
-
-#: templates/index.html:131 templates/index.html:143 templates/index.html:147
-#: templates/word_detail.html:77
-msgid "Search"
-msgstr "Meklēt"
-
-#: templates/index.html:139 templates/index.html:157
-msgid "Search texts"
-msgstr ""
-
-#: templates/index.html:164 templates/index.html:310
-#: templates/word_detail.html:86 views/reader.py:122
+#: templates/index.html:96 templates/index.html:181
+#: templates/word_detail.html:93 views/reader.py:122
 msgid " is a possible form of ... "
 msgstr "ir iespējamā forma no vārda …"
 
-#: templates/index.html:209 templates/index.html:281
-msgid "Texts"
-msgstr ""
-
-#: templates/index.html:244
+#: templates/index.html:151
 msgid "Definition not found for:"
 msgstr "Nav atrodams tulkojums vārdam:"
 
-#: templates/index.html:332
+#: templates/index.html:203
 #, python-format
 msgid "Word %(input)s not found."
 msgstr "Vārda %(input)s nav atrasts."
 
-#: templates/index.html:341
+#: templates/index.html:212
 msgid ""
 "If you are using a device without a Sámi keyboard, consider using <a "
 "href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
@@ -615,11 +598,11 @@ msgstr ""
 "izmantot <a href=\"/SoMe/nob/\">sociālo mediju režīmu</a>, kurš jums "
 "atļauj rakstīt <em>acdnstz</em> <em>áčđŋšŧž</em> vietā."
 
-#: templates/index.html:345
+#: templates/index.html:216
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr "Meklēt vārdu vai vārdformu vārda analīzei un tulkojumam."
 
-#: templates/index.html:349
+#: templates/index.html:220
 msgid ""
 "You selected #SoMe, the variant for social media, which means that the "
 "letters acdnstz\n"
@@ -630,6 +613,19 @@ msgstr ""
 "nozīmē, ka burti acdnstz līdzās to parastajai vērtībai tiks akceptēti arī"
 " kā burti áčđŋšŧž."
 
+#: templates/index_search_form.html:14
+msgid "ohcansátni"
+msgstr "ohcansátni"
+
+#: templates/index_search_form.html:19 templates/index_search_form.html:31
+#: templates/index_search_form.html:35 templates/word_detail.html:84
+msgid "Search"
+msgstr "Meklēt"
+
+#: templates/index_search_form.html:27 templates/index_search_form.html:45
+msgid "Search texts"
+msgstr ""
+
 #: templates/language_select.html:7
 msgid "<span class=\"reposition_hide\">Language</span>"
 msgstr "<span class=\"reposition_hide\">Valoda</span>"
@@ -637,6 +633,10 @@ msgstr "<span class=\"reposition_hide\">Valoda</span>"
 #: templates/language_select_noflags.html:7
 msgid "Language"
 msgstr "Valoda"
+
+#: templates/left_dictionary_list.html:38
+msgid "Written variant"
+msgstr "Rakstu valodas variants"
 
 #: templates/more_dictionaries.html:4
 msgid "More dictionaris"
@@ -715,14 +715,10 @@ msgid "Neahttadigisánit Reader"
 msgstr ""
 
 #: templates/reader.html:21
-msgid "WARNING!! We have problems with Internet Explorer 8!"
-msgstr "UZMANĪBU! Mums ir problēmas ar Internet Explorer 8!"
-
-#: templates/reader.html:22
 msgid "Bookmarklet"
 msgstr "Grāmatzīme"
 
-#: templates/reader.html:23
+#: templates/reader.html:22
 msgid ""
 "Drag and drop the following link to your Bookmark toolbar,\n"
 "                then click it when you are on a page you wish to read. "
@@ -736,11 +732,11 @@ msgstr ""
 "instalēts automātiski, un lapas kreisajā malā jūs redzēsiet izvēlnes "
 "ikonu."
 
-#: templates/reader.html:27 templates/reader_update.html:15
+#: templates/reader.html:26 templates/reader_update.html:15
 msgid "Read with Neahttadigisánit"
 msgstr "Lasīt ar \"Neahttadigisánit\" vārdnīcas palīdzību"
 
-#: templates/reader.html:28
+#: templates/reader.html:27
 msgid ""
 "In order to look up a word, hold Alt or Option (⌥) and double\n"
 "                click the word. The service will will connect to this\n"
@@ -751,15 +747,39 @@ msgstr ""
 "dubultklikšķi uz vārda. Pakalpojums savienosies ar šo tīmekļa vietni un "
 "pēc īsas pauzes sniegs jums attiecīgos vārdnīcas šķirkļus."
 
-#: templates/reader.html:32
+#: templates/reader.html:31
 msgid "To change the dictionary, click the menu icon."
 msgstr "Lai nomainītu vārdnīcu, klikšķiniet uz izvēlnes ikonas."
 
+#: templates/reader.html:32
+msgid "Browser support"
+msgstr ""
+
 #: templates/reader.html:33
+msgid "The reader is supported in the following browsers:"
+msgstr ""
+
+#: templates/reader.html:35
+msgid "Chrome (version 20 and newer)"
+msgstr ""
+
+#: templates/reader.html:36
+msgid "Internet Explorer (version 9 and newer)"
+msgstr ""
+
+#: templates/reader.html:37
+msgid "Firefox (version 18 and newer)"
+msgstr ""
+
+#: templates/reader.html:38
+msgid "Opera (version 16 and newer)"
+msgstr ""
+
+#: templates/reader.html:40
 msgid "Bugs?"
 msgstr "Kļūdas?"
 
-#: templates/reader.html:34
+#: templates/reader.html:41
 msgid ""
 "If you encounter bugs, or the bookmarklet does not work on a\n"
 "                particular page, contact us with the page URL or details "
@@ -770,7 +790,7 @@ msgstr ""
 "sazinieties ar mums un paziņojiet lapas URL vai arī, ko jūs lasījāt, kad "
 "sastapāties ar šo problēmu."
 
-#: templates/reader.html:37
+#: templates/reader.html:44
 msgid ""
 "We do not store any private data, but we do collect\n"
 "                individual dictionary lookups for statistics and to "
@@ -780,11 +800,11 @@ msgstr ""
 "Mēs neuzglabājam privātus datus, taču mēs apkopojam atsevišķu vārdu "
 "meklējumus statistikas vajadzībām un lai uzlabotu  vārdnīcu."
 
-#: templates/reader.html:46
+#: templates/reader.html:53
 msgid "Includes"
 msgstr "Iekļauts"
 
-#: templates/reader.html:54
+#: templates/reader.html:61
 msgid ""
 "If you are looking for other languages, please see our <a "
 "href=\"/more/\">other dictionaries</a>."
@@ -829,11 +849,11 @@ msgstr ""
 "    Pakalpojums tiks instalēts automātiski, un lapas kreisajā malā\n"
 "    jūs ieraudzīsiet izvēlnes ikonu."
 
-#: templates/word_detail.html:19
+#: templates/word_detail.html:26
 msgid "is a possible form of ... "
 msgstr "ir iespējamā forma no vārda …"
 
-#: templates/word_detail.html:153
+#: templates/word_detail.html:172
 msgid "More information about this word"
 msgstr "Papildu informācija par šo vārdu."
 

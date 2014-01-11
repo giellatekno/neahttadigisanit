@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-01-09 16:33-0600\n"
+"POT-Creation-Date: 2014-01-11 17:16-0600\n"
 "PO-Revision-Date: 2013-02-01 01:54-0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: no <LL@li.org>\n"
@@ -594,55 +594,38 @@ msgstr ""
 msgid "Neahttadigisánit"
 msgstr "Neahttadigisánit Lesehjelper"
 
-#: templates/index.html:19 templates/index.html:46
+#: templates/index.html:19 templates/word_detail.html:20
+msgid "Texts"
+msgstr "I tekster"
+
+#: templates/index.html:49 templates/left_dictionary_list.html:1
 msgid "Dictionaries"
 msgstr "Ordbøker"
 
-#: templates/index.html:37 templates/index.html:97
+#: templates/index.html:67 templates/left_dictionary_list.html:52
 #: templates/more_dictionaries.html:21
 msgid "Other dictionaries"
 msgstr "Andre ordbøker"
 
-#: templates/index.html:83
-msgid "Written variant"
-msgstr "Skriftspråksvariant"
-
-#: templates/index.html:109
+#: templates/index.html:88
 msgid "Swap"
 msgstr "Snu"
 
-#: templates/index.html:126
-msgid "ohcansátni"
-msgstr "søkeord"
-
-#: templates/index.html:131 templates/index.html:143 templates/index.html:147
-#: templates/word_detail.html:77
-msgid "Search"
-msgstr "Søk"
-
-#: templates/index.html:139 templates/index.html:157
-msgid "Search texts"
-msgstr "Søk i tekst"
-
-#: templates/index.html:164 templates/index.html:310
-#: templates/word_detail.html:86 views/reader.py:122
+#: templates/index.html:96 templates/index.html:181
+#: templates/word_detail.html:93 views/reader.py:122
 msgid " is a possible form of ... "
 msgstr " er en mulig form av ... "
 
-#: templates/index.html:209 templates/index.html:281
-msgid "Texts"
-msgstr "I tekster"
-
-#: templates/index.html:244
+#: templates/index.html:151
 msgid "Definition not found for:"
 msgstr "Vi fant ingen oversetting for:"
 
-#: templates/index.html:332
+#: templates/index.html:203
 #, python-format
 msgid "Word %(input)s not found."
 msgstr "Ordet %(input)s ikke funnet."
 
-#: templates/index.html:341
+#: templates/index.html:212
 msgid ""
 "If you are using a device without a Sámi keyboard, consider using <a "
 "href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
@@ -652,15 +635,15 @@ msgstr ""
 "href=\"/SoMe/nob/\">sosiale media-modusen</a>, som lar deg skrive inn "
 "<em>acdnstz</em> når du mener <em>áčđŋšŧž</em>."
 
-#: templates/index.html:345
+#: templates/index.html:216
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
 "Søk etter et ord, evt. en bøyd form, som da blir både analysert og "
-"oversatt. Ved å klikke på ordet, får du informasjon om bøyning. "
-"Du kan også søke i tekster, enten etter ordformen, eller " 
-"etter grunnordet, når ordet er analysert."
+"oversatt. Ved å klikke på ordet, får du informasjon om bøyning. Du kan "
+"også søke i tekster, enten etter ordformen, eller etter grunnordet, når "
+"ordet er analysert."
 
-#: templates/index.html:349
+#: templates/index.html:220
 msgid ""
 "You selected #SoMe, the variant for social media, which means that the "
 "letters acdnstz\n"
@@ -671,6 +654,19 @@ msgstr ""
 "bokstavene adcnstz blir akseptert som áčđŋšŧž i tillegg til sine vanlige "
 "verdier."
 
+#: templates/index_search_form.html:14
+msgid "ohcansátni"
+msgstr "søkeord"
+
+#: templates/index_search_form.html:19 templates/index_search_form.html:31
+#: templates/index_search_form.html:35 templates/word_detail.html:84
+msgid "Search"
+msgstr "Søk"
+
+#: templates/index_search_form.html:27 templates/index_search_form.html:45
+msgid "Search texts"
+msgstr "Søk i tekst"
+
 #: templates/language_select.html:7
 msgid "<span class=\"reposition_hide\">Language</span>"
 msgstr "<span class=\"reposition_hide\">Språk</span>"
@@ -678,6 +674,10 @@ msgstr "<span class=\"reposition_hide\">Språk</span>"
 #: templates/language_select_noflags.html:7
 msgid "Language"
 msgstr "Språk"
+
+#: templates/left_dictionary_list.html:38
+msgid "Written variant"
+msgstr "Skriftspråksvariant"
 
 #: templates/more_dictionaries.html:4
 msgid "More dictionaris"
@@ -763,14 +763,10 @@ msgid "Neahttadigisánit Reader"
 msgstr "Neahttadigisánit Lesehjelper"
 
 #: templates/reader.html:21
-msgid "WARNING!! We have problems with Internet Explorer 8!"
-msgstr "ADVARSEL!! Vi har problemer med Internet Explorer 8!"
-
-#: templates/reader.html:22
 msgid "Bookmarklet"
 msgstr "Bokmerke"
 
-#: templates/reader.html:23
+#: templates/reader.html:22
 msgid ""
 "Drag and drop the following link to your Bookmark toolbar,\n"
 "                then click it when you are on a page you wish to read. "
@@ -784,11 +780,11 @@ msgstr ""
 "du gjerne vil lese. Tjenesten vil bli installert automatisk,\n"
 "og du ser et menyikon (<em>Á</em>) på venstre side av nettsida."
 
-#: templates/reader.html:27 templates/reader_update.html:15
+#: templates/reader.html:26 templates/reader_update.html:15
 msgid "Read with Neahttadigisánit"
 msgstr "Les med Neahttadigisánit"
 
-#: templates/reader.html:28
+#: templates/reader.html:27
 msgid ""
 "In order to look up a word, hold Alt or Option (⌥) and double\n"
 "                click the word. The service will will connect to this\n"
@@ -800,17 +796,41 @@ msgstr ""
 "og dobbelklikker på ordet. Tjenesten vil kontakte denne nettsida\n"
 "og returnere ordboksoppslag etter en kort pause."
 
-#: templates/reader.html:32
+#: templates/reader.html:31
 msgid "To change the dictionary, click the menu icon."
 msgstr ""
 "Du kan skifte språk i ordboka ved å klikke på \"\n"
 "\"menyikonet (<em>Á</em>)."
 
+#: templates/reader.html:32
+msgid "Browser support"
+msgstr ""
+
 #: templates/reader.html:33
+msgid "The reader is supported in the following browsers:"
+msgstr ""
+
+#: templates/reader.html:35
+msgid "Chrome (version 20 and newer)"
+msgstr ""
+
+#: templates/reader.html:36
+msgid "Internet Explorer (version 9 and newer)"
+msgstr ""
+
+#: templates/reader.html:37
+msgid "Firefox (version 18 and newer)"
+msgstr ""
+
+#: templates/reader.html:38
+msgid "Opera (version 16 and newer)"
+msgstr ""
+
+#: templates/reader.html:40
 msgid "Bugs?"
 msgstr "Feil?"
 
-#: templates/reader.html:34
+#: templates/reader.html:41
 msgid ""
 "If you encounter bugs, or the bookmarklet does not work on a\n"
 "                particular page, contact us with the page URL or details "
@@ -821,7 +841,7 @@ msgstr ""
 "ei viss side må du gjerne kontakte oss. Si i tilfelle fra hvilken\n"
 "side det gjaldt eller hva som var problemet."
 
-#: templates/reader.html:37
+#: templates/reader.html:44
 msgid ""
 "We do not store any private data, but we do collect\n"
 "                individual dictionary lookups for statistics and to "
@@ -832,11 +852,11 @@ msgstr ""
 "vi samler statistikk over hvilke ordboksoppslag som blir gjort,\n"
 "for å rette mangler og forbedre ordboka."
 
-#: templates/reader.html:46
+#: templates/reader.html:53
 msgid "Includes"
 msgstr "Inkluderer"
 
-#: templates/reader.html:54
+#: templates/reader.html:61
 msgid ""
 "If you are looking for other languages, please see our <a "
 "href=\"/more/\">other dictionaries</a>."
@@ -878,15 +898,18 @@ msgstr ""
 "du gjerne vil lese. Tjenesten vil bli installert automatisk,\n"
 "og du ser et menyikon (<em>Á</em>) på venstre side av nettsida."
 
-#: templates/word_detail.html:19
+#: templates/word_detail.html:26
 msgid "is a possible form of ... "
 msgstr "er ei mulig form av ... "
 
-#: templates/word_detail.html:153
+#: templates/word_detail.html:172
 msgid "More information about this word"
 msgstr "Mer informasjon om dette ordet"
 
 #: views/main.py:97
 msgid "Invalid format. Only json and html allowed."
 msgstr "Ugyldig format. Bare json og html er tillatt."
+
+#~ msgid "WARNING!! We have problems with Internet Explorer 8!"
+#~ msgstr "ADVARSEL!! Vi har problemer med Internet Explorer 8!"
 
