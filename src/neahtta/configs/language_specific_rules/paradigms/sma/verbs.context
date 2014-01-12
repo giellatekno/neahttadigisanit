@@ -36,100 +36,140 @@
 
 
 - entry_context: None
-  tag_context: "V+TV+Ind+Prs+Sg1"
+  tag_context: "V+Ind+Prs+Sg1"
   template: "(daan biejjien manne) {{ word_form }}"
 
 - entry_context: None
-  tag_context: "V+TV+Ind+Prs+Sg3"
+  tag_context: "V+Ind+Prs+Sg3"
   template: "(daan biejjien dïhte) {{ word_form }}"
 
 - entry_context: None
-  tag_context: "V+TV+Ind+Prs+Pl3"
+  tag_context: "V+Ind+Prs+Pl3"
   template: "(daan biejjien dat) {{ word_form }}"
 
 - entry_context: None
-  tag_context: "V+TV+Ind+Prt+Sg1"
+  tag_context: "V+Ind+Prt+Sg1"
   template: "(jååktan manne) {{ word_form }}"
 
 - entry_context: None
-  tag_context: "V+TV+ConNeg"
+  tag_context: "V+ConNeg"
   template: "(ij) {{ word_form }}"
 
 - entry_context: None
-  tag_context: "V+TV+PrfPrc"
+  tag_context: "V+PrfPrc"
   template: "(lea) {{ word_form }}"
 
 - entry_context: None
-  tag_context: "V+TV+Ger"
+  tag_context: "V+Ger"
   template: "(lea) {{ word_form }}"
 
 
 - entry_context: None
-  tag_context: "V+IV+Ind+Prs+Sg1"
+  tag_context: "V+Ind+Prs+Sg1"
   template: "(daan biejjien manne) {{ word_form }}"
 
 - entry_context: None
-  tag_context: "V+IV+Ind+Prs+Sg3"
+  tag_context: "V+Ind+Prs+Sg3"
   template: "(daan biejjien dïhte) {{ word_form }}"
 
 - entry_context: None
-  tag_context: "V+IV+Ind+Prs+Pl3"
+  tag_context: "V+Ind+Prs+Pl3"
   template: "(daan biejjien dat) {{ word_form }}"
 
 - entry_context: None
-  tag_context: "V+IV+Ind+Prt+Sg1"
+  tag_context: "V+Ind+Prt+Sg1"
   template: "(jååktan manne) {{ word_form }}"
 
 - entry_context: None
-  tag_context: "V+IV+ConNeg"
+  tag_context: "V+ConNeg"
   template: "(ij) {{ word_form }}"
 
 - entry_context: None
-  tag_context: "V+IV+PrfPrc"
+  tag_context: "V+PrfPrc"
   template: "(lea) {{ word_form }}"
 
 - entry_context: None
-  tag_context: "V+IV+Ger"
+  tag_context: "V+Ger"
   template: "(lea) {{ word_form }}"
 
 
 - entry_context: None
-  tag_context: "Hom2+V+IV+Ind+Prs+Sg1"
+  tag_context: "Hom2+V+Ind+Prs+Sg1"
   template: "(daan biejjien manne) {{ word_form }}"
 
 - entry_context: None
-  tag_context: "Hom2+V+IV+Ind+Prs+Sg3"
+  tag_context: "Hom2+V+Ind+Prs+Sg3"
   template: "(daan biejjien dïhte) {{ word_form }}"
 
 - entry_context: None
-  tag_context: "Hom2+V+IV+Ind+Prs+Pl3"
+  tag_context: "Hom2+V+Ind+Prs+Pl3"
   template: "(daan biejjien dat) {{ word_form }}"
 
 - entry_context: None
-  tag_context: "Hom2+V+IV+Ind+Prt+Sg1"
+  tag_context: "Hom2+V+Ind+Prt+Sg1"
   template: "(jååktan manne) {{ word_form }}"
 
 - entry_context: None
-  tag_context: "Hom2+V+IV+ConNeg"
+  tag_context: "Hom2+V+ConNeg"
   template: "(ij) {{ word_form }}"
 
 - entry_context: None
-  tag_context: "Hom2+V+IV+PrfPrc"
+  tag_context: "Hom2+V+PrfPrc"
   template: "(lea) {{ word_form }}"
 
 - entry_context: None
-  tag_context: "Hom2+V+IV+Ger"
+  tag_context: "Hom2+V+Ger"
   template: "(lea) {{ word_form }}"
 
 - entry_context: None
-  tag_context: "Hom2+V+IV+PrfPrc"
+  tag_context: "Hom2+V+PrfPrc"
   template: "(lea) {{ word_form }}"
 
 - entry_context: None
-  tag_context: "Hom2+V+IV+Ger"
+  tag_context: "Hom2+V+Ger"
   template: "(lea) {{ word_form }}"
 
 - entry_context: None
-  tag_context: "Hom2+V+IV+VGen"
+  tag_context: "Hom2+V+VGen"
+  template: "(lea) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom1+V+Ind+Prs+Sg1"
+  template: "(daan biejjien manne) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom1+V+Ind+Prs+Sg3"
+  template: "(daan biejjien dïhte) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom1+V+Ind+Prs+Pl3"
+  template: "(daan biejjien dat) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom1+V+Ind+Prt+Sg1"
+  template: "(jååktan manne) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom1+V+ConNeg"
+  template: "(ij) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom1+V+PrfPrc"
+  template: "(lea) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom1+V+Ger"
+  template: "(lea) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom1+V+PrfPrc"
+  template: "(lea) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom1+V+Ger"
+  template: "(lea) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom1+V+VGen"
   template: "(lea) {{ word_form }}"
 
