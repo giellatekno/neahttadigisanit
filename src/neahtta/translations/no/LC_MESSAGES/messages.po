@@ -19,11 +19,11 @@ msgstr ""
 
 #: configs/kyv.config.yaml.in:93
 msgid "Standard"
-msgstr ""
+msgstr "Standard"
 
 #: configs/kyv.config.yaml.in:96
 msgid "Molotsov orthography (ԅ &rarr; зь)"
-msgstr ""
+msgstr "Molotsov-ortografi (ԅ &rarr; зь)"
 
 #: configs/language_names.py:23 configs/language_names.py:24
 #: templates/more_dictionaries.html:27
@@ -40,7 +40,7 @@ msgstr "Engelsk"
 
 #: configs/language_names.py:27
 msgid "Hungarian"
-msgstr ""
+msgstr "Ungarsk"
 
 #: configs/language_names.py:30 templates/more_dictionaries.html:28
 msgid "South Sámi"
@@ -52,11 +52,11 @@ msgstr "Komi"
 
 #: configs/language_names.py:34
 msgid "Molotsov orthography"
-msgstr ""
+msgstr "Molotsov-ortografi"
 
 #: configs/language_names.py:35
 msgid "Udmurt"
-msgstr ""
+msgstr "Udmurtisk"
 
 #: configs/language_names.py:38 templates/more_dictionaries.html:38
 msgid "Kven"
@@ -143,11 +143,11 @@ msgstr "Haida"
 
 #: configs/sample.config.yaml.in:107 configs/sanit.config.yaml.in:110
 msgid "Standárda (<em>áčđŋšŧž</em>)"
-msgstr ""
+msgstr "Standard (<em>áčđŋšŧž</em>)"
 
 #: configs/sample.config.yaml.in:110 configs/sanit.config.yaml.in:113
 msgid "Sosiála media (maiddái <em>acdnstz</em>)"
-msgstr ""
+msgstr "For sosiale media (forstår <em>acdnstz</em>)"
 
 #: static/js/bookmarklet.js:1245
 msgid "Á"
