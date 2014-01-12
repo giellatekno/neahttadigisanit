@@ -595,6 +595,11 @@ msgstr ""
 #: templates/index.html:216
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
+"Search for a word, or a word form for a word analysis and definition. "
+"You can also search in texts for the word form, or for all inflections "
+"with the link in the right margin."
+
+
 
 #: templates/index.html:220
 msgid ""

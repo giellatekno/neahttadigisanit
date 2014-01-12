@@ -656,8 +656,8 @@ msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
 "Søk etter et ord, evt. en bøyd form, som da blir både analysert og "
 "oversatt. Ved å klikke på ordet, får du informasjon om bøyning. Du kan "
-"også søke i tekster, enten etter ordformen, eller etter grunnordet, når "
-"ordet er analysert."
+"også søke ordformen i tekster, eller alle bøyningsformer ved å bruke"
+"linken i høyre marg."
 
 #: templates/index.html:220
 msgid ""
