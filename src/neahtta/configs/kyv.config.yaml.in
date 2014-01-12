@@ -90,11 +90,10 @@ Dictionaries:
     path: 'dicts/kpv-engfinrus.all.xml'
     input_variants: &KOMI_VARIANTS
       - type: "standard"
-        description: "Standard"
-        # NB: must be same as analyser name
+        description: !gettext "Standard"
         short_name: "kpv"
       - type: "molotsov"
-        description: "Molotsov orthography (ԅ &rarr; зь)"
+        description: !gettext "Molotsov orthography (ԅ &rarr; зь)"
         short_name: "kpvS"
 
   - source: kpv
