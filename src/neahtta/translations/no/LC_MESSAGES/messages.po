@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-01-11 17:16-0600\n"
+"POT-Creation-Date: 2014-01-11 18:21-0600\n"
 "PO-Revision-Date: 2013-02-01 01:54-0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: no <LL@li.org>\n"
@@ -132,6 +132,14 @@ msgstr "Latvisk"
 #: configs/language_names.py:79
 msgid "Haida"
 msgstr "Haida"
+
+#: configs/sample.config.yaml.in:107 configs/sanit.config.yaml.in:110
+msgid "Standárda (<em>áčđŋšŧž</em>)"
+msgstr ""
+
+#: configs/sample.config.yaml.in:110 configs/sanit.config.yaml.in:113
+msgid "Sosiála media (maiddái <em>acdnstz</em>)"
+msgstr ""
 
 #: static/js/bookmarklet.js:1245
 msgid "Á"
@@ -909,7 +917,4 @@ msgstr "Mer informasjon om dette ordet"
 #: views/main.py:97
 msgid "Invalid format. Only json and html allowed."
 msgstr "Ugyldig format. Bare json og html er tillatt."
-
-#~ msgid "WARNING!! We have problems with Internet Explorer 8!"
-#~ msgstr "ADVARSEL!! Vi har problemer med Internet Explorer 8!"
 

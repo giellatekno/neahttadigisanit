@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-01-11 17:16-0600\n"
+"POT-Creation-Date: 2014-01-11 18:21-0600\n"
 "PO-Revision-Date: 2013-11-19 09:12+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language-Team: fi <LL@li.org>\n"
@@ -132,6 +132,14 @@ msgstr "Latvia"
 #: configs/language_names.py:79
 msgid "Haida"
 msgstr "Haida"
+
+#: configs/sample.config.yaml.in:107 configs/sanit.config.yaml.in:110
+msgid "Standárda (<em>áčđŋšŧž</em>)"
+msgstr ""
+
+#: configs/sample.config.yaml.in:110 configs/sanit.config.yaml.in:113
+msgid "Sosiála media (maiddái <em>acdnstz</em>)"
+msgstr ""
 
 #: static/js/bookmarklet.js:1245
 msgid "Á"
