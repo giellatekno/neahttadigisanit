@@ -15,6 +15,8 @@ ApplicationSettings:
     - nob
     - fin
   # Meta description and keywords for Google search results.
+  app_meta_title: >
+     Digibaakoeh gaskeviermesne 
   meta_description: >
      Free, mobile-friendly dictionaries for Olonetsian, Livonian, and Kven.
   meta_keywords: >
@@ -100,6 +102,9 @@ Dictionaries:
     # 'mobile' are special values for `type`, and used in presenting
     # mobile users the correct default pair. If a variant is anything
     # other than the standard or mobile, use something else.
+    #
+    # Note that it's also a good idea to mark the strings here with
+    # the gettext marker, so that they're translated.
     input_variants:
       - type: "standard"
         description: !gettext "Standárda (<em>áčđŋšŧž</em>)"
