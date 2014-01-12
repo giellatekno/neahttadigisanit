@@ -19,7 +19,7 @@ msgstr ""
 
 #: configs/kyv.config.yaml.in:93
 msgid "Standard"
-msgstr ""
+msgstr "Dábálaš"
 
 #: configs/kyv.config.yaml.in:96
 msgid "Molotsov orthography (ԅ &rarr; зь)"
@@ -143,7 +143,7 @@ msgstr ""
 
 #: configs/sample.config.yaml.in:107 configs/sanit.config.yaml.in:110
 msgid "Standárda (<em>áčđŋšŧž</em>)"
-msgstr ""
+msgstr "Dábálaš"
 
 #: configs/sample.config.yaml.in:110 configs/sanit.config.yaml.in:113
 msgid "Sosiála media (maiddái <em>acdnstz</em>)"
