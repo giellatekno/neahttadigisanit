@@ -39,7 +39,7 @@
             <ul class="nav nav-collapse nav-tabs nav-stacked subnavcoloring">
                 {% for variant in pair_options.input_variants %}
                     <li{% if _from == variant.short_name %} class="active"{% endif %}>
-                        <a href="/{{ variant.short_name }}/{{ _to }}">{{ variant.description|safe }}</a>
+                        <a href="/{{ variant.short_name }}/{{ _to }}">{{ gettext(variant.description)|safe }}</a>
                     </li>
                 {% endfor %}
             </ul>
