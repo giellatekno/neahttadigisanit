@@ -9,7 +9,7 @@ PyYAML==3.10
 Pygments==1.6
 Sphinx==1.2b1
 Werkzeug==0.8.3
-babel-yaml==0.1.0
+-e git+ssh://git@bitbucket.org/rtxanson/babel_yaml@b28ab9e4b98136b76091a4a6d02d65ddb3612f21#egg=babel_yaml-dev
 caveman==1.0
 cssmin==0.1.4
 distribute==0.6.34
