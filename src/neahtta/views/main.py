@@ -258,20 +258,6 @@ def wordDetail(from_language, to_language, wordform, format):
                     else:
                         # For pregenerated things
                         _generated = morph.generate(lemma, [], node)
-                        # # try with pos, fallback to upper
-                        # paradigm = lang_paradigms.get(
-                        #     pos, lang_paradigms.get(pos.upper(), False)
-                        # )
-
-                        # if paradigm:
-                        #     _pos_type = [pos]
-                        #     if _type:
-                        #         _pos_type.append(_type)
-                        #     form_tags = [_pos_type + _t.split('+') for _t in paradigm]
-
-                        #     _generated = morph.generate(lemma, form_tags, node)
-                        # else:
-                        #     _generated = False
 
                     r['paradigm'] = _generated
                     _formatted_with_paradigms.append(r)
@@ -281,13 +267,31 @@ def wordDetail(from_language, to_language, wordform, format):
 
         analyses = [(l.lemma, l.pos, l.tag) for l in analyses]
 
-        detailed_result = sorted( pickleable_result(formatted_results)
-                                , key=lambda x: x.get('lemma')
-                                )
+        detailed_result = formatted_results
+        pickle_result = sorted( pickleable_result(formatted_results)
+                              , key=lambda x: x.get('lemma')
+                              )
+        json_result = pickle_result
 
-        current_app.cache.set(entry_cache_key, detailed_result)
+        current_app.cache.set(entry_cache_key, pickle_result)
     else:
-        detailed_result = cached_result
+        # TODO: _from may be wrong in case of SoMe
+        cur_morph = current_app.config.morphologies.get(from_language)
+        def depickle_result(_results):
+            pickleable = []
+            for j in _results:
+                _j = j.copy()
+                analyses = []
+                for (lemma, tag) in _j.get('analyses', []):
+                    # TODO: tag formatter
+                    _lem = cur_morph.de_pickle_lemma(lemma, tag)
+                    analyses.append(_lem)
+                _j['analyses'] = analyses
+                pickleable.append(_j)
+            return pickleable
+
+        json_result = cached_result
+        detailed_result = depickle_result(cached_result)
 
     # This ugly bit is just for compiling the use log entry
     if len(detailed_result) > 0:
@@ -315,7 +319,7 @@ def wordDetail(from_language, to_language, wordform, format):
     if format == 'json':
         result = simplejson.dumps({
             "success": True,
-            "result": detailed_result
+            "result": json_result
         })
         return Response( response=result
                        , status=200

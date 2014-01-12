@@ -16,24 +16,24 @@ from .lexicon import ( BasicTests
                      )
 
 wordforms_that_shouldnt_fail = [
-    ( ('sma', 'nob'), 'mijjieh'),
-    ( ('sma', 'nob'), 'mijjese'),
+    ( ('sma', 'nob'), u'mijjieh'),
+    ( ('sma', 'nob'), u'mijjese'),
 
-    ( ('nob', 'sma'), 'drikke'),
-    ( ('nob', 'sma'), 'forbi'),
-    ( ('nob', 'sma'), 'stige'),
+    ( ('nob', 'sma'), u'drikke'),
+    ( ('nob', 'sma'), u'forbi'),
+    ( ('nob', 'sma'), u'stige'),
 
     # test that nob->sma placenames work with nynorsk
-    ( ('nob', 'sma'), 'Noreg'),
-    ( ('nob', 'sma'), 'Norge'),
-    ( ('nob', 'sma'), 'skilnad'),
+    ( ('nob', 'sma'), u'Noreg'),
+    ( ('nob', 'sma'), u'Norge'),
+    ( ('nob', 'sma'), u'skilnad'),
 
     # placenames returned
-    ( ('sma', 'nob'), 'Röörovse'),
+    ( ('sma', 'nob'), u'Röörovse'),
 
     # misc inflections
-    ( ('sma', 'nob'), 'jovkedh'),
-    ( ('sma', 'nob'), 'jovkem'),
+    ( ('sma', 'nob'), u'jovkedh'),
+    ( ('sma', 'nob'), u'jovkem'),
 
 
 ]
@@ -75,9 +75,9 @@ paradigm_generation_tests = [
 #             form_doesnt_contain(set([u"lïgkem"]))),
 
 ###  - V + Homonymy: svijredh
-    ('sma', 'nob', u'svijredh',
-            "hom2 generated wrong",
-            form_contains(set([u'(daan biejjien manne) svijrem']))),
+    ('sma', 'nob', u'govledh',
+            "hom1 generated wrong",
+            form_contains(set([u'(daan biejjien manne) govlem']))),
 
 ###  - N Pl: - common noun tanta pluralia - aajkoehkadtjh
     ('sma', 'nob', u'aajkoehkadtjh',

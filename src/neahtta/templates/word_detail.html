@@ -136,8 +136,8 @@
 
         <div class="span3 offset1 hidden-phone">
             <dl class="possible_analyses grid_analyses">
-            {% for grouper, forms in lexeme.analyses|groupby(0) %}
-                {% for lemmagroup, lemmafs in forms|groupby(0) %}
+            {% for grouper, forms in lexeme.analyses|groupby('lemma') %}
+                {% for lemmagroup, lemmafs in forms|groupby('pos') %}
                     {% if current_pair_settings.show_korp_search %}
                         {# http://gtweb.uit.no/korp/#search-tab=0&search=cqp|[lemma = "dagai"]&page=0
                          #}
@@ -153,8 +153,8 @@
                     {% endif %}
                     <dd>
                         <ul class="possible_forms">
-                            {% for lem, tag in lemmafs %}
-                                <li>{{ tag }}</li>
+                            {% for lem in lemmafs %}
+                                <li>{{ lem.tag|tagfilter(_from, _to) }}</li>
                             {% endfor %}
                         </ul>
                     </dd>

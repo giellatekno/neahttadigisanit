@@ -120,6 +120,48 @@ class Tag(object):
         """
         raise NotImplementedError
 
+class Lemma(object):
+    """ Lemma class that is bound to the morphology
+    """
+    def __key(self):
+        return ( self.lemma
+               , self.pos
+               , self.tool.formatTag(self.tag_raw)
+               )
+
+    def __eq__(x, y):
+        return x.__key() == y.__key()
+
+    def __hash__(self):
+        return hash(self.__key())
+
+    def __unicode__(self):
+        return self.lemma
+
+    def __repr__(self):
+        _lem, _pos, _tag = self.__key()
+        _lem = unicode(_lem).encode('utf-8')
+        _pos = unicode(_pos).encode('utf-8')
+        _tag = unicode(_tag).encode('utf-8')
+        return '<Lemma: %s, %s, %s>' % (_lem, _pos, _tag)
+
+    def __init__(self, lemma, pos='',
+                 tag=[''], fulltag=[''], _input=False, tool=False, tagsets={}):
+        self.tagsets = tagsets
+        self.tool = tool
+        self.lemma = lemma
+        self.pos = pos
+        self.tag_raw = tag
+        self.tag = self.tool.tagStringToTag( fulltag
+                                           , tagsets=tagsets
+                                           )
+        if 'pos' in self.tag:
+            self.pos = self.tag['pos']
+        else:
+            self.pos = self.tag.parts[0]
+        self.input = _input
+
+
 def word_generation_context(generated_result, *generation_input_args, **generation_kwargs):
     """ **Post-generation filter***
 
@@ -625,45 +667,6 @@ class Morphology(object):
                   non_compound_only=False, no_derivations=False):
         """ For a wordform, return a list of lemmas
         """
-        class Lemma(object):
-            """ Lemma class that is bound to the morphology
-            """
-            def __key(lem_obj):
-                return ( lem_obj.lemma
-                       , lem_obj.pos
-                       , self.tool.formatTag(lem_obj.tag_raw)
-                       )
-
-            def __eq__(x, y):
-                return x.__key() == y.__key()
-
-            def __hash__(lem_obj):
-                return hash(lem_obj.__key())
-
-            def __unicode__(lem_obj):
-                return lem_obj.lemma
-
-            def __repr__(lem_obj):
-                _lem, _pos, _tag = lem_obj.__key()
-                _lem = unicode(_lem).encode('utf-8')
-                _pos = unicode(_pos).encode('utf-8')
-                _tag = unicode(_tag).encode('utf-8')
-                return '<Lemma: %s, %s, %s>' % (_lem, _pos, _tag)
-
-            def __init__(lem_obj, lemma, pos='',
-                         tag=[''], fulltag=[''], _input=False):
-                lem_obj.lemma = lemma
-                lem_obj.pos = pos
-                lem_obj.tag_raw = tag
-                lem_obj.tag = self.tool.tagStringToTag( fulltag
-                                                      , tagsets=self.tagsets
-                                                      )
-                if 'pos' in lem_obj.tag:
-                    lem_obj.pos = lem_obj.tag['pos']
-                else:
-                    lem_obj.pos = lem_obj.tag.parts[0]
-                lem_obj.input = _input
-
         def remove_compound_analyses(_a):
             _cmp = self.tool.options.get('compoundBoundary', False)
             if not _cmp:
@@ -723,18 +726,26 @@ class Morphology(object):
                 # handle it as best as possible.
                 if len(_an_parts) == 1:
                     _lem = _an_parts[0]
-                    lem = Lemma(lemma=_lem, _input=_lem)
+                    lem = Lemma(lemma=_lem, _input=_lem, tool=self.tool, tagsets=self.tagsets)
                 else:
                     _lem      = _an_parts[0]
                     _pos      = _an_parts[1]
-                    _analysis = _an_parts[2::]
+                    _analysis = _an_parts[1::]
                     _fulltag  = _an_parts[1::]
                     lem = Lemma( _lem, _pos, _analysis
                                , fulltag=_fulltag, _input=form
+                               , tool=self.tool, tagsets=self.tagsets
                                )
                 lemmas.add(lem)
 
         return list(lemmas)
+
+    def de_pickle_lemma(self, lem, tag):
+        _tag = self.tool.splitAnalysis(tag)
+        lem = Lemma( lem, '', _tag, fulltag=_tag
+                   , tool=self.tool, tagsets=self.tagsets
+                   )
+        return lem
 
     def generate_cache_key(self, lemma, generation_tags, node=False):
         """ key is something like generation-LANG-nodehash-TAG|TAG|TAG

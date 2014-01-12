@@ -24,6 +24,7 @@ def tagfilter_conf(filters, s):
     elif isinstance(s, Tag):
         parts = list(s)
     else:
+        # TODO: use morphology splitter
         parts = s.split(' ')
 
     for part in parts:
@@ -39,6 +40,12 @@ def tagfilter_conf(filters, s):
 
 def tagfilter(s, lang_iso, targ_lang):
     filters = current_app.config.tag_filters.get((lang_iso, targ_lang), False)
+
+    # morph = current_app.config.morphologies.get(lang_iso, False)
+    # if morph:
+    #     splitter = morph.tool.splitAnalysis(s)
+    # else:
+    #     splitter = lambda x: x.split('+')
 
     if filters:
         return tagfilter_conf(filters, s)
