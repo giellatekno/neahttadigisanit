@@ -1,17 +1,11 @@
 * tests should be yamlized too, and need clearer error messages. 
 
-* yaml - translation strings
-
 * autocomplete - enter should select if navigating through box
 
-* mobile width - paradigm appears below horizontal line 
-* mobile width horizontal <dl /> is not always good
-* font size of examples on detail page?
+* mobile width - detail - paradigm disappears
 
 * POS needs to be selected by tagset always, not by being the first tag in
   order. reduces requirement that analyser have special tagsets itself
-
-* test autocomplete filtering more
 
 * need to hide 'more information' link when there isn't actually more information
   - probably slightly easier now
@@ -69,31 +63,6 @@
        - interact with morphology and tags without having to know how
          all the (python) code works
 
-## 
-
- 1.) define connections between morphology and lexicon
-     - what tags and attributes differ, and how should they be used to
-       look up a word
-     - define tag sets so that they may be used in rules
-     - define alphabetic order for language
-     - 
-
- 2.) define how lexicon entries are displayed to users, based on entry
-     and morphology attributes
-
-     - capability to also add links to different entries
-     - when to hide morphological results
-     - when to hide tag pieces from users if they can't be altered in the morph.
-
- 3.) define what forms are generated for the entry type
-
- 4.) define how tags should be shown to users-- translation to localisation langs
-
-... Also this should all be central and easy to find. Also, what happens when
-the lexicon is a TSV? 
-
-    http://giellatekno.uit.no/bugzilla/show_bug.cgi?id=1745
-
 # Misc
 
  * update reversed to work with new structures -> fin-kpv
@@ -107,17 +76,9 @@ the lexicon is a TSV?
  * change cache settings for plugin js in nginx configs, some browsers are
    unwilling to get a new version even when it exists.
 
- * test remaining browser notes
-
  * refresh settings button in plugin
 
- * jspwiki generator for sphinx
-
  * cakefile include build bookmark.min.js
-
- * other dictionaries page, listing links to other groups
- 
- * autocomplete parse only once per file
 
  * a little advertising and such for the reader and page with content in specific languages 
    see script in misc/o

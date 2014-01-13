@@ -409,7 +409,8 @@ class Config(Config):
                     'langs': {},
                     'show_korp_search': dict_def.get('show_korp_search', False),
                     'alternate_search_url': dict_def.get('alternate_search_url', False),
-                    'lemma_search_url': dict_def.get('lemma_search_url', False)
+                    'lemma_search_url': dict_def.get('lemma_search_url', False),
+                    'lemma_multiword_delimiter': dict_def.get('lemma_multiword_delimiter', False)
                 }
                 for iso in _lang_isos:
                     _pair_options['langs'][iso] = (_from_langs[iso], _to_langs[iso])

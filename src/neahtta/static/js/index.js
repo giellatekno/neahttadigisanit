@@ -29,8 +29,13 @@ $(document).ready( function() {
     // Korp search redirect
     $('.korp_search').click(function(evt) {
         var search_url = $(evt.target).attr('data-search-url')
+          , search_del = $(evt.target).attr('data-search-delim')
           , user_input = $('input[type="text"]').val()
+          ;
 
+        if (user_input.search(' ') > -1) {
+            user_input = user_input.split(' ').join(search_del);
+        };
         var redirect_url = search_url.replace('USER_INPUT', user_input);
         window.location = redirect_url;
         return evt.preventDefault();

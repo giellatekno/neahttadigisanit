@@ -24,6 +24,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="#" 
                                    data-search-url="{{ current_pair_settings.alternate_search_url }}"
+                                   data-search-delim="{{ current_pair_settings.lemma_multiword_delimiter }}"
                                    class="korp_search">{% trans %}Search texts{% endtrans %} (Korp)</a></li>
                         </ul>
                    </div>
@@ -41,6 +42,7 @@
                class="btn hidden-phone display-tablet korp_search" 
                name="korp_search" 
                data-search-url="{{ current_pair_settings.alternate_search_url }}"
+               data-search-delim="{{ current_pair_settings.lemma_multiword_delimiter }}"
                >
            {% trans %}Search texts{% endtrans %}
        </a>
