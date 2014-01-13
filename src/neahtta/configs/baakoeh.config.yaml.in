@@ -18,6 +18,9 @@ ApplicationSettings:
      samisk ordbok, på nett, mobil ordbok, ordbok app, sátnegirji,
      sátnegirjjit sørsamisk, norsk, south sámi, norwegian, sámegiella,
      sámi language, lullisámegiella, sørsamisk, mobil ordbok
+  admins_to_email:
+    - "trond.trosterud@uit.no"
+    - "lene.antonsen@uit.no"
 
 # This option set is not used outside of providing shortcuts for
 # following settings.
@@ -32,8 +35,8 @@ Tools:
 Morphology:
   sma:
     tool: *LOOKUP
-    file: [*OPT, '/sma/bin/dict-sma.fst']
-    inverse_file: [*OPT, '/sma/bin/dict-isma-norm.fst']
+    file: [*OPT, '/sma/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/sma/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
       compoundBoundary: "+Cmp#"

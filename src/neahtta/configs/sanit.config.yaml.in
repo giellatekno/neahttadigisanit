@@ -23,6 +23,9 @@ ApplicationSettings:
      sanakirja, sátnegirjjit, sátnegirji, nordsamisk, finsk, norsk,
      pohjoissaame, davvisámegiella north sámi, norwegian, finnish,
      sámegiella, sámi language, mobil ordbok
+  admins_to_email:
+    - "trond.trosterud@uit.no"
+    - "lene.antonsen@uit.no"
 
 # This option set is not used outside of providing shortcuts for
 # following settings.
