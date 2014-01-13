@@ -273,6 +273,19 @@ vada: vada-lexica compile_langs_fsts
 ##### #mutertargets
 #####
 
+fin-mrj.xml: $(GTHOME)/words/dicts/finmrj/src/*.xml
+	@echo "******************************"
+	@echo "** Building fin-mrj lexicon **"
+	@echo "******************************"
+	@echo "** Backup made (.bak)       **"
+	@echo "******************************"
+	@echo ""
+	-@cp $@ $@.$(shell date +%s).bak
+	mkdir mrj
+	cp $^ mrj/
+	$(SAXON) inDir=$(pwd)/mrj/ > fin-mrj.xml
+	rm -rf mrj/
+
 mrj-all.xml: $(GTHOME)/langs/mrj/src/morphology/stems/*.xml
 	@echo "**************************"
 	@echo "** Building mrj lexicon **"
@@ -300,10 +313,10 @@ mhr-all.xml: $(GTHOME)/langs/mhr/src/morphology/stems/*.xml
 	rm -rf mhr/
 
 .PHONY: muter-lexicon
-muter-lexica: mhr-all.xml mrj-all.xml
+muter-lexica: mhr-all.xml mrj-all.xml fin-mrj.xml
 
 rm-muter-lexica: 
-	@rm -rf mhr-all.xml mrj-all.xml
+	@rm -rf mhr-all.xml mrj-all.xml fin-mrj.xml
 
 .PHONY: muter-install
 muter-install: GT_COMPILE_LANGS := mrj mhr fin 
@@ -316,6 +329,7 @@ muter: muter-lexicon compile_langs_fsts
 	@echo "** Built targets for muter:     **"
 	@echo "**    + mhr lexicon            **"
 	@echo "**    + mrj lexicon            **"
+	@echo "**    + fin-mrj lexicon        **"
 	@echo "**    + mhr analysers          **"
 	@echo "**    + mrj analysers          **"
 	@echo "**    + rus analysers          **"
@@ -332,6 +346,20 @@ muter: muter-lexicon compile_langs_fsts
 #####
 ##### #valkstargets
 #####
+
+fin-myv.xml: $(GTHOME)/words/dicts/finmyv/src/*.xml
+	@echo "******************************"
+	@echo "** Building fin-myv lexicon **"
+	@echo "******************************"
+	@echo "** Backup made (.bak)       **"
+	@echo "******************************"
+	@echo ""
+	-@cp $@ $@.$(shell date +%s).bak
+	mkdir myv
+	cp $^ myv/
+	$(SAXON) inDir=$(pwd)/myv/ > fin-myv.xml
+	rm -rf myv/
+
 
 myv-all.xml: $(GTHOME)/langs/myv/src/morphology/stems/*.xml
 	@echo "**************************"
