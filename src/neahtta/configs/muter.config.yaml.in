@@ -61,7 +61,7 @@ Languages:
 
 Dictionaries:
   - source: fin
-    target: mrk
+    target: mrj
     path: 'dicts/fin-mrj.xml'
 
   - source: mrj
