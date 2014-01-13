@@ -86,6 +86,8 @@ Dictionaries:
     target: nob
     path: 'dicts/sme-nob.all.xml'
     show_korp_search: True
+    # use http://meyerweb.com/eric/tools/dencoder/ if things are
+    # unreadable or do not work
     alternate_search_url: "http://gtweb.uit.no/korp/#page=0&search=word|USER_INPUT"
     lemma_search_url: 'http://gtweb.uit.no/korp/#search-tab=0&page=0&search=cqp%7C%5Blemma%20%3D%20%22INPUT_LEMMA%22%5D'
     input_variants:
