@@ -13,6 +13,9 @@ ApplicationSettings:
       Free online, mobile friendly dictionaries for Nenets
   meta_keywords: >
       nenets, nenetsi, mobile, dictionary, free, russian
+  admins_to_email:
+    - "rueter.jack@gmail.com"
+    - "trond.trosterud@uit.no"
 
 Tools:
   xfst_lookup: &LOOKUP '/usr/bin/lookup'

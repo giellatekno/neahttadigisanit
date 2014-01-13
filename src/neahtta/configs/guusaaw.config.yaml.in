@@ -11,6 +11,8 @@ ApplicationSettings:
       Free online, mobile friendly dictionaries for Northern Haida
   meta_keywords: >
       northern haida, mobile, dictionary, free
+  admins_to_email:
+    - "trond.trosterud@uit.no"
 
 Tools:
   xfst_lookup: &LOOKUP '/usr/bin/lookup'

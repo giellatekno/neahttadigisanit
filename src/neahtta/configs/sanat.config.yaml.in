@@ -16,6 +16,9 @@ ApplicationSettings:
      Free, mobile-friendly dictionaries for Olonetsian, Livonian, and Kven.
   meta_keywords: >
      kven, olonets, olonetsian, livonian, livvi, liivi 
+  admins_to_email:
+    - "rueter.jack@gmail.com"
+    - "trond.trosterud@uit.no"
 
 Tools:
   xfst_lookup: &LOOKUP '/usr/bin/lookup'
@@ -125,15 +128,23 @@ Dictionaries:
     path: 'dicts/liv.all.xml'
     input_variants:
       - type: "standard"
-        description: "Standard (äǟ)"
+        description: !gettext "Standard (äǟ)"
         # NB: must be same as analyser name
         short_name: "liv"
       - type: "mobile"
-        description: "Mobile friendly (a &rarr; ä ~ ǟ)"
-        short_name: "SoMe-liv"
+        description: !gettext "Mobile friendly (a &rarr; ä ~ ǟ)"
+        short_name: "livM"
   - source: liv
     target: lav
     path: 'dicts/liv.all.xml'
+    input_variants:
+      - type: "standard"
+        description: !gettext "Standard (äǟ)"
+        # NB: must be same as analyser name
+        short_name: "liv"
+      - type: "mobile"
+        description: !gettext "Mobile friendly (a &rarr; ä ~ ǟ)"
+        short_name: "livM"
   - source: izh
     target: fin
     path: 'dicts/izh-fin.xml'

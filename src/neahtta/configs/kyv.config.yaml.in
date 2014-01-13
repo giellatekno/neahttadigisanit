@@ -90,6 +90,7 @@ Dictionaries:
     input_variants: &KOMI_VARIANTS
       - type: "standard"
         description: !gettext "Standard"
+        # NB: must be same as analyser name
         short_name: "kpv"
       - type: "molotsov"
         description: !gettext "Molotsov orthography (ԅ &rarr; зь)"
