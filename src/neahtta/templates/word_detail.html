@@ -14,9 +14,11 @@
 {% endblock %}
 
 {% macro korp_link_lemma(lemma) -%}
+{% if current_pair_settings.lemma_search_url -%}
     {% set search_url = current_pair_settings.lemma_search_url.replace('INPUT_LEMMA', lemma) %}
     <a class="korp_search lemma_action"
        href="{{ search_url }}">{% trans %}Texts{% endtrans %} &rarr;</a>
+{%- endif %}
 {%- endmacro %}
 
 {% block float_right %}
