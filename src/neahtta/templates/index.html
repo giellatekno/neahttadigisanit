@@ -13,10 +13,9 @@
 {% endblock %}
 
 {% macro korp_link_lemma(lemma) -%}
-    {% set search_url = "http://gtweb.uit.no/korp/#search-tab=0&page=0&search=" %}
-    {% set search_query = 'cqp|[lemma = "' + lemma + '"]' %}
+    {% set search_url = current_pair_settings.lemma_search_url.replace('INPUT_LEMMA', lemma) %}
     <a class="korp_search lemma_action"
-       href="{{ search_url }}{{ search_query|urlencode }}">{% trans %}Texts{% endtrans %} &rarr;</a>
+       href="{{ search_url }}">{% trans %}Texts{% endtrans %} &rarr;</a>
 {%- endmacro %}
 
 {% macro possible_analyses_grid(analyses) -%}

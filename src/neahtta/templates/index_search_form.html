@@ -13,7 +13,7 @@
                {% if user_input -%}value="{{ user_input }}"{% endif %}
                placeholder="{% trans %}ohcansátni{% endtrans %}"></input>
                {# TODO: show text search only if the dictionary supports this #}
-               {% if current_pair_settings.show_korp_search %}
+               {% if current_pair_settings.alternate_search_url %}
                    <div class="btn-group display-phone hidden-desktop hidden-tablet">
                        <button type="submit" class="btn" name="search">
                            <span>{% trans %}Search{% endtrans %}</span>
@@ -23,7 +23,7 @@
                         </button>
                         <ul class="dropdown-menu">
                             <li><a href="#" 
-                                   data-search-url="http://gtweb.uit.no/korp/#page=0&search=word|USER_INPUT"
+                                   data-search-url="{{ current_pair_settings.alternate_search_url }}"
                                    class="korp_search">{% trans %}Search texts{% endtrans %} (Korp)</a></li>
                         </ul>
                    </div>
@@ -36,11 +36,11 @@
                    </button>
               {% endif %}
     </div>
-   {% if current_pair_settings.show_korp_search %}
+   {% if current_pair_settings.alternate_search_url %}
        <a type="alternate_search" 
                class="btn hidden-phone display-tablet korp_search" 
                name="korp_search" 
-               data-search-url="http://gtweb.uit.no/korp/#page=0&search=word|USER_INPUT"
+               data-search-url="{{ current_pair_settings.alternate_search_url }}"
                >
            {% trans %}Search texts{% endtrans %}
        </a>

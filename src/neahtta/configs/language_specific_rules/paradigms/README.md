@@ -5,10 +5,7 @@
 
 # Paradigm generation
 
-Managing paradigms and generation is currently not a straightforward
-task, but it needs to be, and a file-based approach might work well as
-long as the rules are all read at runtime and no further interactions
-with the files are needed.
+Paradigms are managed by a file and directory structure.
 
 ## Paradigm folder structure
 
@@ -23,20 +20,20 @@ many, and usually there will be one base paradigm for a part of
 speech from which additional paradigms apply to subsets of words in
 this part of speech.
 
-Typically, rules that only apply to a subset will not require some sort
-of ordering of the rules in order to get them to be applied properly,
-i.e., there is hopefully no overlap in subsets. If there is, filesystem
-ordering could be used to get out of this.
+Currently, there is no explicit setting for ordering the rules, and ordering is
+determined by the complexity of the rules that match a given word and entry.
+Thus, if one rule looks for `pos`, `valence` and `context`, and another
+only looks for `pos` and `valence`, the former will be applied if both
+match.
 
 Symlinks are tolerated, so if multiple language variants need to use the same
 rule set, simply make a symlink between the directories.
 
 ## Paradigm file structure
 
-Paradigm files are structured the same as templates: one part is YAML,
-and the other part is data in Jinja form. Essentially what this says is,
-if the first part's (YAML) conditions are matched, then we use the
-paradigm following.
+Paradigm files are structured in the following wa: one part is YAML, and the
+other part is data in Jinja form. Essentially what this says is, if the first
+part's (YAML) conditions are matched, then we use the paradigm following.
 
     name: "Proper noun paradigm."
     description: |
