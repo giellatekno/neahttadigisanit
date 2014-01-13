@@ -15,6 +15,9 @@ ApplicationSettings:
       Free online, mobile friendly dictionaries for Eastern and Western Mari
   meta_keywords: >
       eastern mari, western mari, hill mari, meadow mari, mobile, dictionary, free, russian
+  admins_to_email:
+    - "rueter.jack@gmail.com"
+    - "trond.trosterud@uit.no"
 
 Tools:
   xfst_lookup: &LOOKUP '/usr/bin/lookup'

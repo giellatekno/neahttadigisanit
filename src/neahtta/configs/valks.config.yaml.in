@@ -19,6 +19,9 @@ ApplicationSettings:
       sanakirjat, sanakirja, словарь, dictionary, free, erza, français,
       mokcha, finnois, эрзянь, мокшень, рузонь, финнэнь, финнонь,
       французонь, англань
+  admins_to_email:
+    - "rueter.jack@gmail.com"
+    - "trond.trosterud@uit.no"
 
 Tools:
   xfst_lookup: &LOOKUP '/usr/bin/lookup'

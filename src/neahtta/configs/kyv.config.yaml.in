@@ -9,7 +9,6 @@ ApplicationSettings:
     - kv
     - fi
     - en
-    - ru
   meta_description: >
       Free online, mobile friendly dictionaries for Komi-Zyrian
   meta_keywords: >
@@ -78,10 +77,10 @@ Morphology:
 
 Languages:
   - iso: kpv
-  - iso: udm
   - iso: eng
   - iso: fin
   - iso: rus
+  - iso: udm
   - iso: hun
 
 Dictionaries:
