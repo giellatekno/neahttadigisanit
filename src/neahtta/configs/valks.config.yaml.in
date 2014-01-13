@@ -65,6 +65,10 @@ Languages:
   - iso: fra
 
 Dictionaries:
+  - source: fin
+    target: myv
+    path: 'dicts/fin-myv.xml'
+
   - source: myv
     target: eng
     path: 'dicts/myv-all.xml'
