@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-01-11 18:24-0600\n"
+"POT-Creation-Date: 2014-01-14 15:44-0600\n"
 "PO-Revision-Date: 2014-01-10 13:43+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language-Team: myv <LL@li.org>\n"
@@ -141,13 +141,24 @@ msgstr "Латышень кель"
 msgid "Haida"
 msgstr "Хайда"
 
-#: configs/sample.config.yaml.in:107 configs/sanit.config.yaml.in:110
+#: configs/sample.config.yaml.in:110 configs/sanit.config.yaml.in:102
+#: configs/sanit.config.yaml.in:127
 msgid "Standárda (<em>áčđŋšŧž</em>)"
 msgstr ""
 
-#: configs/sample.config.yaml.in:110 configs/sanit.config.yaml.in:113
+#: configs/sample.config.yaml.in:113 configs/sanit.config.yaml.in:105
+#: configs/sanit.config.yaml.in:130
 msgid "Sosiála media (maiddái <em>acdnstz</em>)"
 msgstr ""
+
+#: configs/sanat.config.yaml.in:132 configs/sanat.config.yaml.in:143
+msgid "Standard (äǟ)"
+msgstr ""
+
+#: configs/sanat.config.yaml.in:135 configs/sanat.config.yaml.in:146
+#, fuzzy
+msgid "Mobile friendly (a &rarr; ä ~ ǟ)"
+msgstr "сотовойнень шожда"
 
 #: static/js/bookmarklet.js:1245
 msgid "Á"
@@ -239,6 +250,12 @@ msgid ""
 "Whoops! The page you requested was not found. If you think you are "
 "receiving this in error, please contact us."
 msgstr "Теня! Лопа, конанть вешить а муеви. Бути арсят манявинек,сюлмавт мартонок."
+
+#: templates/404.html:51
+msgid ""
+"If you followed a link from the front page, it may be that the dictionary"
+" you were browsing is not yet bilingual."
+msgstr ""
 
 #: templates/500.html:51
 msgid "Whoops! There was some kind of error."
@@ -605,34 +622,34 @@ msgstr "Ловныцянь Neahttadigisánit"
 msgid "Texts"
 msgstr "Тексттнэ"
 
-#: templates/index.html:49 templates/left_dictionary_list.html:1
+#: templates/index.html:50 templates/left_dictionary_list.html:1
 msgid "Dictionaries"
 msgstr "Валкст"
 
-#: templates/index.html:67 templates/left_dictionary_list.html:52
+#: templates/index.html:68 templates/left_dictionary_list.html:52
 #: templates/more_dictionaries.html:21
 msgid "Other dictionaries"
 msgstr "Лия валкст"
 
-#: templates/index.html:88
+#: templates/index.html:89
 msgid "Swap"
 msgstr "Полавтыть"
 
-#: templates/index.html:96 templates/index.html:181
-#: templates/word_detail.html:93 views/reader.py:122
+#: templates/index.html:97 templates/index.html:182
+#: templates/word_detail.html:94 views/reader.py:122
 msgid " is a possible form of ... "
 msgstr "валпарцунось маштови саемс истямо валсто ..."
 
-#: templates/index.html:151
+#: templates/index.html:152
 msgid "Definition not found for:"
 msgstr "Смусть эзь муеве те валонтень:"
 
-#: templates/index.html:203
+#: templates/index.html:204
 #, python-format
 msgid "Word %(input)s not found."
 msgstr "«%(input)s» Валось эли валтнэ эзть муеве"
 
-#: templates/index.html:212
+#: templates/index.html:213
 msgid ""
 "If you are using a device without a Sámi keyboard, consider using <a "
 "href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
@@ -642,11 +659,11 @@ msgstr ""
 "нолдамс тевс <a href=\"/SoMe/nob/\">соцмедия модонть</a>, конасонть "
 "маштови сёрмадомс <em>áčđŋšŧž</em> букватнень таркас <em>acdnstz</em>. "
 
-#: templates/index.html:216
+#: templates/index.html:217
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr "Вешнек вал, эли валонь форма -- анализт-смустть максовить"
 
-#: templates/index.html:220
+#: templates/index.html:221
 msgid ""
 "You selected #SoMe, the variant for social media, which means that the "
 "letters acdnstz\n"
@@ -660,12 +677,12 @@ msgstr ""
 msgid "ohcansátni"
 msgstr "вешнема вал"
 
-#: templates/index_search_form.html:19 templates/index_search_form.html:31
-#: templates/index_search_form.html:35 templates/word_detail.html:84
+#: templates/index_search_form.html:19 templates/index_search_form.html:32
+#: templates/index_search_form.html:36 templates/word_detail.html:85
 msgid "Search"
 msgstr "Вешнемс"
 
-#: templates/index_search_form.html:27 templates/index_search_form.html:45
+#: templates/index_search_form.html:28 templates/index_search_form.html:47
 msgid "Search texts"
 msgstr "Вешнемс тексттнэстэ"
 
@@ -907,11 +924,11 @@ msgstr ""
 "                Лезксэсь сонсь аравтови-ладяви, меню ярликенть нейсак\n"
 "                лопанть керш крайнесэ."
 
-#: templates/word_detail.html:26
+#: templates/word_detail.html:27
 msgid "is a possible form of ... "
 msgstr "валпарцунось маштови саемс истямо валсто ..."
 
-#: templates/word_detail.html:172
+#: templates/word_detail.html:173
 msgid "More information about this word"
 msgstr "Те валдонть седе ламо содамочи"
 

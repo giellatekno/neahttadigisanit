@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-01-11 18:24-0600\n"
+"POT-Creation-Date: 2014-01-14 15:44-0600\n"
 "PO-Revision-Date: 2013-02-01 01:55-0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: se <LL@li.org>\n"
@@ -141,13 +141,25 @@ msgstr "Latviagiella"
 msgid "Haida"
 msgstr ""
 
-#: configs/sample.config.yaml.in:107 configs/sanit.config.yaml.in:110
+#: configs/sample.config.yaml.in:110 configs/sanit.config.yaml.in:102
+#: configs/sanit.config.yaml.in:127
 msgid "Standárda (<em>áčđŋšŧž</em>)"
 msgstr "Dábálaš"
 
-#: configs/sample.config.yaml.in:110 configs/sanit.config.yaml.in:113
+#: configs/sample.config.yaml.in:113 configs/sanit.config.yaml.in:105
+#: configs/sanit.config.yaml.in:130
 msgid "Sosiála media (maiddái <em>acdnstz</em>)"
 msgstr ""
+
+#: configs/sanat.config.yaml.in:132 configs/sanat.config.yaml.in:143
+#, fuzzy
+msgid "Standard (äǟ)"
+msgstr "Dábálaš"
+
+#: configs/sanat.config.yaml.in:135 configs/sanat.config.yaml.in:146
+#, fuzzy
+msgid "Mobile friendly (a &rarr; ä ~ ǟ)"
+msgstr "(... ja doaibmá mobiilatelefovnnas!)"
 
 #: static/js/bookmarklet.js:1245
 msgid "Á"
@@ -237,6 +249,12 @@ msgid ""
 msgstr ""
 "Vuoi! Siidu ii gávdno. Jus du mielas galggašii gávdnot, \"\n"
 "\"de dáhttut du váldit oktavuođa minguin."
+
+#: templates/404.html:51
+msgid ""
+"If you followed a link from the front page, it may be that the dictionary"
+" you were browsing is not yet bilingual."
+msgstr ""
 
 #: templates/500.html:51
 msgid "Whoops! There was some kind of error."
@@ -472,8 +490,8 @@ msgid ""
 "                were searching for when you encountered the problem."
 msgstr ""
 "Jus fuobmát meattáhusa, de berrešit váldit oktavuođa minguin. Čilge \n"
-"čuolmma ja muital guđe neahttalohkki dahje mobiilatelefovnna don geavahit, "
-"ja maid don ledjet ohcame go fuobmájit váttisvuođa."
+"čuolmma ja muital guđe neahttalohkki dahje mobiilatelefovnna don "
+"geavahit, ja maid don ledjet ohcame go fuobmájit váttisvuođa."
 
 #: templates/about.sanit.html:79 templates/about.sanit.html:84
 msgid "Contact us"
@@ -485,9 +503,8 @@ msgid ""
 "list</a>, and more\n"
 "                resources."
 msgstr ""
-"Dárbbašatgo eanet sátnegirjjiid? <a href=\"http://dicts.uit.no/\">Dás lea "
-"olles listu</a>, ja eanet resurssat."
-
+"Dárbbašatgo eanet sátnegirjjiid? <a href=\"http://dicts.uit.no/\">Dás lea"
+" olles listu</a>, ja eanet resurssat."
 
 #: templates/about.vada.html:59
 msgid "yrk ↔ fin"
@@ -577,34 +594,34 @@ msgstr "Neahttadigisániid lohkanveahkki"
 msgid "Texts"
 msgstr "Teavsttain"
 
-#: templates/index.html:49 templates/left_dictionary_list.html:1
+#: templates/index.html:50 templates/left_dictionary_list.html:1
 msgid "Dictionaries"
 msgstr "Sátnegirjjit"
 
-#: templates/index.html:67 templates/left_dictionary_list.html:52
+#: templates/index.html:68 templates/left_dictionary_list.html:52
 #: templates/more_dictionaries.html:21
 msgid "Other dictionaries"
 msgstr "Eará sátnegirjjit"
 
-#: templates/index.html:88
+#: templates/index.html:89
 msgid "Swap"
 msgstr "Molsso"
 
-#: templates/index.html:96 templates/index.html:181
-#: templates/word_detail.html:93 views/reader.py:122
+#: templates/index.html:97 templates/index.html:182
+#: templates/word_detail.html:94 views/reader.py:122
 msgid " is a possible form of ... "
 msgstr " lea vejolaččat dán sáni hápmi:"
 
-#: templates/index.html:151
+#: templates/index.html:152
 msgid "Definition not found for:"
 msgstr "Ii gávnna:"
 
-#: templates/index.html:203
+#: templates/index.html:204
 #, python-format
 msgid "Word %(input)s not found."
 msgstr "Sátni %(input)s ii gávdnon."
 
-#: templates/index.html:212
+#: templates/index.html:213
 msgid ""
 "If you are using a device without a Sámi keyboard, consider using <a "
 "href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
@@ -614,15 +631,15 @@ msgstr ""
 "href=\"/SoMe/nob/\">sosiála media veršuvnna</a>, mii dohkkeha "
 "<em>acdnstz</em> danin bustávvan: <em>áčđŋšŧž</em>."
 
-#: templates/index.html:216
+#: templates/index.html:217
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
 "Oza sáni, vej. sojahuvvon sátnehámi, mii dalle sihke analyserejuvvo ja "
-"jorgaluvvo. Jus coahkkalat sáni, de oaččut eanet dieđuid sáni sojaheames. "
-"Don sáhtát ohcat sátnehámi teavsttain, dahje buot sojahanhámiid "
-"liŋkkain olgeš ravddas."
+"jorgaluvvo. Jus coahkkalat sáni, de oaččut eanet dieđuid sáni sojaheames."
+" Don sáhtát ohcat sátnehámi teavsttain, dahje buot sojahanhámiid liŋkkain"
+" olgeš ravddas."
 
-#: templates/index.html:220
+#: templates/index.html:221
 msgid ""
 "You selected #SoMe, the variant for social media, which means that the "
 "letters acdnstz\n"
@@ -637,12 +654,12 @@ msgstr ""
 msgid "ohcansátni"
 msgstr ""
 
-#: templates/index_search_form.html:19 templates/index_search_form.html:31
-#: templates/index_search_form.html:35 templates/word_detail.html:84
+#: templates/index_search_form.html:19 templates/index_search_form.html:32
+#: templates/index_search_form.html:36 templates/word_detail.html:85
 msgid "Search"
 msgstr "Oza"
 
-#: templates/index_search_form.html:27 templates/index_search_form.html:45
+#: templates/index_search_form.html:28 templates/index_search_form.html:47
 msgid "Search texts"
 msgstr "Oza teavsttain"
 
@@ -831,9 +848,7 @@ msgstr "Dás leat:"
 msgid ""
 "If you are looking for other languages, please see our <a "
 "href=\"/more/\">other dictionaries</a>."
-msgstr ""
-"Jus ozat eará gielaid, geahča <a href=\"/more/\">eará sátnegirjjiid</a>."
-
+msgstr "Jus ozat eará gielaid, geahča <a href=\"/more/\">eará sátnegirjjiid</a>."
 
 #: templates/reader_example.html:32
 msgid "Additional instructions"
@@ -845,7 +860,8 @@ msgid ""
 "Your web browser is supported, however, you will need to change some\n"
 "options for the Neahttadigisánit Reader to work.\n"
 msgstr ""
-"Vuogádat doarju du neahttalohkki, muhto don dárbbašat rievdadit ásahasaid \n"
+"Vuogádat doarju du neahttalohkki, muhto don dárbbašat rievdadit ásahasaid"
+" \n"
 "oažžut Lohkanveahkki doaibmat."
 
 #: templates/reader_update.html:1
@@ -870,11 +886,11 @@ msgstr ""
 "            ravddas ihtá dalle fállu (<em>Á</em>) gos sáhtát válljet "
 "giela."
 
-#: templates/word_detail.html:26
+#: templates/word_detail.html:27
 msgid "is a possible form of ... "
 msgstr "lea vejolaččat dán sáni hápmi: "
 
-#: templates/word_detail.html:172
+#: templates/word_detail.html:173
 msgid "More information about this word"
 msgstr "Eanet dieđut dán sáni birra"
 

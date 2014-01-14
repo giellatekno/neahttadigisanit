@@ -378,3 +378,28 @@ def test_configuration():
         else:
             print(cyan("** Everything seems to work **"))
 
+@task
+def extract_strings():
+    print(cyan("** Extracting strings"))
+    cmd = "pybabel extract -F babel.cfg -k gettext -o translations/messages.pot ."
+    extract_cmd = env.run(cmd)
+    if extract_cmd.failed:
+        print(red("** Extraction failed, aborting."))
+    else:
+        print(cyan("** Extraction worked, updating files."))
+        cmd = "pybabel update -i translations/messages.pot -d translations"
+        update_cmd = env.run(cmd)
+        if update_cmd.failed:
+            print(red("** Update failed."))
+        else:
+            print(green("** Update worked. You may now check in or translate."))
+
+@task
+def compile_strings():
+    cmd = "pybabel compile -d translations"
+    extract_cmd = env.run(cmd)
+    if extract_cmd.failed:
+        print(red("** Compilation failed, aborting."))
+    else:
+        print(green("** Compilation successful."))
+
