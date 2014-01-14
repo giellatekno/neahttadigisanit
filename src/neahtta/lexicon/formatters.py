@@ -261,13 +261,32 @@ class FrontPageFormat(EntryNodeIterator):
                                   )
 
         def add_link(_p):
+
             if '<a ' in _p or '</a>' in _p:
                 return _p
 
-            # TODO: will need a more lasting solution... 
             src_lang = self.query_kwargs.get('source_lang')
-            if src_lang == 'SoMe':
-                src_lang = 'sme'
+
+            _from_l = self.query_kwargs.get('target_lang')
+            _to_l = src_lang
+
+            # Does the reversed pair exist as a variant? If so we need
+            # to get the original pair and re-reverse it
+            if (_to_l, _from_l) in current_app.config.variant_dictionaries:
+                _var = current_app.config.variant_dictionaries.get((_to_l, _from_l))
+                (_to_l, _from_l) = _var.get('orig_pair')
+
+            if (_from_l, _to_l) not in current_app.config.dictionaries and \
+               (_from_l, _to_l)     in current_app.config.variant_dictionaries:
+                var = current_app.config.variant_dictionaries.get((_from_l, _to_l))
+                (_from_l, _to_l) = var.get('orig_pair')
+
+            pair = ( _from_l
+                   , _to_l
+                   )
+
+            if pair not in current_app.config.dictionaries:
+                return _p
 
             _url  = [ 'detail'
                     , self.query_kwargs.get('target_lang')

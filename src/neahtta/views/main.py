@@ -192,10 +192,14 @@ def wordDetail(from_language, to_language, wordform, format):
         # Use the original language pair if the user has selected a
         # variant
 
+
         if (from_language, to_language) not in current_app.config.dictionaries and \
            (from_language, to_language)     in current_app.config.variant_dictionaries:
             var = current_app.config.variant_dictionaries.get((from_language, to_language))
             (from_language, to_language) = var.get('orig_pair')
+
+        if (from_language, to_language) not in current_app.config.dictionaries:
+            return unsupportedLang()
 
         # Generation paradigms, and generation options
         lang_paradigms = current_app.config.paradigms.get(from_language, {})
