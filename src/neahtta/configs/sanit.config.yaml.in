@@ -109,6 +109,7 @@ Dictionaries:
     target: sme
     path: 'dicts/nob-sme.all.xml'
     show_korp_search: True
+    alternate_search_url: "http://gtweb.uit.no/korp/?mode=parallel#parallel_corpora=nob&page=0&search=cqp%7C%5Bword%20%3D%20%22USER_INPUT%22%5D%3A%20%3CLINKED_CORPUS%3E%20%5B%5D"
     lemma_search_url: *korp_lemma_search
     lemma_multiword_delimiter: *korp_lemma_delim
 
