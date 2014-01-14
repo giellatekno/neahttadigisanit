@@ -387,10 +387,10 @@ mdf-all.xml: $(GTHOME)/langs/mdf/src/morphology/stems/*.xml
 	$(SAXON) inDir=$(pwd)/mdf/ > mdf-all.xml
 	rm -rf mdf/
 
-valks-lexica:  myv-all.xml mdf-all.xml
+valks-lexica:  myv-all.xml mdf-all.xml fin-myv.xml
 
 rm-valks-lexica:
-	rm -rf myv-all.xml mdf-all.xml	
+	rm -rf myv-all.xml mdf-all.xml fin-myv.xml
 
 .PHONY: valks-install
 valks-install: GT_COMPILE_LANGS := fin myv mdf
