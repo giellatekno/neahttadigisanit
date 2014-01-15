@@ -5,6 +5,6 @@ morphology:
 {{ lemma }}+N+Sg+Nom+Indef
 {{ lemma }}+N+Pl+Nom+Indef
 {{ lemma }}+N+Pl+Nom+PxSg2
-{{ lemma }}+N+Ela+Indef
+{{ lemma }}+N+SP+Ela+Indef
 {{ lemma }}+N+Sg+Nom+Def
 {{ lemma }}+N+Pl+Nom+Def
