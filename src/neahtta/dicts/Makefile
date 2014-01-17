@@ -485,8 +485,22 @@ izh-fin.xml: $(GTHOME)/langs/izh/src/morphology/stems/*.xml
 	$(SAXON) inDir=$(pwd)/izh/ > $@
 	rm -rf izh/
 
+fin-liv.xml: $(GTHOME)/words/dicts/finliv/src/*.xml
+	@echo "******************************"
+	@echo "** Building fin-liv lexicon **"
+	@echo "******************************"
+	@echo "** Backup made (.bak)       **"
+	@echo "******************************"
+	@echo ""
+	-@cp $@ $@.$(shell date +%s).bak
+	mkdir liv
+	cp $^ liv/
+	$(SAXON) inDir=$(pwd)/liv/ > fin-liv.xml
+	rm -rf liv/
+
 .PHONY: sanat-lexica
 sanat-lexica: olo-fin.xml \
+			  fin-liv.xml \
 			  liv.all.xml \
 			  izh-fin.xml \
 			  fkv-nob.xml \

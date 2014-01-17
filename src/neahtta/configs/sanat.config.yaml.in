@@ -123,6 +123,9 @@ Dictionaries:
       - type: "mobile"
         description: "Mobile friendly (a &rarr; ä ~ ǟ)"
         short_name: "livM"
+  - source: fin
+    target: liv
+    path: 'dicts/fin-liv.xml'
   - source: liv
     target: est
     path: 'dicts/liv.all.xml'
