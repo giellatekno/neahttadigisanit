@@ -479,12 +479,12 @@ def restart_running():
         failures = []
 
         for s, pid in running_services:
-            print(cyan("** Restarting service for <%s> **" % dictionary))
-            stop = env.run("sudo service nds-%s stop" % dictionary)
+            print(cyan("** Restarting service for <%s> **" % s))
+            stop = env.run("sudo service nds-%s stop" % s)
             if not stop.failed:
-                start = env.run("sudo service nds-%s start" % dictionary)
+                start = env.run("sudo service nds-%s start" % s)
                 if not start.failed:
-                    print(green("** <%s> Service has restarted successfully **" % dictionary))
+                    print(green("** <%s> Service has restarted successfully **" % s))
                 else:
                     fail = True
                     failures.append((s, pid))
