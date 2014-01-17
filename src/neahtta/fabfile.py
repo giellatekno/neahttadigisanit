@@ -486,13 +486,11 @@ def restart_running():
                 if not start.failed:
                     print(green("** <%s> Service has restarted successfully **" % s))
                 else:
-                    fail = True
                     failures.append((s, pid))
             else:
-                fail = True
                 failures.append((s, pid))
 
-    if fail:
+    if len(failures) > 0:
         print(red("** something went wrong while restarting the following **"))
         for f in failures:
             print (s, pid)
