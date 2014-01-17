@@ -32,7 +32,7 @@ You may be asked for your SSH password.
 
 """
 
-import os
+import os, sys
 
 from fabric.decorators import roles
 
@@ -70,63 +70,62 @@ no_fst_install = [
 
 @task
 def baakoeh():
-    """ Configure for baakoeh """
+    """ Use baakoeh """
     # TODO: change on gtoahpa.uit.no: compile only does dictionary, not
     # fst
     env.current_dict = "baakoeh"
 
 @task
 def sanit():
-    """ Configure for sanit """
+    """ Use sanit """
     # TODO: change on gtoahpa.uit.no: compile only does dictionary, not
     # fst
     env.current_dict = "sanit"
 
 @task
 def valks():
-    """ Configure for valks """
+    """ Use valks """
     env.current_dict = "valks"
 
 @task
 def guusaaw():
-    """ Configure for guusaaw """
+    """ Use guusaaw """
     env.current_dict = "guusaaw"
 
 @task
 def kyv():
-    """ Configure for kyv """
+    """ Use kyv """
     env.current_dict = "kyv"
 
 @task
 def muter():
-    """ Configure for muter """
+    """ Use muter """
     env.current_dict = "muter"
 
 @task
 def no_svn_up():
-    """ Configure for muter """
+    """ Do not SVN up """
     env.no_svn_up = True
 
 @task
 def pikiskwewina():
-    """ Configure for pikiskwewina """
+    """ Use pikiskwewina """
     env.current_dict = "pikiskwewina"
 
 @task
 def saan():
-    """ Configure for saan """
+    """ Use saan """
     env.current_dict = "saan"
 
 @task
 def sanat():
-    """ Configure for sanat """
+    """ Use sanat """
     env.current_dict = "sanat"
 
 @task
 def vada():
-    """ Configure for vada """
+    """ Use vada """
     env.current_dict = "vada"
-
 
 @task
 def local(*args, **kwargs):
@@ -173,7 +172,7 @@ def gtweb():
 
 @task
 def gtoahpa():
-    """ Run a command remotely on gtweb
+    """ Run a command remotely on gtoahpa
     """
     env.run = run
     env.hosts = ['neahtta@gtoahpa.uit.no']
@@ -191,6 +190,7 @@ def gtoahpa():
 
 @task
 def update_gtsvn():
+    """ SVN up the various ~/gtsvn/ directories """
     if env.no_svn_up:
         print(yellow("** skipping svn up **"))
         return
@@ -210,8 +210,7 @@ def update_gtsvn():
 
 @task
 def restart_service(dictionary=False):
-    """ Restarts the services.
-    """
+    """ Restarts the service. """
 
     if not dictionary:
         dictionary = env.current_dict
@@ -238,17 +237,6 @@ def restart_service(dictionary=False):
 
     if fail:
         print(red("** something went wrong while restarting <%s> **" % dictionary))
-
-@task
-def update_translations():
-
-    with cd(env.i18n_path):
-        env.run('svn up')
-
-    with cd(env.neahtta_path):
-        env.run('pybabel compile -d translations')
-
-    hup_all()
 
 @task
 def compile_dictionary(dictionary=False, restart=False):
@@ -366,6 +354,8 @@ def compile_fst(iso='x'):
 
 @task
 def test_configuration():
+    """ Test the configuration and check language files for errors. """
+
     # TODO: this assumes virtualenv is enabled, need to explicitly enable
     _dict = env.current_dict
     with cd(env.dict_path):
@@ -380,6 +370,8 @@ def test_configuration():
 
 @task
 def extract_strings():
+    """ Extract all the translation strings to the template and *.po files. """
+
     print(cyan("** Extracting strings"))
     cmd = "pybabel extract -F babel.cfg -k gettext -o translations/messages.pot ."
     extract_cmd = env.run(cmd)
@@ -396,6 +388,8 @@ def extract_strings():
 
 @task
 def compile_strings():
+    """ Compile .po strings to .mo strings for use in the live server. """
+
     cmd = "pybabel compile -d translations"
     extract_cmd = env.run(cmd)
     if extract_cmd.failed:
@@ -403,3 +397,26 @@ def compile_strings():
     else:
         print(green("** Compilation successful."))
 
+@task
+def runserver():
+    """ Run the development server. """
+
+    cmd = "pybabel compile -d translations"
+
+    _path = 'configs/%s.config.yaml' % env.current_dict
+
+    try:
+        open(_path, 'r').read()
+    except IOError:
+        if env.real_hostname not in running_service:
+            _path = 'configs/%s.config.yaml.in' % env.current_dict
+            print(yellow("** Production config not found, using development (*.in)"))
+        else:
+            print(red("** Production config not found, and on a production server. Exiting."))
+            sys.exit()
+
+    cmd ="NDS_CONFIG=%s python neahtta.py" % _path
+    print(green("** Go."))
+    run_cmd = env.run(cmd)
+    if run_cmd.failed:
+        print(red("** Starting failed for some reason."))
