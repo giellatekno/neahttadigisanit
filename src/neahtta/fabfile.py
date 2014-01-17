@@ -51,6 +51,8 @@ env.no_svn_up = False
 env.use_ssh_config = True
 # env.key_filename = '~/.ssh/neahtta'
 
+from config import yaml
+
 import socket
 env.real_hostname = socket.gethostname()
 
@@ -396,6 +398,56 @@ def compile_strings():
         print(red("** Compilation failed, aborting."))
     else:
         print(green("** Compilation successful."))
+
+def where(iso):
+    """ Searches Config and Config.in files for languages defined in 
+    Languages. Returns list of tuples.
+
+        (config_path, short_name, iso)
+
+    """
+
+    configs = []
+    for d, path, fs in os.walk('configs/'):
+        for f in fs:
+            if f.endswith(('.config.yaml.in', '.config.yaml')):
+                configs.append(os.path.join(d, f))
+
+    def test_lang(i):
+        if isinstance(iso, list):
+            if i.get('iso') in iso:
+                return True
+        else:
+            if i.get('iso') == iso:
+                return True
+        return False
+
+    locations = []
+    for config in configs:
+        with open(config, 'r') as F:
+            _y = yaml.load(F.read())
+            short_name = _y.get('ApplicationSettings', {}).get('short_name')
+            langs = filter(test_lang, _y.get('Languages'))
+
+            for l in langs:
+                locations.append((config, short_name, l.get('iso')))
+
+    return locations
+
+
+@task
+def where_is(iso='x'):
+    """ Search *.in files for language ISOs to return projects that the
+    language is present in. """
+
+    if '+' in iso:
+        iso = iso.split('+')
+
+    locations = where(iso)
+
+    for config, shortname, l in locations:
+        print '%s : %s\t\t%s' % (l, shortname, config)
+
 
 @task
 def runserver():
