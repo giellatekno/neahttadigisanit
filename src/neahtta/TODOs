@@ -1,3 +1,10 @@
+
+* Reader needs some code cleanup
+* Wordpress install process needs to be fixed also: it's easy to forget
+  to define what hostname that the wordpress plugin should use. This should
+  be an option in the wordpress UI, instead of something that is hardcoded
+
+
 * tests should be yamlized too, and need clearer error messages. 
 
 * autocomplete - enter should select if navigating through box
