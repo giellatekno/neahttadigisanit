@@ -448,6 +448,54 @@ def where_is(iso='x'):
     for config, shortname, l in locations:
         print '%s : %s\t\t%s' % (l, shortname, config)
 
+def search_running():
+    """ Find all running services, return tuple of shortname and pidfile path 
+    """
+    pidfile_suffix = "-pidfile.pid"
+
+    pids = []
+    for d, ds, fs in os.walk('.'):
+        for f in fs:
+            if f.endswith(pidfile_suffix):
+                pids.append(
+                    (f.replace(pidfile_suffix, ''), os.path.join(d,f))
+                )
+
+    return pids
+
+@task
+def find_running():
+    hostname = env.real_hostname
+    for shortname, pidfile in search_running():
+        print "%s running on %s (%s)" % (green(shortname), yellow(hostname), pidfile)
+
+@task
+def restart_running():
+    hostname = env.real_hostname
+    find_running()
+
+    with cd(env.neahtta_path):
+        running_services = search_running()
+        failures = []
+
+        for s, pid in running_services:
+            print(cyan("** Restarting service for <%s> **" % dictionary))
+            stop = env.run("sudo service nds-%s stop" % dictionary)
+            if not stop.failed:
+                start = env.run("sudo service nds-%s start" % dictionary)
+                if not start.failed:
+                    print(green("** <%s> Service has restarted successfully **" % dictionary))
+                else:
+                    fail = True
+                    failures.append((s, pid))
+            else:
+                fail = True
+                failures.append((s, pid))
+
+    if fail:
+        print(red("** something went wrong while restarting the following **"))
+        for f in failures:
+            print (s, pid)
 
 @task
 def runserver():
