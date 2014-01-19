@@ -8,3 +8,4 @@ morphology:
 {{ lemma }}+N+SP+Ela+Indef
 {{ lemma }}+N+Sg+Nom+Def
 {{ lemma }}+N+Pl+Nom+Def
+{{ lemma }}+N+Der/НЕ+Dimin+N+Sg+Nom+Indef
