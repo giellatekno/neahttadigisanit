@@ -631,6 +631,7 @@ def indexWithLangsToReference(_from, _to):
     if len(errors) == 0:
         errors = False
 
+    pair_settings = current_app.config.pair_definitions[(_from, _to)]
     # TODO: include form analysis of user input #formanalysis
     return render_template( 'index.html'
                           , language_pairs=current_app.config.pair_definitions
@@ -648,6 +649,7 @@ def indexWithLangsToReference(_from, _to):
                           , successful_entry_exists=successful_entry_exists
                           , mobile=mobile
                           , iphone=iphone
+                          , current_pair_settings=pair_settings
                           )
 
 @blueprint.route('/about/', methods=['GET'])
