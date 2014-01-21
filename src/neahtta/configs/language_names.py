@@ -101,6 +101,7 @@ LOCALISATION_NAMES_BY_LANGUAGE = dict([
     ('fkv', u"Kveenin kieli"),
     ('fi', u"Suomi"),
     ('eng', u"English"),
+    ('et', u"Estonian"),
     ('est', u"Estonian"),
     ('sms', u"sääˊmǩiõll"),
     ('hdn', u"X̲aat Kíl"),
