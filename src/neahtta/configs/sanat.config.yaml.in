@@ -6,10 +6,11 @@ ApplicationSettings:
   default_pair: ["olo", "fin"]
   mobile_default_pair: false
   locales_available:
-    - fi
+    - "fi"
     - "no"
-    - lv
-    - ru
+    - "lv"
+    - "ru"
+    - "et"
   # TODO: someone will have to decide on the meta keywords and
   # descriptions for google.
   meta_description: >
