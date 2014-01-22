@@ -80,6 +80,10 @@ NAMES = dict([
     ('fra', _(u"French")),
 ])
 
+# These will show up in the localization menu, or wherever the
+# language's own name needs to be visible. If the language
+# also has a two-character ISO, that will need to be listed too.
+
 LOCALISATION_NAMES_BY_LANGUAGE = dict([
     ('sme', u"Davvisámegiella"),
     ('se', u"Davvisámegiella"),
@@ -95,6 +99,7 @@ LOCALISATION_NAMES_BY_LANGUAGE = dict([
     ('lav', u"Latviešu valoda"),
     ('liv', u"Līvõ kēļ"),
     ('kpv', u"Коми кыв"),
+    ('kv', u"Коми кыв"),
     ('kpvS', u"Коми кыв (Молодцов ортография)"),
     ('udm', u"Удмурт кыл"),
     ('izh', u"Ižoran keel"),
