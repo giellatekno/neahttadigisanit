@@ -19,11 +19,11 @@ msgstr ""
 
 #: configs/kyv.config.yaml.in:93
 msgid "Standard"
-msgstr ""
+msgstr "Standard"
 
 #: configs/kyv.config.yaml.in:96
 msgid "Molotsov orthography (ԅ &rarr; зь)"
-msgstr ""
+msgstr "Molotsovi ortograafia (ԅ &rarr; зь)"
 
 #: configs/language_names.py:23
 #: configs/language_names.py:24
@@ -71,7 +71,7 @@ msgstr "kveeni"
 #: configs/language_names.py:40
 #: templates/more_dictionaries.html:38
 msgid "Livonian"
-msgstr ""
+msgstr "liivi"
 
 #: configs/language_names.py:40
 msgid "mobile friendly"
@@ -168,16 +168,16 @@ msgstr "Social media (incl. <em>acdnstz</em>)"
 #: configs/sanat.config.yaml.in:132
 #: configs/sanat.config.yaml.in:143
 msgid "Standard (äǟ)"
-msgstr ""
+msgstr "Standard (äǟ)"
 
 #: configs/sanat.config.yaml.in:135
 #: configs/sanat.config.yaml.in:146
 msgid "Mobile friendly (a &rarr; ä ~ ǟ)"
-msgstr ""
+msgstr "Telefonisõbralik (a &rarr; ä ~ ǟ)"
 
 #: static/js/bookmarklet.js:1245
 msgid "Á"
-msgstr ""
+msgstr "Á"
 
 #: static/js/bookmarklet.js:1245
 msgid "Options"
@@ -204,7 +204,7 @@ msgstr "sõnaraamat"
 
 #: static/js/bookmarklet.js:1245
 msgid "Save"
-msgstr "salvestada"
+msgstr "salvesta"
 
 #: static/js/bookmarklet.js:1245
 msgid "Refresh settings"
@@ -220,11 +220,13 @@ msgstr "IE8 hoiatus"
 
 #: static/js/bookmarklet.js:1245
 msgid "In order to look up a word, hold down the <em>Alt</em> or <em>Option</em> (⌥) key, and doubleclick on a word. The service will contact the dictionary, and return a word after a short pause."
-msgstr ""
+msgstr "Sõna tähenduse vaatamiseks hoia all <em>Alt</em> või <em>Option</em> (⌥) klahvi ja tee topeltklõps sõnal.\
+ Teenus võtab ühendust sõnaraamatuga ja väljastab hetke pärast tõlkesõna."
 
 #: static/js/bookmarklet.js:1245
 msgid "If you find a bug, or if the bookmark does not work on a specific page <a href=\"mailto:giellatekno@hum.uit.no\">please contact us</a>. Tell us what page didn't work, or what you did when you discovered the problem."
-msgstr ""
+msgstr "Kui sa leiad vea või mõni link ei tööta teatud lehel  <a href=\"mailto:giellatekno@hum.uit.n\
+o\">"võta palun ühendust</a>. Kirjuta, mis lehekülg ei töötanud või mida sa tegid, kui probleem tekkis."
 
 #: static/js/bookmarklet.js:1310
 msgid "Error!"
@@ -303,6 +305,10 @@ msgid ""
 "                    you'll find free dictionaries, and other analytical\n"
 "                    tools."
 msgstr ""
+"Kõik (või peaaegu kõik), mis\n"
+"                    puudutab vähemuskeeli peaks olema tasuta. Siit\n"
+"                    leiad sa tasuta sõnaraamatuid ja teisi\n" 
+"                    analüüsivahendeid."
 
 #: templates/about.baakoeh.html:27
 #: templates/about.muter.html:27
@@ -349,7 +355,7 @@ msgstr "Kirjuta, mida tahad ja sõnaramaamat analüüsib seda osade kaupa leides
 #: templates/about.baakoeh.html:43
 #: templates/about.sanit.html:43
 msgid "gå, dra, reise"
-msgstr ""
+msgstr "gå, dra, reise"
 
 #: templates/about.baakoeh.html:50
 #: templates/about.muter.html:50
@@ -360,7 +366,7 @@ msgstr ""
 .vada.html:52
 #: templates/about.valks.html:52
 msgid "Source material"
-msgstr "Algmaterjal"
+msgstr "Algmaterjalid"
 
 #: templates/about.baakoeh.html:57
 #: templates/about.sanit.html:57
@@ -408,13 +414,13 @@ msgstr "Iga sõnaraamat sisaldab umbes 11000 sõna."
 #: templates/about.vada.html:78
 #: templates/about.valks.html:90
 msgid "More to come..."
-msgstr "On oodata uusi..."
+msgstr "Uued on tulekul..."
 
 #: templates/about.muter.html:43
 #: templates/about.vada.html:45
 #: templates/about.valks.html:45
 msgid "mennä, lähteä, kulkea"
-msgstr ""
+msgstr "mennä, lähteä, kulkea"
 
 #: templates/about.muter.html:57
 msgid "mrj ↔ fin"
@@ -431,6 +437,12 @@ msgid ""
 "                the University of Helsinki by Julia Kuprina with funding from\n"
 "                the Kone Foundation."
 msgstr ""
+"Mäemari ja soome keele sõnaraamatud tuginevad\n"
+"                    leksikaalsel materjalil hulgast sõnaraamatutest ja\n"
+"                    kirjandusest 20. ja 21. sajandist.\n"
+"                    Märkimisväärne sõnaraamat on Anna Savatkova Mäemari-vene\n"
+"                    sõnaraamat (1981). Tõlketööd teeb Julia Kuprina Helsingi\n"
+"                    ülikoolis Kone sihtasutuse rahastusel."
 
 #: templates/about.sanat.html:43
 msgid "mennä, tapahtua, viedä, johtaa, edistyä"
@@ -448,11 +460,12 @@ msgid ""
 "                Valts Ernštreits. Finnish translation work, content analysis\n"
 "                and coordination is being continued in Helsinki by Renate\n"
 "                Blumberga with funding from the Kone Foundation."
-msgstr "Liivi ja soome sõnaraamatud tuginevad\n"
+msgstr ""
+"Liivi ja soome sõnaraamatud tuginevad\n"
 "                Tiit-Rein Viitso ja Valts Ernštreitsi koostatud\n"
 "                Liivi-eesti-läti sõnaraamatu materjalil. Tõlget soome keelde,\n"
 "                sisuanalüüsi ja koordineerimist jätkab Renate Blumberga\n"
-"                Kone sihtasutuse toel." 
+"                Kone sihtasutuse rahastusel." 
 #: templates/about.sanat.html:67
 msgid "olo ↔ fin"
 msgstr "olo ↔ fin"
@@ -477,11 +490,14 @@ msgid ""
 "                and tell us what web browser or mobile phone you were using, or what word you\n"
 "                were searching for when you encountered the problem."
 msgstr ""
+"Kui sa leiad vea, siis võta, palun, meiega ühendust. Kirjelda probleemi,\n"
+"                ja ütle, millist brauserut või telefoni sa kasutasid või mis sõna\n"
+"                sa otsisid, kui probleem tekkis."
 
 #: templates/about.sanit.html:79
 #: templates/about.sanit.html:84
 msgid "Contact us"
-msgstr ""
+msgstr "Võta meiega ühendust"
 
 #: templates/about.sanit.html:89
 msgid ""
@@ -504,7 +520,7 @@ msgstr ""
 "Tundraneenetsi ja soome sõnaraamatud tuginevad\n"
 "               Natalia Tereštšenko, Tapani Salmineni ja Sven-Erik Soosaare\n"
 "	        materjalidel ja teadusuuringutel. Soome keelde tõlgib Sven-Erik Soosaar \n"
-"		Kone sihtasutuse toetusel."
+"		Kone sihtasutuse rahastusel."
 #: templates/about.valks.html:59
 msgid "myv ↔ fin"
 msgstr "myv ↔ fin"
@@ -653,7 +669,9 @@ msgid ""
 "                online, they are not linked here, but please contact us if you\n"
 "                would like to see a demo!"
 msgstr ""
-
+"Me töötame praegu mõne uue sõnaraamatuga\n"
+"                järgmiste keelerühmade jaoks. Need ei pruugi alati\n"
+"                olla onlainis, aga võta meiega ühedust, kui soovid demo näha!"
 #: templates/more_dictionaries.html:37
 msgid "Balto-finnic languages"
 msgstr "Läänemeresoome keeled"
@@ -676,11 +694,11 @@ msgstr "ersa"
 
 #: templates/more_dictionaries.html:41
 msgid "Mari languages"
-msgstr "mari"
+msgstr ""
 
 #: templates/more_dictionaries.html:41
 msgid "Eastern and Western."
-msgstr "niidu- ja mäe-"
+msgstr "niidu- ja mäemari"
 
 #: templates/more_dictionaries.html:42
 msgid "Permic languages"
@@ -723,7 +741,7 @@ msgstr ""
 #: templates/reader.html:26
 #: templates/reader_update.html:15
 msgid "Read with Neahttadigisánit"
-msgstr ""
+msgstr "Loe Neahttadigisánit-iga"
 
 #: templates/reader.html:27
 msgid ""
@@ -732,7 +750,9 @@ msgid ""
 "                website and return dictionary entries after a brief\n"
 "                pause."
 msgstr ""
-
+"Sõna järgi vaatamiseks hoia all Alt või Option (⌥) klahvi ja tee topeltklõps\n"
+"               sõnal. Teenus võtab ühendust selle saidiga\n" 
+"               ja saadab vastuse hetke pärast."
 #: templates/reader.html:31
 msgid "To change the dictionary, click the menu icon."
 msgstr "Sõnaraamatu vahetamiseks, klõpsa menüül."
