@@ -82,15 +82,15 @@ msgstr ""
 
 #: configs/language_names.py:43
 msgid "Estonian"
-msgstr ""
+msgstr "эстон"
 
 #: configs/language_names.py:46
 msgid "Erzya Mordvin"
-msgstr ""
+msgstr "эрзӓ"
 
 #: configs/language_names.py:47 templates/more_dictionaries.html:39
 msgid "Moksha"
-msgstr ""
+msgstr "мокша"
 
 #: configs/language_names.py:48 configs/language_names.py:80
 msgid "French"
@@ -98,11 +98,11 @@ msgstr ""
 
 #: configs/language_names.py:51
 msgid "Western Mari"
-msgstr ""
+msgstr "кырык мары"
 
 #: configs/language_names.py:52
 msgid "Eastern Mari"
-msgstr ""
+msgstr "алык мары"
 
 #: configs/language_names.py:55
 msgid "Nenets"
@@ -723,7 +723,7 @@ msgstr ""
 
 #: templates/more_dictionaries.html:39
 msgid "Erzya"
-msgstr ""
+msgstr "эрзӓ"
 
 #: templates/more_dictionaries.html:41
 #, fuzzy
