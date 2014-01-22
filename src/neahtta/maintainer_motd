@@ -1,28 +1,28 @@
-﻿###
-###  Neahttadigisánit maintainer tasks
-###
+﻿    ###
+    ###  Neahttadigisánit maintainer tasks
+    ###
+    
+    Updating dictionaries & FSTs
+    
+        $ fab local PROJECT compile
+    
+    Updating just the lexicon
+    
+        $ fab local PROJECT compile_dictionary
+    
+    Updating translation strings
+    
+        $ fab local update_strings
+    
+    Testing configuration (run before restart, always)
 
-# Updating dictionaries & FSTs
-
-    $ fab local PROJECT compile
-
-# Updating just the lexicon
-
-    $ fab local PROJECT compile_dictionary
-
-# Updating translation strings
-
-    $ fab local update_strings
-
-# Testing configuration
-
-    $ fab local PROJECT test_configuration
-
-# Restarting services
-
-    $ fab local PROJECT restart_service
-
-# Find a language
-
-    $ fab local where_is:ISO
+        $ fab local PROJECT test_configuration
+    
+    Restarting services
+    
+        $ fab local PROJECT restart_service
+    
+    Find a language
+    
+        $ fab local where_is:ISO
 
