@@ -42,7 +42,7 @@ msgstr "inglise"
 
 #: configs/language_names.py:27
 msgid "Hungarian"
-msgstr ""
+msgstr "ungari"
 
 #: configs/language_names.py:30
 #: templates/more_dictionaries.html:28
@@ -192,7 +192,7 @@ msgstr "Valikud"
 #: templates/about.valks.html:7
 #: templates/base.html:93
 msgid "About"
-msgstr "kohta"
+msgstr "Meist"
 
 #: static/js/bookmarklet.js:1245
 msgid "Advanced"
@@ -200,11 +200,11 @@ msgstr "edasijõudnud"
 
 #: static/js/bookmarklet.js:1245
 msgid "Dictionary"
-msgstr "sõnaraamat"
+msgstr "Sõnaraamat"
 
 #: static/js/bookmarklet.js:1245
 msgid "Save"
-msgstr "salvesta"
+msgstr "Salvesta"
 
 #: static/js/bookmarklet.js:1245
 msgid "Refresh settings"
@@ -724,11 +724,11 @@ msgstr ""
 #: templates/reader.html:3
 #: templates/reader.html:20
 msgid "Neahttadigisánit Reader"
-msgstr ""
+msgstr "Neahttadigisánit lugeja"
 
 #: templates/reader.html:21
 msgid "Bookmarklet"
-msgstr ""
+msgstr "Järjehoidja"
 
 #: templates/reader.html:22
 msgid ""
