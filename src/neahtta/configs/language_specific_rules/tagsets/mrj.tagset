@@ -1,2 +1,3 @@
 ﻿pos: ["N", "V", "A", "Pr", "Po", "Num"]
 type: ["NomAg", "G3", "aktor"]
+homonymy: ["Hom1", "Hom2"]

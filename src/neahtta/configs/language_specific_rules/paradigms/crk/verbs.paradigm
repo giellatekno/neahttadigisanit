@@ -1,10 +1,16 @@
 name: "verbs"
 morphology:
   pos: V
+  animacy: 
+    - TA
+    - IA
 --
-{{ lemma }}+V+Ind+Prs+Sg1
-{{ lemma }}+V+Ind+Prs+Sg2
-{{ lemma }}+V+Ind+Prs+Sg3
-{{ lemma }}+V+Ind+Prs+Pl1
-{{ lemma }}+V+Ind+Prs+Pl2
-{{ lemma }}+V+Ind+Prs+Pl3
+{{ lemma }}+V+{{ animacy }}+Ind+Prs+1Sg+3SgO
+{{ lemma }}+V+{{ animacy }}+Ind+Prs+2Sg+3SgO
+{{ lemma }}+V+{{ animacy }}+Ind+Prs+3Sg+3SgO
+{{ lemma }}+V+{{ animacy }}+Ind+Prs+3oSg+3SgO
+{{ lemma }}+V+{{ animacy }}+Ind+Prs+3iSg+3SgO
+{{ lemma }}+V+{{ animacy }}+Ind+Prs+1Pl+3SgO
+{{ lemma }}+V+{{ animacy }}+Ind+Prs+12Pl+3SgO
+{{ lemma }}+V+{{ animacy }}+Ind+Prs+2Pl+3SgO
+{{ lemma }}+V+{{ animacy }}+Ind+Prs+3Pl+3SgO

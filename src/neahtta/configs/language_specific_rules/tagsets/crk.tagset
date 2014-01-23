@@ -1,2 +1,3 @@
 pos: ["N", "V", "Num"]
+animacy: ["TA", "IA"]
 type: ["NomAg"]
