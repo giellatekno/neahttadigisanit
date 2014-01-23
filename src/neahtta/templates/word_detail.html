@@ -154,8 +154,13 @@
                     {% endif %}
                     <dd>
                         <ul class="possible_forms">
+                            {% set existing_tags = [] %}
                             {% for lem in lemmafs %}
-                                <li>{{ lem.tag|tagfilter(_from, _to) }}</li>
+                                {% set formatted_tag = lem.tag|tagfilter(_from, _to) %}
+                                {% if formatted_tag not in existing_tags %}
+                                    <li>{{ formatted_tag }}</li>
+                                    {% do existing_tags.append(formatted_tag) %}
+                                {% endif %}
                             {% endfor %}
                         </ul>
                     </dd>
