@@ -34,6 +34,7 @@ def jinja_options_and_filters(app):
     app = register_filters(app)
     app.jinja_env.line_statement_prefix = '#'
     app.jinja_env.add_extension('jinja2.ext.i18n')
+    app.jinja_env.add_extension('jinja2.ext.do')
 
     return app
 
