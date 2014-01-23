@@ -1,16 +1,16 @@
 ApplicationSettings:
   app_name: "Neahttadigisánit"
-  app_meta_title: "Neahttadigisánit"
+  mobile_bookmark_name: "NDS: мутер"
   short_name: "muter"
   default_locale: "mrj"
   default_pair: ["mrj", "fin"]
   mobile_default_pair: false
   locales_available:
     - mrj
-    # TODO: enable once mhr dictionaries work - mhr
     - fi
     - en
   # TODO: more keywords and descriptions
+  app_meta_title: "online dictionaries"
   meta_description: >
       Free online, mobile friendly dictionaries for Eastern and Western Mari
   meta_keywords: >
