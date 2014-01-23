@@ -78,13 +78,14 @@ class Tag(object):
     def __getitem__(self, b):
         """ Overloading the xor operator to produce the tag piece that
         belongs to a given tagset. """
+        _input = b
         if isinstance(b, int):
             return self.parts[b]
         if isinstance(b, str) or isinstance(b, unicode):
             b = self.sets.get(b, False)
             if not b:
                 _s = ', '.join(self.sets.keys())
-                raise IndexError("Invalid tagset <%s>. Choose one of: %s" % (b, _s))
+                raise IndexError("Invalid tagset <%s>. Choose one of: %s" % (_input, _s))
         elif isinstance(b, Tagset):
             pass
         return self.getTagByTagset(b)
