@@ -24,6 +24,14 @@ def define_app_title():
     return dict(app_meta_title=current_app.config.app_meta_title)
 
 @blueprint.context_processor
+def define_app_short_name():
+    return dict(app_short_name=current_app.config.short_name)
+
+@blueprint.context_processor
+def define_app_mobile_bookmark_name():
+    return dict(app_mobile_bookmark_name=current_app.config.app_mobile_bookmark_name)
+
+@blueprint.context_processor
 def define_app_meta_keywords():
     return dict(app_meta_keywords=current_app.config.meta_keywords)
 

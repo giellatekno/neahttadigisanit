@@ -6,19 +6,35 @@
         <meta name="google-site-verification" content="9N9Tebim_a2IszkaT9fE2Q3tgIaHiAkAmUpfeJyVHnA" />
         {# TODO: enable indexing by removing following #}
         <meta name="robots" content="index">
+        <!-- TODO: bookmark-app thing
+             TODO: add bookmark js popup? 
+        -->
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+
+        <!-- iOS 7 only uses the last line -->
+        <meta name="viewport" content="initial-scale=1.0,width=device-width,user-scalable=no" />
+
+        <link rel="apple-touch-icon" href="/static/img/mobile_bookmark_icons/{{ app_short_name }}.png"/>  
+        <link rel="apple-touch-icon" sizes="72x72" href="/static/images/{{ app_short_name }}_72x72.png"/>  
+        <link rel="apple-touch-icon" sizes="114x114" href="/static/images/{{ app_short_name }}_114x114.png"/>
+
+        <link rel="shortcut icon" href="/favicon.ico">
+
+        {% if app_meta_title and app_meta_title != app_name %}
+            {% set app_name_desc = app_name + ' - ' + app_meta_title %}
+        {% else %}
+            {% set app_name_desc = app_name %}
+        {% endif %}
+
+        <meta name="apple-mobile-web-app-title" content="{{ app_mobile_bookmark_name }}">
+
         {% block meta_title %}
-            {% if app_meta_title %}
-                <meta name="title" content="{{ app_name }} - {{ app_meta_title }}">
-            {% else %}
-                <meta name="title" content="{{ app_name }}">
-            {% endif %}
+            <meta name="title" content="{{ app_name_desc }}">
         {% endblock %}
 
         {% block meta_description %}
             {% if app_meta_desc %}
                 <meta name="description" content="{{ app_meta_desc }}">
-            {% else %}
-                <meta name="description" content="Gratis online mobilvennlige nordsamiske og sørsamiske ordbøker">
             {% endif %}
         {% endblock %}
 
@@ -30,12 +46,6 @@
                 sørsamisk, finsk, norsk, pohjoissaame, davvisámegiella north sámi,
                 south sámi, norwegian, finnish, sámegiella, sámi language,
                 lullisámegiella, sørsamisk, mobil ordbok">
-        {% endif %}
-
-        {% if app_meta_title %}
-            {% set app_name_desc = app_name + ' - ' + app_meta_title %}
-        {% else %}
-            {% set app_name_desc = app_name %}
         {% endif %}
 
         <title>{% block title %}{% endblock %}{{ app_name_desc }}</title>

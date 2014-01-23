@@ -119,6 +119,15 @@ class Config(Config):
                                self.filename)
 
     @property
+    def app_mobile_bookmark_name(self):
+        _p = self.yaml.get('ApplicationSettings', {})\
+                      .get('mobile_bookmark_name', False)
+        if _p:
+            return _p
+        else:
+            return self.app_meta_title
+
+    @property
     def mobile_redirect_pair(self):
         _p = self.yaml.get('ApplicationSettings', {})\
                       .get('mobile_default_pair', None)
