@@ -191,6 +191,25 @@ def gtoahpa():
     env.remote_no_fst = True
 
 @task
+def update_configs():
+    """ SVN up the config files """
+    if env.no_svn_up:
+        print(yellow("** skipping svn up **"))
+        return
+
+    with cd(env.neahtta_path):
+        paths = [
+            'config.py',
+            'configs/',
+            'translations/',
+        ]
+        print(cyan("** svn up **"))
+    for p in paths:
+        _p = os.path.join(env.neahtta_path, p)
+        with cd(_p):
+            env.run('svn up ' + _p)
+
+@task
 def update_gtsvn():
     """ SVN up the various ~/gtsvn/ directories """
     if env.no_svn_up:
@@ -292,6 +311,7 @@ def compile(dictionary=False,restart=False):
         dictionary = env.current_dict
 
     update_gtsvn()
+    update_configs()
 
     with cd(env.dict_path):
         if env.no_svn_up:
@@ -389,6 +409,18 @@ def extract_strings():
             print(green("** Update worked. You may now check in or translate."))
 
 @task
+def update_strings():
+    if env.no_svn_up:
+        print(yellow("** skipping svn up **"))
+        compile_strings()
+        return
+
+    with cd(env.i18n_path):
+        env.run("svn up")
+
+    compile_strings()
+
+@task
 def compile_strings():
     """ Compile .po strings to .mo strings for use in the live server. """
 
@@ -400,7 +432,7 @@ def compile_strings():
         print(green("** Compilation successful."))
 
 def where(iso):
-    """ Searches Config and Config.in files for languages defined in 
+    """ Searches Config and Config.in files for languages defined in
     Languages. Returns list of tuples.
 
         (config_path, short_name, iso)
@@ -449,7 +481,7 @@ def where_is(iso='x'):
         print '%s : %s\t\t%s' % (l, shortname, config)
 
 def search_running():
-    """ Find all running services, return tuple of shortname and pidfile path 
+    """ Find all running services, return tuple of shortname and pidfile path
     """
     pidfile_suffix = "-pidfile.pid"
 
