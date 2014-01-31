@@ -3,7 +3,6 @@ function standaloneInit() {
     // Redirect links to not open up in the browser
     // https://gist.github.com/irae/1042167
     (function(document,navigator,standalone) {
-        console.log("is this even?");
         // prevents links from apps from oppening in mobile safari
         // this javascript must be the first script in your <head>
         if ((standalone in navigator) && navigator[standalone]) {
@@ -21,8 +20,13 @@ function standaloneInit() {
                     (   !(/^[a-z\+\.\-]+:/i).test(chref) ||                       // either does not have a proper scheme (relative links)
                         chref.indexOf(location.protocol+'//'+location.host)===0 ) // or is in the same protocol and domain
                 ) {
-                    e.preventDefault();
-                    location.href = curnode.href;
+                    // Some links are not actually links.
+                    if(curnode.href !== "") {
+                        e.preventDefault();
+                        location.href = curnode.href;
+                    } else {
+                        return true;
+                    }
                 }
             },false);
         }
