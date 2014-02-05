@@ -65,8 +65,10 @@ Dictionaries:
   - source: sma
     target: nob
     show_korp_search: True
-    alternate_search_url: &alt_korp_search "http://gtweb.uit.no/korp/#page=0&corpus=sma_corpus_20131218&search=word|USER_INPUT"
-    lemma_search_url: &korp_lemma_search 'http://gtweb.uit.no/korp/#page=0&corpus=sma_corpus_20131218&search-tab=2&search=cqp%7C%5Blemma%20%3D%20%22INPUT_LEMMA%22%5D'
+    wordform_search_url: &alt_korp_search 
+      "http://gtweb.uit.no/korp/?mode=sma#search=word%7CUSER_INPUT&page=0"
+    lemma_search_url: &korp_lemma_search 
+      "http://gtweb.uit.no/korp/?mode=sma#page=0&search-tab=2&search=cqp%7C%5Blemma%20%3D%20%22INPUT_LEMMA%22%5D"
     lemma_multiword_delimiter: &korp_lemma_delim '%22%5D%20%5Bword%20%3D%20%22'
     path: 'dicts/sma-nob.all.xml'
 
