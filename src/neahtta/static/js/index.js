@@ -26,24 +26,10 @@ $(document).ready( function() {
         $('button').attr('disabled', false);
     });
 
-    // Korp search redirect
-    $('.korp_search').click(function(evt) {
-        var search_url = $(evt.target).attr('data-search-url')
-          , search_del = $(evt.target).attr('data-search-delim')
-          , user_input = $('input[type="text"]').val()
-          ;
-
-        if (user_input.search(' ') > -1) {
-            user_input = user_input.split(' ').join(search_del);
-        };
-        var redirect_url = search_url.replace('USER_INPUT', user_input);
-        window.location = redirect_url;
-        return evt.preventDefault();
-    });
-
     // Discourage submission if there is nothing to submit
     $('form').submit(function(evt) {
         var inputs = $(evt.target).find('input[type="text"]')
+          , target = $(evt.target).find('button[type=submit][clicked=true]')
           , submit = $(evt.target).find('button[type="submit"]')
           ;
         for (_i = 0, _len = inputs.length; _i < _len; _i++) {
@@ -54,24 +40,16 @@ $(document).ready( function() {
                 continue;
             }
         }
+
         inputs.prop("readonly", true);
         submit.prop("disabled", true);
+
+        // Re-enable the form elements after a delay.
+        setTimeout(function(){
+            inputs.prop("readonly", false);
+            submit.prop("disabled", false);
+        }, 1000);
+
     });
 
-    // $('.example_set button').click(function(evt) {
-    // 	var target = $(evt.target).parents('.example_set')
-    // 	                          .find('blockquote.examples') ;
-    // 	console.log(target) ;
-    // 	if (target.hasClass('hidden-phone')) {
-    // 	    target.hide();
-    // 	    target.removeClass('hidden-phone') ;
-    // 	    target.slideDown() ;
-    // 	} else {
-    // 	    target.slideUp(400, function(){
-    // 	        target.hide();
-    // 	        target.addClass('hidden-phone') ;
-    // 	    }) ;
-    // 	}
-    // });
 });
-
