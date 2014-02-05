@@ -102,7 +102,7 @@ Dictionaries:
     #
     # cqp|[lemma = "INPUT_LEMMA"]
     lemma_search_url: &korp_lemma_search 
-      "http://gtweb.uit.no/korp/#page=0&corpus=sme_corpus_20131218,turi_corpus&search-tab=2&search=cqp%7C%5Blemma%20%3D%20%22INPUT_LEMMA%22%5D"
+      "http://gtweb.uit.no/korp/#page=0&search-tab=2&search=cqp%7C%5Blemma%20%3D%20%22INPUT_LEMMA%22%5D"
     # "] [word = "
     lemma_multiword_delimiter: &korp_lemma_delim 
       "%22%5D%20%5Bword%20%3D%20%22"
