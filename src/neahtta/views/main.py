@@ -31,6 +31,85 @@ def to_xml_string(n):
             return _str.decode('utf-8')
     return ''
 
+def resolve_original_pair(config, _from, _to):
+    """ For a language pair alternate, return the original language pair
+    that is the parent to the alternate.
+
+    TODO: this was more or less copied from the index views, but now
+    those other views should use this instead.
+    TODO: write tests.
+    """
+
+    # mobile test for most common browsers
+    mobile = False
+    if request.user_agent.platform in ['iphone', 'android']:
+        mobile = True
+
+    iphone = False
+    if request.user_agent.platform == 'iphone':
+        iphone = True
+
+    # Variables to control presentation based on variants present
+    current_pair = config.pair_definitions.get((_from, _to), {})
+    reverse_pair = config.pair_definitions.get((_to, _from), {})
+
+    current_pair_variants = current_pair.get('input_variants', False)
+    has_variant = bool(current_pair_variants)
+    has_mobile_variant = False
+
+    if has_variant:
+        _mobile_variants = filter( lambda x: x.get('type', '') == 'mobile'
+                                 , current_pair_variants
+                                 )
+        if len(_mobile_variants) > 0:
+            has_mobile_variant = _mobile_variants[0]
+
+
+    variant_dictionaries = config.variant_dictionaries
+    is_variant, orig_pair = False, ()
+
+    if variant_dictionaries:
+        variant    = variant_dictionaries.get((_from, _to), False)
+        is_variant = bool(variant)
+        if is_variant:
+            orig_pair = variant.get('orig_pair')
+
+    # Now we check if the reverse has variants for swapping
+    # If there is a reverse pair with variants, get the mobile one as a
+    # preference for swapping if the user is a mobile user, otherwise
+    # just the default.
+
+    reverse_has_variant = False
+    if is_variant:
+        _reverse_is_variant = config.variant_dictionaries.get( orig_pair
+                                                                         , False
+                                                                         )
+        pair_settings = config.pair_definitions[orig_pair]
+    else:
+        _reverse_is_variant = config.variant_dictionaries.get( (_to, _from)
+                                                                         , False
+                                                                         )
+        pair_settings = config.pair_definitions[(_from, _to)]
+
+    _reverse_variants = reverse_pair.get('input_variants', False)
+
+    if _reverse_variants:
+        _mobile_variants = filter( lambda x: x.get('type', '') == 'mobile'
+                                 , _reverse_variants
+                                 )
+        _standard_variants = filter( lambda x: x.get('type', '') == 'standard'
+                                   , _reverse_variants
+                                   )
+        if mobile and len(_mobile_variants) > 0:
+            _preferred_swap = _mobile_variants[0]
+            _short_name = _preferred_swap.get('short_name')
+            swap_from = _short_name
+    else:
+        if is_variant:
+            swap_to, swap_from = orig_pair
+
+    return pair_settings
+
 user_log = getLogger("user_log")
 
 @blueprint.route('/detail/<from_language>/<to_language>/<wordform>.<format>',
@@ -353,6 +432,56 @@ def wordDetail(from_language, to_language, wordform, format):
 @blueprint.route('/more/', methods=['GET'])
 def more_dictionaries():
     return render_template('more_dictionaries.html')
+
+# For direct links, form submission.
+@blueprint.route('/extern/<_from>/<_to>/<_search_type>/', methods=['POST'])
+def externalFormSearch(_from, _to, _search_type):
+    """ External searches require at least one thing, but for
+    convenience, two:
+
+    Obligatorily:
+
+      * Some function to turn the search request into a URL, which
+        returns a flask.redirect()
+
+    This function is registered with the @lexicon.external_search
+    decorator for each language pair and search shortcut:
+
+        PAIRS = [
+            ('korp_wordform', 'sme', 'nob'),
+            ('korp_wordform', 'sme', fin')
+        ]
+        @lexicon.external_search(*PAIRS)
+        def search_url(pair_details, user_input):
+            from flask import redirect
+            # ... do some processing ...
+            return redirect(target_url)
+
+    Optionally:
+
+      * Redirect patterns can be stored in the dictionary config
+
+    TODO: Templates will need a non-hardcoded means for displaying
+    alternate search types. Jaska has some ideas if more examples are
+    needed!
+
+    """
+
+    from lexicon import lexicon_overrides
+
+    if (_from, _to) not in current_app.config.dictionaries and \
+       (_from, _to) not in current_app.config.variant_dictionaries:
+        abort(404)
+
+    func = lexicon_overrides.external_search_redirect.get((_search_type, _from, _to))
+
+    if func is None:
+        abort(404)
+
+    user_input = request.form.get('lookup')
+    pair_config = resolve_original_pair(current_app.config, _from, _to)
+
+    return func(pair_config, user_input)
 
 # For direct links, form submission.
 @blueprint.route('/<_from>/<_to>/', methods=['GET', 'POST'])

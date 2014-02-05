@@ -110,7 +110,7 @@ def pregenerate_sma(form, tags, node):
 
     return form, tags, node, analyses
 
-from common import remove_blank, match_homonymy_entries
+from common import remove_blank, match_homonymy_entries, external_korp_url
 
 morphology.postgeneration_filter_for_iso(
     'sma',
@@ -120,3 +120,11 @@ morpholex.post_morpho_lexicon_override(
     'sma'
 )(match_homonymy_entries)
 
+KORP_SEARCHES = [
+    ('korp_wordform', 'sma', 'nob'),
+    ('korp_wordform', 'nob', 'sma'),
+]
+
+lexicon.external_search(*KORP_SEARCHES)(
+    external_korp_url
+)

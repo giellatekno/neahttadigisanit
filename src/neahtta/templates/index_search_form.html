@@ -13,7 +13,7 @@
                {% if user_input -%}value="{{ user_input }}"{% endif %}
                placeholder="{% trans %}ohcansátni{% endtrans %}"></input>
                {# TODO: show text search only if the dictionary supports this #}
-               {% if current_pair_settings.alternate_search_url %}
+               {% if current_pair_settings.wordform_search_url %}
                    <div class="btn-group display-phone hidden-desktop hidden-tablet">
                        <button type="submit" class="btn" name="search">
                            <span>{% trans %}Search{% endtrans %}</span>
@@ -22,13 +22,19 @@
                           <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a href="#" 
-                                   data-search-url="{{ current_pair_settings.alternate_search_url }}"
-                                   data-search-delim="{{ current_pair_settings.lemma_multiword_delimiter }}"
-                                   class="korp_search">{% trans %}Search texts{% endtrans %} (Korp)</a></li>
+                            <li><button 
+                                   type="submit"
+                                   class="btn"
+                                   formaction="/extern/{{ _from }}/{{ _to }}/korp_wordform/"
+                                   formmethod="post"
+                                   formtarget="_blank">{% trans %}Search texts{% endtrans %} (Korp)</button></li>
                         </ul>
                    </div>
-                   <button type="submit" class="btn hidden-phone" name="search">
+                   <button type="submit" class="btn hidden-phone" 
+                           formtarget="_self"
+                           formaction="/{{ _from }}/{{ _to }}/"
+                           formmethod="post"
+                           name="search">
                        <span>{% trans %}Search{% endtrans %}</span>
                    </button>
                {% else %}
@@ -37,13 +43,13 @@
                    </button>
               {% endif %}
     </div>
-   {% if current_pair_settings.alternate_search_url %}
-       <a type="alternate_search" 
+   {% if current_pair_settings.wordform_search_url %}
+       <button type="submit"
+               formaction="/extern/{{ _from }}/{{ _to }}/korp_wordform/"
+               formmethod="post"
+               formtarget="_blank"
                class="btn hidden-phone display-tablet korp_search" 
-               name="korp_search" 
-               data-search-url="{{ current_pair_settings.alternate_search_url }}"
-               data-search-delim="{{ current_pair_settings.lemma_multiword_delimiter }}"
-               >
+               name="korp_search">
            {% trans %}Search texts{% endtrans %}
        </a>
    {% endif %}

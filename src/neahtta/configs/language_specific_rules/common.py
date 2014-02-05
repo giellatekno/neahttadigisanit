@@ -43,3 +43,17 @@ def match_homonymy_entries(entries_and_tags):
             filtered_results.append((entry, analyses))
 
     return filtered_results
+
+def external_korp_url(pair_details, user_input):
+    from flask import redirect
+
+    url_pattern = pair_details.get('wordform_search_url')
+    delimiter_pattern = pair_details.get('lemma_multiword_delimeter')
+
+    if ' ' in user_input:
+        user_input = delimiter_pattern.join(user_input.split(' '))
+
+    redirect_url = url_pattern.replace('USER_INPUT', user_input)
+
+    return redirect(redirect_url.encode('utf-8'))
+

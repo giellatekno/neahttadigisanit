@@ -170,6 +170,29 @@ class LexiconOverrides(object):
                       )
         return wrapper
 
+    def external_search(self, *lexica):
+        """ Register a function for a language ISO to adjust tags used
+        in FSTs for use in lexicon lookups. The decorator function takes
+        a tuple for every function that the decorator should be applied
+        to
+
+        >>> @lexicon_overrides.lookup_filters_for_lexicon(('sme', 'nob'))
+        >>> def someFunction(nodelist):
+        >>>     ... some processing on tags, may be conditional, etc.
+        >>>     return nodelist
+
+        """
+        def wrapper(search_function):
+            for shortcut_name, source, target in lexica:
+                self.external_search_redirect[(shortcut_name, source, target)] = \
+                    search_function
+                print '%s->%s overrides: lexicon lookup filter - %s' %\
+                      ( source, target
+                      , shortcut_name
+                      )
+
+        return wrapper
+
     def __init__(self):
         from collections import defaultdict
 
@@ -177,6 +200,8 @@ class LexiconOverrides(object):
         self.target_formatters = defaultdict(bool)
         self.source_formatters = defaultdict(bool)
         self.postlookup_filters = defaultdict(list)
+
+        self.external_search_redirect = defaultdict(bool)
 
 lexicon_overrides = LexiconOverrides()
 
