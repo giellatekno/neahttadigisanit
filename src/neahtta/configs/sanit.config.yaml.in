@@ -91,10 +91,21 @@ Dictionaries:
     show_korp_search: True
     # use http://meyerweb.com/eric/tools/dencoder/ if things are
     # unreadable or do not work
-    alternate_search_url: &alt_korp_search "http://gtweb.uit.no/korp/#page=0&corpus=sme_corpus_20131218,turi_corpus&search=word|USER_INPUT"
-    # http://gtweb.uit.no/korp/#page=0&corpus=sme_corpus_20131218,turi_corpus&search=word%7Cja
-    lemma_search_url: &korp_lemma_search 'http://gtweb.uit.no/korp/#page=0&corpus=sme_corpus_20131218,turi_corpus&search=cqp%7C%5Blemma%20%3D%20%22INPUT_LEMMA%22%5D'
-    lemma_multiword_delimiter: &korp_lemma_delim '%22%5D%20%5Bword%20%3D%20%22'
+    #
+    # Here, whatever the user input is will be replaced into the
+    # following string, marked by USER_INPUT
+    wordform_search_url: &alt_korp_search 
+      "http://gtweb.uit.no/korp/#search=word%7CUSER_INPUT&page=0"
+    #
+    # Here, whatever the input lemma is will be replaced into the
+    # following string, marked by INPUT_LEMMA
+    #
+    # cqp|[lemma = "INPUT_LEMMA"]
+    lemma_search_url: &korp_lemma_search 
+      "http://gtweb.uit.no/korp/#page=0&corpus=sme_corpus_20131218,turi_corpus&search=cqp%7C%5Blemma%20%3D%20%22INPUT_LEMMA%22%5D"
+    # "] [word = "
+    lemma_multiword_delimiter: &korp_lemma_delim 
+      "%22%5D%20%5Bword%20%3D%20%22"
     input_variants:
       # "mobile" is important, otherwise templates and swapping won't
       # work
@@ -109,15 +120,17 @@ Dictionaries:
     target: sme
     path: 'dicts/nob-sme.all.xml'
     show_korp_search: True
-    alternate_search_url: "http://gtweb.uit.no/korp/?mode=parallel#parallel_corpora=nob&page=0&search=cqp%7C%5Bword%20%3D%20%22INPUT_INPUT%22%5D%3A%20%3CLINKED_CORPUS%3E%20%5B%5D"
-    lemma_search_url: "http://gtweb.uit.no/korp/?mode=parallel#parallel_corpora=nob&search=cqp%7C%5Blemma+%3D+%22INPUT_LEMMA%22%5D&page=0"
+    wordform_search_url: 
+      "http://gtweb.uit.no/korp/?mode=parallel#parallel_corpora=nob&page=0&search=cqp%7C%5Bword%20%3D%20%22USER_INPUT%22%5D%3A%20%3CLINKED_CORPUS%3E%20%5B%5D"
+    lemma_search_url: 
+      "http://gtweb.uit.no/korp/?mode=parallel#parallel_corpora=nob&search=cqp%7C%5Blemma+%3D+%22INPUT_LEMMA%22%5D&page=0"
     lemma_multiword_delimiter: *korp_lemma_delim
 
   - source: sme
     target: fin
     path: 'dicts/sme-fin.all.xml'
     show_korp_search: True
-    alternate_search_url: *alt_korp_search
+    wordform_search_url: *alt_korp_search
     lemma_search_url: *korp_lemma_search
     lemma_multiword_delimiter: *korp_lemma_delim
     input_variants:
