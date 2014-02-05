@@ -122,7 +122,7 @@ morpholex.post_morpho_lexicon_override(
 
 KORP_SEARCHES = [
     ('korp_wordform', 'sma', 'nob'),
-    ('korp_wordform', 'nob', 'sma'),
+    # ('korp_wordform', 'nob', 'sma'),
 ]
 
 lexicon.external_search(*KORP_SEARCHES)(

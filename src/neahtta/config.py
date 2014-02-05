@@ -417,7 +417,7 @@ class Config(Config):
                 _pair_options = {
                     'langs': {},
                     'show_korp_search': dict_def.get('show_korp_search', False),
-                    'alternate_search_url': dict_def.get('alternate_search_url', False),
+                    'wordform_search_url': dict_def.get('wordform_search_url', False),
                     'lemma_search_url': dict_def.get('lemma_search_url', False),
                     'lemma_multiword_delimiter': dict_def.get('lemma_multiword_delimiter', False)
                 }
