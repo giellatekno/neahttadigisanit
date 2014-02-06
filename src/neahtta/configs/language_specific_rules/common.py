@@ -48,9 +48,9 @@ def external_korp_url(pair_details, user_input):
     from flask import redirect
 
     url_pattern = pair_details.get('wordform_search_url')
-    delimiter_pattern = pair_details.get('lemma_multiword_delimeter')
+    delimiter_pattern = pair_details.get('lemma_multiword_delimeter', False)
 
-    if ' ' in user_input:
+    if ' ' in user_input and delimiter_pattern:
         user_input = delimiter_pattern.join(user_input.split(' '))
 
     redirect_url = url_pattern.replace('USER_INPUT', user_input)
