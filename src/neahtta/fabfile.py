@@ -529,7 +529,7 @@ def restart_running():
 
 @task
 def runserver():
-    """ Run the development server. """
+    """ Run the development server."""
 
     cmd = "pybabel compile -d translations"
 
@@ -545,7 +545,7 @@ def runserver():
             print(red("** Production config not found, and on a production server. Exiting."))
             sys.exit()
 
-    cmd ="NDS_CONFIG=%s python neahtta.py" % _path
+    cmd ="NDS_CONFIG=%s python neahtta.py dev" % _path
     print(green("** Go."))
     run_cmd = env.run(cmd)
     if run_cmd.failed:

@@ -12,6 +12,8 @@ from utils.data import *
 from i18n.utils import iso_filter
 from utils.encoding import *
 
+from .helpers import resolve_original_pair
+
 from flask import ( request
                   , session
                   , Response
@@ -19,96 +21,6 @@ from flask import ( request
                   , abort
                   , redirect
                   )
-
-def to_xml_string(n):
-    """ Return a string from an lxml node within an entry result.
-    """
-    from lxml import etree
-    if 'entries' in n:
-        if 'node' in n.get('entries'):
-            node = n['entries']['node']
-            _str = etree.tostring(node, pretty_print=True, encoding="utf-8")
-            return _str.decode('utf-8')
-    return ''
-
-def resolve_original_pair(config, _from, _to):
-    """ For a language pair alternate, return the original language pair
-    that is the parent to the alternate.
-
-    TODO: this was more or less copied from the index views, but now
-    those other views should use this instead.
-    TODO: write tests.
-    """
-
-    # mobile test for most common browsers
-    mobile = False
-    if request.user_agent.platform in ['iphone', 'android']:
-        mobile = True
-
-    iphone = False
-    if request.user_agent.platform == 'iphone':
-        iphone = True
-
-    # Variables to control presentation based on variants present
-    current_pair = config.pair_definitions.get((_from, _to), {})
-    reverse_pair = config.pair_definitions.get((_to, _from), {})
-
-    current_pair_variants = current_pair.get('input_variants', False)
-    has_variant = bool(current_pair_variants)
-    has_mobile_variant = False
-
-    if has_variant:
-        _mobile_variants = filter( lambda x: x.get('type', '') == 'mobile'
-                                 , current_pair_variants
-                                 )
-        if len(_mobile_variants) > 0:
-            has_mobile_variant = _mobile_variants[0]
-
-
-    variant_dictionaries = config.variant_dictionaries
-    is_variant, orig_pair = False, ()
-
-    if variant_dictionaries:
-        variant    = variant_dictionaries.get((_from, _to), False)
-        is_variant = bool(variant)
-        if is_variant:
-            orig_pair = variant.get('orig_pair')
-
-    # Now we check if the reverse has variants for swapping
-    # If there is a reverse pair with variants, get the mobile one as a
-    # preference for swapping if the user is a mobile user, otherwise
-    # just the default.
-
-    reverse_has_variant = False
-    if is_variant:
-        _reverse_is_variant = config.variant_dictionaries.get( orig_pair
-                                                                         , False
-                                                                         )
-        pair_settings = config.pair_definitions[orig_pair]
-    else:
-        _reverse_is_variant = config.variant_dictionaries.get( (_to, _from)
-                                                                         , False
-                                                                         )
-        pair_settings = config.pair_definitions[(_from, _to)]
-
-    _reverse_variants = reverse_pair.get('input_variants', False)
-
-    if _reverse_variants:
-        _mobile_variants = filter( lambda x: x.get('type', '') == 'mobile'
-                                 , _reverse_variants
-                                 )
-        _standard_variants = filter( lambda x: x.get('type', '') == 'standard'
-                                   , _reverse_variants
-                                   )
-        if mobile and len(_mobile_variants) > 0:
-            _preferred_swap = _mobile_variants[0]
-            _short_name = _preferred_swap.get('short_name')
-            swap_from = _short_name
-    else:
-        if is_variant:
-            swap_to, swap_from = orig_pair
-
-    return pair_settings
 
 user_log = getLogger("user_log")
 
@@ -418,7 +330,6 @@ def wordDetail(from_language, to_language, wordform, format):
 
         pair_settings = current_app.config.pair_definitions[(from_language, to_language)]
         return render_template( 'word_detail.html'
-                              , language_pairs=current_app.config.pair_definitions
                               , result=detailed_result
                               , user_input=user_input
                               , _from=from_language
@@ -479,7 +390,7 @@ def externalFormSearch(_from, _to, _search_type):
         abort(404)
 
     user_input = request.form.get('lookup')
-    pair_config = resolve_original_pair(current_app.config, _from, _to)
+    pair_config, _ = resolve_original_pair(current_app.config, _from, _to)
 
     return func(pair_config, user_input)
 
@@ -575,78 +486,14 @@ def indexWithLangs(_from, _to):
     if len(errors) == 0:
         errors = False
 
-    # Variables to control presentation based on variants present
-    current_pair = current_app.config.pair_definitions.get((_from, _to), {})
-    reverse_pair = current_app.config.pair_definitions.get((_to, _from), {})
-
-    current_pair_variants = current_pair.get('input_variants', False)
-    has_variant = bool(current_pair_variants)
-    has_mobile_variant = False
-
-    if has_variant:
-        _mobile_variants = filter( lambda x: x.get('type', '') == 'mobile'
-                                 , current_pair_variants
-                                 )
-        if len(_mobile_variants) > 0:
-            has_mobile_variant = _mobile_variants[0]
-
-
-    variant_dictionaries = current_app.config.variant_dictionaries
-    is_variant, orig_pair = False, ()
-
-    if variant_dictionaries:
-        variant    = variant_dictionaries.get((_from, _to), False)
-        is_variant = bool(variant)
-        if is_variant:
-            orig_pair = variant.get('orig_pair')
-
-    # Now we check if the reverse has variants for swapping
-    # If there is a reverse pair with variants, get the mobile one as a
-    # preference for swapping if the user is a mobile user, otherwise
-    # just the default.
-
-    reverse_has_variant = False
-    if is_variant:
-        _reverse_is_variant = current_app.config.variant_dictionaries.get( orig_pair
-                                                                         , False
-                                                                         )
-        pair_settings = current_app.config.pair_definitions[orig_pair]
-    else:
-        _reverse_is_variant = current_app.config.variant_dictionaries.get( (_to, _from)
-                                                                         , False
-                                                                         )
-        pair_settings = current_app.config.pair_definitions[(_from, _to)]
-
-    _reverse_variants = reverse_pair.get('input_variants', False)
-
-    if _reverse_variants:
-        _mobile_variants = filter( lambda x: x.get('type', '') == 'mobile'
-                                 , _reverse_variants
-                                 )
-        _standard_variants = filter( lambda x: x.get('type', '') == 'standard'
-                                   , _reverse_variants
-                                   )
-        if mobile and len(_mobile_variants) > 0:
-            _preferred_swap = _mobile_variants[0]
-            _short_name = _preferred_swap.get('short_name')
-            swap_from = _short_name
-    else:
-        if is_variant:
-            swap_to, swap_from = orig_pair
-
+    # context needs: has_mobile_variant, has_variant,
+    # variant_dictionaries, orig_pair, is_variant, pair_settings
+    pair_settings, pair_opts = resolve_original_pair(current_app.config, _from, _to)
 
     # TODO: include form analysis of user input #formanalysis
     return render_template( 'index.html'
-                          , language_pairs=current_app.config.pair_definitions
-                          , variant_dictionaries=variant_dictionaries
-                          , is_variant=is_variant
-                          , orig_pair=orig_pair
-                          , has_variant=has_variant
-                          , has_mobile_variant=has_mobile_variant
                           , _from=_from
                           , _to=_to
-                          , swap_from=swap_from
-                          , swap_to=swap_to
                           , user_input=lookup_val
                           , word_searches=results
                           , analyses=analyses
@@ -655,9 +502,8 @@ def indexWithLangs(_from, _to):
                           , show_info=show_info
                           , zip=zipNoTruncate
                           , successful_entry_exists=successful_entry_exists
-                          , mobile=mobile
-                          , iphone=iphone
                           , current_pair_settings=pair_settings
+                          , **pair_opts
                           )
 
 accepted_lemma_args = {
@@ -669,15 +515,6 @@ accepted_lemma_args = {
 def indexWithLangsToReference(_from, _to):
     from lexicon import FrontPageFormat
     from operator import itemgetter
-
-    # mobile test for most common browsers
-    mobile = False
-    if request.user_agent.platform in ['iphone', 'android']:
-        mobile = True
-
-    iphone = False
-    if request.user_agent.platform == 'iphone':
-        iphone = True
 
     analyses_without_lex = []
     mlex = current_app.morpholexicon
@@ -763,7 +600,6 @@ def indexWithLangsToReference(_from, _to):
     pair_settings = current_app.config.pair_definitions[(_from, _to)]
     # TODO: include form analysis of user input #formanalysis
     return render_template( 'index.html'
-                          , language_pairs=current_app.config.pair_definitions
                           , _from=_from
                           , _to=_to
                           , swap_from=_to
@@ -776,8 +612,6 @@ def indexWithLangsToReference(_from, _to):
                           , show_info=show_info
                           , zip=zipNoTruncate
                           , successful_entry_exists=successful_entry_exists
-                          , mobile=mobile
-                          , iphone=iphone
                           , current_pair_settings=pair_settings
                           )
 
@@ -889,13 +723,10 @@ def index():
                 return redirect(target_url)
 
     return render_template( 'index.html'
-                          , language_pairs=current_app.config.pair_definitions
                           , current_pair_settings=pair_settings
                           , _from=default_from
                           , _to=default_to
                           , swap_from=default_to
                           , swap_to=default_from
                           , show_info=True
-                          , mobile=mobile
-                          , iphone=iphone
                           )

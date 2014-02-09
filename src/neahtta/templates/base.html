@@ -63,8 +63,12 @@
               <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
             <![endif]-->
 
+        {% if production_mode %}
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        {% else %}
+            <script type="text/javascript" src="{{url_for('static', filename='js/jquery.1.7.2.min.js')}}"></script>
+        {% endif %}
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
         <script type="text/javascript" src="{{url_for('static', filename='js/DSt.js')}}"></script>
         <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-collapse.js')}}"></script>
         <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-dropdown.js')}}"></script>
@@ -207,3 +211,4 @@
 </body>
 
 </html>
+{# vim: set ts=4 sw=4 tw=0 syntax=jinja : #}
