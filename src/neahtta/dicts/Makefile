@@ -230,6 +230,16 @@ saan: compile_langs_fsts saan-lexica
 ##### #vadatargets
 #####
 
+fin-yrk.xml: $(GTHOME)/words/dicts/finyrk/src/*.xml
+	@echo "*******************************"
+	@echo "** Building fin->yrk lexicon **"
+	@echo "*******************************"
+	@echo "** Backup made (.bak)        **"
+	@echo "*******************************"
+	@echo ""
+	-@cp $@ $@.$(shell date +%s).bak
+	$(SAXON) inDir=$(GTHOME)/words/dicts/finyrk/src/ > $@
+
 yrk-all.xml: $(GTHOME)/langs/yrk/src/morphology/stems/*.xml
 	@echo "**************************"
 	@echo "** Building yrk lexicon **"
@@ -244,7 +254,7 @@ yrk-all.xml: $(GTHOME)/langs/yrk/src/morphology/stems/*.xml
 	rm -rf yrk/
 
 .PHONY: yrk-lexicon
-vada-lexica: yrk-all.xml
+vada-lexica: yrk-all.xml fin-yrk.xml
 
 rm-vada-lexica: 
 	@rm -rf yrk-all.xml
