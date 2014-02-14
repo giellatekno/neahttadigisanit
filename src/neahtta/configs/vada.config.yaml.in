@@ -58,7 +58,7 @@ Dictionaries:
     target: fin
     path: 'dicts/yrk-all.xml'
 
-  - target: fin
-    source: yrk
+  - source: fin
+    target: yrk
     path: 'dicts/fin-yrk.xml'
 
