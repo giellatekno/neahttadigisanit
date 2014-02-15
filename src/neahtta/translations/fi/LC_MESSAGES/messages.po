@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-01-14 15:44-0600\n"
-"PO-Revision-Date: 2014-02-15 20:45+0200\n"
+"PO-Revision-Date: 2014-02-15 20:48+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language-Team: fi <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
@@ -80,7 +80,7 @@ msgstr "(... ja on kännykkä-ystävällinen!)"
 
 #: configs/language_names.py:41
 msgid "Olonetsian"
-msgstr "Livvi"
+msgstr "Livvinkarjala"
 
 #: configs/language_names.py:42
 #: templates/more_dictionaries.html:38
@@ -655,7 +655,7 @@ msgstr "Itämerensuomalaiset kielet"
 
 #: templates/more_dictionaries.html:38
 msgid "Olonets"
-msgstr "Livvi"
+msgstr "Livvinkarjala"
 
 #: templates/more_dictionaries.html:38
 msgid "and"
