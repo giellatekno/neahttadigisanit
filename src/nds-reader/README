@@ -6,6 +6,8 @@ are looking at.
 
 ## Goals and TODOs
 
+- TODO: iOS selection: http://stackoverflow.com/questions/11300590/how-to-captured-selected-text-range-in-ios-after-text-selection-expansion
+
 - TODO: wordpress plugin needs to have an option in the UI to define the host.
         beware NDS_BOOKMARK_VERSION; should disable this check for wordpress
 
