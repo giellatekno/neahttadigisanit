@@ -5,6 +5,67 @@ formatting lexicon entries, and intended to be more understandable.
 Likely some things need work, but as ideas come up I'll start writing
 them down.
 
+## Implementation ideas (further thinking on the below)
+
+Maybe each entry needs one main template, from which all sub-templates are
+included, thus each language can define its own structure if it wants.
+
+Need a default directory for everything, for which individual files are
+able to be overridden if they aren't present-- which should also go for
+the main default template.
+
+Each of these sets of templates needs to go in a general-to-specific way:
+
+    templates/
+        entry.template
+        entry.notes.template
+        definition.template
+        definition.notes.template
+        paradigm.template
+
+        sanit/
+            entry.template
+
+            sme/
+                definition.template
+                paradigm.template
+
+            nob/
+                definition.template
+                paradigm.template
+
+        vada/
+
+            yrk/
+
+            fin/
+
+So, the highest level overrides the sub-levels. These can go
+language-by-language, which also means it's possible to define a
+language presentation globally, but then override it in individual
+sub-projects as necessary.
+
+In order to handle the overriding of individual parts, the main template
+will need to call each part by a custom tag, not {% include %}, because
+managing the path alterations for {% include %} statements would get a
+bit tricky.
+
+Also need to assume that someone will want to alter the types of parts
+that are available and be able to call them without crazy alterations to
+Python.
+
+TODO: languages may need their own specific macros-- this should be
+possible to define local ones that are included with higher-level
+macros.
+
+TODO: how will this interact with sme.py, sma.py, etc.? Functions there
+should be retired eventually, and most of these that alter what is
+rendered, act on the string level. Other things, like the linking that
+occurs in 'hverandre' could also be modified to use templates more (as
+they should), while maybe sme.py overrides and such should be moved
+to files within this directory structure, and instead be used to define 
+additional template contexts
+
 ## Language folder structure
 
 Each folder is a language, named by the ISO. Each file is a combination
