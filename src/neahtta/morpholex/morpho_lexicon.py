@@ -106,6 +106,13 @@ class MorphoLexicon(object):
                     'pos': analysis.pos,
                     'pos_type': False,
                 }
+
+                if not analysis.lemma:
+                    _error_args = [a.tag_raw for a in list(set(analyses))]
+                    _error_str = "For some reason, a lemma was missing from this analysis: " + repr(_error_args)
+                    _error_str += "Lookup string: " + repr(wordform)
+                    raise Exception(_error_str)
+
                 xml_result = self.lexicon.lookup( source_lang
                                                 , target_lang
                                                 , **lex_kwargs
