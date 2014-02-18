@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-01-14 15:44-0600\n"
+"POT-Creation-Date: 2014-02-18 14:41-0600\n"
 "PO-Revision-Date: 2013-03-25 12:21+0200\n"
 "Last-Translator: \n"
 "Language-Team: lv <LL@li.org>\n"
@@ -142,21 +142,21 @@ msgstr "Latviešu"
 msgid "Haida"
 msgstr ""
 
-#: configs/sample.config.yaml.in:110 configs/sanit.config.yaml.in:102
-#: configs/sanit.config.yaml.in:127
+#: configs/sample.config.yaml.in:114 configs/sanit.config.yaml.in:112
+#: configs/sanit.config.yaml.in:139
 msgid "Standárda (<em>áčđŋšŧž</em>)"
 msgstr ""
 
-#: configs/sample.config.yaml.in:113 configs/sanit.config.yaml.in:105
-#: configs/sanit.config.yaml.in:130
+#: configs/sample.config.yaml.in:117 configs/sanit.config.yaml.in:115
+#: configs/sanit.config.yaml.in:142
 msgid "Sosiála media (maiddái <em>acdnstz</em>)"
 msgstr ""
 
-#: configs/sanat.config.yaml.in:132 configs/sanat.config.yaml.in:143
+#: configs/sanat.config.yaml.in:136 configs/sanat.config.yaml.in:147
 msgid "Standard (äǟ)"
 msgstr ""
 
-#: configs/sanat.config.yaml.in:135 configs/sanat.config.yaml.in:146
+#: configs/sanat.config.yaml.in:139 configs/sanat.config.yaml.in:150
 #, fuzzy
 msgid "Mobile friendly (a &rarr; ä ~ ǟ)"
 msgstr "(Un ir draudzīga mobilajiem tālruņiem!)"
@@ -172,7 +172,7 @@ msgstr "Opcijas"
 #: static/js/bookmarklet.js:1245 templates/about.baakoeh.html:6
 #: templates/about.muter.html:6 templates/about.sanat.html:6
 #: templates/about.sanit.html:6 templates/about.vada.html:7
-#: templates/about.valks.html:7 templates/base.html:93
+#: templates/about.valks.html:7 templates/base.html:109
 msgid "About"
 msgstr "Par mums"
 
@@ -561,19 +561,19 @@ msgid ""
 "Foundation."
 msgstr ""
 
-#: templates/base.html:85
+#: templates/base.html:101
 msgid "Home"
 msgstr "Sākumlapa"
 
-#: templates/base.html:89
+#: templates/base.html:105
 msgid "Plugins"
 msgstr "Spraudņi"
 
-#: templates/base.html:98
+#: templates/base.html:114
 msgid "Interface language"
 msgstr "Saskarnes valoda"
 
-#: templates/base.html:164
+#: templates/base.html:180
 msgid ""
 "Created with free and open-source language tools from <em><a "
 "href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, a Sámi Language "
@@ -590,72 +590,20 @@ msgstr ""
 msgid "Neahttadigisánit"
 msgstr "Neahttadigisánit Reader"
 
-#: templates/index.html:19 templates/word_detail.html:20
-msgid "Texts"
+#: templates/index_search_form.html:11
+msgid "Press Tab to select a word"
 msgstr ""
 
-#: templates/index.html:50 templates/left_dictionary_list.html:1
-msgid "Dictionaries"
-msgstr "Vārdnīcas"
-
-#: templates/index.html:68 templates/left_dictionary_list.html:52
-#: templates/more_dictionaries.html:21
-msgid "Other dictionaries"
-msgstr "Citas vārdnīcas"
-
-#: templates/index.html:89
-msgid "Swap"
-msgstr "Pārslēgt"
-
-#: templates/index.html:97 templates/index.html:182
-#: templates/word_detail.html:94 views/reader.py:122
-msgid " is a possible form of ... "
-msgstr "ir iespējamā forma no vārda …"
-
-#: templates/index.html:152
-msgid "Definition not found for:"
-msgstr "Nav atrodams tulkojums vārdam:"
-
-#: templates/index.html:204
-#, python-format
-msgid "Word %(input)s not found."
-msgstr "Vārda %(input)s nav atrasts."
-
-#: templates/index.html:213
-msgid ""
-"If you are using a device without a Sámi keyboard, consider using <a "
-"href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
-"<em>acdnstz</em> for <em>áčđŋšŧž</em>."
-msgstr ""
-"Ja jūs izmantojat ierīci bez sāmu valodas tastatūras, apsveriet iespēju "
-"izmantot <a href=\"/SoMe/nob/\">sociālo mediju režīmu</a>, kurš jums "
-"atļauj rakstīt <em>acdnstz</em> <em>áčđŋšŧž</em> vietā."
-
-#: templates/index.html:217
-msgid "Search for a word, or a word form for a word analysis and definition."
-msgstr "Meklēt vārdu vai vārdformu vārda analīzei un tulkojumam."
-
-#: templates/index.html:221
-msgid ""
-"You selected #SoMe, the variant for social media, which means that the "
-"letters acdnstz\n"
-"                            will be accepted as áčđŋšŧž in addition to "
-"their usual values."
-msgstr ""
-"Jūs esat izvēlējies #SoMe, kas ir versija sociālajiem medijiem. Tas "
-"nozīmē, ka burti acdnstz līdzās to parastajai vērtībai tiks akceptēti arī"
-" kā burti áčđŋšŧž."
-
-#: templates/index_search_form.html:14
+#: templates/index_search_form.html:15
 msgid "ohcansátni"
 msgstr "ohcansátni"
 
-#: templates/index_search_form.html:19 templates/index_search_form.html:32
-#: templates/index_search_form.html:36 templates/word_detail.html:85
+#: templates/index_search_form.html:20 templates/index_search_form.html:39
+#: templates/index_search_form.html:43
 msgid "Search"
 msgstr "Meklēt"
 
-#: templates/index_search_form.html:28 templates/index_search_form.html:47
+#: templates/index_search_form.html:31 templates/index_search_form.html:54
 msgid "Search texts"
 msgstr ""
 
@@ -667,9 +615,17 @@ msgstr "<span class=\"reposition_hide\">Valoda</span>"
 msgid "Language"
 msgstr "Valoda"
 
+#: templates/left_dictionary_list.html:1
+msgid "Dictionaries"
+msgstr "Vārdnīcas"
+
 #: templates/left_dictionary_list.html:38
 msgid "Written variant"
 msgstr "Rakstu valodas variants"
+
+#: templates/left_dictionary_list.html:52 templates/more_dictionaries.html:21
+msgid "Other dictionaries"
+msgstr "Citas vārdnīcas"
 
 #: templates/more_dictionaries.html:4
 msgid "More dictionaris"
@@ -882,15 +838,59 @@ msgstr ""
 "    Pakalpojums tiks instalēts automātiski, un lapas kreisajā malā\n"
 "    jūs ieraudzīsiet izvēlnes ikonu."
 
-#: templates/word_detail.html:27
-msgid "is a possible form of ... "
-msgstr "ir iespējamā forma no vārda …"
-
-#: templates/word_detail.html:173
-msgid "More information about this word"
-msgstr "Papildu informācija par šo vārdu."
-
-#: views/main.py:97
+#: views/main.py:89
 msgid "Invalid format. Only json and html allowed."
 msgstr "Nederīgs formāts. Tiek atzīts tikai json un html."
+
+#: views/reader.py:122
+msgid " is a possible form of ... "
+msgstr "ir iespējamā forma no vārda …"
+
+#~ msgid "Texts"
+#~ msgstr ""
+
+#~ msgid "Swap"
+#~ msgstr "Pārslēgt"
+
+#~ msgid "Definition not found for:"
+#~ msgstr "Nav atrodams tulkojums vārdam:"
+
+#~ msgid "Word %(input)s not found."
+#~ msgstr "Vārda %(input)s nav atrasts."
+
+#~ msgid ""
+#~ "If you are using a device without"
+#~ " a Sámi keyboard, consider using <a"
+#~ " href=\"/SoMe/nob/\">social media mode</a>, which"
+#~ " allows you to type <em>acdnstz</em> "
+#~ "for <em>áčđŋšŧž</em>."
+#~ msgstr ""
+#~ "Ja jūs izmantojat ierīci bez sāmu "
+#~ "valodas tastatūras, apsveriet iespēju izmantot"
+#~ " <a href=\"/SoMe/nob/\">sociālo mediju "
+#~ "režīmu</a>, kurš jums atļauj rakstīt "
+#~ "<em>acdnstz</em> <em>áčđŋšŧž</em> vietā."
+
+#~ msgid "Search for a word, or a word form for a word analysis and definition."
+#~ msgstr "Meklēt vārdu vai vārdformu vārda analīzei un tulkojumam."
+
+#~ msgid ""
+#~ "You selected #SoMe, the variant for "
+#~ "social media, which means that the "
+#~ "letters acdnstz\n"
+#~ "                            will be accepted "
+#~ "as áčđŋšŧž in addition to their "
+#~ "usual values."
+#~ msgstr ""
+#~ "Jūs esat izvēlējies #SoMe, kas ir "
+#~ "versija sociālajiem medijiem. Tas nozīmē, "
+#~ "ka burti acdnstz līdzās to parastajai"
+#~ " vērtībai tiks akceptēti arī kā burti"
+#~ " áčđŋšŧž."
+
+#~ msgid "is a possible form of ... "
+#~ msgstr "ir iespējamā forma no vārda …"
+
+#~ msgid "More information about this word"
+#~ msgstr "Papildu informācija par šo vārdu."
 

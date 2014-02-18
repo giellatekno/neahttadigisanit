@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-01-14 15:44-0600\n"
+"POT-Creation-Date: 2014-02-18 14:41-0600\n"
 "PO-Revision-Date: 2013-08-26 23:23+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: sms <LL@li.org>\n"
@@ -141,21 +141,21 @@ msgstr ""
 msgid "Haida"
 msgstr ""
 
-#: configs/sample.config.yaml.in:110 configs/sanit.config.yaml.in:102
-#: configs/sanit.config.yaml.in:127
+#: configs/sample.config.yaml.in:114 configs/sanit.config.yaml.in:112
+#: configs/sanit.config.yaml.in:139
 msgid "Standárda (<em>áčđŋšŧž</em>)"
 msgstr ""
 
-#: configs/sample.config.yaml.in:113 configs/sanit.config.yaml.in:105
-#: configs/sanit.config.yaml.in:130
+#: configs/sample.config.yaml.in:117 configs/sanit.config.yaml.in:115
+#: configs/sanit.config.yaml.in:142
 msgid "Sosiála media (maiddái <em>acdnstz</em>)"
 msgstr ""
 
-#: configs/sanat.config.yaml.in:132 configs/sanat.config.yaml.in:143
+#: configs/sanat.config.yaml.in:136 configs/sanat.config.yaml.in:147
 msgid "Standard (äǟ)"
 msgstr ""
 
-#: configs/sanat.config.yaml.in:135 configs/sanat.config.yaml.in:146
+#: configs/sanat.config.yaml.in:139 configs/sanat.config.yaml.in:150
 msgid "Mobile friendly (a &rarr; ä ~ ǟ)"
 msgstr ""
 
@@ -170,7 +170,7 @@ msgstr ""
 #: static/js/bookmarklet.js:1245 templates/about.baakoeh.html:6
 #: templates/about.muter.html:6 templates/about.sanat.html:6
 #: templates/about.sanit.html:6 templates/about.vada.html:7
-#: templates/about.valks.html:7 templates/base.html:93
+#: templates/about.valks.html:7 templates/base.html:109
 msgid "About"
 msgstr ""
 
@@ -521,19 +521,19 @@ msgid ""
 "Foundation."
 msgstr ""
 
-#: templates/base.html:85
+#: templates/base.html:101
 msgid "Home"
 msgstr ""
 
-#: templates/base.html:89
+#: templates/base.html:105
 msgid "Plugins"
 msgstr ""
 
-#: templates/base.html:98
+#: templates/base.html:114
 msgid "Interface language"
 msgstr ""
 
-#: templates/base.html:164
+#: templates/base.html:180
 msgid ""
 "Created with free and open-source language tools from <em><a "
 "href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, a Sámi Language "
@@ -545,66 +545,20 @@ msgstr ""
 msgid "Neahttadigisánit"
 msgstr ""
 
-#: templates/index.html:19 templates/word_detail.html:20
-msgid "Texts"
+#: templates/index_search_form.html:11
+msgid "Press Tab to select a word"
 msgstr ""
 
-#: templates/index.html:50 templates/left_dictionary_list.html:1
-msgid "Dictionaries"
-msgstr ""
-
-#: templates/index.html:68 templates/left_dictionary_list.html:52
-#: templates/more_dictionaries.html:21
-msgid "Other dictionaries"
-msgstr ""
-
-#: templates/index.html:89
-msgid "Swap"
-msgstr ""
-
-#: templates/index.html:97 templates/index.html:182
-#: templates/word_detail.html:94 views/reader.py:122
-msgid " is a possible form of ... "
-msgstr ""
-
-#: templates/index.html:152
-msgid "Definition not found for:"
-msgstr ""
-
-#: templates/index.html:204
-#, python-format
-msgid "Word %(input)s not found."
-msgstr ""
-
-#: templates/index.html:213
-msgid ""
-"If you are using a device without a Sámi keyboard, consider using <a "
-"href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
-"<em>acdnstz</em> for <em>áčđŋšŧž</em>."
-msgstr ""
-
-#: templates/index.html:217
-msgid "Search for a word, or a word form for a word analysis and definition."
-msgstr ""
-
-#: templates/index.html:221
-msgid ""
-"You selected #SoMe, the variant for social media, which means that the "
-"letters acdnstz\n"
-"                            will be accepted as áčđŋšŧž in addition to "
-"their usual values."
-msgstr ""
-
-#: templates/index_search_form.html:14
+#: templates/index_search_form.html:15
 msgid "ohcansátni"
 msgstr ""
 
-#: templates/index_search_form.html:19 templates/index_search_form.html:32
-#: templates/index_search_form.html:36 templates/word_detail.html:85
+#: templates/index_search_form.html:20 templates/index_search_form.html:39
+#: templates/index_search_form.html:43
 msgid "Search"
 msgstr ""
 
-#: templates/index_search_form.html:28 templates/index_search_form.html:47
+#: templates/index_search_form.html:31 templates/index_search_form.html:54
 msgid "Search texts"
 msgstr ""
 
@@ -616,8 +570,16 @@ msgstr ""
 msgid "Language"
 msgstr ""
 
+#: templates/left_dictionary_list.html:1
+msgid "Dictionaries"
+msgstr ""
+
 #: templates/left_dictionary_list.html:38
 msgid "Written variant"
+msgstr ""
+
+#: templates/left_dictionary_list.html:52 templates/more_dictionaries.html:21
+msgid "Other dictionaries"
 msgstr ""
 
 #: templates/more_dictionaries.html:4
@@ -806,15 +768,49 @@ msgid ""
 "    menu icon on the left-hand side of the page."
 msgstr ""
 
-#: templates/word_detail.html:27
-msgid "is a possible form of ... "
-msgstr ""
-
-#: templates/word_detail.html:173
-msgid "More information about this word"
-msgstr ""
-
-#: views/main.py:97
+#: views/main.py:89
 msgid "Invalid format. Only json and html allowed."
 msgstr ""
+
+#: views/reader.py:122
+msgid " is a possible form of ... "
+msgstr ""
+
+#~ msgid "Texts"
+#~ msgstr ""
+
+#~ msgid "Swap"
+#~ msgstr ""
+
+#~ msgid "Definition not found for:"
+#~ msgstr ""
+
+#~ msgid "Word %(input)s not found."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "If you are using a device without"
+#~ " a Sámi keyboard, consider using <a"
+#~ " href=\"/SoMe/nob/\">social media mode</a>, which"
+#~ " allows you to type <em>acdnstz</em> "
+#~ "for <em>áčđŋšŧž</em>."
+#~ msgstr ""
+
+#~ msgid "Search for a word, or a word form for a word analysis and definition."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "You selected #SoMe, the variant for "
+#~ "social media, which means that the "
+#~ "letters acdnstz\n"
+#~ "                            will be accepted "
+#~ "as áčđŋšŧž in addition to their "
+#~ "usual values."
+#~ msgstr ""
+
+#~ msgid "is a possible form of ... "
+#~ msgstr ""
+
+#~ msgid "More information about this word"
+#~ msgstr ""
 

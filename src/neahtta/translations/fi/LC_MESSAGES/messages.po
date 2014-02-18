@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-01-14 15:44-0600\n"
+"POT-Creation-Date: 2014-02-18 14:41-0600\n"
 "PO-Revision-Date: 2014-02-15 20:48+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language-Team: fi <LL@li.org>\n"
@@ -25,8 +25,7 @@ msgstr "Standardi"
 msgid "Molotsov orthography (ԅ &rarr; зь)"
 msgstr "Molotsovin ortografia (ԅ &rarr; зь)"
 
-#: configs/language_names.py:23
-#: configs/language_names.py:24
+#: configs/language_names.py:23 configs/language_names.py:24
 #: templates/more_dictionaries.html:27
 msgid "North Sámi"
 msgstr "Pohjoissaame"
@@ -35,8 +34,7 @@ msgstr "Pohjoissaame"
 msgid "North Sámi (#SoMe)"
 msgstr "Pohjoissaame (#SoMe)"
 
-#: configs/language_names.py:26
-#: configs/language_names.py:78
+#: configs/language_names.py:26 configs/language_names.py:78
 msgid "English"
 msgstr "Englanti"
 
@@ -44,13 +42,11 @@ msgstr "Englanti"
 msgid "Hungarian"
 msgstr "Unkari"
 
-#: configs/language_names.py:30
-#: templates/more_dictionaries.html:28
+#: configs/language_names.py:30 templates/more_dictionaries.html:28
 msgid "South Sámi"
 msgstr "Eteläsaame"
 
-#: configs/language_names.py:33
-#: configs/language_names.py:34
+#: configs/language_names.py:33 configs/language_names.py:34
 msgid "Komi"
 msgstr "Komi"
 
@@ -62,13 +58,11 @@ msgstr "Molotsovin ortografia"
 msgid "Udmurt"
 msgstr "Udmurtti"
 
-#: configs/language_names.py:38
-#: templates/more_dictionaries.html:38
+#: configs/language_names.py:38 templates/more_dictionaries.html:38
 msgid "Kven"
 msgstr "Kveeni"
 
-#: configs/language_names.py:39
-#: configs/language_names.py:40
+#: configs/language_names.py:39 configs/language_names.py:40
 #: templates/more_dictionaries.html:38
 msgid "Livonian"
 msgstr "Liivi"
@@ -82,8 +76,7 @@ msgstr "(... ja on kännykkä-ystävällinen!)"
 msgid "Olonetsian"
 msgstr "Livvinkarjala"
 
-#: configs/language_names.py:42
-#: templates/more_dictionaries.html:38
+#: configs/language_names.py:42 templates/more_dictionaries.html:38
 msgid "Izhorian"
 msgstr "Inkeroinen"
 
@@ -95,13 +88,11 @@ msgstr "Viro"
 msgid "Erzya Mordvin"
 msgstr "Ersä"
 
-#: configs/language_names.py:47
-#: templates/more_dictionaries.html:39
+#: configs/language_names.py:47 templates/more_dictionaries.html:39
 msgid "Moksha"
 msgstr "Moksha"
 
-#: configs/language_names.py:48
-#: configs/language_names.py:80
+#: configs/language_names.py:48 configs/language_names.py:80
 msgid "French"
 msgstr "Ranska"
 
@@ -129,24 +120,20 @@ msgstr "Plains cree"
 msgid "Northern Haida"
 msgstr "Pohjoishaida"
 
-#: configs/language_names.py:67
-#: configs/language_names.py:73
+#: configs/language_names.py:67 configs/language_names.py:73
 msgid "Finnish"
 msgstr "Suomi"
 
-#: configs/language_names.py:68
-#: configs/language_names.py:74
+#: configs/language_names.py:68 configs/language_names.py:74
 #: configs/language_names.py:75
 msgid "Norwegian"
 msgstr "Norja"
 
-#: configs/language_names.py:70
-#: configs/language_names.py:71
+#: configs/language_names.py:70 configs/language_names.py:71
 msgid "Russian"
 msgstr "Venäjä"
 
-#: configs/language_names.py:76
-#: configs/language_names.py:77
+#: configs/language_names.py:76 configs/language_names.py:77
 msgid "Latvian"
 msgstr "Latvia"
 
@@ -154,25 +141,21 @@ msgstr "Latvia"
 msgid "Haida"
 msgstr "Haida"
 
-#: configs/sample.config.yaml.in:110
-#: configs/sanit.config.yaml.in:102
-#: configs/sanit.config.yaml.in:127
+#: configs/sample.config.yaml.in:114 configs/sanit.config.yaml.in:112
+#: configs/sanit.config.yaml.in:139
 msgid "Standárda (<em>áčđŋšŧž</em>)"
 msgstr ""
 
-#: configs/sample.config.yaml.in:113
-#: configs/sanit.config.yaml.in:105
-#: configs/sanit.config.yaml.in:130
+#: configs/sample.config.yaml.in:117 configs/sanit.config.yaml.in:115
+#: configs/sanit.config.yaml.in:142
 msgid "Sosiála media (maiddái <em>acdnstz</em>)"
 msgstr "Sosiaalimedia (myös <em>acdnstz</em>)"
 
-#: configs/sanat.config.yaml.in:132
-#: configs/sanat.config.yaml.in:143
+#: configs/sanat.config.yaml.in:136 configs/sanat.config.yaml.in:147
 msgid "Standard (äǟ)"
 msgstr "Standardi (äǟ)"
 
-#: configs/sanat.config.yaml.in:135
-#: configs/sanat.config.yaml.in:146
+#: configs/sanat.config.yaml.in:139 configs/sanat.config.yaml.in:150
 #, fuzzy
 msgid "Mobile friendly (a &rarr; ä ~ ǟ)"
 msgstr "(... ja on kännykkä-ystävällinen!)"
@@ -185,14 +168,10 @@ msgstr "Á"
 msgid "Options"
 msgstr "Vaihtoehdot"
 
-#: static/js/bookmarklet.js:1245
-#: templates/about.baakoeh.html:6
-#: templates/about.muter.html:6
-#: templates/about.sanat.html:6
-#: templates/about.sanit.html:6
-#: templates/about.vada.html:7
-#: templates/about.valks.html:7
-#: templates/base.html:93
+#: static/js/bookmarklet.js:1245 templates/about.baakoeh.html:6
+#: templates/about.muter.html:6 templates/about.sanat.html:6
+#: templates/about.sanit.html:6 templates/about.vada.html:7
+#: templates/about.valks.html:7 templates/base.html:109
 msgid "About"
 msgstr "Meistä"
 
@@ -221,15 +200,24 @@ msgid "IE8 Warning"
 msgstr "IE8 Varoitus"
 
 #: static/js/bookmarklet.js:1245
-msgid "In order to look up a word, hold down the <em>Alt</em> or <em>Option</em> (⌥) key, and doubleclick on a word. The service will contact the dictionary, and return a word after a short pause."
+msgid ""
+"In order to look up a word, hold down the <em>Alt</em> or <em>Option</em>"
+" (⌥) key, and doubleclick on a word. The service will contact the "
+"dictionary, and return a word after a short pause."
 msgstr ""
 "Tarkistaaksesi sana, pidä <em>Alt</em> tai \"\n"
 "\"<em>Option</em> (⌥), ja kaksoisklikkaa sitä. Ohjelma ottaa \"\n"
 "\"yhteyttä sanakirjaan, ja antaa käännöksen pienen viiven jälkeen."
 
 #: static/js/bookmarklet.js:1245
-msgid "If you find a bug, or if the bookmark does not work on a specific page <a href=\"mailto:giellatekno@hum.uit.no\">please contact us</a>. Tell us what page didn't work, or what you did when you discovered the problem."
-msgstr "Jos löydät virheen, tai jos kirjainmerkki ei toimi tietyllä sivulla, <a href=\"mailto:giellatekno@hum.uit.no\">ota yhteyttä meihin</a>. Kerro mikä sivu ei toiminnut, tai mitä teit kun törmäsit ongelmaan."
+msgid ""
+"If you find a bug, or if the bookmark does not work on a specific page <a"
+" href=\"mailto:giellatekno@hum.uit.no\">please contact us</a>. Tell us "
+"what page didn't work, or what you did when you discovered the problem."
+msgstr ""
+"Jos löydät virheen, tai jos kirjainmerkki ei toimi tietyllä sivulla, <a "
+"href=\"mailto:giellatekno@hum.uit.no\">ota yhteyttä meihin</a>. Kerro "
+"mikä sivu ei toiminnut, tai mitä teit kun törmäsit ongelmaan."
 
 #: static/js/bookmarklet.js:1310
 msgid "Error!"
@@ -243,8 +231,7 @@ msgstr "Emme pystyneet yhdistämään sanakirjan palvelimeen"
 msgid "Close"
 msgstr "Sulje"
 
-#: static/js/bookmarklet.js:1432
-#: static/js/bookmarklet.js:1714
+#: static/js/bookmarklet.js:1432 static/js/bookmarklet.js:1714
 msgid "Unknown word"
 msgstr "Tuntematon sana"
 
@@ -257,50 +244,44 @@ msgid "Meaning not found"
 msgstr "Merkitystä ei löydy"
 
 #: templates/404.html:51
-msgid "Whoops! The page you requested was not found. If you think you are receiving this in error, please contact us."
-msgstr "Hupsis! Emme löytäneet etsimäsi sivua. Ota yhteyttä meihin, jos luulet, että tämä virheilmoitus itse on virheelinen"
+msgid ""
+"Whoops! The page you requested was not found. If you think you are "
+"receiving this in error, please contact us."
+msgstr ""
+"Hupsis! Emme löytäneet etsimäsi sivua. Ota yhteyttä meihin, jos luulet, "
+"että tämä virheilmoitus itse on virheelinen"
 
 #: templates/404.html:51
-msgid "If you followed a link from the front page, it may be that the dictionary you were browsing is not yet bilingual."
+msgid ""
+"If you followed a link from the front page, it may be that the dictionary"
+" you were browsing is not yet bilingual."
 msgstr ""
 
 #: templates/500.html:51
 msgid "Whoops! There was some kind of error."
 msgstr "Hupsis! Nyt kyllä jotain kummallista tapahtui..."
 
-#: templates/about.baakoeh.html:15
-#: templates/about.muter.html:15
-#: templates/about.sanat.html:15
-#: templates/about.sanit.html:15
-#: templates/about.vada.html:17
-#: templates/about.valks.html:17
+#: templates/about.baakoeh.html:15 templates/about.muter.html:15
+#: templates/about.sanat.html:15 templates/about.sanit.html:15
+#: templates/about.vada.html:17 templates/about.valks.html:17
 msgid "A dictionary that understands what you're looking for."
 msgstr "Sanakirja, joka ymmärtää, mitä etsit.."
 
-#: templates/about.baakoeh.html:16
-#: templates/about.muter.html:16
-#: templates/about.sanat.html:16
-#: templates/about.sanit.html:16
-#: templates/about.vada.html:18
-#: templates/about.valks.html:18
+#: templates/about.baakoeh.html:16 templates/about.muter.html:16
+#: templates/about.sanat.html:16 templates/about.sanit.html:16
+#: templates/about.vada.html:18 templates/about.valks.html:18
 msgid "(... And is mobile-friendly!)"
 msgstr "(... ja on kännykkä-ystävällinen!)"
 
-#: templates/about.baakoeh.html:20
-#: templates/about.muter.html:20
-#: templates/about.sanat.html:20
-#: templates/about.sanit.html:20
-#: templates/about.vada.html:22
-#: templates/about.valks.html:22
+#: templates/about.baakoeh.html:20 templates/about.muter.html:20
+#: templates/about.sanat.html:20 templates/about.sanit.html:20
+#: templates/about.vada.html:22 templates/about.valks.html:22
 msgid "Free"
 msgstr "Vapaa"
 
-#: templates/about.baakoeh.html:21
-#: templates/about.muter.html:21
-#: templates/about.sanat.html:21
-#: templates/about.sanit.html:21
-#: templates/about.vada.html:23
-#: templates/about.valks.html:23
+#: templates/about.baakoeh.html:21 templates/about.muter.html:21
+#: templates/about.sanat.html:21 templates/about.sanit.html:21
+#: templates/about.vada.html:23 templates/about.valks.html:23
 msgid ""
 "Everything (or, well, almost everything) that\n"
 "                    concerns minority languages should be free. Here\n"
@@ -308,112 +289,109 @@ msgid ""
 "                    tools."
 msgstr ""
 
-#: templates/about.baakoeh.html:27
-#: templates/about.muter.html:27
-#: templates/about.sanat.html:27
-#: templates/about.sanit.html:27
-#: templates/about.vada.html:29
-#: templates/about.valks.html:29
+#: templates/about.baakoeh.html:27 templates/about.muter.html:27
+#: templates/about.sanat.html:27 templates/about.sanit.html:27
+#: templates/about.vada.html:29 templates/about.valks.html:29
 msgid "Open-Source"
 msgstr "Avoin"
 
-#: templates/about.baakoeh.html:28
-#: templates/about.muter.html:28
-#: templates/about.sanat.html:28
-#: templates/about.sanit.html:28
-#: templates/about.vada.html:30
-#: templates/about.valks.html:30
+#: templates/about.baakoeh.html:28 templates/about.muter.html:28
+#: templates/about.sanat.html:28 templates/about.sanit.html:28
+#: templates/about.vada.html:30 templates/about.valks.html:30
 msgid ""
 "Everything here is based on open-source tools. Do you\n"
 "                have an idea for an app or research project that needs\n"
 "                linguistic resources? Visit <a class=\"blue\"\n"
-"                    href=\"http://giellatekno.uit.no/\">Giellatekno</a>'s\n"
+"                    href=\"http://giellatekno.uit.no/\">Giellatekno</a>'s"
+"\n"
 "                website for information on how to get access to lexicon\n"
 "                files, and morphological and syntactic analyzers."
 msgstr ""
 
-#: templates/about.baakoeh.html:36
-#: templates/about.muter.html:36
-#: templates/about.sanat.html:36
-#: templates/about.sanit.html:36
-#: templates/about.vada.html:38
-#: templates/about.valks.html:38
+#: templates/about.baakoeh.html:36 templates/about.muter.html:36
+#: templates/about.sanat.html:36 templates/about.sanit.html:36
+#: templates/about.vada.html:38 templates/about.valks.html:38
 msgid "Linguistic basis"
 msgstr "Kielitieteellinen perusta"
 
-#: templates/about.baakoeh.html:37
-#: templates/about.muter.html:37
-#: templates/about.sanat.html:37
-#: templates/about.sanit.html:37
-#: templates/about.vada.html:39
-#: templates/about.valks.html:39
-msgid "Write what you wish, and the dictionary will analyze it to break apart compound words and find base forms."
-msgstr "Kirjoita mitä lystäät, ja sanakirja analysoi sekä jakaa yhdyssanoja osiinsa."
+#: templates/about.baakoeh.html:37 templates/about.muter.html:37
+#: templates/about.sanat.html:37 templates/about.sanit.html:37
+#: templates/about.vada.html:39 templates/about.valks.html:39
+msgid ""
+"Write what you wish, and the dictionary will analyze it to break apart "
+"compound words and find base forms."
+msgstr ""
+"Kirjoita mitä lystäät, ja sanakirja analysoi sekä jakaa yhdyssanoja "
+"osiinsa."
 
-#: templates/about.baakoeh.html:43
-#: templates/about.sanit.html:43
+#: templates/about.baakoeh.html:43 templates/about.sanit.html:43
 msgid "gå, dra, reise"
 msgstr ""
 
-#: templates/about.baakoeh.html:50
-#: templates/about.muter.html:50
-#: templates/about.sanat.html:50
-#: templates/about.sanit.html:50
-#: templates/about.vada.html:52
-#: templates/about.valks.html:52
+#: templates/about.baakoeh.html:50 templates/about.muter.html:50
+#: templates/about.sanat.html:50 templates/about.sanit.html:50
+#: templates/about.vada.html:52 templates/about.valks.html:52
 msgid "Source material"
 msgstr "Lähdeaineisto"
 
-#: templates/about.baakoeh.html:57
-#: templates/about.sanit.html:57
+#: templates/about.baakoeh.html:57 templates/about.sanit.html:57
 msgid "sme ↔ nob"
 msgstr ""
 
-#: templates/about.baakoeh.html:58
-#: templates/about.sanit.html:58
-msgid "North Sámi → Norwegian builds on Nils Jernsletten's dictionary <em>Álgosátnegirji</em>, but here it has been more than doubled in content."
+#: templates/about.baakoeh.html:58 templates/about.sanit.html:58
+msgid ""
+"North Sámi → Norwegian builds on Nils Jernsletten's dictionary "
+"<em>Álgosátnegirji</em>, but here it has been more than doubled in "
+"content."
 msgstr ""
 
-#: templates/about.baakoeh.html:59
-#: templates/about.sanit.html:59
-msgid "Norwegian → North Sámi is a converted version of North Sámi → Norwegian, but we have also revised the content and added frequent words from Norwegian."
+#: templates/about.baakoeh.html:59 templates/about.sanit.html:59
+msgid ""
+"Norwegian → North Sámi is a converted version of North Sámi → Norwegian, "
+"but we have also revised the content and added frequent words from "
+"Norwegian."
 msgstr ""
 
-#: templates/about.baakoeh.html:62
-#: templates/about.sanit.html:62
+#: templates/about.baakoeh.html:62 templates/about.sanit.html:62
 msgid "sma ↔ nob"
 msgstr ""
 
-#: templates/about.baakoeh.html:63
-#: templates/about.sanit.html:63
-msgid "The dictionaries for South Sámi and Norwegian build on material prepared by Albert Jåma and Tove Brustad in the <a class=\"blue\" href=\"http://www.ruovatsijte.no/\">Hemnes Sámi Organization</a>, but has in addition gained words from <a class=\"blue\" href=\"http://giellatekno.uit.no/\">Giellatekno</a> and <a class=\"blue\" href=\"http://aajege.no/\">Aajege</a>'s work with the Southern Sámi <a class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
+#: templates/about.baakoeh.html:63 templates/about.sanit.html:63
+msgid ""
+"The dictionaries for South Sámi and Norwegian build on material prepared "
+"by Albert Jåma and Tove Brustad in the <a class=\"blue\" "
+"href=\"http://www.ruovatsijte.no/\">Hemnes Sámi Organization</a>, but has"
+" in addition gained words from <a class=\"blue\" "
+"href=\"http://giellatekno.uit.no/\">Giellatekno</a> and <a class=\"blue\""
+" href=\"http://aajege.no/\">Aajege</a>'s work with the Southern Sámi <a "
+"class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
 msgstr ""
 
-#: templates/about.baakoeh.html:66
-#: templates/about.sanit.html:66
+#: templates/about.baakoeh.html:66 templates/about.sanit.html:66
 msgid "sme ↔ fin"
 msgstr ""
 
-#: templates/about.baakoeh.html:67
-#: templates/about.sanit.html:67
-msgid "Dictionaries for North Sámi and Finnish are based on lexical material from the <a class=\"green\" href=\"http://kotus.fi\">Institute for the Languages of Finland</a>, and from Giellatekno's work with the North Sámi  <a class=\"green\" href=\"http://oahpa.no\">Oahpa</a>. In addition, we have included frequent words from North Sámi, but especially from Finnish."
+#: templates/about.baakoeh.html:67 templates/about.sanit.html:67
+msgid ""
+"Dictionaries for North Sámi and Finnish are based on lexical material "
+"from the <a class=\"green\" href=\"http://kotus.fi\">Institute for the "
+"Languages of Finland</a>, and from Giellatekno's work with the North Sámi"
+"  <a class=\"green\" href=\"http://oahpa.no\">Oahpa</a>. In addition, we "
+"have included frequent words from North Sámi, but especially from "
+"Finnish."
 msgstr ""
 
-#: templates/about.baakoeh.html:68
-#: templates/about.sanit.html:68
+#: templates/about.baakoeh.html:68 templates/about.sanit.html:68
 msgid "Each of the dictionaries contains about 11,000 base words."
 msgstr "Jokaisessa sanakirjassa on noin 11,000 perussanaa"
 
-#: templates/about.baakoeh.html:76
-#: templates/about.muter.html:79
-#: templates/about.sanat.html:86
-#: templates/about.vada.html:78
+#: templates/about.baakoeh.html:76 templates/about.muter.html:79
+#: templates/about.sanat.html:86 templates/about.vada.html:78
 #: templates/about.valks.html:90
 msgid "More to come..."
 msgstr "Lisää tulossa..."
 
-#: templates/about.muter.html:43
-#: templates/about.vada.html:45
+#: templates/about.muter.html:43 templates/about.vada.html:45
 #: templates/about.valks.html:45
 msgid "mennä, lähteä, kulkea"
 msgstr ""
@@ -425,12 +403,16 @@ msgstr ""
 #: templates/about.muter.html:58
 msgid ""
 "Dictionaries for Hill Mari and Finnish are based\n"
-"                    on lexical material from a large array of dictionaries and\n"
-"                    written literature from the 20th and 21th centuries. A\n"
+"                    on lexical material from a large array of "
+"dictionaries and\n"
+"                    written literature from the 20th and 21th centuries. "
+"A\n"
 "                    note-worthy dictionary is the Hill Mari - Russian\n"
-"                    dictionary by Anna A. Savatkova (1981). Translation work is\n"
+"                    dictionary by Anna A. Savatkova (1981). Translation "
+"work is\n"
 "                    being conducted at\n"
-"                the University of Helsinki by Julia Kuprina with funding from\n"
+"                the University of Helsinki by Julia Kuprina with funding "
+"from\n"
 "                the Kone Foundation."
 msgstr ""
 
@@ -445,10 +427,14 @@ msgstr ""
 #: templates/about.sanat.html:58
 msgid ""
 "Dictionaries for Livonian and Finnish are based\n"
-"                on the lexical materials and scientific research behind the\n"
-"                Livonian-Estonian-Latvian dictionary by Tiit-Rein Viitso and\n"
-"                Valts Ernštreits. Finnish translation work, content analysis\n"
-"                and coordination is being continued in Helsinki by Renate\n"
+"                on the lexical materials and scientific research behind "
+"the\n"
+"                Livonian-Estonian-Latvian dictionary by Tiit-Rein Viitso "
+"and\n"
+"                Valts Ernštreits. Finnish translation work, content "
+"analysis\n"
+"                and coordination is being continued in Helsinki by Renate"
+"\n"
 "                Blumberga with funding from the Kone Foundation."
 msgstr ""
 
@@ -459,7 +445,8 @@ msgstr ""
 #: templates/about.sanat.html:68
 msgid ""
 "Dictionaries for Livvi Karelian (Olonets) and\n"
-"                Finnish are based on lexical material from the Livvi language\n"
+"                Finnish are based on lexical material from the Livvi "
+"language\n"
 "                newspaper \"Oma mua\" and a large array of dictionaries.\n"
 "                Translation work is being conducted at the University of\n"
 "                Helsinki by Timo Rantakaulio with funding from the Kone\n"
@@ -473,18 +460,19 @@ msgstr ""
 #: templates/about.sanit.html:74
 msgid ""
 "If you find any bugs, please get in touch with us. Describe the problem,\n"
-"                and tell us what web browser or mobile phone you were using, or what word you\n"
+"                and tell us what web browser or mobile phone you were "
+"using, or what word you\n"
 "                were searching for when you encountered the problem."
 msgstr ""
 
-#: templates/about.sanit.html:79
-#: templates/about.sanit.html:84
+#: templates/about.sanit.html:79 templates/about.sanit.html:84
 msgid "Contact us"
 msgstr "Ota yhteys meihin"
 
 #: templates/about.sanit.html:89
 msgid ""
-"Need more dictionaries? <a href=\"http://dicts.uit.no/\">Here's our full list</a>, and more\n"
+"Need more dictionaries? <a href=\"http://dicts.uit.no/\">Here's our full "
+"list</a>, and more\n"
 "                resources."
 msgstr ""
 
@@ -495,9 +483,12 @@ msgstr ""
 #: templates/about.vada.html:60
 msgid ""
 "Dictionaries for Nenets and Finnish are based on\n"
-"                the lexical materials and scientific research by Natalia M.\n"
-"                Tereschenko, Tapani Salminen and Sven-Erik Soosaar. Finnish\n"
-"                translation work is being done in Tallin by Sven-Erik Soosaar\n"
+"                the lexical materials and scientific research by Natalia "
+"M.\n"
+"                Tereschenko, Tapani Salminen and Sven-Erik Soosaar. "
+"Finnish\n"
+"                translation work is being done in Tallin by Sven-Erik "
+"Soosaar\n"
 "                with funding from the Kone Foundation."
 msgstr ""
 
@@ -508,12 +499,17 @@ msgstr ""
 #: templates/about.valks.html:60
 msgid ""
 "Dictionaries for Erzya and Finnish are based on\n"
-"                lexical material from a large array of dictionaries and written\n"
-"                literature from the 20th and 21th centuries. Initial Finnish\n"
+"                lexical material from a large array of dictionaries and "
+"written\n"
+"                literature from the 20th and 21th centuries. Initial "
+"Finnish\n"
 "                translations have been added from the content of the\n"
-"                Erzya-Finnish dictionary by Jaana Niemi and Mihail Mosin at the\n"
-"                Universities in Turku and Saransk. There are additions being\n"
-"                made on the basis of ongoing translation work at the University\n"
+"                Erzya-Finnish dictionary by Jaana Niemi and Mihail Mosin "
+"at the\n"
+"                Universities in Turku and Saransk. There are additions "
+"being\n"
+"                made on the basis of ongoing translation work at the "
+"University\n"
 "                of Helsinki."
 msgstr ""
 
@@ -524,98 +520,56 @@ msgstr ""
 #: templates/about.valks.html:71
 msgid ""
 "Dictionaries for Moksha and Finnish are based on\n"
-"                lexical material from a large array of dictionaries and written\n"
-"                literature from the 20th and 21th centuries. Initial Finnish\n"
+"                lexical material from a large array of dictionaries and "
+"written\n"
+"                literature from the 20th and 21th centuries. Initial "
+"Finnish\n"
 "                translations have been added from the content of the\n"
 "                Moksha-Finnish dictionary by Eeva Herrala and Aleksandr\n"
 "                Feoktistov at the Universities in Turku and Saransk.\n"
 "                Translation work is being continued at the University of\n"
-"                Helsinki by Merja Salo with funding from the Kone Foundation."
+"                Helsinki by Merja Salo with funding from the Kone "
+"Foundation."
 msgstr ""
 
-#: templates/base.html:85
+#: templates/base.html:101
 msgid "Home"
 msgstr ""
 
-#: templates/base.html:89
+#: templates/base.html:105
 msgid "Plugins"
 msgstr "Laajennuksia"
 
-#: templates/base.html:98
+#: templates/base.html:114
 msgid "Interface language"
 msgstr "Käyttöliittymän kieli"
 
-#: templates/base.html:164
-msgid "Created with free and open-source language tools from <em><a href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, a Sámi Language Technology group at the <a href=\"http://uit.no\">University of Tromsø</a>."
+#: templates/base.html:180
+msgid ""
+"Created with free and open-source language tools from <em><a "
+"href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, a Sámi Language "
+"Technology group at the <a href=\"http://uit.no\">University of "
+"Tromsø</a>."
 msgstr ""
 
 #: templates/config_doc.html:4
 msgid "Neahttadigisánit"
 msgstr "Nettidigisanat"
 
-#: templates/index.html:19
-#: templates/word_detail.html:20
-msgid "Texts"
-msgstr "Tekstejä"
-
-#: templates/index.html:50
-#: templates/left_dictionary_list.html:1
-msgid "Dictionaries"
-msgstr "Sanakirjoja"
-
-#: templates/index.html:68
-#: templates/left_dictionary_list.html:52
-#: templates/more_dictionaries.html:21
-msgid "Other dictionaries"
-msgstr "Muita sanakirjoja"
-
-#: templates/index.html:89
-msgid "Swap"
-msgstr "Vaihda"
-
-#: templates/index.html:97
-#: templates/index.html:182
-#: templates/word_detail.html:94
-#: views/reader.py:122
-msgid " is a possible form of ... "
+#: templates/index_search_form.html:11
+msgid "Press Tab to select a word"
 msgstr ""
 
-#: templates/index.html:152
-msgid "Definition not found for:"
-msgstr ""
-
-#: templates/index.html:204
-#, python-format
-msgid "Word %(input)s not found."
-msgstr ""
-
-#: templates/index.html:213
-msgid "If you are using a device without a Sámi keyboard, consider using <a href=\"/SoMe/nob/\">social media mode</a>, which allows you to type <em>acdnstz</em> for <em>áčđŋšŧž</em>."
-msgstr ""
-
-#: templates/index.html:217
-msgid "Search for a word, or a word form for a word analysis and definition."
-msgstr ""
-
-#: templates/index.html:221
-msgid ""
-"You selected #SoMe, the variant for social media, which means that the letters acdnstz\n"
-"                            will be accepted as áčđŋšŧž in addition to their usual values."
-msgstr ""
-
-#: templates/index_search_form.html:14
+#: templates/index_search_form.html:15
 msgid "ohcansátni"
 msgstr "hakusana"
 
-#: templates/index_search_form.html:19
-#: templates/index_search_form.html:32
-#: templates/index_search_form.html:36
-#: templates/word_detail.html:85
+#: templates/index_search_form.html:20 templates/index_search_form.html:39
+#: templates/index_search_form.html:43
 msgid "Search"
 msgstr "Etsi"
 
-#: templates/index_search_form.html:28
-#: templates/index_search_form.html:47
+#: templates/index_search_form.html:31 templates/index_search_form.html:54
 msgid "Search texts"
 msgstr "Etsi teksteistä"
 
@@ -627,9 +581,17 @@ msgstr "<span class=\"reposition_hide\">Kieli</span>"
 msgid "Language"
 msgstr "Kieli"
 
+#: templates/left_dictionary_list.html:1
+msgid "Dictionaries"
+msgstr "Sanakirjoja"
+
 #: templates/left_dictionary_list.html:38
 msgid "Written variant"
 msgstr "Kirjoitettu variantti"
+
+#: templates/left_dictionary_list.html:52 templates/more_dictionaries.html:21
+msgid "Other dictionaries"
+msgstr "Muita sanakirjoja"
 
 #: templates/more_dictionaries.html:4
 msgid "More dictionaris"
@@ -644,8 +606,10 @@ msgstr ""
 #: templates/more_dictionaries.html:31
 msgid ""
 "We're currently working on some new dictionaries for\n"
-"                the following language groups. Since these may not always be\n"
-"                online, they are not linked here, but please contact us if you\n"
+"                the following language groups. Since these may not always"
+" be\n"
+"                online, they are not linked here, but please contact us "
+"if you\n"
 "                would like to see a demo!"
 msgstr ""
 
@@ -692,14 +656,16 @@ msgstr "Vielä lisää sanakirjoja..."
 #: templates/more_dictionaries.html:46
 msgid ""
 "<a href=\"http://giellatekno.uit.no/\">Giellatekno</a> also has\n"
-"                other languages and dictionaries that are not yet available in\n"
-"                Neahttadigisánit. For a list of all other online dictionaries\n"
-"                built with our tools, <a href=\"http://dicts.uit.no/\">see this\n"
+"                other languages and dictionaries that are not yet "
+"available in\n"
+"                Neahttadigisánit. For a list of all other online "
+"dictionaries\n"
+"                built with our tools, <a "
+"href=\"http://dicts.uit.no/\">see this\n"
 "                    list</a>."
 msgstr ""
 
-#: templates/reader.html:3
-#: templates/reader.html:20
+#: templates/reader.html:3 templates/reader.html:20
 msgid "Neahttadigisánit Reader"
 msgstr ""
 
@@ -710,17 +676,19 @@ msgstr ""
 #: templates/reader.html:22
 msgid ""
 "Drag and drop the following link to your Bookmark toolbar,\n"
-"                then click it when you are on a page you wish to read. The\n"
-"                service will automatically be installed, and you will see a\n"
+"                then click it when you are on a page you wish to read. "
+"The\n"
+"                service will automatically be installed, and you will see"
+" a\n"
 "                menu icon on the left-hand side of the page."
 msgstr ""
 "Raahaa ja pudota tämä linkki omalle selaintyöpalkillesi, sen jälkeen\n"
-"                voit klikata sitä, kun pääset sivulle, jota haluat lukea. \n"
+"                voit klikata sitä, kun pääset sivulle, jota haluat lukea."
+" \n"
 "                Silloin palvelu automaattisesti asennetaan, ja sivun \n"
 "                vasemmalle laidalle ilmestyy menuikoni."
 
-#: templates/reader.html:26
-#: templates/reader_update.html:15
+#: templates/reader.html:26 templates/reader_update.html:15
 msgid "Read with Neahttadigisánit"
 msgstr "Lue Nettidigisanan avulla"
 
@@ -767,14 +735,16 @@ msgstr ""
 #: templates/reader.html:41
 msgid ""
 "If you encounter bugs, or the bookmarklet does not work on a\n"
-"                particular page, contact us with the page URL or details of\n"
+"                particular page, contact us with the page URL or details "
+"of\n"
 "                what you were reading when you encountered the problem."
 msgstr ""
 
 #: templates/reader.html:44
 msgid ""
 "We do not store any private data, but we do collect\n"
-"                individual dictionary lookups for statistics and to improve\n"
+"                individual dictionary lookups for statistics and to "
+"improve\n"
 "                the dictionary."
 msgstr ""
 
@@ -783,7 +753,9 @@ msgid "Includes"
 msgstr "Sisältää"
 
 #: templates/reader.html:61
-msgid "If you are looking for other languages, please see our <a href=\"/more/\">other dictionaries</a>."
+msgid ""
+"If you are looking for other languages, please see our <a "
+"href=\"/more/\">other dictionaries</a>."
 msgstr ""
 
 #: templates/reader_example.html:32
@@ -812,15 +784,49 @@ msgid ""
 "    menu icon on the left-hand side of the page."
 msgstr ""
 
-#: templates/word_detail.html:27
-msgid "is a possible form of ... "
-msgstr "on mahdollinen muoto tästä ..."
-
-#: templates/word_detail.html:173
-msgid "More information about this word"
-msgstr "Lisää tietoa tästä sanasta"
-
-#: views/main.py:97
+#: views/main.py:89
 msgid "Invalid format. Only json and html allowed."
 msgstr ""
+
+#: views/reader.py:122
+msgid " is a possible form of ... "
+msgstr ""
+
+#~ msgid "Texts"
+#~ msgstr "Tekstejä"
+
+#~ msgid "Swap"
+#~ msgstr "Vaihda"
+
+#~ msgid "Definition not found for:"
+#~ msgstr ""
+
+#~ msgid "Word %(input)s not found."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "If you are using a device without"
+#~ " a Sámi keyboard, consider using <a"
+#~ " href=\"/SoMe/nob/\">social media mode</a>, which"
+#~ " allows you to type <em>acdnstz</em> "
+#~ "for <em>áčđŋšŧž</em>."
+#~ msgstr ""
+
+#~ msgid "Search for a word, or a word form for a word analysis and definition."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "You selected #SoMe, the variant for "
+#~ "social media, which means that the "
+#~ "letters acdnstz\n"
+#~ "                            will be accepted "
+#~ "as áčđŋšŧž in addition to their "
+#~ "usual values."
+#~ msgstr ""
+
+#~ msgid "is a possible form of ... "
+#~ msgstr "on mahdollinen muoto tästä ..."
+
+#~ msgid "More information about this word"
+#~ msgstr "Lisää tietoa tästä sanasta"
 

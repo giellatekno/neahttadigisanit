@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-01-14 15:44-0600\n"
+"POT-Creation-Date: 2014-02-18 14:41-0600\n"
 "PO-Revision-Date: 2013-03-05 16:51+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: mrj <LL@li.org>\n"
@@ -142,21 +142,21 @@ msgstr ""
 msgid "Haida"
 msgstr ""
 
-#: configs/sample.config.yaml.in:110 configs/sanit.config.yaml.in:102
-#: configs/sanit.config.yaml.in:127
+#: configs/sample.config.yaml.in:114 configs/sanit.config.yaml.in:112
+#: configs/sanit.config.yaml.in:139
 msgid "Standárda (<em>áčđŋšŧž</em>)"
 msgstr ""
 
-#: configs/sample.config.yaml.in:113 configs/sanit.config.yaml.in:105
-#: configs/sanit.config.yaml.in:130
+#: configs/sample.config.yaml.in:117 configs/sanit.config.yaml.in:115
+#: configs/sanit.config.yaml.in:142
 msgid "Sosiála media (maiddái <em>acdnstz</em>)"
 msgstr ""
 
-#: configs/sanat.config.yaml.in:132 configs/sanat.config.yaml.in:143
+#: configs/sanat.config.yaml.in:136 configs/sanat.config.yaml.in:147
 msgid "Standard (äǟ)"
 msgstr ""
 
-#: configs/sanat.config.yaml.in:135 configs/sanat.config.yaml.in:146
+#: configs/sanat.config.yaml.in:139 configs/sanat.config.yaml.in:150
 #, fuzzy
 msgid "Mobile friendly (a &rarr; ä ~ ǟ)"
 msgstr "(... Дӓ сотовый телефоныштат кычылташ лиэш!)"
@@ -172,7 +172,7 @@ msgstr ""
 #: static/js/bookmarklet.js:1245 templates/about.baakoeh.html:6
 #: templates/about.muter.html:6 templates/about.sanat.html:6
 #: templates/about.sanit.html:6 templates/about.vada.html:7
-#: templates/about.valks.html:7 templates/base.html:93
+#: templates/about.valks.html:7 templates/base.html:109
 msgid "About"
 msgstr ""
 
@@ -571,19 +571,19 @@ msgid ""
 "Foundation."
 msgstr ""
 
-#: templates/base.html:85
+#: templates/base.html:101
 msgid "Home"
 msgstr "Туан пӧрт"
 
-#: templates/base.html:89
+#: templates/base.html:105
 msgid "Plugins"
 msgstr "Йишӓрӹмӓшвлӓ"
 
-#: templates/base.html:98
+#: templates/base.html:114
 msgid "Interface language"
 msgstr "Интерфейс-йӹлмӹ"
 
-#: templates/base.html:164
+#: templates/base.html:180
 msgid ""
 "Created with free and open-source language tools from <em><a "
 "href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, a Sámi Language "
@@ -602,73 +602,20 @@ msgstr ""
 msgid "Neahttadigisánit"
 msgstr "Neahttadigisánit лыдмаш программа"
 
-#: templates/index.html:19 templates/word_detail.html:20
-msgid "Texts"
+#: templates/index_search_form.html:11
+msgid "Press Tab to select a word"
 msgstr ""
 
-#: templates/index.html:50 templates/left_dictionary_list.html:1
-msgid "Dictionaries"
-msgstr ""
-
-#: templates/index.html:68 templates/left_dictionary_list.html:52
-#: templates/more_dictionaries.html:21
-msgid "Other dictionaries"
-msgstr ""
-
-#: templates/index.html:89
-msgid "Swap"
-msgstr "Вашталты"
-
-#: templates/index.html:97 templates/index.html:182
-#: templates/word_detail.html:94 views/reader.py:122
-msgid " is a possible form of ... "
-msgstr " техень шамак форма лин кердеш ти шамак гӹц ... "
-
-#: templates/index.html:152
-msgid "Definition not found for:"
-msgstr "Ти шамакын сӓрӹмӹ формыжы тиштӹ уке, ак моалт."
-
-#: templates/index.html:204
-#, python-format
-msgid "Word %(input)s not found."
-msgstr "Техень шамак %(input%) тиштӹ уке, ак моалт."
-
-#: templates/index.html:213
-msgid ""
-"If you are using a device without a Sámi keyboard, consider using <a "
-"href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
-"<em>acdnstz</em> for <em>áčđŋšŧž</em>."
-msgstr ""
-
-#: templates/index.html:217
-msgid "Search for a word, or a word form for a word analysis and definition."
-msgstr ""
-"Кӹчӓл шамакым ӓль шамак формым, кыдын грамматический анализжӹм ужнет ӓль "
-"кыдым сӓрӹнет."
-
-#: templates/index.html:221
-#, fuzzy
-msgid ""
-"You selected #SoMe, the variant for social media, which means that the "
-"letters acdnstz\n"
-"                            will be accepted as áčđŋšŧž in addition to "
-"their usual values."
-msgstr ""
-"Шамак толшеш #SoMe-версим, ӓли социальный медиштӹшӹ версим, айырет лижӹ.\n"
-"Тидӹ мам анжыкта: текстӹштӹ acdnstz буквавлӓм áčđŋšŧž вӓреш кычылт "
-"кердӹнӓ, какляка дӓ точкывлӓ гӹц пасна ылшы буквавлӓм семӹньвлӓэш ана "
-"лык."
-
-#: templates/index_search_form.html:14
+#: templates/index_search_form.html:15
 msgid "ohcansátni"
 msgstr ""
 
-#: templates/index_search_form.html:19 templates/index_search_form.html:32
-#: templates/index_search_form.html:36 templates/word_detail.html:85
+#: templates/index_search_form.html:20 templates/index_search_form.html:39
+#: templates/index_search_form.html:43
 msgid "Search"
 msgstr "Кӹчӓл"
 
-#: templates/index_search_form.html:28 templates/index_search_form.html:47
+#: templates/index_search_form.html:31 templates/index_search_form.html:54
 msgid "Search texts"
 msgstr ""
 
@@ -681,9 +628,17 @@ msgstr ""
 msgid "Language"
 msgstr "Йӹлмӹ"
 
+#: templates/left_dictionary_list.html:1
+msgid "Dictionaries"
+msgstr ""
+
 #: templates/left_dictionary_list.html:38
 msgid "Written variant"
 msgstr "Литературный йӹлмӹ вариант"
+
+#: templates/left_dictionary_list.html:52 templates/more_dictionaries.html:21
+msgid "Other dictionaries"
+msgstr ""
 
 #: templates/more_dictionaries.html:4
 msgid "More dictionaris"
@@ -904,15 +859,58 @@ msgstr ""
 "лыдмы ӹлӹштӓшетӹн шалахай монгырышты <em>Á</em> меню символ доно "
 "анжыкталтеш."
 
-#: templates/word_detail.html:27
-msgid "is a possible form of ... "
-msgstr "техень шамак форма лин кердеш ти шамак гӹц …"
-
-#: templates/word_detail.html:173
-msgid "More information about this word"
-msgstr "Ти шамак гишӓн йишӓртӹш информаци тиштӹ"
-
-#: views/main.py:97
+#: views/main.py:89
 msgid "Invalid format. Only json and html allowed."
 msgstr "Самынь шамак форма. Акцептируялтеш лач json дӓ html системывлӓштӹ"
+
+#: views/reader.py:122
+msgid " is a possible form of ... "
+msgstr " техень шамак форма лин кердеш ти шамак гӹц ... "
+
+#~ msgid "Texts"
+#~ msgstr ""
+
+#~ msgid "Swap"
+#~ msgstr "Вашталты"
+
+#~ msgid "Definition not found for:"
+#~ msgstr "Ти шамакын сӓрӹмӹ формыжы тиштӹ уке, ак моалт."
+
+#~ msgid "Word %(input)s not found."
+#~ msgstr "Техень шамак %(input%) тиштӹ уке, ак моалт."
+
+#~ msgid ""
+#~ "If you are using a device without"
+#~ " a Sámi keyboard, consider using <a"
+#~ " href=\"/SoMe/nob/\">social media mode</a>, which"
+#~ " allows you to type <em>acdnstz</em> "
+#~ "for <em>áčđŋšŧž</em>."
+#~ msgstr ""
+
+#~ msgid "Search for a word, or a word form for a word analysis and definition."
+#~ msgstr ""
+#~ "Кӹчӓл шамакым ӓль шамак формым, кыдын"
+#~ " грамматический анализжӹм ужнет ӓль кыдым"
+#~ " сӓрӹнет."
+
+#~ msgid ""
+#~ "You selected #SoMe, the variant for "
+#~ "social media, which means that the "
+#~ "letters acdnstz\n"
+#~ "                            will be accepted "
+#~ "as áčđŋšŧž in addition to their "
+#~ "usual values."
+#~ msgstr ""
+#~ "Шамак толшеш #SoMe-версим, ӓли социальный "
+#~ "медиштӹшӹ версим, айырет лижӹ.\n"
+#~ "Тидӹ мам анжыкта: текстӹштӹ acdnstz "
+#~ "буквавлӓм áčđŋšŧž вӓреш кычылт кердӹнӓ, "
+#~ "какляка дӓ точкывлӓ гӹц пасна ылшы "
+#~ "буквавлӓм семӹньвлӓэш ана лык."
+
+#~ msgid "is a possible form of ... "
+#~ msgstr "техень шамак форма лин кердеш ти шамак гӹц …"
+
+#~ msgid "More information about this word"
+#~ msgstr "Ти шамак гишӓн йишӓртӹш информаци тиштӹ"
 
