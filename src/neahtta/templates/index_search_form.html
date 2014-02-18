@@ -8,6 +8,7 @@
                autocorrect="off"
                autocapitalize="off"
                autocomplete="off"
+               data-autocomplete-text="{% trans %}Press Tab to select a word{% endtrans %}"
                data-language-from="{{ _from }}"
                data-language-to="{{ _to }}"
                {% if user_input -%}value="{{ user_input }}"{% endif %}

@@ -28,6 +28,24 @@ content {
     display: block;
 }
 
+.search_note {
+    border-top: 1px solid #CCC ;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-bottom: 0;
+    line-height: 1em;
+}
+
+.search_note a {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.search_note a span {
+    font-size: 90%;
+    font-style: italic;
+    line-height: 1.1em;
+}
 
 #uitlogo {
     padding-top: .5em;

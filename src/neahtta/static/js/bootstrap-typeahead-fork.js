@@ -151,6 +151,7 @@
 
   , render: function (items) {
       var that = this
+      var auto_complete_text_note = this.$element.attr('data-autocomplete-text') || false
 
       items = $(items).map(function (i, item) {
         i = $(that.options.item).attr('data-value', JSON.stringify(item))
@@ -162,6 +163,10 @@
 
       items.first().addClass('active')
       this.$menu.html(items)
+      if (auto_complete_text_note) {
+          var _span = '<li class="search_note"><a href="#"><span>' + auto_complete_text_note + '</span></a></li>'
+          $(this.$menu).append(_span)
+      }
       return this
     }
 
