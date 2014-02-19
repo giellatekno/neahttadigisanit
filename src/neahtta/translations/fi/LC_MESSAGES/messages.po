@@ -144,7 +144,7 @@ msgstr "Haida"
 #: configs/sample.config.yaml.in:114 configs/sanit.config.yaml.in:112
 #: configs/sanit.config.yaml.in:139
 msgid "Standárda (<em>áčđŋšŧž</em>)"
-msgstr ""
+msgstr "Kirjakielen kirjaimet (<em>áčđŋšŧž</em>)"
 
 #: configs/sample.config.yaml.in:117 configs/sanit.config.yaml.in:115
 #: configs/sanit.config.yaml.in:142
@@ -256,6 +256,8 @@ msgid ""
 "If you followed a link from the front page, it may be that the dictionary"
 " you were browsing is not yet bilingual."
 msgstr ""
+"Jos seurasit linkin etusivulta, voi olla, että kyseinen sanakirja "
+"ei vielä ole kaksisuuntainen."
 
 #: templates/500.html:51
 msgid "Whoops! There was some kind of error."
@@ -455,7 +457,7 @@ msgstr ""
 
 #: templates/about.sanit.html:73
 msgid "Find a problem?"
-msgstr ""
+msgstr "Löysitkö ongelman?"
 
 #: templates/about.sanit.html:74
 msgid ""
@@ -475,10 +477,12 @@ msgid ""
 "list</a>, and more\n"
 "                resources."
 msgstr ""
+"Tarvitsetko lisää sanakirjoja? <a href=\"http://dicts.uit.no/\">tästä "
+"löydät sananakirjaluettelomme</a>, ja muitakin ressurseja."
 
 #: templates/about.vada.html:59
 msgid "yrk ↔ fin"
-msgstr ""
+msgstr "Nenetsi ↔ suomi"
 
 #: templates/about.vada.html:60
 msgid ""
@@ -623,7 +627,7 @@ msgstr "Livvinkarjala"
 
 #: templates/more_dictionaries.html:38
 msgid "and"
-msgstr ""
+msgstr "ja"
 
 #: templates/more_dictionaries.html:39
 msgid "Mordvinic languages"
@@ -667,11 +671,11 @@ msgstr ""
 
 #: templates/reader.html:3 templates/reader.html:20
 msgid "Neahttadigisánit Reader"
-msgstr ""
+msgstr "Neahttadigisánit-lukija"
 
 #: templates/reader.html:21
 msgid "Bookmarklet"
-msgstr ""
+msgstr "Kirjainmerkki"
 
 #: templates/reader.html:22
 msgid ""
@@ -706,11 +710,11 @@ msgstr ""
 
 #: templates/reader.html:32
 msgid "Browser support"
-msgstr ""
+msgstr "Selaintuki"
 
 #: templates/reader.html:33
 msgid "The reader is supported in the following browsers:"
-msgstr ""
+msgstr "Lukuohjelmaa tukevat seuraavat selaimet:"
 
 #: templates/reader.html:35
 msgid "Chrome (version 20 and newer)"
@@ -730,7 +734,7 @@ msgstr "Opera (versio 16 ja uudemmat)"
 
 #: templates/reader.html:40
 msgid "Bugs?"
-msgstr ""
+msgstr "Virheitä?"
 
 #: templates/reader.html:41
 msgid ""
@@ -790,7 +794,7 @@ msgstr ""
 
 #: views/reader.py:122
 msgid " is a possible form of ... "
-msgstr ""
+msgstr " on mahdollinen muoto sanasta ..."
 
 #~ msgid "Texts"
 #~ msgstr "Tekstejä"
