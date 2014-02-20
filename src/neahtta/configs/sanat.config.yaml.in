@@ -112,10 +112,10 @@ Languages:
 Dictionaries:
   - source: olo
     target: fin
-    path: 'dicts/olo-fin.xml'
+    path: 'dicts/olo-all.xml'
   - source: liv
     target: fin
-    path: 'dicts/liv.all.xml'
+    path: 'dicts/liv-all.xml'
     input_variants:
       - type: "standard"
         description: "Standard (äǟ)"
@@ -129,7 +129,7 @@ Dictionaries:
     path: 'dicts/fin-liv.xml'
   - source: liv
     target: est
-    path: 'dicts/liv.all.xml'
+    path: 'dicts/liv-all.xml'
     input_variants:
       - type: "standard"
         description: !gettext "Standard (äǟ)"
@@ -140,7 +140,7 @@ Dictionaries:
         short_name: "livM"
   - source: liv
     target: lav
-    path: 'dicts/liv.all.xml'
+    path: 'dicts/liv-all.xml'
     input_variants:
       - type: "standard"
         description: !gettext "Standard (äǟ)"
@@ -151,7 +151,7 @@ Dictionaries:
         short_name: "livM"
   - source: izh
     target: fin
-    path: 'dicts/izh-fin.xml'
+    path: 'dicts/izh-all.xml'
   - source: fkv 
     target: nob
     path: 'dicts/fkv-nob.xml'
