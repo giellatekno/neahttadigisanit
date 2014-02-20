@@ -104,7 +104,7 @@ install_langs_fsts: $(langs)
 		cp /tmp/misc_fst/dict-$$ll-mobile.fst /opt/smi/$$ll/bin/ 2>/dev/null || : ; \
 	done 
 
-.PHONY: compile_langs_lexiconnn
+.PHONY: compile_langs_lexicon
 compile_langs_lexicon: $(LEX_COMPILE_LANGS)
 compile_langs_lexicon:
 	@echo $*
