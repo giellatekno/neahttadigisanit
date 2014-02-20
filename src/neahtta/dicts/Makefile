@@ -66,7 +66,7 @@ endef
 # .PHONY: dict_project_name
 # dict_project_name: GT_COMPILE_LANGS := iso1 iso2
 # dict_project_name: dict_project_name-lexica compile_langs_fsts
-# 	@echo "Usual target stuff goes here..." 
+#	@echo "Usual target stuff goes here..." 
 #
 # Or just see one of the languages below and copy...
 
@@ -81,12 +81,12 @@ compile_langs_fsts: $(langs)
 	mkdir -p /tmp/tmp_ifst/
 	mkdir -p /tmp/misc_fst/
 	for ll in $(GT_COMPILE_LANGS) ; do \
- 		if ! test -e "$(GTHOME)/langs/$$ll/src/Makefile" ; then \
- 			cd $(GTHOME)/langs/$$ll ; ./autogen.sh ; ./configure --enable-dicts ; \
- 		fi ; \
- 		cd $(GTHOME)/langs/$$ll ; make ; \
-	    cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc.xfst  /tmp/tmp_fst/dict-$$ll.fst ; \
-	    cp $(GTHOME)/langs/$$ll/src/generator-gt-norm.xfst /tmp/tmp_ifst/dict-i$$ll-norm.fst ; \
+		if ! test -e "$(GTHOME)/langs/$$ll/src/Makefile" ; then \
+			cd $(GTHOME)/langs/$$ll ; ./autogen.sh ; ./configure --enable-dicts ; \
+		fi ; \
+		cd $(GTHOME)/langs/$$ll ; make ; \
+		cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc.xfst  /tmp/tmp_fst/dict-$$ll.fst ; \
+		cp $(GTHOME)/langs/$$ll/src/generator-gt-norm.xfst /tmp/tmp_ifst/dict-i$$ll-norm.fst ; \
 		cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc-mobile.xfst  /tmp/misc_fst/dict-$$ll-mobile.fst 2>/dev/null || : ; \
 	done 
 
@@ -103,6 +103,25 @@ install_langs_fsts: $(langs)
 		cp /tmp/tmp_ifst/dict-i$$ll-norm.fst /opt/smi/$$ll/bin/ ; \
 		cp /tmp/misc_fst/dict-$$ll-mobile.fst /opt/smi/$$ll/bin/ 2>/dev/null || : ; \
 	done 
+
+.PHONY: compile_langs_lexiconnn
+compile_langs_lexicon: $(LEX_COMPILE_LANGS)
+compile_langs_lexicon:
+	@echo $*
+	@echo "***********************"
+	@echo "** Copying to target for: $(LEX_COMPILE_LANGS) **"
+	@echo "***********************"
+	@echo ""
+	for ll in $(LEX_COMPILE_LANGS) ; do \
+		echo " * Compiling langs lexica for $$ll" ; \
+		if ! test -e "$$ll-all.xml " ; then \
+			echo " * Backing up to $$ll-all.xml.$(shell date +%s).bak"  ; \
+			cp -R $$ll-all.xml $$ll-all.xml.$(shell date +%s).bak ; \
+		fi ; \
+		$(SAXON) inDir=$(GTHOME)/langs/$$ll/src/morphology/stems/ > $$ll-all.xml ; \
+		echo " * Compiling resulted in: " ; \
+		wc -l $$ll-all.xml ; \
+	done
 
 #####
 ##### #guusaawtargets
@@ -187,28 +206,9 @@ pikiskwewina: pikiskwewina-lexica compile_langs_fsts
 ##### #saantargets
 #####
 
-sms-all.xml: $(GTHOME)/words/dicts/sms2X/src/cmn/*.xml
-	@echo "**************************"
-	@echo "** Building sms lexicon **"
-	@echo "**************************"
-	@echo "** Backup made (.bak)   **"
-	@echo "**************************"
-	@echo ""
-	-@cp $@ $@.$(shell date +%s).bak
-	mkdir sms
-	cp $^ sms/
-	$(SAXON) inDir=$(pwd)/sms/ > sms-all.xml
-	rm -rf sms/
-
-.PHONY: sms-lexicon
-saan-lexica: sms-all.xml
-
-rm-saan-lexica: 
-	@rm -rf sms-all.xml
-
-.PHONY: saan-install
-saan-install: GT_COMPILE_LANGS := sms fin
-saan-install: install_langs_fsts 
+.PHONY: saan-lexica
+saan-lexica: LEX_COMPILE_LANGS := sms
+saan-lexica: compile_langs_lexicon
 
 .PHONY: saan
 saan: GT_COMPILE_LANGS := sms fin
@@ -226,6 +226,14 @@ saan: compile_langs_fsts saan-lexica
 	@echo "    sudo make saan-install"
 	@echo "... or copy the fsts in /tmp/tmp_fst/ and /tmp/tmp_ifst/ to their right places."
 
+rm-saan-lexica: 
+	@rm -rf sms-all.xml
+
+.PHONY: saan-install
+saan-install: GT_COMPILE_LANGS := sms fin
+saan-install: install_langs_fsts 
+
+
 #####
 ##### #vadatargets
 #####
@@ -240,28 +248,10 @@ fin-yrk.xml: $(GTHOME)/words/dicts/finyrk/src/*.xml
 	-@cp $@ $@.$(shell date +%s).bak
 	$(SAXON) inDir=$(GTHOME)/words/dicts/finyrk/src/ > $@
 
-yrk-all.xml: $(GTHOME)/langs/yrk/src/morphology/stems/*.xml
-	@echo "**************************"
-	@echo "** Building yrk lexicon **"
-	@echo "**************************"
-	@echo "** Backup made (.bak)   **"
-	@echo "**************************"
-	@echo ""
-	-@cp $@ $@.$(shell date +%s).bak
-	mkdir yrk
-	cp $^ yrk/
-	$(SAXON) inDir=$(pwd)/yrk/ > yrk-all.xml
-	rm -rf yrk/
-
 .PHONY: yrk-lexicon
-vada-lexica: yrk-all.xml fin-yrk.xml
-
-rm-vada-lexica: 
-	@rm -rf yrk-all.xml
-
-.PHONY: vada-install
-vada-install: GT_COMPILE_LANGS := yrk fin
-vada-install: install_langs_fsts 
+vada-lexica: LEX_COMPILE_LANGS := yrk
+vada-lexica: compile_langs_lexicon \
+			 fin-yrk.xml
 
 .PHONY: vada
 vada: GT_COMPILE_LANGS := yrk fin
@@ -279,6 +269,14 @@ vada: vada-lexica compile_langs_fsts
 	@echo "    sudo make vada-install"
 	@echo "... or copy the fsts in /tmp/tmp_fst/ and /tmp/tmp_ifst/ to their right places."
 
+rm-vada-lexica: 
+	@rm -rf yrk-all.xml
+
+.PHONY: vada-install
+vada-install: GT_COMPILE_LANGS := yrk fin
+vada-install: install_langs_fsts 
+
+
 #####
 ##### #mutertargets
 #####
@@ -290,47 +288,15 @@ fin-mrj.xml: $(GTHOME)/words/dicts/finmrj/src/*.xml
 	@echo "** Backup made (.bak)       **"
 	@echo "******************************"
 	@echo ""
-	-@cp $@ $@.$(shell date +%s).bak
+	-@cp -R $@ $@.$(shell date +%s).bak
 	mkdir mrj
 	cp $^ mrj/
 	$(SAXON) inDir=$(pwd)/mrj/ > fin-mrj.xml
 	rm -rf mrj/
 
-mrj-all.xml: $(GTHOME)/langs/mrj/src/morphology/stems/*.xml
-	@echo "**************************"
-	@echo "** Building mrj lexicon **"
-	@echo "**************************"
-	@echo "** Backup made (.bak)   **"
-	@echo "**************************"
-	@echo ""
-	-@cp $@ $@.$(shell date +%s).bak
-	mkdir mrj
-	cp $^ mrj/
-	$(SAXON) inDir=$(pwd)/mrj/ > mrj-all.xml
-	rm -rf mrj/
-
-mhr-all.xml: $(GTHOME)/langs/mhr/src/morphology/stems/*.xml
-	@echo "**************************"
-	@echo "** Building mhr lexicon **"
-	@echo "**************************"
-	@echo "** Backup made (.bak)   **"
-	@echo "**************************"
-	@echo ""
-	-@cp $@ $@.$(shell date +%s).bak
-	mkdir mhr
-	cp $^ mhr/
-	$(SAXON) inDir=$(pwd)/mhr/ > mhr-all.xml
-	rm -rf mhr/
-
 .PHONY: muter-lexicon
-muter-lexica: mhr-all.xml mrj-all.xml fin-mrj.xml
-
-rm-muter-lexica: 
-	@rm -rf mhr-all.xml mrj-all.xml fin-mrj.xml
-
-.PHONY: muter-install
-muter-install: GT_COMPILE_LANGS := mrj mhr fin 
-muter-install: install_langs_fsts
+muter-lexica: LEX_COMPILE_LANGS := mhr mrj
+muter-lexica: fin-mrj.xml compile_langs_lexicon
 
 .PHONY: muter
 muter: GT_COMPILE_LANGS := mrj mhr fin rus
@@ -353,6 +319,13 @@ muter: muter-lexicon compile_langs_fsts
 	@echo "    sudo make muter-install"
 	@echo "... or copy the fsts in /tmp/tmp_fst/ and /tmp/tmp_ifst/ to their right places."
 
+rm-muter-lexica: 
+	@rm -rf mhr-all.xml mrj-all.xml fin-mrj.xml
+
+.PHONY: muter-install
+muter-install: GT_COMPILE_LANGS := mrj mhr fin 
+muter-install: install_langs_fsts
+
 #####
 ##### #valkstargets
 #####
@@ -364,47 +337,15 @@ fin-myv.xml: $(GTHOME)/words/dicts/finmyv/src/*.xml
 	@echo "** Backup made (.bak)       **"
 	@echo "******************************"
 	@echo ""
-	-@cp $@ $@.$(shell date +%s).bak
-	mkdir myv
+	-@cp -R $@ $@.$(shell date +%s).bak
+	mkdir -p myv
 	cp $^ myv/
 	$(SAXON) inDir=$(pwd)/myv/ > fin-myv.xml
 	rm -rf myv/
 
-
-myv-all.xml: $(GTHOME)/langs/myv/src/morphology/stems/*.xml
-	@echo "**************************"
-	@echo "** Building myv lexicon **"
-	@echo "**************************"
-	@echo "** Backup made (.bak)   **"
-	@echo "**************************"
-	@echo ""
-	-@cp $@ $@.$(shell date +%s).bak
-	mkdir myv
-	cp $^ myv/
-	$(SAXON) inDir=$(pwd)/myv/ > myv-all.xml
-	rm -rf myv/
-
-mdf-all.xml: $(GTHOME)/langs/mdf/src/morphology/stems/*.xml
-	@echo "**************************"
-	@echo "** Building mdf lexicon **"
-	@echo "**************************"
-	@echo "** Backup made (.bak)   **"
-	@echo "**************************"
-	@echo ""
-	-@cp $@ $@.$(shell date +%s).bak
-	mkdir mdf
-	cp $^ mdf/
-	$(SAXON) inDir=$(pwd)/mdf/ > mdf-all.xml
-	rm -rf mdf/
-
-valks-lexica:  myv-all.xml mdf-all.xml fin-myv.xml
-
-rm-valks-lexica:
-	rm -rf myv-all.xml mdf-all.xml fin-myv.xml
-
-.PHONY: valks-install
-valks-install: GT_COMPILE_LANGS := fin myv mdf
-valks-install: install_langs_fsts 
+.PHONY: valks-lexicon
+valks-lexica: LEX_COMPILE_LANGS := myv mdf
+valks-lexica: compile_langs_lexicon fin-myv.xml
 
 .PHONY: valks
 valks: GT_COMPILE_LANGS := fin myv mdf
@@ -424,23 +365,17 @@ valks: valks-lexica compile_langs_fsts
 	@echo "    sudo make valks-install"
 	@echo "... or copy the fsts in /tmp/tmp_fst/ and /tmp/tmp_ifst/ to their right places."
 
+rm-valks-lexica:
+	rm -rf myv-all.xml mdf-all.xml fin-myv.xml
+
+.PHONY: valks-install
+valks-install: GT_COMPILE_LANGS := fin myv mdf
+valks-install: install_langs_fsts
+
+
 #####
 ##### #sanattargets
 #####
-
-olo-fin.xml: $(GTHOME)/langs/olo/src/morphology/stems/*.xml
-	@echo "**************************"
-	@echo "** Building olo lexicon **"
-	@echo "**************************"
-	@echo "** Backup made (.bak)   **"
-	@echo "**************************"
-	@echo ""
-	-@cp $@ $@.$(shell date +%s).bak
-	mkdir olo
-	cp $^ olo/
-	$(SAXON) inDir=$(pwd)/olo/ > $@
-	rm -rf olo/
-
 fkv-nob.xml: $(GTHOME)/words/dicts/fkvnob/src/
 	@echo "**************************"
 	@echo "** Building fkv lexicon **"
@@ -466,34 +401,8 @@ nob-fkv.xml: $(GTHOME)/words/dicts/nobfkv/src/
 				 sed 's/  <l /  <lg><l /g'    | \
 				 sed 's/<\/l>/<\/l><\/lg>/g'  | \
 				 xmllint --format - \
-		   	 	 > $@
+				 > $@
 	rm $@.tmp
-
-liv.all.xml: $(GTHOME)/langs/liv/src/morphology/stems/*.xml
-	@echo "**************************"
-	@echo "** Building liv lexicon **"
-	@echo "**************************"
-	@echo "** Backup made (.bak)   **"
-	@echo "**************************"
-	@echo ""
-	-@cp $@ $@.$(shell date +%s).bak
-	mkdir liv
-	cp $^ liv/
-	$(SAXON) inDir=$(pwd)/liv/ > $@
-	rm -rf liv/
-
-izh-fin.xml: $(GTHOME)/langs/izh/src/morphology/stems/*.xml
-	@echo "**************************"
-	@echo "** Building izh lexicon **"
-	@echo "**************************"
-	@echo "** Backup made (.bak)   **"
-	@echo "**************************"
-	@echo ""
-	-@cp $@ $@.$(shell date +%s).bak
-	mkdir izh
-	cp $^ izh/
-	$(SAXON) inDir=$(pwd)/izh/ > $@
-	rm -rf izh/
 
 fin-liv.xml: $(GTHOME)/words/dicts/finliv/src/*.xml
 	@echo "******************************"
@@ -508,20 +417,13 @@ fin-liv.xml: $(GTHOME)/words/dicts/finliv/src/*.xml
 	$(SAXON) inDir=$(pwd)/liv/ > fin-liv.xml
 	rm -rf liv/
 
+# NB: fkv-nob.xml is actually in words/dicts, not langs
 .PHONY: sanat-lexica
-sanat-lexica: olo-fin.xml \
+sanat-lexica: LEX_COMPILE_LANGS := olo liv izh
+sanat-lexica: compile_langs_lexicon \
 			  fin-liv.xml \
-			  liv.all.xml \
-			  izh-fin.xml \
 			  fkv-nob.xml \
 			  nob-fkv.xml
-
-rm-sanat-lexica: 
-	@rm -rf olo-fin.xml liv.all.xml izh-fin.xml fkv-nob.xml nob-fkv.xml
-
-.PHONY: sanat-install
-sanat-install: GT_COMPILE_LANGS := olo liv izh fkv
-sanat-install: install_langs_fsts 
 
 .PHONY: sanat
 sanat: GT_COMPILE_LANGS := olo izh liv fin fkv
@@ -547,6 +449,13 @@ sanat: sanat-lexica compile_langs_fsts
 	@echo "Now install analysers in expected paths."
 	@echo "    sudo make sanat-install"
 	@echo "... or copy the fsts in /tmp/tmp_fst/ and /tmp/tmp_ifst/ to their right places."
+
+rm-sanat-lexica: 
+	@rm -rf olo-fin.xml liv.all.xml izh-fin.xml fkv-nob.xml nob-fkv.xml
+
+.PHONY: sanat-install
+sanat-install: GT_COMPILE_LANGS := olo liv izh fkv
+sanat-install: install_langs_fsts 
 
 #####
 ##### #sanittargets
@@ -601,24 +510,11 @@ nob-sme.all.xml: $(GTHOME)/words/dicts/nobsme/src/*.xml
 	$(SAXON) inDir=$(pwd)/nobsme/ > $@
 	rm -rf nobsme/
 
-
 .PHONY: sanit-lexica
 sanit-lexica: fin-sme.all.xml \
 			  nob-sme.all.xml \
 			  sme-fin.all.xml \
 			  sme-nob.all.xml
-
-rm-sanit-lexica:
-	@rm -rf fin-sme.all.xml nob-sme.all.xml sme-fin.all.xml sme-nob.all.xml
-
-# NB: sme analyzer build is different, as well as target fst file names
-# also there is one additional analyser that comes out of this, which is
-# the relaxed analyser.
-#
-# As these have different names, they won't be matched by pattern in other install
-# target, so making a target for them here.
-sme-install: dict-sme.fst dict-isme-norm.fst some-n-sme.fst
-	cp $^ /opt/smi/sme/bin/
 
 ##
 ### #smeanalysers
@@ -650,11 +546,6 @@ sme: /tmp/misc_fst/dict-sme.fst \
 rm-sme:
 	rm -rf /tmp/misc_fst/dict-sme.fst /tmp/misc_fst/dict-isme-norm.fst /tmp/misc_fst/some-n-sme.fst
 
-# NB: sme has own needs
-.PHONY: sanit-install
-sanit-install: GT_COMPILE_LANGS := fin nob
-sanit-install: sanit-sme-install install_langs_fsts
-
 # NB: sme has its own path, is not included in GT_COMPILE_LANGS because
 # it isn't in main/langs/ yet.
 .PHONY: sanit
@@ -672,10 +563,27 @@ sanit: sme sanit-lexica compile_langs_fsts
 	@echo "    sudo make sanit-install"
 	@echo "... or copy the fsts in /tmp/tmp_fst/ and /tmp/tmp_ifst/ to their right places."
 
+# NB: sme has own needs
+.PHONY: sanit-install
+sanit-install: GT_COMPILE_LANGS := fin nob
+sanit-install: sanit-sme-install install_langs_fsts
+
 sanit-sme-install: /tmp/misc_fst/dict-sme.fst \
-	               /tmp/misc_fst/dict-isme-norm.fst \
-	               /tmp/misc_fst/some-sme.fst
+				   /tmp/misc_fst/dict-isme-norm.fst \
+				   /tmp/misc_fst/some-sme.fst
 	mkdir -p /opt/smi/sme/bin/
+	cp $^ /opt/smi/sme/bin/
+
+rm-sanit-lexica:
+	@rm -rf fin-sme.all.xml nob-sme.all.xml sme-fin.all.xml sme-nob.all.xml
+
+# NB: sme analyzer build is different, as well as target fst file names
+# also there is one additional analyser that comes out of this, which is
+# the relaxed analyser.
+#
+# As these have different names, they won't be matched by pattern in other install
+# target, so making a target for them here.
+sme-install: dict-sme.fst dict-isme-norm.fst some-n-sme.fst
 	cp $^ /opt/smi/sme/bin/
 
 #####
@@ -775,32 +683,10 @@ kpv-engfinrus.all.xml: $(GTHOME)/words/dicts/kom2X/src/
 	-@cp $@ $@.$(shell date +%s).bak
 	$(SAXON) inDir=$^ > $@
 
-udm-all.xml: $(GTHOME)/langs/udm/src/morphology/stems/*.xml
-	@echo "**************************"
-	@echo "** Building udm lexicon **"
-	@echo "**************************"
-	@echo "** Backup made (.bak)   **"
-	@echo "**************************"
-	@echo ""
-	-@cp $@ $@.$(shell date +%s).bak
-	mkdir udm
-	cp $^ udm/
-	$(SAXON) inDir=$(pwd)/udm/ > udm-all.xml
-	rm -rf udm/
-
 .PHONY: kyv-lexica
-kyv-lexica: kpv-engfinrus.all.xml udm-all.xml
-
-rm-kyv-lexica:
-	@rm -rf kpv-engfinrus.all.xml udm-all.xml
-
-.PHONY: copy_molotsov
-copy_molotsov: $(GTHOME)/langs/kpv/src/analyser-dict-gt-desc-molotsov.xfst
-	cp $^ /opt/smi/kpv/bin/dict-kpv-molotsov.fst
-
-.PHONY: kyv-install
-kyv-install: GT_COMPILE_LANGS := kpv fin udm
-kyv-install: install_langs_fsts copy_molotsov
+kyv-lexica: LEX_COMPILE_LANGS := udm
+kyv-lexica: compile_langs_lexicon \
+			kpv-engfinrus.all.xml
 
 .PHONY: kyv
 kyv: GT_COMPILE_LANGS := kpv fin udm
@@ -815,6 +701,17 @@ kyv: kyv-lexica compile_langs_fsts
 	@echo "Now install analysers in expected paths."
 	@echo "    sudo make kyv-install"
 	@echo "... or copy the fsts in /tmp/tmp_fst/ and /tmp/tmp_ifst/ to their right places."
+
+rm-kyv-lexica:
+	@rm -rf kpv-engfinrus.all.xml udm-all.xml
+
+.PHONY: copy_molotsov
+copy_molotsov: $(GTHOME)/langs/kpv/src/analyser-dict-gt-desc-molotsov.xfst
+	cp $^ /opt/smi/kpv/bin/dict-kpv-molotsov.fst
+
+.PHONY: kyv-install
+kyv-install: GT_COMPILE_LANGS := kpv fin udm
+kyv-install: install_langs_fsts copy_molotsov
 
 #####
 ##### #Globaltargets
@@ -864,8 +761,8 @@ test-kyv:
 
 .PHONY: test-install
 test-install: test-sanit \
-	 		  test-baakoeh \
-	 		  test-kyv
+			  test-baakoeh \
+			  test-kyv
 	@echo "TODO: "
 
 .PHONY: all
