@@ -31,7 +31,6 @@ ApplicationSettings:
 # following settings.
 Tools:
   xfst_lookup: &LOOKUP '/usr/bin/lookup'
-  gthome: &GTHOME '/home/neahtta/gtsvn'
   opt: &OPT '/opt/smi'
 
 # Morphological system definitions. Since YAML variables aren't able to

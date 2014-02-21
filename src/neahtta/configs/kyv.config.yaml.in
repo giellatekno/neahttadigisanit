@@ -86,7 +86,7 @@ Languages:
 Dictionaries:
   - source: kpv
     target: eng
-    path: 'dicts/kpv-engfinrus.all.xml'
+    path: 'dicts/kom2X.xml'
     input_variants: &KOMI_VARIANTS
       - type: "standard"
         description: !gettext "Standard"
@@ -98,12 +98,12 @@ Dictionaries:
 
   - source: kpv
     target: fin
-    path: 'dicts/kpv-engfinrus.all.xml'
+    path: 'dicts/kom2X.xml'
     input_variants: *KOMI_VARIANTS
 
   - source: kpv
     target: rus
-    path: 'dicts/kpv-engfinrus.all.xml'
+    path: 'dicts/kom2X.xml'
     input_variants: *KOMI_VARIANTS
 
   - source: udm

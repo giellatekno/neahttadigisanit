@@ -28,16 +28,6 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
-  eng:
-    tool: *LOOKUP
-    file: [*OPT, '/eng/bin/dict-eng.fst']
-    inverse_file: [*OPT, '/eng/bin/dict-ieng-norm.fst']
-    format: 'xfst'
-    options:
-      compoundBoundary: "+Use/Circ#"
-      derivationMarker: "+Der"
-      tagsep: '+'
-      inverse_tagsep: '+'
 
 Languages:
   - iso: crk
@@ -46,16 +36,5 @@ Languages:
 Dictionaries:
   - source: crk
     target: eng
-    path: 'dicts/crk-all.xml'
-
-# (sourcelang, targlang)
-# V: "v."
-# FST format: "user friendly"
-TagTransforms:
-
-  (crk, eng):
-    V: "v."
-    N: "n."
-
-
+    path: 'dicts/crkeng.xml'
 

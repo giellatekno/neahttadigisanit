@@ -1,5 +1,6 @@
 ApplicationSettings:
   app_name: "Neahttadigisánit"
+  app_meta_title: "Neahttadigisánit"
   short_name: "saan"
   default_locale: "sms"
   default_pair: ["sms", "fin"]

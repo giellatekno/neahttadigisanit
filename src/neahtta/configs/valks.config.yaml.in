@@ -70,7 +70,7 @@ Languages:
 Dictionaries:
   - source: fin
     target: myv
-    path: 'dicts/fin-myv.xml'
+    path: 'dicts/finmyv.xml'
 
   - source: myv
     target: eng

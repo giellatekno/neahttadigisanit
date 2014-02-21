@@ -1,5 +1,6 @@
 ApplicationSettings:
   app_name: "Neahttadigisánit"
+  app_meta_title: "Neahttadigisánit"
   short_name: "guusaaw"
   default_locale: "hdn"
   default_pair: ["hdn", "eng"]
@@ -29,16 +30,6 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
-  eng:
-    tool: *LOOKUP
-    file: [*OPT, '/eng/bin/eng.fst']
-    inverse_file: [*OPT, '/eng/bin/ieng.fst']
-    format: 'xfst'
-    options:
-      compoundBoundary: "+Use/Circ#"
-      derivationMarker: "+Der"
-      tagsep: '+'
-      inverse_tagsep: '+'
 
 Languages:
   - iso: hdn
@@ -51,5 +42,5 @@ Languages:
 Dictionaries:
   - source: hdn
     target: eng
-    path: 'dicts/hdn.all.xml'
+    path: 'dicts/hdneng.xml'
 

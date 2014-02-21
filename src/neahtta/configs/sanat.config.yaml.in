@@ -126,7 +126,7 @@ Dictionaries:
         short_name: "livM"
   - source: fin
     target: liv
-    path: 'dicts/fin-liv.xml'
+    path: 'dicts/finliv.xml'
   - source: liv
     target: est
     path: 'dicts/liv-all.xml'
@@ -154,8 +154,8 @@ Dictionaries:
     path: 'dicts/izh-all.xml'
   - source: fkv 
     target: nob
-    path: 'dicts/fkv-nob.xml'
+    path: 'dicts/fkvnob.xml'
   - source: nob
     target: fkv
-    path: 'dicts/nob-fkv.xml'
+    path: 'dicts/nobfkv.xml'
 

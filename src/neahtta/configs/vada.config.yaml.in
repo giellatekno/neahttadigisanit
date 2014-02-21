@@ -60,5 +60,5 @@ Dictionaries:
 
   - source: fin
     target: yrk
-    path: 'dicts/fin-yrk.xml'
+    path: 'dicts/finyrk.xml'
 
