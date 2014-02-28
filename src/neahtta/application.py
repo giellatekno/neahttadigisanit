@@ -108,6 +108,7 @@ def create_app():
         static_url_path='/static',)
 
     app = jinja_options_and_filters(app)
+    app.production = False
     app.register_blueprint(views.blueprint)
 
     app.cache = cache
