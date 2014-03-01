@@ -20,8 +20,8 @@ Tools:
 Morphology:
   crk:
     tool: *LOOKUP
-    file: [*OPT, '/crk/bin/dict-crk.fst']
-    inverse_file: [*OPT, '/crk/bin/dict-icrk-norm.fst']
+    file: [*OPT, '/crk/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/crk/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"

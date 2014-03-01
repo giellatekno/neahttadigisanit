@@ -22,8 +22,8 @@ Tools:
 Morphology:
   hdn:
     tool: *LOOKUP
-    file: [*OPT, '/hdn/bin/dict-hdn.fst']
-    inverse_file: [*OPT, '/hdn/bin/dict-ihdn-norm.fst']
+    file: [*OPT, '/hdn/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/hdn/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"
