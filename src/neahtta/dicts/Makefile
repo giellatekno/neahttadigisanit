@@ -92,7 +92,7 @@ install_langs_fsts: $(langs)
 	for ll in $(GT_COMPILE_LANGS) ; do \
 		mkdir -p /opt/smi/$$ll/bin/ ; \
 		cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc.xfst  /opt/smi/$$ll/bin/ ; \
-		cp $(GTHOME)/langs/$$ll/src/generator-gt-norm.xfst /opt/smi/$$ll/bin/ ; \
+		cp $(GTHOME)/langs/$$ll/src/generator-dict-gt-norm.xfst /opt/smi/$$ll/bin/ ; \
 		cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc-mobile.xfst  /opt/smi/$$ll/bin/ 2>/dev/null || : ; \
 	done 
 
