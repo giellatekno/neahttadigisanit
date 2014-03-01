@@ -324,27 +324,26 @@ SANAT_WORDS_DICTS_LEXICA   :=   nobfkv finliv fkvnob
 
 # NOTE: some temporary fixes to add usage to everything, and include <lg>
 # node
-adjust_nobfkv: nobfkv.xml
-	@echo "*******************************"
-	@echo "** Adjusting nob-fkv lexicon **"
-	@echo "*******************************"
-	@echo "** Backup made (.bak)        **"
-	@echo "*******************************"
-	@echo ""
-	cp $^ $^.tmp
-	cat $^.tmp | sed 's/<e>/<e usage="vd">/g' | \
-				 sed 's/  <l /  <lg><l /g'    | \
-				 sed 's/<\/l>/<\/l><\/lg>/g'  | \
-				 xmllint --format - \
-				 > $^
-	rm $^.tmp
+# adjust_nobfkv: nobfkv.xml
+# 	@echo "*******************************"
+# 	@echo "** Adjusting nob-fkv lexicon **"
+# 	@echo "*******************************"
+# 	@echo "** Backup made (.bak)        **"
+# 	@echo "*******************************"
+# 	@echo ""
+# 	cp $^ $^.tmp
+# 	cat $^.tmp | sed 's/<e>/<e usage="vd">/g' | \
+# 				 sed 's/  <l /  <lg><l /g'    | \
+# 				 sed 's/<\/l>/<\/l><\/lg>/g'  | \
+# 				 xmllint --format - \
+# 				 > $^
+# 	rm $^.tmp
 
 .PHONY: sanat-lexica
 sanat-lexica: LEX_COMPILE_LANGS := $(SANAT_LANGS_LEXICA)
 sanat-lexica: LEX_COMPILE_WORDS_DICTS := $(SANAT_WORDS_DICTS_LEXICA)
 sanat-lexica: compile_langs_lexicon \
-			  compile_words_dicts_lexicon \
-			  adjust_nobfkv
+			  compile_words_dicts_lexicon
 
 .PHONY: sanat
 sanat: GT_COMPILE_LANGS := $(SANAT_LANGS_ANALYSERS)
