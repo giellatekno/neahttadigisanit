@@ -28,8 +28,8 @@ Tools:
 Morphology:
   olo:
     tool: *LOOKUP
-    file: [*OPT, '/olo/bin/dict-olo.fst']
-    inverse_file: [*OPT, '/olo/bin/dict-iolo-norm.fst']
+    file: [*OPT, '/olo/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/olo/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -38,8 +38,8 @@ Morphology:
       inverse_tagsep: '+'
   fin:
     tool: *LOOKUP
-    file: [*OPT, '/fin/bin/dict-fin.fst']
-    inverse_file: [*OPT, '/fin/bin/dict-ifin-norm.fst']
+    file: [*OPT, '/fin/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/fin/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
       compoundBoundary: "#"
@@ -48,8 +48,8 @@ Morphology:
       inverse_tagsep: '+'
   liv:
     tool: *LOOKUP
-    file: [*OPT, '/liv/bin/dict-liv.fst']
-    inverse_file: [*OPT, '/liv/bin/dict-iliv-norm.fst']
+    file: [*OPT, '/liv/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/liv/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -58,8 +58,8 @@ Morphology:
       inverse_tagsep: '+'
   livM:
     tool: *LOOKUP
-    file: [*OPT, '/liv/bin/some-liv.fst']
-    inverse_file: [*OPT, '/liv/bin/dict-iliv-norm.fst']
+    file: [*OPT, '/liv/bin/analyser-dict-gt-desc-mobile.xfst']
+    inverse_file: [*OPT, '/liv/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -68,8 +68,8 @@ Morphology:
       inverse_tagsep: '+'
   fkv:
     tool: *LOOKUP
-    file: [*OPT, '/fkv/bin/dict-fkv.fst']
-    inverse_file: [*OPT, '/fkv/bin/dict-ifkv-norm.fst']
+    file: [*OPT, '/fkv/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/fkv/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
       compoundBoundary: "+Cmp#"
@@ -78,8 +78,8 @@ Morphology:
       inverse_tagsep: '+'
   izh:
     tool: *LOOKUP
-    file: [*OPT, '/izh/bin/dict-izh.fst']
-    inverse_file: [*OPT, '/izh/bin/dict-iizh-norm.fst']
+    file: [*OPT, '/izh/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/izh/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -88,8 +88,8 @@ Morphology:
       inverse_tagsep: '+'
   nob:
     tool: *LOOKUP
-    file: [*OPT, '/nob/bin/dict-nob.fst']
-    inverse_file: [*OPT, '/nob/bin/dict-inob-norm.fst']
+    file: [*OPT, '/nob/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/nob/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
       compoundBoundary: "#+Cmp+"
