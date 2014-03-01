@@ -45,8 +45,8 @@ Morphology:
       inverse_tagsep: '+'
   nob:
     tool: *LOOKUP
-    file: [*OPT, '/nob/bin/dict-nob.fst']
-    inverse_file: [*OPT, '/nob/bin/dict-inob-norm.fst']
+    file: [*OPT, '/nob/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/nob/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
       compoundBoundary: "#+Cmp+"

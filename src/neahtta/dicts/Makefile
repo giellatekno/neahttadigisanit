@@ -75,17 +75,11 @@ compile_langs_fsts: $(langs)
 	@echo "** Building $(GT_COMPILE_LANGS) FSTs **"
 	@echo "***********************"
 	@echo ""
-	mkdir -p /tmp/tmp_fst/
-	mkdir -p /tmp/tmp_ifst/
-	mkdir -p /tmp/misc_fst/
 	for ll in $(GT_COMPILE_LANGS) ; do \
 		if ! test -e "$(GTHOME)/langs/$$ll/src/Makefile" ; then \
 			cd $(GTHOME)/langs/$$ll ; ./autogen.sh ; ./configure --enable-dicts ; \
 		fi ; \
 		cd $(GTHOME)/langs/$$ll ; make ; \
-		cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc.xfst  /tmp/tmp_fst/dict-$$ll.fst ; \
-		cp $(GTHOME)/langs/$$ll/src/generator-gt-norm.xfst /tmp/tmp_ifst/dict-i$$ll-norm.fst ; \
-		cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc-mobile.xfst  /tmp/misc_fst/dict-$$ll-mobile.fst 2>/dev/null || : ; \
 	done 
 
 install_langs_fsts: $(foreach lang, $(GT_COMPILE_LANGS), langs/$(lang)/src/analyser-gt-desc.xfst)
@@ -97,9 +91,9 @@ install_langs_fsts: $(langs)
 	@echo ""
 	for ll in $(GT_COMPILE_LANGS) ; do \
 		mkdir -p /opt/smi/$$ll/bin/ ; \
-		cp /tmp/tmp_fst/dict-$$ll.fst /opt/smi/$$ll/bin/ ; \
-		cp /tmp/tmp_ifst/dict-i$$ll-norm.fst /opt/smi/$$ll/bin/ ; \
-		cp /tmp/misc_fst/dict-$$ll-mobile.fst /opt/smi/$$ll/bin/ 2>/dev/null || : ; \
+		cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc.xfst  /opt/smi/$$ll/bin/ ; \
+		cp $(GTHOME)/langs/$$ll/src/generator-gt-norm.xfst /opt/smi/$$ll/bin/ ; \
+		cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc-mobile.xfst  /opt/smi/$$ll/bin/ 2>/dev/null || : ; \
 	done 
 
 .PHONY: compile_langs_lexicon
@@ -429,37 +423,9 @@ sanit-lexica: fin-sme.all.xml \
 ### #smeanalysers
 ##
 
-# copy above and use new files from langs infra.
-
-/tmp/misc_fst/dict-sme.fst:
-/tmp/misc_fst/dict-isme-norm.fst:
-/tmp/misc_fst/some-sme.fst:
-	@echo "***********************"
-	@echo "** Building sme FSTs **"
-	@echo "***********************"
-	@echo ""
-	-@mkdir -p /tmp/misc_fst/
-	if ! test -e "$(GTHOME)/langs/sme/Makefile" ; then \
-		cd $(GTHOME)/langs/sme ; ./autogen.sh ; ./configure --enable-dicts ; \
-	fi ; \
-	cd $(GTHOME)/langs/sme ; make ; \
-	cp $(GTHOME)/langs/sme/src/analyser-dict-gt-desc.xfst  /tmp/misc_fst/dict-sme.fst ; \
-	cp $(GTHOME)/langs/sme/src/analyser-dict-gt-desc-mobile.xfst  /tmp/misc_fst/some-sme.fst ; \
-	cp $(GTHOME)/langs/sme/src/generator-dict-gt-norm.xfst /tmp/misc_fst/dict-isme-norm.fst ; \
-
-.PHONY: sme
-sme: /tmp/misc_fst/dict-sme.fst \
-	 /tmp/misc_fst/dict-isme-norm.fst \
-	 /tmp/misc_fst/some-sme.fst
-
-rm-sme:
-	rm -rf /tmp/misc_fst/dict-sme.fst /tmp/misc_fst/dict-isme-norm.fst /tmp/misc_fst/some-n-sme.fst
-
-# NB: sme has its own path, is not included in GT_COMPILE_LANGS because
-# it isn't in main/langs/ yet.
 .PHONY: sanit
-sanit: GT_COMPILE_LANGS := fin nob
-sanit: sme sanit-lexica compile_langs_fsts
+sanit: GT_COMPILE_LANGS := sme fin nob
+sanit: sanit-lexica compile_langs_fsts
 	@echo "*********************************"
 	@echo "** Built targets for sanit:    **"
 	@echo "**    + sanit lexica           **"
@@ -470,18 +436,10 @@ sanit: sme sanit-lexica compile_langs_fsts
 	@echo ""
 	@echo "Now install analysers in expected paths."
 	@echo "    sudo make sanit-install"
-	@echo "... or copy the fsts in /tmp/tmp_fst/ and /tmp/tmp_ifst/ to their right places."
 
-# NB: sme has own needs
 .PHONY: sanit-install
-sanit-install: GT_COMPILE_LANGS := fin nob
-sanit-install: sanit-sme-install install_langs_fsts
-
-sanit-sme-install: /tmp/misc_fst/dict-sme.fst \
-				   /tmp/misc_fst/dict-isme-norm.fst \
-				   /tmp/misc_fst/some-sme.fst
-	mkdir -p /opt/smi/sme/bin/
-	cp $^ /opt/smi/sme/bin/
+sanit-install: GT_COMPILE_LANGS := sme fin nob
+sanit-install: install_langs_fsts
 
 rm-sanit-lexica:
 	@rm -rf fin-sme.all.xml nob-sme.all.xml sme-fin.all.xml sme-nob.all.xml
@@ -542,7 +500,6 @@ baakoeh: baakoeh-lexica compile_langs_fsts
 	@echo ""
 	@echo "Now install analysers in expected paths"
 	@echo "    make baakoeh-install"
-	@echo "... or copy the fsts in /tmp/tmp_fst/ and /tmp/tmp_ifst/ to their right places."
 
 #####
 ##### #kyvtargets
@@ -573,7 +530,7 @@ kyv-install: install_langs_fsts copy_molotsov
 
 .PHONY: copy_molotsov
 copy_molotsov: $(GTHOME)/langs/kpv/src/analyser-dict-gt-desc-molotsov.xfst
-	cp $^ /opt/smi/kpv/bin/dict-kpv-molotsov.fst
+	cp $^ /opt/smi/kpv/bin/analyser-dict-gt-desc-molotsov.xfst
 
 
 #####
