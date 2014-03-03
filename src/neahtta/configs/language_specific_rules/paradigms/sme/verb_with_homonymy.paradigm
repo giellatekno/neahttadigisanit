@@ -1,0 +1,10 @@
+name: "General verb paradigm"
+morphology:
+  pos: V
+  homonymy:
+    - "v1"
+    - "v2"
+--
+{{ lemma }}+{{ homonymy }}+V+Ind+Prs+Sg1
+{{ lemma }}+{{ homonymy }}+V+Ind+Prt+Sg1
+{{ lemma }}+{{ homonymy }}+V+Ind+Prs+ConNeg

@@ -33,6 +33,9 @@
       pron: "pron."
       prop: "egennavn"
 
+      "v1": ""
+      "v2": ""
+
       # taken from tag-no.regex, these are the things that need relabeling
       # in generation
       "NomAg": "aktor"

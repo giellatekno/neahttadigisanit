@@ -29,6 +29,9 @@ possessive:
 number:
  - "Sg"
  - "Pl"
+homonymy:
+ - "v1"
+ - "v2"
 semantics:
  - "Sem/Act"
  - "Sem/Ani"
