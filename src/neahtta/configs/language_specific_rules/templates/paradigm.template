@@ -1,0 +1,3 @@
+{%- for analysis in analyses %}
+  {{ analysis.lemma }} - {{ analysis.tag }}
+{%- endfor %}

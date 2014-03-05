@@ -1,0 +1,7 @@
+# for meaning_group in lexicon_entry.xpath('./mg')
+    # for translation_group in meaning_group.xpath('./tg')
+        # set re_node = translation_group.xpath('./re')[0]
+        # set t_node = translation_group.xpath('./t')[0]
+        {{ t_node.text }} {% if re_node %}({{ re_node.text }}){% endif %}
+    # endfor
+# endfor

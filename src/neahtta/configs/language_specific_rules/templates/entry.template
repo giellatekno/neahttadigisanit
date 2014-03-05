@@ -1,0 +1,7 @@
+entry: {{ lexicon_entry.xpath('lg/l')[0].text }}
+definitions:
+  {{ rendered_templates.definition }}
+notes:
+  {{ rendered_templates.get('definition.notes') }}
+paradigm:
+  {{ rendered_templates.paradigm }}
