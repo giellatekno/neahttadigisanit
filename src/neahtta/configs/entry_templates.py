@@ -33,6 +33,9 @@ class TemplateConfig(object):
         self.debug = debug
         self._app = app
 
+        self.template_dir = os.path.join( os.getcwd()
+                                        , 'configs/language_specific_rules/templates/'
+                                        )
         self.instance = app.config.short_name
         self.languages_available = app.config.languages.keys()
 
@@ -50,6 +53,8 @@ class TemplateConfig(object):
         self.print_debug_tree()
 
     def process_template_paths(self):
+        from jinja2 import FileSystemLoader
+        self.jinja_env.loader = FileSystemLoader(self.template_loader_dirs)
 
         def process_template_set(ts):
             _ts = {}
@@ -93,16 +98,18 @@ class TemplateConfig(object):
         tpl = self.get_template(language, template)
 
         context = {}
+        context['template_root'] = os.path.dirname(tpl.path) + '/'
         context['templates'] = dict(
             (k.replace('.template', ''), v)
             for k, v in self.language_templates[language].iteritems()
+            if k.endswith('.template')
         )
         context['rendered_templates'] = {}
         context.update(extra_kwargs)
 
         rendered = {}
         for k, t in self.language_templates[language].iteritems():
-            if k != template:
+            if k != template and k.endswith('.template'):
                 rendered[k.replace('.template', '')] = t.render(**context)
 
         context['rendered_templates'] = rendered
@@ -127,19 +134,19 @@ class TemplateConfig(object):
         print >> sys.stderr, "* Reading template directory."
 
         # Path relative to working directory
-        _path = os.path.join( os.getcwd()
-                            , 'configs/language_specific_rules/templates/'
-                            )
+        _path = self.template_dir
 
         self.language_templates = {}
+        self.template_loader_dirs = []
 
         def _dirs(p):
             """ Is the path a directory? (TODO: can use different walker) """
             return not p.endswith('.template') and \
+                   not p.endswith('.macros') and \
                    not p.startswith('.')
 
         def _templates(p):
-            return p.endswith('.template')
+            return p.endswith('.template') or p.endswith('.macros')
 
         def join_path(p, f):
             return (f, os.path.join(p, f))
@@ -165,6 +172,8 @@ class TemplateConfig(object):
 
         # A dictionary of root templates: 
         # {'name.template': '/path/to/name.template'}
+
+        self.template_loader_dirs.append(_path)
 
         root_templates = template_dict_for_path(_path)
         self.default_templates = root_templates.copy()
@@ -198,6 +207,9 @@ class TemplateConfig(object):
                                      , project
                                      )
 
+            # Add the path for the template loader
+            self.template_loader_dirs.append(_proj_path)
+
             # Construct the template path dict for the project
             local_project_templates = template_dict_for_path(_proj_path)
 
@@ -213,6 +225,9 @@ class TemplateConfig(object):
                 _lang_proj_path = os.path.join( os.path.join( _path, project)
                                               , lang
                                               )
+
+                # Template loader
+                self.template_loader_dirs.append(_lang_proj_path)
 
                 # Construct the dict for the language
                 local_lang_project_templates = template_dict_for_path(_lang_proj_path)
@@ -241,8 +256,9 @@ class TemplateConfig(object):
 
         print 
         print '  %s/ ' % self.instance
+
         for k, f in self.project_templates.iteritems():
-            if f not in self.default_templates.values():
+            if f.path not in [p.path for p in self.default_templates.values()]:
                 print u'    ⌘ ' + k
             else:
                 print u'      ' + k
@@ -252,7 +268,7 @@ class TemplateConfig(object):
             print u'      %s/' % lang
 
             for k, f in temps.iteritems():
-                if f not in self.project_templates.values():
+                if f.path not in [p.path for p in self.project_templates.values()]:
                     print u'      ⌘ ' + k
                 else:
                     print u'        ' + k
@@ -277,6 +293,7 @@ class TemplateConfig(object):
         if template_string.strip():
             try:
                 parsed_template = self.jinja_env.from_string(template_string.strip())
+                parsed_template.path = path
             except Exception, e:
                 print
                 print '--'
