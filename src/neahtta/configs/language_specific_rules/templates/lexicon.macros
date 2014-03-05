@@ -1,0 +1,10 @@
+﻿{%- macro lemma_text(entry) -%}
+    {%- set l = lexicon_entry.xpath('lg/l') -%}
+
+    {%- if l|length > 0 -%}
+        {{ l[0].text }}
+    {%- endif -%}
+
+{%- endmacro -%}
+
+{# vim: set ts=4 sw=4 tw=72 syntax=jinja : #}
