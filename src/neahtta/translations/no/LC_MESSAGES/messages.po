@@ -174,7 +174,7 @@ msgstr "Alternativer"
 #: templates/about.sanit.html:6 templates/about.vada.html:7
 #: templates/about.valks.html:7 templates/base.html:109
 msgid "About"
-msgstr "Om oss"
+msgstr "Info"
 
 #: static/js/bookmarklet.js:1245
 msgid "Advanced"
