@@ -78,8 +78,8 @@ def lookupWord(from_language, to_language):
                                   , source_lang=from_language
                                   , target_lang=to_language
                                   , split_compounds=True
-                                  , non_compound_only=True
-                                  , no_derivations=True
+                                  # , non_compound_only=True
+                                  # , no_derivations=True
                                   )
 
     def filterPOSAndTag(analysis):
