@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-02-18 14:41-0600\n"
+"POT-Creation-Date: 2014-03-13 13:12-0500\n"
 "PO-Revision-Date: 2013-02-01 01:55-0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: se <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgstr "Dábálaš"
 
 #: configs/kyv.config.yaml.in:96
 msgid "Molotsov orthography (ԅ &rarr; зь)"
-msgstr "Molotsov-ortografiija (ԅ &rarr; зь)"
+msgstr ""
 
 #: configs/language_names.py:23 configs/language_names.py:24
 #: templates/more_dictionaries.html:27
@@ -40,11 +40,11 @@ msgstr "Eŋgelasgiella"
 
 #: configs/language_names.py:27
 msgid "Hungarian"
-msgstr "Uŋgáragiella"
+msgstr ""
 
 #: configs/language_names.py:30 templates/more_dictionaries.html:28
 msgid "South Sámi"
-msgstr "Lullisámegiella"tf
+msgstr "Lullisámegiella"
 
 #: configs/language_names.py:33 configs/language_names.py:34
 msgid "Komi"
@@ -52,11 +52,11 @@ msgstr "Komigiella"
 
 #: configs/language_names.py:34
 msgid "Molotsov orthography"
-msgstr "Molotsov-ortografiia"
+msgstr ""
 
 #: configs/language_names.py:35
 msgid "Udmurt"
-msgstr "Udmurtagiella"
+msgstr ""
 
 #: configs/language_names.py:38 templates/more_dictionaries.html:38
 msgid "Kven"
@@ -94,7 +94,7 @@ msgstr "Mokšagiella"
 
 #: configs/language_names.py:48 configs/language_names.py:80
 msgid "French"
-msgstr "Ránskagiella"
+msgstr ""
 
 #: configs/language_names.py:51
 msgid "Western Mari"
@@ -118,7 +118,7 @@ msgstr ""
 
 #: configs/language_names.py:64
 msgid "Northern Haida"
-msgstr "Davvihaidagiella"
+msgstr ""
 
 #: configs/language_names.py:67 configs/language_names.py:73
 msgid "Finnish"
@@ -141,13 +141,13 @@ msgstr "Latviagiella"
 msgid "Haida"
 msgstr ""
 
-#: configs/sample.config.yaml.in:114 configs/sanit.config.yaml.in:112
-#: configs/sanit.config.yaml.in:139
+#: configs/sample.config.yaml.in:114 configs/sanit.config.yaml.in:113
+#: configs/sanit.config.yaml.in:140
 msgid "Standárda (<em>áčđŋšŧž</em>)"
 msgstr "Dábálaš"
 
-#: configs/sample.config.yaml.in:117 configs/sanit.config.yaml.in:115
-#: configs/sanit.config.yaml.in:142
+#: configs/sample.config.yaml.in:117 configs/sanit.config.yaml.in:116
+#: configs/sanit.config.yaml.in:143
 msgid "Sosiála media (maiddái <em>acdnstz</em>)"
 msgstr ""
 
@@ -172,9 +172,9 @@ msgstr ""
 #: static/js/bookmarklet.js:1245 templates/about.baakoeh.html:6
 #: templates/about.muter.html:6 templates/about.sanat.html:6
 #: templates/about.sanit.html:6 templates/about.vada.html:7
-#: templates/about.valks.html:7 templates/base.html:109
+#: templates/about.valks.html:7 templates/base.html:110
 msgid "About"
-msgstr "Dieđut"
+msgstr "Min birra"
 
 #: static/js/bookmarklet.js:1245
 msgid "Advanced"
@@ -562,19 +562,19 @@ msgid ""
 "Foundation."
 msgstr ""
 
-#: templates/base.html:101
+#: templates/base.html:102
 msgid "Home"
 msgstr "Ruoktu"
 
-#: templates/base.html:105
+#: templates/base.html:106
 msgid "Plugins"
 msgstr "Lohkanveahkki"
 
-#: templates/base.html:114
+#: templates/base.html:115
 msgid "Interface language"
 msgstr ""
 
-#: templates/base.html:180
+#: templates/base.html:181
 msgid ""
 "Created with free and open-source language tools from <em><a "
 "href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, a Sámi Language "
@@ -589,6 +589,61 @@ msgstr ""
 #: templates/config_doc.html:4
 msgid "Neahttadigisánit"
 msgstr "Neahttadigisániid lohkanveahkki"
+
+#: templates/index.html:19 templates/left_dictionary_list.html:1
+msgid "Dictionaries"
+msgstr "Sátnegirjjit"
+
+#: templates/index.html:37 templates/left_dictionary_list.html:52
+#: templates/more_dictionaries.html:21
+msgid "Other dictionaries"
+msgstr "Eará sátnegirjjit"
+
+#: templates/index.html:58
+msgid "Swap"
+msgstr "Molsso"
+
+#: templates/index.html:66 templates/index.html:151 views/reader.py:122
+msgid " is a possible form of ... "
+msgstr " lea vejolaččat dán sáni hápmi:"
+
+#: templates/index.html:121
+msgid "Definition not found for:"
+msgstr "Ii gávnna:"
+
+#: templates/index.html:173
+#, python-format
+msgid "Word %(input)s not found."
+msgstr "Sátni %(input)s ii gávdnon."
+
+#: templates/index.html:182
+msgid ""
+"If you are using a device without a Sámi keyboard, consider using <a "
+"href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
+"<em>acdnstz</em> for <em>áčđŋšŧž</em>."
+msgstr ""
+"Jus ii leat sámi boallobeavd, de sáhtát geavahit <a "
+"href=\"/SoMe/nob/\">sosiála media veršuvnna</a>, mii dohkkeha "
+"<em>acdnstz</em> danin bustávvan: <em>áčđŋšŧž</em>."
+
+#: templates/index.html:186
+msgid "Search for a word, or a word form for a word analysis and definition."
+msgstr ""
+"Oza sáni, vej. sojahuvvon sátnehámi, mii dalle sihke analyserejuvvo ja "
+"jorgaluvvo. Jus coahkkalat sáni, de oaččut eanet dieđuid sáni sojaheames."
+" Don sáhtát ohcat sátnehámi teavsttain, dahje buot sojahanhámiid liŋkkain"
+" olgeš ravddas."
+
+#: templates/index.html:190
+msgid ""
+"You selected #SoMe, the variant for social media, which means that the "
+"letters acdnstz\n"
+"                            will be accepted as áčđŋšŧž in addition to "
+"their usual values."
+msgstr ""
+"Don válljejit #SoMe sosiála media várás, ja dat mearkkaša ahte bustávat "
+"acdnstz\n"
+"                                dohkkehuvvojit maiddái áčđŋšŧž:n."
 
 #: templates/index_search_form.html:11
 msgid "Press Tab to select a word"
@@ -615,17 +670,9 @@ msgstr ""
 msgid "Language"
 msgstr "Giella"
 
-#: templates/left_dictionary_list.html:1
-msgid "Dictionaries"
-msgstr "Sátnegirjjit"
-
 #: templates/left_dictionary_list.html:38
 msgid "Written variant"
 msgstr "Čállinvuohki"
-
-#: templates/left_dictionary_list.html:52 templates/more_dictionaries.html:21
-msgid "Other dictionaries"
-msgstr "Eará sátnegirjjit"
 
 #: templates/more_dictionaries.html:4
 msgid "More dictionaris"
@@ -842,59 +889,12 @@ msgstr ""
 msgid "Invalid format. Only json and html allowed."
 msgstr "Formáhta ii doaimma. Dušše json ja html doibmet."
 
-#: views/reader.py:122
-msgid " is a possible form of ... "
-msgstr " lea vejolaččat dán sáni hápmi:"
+msgid "Texts"
+msgstr "Teavsttain"
 
-#~ msgid "Texts"
-#~ msgstr "Teavsttain"
+msgid "is a possible form of ... "
+msgstr "lea vejolaččat dán sáni hápmi: "
 
-#~ msgid "Swap"
-#~ msgstr "Molsso"
-
-#~ msgid "Definition not found for:"
-#~ msgstr "Ii gávnna:"
-
-#~ msgid "Word %(input)s not found."
-#~ msgstr "Sátni %(input)s ii gávdnon."
-
-#~ msgid ""
-#~ "If you are using a device without"
-#~ " a Sámi keyboard, consider using <a"
-#~ " href=\"/SoMe/nob/\">social media mode</a>, which"
-#~ " allows you to type <em>acdnstz</em> "
-#~ "for <em>áčđŋšŧž</em>."
-#~ msgstr ""
-#~ "Jus ii leat sámi boallobeavd, de "
-#~ "sáhtát geavahit <a href=\"/SoMe/nob/\">sosiála "
-#~ "media veršuvnna</a>, mii dohkkeha "
-#~ "<em>acdnstz</em> danin bustávvan: <em>áčđŋšŧž</em>."
-
-#~ msgid "Search for a word, or a word form for a word analysis and definition."
-#~ msgstr ""
-#~ "Oza sáni, vej. sojahuvvon sátnehámi, mii"
-#~ " dalle sihke analyserejuvvo ja jorgaluvvo."
-#~ " Jus coahkkalat sáni, de oaččut eanet"
-#~ " dieđuid sáni sojaheames. Don sáhtát "
-#~ "ohcat sátnehámi teavsttain, dahje buot "
-#~ "sojahanhámiid liŋkkain olgeš ravddas."
-
-#~ msgid ""
-#~ "You selected #SoMe, the variant for "
-#~ "social media, which means that the "
-#~ "letters acdnstz\n"
-#~ "                            will be accepted "
-#~ "as áčđŋšŧž in addition to their "
-#~ "usual values."
-#~ msgstr ""
-#~ "Don válljejit #SoMe sosiála media várás,"
-#~ " ja dat mearkkaša ahte bustávat "
-#~ "acdnstz\n"
-#~ "                                dohkkehuvvojit maiddái áčđŋšŧž:n."
-
-#~ msgid "is a possible form of ... "
-#~ msgstr "lea vejolaččat dán sáni hápmi: "
-
-#~ msgid "More information about this word"
-#~ msgstr "Eanet dieđut dán sáni birra"
+msgid "More information about this word"
+msgstr "Eanet dieđut dán sáni birra"
 
