@@ -1,90 +1,91 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="google-site-verification" content="9N9Tebim_a2IszkaT9fE2Q3tgIaHiAkAmUpfeJyVHnA" />
-        {# TODO: enable indexing by removing following #}
-        <meta name="robots" content="index">
-        <!-- TODO: add bookmark js popup?  -->
-        <meta name="apple-mobile-web-app-capable" content="yes" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="9N9Tebim_a2IszkaT9fE2Q3tgIaHiAkAmUpfeJyVHnA" />
+    {# TODO: enable indexing by removing following #}
+    <meta name="robots" content="index">
+    <!-- TODO: add bookmark js popup?  -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
 
-        <!-- iOS 7 only uses the last line -->
-        <meta name="viewport" content="initial-scale=1.0,width=device-width,user-scalable=no" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- iOS 7 only uses the last line -->
+    <meta name="viewport" content="initial-scale=1.0,width=device-width,user-scalable=no" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-        <link rel="apple-touch-icon" href="/static/img/mobile_bookmark_icons/{{ app_short_name }}.png"/>  
-        <link rel="apple-touch-icon" sizes="72x72" href="/static/img/mobile_bookmark_icons/{{ app_short_name }}_72x72.png"/>  
-        <link rel="apple-touch-icon" sizes="114x114" href="/static/img/mobile_bookmark_icons/{{ app_short_name }}_114x114.png"/>
+    <link rel="apple-touch-icon" href="/static/img/mobile_bookmark_icons/{{ app_short_name }}.png"/>  
+    <link rel="apple-touch-icon" sizes="72x72" href="/static/img/mobile_bookmark_icons/{{ app_short_name }}_72x72.png"/>  
+    <link rel="apple-touch-icon" sizes="114x114" href="/static/img/mobile_bookmark_icons/{{ app_short_name }}_114x114.png"/>
 
-        <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="shortcut icon" href="/favicon.ico">
 
-        {% if app_meta_title and app_meta_title != app_name %}
-            {% set app_name_desc = app_name + ' - ' + app_meta_title %}
-        {% else %}
-            {% set app_name_desc = app_name %}
+    {% if app_meta_title and app_meta_title != app_name %}
+        {% set app_name_desc = app_name + ' - ' + app_meta_title %}
+    {% else %}
+        {% set app_name_desc = app_name %}
+    {% endif %}
+
+    <meta name="apple-mobile-web-app-title" content="{{ app_mobile_bookmark_name }}">
+
+    {% block meta_title %}
+        <meta name="title" content="{{ app_name_desc }}">
+    {% endblock %}
+
+    {% block meta_description %}
+        {% if app_meta_desc %}
+            <meta name="description" content="{{ app_meta_desc }}">
         {% endif %}
+    {% endblock %}
 
-        <meta name="apple-mobile-web-app-title" content="{{ app_mobile_bookmark_name }}">
+    {% if app_meta_keywords %}
+        <meta name="keywords" content="{{ app_meta_keywords }}">
+    {% else %}
+        <meta name="keywords" content="samisk ordbok, på nett, mobil ordbok, ordbok app, 
+            sanakirjat, sanakirja, sátnegirjjit, sátnegirji, nordsamisk,
+            sørsamisk, finsk, norsk, pohjoissaame, davvisámegiella north sámi,
+            south sámi, norwegian, finnish, sámegiella, sámi language,
+            lullisámegiella, sørsamisk, mobil ordbok">
+    {% endif %}
 
-        {% block meta_title %}
-            <meta name="title" content="{{ app_name_desc }}">
-        {% endblock %}
+    <title>{% block title %}{% endblock %}{{ app_name_desc }}</title>
 
-        {% block meta_description %}
-            {% if app_meta_desc %}
-                <meta name="description" content="{{ app_meta_desc }}">
-            {% endif %}
-        {% endblock %}
+	<link rel="shortcut icon" href="{{url_for('static', filename='favicon.ico')}}" type="image/x-icon">
+	<link rel="icon" href="{{url_for('static', filename='favicon.ico')}}" type="image/x-icon">
 
-        {% if app_meta_keywords %}
-            <meta name="keywords" content="{{ app_meta_keywords }}">
-        {% else %}
-            <meta name="keywords" content="samisk ordbok, på nett, mobil ordbok, ordbok app, 
-                sanakirjat, sanakirja, sátnegirjjit, sátnegirji, nordsamisk,
-                sørsamisk, finsk, norsk, pohjoissaame, davvisámegiella north sámi,
-                south sámi, norwegian, finnish, sámegiella, sámi language,
-                lullisámegiella, sørsamisk, mobil ordbok">
-        {% endif %}
+    <link href="{{url_for('static', filename='css/bootstrap.css')}}" rel="stylesheet" />
+    <link href="{{url_for('static', filename='css/bootstrap-responsive.css')}}" rel="stylesheet" />
+    <link href="{{url_for('static', filename='css/base.css')}}" rel="stylesheet" />
 
-        <title>{% block title %}{% endblock %}{{ app_name_desc }}</title>
+    {% block extra_css %}
+    {% endblock %}
 
-	    <link rel="shortcut icon" href="{{url_for('static', filename='favicon.ico')}}" type="image/x-icon">
-	    <link rel="icon" href="{{url_for('static', filename='favicon.ico')}}" type="image/x-icon">
+    <!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
 
-        <link href="{{url_for('static', filename='css/bootstrap.css')}}" rel="stylesheet" />
-        <link href="{{url_for('static', filename='css/bootstrap-responsive.css')}}" rel="stylesheet" />
-        <link href="{{url_for('static', filename='css/base.css')}}" rel="stylesheet" />
+    {% if production_mode %}
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    {% else %}
+        <script type="text/javascript" src="{{url_for('static', filename='js/jquery.1.7.2.min.js')}}"></script>
+    {% endif %}
 
-        {% block extra_css %}
-        {% endblock %}
+    <script type="text/javascript" src="{{url_for('static', filename='js/DSt.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-collapse.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-dropdown.js')}}"></script>
 
-        <!--[if lt IE 9]>
-              <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-            <![endif]-->
+    <script type="text/javascript" src="{{url_for('static', filename='js/standalone-app.js')}}"></script>
 
-        {% if production_mode %}
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-        {% else %}
-            <script type="text/javascript" src="{{url_for('static', filename='js/jquery.1.7.2.min.js')}}"></script>
-        {% endif %}
+    {# Not actually in use
+    <script type="text/javascript" src="{{url_for('static', filename='js/base.js')}}"></script>
+    #}
 
-        <script type="text/javascript" src="{{url_for('static', filename='js/DSt.js')}}"></script>
-        <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-collapse.js')}}"></script>
-        <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-dropdown.js')}}"></script>
+    {% block extra_js %}
+    {% endblock %}
 
-        <script type="text/javascript" src="{{url_for('static', filename='js/standalone-app.js')}}"></script>
+</head>
 
-        {# Not actually in use
-        <script type="text/javascript" src="{{url_for('static', filename='js/base.js')}}"></script>
-        #}
-
-        {% block extra_js %}
-        {% endblock %}
-
-    </head>
-
-    <body lang="{% if session_locale_long_iso %}{{ session_locale_long_iso }}{% else %}sme{% endif %}" class="{% block bodyclass %}{% endblock %}">
+<body lang="{% if session_locale %}{{ session_locale }}{% endif %}"
+      class="{% block bodyclass %}{% endblock %}">
         <header>
             <div class="navbar navbar-static-top">
                 <div class="navbar-inner">
@@ -115,7 +116,7 @@
                                 {% for iso in internationalizations %}
                                 <li class="display-phone hidden-tablet visible-mid hidden-desktop">
                                     <a href="/locale/{{ iso }}/">
-                                        <img class="i18n_flag" src="{{url_for('static', filename='img/flags/' + iso + '_20x15.png')}}"></img> {{ iso|iso_to_language_own_name }}</a>
+                                        <img class="i18n_flag" alt="[{{ iso|iso_to_language_own_name }} flag]" src="{{url_for('static', filename='img/flags/' + iso + '_20x15.png')}}"> {{ iso|iso_to_language_own_name }}</a>
                                 </li>
                                 {% endfor %}
                             </ul>
@@ -129,7 +130,7 @@
         </header>
 
         <div class="container" id="wrap">
-            <content>
+            <div class="content">
                 {% block content %}
                 <div class="container-fluid">
                     <div class="row-fluid">
@@ -165,7 +166,7 @@
                     </div>
                 </div>
                 #}
-            </content>
+            </div>
         </div>
 
         {% block footer_block %}
@@ -173,7 +174,7 @@
             <div class="container-fluid">
                 <div class="row-fluid">
                     <div class="span4 offset1">
-                        <img src="{{url_for('static', filename='img/uitlogo.png')}}" id="uitlogo" width="100" height="100" class="pull-right"></img>
+                        <img src="{{url_for('static', filename='img/uitlogo.png')}}" id="uitlogo" width="100" height="100" class="pull-right" alt="UiT logo">
                     </div>
                     <div class="span4">
                         <p class="lead">

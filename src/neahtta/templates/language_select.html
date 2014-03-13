@@ -7,7 +7,7 @@
             {% trans %}<span class="reposition_hide">Language</span>{% endtrans %}
             <span class="flags_list">
             {% for iso in internationalizations %}
-                <img class="i18n_flag" src="{{url_for('static', filename='img/flags/' + iso + '_20x15.png')}}"></img>
+                <img class="i18n_flag" alt="[flag]" src="{{url_for('static', filename='img/flags/' + iso + '_20x15.png')}}">
             {% endfor %}
             </span>
             <b class="caret"></b>
@@ -15,7 +15,7 @@
         <ul class="dropdown-menu">
             {% for iso in internationalizations %}
             <li><a href="/locale/{{ iso }}/">
-                <img class="i18n_flag" src="{{url_for('static', filename='img/flags/' + iso + '_20x15.png')}}"></img> {{ iso|iso_to_language_own_name }}</a></li>
+                <img class="i18n_flag" alt="[flag]" src="{{url_for('static', filename='img/flags/' + iso + '_20x15.png')}}"> {{ iso|iso_to_language_own_name }}</a></li>
             {% endfor %}
         </ul>
       </li>

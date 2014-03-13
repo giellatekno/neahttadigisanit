@@ -12,7 +12,7 @@
                data-language-from="{{ _from }}"
                data-language-to="{{ _to }}"
                {% if user_input -%}value="{{ user_input }}"{% endif %}
-               placeholder="{% trans %}ohcansátni{% endtrans %}"></input>
+               placeholder="{% trans %}ohcansátni{% endtrans %}">
                {# TODO: show text search only if the dictionary supports this #}
                {% if current_pair_settings.wordform_search_url %}
                    <div class="btn-group display-phone hidden-desktop hidden-tablet">
@@ -52,7 +52,7 @@
                class="btn hidden-phone display-tablet korp_search" 
                name="korp_search">
            {% trans %}Search texts{% endtrans %}
-       </a>
+       </button>
    {% endif %}
 </form>
 
