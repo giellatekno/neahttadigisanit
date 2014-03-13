@@ -645,9 +645,6 @@ msgstr "Snu"
 msgid " is a possible form of ... "
 msgstr " er en mulig form av ... "
 
-#~ msgid "is a possible form of ... "
-#~ msgstr "er ei mulig form av ... "
-
 #: templates/index.html:121
 msgid "Definition not found for:"
 msgstr "Vi fant ingen oversetting for:"
@@ -938,9 +935,12 @@ msgstr ""
 msgid "Invalid format. Only json and html allowed."
 msgstr "Ugyldig format. Bare json og html er tillatt."
 
-msgid "Texts"
-msgstr "I tekster"
+#~ msgid "is a possible form of ... "
+#~ msgstr "er ei mulig form av ... "
 
-msgid "More information about this word"
-msgstr "Mer informasjon om dette ordet"
+#~ msgid "Texts"
+#~ msgstr "I tekster"
+
+#~ msgid "More information about this word"
+#~ msgstr "Mer informasjon om dette ordet"
 
