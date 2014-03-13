@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-02-18 14:41-0600\n"
+"POT-Creation-Date: 2014-03-13 13:16-0500\n"
 "PO-Revision-Date: 2013-02-01 01:54-0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: no <LL@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 0.9.6\n"
+"Generated-By: Babel 1.3\n"
 
 #: configs/kyv.config.yaml.in:93
 msgid "Standard"
@@ -141,13 +141,13 @@ msgstr "Latvisk"
 msgid "Haida"
 msgstr "Haida"
 
-#: configs/sample.config.yaml.in:114 configs/sanit.config.yaml.in:112
-#: configs/sanit.config.yaml.in:139
+#: configs/sample.config.yaml.in:114 configs/sanit.config.yaml.in:113
+#: configs/sanit.config.yaml.in:140
 msgid "Standárda (<em>áčđŋšŧž</em>)"
 msgstr "Standard (<em>áčđŋšŧž</em>)"
 
-#: configs/sample.config.yaml.in:117 configs/sanit.config.yaml.in:115
-#: configs/sanit.config.yaml.in:142
+#: configs/sample.config.yaml.in:117 configs/sanit.config.yaml.in:116
+#: configs/sanit.config.yaml.in:143
 msgid "Sosiála media (maiddái <em>acdnstz</em>)"
 msgstr "For sosiale media (forstår <em>acdnstz</em>)"
 
@@ -172,9 +172,9 @@ msgstr "Alternativer"
 #: static/js/bookmarklet.js:1245 templates/about.baakoeh.html:6
 #: templates/about.muter.html:6 templates/about.sanat.html:6
 #: templates/about.sanit.html:6 templates/about.vada.html:7
-#: templates/about.valks.html:7 templates/base.html:109
+#: templates/about.valks.html:7 templates/base.html:110
 msgid "About"
-msgstr "Info"
+msgstr "Om oss"
 
 #: static/js/bookmarklet.js:1245
 msgid "Advanced"
@@ -600,19 +600,19 @@ msgstr ""
 "Oversettelsesarbeidet blir utført av Merja Salo ved Universitetet i "
 "Helsingfors, med finansiering av Kone-stiftelsen."
 
-#: templates/base.html:101
+#: templates/base.html:102
 msgid "Home"
 msgstr "Hjem"
 
-#: templates/base.html:105
+#: templates/base.html:106
 msgid "Plugins"
 msgstr "Lesehjelper"
 
-#: templates/base.html:114
+#: templates/base.html:115
 msgid "Interface language"
 msgstr "Grensesnittspråk"
 
-#: templates/base.html:180
+#: templates/base.html:181
 msgid ""
 "Created with free and open-source language tools from <em><a "
 "href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, a Sámi Language "
@@ -627,6 +627,64 @@ msgstr ""
 #: templates/config_doc.html:4
 msgid "Neahttadigisánit"
 msgstr "Neahttadigisánit Lesehjelper"
+
+#: templates/index.html:19 templates/left_dictionary_list.html:1
+msgid "Dictionaries"
+msgstr "Ordbøker"
+
+#: templates/index.html:37 templates/left_dictionary_list.html:52
+#: templates/more_dictionaries.html:21
+msgid "Other dictionaries"
+msgstr "Andre ordbøker"
+
+#: templates/index.html:58
+msgid "Swap"
+msgstr "Snu"
+
+#: templates/index.html:66 templates/index.html:151 views/reader.py:122
+msgid " is a possible form of ... "
+msgstr " er en mulig form av ... "
+
+#~ msgid "is a possible form of ... "
+#~ msgstr "er ei mulig form av ... "
+
+#: templates/index.html:121
+msgid "Definition not found for:"
+msgstr "Vi fant ingen oversetting for:"
+
+#: templates/index.html:173
+#, python-format
+msgid "Word %(input)s not found."
+msgstr "Ordet %(input)s ikke funnet."
+
+#: templates/index.html:182
+msgid ""
+"If you are using a device without a Sámi keyboard, consider using <a "
+"href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
+"<em>acdnstz</em> for <em>áčđŋšŧž</em>."
+msgstr ""
+"Hvis du ikke har samisk tastatur, bør du vurdere å bruke <a "
+"href=\"/SoMe/nob/\">sosiale media-modusen</a>, som lar deg skrive inn "
+"<em>acdnstz</em> når du mener <em>áčđŋšŧž</em>."
+
+#: templates/index.html:186
+msgid "Search for a word, or a word form for a word analysis and definition."
+msgstr ""
+"Søk etter et ord, evt. en bøyd form, som da blir både analysert og "
+"oversatt. Ved å klikke på ordet, får du informasjon om bøyning. Du kan "
+"også søke ordformen i tekster, eller alle bøyningsformer ved å "
+"brukelinken i høyre marg."
+
+#: templates/index.html:190
+msgid ""
+"You selected #SoMe, the variant for social media, which means that the "
+"letters acdnstz\n"
+"                            will be accepted as áčđŋšŧž in addition to "
+"their usual values."
+msgstr ""
+"Du har valgt #SoMe, varianten for sosiale media. Det innebærer at "
+"bokstavene adcnstz blir akseptert som áčđŋšŧž i tillegg til sine vanlige "
+"verdier."
 
 #: templates/index_search_form.html:11
 msgid "Press Tab to select a word"
@@ -653,17 +711,9 @@ msgstr "<span class=\"reposition_hide\">Språk</span>"
 msgid "Language"
 msgstr "Språk"
 
-#: templates/left_dictionary_list.html:1
-msgid "Dictionaries"
-msgstr "Ordbøker"
-
 #: templates/left_dictionary_list.html:38
 msgid "Written variant"
 msgstr "Skriftspråksvariant"
-
-#: templates/left_dictionary_list.html:52 templates/more_dictionaries.html:21
-msgid "Other dictionaries"
-msgstr "Andre ordbøker"
 
 #: templates/more_dictionaries.html:4
 msgid "More dictionaris"
@@ -888,62 +938,9 @@ msgstr ""
 msgid "Invalid format. Only json and html allowed."
 msgstr "Ugyldig format. Bare json og html er tillatt."
 
-#: views/reader.py:122
-msgid " is a possible form of ... "
-msgstr " er en mulig form av ... "
+msgid "Texts"
+msgstr "I tekster"
 
-#~ msgid "Texts"
-#~ msgstr "I tekster"
-
-#~ msgid "Swap"
-#~ msgstr "Snu"
-
-#~ msgid "Definition not found for:"
-#~ msgstr "Vi fant ingen oversetting for:"
-
-#~ msgid "Word %(input)s not found."
-#~ msgstr "Ordet %(input)s ikke funnet."
-
-#~ msgid ""
-#~ "If you are using a device without"
-#~ " a Sámi keyboard, consider using <a"
-#~ " href=\"/SoMe/nob/\">social media mode</a>, which"
-#~ " allows you to type <em>acdnstz</em> "
-#~ "for <em>áčđŋšŧž</em>."
-#~ msgstr ""
-#~ "Hvis du ikke har samisk tastatur, "
-#~ "bør du vurdere å bruke <a "
-#~ "href=\"/SoMe/nob/\">sosiale media-modusen</a>, som"
-#~ " lar deg skrive inn <em>acdnstz</em> "
-#~ "når du mener <em>áčđŋšŧž</em>."
-
-#~ msgid "Search for a word, or a word form for a word analysis and definition."
-#~ msgstr ""
-#~ "Søk etter et ord, evt. en bøyd "
-#~ "form, som da blir både analysert "
-#~ "og oversatt. Ved å klikke på "
-#~ "ordet, får du informasjon om bøyning."
-#~ " Du kan også søke ordformen i "
-#~ "tekster, eller alle bøyningsformer ved å"
-#~ " brukelinken i høyre marg."
-
-#~ msgid ""
-#~ "You selected #SoMe, the variant for "
-#~ "social media, which means that the "
-#~ "letters acdnstz\n"
-#~ "                            will be accepted "
-#~ "as áčđŋšŧž in addition to their "
-#~ "usual values."
-#~ msgstr ""
-#~ "Du har valgt #SoMe, varianten for "
-#~ "sosiale media. Det innebærer at "
-#~ "bokstavene adcnstz blir akseptert som "
-#~ "áčđŋšŧž i tillegg til sine vanlige "
-#~ "verdier."
-
-#~ msgid "is a possible form of ... "
-#~ msgstr "er ei mulig form av ... "
-
-#~ msgid "More information about this word"
-#~ msgstr "Mer informasjon om dette ordet"
+msgid "More information about this word"
+msgstr "Mer informasjon om dette ordet"
 
