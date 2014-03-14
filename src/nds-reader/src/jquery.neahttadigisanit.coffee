@@ -432,7 +432,7 @@ jQuery(document).ready ($) ->
   $.fn.selectToLookup = (opts) ->
     opts = $.extend {}, $.fn.selectToLookup.options, opts
     window.nds_opts = opts
-    spinner = initSpinner(opts.spinnerImg)
+    spinner = initSpinner(nds_opts.api_host + opts.spinnerImg)
 
     # version notify
     newVersionNotify = () ->
