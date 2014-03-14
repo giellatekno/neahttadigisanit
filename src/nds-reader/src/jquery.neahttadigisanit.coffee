@@ -64,7 +64,7 @@ jQuery(document).ready ($) ->
       return $("""
         <div class="modal hide fade" id="notifications">
             <div class="modal-header">
-                <button 
+                <button
                     type="button"
                     class="close"
                     data-dismiss="modal"
@@ -81,7 +81,7 @@ jQuery(document).ready ($) ->
         """)
 
     OptionsMenu: (opts) ->
-      # TODO: navmenu fixed at bottom containing language option, and 
+      # TODO: navmenu fixed at bottom containing language option, and
       #       lookup button
       return "omg"
     
@@ -120,7 +120,7 @@ jQuery(document).ready ($) ->
           <div id="options" class="minipanel">
             <form class="">
               <label class="control-label" for="inputEmail">#{ _("Dictionary") }</label>
-              <select type="radio" 
+              <select type="radio"
                      name="language_pair">
               #{makeLanguageOption(opts.dictionaries)}
               </select>
@@ -383,7 +383,8 @@ jQuery(document).ready ($) ->
 
     # Remove punctuation, some browsers select it by default with double
     # click
-    string = $.trim(string).replace(/\b[-.,()&$#!\[\]{}"]+\B|\B[-.,()&$#!\[\]{}"]+\b/g, "")
+    string = $.trim(string)
+              .replace(/\b[-.,()&$#!\[\]{}"]+\B|\B[-.,()&$#!\[\]{}"]+\b/g, "")
 
     if (string.length > 60) or (string.search(' ') > -1)
       return false
@@ -426,8 +427,7 @@ jQuery(document).ready ($) ->
    # $(document).selectToLookup();
    #
    #
-   ## 
-
+   ##
 
   $.fn.selectToLookup = (opts) ->
     opts = $.extend {}, $.fn.selectToLookup.options, opts
@@ -437,7 +437,7 @@ jQuery(document).ready ($) ->
     # version notify
     newVersionNotify = () ->
       $.getJSON(
-        API_HOST + '/read/update/json/' + '?callback=?'
+        nds_opts.api_host + '/read/update/json/' + '?callback=?'
         (response) ->
           $(document).find('body').append(
             Templates.NotifyWindow(response)
@@ -490,7 +490,9 @@ jQuery(document).ready ($) ->
         window.optTab.css('z-index', 9000)
 
       # Recall stored language pair from session
-      previous_langpair = DSt.get(SHORT_NAME + '-' + 'digisanit-select-langpair')
+      previous_langpair = DSt.get(
+        SHORT_NAME + '-' + 'digisanit-select-langpair'
+      )
       if previous_langpair
         _select = "select[name='language_pair']"
         _opt = window.optTab.find(_select).val(previous_langpair)
@@ -506,14 +508,14 @@ jQuery(document).ready ($) ->
           element = evt.target
           within_options = $(element).parents('#webdict_options')
           if within_options.length > 0
-          	$(within_options[0]).find('#debug').show()
-          	return false
+            $(within_options[0]).find('#debug').show()
+            return false
           range = getFirstRange()
           string = cloneContents(range)
           if range and string
             lookupSelectEvent(evt, string, element, range, window.nds_opts)
           return false
-        return false
+        return true
 
       clean = (event) ->
         parents = []
@@ -581,6 +583,8 @@ jQuery(document).ready ($) ->
       version_ok = semver.gte( window.NDS_BOOKMARK_VERSION
                              , EXPECT_BOOKMARKLET_VERSION
                              )
+    else
+      version_ok = true
 
     uagent = navigator.userAgent
     [old_ie, dismissed] = [false, false]
@@ -622,7 +626,7 @@ jQuery(document).ready ($) ->
   $.fn.selectToLookup.options =
     api_host: API_HOST
     formResults: "#results"
-    spinnerImg: "dev/img/spinner.gif"
+    spinnerImg: "/static/img/spinner.gif"
     sourceLanguage: "sme"
     langPairSelect: "#webdict_options *[name='language_pair']"
     tooltip: true
