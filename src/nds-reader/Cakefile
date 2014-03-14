@@ -191,6 +191,39 @@ buildBookmarklet = (callback) ->
   util.print "\n Copied CSS to ../static/css/jquery.neahttadigisanit.css\n"
 
 
+buildStandalone = (callback) ->
+  # dev/jquery.1.7.2.js  (minified)
+  # bin/jquery.neahttadigisanit.min.js 
+  # src/bookmarklet.init.js (not minified)
+  #
+  # TODO: minify bookmark.js to ../static/js/bookmark.min.js
+
+  _fs_nm = (fs.readFileSync 'dev/jquery.1.7.2.js').toString() +
+        (fs.readFileSync 'bin/jquery.neahttadigisanit.js').toString()
+  out_nonmin = fs.openSync "bin/neahttadigisanit.jquery.js", "w+"
+  fs.writeSync out_nonmin, _fs_nm
+
+  _fs = (fs.readFileSync 'dev/jquery.1.7.2.js').toString() +
+        (fs.readFileSync 'bin/jquery.neahttadigisanit.min.js').toString()
+  out = fs.openSync "bin/neahttadigisanit.jquery.min.js", "w+"
+  fs.writeSync out, _fs
+  util.print "Built NDS+jQuery in bin/neahttadigisanit.jquery.min.js"
+
+  _css = (fs.readFileSync 'bin/jquery.neahttadigisanit.css').toString()
+  _cssout = fs.openSync "../neahtta/static/css/neahttadigisanit.css", "w+"
+  fs.writeSync _cssout, _css
+  util.print "\n Copied CSS to ../neahtta/static/css/neahttadigisanit.css\n"
+
+  _fs_nm = (fs.readFileSync 'bin/jquery.neahttadigisanit.js').toString()
+  out_nonmin = fs.openSync "bin/neahttadigisanit.js", "w+"
+  fs.writeSync out_nonmin, _fs_nm
+
+  _fs = (fs.readFileSync 'bin/jquery.neahttadigisanit.min.js').toString()
+  out = fs.openSync "bin/neahttadigisanit.min.js", "w+"
+  fs.writeSync out, _fs
+  util.print "Built NDS without jQuery in bin/neahttadigisanit.min.js"
+
+
 task 'watch', 'Watch prod source files and build changes', ->
   invoke 'build'
   util.log "Watching for changes in src"
@@ -221,6 +254,9 @@ task 'build-wordpress', 'Compile the wordpress plugin', ->
 task 'build-bookmarklet', 'Compile the plugin and jQuery to be downloaded by a bookmarklet', ->
   buildBookmarklet()
   util.print "Bookmarklet compiled to bin/bookmarklet.min.js"
+
+task 'build-standalone', 'Compile the standalone version for people to use wherever', ->
+  buildStandalone()
 
 task 'build-bookmarklet-debug', 'Compile the unminified plugin and jQuery to be downloaded by a bookmarklet', ->
   buildBookmarkletDebug()
