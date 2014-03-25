@@ -7,6 +7,8 @@
 # Will need to operate on the output of lookup(), and this is language
 # specific, so decorator registry thing is probably good here.
 
+from flask import current_app
+
 class MorphoLexiconOverrides(object):
 
     def override_results(self, function):
@@ -111,7 +113,8 @@ class MorphoLexicon(object):
                     _error_args = [a.tag_raw for a in list(set(analyses))]
                     _error_str = "For some reason, a lemma was missing from this analysis: " + repr(_error_args)
                     _error_str += "Lookup string: " + repr(wordform)
-                    raise Exception(_error_str)
+                    current_app.logger.error(_error_str)
+                    continue
 
                 xml_result = self.lexicon.lookup( source_lang
                                                 , target_lang
