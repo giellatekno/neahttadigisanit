@@ -5,6 +5,8 @@
 ##
 ##
 
+import sys
+
 class LexiconOverrides(object):
     """ Class for collecting functions marked with decorators that
     provide special handling of tags. One class instantiated in
@@ -205,7 +207,6 @@ class LexiconOverrides(object):
 
 lexicon_overrides = LexiconOverrides()
 
-
 PARSED_TREES = {}
 
 regexpNS = "http://exslt.org/regular-expressions"
@@ -222,8 +223,20 @@ class XMLDict(object):
         if not tree:
             if filename not in PARSED_TREES:
                 print "parsing %s" % filename
-                self.tree = etree.parse(filename)
-                PARSED_TREES[filename] = self.tree
+                try:
+                    self.tree = etree.parse(filename)
+                    PARSED_TREES[filename] = self.tree
+                except Exception, e:
+                    print
+                    print " *** ** ** ** ** ** * ***"
+                    print " *** ERROR parsing %s" % filename
+                    print " *** ** ** ** ** ** * ***"
+                    print
+                    print " Check the compilation process... "
+                    print " Is the file empty?"
+                    print " Saxon errors?"
+                    print
+                    sys.exit(2)
             else:
                 self.tree = PARSED_TREES[filename]
         else:
