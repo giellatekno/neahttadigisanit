@@ -23,7 +23,7 @@
         {% set app_name_desc = app_name %}
     {% endif %}
 
-    <meta property="og:title" content="{{ app_name }} | {%- block og_meta_title -%}{{ app_meta_title }}{%- endblock %}">
+    <meta property="og:title" content="{{ app_name }} | {% block og_meta_title -%}{{ app_meta_title }}{%- endblock %}">
     <meta property="og:type" content="website">
 
     <meta property="og:url" content="http://{{ app_short_name }}.oahpa.no{% block og_url_path %}/{% endblock %}">
