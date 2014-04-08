@@ -23,13 +23,13 @@
         {% set app_name_desc = app_name %}
     {% endif %}
 
-    <meta property="og:title" content="{%- block og_meta_title -%}{{ app_meta_title }}{%- endblock %} | {{ app_name }}">
+    <meta property="og:title" content="{%- block og_meta_title -%}{{ app_meta_title }}{%- endblock %}">
     <meta property="og:type" content="website">
 
     <meta property="og:url" content="http://{{ app_short_name }}.oahpa.no{% block og_url_path %}/{% endblock %}">
 
     <meta property="og:image" content="http://{{ app_short_name }}.oahpa.no/static/img/mobile_bookmark_icons/{{ app_short_name }}.png">
-    <meta property="og:site_name" content="{{ site_title }}">
+    <meta property="og:site_name" content="{{ app_name }}">
 
     {% block og_meta_description %}
         <meta property="og:description" content="{{ app_meta_desc }}" />
