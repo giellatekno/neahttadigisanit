@@ -568,7 +568,7 @@ msgstr "Ruoktu"
 
 #: templates/base.html:106
 msgid "Plugins"
-msgstr "Lohkanveahkki"
+msgstr "Coahkkal-teavsttas"
 
 #: templates/base.html:115
 msgid "Interface language"

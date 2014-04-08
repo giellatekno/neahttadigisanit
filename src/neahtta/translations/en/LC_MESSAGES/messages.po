@@ -545,7 +545,7 @@ msgstr ""
 
 #: templates/base.html:105
 msgid "Plugins"
-msgstr ""
+msgstr "Click-in-text"
 
 #: templates/base.html:114
 msgid "Interface language"

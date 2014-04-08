@@ -606,7 +606,7 @@ msgstr "Hjem"
 
 #: templates/base.html:106
 msgid "Plugins"
-msgstr "Lesehjelper"
+msgstr "Klikk-i-tekst"
 
 #: templates/base.html:115
 msgid "Interface language"
