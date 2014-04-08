@@ -314,11 +314,13 @@ class FrontPageFormat(EntryNodeIterator):
         if set(target_formatted) != set(texts):
             target_reformatted = True
 
+        target_formatted_unlinked = target_formatted
         target_formatted = map(add_link, target_formatted)
 
         right_node = { 'tx': ', '.join(texts)
                      , 're': annotations
                      , 'target_reformatted': target_reformatted
+                     , 'target_formatted_unlinked': target_formatted_unlinked
                      , 'examples': self.examples(tg)
                      , 'target_formatted': ', '.join(target_formatted)
                      }
@@ -387,14 +389,15 @@ class FrontPageFormat(EntryNodeIterator):
             link =  "<a href='%s'>%s</a>" % (_url, _p)
             return link
 
-        source_formatted = lexicon_overrides.format_source(
+        source_formatted_unlinked = lexicon_overrides.format_source(
             source_lang, ui_lang, e, target_lang, default_format
         )
 
-        source_formatted = add_link(source_formatted)
+        source_formatted = add_link(source_formatted_unlinked)
 
         formatted_dict = { 'left': lemma
                          , 'source_formatted': source_formatted
+                         , 'source_unlinked': source_formatted_unlinked
                          , 'context': lemma_context
                          , 'pos': lemma_pos
                          , 'right': right_nodes
@@ -459,14 +462,15 @@ class DetailedFormat(FrontPageFormat):
             """
             return _p
 
-        source_formatted = lexicon_overrides.format_source(
+        source_formatted_unlinked = lexicon_overrides.format_source(
             source_lang, ui_lang, e, target_lang, default_format
         )
 
-        source_formatted = add_link(source_formatted)
+        source_formatted = add_link(source_formatted_unlinked)
 
         formatted_dict = { 'left': lemma
                          , 'source_formatted': source_formatted
+                         , 'source_unlinked': source_formatted_unlinked
                          , 'context': lemma_context
                          , 'pos': lemma_pos
                          , 'right': right_nodes
