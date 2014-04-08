@@ -23,6 +23,7 @@
                 {%- for t in tx.target_formatted_unlinked -%}{{ t }}{% if not loop.last %}, {% endif %}{% endfor -%}
             {%- else -%}{%- if tx.re %} ({% for annotation in tx.re %}{{ annotation }}{% endfor %}){% endif -%}{% endif -%}
         {%- endfor -%}
+    {%- if not loop.last %}; {% endif %}
     {%- endfor -%}
 {%- endmacro -%}
 
