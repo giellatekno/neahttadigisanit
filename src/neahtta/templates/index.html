@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% import 'macros.html' as macros with context %}
 
 {% block extra_js %}
     {# https://gist.github.com/1866577 #}
@@ -12,43 +13,6 @@
 {% block search_li_form %}
 {% endblock %}
 
-{% macro korp_link_lemma(lemma) -%}
-{% if current_pair_settings.lemma_search_url -%}
-    {% set search_url = current_pair_settings.lemma_search_url.replace('INPUT_LEMMA', lemma) %}
-    <a class="korp_search lemma_action"
-       href="{{ search_url }}">{% trans %}Texts{% endtrans %} &rarr;</a>
-{%- endif %}
-{%- endmacro %}
-
-{% macro possible_analyses_grid(analyses) -%}
-    <dl class="possible_analyses grid_analyses">
-    {% for grouper, forms in analyses|groupby('lemma') %}
-        {% for lemmagroup, lemmafs in forms|groupby('pos') %}
-            {% if current_pair_settings.show_korp_search %}
-                {% if lemmagroup and grouper %}
-                    <dt>{{ grouper }} {{ korp_link_lemma(grouper) }}</dt>
-                {% else %}
-                    <dt>{{ grouper }}</dt>
-                {% endif %}
-            {% else %}
-                <dt>{{ grouper }}</dt>
-            {% endif %}
-            <dd>
-                <ul class="possible_forms">
-                    {% set existing_tags = [] %}
-                    {% for lem in lemmafs %}
-                    {% set formatted_tag = ' '.join(lem.tag)|tagfilter(_from, _to) %}
-                    {% if formatted_tag not in existing_tags %}
-                        <li>{{ formatted_tag }}</li>
-                        {% do existing_tags.append(formatted_tag) %}
-                    {% endif %}
-                    {% endfor %}
-                </ul>
-            </dd>
-        {% endfor %}
-    {% endfor %}
-    </dl>
-{%- endmacro %}
 
 {% block extra_nav %}
 {# Dictionaries #}
@@ -135,7 +99,7 @@
 
                                         </div>
                                         <div class="span4 hidden-phone">
-                                            {{ possible_analyses_grid(lookup.analyses) }}
+                                            {{ macros.possible_analyses_grid(lookup.analyses) }}
                                         </div>
                                     </div>
                                 {% endfor %}
@@ -163,7 +127,7 @@
                             <p class="lead">&nbsp;</p>
                             </div>
                             <div class="span4 hidden-phone">
-                                {{ possible_analyses_grid(analyses_without_lex) }}
+                                {{ macros.possible_analyses_grid(analyses_without_lex) }}
                             </div>
                         {% else %}
                             <div class="row-fluid entry_row">
@@ -171,7 +135,7 @@
                                     <p class="lead">&nbsp;</p>
                                 </div>
                                 <div class="span4 hidden-phone">
-                                    {{ possible_analyses_grid(analyses_without_lex) }}
+                                    {{ macros.possible_analyses_grid(analyses_without_lex) }}
                                 </div>
                             </div>
                         {% endif %}
