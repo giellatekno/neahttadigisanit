@@ -545,7 +545,7 @@ msgstr "Hem"
 
 #: templates/base.html:105
 msgid "Plugins"
-msgstr "Plugins"
+msgstr "Klicka-i-text"
 
 #: templates/base.html:114
 msgid "Interface language"
@@ -582,7 +582,7 @@ msgstr "Sök"
 
 #: templates/index_search_form.html:31 templates/index_search_form.html:54
 msgid "Search texts"
-msgstr ""
+msgstr "Sök i text"
 
 #: templates/language_select.html:7
 msgid "<span class=\"reposition_hide\">Language</span>"

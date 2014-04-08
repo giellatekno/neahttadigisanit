@@ -542,7 +542,7 @@ msgstr ""
 
 #: templates/base.html:106
 msgid "Plugins"
-msgstr "Laajennuksia"
+msgstr "Klikkaa-tekstissä"
 
 #: templates/base.html:115
 msgid "Interface language"
@@ -571,7 +571,7 @@ msgstr "Muita sanakirjoja"
 
 #: templates/index.html:58
 msgid "Swap"
-msgstr ""
+msgstr "Vaihda"
 
 #: templates/index.html:66 templates/index.html:151 views/reader.py:122
 msgid " is a possible form of ... "

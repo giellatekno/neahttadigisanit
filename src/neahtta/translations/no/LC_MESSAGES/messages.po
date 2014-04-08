@@ -259,10 +259,12 @@ msgid ""
 "If you followed a link from the front page, it may be that the dictionary"
 " you were browsing is not yet bilingual."
 msgstr ""
+"Hvis du fulgte ei lenke fra forsida, kan det være at ordboka du "
+"leste i ikke går begge veier enda."
 
 #: templates/500.html:51
 msgid "Whoops! There was some kind of error."
-msgstr "Oops! Nå skjedde det visst en feil."
+msgstr "Oops! Nå skjedde det visst en feil her."
 
 #: templates/about.baakoeh.html:15 templates/about.muter.html:15
 #: templates/about.sanat.html:15 templates/about.sanit.html:15
