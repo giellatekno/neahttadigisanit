@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% import 'macros.html' as macros with context %}
 
 {% block extra_css %}
     <link href="{{url_for('static', filename='css/detail.css')}}" rel="stylesheet" />
@@ -13,13 +14,23 @@
 #}
 {% endblock %}
 
-{% macro korp_link_lemma(lemma) -%}
-{% if current_pair_settings.lemma_search_url -%}
-    {% set search_url = current_pair_settings.lemma_search_url.replace('INPUT_LEMMA', lemma) %}
-    <a class="korp_search lemma_action"
-       href="{{ search_url }}">{% trans %}Texts{% endtrans %} &rarr;</a>
-{%- endif %}
-{%- endmacro %}
+{# Construct some useful share information for the meta title #}
+{% macro definition_string(r) -%}
+    {%- for lexeme in r -%}
+        {%- set context = lexeme.context -%}
+        {{ lexeme.source_formatted|safe }} &mdash; {% for tx in lexeme.right -%}
+            {%- if tx.target_formatted_unlinked -%}
+                {%- for t in tx.target_formatted_unlinked -%}{{ t }}{% if not loop.last %}, {% endif %}{% endfor -%}
+            {%- else -%}{%- if tx.re %} ({% for annotation in tx.re %}{{ annotation }}{% endfor %}){% endif -%}{% endif -%}
+        {%- endfor -%}
+    {%- endfor -%}
+{%- endmacro -%}
+
+{% block og_meta_description -%}
+    <meta property="og:description" content="{{ definition_string(result) }}" />
+{%- endblock %}
+
+{% block og_url_path %}/detail/{{ _from }}/{{ _to }}/{{ user_input }}.html{% endblock %}
 
 {% block float_right %}
     {%- if result.analyses %}
@@ -145,7 +156,7 @@
                          {% if lemmagroup and grouper %}
                             {% set search_url = "http://gtweb.uit.no/korp/#search-tab=0&page=0&search=" %}
                             {% set search_query = 'cqp|[lemma = "' + grouper + '"]' %}
-                            <dt>{{ grouper }} {{ korp_link_lemma(grouper) }}</dt>
+                            <dt>{{ grouper }} {{ macros.korp_link_lemma_detail(grouper) }}</dt>
                         {% else %}
                             <dt>{{ grouper }}</dt>
                         {% endif %}

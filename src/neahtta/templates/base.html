@@ -17,13 +17,25 @@
     <link rel="apple-touch-icon" sizes="72x72" href="/static/img/mobile_bookmark_icons/{{ app_short_name }}_72x72.png"/>  
     <link rel="apple-touch-icon" sizes="114x114" href="/static/img/mobile_bookmark_icons/{{ app_short_name }}_114x114.png"/>
 
-    <link rel="shortcut icon" href="/favicon.ico">
-
     {% if app_meta_title and app_meta_title != app_name %}
         {% set app_name_desc = app_name + ' - ' + app_meta_title %}
     {% else %}
         {% set app_name_desc = app_name %}
     {% endif %}
+
+    <meta property="og:title" content="{%- block og_meta_title -%}{{ app_meta_title }}{%- endblock %} | {{ app_name }}">
+    <meta property="og:type" content="website">
+
+    <meta property="og:url" content="http://{{ app_short_name }}.oahpa.no{% block og_url_path %}/{% endblock %}">
+
+    <meta property="og:image" content="http://{{ app_short_name }}.oahpa.no/static/img/mobile_bookmark_icons/{{ app_short_name }}.png">
+    <meta property="og:site_name" content="{{ site_title }}">
+
+    {% block og_meta_description %}
+        <meta property="og:description" content="{{ app_meta_desc }}" />
+    {% endblock %}
+
+    <link rel="shortcut icon" href="/favicon.ico">
 
     <meta name="apple-mobile-web-app-title" content="{{ app_mobile_bookmark_name }}">
 
@@ -209,6 +221,7 @@
       })();
 
     </script>    
+
 </body>
 
 </html>
