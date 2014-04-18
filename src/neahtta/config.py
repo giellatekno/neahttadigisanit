@@ -64,6 +64,12 @@ class Config(Config):
             return []
 
     @property
+    def new_style_templates(self):
+        _p = self.yaml.get('ApplicationSettings', {})\
+                      .get('new_style_templates', False)
+        return _p
+
+    @property
     def short_name(self):
         _p = self.yaml.get('ApplicationSettings', {})\
                       .get('short_name', False)
