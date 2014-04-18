@@ -46,6 +46,10 @@ def register_filters(app):
         from morphology.utils import tagfilter
         return tagfilter(*args, **kwargs)
 
+    @app.template_filter('xml_lang')
+    def xml_lang(nodes, _to):
+        return [n for n in nodes if _to in n.xpath('@xml:lang')]
+
     @app.template_filter('urlencode')
     def urlencode_filter(s):
         if type(s) == 'Markup':
