@@ -1,12 +1,17 @@
 # -*- encoding: utf-8 -*-
 """
-1. Figure out what languages are running
-2. Read default templates for all languages
-3. Go through project directory, and read those to all languages running
-4. Go through languages within project directory, and apply those to
-   the relevant languages
+So far:
+ * Reads directory structure
+ * manages overriding parent templates
+ * importing macros seems to work
+ * can reference other pre-renedered templates in process.
 
-Then, macros??
+TODO: entry detail template
+TODO: this destroys entry sorting and mg sorting
+
+TODO: generated paradigms into template context
+
+TODO: <ul /> vs <ol />
 
 """
 
@@ -137,7 +142,9 @@ class TemplateConfig(object):
         _path = self.template_dir
 
         self.language_templates = {}
-        self.template_loader_dirs = []
+        self.template_loader_dirs = [
+            os.path.join(os.getcwd(), 'templates/'),
+        ]
 
         def _dirs(p):
             """ Is the path a directory? (TODO: can use different walker) """
@@ -290,18 +297,17 @@ class TemplateConfig(object):
     def parse_template_string(self, template_string, path):
         # condition_yaml, __, paradigm_string_txt = p_string.partition('--')
         parsed_condition = False
-        if template_string.strip():
-            try:
-                parsed_template = self.jinja_env.from_string(template_string.strip())
-                parsed_template.path = path
-            except Exception, e:
-                print
-                print '--'
-                print >> sys.stderr, "Error parsing template at <%s>" % path
-                print >> sys.stderr, e
-                print '--'
-                print
-                sys.exit()
+        try:
+            parsed_template = self.jinja_env.from_string(template_string)
+            parsed_template.path = path
+        except Exception, e:
+            print
+            print '--'
+            print >> sys.stderr, "Error parsing template at <%s>" % path
+            print >> sys.stderr, e
+            print '--'
+            print
+            sys.exit()
         return parsed_template
 
 if __name__ == "__main__":
@@ -310,15 +316,17 @@ if __name__ == "__main__":
     app = create_app()
     app.debug = True
 
-    lookup = app.morpholexicon.lookup('mannat', source_lang='sme', target_lang='nob')
-    pc = TemplateConfig(app)
-    for lexicon, analyses in lookup:
-        print '--'
-        print pc.render_template('sme', 'entry.template',
-                                 lexicon_entry=lexicon,
-                                 analyses=analyses)
-        print '--'
-        print
+    with app.app_context():
+        lookup = app.morpholexicon.lookup('mannat', source_lang='sme', target_lang='nob')
+        pc = TemplateConfig(app)
+        for lexicon, analyses in lookup:
+            print '--'
+            print pc.render_template('sme', 'entry.template',
+                                     lexicon_entry=lexicon,
+                                     analyses=analyses, _from='sme',
+                                     _to='nob')
+            print '--'
+            print
 
     # for l in app.config.languages.keys():
     #     print l + ':'

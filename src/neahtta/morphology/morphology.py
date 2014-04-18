@@ -161,6 +161,7 @@ class Lemma(object):
         else:
             self.pos = self.tag.parts[0]
         self.input = _input
+        self.form = _input
 
 
 def word_generation_context(generated_result, *generation_input_args, **generation_kwargs):
