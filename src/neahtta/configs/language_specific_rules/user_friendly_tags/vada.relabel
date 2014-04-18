@@ -8,10 +8,15 @@
 
   - source_morphology: 'yrk'
     target_ui_language: 'fin'
-    tags:
+    tags: &FIN_TAGS
       V: "v."
       N: "s."
       A: "adj."
+
+  - source_morphology: 'fin'
+    target_ui_language: 'fin'
+    tags: 
+      <<: *FIN_TAGS
 
   - source_morphology: 'yrk'
     target_ui_language: 'yrk'

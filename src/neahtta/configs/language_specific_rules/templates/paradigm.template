@@ -1,3 +1,9 @@
-{%- for analysis in analyses %}
-  {{ analysis.lemma }} - {{ analysis.tag }}
+<dl class="dl-horizontal miniparadigm">
+{%- for analysis in analyses -%}
+    {# TODO: requires request context and filter for tagfilter(_from, _to)  #}
+    <dt>{{ analysis.tag.tag_string }}</dt>
+    <dd>{{ analysis.form }}</dd>
 {%- endfor %}
+</dl>
+
+{# vim: set ts=4 sw=4 tw=72 syntax=jinja : #}

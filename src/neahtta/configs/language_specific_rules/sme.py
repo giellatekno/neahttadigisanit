@@ -328,6 +328,7 @@ def format_source_sme(ui_lang, e, target_lang):
      * Include @pos and @class attributes
      * if there is a lemma_ref, then we provide the link to that
        entry too (e.g., munnje)
+    # TODO: new-style templates
     """
     from morphology.utils import tagfilter_conf
     from flask import current_app
@@ -378,6 +379,7 @@ def format_source_nob(ui_lang, e, target_lang):
      * Include @pos and @class attributes
      * if there is a lemma_ref, then we provide the link to that
        entry too (e.g., munnje)
+    # TODO: new-style templates
     """
     from morphology.utils import tagfilter_conf
     from flask import current_app
@@ -416,6 +418,8 @@ def format_target_sme(ui_lang, e, tg):
 
     Display @reg (region) attribute in translations, but only for ``N
     Prop``.
+
+    # TODO: new-style templates
     """
     _str_norm = 'string(normalize-space(%s))'
 

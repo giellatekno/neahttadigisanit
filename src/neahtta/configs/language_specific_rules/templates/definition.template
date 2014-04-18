@@ -1,7 +1,32 @@
+# import 'lexicon.macros' as macros with context
+
 # for meaning_group in lexicon_entry.xpath('./mg')
-    # for translation_group in meaning_group.xpath('./tg')
-        # set re_node = translation_group.xpath('./re')[0]
-        # set t_node = translation_group.xpath('./t')[0]
-        {{ t_node.text }} {% if re_node %}({{ re_node.text }}){% endif %}
+    # set translation_groups = meaning_group.xpath('./tg')|xml_lang(_to)
+    # if translation_groups|count > 0
+        <li>
+    # else
+        # continue
+    # endif
+
+    # for translation_group in translation_groups
+
+        {{ macros.definition_text_and_link(translation_group) }}
+
+        # if examples|count > 0
+            <div class="example_set">
+                <blockquote class="examples">
+                    <dl>
+                    # for example in examples
+                        <dt>{{ example.xpath('./x')[0].text }}</dt>
+                        <dd>{{ example.xpath('./xt')[0].text }}</dd>
+                    # endfor
+                    </dl>
+                </blockquote>
+            </div>
+        # endif
+
     # endfor
+    </li>
 # endfor
+
+{#  vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}
