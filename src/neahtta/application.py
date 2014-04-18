@@ -35,6 +35,7 @@ def jinja_options_and_filters(app):
     app.jinja_env.line_statement_prefix = '#'
     app.jinja_env.add_extension('jinja2.ext.i18n')
     app.jinja_env.add_extension('jinja2.ext.do')
+    app.jinja_env.add_extension('jinja2.ext.loopcontrols')
 
     return app
 
@@ -52,6 +53,7 @@ def register_babel(app):
         """
 
         from i18n.utils import iso_filter
+        from socket import gethostname
 
         loc = get_locale()
 
@@ -128,6 +130,13 @@ def create_app():
 
     pc = ParadigmConfig(app)
     app.morpholexicon.paradigms = pc
+
+    if app.config.new_style_templates:
+        from configs.entry_templates import TemplateConfig
+        pc = TemplateConfig(app)
+        app.lexicon_templates = pc
+    else:
+        app.lexicon_templates = False
 
     try:
         with open('secret_key.do.not.check.in', 'r') as F:
