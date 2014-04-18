@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 """
-
 Testing ideas:
 
 This should not return +Oops
@@ -35,8 +34,8 @@ Otherwise, this should make it possible to more easily extend, if more
 comparison types are needed (beyond X == Y and X is in list Y).
 
 TODO: allow user-defined global XPATH context.
-
 """
+
 import os, sys
 import yaml
 from lxml import etree
@@ -125,6 +124,8 @@ DEFAULT_RULES = {
 }
 
 class LexiconRuleSet(object):
+    """ This evaluates a context against lexicon nodes.
+    """
 
     def __init__(self, lex_rules={}):
         self.comps = []
@@ -210,6 +211,9 @@ class TagSetRule(object):
         return truth, context
 
 class ParadigmRuleSet(object):
+    """ This is a rule set, which is defined by the first half of a
+    paradigm file. It provides a way of turning the rule definition into
+    an instance that can evaluate lexicon nodes and analyses. """
 
     def __init__(self, rule_def, debug=False):
         """ .. py:function:: __init__(self, rule_def)
@@ -278,7 +282,9 @@ class ParadigmRuleSet(object):
 
 class ParadigmConfig(object):
     """ A class for providing directory-based paradigm definitions.
-    """
+    This class reads and parses the configs for the sets of languages
+    available, and provides a general method for resolving the proper
+    paradigm from dictionary entry nodes and morphological analyses. """
 
     def __init__(self, app=None, debug=False):
         self.debug = debug
@@ -445,7 +451,6 @@ class ParadigmConfig(object):
 
         return parsed_condition
 
-
 if __name__ == "__main__":
     from neahtta import app
 
@@ -457,5 +462,4 @@ if __name__ == "__main__":
     for node, analyses in lookups:
         print node, analyses
         print pc.get_paradigm('sme', node, analyses)
-
 
