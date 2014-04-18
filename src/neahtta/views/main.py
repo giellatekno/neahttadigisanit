@@ -81,6 +81,7 @@ def wordDetail(from_language, to_language, wordform, format):
     """
     from lexicon import DetailedFormat
     from operator import itemgetter
+
     import simplejson as json
 
     user_input = wordform
@@ -182,7 +183,6 @@ def wordDetail(from_language, to_language, wordform, format):
 
         # Use the original language pair if the user has selected a
         # variant
-
 
         if (from_language, to_language) not in current_app.config.dictionaries and \
            (from_language, to_language)     in current_app.config.variant_dictionaries:
@@ -490,6 +490,49 @@ def indexWithLangs(_from, _to):
     # variant_dictionaries, orig_pair, is_variant, pair_settings
     pair_settings, pair_opts = resolve_original_pair(current_app.config, _from, _to)
 
+    if current_app.config.new_style_templates and lookup_val:
+        _rendered_entries = []
+        def sort_entry(r):
+            if not r[0]:
+                return False
+            try:
+                return ''.join(r[0].xpath('./lg/l/text()'))
+            except:
+                return False
+
+        for lz, az in sorted(entries_and_tags, key=sort_entry):
+            tplkwargs = { 'lexicon_entry': lz
+                        , 'analyses': az
+
+                        , '_from': _from
+                        , '_to': _to
+                        , 'user_input': lookup_val
+                        , 'word_searches': results
+                        , 'errors': errors
+                        , 'show_info': show_info
+                        , 'zip': zipNoTruncate
+                        , 'dictionaries_available': current_app.config.pair_definitions
+                        , 'successful_entry_exists': successful_entry_exists
+                        , 'current_pair_settings': pair_settings
+                        }
+            _rendered_entries.append(
+                current_app.lexicon_templates.render_template(_from, 'entry.template', **tplkwargs)
+            )
+        return render_template( 'index_new_style.html'
+                              , _from=_from
+                              , _to=_to
+                              , user_input=lookup_val
+                              , word_searches=results
+                              , analyses=analyses
+                              , analyses_without_lex=analyses_without_lex
+                              , errors=errors
+                              , show_info=show_info
+                              , zip=zipNoTruncate
+                              , successful_entry_exists=successful_entry_exists
+                              , current_pair_settings=pair_settings
+                              , new_templates=_rendered_entries
+                              , **pair_opts
+                              )
     # TODO: include form analysis of user input #formanalysis
     return render_template( 'index.html'
                           , _from=_from
@@ -599,21 +642,63 @@ def indexWithLangsToReference(_from, _to):
 
     pair_settings = current_app.config.pair_definitions[(_from, _to)]
     # TODO: include form analysis of user input #formanalysis
-    return render_template( 'index.html'
-                          , _from=_from
-                          , _to=_to
-                          , swap_from=_to
-                          , swap_to=_from
-                          , user_input=lookup_val
-                          , word_searches=results
-                          , analyses=analyses
-                          , analyses_without_lex=analyses_without_lex
-                          , errors=errors
-                          , show_info=show_info
-                          , zip=zipNoTruncate
-                          , successful_entry_exists=successful_entry_exists
-                          , current_pair_settings=pair_settings
-                          )
+    if current_app.config.new_style_templates:
+        _rendered_entries = []
+        for lexicon, analyses in entries_and_tags:
+            tplkwargs = { 'lexicon_entry': lexicon
+                        , 'analyses': analyses
+
+                        , '_from': _from
+                        , '_to': _to
+                        , 'user_input': lookup_val
+                        , 'word_searches': results
+                        , 'analyses': analyses
+                        , 'analyses_without_lex': analyses_without_lex
+                        , 'errors': errors
+                        , 'successful_entry_exists': successful_entry_exists
+                        , 'dictionaries_available': current_app.config.pair_definitions
+                        , 'current_pair_settings': pair_settings
+                        , 'entries_and_tags': entries_and_tags
+                        }
+            _rendered_entries.append(
+                current_app.lexicon_templates.render_template( _from
+                                                             , 'entry.template'
+                                                             , **tplkwargs
+                                                             )
+            )
+        return render_template( 'index_new_style.html'
+                              , _from=_from
+                              , _to=_to
+                              , swap_from=_to
+                              , swap_to=_from
+                              , user_input=lookup_val
+                              , word_searches=results
+                              , analyses=analyses
+                              , analyses_without_lex=analyses_without_lex
+                              , errors=errors
+                              , show_info=show_info
+                              , zip=zipNoTruncate
+                              , successful_entry_exists=successful_entry_exists
+                              , current_pair_settings=pair_settings
+                              , entries_and_tags=entries_and_tags
+                              , new_templates=_rendered_entries
+                              )
+    else:
+        return render_template( 'index.html'
+                              , _from=_from
+                              , _to=_to
+                              , swap_from=_to
+                              , swap_to=_from
+                              , user_input=lookup_val
+                              , word_searches=results
+                              , analyses=analyses
+                              , analyses_without_lex=analyses_without_lex
+                              , errors=errors
+                              , show_info=show_info
+                              , zip=zipNoTruncate
+                              , successful_entry_exists=successful_entry_exists
+                              , current_pair_settings=pair_settings
+                              )
 
 @blueprint.route('/about/', methods=['GET'])
 def about():
