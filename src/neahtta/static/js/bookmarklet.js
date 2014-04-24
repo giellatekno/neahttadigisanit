@@ -1517,7 +1517,7 @@ jQuery(document).ready(function($) {
       _this = this;
     opts = $.extend({}, $.fn.selectToLookup.options, opts);
     window.nds_opts = opts;
-    spinner = initSpinner(nds_opts.api_host + opts.spinnerImg);
+    spinner = initSpinner(opts.spinnerImg);
     newVersionNotify = function() {
       $.getJSON(nds_opts.api_host + '/read/update/json/' + '?callback=?', function(response) {
         $(document).find('body').append(Templates.NotifyWindow(response));
