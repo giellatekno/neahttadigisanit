@@ -1173,8 +1173,18 @@ TODO: prevent window url from updating with form submit params
 var __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
 jQuery(document).ready(function($) {
-  var API_HOST, EXPECT_BOOKMARKLET_VERSION, SHORT_NAME, Templates, cleanTooltipResponse, cloneContents, fakeGetText, first, getFirstRange, initSpinner, lookupSelectEvent, surroundRange, _,
+  var API_HOST, EXPECT_BOOKMARKLET_VERSION, Templates, cleanTooltipResponse, cloneContents, fakeGetText, first, getFirstRange, getHostShortname, initSpinner, lookupSelectEvent, surroundRange, _,
     _this = this;
+  getHostShortname = function(url_path) {
+    var host, url;
+    url = document.createElement('a');
+    url.href = url_path;
+    host = url.hostname;
+    if (host) {
+      return host.split('.')[0];
+    }
+    return false;
+  };
   first = function(somearray) {
     if (somearray.length > 0) {
       return somearray[0];
@@ -1217,11 +1227,11 @@ jQuery(document).ready(function($) {
   };
   _ = fakeGetText;
   API_HOST = window.NDS_API_HOST || API_HOST;
-  SHORT_NAME = API_HOST;
+  window.NDS_SHORT_NAME = getHostShortname(API_HOST);
   EXPECT_BOOKMARKLET_VERSION = '0.0.3';
   Templates = {
     NotifyWindow: function(text) {
-      return $("<div class=\"modal hide fade\" id=\"notifications\">\n    <div class=\"modal-header\">\n        <button \n            type=\"button\"\n            class=\"close\"\n            data-dismiss=\"modal\"\n            aria-hidden=\"true\">&times;</button>\n        <h3>Neahttadigisánit</h3>\n    </div>\n    <div class=\"modal-body\">" + text + "</div>\n    <div class=\"modal-footer\">\n        <a href=\"#\" class=\"btn btn-primary\" id=\"close_modal\">\n          Continue\n        </a>\n    </div>\n</div>");
+      return $("<div class=\"modal hide fade\" id=\"notifications\">\n    <div class=\"modal-header\">\n        <button\n            type=\"button\"\n            class=\"close\"\n            data-dismiss=\"modal\"\n            aria-hidden=\"true\">&times;</button>\n        <h3>Neahttadigisánit</h3>\n    </div>\n    <div class=\"modal-body\">" + text + "</div>\n    <div class=\"modal-footer\">\n        <a href=\"#\" class=\"btn btn-primary\" id=\"close_modal\">\n          Continue\n        </a>\n    </div>\n</div>");
     },
     OptionsMenu: function(opts) {
       return "omg";
@@ -1242,7 +1252,7 @@ jQuery(document).ready(function($) {
         }
         return options_block.join('\n');
       };
-      el = $("<div id=\"webdict_options\">\n  <div class=\"well\">\n  <a class=\"close\" href=\"#\" style=\"display: none;\">&times;</a>\n  <div class=\"trigger\">\n    <h1><a href=\"#\" class=\"open\">" + (_("Á")) + "</a></h1>\n  </div>\n\n  <div class=\"option_panel\" style=\"display: none;\">\n    <ul class=\"nav nav-pills\">\n      <li class=\"active\">\n        <a href=\"#\" data-target=\"#options\">" + (_("Options")) + "</a>\n      </li>\n      <li><a href=\"#\" data-target=\"#about\">" + (_("About")) + "</a></li>\n      <li style=\"display: none;\" id=\"debug\"><a href=\"#\" data-target=\"#advanced\">" + (_("Advanced")) + "</a></li>\n    </ul>\n    <div id=\"options\" class=\"minipanel\">\n      <form class=\"\">\n        <label class=\"control-label\" for=\"inputEmail\">" + (_("Dictionary")) + "</label>\n        <select type=\"radio\" \n               name=\"language_pair\">\n        " + (makeLanguageOption(opts.dictionaries)) + "\n        </select>\n        <br />\n        <button type=\"submit\" class=\"btn\" id=\"save\">" + (_('Save')) + "</button>\n      </form>\n    </div>\n    <div id=\"advanced\" style=\"display: none;\" class=\"minipanel\">\n      <br />\n      <strong>Advanced settings</strong>\n      <p>This deletes all stored settings, dictionary names, and translations of the application.</p>\n      <a href=\"#\" type=\"submit\" class=\"btn btn-small\" id=\"refresh_settings\">" + (_('Refresh settings')) + "</a>\n      <br />\n      <br />\n      <strong>Hostname:</strong>\n      <blockquote><pre>" + API_HOST + "</pre></blockquote>\n      <strong>Alerts:</strong>\n      <p>Display an alert for debugging.</p>\n      <a href=\"#\" type=\"submit\" class=\"btn btn-small\" id=\"display_update_window\">" + (_('Update detected')) + "</a>\n      <a href=\"#\" type=\"submit\" class=\"btn btn-small\" id=\"display_ie8_warning_window\">" + (_('IE8 Warning')) + "</a>\n      <br />\n      <br />\n    </div>\n    <div id=\"about\" style=\"display: none;\" class=\"minipanel\">\n        <p>" + (_("In order to look up a word, hold down the <em>Alt</em> or <em>Option</em> (⌥) key, and doubleclick on a word. The service will contact the dictionary, and return a word after a short pause.")) + "</p>\n        <p> </p>\n        <p>" + (_('If you find a bug, or if the bookmark does not work on a specific page <a href="mailto:giellatekno@hum.uit.no">please contact us</a>. Tell us what page didn\'t work, or what you did when you discovered the problem.')) + "\n        </p>\n    </div>\n  </div>\n</div>");
+      el = $("<div id=\"webdict_options\">\n  <div class=\"well\">\n  <a class=\"close\" href=\"#\" style=\"display: none;\">&times;</a>\n  <div class=\"trigger\">\n    <h1><a href=\"#\" class=\"open\">" + (_("Á")) + "</a></h1>\n  </div>\n\n  <div class=\"option_panel\" style=\"display: none;\">\n    <ul class=\"nav nav-pills\">\n      <li class=\"active\">\n        <a href=\"#\" data-target=\"#options\">" + (_("Options")) + "</a>\n      </li>\n      <li><a href=\"#\" data-target=\"#about\">" + (_("About")) + "</a></li>\n      <li style=\"display: none;\" id=\"debug\"><a href=\"#\" data-target=\"#advanced\">" + (_("Advanced")) + "</a></li>\n    </ul>\n    <div id=\"options\" class=\"minipanel\">\n      <form class=\"\">\n        <label class=\"control-label\" for=\"inputEmail\">" + (_("Dictionary")) + "</label>\n        <select type=\"radio\"\n               name=\"language_pair\">\n        " + (makeLanguageOption(opts.dictionaries)) + "\n        </select>\n        <br />\n        <button type=\"submit\" class=\"btn\" id=\"save\">" + (_('Save')) + "</button>\n      </form>\n    </div>\n    <div id=\"advanced\" style=\"display: none;\" class=\"minipanel\">\n      <br />\n      <strong>Advanced settings</strong>\n      <p>This deletes all stored settings, dictionary names, and translations of the application.</p>\n      <a href=\"#\" type=\"submit\" class=\"btn btn-small\" id=\"refresh_settings\">" + (_('Refresh settings')) + "</a>\n      <br />\n      <br />\n      <strong>Hostname:</strong>\n      <blockquote><pre>" + API_HOST + "</pre></blockquote>\n      <strong>Alerts:</strong>\n      <p>Display an alert for debugging.</p>\n      <a href=\"#\" type=\"submit\" class=\"btn btn-small\" id=\"display_update_window\">" + (_('Update detected')) + "</a>\n      <a href=\"#\" type=\"submit\" class=\"btn btn-small\" id=\"display_ie8_warning_window\">" + (_('IE8 Warning')) + "</a>\n      <br />\n      <br />\n    </div>\n    <div id=\"about\" style=\"display: none;\" class=\"minipanel\">\n        <p>" + (_("In order to look up a word, hold down the <em>Alt</em> or <em>Option</em> (⌥) key, and doubleclick on a word. The service will contact the dictionary, and return a word after a short pause.")) + "</p>\n        <p> </p>\n        <p>" + (_('If you find a bug, or if the bookmark does not work on a specific page <a href="mailto:giellatekno@hum.uit.no">please contact us</a>. Tell us what page didn\'t work, or what you did when you discovered the problem.')) + "\n        </p>\n    </div>\n  </div>\n</div>");
       el.find('ul.nav-pills a').click(function(evt) {
         var target_element;
         target_element = $(evt.target).attr('data-target');
@@ -1274,10 +1284,10 @@ jQuery(document).ready(function($) {
         return false;
       });
       el.find('a#refresh_settings').click(function() {
-        DSt.set(SHORT_NAME + '-' + 'digisanit-select-langpair', null);
-        DSt.set(SHORT_NAME + '-' + 'nds-languages', null);
-        DSt.set(SHORT_NAME + '-' + 'nds-localization', null);
-        DSt.set(SHORT_NAME + '-' + 'nds-stored-config', null);
+        DSt.set(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair', null);
+        DSt.set(NDS_SHORT_NAME + '-' + 'nds-languages', null);
+        DSt.set(NDS_SHORT_NAME + '-' + 'nds-localization', null);
+        DSt.set(NDS_SHORT_NAME + '-' + 'nds-stored-config', null);
         el.find('#advanced').append($('<p />').html("Reload the plugin..."));
         return false;
       });
@@ -1292,7 +1302,7 @@ jQuery(document).ready(function($) {
       el.find('select[name="language_pair"]').change(function(e) {
         var store_val;
         store_val = $(e.target).val();
-        DSt.set(SHORT_NAME + '-' + 'digisanit-select-langpair', store_val);
+        DSt.set(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair', store_val);
         return true;
       });
       el.find('form').submit(function() {
@@ -1417,7 +1427,7 @@ jQuery(document).ready(function($) {
         result_strings.push(result_string);
       }
     }
-    langpair = DSt.get(SHORT_NAME + '-' + 'digisanit-select-langpair');
+    langpair = DSt.get(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair');
     _ref3 = langpair.split('-'), _f_from = _ref3[0], _t_to = _ref3[1];
     _cp = first(window.nds_opts.dictionaries.filter(function(e) {
       return e.from.iso === _f_from && e.to.iso === _t_to;
@@ -1507,9 +1517,9 @@ jQuery(document).ready(function($) {
       _this = this;
     opts = $.extend({}, $.fn.selectToLookup.options, opts);
     window.nds_opts = opts;
-    spinner = initSpinner(opts.spinnerImg);
+    spinner = initSpinner(nds_opts.api_host + opts.spinnerImg);
     newVersionNotify = function() {
-      $.getJSON(API_HOST + '/read/update/json/' + '?callback=?', function(response) {
+      $.getJSON(nds_opts.api_host + '/read/update/json/' + '?callback=?', function(response) {
         $(document).find('body').append(Templates.NotifyWindow(response));
         $(document).find('#notifications').modal({
           backdrop: true,
@@ -1517,10 +1527,10 @@ jQuery(document).ready(function($) {
         });
         return $('#close_modal').click(function() {
           $('#notifications').modal('hide');
-          DSt.set(SHORT_NAME + '-' + 'digisanit-select-langpair', null);
-          DSt.set(SHORT_NAME + '-' + 'nds-languages', null);
-          DSt.set(SHORT_NAME + '-' + 'nds-localization', null);
-          DSt.set(SHORT_NAME + '-' + 'nds-stored-config', null);
+          DSt.set(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair', null);
+          DSt.set(NDS_SHORT_NAME + '-' + 'nds-languages', null);
+          DSt.set(NDS_SHORT_NAME + '-' + 'nds-localization', null);
+          DSt.set(NDS_SHORT_NAME + '-' + 'nds-stored-config', null);
           window.location.reload();
           return false;
         });
@@ -1537,7 +1547,7 @@ jQuery(document).ready(function($) {
         });
         return $('#close_modal').click(function() {
           $('#notifications').modal('hide');
-          DSt.set(SHORT_NAME + '-' + 'nds-ie8-dismissed', true);
+          DSt.set(NDS_SHORT_NAME + '-' + 'nds-ie8-dismissed', true);
           return false;
         });
       });
@@ -1555,14 +1565,14 @@ jQuery(document).ready(function($) {
 
         window.optTab.css('z-index', 9000);
       }
-      previous_langpair = DSt.get(SHORT_NAME + '-' + 'digisanit-select-langpair');
+      previous_langpair = DSt.get(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair');
       if (previous_langpair) {
         _select = "select[name='language_pair']";
         _opt = window.optTab.find(_select).val(previous_langpair);
       } else {
         _select = "select[name='language_pair']";
         _opt = window.optTab.find(_select).val();
-        previous_langpair = DSt.set(SHORT_NAME + '-' + 'digisanit-select-langpair', _opt);
+        previous_langpair = DSt.set(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair', _opt);
       }
       holdingOption = function(evt) {
         var element, range, string, within_options;
@@ -1581,7 +1591,7 @@ jQuery(document).ready(function($) {
           }
           return false;
         }
-        return false;
+        return true;
       };
       clean = function(event) {
         var parents;
@@ -1597,9 +1607,9 @@ jQuery(document).ready(function($) {
       return $(document).bind('click', holdingOption);
     };
     storeConfigs = function(response) {
-      DSt.set(SHORT_NAME + '-' + 'nds-languages', response.dictionaries);
-      DSt.set(SHORT_NAME + '-' + 'nds-localization', response.localization);
-      DSt.set(SHORT_NAME + '-' + 'nds-stored-config', "true");
+      DSt.set(NDS_SHORT_NAME + '-' + 'nds-languages', response.dictionaries);
+      DSt.set(NDS_SHORT_NAME + '-' + 'nds-localization', response.localization);
+      DSt.set(NDS_SHORT_NAME + '-' + 'nds-stored-config', "true");
       return true;
     };
     extendLanguageOpts = function(response) {
@@ -1619,12 +1629,12 @@ jQuery(document).ready(function($) {
     };
     recallLanguageOpts = function() {
       var dicts, locales;
-      locales = DSt.get(SHORT_NAME + '-' + 'nds-localization');
+      locales = DSt.get(NDS_SHORT_NAME + '-' + 'nds-localization');
       if (typeof locales === "string") {
         locales = JSON.parse(locales);
       }
       window.nds_opts.localization = locales;
-      dicts = DSt.get(SHORT_NAME + '-' + 'nds-languages');
+      dicts = DSt.get(NDS_SHORT_NAME + '-' + 'nds-languages');
       if (typeof dicts === "string") {
         dicts = JSON.parse(dicts);
       }
@@ -1634,12 +1644,14 @@ jQuery(document).ready(function($) {
     version_ok = false;
     if (window.NDS_BOOKMARK_VERSION != null) {
       version_ok = semver.gte(window.NDS_BOOKMARK_VERSION, EXPECT_BOOKMARKLET_VERSION);
+    } else {
+      version_ok = true;
     }
     uagent = navigator.userAgent;
     _ref = [false, false], old_ie = _ref[0], dismissed = _ref[1];
     if (__indexOf.call(uagent, "MSIE 8.0") >= 0) {
       old_ie = true;
-      dismissed = DSt.get(SHORT_NAME + '-' + 'nds-ie8-dismissed');
+      dismissed = DSt.get(NDS_SHORT_NAME + '-' + 'nds-ie8-dismissed');
     }
     if (version_ok) {
       if (old_ie) {
@@ -1648,7 +1660,7 @@ jQuery(document).ready(function($) {
           ie8Notify();
         }
       }
-      stored_config = DSt.get(SHORT_NAME + '-' + 'nds-stored-config');
+      stored_config = DSt.get(NDS_SHORT_NAME + '-' + 'nds-stored-config');
       if (stored_config != null) {
         recallLanguageOpts();
       } else {
@@ -1664,7 +1676,7 @@ jQuery(document).ready(function($) {
   $.fn.selectToLookup.options = {
     api_host: API_HOST,
     formResults: "#results",
-    spinnerImg: "dev/img/spinner.gif",
+    spinnerImg: "/static/img/spinner.gif",
     sourceLanguage: "sme",
     langPairSelect: "#webdict_options *[name='language_pair']",
     tooltip: true,
