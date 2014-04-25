@@ -482,10 +482,15 @@ class XFST(object):
         else:
             self.icmd = False
 
-    def __rshift__(left, right):
-        right.tool = left
-        left.logger = right.logger
-        return right
+    # def __rshift__(left, right):
+    #     right.tool = left
+    #     left.logger = right.logger
+    #     return right
+
+    def applyMorph(self, morph):
+        morph.tool = self
+        self.logger = morph.logger
+        return morph
 
     def lookup(self, lookups_list):
         lookup_string = '\n'.join(lookups_list)
