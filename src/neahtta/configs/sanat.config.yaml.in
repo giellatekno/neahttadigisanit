@@ -113,6 +113,10 @@ Dictionaries:
   - source: olo
     target: fin
     path: 'dicts/olo-all.xml'
+  - source: fin
+    target: olo
+    path: 'dicts/finolo.xml'
+
   - source: liv
     target: fin
     path: 'dicts/liv-all.xml'
@@ -127,6 +131,7 @@ Dictionaries:
   - source: fin
     target: liv
     path: 'dicts/finliv.xml'
+
   - source: liv
     target: est
     path: 'dicts/liv-all.xml'
