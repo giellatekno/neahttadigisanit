@@ -320,7 +320,9 @@ valks-install: install_langs_fsts
 
 SANAT_LANGS_ANALYSERS      :=   olo izh liv fin fkv
 SANAT_LANGS_LEXICA         :=   olo liv izh
-SANAT_WORDS_DICTS_LEXICA   :=   nobfkv finliv fkvnob finizh
+SANAT_WORDS_DICTS_LEXICA   :=   nobfkv finliv fkvnob finolo
+
+# finizh
 
 # NOTE: some temporary fixes to add usage to everything, and include <lg>
 # node
