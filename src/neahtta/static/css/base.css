@@ -24,7 +24,7 @@ html, body {
     margin-bottom: 40px;
 }
 
-content {
+.content {
     display: block;
 }
 
@@ -109,7 +109,7 @@ ul.nav-stacked li.active span {
     padding-bottom: 180px;
 }
 
-content .page-header {
+.content .page-header {
     margin-top: 0px;
 }
 
@@ -406,7 +406,7 @@ img.i18n_flag {
 
 /* Mobile-specific tweaks */
 @media (max-width: 550px) {
-  content {
+  .content {
       margin-top: -20px;
   }
   form#neahttasaanit {
