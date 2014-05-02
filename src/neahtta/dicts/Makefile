@@ -293,7 +293,7 @@ muter-install: install_langs_fsts
 
 VALKS_LANGS_ANALYSERS      :=   fin myv mdf
 VALKS_LANGS_LEXICA         :=   myv mdf
-VALKS_WORDS_DICTS_LEXICA   :=   finmyv
+VALKS_WORDS_DICTS_LEXICA   :=   finmyv finmdf
 
 .PHONY: valks-lexica
 valks-lexica: LEX_COMPILE_LANGS := $(VALKS_LANGS_LEXICA)
@@ -320,7 +320,7 @@ valks-install: install_langs_fsts
 
 SANAT_LANGS_ANALYSERS      :=   olo izh liv fin fkv
 SANAT_LANGS_LEXICA         :=   olo liv izh
-SANAT_WORDS_DICTS_LEXICA   :=   nobfkv finliv fkvnob finolo
+SANAT_WORDS_DICTS_LEXICA   :=   nobfkv finliv fkvnob finolo finizh
 
 # finizh
 
