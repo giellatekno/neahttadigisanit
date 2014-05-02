@@ -378,13 +378,25 @@ def compile_fst(iso='x'):
 def test_configuration():
     """ Test the configuration and check language files for errors. """
 
+    _path = 'configs/%s.config.yaml' % env.current_dict
+
+    try:
+        open(_path, 'r').read()
+    except IOError:
+        if env.real_hostname not in running_service:
+            _path = 'configs/%s.config.yaml.in' % env.current_dict
+            print(yellow("** Production config not found, using development (*.in)"))
+        else:
+            print(red("** Production config not found, and on a production server. Exiting."))
+            sys.exit()
+
     # TODO: this assumes virtualenv is enabled, need to explicitly enable
     _dict = env.current_dict
     with cd(env.dict_path):
         print(cyan("** Checking paths and testing XML for <%s> **" % _dict))
 
-        cmd ="NDS_CONFIG=configs/%s.config.yaml python manage.py chk-fst-paths"
-        test_cmd = env.run(cmd % _dict)
+        cmd ="NDS_CONFIG=%s python manage.py chk-fst-paths" % _path
+        test_cmd = env.run(cmd)
         if test_cmd.failed:
             print(red("** Something went wrong while testing <%s> **" % _dict))
         else:
