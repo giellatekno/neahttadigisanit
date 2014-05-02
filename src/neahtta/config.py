@@ -495,8 +495,7 @@ class Config(Config):
                 kwargs['options'] = _kwargs_in['options']
 
             tagsets = self.tagset_definitions.get(iso, {})
-            print kwargs
-            print len(kwargs.keys())
+
             self._morphologies[iso] = \
                 m_format(**kwargs).applyMorph(Morphology( iso
                                                         , cache=morph_cache

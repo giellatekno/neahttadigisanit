@@ -501,23 +501,24 @@ def indexWithLangs(_from, _to):
                 return False
 
         for lz, az in sorted(entries_and_tags, key=sort_entry):
-            tplkwargs = { 'lexicon_entry': lz
-                        , 'analyses': az
+            if lz is not None:
+                tplkwargs = { 'lexicon_entry': lz
+                            , 'analyses': az
 
-                        , '_from': _from
-                        , '_to': _to
-                        , 'user_input': lookup_val
-                        , 'word_searches': results
-                        , 'errors': errors
-                        , 'show_info': show_info
-                        , 'zip': zipNoTruncate
-                        , 'dictionaries_available': current_app.config.pair_definitions
-                        , 'successful_entry_exists': successful_entry_exists
-                        , 'current_pair_settings': pair_settings
-                        }
-            _rendered_entries.append(
-                current_app.lexicon_templates.render_template(_from, 'entry.template', **tplkwargs)
-            )
+                            , '_from': _from
+                            , '_to': _to
+                            , 'user_input': lookup_val
+                            , 'word_searches': results
+                            , 'errors': errors
+                            , 'show_info': show_info
+                            , 'zip': zipNoTruncate
+                            , 'dictionaries_available': current_app.config.pair_definitions
+                            , 'successful_entry_exists': successful_entry_exists
+                            , 'current_pair_settings': pair_settings
+                            }
+                _rendered_entries.append(
+                    current_app.lexicon_templates.render_template(_from, 'entry.template', **tplkwargs)
+                )
         return render_template( 'index_new_style.html'
                               , _from=_from
                               , _to=_to
@@ -645,27 +646,28 @@ def indexWithLangsToReference(_from, _to):
     if current_app.config.new_style_templates:
         _rendered_entries = []
         for lexicon, analyses in entries_and_tags:
-            tplkwargs = { 'lexicon_entry': lexicon
-                        , 'analyses': analyses
+            if lexicon is not None:
+                tplkwargs = { 'lexicon_entry': lexicon
+                            , 'analyses': analyses
 
-                        , '_from': _from
-                        , '_to': _to
-                        , 'user_input': lookup_val
-                        , 'word_searches': results
-                        , 'analyses': analyses
-                        , 'analyses_without_lex': analyses_without_lex
-                        , 'errors': errors
-                        , 'successful_entry_exists': successful_entry_exists
-                        , 'dictionaries_available': current_app.config.pair_definitions
-                        , 'current_pair_settings': pair_settings
-                        , 'entries_and_tags': entries_and_tags
-                        }
-            _rendered_entries.append(
-                current_app.lexicon_templates.render_template( _from
-                                                             , 'entry.template'
-                                                             , **tplkwargs
-                                                             )
-            )
+                            , '_from': _from
+                            , '_to': _to
+                            , 'user_input': lookup_val
+                            , 'word_searches': results
+                            , 'analyses': analyses
+                            , 'analyses_without_lex': analyses_without_lex
+                            , 'errors': errors
+                            , 'successful_entry_exists': successful_entry_exists
+                            , 'dictionaries_available': current_app.config.pair_definitions
+                            , 'current_pair_settings': pair_settings
+                            , 'entries_and_tags': entries_and_tags
+                            }
+                _rendered_entries.append(
+                    current_app.lexicon_templates.render_template( _from
+                                                                 , 'entry.template'
+                                                                 , **tplkwargs
+                                                                 )
+                )
         return render_template( 'index_new_style.html'
                               , _from=_from
                               , _to=_to
