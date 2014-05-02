@@ -1,31 +1,13 @@
 ﻿{%- macro lemma_text(entry) -%}
-    {%- set l = entry.xpath('lg/l') -%}
-
-    {%- if l|length > 0 -%}
-        {{ l[0].text }}
-    {%- endif -%}
-
+    {{- entry|xpath('lg/l')|first|text }}
 {%- endmacro -%}
 
 {# TODO: lemma_ref and stuff #}
+{# TODO:  include params as a variable available to entry template #}
+
 {%- macro lemma_detail_link(entry, _from, _to) -%}
-    /detail/{{ _from }}/{{ _to }}/{{ lemma_text(entry) }}.html?e_node=TODO
-{%- endmacro -%}
-
-{%- macro lemma_text(entry) -%}
-    {%- set l = entry.xpath('lg/l') -%}
-
-    {%- if l|length > 0 -%}
-        {{ l[0].text }}
-    {%- endif -%}
-
-{%- endmacro -%}
-
-{%- macro lemma_pos(entry) -%}
-    {%- set l_pos = entry.xpath('lg/l/@pos') -%}
-    {%- if l_pos|length > 0 -%}
-        {{ l_pos[0] }}
-    {%- endif -%}
+    {%- set params = 'no_compounds=true&lemma_match=true' -%}
+    /detail/{{ _from }}/{{ _to }}/{{ lemma_text(entry) }}.html?{{ params }}
 {%- endmacro -%}
 
 {% macro korp_link_lemma(lemma) -%}
@@ -36,104 +18,76 @@
     {%- endif %}
 {%- endmacro %}
 
-{% macro possible_analyses_grid(analyses) -%}
-    <dl class="possible_analyses grid_analyses">
-    {% for grouper, forms in analyses|groupby('lemma') %}
-        {% for lemmagroup, lemmafs in forms|groupby('pos') %}
-            {% if current_pair_settings.show_korp_search %}
-                {% if lemmagroup and grouper %}
-                    <dt>{{ grouper }} {{ korp_link_lemma(grouper) }}</dt>
-                {% else %}
-                    <dt>{{ grouper }}</dt>
-                {% endif %}
-            {% else %}
-                <dt>{{ grouper }}</dt>
-            {% endif %}
-            <dd>
-                <ul class="possible_forms">
-                    {% set existing_tags = [] %}
-                    {% for lem in lemmafs %}
-                    {% set formatted_tag = ' '.join(lem.tag)|tagfilter(_from, _to) %}
-                    {% if formatted_tag not in existing_tags %}
-                        <li>{{ formatted_tag }}</li>
-                        {% do existing_tags.append(formatted_tag) %}
-                    {% endif %}
-                    {% endfor %}
-                </ul>
-            </dd>
-        {% endfor %}
-    {% endfor %}
-    </dl>
-{%- endmacro %}
-
-# macro make_detail_link_target(lemma)
+{%- macro make_detail_link_target(lemma) -%}
     /detail/{{ _to }}/{{ _from }}/{{ lemma }}.html?no_compounds=true&lemma_match=true
-# endmacro
+{%- endmacro -%}
 
-# macro definition_reference_link(tg, link_text, post_link_text='')
+{%- macro definition_reference_link(tg, link_text, post_link_text='') -%}
     {# This assumes there's only one <t /> node, other cases handled elsewhere.
      #}
 
-    # set fra_ref = tg.xpath('./re/@fra_ref')
+    {% set fra_ref = tg.xpath('./re/@fra_ref') %}
 
-    # if fra_ref|count > 0
-        # set reference = fra_ref|join('')
-    # else
-        # set reference = false
-    # endif
+    {% if fra_ref|count > 0 %}
+        {% set reference = fra_ref|join('') %}
+    {% else %}
+        {% set reference = false %}
+    {% endif %}
 
-    # if reference
-        # set link_target = "/" + _from + "/" + _to + "/ref/?l_til_ref=" + reference
-        # set mark = '&rarr;'
-    # else
-        # if ' ' not in link_text
-            # set link_target = make_detail_link_target(link_text)
-        # else
-            # set link_target = false
-        # endif
-    # endif
+    {% if reference %}
+        {% set link_target = "/" + _from + "/" + _to + "/ref/?l_til_ref=" + reference %}
+        {% set mark = '&rarr;' %}
+    {% else %}
+        {% if ' ' not in link_text %}
+            {% set link_target = make_detail_link_target(link_text) %}
+        {% else %}
+            {% set link_target = false %}
+        {% endif %}
+    {% endif %}
 
-    # if link_target
+    {% if link_target %}
         <a href="{{ link_target }}">{{ link_text }}</a> {{ post_link_text }}{{ mark }}
-    # else
+    {% else %}
         {{ link_text }}
-    # endif
+    {% endif %}
 
-# endmacro
+{%- endmacro -%}
 
-# macro definition_reference_link_many(ts, annotation=false)
-    # if (_to, _from) in dictionaries_available
-        # for t in ts
+{%- macro definition_reference_link_many(ts, annotation=false) -%}
+    {% if (_to, _from) in dictionaries_available %}
+        {% for t in ts %}
             <a href="{{ make_detail_link_target(t.text) }}">{{- t.text -}}</a>{% if not loop.last %}, {% endif %}
-        # endfor
-    # else
-        # for t in ts
+        {% endfor %}
+    {% else %}
+        {% for t in ts %}
             {{- t.text -}}{% if not loop.last %}, {% endif %}
-        # endfor
-    # endif
+        {% endfor %}
+    {% endif %}
 
-    # if annotation
+    {% if annotation %}
         {{- annotation -}}
-    # else
-    # endif
-# endmacro
+    {% else %}
+    {% endif %}
+{%- endmacro -%}
 
-# macro definition_text_and_link(tg)
-    # set annotations = tg.xpath('./re')
+{# TODO: this may need to be its own template so it's easier to override? #}
 
-    # if annotations|count > 0
-        # set annotation = '(' + annotations[0].text + ')'
-    # else 
-        # set annotation = false
-    # endif
+{%- macro definition_text_and_link(tg) -%}
+    {% set annotations = tg.xpath('./re') %}
 
-    # set t_nodes = tg.xpath('./t')
+    {% if annotations|count > 0 %}
+        {% set annotation = '(' + annotations[0].text + ')' %}
+    {% else  %}
+        {% set annotation = false %}
+    {% endif %}
 
-    # if t_nodes|count > 1
-        # set many_t_nodes = true
-    # else
-        # set many_t_nodes = false
-    # endif
+    {% set t_nodes = tg.xpath('./t') %}
+
+    {% if t_nodes|count > 1 %}
+        {% set many_t_nodes = true %}
+    {% else %}
+        {% set many_t_nodes = false %}
+    {% endif %}
 
     {# Check for how many translation nodes we have. One will cause
        problems if it is empty, because it produces a 'None' string,
@@ -141,34 +95,34 @@
        separated.
      #} 
 
-    # if many_t_nodes
-        # set translation_text = t_nodes|map(attribute='text')
-    # else
-        # set translation_text = false
-        # if t_nodes|count == 1
+    {% if many_t_nodes %}
+        {% set translation_text = t_nodes|map(attribute='text') %}
+    {% else %}
+        {% set translation_text = false %}
+        {% if t_nodes|count == 1 %}
             {# Here's where we might end up with a 'None' string #}
-            # set translation_text = t_nodes[0].text
-            # if translation_text == 'None'
-                # set translation_text = false
-            # endif
-        # else
-        # endif
-    # endif
+            {% set translation_text = t_nodes[0].text %}
+            {% if translation_text == 'None' %}
+                {% set translation_text = false %}
+            {% endif %}
+        {% else %}
+        {% endif %}
+    {% endif %}
 
-    # if not many_t_nodes
-        # if translation_text and annotation
+    {% if not many_t_nodes %}
+        {% if translation_text and annotation %}
             {{ definition_reference_link(tg, translation_text, annotation) }}
-        # else
-            # if translation_text
+        {% else %}
+            {% if translation_text %}
                 {{ definition_reference_link(tg, translation_text) }}
-            # else
+            {% else %}
                 {{ definition_reference_link(tg, annotation) }}
-            # endif
-        # endif
-    # else
+            {% endif %}
+        {% endif %}
+    {% else %}
         {{ definition_reference_link_many(t_nodes, annotation) }}
-    # endif
+    {% endif %}
 
-# endmacro
+{%- endmacro -%}
 
 {# vim: set ts=4 sw=4 tw=72 syntax=jinja : #}

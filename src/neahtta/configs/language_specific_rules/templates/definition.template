@@ -1,32 +1,45 @@
-# import 'lexicon.macros' as macros with context
+{# This template is also rendered with each entry (i.e., `rendered_templates`),
+   and has access to all of the main entry-specific template values.
 
-# for meaning_group in lexicon_entry.xpath('./mg')
-    # set translation_groups = meaning_group.xpath('./tg')|xml_lang(_to)
-    # if translation_groups|count > 0
+   Since the goal is definitions, `lexicon_entry` is relevant. Filtering
+   by target languag ehas to happen here, so be sure to use the
+   `xml_lang` filter if overriding.
+
+#}
+ 
+{% import 'lexicon.macros' as macros with context %}
+
+{% for meaning_group in lexicon_entry|xpath('./mg') %}
+
+    {% set translation_groups = meaning_group|xpath('./tg')|xml_lang(_to) %}
+
+    {% if translation_groups|count > 0 %}
         <li>
-    # else
-        # continue
-    # endif
+    {% else %}
+        {% continue %}
+    {% endif %}
 
-    # for translation_group in translation_groups
+    {% for translation_group in translation_groups %}
 
         {{ macros.definition_text_and_link(translation_group) }}
 
-        # if examples|count > 0
+        {% if examples %}
             <div class="example_set">
                 <blockquote class="examples">
                     <dl>
-                    # for example in examples
-                        <dt>{{ example.xpath('./x')[0].text }}</dt>
-                        <dd>{{ example.xpath('./xt')[0].text }}</dd>
-                    # endfor
+                    {% for example in examples %}
+                        <dt>{{ example|xpath('./x')|first }}</dt>
+                        <dd>{{ example|xpath('./xt')|first }}</dd>
+                    {% endfor %}
                     </dl>
                 </blockquote>
             </div>
-        # endif
+        {% endif %}
 
-    # endfor
+    {% endfor %}
+
     </li>
-# endfor
+
+{% endfor %}
 
 {#  vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}

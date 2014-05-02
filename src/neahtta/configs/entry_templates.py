@@ -6,12 +6,19 @@ So far:
  * importing macros seems to work
  * can reference other pre-renedered templates in process.
 
-TODO: entry detail template
 TODO: this destroys entry sorting and mg sorting
+
+TODO: l-ref
+
+TODO: entry detail template
 
 TODO: generated paradigms into template context
 
+TODO: how do local vs. global macros work exactly?
+
 TODO: <ul /> vs <ol />
+
+TODO: template for rendering remainder of analysis with no entry.
 
 """
 
@@ -110,12 +117,24 @@ class TemplateConfig(object):
             if k.endswith('.template')
         )
         context['rendered_templates'] = {}
+        try:
+            lookup_params = extra_kwargs.pop('lookup_parameters')
+        except:
+            lookup_params = {}
+
+        context['lookup_parameters'] = lookup_params
+
         context.update(extra_kwargs)
 
         rendered = {}
         for k, t in self.language_templates[language].iteritems():
             if k != template and k.endswith('.template'):
-                rendered[k.replace('.template', '')] = t.render(**context)
+                try:
+                    rendered[k.replace('.template', '')] = t.render(**context)
+                except Exception, e:
+                    msg = e.message
+                    msg += " in template <%s>" % t.path.partition('language_specific_rules')[2]
+                    raise e.__class__(msg)
 
         context['rendered_templates'] = rendered
 
