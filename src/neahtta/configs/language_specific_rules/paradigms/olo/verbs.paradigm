@@ -6,3 +6,5 @@ morphology:
 {{ lemma }}+V+Ind+Prs+ScSg3
 {{ lemma }}+V+Ind+Prs+ScPl3
 {{ lemma }}+V+Ind+Prt+ScSg1
+{{ lemma }}+V+Ind+Prt+ScPl3
+{{ lemma }}+V+Der/mA+Inf+Ill
