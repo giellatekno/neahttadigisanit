@@ -132,6 +132,9 @@ def create_app():
     app.morpholexicon.paradigms = pc
 
     if app.config.new_style_templates:
+        from configs.entry_template_filters import register_template_filters
+        app = register_template_filters(app)
+
         from configs.entry_templates import TemplateConfig
         pc = TemplateConfig(app)
         app.lexicon_templates = pc
