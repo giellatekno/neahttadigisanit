@@ -5,6 +5,7 @@ ApplicationSettings:
   default_locale: "ru"
   default_pair: ["myv", "rus"]
   mobile_default_pair: false
+  # new_style_templates: true
   locales_available:
     - myv
     - mdf
@@ -91,6 +92,10 @@ Dictionaries:
   - source: mdf
     target: fin
     path: 'dicts/mdf-all.xml'
+
+  - source: fin
+    target: mdf
+    path: 'dicts/finmdf.xml'
 
   - source: mdf
     target: fra

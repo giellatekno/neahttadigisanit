@@ -157,9 +157,9 @@ Dictionaries:
   - source: izh
     target: fin
     path: 'dicts/izh-all.xml'
-  # - source: fin
-  #   target: izh
-  #   path: 'dicts/finizh.xml'
+  - source: fin
+    target: izh
+    path: 'dicts/finizh.xml'
   - source: fkv 
     target: nob
     path: 'dicts/fkvnob.xml'
