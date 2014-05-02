@@ -10,7 +10,7 @@ TODO: this destroys entry sorting and mg sorting
 
 TODO: l-ref
 
-TODO: entry detail template
+TODO: entry detail templates
 
 TODO: generated paradigms into template context
 
@@ -19,6 +19,11 @@ TODO: how do local vs. global macros work exactly?
 TODO: <ul /> vs <ol />
 
 TODO: template for rendering remainder of analysis with no entry.
+
+TODO: local CSS files
+
+TODO: reprocess template directories on save doesn't seem to work,
+      figure this out somehow
 
 """
 
