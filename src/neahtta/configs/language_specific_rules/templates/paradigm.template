@@ -1,9 +1,20 @@
 <dl class="dl-horizontal miniparadigm">
-{%- for analysis in analyses -%}
-    {# TODO: requires request context and filter for tagfilter(_from, _to)  #}
-    <dt>{{ analysis.tag.tag_string }}</dt>
-    <dd>{{ analysis.form }}</dd>
-{%- endfor %}
+{%- for lemma, tag, form in paradigm -%}
+
+    {% if tag %}
+        <dt>{{ tag|tagfilter(_from, _to)  }}</dt>
+    {% endif %}
+
+    {% if form %}
+    <dd>
+        {%- for f in form -%}
+            {{ f }}<br/>
+        {%- endfor -%}
+    </dd>
+    {% else %}
+        <dd>?</dd>
+    {% endif %}
+{%- endfor -%}
 </dl>
 
 {# vim: set ts=4 sw=4 tw=72 syntax=jinja : #}

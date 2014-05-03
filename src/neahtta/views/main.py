@@ -179,7 +179,7 @@ def wordDetail(from_language, to_language, wordform, format):
     else:
         cached_result = None
 
-    if cached_result is None:
+    if cached_result is None or current_app.config.new_style_templates:
 
         # Use the original language pair if the user has selected a
         # variant
@@ -288,6 +288,7 @@ def wordDetail(from_language, to_language, wordform, format):
         json_result = cached_result
         detailed_result = depickle_result(cached_result)
 
+    # Logging
     # This ugly bit is just for compiling the use log entry
     if len(detailed_result) > 0:
         success = True
@@ -311,6 +312,7 @@ def wordDetail(from_language, to_language, wordform, format):
                                              )
                  )
 
+    # Format
     if format == 'json':
         result = simplejson.dumps({
             "success": True,
@@ -329,6 +331,57 @@ def wordDetail(from_language, to_language, wordform, format):
                     has_analyses = True
 
         pair_settings = current_app.config.pair_definitions[(from_language, to_language)]
+
+        if current_app.config.new_style_templates and user_input:
+            _rendered_entries = []
+            def sort_entry(r):
+                if not r[0]:
+                    return False
+                try:
+                    return ''.join(r[0].xpath('./lg/l/text()'))
+                except:
+                    return False
+
+            _str_norm = 'string(normalize-space(%s))'
+            for lz, az in sorted(entries_and_tags, key=sort_entry):
+                # TODO: generate
+
+                lemma = lz.xpath(_str_norm % './lg/l/text()')
+
+                paradigm_from_file = mlex.paradigms.get_paradigm(
+                    from_language, lz, az
+                )
+                form_tags = [_t.split('+')[1::] for _t in paradigm_from_file.splitlines()]
+                paradigm = morph.generate(lemma, form_tags, node)
+
+                tplkwargs = { 'lexicon_entry': lz
+                            , 'analyses': az
+                            , 'paradigm': paradigm
+
+                            , '_from': from_language
+                            , '_to': to_language
+                            , 'user_input': user_input
+                            # , 'errors': errors
+                            , 'dictionaries_available': current_app.config.pair_definitions
+                            , 'current_pair_settings': pair_settings
+                            }
+
+                _rendered_entries.append(
+                    current_app.lexicon_templates.render_template(from_language, 'detail_entry.template', **tplkwargs)
+                )
+
+            return render_template( 'word_detail_new_style.html'
+                                  , result=detailed_result
+                                  , user_input=user_input
+                                  , _from=from_language
+                                  , _to=to_language
+                                  , more_detail_link=want_more_detail
+                                  , zip=zipNoTruncate
+                                  , has_analyses=has_analyses
+                                  , current_pair_settings=pair_settings
+                                  , new_templates=_rendered_entries
+                                  )
+
         return render_template( 'word_detail.html'
                               , result=detailed_result
                               , user_input=user_input

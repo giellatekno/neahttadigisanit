@@ -8,8 +8,6 @@ So far:
 
 TODO: this destroys entry sorting and mg sorting
 
-TODO: l-ref
-
 TODO: entry detail templates
 
 TODO: generated paradigms into template context
@@ -34,8 +32,8 @@ from lxml import etree
 
 __all__ = ['TemplateConfig']
 
-# A collection for tracking compiled xpath rules, with a key of the
-# file path.
+# A collection for tracking compiled templates. This may provide more
+# complexity than necessary: need to check, 
 parsed_template_cache = {}
 
 # TODO: read from user defined file elsewhere
@@ -46,9 +44,10 @@ class TemplateConfig(object):
     available, and provides a general method for resolving the proper
     paradigm from dictionary entry nodes and morphological analyses. """
 
-    def __init__(self, app=None, debug=False):
+    def __init__(self, app=None, debug=False, cache=True):
         self.debug = debug
         self._app = app
+        self.cache = cache
 
         self.template_dir = os.path.join( os.getcwd()
                                         , 'configs/language_specific_rules/templates/'
@@ -67,10 +66,14 @@ class TemplateConfig(object):
 
         self.process_template_paths()
 
-        self.print_debug_tree()
+        if self.debug:
+            self.print_debug_tree()
 
     def process_template_paths(self):
         from jinja2 import FileSystemLoader
+        # TODO: possible to config filesystem loader to reread
+        # templates? If so, ensure the template cache is refreshed.
+
         self.jinja_env.loader = FileSystemLoader(self.template_loader_dirs)
 
         def process_template_set(ts):
@@ -112,16 +115,30 @@ class TemplateConfig(object):
         return self.language_templates[language][template]
 
     def render_template(self, language, template, **extra_kwargs):
+        """ Do the actual rendering. This is run for each entry in a lookup.
+
+        Here we apply some things to the context that the user probably
+        needs: access to lookup parameters, individual templates, and
+        already rendered templates.
+
+        Then at the end, a fully rendered result is returned.
+
+        """
+
         tpl = self.get_template(language, template)
 
         context = {}
         context['template_root'] = os.path.dirname(tpl.path) + '/'
+
+        # Add templates to the context
         context['templates'] = dict(
             (k.replace('.template', ''), v)
             for k, v in self.language_templates[language].iteritems()
             if k.endswith('.template')
         )
+
         context['rendered_templates'] = {}
+
         try:
             lookup_params = extra_kwargs.pop('lookup_parameters')
         except:
@@ -130,6 +147,10 @@ class TemplateConfig(object):
         context['lookup_parameters'] = lookup_params
 
         context.update(extra_kwargs)
+
+        # Now render the templates for each entry. If there's an error,
+        # then we consider it a failure for everything and raise an
+        # exception.
 
         rendered = {}
         for k, t in self.language_templates[language].iteritems():
@@ -143,6 +164,7 @@ class TemplateConfig(object):
 
         context['rendered_templates'] = rendered
 
+        # Return the rendered main template.
         return tpl.render(**context)
 
     def read_templates_directory(self):
@@ -153,14 +175,15 @@ class TemplateConfig(object):
         In running contexts, this expects a Flask app instance to be
         passed. For testing purposes, None may be passed.
 
-        Constructs self.default_templates, self.project_templates, 
+        Constructs self.default_templates, self.project_templates,
         self.language_templates
 
         """
         from collections import defaultdict
         from functools import partial
 
-        print >> sys.stderr, "* Reading template directory."
+        if self.debug:
+            print >> sys.stderr, "* Reading template directory."
 
         # Path relative to working directory
         _path = self.template_dir
@@ -318,23 +341,28 @@ class TemplateConfig(object):
         else:
             return parsed_template_cache.get(path)
 
+    def _template_parse_error_msg(self, exception, path):
+        print
+        print '--'
+        print >> sys.stderr, "Error parsing template at <%s>" % path
+        print >> sys.stderr, exception
+        print '--'
+        print
+
     def parse_template_string(self, template_string, path):
-        # condition_yaml, __, paradigm_string_txt = p_string.partition('--')
         parsed_condition = False
+
         try:
             parsed_template = self.jinja_env.from_string(template_string)
             parsed_template.path = path
         except Exception, e:
-            print
-            print '--'
-            print >> sys.stderr, "Error parsing template at <%s>" % path
-            print >> sys.stderr, e
-            print '--'
-            print
+            self._template_parse_error_msg(e, path)
             sys.exit()
+
         return parsed_template
 
 if __name__ == "__main__":
+    # TODO: make a test of this instead.
     from application import create_app
 
     app = create_app()
