@@ -21,6 +21,9 @@ TODO: reprocess template directories on save doesn't seem to work,
 TODO: once we're actually only using these, can do a lot of code cleanup
       of views, soon we will be doing more with less.
 
+TODO:  mobile width - detail - paradigm disappears, was problematic on
+    old templates, doublecheck here.
+
 """
 
 import os, sys
@@ -358,28 +361,3 @@ class TemplateConfig(object):
             sys.exit()
 
         return parsed_template
-
-if __name__ == "__main__":
-    # TODO: make a test of this instead.
-    from application import create_app
-
-    app = create_app()
-    app.debug = True
-
-    with app.app_context():
-        lookup = app.morpholexicon.lookup('mannat', source_lang='sme', target_lang='nob')
-        pc = TemplateConfig(app)
-        for lexicon, analyses in lookup:
-            print '--'
-            print pc.render_template('sme', 'entry.template',
-                                     lexicon_entry=lexicon,
-                                     analyses=analyses, _from='sme',
-                                     _to='nob')
-            print '--'
-            print
-
-    # for l in app.config.languages.keys():
-    #     print l + ':'
-    #     print pc.render_template(l, 'entry.template')
-    #     print
-
