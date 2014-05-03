@@ -136,7 +136,7 @@ def create_app():
         app = register_template_filters(app)
 
         from configs.entry_templates import TemplateConfig
-        pc = TemplateConfig(app)
+        pc = TemplateConfig(app, debug=True)
         app.lexicon_templates = pc
     else:
         app.lexicon_templates = False
