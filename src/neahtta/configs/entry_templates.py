@@ -5,16 +5,11 @@ So far:
  * manages overriding parent templates
  * importing macros seems to work
  * can reference other pre-renedered templates in process.
+ * works in both main view and detail
 
 TODO: this destroys entry sorting and mg sorting
 
-TODO: entry detail templates
-
-TODO: generated paradigms into template context
-
 TODO: how do local vs. global macros work exactly?
-
-TODO: <ul /> vs <ol />
 
 TODO: template for rendering remainder of analysis with no entry.
 
@@ -22,6 +17,9 @@ TODO: local CSS files
 
 TODO: reprocess template directories on save doesn't seem to work,
       figure this out somehow
+
+TODO: once we're actually only using these, can do a lot of code cleanup
+      of views, soon we will be doing more with less.
 
 """
 
