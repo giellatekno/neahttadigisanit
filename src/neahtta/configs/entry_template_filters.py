@@ -1,6 +1,19 @@
 ﻿
 def register_template_filters(app):
 
+    @app.template_filter('by_tagset')
+    def by_tagset(generated_forms, tagset_name):
+        for g in generated_forms:
+            if g.tag[tagset_name]:
+                yield g
+
+    @app.template_filter('by_tagset_value')
+    def by_tagset_value(generated_forms, tagset_name, tagset_value):
+        for g in generated_forms:
+            if g.tag[tagset_name]:
+                if g.tag[tagset_name] == tagset_value:
+                    yield g
+
     @app.template_filter('xpath')
     def xpath(node_obj, xpath_str):
         if node_obj is not None:

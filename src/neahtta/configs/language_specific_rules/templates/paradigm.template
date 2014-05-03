@@ -1,16 +1,12 @@
 <dl class="dl-horizontal miniparadigm">
-{%- for lemma, tag, form in paradigm -%}
+{%- for form in paradigm -%}
 
-    {% if tag %}
-        <dt>{{ tag|tagfilter(_from, _to)  }}</dt>
+    {% if form.tag %}
+        <dt>{{ form.tag|tagfilter(_from, _to)  }}</dt>
     {% endif %}
 
-    {% if form %}
-    <dd>
-        {%- for f in form -%}
-            {{ f }}<br/>
-        {%- endfor -%}
-    </dd>
+    {% if form.form %}
+    <dd>{{ form.form }}</dd>
     {% else %}
         <dd>?</dd>
     {% endif %}

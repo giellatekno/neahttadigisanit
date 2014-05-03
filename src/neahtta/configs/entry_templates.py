@@ -39,7 +39,7 @@ parsed_template_cache = {}
 class TemplateConfig(object):
     """ A class for providing directory-based paradigm definitions.
     This class reads and parses the configs for the sets of languages
-    available, and provides a general method for resolving the proper
+    
     paradigm from dictionary entry nodes and morphological analyses. """
 
     def __init__(self, app=None, debug=False, cache=True):
