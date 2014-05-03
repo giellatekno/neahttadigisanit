@@ -144,7 +144,8 @@ class Lemma(object):
         _lem = unicode(_lem).encode('utf-8')
         _pos = unicode(_pos).encode('utf-8')
         _tag = unicode(_tag).encode('utf-8')
-        return '<Lemma: %s, %s, %s>' % (_lem, _pos, _tag)
+        cls = self.__class__.__name__
+        return '<%s: %s, %s, %s>' % (cls, _lem, _pos, _tag)
 
     def __init__(self, lemma, pos='',
                  tag=[''], fulltag=[''], _input=False, tool=False, tagsets={}):
@@ -163,6 +164,30 @@ class Lemma(object):
         self.input = _input
         self.form = _input
 
+class GeneratedForm(Lemma):
+    """ Helper class for generated forms, adds attribute `self.form`,
+    alters repr format. """
+
+    def __key(self):
+        return ( self.lemma
+               , self.pos
+               , self.tool.formatTag(self.tag_raw)
+               )
+
+    def __repr__(self):
+        _lem, _pos, _tag = self.__key()
+        _lem = unicode(_lem).encode('utf-8')
+        _pos = unicode(_pos).encode('utf-8')
+        _tag = unicode(_tag).encode('utf-8')
+        f = unicode(self.form).encode('utf-8')
+        cls = self.__class__.__name__
+        return '<%s: %s, %s, %s, %s>' % (cls, f, _lem, _pos, _tag)
+
+    def __init__(self, *args, **kwargs
+                 ):
+
+        super(GeneratedForm, self).__init__(*args, **kwargs)
+        self.form = self.input
 
 def word_generation_context(generated_result, *generation_input_args, **generation_kwargs):
     """ **Post-generation filter***
@@ -614,6 +639,24 @@ class OBT(XFST):
         self.options = options
 
 class Morphology(object):
+
+    def generate_to_objs(self, *args, **kwargs):
+        def make_lemma(r):
+            lems = []
+
+            lemma, tag, forms = r
+            _pos      = tag[0]
+            _analysis = tag
+            _fulltag  = tag
+            for f in forms:
+                lem = GeneratedForm(lemma, _pos, _analysis, fulltag=_fulltag,
+                         _input=f, tool=self.tool,
+                         tagsets=self.tagsets)
+                lems.append(lem)
+            return lems
+
+        generated = sum(map(make_lemma, self.generate(*args, **kwargs)), [])
+        return generated
 
     def generate(self, lemma, tagsets, node=None, pregenerated=None):
         """ Run the lookup command, parse output into
