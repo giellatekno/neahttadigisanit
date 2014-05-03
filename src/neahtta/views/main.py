@@ -352,7 +352,7 @@ def wordDetail(from_language, to_language, wordform, format):
                     from_language, lz, az
                 )
                 form_tags = [_t.split('+')[1::] for _t in paradigm_from_file.splitlines()]
-                paradigm = morph.generate(lemma, form_tags, node)
+                paradigm = morph.generate_to_objs(lemma, form_tags, node)
 
                 tplkwargs = { 'lexicon_entry': lz
                             , 'analyses': az
