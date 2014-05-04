@@ -24,6 +24,9 @@ TODO: once we're actually only using these, can do a lot of code cleanup
 TODO:  mobile width - detail - paradigm disappears, was problematic on
     old templates, doublecheck here.
 
+TODO: generated context accessible with new templates? is the way it's
+      done now ideal?
+
 """
 
 import os, sys
