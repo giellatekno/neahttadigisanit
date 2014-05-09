@@ -47,6 +47,10 @@ from fabric.operations import ( sudo )
 
 from fabric.colors import red, green, cyan, yellow
 
+from fabric.contrib.console import confirm
+
+from fabric.utils import abort
+
 env.no_svn_up = False
 env.use_ssh_config = True
 # env.key_filename = '~/.ssh/neahtta'
@@ -227,7 +231,13 @@ def update_gtsvn():
     for p in paths:
         _p = os.path.join(env.svn_path, p)
         with cd(_p):
-            env.run('svn up ' + _p)
+            try:
+                svn_up_cmd = env.run('svn up ' + _p)
+            except:
+                abort(
+                    red("\n* svn up failed in <%s>. Prehaps the tree is locked?" % _p) + '\n' + \
+                    red("  Correct this (maybe with `svn cleanup`) and rerun the command, or run with `no_svn_up`.")
+                )
 
 @task
 def restart_service(dictionary=False):
