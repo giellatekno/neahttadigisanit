@@ -17,14 +17,10 @@
             jQuery(document).ready(function (){
                 // Register the input form with options
                 // NOTE: this doesn't need to be included for mouseclick lookups
-                jQuery('#neahttadigisanit').digiSanit();
-                window.NDS_BOOKMARK_VERSION = "0.0.3" ;
 
                 // Enable options for inline clicking
                 jQuery(document).selectToLookup({
-                  tooltip: true,
-                  displayOptions: true,
-                  spinnerImg: 'dev/img/spinner.gif'
+                  api_host: 'http://localhost:5000',
                 });
             });
         </script>
@@ -36,6 +32,8 @@
         <div id="content">
             <div class="row">
                 <div class="span9">
+                    <p>Note: this is for testing <code>jquery.neahttadigisanit.min.js</code>
+                    </p>
                     <h3>Inline mode</h3>
                     <p>Hold Alt or option (⌥) while selecting or double clicking
                         on a word to select it, and a result will appear. To
@@ -93,39 +91,6 @@
                                 báŋkui, reŋko -&gt; reŋkui</span></li>
                     </ul>
                 </div>
-                <div class="span3">
-                    <h3>Search form</h3>
-                    <div class="neahttadigisanit_container">
-                      <form id="neahttadigisanit" class="form-inline">
-                        <div class="input-prepend input-append">
-                          <div class="btn-group">
-                            <button class="btn dropdown-toggle" data-toggle="dropdown">
-                              <span class="val_name">Giella</span>
-                              <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" id="langpairs" role="menu"
-                                data-for="target_lang">
-                              <li class="selected"><a tabindex="-1" href="#"
-                                      data-value="smenob">nordsamisk -> norsk</a></li>
-                              <li><a tabindex="-1" href="#"
-                                      data-value="smefin">nordsamisk -> finsk</a></li>
-                              <li><a tabindex="-1" href="#"
-                                      data-value="smesmj">nordsamisk -> lulesamisk</a></li>
-                              <li><a tabindex="-1" href="#"
-                                      data-value="nobsme">norsk -> nordsamisk</a></li>
-                            </ul>
-                          <input type="text" name="lookup"
-                            placeholder="ohcesátni" style="width: 10em;"></input>
-                          <div class="btn-group">
-                           <button type="submit" class="btn" name="search">Oza</button>
-                          </div>
-                          <input type="hidden" name="target_lang" value="smenob"></input>
-                        </div>
-                        </div>
-                       <div id="results"></div>
-                     </form>
-                  </div>
-               </div>
             <div class="row">
                 <div class="span12">
                 <h3>Minor issues</h3>

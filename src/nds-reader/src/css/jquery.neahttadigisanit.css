@@ -55,23 +55,23 @@
 }
 
 #webdict_options p {
-	padding: 0 .85em;
-	font-size: 105%;
+    padding: 0 .85em;
+    font-size: 105%;
     width: 16em;
     line-height: 1.2em;
     margin: .4em 0 ;
 }
 
 #webdict_options form label.control-label {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 #webdict_options ul.nav.nav-pills {
-	margin-bottom: .5em;
+    margin-bottom: .5em;
 }
 
 button#save {
-	margin-top: .75em;
+    margin-top: .75em;
 }
 
 #webdict_options .trigger a {
@@ -89,7 +89,7 @@ button#save {
 
 
 #webdict_options form {
-	padding:  10px;
+    padding:  10px;
 }
 
 #webdict_options, .tooltip, .popover {
@@ -109,8 +109,8 @@ button#save {
 }
 
 ul.dropdown-menu[role="menu"] li a {
-	font-family: sans-serif;
-	text-decoration: none;
+    font-family: sans-serif;
+    text-decoration: none;
 }
 
 .popover {

@@ -1,15 +1,19 @@
 ###
+
 A jQuery plugin for enabling the Kursadict functionality
-
-
-## TODOs / Bugs
-
-TODO: prevent window url from updating with form submit params
 
 ###
 
 # Wrap jQuery and add plugin functionality
 jQuery(document).ready ($) ->
+
+  getHostShortname = (url_path) ->
+    url = document.createElement('a')
+    url.href = url_path
+    host = url.hostname
+    if host
+      return host.split('.')[0]
+    return false
 
   first = (somearray) ->
     if somearray.length > 0
@@ -53,9 +57,9 @@ jQuery(document).ready ($) ->
   #
   # Check for the
   #
-  API_HOST = window.NDS_API_HOST || API_HOST
+  API_HOST = window.NDS_API_HOST || window.API_HOST
 
-  SHORT_NAME = API_HOST
+  window.NDS_SHORT_NAME = getHostShortname(API_HOST)
 
   EXPECT_BOOKMARKLET_VERSION = '0.0.3'
 
@@ -181,10 +185,10 @@ jQuery(document).ready ($) ->
         return false
 
       el.find('a#refresh_settings').click () ->
-        DSt.set(SHORT_NAME + '-' + 'digisanit-select-langpair', null)
-        DSt.set(SHORT_NAME + '-' + 'nds-languages', null)
-        DSt.set(SHORT_NAME + '-' + 'nds-localization', null)
-        DSt.set(SHORT_NAME + '-' + 'nds-stored-config', null)
+        DSt.set(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair', null)
+        DSt.set(NDS_SHORT_NAME + '-' + 'nds-languages', null)
+        DSt.set(NDS_SHORT_NAME + '-' + 'nds-localization', null)
+        DSt.set(NDS_SHORT_NAME + '-' + 'nds-stored-config', null)
         el.find('#advanced').append $('<p />').html("Reload the plugin...")
         # window.location.reload()
         return false
@@ -199,7 +203,7 @@ jQuery(document).ready ($) ->
 
       el.find('select[name="language_pair"]').change (e) ->
         store_val = $(e.target).val()
-        DSt.set(SHORT_NAME + '-' + 'digisanit-select-langpair', store_val)
+        DSt.set(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair', store_val)
         return true
 
       el.find('form').submit () ->
@@ -328,7 +332,7 @@ jQuery(document).ready ($) ->
         result_strings.push(result_string)
 
     
-    langpair = DSt.get(SHORT_NAME + '-' + 'digisanit-select-langpair')
+    langpair = DSt.get(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair')
     [_f_from, _t_to] = langpair.split('-')
 
     _cp = first window.nds_opts.dictionaries.filter (e) =>
@@ -432,7 +436,14 @@ jQuery(document).ready ($) ->
   $.fn.selectToLookup = (opts) ->
     opts = $.extend {}, $.fn.selectToLookup.options, opts
     window.nds_opts = opts
-    spinner = initSpinner(nds_opts.api_host + opts.spinnerImg)
+    spinner = initSpinner(opts.spinnerImg)
+
+    if window.NDS_API_HOST || window.API_HOST
+      window.API_HOST = window.NDS_API_HOST || window.API_HOST
+    if nds_opts.api_host
+      window.API_HOST = nds_opts.api_host
+
+    window.NDS_SHORT_NAME = getHostShortname(nds_opts.api_host)
 
     # version notify
     newVersionNotify = () ->
@@ -448,10 +459,10 @@ jQuery(document).ready ($) ->
           })
           $('#close_modal').click () ->
             $('#notifications').modal('hide')
-            DSt.set(SHORT_NAME + '-' + 'digisanit-select-langpair', null)
-            DSt.set(SHORT_NAME + '-' + 'nds-languages', null)
-            DSt.set(SHORT_NAME + '-' + 'nds-localization', null)
-            DSt.set(SHORT_NAME + '-' + 'nds-stored-config', null)
+            DSt.set(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair', null)
+            DSt.set(NDS_SHORT_NAME + '-' + 'nds-languages', null)
+            DSt.set(NDS_SHORT_NAME + '-' + 'nds-localization', null)
+            DSt.set(NDS_SHORT_NAME + '-' + 'nds-stored-config', null)
             window.location.reload()
             return false
       )
@@ -461,7 +472,7 @@ jQuery(document).ready ($) ->
 
     ie8Notify = () ->
       $.getJSON(
-        'http://localhost:5000/read/ie8_instructions/json/' + '?callback=?'
+        nds_opts.api_host + "/read/ie8_instructions/json/" + '?callback=?'
         (response) ->
           $(document).find('body').prepend(
             Templates.NotifyWindow(response)
@@ -472,7 +483,7 @@ jQuery(document).ready ($) ->
           })
           $('#close_modal').click () ->
             $('#notifications').modal('hide')
-            DSt.set(SHORT_NAME + '-' + 'nds-ie8-dismissed', true)
+            DSt.set(NDS_SHORT_NAME + '-' + 'nds-ie8-dismissed', true)
             return false
       )
       return true
@@ -491,7 +502,7 @@ jQuery(document).ready ($) ->
 
       # Recall stored language pair from session
       previous_langpair = DSt.get(
-        SHORT_NAME + '-' + 'digisanit-select-langpair'
+        NDS_SHORT_NAME + '-' + 'digisanit-select-langpair'
       )
       if previous_langpair
         _select = "select[name='language_pair']"
@@ -499,7 +510,7 @@ jQuery(document).ready ($) ->
       else
         _select = "select[name='language_pair']"
         _opt = window.optTab.find(_select).val()
-        previous_langpair = DSt.set(SHORT_NAME + '-' + 'digisanit-select-langpair', _opt)
+        previous_langpair = DSt.set(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair', _opt)
       
       holdingOption = (evt) =>
         clean(evt)
@@ -531,9 +542,9 @@ jQuery(document).ready ($) ->
 
     storeConfigs = (response) ->
       # store in local storage
-      DSt.set(SHORT_NAME + '-' + 'nds-languages',    response.dictionaries)
-      DSt.set(SHORT_NAME + '-' + 'nds-localization', response.localization)
-      DSt.set(SHORT_NAME + '-' + 'nds-stored-config', "true")
+      DSt.set(NDS_SHORT_NAME + '-' + 'nds-languages',    response.dictionaries)
+      DSt.set(NDS_SHORT_NAME + '-' + 'nds-localization', response.localization)
+      DSt.set(NDS_SHORT_NAME + '-' + 'nds-stored-config', "true")
       return true
 
     extendLanguageOpts = (response) =>
@@ -557,12 +568,12 @@ jQuery(document).ready ($) ->
     recallLanguageOpts = () =>
       # Sometimes this ends up not getting parsed from JSON
       # automatically from DSt.get, even though .set properly stores it.
-      locales = DSt.get(SHORT_NAME + '-' + 'nds-localization')
+      locales = DSt.get(NDS_SHORT_NAME + '-' + 'nds-localization')
       if typeof locales == "string"
         locales = JSON.parse locales
       window.nds_opts.localization = locales
 
-      dicts = DSt.get(SHORT_NAME + '-' + 'nds-languages')
+      dicts = DSt.get(NDS_SHORT_NAME + '-' + 'nds-languages')
       if typeof dicts == "string"
         dicts = JSON.parse dicts
       window.nds_opts.dictionaries = dicts
@@ -590,14 +601,14 @@ jQuery(document).ready ($) ->
     [old_ie, dismissed] = [false, false]
     if "MSIE 8.0" in uagent
       old_ie = true
-      dismissed = DSt.get(SHORT_NAME + '-' + 'nds-ie8-dismissed')
+      dismissed = DSt.get(NDS_SHORT_NAME + '-' + 'nds-ie8-dismissed')
 
     if version_ok
       if old_ie
         console.log "ie8 detected"
         if not dismissed
           ie8Notify()
-      stored_config = DSt.get(SHORT_NAME + '-' + 'nds-stored-config')
+      stored_config = DSt.get(NDS_SHORT_NAME + '-' + 'nds-stored-config')
       if stored_config?
         recallLanguageOpts()
       else
