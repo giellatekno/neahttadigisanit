@@ -86,42 +86,19 @@ standalone: bin/neahttadigisanit.css \
 			bin/neahttadigisanit.jquery.min.js \
 			bin/neahttadigisanit.min.js
 
-
-
-# TODO: no longer actually building this.
-# buildChrome = (callback) ->
-#   pluginTargetDir = 'bin/chrome/'
-#   # copy to bin/chrome/
-# 
-#   # copy compiled files compiledFiles
-#   wrench.copyDirSyncRecursive('src/chrome', 'bin/chrome')
-# 
-#   # cp compiledFiles
-#   for file in compiledFiles
-#     _in = fs.readFileSync 'bin/' + file
-#     fs.writeFileSync "bin/chrome/#{file}", _in
-# 
-
-# TODO: compile wordpress src files
-bin/wordpress.zip: src/wordpress
-	@echo "   ... Copying"
+bin/wordpress-neahttadigisanit.zip: src/wordpress \
+				   		tmp/jq.css \
+				   		tmp/nds.with.deps.jq.js
+	@echo "   ... Copying css and js."
 	cp -R src/wordpress tmp/wordpress
+	cp tmp/jq.css tmp/wordpress/neahttadigisanit/jquery.neahttadigisanit.css
+	cp tmp/nds.with.deps.jq.js tmp/wordpress/neahttadigisanit/jquery.neahttadigisanit.js
 	@echo "   ... Zipping"
-	zip bin/wordpress.zip tmp/wordpress
+	cd tmp/wordpress && zip -r neahttadigisanit.zip neahttadigisanit/*
+	cp tmp/wordpress/neahttadigisanit.zip bin/wordpress-neahttadigisanit.zip
 
 .PHONY: wordpress
-wordpress: bin/wordpress.zip
-
-# buildWordpress = (callback) ->
-#   pluginTargetDir = 'bin/wordpress/'
-# 
-#   # copy compiled files compiledFiles
-#   wrench.copyDirSyncRecursive('src/wordpress', 'bin/wordpress')
-# 
-#   # cp compiledFiles
-#   for file in compiledFiles
-#     _in = fs.readFileSync 'bin/' + file
-#     fs.writeFileSync "bin/wordpress/neahttadigisanit/#{file}", _in
+wordpress: bin/wordpress-neahttadigisanit.zip
 
 bookmarklet: bin/neahttadigisanit.init.min.js \
 			 bin/jquery.neahttadigisanit.css \
@@ -176,24 +153,11 @@ bookmarklet: bin/neahttadigisanit.init.min.js \
 #   util.print "\n Copied CSS to ../static/css/jquery.neahttadigisanit.css\n"
 
 
-# 
-# 
-# task 'watch', 'Watch prod source files and build changes', ->
-#   invoke 'build'
-#   util.log "Watching for changes in src"
-# 
-#   for file in appFiles then do (file) ->
-#     fs.watchFile file, (curr, prev) ->
-#       if +curr.mtime isnt +prev.mtime
-#         util.log "Saw change in #{file}"
-#         util.log 'Whoa. Saw a change. Building. Hold plz.'
-#         invoke 'build'
- 
-# 
 # task 'build-bookmarklet-debug', 'Compile the unminified plugin and jQuery to be downloaded by a bookmarklet', ->
 #   buildBookmarkletDebug()
 #   util.print "Bookmarklet compiled to bin/bookmarklet.min.js"
 # 
+
 .PHONY: install
 install: install-standalone \
 		 install-bookmarklet 
