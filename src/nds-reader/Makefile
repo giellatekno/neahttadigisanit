@@ -100,63 +100,30 @@ bin/wordpress-neahttadigisanit.zip: src/wordpress \
 .PHONY: wordpress
 wordpress: bin/wordpress-neahttadigisanit.zip
 
-bookmarklet: bin/neahttadigisanit.init.min.js \
-			 bin/jquery.neahttadigisanit.css \
-			 bin/jquery.neahttadigisanit.js \
-			 bin/jquery.neahttadigisanit.min.js \
-			 bin/bookmarklet.min.js \
-			 bin/bookmarklet.js
+tmp/neahttadigisanit.init.min.js: src/neahttadigisanit.init.js
+	$(UGLY) $^ > $@
 
-# buildBookmarklet = (callback) ->
-#   # dev/jquery.1.7.2.js  (minified)
-#   # bin/jquery.neahttadigisanit.min.js 
-#   # src/bookmarklet.init.js (not minified)
-#   #
-#   # TODO: minify bookmark.js to ../static/js/bookmark.min.js
-# 
-#   util.print "\n Compressing... src/neahttadigisanit.init.js\n"
-#   all = (fs.readFileSync 'src/neahttadigisanit.init.js').toString()
-# 
-#   ast = uglify.parser.parse all
-#   out = fs.openSync "bin/neahttadigisanit.init.min.js", "w+"
-# 
-#   ast = uglify.uglify.ast_mangle ast
-#   ast = uglify.uglify.ast_squeeze ast
-# 
-#   # fs.writeSync out, uglify.uglify.gen_code(ast)
-#   fs.writeSync out, all
-# 
-#   util.print "\n Minified! to neahttadigisanit.init.min.js\n"
-# 
-#   _fs_nm = (fs.readFileSync 'dev/jquery.1.7.2.js').toString() +
-#         (fs.readFileSync 'bin/jquery.neahttadigisanit.js').toString() +
-#         (fs.readFileSync 'src/neahttadigisanit.init.js').toString()
-#   out_nonmin = fs.openSync "bin/bookmarklet.js", "w+"
-#   fs.writeSync out_nonmin, _fs_nm
-# 
-#   _fs = (fs.readFileSync 'dev/jquery.1.7.2.js').toString() +
-#         (fs.readFileSync 'bin/jquery.neahttadigisanit.min.js').toString() +
-#         (fs.readFileSync 'bin/neahttadigisanit.init.min.js').toString()
-#   out = fs.openSync "bin/bookmarklet.min.js", "w+"
-#   fs.writeSync out, _fs
-# 
-#   out = fs.openSync "../neahtta/static/js/bookmarklet.min.js", "w+"
-#   fs.writeSync out, _fs
-#   out = fs.openSync "../neahtta/static/js/bookmarklet.js", "w+"
-#   fs.writeSync out, _fs_nm
-#   util.print """\n Compiled to bin/bookmarklet.min.js and
-#     ../static/js/bookmarklet.min.js\n"""
-# 
-#   _css = (fs.readFileSync 'bin/jquery.neahttadigisanit.css').toString()
-#   _cssout = fs.openSync "../neahtta/static/css/jquery.neahttadigisanit.css", "w+"
-#   fs.writeSync _cssout, _css
-#   util.print "\n Copied CSS to ../static/css/jquery.neahttadigisanit.css\n"
+bin/bookmarklet.min.js: tmp/nds.with.deps.jq.js \
+						tmp/neahttadigisanit.init.min.js
+	cat $^ > $@
 
+bin/jquery.neahttadigisanit.css: tmp/jq.css
+	cp $^ $@
 
-# task 'build-bookmarklet-debug', 'Compile the unminified plugin and jQuery to be downloaded by a bookmarklet', ->
-#   buildBookmarkletDebug()
-#   util.print "Bookmarklet compiled to bin/bookmarklet.min.js"
-# 
+bookmarklet: bin/jquery.neahttadigisanit.css \
+			 bin/bookmarklet.min.js
+
+bookmarklet-install: bin/jquery.neahttadigisanit.css \
+					bin/bookmarklet.min.js
+	cp bin/bookmarklet.min.js ../neahtta/static/js/
+	cp bin/jquery.neahttadigisanit.css ../neahtta/static/css/
+	@echo "    ... Installed"
+
+# TODO: actual bookmark code, need to urlencode that and copy somewhere.
+#
+# bin/bookmark.js: src/bookmark.js
+#
+# it's tricky because only part of it is urlencoded, but not all of it.
 
 .PHONY: install
 install: install-standalone \
