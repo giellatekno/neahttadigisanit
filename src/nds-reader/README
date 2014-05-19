@@ -65,15 +65,22 @@ Install these first, and then run
 Which will read package.json, and install the development packages to compile
 all the dependencies to one JS file.
 
-#### Cake
+#### Make
 
-... is just a build system like Make, but for node/coffeescript
-projects. It facilitates compiling and combining all the dependencies
-into two files.
+Contains expected targets such as:
 
-    cake build
+    make clean
+    make all
+    make install
 
-Will compile for all targets.
+Also some specific ones:
+
+    make standalone
+    make wordpress
+    make bookmarklet
+    make standalone-install
+    make bookmarklet-install
+
 
 ## Twitter Bootstrap
 
@@ -137,8 +144,8 @@ browser's bookmark bar. The bookmarklet javascript that they include in the
 bookmark simply downloads a compiled javascript file that includes jquery, the
 neahttadigisanit jquery plugin (henceforth plugin code), and a short
 initialization file which calls the rest of the plugin and allows the user to
-begin looking up files. The Cakefile thus has a build target
-`build-bookmarklet`, which handles this.
+begin looking up files. The Makefile thus has a build target
+`bookmarklet`, which handles this.
 
 One of the special bits of this is that the API hostname is not defined in the
 plugin code, but defined within the bookmarklet javascript... This is to make
@@ -146,10 +153,6 @@ testing and development easier.
 
 The code for the actual bookmarklet that downloads the file is instead stored
 within neahtta.py, since compiling it is a little more of a specific process.
-
-### Wordpress plugin development
-
-`cake build`, followed by `cake build-wordpress`.
 
 #### Gotchas
 

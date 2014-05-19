@@ -130,7 +130,9 @@ install: standalone-install \
 		 bookmarklet-install
 
 .PHONY: all
-all: standalone
+all: standalone \
+	 bookmarklet \
+	 wordpress
 
 .PHONY: clean
 clean: 
