@@ -2,7 +2,7 @@
   "author": "Ryan J",
   "name": "kursadict",
   "description": "",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "homepage": "",
   "repository": {
     "type": "svn",
@@ -16,6 +16,7 @@
     "wrench": "~1.5.5",
     "expect.js": "~0.1.2",
     "coffee-script": "~1.3.3",
+    "bookmarklet": "~0.0.4",
     "mocha": "~0.14.0"
   }
 }
