@@ -262,6 +262,16 @@ task 'build-bookmarklet-debug', 'Compile the unminified plugin and jQuery to be 
   buildBookmarkletDebug()
   util.print "Bookmarklet compiled to bin/bookmarklet.min.js"
 
+task 'build-all', 'Build all the things', ->
+  build()
+  concatCSS()
+  buildWordpress()
+  buildBookmarklet()
+  buildStandalone()
+  util.print "\n--\n"
+  util.print "Done.\n"
+  util.print "--\n"
+
 task "compress", 'Uglify JS', (params)->
   compress()
 
