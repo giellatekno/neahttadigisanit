@@ -118,6 +118,7 @@ jQuery(document).ready ($) ->
             <li class="active">
               <a href="#" data-target="#options">#{ _("Options") }</a>
             </li>
+            <li><a href="#" data-target="#help">#{ _("Help") }</a></li>
             <li><a href="#" data-target="#about">#{ _("About") }</a></li>
             <li style="display: none;" id="debug"><a href="#" data-target="#advanced">#{ _("Advanced") }</a></li>
           </ul>
@@ -148,11 +149,19 @@ jQuery(document).ready ($) ->
             <br />
             <br />
           </div>
-          <div id="about" style="display: none;" class="minipanel">
+          <div id="help" style="display: none;" class="minipanel">
               <p>#{ _("In order to look up a word, hold down the <em>Alt</em> or <em>Option</em> (⌥) key, and doubleclick on a word. The service will contact the dictionary, and return a word after a short pause.") }</p>
               <p> </p>
               <p>#{ _('If you find a bug, or if the bookmark does not work on a specific page <a href="mailto:giellatekno@hum.uit.no">please contact us</a>. Tell us what page didn\'t work, or what you did when you discovered the problem.') }
               </p>
+          </div>
+          <div id="about" style="display: none;" class="minipanel">
+              <p>#{ _("A little paragraph about us") }</p>
+              <ul>
+                <li><a href="#">#{ _("Link") }</a></li>
+                <li><a href="#">#{ _("Link") }</a></li>
+                <li><a href="#">#{ _("Link") }</a></li>
+              </ul>
           </div>
         </div>
       </div>
