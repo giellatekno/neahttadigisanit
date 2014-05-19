@@ -40,13 +40,6 @@ JS_DEPS = src/libs/bootstrap-dropdown.js \
 STYLESHEETS = src/css/bootstrap.custom.css \
 			  src/css/jquery.neahttadigisanit.css
 
-APP_FILES = $(JS_DEPS) \
-			$(STYLESHEETS)
-
-COMPILED_FILES = \
-  bin/jquery.neahttadigisanit.css \
-  bin/jquery.neahttadigisanit.js
-
 tmp/jq.css: $(STYLESHEETS)
 	cat $^ > $@
 
@@ -64,27 +57,32 @@ tmp/nds.with.deps.jq.js: dev/jquery.1.7.2.js \
 						 tmp/nds.with.deps.js
 	cat $^ > $@
 
-#
-## From the old standalone target
-
-bin/neahttadigisanit.min.js: tmp/nds.with.deps.js
+bin/standalone/neahttadigisanit.min.js: tmp/nds.with.deps.js
 	@echo "   ... copying"
 	cp $^ $@
 
-bin/neahttadigisanit.jquery.min.js: tmp/nds.with.deps.jq.js
+bin/standalone/neahttadigisanit.jquery.min.js: tmp/nds.with.deps.jq.js
 	@echo "   ... uglifying"
 	$(UGLY) $^ > $@
 
-bin/neahttadigisanit.css: tmp/jq.css
+bin/standalone/neahttadigisanit.css: tmp/jq.css
 	@echo "   ... copying"
+	mkdir -p bin/standalone
 	cp $^ $@
 
 # We build one with jquery and one without, to give the user the option of how
 # they include it on their site.
 .PHONY: standalone
-standalone: bin/neahttadigisanit.css \
-			bin/neahttadigisanit.jquery.min.js \
-			bin/neahttadigisanit.min.js
+standalone: bin/standalone/neahttadigisanit.css \
+			bin/standalone/neahttadigisanit.jquery.min.js \
+			bin/standalone/neahttadigisanit.min.js
+
+standalone-install: bin/standalone/neahttadigisanit.css \
+					bin/standalone/neahttadigisanit.jquery.min.js \
+					bin/standalone/neahttadigisanit.min.js
+	cp bin/standalone/*.js ../neahtta/static/js/
+	cp bin/standalone/*.css ../neahtta/static/css/
+	@echo "    ... Installed"
 
 bin/wordpress-neahttadigisanit.zip: src/wordpress \
 				   		tmp/jq.css \
@@ -103,20 +101,22 @@ wordpress: bin/wordpress-neahttadigisanit.zip
 tmp/neahttadigisanit.init.min.js: src/neahttadigisanit.init.js
 	$(UGLY) $^ > $@
 
-bin/bookmarklet.min.js: tmp/nds.with.deps.jq.js \
+bin/bookmarklet/bookmarklet.min.js: tmp/nds.with.deps.jq.js \
 						tmp/neahttadigisanit.init.min.js
+	mkdir -p bin/bookmarklet
 	cat $^ > $@
 
-bin/jquery.neahttadigisanit.css: tmp/jq.css
+bin/bookmarklet/jquery.neahttadigisanit.css: tmp/jq.css
+	mkdir -p bin/bookmarklet
 	cp $^ $@
 
-bookmarklet: bin/jquery.neahttadigisanit.css \
-			 bin/bookmarklet.min.js
+bookmarklet: bin/bookmarklet/jquery.neahttadigisanit.css \
+			 bin/bookmarklet/bookmarklet.min.js
 
-bookmarklet-install: bin/jquery.neahttadigisanit.css \
-					bin/bookmarklet.min.js
-	cp bin/bookmarklet.min.js ../neahtta/static/js/
-	cp bin/jquery.neahttadigisanit.css ../neahtta/static/css/
+bookmarklet-install: bin/bookmarklet/jquery.neahttadigisanit.css \
+					bin/bookmarklet/bookmarklet.min.js
+	cp bin/bookmarklet/*.js ../neahtta/static/js/
+	cp bin/bookmarklet/*.css ../neahtta/static/css/
 	@echo "    ... Installed"
 
 # TODO: actual bookmark code, need to urlencode that and copy somewhere.
@@ -126,8 +126,8 @@ bookmarklet-install: bin/jquery.neahttadigisanit.css \
 # it's tricky because only part of it is urlencoded, but not all of it.
 
 .PHONY: install
-install: install-standalone \
-		 install-bookmarklet 
+install: standalone-install \
+		 bookmarklet-install
 
 .PHONY: all
 all: standalone
