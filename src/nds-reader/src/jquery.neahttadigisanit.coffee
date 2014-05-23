@@ -156,17 +156,17 @@ jQuery(document).ready ($) ->
               </p>
           </div>
           <div id="about" style="display: none;" class="minipanel">
-              <p>#{ _("A little paragraph about us") }</p>
-              <ul>
-                <li><a href="#">#{ _("Link") }</a></li>
-                <li><a href="#">#{ _("Link") }</a></li>
-                <li><a href="#">#{ _("Link") }</a></li>
+              <p>#{ _("This tool was made by Giellatekno at UiT: The Arctic University of Norway.") }</p>
+
+              <ul id="about-links" class="nav nav-tabs nav-stacked">
+                <li><a href="http://sanit.oahpa.no/about/">#{ _("Read more") }</a></li>
+                <li><a href="http://oahpa.no">#{ _("More tools") }</a></li>
               </ul>
           </div>
         </div>
       </div>
       """)
-
+      
       el.find('ul.nav-pills a').click (evt) ->
         target_element = $(evt.target).attr('data-target')
         el.find('ul.nav-pills a').parent('li').removeClass('active')
