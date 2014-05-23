@@ -334,6 +334,7 @@ def wordDetail(from_language, to_language, wordform, format):
 
         if current_app.config.new_style_templates and user_input:
             _rendered_entries = []
+            analyses_without_entry = []
             def sort_entry(r):
                 if not r[0]:
                     return False
@@ -343,16 +344,27 @@ def wordDetail(from_language, to_language, wordform, format):
                     return False
 
             _str_norm = 'string(normalize-space(%s))'
+            rendered_analyses_without_entry = False
             for lz, az in sorted(entries_and_tags, key=sort_entry):
                 # TODO: generate
 
+                if lz is None:
+                    analyses_without_entry.extend(az)
+                    continue
+
+                can_generate = True
+                paradigm = []
+
                 lemma = lz.xpath(_str_norm % './lg/l/text()')
 
+                # TODO: pregenerated lexicon forms?
                 paradigm_from_file = mlex.paradigms.get_paradigm(
                     from_language, lz, az
                 )
-                form_tags = [_t.split('+')[1::] for _t in paradigm_from_file.splitlines()]
-                paradigm = morph.generate_to_objs(lemma, form_tags, node)
+
+                if paradigm_from_file:
+                    form_tags = [_t.split('+')[1::] for _t in paradigm_from_file.splitlines()]
+                    paradigm = morph.generate_to_objs(lemma, form_tags, node)
 
                 tplkwargs = { 'lexicon_entry': lz
                             , 'analyses': az
@@ -370,6 +382,20 @@ def wordDetail(from_language, to_language, wordform, format):
                     current_app.lexicon_templates.render_template(from_language, 'detail_entry.template', **tplkwargs)
                 )
 
+                # TODO:
+                # rendered_analyses_without_entry = current_app.lexicon_templates.render_template(
+                #     from_language, 
+                #     'analyses.template', 
+                #     analyses=analyses_without_entry,
+                #     lexicon_entry=None,
+                #     _from=from_language,
+                #     _to=to_language,
+                #     user_input=user_input,
+                #     dictionaries_available=current_app.config.pair_definitions,
+                #     current_pair_settings=pair_settings,
+                # )
+
+
             return render_template( 'word_detail_new_style.html'
                                   , result=detailed_result
                                   , user_input=user_input
@@ -380,6 +406,7 @@ def wordDetail(from_language, to_language, wordform, format):
                                   , has_analyses=has_analyses
                                   , current_pair_settings=pair_settings
                                   , new_templates=_rendered_entries
+                                  , analyses_without_entry=rendered_analyses_without_entry
                                   )
 
         return render_template( 'word_detail.html'

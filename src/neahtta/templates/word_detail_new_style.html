@@ -113,7 +113,15 @@
         {% for tpl in new_templates %}
             {{ tpl|safe }}
         {% endfor %}
+        <div class="row-fluid entry_row">
+            <div class="span3 offset9 hidden-phone">
+               {% if analyses_without_entry %}
+                   {{ analyses_without_entry|safe }}
+               {% endif %}
+           </div>
+       </div>
     </div>
+
 
     {% if more_detail_link %}
         <p>
