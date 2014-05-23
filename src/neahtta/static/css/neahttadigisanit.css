@@ -741,3 +741,7 @@ div.well.highlight {
     background-color: #F88 !important;
     border: 1px solid #311 !important;
 }
+
+ul#about-links li a {
+    border: none;
+}

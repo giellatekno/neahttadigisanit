@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-02-18 14:41-0600\n"
+"POT-Creation-Date: 2014-05-23 14:29-0500\n"
 "PO-Revision-Date: 2013-11-07 11:38+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language-Team: fr <LL@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 0.9.6\n"
+"Generated-By: Babel 1.3\n"
 
 #: configs/kyv.config.yaml.in:93
 msgid "Standard"
@@ -140,99 +140,134 @@ msgstr ""
 msgid "Haida"
 msgstr ""
 
-#: configs/sample.config.yaml.in:114 configs/sanit.config.yaml.in:112
-#: configs/sanit.config.yaml.in:139
+#: configs/sample.config.yaml.in:114 configs/sanit.config.yaml.in:113
+#: configs/sanit.config.yaml.in:140
 msgid "Standárda (<em>áčđŋšŧž</em>)"
 msgstr ""
 
-#: configs/sample.config.yaml.in:117 configs/sanit.config.yaml.in:115
-#: configs/sanit.config.yaml.in:142
+#: configs/sample.config.yaml.in:117 configs/sanit.config.yaml.in:116
+#: configs/sanit.config.yaml.in:143
 msgid "Sosiála media (maiddái <em>acdnstz</em>)"
 msgstr ""
 
-#: configs/sanat.config.yaml.in:136 configs/sanat.config.yaml.in:147
+#: configs/sanat.config.yaml.in:141 configs/sanat.config.yaml.in:152
 msgid "Standard (äǟ)"
 msgstr ""
 
-#: configs/sanat.config.yaml.in:139 configs/sanat.config.yaml.in:150
+#: configs/sanat.config.yaml.in:144 configs/sanat.config.yaml.in:155
 msgid "Mobile friendly (a &rarr; ä ~ ǟ)"
 msgstr ""
 
-#: static/js/bookmarklet.js:1245
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246
 msgid "Á"
 msgstr ""
 
-#: static/js/bookmarklet.js:1245
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246
 msgid "Options"
 msgstr ""
 
-#: static/js/bookmarklet.js:1245 templates/about.baakoeh.html:6
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246 templates/about.baakoeh.html:6
 #: templates/about.muter.html:6 templates/about.sanat.html:6
 #: templates/about.sanit.html:6 templates/about.vada.html:7
-#: templates/about.valks.html:7 templates/base.html:109
+#: templates/about.valks.html:7 templates/base.html:122
 msgid "About"
 msgstr ""
 
-#: static/js/bookmarklet.js:1245
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246
 msgid "Advanced"
 msgstr ""
 
-#: static/js/bookmarklet.js:1245
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246
 msgid "Dictionary"
 msgstr "Dictionnaire"
 
-#: static/js/bookmarklet.js:1245
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246
 msgid "Save"
 msgstr ""
 
-#: static/js/bookmarklet.js:1245
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246
 msgid "Refresh settings"
 msgstr ""
 
-#: static/js/bookmarklet.js:1245
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246
 msgid "Update detected"
 msgstr ""
 
-#: static/js/bookmarklet.js:1245
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246
 msgid "IE8 Warning"
 msgstr ""
 
-#: static/js/bookmarklet.js:1245
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246
 msgid ""
 "In order to look up a word, hold down the <em>Alt</em> or <em>Option</em>"
 " (⌥) key, and doubleclick on a word. The service will contact the "
 "dictionary, and return a word after a short pause."
 msgstr ""
 
-#: static/js/bookmarklet.js:1245
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246
 msgid ""
 "If you find a bug, or if the bookmark does not work on a specific page <a"
 " href=\"mailto:giellatekno@hum.uit.no\">please contact us</a>. Tell us "
 "what page didn't work, or what you did when you discovered the problem."
 msgstr ""
 
-#: static/js/bookmarklet.js:1310
+#: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:1316
+#: static/js/neahttadigisanit.min.js:1311
 msgid "Error!"
 msgstr "Erreur!"
 
-#: static/js/bookmarklet.js:1310
+#: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:1316
+#: static/js/neahttadigisanit.min.js:1311
 msgid "Could not connect to dictionary server"
 msgstr ""
 
-#: static/js/bookmarklet.js:1310
+#: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:1316
+#: static/js/neahttadigisanit.min.js:1311
 msgid "Close"
 msgstr ""
 
-#: static/js/bookmarklet.js:1432 static/js/bookmarklet.js:1714
+#: static/js/bookmarklet.js:1438 static/js/bookmarklet.js:1729
+#: static/js/bookmarklet.min.js:1438 static/js/bookmarklet.min.js:1729
+#: static/js/neahttadigisanit.min.js:1433
+#: static/js/neahttadigisanit.min.js:1724
 msgid "Unknown word"
 msgstr ""
 
-#: static/js/bookmarklet.js:1433
+#: static/js/bookmarklet.js:1439 static/js/bookmarklet.min.js:1439
+#: static/js/neahttadigisanit.min.js:1434
 msgid "You are using"
 msgstr ""
 
-#: static/js/bookmarklet.js:1435
+#: static/js/bookmarklet.js:1441 static/js/bookmarklet.min.js:1441
+#: static/js/neahttadigisanit.min.js:1436
 msgid "Meaning not found"
+msgstr ""
+
+#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.min.js:1246
+msgid "Help"
+msgstr ""
+
+#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.min.js:1246
+msgid "This tool was made by Giellatekno at UiT: The Arctic University of Norway."
+msgstr ""
+
+#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.min.js:1246
+msgid "Read more"
+msgstr ""
+
+#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.min.js:1246
+msgid "More tools"
 msgstr ""
 
 #: templates/404.html:51
@@ -520,19 +555,19 @@ msgid ""
 "Foundation."
 msgstr ""
 
-#: templates/base.html:101
+#: templates/base.html:114
 msgid "Home"
 msgstr ""
 
-#: templates/base.html:105
+#: templates/base.html:118
 msgid "Plugins"
 msgstr ""
 
-#: templates/base.html:114
+#: templates/base.html:127
 msgid "Interface language"
 msgstr ""
 
-#: templates/base.html:180
+#: templates/base.html:193
 msgid ""
 "Created with free and open-source language tools from <em><a "
 "href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, a Sámi Language "
@@ -544,6 +579,52 @@ msgstr ""
 msgid "Neahttadigisánit"
 msgstr ""
 
+#: templates/index.html:19 templates/left_dictionary_list.html:1
+msgid "Dictionaries"
+msgstr "Dictionnaires"
+
+#: templates/index.html:37 templates/left_dictionary_list.html:52
+#: templates/more_dictionaries.html:21
+msgid "Other dictionaries"
+msgstr ""
+
+#: templates/index.html:58
+msgid "Swap"
+msgstr ""
+
+#: templates/index.html:66 templates/index.html:151
+#: templates/word_detail_new_style.html:106 views/reader.py:122
+msgid " is a possible form of ... "
+msgstr ""
+
+#: templates/index.html:121
+msgid "Definition not found for:"
+msgstr ""
+
+#: templates/index.html:173
+#, python-format
+msgid "Word %(input)s not found."
+msgstr ""
+
+#: templates/index.html:182
+msgid ""
+"If you are using a device without a Sámi keyboard, consider using <a "
+"href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
+"<em>acdnstz</em> for <em>áčđŋšŧž</em>."
+msgstr ""
+
+#: templates/index.html:186
+msgid "Search for a word, or a word form for a word analysis and definition."
+msgstr ""
+
+#: templates/index.html:190
+msgid ""
+"You selected #SoMe, the variant for social media, which means that the "
+"letters acdnstz\n"
+"                            will be accepted as áčđŋšŧž in addition to "
+"their usual values."
+msgstr ""
+
 #: templates/index_search_form.html:11
 msgid "Press Tab to select a word"
 msgstr ""
@@ -553,7 +634,7 @@ msgid "ohcansátni"
 msgstr ""
 
 #: templates/index_search_form.html:20 templates/index_search_form.html:39
-#: templates/index_search_form.html:43
+#: templates/index_search_form.html:43 templates/word_detail_new_style.html:97
 msgid "Search"
 msgstr ""
 
@@ -569,16 +650,8 @@ msgstr ""
 msgid "Language"
 msgstr ""
 
-#: templates/left_dictionary_list.html:1
-msgid "Dictionaries"
-msgstr "Dictionnaires"
-
 #: templates/left_dictionary_list.html:38
 msgid "Written variant"
-msgstr ""
-
-#: templates/left_dictionary_list.html:52 templates/more_dictionaries.html:21
-msgid "Other dictionaries"
 msgstr ""
 
 #: templates/more_dictionaries.html:4
@@ -688,34 +761,53 @@ msgid "To change the dictionary, click the menu icon."
 msgstr ""
 
 #: templates/reader.html:32
-msgid "Browser support"
+msgid "Installing on a website"
 msgstr ""
 
-#: templates/reader.html:33
-msgid "The reader is supported in the following browsers:"
+#: templates/reader.html:34
+msgid ""
+"It is also possible to install the reader plugin on a website,\n"
+"                so that users will have access to dictionaries without "
+"the\n"
+"                bookmarklet."
 msgstr ""
 
-#: templates/reader.html:35
-msgid "Chrome (version 20 and newer)"
-msgstr ""
-
-#: templates/reader.html:36
-msgid "Internet Explorer (version 9 and newer)"
-msgstr ""
-
-#: templates/reader.html:37
-msgid "Firefox (version 18 and newer)"
-msgstr ""
-
-#: templates/reader.html:38
-msgid "Opera (version 16 and newer)"
+#: templates/reader.html:39
+msgid ""
+"To do so, <a "
+"href=\"http://giellatekno.uit.no/doc/dicts/nds/AddingNDSPluginToOtherSites.html\">follow"
+" our documentation</a>."
 msgstr ""
 
 #: templates/reader.html:40
-msgid "Bugs?"
+msgid "Browser support"
 msgstr ""
 
 #: templates/reader.html:41
+msgid "The reader is supported in the following browsers:"
+msgstr ""
+
+#: templates/reader.html:43
+msgid "Chrome (version 20 and newer)"
+msgstr ""
+
+#: templates/reader.html:44
+msgid "Internet Explorer (version 9 and newer)"
+msgstr ""
+
+#: templates/reader.html:45
+msgid "Firefox (version 18 and newer)"
+msgstr ""
+
+#: templates/reader.html:46
+msgid "Opera (version 16 and newer)"
+msgstr ""
+
+#: templates/reader.html:48
+msgid "Bugs?"
+msgstr ""
+
+#: templates/reader.html:49
 msgid ""
 "If you encounter bugs, or the bookmarklet does not work on a\n"
 "                particular page, contact us with the page URL or details "
@@ -723,7 +815,7 @@ msgid ""
 "                what you were reading when you encountered the problem."
 msgstr ""
 
-#: templates/reader.html:44
+#: templates/reader.html:52
 msgid ""
 "We do not store any private data, but we do collect\n"
 "                individual dictionary lookups for statistics and to "
@@ -731,11 +823,11 @@ msgid ""
 "                the dictionary."
 msgstr ""
 
-#: templates/reader.html:53
+#: templates/reader.html:61
 msgid "Includes"
 msgstr ""
 
-#: templates/reader.html:61
+#: templates/reader.html:69
 msgid ""
 "If you are looking for other languages, please see our <a "
 "href=\"/more/\">other dictionaries</a>."
@@ -767,49 +859,15 @@ msgid ""
 "    menu icon on the left-hand side of the page."
 msgstr ""
 
+#: templates/word_detail_new_style.html:39
+msgid "is a possible form of ... "
+msgstr ""
+
+#: templates/word_detail_new_style.html:129
+msgid "More information about this word"
+msgstr ""
+
 #: views/main.py:89
 msgid "Invalid format. Only json and html allowed."
 msgstr ""
-
-#: views/reader.py:122
-msgid " is a possible form of ... "
-msgstr ""
-
-#~ msgid "Texts"
-#~ msgstr ""
-
-#~ msgid "Swap"
-#~ msgstr ""
-
-#~ msgid "Definition not found for:"
-#~ msgstr ""
-
-#~ msgid "Word %(input)s not found."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "If you are using a device without"
-#~ " a Sámi keyboard, consider using <a"
-#~ " href=\"/SoMe/nob/\">social media mode</a>, which"
-#~ " allows you to type <em>acdnstz</em> "
-#~ "for <em>áčđŋšŧž</em>."
-#~ msgstr ""
-
-#~ msgid "Search for a word, or a word form for a word analysis and definition."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "You selected #SoMe, the variant for "
-#~ "social media, which means that the "
-#~ "letters acdnstz\n"
-#~ "                            will be accepted "
-#~ "as áčđŋšŧž in addition to their "
-#~ "usual values."
-#~ msgstr ""
-
-#~ msgid "is a possible form of ... "
-#~ msgstr ""
-
-#~ msgid "More information about this word"
-#~ msgstr ""
 

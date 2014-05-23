@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-03-13 13:16-0500\n"
+"POT-Creation-Date: 2014-05-23 14:29-0500\n"
 "PO-Revision-Date: 2013-02-01 01:55-0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: se <LL@li.org>\n"
@@ -151,56 +151,66 @@ msgstr "Dábálaš"
 msgid "Sosiála media (maiddái <em>acdnstz</em>)"
 msgstr ""
 
-#: configs/sanat.config.yaml.in:136 configs/sanat.config.yaml.in:147
+#: configs/sanat.config.yaml.in:141 configs/sanat.config.yaml.in:152
 #, fuzzy
 msgid "Standard (äǟ)"
 msgstr "Dábálaš"
 
-#: configs/sanat.config.yaml.in:139 configs/sanat.config.yaml.in:150
+#: configs/sanat.config.yaml.in:144 configs/sanat.config.yaml.in:155
 #, fuzzy
 msgid "Mobile friendly (a &rarr; ä ~ ǟ)"
 msgstr "(... ja doaibmá mobiilatelefovnnas!)"
 
-#: static/js/bookmarklet.js:1245
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246
 msgid "Á"
 msgstr ""
 
-#: static/js/bookmarklet.js:1245
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246
 msgid "Options"
 msgstr ""
 
-#: static/js/bookmarklet.js:1245 templates/about.baakoeh.html:6
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246 templates/about.baakoeh.html:6
 #: templates/about.muter.html:6 templates/about.sanat.html:6
 #: templates/about.sanit.html:6 templates/about.vada.html:7
-#: templates/about.valks.html:7 templates/base.html:110
+#: templates/about.valks.html:7 templates/base.html:122
 msgid "About"
 msgstr "Min birra"
 
-#: static/js/bookmarklet.js:1245
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246
 msgid "Advanced"
 msgstr ""
 
-#: static/js/bookmarklet.js:1245
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246
 msgid "Dictionary"
 msgstr "Sátnegirji"
 
-#: static/js/bookmarklet.js:1245
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246
 msgid "Save"
 msgstr "Vurke"
 
-#: static/js/bookmarklet.js:1245
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246
 msgid "Refresh settings"
 msgstr ""
 
-#: static/js/bookmarklet.js:1245
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246
 msgid "Update detected"
 msgstr ""
 
-#: static/js/bookmarklet.js:1245
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246
 msgid "IE8 Warning"
 msgstr "IE8 váruhus"
 
-#: static/js/bookmarklet.js:1245
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246
 msgid ""
 "In order to look up a word, hold down the <em>Alt</em> or <em>Option</em>"
 " (⌥) key, and doubleclick on a word. The service will contact the "
@@ -211,36 +221,61 @@ msgstr ""
 "siidduin\n"
 "            ja addá dutnje jorgalusa. Ádjána binnáš.\n"
 
-#: static/js/bookmarklet.js:1245
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246
 msgid ""
 "If you find a bug, or if the bookmark does not work on a specific page <a"
 " href=\"mailto:giellatekno@hum.uit.no\">please contact us</a>. Tell us "
 "what page didn't work, or what you did when you discovered the problem."
 msgstr ""
 
-#: static/js/bookmarklet.js:1310
+#: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:1316
+#: static/js/neahttadigisanit.min.js:1311
 msgid "Error!"
 msgstr "Feaila!"
 
-#: static/js/bookmarklet.js:1310
+#: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:1316
+#: static/js/neahttadigisanit.min.js:1311
 msgid "Could not connect to dictionary server"
 msgstr ""
 
-#: static/js/bookmarklet.js:1310
+#: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:1316
+#: static/js/neahttadigisanit.min.js:1311
 msgid "Close"
 msgstr ""
 
-#: static/js/bookmarklet.js:1432 static/js/bookmarklet.js:1714
+#: static/js/bookmarklet.js:1438 static/js/bookmarklet.js:1729
+#: static/js/bookmarklet.min.js:1438 static/js/bookmarklet.min.js:1729
+#: static/js/neahttadigisanit.min.js:1433
+#: static/js/neahttadigisanit.min.js:1724
 msgid "Unknown word"
 msgstr "Amas sátni"
 
-#: static/js/bookmarklet.js:1433
+#: static/js/bookmarklet.js:1439 static/js/bookmarklet.min.js:1439
+#: static/js/neahttadigisanit.min.js:1434
 msgid "You are using"
 msgstr "Don geavahat"
 
-#: static/js/bookmarklet.js:1435
+#: static/js/bookmarklet.js:1441 static/js/bookmarklet.min.js:1441
+#: static/js/neahttadigisanit.min.js:1436
 msgid "Meaning not found"
 msgstr "Ii gávnna:"
+
+#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.min.js:1246
+msgid "Help"
+msgstr ""
+
+#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.min.js:1246
+msgid "This tool was made by Giellatekno at UiT: The Arctic University of Norway."
+msgstr ""
+
+#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.min.js:1246
+msgid "Read more"
+msgstr ""
+
+#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.min.js:1246
+msgid "More tools"
+msgstr ""
 
 #: templates/404.html:51
 msgid ""
@@ -562,19 +597,19 @@ msgid ""
 "Foundation."
 msgstr ""
 
-#: templates/base.html:102
+#: templates/base.html:114
 msgid "Home"
 msgstr "Ruoktu"
 
-#: templates/base.html:106
+#: templates/base.html:118
 msgid "Plugins"
 msgstr "Coahkkal-teavsttas"
 
-#: templates/base.html:115
+#: templates/base.html:127
 msgid "Interface language"
 msgstr ""
 
-#: templates/base.html:181
+#: templates/base.html:193
 msgid ""
 "Created with free and open-source language tools from <em><a "
 "href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, a Sámi Language "
@@ -603,7 +638,8 @@ msgstr "Eará sátnegirjjit"
 msgid "Swap"
 msgstr "Molsso"
 
-#: templates/index.html:66 templates/index.html:151 views/reader.py:122
+#: templates/index.html:66 templates/index.html:151
+#: templates/word_detail_new_style.html:106 views/reader.py:122
 msgid " is a possible form of ... "
 msgstr " lea vejolaččat dán sáni hápmi:"
 
@@ -654,7 +690,7 @@ msgid "ohcansátni"
 msgstr ""
 
 #: templates/index_search_form.html:20 templates/index_search_form.html:39
-#: templates/index_search_form.html:43
+#: templates/index_search_form.html:43 templates/word_detail_new_style.html:97
 msgid "Search"
 msgstr "Oza"
 
@@ -790,34 +826,53 @@ msgid "To change the dictionary, click the menu icon."
 msgstr "Sáhtát lonuhit sátnegirjji <em>Á</em>-fálus."
 
 #: templates/reader.html:32
+msgid "Installing on a website"
+msgstr ""
+
+#: templates/reader.html:34
+msgid ""
+"It is also possible to install the reader plugin on a website,\n"
+"                so that users will have access to dictionaries without "
+"the\n"
+"                bookmarklet."
+msgstr ""
+
+#: templates/reader.html:39
+msgid ""
+"To do so, <a "
+"href=\"http://giellatekno.uit.no/doc/dicts/nds/AddingNDSPluginToOtherSites.html\">follow"
+" our documentation</a>."
+msgstr ""
+
+#: templates/reader.html:40
 msgid "Browser support"
 msgstr "Neahttalohkkiid doarjja"
 
-#: templates/reader.html:33
+#: templates/reader.html:41
 msgid "The reader is supported in the following browsers:"
 msgstr "Lohkanveahkki doabimá dáin neahttalohkkiin:"
 
-#: templates/reader.html:35
+#: templates/reader.html:43
 msgid "Chrome (version 20 and newer)"
 msgstr "Chrome (veršuvdna 20 dahje ođđasat)"
 
-#: templates/reader.html:36
+#: templates/reader.html:44
 msgid "Internet Explorer (version 9 and newer)"
 msgstr "Internet Explorer (veršuvdna 9 dahje ođđasat)"
 
-#: templates/reader.html:37
+#: templates/reader.html:45
 msgid "Firefox (version 18 and newer)"
 msgstr "Firefox (veršuvdna 18 dahje ođđasat)"
 
-#: templates/reader.html:38
+#: templates/reader.html:46
 msgid "Opera (version 16 and newer)"
 msgstr "Opera (veršuvdna 16 dahje ođđasat)"
 
-#: templates/reader.html:40
+#: templates/reader.html:48
 msgid "Bugs?"
 msgstr "Meattáhusat?"
 
-#: templates/reader.html:41
+#: templates/reader.html:49
 msgid ""
 "If you encounter bugs, or the bookmarklet does not work on a\n"
 "                particular page, contact us with the page URL or details "
@@ -829,7 +884,7 @@ msgstr ""
 "            siiddu URL ja maid don ledjet lohkame dalle go\n"
 "            vuogádat ii doaibman."
 
-#: templates/reader.html:44
+#: templates/reader.html:52
 msgid ""
 "We do not store any private data, but we do collect\n"
 "                individual dictionary lookups for statistics and to "
@@ -839,11 +894,11 @@ msgstr ""
 "Mii eat vurke priváhta dieđuid, muhto mii vurket sániid maid ozat\n"
 "            statistihka ja sátnegirjji buorideami dihte."
 
-#: templates/reader.html:53
+#: templates/reader.html:61
 msgid "Includes"
 msgstr "Dás leat:"
 
-#: templates/reader.html:61
+#: templates/reader.html:69
 msgid ""
 "If you are looking for other languages, please see our <a "
 "href=\"/more/\">other dictionaries</a>."
@@ -884,6 +939,15 @@ msgstr ""
 "            lohkat. Bálvalus sajáiduvvá automáhtalaččat, ja gurut\n"
 "            ravddas ihtá dalle fállu (<em>Á</em>) gos sáhtát válljet "
 "giela."
+
+#: templates/word_detail_new_style.html:39
+#, fuzzy
+msgid "is a possible form of ... "
+msgstr " lea vejolaččat dán sáni hápmi:"
+
+#: templates/word_detail_new_style.html:129
+msgid "More information about this word"
+msgstr ""
 
 #: views/main.py:89
 msgid "Invalid format. Only json and html allowed."

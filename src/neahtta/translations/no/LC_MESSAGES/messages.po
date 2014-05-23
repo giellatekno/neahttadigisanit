@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-03-13 13:16-0500\n"
+"POT-Creation-Date: 2014-05-23 14:29-0500\n"
 "PO-Revision-Date: 2013-02-01 01:54-0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: no <LL@li.org>\n"
@@ -151,56 +151,66 @@ msgstr "Standard (<em>áčđŋšŧž</em>)"
 msgid "Sosiála media (maiddái <em>acdnstz</em>)"
 msgstr "For sosiale media (forstår <em>acdnstz</em>)"
 
-#: configs/sanat.config.yaml.in:136 configs/sanat.config.yaml.in:147
+#: configs/sanat.config.yaml.in:141 configs/sanat.config.yaml.in:152
 #, fuzzy
 msgid "Standard (äǟ)"
 msgstr "Standard"
 
-#: configs/sanat.config.yaml.in:139 configs/sanat.config.yaml.in:150
+#: configs/sanat.config.yaml.in:144 configs/sanat.config.yaml.in:155
 #, fuzzy
 msgid "Mobile friendly (a &rarr; ä ~ ǟ)"
 msgstr "(... og er tilpassa mobiltelefonen!)"
 
-#: static/js/bookmarklet.js:1245
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246
 msgid "Á"
 msgstr "Á"
 
-#: static/js/bookmarklet.js:1245
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246
 msgid "Options"
 msgstr "Alternativer"
 
-#: static/js/bookmarklet.js:1245 templates/about.baakoeh.html:6
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246 templates/about.baakoeh.html:6
 #: templates/about.muter.html:6 templates/about.sanat.html:6
 #: templates/about.sanit.html:6 templates/about.vada.html:7
-#: templates/about.valks.html:7 templates/base.html:110
+#: templates/about.valks.html:7 templates/base.html:122
 msgid "About"
 msgstr "Om oss"
 
-#: static/js/bookmarklet.js:1245
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246
 msgid "Advanced"
 msgstr "Avansert"
 
-#: static/js/bookmarklet.js:1245
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246
 msgid "Dictionary"
 msgstr "Andre ordbøker"
 
-#: static/js/bookmarklet.js:1245
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246
 msgid "Save"
 msgstr "Lagre"
 
-#: static/js/bookmarklet.js:1245
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246
 msgid "Refresh settings"
 msgstr "Oppdater innstillingene"
 
-#: static/js/bookmarklet.js:1245
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246
 msgid "Update detected"
 msgstr "Oppdater funn"
 
-#: static/js/bookmarklet.js:1245
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246
 msgid "IE8 Warning"
 msgstr "IE8-advarsel"
 
-#: static/js/bookmarklet.js:1245
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246
 msgid ""
 "In order to look up a word, hold down the <em>Alt</em> or <em>Option</em>"
 " (⌥) key, and doubleclick on a word. The service will contact the "
@@ -211,7 +221,8 @@ msgstr ""
 "og dobbelklikker på ordet. Tjenesten vil kontakte denne nettsida\n"
 "og returnere ordboksoppslag etter en kort pause."
 
-#: static/js/bookmarklet.js:1245
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.min.js:1246
 msgid ""
 "If you find a bug, or if the bookmark does not work on a specific page <a"
 " href=\"mailto:giellatekno@hum.uit.no\">please contact us</a>. Tell us "
@@ -222,29 +233,53 @@ msgstr ""
 "oss</a>. Fortell oss hvilken side som ikke fungerte, eller hva du gjorde "
 "da du oppdaga problemet."
 
-#: static/js/bookmarklet.js:1310
+#: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:1316
+#: static/js/neahttadigisanit.min.js:1311
 msgid "Error!"
 msgstr "Feil!"
 
-#: static/js/bookmarklet.js:1310
+#: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:1316
+#: static/js/neahttadigisanit.min.js:1311
 msgid "Could not connect to dictionary server"
 msgstr "Vi er ikke i stand til å forbinde til ordboksserveren"
 
-#: static/js/bookmarklet.js:1310
+#: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:1316
+#: static/js/neahttadigisanit.min.js:1311
 msgid "Close"
 msgstr "Lukk"
 
-#: static/js/bookmarklet.js:1432 static/js/bookmarklet.js:1714
+#: static/js/bookmarklet.js:1438 static/js/bookmarklet.js:1729
+#: static/js/bookmarklet.min.js:1438 static/js/bookmarklet.min.js:1729
+#: static/js/neahttadigisanit.min.js:1433
+#: static/js/neahttadigisanit.min.js:1724
 msgid "Unknown word"
 msgstr "Ukjent ord"
 
-#: static/js/bookmarklet.js:1433
+#: static/js/bookmarklet.js:1439 static/js/bookmarklet.min.js:1439
+#: static/js/neahttadigisanit.min.js:1434
 msgid "You are using"
 msgstr "Du bruker"
 
-#: static/js/bookmarklet.js:1435
+#: static/js/bookmarklet.js:1441 static/js/bookmarklet.min.js:1441
+#: static/js/neahttadigisanit.min.js:1436
 msgid "Meaning not found"
 msgstr "Vi fant ingen oversetting"
+
+#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.min.js:1246
+msgid "Help"
+msgstr ""
+
+#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.min.js:1246
+msgid "This tool was made by Giellatekno at UiT: The Arctic University of Norway."
+msgstr "Språkverktøy laget av Giellatekno ved UiT Norges arktiske universitet."
+
+#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.min.js:1246
+msgid "Read more"
+msgstr "Les mer"
+
+#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.min.js:1246
+msgid "More tools"
+msgstr "Flere verktøy"
 
 #: templates/404.html:51
 msgid ""
@@ -259,8 +294,8 @@ msgid ""
 "If you followed a link from the front page, it may be that the dictionary"
 " you were browsing is not yet bilingual."
 msgstr ""
-"Hvis du fulgte ei lenke fra forsida, kan det være at ordboka du "
-"leste i ikke går begge veier enda."
+"Hvis du fulgte ei lenke fra forsida, kan det være at ordboka du leste i "
+"ikke går begge veier enda."
 
 #: templates/500.html:51
 msgid "Whoops! There was some kind of error."
@@ -602,19 +637,19 @@ msgstr ""
 "Oversettelsesarbeidet blir utført av Merja Salo ved Universitetet i "
 "Helsingfors, med finansiering av Kone-stiftelsen."
 
-#: templates/base.html:102
+#: templates/base.html:114
 msgid "Home"
 msgstr "Hjem"
 
-#: templates/base.html:106
+#: templates/base.html:118
 msgid "Plugins"
 msgstr "Klikk-i-tekst"
 
-#: templates/base.html:115
+#: templates/base.html:127
 msgid "Interface language"
 msgstr "Grensesnittspråk"
 
-#: templates/base.html:181
+#: templates/base.html:193
 msgid ""
 "Created with free and open-source language tools from <em><a "
 "href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, a Sámi Language "
@@ -643,7 +678,8 @@ msgstr "Andre ordbøker"
 msgid "Swap"
 msgstr "Snu"
 
-#: templates/index.html:66 templates/index.html:151 views/reader.py:122
+#: templates/index.html:66 templates/index.html:151
+#: templates/word_detail_new_style.html:106 views/reader.py:122
 msgid " is a possible form of ... "
 msgstr " er en mulig form av ... "
 
@@ -694,7 +730,7 @@ msgid "ohcansátni"
 msgstr "søkeord"
 
 #: templates/index_search_form.html:20 templates/index_search_form.html:39
-#: templates/index_search_form.html:43
+#: templates/index_search_form.html:43 templates/word_detail_new_style.html:97
 msgid "Search"
 msgstr "Søk"
 
@@ -838,34 +874,53 @@ msgstr ""
 "\"menyikonet (<em>Á</em>)."
 
 #: templates/reader.html:32
+msgid "Installing on a website"
+msgstr ""
+
+#: templates/reader.html:34
+msgid ""
+"It is also possible to install the reader plugin on a website,\n"
+"                so that users will have access to dictionaries without "
+"the\n"
+"                bookmarklet."
+msgstr ""
+
+#: templates/reader.html:39
+msgid ""
+"To do so, <a "
+"href=\"http://giellatekno.uit.no/doc/dicts/nds/AddingNDSPluginToOtherSites.html\">follow"
+" our documentation</a>."
+msgstr ""
+
+#: templates/reader.html:40
 msgid "Browser support"
 msgstr "Nettleserstøtte"
 
-#: templates/reader.html:33
+#: templates/reader.html:41
 msgid "The reader is supported in the following browsers:"
 msgstr "Lesehjelper fungerer med følgende nettlesere:"
 
-#: templates/reader.html:35
+#: templates/reader.html:43
 msgid "Chrome (version 20 and newer)"
 msgstr "Chrome (versjon 20 eller nyere)"
 
-#: templates/reader.html:36
+#: templates/reader.html:44
 msgid "Internet Explorer (version 9 and newer)"
 msgstr "Internet Explorer (versjon 9 eller nyere)"
 
-#: templates/reader.html:37
+#: templates/reader.html:45
 msgid "Firefox (version 18 and newer)"
 msgstr "Firefox (versjon 18 eller nyere)"
 
-#: templates/reader.html:38
+#: templates/reader.html:46
 msgid "Opera (version 16 and newer)"
 msgstr "Opera (versjon 16 eller nyere)"
 
-#: templates/reader.html:40
+#: templates/reader.html:48
 msgid "Bugs?"
 msgstr "Feil?"
 
-#: templates/reader.html:41
+#: templates/reader.html:49
 msgid ""
 "If you encounter bugs, or the bookmarklet does not work on a\n"
 "                particular page, contact us with the page URL or details "
@@ -876,7 +931,7 @@ msgstr ""
 "ei viss side må du gjerne kontakte oss. Si i tilfelle fra hvilken\n"
 "side det gjaldt eller hva som var problemet."
 
-#: templates/reader.html:44
+#: templates/reader.html:52
 msgid ""
 "We do not store any private data, but we do collect\n"
 "                individual dictionary lookups for statistics and to "
@@ -887,11 +942,11 @@ msgstr ""
 "vi samler statistikk over hvilke ordboksoppslag som blir gjort,\n"
 "for å rette mangler og forbedre ordboka."
 
-#: templates/reader.html:53
+#: templates/reader.html:61
 msgid "Includes"
 msgstr "Inkluderer"
 
-#: templates/reader.html:61
+#: templates/reader.html:69
 msgid ""
 "If you are looking for other languages, please see our <a "
 "href=\"/more/\">other dictionaries</a>."
@@ -932,6 +987,15 @@ msgstr ""
 "deretter klikker du på den hver gang du har funnet ei side\n"
 "du gjerne vil lese. Tjenesten vil bli installert automatisk,\n"
 "og du ser et menyikon (<em>Á</em>) på venstre side av nettsida."
+
+#: templates/word_detail_new_style.html:39
+#, fuzzy
+msgid "is a possible form of ... "
+msgstr " er en mulig form av ... "
+
+#: templates/word_detail_new_style.html:129
+msgid "More information about this word"
+msgstr ""
 
 #: views/main.py:89
 msgid "Invalid format. Only json and html allowed."
