@@ -9,10 +9,12 @@ ApplicationSettings:
     - sms
     - fi
     - en
+    - no
+    - ru
   meta_description: >
-      Free online, mobile friendly dictionaries for Nenets
+      Free online, mobile friendly dictionaries for Skolt Saami
   meta_keywords: >
-      nenets, nenetsi, mobile, dictionary, free, russian
+      skolt saami, koltansaame, mobile, dictionary, free, russian
 
 Tools:
   xfst_lookup: &LOOKUP '/usr/bin/lookup'
