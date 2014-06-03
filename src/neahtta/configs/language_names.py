@@ -60,6 +60,7 @@ NAMES = dict([
 
     # pikiskwewina
     ('crk', _(u"Plains Cree")),
+    ('crkM', _(u"Plains Cree") + " (" + _("mobile friendly") + ")"),
 
     # guusaaw
     ('hdn', _(u"Northern Haida")),
@@ -106,6 +107,7 @@ LOCALISATION_NAMES_BY_LANGUAGE = dict([
     ('izh', u"Ižoran keel"),
     ('fkv', u"Kveenin kieli"),
     ('fi', u"Suomi"),
+    ('crk', u"TODO: crk"),
     ('eng', u"English"),
     ('et', u"Eesti"),
     ('est', u"Eesti"),
