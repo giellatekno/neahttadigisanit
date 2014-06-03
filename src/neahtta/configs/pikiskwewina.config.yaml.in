@@ -28,6 +28,16 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
+  crkM:
+    tool: *LOOKUP
+    file: [*OPT, '/crk/bin/analyser-dict-gt-desc-mobile.xfst']
+    inverse_file: [*OPT, '/crk/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
 
 Languages:
   - iso: crk
@@ -37,4 +47,12 @@ Dictionaries:
   - source: crk
     target: eng
     path: 'dicts/crkeng.xml'
+    input_variants: &spell_relax
+      - type: "standard"
+        description: !gettext "Standard (aâ)"
+        # NB: must be same as analyser name
+        short_name: "crk"
+      - type: "mobile"
+        description: !gettext "Mobile friendly (a &rarr; a ~ â)"
+        short_name: "crkM"
 
