@@ -36,6 +36,12 @@ class Config(Config):
     def locales_available(self):
         _p = self.yaml.get('ApplicationSettings', {})\
                       .get('locales_available', False)
+        if len( list(set( map(type, _p) ))) > 1:
+            err_str = "Type error in locales_available. If <no> is listed, make sure it is quoted."
+            raise RuntimeError(err_str + 
+                               'See config file %s, in ApplicationSettings.' %
+                               self.filename)
+
         if _p:
             return _p
         else:
