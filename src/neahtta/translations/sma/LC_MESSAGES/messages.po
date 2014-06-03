@@ -68,7 +68,6 @@ msgid "Livonian"
 msgstr ""
 
 #: configs/language_names.py:40
-#, fuzzy
 msgid "mobile friendly"
 msgstr "(... og er tilpassa mobiltelefonen!)"
 
@@ -156,7 +155,6 @@ msgid "Standard (äǟ)"
 msgstr ""
 
 #: configs/sanat.config.yaml.in:144 configs/sanat.config.yaml.in:155
-#, fuzzy
 msgid "Mobile friendly (a &rarr; ä ~ ǟ)"
 msgstr "(... og er tilpassa mobiltelefonen!)"
 
@@ -937,9 +935,7 @@ msgstr ""
 #: templates/word_detail_new_style.html:39
 #, fuzzy
 msgid "is a possible form of ... "
-msgstr ""
-"\n"
-"Dïhte sån baakoehammoe daehtie baakoste"
+msgstr "Dïhte sån baakoehammoe daehtie baakoste: "
 
 #: templates/word_detail_new_style.html:129
 msgid "More information about this word"

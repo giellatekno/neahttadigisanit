@@ -68,7 +68,6 @@ msgid "Livonian"
 msgstr "Livisk"
 
 #: configs/language_names.py:40
-#, fuzzy
 msgid "mobile friendly"
 msgstr "(... og er tilpassa mobiltelefonen!)"
 
@@ -152,12 +151,10 @@ msgid "Sosiála media (maiddái <em>acdnstz</em>)"
 msgstr "For sosiale media (forstår <em>acdnstz</em>)"
 
 #: configs/sanat.config.yaml.in:141 configs/sanat.config.yaml.in:152
-#, fuzzy
 msgid "Standard (äǟ)"
 msgstr "Standard"
 
 #: configs/sanat.config.yaml.in:144 configs/sanat.config.yaml.in:155
-#, fuzzy
 msgid "Mobile friendly (a &rarr; ä ~ ǟ)"
 msgstr "(... og er tilpassa mobiltelefonen!)"
 
@@ -538,7 +535,6 @@ msgid "Find a problem?"
 msgstr "Har du støtt på et problem?"
 
 #: templates/about.sanit.html:74
-#, fuzzy
 msgid ""
 "If you find any bugs, please get in touch with us. Describe the problem,\n"
 "                and tell us what web browser or mobile phone you were "
@@ -554,7 +550,6 @@ msgid "Contact us"
 msgstr "Kontakt oss"
 
 #: templates/about.sanit.html:89
-#, fuzzy
 msgid ""
 "Need more dictionaries? <a href=\"http://dicts.uit.no/\">Here's our full "
 "list</a>, and more\n"
@@ -989,7 +984,6 @@ msgstr ""
 "og du ser et menyikon (<em>Á</em>) på venstre side av nettsida."
 
 #: templates/word_detail_new_style.html:39
-#, fuzzy
 msgid "is a possible form of ... "
 msgstr " er en mulig form av ... "
 

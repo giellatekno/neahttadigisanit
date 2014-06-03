@@ -69,7 +69,6 @@ msgid "Livonian"
 msgstr "Лив"
 
 #: configs/language_names.py:40
-#, fuzzy
 msgid "mobile friendly"
 msgstr "(... И для мобильных устройств!)"
 
@@ -157,7 +156,6 @@ msgid "Standard (äǟ)"
 msgstr ""
 
 #: configs/sanat.config.yaml.in:144 configs/sanat.config.yaml.in:155
-#, fuzzy
 msgid "Mobile friendly (a &rarr; ä ~ ǟ)"
 msgstr "(... И для мобильных устройств!)"
 
@@ -643,7 +641,6 @@ msgid " is a possible form of ... "
 msgstr "форма на левой стороне образованна из формы правой стороны"
 
 #: templates/index.html:121
-#, fuzzy
 msgid "Definition not found for:"
 msgstr "Значение не нашлось для:"
 
@@ -926,7 +923,6 @@ msgstr ""
 "                 значок меню на левой стороне страницы."
 
 #: templates/word_detail_new_style.html:39
-#, fuzzy
 msgid "is a possible form of ... "
 msgstr "форма на левой стороне образованна из формы правой стороны"
 

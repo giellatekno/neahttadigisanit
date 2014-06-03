@@ -24,7 +24,6 @@ msgid "Standard"
 msgstr "Стандарт"
 
 #: configs/kyv.config.yaml.in:96
-#, fuzzy
 msgid "Molotsov orthography (ԅ &rarr; зь)"
 msgstr "Молодцовонь орфографиясо"
 
@@ -154,12 +153,10 @@ msgid "Sosiála media (maiddái <em>acdnstz</em>)"
 msgstr "Соцмедия  (<em>acdnstz</em> букватнеяк)"
 
 #: configs/sanat.config.yaml.in:141 configs/sanat.config.yaml.in:152
-#, fuzzy
 msgid "Standard (äǟ)"
 msgstr "Стандарт (äǟ)"
 
 #: configs/sanat.config.yaml.in:144 configs/sanat.config.yaml.in:155
-#, fuzzy
 msgid "Mobile friendly (a &rarr; ä ~ ǟ)"
 msgstr "сотовойнень шожда"
 
@@ -589,7 +586,6 @@ msgid " is a possible form of ... "
 msgstr "валпарцунось маштови саемс истямо валсто ..."
 
 #: templates/index.html:121
-#, fuzzy
 msgid "Definition not found for:"
 msgstr "Смусть эзь муеве те валонтень"
 
@@ -866,7 +862,6 @@ msgstr ""
 "                лопанть керш крайнесэ."
 
 #: templates/word_detail_new_style.html:39
-#, fuzzy
 msgid "is a possible form of ... "
 msgstr "валпарцунось маштови саемс истямо валсто ..."
 
