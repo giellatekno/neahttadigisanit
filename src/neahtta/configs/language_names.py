@@ -56,6 +56,7 @@ NAMES = dict([
 
     # saan
     ('sms', _(u"Skolt Sámi")),
+    ('smsM', _(u"Skolt Sámi") + " (" + _("mobile friendly") + ")"),
 
     # pikiskwewina
     ('crk', _(u"Plains Cree")),
