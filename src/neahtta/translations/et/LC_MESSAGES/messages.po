@@ -553,7 +553,6 @@ msgid "yrk ↔ fin"
 msgstr "yrk ↔ fin"
 
 #: templates/about.vada.html:60
-#, fuzzy
 msgid ""
 "Dictionaries for Nenets and Finnish are based on\n"
 "                the lexical materials and scientific research by Natalia "
@@ -658,7 +657,6 @@ msgid " is a possible form of ... "
 msgstr " võib olla vorm sõnast ... "
 
 #: templates/index.html:121
-#, fuzzy
 msgid "Definition not found for:"
 msgstr "Tähendust ei leitud"
 
@@ -940,7 +938,6 @@ msgstr ""
 "\"    menüüikooni lehekülje vasakus servas."
 
 #: templates/word_detail_new_style.html:39
-#, fuzzy
 msgid "is a possible form of ... "
 msgstr " võib olla vorm sõnast ... "
 

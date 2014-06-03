@@ -69,7 +69,6 @@ msgid "Livonian"
 msgstr "Lībiešu"
 
 #: configs/language_names.py:40
-#, fuzzy
 msgid "mobile friendly"
 msgstr "(Un ir draudzīga mobilajiem tālruņiem!)"
 
@@ -157,7 +156,6 @@ msgid "Standard (äǟ)"
 msgstr ""
 
 #: configs/sanat.config.yaml.in:144 configs/sanat.config.yaml.in:155
-#, fuzzy
 msgid "Mobile friendly (a &rarr; ä ~ ǟ)"
 msgstr "(Un ir draudzīga mobilajiem tālruņiem!)"
 
@@ -644,7 +642,6 @@ msgid " is a possible form of ... "
 msgstr "ir iespējamā forma no vārda …"
 
 #: templates/index.html:121
-#, fuzzy
 msgid "Definition not found for:"
 msgstr "Tulkojums netika atrasts"
 
@@ -932,7 +929,6 @@ msgstr ""
 "    jūs ieraudzīsiet izvēlnes ikonu."
 
 #: templates/word_detail_new_style.html:39
-#, fuzzy
 msgid "is a possible form of ... "
 msgstr "ir iespējamā forma no vārda …"
 

@@ -633,9 +633,8 @@ msgstr ""
 "тидӹм шанен лыктын дӓ виӓнгден."
 
 #: templates/config_doc.html:4
-#, fuzzy
 msgid "Neahttadigisánit"
-msgstr "Neahttadigisánit лыдмаш программа"
+msgstr "Neahttadigisánit"
 
 #: templates/index.html:19 templates/left_dictionary_list.html:1
 msgid "Dictionaries"

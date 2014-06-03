@@ -648,7 +648,6 @@ msgid "<span class=\"reposition_hide\">Language</span>"
 msgstr ""
 
 #: templates/language_select_noflags.html:7
-#, fuzzy
 msgid "Language"
 msgstr "Кыв"
 
@@ -681,7 +680,6 @@ msgid "Balto-finnic languages"
 msgstr ""
 
 #: templates/more_dictionaries.html:38
-#, fuzzy
 msgid "Olonets"
 msgstr "ливви-кареля"
 

@@ -68,7 +68,6 @@ msgid "Livonian"
 msgstr "Liivi"
 
 #: configs/language_names.py:40
-#, fuzzy
 msgid "mobile friendly"
 msgstr "(... ja on kännykkä-ystävällinen!)"
 
@@ -156,7 +155,6 @@ msgid "Standard (äǟ)"
 msgstr "Standardi (äǟ)"
 
 #: configs/sanat.config.yaml.in:144 configs/sanat.config.yaml.in:155
-#, fuzzy
 msgid "Mobile friendly (a &rarr; ä ~ ǟ)"
 msgstr "(... ja on kännykkä-ystävällinen!)"
 
@@ -614,7 +612,6 @@ msgid " is a possible form of ... "
 msgstr " on mahdollinen muoto sanasta ..."
 
 #: templates/index.html:121
-#, fuzzy
 msgid "Definition not found for:"
 msgstr "Merkitystä ei löydy"
 
@@ -882,7 +879,6 @@ msgid ""
 msgstr ""
 
 #: templates/word_detail_new_style.html:39
-#, fuzzy
 msgid "is a possible form of ... "
 msgstr " on mahdollinen muoto sanasta ..."
 
