@@ -19,11 +19,11 @@ msgstr ""
 
 #: configs/kyv.config.yaml.in:93
 msgid "Standard"
-msgstr ""
+msgstr "Standard"
 
 #: configs/kyv.config.yaml.in:96
 msgid "Molotsov orthography (ԅ &rarr; зь)"
-msgstr ""
+msgstr "Molotsov-ortografi"
 
 #: configs/language_names.py:23 configs/language_names.py:24
 #: templates/more_dictionaries.html:27
@@ -40,7 +40,7 @@ msgstr "Engelska"
 
 #: configs/language_names.py:27
 msgid "Hungarian"
-msgstr ""
+msgstr "Ungerska"
 
 #: configs/language_names.py:30 templates/more_dictionaries.html:28
 msgid "South Sámi"
@@ -48,15 +48,15 @@ msgstr "Sydsamiska"
 
 #: configs/language_names.py:33 configs/language_names.py:34
 msgid "Komi"
-msgstr ""
+msgstr "Komi"
 
 #: configs/language_names.py:34
 msgid "Molotsov orthography"
-msgstr ""
+msgstr "Molotsov-ortografi"
 
 #: configs/language_names.py:35
 msgid "Udmurt"
-msgstr ""
+msgstr "Udmurtiska"
 
 #: configs/language_names.py:38 templates/more_dictionaries.html:38
 msgid "Kven"
@@ -89,11 +89,11 @@ msgstr "Erzjamordvinska"
 
 #: configs/language_names.py:47 templates/more_dictionaries.html:39
 msgid "Moksha"
-msgstr ""
+msgstr "Moksha"
 
 #: configs/language_names.py:48 configs/language_names.py:80
 msgid "French"
-msgstr ""
+msgstr "Franska"
 
 #: configs/language_names.py:51
 msgid "Western Mari"
@@ -113,11 +113,11 @@ msgstr "Skoltsamiska"
 
 #: configs/language_names.py:61
 msgid "Plains Cree"
-msgstr ""
+msgstr "Plains Cree"
 
 #: configs/language_names.py:64
 msgid "Northern Haida"
-msgstr ""
+msgstr "Nord-haida"
 
 #: configs/language_names.py:67 configs/language_names.py:73
 msgid "Finnish"
@@ -138,21 +138,21 @@ msgstr "Lettiska"
 
 #: configs/language_names.py:79
 msgid "Haida"
-msgstr ""
+msgstr "Haida"
 
 #: configs/sample.config.yaml.in:114 configs/sanit.config.yaml.in:113
 #: configs/sanit.config.yaml.in:140
 msgid "Standárda (<em>áčđŋšŧž</em>)"
-msgstr ""
+msgstr "Standard (<em>áčđŋšŧž</em>)"
 
 #: configs/sample.config.yaml.in:117 configs/sanit.config.yaml.in:116
 #: configs/sanit.config.yaml.in:143
 msgid "Sosiála media (maiddái <em>acdnstz</em>)"
-msgstr ""
+msgstr "Sociala media (också <em>acdnstz</em>)"
 
 #: configs/sanat.config.yaml.in:141 configs/sanat.config.yaml.in:152
 msgid "Standard (äǟ)"
-msgstr ""
+msgstr "Standard (äǟ)"
 
 #: configs/sanat.config.yaml.in:144 configs/sanat.config.yaml.in:155
 msgid "Mobile friendly (a &rarr; ä ~ ǟ)"
@@ -161,12 +161,12 @@ msgstr "(... och är mobiltelefon-vänlig!)"
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
 #: static/js/neahttadigisanit.min.js:1246
 msgid "Á"
-msgstr ""
+msgstr "Á"
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
 #: static/js/neahttadigisanit.min.js:1246
 msgid "Options"
-msgstr ""
+msgstr "Alternativer"
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
 #: static/js/neahttadigisanit.min.js:1246 templates/about.baakoeh.html:6
@@ -179,12 +179,12 @@ msgstr "Om oss"
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
 #: static/js/neahttadigisanit.min.js:1246
 msgid "Advanced"
-msgstr ""
+msgstr "Avancerad"
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
 #: static/js/neahttadigisanit.min.js:1246
 msgid "Dictionary"
-msgstr ""
+msgstr "Ordbok"
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
 #: static/js/neahttadigisanit.min.js:1246
@@ -194,17 +194,17 @@ msgstr "Spara"
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
 #: static/js/neahttadigisanit.min.js:1246
 msgid "Refresh settings"
-msgstr ""
+msgstr "Uppdatera inställningar"
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
 #: static/js/neahttadigisanit.min.js:1246
 msgid "Update detected"
-msgstr ""
+msgstr "Vi hittade en uppdatering"
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
 #: static/js/neahttadigisanit.min.js:1246
 msgid "IE8 Warning"
-msgstr ""
+msgstr "IE8-varning"
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
 #: static/js/neahttadigisanit.min.js:1246
@@ -225,16 +225,21 @@ msgid ""
 " href=\"mailto:giellatekno@hum.uit.no\">please contact us</a>. Tell us "
 "what page didn't work, or what you did when you discovered the problem."
 msgstr ""
+"Viss du har funnit en fel, eller viss bokmärken inte fungerer för "
+"en specifik sida, var god att <a"
+" href=\"mailto:giellatekno@hum.uit.no\">kontakta oss</a>. "
+"Berätta vilken sida som inte fungerande, eller vad du gjorde då "
+"upptäckte problemet."
 
 #: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:1316
 #: static/js/neahttadigisanit.min.js:1311
 msgid "Error!"
-msgstr ""
+msgstr "Fel!"
 
 #: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:1316
 #: static/js/neahttadigisanit.min.js:1311
 msgid "Could not connect to dictionary server"
-msgstr ""
+msgstr "Kan inte kontakta ordboksservaren"
 
 #: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:1316
 #: static/js/neahttadigisanit.min.js:1311
@@ -256,11 +261,11 @@ msgstr "Du använder"
 #: static/js/bookmarklet.js:1441 static/js/bookmarklet.min.js:1441
 #: static/js/neahttadigisanit.min.js:1436
 msgid "Meaning not found"
-msgstr ""
+msgstr "Vi fann inte någon mening"
 
 #: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.min.js:1246
 msgid "Help"
-msgstr ""
+msgstr "Hjälp"
 
 #: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.min.js:1246
 msgid "This tool was made by Giellatekno at UiT: The Arctic University of Norway."
@@ -268,11 +273,11 @@ msgstr ""
 
 #: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.min.js:1246
 msgid "Read more"
-msgstr ""
+msgstr "Läs mera"
 
 #: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.min.js:1246
 msgid "More tools"
-msgstr ""
+msgstr "Mera värktyg"
 
 #: templates/404.html:51
 msgid ""
@@ -372,11 +377,11 @@ msgstr "gå, dra, reise"
 #: templates/about.sanat.html:50 templates/about.sanit.html:50
 #: templates/about.vada.html:52 templates/about.valks.html:52
 msgid "Source material"
-msgstr ""
+msgstr "Källmaterial"
 
 #: templates/about.baakoeh.html:57 templates/about.sanit.html:57
 msgid "sme ↔ nob"
-msgstr ""
+msgstr "Nordsamiska ↔ norska"
 
 #: templates/about.baakoeh.html:58 templates/about.sanit.html:58
 msgid ""
@@ -394,7 +399,7 @@ msgstr ""
 
 #: templates/about.baakoeh.html:62 templates/about.sanit.html:62
 msgid "sma ↔ nob"
-msgstr ""
+msgstr "Sydsamiska ↔ norska"
 
 #: templates/about.baakoeh.html:63 templates/about.sanit.html:63
 msgid ""
@@ -409,7 +414,7 @@ msgstr ""
 
 #: templates/about.baakoeh.html:66 templates/about.sanit.html:66
 msgid "sme ↔ fin"
-msgstr ""
+msgstr "Nordsamiska ↔ finska"
 
 #: templates/about.baakoeh.html:67 templates/about.sanit.html:67
 msgid ""
@@ -434,11 +439,11 @@ msgstr "Mer kommer..."
 #: templates/about.muter.html:43 templates/about.vada.html:45
 #: templates/about.valks.html:45
 msgid "mennä, lähteä, kulkea"
-msgstr ""
+msgstr "mennä, lähteä, kulkea"
 
 #: templates/about.muter.html:57
 msgid "mrj ↔ fin"
-msgstr ""
+msgstr "Västmariska ↔ finska"
 
 #: templates/about.muter.html:58
 msgid ""
@@ -458,11 +463,11 @@ msgstr ""
 
 #: templates/about.sanat.html:43
 msgid "mennä, tapahtua, viedä, johtaa, edistyä"
-msgstr ""
+msgstr "mennä, tapahtua, viedä, johtaa, edistyä"
 
 #: templates/about.sanat.html:57
 msgid "liv ↔ fin"
-msgstr ""
+msgstr "Liviska ↔ finska"
 
 #: templates/about.sanat.html:58
 msgid ""
@@ -480,7 +485,7 @@ msgstr ""
 
 #: templates/about.sanat.html:67
 msgid "olo ↔ fin"
-msgstr ""
+msgstr "Olonetsiska ↔ finska"
 
 #: templates/about.sanat.html:68
 msgid ""
@@ -495,7 +500,7 @@ msgstr ""
 
 #: templates/about.sanit.html:73
 msgid "Find a problem?"
-msgstr ""
+msgstr "Hittade du ett problem?"
 
 #: templates/about.sanit.html:74
 msgid ""
@@ -507,7 +512,7 @@ msgstr ""
 
 #: templates/about.sanit.html:79 templates/about.sanit.html:84
 msgid "Contact us"
-msgstr ""
+msgstr "Kontakta oss"
 
 #: templates/about.sanit.html:89
 msgid ""
@@ -518,7 +523,7 @@ msgstr ""
 
 #: templates/about.vada.html:59
 msgid "yrk ↔ fin"
-msgstr ""
+msgstr "Nenetsiska ↔ finska"
 
 #: templates/about.vada.html:60
 msgid ""
@@ -904,7 +909,7 @@ msgstr " är en möjlig form av ... "
 
 #: templates/word_detail_new_style.html:129
 msgid "More information about this word"
-msgstr ""
+msgstr "Mera information om det här ordet"
 
 #: views/main.py:89
 msgid "Invalid format. Only json and html allowed."
