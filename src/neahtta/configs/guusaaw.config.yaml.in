@@ -34,6 +34,7 @@ Morphology:
       tagsep: '+'
       inverse_tagsep: '+'
 
+# http://gtweb.uit.no/c_korp/
 Languages:
   - iso: hdn
     name:
@@ -46,4 +47,17 @@ Dictionaries:
   - source: hdn
     target: eng
     path: 'dicts/hdneng.xml'
+    show_korp_search: True
+    wordform_search_url: &alt_korp_search 
+      "http://gtweb.uit.no/c_korp/#search=word%7CUSER_INPUT&page=0"
+    #
+    # Here, whatever the input lemma is will be replaced into the
+    # following string, marked by INPUT_LEMMA
+    #
+    # cqp|[lemma = "INPUT_LEMMA"]
+    lemma_search_url: &korp_lemma_search 
+      "http://gtweb.uit.no/c_korp/#page=0&search-tab=2&search=cqp%7C%5Blemma%20%3D%20%22INPUT_LEMMA%22%5D"
+    # "] [word = "
+    lemma_multiword_delimiter: &korp_lemma_delim 
+      "%22%5D%20%5Bword%20%3D%20%22"
 
