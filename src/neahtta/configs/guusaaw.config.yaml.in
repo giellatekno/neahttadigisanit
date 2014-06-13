@@ -15,6 +15,9 @@ ApplicationSettings:
   admins_to_email:
     - "trond.trosterud@uit.no"
 
+UnitTests:
+  - "tests.hdn_lexicon"
+
 Tools:
   xfst_lookup: &LOOKUP '/usr/bin/lookup'
   opt: &OPT '/opt/smi/'

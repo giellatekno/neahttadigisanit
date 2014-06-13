@@ -572,3 +572,53 @@ def runserver():
     run_cmd = env.run(cmd)
     if run_cmd.failed:
         print(red("** Starting failed for some reason."))
+
+@task
+def unittests():
+    """ Test the configuration and check language files for errors. """
+
+    yaml_path = 'configs/%s.config.yaml' % env.current_dict
+
+    try:
+        with open(yaml_path, 'r') as F:
+            _y = yaml.load(F)
+    except IOError:
+        if env.real_hostname not in running_service:
+            yaml_path = 'configs/%s.config.yaml.in' % env.current_dict
+            print(yellow("** Production config not found, using development (*.in)"))
+            with open(yaml_path, 'r') as F:
+                _y = yaml.load(F)
+        else:
+            print(red("** Production config not found, and on a production server. Exiting."))
+            sys.exit()
+
+    # TODO: this assumes virtualenv is enabled, need to explicitly enable
+    _dict = env.current_dict
+    with cd(env.dict_path):
+
+        unittest_modules = _y.get('UnitTests', False)
+        if not unittest_modules:
+            print(red("** `UnitTests` not found in %s. Example:" % yaml_path))
+            print >> sys.stderr, ""
+            print >> sys.stderr, "    UnitTests:"
+            print >> sys.stderr, '     - "tests.LANG1_lexicon"'
+            print >> sys.stderr, '     - "tests.LANG2_lexicon"'
+            print >> sys.stderr, ""
+            sys.exit()
+
+        for unittest in unittest_modules:
+
+            # unittest_file = unittest.replace('/', '.') + '.py'
+            # try:
+            #     open(os.path.join(env.path_base, unittest_file.replace('/', '.') + '.py'), 'r').read()
+            # except:
+            #     print(yellow("** File does not exist for %s" % unittest_file))
+            #     continue
+
+            print(cyan("** Running tests for %s" % unittest))
+
+            cmd ="NDS_CONFIG=%s python -m unittest %s" % (yaml_path, unittest)
+            test_cmd = env.run(cmd)
+
+            if test_cmd.failed:
+                print(red("** Something went wrong while testing <%s> **" % _dict))

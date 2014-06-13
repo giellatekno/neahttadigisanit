@@ -268,6 +268,14 @@ class Config(Config):
         return self._languages
 
     @property
+    def unittests(self):
+        if not hasattr(self, '_unittests'):
+            self._unittests = []
+            for t in self.yaml.get('UnitTests', []):
+                self._unittests.append(t)
+        return self._unittests
+
+    @property
     def dictionaries(self):
         from collections import OrderedDict
         if self._dictionaries:
