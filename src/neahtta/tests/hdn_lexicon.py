@@ -33,7 +33,10 @@ definition_exists_tests = [
     #                            
 
     # test that spaces and periods work
-    ( ('hdn', 'eng'), u"gatáa.ang ñasa'áa", ["for S to eat"]),
+    ( ('hdn', 'eng'), u"gatáa.ang ñasa'áa", "for S to eat"),
+    ( ('hdn', 'eng'), u"kíl is", "for S to tell C to stay in location"),
+    ( ('hdn', 'eng'), u"skyáahl'uuj", u'for S to be lucky [said of a man or of hunting/fishing tools (but not a gun)]'),
+    ( ('hdn', 'eng'), u"skyáahläsaa.ang", u'for S to be lucky [said of a man or of hunting/fishing tools (but not a gun)]'),
 
 ]
 
