@@ -280,7 +280,13 @@ jQuery(document).ready ($) ->
   ## 
 
   getFirstRange = ->
+    # r = /[\u00C0-\u1FFF\u2C00-\uD7FF\w\.']+/g
+    # word_options =
+    #   wordOptions:
+    #     wordRegex: r
+    #   trim: true
     sel = rangy.getSelection()
+    # sel.expand("word", word_options)
     (if sel.rangeCount then sel.getRangeAt(0) else null)
   
   cloneContents = (range) ->
@@ -304,7 +310,6 @@ jQuery(document).ready ($) ->
         else
           alert "Unexpected errror: " + ex
 
-   
   ##
   ## NDS Functionality
   ## 
@@ -650,6 +655,8 @@ jQuery(document).ready ($) ->
     sourceLanguage: "sme"
     langPairSelect: "#webdict_options *[name='language_pair']"
     tooltip: true
+    # Provide a word regex to improve the selection system.
+    languageWordOptions: false
     displayOptions: true
     dictionaries: [
       {
