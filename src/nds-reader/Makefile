@@ -1,33 +1,18 @@
-# NB: cleaning up the build process. some of this will be roundabout, but at
+# NB: cleaned up the build process. some of this will be roundabout, but at
 # least it's not Cake. Can clean that up later and reduce the amount of similar
 # targets built.
 
 MODULES = ./node_modules/.bin
 COFFEE  = $(MODULES)/coffee --compile --bare --print
 UGLY    = $(MODULES)/uglifyjs
-
-# TODO: compare result of UGLY to result of Cakefile process to make sure that
-# nothing is amiss
-#   - parse
-#   - ast_mangle
-#   - ast_squeeze
-#   gen_code
-
-# compress = (callback) ->
-#   util.print "\n Compressing... bin/jquery.neahttadigisanit.js\n"
-#   all = (fs.readFileSync 'bin/jquery.neahttadigisanit.js').toString()
-# 
-#   ast = uglify.parser.parse all
-#   out = fs.openSync "bin/jquery.neahttadigisanit.min.js", "w+"
-# 
-#   ast = uglify.uglify.ast_mangle ast
-#   ast = uglify.uglify.ast_squeeze ast
-# 
-#   fs.writeSync out, uglify.uglify.gen_code(ast)
-# 
-#   util.print "\n Minified! to jquery.neahttadigisanit.min.js\n"
+BOOK    = $(MODULES)/bookmarklet
 
 COFFEES = src/jquery.neahttadigisanit.coffee
+
+# Things listed here will be concatenated into the vendor .js file 
+#
+# NB: jquery is purposefully lefto out because we want this to be optional for
+# a later phase in the build.
 
 JS_DEPS = src/libs/bootstrap-dropdown.js \
           src/libs/bootstrap-tooltip.js \
@@ -35,7 +20,8 @@ JS_DEPS = src/libs/bootstrap-dropdown.js \
           src/libs/bootstrap-modal.js \
           src/libs/DSt.js \
           src/libs/semver.js \
-          src/libs/rangy-core.js
+          src/libs/rangy-core.js \
+          src/libs/rangy-textrange.js
 
 STYLESHEETS = src/css/bootstrap.custom.css \
 			  src/css/jquery.neahttadigisanit.css
@@ -65,6 +51,10 @@ bin/standalone/neahttadigisanit.jquery.min.js: tmp/nds.with.deps.jq.js
 	@echo "   ... uglifying"
 	$(UGLY) $^ > $@
 
+bin/standalone/neahttadigisanit.jquery.js: tmp/nds.with.deps.jq.js
+	cp $^ $@
+
+
 bin/standalone/neahttadigisanit.css: tmp/jq.css
 	@echo "   ... copying"
 	mkdir -p bin/standalone
@@ -75,6 +65,7 @@ bin/standalone/neahttadigisanit.css: tmp/jq.css
 .PHONY: standalone
 standalone: bin/standalone/neahttadigisanit.css \
 			bin/standalone/neahttadigisanit.jquery.min.js \
+			bin/standalone/neahttadigisanit.jquery.js \
 			bin/standalone/neahttadigisanit.min.js
 
 standalone-install: bin/standalone/neahttadigisanit.css \
@@ -120,10 +111,13 @@ bookmarklet-install: bin/bookmarklet/jquery.neahttadigisanit.css \
 	@echo "    ... Installed"
 
 # TODO: actual bookmark code, need to urlencode that and copy somewhere.
+# NOTE: before or if this happens, check out the notes in neahtta/ on the
+# bookmarklet, there are some specific needs not addressed here.
 #
-# bin/bookmark.js: src/bookmark.js
+# bin/bookmarklet/bookmark.js: src/bookmark.js
+# 	$(BOOK) $^ > $@
 #
-# it's tricky because only part of it is urlencoded, but not all of it.
+# need to first test output from bookmarklet.
 
 .PHONY: install
 install: standalone-install \

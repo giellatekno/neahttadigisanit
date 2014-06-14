@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -8,13 +8,10 @@
 
         <!-- These are required for everything to work, but they may be
              installed somewhere already, if adding to an existing site. -->
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
         <!-- Here's the important part... -->
-        <link href="bin/bookmarklet/jquery.neahttadigisanit.css" rel="stylesheet" />
-
-        <script type='text/javascript' src='tmp/vendor.deps.js'></script>
-        <script type='text/javascript' src='tmp/nds.js'></script>
+        <link href="bin/standalone/neahttadigisanit.css" rel="stylesheet" />
+        <script type='text/javascript' src='bin/standalone/neahttadigisanit.jquery.min.js'></script>
         <script type='text/javascript'>
             jQuery(document).ready(function (){
                 // Register the input form with options
@@ -34,8 +31,9 @@
         <div id="content">
             <div class="row">
                 <div class="span9">
-                    <p>Note: this is for testing <code>jquery.neahttadigisanit.min.js</code>
+                    <p>Note: this is for testing <code>neahttadigisanit.min.js</code>
                     </p>
+
                     <h3>Inline mode</h3>
                     <p>Hold Alt or option (⌥) while selecting or double clicking
                         on a word to select it, and a result will appear. To
@@ -82,8 +80,6 @@
                     <h3>Test cases</h3>
                     <h4>Firefox has issues with these.</h4>
                     <ul>
-                        <li>Extend the selection to include words with periods in them: 
-                            gatáa.ang ñasa'áa</li>
                         <li>-a eller -e, blir endelsen &#8216;–ii&#8217;
                             <span style="color: #800000;">skuvla -&gt;
                                 skuvlii, baste -&gt; bastii</span></li>
@@ -108,4 +104,5 @@
         </div>
     </body>
 </html>
+
 
