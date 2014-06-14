@@ -285,9 +285,16 @@ jQuery(document).ready ($) ->
     #   wordOptions:
     #     wordRegex: r
     #   trim: true
+
+    # multiword_after = /[\u00C0-\u1FFF\u2C00-\uD7FF\w\.']+( ñasa'áa)?/g
+    # multiwords_after_options =
+    #   wordOptions:
+    #     wordRegex: multiword_after
+    #   trim: true
     sel = rangy.getSelection()
     # sel.expand("word", word_options)
-    (if sel.rangeCount then sel.getRangeAt(0) else null)
+    # sel.expand("word", multiwords_after_options)
+    return (if sel.rangeCount then sel.getRangeAt(0) else null)
   
   cloneContents = (range) ->
     range.cloneContents().textContent
