@@ -287,11 +287,11 @@ jQuery(document).ready ($) ->
 
     if opts
       word_opts = {}
-
-      word_regex = new RegExp(opts.word_regex, opts.word_regex_opts)
-      word_opts.trim = true
-      word_opts.wordOptions =
-        wordRegex: word_regex
+      if opts.word_regex and opts.word_regex_opts
+        word_regex = new RegExp(opts.word_regex, opts.word_regex_opts)
+        word_opts.trim = true
+        word_opts.wordOptions =
+          wordRegex: word_regex
 
       ## if opts.multiword_lookups
       ##   multiword_opts = {}
