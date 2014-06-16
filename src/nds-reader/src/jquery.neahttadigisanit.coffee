@@ -280,6 +280,33 @@ jQuery(document).ready ($) ->
   ## 
 
   getFirstRange = ->
+    opts = $.fn.getCurrentDictOpts().settings
+
+    word_opts = false
+    multiword_opts = false
+
+    if opts
+      word_opts = {}
+
+      word_regex = new RegExp(opts.word_regex, opts.word_regex_opts)
+      word_opts.trim = true
+      word_opts.wordOptions =
+        wordRegex: word_regex
+
+      ## if opts.multiword_lookups
+      ##   multiword_opts = {}
+
+      ##   # multiword_after = /[\u00C0-\u1FFF\u2C00-\uD7FF\w\.']+( ñasa'áa)?/g
+      ##   multiword_after = opts.word_regex
+
+      ##   str_to_re_part = (s) ->
+      ##     s.replace('%WORD%',
+      ##     return "#{s}"
+      ##   if not window.lookup_regex
+      ##     lookup_regex =
+
+      ##   # compile regex and store it to some global variable
+
     # r = /[\u00C0-\u1FFF\u2C00-\uD7FF\w\.']+/g
     # word_options =
     #   wordOptions:
@@ -291,8 +318,11 @@ jQuery(document).ready ($) ->
     #   wordOptions:
     #     wordRegex: multiword_after
     #   trim: true
+
     sel = rangy.getSelection()
-    # sel.expand("word", word_options)
+    if word_opts
+      sel.expand("word", word_opts)
+
     # sel.expand("word", multiwords_after_options)
     return (if sel.rangeCount then sel.getRangeAt(0) else null)
   
@@ -654,6 +684,16 @@ jQuery(document).ready ($) ->
     #   else
     #     window.optTab.find('.well').removeClass('highlight')
 
+
+  $.fn.getOptsForDict = (_from, _to) ->
+    for dict in window.nds_opts.dictionaries
+      if dict.from.iso == _from and dict.to.iso == _to
+        return dict
+
+  $.fn.getCurrentDictOpts = () ->
+    pair = DSt.get(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair')
+    [_from, _to] = pair.split('-')
+    $.fn.getOptsForDict _from, _to
 
   $.fn.selectToLookup.options =
     api_host: API_HOST
