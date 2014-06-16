@@ -215,14 +215,19 @@ def bookmarklet_configs():
 
     prepared = []
 
+    # TODO: Apply language opts from Config object for each lang.
+
     for (_from, _to), pair_options in current_app.config.dictionaries.iteritems():
         prepared.append((_from, _to))
+        reader_dict_opts = current_app.config.reader_options.get(_from, {})
         dictionaries.append(
             { 'from': {'iso': _from, 'name': unicode(NAMES.get(_from))}
             , 'to':   {'iso': _to,   'name': unicode(NAMES.get(_to))}
             , 'uri': "/lookup/%s/%s/" % (_from, _to)
+            , 'settings': reader_dict_opts
             }
         )
+
 
         _has_variant = current_app.config.pair_definitions.get((_from, _to), {}) \
                                          .get('input_variants', False)
@@ -230,11 +235,13 @@ def bookmarklet_configs():
         if _has_variant:
             for variant in _has_variant:
                 v_from = variant.get('short_name')
+                variant_dict_opts = current_app.config.reader_options.get(v_from, {})
                 if not (v_from, _to) in prepared:
                     dictionaries.append(
                         { 'from': {'iso': v_from, 'name': unicode(NAMES.get(v_from))}
                         , 'to':   {'iso': _to,    'name': unicode(NAMES.get(_to))}
                         , 'uri': "/lookup/%s/%s/" % (_from, _to)
+                        , 'settings': variant_dict_opts
                         }
                     )
                     prepared.append((v_from, _to))

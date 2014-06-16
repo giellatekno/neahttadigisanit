@@ -33,8 +33,17 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
+  hdnM:
+    tool: *LOOKUP
+    file: [*OPT, '/hdn/bin/analyser-dict-gt-desc-mobile.xfst']
+    inverse_file: [*OPT, '/hdn/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
 
-# http://gtweb.uit.no/c_korp/
 Languages:
   - iso: hdn
     name:
@@ -60,4 +69,23 @@ Dictionaries:
     # "] [word = "
     lemma_multiword_delimiter: &korp_lemma_delim 
       "%22%5D%20%5Bword%20%3D%20%22"
+
+# TODO: move this section to its own file in language_specific_confs.
+
+ReaderConfig:
+  hdn:
+    multiword_lookups: true
+    multiword_list:
+      # File format-- plain text, but line coments allowed:
+      # Use %WORD% as a marker for any word these may co-occur with, i.e., if
+      # the user clicks on a %WORD%, then search for these environments too.
+      file: "configs/language_specific_rules/reader/hdn_multiwords.txt"
+    # NB: this is JavaScript format, since it will be sent to the reader via
+    # config. It must also be stored as a string.
+    #
+    # JavaScript is problematic with unicode, and \w in a regex ends up meaning
+    # just the ASCII range, thus it's necessary to be very explicit.
+    #
+    word_regex: |
+      /[\u00C0-\u1FFF\u2C00-\uD7FF\w\.']+/g
 

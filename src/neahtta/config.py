@@ -550,6 +550,58 @@ class Config(Config):
                                variable_name)
         return self.from_yamlfile(rv, silent=silent)
 
+    def read_multiword_list(self, path):
+        try:
+            with open(os.path.join(os.getcwd(), path), 'r') as F:
+                lines = F.readlines()
+        except Exception, e:
+            print " * Unable to find multiword_list <%s>" % path
+            print e
+            sys.exit()
+
+        def drop_line_comment(l):
+            if not l.startswith('#'):
+                return True
+            return False
+
+        def strip_line_end_comment(l):
+            line, _, comment = l.partition('#')
+            return line
+
+        def clean_line(l):
+            _l = l.strip()
+            if _l:
+                return _l
+
+        multiword_list = [l.strip() for l in lines if l.strip()]
+
+        # Couldn't help myself.
+        return map ( strip_line_end_comment
+          , filter ( drop_line_comment
+          ,    map ( clean_line
+                   , multiword_list
+                   )))
+
+    @property
+    def reader_options(self):
+        # TODO: apply defaults if nonexistent.
+
+        if not hasattr(self, '_reader_options'):
+            self._reader_options = self.yaml.get('ReaderConfig', {})
+
+            for l, conf in self._reader_options.iteritems():
+                wr = conf.get('word_regex', False)
+                if wr:
+                    self._reader_options[l]['word_regex'] = wr.strip()
+                mwe = conf.get('multiword_lookups', False)
+                mwe_l = conf.get('multiword_list', False)
+                if mwe and mwe_l:
+                    is_file = mwe_l.get('file', False)
+                    if is_file:
+                        self._reader_options[l]['multiwords'] = self.read_multiword_list(is_file)
+
+        return self._reader_options
+
     def from_yamlfile(self, filename, silent=False):
         self._languages               = False
         self._pair_definitions        = False
