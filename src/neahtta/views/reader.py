@@ -215,11 +215,11 @@ def bookmarklet_configs():
 
     prepared = []
 
-    # TODO: Apply language opts from Config object for each lang.
-
     for (_from, _to), pair_options in current_app.config.dictionaries.iteritems():
         prepared.append((_from, _to))
+
         reader_dict_opts = current_app.config.reader_options.get(_from, {})
+
         dictionaries.append(
             { 'from': {'iso': _from, 'name': unicode(NAMES.get(_from))}
             , 'to':   {'iso': _to,   'name': unicode(NAMES.get(_to))}

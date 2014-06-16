@@ -16,6 +16,13 @@ def gettext_yaml_wrapper(loader, node):
 # constructed.
 yaml.add_constructor('!gettext', gettext_yaml_wrapper)
 
+# This should match most language words, with few surprises, however it
+# does not include the cases where a language uses a period or
+# apostrophe within a word.
+
+DEFAULT_WORD_REGEX = '[\u00C0-\u1FFF\u2C00-\uD7FF\w]+'
+DEFAULT_WORD_REGEX_OPTS = 'g'
+
 class Config(Config):
     """ An object for exposing the settings in app.config.yaml in a nice
     objecty way, and validating some of the contents.
@@ -589,16 +596,35 @@ class Config(Config):
         if not hasattr(self, '_reader_options'):
             self._reader_options = self.yaml.get('ReaderConfig', {})
 
+            reader_defaults = {
+                'word_regex': DEFAULT_WORD_REGEX,
+                'word_regex_opts': DEFAULT_WORD_REGEX_OPTS,
+                'multiword_lookups': False
+            }
+
             for l, conf in self._reader_options.iteritems():
                 wr = conf.get('word_regex', False)
+                wro = conf.get('word_regex_opts', False)
                 if wr:
                     self._reader_options[l]['word_regex'] = wr.strip()
+                else:
+                    self._reader_options[l]['word_regex_opts'] = DEFAULT_WORD_REGEX
+                if wro:
+                    self._reader_options[l]['word_regex_opts'] = wro.strip()
+                else:
+                    self._reader_options[l]['word_regex_opts'] = DEFAULT_WORD_REGEX_OPTS
                 mwe = conf.get('multiword_lookups', False)
                 mwe_l = conf.get('multiword_list', False)
                 if mwe and mwe_l:
                     is_file = mwe_l.get('file', False)
                     if is_file:
                         self._reader_options[l]['multiwords'] = self.read_multiword_list(is_file)
+
+            all_isos = list(set(self.languages.keys() + self.yaml.get('Morphology').keys()))
+            missing_isos = [a for a in all_isos if a not in self._reader_options.keys()]
+
+            for l in missing_isos:
+                self._reader_options[l] = reader_defaults
 
         return self._reader_options
 

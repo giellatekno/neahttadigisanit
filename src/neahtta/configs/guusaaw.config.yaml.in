@@ -87,5 +87,6 @@ ReaderConfig:
     # just the ASCII range, thus it's necessary to be very explicit.
     #
     word_regex: |
-      /[\u00C0-\u1FFF\u2C00-\uD7FF\w\.']+/g
+      [\u00C0-\u1FFF\u2C00-\uD7FF\w\.']+
+    word_regex_opts: "g"
 
