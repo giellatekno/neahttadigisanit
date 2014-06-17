@@ -62,7 +62,7 @@ Languages:
 Dictionaries:
   - source: sms
     target: fin
-    path: 'dicts/sms-all.xml'
+    path: 'dicts/sms2X.xml'
     input_variants: &spell_relax
       - type: "standard"
         description: !gettext "Standard (ǩ)"
@@ -73,14 +73,14 @@ Dictionaries:
         short_name: "smsM"
   - source: sms
     target: eng
-    path: 'dicts/sms-all.xml'
+    path: 'dicts/sms2X.xml'
     input_variants: *spell_relax
   - source: sms
     target: rus
-    path: 'dicts/sms-all.xml'
+    path: 'dicts/sms2X.xml'
     input_variants: *spell_relax
   - source: sms
     target: nob
-    path: 'dicts/sms-all.xml'
+    path: 'dicts/sms2X.xml'
     input_variants: *spell_relax
 
