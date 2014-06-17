@@ -183,6 +183,29 @@ PIKISKWEWINA_LANGS_ANALYSERS      :=   crk
 PIKISKWEWINA_LANGS_LEXICA         :=   
 PIKISKWEWINA_WORDS_DICTS_LEXICA   :=   crkeng
 
+# NB: if things are in priv, use $(GTPRIV)
+#
+
+CRKENG_IN    := $(GTHOME)/words/dicts/crkeng/src/ \
+			    $(GTHOME)/words/dicts/crkeng/src2/
+
+# Grab all *.xml files
+CRKENG_SOURCES := $(foreach d, $(CRKENG_IN), $(shell find $d -name '*.xml'))
+
+crkeng.test.xml: $(CRKENG_SOURCES)
+	@echo "******************************"
+	@echo "** Building sme-nob lexicon **"
+	@echo "******************************"
+	@echo "** Backup made (.bak)       **"
+	@echo "******************************"
+	@echo ""
+	@echo "wat"
+	@echo $^
+	mkdir -p crkeng_tmp/
+	cp $^ crkeng_tmp/
+	$(SAXON) inDir=$(pwd)/crkeng_tmp/ > $@
+	@rm -rf crkeng_tmp/
+
 .PHONY: pikiskwewina-lexica
 pikiskwewina-lexica: LEX_COMPILE_LANGS := $(PIKISKWEWINA_LANGS_LEXICA)
 pikiskwewina-lexica: LEX_COMPILE_WORDS_DICTS := $(PIKISKWEWINA_WORDS_DICTS_LEXICA)
