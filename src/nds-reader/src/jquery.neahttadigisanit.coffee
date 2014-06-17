@@ -199,6 +199,7 @@ jQuery(document).ready ($) ->
         DSt.set(NDS_SHORT_NAME + '-' + 'nds-localization', null)
         DSt.set(NDS_SHORT_NAME + '-' + 'nds-stored-config', null)
         el.find('#advanced').append $('<p />').html("Reload the plugin...")
+        delete window.lookup_regex
         # window.location.reload()
         return false
 
@@ -213,6 +214,7 @@ jQuery(document).ready ($) ->
       el.find('select[name="language_pair"]').change (e) ->
         store_val = $(e.target).val()
         DSt.set(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair', store_val)
+        delete window.lookup_regex
         return true
 
       el.find('form').submit () ->
@@ -284,6 +286,7 @@ jQuery(document).ready ($) ->
 
     word_opts = false
     multiword_opts = false
+    multiwords_after_options = false
 
     if opts
       word_opts = {}
@@ -293,37 +296,41 @@ jQuery(document).ready ($) ->
         word_opts.wordOptions =
           wordRegex: word_regex
 
+      # TODO: at least with the whole hdn multiword list this seems to be
+      # overgenerating. need to reconsider how to build the regex
+      #
       ## if opts.multiword_lookups
       ##   multiword_opts = {}
-
-      ##   # multiword_after = /[\u00C0-\u1FFF\u2C00-\uD7FF\w\.']+( ñasa'áa)?/g
       ##   multiword_after = opts.word_regex
 
-      ##   str_to_re_part = (s) ->
-      ##     s.replace('%WORD%',
-      ##     return "#{s}"
-      ##   if not window.lookup_regex
-      ##     lookup_regex =
-
       ##   # compile regex and store it to some global variable
+      ##   if not window.lookup_regex
+      ##     # regex_string = opts.multiwords.join(')|(')
+      ##     #                               .split('%WORD%')
+      ##     #                               .join(opts.word_regex)
+      ##     ws = ["%WORD%( ñasa'áa)?", "%WORD%( ñasa'áang)?",
+      ##           "(tla ýáng )?%WORD%"]
+      ##     regex_string = ws.join(')|(')
+      ##                      .split('%WORD%')
+      ##                      .join(opts.word_regex)
 
-    # r = /[\u00C0-\u1FFF\u2C00-\uD7FF\w\.']+/g
-    # word_options =
-    #   wordOptions:
-    #     wordRegex: r
-    #   trim: true
+      ##     # multiword_after = /[\u00C0-\u1FFF\u2C00-\uD7FF\w\.']+( ñasa'áa)?/g
 
-    # multiword_after = /[\u00C0-\u1FFF\u2C00-\uD7FF\w\.']+( ñasa'áa)?/g
-    # multiwords_after_options =
-    #   wordOptions:
-    #     wordRegex: multiword_after
-    #   trim: true
+      ##     window.lookup_regex = new RegExp("(#{regex_string})", 'g')
+
+      ##   if window.lookup_regex
+      ##     multiwords_after_options =
+      ##       wordOptions:
+      ##         wordRegex: window.lookup_regex
+      ##       trim: true
 
     sel = rangy.getSelection()
     if word_opts
       sel.expand("word", word_opts)
 
-    # sel.expand("word", multiwords_after_options)
+    # if multiwords_after_options
+    #   sel.expand("word", multiwords_after_options)
+
     return (if sel.rangeCount then sel.getRangeAt(0) else null)
   
   cloneContents = (range) ->
@@ -545,6 +552,9 @@ jQuery(document).ready ($) ->
     # language pairs and internationalization, or recover it from local
     # storage.
     initializeWithSettings = () ->
+      # Delete temporary thing.
+      delete window.lookup_regex
+
       if window.nds_opts.displayOptions
         $(document).find('body').append Templates.OptionsTab(window.nds_opts)
         window.optTab = $(document).find('#webdict_options')
