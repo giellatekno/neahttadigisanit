@@ -1,5 +1,4 @@
-{% extends 'base.html' %}
-{% import 'macros.html' as macros with context %}
+﻿{% extends 'base.html' %}
 
 {% block extra_js %}
     {# https://gist.github.com/1866577 #}
@@ -13,6 +12,43 @@
 {% block search_li_form %}
 {% endblock %}
 
+{% macro korp_link_lemma(lemma) -%}
+{% if current_pair_settings.lemma_search_url -%}
+    {% set search_url = current_pair_settings.lemma_search_url.replace('INPUT_LEMMA', lemma) %}
+    <a class="korp_search lemma_action"
+       href="{{ search_url }}">{% trans %}Texts{% endtrans %} &rarr;</a>
+{%- endif %}
+{%- endmacro %}
+
+{% macro possible_analyses_grid(analyses) -%}
+    <dl class="possible_analyses grid_analyses">
+    {% for grouper, forms in analyses|groupby('lemma') %}
+        {% for lemmagroup, lemmafs in forms|groupby('pos') %}
+            {% if current_pair_settings.show_korp_search %}
+                {% if lemmagroup and grouper %}
+                    <dt>{{ grouper }} {{ korp_link_lemma(grouper) }}</dt>
+                {% else %}
+                    <dt>{{ grouper }}</dt>
+                {% endif %}
+            {% else %}
+                <dt>{{ grouper }}</dt>
+            {% endif %}
+            <dd>
+                <ul class="possible_forms">
+                    {% set existing_tags = [] %}
+                    {% for lem in lemmafs %}
+                    {% set formatted_tag = ' '.join(lem.tag)|tagfilter(_from, _to) %}
+                    {% if formatted_tag not in existing_tags %}
+                        <li>{{ formatted_tag }}</li>
+                        {% do existing_tags.append(formatted_tag) %}
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </dd>
+        {% endfor %}
+    {% endfor %}
+    </dl>
+{%- endmacro %}
 
 {% block extra_nav %}
 {# Dictionaries #}
@@ -56,7 +92,6 @@
                 {% if display_swap %}
                 <span class="swaplink" style="font-size: 80%">(<a href="/{{ swap_from }}/{{ swap_to }}/">⇄ {% trans %}Swap{% endtrans %}</a>)</span>
                 {% endif %}
-            </h4>
 
             <div class="row-fluid form-row">
                 <div class="span8">
@@ -72,78 +107,9 @@
             {# TODO: deep link needs to go to specific lexeme when it comes from the front page #}
             {% if word_searches %}
                 <div class="results">
-                        {% for lexeme in word_searches %}
-                            {% if lexeme.lookups %}
-                                {% for lookup in lexeme.lookups %}
-                                    <div class="row-fluid entry_row">
-                                        <div class="span8">
-
-                                        <p>{{ lookup.source_formatted|safe }}
-
-                                        {% if lookup.right|length == 1 %}
-                                            <ul class="meanings">
-                                        {% else %}
-                                            <ol class="meanings">
-                                        {% endif %}
-
-                                        {%- for tx in lookup.right -%}
-                                            <li>
-                                                {%- include 'main_page_li.html' -%}
-                                            </li>
-                                        {%- endfor -%}
-
-                                        {% if lookup.right|length == 1 %}
-                                            </ul>
-                                        {% else %}
-                                            </ol>
-                                        {% endif %}
-
-                                        </div>
-                                        <div class="span4 hidden-phone">
-                                            {{ macros.possible_analyses_grid(lookup.analyses) }}
-                                        </div>
-                                    </div>
-                                {% endfor %}
-                            {% else %}
-                                {% if errors %}
-                                    <div class="alert">
-                                        <ul>
-                                            {% for error in errors %}
-                                            <li>{{ error }}</li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                {% endif %}
-                            {% endif %}
-                        {% endfor %}
-
-                        {% if not successful_entry_exists %}
-                            <div class="span8">
-                            <p>{% trans %}Definition not found for:{% endtrans %}</p>
-                            <ul class="unknown_lexemes">
-                            {% for lexeme in word_searches %}
-                                <li>{{ lexeme.input }}</li>
-                            {% endfor %}
-                            </ul>
-                            <p class="lead">&nbsp;</p>
-                            </div>
-                            <div class="span4 hidden-phone">
-                                {{ macros.possible_analyses_grid(analyses_without_lex) }}
-                            </div>
-                        {% else %}
-                            <div class="row-fluid entry_row">
-                                <div class="span8">
-                                    <p class="lead">&nbsp;</p>
-                                </div>
-                                <div class="span4 hidden-phone">
-                                    {{ macros.possible_analyses_grid(analyses_without_lex) }}
-                                </div>
-                            </div>
-                        {% endif %}
-
-                        </div>
-
-                    </div>
+                    {% for tpl in new_templates %}
+                        {{ tpl|safe }}
+                    {% endfor %}
                 </div>
 
                 {%- if analyses %}
@@ -201,3 +167,4 @@
 </div>
 
 {% endblock %}
+

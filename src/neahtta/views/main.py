@@ -615,9 +615,12 @@ def indexWithLangs(_from, _to):
                               , **pair_opts
                               )
     # TODO: include form analysis of user input #formanalysis
+    _r_from, _r_to = pair_opts.get('swap_from'), pair_opts.get('swap_to')
+    reverse_exists = current_app.config.dictionaries.get((_r_from, _r_to), False)
     return render_template( 'index.html'
                           , _from=_from
                           , _to=_to
+                          , display_swap=reverse_exists
                           , user_input=lookup_val
                           , word_searches=results
                           , analyses=analyses
@@ -748,11 +751,13 @@ def indexWithLangsToReference(_from, _to):
                                                                  , **tplkwargs
                                                                  )
                 )
+        reverse_exists = current_app.config.dictionaries.get((_from, _to), False)
         return render_template( 'index_new_style.html'
                               , _from=_from
                               , _to=_to
                               , swap_from=_to
                               , swap_to=_from
+                              , display_swap=reverse_exists
                               , user_input=lookup_val
                               , word_searches=results
                               , analyses=analyses
@@ -766,11 +771,13 @@ def indexWithLangsToReference(_from, _to):
                               , new_templates=_rendered_entries
                               )
     else:
+        reverse_exists = current_app.config.dictionaries.get((swap_to, swap_from), False)
         return render_template( 'index.html'
                               , _from=_from
                               , _to=_to
                               , swap_from=_to
                               , swap_to=_from
+                              , display_swap=reverse_exists
                               , user_input=lookup_val
                               , word_searches=results
                               , analyses=analyses
@@ -889,10 +896,12 @@ def index():
             else:
                 return redirect(target_url)
 
+    reverse_exists = current_app.config.dictionaries.get((default_to, default_from), False)
     return render_template( 'index.html'
                           , current_pair_settings=pair_settings
                           , _from=default_from
                           , _to=default_to
+                          , display_swap=reverse_exists
                           , swap_from=default_to
                           , swap_to=default_from
                           , show_info=True
