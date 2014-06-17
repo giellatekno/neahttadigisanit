@@ -64,10 +64,10 @@ Dictionaries:
     # following string, marked by INPUT_LEMMA
     #
     # cqp|[lemma = "INPUT_LEMMA"]
-    lemma_search_url: &korp_lemma_search 
+    lemma_search_url: &korp_lemma_search
       "http://gtweb.uit.no/c_korp/#page=0&search-tab=2&search=cqp%7C%5Blemma%20%3D%20%22INPUT_LEMMA%22%5D"
     # "] [word = "
-    lemma_multiword_delimiter: &korp_lemma_delim 
+    lemma_multiword_delimiter: &korp_lemma_delim
       "%22%5D%20%5Bword%20%3D%20%22"
 
 # TODO: move this section to its own file in language_specific_confs.
