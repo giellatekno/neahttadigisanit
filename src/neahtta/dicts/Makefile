@@ -231,7 +231,7 @@ pikiskwewina-install: install_langs_fsts
 
 SAAN_LANGS_ANALYSERS      :=   sms fin
 SAAN_LANGS_LEXICA         :=   sms
-SAAN_WORDS_DICTS_LEXICA   :=   
+SAAN_WORDS_DICTS_LEXICA   :=   sms2X
 
 .PHONY: saan-lexica
 saan-lexica: LEX_COMPILE_LANGS := sms
