@@ -194,7 +194,7 @@ CRKENG_SOURCES := $(foreach d, $(CRKENG_IN), $(shell find $d -name '*.xml'))
 
 crkeng.test.xml: $(CRKENG_SOURCES)
 	@echo "******************************"
-	@echo "** Building sme-nob lexicon **"
+	@echo "** Building crk-eng lexicon **"
 	@echo "******************************"
 	@echo "** Backup made (.bak)       **"
 	@echo "******************************"
