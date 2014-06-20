@@ -5,6 +5,7 @@ ApplicationSettings:
   default_locale: "crk"
   default_pair: ["crk", "eng"]
   mobile_default_pair: false
+  new_style_templates: true
   locales_available:
     - crk
     - en
