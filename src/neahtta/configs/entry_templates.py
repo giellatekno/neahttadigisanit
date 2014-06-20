@@ -27,6 +27,8 @@ TODO:  mobile width - detail - paradigm disappears, was problematic on
 TODO: generated context accessible with new templates? is the way it's
       done now ideal?
 
+TODO: sme pregenerated forms don't really work without sme.py
+
 """
 
 import os, sys
@@ -45,7 +47,7 @@ parsed_template_cache = {}
 class TemplateConfig(object):
     """ A class for providing directory-based paradigm definitions.
     This class reads and parses the configs for the sets of languages
-    
+
     paradigm from dictionary entry nodes and morphological analyses. """
 
     def __init__(self, app=None, debug=False, cache=True):
@@ -310,14 +312,14 @@ class TemplateConfig(object):
         print
         print 'templates/ '
         for t in self.default_templates.keys():
-            print '   ⌘ ' + t
+            print '   + ' + t
 
         print 
         print '  %s/ ' % self.instance
 
         for k, f in self.project_templates.iteritems():
             if f.path not in [p.path for p in self.default_templates.values()]:
-                print u'    ⌘ ' + k
+                print u'    + ' + k
             else:
                 print u'      ' + k
         print
@@ -327,13 +329,13 @@ class TemplateConfig(object):
 
             for k, f in temps.iteritems():
                 if f.path not in [p.path for p in self.project_templates.values()]:
-                    print u'      ⌘ ' + k
+                    print u'      + ' + k
                 else:
                     print u'        ' + k
 
             print
 
-        print ' ⌘ - overridden here.'
+        print ' + - overridden here.'
         print
         print
 
