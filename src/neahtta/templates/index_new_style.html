@@ -84,14 +84,15 @@
         <div class="span8">
             <h4 class="dict_title">
                 <span>{{ _from|iso_to_i18n }} → {{ _to|iso_to_i18n }}</span>
+            </h4>
 
-                {# figure out if there's a variant, and if the reverse has
-                variants, because if mobile, we want to force mobile variant in
-                swap #}
+            {# figure out if there's a variant, and if the reverse has
+            variants, because if mobile, we want to force mobile variant in
+            swap #}
 
-                {% if display_swap %}
-                <span class="swaplink" style="font-size: 80%">(<a href="/{{ swap_from }}/{{ swap_to }}/">⇄ {% trans %}Swap{% endtrans %}</a>)</span>
-                {% endif %}
+            {% if display_swap %}
+            <span class="swaplink" style="font-size: 80%">(<a href="/{{ swap_from }}/{{ swap_to }}/">⇄ {% trans %}Swap{% endtrans %}</a>)</span>
+            {% endif %}
 
             <div class="row-fluid form-row">
                 <div class="span8">
