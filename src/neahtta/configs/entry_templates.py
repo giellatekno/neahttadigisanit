@@ -120,6 +120,20 @@ class TemplateConfig(object):
 
         return self.language_templates[language][template]
 
+    def render_individual_template(self, language, template, **kwargs):
+
+        tpl = self.get_template(language, template)
+
+        # Add default values
+        context = {
+        }
+
+        context.update(**kwargs)
+
+        # Return the rendered main template.
+        return tpl.render(**context)
+
+
     def render_template(self, language, template, **extra_kwargs):
         """ Do the actual rendering. This is run for each entry in a lookup.
 
@@ -133,7 +147,11 @@ class TemplateConfig(object):
 
         tpl = self.get_template(language, template)
 
-        context = {}
+        # add default things
+        context = {
+            'lexicon_entry': False,
+        }
+
         context['template_root'] = os.path.dirname(tpl.path) + '/'
 
         # Add templates to the context

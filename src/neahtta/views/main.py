@@ -599,6 +599,22 @@ def indexWithLangs(_from, _to):
                 _rendered_entries.append(
                     current_app.lexicon_templates.render_template(_from, 'entry.template', **tplkwargs)
                 )
+
+        all_az = sum([az for _, az in sorted(entries_and_tags, key=sort_entry)], [])
+        all_analysis_template = current_app.lexicon_templates.render_individual_template( _from
+                                                                                        , 'analyses.template'
+                                                                                        , analyses=all_az
+                                                                                        , current_pair_settings=pair_settings
+                                                                                        )
+        if analyses_without_lex:
+            leftover_analyses_template = current_app.lexicon_templates.render_individual_template( _from
+                                                                                                 , 'analyses.template'
+                                                                                                 , analyses=analyses_without_lex
+                                                                                                 , current_pair_settings=pair_settings
+                                                                                                 )
+        else:
+            leftover_analyses_template = False
+
         return render_template( 'index_new_style.html'
                               , _from=_from
                               , _to=_to
@@ -606,6 +622,8 @@ def indexWithLangs(_from, _to):
                               , word_searches=results
                               , analyses=analyses
                               , analyses_without_lex=analyses_without_lex
+                              , leftover_analyses_template=leftover_analyses_template
+                              , all_analysis_template=all_analysis_template
                               , errors=errors
                               , show_info=show_info
                               , zip=zipNoTruncate
@@ -751,7 +769,14 @@ def indexWithLangsToReference(_from, _to):
                                                                  , **tplkwargs
                                                                  )
                 )
+
+        all_analysis_template = current_app.lexicon_templates.render_template( _from
+                                                                             , 'analyses.template'
+                                                                             , analyses=analyses
+                                                                             )
+
         reverse_exists = current_app.config.dictionaries.get((_from, _to), False)
+
         return render_template( 'index_new_style.html'
                               , _from=_from
                               , _to=_to
@@ -761,6 +786,7 @@ def indexWithLangsToReference(_from, _to):
                               , user_input=lookup_val
                               , word_searches=results
                               , analyses=analyses
+                              , all_analysis_template=all_analysis_template
                               , analyses_without_lex=analyses_without_lex
                               , errors=errors
                               , show_info=show_info

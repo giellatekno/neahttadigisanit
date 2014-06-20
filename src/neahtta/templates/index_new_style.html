@@ -111,26 +111,22 @@
                     {% for tpl in new_templates %}
                         {{ tpl|safe }}
                     {% endfor %}
+                    {% if leftover_analyses_template %}
+                        <div class="row-fluid entry_row">
+                            <div class="span8 lexeme">
+                                &nbsp;
+                            </div>
+                            <div class="span3 offset1 hidden-phone">{{- leftover_analyses_template|safe -}}</div>
+                        </div>
+                    {% endif %}
                 </div>
 
                 {%- if analyses %}
                 <div class="visible-phone">
                     <div class="well">
                         <p style="font-size: 95%;"><em>{{ user_input }}</em>{% trans user_input=user_input %} is a possible form of ... {% endtrans %}</p>
-                        <dl class="possible_analyses">
-                            {% for grouper, forms in analyses|groupby(0) %}
-                                {% for lemmagroup, lemmafs in forms|groupby(1) %}
-                                    <dt>{{ lemmagroup }}</dt>
-                                    <dt>
-                                        <ul class="possible_forms">
-                                            {% for form, lemma, tag in lemmafs %}
-                                                <li>{{ ' '.join(tag)|tagfilter(_from, _to) }}</li>
-                                            {% endfor %}
-                                        </ul>
-                                    </dd>
-                                {% endfor %}
-                            {% endfor %}
-                        </dl>
+
+                        {{ all_analysis_template|safe }}
                     </div>
                 </div>
                 {%- endif -%}
