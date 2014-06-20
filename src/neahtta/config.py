@@ -272,6 +272,10 @@ class Config(Config):
             for lang in self.yaml.get('Languages'):
                 self._languages[lang.get('iso')] = lang.get('name', {})
 
+            # Add variants to languages if they're missing.
+            for iso in self.yaml.get('Morphology').keys():
+                if iso not in self._languages.keys():
+                    self._languages[iso] = {'iso': iso}
         return self._languages
 
     @property
