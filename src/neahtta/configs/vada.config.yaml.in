@@ -62,3 +62,27 @@ Dictionaries:
     target: yrk
     path: 'dicts/finyrk.xml'
 
+ReaderConfig:
+  yrk:
+    multiword_lookups: false
+    # multiword_list:
+    #   # File format-- plain text, but line coments allowed:
+    #   # Use %WORD% as a marker for any word these may co-occur with, i.e., if
+    #   # the user clicks on a %WORD%, then search for these environments too.
+    #   file: "configs/language_specific_rules/reader/hdn_multiwords.txt"
+    # NB: this is JavaScript format, since it will be sent to the reader via
+    # config. It must also be stored as a string.
+    #
+    # JavaScript is problematic with unicode, and \w in a regex ends up meaning
+    # just the ASCII range, thus it's necessary to be very explicit.
+    #
+    # Also this example shows how to include periods and apostrophes in
+    # word unit detection.
+    #
+    # http://regexpal.com/
+    #
+    # apostrophes don't yet want to work on a word boundary, but also
+    # http://nvinder.ru/rubric/yalumd uses different characters. 
+    word_regex: |
+      [\u00C0-\u1FFF\u2C00-\uD7FF\w\"\'’’]+
+    word_regex_opts: "g"
