@@ -573,7 +573,7 @@ def indexWithLangs(_from, _to):
     if current_app.config.new_style_templates and lookup_val:
         _rendered_entries = []
         def sort_entry(r):
-            if not r[0]:
+            if len(r[0]) > 0:
                 return False
             try:
                 return ''.join(r[0].xpath('./lg/l/text()'))
