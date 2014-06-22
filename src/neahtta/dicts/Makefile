@@ -181,35 +181,41 @@ guusaaw: guusaaw-lexica compile_langs_fsts print_complete_message
 
 PIKISKWEWINA_LANGS_ANALYSERS      :=   crk
 PIKISKWEWINA_LANGS_LEXICA         :=   
-PIKISKWEWINA_WORDS_DICTS_LEXICA   :=   crkeng
+# Generalized target, but we have some exceptions here, so crkeng is commented
+# out.
+# crkeng
+PIKISKWEWINA_WORDS_DICTS_LEXICA   :=   
 
 # NB: if things are in priv, use $(GTPRIV)
 #
 
-CRKENG_IN    := $(GTHOME)/words/dicts/crkeng/src/ \
-			    $(GTHOME)/words/dicts/crkeng/src2/
 
-# Grab all *.xml files
-CRKENG_SOURCES := $(foreach d, $(CRKENG_IN), $(shell find $d -name '*.xml'))
+CRKENG_DIRS  := $(GTHOME)/words/dicts/crkeng/src/
 
-crkeng.test.xml: $(CRKENG_SOURCES)
+# add more directories as a list to CRKENG_DIRS
+#
+#  CRKENG_DIRS  := /path/to/dir/ /path/to/dir2/ /path/to/dir3/
+
+# TODO: for now /scripts/ is copied to make sure that things work, and deleted at
+# the end. in the future, remove this.
+crkeng.xml: $(foreach d, $(CRKENG_DIRS), $(shell find $d -name '*.xml'))
 	@echo "******************************"
 	@echo "** Building crk-eng lexicon **"
 	@echo "******************************"
 	@echo "** Backup made (.bak)       **"
 	@echo "******************************"
 	@echo ""
-	@echo "wat"
-	@echo $^
 	mkdir -p crkeng_tmp/
+	cp -R $(GTHOME)/words/dicts/scripts ../scripts
 	cp $^ crkeng_tmp/
 	$(SAXON) inDir=$(pwd)/crkeng_tmp/ > $@
 	@rm -rf crkeng_tmp/
+	@rm -rf ../scripts
 
 .PHONY: pikiskwewina-lexica
 pikiskwewina-lexica: LEX_COMPILE_LANGS := $(PIKISKWEWINA_LANGS_LEXICA)
 pikiskwewina-lexica: LEX_COMPILE_WORDS_DICTS := $(PIKISKWEWINA_WORDS_DICTS_LEXICA)
-pikiskwewina-lexica: compile_langs_lexicon compile_words_dicts_lexicon
+pikiskwewina-lexica: crkeng.xml compile_langs_lexicon compile_words_dicts_lexicon
 
 .PHONY: pikiskwewina
 pikiskwewina: GT_COMPILE_LANGS := $(PIKISKWEWINA_LANGS_ANALYSERS)
