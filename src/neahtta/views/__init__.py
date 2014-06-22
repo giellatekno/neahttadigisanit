@@ -7,3 +7,4 @@ from autocomplete import *
 from reader import *
 from locale import *
 from main import *
+from search import *

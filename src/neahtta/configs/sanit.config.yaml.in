@@ -28,6 +28,10 @@ ApplicationSettings:
     - "trond.trosterud@uit.no"
     - "lene.antonsen@uit.no"
 
+UnitTests:
+ - "tests.sme_lexicon"
+ - "tests.fin_lexicon"
+
 # This option set is not used outside of providing shortcuts for
 # following settings.
 Tools:
