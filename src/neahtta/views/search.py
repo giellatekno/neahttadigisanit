@@ -800,10 +800,14 @@ def indexWithLangsToReference(_from, _to):
 ##                           )
 
 
-# TODO: this is a big todo, but, slowly refactor everything into mixins
-# and class-based views. So far the view functions here are really
-# complex as a result of being hacked together, but they need to be
-# chopped down into testable and easily comprehensible parts.
+######### TODO: this is a big todo, but, slowly refactor everything into mixins
+######### and class-based views. So far the view functions here are really
+######### complex as a result of being hacked together, but they need to be
+######### chopped down into testable and easily comprehensible parts.
+
+#### Next goals once this is done: simplify
+#### view->search->formatting->template mess. new style templates should
+#### allow for throwing a lot out.
 
 from flask.views import View, MethodView
 
@@ -892,12 +896,64 @@ class SearchResult(object):
 
     """
 
-    def __init__(self, _from, _to, user_input, entries_and_tags, formatter):
+    def entry_sorter_key(self, r):
+        return r.get('left')
+
+    @property
+    def formatted_results_sorted(self):
+        return sorted( self.formatted_results
+                     , key=self.entry_sorter_key
+                     )
+
+    @property
+    def formatted_results(self):
+        if hasattr(self, '_formatted_results'):
+            return self._formatted_results
+
+        self._formatted_results = []
+
+        fmtkwargs = { 'target_lang': self._to
+                    , 'source_lang': self._from
+                    , 'ui_lang': iso_filter(session.get('locale', self._to))
+                    , 'user_input': self.user_input
+                    }
+
+        # Formatting of this stuff should be moved somewhere more
+        # reasonable.
+        for result, morph_analyses in self.entries_and_tags:
+            if result is not None:
+                self._formatted_results.extend(self.formatter(
+                    [result],
+                    additional_template_kwargs={'analyses': morph_analyses},
+                    **fmtkwargs
+                ))
+
+        return self._formatted_results
+
+    @property
+    def analyses_without_lex(self):
+        if hasattr(self, '_analyses_without_lex'):
+            return self._analyses_without_lex
+
+        self._analyses_without_lex = []
+        for result, morph_analyses in self.entries_and_tags:
+            if result is None:
+                self._analyses_without_lex.extend(morph_analyses)
+
+        return self._analyses_without_lex
+
+    def __init__(self, _from, _to, user_input, entries_and_tags, formatter, sorter=None):
         self.user_input = user_input
         self.search_term = user_input
         self.entries_and_tags = entries_and_tags
         # When to display unknowns
         self.successful_entry_exists = False
+        self._from = _from
+        self._to = _to
+        self.formatter = formatter
+
+        if sorter is not None:
+            self.entry_sorter_key = sorter
 
         analyses = sum(map(itemgetter(1), entries_and_tags), [])
         analyses = [ (lem.input, lem.lemma, list(lem.tag))
@@ -906,39 +962,13 @@ class SearchResult(object):
 
         self.analyses = analyses
 
-        analyses_without_lex = []
-        formatted_results = []
-
-        fmtkwargs = { 'target_lang': _to
-                    , 'source_lang': _from
-                    , 'ui_lang': iso_filter(session.get('locale', _to))
-                    , 'user_input': user_input
-                    }
-
-        # Formatting of this stuff should be moved somewhere more
-        # reasonable.
-        for result, morph_analyses in entries_and_tags:
-            if result is not None:
-                formatted_results.extend(formatter(
-                    [result],
-                    additional_template_kwargs={'analyses': morph_analyses},
-                    **fmtkwargs
-                ))
-            else:
-                analyses_without_lex.extend(morph_analyses)
-
-        self.formatted_results = formatted_results
-        self.analyses_without_lex = analyses_without_lex
-
         if len(self.formatted_results) > 0:
             self.successful_entry_exists = True
-
-
 
 from lexicon import FrontPageFormat
 
 class SearcherMixin(object):
-    """ This mixin provides common methods for performing the search, 
+    """ This mixin provides common methods for performing the search,
     and returning view-ready results.
     """
 
@@ -971,16 +1001,12 @@ class SearcherMixin(object):
 
         search_result_obj = self.do_search_to_obj(_from, _to, lookup_value)
 
-        def sort_entry(r):
-            return r.get('left')
+        template_results = [{
+            'input': search_result_obj.search_term,
+            'lookups': search_result_obj.formatted_results_sorted
+        }]
 
-        sorted_results = sorted( search_result_obj.formatted_results
-                        , key=sort_entry
-                        )
-
-        template_results = [ {'input': lookup_value, 'lookups': sorted_results} ]
-
-        logIndexLookups(lookup_value, template_results, _from, _to)
+        logIndexLookups(search_result_obj.search_term, template_results, _from, _to)
 
         show_info = False
 
@@ -990,7 +1016,6 @@ class SearcherMixin(object):
         search_context = {
             '_from': _from,
             '_to': _to,
-
 
             # These variables can be turned into something more general
             'successful_entry_exists': search_result_obj.successful_entry_exists,
@@ -1009,23 +1034,22 @@ class SearcherMixin(object):
 
     def search_to_newstyle_context(self, _from, _to, lookup_value, **default_context_kwargs):
         """ This needs a big redo.
+
+            Note however: new-style templates require similar input
+            across Detail/main page view, so can really refactor and
+            chop stuff down.
         """
 
         search_result_obj = self.do_search_to_obj(_from, _to, lookup_value)
 
         _rendered_entry_templates = []
 
-        def sort_entry(r):
-            return r.get('left')
+        template_results = [{
+            'input': search_result_obj.search_term,
+            'lookups': search_result_obj.formatted_results_sorted
+        }]
 
-        # This is stuff sort of performed by the other context rendering
-        # function.
-        sorted_results = sorted(search_result_obj.formatted_results,
-                                key=sort_entry)
-
-        template_results = [ {'input': lookup_value, 'lookups': sorted_results} ]
-
-        logIndexLookups(lookup_value, template_results, _from, _to)
+        logIndexLookups(search_result_obj.search_term, template_results, _from, _to)
 
         show_info = False
 
@@ -1039,7 +1063,6 @@ class SearcherMixin(object):
             except:
                 return False
 
-
         for lz, az in sorted(search_result_obj.entries_and_tags, key=sort_entry):
             if lz is not None:
                 tplkwargs = { 'lexicon_entry': lz
@@ -1047,7 +1070,7 @@ class SearcherMixin(object):
 
                             , '_from': _from
                             , '_to': _to
-                            , 'user_input': lookup_value
+                            , 'user_input': search_result_obj.search_term
                             , 'word_searches': template_results
                             # TODO: errors??
                             , 'errors': False
@@ -1206,7 +1229,6 @@ class LanguagePairSearchView(MethodView, SearcherMixin):
         return render_template(self.template_name, **search_result_context)
 
     def handle_newstyle_post(self, _from, _to):
-        print "newstyle handle"
 
         user_input = lookup_val = request.form.get('lookup', False)
 
