@@ -21,6 +21,8 @@ from flask import ( request
                   , g
                   )
 
+from flaskext.babel import gettext as _
+
 from operator import itemgetter
 
 user_log = getLogger("user_log")
@@ -901,13 +903,13 @@ class SearchResult(object):
                      , key=self.entry_sorter_key
                      )
 
-    def generate_paradigm(self, formatted_result):
+    def generate_paradigm(self, formatted_results, morph_analyses):
 
         morph = current_app.config.morphologies.get(g._from, False)
         mlex = current_app.morpholexicon
 
         generated_and_formatted = []
-        for r in formatted_result:
+        for r in formatted_results:
             lemma, pos, tag, _type = r.get('input')
             node = r.get('node')
 
@@ -952,8 +954,8 @@ class SearchResult(object):
                 if self.entry_filterer:
                     _formatted = self.entry_filterer(_formatted)
 
-                if self.generate_paradigm:
-                    _formatted = self.generate_paradigm(_formatted)
+                if self.generate:
+                    _formatted = self.generate_paradigm(_formatted, morph_analyses)
 
                 self._formatted_results.extend(_formatted)
 
@@ -980,7 +982,7 @@ class SearchResult(object):
         self._from = _from
         self._to = _to
         self.formatter = formatter
-        self.generate_paradigm = generate
+        self.generate = generate
 
         if sorter is not None:
             self.entry_sorter_key = sorter
@@ -1080,7 +1082,7 @@ class SearcherMixin(object):
 
         errors = []
 
-        search_result_obj = self.do_search_to_obj(lookup_value, **search_kwargs)
+        search_result_obj = self.do_search_to_obj(lookup_value, generate=True, **search_kwargs)
 
         template_results = [{
             'input': search_result_obj.search_term,
@@ -1096,7 +1098,7 @@ class SearcherMixin(object):
             errors = False
 
         search_context = {
-            'result': detailed_result,
+            'result': search_result_obj.formatted_results_sorted,
 
             # These variables can be turned into something more general
             'successful_entry_exists': search_result_obj.successful_entry_exists,
@@ -1215,6 +1217,8 @@ from lexicon import FrontPageFormat
 
 class DictionaryView(MethodView):
 
+    entry_filterer = lambda self, x: x
+
     def check_pair_exists_or_abort(self, _from, _to):
 
         if (_from, _to) not in current_app.config.dictionaries and \
@@ -1329,6 +1333,8 @@ class DetailedLanguagePairSearchView(MethodView, SearcherMixin):
     search results.
 
     TODO: This also needs to cache results by all the parameters.
+    TODO: logging of each lookup
+
 
     .. http:get::
               /detail/(string:from)/(string:to)/(string:wordform).(string:fmt)
@@ -1385,7 +1391,7 @@ class DetailedLanguagePairSearchView(MethodView, SearcherMixin):
     from lexicon import DetailedFormat as formatter
 
     methods = ['GET']
-    template_name = 'detail.html'
+    template_name = 'word_detail.html'
 
     def entry_filterer(self, entries, **kwargs):
         """ Runs on formatted result from DetailedFormat thing
@@ -1457,12 +1463,16 @@ class DetailedLanguagePairSearchView(MethodView, SearcherMixin):
 
         self.validate_request()
 
-        wordform = decodeOrFail(wordform)
+        user_input = wordform = decodeOrFail(wordform)
 
         # Analyzer arguments
         no_compounds = request.args.get('no_compounds', False)
 
         # Determine whether to display the more detail link
+        pos_filter = request.args.get('pos_filter', False)
+        lemma_match = request.args.get('lemma_match', False)
+        e_node = request.args.get('e_node', False)
+
         if no_compounds or lemma_match or e_node:
             want_more_detail = True
         else:
@@ -1485,16 +1495,19 @@ class DetailedLanguagePairSearchView(MethodView, SearcherMixin):
         }
 
         search_result_context = self.search_to_detailed_context(user_input, **search_kwargs)
-        search_result_context.update(**self.get_shared_context(_from, _to))
+        # search_result_context.update(**self.get_shared_context(_from, _to))
 
         # check that analyses exist
-        for result in detailed_result:
+        has_analyses = False
+        for result in search_result_context.get('result'):
             if result.get('analyses'):
                 if len(result.get('analyses')) > 0:
                     has_analyses = True
 
         search_result_context['has_analyses'] = has_analyses
         search_result_context['more_detail_link'] = want_more_detail
+
+        return render_template(self.template_name, **search_result_context)
 
         # return... ?
 
