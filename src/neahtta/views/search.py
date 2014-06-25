@@ -12,14 +12,13 @@ from utils.data import *
 from i18n.utils import iso_filter
 from utils.encoding import *
 
-from .helpers import resolve_original_pair
-
 from flask import ( request
                   , session
                   , Response
                   , render_template
                   , abort
                   , redirect
+                  , g
                   )
 
 from operator import itemgetter
@@ -872,9 +871,6 @@ class IndexSearchPage(View, AppViewSettingsMixin):
                                                )
 
         template_context = {
-            'current_pair_settings': self.default_pair_settings,
-            '_from': self.default_from,
-            '_to': self.default_to,
             'display_swap': reverse_exists,
             'swap_from': self.default_to,
             'swap_to': self.default_from,
@@ -905,6 +901,30 @@ class SearchResult(object):
                      , key=self.entry_sorter_key
                      )
 
+    def generate_paradigm(self, formatted_result):
+
+        morph = current_app.config.morphologies.get(g._from, False)
+        mlex = current_app.morpholexicon
+
+        generated_and_formatted = []
+        for r in formatted_result:
+            lemma, pos, tag, _type = r.get('input')
+            node = r.get('node')
+
+            paradigm_from_file = mlex.paradigms.get_paradigm(
+                g._from, node, morph_analyses
+            )
+            if paradigm_from_file:
+                form_tags = [_t.split('+')[1::] for _t in paradigm_from_file.splitlines()]
+                _generated = morph.generate(lemma, form_tags, node)
+            else:
+                # For pregenerated things
+                _generated = morph.generate(lemma, [], node)
+
+            r['paradigm'] = _generated
+            generated_and_formatted.append(r)
+        return generated_and_formatted
+
     @property
     def formatted_results(self):
         if hasattr(self, '_formatted_results'):
@@ -914,7 +934,7 @@ class SearchResult(object):
 
         fmtkwargs = { 'target_lang': self._to
                     , 'source_lang': self._from
-                    , 'ui_lang': iso_filter(session.get('locale', self._to))
+                    , 'ui_lang': g.ui_lang
                     , 'user_input': self.user_input
                     }
 
@@ -922,11 +942,20 @@ class SearchResult(object):
         # reasonable.
         for result, morph_analyses in self.entries_and_tags:
             if result is not None:
-                self._formatted_results.extend(self.formatter(
+
+                _formatted = self.formatter(
                     [result],
                     additional_template_kwargs={'analyses': morph_analyses},
                     **fmtkwargs
-                ))
+                )
+
+                if self.entry_filterer:
+                    _formatted = self.entry_filterer(_formatted)
+
+                if self.generate_paradigm:
+                    _formatted = self.generate_paradigm(_formatted)
+
+                self._formatted_results.extend(_formatted)
 
         return self._formatted_results
 
@@ -942,7 +971,7 @@ class SearchResult(object):
 
         return self._analyses_without_lex
 
-    def __init__(self, _from, _to, user_input, entries_and_tags, formatter, sorter=None):
+    def __init__(self, _from, _to, user_input, entries_and_tags, formatter, generate, sorter=None, filterer=None):
         self.user_input = user_input
         self.search_term = user_input
         self.entries_and_tags = entries_and_tags
@@ -951,9 +980,13 @@ class SearchResult(object):
         self._from = _from
         self._to = _to
         self.formatter = formatter
+        self.generate_paradigm = generate
 
         if sorter is not None:
             self.entry_sorter_key = sorter
+
+        if filterer is not None:
+            self.entry_filterer = filterer
 
         analyses = sum(map(itemgetter(1), entries_and_tags), [])
         analyses = [ (lem.input, lem.lemma, list(lem.tag))
@@ -972,41 +1005,48 @@ class SearcherMixin(object):
     and returning view-ready results.
     """
 
-    def do_search_to_obj(self, _from, _to, lookup_value):
+    def do_search_to_obj(self, lookup_value, **kwargs):
 
         successful_entry_exists = False
 
         mlex = current_app.morpholexicon
 
+        search_kwargs = {
+            'split_compounds': kwargs.get('split_compounds', True),
+            'non_compounds_only': kwargs.get('non_compounds_only', False),
+            'no_derivations': kwargs.get('no_derivations', False),
+        }
+
         entries_and_tags = mlex.lookup( lookup_value
-                                      , source_lang=_from
-                                      , target_lang=_to
-                                      , split_compounds=True
+                                      , source_lang=g._from
+                                      , target_lang=g._to
+                                      , **search_kwargs
                                       )
 
-        search_result_obj = SearchResult(_from, _to, lookup_value,
+        generate = kwargs.get('generate', False)
+        search_result_obj = SearchResult(g._from, g._to, lookup_value,
                                          entries_and_tags,
-                                         self.formatter)
+                                         self.formatter,
+                                         generate=generate,
+                                         filterer=self.entry_filterer)
 
         return search_result_obj
 
-    def search_to_context(self, _from, _to, lookup_value):
+    def search_to_context(self, lookup_value):
         # TODO: There's a big mess contained here, and part of it
         # relates to lexicon formatters. Slowly working on unravelling
         # it.
 
-        from .helpers import resolve_original_pair
-
         errors = []
 
-        search_result_obj = self.do_search_to_obj(_from, _to, lookup_value)
+        search_result_obj = self.do_search_to_obj(lookup_value)
 
         template_results = [{
             'input': search_result_obj.search_term,
             'lookups': search_result_obj.formatted_results_sorted
         }]
 
-        logIndexLookups(search_result_obj.search_term, template_results, _from, _to)
+        logIndexLookups(search_result_obj.search_term, template_results, g._from, g._to)
 
         show_info = False
 
@@ -1014,8 +1054,6 @@ class SearcherMixin(object):
             errors = False
 
         search_context = {
-            '_from': _from,
-            '_to': _to,
 
             # These variables can be turned into something more general
             'successful_entry_exists': search_result_obj.successful_entry_exists,
@@ -1032,7 +1070,50 @@ class SearcherMixin(object):
 
         return search_context
 
-    def search_to_newstyle_context(self, _from, _to, lookup_value, **default_context_kwargs):
+    def search_to_detailed_context(self, lookup_value, **search_kwargs):
+        # TODO: There's a big mess contained here, and part of it
+        # relates to lexicon formatters. Slowly working on unravelling
+        # it.
+
+        # TODO: this can probably be generalized to be part of the last
+        # function.
+
+        errors = []
+
+        search_result_obj = self.do_search_to_obj(lookup_value, **search_kwargs)
+
+        template_results = [{
+            'input': search_result_obj.search_term,
+            'lookups': search_result_obj.formatted_results_sorted
+            # 'analyses': search_result_obj.analyses
+        }]
+
+        logIndexLookups(search_result_obj.search_term, template_results, g._from, g._to)
+
+        show_info = False
+
+        if len(errors) == 0:
+            errors = False
+
+        search_context = {
+            'result': detailed_result,
+
+            # These variables can be turned into something more general
+            'successful_entry_exists': search_result_obj.successful_entry_exists,
+
+            'word_searches': template_results,
+            'analyses': search_result_obj.analyses,
+            'analyses_without_lex': search_result_obj.analyses_without_lex,
+            'user_input': search_result_obj.search_term,
+
+            # ?
+            'errors': errors, # is this actually getting set?
+            'show_info': show_info,
+        }
+
+        return search_context
+
+    def search_to_newstyle_context(self, lookup_value, **default_context_kwargs):
         """ This needs a big redo.
 
             Note however: new-style templates require similar input
@@ -1040,7 +1121,7 @@ class SearcherMixin(object):
             chop stuff down.
         """
 
-        search_result_obj = self.do_search_to_obj(_from, _to, lookup_value)
+        search_result_obj = self.do_search_to_obj(lookup_value)
 
         _rendered_entry_templates = []
 
@@ -1049,7 +1130,7 @@ class SearcherMixin(object):
             'lookups': search_result_obj.formatted_results_sorted
         }]
 
-        logIndexLookups(search_result_obj.search_term, template_results, _from, _to)
+        logIndexLookups(search_result_obj.search_term, template_results, g._from, g._to)
 
         show_info = False
 
@@ -1068,15 +1149,15 @@ class SearcherMixin(object):
                 tplkwargs = { 'lexicon_entry': lz
                             , 'analyses': az
 
-                            , '_from': _from
-                            , '_to': _to
+                            # , '_from': g._from
+                            # , '_to': g._to
                             , 'user_input': search_result_obj.search_term
                             , 'word_searches': template_results
                             # TODO: errors??
                             , 'errors': False
                             , 'show_info': show_info
                             # , 'zip': zipNoTruncate
-                            , 'dictionaries_available': current_app.config.pair_definitions
+                            # , 'dictionaries_available': current_app.config.pair_definitions
                             , 'successful_entry_exists': search_result_obj.successful_entry_exists
                             }
                 tplkwargs.update(**default_context_kwargs)
@@ -1108,8 +1189,6 @@ class SearcherMixin(object):
             leftover_analyses_template = False
 
         search_context = {
-            '_from': _from,
-            '_to': _to,
 
             # This is the new style stuff.
             'new_templates': _rendered_entry_templates,
@@ -1134,7 +1213,17 @@ class SearcherMixin(object):
 
 from lexicon import FrontPageFormat
 
-class LanguagePairSearchView(MethodView, SearcherMixin):
+class DictionaryView(MethodView):
+
+    def check_pair_exists_or_abort(self, _from, _to):
+
+        if (_from, _to) not in current_app.config.dictionaries and \
+           (_from, _to) not in current_app.config.variant_dictionaries:
+            abort(404)
+
+        return False
+
+class LanguagePairSearchView(DictionaryView, SearcherMixin):
     """ This view returns either the search form, or processes the
     search request.
 
@@ -1151,9 +1240,8 @@ class LanguagePairSearchView(MethodView, SearcherMixin):
     def get_shared_context(self, _from, _to):
         """ Return some things that are in all templates. """
 
-        pair_settings, orig_pair_opts = resolve_original_pair(current_app.config, _from, _to)
+        _, orig_pair_opts = current_app.config.resolve_original_pair(_from, _to)
         shared_context = {
-            'current_pair_settings': pair_settings,
             'display_swap': self.get_reverse_pair(_from, _to),
             # TODO: 'show_info': ? set this based on sesion and whether
             # the user has seen the message once, etc.
@@ -1161,24 +1249,15 @@ class LanguagePairSearchView(MethodView, SearcherMixin):
         shared_context.update(**orig_pair_opts)
         return shared_context
 
-    def check_pair_exists_or_abort(self, _from, _to):
-
-        if (_from, _to) not in current_app.config.dictionaries and \
-           (_from, _to) not in current_app.config.variant_dictionaries:
-            abort(404)
-
-        return False
-
     def get_reverse_pair(self, _from, _to):
         """ If the reverse pair for (_from, _to) exists, return the
         pair's settings, otherwise False. """
 
-        pair_settings, orig_pair_opts = resolve_original_pair(current_app.config, _from, _to)
+        pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(_from, _to)
         _r_from, _r_to = orig_pair_opts.get('swap_from'), orig_pair_opts.get('swap_to')
         reverse_exists = current_app.config.dictionaries.get((_r_from, _r_to), False)
 
         return reverse_exists
-
 
     def get(self, _from, _to):
 
@@ -1188,8 +1267,6 @@ class LanguagePairSearchView(MethodView, SearcherMixin):
         # pair:
 
         default_context = {
-            '_from': _from,
-            '_to': _to,
 
             # These variables are produced from a search.
             'successful_entry_exists': False,
@@ -1211,6 +1288,8 @@ class LanguagePairSearchView(MethodView, SearcherMixin):
 
     def post(self, _from, _to):
 
+        self.check_pair_exists_or_abort(_from, _to)
+
         if current_app.config.new_style_templates:
             return self.handle_newstyle_post(_from, _to)
 
@@ -1222,7 +1301,7 @@ class LanguagePairSearchView(MethodView, SearcherMixin):
             # TODO: return an error.
 
         # This performs lots of the work...
-        search_result_context = self.search_to_context(_from, _to, user_input)
+        search_result_context = self.search_to_context(user_input)
 
         search_result_context.update(**self.get_shared_context(_from, _to))
 
@@ -1238,10 +1317,205 @@ class LanguagePairSearchView(MethodView, SearcherMixin):
             # TODO: return an error.
 
         # This performs lots of the work...
-        search_result_context = self.search_to_newstyle_context(_from, _to, user_input, **self.get_shared_context(_from, _to))
+        search_result_context = self.search_to_newstyle_context(user_input, **self.get_shared_context(_from, _to))
 
         # missing current_pair_settings
         return render_template('index_new_style.html', **search_result_context)
+
+class DetailedLanguagePairSearchView(MethodView, SearcherMixin):
+    """ The major difference between this view and the main index search
+    is that this view also accepts some parameters for filtering
+    entries, because it corresponds to links followed from the main page
+    search results.
+
+    TODO: This also needs to cache results by all the parameters.
+
+    .. http:get::
+              /detail/(string:from)/(string:to)/(string:wordform).(string:fmt)
+
+        Look up up a query in the lexicon (including lemmatizing input,
+        and the lexicon against the input sans lemmatization), returning
+        translation information, word analyses, and sample paradigms for
+        words and tags which support it.
+
+        :samp:`/detail/sme/nob/orrut.html`
+        :samp:`/detail/sme/nob/orrut.json`
+
+        Here are the basic parameters required for a result.
+
+        :param from: the source language
+        :param to: the target language
+        :param wordform:
+            the wordform to be analyzed. If in doubt, encode and escape
+            the string into UTF-8, and URL encode it. Some browser do
+            this automatically and present the URL in a user-readable
+            format, but mostly, the app does not seem to care.
+        :param format:
+            the data format to return the result in. `json` and `html`
+            are currently accepted.
+
+        Then there are the optional parameters...
+
+        :form pos_filter:
+            Filter the analyzed forms so that only forms with a PoS
+            matching `pos_filter` are displayed.
+        :type pos_filter: str
+        :form lemma_match:
+            Filter the results so that the lemma in the input must match
+            the lemma in the analyzed form.
+        :type lemma_match: bool
+        :form no_compounds:
+            Whether or not to analyze compounds.
+            True or False.
+        :type no_compounds: bool
+        :form e_node:
+            This value is only used if the user arrives at this page via
+            a link on the front pageg results, `e_node` is a unique
+            identifier for the XML document.
+
+        :throws Http404:
+            In the event that the language pair or format does not exist.
+
+        :returns:
+            Data is looked up and formatted using
+            :py:class:`lexicon.formatters.DetailedFormat`, and returned
+            in `html` using the template `word_detail.html`
+
+    """
+    from lexicon import DetailedFormat as formatter
+
+    methods = ['GET']
+    template_name = 'detail.html'
+
+    def entry_filterer(self, entries, **kwargs):
+        """ Runs on formatted result from DetailedFormat thing
+
+            TODO: will need to reconstruct this for new style views
+            because the formatters are going away
+        """
+
+        # Post-analysis filter arguments
+        pos_filter = request.args.get('pos_filter', False)
+        lemma_match = request.args.get('lemma_match', False)
+        e_node = request.args.get('e_node', False)
+
+        def _byPOS(r):
+            if r.get('input')[1].upper() == pos_filter.upper():
+                return True
+            else:
+                return False
+
+        def _byLemma(r):
+            if r.get('input')[0] == wordform:
+                return True
+            else:
+                return False
+
+        def _byNodeHash(r):
+            node = r.get('entry_hash')
+            if node == e_node:
+                return True
+            else:
+                return False
+
+        def default_result(r):
+            return r
+
+        entry_filters = [default_result]
+
+        if e_node:
+            entry_filters.append(_byNodeHash)
+
+        if pos_filter:
+            entry_filters.append(_byPOS)
+
+        if lemma_match:
+            entry_filters.append(_byLemma)
+
+        def filter_entries_for_view(entries):
+            _entries = []
+            for f in entry_filters:
+                _entries = filter(f, entries)
+            return _entries
+
+        return filter_entries_for_view(entries)
+
+    def validate_request(self):
+        """ Is the format correct?
+        """
+
+        if not format in ['json', 'html']:
+            return _("Invalid format. Only json and html allowed.")
+
+        self.check_pair_exists_or_abort(g._from, g._to)
+
+    def request_cache_key(self):
+        entry_cache_key = u'%s?%s?%s' % (request.path, request.query_string, g.ui_lang)
+        return entry_cache_key
+
+    def get(self, _from, _to, wordform, format):
+
+        self.validate_request()
+
+        wordform = decodeOrFail(wordform)
+
+        # Analyzer arguments
+        no_compounds = request.args.get('no_compounds', False)
+
+        # Determine whether to display the more detail link
+        if no_compounds or lemma_match or e_node:
+            want_more_detail = True
+        else:
+            want_more_detail = False
+
+        # Set up morphology arguments
+        if no_compounds:
+            _split = True
+            _non_c = True
+            _non_d = False
+        else:
+            _split = True
+            _non_c = False
+            _non_d = False
+
+        search_kwargs = {
+            'split_compounds': _split,
+            'non_compounds_only': _non_c,
+            'no_derivations': _non_d,
+        }
+
+        search_result_context = self.search_to_detailed_context(user_input, **search_kwargs)
+        search_result_context.update(**self.get_shared_context(_from, _to))
+
+        # check that analyses exist
+        for result in detailed_result:
+            if result.get('analyses'):
+                if len(result.get('analyses')) > 0:
+                    has_analyses = True
+
+        search_result_context['has_analyses'] = has_analyses
+        search_result_context['more_detail_link'] = want_more_detail
+
+        # return... ?
+
+## Hooks
+
+@blueprint.before_request
+def set_pair_request_globals():
+    """ Set global language pair infos.
+    """
+
+    if '_from' in request.view_args and '_to' in request.view_args:
+        g._from = request.view_args.get('_from')
+        g._to = request.view_args.get('_to')
+    else:
+        if request.url_rule == '/':
+            g._from, g._to = current_app.config.default_language_pair
+
+    if hasattr(g, '_to'):
+        g.ui_lang = iso_filter(session.get('locale', g._to))
+    else:
+        g.ui_lang = iso_filter(session.get('locale'))
 
 ## Class-based views routing:
 
@@ -1254,3 +1528,6 @@ blueprint.add_url_rule( '/<_from>/<_to>/'
                       , view_func=LanguagePairSearchView.as_view('language_pair_search')
                       )
 
+# blueprint.add_url_rule( '/detail/<_from>/<_to>/<wordform>.<format>'
+#                       , view_func=DetailedLanguagePairSearchView.as_view('detailed_language_pair_search')
+#                       )

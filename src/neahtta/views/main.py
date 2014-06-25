@@ -11,8 +11,6 @@ from utils.logger import *
 from utils.data import *
 from utils.encoding import *
 
-from .helpers import resolve_original_pair
-
 from flask import ( request
                   , Response
                   , render_template
@@ -72,7 +70,7 @@ def externalFormSearch(_from, _to, _search_type):
         abort(404)
 
     user_input = request.form.get('lookup')
-    pair_config, _ = resolve_original_pair(current_app.config, _from, _to)
+    pair_config, _ = current_app.config.resolve_original_pair(_from, _to)
 
     return func(pair_config, user_input)
 

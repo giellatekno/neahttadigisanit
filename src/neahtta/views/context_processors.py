@@ -1,5 +1,23 @@
-from flask import current_app, request
+from flask import current_app, request, g
 from . import blueprint
+
+@blueprint.context_processor
+def add_current_pair():
+    """ If the request is for a form or a lookup, we include 
+    """
+
+    _from = False
+    _to = False
+    pair_settings = False
+
+    if hasattr(g, '_from') and hasattr(g, '_to'):
+        _from = g._from
+        _to = g._to
+        pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(_from, _to)
+    else:
+        _from, _to = current_app.config.default_language_pair
+
+    return dict(_from=_from, _to=_to, current_pair_settings=pair_settings)
 
 @blueprint.context_processor
 def add_languages():
@@ -41,11 +59,11 @@ def define_app_production_mode():
 
 @blueprint.context_processor
 def define_global_language_pairs():
-	return dict(language_pairs=current_app.config.pair_definitions)
+    return dict(language_pairs=current_app.config.pair_definitions)
 
 @blueprint.context_processor
 def define_variant_dictionaries():
-	return dict(variant_dictionaries=current_app.config.variant_dictionaries)
+    return dict(variant_dictionaries=current_app.config.variant_dictionaries)
 
 @blueprint.context_processor
 def detect_mobile_variables():
