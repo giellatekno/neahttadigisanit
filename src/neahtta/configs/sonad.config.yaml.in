@@ -12,9 +12,9 @@ ApplicationSettings:
   # TODO: someone will have to decide on the meta keywords and
   # descriptions for google.
   meta_description: >
-     Free, mobile-friendly dictionaries for Olonetsian, Livonian, and Kven.
+     Free, mobile-friendly dictionaries for Livonian, Võro, Veps, Votic and Izhorian.
   meta_keywords: >
-     kven, olonets, olonetsian, livonian, livvi, liivi 
+     olonets, olonetsian, livonian, liivi, veps, votic, izhorian
   admins_to_email:
     - "rueter.jack@gmail.com"
     - "trond.trosterud@uit.no"

@@ -14,9 +14,9 @@ ApplicationSettings:
   # TODO: someone will have to decide on the meta keywords and
   # descriptions for google.
   meta_description: >
-     Free, mobile-friendly dictionaries for Olonetsian, Livonian, and Kven.
+     Free, mobile-friendly dictionaries for Olonetsian, and Kven.
   meta_keywords: >
-     kven, olonets, olonetsian, livonian, livvi, liivi 
+     kven, olonets, olonetsian, karelian
   admins_to_email:
     - "rueter.jack@gmail.com"
     - "trond.trosterud@uit.no"
@@ -46,26 +46,6 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
-  liv:
-    tool: *LOOKUP
-    file: [*OPT, '/liv/bin/analyser-dict-gt-desc.xfst']
-    inverse_file: [*OPT, '/liv/bin/generator-dict-gt-norm.xfst']
-    format: 'xfst'
-    options:
-      compoundBoundary: "+Use/Circ#"
-      derivationMarker: "+Der"
-      tagsep: '+'
-      inverse_tagsep: '+'
-  livM:
-    tool: *LOOKUP
-    file: [*OPT, '/liv/bin/analyser-dict-gt-desc-mobile.xfst']
-    inverse_file: [*OPT, '/liv/bin/generator-dict-gt-norm.xfst']
-    format: 'xfst'
-    options:
-      compoundBoundary: "+Use/Circ#"
-      derivationMarker: "+Der"
-      tagsep: '+'
-      inverse_tagsep: '+'
   fkv:
     tool: *LOOKUP
     file: [*OPT, '/fkv/bin/analyser-dict-gt-desc.xfst']
@@ -73,16 +53,6 @@ Morphology:
     format: 'xfst'
     options:
       compoundBoundary: "+Cmp#"
-      derivationMarker: "+Der"
-      tagsep: '+'
-      inverse_tagsep: '+'
-  izh:
-    tool: *LOOKUP
-    file: [*OPT, '/izh/bin/analyser-dict-gt-desc.xfst']
-    inverse_file: [*OPT, '/izh/bin/generator-dict-gt-norm.xfst']
-    format: 'xfst'
-    options:
-      compoundBoundary: "+Use/Circ#"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
@@ -100,12 +70,8 @@ Morphology:
 Languages:
   - iso: olo
   - iso: fin
-  - iso: liv
-  - iso: livM
   - iso: fkv
-  - iso: izh
   - iso: nob
-  - iso: est
   - iso: lav
 
 # This also dictates the order of the dictionaries in the UI for now.
@@ -117,49 +83,6 @@ Dictionaries:
     target: olo
     path: 'dicts/finolo.xml'
 
-  - source: liv
-    target: fin
-    path: 'dicts/liv-all.xml'
-    input_variants:
-      - type: "standard"
-        description: "Standard (äǟ)"
-        # NB: must be same as analyser name
-        short_name: "liv"
-      - type: "mobile"
-        description: "Mobile friendly (a &rarr; ä ~ ǟ)"
-        short_name: "livM"
-  - source: fin
-    target: liv
-    path: 'dicts/finliv.xml'
-
-  - source: liv
-    target: est
-    path: 'dicts/liv-all.xml'
-    input_variants:
-      - type: "standard"
-        description: !gettext "Standard (äǟ)"
-        # NB: must be same as analyser name
-        short_name: "liv"
-      - type: "mobile"
-        description: !gettext "Mobile friendly (a &rarr; ä ~ ǟ)"
-        short_name: "livM"
-  - source: liv
-    target: lav
-    path: 'dicts/liv-all.xml'
-    input_variants:
-      - type: "standard"
-        description: !gettext "Standard (äǟ)"
-        # NB: must be same as analyser name
-        short_name: "liv"
-      - type: "mobile"
-        description: !gettext "Mobile friendly (a &rarr; ä ~ ǟ)"
-        short_name: "livM"
-  - source: izh
-    target: fin
-    path: 'dicts/izh-all.xml'
-  - source: fin
-    target: izh
-    path: 'dicts/finizh.xml'
   - source: fkv 
     target: nob
     path: 'dicts/fkvnob.xml'
