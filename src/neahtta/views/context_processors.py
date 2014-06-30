@@ -2,6 +2,20 @@ from flask import current_app, request, g
 from . import blueprint
 
 @blueprint.context_processor
+def check_notice():
+    try:
+        tpl = current_app.jinja_env.get_template('notice.%s.html' % current_app.config.short_name)
+    except TemplateNotFound:
+        tpl = False
+
+    if tpl:
+        notice = tpl.render()
+    else:
+        notice = False
+
+    return {'project_notice': notice}
+
+@blueprint.context_processor
 def add_current_pair():
     """ If the request is for a form or a lookup, we include 
     """

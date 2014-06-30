@@ -833,19 +833,6 @@ class IndexSearchPage(View, AppViewSettingsMixin):
 
     template_name = 'index.html'
 
-    def check_notice(self):
-        try:
-            tpl = current_app.jinja_env.get_template('notice.%s.html' % current_app.config.short_name)
-        except TemplateNotFound:
-            tpl = False
-
-        if tpl:
-            notice = tpl.render()
-        else:
-            notice = False
-
-        return notice
-
     def maybe_do_mobile_redirect(self):
         """ If this is a mobile platform, redirect; otherwise return
         None/do no action.
@@ -890,7 +877,6 @@ class IndexSearchPage(View, AppViewSettingsMixin):
             'swap_from': self.default_to,
             'swap_to': self.default_from,
             'show_info': True,
-            'project_notice': self.check_notice()
         }
 
         return render_template(self.template_name, **template_context)
