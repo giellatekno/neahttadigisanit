@@ -36,11 +36,16 @@ NAMES = dict([
 
     # sanat
     ('fkv', _(u"Kven")),
+    ('olo', _(u"Olonetsian")),
+    ('est', _(u"Estonian")),
+
+    # sonad
     ('liv', _(u"Livonian")),
     ('livM', _(u"Livonian") + " (" + _("mobile friendly") + ")"),
-    ('olo', _(u"Olonetsian")),
     ('izh', _(u"Izhorian")),
-    ('est', _(u"Estonian")),
+    ('vep', _(u"Veps")),
+    ('vro', _(u"Võro")),
+    ('vot', _(u"Votic")),
 
     # valks
     ('myv', _(u"Erzya Mordvin")),
@@ -116,6 +121,10 @@ LOCALISATION_NAMES_BY_LANGUAGE = dict([
     ('en', u"English"),
     ('fr', u"Français"),
     ('hun', u"Magyar"),
+
+    ('vep', u"Vepsän kel’"),
+    ('vro', u"Võru keel"),
+    ('vot', u"Vađđa ceeli "),
 ])
 
 # Only put the exceptional ISOs here
