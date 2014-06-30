@@ -2,7 +2,7 @@ ApplicationSettings:
   app_name: "Nettidigisanat"
   app_meta_title: "Neahttadigisánit"
   short_name: "sonad"
-  default_locale: "fi"
+  default_locale: "et"
   default_pair: ["izh", "fin"]
   mobile_default_pair: false
   locales_available:

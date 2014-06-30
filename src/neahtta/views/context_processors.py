@@ -3,6 +3,8 @@ from . import blueprint
 
 @blueprint.context_processor
 def check_notice():
+    from jinja2 import TemplateNotFound
+
     try:
         tpl = current_app.jinja_env.get_template('notice.%s.html' % current_app.config.short_name)
     except TemplateNotFound:

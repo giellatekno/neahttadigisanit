@@ -54,7 +54,7 @@
 {%- endmacro -%}
 
 {%- macro definition_reference_link_many(ts, annotation=false) -%}
-    {% if (_to, _from) in dictionaries_available %}
+    {% if (_to, _from) in language_pairs %}
         {% for t in ts %}
             <a href="{{ make_detail_link_target(t.text) }}">{{- t.text -}}</a>{% if not loop.last %}, {% endif %}
         {% endfor %}
