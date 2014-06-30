@@ -833,6 +833,19 @@ class IndexSearchPage(View, AppViewSettingsMixin):
 
     template_name = 'index.html'
 
+    def check_notice(self):
+        try:
+            tpl = current_app.jinja_env.get_template('notice.%s.html' % current_app.config.short_name)
+        except TemplateNotFound:
+            tpl = False
+
+        if tpl:
+            notice = tpl.render()
+        else:
+            notice = False
+
+        return notice
+
     def maybe_do_mobile_redirect(self):
         """ If this is a mobile platform, redirect; otherwise return
         None/do no action.
@@ -877,6 +890,7 @@ class IndexSearchPage(View, AppViewSettingsMixin):
             'swap_from': self.default_to,
             'swap_to': self.default_from,
             'show_info': True,
+            'project_notice': self.check_notice()
         }
 
         return render_template(self.template_name, **template_context)
@@ -902,6 +916,27 @@ class SearchResult(object):
         return sorted( self.formatted_results
                      , key=self.entry_sorter_key
                      )
+
+    @property
+    def formatted_results_pickleable(self):
+        def pickleable_result(_results):
+            """ Pop the various keys that need to be removed.
+            """
+            pickleable = []
+            for j in _results:
+                _j = j.copy()
+                _j.pop('node')
+                analyses = []
+                for a in _j.get('analyses', []):
+                    # TODO: tag formatter
+                    analyses.append((a.lemma, a.tag.tag_string))
+                _j['analyses'] = analyses
+                pickleable.append(_j)
+            return pickleable
+
+        pickle_result = pickleable_result(self.formatted_results_sorted)
+
+        return pickle_result
 
     def generate_paradigm(self, formatted_results, morph_analyses):
 
@@ -1219,6 +1254,8 @@ class DictionaryView(MethodView):
 
     entry_filterer = lambda self, x: x
 
+    validate_request = lambda self, x: True
+
     def check_pair_exists_or_abort(self, _from, _to):
 
         if (_from, _to) not in current_app.config.dictionaries and \
@@ -1456,10 +1493,38 @@ class DetailedLanguagePairSearchView(MethodView, SearcherMixin):
         self.check_pair_exists_or_abort(g._from, g._to)
 
     def request_cache_key(self):
-        entry_cache_key = u'%s?%s?%s' % (request.path, request.query_string, g.ui_lang)
-        return entry_cache_key
+        return u'%s?%s?%s' % (request.path, request.query_string, g.ui_lang)
+
+    def get_cache_entry(self):
+        # TODO: return response from cache
+
+        # if current_app.caching_enabled:
+        #     cached_result = current_app.cache.get(entry_cache_key)
+        # else:
+        #     cached_result = None
+
+        # cur_morph = current_app.config.morphologies.get(from_language)
+
+        # def depickle_result(_results):
+        #     pickleable = []
+        #     for j in _results:
+        #         _j = j.copy()
+        #         analyses = []
+        #         for (lemma, tag) in _j.get('analyses', []):
+        #             # TODO: tag formatter
+        #             _lem = cur_morph.de_pickle_lemma(lemma, tag)
+        #             analyses.append(_lem)
+        #         _j['analyses'] = analyses
+        #         pickleable.append(_j)
+        #     return pickleable
+
+        # json_result = cached_result
+        # detailed_result = depickle_result(cached_result)
+        pass
 
     def get(self, _from, _to, wordform, format):
+        
+        # Check for cache entry here
 
         self.validate_request()
 
@@ -1494,7 +1559,19 @@ class DetailedLanguagePairSearchView(MethodView, SearcherMixin):
             'no_derivations': _non_d,
         }
 
-        search_result_context = self.search_to_detailed_context(user_input, **search_kwargs)
+        if current_app.config.new_style_templates:
+            search_result_context = \
+                self.search_to_detailed_context_newstyle(user_input,
+                                                         **search_kwargs)
+        else:
+            search_result_context = self.search_to_detailed_context(user_input, **search_kwargs)
+
+        # TODO: cache search result here
+        # current_app.cache.set(entry_cache_key,
+        # search_result_context.detailed_entry_pickleable)
+
+        # TODO: log request here.
+
         # search_result_context.update(**self.get_shared_context(_from, _to))
 
         # check that analyses exist

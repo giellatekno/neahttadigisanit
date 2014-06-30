@@ -50,3 +50,8 @@
 {% endfor %}
 </ul>
 <p><a href="/more/" class="other_link">{% trans %}Other dictionaries{% endtrans %}</a></p>
+{% if project_notice %}
+<div class="alert alert-error">
+    <p>{{ project_notice|safe }}</p>
+</div>
+{% endif %}
