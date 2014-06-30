@@ -129,6 +129,11 @@ def sanat():
     env.current_dict = "sanat"
 
 @task
+def sonad():
+    """ Use sonad """
+    env.current_dict = "sonad"
+
+@task
 def vada():
     """ Use vada """
     env.current_dict = "vada"

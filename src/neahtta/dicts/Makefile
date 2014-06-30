@@ -24,6 +24,8 @@
 ###         
 ###         #sanattargets
 ###         
+###         #sonadtargets
+###         
 ###         #sanittargets
 ###          #smeanalysers
 ###          #sanitlexica
@@ -347,9 +349,9 @@ valks-install: install_langs_fsts
 ##### #sanattargets
 #####
 
-SANAT_LANGS_ANALYSERS      :=   olo izh liv fin fkv
-SANAT_LANGS_LEXICA         :=   olo liv izh
-SANAT_WORDS_DICTS_LEXICA   :=   nobfkv finliv fkvnob finolo finizh
+SANAT_LANGS_ANALYSERS      :=   olo fin fkv
+SANAT_LANGS_LEXICA         :=   olo izh
+SANAT_WORDS_DICTS_LEXICA   :=   nobfkv fkvnob finolo
 
 # finizh
 
@@ -389,6 +391,34 @@ rm-sanat-lexica: $(foreach xx, $(SANAT_LANGS_LEXICA), $(xx)-all.xml) \
 .PHONY: sanat-install
 sanat-install: GT_COMPILE_LANGS := $(SANAT_LANGS_ANALYSERS)
 sanat-install: install_langs_fsts
+
+#####
+##### #sonadtargets
+#####
+
+SONAD_LANGS_ANALYSERS      :=   izh liv fin vep vro vot
+SONAD_LANGS_LEXICA         :=   liv izh vep vro vot
+SONAD_WORDS_DICTS_LEXICA   :=   finliv finizh
+
+.PHONY: sonad-lexica
+sonad-lexica: LEX_COMPILE_LANGS := $(SONAD_LANGS_LEXICA)
+sonad-lexica: LEX_COMPILE_WORDS_DICTS := $(SONAD_WORDS_DICTS_LEXICA)
+sonad-lexica: compile_langs_lexicon \
+			  compile_words_dicts_lexicon
+
+.PHONY: sonad
+sonad: GT_COMPILE_LANGS := $(SONAD_LANGS_ANALYSERS)
+sonad: LEX_COMPILE_LANGS := $(SONAD_LANGS_LEXICA)
+sonad: LEX_COMPILE_WORDS_DICTS := $(SONAD_WORDS_DICTS_LEXICA)
+sonad: sonad-lexica compile_langs_fsts print_complete_message
+
+rm-sonad-lexica: $(foreach xx, $(SONAD_LANGS_LEXICA), $(xx)-all.xml) \
+				 $(foreach yy, $(SONAD_WORDS_DICTS_LEXICA), $(yy).xml)
+	@rm -rf $^
+
+.PHONY: sonad-install
+sonad-install: GT_COMPILE_LANGS := $(SONAD_LANGS_ANALYSERS)
+sonad-install: install_langs_fsts
 
 #####
 ##### #sanittargets
@@ -616,6 +646,7 @@ all-lexica: baakoeh-lexica \
 	pikiskwewina-lexica \
 	saan-lexica \
 	sanat-lexica \
+	sonad-lexica \
 	sanit-lexica \
 	vada-lexica \
 	valks-lexica

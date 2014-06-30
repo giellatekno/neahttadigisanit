@@ -1,0 +1,181 @@
+ApplicationSettings:
+  app_name: "Nettidigisanat"
+  app_meta_title: "Neahttadigisánit"
+  short_name: "sonad"
+  default_locale: "fi"
+  default_pair: ["izh", "fin"]
+  mobile_default_pair: false
+  locales_available:
+    - "et"
+    - "lv"
+    - "ru"
+  # TODO: someone will have to decide on the meta keywords and
+  # descriptions for google.
+  meta_description: >
+     Free, mobile-friendly dictionaries for Olonetsian, Livonian, and Kven.
+  meta_keywords: >
+     kven, olonets, olonetsian, livonian, livvi, liivi 
+  admins_to_email:
+    - "rueter.jack@gmail.com"
+    - "trond.trosterud@uit.no"
+
+Tools:
+  xfst_lookup: &LOOKUP '/usr/bin/lookup'
+  opt: &OPT '/opt/smi/'
+ 
+Morphology:
+  fin:
+    tool: *LOOKUP
+    file: [*OPT, '/fin/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/fin/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  est:
+    tool: *LOOKUP
+    file: [*OPT, '/est/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/est/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  liv:
+    tool: *LOOKUP
+    file: [*OPT, '/liv/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/liv/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  livM:
+    tool: *LOOKUP
+    file: [*OPT, '/liv/bin/analyser-dict-gt-desc-mobile.xfst']
+    inverse_file: [*OPT, '/liv/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  izh:
+    tool: *LOOKUP
+    file: [*OPT, '/izh/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/izh/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  vep:
+    tool: *LOOKUP
+    file: [*OPT, '/vep/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/vep/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  vro:
+    tool: *LOOKUP
+    file: [*OPT, '/vro/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/vro/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  vot:
+    tool: *LOOKUP
+    file: [*OPT, '/vot/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/vot/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+
+Languages:
+  - iso: liv
+  - iso: livM
+  - iso: izh
+  - iso: fin
+  - iso: est
+  - iso: lav
+  - iso: vep
+  - iso: vro
+  - iso: vot
+
+# This also dictates the order of the dictionaries in the UI for now.
+Dictionaries:
+  # liv
+  - source: liv
+    target: fin
+    path: 'dicts/liv-all.xml'
+    input_variants:
+      - type: "standard"
+        description: "Standard (äǟ)"
+        # NB: must be same as analyser name
+        short_name: "liv"
+      - type: "mobile"
+        description: "Mobile friendly (a &rarr; ä ~ ǟ)"
+        short_name: "livM"
+  - source: fin
+    target: liv
+    path: 'dicts/finliv.xml'
+
+  - source: liv
+    target: est
+    path: 'dicts/liv-all.xml'
+    input_variants:
+      - type: "standard"
+        description: !gettext "Standard (äǟ)"
+        # NB: must be same as analyser name
+        short_name: "liv"
+      - type: "mobile"
+        description: !gettext "Mobile friendly (a &rarr; ä ~ ǟ)"
+        short_name: "livM"
+  - source: liv
+    target: lav
+    path: 'dicts/liv-all.xml'
+    input_variants:
+      - type: "standard"
+        description: !gettext "Standard (äǟ)"
+        # NB: must be same as analyser name
+        short_name: "liv"
+      - type: "mobile"
+        description: !gettext "Mobile friendly (a &rarr; ä ~ ǟ)"
+        short_name: "livM"
+
+  # izh
+  - source: izh
+    target: fin
+    path: 'dicts/izh-all.xml'
+
+  - source: fin
+    target: izh
+    path: 'dicts/finizh.xml'
+
+  # vep
+  - source: vep
+    target: est
+    path: 'dicts/vep-all.xml'
+  # vro
+  - source: vro
+    target: est
+    path: 'dicts/vro-all.xml'
+  # vot
+  - source: vot
+    target: est
+    path: 'dicts/vot-all.xml'
+
