@@ -1,6 +1,8 @@
 ﻿from . import blueprint
 from flask import current_app
 
+from cache import cache
+
 import sys
 
 import simplejson
@@ -853,6 +855,7 @@ class SearcherMixin(object):
 
         return search_result_obj
 
+    # @cache.memoize(timeout=50)
     def search_to_context(self, lookup_value):
         # TODO: There's a big mess contained here, and part of it
         # relates to lexicon formatters. Slowly working on unravelling
@@ -1162,7 +1165,6 @@ class DetailedLanguagePairSearchView(MethodView, SearcherMixin):
     TODO: This also needs to cache results by all the parameters.
     TODO: logging of each lookup
     TODO: json
-
 
     .. http:get::
               /detail/(string:from)/(string:to)/(string:wordform).(string:fmt)

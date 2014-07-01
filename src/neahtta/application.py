@@ -15,11 +15,13 @@ from   flask                          import ( Flask
                                              , session
                                              )
 
-from   werkzeug.contrib.cache         import SimpleCache
+# from   werkzeug.contrib.cache         import SimpleCache
 from   config                         import Config
 from   logging                        import getLogger
 
 from   flaskext.babel                 import Babel
+
+from cache                            import cache
 
 # Configure user_log
 user_log = getLogger("user_log")
@@ -105,13 +107,14 @@ def create_app():
     # calframe = inspect.getouterframes(curframe, 2)
     # print "caller name", calframe[1]
 
-    cache = SimpleCache()
     app = Flask(__name__,
         static_url_path='/static',)
 
     app = jinja_options_and_filters(app)
     app.production = False
     app.register_blueprint(views.blueprint)
+
+    cache.init_app(app, {'CACHE_TYPE': 'simple'})
 
     app.cache = cache
     app.config['cache'] = cache
