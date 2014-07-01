@@ -12,6 +12,7 @@ ApplicationSettings:
     - "en"
   # TODO: someone will have to decide on the meta keywords and
   # descriptions for google.
+  app_meta_title: "Netidigisõnad"
   meta_description: >
      Free, mobile-friendly dictionaries for Livonian, Võro, Veps, Votic and Izhorian.
   meta_keywords: >
