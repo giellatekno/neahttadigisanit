@@ -7,4 +7,6 @@ from autocomplete import *
 from reader import *
 from locale import *
 from main import *
+from hooks import *
 from search import *
+from routes import *

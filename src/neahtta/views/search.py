@@ -27,6 +27,8 @@ from operator import itemgetter
 
 user_log = getLogger("user_log")
 
+# TODO: transform this into the new class-based view format
+
 @blueprint.route('/detail/<from_language>/<to_language>/<wordform>.<format>',
            methods=['GET'], endpoint="detail")
 def wordDetail(from_language, to_language, wordform, format):
@@ -424,189 +426,14 @@ def wordDetail(from_language, to_language, wordform, format):
                               , current_pair_settings=pair_settings
                               )
 
-# For direct links, form submission.
-### @blueprint.route('/<_from>/<_to>/', methods=['GET', 'POST'])
-### def indexWithLangs(_from, _to):
-###     from lexicon import FrontPageFormat
-### 
-###     # mobile test for most common browsers
-###     mobile = False
-###     if request.user_agent.platform in ['iphone', 'android']:
-###         mobile = True
-### 
-###     iphone = False
-###     if request.user_agent.platform == 'iphone':
-###         iphone = True
-### 
-###     analyses_without_lex = []
-###     mlex = current_app.morpholexicon
-### 
-###     user_input = lookup_val = request.form.get('lookup', False)
-### 
-###     if (_from, _to) not in current_app.config.dictionaries and \
-###        (_from, _to) not in current_app.config.variant_dictionaries:
-###         abort(404)
-### 
-###     swap_from, swap_to = (_to, _from)
-### 
-###     successful_entry_exists = False
-###     errors = []
-### 
-###     results = False
-###     analyses = False
-### 
-###     if request.method == 'POST' and lookup_val:
-### 
-###         mlex = current_app.morpholexicon
-### 
-###         entries_and_tags = mlex.lookup( lookup_val
-###                                       , source_lang=_from
-###                                       , target_lang=_to
-###                                       , split_compounds=True
-###                                       )
-### 
-###         analyses = sum(map(itemgetter(1), entries_and_tags), [])
-### 
-###         # Keep these around for the mobile analyses box
-###         analyses = [ (lem.input, lem.lemma, list(lem.tag))
-###                      for lem in analyses
-###                    ]
-### 
-###         fmtkwargs = { 'target_lang': _to
-###                     , 'source_lang': _from
-###                     , 'ui_lang': iso_filter(session.get('locale', _to))
-###                     , 'user_input': lookup_val
-###                     }
-### 
-###         # [(lemma, XMLNodes)] -> [(lemma, generator(AlmostJSON))]
-###         formatted_results = []
-###         analyses_without_lex = []
-###         for result, morph_analyses in entries_and_tags:
-###             if result is not None:
-###                 formatted_results.extend(FrontPageFormat(
-###                     [result],
-###                     additional_template_kwargs={'analyses': morph_analyses},
-###                     **fmtkwargs
-###                 ))
-###             else:
-###                 analyses_without_lex.extend(morph_analyses)
-### 
-###         # When to display unknowns
-###         successful_entry_exists = False
-###         if len(formatted_results) > 0:
-###             successful_entry_exists = True
-### 
-###         def sort_entry(r):
-###             return r.get('left')
-### 
-###         results = sorted( formatted_results
-###                         , key=sort_entry
-###                         )
-### 
-###         results = [ {'input': lookup_val, 'lookups': results} ]
-### 
-###         logIndexLookups(user_input, results, _from, _to)
-### 
-###         show_info = False
-###     else:
-###         user_input = ''
-###         show_info = True
-### 
-###     if len(errors) == 0:
-###         errors = False
-### 
-###     # context needs: has_mobile_variant, has_variant,
-###     # variant_dictionaries, orig_pair, is_variant, pair_settings
-###     pair_settings, pair_opts = resolve_original_pair(current_app.config, _from, _to)
-### 
-###     if current_app.config.new_style_templates and lookup_val:
-###         _rendered_entries = []
-###         def sort_entry(r):
-###             if r[0] is None:
-###                 return False
-###             if len(r[0]) > 0:
-###                 return False
-###             try:
-###                 return ''.join(r[0].xpath('./lg/l/text()'))
-###             except:
-###                 return False
-### 
-###         for lz, az in sorted(entries_and_tags, key=sort_entry):
-###             if lz is not None:
-###                 tplkwargs = { 'lexicon_entry': lz
-###                             , 'analyses': az
-### 
-###                             , '_from': _from
-###                             , '_to': _to
-###                             , 'user_input': lookup_val
-###                             , 'word_searches': results
-###                             , 'errors': errors
-###                             , 'show_info': show_info
-###                             , 'zip': zipNoTruncate
-###                             , 'dictionaries_available': current_app.config.pair_definitions
-###                             , 'successful_entry_exists': successful_entry_exists
-###                             , 'current_pair_settings': pair_settings
-###                             }
-###                 _rendered_entries.append(
-###                     current_app.lexicon_templates.render_template(_from, 'entry.template', **tplkwargs)
-###                 )
-### 
-###         all_az = sum([az for _, az in sorted(entries_and_tags, key=sort_entry)], [])
-###         all_analysis_template = current_app.lexicon_templates.render_individual_template( _from
-###                                                                                         , 'analyses.template'
-###                                                                                         , analyses=all_az
-###                                                                                         , current_pair_settings=pair_settings
-###                                                                                         )
-###         if analyses_without_lex:
-###             leftover_analyses_template = current_app.lexicon_templates.render_individual_template( _from
-###                                                                                                  , 'analyses.template'
-###                                                                                                  , analyses=analyses_without_lex
-###                                                                                                  , current_pair_settings=pair_settings
-###                                                                                                  )
-###         else:
-###             leftover_analyses_template = False
-### 
-###         return render_template( 'index_new_style.html'
-###                               , _from=_from
-###                               , _to=_to
-###                               , user_input=lookup_val
-###                               , word_searches=results
-###                               , analyses=analyses
-###                               , analyses_without_lex=analyses_without_lex
-###                               , leftover_analyses_template=leftover_analyses_template
-###                               , all_analysis_template=all_analysis_template
-###                               , errors=errors
-###                               , show_info=show_info
-###                               , zip=zipNoTruncate
-###                               , successful_entry_exists=successful_entry_exists
-###                               , current_pair_settings=pair_settings
-###                               , new_templates=_rendered_entries
-###                               , **pair_opts
-###                               )
-###     # TODO: include form analysis of user input #formanalysis
-###     _r_from, _r_to = pair_opts.get('swap_from'), pair_opts.get('swap_to')
-###     reverse_exists = current_app.config.dictionaries.get((_r_from, _r_to), False)
-###     return render_template( 'index.html'
-###                           , _from=_from
-###                           , _to=_to
-###                           , display_swap=reverse_exists
-###                           , user_input=lookup_val
-###                           , word_searches=results
-###                           , analyses=analyses
-###                           , analyses_without_lex=analyses_without_lex
-###                           , errors=errors
-###                           , show_info=show_info
-###                           , zip=zipNoTruncate
-###                           , successful_entry_exists=successful_entry_exists
-###                           , current_pair_settings=pair_settings
-###                           , **pair_opts
-###                           )
-
 accepted_lemma_args = {
     'l_til_ref': 'til_ref',
 }
 
 # For direct links, form submission.
+
+# TODO: transform this into the new class-based view format
+
 @blueprint.route('/<_from>/<_to>/ref/', methods=['GET'])
 def indexWithLangsToReference(_from, _to):
     from lexicon import FrontPageFormat
@@ -765,42 +592,6 @@ def indexWithLangsToReference(_from, _to):
                               , current_pair_settings=pair_settings
                               )
 
-## @blueprint.route('/', methods=['GET'], endpoint="canonical-root")
-## def index():
-## 
-##     default_from, default_to = current_app.config.default_language_pair
-##     mobile_redir = current_app.config.mobile_redirect_pair
-##     pair_settings = current_app.config.pair_definitions[(default_from, default_to)]
-## 
-##     iphone = False
-##     if request.user_agent.platform == 'iphone':
-##         iphone = True
-## 
-##     mobile = False
-##     if mobile_redir:
-##         target_url = '/%s/%s/' % tuple(mobile_redir)
-##         if request.user_agent.platform in ['iphone', 'android']:
-##             mobile = True
-##             # Only redirect if the user isn't coming back to the home page
-##             # from somewhere within the app.
-##             if request.referrer and request.host:
-##                 if not request.host in request.referrer:
-##                     return redirect(target_url)
-##             else:
-##                 return redirect(target_url)
-## 
-##     reverse_exists = current_app.config.dictionaries.get((default_to, default_from), False)
-##     return render_template( 'index.html'
-##                           , current_pair_settings=pair_settings
-##                           , _from=default_from
-##                           , _to=default_to
-##                           , display_swap=reverse_exists
-##                           , swap_from=default_to
-##                           , swap_to=default_from
-##                           , show_info=True
-##                           )
-
-
 ######### TODO: this is a big todo, but, slowly refactor everything into mixins
 ######### and class-based views. So far the view functions here are really
 ######### complex as a result of being hacked together, but they need to be
@@ -809,6 +600,13 @@ def indexWithLangsToReference(_from, _to):
 #### Next goals once this is done: simplify
 #### view->search->formatting->template mess. new style templates should
 #### allow for throwing a lot out.
+
+#### * the ->formatting-> part will be solved with the new template system, which
+####   will remove the need for this step.
+
+#### * take a look at the SearchResult object and new templates, and
+####   simplify the amount of context that is needed to be passed into
+####   templates. SearchResult object should actually be enough.
 
 from flask.views import View, MethodView
 
@@ -1257,6 +1055,10 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
     This will be as much view logic as possible, search functionality
     will go elsewhere.
 
+    TODO: confirm logging of each lookup, and generalize logging for all
+    views, maybe to a pre-response hook so logging is completely out of
+    view code?
+
     """
 
     methods = ['GET', 'POST']
@@ -1279,6 +1081,8 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
     def get_reverse_pair(self, _from, _to):
         """ If the reverse pair for (_from, _to) exists, return the
         pair's settings, otherwise False. """
+
+        # TODO: move this to config object.
 
         pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(_from, _to)
         _r_from, _r_to = orig_pair_opts.get('swap_from'), orig_pair_opts.get('swap_to')
@@ -1357,6 +1161,7 @@ class DetailedLanguagePairSearchView(MethodView, SearcherMixin):
 
     TODO: This also needs to cache results by all the parameters.
     TODO: logging of each lookup
+    TODO: json
 
 
     .. http:get::
@@ -1509,7 +1314,7 @@ class DetailedLanguagePairSearchView(MethodView, SearcherMixin):
         pass
 
     def get(self, _from, _to, wordform, format):
-        
+
         # Check for cache entry here
 
         self.validate_request()
@@ -1573,37 +1378,3 @@ class DetailedLanguagePairSearchView(MethodView, SearcherMixin):
         return render_template(self.template_name, **search_result_context)
 
         # return... ?
-
-## Hooks
-
-@blueprint.before_request
-def set_pair_request_globals():
-    """ Set global language pair infos.
-    """
-
-    if '_from' in request.view_args and '_to' in request.view_args:
-        g._from = request.view_args.get('_from')
-        g._to = request.view_args.get('_to')
-    else:
-        if request.url_rule == '/':
-            g._from, g._to = current_app.config.default_language_pair
-
-    if hasattr(g, '_to'):
-        g.ui_lang = iso_filter(session.get('locale', g._to))
-    else:
-        g.ui_lang = iso_filter(session.get('locale'))
-
-## Class-based views routing:
-
-blueprint.add_url_rule( '/'
-                      , view_func=IndexSearchPage.as_view('index_search_page')
-                      , endpoint="canonical-root"
-                      )
-
-blueprint.add_url_rule( '/<_from>/<_to>/'
-                      , view_func=LanguagePairSearchView.as_view('language_pair_search')
-                      )
-
-# blueprint.add_url_rule( '/detail/<_from>/<_to>/<wordform>.<format>'
-#                       , view_func=DetailedLanguagePairSearchView.as_view('detailed_language_pair_search')
-#                       )
