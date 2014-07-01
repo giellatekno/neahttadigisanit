@@ -1,14 +1,15 @@
 ApplicationSettings:
-  app_name: "Nettidigisanat"
-  app_meta_title: "Neahttadigisánit"
+  app_name: "Netidigisõnad"
   short_name: "sonad"
   default_locale: "et"
   default_pair: ["izh", "fin"]
   mobile_default_pair: false
   locales_available:
     - "et"
+    - "fi"
     - "lv"
     - "ru"
+    - "en"
   # TODO: someone will have to decide on the meta keywords and
   # descriptions for google.
   meta_description: >
@@ -74,16 +75,6 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
-  vep:
-    tool: *LOOKUP
-    file: [*OPT, '/vep/bin/analyser-dict-gt-desc.xfst']
-    inverse_file: [*OPT, '/vep/bin/generator-dict-gt-norm.xfst']
-    format: 'xfst'
-    options:
-      compoundBoundary: "+Use/Circ#"
-      derivationMarker: "+Der"
-      tagsep: '+'
-      inverse_tagsep: '+'
   vro:
     tool: *LOOKUP
     file: [*OPT, '/vro/bin/analyser-dict-gt-desc.xfst']
@@ -112,7 +103,6 @@ Languages:
   - iso: fin
   - iso: est
   - iso: lav
-  - iso: vep
   - iso: vro
   - iso: vot
 
@@ -122,7 +112,7 @@ Dictionaries:
   - source: liv
     target: fin
     path: 'dicts/liv-all.xml'
-    input_variants:
+    input_variants: &liv_variants
       - type: "standard"
         description: "Standard (äǟ)"
         # NB: must be same as analyser name
@@ -130,6 +120,7 @@ Dictionaries:
       - type: "mobile"
         description: "Mobile friendly (a &rarr; ä ~ ǟ)"
         short_name: "livM"
+
   - source: fin
     target: liv
     path: 'dicts/finliv.xml'
@@ -137,25 +128,12 @@ Dictionaries:
   - source: liv
     target: est
     path: 'dicts/liv-all.xml'
-    input_variants:
-      - type: "standard"
-        description: !gettext "Standard (äǟ)"
-        # NB: must be same as analyser name
-        short_name: "liv"
-      - type: "mobile"
-        description: !gettext "Mobile friendly (a &rarr; ä ~ ǟ)"
-        short_name: "livM"
+    input_variants: *liv_variants
+
   - source: liv
     target: lav
     path: 'dicts/liv-all.xml'
-    input_variants:
-      - type: "standard"
-        description: !gettext "Standard (äǟ)"
-        # NB: must be same as analyser name
-        short_name: "liv"
-      - type: "mobile"
-        description: !gettext "Mobile friendly (a &rarr; ä ~ ǟ)"
-        short_name: "livM"
+    input_variants: *liv_variants
 
   # izh
   - source: izh
@@ -166,14 +144,11 @@ Dictionaries:
     target: izh
     path: 'dicts/finizh.xml'
 
-  # vep
-  - source: vep
-    target: est
-    path: 'dicts/vep-all.xml'
   # vro
   - source: vro
     target: est
     path: 'dicts/vro-all.xml'
+
   # vot
   - source: vot
     target: est

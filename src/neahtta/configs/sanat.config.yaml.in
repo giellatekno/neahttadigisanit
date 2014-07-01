@@ -46,6 +46,16 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
+  vep:
+    tool: *LOOKUP
+    file: [*OPT, '/vep/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/vep/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
   fkv:
     tool: *LOOKUP
     file: [*OPT, '/fkv/bin/analyser-dict-gt-desc.xfst']
@@ -71,11 +81,13 @@ Languages:
   - iso: olo
   - iso: fin
   - iso: fkv
+  - iso: vep
   - iso: nob
   - iso: lav
 
 # This also dictates the order of the dictionaries in the UI for now.
 Dictionaries:
+  # olo
   - source: olo
     target: fin
     path: 'dicts/olo-all.xml'
@@ -83,10 +95,20 @@ Dictionaries:
     target: olo
     path: 'dicts/finolo.xml'
 
+  # fkv
   - source: fkv 
     target: nob
     path: 'dicts/fkvnob.xml'
   - source: nob
     target: fkv
     path: 'dicts/nobfkv.xml'
+
+  # vep
+  - source: vep
+    target: fin
+    path: 'dicts/vep-all.xml'
+
+  - source: vep
+    target: est
+    path: 'dicts/vep-all.xml'
 
