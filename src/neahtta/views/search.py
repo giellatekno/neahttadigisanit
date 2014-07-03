@@ -428,171 +428,9 @@ def wordDetail(from_language, to_language, wordform, format):
                               , current_pair_settings=pair_settings
                               )
 
-accepted_lemma_args = {
-    'l_til_ref': 'til_ref',
-}
-
 # For direct links, form submission.
 
 # TODO: transform this into the new class-based view format
-
-@blueprint.route('/<_from>/<_to>/ref/', methods=['GET'])
-def indexWithLangsToReference(_from, _to):
-    from lexicon import FrontPageFormat
-
-    analyses_without_lex = []
-    mlex = current_app.morpholexicon
-
-    user_input = lookup_val = request.form.get('lookup', False)
-
-    if (_from, _to) not in current_app.config.dictionaries:
-        abort(404)
-
-    successful_entry_exists = False
-    errors = []
-
-    results = False
-    analyses = False
-
-    lemma_lookup_args = {}
-    for k, v in request.args.iteritems():
-        if k in accepted_lemma_args:
-            lemma_lookup_args[accepted_lemma_args.get(k)] = v
-
-    if lemma_lookup_args:
-
-        mlex = current_app.morpholexicon
-
-        entries_and_tags = mlex.lookup( ''
-                                      , source_lang=_from
-                                      , target_lang=_to
-                                      , split_compounds=True
-                                      , lemma_attrs=lemma_lookup_args
-                                      )
-
-        analyses = sum(map(itemgetter(1), entries_and_tags), [])
-
-        # Keep these around for the mobile analyses box
-        analyses = [ (lem.input, lem.lemma, list(lem.tag))
-                     for lem in analyses
-                   ]
-
-        fmtkwargs = { 'target_lang': _to
-                    , 'source_lang': _from
-                    , 'ui_lang': iso_filter(session.get('locale', _to))
-                    , 'user_input': lookup_val
-                    }
-
-        if lemma_lookup_args:
-            fmtkwargs['lemma_attrs'] = lemma_lookup_args
-
-        # [(lemma, XMLNodes)] -> [(lemma, generator(AlmostJSON))]
-        formatted_results = []
-        analyses_without_lex = []
-        for result, morph_analyses in entries_and_tags:
-            if result is not None:
-                formatted_results.extend(FrontPageFormat(
-                    [result],
-                    additional_template_kwargs={'analyses': morph_analyses},
-                    **fmtkwargs
-                ))
-            else:
-                analyses_without_lex.extend(morph_analyses)
-
-        # When to display unknowns
-        successful_entry_exists = False
-        if len(formatted_results) > 0:
-            successful_entry_exists = True
-
-        def sort_entry(r):
-            return r.get('left')
-
-        results = sorted( formatted_results
-                        , key=sort_entry
-                        )
-
-        results = [ {'input': lookup_val, 'lookups': results} ]
-
-        show_info = False
-    else:
-        user_input = ''
-        show_info = True
-
-    if len(errors) == 0:
-        errors = False
-
-    pair_settings = current_app.config.pair_definitions[(_from, _to)]
-    # TODO: include form analysis of user input #formanalysis
-    if current_app.config.new_style_templates:
-        _rendered_entries = []
-        for lexicon, analyses in entries_and_tags:
-            if lexicon is not None:
-                tplkwargs = { 'lexicon_entry': lexicon
-                            , 'analyses': analyses
-
-                            , '_from': _from
-                            , '_to': _to
-                            , 'user_input': lookup_val
-                            , 'word_searches': results
-                            , 'analyses': analyses
-                            , 'analyses_without_lex': analyses_without_lex
-                            , 'errors': errors
-                            , 'successful_entry_exists': successful_entry_exists
-                            , 'dictionaries_available': current_app.config.pair_definitions
-                            , 'current_pair_settings': pair_settings
-                            , 'entries_and_tags': entries_and_tags
-                            }
-                _rendered_entries.append(
-                    current_app.lexicon_templates.render_template( _from
-                                                                 , 'entry.template'
-                                                                 , **tplkwargs
-                                                                 )
-                )
-
-        all_analysis_template = current_app.lexicon_templates.render_template( _from
-                                                                             , 'analyses.template'
-                                                                             , analyses=analyses
-                                                                             )
-
-        reverse_exists = current_app.config.dictionaries.get((_from, _to), False)
-
-        return render_template( 'index_new_style.html'
-                              , _from=_from
-                              , _to=_to
-                              , swap_from=_to
-                              , swap_to=_from
-                              , display_swap=reverse_exists
-                              , user_input=lookup_val
-                              , word_searches=results
-                              , analyses=analyses
-                              , all_analysis_template=all_analysis_template
-                              , analyses_without_lex=analyses_without_lex
-                              , errors=errors
-                              , show_info=show_info
-                              , zip=zipNoTruncate
-                              , successful_entry_exists=successful_entry_exists
-                              , current_pair_settings=pair_settings
-                              , entries_and_tags=entries_and_tags
-                              , new_templates=_rendered_entries
-                              )
-    else:
-        reverse_exists = current_app.config.dictionaries.get((swap_to, swap_from), False)
-        return render_template( 'index.html'
-                              , _from=_from
-                              , _to=_to
-                              , swap_from=_to
-                              , swap_to=_from
-                              , display_swap=reverse_exists
-                              , user_input=lookup_val
-                              , word_searches=results
-                              , analyses=analyses
-                              , analyses_without_lex=analyses_without_lex
-                              , errors=errors
-                              , show_info=show_info
-                              , zip=zipNoTruncate
-                              , successful_entry_exists=successful_entry_exists
-                              , current_pair_settings=pair_settings
-                              )
 
 ######### TODO: this is a big todo, but, slowly refactor everything into mixins
 ######### and class-based views. So far the view functions here are really
@@ -838,6 +676,7 @@ class SearcherMixin(object):
             'split_compounds': kwargs.get('split_compounds', True),
             'non_compounds_only': kwargs.get('non_compounds_only', False),
             'no_derivations': kwargs.get('no_derivations', False),
+            'lemma_attrs': kwargs.get('lemma_attrs', {}),
         }
 
         entries_and_tags = mlex.lookup( lookup_value
@@ -856,14 +695,14 @@ class SearcherMixin(object):
         return search_result_obj
 
     # @cache.memoize(timeout=50)
-    def search_to_context(self, lookup_value):
+    def search_to_context(self, lookup_value, lemma_attrs={}):
         # TODO: There's a big mess contained here, and part of it
         # relates to lexicon formatters. Slowly working on unravelling
         # it.
 
         errors = []
 
-        search_result_obj = self.do_search_to_obj(lookup_value)
+        search_result_obj = self.do_search_to_obj(lookup_value, lemma_attrs=lemma_attrs)
 
         template_results = [{
             'input': search_result_obj.search_term,
@@ -1156,15 +995,48 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
         # missing current_pair_settings
         return render_template('index_new_style.html', **search_result_context)
 
+class ReferredLanguagePairSearchView(LanguagePairSearchView):
+    """ This overrides some functionality in order to provide the
+        /lang/lang/ref/ functionality.
+    """
+
+    accepted_lemma_args = {
+        'l_til_ref': 'til_ref',
+    }
+
+    def get(self, _from, _to):
+
+        self.check_pair_exists_or_abort(_from, _to)
+
+        if current_app.config.new_style_templates:
+            return self.handle_newstyle_post(_from, _to)
+
+        user_input = lookup_val = request.form.get('lookup', False)
+
+        if not user_input:
+            user_input = ''
+            show_info = True
+            # TODO: return an error.
+
+        # Get URL parameters for lookup
+
+        lemma_lookup_args = {}
+        for k, v in request.args.iteritems():
+            if k in self.accepted_lemma_args:
+                lemma_lookup_args[self.accepted_lemma_args.get(k)] = v
+
+        # This performs lots of the work...
+        search_result_context = self.search_to_context(user_input, lemma_attrs=lemma_lookup_args)
+
+        search_result_context.update(**self.get_shared_context(_from, _to))
+
+        return render_template(self.template_name, **search_result_context)
+
 class DetailedLanguagePairSearchView(MethodView, SearcherMixin):
     """ The major difference between this view and the main index search
     is that this view also accepts some parameters for filtering
     entries, because it corresponds to links followed from the main page
     search results.
-
-    TODO: This also needs to cache results by all the parameters.
-    TODO: logging of each lookup
-    TODO: json
 
     .. http:get::
               /detail/(string:from)/(string:to)/(string:wordform).(string:fmt)
