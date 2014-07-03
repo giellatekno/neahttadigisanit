@@ -9,9 +9,10 @@ import simplejson
 
 from logging import getLogger
 
+from i18n.utils import iso_filter
+
 from utils.logger import *
 from utils.data import *
-from i18n.utils import iso_filter
 from utils.encoding import *
 
 from flask import ( request
@@ -28,409 +29,6 @@ from flaskext.babel import gettext as _
 from operator import itemgetter
 
 user_log = getLogger("user_log")
-
-# TODO: transform this into the new class-based view format
-
-@blueprint.route('/detail/<from_language>/<to_language>/<wordform>.<format>',
-           methods=['GET'], endpoint="detail")
-def wordDetail(from_language, to_language, wordform, format):
-    """
-    .. http:get::
-              /detail/(string:from)/(string:to)/(string:wordform).(string:fmt)
-
-        Look up up a query in the lexicon (including lemmatizing input,
-        and the lexicon against the input sans lemmatization), returning
-        translation information, word analyses, and sample paradigms for
-        words and tags which support it.
-
-        :samp:`/detail/sme/nob/orrut.html`
-        :samp:`/detail/sme/nob/orrut.json`
-
-        There are additional GET form parameters to control the sorting
-        and display of the output.
-
-        :param from: the source language
-        :param to: the target language
-        :param wordform:
-            the wordform to be analyzed. If in doubt, encode and escape
-            the string into UTF-8, and URL encode it. Some browser do
-            this automatically and present the URL in a user-readable
-            format, but mostly, the app does not seem to care.
-        :param fmt:
-            the data format to return the result in. `json` and `html`
-            are currently accepted.
-
-        :form pos_filter:
-            Filter the analyzed forms so that only forms with a PoS
-            matching `pos_filter` are displayed.
-        :type pos_filter: str
-        :form lemma_match:
-            Filter the results so that the lemma in the input must match
-            the lemma in the analyzed form.
-        :type lemma_match: bool
-        :form no_compounds:
-            Whether or not to analyze compounds.
-            True or False.
-        :type no_compounds: bool
-        :form e_node:
-            This value is only used if the user arrives at this page via
-            a link on the front pageg results, `e_node` is a unique
-            identifier for the XML document.
-
-        :throws Http404:
-            In the event that the language pair or format does not exist.
-
-        :returns:
-            Data is looked up and formatted using
-            :py:class:`lexicon.formatters.DetailedFormat`, and returned
-            in `html` using the template `word_detail.html`
-
-    """
-    from lexicon import DetailedFormat
-
-    import simplejson as json
-
-    user_input = wordform
-    if not format in ['json', 'html']:
-        return _("Invalid format. Only json and html allowed.")
-
-    wordform = decodeOrFail(wordform)
-
-    # NOTE: these options are mostly for detail views that are linked to
-    # from the initial page's search. Everything should work without
-    # them, and with all or some of them.
-
-    # Do we filter analyzed forms and lookups by pos?
-    pos_filter = request.args.get('pos_filter', False)
-    # Should we match the input lemma with the analyzed lemma?
-    lemma_match = request.args.get('lemma_match', False)
-    # From the front page-- match the hash of the lxml element
-    e_node = request.args.get('e_node', False)
-
-    def pickleable_result(_results):
-        pickleable = []
-        for j in _results:
-            _j = j.copy()
-            _j.pop('node')
-            analyses = []
-            for a in _j.get('analyses', []):
-                # TODO: tag formatter
-                analyses.append((a.lemma, a.tag.tag_string))
-            _j['analyses'] = analyses
-            pickleable.append(_j)
-        return pickleable
-
-    def _byPOS(r):
-        if r.get('input')[1].upper() == pos_filter.upper():
-            return True
-        else:
-            return False
-
-    def _byLemma(r):
-        if r.get('input')[0] == wordform:
-            return True
-        else:
-            return False
-
-    def _byNodeHash(r):
-        node = r.get('entry_hash')
-        if node == e_node:
-            return True
-        else:
-            return False
-
-    def default_result(r):
-        return r
-
-    entry_filters = [default_result]
-
-    if e_node:
-        entry_filters.append(_byNodeHash)
-
-    if pos_filter:
-        entry_filters.append(_byPOS)
-
-    if lemma_match:
-        entry_filters.append(_byLemma)
-
-    def filter_entries_for_view(entries):
-        _entries = []
-        for f in entry_filters:
-            _entries = filter(f, entries)
-        return _entries
-
-    has_analyses = False
-
-    # Do we want to analyze compounds?
-    no_compounds = request.args.get('no_compounds', False)
-
-    ui_lang = iso_filter(session.get('locale', to_language))
-    # Cache key by URL
-    entry_cache_key = u'%s?%s?%s' % (request.path, request.query_string, ui_lang)
-
-    if no_compounds or lemma_match or e_node:
-        want_more_detail = True
-    else:
-        want_more_detail = False
-
-    def unsupportedLang(more='.'):
-        if format == 'json':
-            _err = " * Detailed view not supported for this language pair"
-            return json.dumps(_err + " " + more)
-        elif format == 'html':
-            abort(404)
-
-    if current_app.caching_enabled:
-        cached_result = current_app.cache.get(entry_cache_key)
-    else:
-        cached_result = None
-
-    if cached_result is None or current_app.config.new_style_templates:
-
-        # Use the original language pair if the user has selected a
-        # variant
-
-        if (from_language, to_language) not in current_app.config.dictionaries and \
-           (from_language, to_language)     in current_app.config.variant_dictionaries:
-            var = current_app.config.variant_dictionaries.get((from_language, to_language))
-            (from_language, to_language) = var.get('orig_pair')
-
-        if (from_language, to_language) not in current_app.config.dictionaries:
-            return unsupportedLang()
-
-        # Generation paradigms, and generation options
-        lang_paradigms = current_app.config.paradigms.get(from_language, {})
-
-        morph = current_app.config.morphologies.get(from_language, False)
-
-        if no_compounds:
-            _split = True
-            _non_c = True
-            _non_d = False
-        else:
-            _split = True
-            _non_c = False
-            _non_d = False
-
-        mlex = current_app.morpholexicon
-        entries_and_tags = mlex.lookup( wordform
-                                      , source_lang=from_language
-                                      , target_lang=to_language
-                                      , split_compounds=_split
-                                      , non_compounds_only=_non_c
-                                      , no_derivations=_non_d
-                                      )
-
-        analyses = sum(map(itemgetter(1), entries_and_tags), [])
-
-        fmtkwargs = { 'target_lang': to_language
-                    , 'source_lang': from_language
-                    , 'ui_lang': iso_filter(session.get('locale', to_language))
-                    , 'user_input': wordform
-                    }
-
-        # [(lemma, XMLNodes)] -> [(lemma, generator(AlmostJSON))]
-        formatted_results = []
-        analyses_without_lex = []
-        for result, morph_analyses in entries_and_tags:
-            if result is not None:
-                word_template_kwargs = {
-                    'analyses': morph_analyses
-                }
-
-                _formatted = list(DetailedFormat(
-                    [result],
-                    additional_template_kwargs=word_template_kwargs,
-                    **fmtkwargs
-                ))
-
-                _formatted_with_paradigms = []
-
-                for r in filter_entries_for_view(_formatted):
-                    lemma, pos, tag, _type = r.get('input')
-                    node = r.get('node')
-
-                    paradigm_from_file = mlex.paradigms.get_paradigm(
-                        from_language, node, morph_analyses
-                    )
-                    if paradigm_from_file:
-                        form_tags = [_t.split('+')[1::] for _t in paradigm_from_file.splitlines()]
-                        _generated = morph.generate(lemma, form_tags, node)
-                    else:
-                        # For pregenerated things
-                        _generated = morph.generate(lemma, [], node)
-
-                    r['paradigm'] = _generated
-                    _formatted_with_paradigms.append(r)
-                formatted_results.extend(_formatted_with_paradigms)
-            else:
-                analyses_without_lex.extend(morph_analyses)
-
-        analyses = [(l.lemma, l.pos, l.tag) for l in analyses]
-
-        detailed_result = formatted_results
-        pickle_result = sorted( pickleable_result(formatted_results)
-                              , key=lambda x: x.get('lemma')
-                              )
-        json_result = pickle_result
-
-        current_app.cache.set(entry_cache_key, pickle_result)
-    else:
-        # TODO: _from may be wrong in case of SoMe
-        cur_morph = current_app.config.morphologies.get(from_language)
-        def depickle_result(_results):
-            pickleable = []
-            for j in _results:
-                _j = j.copy()
-                analyses = []
-                for (lemma, tag) in _j.get('analyses', []):
-                    # TODO: tag formatter
-                    _lem = cur_morph.de_pickle_lemma(lemma, tag)
-                    analyses.append(_lem)
-                _j['analyses'] = analyses
-                pickleable.append(_j)
-            return pickleable
-
-        json_result = cached_result
-        detailed_result = depickle_result(cached_result)
-
-    # Logging
-    # This ugly bit is just for compiling the use log entry
-    if len(detailed_result) > 0:
-        success = True
-        result_lemmas = []
-        tx_set = []
-        for d in detailed_result:
-            tx_set.append(', '.join([t.get('tx') for t in d.get('right', []) if t.get('tx', False)]))
-            result_lemmas.append(d.get('input')[0])
-        tx_set = '; '.join(tx_set)
-    else:
-        success = False
-        result_lemmas = ['-']
-        tx_set = '-'
-
-    user_log.info('%s\t%s\t%s\t%s\t%s\t%s' % ( user_input
-                                             , str(success)
-                                             , ', '.join(result_lemmas)
-                                             , tx_set
-                                             , from_language
-                                             , to_language
-                                             )
-                 )
-
-    # Format
-    if format == 'json':
-        result = simplejson.dumps({
-            "success": True,
-            "result": json_result
-        })
-        return Response( response=result
-                       , status=200
-                       , mimetype="application/json"
-                       )
-
-    elif format == 'html':
-
-        for result in detailed_result:
-            if result.get('analyses'):
-                if len(result.get('analyses')) > 0:
-                    has_analyses = True
-
-        pair_settings = current_app.config.pair_definitions[(from_language, to_language)]
-
-        if current_app.config.new_style_templates and user_input:
-            _rendered_entries = []
-            analyses_without_entry = []
-            def sort_entry(r):
-                if r[0] is None:
-                    return False
-                if not r[0]:
-                    return False
-                try:
-                    return ''.join(r[0].xpath('./lg/l/text()'))
-                except:
-                    return False
-
-            _str_norm = 'string(normalize-space(%s))'
-            rendered_analyses_without_entry = False
-            for lz, az in sorted(entries_and_tags, key=sort_entry):
-                # TODO: generate
-
-                if lz is None:
-                    analyses_without_entry.extend(az)
-                    continue
-
-                can_generate = True
-                paradigm = []
-
-                lemma = lz.xpath(_str_norm % './lg/l/text()')
-
-                # TODO: pregenerated lexicon forms?
-                paradigm_from_file = mlex.paradigms.get_paradigm(
-                    from_language, lz, az
-                )
-
-                if paradigm_from_file:
-                    form_tags = [_t.split('+')[1::] for _t in paradigm_from_file.splitlines()]
-                    paradigm = morph.generate_to_objs(lemma, form_tags, node)
-
-                tplkwargs = { 'lexicon_entry': lz
-                            , 'analyses': az
-                            , 'paradigm': paradigm
-
-                            , '_from': from_language
-                            , '_to': to_language
-                            , 'user_input': user_input
-                            # , 'errors': errors
-                            , 'dictionaries_available': current_app.config.pair_definitions
-                            , 'current_pair_settings': pair_settings
-                            }
-
-                _rendered_entries.append(
-                    current_app.lexicon_templates.render_template(from_language, 'detail_entry.template', **tplkwargs)
-                )
-
-                # TODO:
-                # rendered_analyses_without_entry = current_app.lexicon_templates.render_template(
-                #     from_language, 
-                #     'analyses.template', 
-                #     analyses=analyses_without_entry,
-                #     lexicon_entry=None,
-                #     _from=from_language,
-                #     _to=to_language,
-                #     user_input=user_input,
-                #     dictionaries_available=current_app.config.pair_definitions,
-                #     current_pair_settings=pair_settings,
-                # )
-
-
-            return render_template( 'word_detail_new_style.html'
-                                  , result=detailed_result
-                                  , user_input=user_input
-                                  , _from=from_language
-                                  , _to=to_language
-                                  , more_detail_link=want_more_detail
-                                  , zip=zipNoTruncate
-                                  , has_analyses=has_analyses
-                                  , current_pair_settings=pair_settings
-                                  , new_templates=_rendered_entries
-                                  , analyses_without_entry=rendered_analyses_without_entry
-                                  )
-
-        return render_template( 'word_detail.html'
-                              , result=detailed_result
-                              , user_input=user_input
-                              , _from=from_language
-                              , _to=to_language
-                              , more_detail_link=want_more_detail
-                              , zip=zipNoTruncate
-                              , has_analyses=has_analyses
-                              , current_pair_settings=pair_settings
-                              )
-
-# For direct links, form submission.
-
-# TODO: transform this into the new class-based view format
 
 ######### TODO: this is a big todo, but, slowly refactor everything into mixins
 ######### and class-based views. So far the view functions here are really
@@ -462,7 +60,6 @@ class AppViewSettingsMixin(object):
                                                                          )]
 
         super(AppViewSettingsMixin, self).__init__(*args, **kwargs)
-
 
 class IndexSearchPage(View, AppViewSettingsMixin):
     """ A simple view to handle potential mobile redirects to a default
@@ -518,7 +115,6 @@ class IndexSearchPage(View, AppViewSettingsMixin):
         }
 
         return render_template(self.template_name, **template_context)
-
 
 class SearchResult(object):
     """ This object is the lexicon lookup search result. It mostly
@@ -782,6 +378,8 @@ class SearcherMixin(object):
             Note however: new-style templates require similar input
             across Detail/main page view, so can really refactor and
             chop stuff down.
+
+            TODO: inclusion of context_processors ? 
         """
 
         search_result_obj = self.do_search_to_obj(lookup_value)
@@ -824,8 +422,12 @@ class SearcherMixin(object):
                             , 'successful_entry_exists': search_result_obj.successful_entry_exists
                             }
                 tplkwargs.update(**default_context_kwargs)
+
+                # Process all the context processors
+                current_app.update_template_context(tplkwargs)
+
                 _rendered_entry_templates.append(
-                    current_app.lexicon_templates.render_template(_from, 'entry.template', **tplkwargs)
+                    current_app.lexicon_templates.render_template(g._from, 'entry.template', **tplkwargs)
                 )
 
         all_az = sum([az for _, az in sorted(search_result_obj.entries_and_tags, key=sort_entry)], [])
@@ -835,16 +437,22 @@ class SearcherMixin(object):
         }
         indiv_template_kwargs.update(**default_context_kwargs)
 
+        # Process all the context processors
+        current_app.update_template_context(indiv_template_kwargs)
+
         all_analysis_template = \
-            current_app.lexicon_templates.render_individual_template(_from, 'analyses.template', **indiv_template_kwargs)
+            current_app.lexicon_templates.render_individual_template(g._from, 'analyses.template', **indiv_template_kwargs)
 
         if search_result_obj.analyses_without_lex:
             leftover_tpl_kwargs = {
                 'analyses': search_result_obj.analyses_without_lex,
             }
             leftover_tpl_kwargs.update(**default_context_kwargs)
+            # Process all the context processors
+            current_app.update_template_context(leftover_tpl_kwargs)
+
             leftover_analyses_template = \
-                current_app.lexicon_templates.render_individual_template( _from
+                current_app.lexicon_templates.render_individual_template( g._from
                                                                         , 'analyses.template'
                                                                         , **leftover_tpl_kwargs
                                                                         )
@@ -874,8 +482,6 @@ class SearcherMixin(object):
 
         return search_context
 
-from lexicon import FrontPageFormat
-
 class DictionaryView(MethodView):
 
     entry_filterer = lambda self, x: x
@@ -889,6 +495,18 @@ class DictionaryView(MethodView):
             abort(404)
 
         return False
+
+    def get_reverse_pair(self, _from, _to):
+        """ If the reverse pair for (_from, _to) exists, return the
+        pair's settings, otherwise False. """
+
+        # TODO: move this to config object.
+
+        pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(_from, _to)
+        _r_from, _r_to = orig_pair_opts.get('swap_from'), orig_pair_opts.get('swap_to')
+        reverse_exists = current_app.config.dictionaries.get((_r_from, _r_to), False)
+
+        return reverse_exists
 
 class LanguagePairSearchView(DictionaryView, SearcherMixin):
     """ This view returns either the search form, or processes the
@@ -919,18 +537,6 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
         }
         shared_context.update(**orig_pair_opts)
         return shared_context
-
-    def get_reverse_pair(self, _from, _to):
-        """ If the reverse pair for (_from, _to) exists, return the
-        pair's settings, otherwise False. """
-
-        # TODO: move this to config object.
-
-        pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(_from, _to)
-        _r_from, _r_to = orig_pair_opts.get('swap_from'), orig_pair_opts.get('swap_to')
-        reverse_exists = current_app.config.dictionaries.get((_r_from, _r_to), False)
-
-        return reverse_exists
 
     def get(self, _from, _to):
 
@@ -1032,11 +638,13 @@ class ReferredLanguagePairSearchView(LanguagePairSearchView):
 
         return render_template(self.template_name, **search_result_context)
 
-class DetailedLanguagePairSearchView(MethodView, SearcherMixin):
+class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
     """ The major difference between this view and the main index search
     is that this view also accepts some parameters for filtering
     entries, because it corresponds to links followed from the main page
     search results.
+
+    TODO: newstyle context
 
     .. http:get::
               /detail/(string:from)/(string:to)/(string:wordform).(string:fmt)
@@ -1106,6 +714,7 @@ class DetailedLanguagePairSearchView(MethodView, SearcherMixin):
         pos_filter = request.args.get('pos_filter', False)
         lemma_match = request.args.get('lemma_match', False)
         e_node = request.args.get('e_node', False)
+        wordform = request.args.get('wordform', False)
 
         def _byPOS(r):
             if r.get('input')[1].upper() == pos_filter.upper():
@@ -1191,6 +800,8 @@ class DetailedLanguagePairSearchView(MethodView, SearcherMixin):
 
         # Check for cache entry here
 
+        self.check_pair_exists_or_abort(_from, _to)
+
         self.validate_request()
 
         user_input = wordform = decodeOrFail(wordform)
@@ -1224,31 +835,34 @@ class DetailedLanguagePairSearchView(MethodView, SearcherMixin):
             'no_derivations': _non_d,
         }
 
+        has_analyses = False
+
         if current_app.config.new_style_templates:
             search_result_context = \
-                self.search_to_detailed_context_newstyle(user_input,
-                                                         **search_kwargs)
+                self.search_to_newstyle_context(user_input,
+                                                **search_kwargs)
+            has_analyses = search_result_context.get('successful_entry_exists')
         else:
             search_result_context = self.search_to_detailed_context(user_input, **search_kwargs)
+
+            for result in search_result_context.get('result'):
+                if result.get('analyses'):
+                    if len(result.get('analyses')) > 0:
+                        has_analyses = True
 
         # TODO: cache search result here
         # current_app.cache.set(entry_cache_key,
         # search_result_context.detailed_entry_pickleable)
 
-        # TODO: log request here.
-
         # search_result_context.update(**self.get_shared_context(_from, _to))
-
-        # check that analyses exist
-        has_analyses = False
-        for result in search_result_context.get('result'):
-            if result.get('analyses'):
-                if len(result.get('analyses')) > 0:
-                    has_analyses = True
 
         search_result_context['has_analyses'] = has_analyses
         search_result_context['more_detail_link'] = want_more_detail
 
-        return render_template(self.template_name, **search_result_context)
+        if current_app.config.new_style_templates:
+            template = 'word_detail_new_style.html'
+        else:
+            template = self.template_name
 
-        # return... ?
+        return render_template(template, **search_result_context)
+

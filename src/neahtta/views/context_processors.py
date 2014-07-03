@@ -19,7 +19,7 @@ def check_notice():
 
 @blueprint.context_processor
 def add_current_pair():
-    """ If the request is for a form or a lookup, we include 
+    """ If the request is for a form or a lookup, we include
     """
 
     _from = False
@@ -29,9 +29,10 @@ def add_current_pair():
     if hasattr(g, '_from') and hasattr(g, '_to'):
         _from = g._from
         _to = g._to
-        pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(_from, _to)
     else:
         _from, _to = current_app.config.default_language_pair
+
+    pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(_from, _to)
 
     return dict(_from=_from, _to=_to, current_pair_settings=pair_settings)
 
