@@ -372,17 +372,22 @@ class SearcherMixin(object):
 
         return search_context
 
-    def search_to_newstyle_context(self, lookup_value, **default_context_kwargs):
+    def search_to_newstyle_context(self, lookup_value, detailed=False, **default_context_kwargs):
         """ This needs a big redo.
 
             Note however: new-style templates require similar input
             across Detail/main page view, so can really refactor and
             chop stuff down.
 
-            TODO: inclusion of context_processors ? 
+            TODO: inclusion of context_processors ?
         """
 
         search_result_obj = self.do_search_to_obj(lookup_value)
+
+        if detailed:
+            template = 'detail_entry.template'
+        else:
+            template = 'entry.template'
 
         _rendered_entry_templates = []
 
@@ -410,15 +415,10 @@ class SearcherMixin(object):
                 tplkwargs = { 'lexicon_entry': lz
                             , 'analyses': az
 
-                            # , '_from': g._from
-                            # , '_to': g._to
                             , 'user_input': search_result_obj.search_term
                             , 'word_searches': template_results
-                            # TODO: errors??
                             , 'errors': False
                             , 'show_info': show_info
-                            # , 'zip': zipNoTruncate
-                            # , 'dictionaries_available': current_app.config.pair_definitions
                             , 'successful_entry_exists': search_result_obj.successful_entry_exists
                             }
                 tplkwargs.update(**default_context_kwargs)
@@ -427,7 +427,7 @@ class SearcherMixin(object):
                 current_app.update_template_context(tplkwargs)
 
                 _rendered_entry_templates.append(
-                    current_app.lexicon_templates.render_template(g._from, 'entry.template', **tplkwargs)
+                    current_app.lexicon_templates.render_template(g._from, template, **tplkwargs)
                 )
 
         all_az = sum([az for _, az in sorted(search_result_obj.entries_and_tags, key=sort_entry)], [])
@@ -644,7 +644,7 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
     entries, because it corresponds to links followed from the main page
     search results.
 
-    TODO: newstyle context
+    TODO: analyses missing from mobile screen width
 
     .. http:get::
               /detail/(string:from)/(string:to)/(string:wordform).(string:fmt)
@@ -840,6 +840,7 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
         if current_app.config.new_style_templates:
             search_result_context = \
                 self.search_to_newstyle_context(user_input,
+                                                detailed=True,
                                                 **search_kwargs)
             has_analyses = search_result_context.get('successful_entry_exists')
         else:
@@ -865,4 +866,3 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
             template = self.template_name
 
         return render_template(template, **search_result_context)
-
