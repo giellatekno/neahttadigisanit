@@ -131,4 +131,15 @@
         </p>
     {% endif %}
 
+    {%- if analyses %}
+    <div class="visible-phone">
+        <div class="well">
+            <p style="font-size: 95%;"><em>{{ user_input }}</em>{% trans user_input=user_input %} is a possible form of ... {% endtrans %}</p>
+
+            {{ all_analysis_template|safe }}
+        </div>
+    </div>
+    {%- endif -%}
+
+
 {% endblock %}

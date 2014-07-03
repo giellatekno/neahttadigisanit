@@ -1,0 +1,8 @@
+{%- macro render_region(translation_group) -%}
+    {%- set reg_nodes = translation_group|xpath('./t/@reg') -%}
+    {%- if reg_nodes|count > 0 -%}
+        ({{ reg_nodes|first }}) 
+    {%- endif -%}
+{%- endmacro -%}
+
+{# vim: set ts=4 sw=4 tw=72 syntax=jinja : #}

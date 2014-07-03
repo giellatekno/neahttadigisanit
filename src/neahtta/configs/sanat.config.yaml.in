@@ -84,6 +84,7 @@ Languages:
   - iso: vep
   - iso: nob
   - iso: lav
+  - iso: est
 
 # This also dictates the order of the dictionaries in the UI for now.
 Dictionaries:
