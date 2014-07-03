@@ -84,15 +84,14 @@
         <div class="span8">
             <h4 class="dict_title">
                 <span>{{ _from|iso_to_i18n }} → {{ _to|iso_to_i18n }}</span>
+                {% if display_swap %}
+                <span class="swaplink" style="font-size: 80%">(<a href="/{{ swap_from }}/{{ swap_to }}/">⇄ {% trans %}Swap{% endtrans %}</a>)</span>
+                {% endif %}
             </h4>
 
             {# figure out if there's a variant, and if the reverse has
             variants, because if mobile, we want to force mobile variant in
             swap #}
-
-            {% if display_swap %}
-            <span class="swaplink" style="font-size: 80%">(<a href="/{{ swap_from }}/{{ swap_to }}/">⇄ {% trans %}Swap{% endtrans %}</a>)</span>
-            {% endif %}
 
             <div class="row-fluid form-row">
                 <div class="span8">
@@ -116,20 +115,11 @@
                             <div class="span8 lexeme">
                                 &nbsp;
                             </div>
-                            <div class="span3 offset1 hidden-phone">{{- leftover_analyses_template|safe -}}</div>
+                            <div class="span4 hidden-phone">{{- leftover_analyses_template|safe -}}</div>
                         </div>
                     {% endif %}
                 </div>
 
-                {%- if analyses %}
-                <div class="visible-phone">
-                    <div class="well">
-                        <p style="font-size: 95%;"><em>{{ user_input }}</em>{% trans user_input=user_input %} is a possible form of ... {% endtrans %}</p>
-
-                        {{ all_analysis_template|safe }}
-                    </div>
-                </div>
-                {%- endif -%}
             {% else %}
                 {% if not show_info %}
                 <div class="alert alert-error">
@@ -160,6 +150,16 @@
         </div>
         
     </div>
+
+    {%- if analyses %}
+    <div class="visible-phone">
+        <div class="well">
+            <p style="font-size: 95%;"><em>{{ user_input }}</em>{% trans user_input=user_input %} is a possible form of ... {% endtrans %}</p>
+
+            {{ all_analysis_template|safe }}
+        </div>
+    </div>
+    {%- endif -%}
 
 </div>
 
