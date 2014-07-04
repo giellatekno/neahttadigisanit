@@ -116,6 +116,19 @@ class Config(Config):
                                self.filename)
 
     @property
+    def has_project_css(self):
+        if not hasattr(self, '_has_project_css'):
+            project_css_path = False
+            path = 'static/css/%s.css' % self.short_name
+            try:
+                open(os.path.join( os.getcwd(), path), 'r')
+                project_css_path = path
+            except:
+                pass
+            self._has_project_css = project_css_path
+        return self._has_project_css
+
+    @property
     def meta_description(self):
         _p = self.yaml.get('ApplicationSettings', {})\
                       .get('meta_description', False)

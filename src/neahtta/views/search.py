@@ -139,6 +139,7 @@ class SearchResult(object):
 
     @property
     def formatted_results_pickleable(self):
+        # TODO: implement
         def pickleable_result(_results):
             """ Pop the various keys that need to be removed.
             """
@@ -290,7 +291,6 @@ class SearcherMixin(object):
 
         return search_result_obj
 
-    # @cache.memoize(timeout=50)
     def search_to_context(self, lookup_value, lemma_attrs={}):
         # TODO: There's a big mess contained here, and part of it
         # relates to lexicon formatters. Slowly working on unravelling
@@ -380,6 +380,10 @@ class SearcherMixin(object):
             chop stuff down.
 
             TODO: inclusion of context_processors ?
+
+            TODO: And the big mess is:
+              * do_search_to_obj
+              * search_context - simplify
         """
 
         search_result_obj = self.do_search_to_obj(lookup_value)
@@ -569,10 +573,13 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
 
         self.check_pair_exists_or_abort(_from, _to)
 
+        user_input = lookup_val = request.form.get('lookup', False)
+
+        if user_input in ['teksti-tv', 'tekst tv', 'teaksta tv']:
+            session['text_tv'] = True
+
         if current_app.config.new_style_templates:
             return self.handle_newstyle_post(_from, _to)
-
-        user_input = lookup_val = request.form.get('lookup', False)
 
         if not user_input:
             user_input = ''

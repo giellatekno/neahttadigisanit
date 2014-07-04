@@ -156,3 +156,9 @@ def config_doc(from_language):
 def plugins():
     return render_template('plugins.html')
 
+@blueprint.route('/escape/text-tv/', methods=['GET'])
+def escape_tv():
+    from flask import session
+    del session['text_tv']
+    return redirect('/')
+

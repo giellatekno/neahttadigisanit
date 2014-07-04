@@ -64,12 +64,27 @@
 	<link rel="shortcut icon" href="{{url_for('static', filename='favicon.ico')}}" type="image/x-icon">
 	<link rel="icon" href="{{url_for('static', filename='favicon.ico')}}" type="image/x-icon">
 
-    <link href="{{url_for('static', filename='css/bootstrap.css')}}" rel="stylesheet" />
-    <link href="{{url_for('static', filename='css/bootstrap-responsive.css')}}" rel="stylesheet" />
-    <link href="{{url_for('static', filename='css/base.css')}}" rel="stylesheet" />
+    {% if text_tv %}
+        <link href="{{url_for('static', filename='bootstra.386/css/bootstrap.css')}}" rel="stylesheet" />
+        <link href="{{url_for('static', filename='bootstra.386/css/bootstrap-responsive.css')}}" rel="stylesheet" />
+        <link href="{{url_for('static', filename='css/text-tv-base.css')}}" rel="stylesheet" /> 
+        <script src="{{url_for('static', filename='bootstra.386/js/jquery.js')}}"></script>
+        <script src="{{url_for('static', filename='bootstra.386/js/bootstrap-386.js')}}"></script>
+    {% else %}
+        <link href="{{url_for('static', filename='css/bootstrap.css')}}" rel="stylesheet" />
+        <link href="{{url_for('static', filename='css/bootstrap-responsive.css')}}" rel="stylesheet" />
+        <link href="{{url_for('static', filename='css/base.css')}}" rel="stylesheet" />
+    {% endif %}
+
+    {# for some reason {% set %} tag to compile css path didn't see variables in scope. 
+    #}
 
     {% block extra_css %}
     {% endblock %}
+
+    {% if project_css %}
+        <link href="/{{ project_css }}" rel="stylesheet" />
+    {% endif %}
 
     <!--[if lt IE 9]>
           <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -225,4 +240,4 @@
 </body>
 
 </html>
-{# vim: set ts=4 sw=4 tw=0 syntax=jinja : #}
+{# vim: set ts=4 sw=4 tw=0 syntax=htmljinja : #}

@@ -55,3 +55,8 @@
     <p>{{ project_notice|safe }}</p>
 </div>
 {% endif %}
+{% if text_tv %}
+<div class="alert alert-warning"><a href="/escape/text-tv/">
+        <span>{% trans %}Escape Text-TV mode{% endtrans %}</span>
+</a></div>
+{% endif %}

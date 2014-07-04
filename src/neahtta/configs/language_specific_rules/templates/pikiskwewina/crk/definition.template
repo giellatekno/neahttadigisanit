@@ -11,9 +11,10 @@
 {% for meaning_group in lexicon_entry|xpath('./mg') %}
 
     {% set translation_groups = meaning_group|xpath('./tg')|xml_lang(_to) %}
+    {% set entry_source = lexicon_entry|xpath('@src')|first %}
 
     {% if translation_groups|count > 0 %}
-        <li>{% if entry_source %}{{ entry_source }}: {% endif %}
+        <li>
     {% else %}
         {% continue %}
     {% endif %}
@@ -45,7 +46,7 @@
 
     {% endfor %}
 
-    </li>
+    {% if entry_source %}<span class="entry_source">{{ entry_source }}</span>{% endif %}</li>
 
 {% endfor %}
 

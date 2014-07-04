@@ -1,5 +1,18 @@
-from flask import current_app, request, g
+from flask import current_app, request, g, session
 from . import blueprint
+
+@blueprint.context_processor
+def project_css():
+    if current_app.config.has_project_css:
+        return {'project_css': current_app.config.has_project_css}
+    return {}
+
+@blueprint.context_processor
+def text_tv():
+    if session.get('text_tv', False):
+        return {'text_tv': True}
+    else:
+        return {'text_tv': False}
 
 @blueprint.context_processor
 def check_notice():

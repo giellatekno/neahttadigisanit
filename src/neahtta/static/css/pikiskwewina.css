@@ -1,0 +1,8 @@
+span.entry_source {
+    display: block;
+    width: 100%;
+    text-align: right;
+    font-style: italic;
+    font-size: 90%;
+    margin-top: .25em;
+}
