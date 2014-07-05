@@ -150,6 +150,14 @@ class TemplateConfig(object):
         # add default things
         context = {
             'lexicon_entry': False,
+            'analyses': [],
+
+            'user_input': False,
+            'word_searches': False,
+            'errors': False,
+            'show_info': False,
+            'successful_entry_exists': False,
+            'paradigm': [],
         }
 
         context['template_root'] = os.path.dirname(tpl.path) + '/'

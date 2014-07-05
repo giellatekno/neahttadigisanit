@@ -200,10 +200,10 @@ class SearchResult(object):
         )
         if paradigm_from_file:
             form_tags = [_t.split('+')[1::] for _t in paradigm_from_file.splitlines()]
-            _generated = morph.generate(lemma, form_tags, node)
+            _generated = morph.generate_to_objs(lemma, form_tags, node)
         else:
             # For pregenerated things
-            _generated = morph.generate(lemma, [], node)
+            _generated = morph.generate_to_objs(lemma, [], node)
 
         return _generated
 
@@ -261,6 +261,8 @@ class SearchResult(object):
 
                 if self.generate:
                     paradigm = self.generate_paradigm(result, morph_analyses)
+                else:
+                    paradigm = []
 
                 self._entries_and_tags_and_paradigms.append((result,
                                                              morph_analyses,
@@ -474,7 +476,6 @@ class SearcherMixin(object):
             if lz is not None:
                 # TODO: include paradigm in tplkwargs
 
-                print paradigm
                 tplkwargs = { 'lexicon_entry': lz
                             , 'analyses': az
 
