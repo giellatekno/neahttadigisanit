@@ -83,44 +83,52 @@
 
     {% set t_nodes = tg.xpath('./t') %}
 
-    {% if t_nodes|count > 1 %}
-        {% set many_t_nodes = true %}
-    {% else %}
-        {% set many_t_nodes = false %}
-    {% endif %}
+    {# Need to check for renderable texts for languages with incomplete lexica,
+       where there is sometimes an empty <t /> node. #}
 
-    {# Check for how many translation nodes we have. One will cause
-       problems if it is empty, because it produces a 'None' string,
-       while more than one means we need separate links that are comma
-       separated.
-     #} 
+    {% set renderable_texts = tg.xpath('./t/text()')|count %}
 
-    {% if many_t_nodes %}
-        {% set translation_text = t_nodes|map(attribute='text') %}
-    {% else %}
-        {% set translation_text = false %}
-        {% if t_nodes|count == 1 %}
-            {# Here's where we might end up with a 'None' string #}
-            {% set translation_text = t_nodes[0].text %}
-            {% if translation_text == 'None' %}
-                {% set translation_text = false %}
-            {% endif %}
+    {% if renderable_texts > 0 %}
+
+        {% if t_nodes|count > 1 %}
+            {% set many_t_nodes = true %}
         {% else %}
+            {% set many_t_nodes = false %}
         {% endif %}
-    {% endif %}
 
-    {% if not many_t_nodes %}
-        {% if translation_text and annotation %}
-            {{ definition_reference_link(tg, translation_text, annotation) }}
+        {# Check for how many translation nodes we have. One will cause
+           problems if it is empty, because it produces a 'None' string,
+           while more than one means we need separate links that are comma
+           separated. #} 
+
+        {% if many_t_nodes %}
+            {% set translation_text = t_nodes|map(attribute='text') %}
         {% else %}
-            {% if translation_text %}
-                {{ definition_reference_link(tg, translation_text) }}
+            {% set translation_text = false %}
+            {% if t_nodes|count == 1 %}
+                {# Here's where we might end up with a 'None' string #}
+                {% set translation_text = t_nodes[0].text %}
+                {% if translation_text == 'None' %}
+                    {% set translation_text = false %}
+                {% endif %}
             {% else %}
-                {{ definition_reference_link(tg, annotation) }}
             {% endif %}
         {% endif %}
-    {% else %}
-        {{ definition_reference_link_many(t_nodes, annotation) }}
+
+        {% if not many_t_nodes %}
+            {% if translation_text and annotation %}
+                {{ definition_reference_link(tg, translation_text, annotation) }}
+            {% else %}
+                {% if translation_text %}
+                    {{ definition_reference_link(tg, translation_text) }}
+                {% else %}
+                    {{ definition_reference_link(tg, annotation) }}
+                {% endif %}
+            {% endif %}
+        {% else %}
+            {{ definition_reference_link_many(t_nodes, annotation) }}
+        {% endif %}
+
     {% endif %}
 
 {%- endmacro -%}

@@ -9,7 +9,6 @@
    the freedom that is available is that everything must be within:
 
        <div class="row-fluid entry_row" />
-
 #}
 
 {%- import "lexicon.macros" as macros with context -%}
