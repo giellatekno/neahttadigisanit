@@ -11,7 +11,6 @@
 {% for meaning_group in lexicon_entry|xpath('./mg') %}
 
     {% set translation_groups = meaning_group|xpath('./tg')|xml_lang(_to) %}
-    {% set entry_source = lexicon_entry|xpath('@src')|first %}
 
     {% if translation_groups|count > 0 %}
         <li>
@@ -20,8 +19,7 @@
     {% endif %}
 
     {% for translation_group in translation_groups %}
-
-        {{ macros.definition_text_and_link(translation_group) }}
+        {{ templates.definition_text.render(translation_group=translation_group) }}
 
         {# TODO: examples should move to definition notes template,
            which will need to be rendered for each tg #}
@@ -46,6 +44,7 @@
 
     {% endfor %}
 
+    {% set entry_source = lexicon_entry|xpath('@src')|first %}
     {% if entry_source %}<span class="entry_source">{{ entry_source }}</span>{% endif %}</li>
 
 {% endfor %}

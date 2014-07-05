@@ -1,0 +1,6 @@
+{%- import 'lexicon.macros' as macros with context -%}
+{%- import 'sme_lexicon.macros' as sme_macros with context -%}
+{%- if translation_group -%}
+{{ sme_macros.render_region(translation_group) }}{{ macros.definition_text_and_link(translation_group) }}
+{%- endif -%}
+{#  vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}

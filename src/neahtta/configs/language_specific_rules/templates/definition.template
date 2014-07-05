@@ -19,8 +19,7 @@
     {% endif %}
 
     {% for translation_group in translation_groups %}
-
-        {{ macros.definition_text_and_link(translation_group) }}
+        {{ templates.definition_text.render(translation_group=translation_group) }}
 
         {# TODO: examples should move to definition notes template,
            which will need to be rendered for each tg #}
