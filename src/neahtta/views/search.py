@@ -159,7 +159,7 @@ class SearchResult(object):
 
         return pickle_result
 
-    def generate_paradigm(self, formatted_results, morph_analyses):
+    def generate_paradigm_from_formatted(self, formatted_results, morph_analyses):
 
         morph = current_app.config.morphologies.get(g._from, False)
         mlex = current_app.morpholexicon
@@ -181,7 +181,31 @@ class SearchResult(object):
 
             r['paradigm'] = _generated
             generated_and_formatted.append(r)
+
         return generated_and_formatted
+
+    def generate_paradigm(self, node, morph_analyses):
+        _str_norm = 'string(normalize-space(%s))'
+
+        morph = current_app.config.morphologies.get(g._from, False)
+        mlex = current_app.morpholexicon
+
+        generated_and_formatted = []
+
+        l = node.xpath('./lg/l')[0]
+        lemma = l.xpath(_str_norm % './text()')
+
+        paradigm_from_file = mlex.paradigms.get_paradigm(
+            g._from, node, morph_analyses
+        )
+        if paradigm_from_file:
+            form_tags = [_t.split('+')[1::] for _t in paradigm_from_file.splitlines()]
+            _generated = morph.generate(lemma, form_tags, node)
+        else:
+            # For pregenerated things
+            _generated = morph.generate(lemma, [], node)
+
+        return _generated
 
     @property
     def formatted_results(self):
@@ -211,11 +235,38 @@ class SearchResult(object):
                     _formatted = self.entry_filterer(_formatted)
 
                 if self.generate:
-                    _formatted = self.generate_paradigm(_formatted, morph_analyses)
+                    _formatted = self.generate_paradigm_from_formatted(_formatted, morph_analyses)
 
                 self._formatted_results.extend(_formatted)
 
         return self._formatted_results
+
+    @property
+    def entries_and_tags_and_paradigms(self):
+        if hasattr(self, '_entries_and_tags_and_paradigms'):
+            return self._entries_and_tags_and_paradigms
+
+        self._entries_and_tags_and_paradigms = []
+
+        # Formatting of this stuff should be moved somewhere more
+        # reasonable.
+        for result, morph_analyses in self.entries_and_tags:
+
+            if result is not None:
+
+                # if self.entry_filterer:
+                #     _formatted = self.entry_filterer(_formatted)
+
+                paradigm = False
+
+                if self.generate:
+                    paradigm = self.generate_paradigm(result, morph_analyses)
+
+                self._entries_and_tags_and_paradigms.append((result,
+                                                             morph_analyses,
+                                                             paradigm))
+
+        return self._entries_and_tags_and_paradigms
 
     @property
     def analyses_without_lex(self):
@@ -386,7 +437,12 @@ class SearcherMixin(object):
               * search_context - simplify
         """
 
-        search_result_obj = self.do_search_to_obj(lookup_value)
+        if detailed:
+            generate = True
+        else:
+            generate = False
+
+        search_result_obj = self.do_search_to_obj(lookup_value, generate=generate)
 
         if detailed:
             template = 'detail_entry.template'
@@ -414,11 +470,15 @@ class SearcherMixin(object):
             except:
                 return False
 
-        for lz, az in sorted(search_result_obj.entries_and_tags, key=sort_entry):
+        for lz, az, paradigm in sorted(search_result_obj.entries_and_tags_and_paradigms, key=sort_entry):
             if lz is not None:
+                # TODO: include paradigm in tplkwargs
+
+                print paradigm
                 tplkwargs = { 'lexicon_entry': lz
                             , 'analyses': az
 
+                            , 'paradigm': paradigm
                             , 'user_input': search_result_obj.search_term
                             , 'word_searches': template_results
                             , 'errors': False
