@@ -16,10 +16,6 @@
     <div class="span8">
         {% if lexicon_entry|count > 0 %}
             <p>
-                {#- TODO: userfriendly tag relabels here too -#}
-                {#- TODO: may be easier to produce a specific template
-                    for text that goes in the entry name, thus other
-                	projects can override at will. -#}
                 <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
                     {{- rendered_templates.entry_text -}}</a>
             <ul class="meanings">
