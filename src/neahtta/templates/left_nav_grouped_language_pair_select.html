@@ -1,54 +1,71 @@
-<div class="container-fluid">
-{% for iso_group, grouped_items in language_pairs_grouped_by_source.iteritems() %}
-<h5>{{ iso_group|iso_to_i18n }}</h5>
-<div class="row-fluid">
-{% for iso_pair, pair_options in grouped_items %}
-
-    {%- if pair_options.input_variants -%}
-        {% set pair_has_variant = true  %}
-    {%- else -%}
-        {% set pair_has_variant = false %}
-    {%- endif -%}
-
-    {% if not is_variant %}
-        {%- if iso_pair[0] == _from and iso_pair[1] == _to %}
-            <div class="active language-item span3">
-        {% else -%}
-            <div class="language-item span3">
-        {% endif -%}
-    {% elif is_variant -%}
-        {%- if iso_pair[1] == orig_pair[1] and iso_pair[0] == orig_pair[0] %}
-            <div class="active language-item span3">
-        {% else -%}
-            <div class="language-item span3">
-        {% endif -%}
-    {% else -%}
-        <div class="language-item span3">
-    {% endif %}
-
-        <a href="/{{ iso_pair[0] }}/{{ iso_pair[1] }}/">
-        <span>{{ iso_pair[0]|iso_to_i18n }} &rarr; {{ iso_pair[1]|iso_to_i18n }}</span>
-        </a>
-
-        {# Start a new nav if there are variants #}
-        {% if pair_has_variant %}
-            {# Only display if the pair is the current one the user is looking at #}
-            {%- if iso_pair[0] == _from and iso_pair[1] == _to or orig_pair == iso_pair %}
-                <span class="nav-header variantnote">{% trans %}Written variant{% endtrans %}</span>
-                <ul class="nav nav-collapse nav-tabs nav-stacked subnavcoloring">
-                    {% for variant in pair_options.input_variants %}
-                        <li{% if _from == variant.short_name %} class="active"{% endif %}>
-                            <a href="/{{ variant.short_name }}/{{ _to }}">{{ gettext(variant.description)|safe }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
+{%- macro render_pair_blocks(grouped_items) -%}
+    {%- for iso_pair, pair_options in grouped_items -%}
+        <div class="row-fluid">
+            {%- if pair_options.input_variants -%}
+                {% set pair_has_variant = true  %}
+            {%- else -%}
+                {% set pair_has_variant = false %}
             {%- endif -%}
-        {%- endif -%}
+            {%- if not is_variant %}
+                {%- if iso_pair[0] == _from and iso_pair[1] == _to %}
+                    {% set div_classes = "active language-item" %}
+                {% else -%}
+                    {% set div_classes = "language-item" %}
+                {% endif -%}
+            {% elif is_variant -%}
+                {%- if iso_pair[1] == orig_pair[1] and iso_pair[0] == orig_pair[0] %}
+                    {% set div_classes = "active language-item" %}
+                {% else -%}
+                    {% set div_classes = "language-item" %}
+                {% endif -%}
+            {% else -%}
+                {% set div_classes = "language-item" %}
+            {% endif -%}
 
+            {% if loop.first %}
+                {% set display_tag = "display" %}
+            {% else %}
+                {% set display_tag = "transparent_text" %}
+            {% endif %}
+
+            <div class="{{ div_classes }}">
+
+                <a href="/{{ iso_pair[0] }}/{{ iso_pair[1] }}/">
+                    <span><span class="{{ display_tag }}">{{ iso_pair[0]|iso_to_i18n }}</span> &rarr; {{ iso_pair[1]|iso_to_i18n }}</span>
+                </a>
+
+                {# Start a new nav if there are variants #}
+                {% if pair_has_variant %}
+                    {# Only display if the pair is the current one the user is looking at #}
+                    {%- if iso_pair[0] == _from and iso_pair[1] == _to or orig_pair == iso_pair %}
+                        <span class="nav-header variantnote">{% trans %}Written variant{% endtrans %}</span>
+                        <ul class="nav nav-collapse nav-tabs nav-stacked subnavcoloring">
+                            {% for variant in pair_options.input_variants %}
+                                <li{% if _from == variant.short_name %} class="active"{% endif %}>
+                                    <a href="/{{ variant.short_name }}/{{ _to }}">{{ gettext(variant.description)|safe }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {%- endif -%}
+                {%- endif -%}
+
+            </div>
+        </div>
+    {% endfor %}
+{%- endmacro -%}
+
+<div class="container-fluid" id="language_grouped_nav">
+{% for iso_group, grouped_items in language_pairs_grouped_by_source.iteritems() %}
+<h5>{{ iso_group|iso_to_language_own_name }}</h5>
+<div class="row-fluid">
+    <div class="span6">
+        {% set source_items = grouped_items|filter_pairs_by_source(iso_group) %}
+        {{ render_pair_blocks(source_items) }}
     </div>
-
-
-{% endfor %}
+    <div class="span6">
+        {% set target_items = grouped_items|filter_pairs_by_target(iso_group) %}
+        {{ render_pair_blocks(target_items) }}
+    </div>
 </div>
 {% endfor %}
 

@@ -42,9 +42,7 @@
 {% block content %}
 <div class="container-fluid">
     <div class="row-fluid">
-        <div class="span4 hidden-phone hidden-mid" id="left_nav">
-            {% include 'left_dictionary_list.html' %}
-        </div>
+        <div class="span4 hidden-phone hidden-mid" id="left_nav">{%- include 'left_dictionary_list.html' -%}</div>
         <div class="span8">
             <h4 class="dict_title">
                 <span>{{ _from|iso_to_i18n }} → {{ _to|iso_to_i18n }}</span>

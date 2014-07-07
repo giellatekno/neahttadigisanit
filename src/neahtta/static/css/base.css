@@ -366,6 +366,22 @@ img.i18n_flag {
     font-style: italic; 
 }
 
+.transparent_text {
+    color: transparent;
+}
+
+#language_grouped_nav {
+    margin-bottom: 2em;
+    margin-left: .75em;
+}
+
+#language_grouped_nav h5 {
+    font-size: 105%;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    color: #999;
+}
+
 @media (min-width: 767px) {
     .entry_row {
         margin-bottom: 1em;
