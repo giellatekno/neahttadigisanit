@@ -382,6 +382,48 @@ img.i18n_flag {
     color: #999;
 }
 
+#language_grouped_nav div.active-group {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    border-top: 1px solid #CCC;
+    border-bottom: 1px solid #CCC;
+}
+
+#language_grouped_nav h5.active-group-title .inactive-placeholder {
+    display: none;
+}
+
+#language_grouped_nav h5.inactive-group-title a, #language_grouped_nav h5.active-group-title a {
+    color: #666;
+}
+
+#language_grouped_nav div.active .block-header {
+    padding: 0px 3px;
+}
+
+#language_grouped_nav div.active .block-header a {
+    color: #666;
+    font-weight: bold;
+}
+
+.active .transparent_text {
+    color: #666;
+}
+
+#language_grouped_nav .variant-select-menu .nav-header {
+    padding: 3px 3px;
+}
+
+#language_grouped_nav div.active.language-item {
+    background-color: #F7F7F7;
+    border: 1px solid #CCC;
+    border-radius: 3px;
+}
+
+#language_grouped_nav .inactive-group {
+    display: none; 
+}
+
 @media (min-width: 767px) {
     .entry_row {
         margin-bottom: 1em;

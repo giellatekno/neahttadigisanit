@@ -6,8 +6,11 @@
             {%- else -%}
                 {% set pair_has_variant = false %}
             {%- endif -%}
+
+            {% set active_pair = false %}
             {%- if not is_variant %}
                 {%- if iso_pair[0] == _from and iso_pair[1] == _to %}
+                    {% set active_pair = true %}
                     {% set div_classes = "active language-item" %}
                 {% else -%}
                     {% set div_classes = "language-item" %}
@@ -15,6 +18,7 @@
             {% elif is_variant -%}
                 {%- if iso_pair[1] == orig_pair[1] and iso_pair[0] == orig_pair[0] %}
                     {% set div_classes = "active language-item" %}
+                    {% set active_pair = true %}
                 {% else -%}
                     {% set div_classes = "language-item" %}
                 {% endif -%}
@@ -22,7 +26,7 @@
                 {% set div_classes = "language-item" %}
             {% endif -%}
 
-            {% if loop.first %}
+            {% if loop.first and not active_pair %}
                 {% set display_tag = "display" %}
             {% else %}
                 {% set display_tag = "transparent_text" %}
@@ -30,22 +34,26 @@
 
             <div class="{{ div_classes }}">
 
-                <a href="/{{ iso_pair[0] }}/{{ iso_pair[1] }}/">
-                    <span><span class="{{ display_tag }}">{{ iso_pair[0]|iso_to_i18n }}</span> &rarr; {{ iso_pair[1]|iso_to_i18n }}</span>
-                </a>
+                <div class="row-fluid block-header">
+                    <a href="/{{ iso_pair[0] }}/{{ iso_pair[1] }}/" class="block_title">
+                        <span><span class="{{ display_tag }}">{{ iso_pair[0]|iso_to_i18n }}</span> &rarr; {{ iso_pair[1]|iso_to_i18n }}</span>
+                    </a>
+                </div>
 
                 {# Start a new nav if there are variants #}
                 {% if pair_has_variant %}
                     {# Only display if the pair is the current one the user is looking at #}
                     {%- if iso_pair[0] == _from and iso_pair[1] == _to or orig_pair == iso_pair %}
-                        <span class="nav-header variantnote">{% trans %}Written variant{% endtrans %}</span>
-                        <ul class="nav nav-collapse nav-tabs nav-stacked subnavcoloring">
+                        <div class="row-fluid variant-select-menu">
+                            <div class="span12">
+                                <span class="nav-header variantnote">{% trans %}Written variant{% endtrans %}</span>
+                            </div>
                             {% for variant in pair_options.input_variants %}
-                                <li{% if _from == variant.short_name %} class="active"{% endif %}>
+                           	    <div {% if _from == variant.short_name %} class="active span12"{% else %} class="span12"{% endif %}>
                                     <a href="/{{ variant.short_name }}/{{ _to }}">{{ gettext(variant.description)|safe }}</a>
-                                </li>
+                                </div>
                             {% endfor %}
-                        </ul>
+                        </div>
                     {%- endif -%}
                 {%- endif -%}
 
@@ -56,8 +64,13 @@
 
 <div class="container-fluid" id="language_grouped_nav">
 {% for iso_group, grouped_items in language_pairs_grouped_by_source.iteritems() %}
-<h5>{{ iso_group|iso_to_language_own_name }}</h5>
-<div class="row-fluid">
+    {% if iso_group == _from %}
+        {% set active_group = "active-group" %}
+    {% else %}
+        {% set active_group = "inactive-group" %}
+    {% endif %}
+<h5 class="{{ active_group }}-title"><a href="#" class="expander">{{ iso_group|iso_to_language_own_name }} <span class="inactive-placeholder label label-grey">+</span></a></h5>
+<div class="row-fluid {{ active_group }}">
     <div class="span6">
         {% set source_items = grouped_items|filter_pairs_by_source(iso_group) %}
         {{ render_pair_blocks(source_items) }}
