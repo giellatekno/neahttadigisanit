@@ -4,6 +4,7 @@ ApplicationSettings:
   default_locale: "et"
   default_pair: ["izh", "fin"]
   mobile_default_pair: false
+  grouped_nav: false
   locales_available:
     - "et"
     - "fi"
@@ -99,13 +100,24 @@ Morphology:
 
 Languages:
   - iso: liv
+    minority_lang: true
+
   - iso: livM
+    minority_lang: true
+
   - iso: izh
+    minority_lang: true
+
+  - iso: vro
+    minority_lang: true
+
+  - iso: vot
+    minority_lang: true
+
   - iso: fin
   - iso: est
   - iso: lav
-  - iso: vro
-  - iso: vot
+
 
 # This also dictates the order of the dictionaries in the UI for now.
 Dictionaries:
@@ -150,8 +162,16 @@ Dictionaries:
     target: est
     path: 'dicts/vro-all.xml'
 
+  - source: vro
+    target: fin
+    path: 'dicts/vro-all.xml'
+
   # vot
   - source: vot
     target: est
+    path: 'dicts/vot-all.xml'
+
+  - source: vot
+    target: fin
     path: 'dicts/vot-all.xml'
 

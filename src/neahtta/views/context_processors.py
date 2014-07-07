@@ -64,6 +64,10 @@ def define_app_name():
     return dict(app_name=current_app.config.app_name)
 
 @blueprint.context_processor
+def nav_style():
+    return dict(grouped_nav=current_app.config.grouped_nav)
+
+@blueprint.context_processor
 def define_app_meta():
     return dict(app_meta_desc=current_app.config.meta_description)
 
@@ -90,6 +94,10 @@ def define_app_production_mode():
 @blueprint.context_processor
 def define_global_language_pairs():
     return dict(language_pairs=current_app.config.pair_definitions)
+
+@blueprint.context_processor
+def language_pairs_grouped_by_source():
+    return dict(language_pairs_grouped_by_source=current_app.config.pair_definitions_grouped_source)
 
 @blueprint.context_processor
 def define_variant_dictionaries():

@@ -1,0 +1,57 @@
+<div class="container-fluid">
+{% for iso_group, grouped_items in language_pairs_grouped_by_source.iteritems() %}
+<h5>{{ iso_group|iso_to_i18n }}</h5>
+<div class="row-fluid">
+{% for iso_pair, pair_options in grouped_items %}
+
+    {%- if pair_options.input_variants -%}
+        {% set pair_has_variant = true  %}
+    {%- else -%}
+        {% set pair_has_variant = false %}
+    {%- endif -%}
+
+    {% if not is_variant %}
+        {%- if iso_pair[0] == _from and iso_pair[1] == _to %}
+            <div class="active language-item span3">
+        {% else -%}
+            <div class="language-item span3">
+        {% endif -%}
+    {% elif is_variant -%}
+        {%- if iso_pair[1] == orig_pair[1] and iso_pair[0] == orig_pair[0] %}
+            <div class="active language-item span3">
+        {% else -%}
+            <div class="language-item span3">
+        {% endif -%}
+    {% else -%}
+        <div class="language-item span3">
+    {% endif %}
+
+        <a href="/{{ iso_pair[0] }}/{{ iso_pair[1] }}/">
+        <span>{{ iso_pair[0]|iso_to_i18n }} &rarr; {{ iso_pair[1]|iso_to_i18n }}</span>
+        </a>
+
+        {# Start a new nav if there are variants #}
+        {% if pair_has_variant %}
+            {# Only display if the pair is the current one the user is looking at #}
+            {%- if iso_pair[0] == _from and iso_pair[1] == _to or orig_pair == iso_pair %}
+                <span class="nav-header variantnote">{% trans %}Written variant{% endtrans %}</span>
+                <ul class="nav nav-collapse nav-tabs nav-stacked subnavcoloring">
+                    {% for variant in pair_options.input_variants %}
+                        <li{% if _from == variant.short_name %} class="active"{% endif %}>
+                            <a href="/{{ variant.short_name }}/{{ _to }}">{{ gettext(variant.description)|safe }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {%- endif -%}
+        {%- endif -%}
+
+    </div>
+
+
+{% endfor %}
+</div>
+{% endfor %}
+
+</div>
+
+{# vim: set ts=4 sw=4 tw=0 syntax=htmljinja : #}

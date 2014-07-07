@@ -1,0 +1,52 @@
+<ul class="nav nav-collapse nav-tabs nav-stacked">
+
+{% for iso_pair, pair_options in language_pairs.iteritems() %}
+
+    {%- if pair_options.input_variants -%}
+        {% set pair_has_variant = true  %}
+    {%- else -%}
+        {% set pair_has_variant = false %}
+    {%- endif -%}
+
+    {% if not is_variant %}
+        {%- if iso_pair[0] == _from and iso_pair[1] == _to %}
+            <li class="active">
+        {% else -%}
+            <li>
+        {% endif -%}
+    {% elif is_variant -%}
+        {%- if iso_pair[1] == orig_pair[1] and iso_pair[0] == orig_pair[0] %}
+            <li class="active">
+        {% else -%}
+            <li>
+        {% endif -%}
+    {% else -%}
+        <li>
+    {% endif %}
+
+        <a href="/{{ iso_pair[0] }}/{{ iso_pair[1] }}/">
+        <span>{{ iso_pair[0]|iso_to_i18n }} &rarr; {{ iso_pair[1]|iso_to_i18n }}</span>
+        </a>
+    </li>
+
+    {# Start a new nav if there are variants #}
+    {% if pair_has_variant %}
+        {# Only display if the pair is the current one the user is looking at #}
+        {%- if iso_pair[0] == _from and iso_pair[1] == _to or orig_pair == iso_pair %}
+            </ul>
+            <span class="nav-header variantnote">{% trans %}Written variant{% endtrans %}</span>
+            <ul class="nav nav-collapse nav-tabs nav-stacked subnavcoloring">
+                {% for variant in pair_options.input_variants %}
+                    <li{% if _from == variant.short_name %} class="active"{% endif %}>
+                        <a href="/{{ variant.short_name }}/{{ _to }}">{{ gettext(variant.description)|safe }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <ul class="nav nav-collapse nav-tabs nav-stacked">
+        {%- endif -%}
+    {%- endif -%}
+
+{% endfor %}
+</ul>
+
+{# vim: set ts=4 sw=4 tw=0 syntax=htmljinja : #}

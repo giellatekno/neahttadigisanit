@@ -140,6 +140,12 @@ class Config(Config):
                                self.filename)
 
     @property
+    def grouped_nav(self):
+        _p = self.yaml.get('ApplicationSettings', {})\
+                      .get('grouped_nav', False)
+        return _p
+
+    @property
     def app_meta_title(self):
         _p = self.yaml.get('ApplicationSettings', {})\
                       .get('app_meta_title', False)
@@ -290,6 +296,15 @@ class Config(Config):
                 if iso not in self._languages.keys():
                     self._languages[iso] = {'iso': iso}
         return self._languages
+
+    @property
+    def minority_languages(self):
+        if not hasattr(self, '_minority_languages'):
+            self._minority_languages = {}
+            for lang in self.yaml.get('Languages'):
+                if lang.get('minority_lang', False):
+                    self._minority_languages[lang.get('iso')] = lang.get('name', {})
+        return self._minority_languages
 
     @property
     def unittests(self):
@@ -476,6 +491,45 @@ class Config(Config):
                 self._pair_definitions[k] = _par_defs[k]
 
         return self._pair_definitions
+
+    @property
+    def pair_definitions_grouped_source(self):
+        from itertools import groupby
+        from collections import defaultdict
+
+        # TODO: group by minority language
+
+        def grouper(i):
+            # iso_pair, pair_options = i
+            # _has_variant = False
+            # if pair_options.input_variants:
+            #     _has_variant = True
+            return i[0][0]
+
+        # TODO: include minority as source first, then aux langs
+        # following
+
+        # TODO: assign a grouping color code to each lang. ex.)
+        #   livonian as a source gets blue
+        #   finnish as a source gets yellow
+        #   estonian as a source gets green
+        #   
+        #   background of link button is shaded based on this source tagging
+
+        # orrr, 
+
+        if not hasattr(self, '_pair_definitions_grouped_source'):
+
+            pairs = sorted(self.pair_definitions.iteritems(), key=grouper)
+            grouped_pairs = defaultdict(list)
+            for p in pairs:
+                if p[0][0] in self.minority_languages:
+                    grouped_pairs[p[0][0]].append(p)
+                if p[0][1] in self.minority_languages:
+                    grouped_pairs[p[0][1]].append(p)
+            self._pair_definitions_grouped_source = grouped_pairs
+
+        return self._pair_definitions_grouped_source
 
     @property
     def morphologies(self):
