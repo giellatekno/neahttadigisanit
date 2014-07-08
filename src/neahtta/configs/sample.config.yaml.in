@@ -111,10 +111,14 @@ Dictionaries:
     # the gettext marker, so that they're translated.
     input_variants:
       - type: "standard"
-        description: !gettext "Standárda (<em>áčđŋšŧž</em>)"
+        description: !gettext "Standard" 
+        # Standárda 
+        example: "(<em>áčđŋšŧž</em>)"
         short_name: "sme"
       - type: "mobile"
-        description: !gettext "Sosiála media (maiddái <em>acdnstz</em>)"
+        description: !gettext "Sosiála media"
+        # example: !gettext "(maiddái <em>acdnstz</em>)"
+        example: !gettext "(incl. <em>acdnstz</em>)"
         short_name: "SoMe"
 
   - source: SoMe

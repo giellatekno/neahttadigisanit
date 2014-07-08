@@ -7,24 +7,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-05-23 14:29-0500\n"
+"POT-Creation-Date: 2014-07-08 16:02-0500\n"
 "PO-Revision-Date: 2014-05-24 09:18+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language-Team: myv <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
-"Language: myv\n"
-"X-Generator: Poedit 1.6.4\n"
 
-#: configs/kyv.config.yaml.in:93
+#: configs/kyv.config.yaml.in:93 configs/pikiskwewina.config.yaml.in:54
+#: configs/saan.config.yaml.in:68 configs/sample.config.yaml.in:115
+#: configs/sanit.config.yaml.in:118
 msgid "Standard"
 msgstr "Стандарт"
 
-#: configs/kyv.config.yaml.in:96
-msgid "Molotsov orthography (ԅ &rarr; зь)"
+#: configs/kyv.config.yaml.in:96 configs/language_names.py:34
+msgid "Molotsov orthography"
 msgstr "Молодцовонь орфографиясо"
 
 #: configs/language_names.py:23 configs/language_names.py:24
@@ -36,7 +36,7 @@ msgstr "Пелевеёнксонь саамонь кель"
 msgid "North Sámi (#SoMe)"
 msgstr "Пелевеёнксонь саамонь кель (#SoMe)"
 
-#: configs/language_names.py:26 configs/language_names.py:78
+#: configs/language_names.py:26 configs/language_names.py:85
 msgid "English"
 msgstr "Англань кель"
 
@@ -52,10 +52,6 @@ msgstr "Чиньэлеёнксонь саамонь кель"
 msgid "Komi"
 msgstr "Коминь кель"
 
-#: configs/language_names.py:34
-msgid "Molotsov orthography"
-msgstr "Молодцовонь орфографиясо"
-
 #: configs/language_names.py:35
 msgid "Udmurt"
 msgstr "Удмуртонь кель"
@@ -64,243 +60,388 @@ msgstr "Удмуртонь кель"
 msgid "Kven"
 msgstr "Квенэнь кель"
 
-#: configs/language_names.py:39 configs/language_names.py:40
+#: configs/language_names.py:39
+msgid "Olonetsian"
+msgstr "Ливви-карелень кель"
+
+#: configs/language_names.py:40
+msgid "Estonian"
+msgstr "Эстэнь кель"
+
+#: configs/language_names.py:43 configs/language_names.py:44
 #: templates/more_dictionaries.html:38
 msgid "Livonian"
 msgstr "Ливень кель"
 
-#: configs/language_names.py:40
+#: configs/language_names.py:44 configs/language_names.py:64
+#: configs/language_names.py:68
 msgid "mobile friendly"
 msgstr "сотовойнень шожда"
 
-#: configs/language_names.py:41
-msgid "Olonetsian"
-msgstr "Ливви-карелень кель"
-
-#: configs/language_names.py:42 templates/more_dictionaries.html:38
+#: configs/language_names.py:45 templates/more_dictionaries.html:38
 msgid "Izhorian"
 msgstr "Ижорань кель"
 
-#: configs/language_names.py:43
-msgid "Estonian"
-msgstr "Эстэнь кель"
-
 #: configs/language_names.py:46
+msgid "Veps"
+msgstr ""
+
+#: configs/language_names.py:47
+msgid "Võro"
+msgstr ""
+
+#: configs/language_names.py:48
+msgid "Votic"
+msgstr ""
+
+#: configs/language_names.py:51
 msgid "Erzya Mordvin"
 msgstr "Эрзянь кель"
 
-#: configs/language_names.py:47 templates/more_dictionaries.html:39
+#: configs/language_names.py:52 templates/more_dictionaries.html:39
 msgid "Moksha"
 msgstr "Мокшонь кель"
 
-#: configs/language_names.py:48 configs/language_names.py:80
+#: configs/language_names.py:53 configs/language_names.py:87
 msgid "French"
 msgstr "Французонь кель"
 
-#: configs/language_names.py:51
+#: configs/language_names.py:56
 msgid "Western Mari"
 msgstr "Пандомаринь кель"
 
-#: configs/language_names.py:52
+#: configs/language_names.py:57
 msgid "Eastern Mari"
 msgstr "Лугамаринь кель"
 
-#: configs/language_names.py:55
+#: configs/language_names.py:60
 msgid "Nenets"
 msgstr "Ненэцень кель"
 
-#: configs/language_names.py:58
+#: configs/language_names.py:63 configs/language_names.py:64
 msgid "Skolt Sámi"
 msgstr "Сколт саамонь кель"
 
-#: configs/language_names.py:61
+#: configs/language_names.py:67 configs/language_names.py:68
 msgid "Plains Cree"
 msgstr "Степкринь"
 
-#: configs/language_names.py:64
+#: configs/language_names.py:71
 msgid "Northern Haida"
 msgstr "Пелевеёнксонь Хаида"
 
-#: configs/language_names.py:67 configs/language_names.py:73
+#: configs/language_names.py:74 configs/language_names.py:80
 msgid "Finnish"
 msgstr "Финнэнь кель"
 
-#: configs/language_names.py:68 configs/language_names.py:74
-#: configs/language_names.py:75
+#: configs/language_names.py:75 configs/language_names.py:81
+#: configs/language_names.py:82
 msgid "Norwegian"
 msgstr "Норвегень кель"
 
-#: configs/language_names.py:70 configs/language_names.py:71
+#: configs/language_names.py:77 configs/language_names.py:78
 msgid "Russian"
 msgstr "Рузонь кель"
 
-#: configs/language_names.py:76 configs/language_names.py:77
+#: configs/language_names.py:83 configs/language_names.py:84
 msgid "Latvian"
 msgstr "Латышень кель"
 
-#: configs/language_names.py:79
+#: configs/language_names.py:86
 msgid "Haida"
 msgstr "Хайда"
 
-#: configs/sample.config.yaml.in:114 configs/sanit.config.yaml.in:113
-#: configs/sanit.config.yaml.in:140
+#: configs/pikiskwewina.config.yaml.in:59 configs/saan.config.yaml.in:73
+#, fuzzy
+msgid "Mobile friendly"
+msgstr "сотовойнень шожда"
+
+#: configs/sample.config.yaml.in:120
+msgid "Sosiála media"
+msgstr ""
+
+#: configs/sample.config.yaml.in:121 configs/sanit.config.yaml.in:125
+#, fuzzy
+msgid "(incl. <em>acdnstz</em>)"
+msgstr "Соцмедия  (<em>acdnstz</em> букватнеяк)"
+
+#: configs/sanit.config.yaml.in:124
+msgid "Social media"
+msgstr ""
+
+#: configs/sanit.config.yaml.in:148
 msgid "Standárda (<em>áčđŋšŧž</em>)"
 msgstr "Стардарт (<em>áčđŋšŧž</em>)"
 
-#: configs/sample.config.yaml.in:117 configs/sanit.config.yaml.in:116
-#: configs/sanit.config.yaml.in:143
+#: configs/sanit.config.yaml.in:151
 msgid "Sosiála media (maiddái <em>acdnstz</em>)"
 msgstr "Соцмедия  (<em>acdnstz</em> букватнеяк)"
 
-#: configs/sanat.config.yaml.in:141 configs/sanat.config.yaml.in:152
-msgid "Standard (äǟ)"
-msgstr "Стандарт (äǟ)"
-
-#: configs/sanat.config.yaml.in:144 configs/sanat.config.yaml.in:155
-msgid "Mobile friendly (a &rarr; ä ~ ǟ)"
-msgstr "сотовойнень шожда"
-
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.jquery.js:5116
 #: static/js/neahttadigisanit.min.js:1246
 msgid "Á"
 msgstr "Á"
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.jquery.js:5116
 #: static/js/neahttadigisanit.min.js:1246
 msgid "Options"
 msgstr "Мезде кочкамс"
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.jquery.js:5116
 #: static/js/neahttadigisanit.min.js:1246 templates/about.baakoeh.html:6
-#: templates/about.muter.html:6 templates/about.sanat.html:6
-#: templates/about.sanit.html:6 templates/about.vada.html:7
-#: templates/about.valks.html:7 templates/base.html:122
+#: templates/about.muter.html:6 templates/about.pikiskwewina.html:6
+#: templates/about.sanat.html:6 templates/about.sanit.html:6
+#: templates/about.vada.html:7 templates/about.valks.html:7
+#: templates/base.html:137
 msgid "About"
 msgstr "Минденек"
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.jquery.js:5116
 #: static/js/neahttadigisanit.min.js:1246
 msgid "Advanced"
 msgstr "Аволь ушодыцянь"
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.jquery.js:5116
 #: static/js/neahttadigisanit.min.js:1246
 msgid "Dictionary"
 msgstr "Валкс"
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.jquery.js:5116
 #: static/js/neahttadigisanit.min.js:1246
 msgid "Save"
 msgstr "Ванстомс"
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.jquery.js:5116
 #: static/js/neahttadigisanit.min.js:1246
 msgid "Refresh settings"
 msgstr "Одкстомтомс аравтоматнень"
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.jquery.js:5116
 #: static/js/neahttadigisanit.min.js:1246
 msgid "Update detected"
 msgstr "Одкстомтозь верзия муеви"
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.jquery.js:5116
 #: static/js/neahttadigisanit.min.js:1246
 msgid "IE8 Warning"
 msgstr "IE8-до Ванок"
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.jquery.js:5116
 #: static/js/neahttadigisanit.min.js:1246
-msgid "In order to look up a word, hold down the <em>Alt</em> or <em>Option</em> (⌥) key, and doubleclick on a word. The service will contact the dictionary, and return a word after a short pause."
-msgstr "Эрявикс валонь вешнемга кирдика <em>Alt</em> or <em>Option</em> (⌥) повнэнть лепштязь, ды тувако кавксть лепштика валонть налткесэ. Аппаратось вейсэндяви валксонть марто, аламодо мейле валонть ютавтовксонзо-анализэнзэ сыть."
+msgid ""
+"In order to look up a word, hold down the <em>Alt</em> or <em>Option</em>"
+" (⌥) key, and doubleclick on a word. The service will contact the "
+"dictionary, and return a word after a short pause."
+msgstr ""
+"Эрявикс валонь вешнемга кирдика <em>Alt</em> or <em>Option</em> (⌥) "
+"повнэнть лепштязь, ды тувако кавксть лепштика валонть налткесэ. "
+"Аппаратось вейсэндяви валксонть марто, аламодо мейле валонть "
+"ютавтовксонзо-анализэнзэ сыть."
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.jquery.js:5116
 #: static/js/neahttadigisanit.min.js:1246
-msgid "If you find a bug, or if the bookmark does not work on a specific page <a href=\"mailto:giellatekno@hum.uit.no\">please contact us</a>. Tell us what page didn't work, or what you did when you discovered the problem."
-msgstr "Понгиндеряй ильведевкс эли лопа, конасонть ловнома тешксэсь а нолдави тевс, <a href=\"mailto:giellatekno@hum.uit.no\">сёрмадта миненек</a>. Ёвтакая кодамо лопасо вастовсть стакачитне, эли мезе теикскелить, зярдо ильведевксэсь лиссь."
+msgid ""
+"If you find a bug, or if the bookmark does not work on a specific page <a"
+" href=\"mailto:giellatekno@hum.uit.no\">please contact us</a>. Tell us "
+"what page didn't work, or what you did when you discovered the problem."
+msgstr ""
+"Понгиндеряй ильведевкс эли лопа, конасонть ловнома тешксэсь а нолдави "
+"тевс, <a href=\"mailto:giellatekno@hum.uit.no\">сёрмадта миненек</a>. "
+"Ёвтакая кодамо лопасо вастовсть стакачитне, эли мезе теикскелить, зярдо "
+"ильведевксэсь лиссь."
 
 #: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:1316
+#: static/js/neahttadigisanit.jquery.js:5181
 #: static/js/neahttadigisanit.min.js:1311
 msgid "Error!"
 msgstr "Ильведевкс!"
 
 #: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:1316
+#: static/js/neahttadigisanit.jquery.js:5181
 #: static/js/neahttadigisanit.min.js:1311
 msgid "Could not connect to dictionary server"
 msgstr "Сюлмавкс эзь тееве валксонь серверэнть марто"
 
 #: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:1316
+#: static/js/neahttadigisanit.jquery.js:5181
 #: static/js/neahttadigisanit.min.js:1311
 msgid "Close"
 msgstr "Пекстамс"
 
 #: static/js/bookmarklet.js:1438 static/js/bookmarklet.js:1729
 #: static/js/bookmarklet.min.js:1438 static/js/bookmarklet.min.js:1729
+#: static/js/neahttadigisanit.jquery.js:5315
+#: static/js/neahttadigisanit.jquery.js:5623
 #: static/js/neahttadigisanit.min.js:1433
 #: static/js/neahttadigisanit.min.js:1724
 msgid "Unknown word"
 msgstr "Апак содань вал"
 
 #: static/js/bookmarklet.js:1439 static/js/bookmarklet.min.js:1439
+#: static/js/neahttadigisanit.jquery.js:5316
 #: static/js/neahttadigisanit.min.js:1434
 msgid "You are using"
 msgstr "Нолдат тевс"
 
 #: static/js/bookmarklet.js:1441 static/js/bookmarklet.min.js:1441
+#: static/js/neahttadigisanit.jquery.js:5318
 #: static/js/neahttadigisanit.min.js:1436
 msgid "Meaning not found"
 msgstr "Смусть эзь муеве те валонтень"
 
-#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.min.js:1246
+#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.jquery.js:5116
+#: static/js/neahttadigisanit.min.js:1246
 msgid "Help"
 msgstr "Лезкс"
 
-#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.min.js:1246
+#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.jquery.js:5116
+#: static/js/neahttadigisanit.min.js:1246
 msgid "This tool was made by Giellatekno at UiT: The Arctic University of Norway."
 msgstr ""
 "Те кедьёнксонть теизе Тромсёнь университетэнь Гиеллатекно:\n"
-"			 Норвегиянь Арктикань Университетсэ."
+"\t\t\t Норвегиянь Арктикань Университетсэ."
 
-#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.min.js:1246
+#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.jquery.js:5116
+#: static/js/neahttadigisanit.min.js:1246
 msgid "Read more"
 msgstr "Ловномс седе тов"
 
-#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.min.js:1246
+#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.jquery.js:5116
+#: static/js/neahttadigisanit.min.js:1246
 msgid "More tools"
 msgstr "Лия кедьёнкст"
 
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "isCharacterDataNode"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "nodeIndex"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "nodeLength"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "containsPositions"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "isWhitespace"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "isCollapsedWhitespace"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "computedDisplay"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "collapsed"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "ignored"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+#, fuzzy
+msgid "nextPos"
+msgstr "Ненэцень кель"
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "previous"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "textNodeInfo"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "hasInnerText"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "isRenderedBlock"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "trailingSpace"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "leadingSpace"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "nextVisible"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "nextUncollapsed"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "previousVisible"
+msgstr ""
+
 #: templates/404.html:51
-msgid "Whoops! The page you requested was not found. If you think you are receiving this in error, please contact us."
+msgid ""
+"Whoops! The page you requested was not found. If you think you are "
+"receiving this in error, please contact us."
 msgstr "Теня! Лопа, конанть вешить а муеви. Бути арсят манявинек,сюлмавт мартонок."
 
 #: templates/404.html:51
-msgid "If you followed a link from the front page, it may be that the dictionary you were browsing is not yet bilingual."
-msgstr "Бути тезэнь понгить прявт лопасто сюлмавома педе кундазь, валксось, кона ваннат, зярс апак топавто кавто ёндонь валксокс."
+msgid ""
+"If you followed a link from the front page, it may be that the dictionary"
+" you were browsing is not yet bilingual."
+msgstr ""
+"Бути тезэнь понгить прявт лопасто сюлмавома педе кундазь, валксось, кона "
+"ваннат, зярс апак топавто кавто ёндонь валксокс."
 
 #: templates/500.html:51
 msgid "Whoops! There was some kind of error."
 msgstr "Вай, авакай!  Ильведевкс лиссь."
 
 #: templates/about.baakoeh.html:15 templates/about.muter.html:15
-#: templates/about.sanat.html:15 templates/about.sanit.html:15
-#: templates/about.vada.html:17 templates/about.valks.html:17
+#: templates/about.pikiskwewina.html:15 templates/about.sanat.html:15
+#: templates/about.sanit.html:15 templates/about.vada.html:17
+#: templates/about.valks.html:17
 msgid "A dictionary that understands what you're looking for."
 msgstr "Валксось, кона чарькоди, мезе вешнят."
 
 #: templates/about.baakoeh.html:16 templates/about.muter.html:16
-#: templates/about.sanat.html:16 templates/about.sanit.html:16
-#: templates/about.vada.html:18 templates/about.valks.html:18
+#: templates/about.pikiskwewina.html:16 templates/about.sanat.html:16
+#: templates/about.sanit.html:16 templates/about.vada.html:18
+#: templates/about.valks.html:18
 msgid "(... And is mobile-friendly!)"
 msgstr "(... Мобильсэяк шожда нолдамс тевс!)"
 
 #: templates/about.baakoeh.html:20 templates/about.muter.html:20
-#: templates/about.sanat.html:20 templates/about.sanit.html:20
-#: templates/about.vada.html:22 templates/about.valks.html:22
+#: templates/about.pikiskwewina.html:20 templates/about.sanat.html:20
+#: templates/about.sanit.html:20 templates/about.vada.html:22
+#: templates/about.valks.html:22
 msgid "Free"
 msgstr "Питнень апак сае"
 
 #: templates/about.baakoeh.html:21 templates/about.muter.html:21
-#: templates/about.sanat.html:21 templates/about.sanit.html:21
-#: templates/about.vada.html:23 templates/about.valks.html:23
+#: templates/about.pikiskwewina.html:21 templates/about.sanat.html:21
+#: templates/about.sanit.html:21 templates/about.vada.html:23
+#: templates/about.valks.html:23
 msgid ""
 "Everything (or, well, almost everything) that\n"
 "                    concerns minority languages should be free. Here\n"
@@ -312,19 +453,22 @@ msgstr ""
 "                    кедьсэ валкст, ды лия анализаторт-кедьёнкст."
 
 #: templates/about.baakoeh.html:27 templates/about.muter.html:27
-#: templates/about.sanat.html:27 templates/about.sanit.html:27
-#: templates/about.vada.html:29 templates/about.valks.html:29
+#: templates/about.pikiskwewina.html:27 templates/about.sanat.html:27
+#: templates/about.sanit.html:27 templates/about.vada.html:29
+#: templates/about.valks.html:29
 msgid "Open-Source"
 msgstr "Весенень панжадо лисьмапрякст"
 
 #: templates/about.baakoeh.html:28 templates/about.muter.html:28
-#: templates/about.sanat.html:28 templates/about.sanit.html:28
-#: templates/about.vada.html:30 templates/about.valks.html:30
+#: templates/about.pikiskwewina.html:28 templates/about.sanat.html:28
+#: templates/about.sanit.html:28 templates/about.vada.html:30
+#: templates/about.valks.html:30
 msgid ""
 "Everything here is based on open-source tools. Do you\n"
 "                have an idea for an app or research project that needs\n"
 "                linguistic resources? Visit <a class=\"blue\"\n"
-"                    href=\"http://giellatekno.uit.no/\">Giellatekno</a>'s\n"
+"                    href=\"http://giellatekno.uit.no/\">Giellatekno</a>'s"
+"\n"
 "                website for information on how to get access to lexicon\n"
 "                files, and morphological and syntactic analyzers."
 msgstr ""
@@ -332,29 +476,39 @@ msgstr ""
 "                улить проектэнь теемань арсемат-мельть, кедьёнксонь эли\n"
 "                ванкшномань, козонь эрявить келень содамонь-ванкшномань\n"
 "                ресурсат? Совсек <a class=\"blue\"\n"
-"                    href=\"http://giellatekno.uit.no/\">Giellatekno</a>-нь\n"
-"                сайтс, тосто муят информация, кармат содамо, кода саемс эстеть\n"
-"                валксонь файлат, валонь теевемань ды синтактикань анализаторт."
+"                    "
+"href=\"http://giellatekno.uit.no/\">Giellatekno</a>-нь\n"
+"                сайтс, тосто муят информация, кармат содамо, кода саемс "
+"эстеть\n"
+"                валксонь файлат, валонь теевемань ды синтактикань "
+"анализаторт."
 
 #: templates/about.baakoeh.html:36 templates/about.muter.html:36
-#: templates/about.sanat.html:36 templates/about.sanit.html:36
-#: templates/about.vada.html:38 templates/about.valks.html:38
+#: templates/about.pikiskwewina.html:36 templates/about.sanat.html:36
+#: templates/about.sanit.html:36 templates/about.vada.html:38
+#: templates/about.valks.html:38
 msgid "Linguistic basis"
 msgstr "Лингвистикань лув"
 
 #: templates/about.baakoeh.html:37 templates/about.muter.html:37
-#: templates/about.sanat.html:37 templates/about.sanit.html:37
-#: templates/about.vada.html:39 templates/about.valks.html:39
-msgid "Write what you wish, and the dictionary will analyze it to break apart compound words and find base forms."
-msgstr "Сёрмадта мелеть коряс вал; валксось максы тензэ анализ ды тувако явсы полавтнезь валонть пелькстнэва алкс панцунонзо муемга."
+#: templates/about.pikiskwewina.html:37 templates/about.sanat.html:37
+#: templates/about.sanit.html:37 templates/about.vada.html:39
+#: templates/about.valks.html:39
+msgid ""
+"Write what you wish, and the dictionary will analyze it to break apart "
+"compound words and find base forms."
+msgstr ""
+"Сёрмадта мелеть коряс вал; валксось максы тензэ анализ ды тувако явсы "
+"полавтнезь валонть пелькстнэва алкс панцунонзо муемга."
 
 #: templates/about.baakoeh.html:43 templates/about.sanit.html:43
 msgid "gå, dra, reise"
 msgstr "молемс, туемс"
 
 #: templates/about.baakoeh.html:50 templates/about.muter.html:50
-#: templates/about.sanat.html:50 templates/about.sanit.html:50
-#: templates/about.vada.html:52 templates/about.valks.html:52
+#: templates/about.pikiskwewina.html:50 templates/about.sanat.html:50
+#: templates/about.sanit.html:50 templates/about.vada.html:52
+#: templates/about.valks.html:52
 msgid "Source material"
 msgstr "Лисьмапрякс материал"
 
@@ -363,19 +517,39 @@ msgid "sme ↔ nob"
 msgstr "пелевеёнксонь саамонь кель ↔ норвегень вук мол"
 
 #: templates/about.baakoeh.html:58 templates/about.sanit.html:58
-msgid "North Sámi → Norwegian builds on Nils Jernsletten's dictionary <em>Álgosátnegirji</em>, but here it has been more than doubled in content."
-msgstr "Пелевеёнксонь саамонь  → норвегиянь валксонть юрозо Нилс Йернслеттенэнь «<em>Álgosátnegirji</em>» валкссонть. Ней те валкссонть уш кавксть седе ламо валтнэде."
+msgid ""
+"North Sámi → Norwegian builds on Nils Jernsletten's dictionary "
+"<em>Álgosátnegirji</em>, but here it has been more than doubled in "
+"content."
+msgstr ""
+"Пелевеёнксонь саамонь  → норвегиянь валксонть юрозо Нилс Йернслеттенэнь "
+"«<em>Álgosátnegirji</em>» валкссонть. Ней те валкссонть уш кавксть седе "
+"ламо валтнэде."
 
 #: templates/about.baakoeh.html:59 templates/about.sanit.html:59
-msgid "Norwegian → North Sámi is a converted version of North Sámi → Norwegian, but we have also revised the content and added frequent words from Norwegian."
-msgstr "Норвегиянь → пелевеёнксонь саамонь валксонть теинек пелевеёнксонь саамонь → норвегиянь валксонть лангс нежедезь. Мейле совавтынек норвегиянь кельсэ сеедьстэ вастневиця ламо валт ды полавтынек валксонть структуранзо. "
+msgid ""
+"Norwegian → North Sámi is a converted version of North Sámi → Norwegian, "
+"but we have also revised the content and added frequent words from "
+"Norwegian."
+msgstr ""
+"Норвегиянь → пелевеёнксонь саамонь валксонть теинек пелевеёнксонь саамонь"
+" → норвегиянь валксонть лангс нежедезь. Мейле совавтынек норвегиянь "
+"кельсэ сеедьстэ вастневиця ламо валт ды полавтынек валксонть "
+"структуранзо. "
 
 #: templates/about.baakoeh.html:62 templates/about.sanit.html:62
 msgid "sma ↔ nob"
 msgstr "чиньэлеёнксонь саамонь кель ↔ норвегень вук мол"
 
 #: templates/about.baakoeh.html:63 templates/about.sanit.html:63
-msgid "The dictionaries for South Sámi and Norwegian build on material prepared by Albert Jåma and Tove Brustad in the <a class=\"blue\" href=\"http://www.ruovatsijte.no/\">Hemnes Sámi Organization</a>, but has in addition gained words from <a class=\"blue\" href=\"http://giellatekno.uit.no/\">Giellatekno</a> and <a class=\"blue\" href=\"http://aajege.no/\">Aajege</a>'s work with the Southern Sámi <a class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
+msgid ""
+"The dictionaries for South Sámi and Norwegian build on material prepared "
+"by Albert Jåma and Tove Brustad in the <a class=\"blue\" "
+"href=\"http://www.ruovatsijte.no/\">Hemnes Sámi Organization</a>, but has"
+" in addition gained words from <a class=\"blue\" "
+"href=\"http://giellatekno.uit.no/\">Giellatekno</a> and <a class=\"blue\""
+" href=\"http://aajege.no/\">Aajege</a>'s work with the Southern Sámi <a "
+"class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
 msgstr ""
 
 #: templates/about.baakoeh.html:66 templates/about.sanit.html:66
@@ -383,7 +557,13 @@ msgid "sme ↔ fin"
 msgstr "пелевеёнксонь саамонь кель ↔ финнэнь кель"
 
 #: templates/about.baakoeh.html:67 templates/about.sanit.html:67
-msgid "Dictionaries for North Sámi and Finnish are based on lexical material from the <a class=\"green\" href=\"http://kotus.fi\">Institute for the Languages of Finland</a>, and from Giellatekno's work with the North Sámi  <a class=\"green\" href=\"http://oahpa.no\">Oahpa</a>. In addition, we have included frequent words from North Sámi, but especially from Finnish."
+msgid ""
+"Dictionaries for North Sámi and Finnish are based on lexical material "
+"from the <a class=\"green\" href=\"http://kotus.fi\">Institute for the "
+"Languages of Finland</a>, and from Giellatekno's work with the North Sámi"
+"  <a class=\"green\" href=\"http://oahpa.no\">Oahpa</a>. In addition, we "
+"have included frequent words from North Sámi, but especially from "
+"Finnish."
 msgstr ""
 
 #: templates/about.baakoeh.html:68 templates/about.sanit.html:68
@@ -391,8 +571,8 @@ msgid "Each of the dictionaries contains about 11,000 base words."
 msgstr "Эрьвейке валкссонть 11.000-шка апак скакалгавто вал."
 
 #: templates/about.baakoeh.html:76 templates/about.muter.html:79
-#: templates/about.sanat.html:86 templates/about.vada.html:78
-#: templates/about.valks.html:90
+#: templates/about.pikiskwewina.html:71 templates/about.sanat.html:86
+#: templates/about.vada.html:78 templates/about.valks.html:90
 msgid "More to come..."
 msgstr "Таго мезе лиси..."
 
@@ -408,21 +588,47 @@ msgstr "пандомаринь кель ↔ финнэнь кель"
 #: templates/about.muter.html:58
 msgid ""
 "Dictionaries for Hill Mari and Finnish are based\n"
-"                    on lexical material from a large array of dictionaries and\n"
-"                    written literature from the 20th and 21th centuries. A\n"
+"                    on lexical material from a large array of "
+"dictionaries and\n"
+"                    written literature from the 20th and 21th centuries. "
+"A\n"
 "                    note-worthy dictionary is the Hill Mari - Russian\n"
-"                    dictionary by Anna A. Savatkova (1981). Translation work is\n"
+"                    dictionary by Anna A. Savatkova (1981). Translation "
+"work is\n"
 "                    being conducted at\n"
-"                the University of Helsinki by Julia Kuprina with funding from\n"
+"                the University of Helsinki by Julia Kuprina with funding "
+"from\n"
 "                the Kone Foundation."
 msgstr ""
 "Пандомаринь-финнэнь валкстнэнень путозь лув, конань анокстамсто\n"
-"                    нолдазь тевс 1900-це ды 2000-це иетнень ламо валкст ды\n"
-"                    литература. Пек эрявиксэкс ловови Анна А. Саватковань\n"
-"                    пандомаринь-рузонь валксось (1981). Ютавтоманть поладксозо\n"
-"                    моли Хельсинкинь Университетсэ, вети эйсэнзэ Юлия Куприна,\n"
-"                    трансдуктортнэнь теицяст Джак Рютер. Кавтонест «КОНЕ» фондонь\n"
+"                    нолдазь тевс 1900-це ды 2000-це иетнень ламо валкст "
+"ды\n"
+"                    литература. Пек эрявиксэкс ловови Анна А. Саватковань"
+"\n"
+"                    пандомаринь-рузонь валксось (1981). Ютавтоманть "
+"поладксозо\n"
+"                    моли Хельсинкинь Университетсэ, вети эйсэнзэ Юлия "
+"Куприна,\n"
+"                    трансдуктортнэнь теицяст Джак Рютер. Кавтонест «КОНЕ»"
+" фондонь\n"
 "                    стипендиатт."
+
+#: templates/about.pikiskwewina.html:43
+msgid "s/he speaks Cree"
+msgstr ""
+
+#: templates/about.pikiskwewina.html:57
+#, fuzzy
+msgid "crk ↔ eng"
+msgstr "ненэцень кель ↔ финнэнь кель"
+
+#: templates/about.pikiskwewina.html:58
+msgid ""
+"Dictionaries for Plains Cree and English are based\n"
+"                on the lexical materials and scientific research in "
+"nêhiyawêwin : itwêwina / Cree: Words.. Compiled by Arok Wolvengrey.  "
+"Regina: Canadian Plains Research Center, 2001."
+msgstr ""
 
 #: templates/about.sanat.html:43
 msgid "mennä, tapahtua, viedä, johtaa, edistyä"
@@ -435,10 +641,14 @@ msgstr "ливень кель ↔ финнэнь кель"
 #: templates/about.sanat.html:58
 msgid ""
 "Dictionaries for Livonian and Finnish are based\n"
-"                on the lexical materials and scientific research behind the\n"
-"                Livonian-Estonian-Latvian dictionary by Tiit-Rein Viitso and\n"
-"                Valts Ernštreits. Finnish translation work, content analysis\n"
-"                and coordination is being continued in Helsinki by Renate\n"
+"                on the lexical materials and scientific research behind "
+"the\n"
+"                Livonian-Estonian-Latvian dictionary by Tiit-Rein Viitso "
+"and\n"
+"                Valts Ernštreits. Finnish translation work, content "
+"analysis\n"
+"                and coordination is being continued in Helsinki by Renate"
+"\n"
 "                Blumberga with funding from the Kone Foundation."
 msgstr ""
 "Ливень-финнэнь валксонь юртокс аштить материалт ды келень\n"
@@ -455,7 +665,8 @@ msgstr "ливвиконь карелень кель ↔ финнэнь кель
 #: templates/about.sanat.html:68
 msgid ""
 "Dictionaries for Livvi Karelian (Olonets) and\n"
-"                Finnish are based on lexical material from the Livvi language\n"
+"                Finnish are based on lexical material from the Livvi "
+"language\n"
 "                newspaper \"Oma mua\" and a large array of dictionaries.\n"
 "                Translation work is being conducted at the University of\n"
 "                Helsinki by Timo Rantakaulio with funding from the Kone\n"
@@ -469,7 +680,8 @@ msgstr "Проблема муить?"
 #: templates/about.sanit.html:74
 msgid ""
 "If you find any bugs, please get in touch with us. Describe the problem,\n"
-"                and tell us what web browser or mobile phone you were using, or what word you\n"
+"                and tell us what web browser or mobile phone you were "
+"using, or what word you\n"
 "                were searching for when you encountered the problem."
 msgstr ""
 
@@ -479,7 +691,8 @@ msgstr "Сюлмавт мартонок"
 
 #: templates/about.sanit.html:89
 msgid ""
-"Need more dictionaries? <a href=\"http://dicts.uit.no/\">Here's our full list</a>, and more\n"
+"Need more dictionaries? <a href=\"http://dicts.uit.no/\">Here's our full "
+"list</a>, and more\n"
 "                resources."
 msgstr ""
 
@@ -490,15 +703,20 @@ msgstr "ненэцень кель ↔ финнэнь кель"
 #: templates/about.vada.html:60
 msgid ""
 "Dictionaries for Nenets and Finnish are based on\n"
-"                the lexical materials and scientific research by Natalia M.\n"
-"                Tereschenko, Tapani Salminen and Sven-Erik Soosaar. Finnish\n"
-"                translation work is being done in Tallin by Sven-Erik Soosaar\n"
+"                the lexical materials and scientific research by Natalia "
+"M.\n"
+"                Tereschenko, Tapani Salminen and Sven-Erik Soosaar. "
+"Finnish\n"
+"                translation work is being done in Tallin by Sven-Erik "
+"Soosaar\n"
 "                with funding from the Kone Foundation."
 msgstr ""
 "Ненэцень-финнэнь валкстнэнь юрост нежеди Наталия М. Терещенконь,\n"
 "                Тапани Салминэнэнь ды Свэн-Эрик Соосааронь материалост\n"
-"                ды наукань ванкшномаст лангс. Финнэнь кельс ютавтомась теи\n"
-"                Свэн-Эрик Соосаар Таллиннсэ, «КОНЕ» фондонть стипендиятокс."
+"                ды наукань ванкшномаст лангс. Финнэнь кельс ютавтомась "
+"теи\n"
+"                Свэн-Эрик Соосаар Таллиннсэ, «КОНЕ» фондонть "
+"стипендиятокс."
 
 #: templates/about.valks.html:59
 msgid "myv ↔ fin"
@@ -507,20 +725,28 @@ msgstr "эрзянь кель ↔ финнэнь кель"
 #: templates/about.valks.html:60
 msgid ""
 "Dictionaries for Erzya and Finnish are based on\n"
-"                lexical material from a large array of dictionaries and written\n"
-"                literature from the 20th and 21th centuries. Initial Finnish\n"
+"                lexical material from a large array of dictionaries and "
+"written\n"
+"                literature from the 20th and 21th centuries. Initial "
+"Finnish\n"
 "                translations have been added from the content of the\n"
-"                Erzya-Finnish dictionary by Jaana Niemi and Mihail Mosin at the\n"
-"                Universities in Turku and Saransk. There are additions being\n"
-"                made on the basis of ongoing translation work at the University\n"
+"                Erzya-Finnish dictionary by Jaana Niemi and Mihail Mosin "
+"at the\n"
+"                Universities in Turku and Saransk. There are additions "
+"being\n"
+"                made on the basis of ongoing translation work at the "
+"University\n"
 "                of Helsinki."
 msgstr ""
 "Эрзянь-финнэнь валкстнэнь юрокс аравтозь ламо валкст ды сёрмадозь\n"
 "                литература 1900- 2000 иетнестэ. Финнэнь келень васень\n"
-"                ютавтовкстнэ саезь видьстэ Яана Ниеминь ды Михаил Мосинэнь\n"
+"                ютавтовкстнэ саезь видьстэ Яана Ниеминь ды Михаил "
+"Мосинэнь\n"
 "                эрзянь-финнэнь валкссто. Валксонть теемстэ неть ломантне\n"
-"                важодсть Туркунь ды Саранскоень университеттнэсэ. Поладови\n"
-"                валксонь од материал, конась сюлмазь ютавтома марто Хельсинкинь\n"
+"                важодсть Туркунь ды Саранскоень университеттнэсэ. "
+"Поладови\n"
+"                валксонь од материал, конась сюлмазь ютавтома марто "
+"Хельсинкинь\n"
 "                университетсэ."
 
 #: templates/about.valks.html:70
@@ -530,16 +756,20 @@ msgstr "мокшонь кель ↔ финнэнь кель"
 #: templates/about.valks.html:71
 msgid ""
 "Dictionaries for Moksha and Finnish are based on\n"
-"                lexical material from a large array of dictionaries and written\n"
-"                literature from the 20th and 21th centuries. Initial Finnish\n"
+"                lexical material from a large array of dictionaries and "
+"written\n"
+"                literature from the 20th and 21th centuries. Initial "
+"Finnish\n"
 "                translations have been added from the content of the\n"
 "                Moksha-Finnish dictionary by Eeva Herrala and Aleksandr\n"
 "                Feoktistov at the Universities in Turku and Saransk.\n"
 "                Translation work is being continued at the University of\n"
-"                Helsinki by Merja Salo with funding from the Kone Foundation."
+"                Helsinki by Merja Salo with funding from the Kone "
+"Foundation."
 msgstr ""
 "Мокшонь ды финнэнь валкстнэ теезь 1900 ды 2000-це иень ламо\n"
-"                валкстнэнь -- литературань лангс нежедезь. Финнэнь келень\n"
+"                валкстнэнь -- литературань лангс нежедезь. Финнэнь келень"
+"\n"
 "                васень ютавтоматне саезь Эва Херралань -- Александр\n"
 "                Феотикстовонь теевть мокшонь-финнэнь валксстонть.\n"
 "                Се шкане сынь важодсть конась Туркунь университетсэ \n"
@@ -547,21 +777,30 @@ msgstr ""
 "                университетсэ. Ютавтома тевенть полады Хельсинкинь\n"
 "                университетсэ «КОНЕ» фондонь стипендиятось -- Меръя Сало."
 
-#: templates/base.html:114
+#: templates/base.html:129
 msgid "Home"
 msgstr "Ушодома тарка"
 
-#: templates/base.html:118
+#: templates/base.html:133
 msgid "Plugins"
 msgstr "Текникань поладкст"
 
-#: templates/base.html:127
+#: templates/base.html:142
 msgid "Interface language"
 msgstr "Важодема келесь"
 
-#: templates/base.html:193
-msgid "Created with free and open-source language tools from <em><a href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, a Sámi Language Technology group at the <a href=\"http://uit.no\">University of Tromsø</a>."
-msgstr "Неть тевтне шказь (теезь) питнень апак сае ды весенень панжадо кедьёнкстнэсэ, конатнень теицяст <em><a href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, <a href=\"http://uit.no\">Тромсёнь университетэнь</a> Саамонь Келень Текнологиянь курось."
+#: templates/base.html:208
+msgid ""
+"Created with free and open-source language tools from <em><a "
+"href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, a Sámi Language "
+"Technology group at the <a href=\"http://uit.no\">University of "
+"Tromsø</a>."
+msgstr ""
+"Неть тевтне шказь (теезь) питнень апак сае ды весенень панжадо "
+"кедьёнкстнэсэ, конатнень теицяст <em><a "
+"href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, <a "
+"href=\"http://uit.no\">Тромсёнь университетэнь</a> Саамонь Келень "
+"Текнологиянь курось."
 
 #: templates/config_doc.html:4
 msgid "Neahttadigisánit"
@@ -571,41 +810,47 @@ msgstr "Ловныцянь Neahttadigisánit"
 msgid "Dictionaries"
 msgstr "Валкст"
 
-#: templates/index.html:37 templates/left_dictionary_list.html:52
+#: templates/index.html:37 templates/left_dictionary_list.html:9
 #: templates/more_dictionaries.html:21
 msgid "Other dictionaries"
 msgstr "Лия валкст"
 
-#: templates/index.html:58
+#: templates/index.html:55
 msgid "Swap"
 msgstr "Полавтомс"
 
-#: templates/index.html:66 templates/index.html:151
-#: templates/word_detail_new_style.html:106 views/reader.py:122
+#: templates/index.html:65 templates/index.html:150
+#: templates/word_detail_new_style.html:106
+#: templates/word_detail_new_style.html:137 views/reader.py:122
 msgid " is a possible form of ... "
 msgstr "валпарцунось маштови саемс истямо валсто ..."
 
-#: templates/index.html:121
+#: templates/index.html:120
 msgid "Definition not found for:"
 msgstr "Смусть эзь муеве те валонтень"
 
-#: templates/index.html:173
+#: templates/index.html:172
 #, python-format
 msgid "Word %(input)s not found."
 msgstr ""
 
-#: templates/index.html:182
-msgid "If you are using a device without a Sámi keyboard, consider using <a href=\"/SoMe/nob/\">social media mode</a>, which allows you to type <em>acdnstz</em> for <em>áčđŋšŧž</em>."
+#: templates/index.html:181
+msgid ""
+"If you are using a device without a Sámi keyboard, consider using <a "
+"href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
+"<em>acdnstz</em> for <em>áčđŋšŧž</em>."
 msgstr ""
 
-#: templates/index.html:186
+#: templates/index.html:185
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
 
-#: templates/index.html:190
+#: templates/index.html:189
 msgid ""
-"You selected #SoMe, the variant for social media, which means that the letters acdnstz\n"
-"                            will be accepted as áčđŋšŧž in addition to their usual values."
+"You selected #SoMe, the variant for social media, which means that the "
+"letters acdnstz\n"
+"                            will be accepted as áčđŋšŧž in addition to "
+"their usual values."
 msgstr ""
 
 #: templates/index_search_form.html:11
@@ -633,7 +878,12 @@ msgstr "<span class=\"reposition_hide\">Кель</span>"
 msgid "Language"
 msgstr "Кель"
 
-#: templates/left_dictionary_list.html:38
+#: templates/left_dictionary_list.html:17
+msgid "Escape Text-TV mode"
+msgstr ""
+
+#: templates/left_nav_grouped_language_pair_select.html:49
+#: templates/left_nav_language_pair_select_list.html:37
 msgid "Written variant"
 msgstr "Сёрмадозь вариантось"
 
@@ -652,13 +902,17 @@ msgstr ""
 #: templates/more_dictionaries.html:31
 msgid ""
 "We're currently working on some new dictionaries for\n"
-"                the following language groups. Since these may not always be\n"
-"                online, they are not linked here, but please contact us if you\n"
+"                the following language groups. Since these may not always"
+" be\n"
+"                online, they are not linked here, but please contact us "
+"if you\n"
 "                would like to see a demo!"
 msgstr ""
 "Минь течияк анокстатано од валкст зярыя кельпусмонь туртов. Сынь аволь\n"
-"                свал эрсить сетьсэ, секскак эзинек путо тезэнь сюлмавома пене,\n"
-"                мезесь кундамс. Ули мелеть сындест демо неемс, сёрмадт миненек!"
+"                свал эрсить сетьсэ, секскак эзинек путо тезэнь сюлмавома "
+"пене,\n"
+"                мезесь кундамс. Ули мелеть сындест демо неемс, сёрмадт "
+"миненек!"
 
 #: templates/more_dictionaries.html:37
 msgid "Balto-finnic languages"
@@ -703,9 +957,12 @@ msgstr "Таго лия валкст…"
 #: templates/more_dictionaries.html:46
 msgid ""
 "<a href=\"http://giellatekno.uit.no/\">Giellatekno</a> also has\n"
-"                other languages and dictionaries that are not yet available in\n"
-"                Neahttadigisánit. For a list of all other online dictionaries\n"
-"                built with our tools, <a href=\"http://dicts.uit.no/\">see this\n"
+"                other languages and dictionaries that are not yet "
+"available in\n"
+"                Neahttadigisánit. For a list of all other online "
+"dictionaries\n"
+"                built with our tools, <a "
+"href=\"http://dicts.uit.no/\">see this\n"
 "                    list</a>."
 msgstr ""
 "<a href=\"http://giellatekno.uit.no/\">Giellatekno-со</a> лия\n"
@@ -713,6 +970,12 @@ msgstr ""
 "                «Neahttadigisánit» вальмас. Мелеть сайтянзат неемс лия\n"
 "                валкстнэнь, конат анокстазь минек кедьёнкстнэсэ, \n"
 "                варштыка <a href=\"http://dicts.uit.no/\">вана тень</a>."
+
+#: templates/notice.sanat.html:1
+msgid ""
+"We have moved some languages to <a "
+"href=\"http://sonad.oahpa.no/\">Sonad</a>, please update your bookmarks."
+msgstr ""
 
 #: templates/reader.html:3 templates/reader.html:20
 msgid "Neahttadigisánit Reader"
@@ -725,11 +988,14 @@ msgstr "Технической лезкс марто ловнома тешкст
 #: templates/reader.html:22
 msgid ""
 "Drag and drop the following link to your Bookmark toolbar,\n"
-"                then click it when you are on a page you wish to read. The\n"
-"                service will automatically be installed, and you will see a\n"
+"                then click it when you are on a page you wish to read. "
+"The\n"
+"                service will automatically be installed, and you will see"
+" a\n"
 "                menu icon on the left-hand side of the page."
 msgstr ""
-"Кундыка Ловнома тешксэнть ды аравтык кедьёнкслазнэс.                Мейле, зярдо пачкодят истямо лопас, конань ловновлик\n"
+"Кундыка Ловнома тешксэнть ды аравтык кедьёнкслазнэс.                "
+"Мейле, зярдо пачкодят истямо лопас, конань ловновлик\n"
 "                Лезксэсь сонсь аравтови-ладяви, меню ярликенть нейсак\n"
 "                лопанть керш крайнесэ."
 
@@ -760,12 +1026,16 @@ msgstr ""
 #: templates/reader.html:34
 msgid ""
 "It is also possible to install the reader plugin on a website,\n"
-"                so that users will have access to dictionaries without the\n"
+"                so that users will have access to dictionaries without "
+"the\n"
 "                bookmarklet."
 msgstr ""
 
 #: templates/reader.html:39
-msgid "To do so, <a href=\"http://giellatekno.uit.no/doc/dicts/nds/AddingNDSPluginToOtherSites.html\">follow our documentation</a>."
+msgid ""
+"To do so, <a "
+"href=\"http://giellatekno.uit.no/doc/dicts/nds/AddingNDSPluginToOtherSites.html\">follow"
+" our documentation</a>."
 msgstr ""
 
 #: templates/reader.html:40
@@ -799,18 +1069,21 @@ msgstr "Ильведевкст?"
 #: templates/reader.html:49
 msgid ""
 "If you encounter bugs, or the bookmarklet does not work on a\n"
-"                particular page, contact us with the page URL or details of\n"
+"                particular page, contact us with the page URL or details "
+"of\n"
 "                what you were reading when you encountered the problem."
 msgstr ""
 "Бути те кедьёнкось вети прянзо аволь истя эли кона-кона лопалангсо\n"
-"                а нолдави тевс, сёрмадта миненек. Сёрмадт лопанть URL-нзэ\n"
+"                а нолдави тевс, сёрмадта миненек. Сёрмадт лопанть URL-нзэ"
+"\n"
 "                ды ёвтака мезе ловныть зярдо кедьёнксось лоткась --\n"
 "                лиссь проблемась."
 
 #: templates/reader.html:52
 msgid ""
 "We do not store any private data, but we do collect\n"
-"                individual dictionary lookups for statistics and to improve\n"
+"                individual dictionary lookups for statistics and to "
+"improve\n"
 "                the dictionary."
 msgstr ""
 "Те кедьёнксонть тевс нолдыцянзо пельде кодаткак адрест-мезть а \n"
@@ -822,8 +1095,12 @@ msgid "Includes"
 msgstr "Тестэ муят"
 
 #: templates/reader.html:69
-msgid "If you are looking for other languages, please see our <a href=\"/more/\">other dictionaries</a>."
-msgstr "Лия кельть тенть эрявить, вант, инеськеть, минек <a href=\"/more/\">лия валкстнэнь</a>."
+msgid ""
+"If you are looking for other languages, please see our <a "
+"href=\"/more/\">other dictionaries</a>."
+msgstr ""
+"Лия кельть тенть эрявить, вант, инеськеть, минек <a href=\"/more/\">лия "
+"валкстнэнь</a>."
 
 #: templates/reader_example.html:32
 msgid "Additional instructions"
@@ -869,7 +1146,7 @@ msgstr "валпарцунось маштови саемс истямо валс
 msgid "More information about this word"
 msgstr "Те валдонть седе ламо содамочи"
 
-#: views/main.py:89
+#: views/search.py:833
 msgid "Invalid format. Only json and html allowed."
 msgstr "Амаштовикс формат. Ансяк json-т -- html-т маштовить"
 
@@ -893,3 +1170,19 @@ msgstr "Амаштовикс формат. Ансяк json-т -- html-т маш�
 
 #~ msgid "More information about this word"
 #~ msgstr "Те валдонть седе ламо содамочи"
+
+#~ msgid "Standard (ǩ)"
+#~ msgstr "Стандарт (äǟ)"
+
+#~ msgid "Mobile friendly (k &rarr; k ~ ǩ)"
+#~ msgstr "сотовойнень шожда"
+
+#~ msgid "Molotsov orthography (ԅ &rarr; зь)"
+#~ msgstr "Молодцовонь орфографиясо"
+
+#~ msgid "Standard (aâ)"
+#~ msgstr "Стандарт (äǟ)"
+
+#~ msgid "Mobile friendly (a &rarr; a ~ â)"
+#~ msgstr "сотовойнень шожда"
+

@@ -93,7 +93,8 @@ Dictionaries:
         # NB: must be same as analyser name
         short_name: "kpv"
       - type: "molotsov"
-        description: !gettext "Molotsov orthography (ԅ &rarr; зь)"
+        description: !gettext "Molotsov orthography"
+        example: "(ԅ &rarr; зь)"
         short_name: "kpvS"
 
   - source: kpv

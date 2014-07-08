@@ -4,7 +4,7 @@ ApplicationSettings:
   default_locale: "et"
   default_pair: ["izh", "fin"]
   mobile_default_pair: false
-  grouped_nav: false
+  grouped_nav: true
   locales_available:
     - "et"
     - "fi"

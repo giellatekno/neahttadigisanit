@@ -4,7 +4,7 @@
 ApplicationSettings:
   app_name: "Neahttadigisánit"
   short_name: "sanit"
-  # new_style_templates: true
+  new_style_templates: true
   default_locale: "se"
   default_pair: ["sme", "nob"]
   mobile_default_pair: ["SoMe", "nob"]
@@ -114,11 +114,15 @@ Dictionaries:
       # "mobile" is important, otherwise templates and swapping won't
       # work
       - type: "standard"
-        description: !gettext "Standárda (<em>áčđŋšŧž</em>)"
+        description: !gettext "Standard"
+        # description: !gettext "Standárda"
+        example: "(<em>áčđŋšŧž</em>)"
         short_name: "sme"
       - type: "mobile"
-        description: !gettext "Sosiála media (maiddái <em>acdnstz</em>)"
-        short_name: "SoMe"
+        description: !gettext "Social media"
+        # description: !gettext "Sosiála media"
+        # example: !gettext "(maiddái <em>acdnstz</em>)"
+        example: !gettext "(incl. <em>acdnstz</em>)"
 
   - source: nob
     target: sme

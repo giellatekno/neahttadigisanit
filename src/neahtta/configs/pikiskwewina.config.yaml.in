@@ -51,11 +51,13 @@ Dictionaries:
     path: 'dicts/crkeng.xml'
     input_variants: &spell_relax
       - type: "standard"
-        description: !gettext "Standard (aâ)"
+        description: !gettext "Standard"
+        example: "(aâ)"
         # NB: must be same as analyser name
         short_name: "crk"
       - type: "mobile"
-        description: !gettext "Mobile friendly (a &rarr; a ~ â)"
+        description: !gettext "Mobile friendly"
+        example: "(a &rarr; a ~ â)"
         short_name: "crkM"
     show_korp_search: True
     wordform_search_url: &alt_korp_search 

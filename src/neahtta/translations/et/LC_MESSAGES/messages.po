@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-05-23 14:29-0500\n"
+"POT-Creation-Date: 2014-07-08 16:02-0500\n"
 "PO-Revision-Date: 2014-01-18 16:52+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language-Team: en <LL@li.org>\n"
@@ -17,13 +17,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: configs/kyv.config.yaml.in:93
+#: configs/kyv.config.yaml.in:93 configs/pikiskwewina.config.yaml.in:54
+#: configs/saan.config.yaml.in:68 configs/sample.config.yaml.in:115
+#: configs/sanit.config.yaml.in:118
 msgid "Standard"
 msgstr "Standard"
 
-#: configs/kyv.config.yaml.in:96
-msgid "Molotsov orthography (ԅ &rarr; зь)"
-msgstr "Molotsovi ortograafia (ԅ &rarr; зь)"
+#: configs/kyv.config.yaml.in:96 configs/language_names.py:34
+msgid "Molotsov orthography"
+msgstr "Molotsovi ortograafia"
 
 #: configs/language_names.py:23 configs/language_names.py:24
 #: templates/more_dictionaries.html:27
@@ -34,7 +36,7 @@ msgstr "põhjasaami"
 msgid "North Sámi (#SoMe)"
 msgstr "põhjasaami (#SoMe)"
 
-#: configs/language_names.py:26 configs/language_names.py:78
+#: configs/language_names.py:26 configs/language_names.py:85
 msgid "English"
 msgstr "inglise"
 
@@ -50,10 +52,6 @@ msgstr "lõunasaami"
 msgid "Komi"
 msgstr "komi"
 
-#: configs/language_names.py:34
-msgid "Molotsov orthography"
-msgstr "Molotsovi ortograafia"
-
 #: configs/language_names.py:35
 msgid "Udmurt"
 msgstr "udmurdi"
@@ -62,151 +60,183 @@ msgstr "udmurdi"
 msgid "Kven"
 msgstr "kveeni"
 
-#: configs/language_names.py:39 configs/language_names.py:40
+#: configs/language_names.py:39
+msgid "Olonetsian"
+msgstr "Aunuse karjala"
+
+#: configs/language_names.py:40
+msgid "Estonian"
+msgstr "eesti"
+
+#: configs/language_names.py:43 configs/language_names.py:44
 #: templates/more_dictionaries.html:38
 msgid "Livonian"
 msgstr "liivi"
 
-#: configs/language_names.py:40
+#: configs/language_names.py:44 configs/language_names.py:64
+#: configs/language_names.py:68
 msgid "mobile friendly"
 msgstr "telefonisõbralik"
 
-#: configs/language_names.py:41
-msgid "Olonetsian"
-msgstr "Aunuse karjala"
-
-#: configs/language_names.py:42 templates/more_dictionaries.html:38
+#: configs/language_names.py:45 templates/more_dictionaries.html:38
 msgid "Izhorian"
 msgstr "isuri"
 
-#: configs/language_names.py:43
-msgid "Estonian"
-msgstr "eesti"
-
 #: configs/language_names.py:46
+msgid "Veps"
+msgstr ""
+
+#: configs/language_names.py:47
+msgid "Võro"
+msgstr ""
+
+#: configs/language_names.py:48
+msgid "Votic"
+msgstr ""
+
+#: configs/language_names.py:51
 msgid "Erzya Mordvin"
 msgstr "ersa"
 
-#: configs/language_names.py:47 templates/more_dictionaries.html:39
+#: configs/language_names.py:52 templates/more_dictionaries.html:39
 msgid "Moksha"
 msgstr "mokša"
 
-#: configs/language_names.py:48 configs/language_names.py:80
+#: configs/language_names.py:53 configs/language_names.py:87
 msgid "French"
 msgstr "prantsuse"
 
-#: configs/language_names.py:51
+#: configs/language_names.py:56
 msgid "Western Mari"
 msgstr "mäemari"
 
-#: configs/language_names.py:52
+#: configs/language_names.py:57
 msgid "Eastern Mari"
 msgstr "niidumari"
 
-#: configs/language_names.py:55
+#: configs/language_names.py:60
 msgid "Nenets"
 msgstr "neenetsi"
 
-#: configs/language_names.py:58
+#: configs/language_names.py:63 configs/language_names.py:64
 msgid "Skolt Sámi"
 msgstr "koltasaami"
 
-#: configs/language_names.py:61
+#: configs/language_names.py:67 configs/language_names.py:68
 msgid "Plains Cree"
 msgstr "tasandikukrii"
 
-#: configs/language_names.py:64
+#: configs/language_names.py:71
 msgid "Northern Haida"
 msgstr "põhjahaida"
 
-#: configs/language_names.py:67 configs/language_names.py:73
+#: configs/language_names.py:74 configs/language_names.py:80
 msgid "Finnish"
 msgstr "soome"
 
-#: configs/language_names.py:68 configs/language_names.py:74
-#: configs/language_names.py:75
+#: configs/language_names.py:75 configs/language_names.py:81
+#: configs/language_names.py:82
 msgid "Norwegian"
 msgstr "norra"
 
-#: configs/language_names.py:70 configs/language_names.py:71
+#: configs/language_names.py:77 configs/language_names.py:78
 msgid "Russian"
 msgstr "vene"
 
-#: configs/language_names.py:76 configs/language_names.py:77
+#: configs/language_names.py:83 configs/language_names.py:84
 msgid "Latvian"
 msgstr "läti"
 
-#: configs/language_names.py:79
+#: configs/language_names.py:86
 msgid "Haida"
 msgstr "haida"
 
-#: configs/sample.config.yaml.in:114 configs/sanit.config.yaml.in:113
-#: configs/sanit.config.yaml.in:140
+#: configs/pikiskwewina.config.yaml.in:59 configs/saan.config.yaml.in:73
+#, fuzzy
+msgid "Mobile friendly"
+msgstr "telefonisõbralik"
+
+#: configs/sample.config.yaml.in:120
+msgid "Sosiála media"
+msgstr ""
+
+#: configs/sample.config.yaml.in:121 configs/sanit.config.yaml.in:125
+#, fuzzy
+msgid "(incl. <em>acdnstz</em>)"
+msgstr "Social media (incl. <em>acdnstz</em>)"
+
+#: configs/sanit.config.yaml.in:124
+msgid "Social media"
+msgstr ""
+
+#: configs/sanit.config.yaml.in:148
 msgid "Standárda (<em>áčđŋšŧž</em>)"
 msgstr "Standard (<em>áčđŋšŧž</em>)"
 
-#: configs/sample.config.yaml.in:117 configs/sanit.config.yaml.in:116
-#: configs/sanit.config.yaml.in:143
+#: configs/sanit.config.yaml.in:151
 msgid "Sosiála media (maiddái <em>acdnstz</em>)"
 msgstr "Social media (incl. <em>acdnstz</em>)"
 
-#: configs/sanat.config.yaml.in:141 configs/sanat.config.yaml.in:152
-msgid "Standard (äǟ)"
-msgstr "Standard (äǟ)"
-
-#: configs/sanat.config.yaml.in:144 configs/sanat.config.yaml.in:155
-msgid "Mobile friendly (a &rarr; ä ~ ǟ)"
-msgstr "Telefonisõbralik (a &rarr; ä ~ ǟ)"
-
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.jquery.js:5116
 #: static/js/neahttadigisanit.min.js:1246
 msgid "Á"
 msgstr "Á"
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.jquery.js:5116
 #: static/js/neahttadigisanit.min.js:1246
 msgid "Options"
 msgstr "Valikud"
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.jquery.js:5116
 #: static/js/neahttadigisanit.min.js:1246 templates/about.baakoeh.html:6
-#: templates/about.muter.html:6 templates/about.sanat.html:6
-#: templates/about.sanit.html:6 templates/about.vada.html:7
-#: templates/about.valks.html:7 templates/base.html:122
+#: templates/about.muter.html:6 templates/about.pikiskwewina.html:6
+#: templates/about.sanat.html:6 templates/about.sanit.html:6
+#: templates/about.vada.html:7 templates/about.valks.html:7
+#: templates/base.html:137
 msgid "About"
 msgstr "Meist"
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.jquery.js:5116
 #: static/js/neahttadigisanit.min.js:1246
 msgid "Advanced"
 msgstr "edasijõudnud"
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.jquery.js:5116
 #: static/js/neahttadigisanit.min.js:1246
 msgid "Dictionary"
 msgstr "Sõnaraamat"
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.jquery.js:5116
 #: static/js/neahttadigisanit.min.js:1246
 msgid "Save"
 msgstr "Salvesta"
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.jquery.js:5116
 #: static/js/neahttadigisanit.min.js:1246
 msgid "Refresh settings"
 msgstr "Värskenda seadistust"
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.jquery.js:5116
 #: static/js/neahttadigisanit.min.js:1246
 msgid "Update detected"
 msgstr "Uuendus avastatud"
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.jquery.js:5116
 #: static/js/neahttadigisanit.min.js:1246
 msgid "IE8 Warning"
 msgstr "IE8 hoiatus"
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.jquery.js:5116
 #: static/js/neahttadigisanit.min.js:1246
 msgid ""
 "In order to look up a word, hold down the <em>Alt</em> or <em>Option</em>"
@@ -217,6 +247,7 @@ msgstr ""
 "klahvi ja tee topeltklõps sõnal."
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
+#: static/js/neahttadigisanit.jquery.js:5116
 #: static/js/neahttadigisanit.min.js:1246
 msgid ""
 "If you find a bug, or if the bookmark does not work on a specific page <a"
@@ -227,51 +258,139 @@ msgstr ""
 "href=\"mailto:giellatekno@hum.uit.n"
 
 #: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:1316
+#: static/js/neahttadigisanit.jquery.js:5181
 #: static/js/neahttadigisanit.min.js:1311
 msgid "Error!"
 msgstr "Viga!"
 
 #: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:1316
+#: static/js/neahttadigisanit.jquery.js:5181
 #: static/js/neahttadigisanit.min.js:1311
 msgid "Could not connect to dictionary server"
 msgstr "Ei saa ühendust sõnaraamatuserveriga"
 
 #: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:1316
+#: static/js/neahttadigisanit.jquery.js:5181
 #: static/js/neahttadigisanit.min.js:1311
 msgid "Close"
 msgstr "Sulge"
 
 #: static/js/bookmarklet.js:1438 static/js/bookmarklet.js:1729
 #: static/js/bookmarklet.min.js:1438 static/js/bookmarklet.min.js:1729
+#: static/js/neahttadigisanit.jquery.js:5315
+#: static/js/neahttadigisanit.jquery.js:5623
 #: static/js/neahttadigisanit.min.js:1433
 #: static/js/neahttadigisanit.min.js:1724
 msgid "Unknown word"
 msgstr "Tundmatu sõna"
 
 #: static/js/bookmarklet.js:1439 static/js/bookmarklet.min.js:1439
+#: static/js/neahttadigisanit.jquery.js:5316
 #: static/js/neahttadigisanit.min.js:1434
 msgid "You are using"
 msgstr "Sa kasutad"
 
 #: static/js/bookmarklet.js:1441 static/js/bookmarklet.min.js:1441
+#: static/js/neahttadigisanit.jquery.js:5318
 #: static/js/neahttadigisanit.min.js:1436
 msgid "Meaning not found"
 msgstr "Tähendust ei leitud"
 
-#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.min.js:1246
+#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.jquery.js:5116
+#: static/js/neahttadigisanit.min.js:1246
 msgid "Help"
 msgstr ""
 
-#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.min.js:1246
+#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.jquery.js:5116
+#: static/js/neahttadigisanit.min.js:1246
 msgid "This tool was made by Giellatekno at UiT: The Arctic University of Norway."
 msgstr ""
 
-#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.min.js:1246
+#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.jquery.js:5116
+#: static/js/neahttadigisanit.min.js:1246
 msgid "Read more"
 msgstr ""
 
-#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.min.js:1246
+#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.jquery.js:5116
+#: static/js/neahttadigisanit.min.js:1246
 msgid "More tools"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "isCharacterDataNode"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "nodeIndex"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "nodeLength"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "containsPositions"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "isWhitespace"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "isCollapsedWhitespace"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "computedDisplay"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "collapsed"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "ignored"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+#, fuzzy
+msgid "nextPos"
+msgstr "neenetsi"
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "previous"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "textNodeInfo"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "hasInnerText"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "isRenderedBlock"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "trailingSpace"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "leadingSpace"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "nextVisible"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "nextUncollapsed"
+msgstr ""
+
+#: static/js/neahttadigisanit.jquery.js:5028
+msgid "previousVisible"
 msgstr ""
 
 #: templates/404.html:51
@@ -293,26 +412,30 @@ msgid "Whoops! There was some kind of error."
 msgstr "Tohoh! Tekkis mingi tõrge."
 
 #: templates/about.baakoeh.html:15 templates/about.muter.html:15
-#: templates/about.sanat.html:15 templates/about.sanit.html:15
-#: templates/about.vada.html:17 templates/about.valks.html:17
+#: templates/about.pikiskwewina.html:15 templates/about.sanat.html:15
+#: templates/about.sanit.html:15 templates/about.vada.html:17
+#: templates/about.valks.html:17
 msgid "A dictionary that understands what you're looking for."
 msgstr "Sõnaraamat, mis saab aru, mida sa otsid."
 
 #: templates/about.baakoeh.html:16 templates/about.muter.html:16
-#: templates/about.sanat.html:16 templates/about.sanit.html:16
-#: templates/about.vada.html:18 templates/about.valks.html:18
+#: templates/about.pikiskwewina.html:16 templates/about.sanat.html:16
+#: templates/about.sanit.html:16 templates/about.vada.html:18
+#: templates/about.valks.html:18
 msgid "(... And is mobile-friendly!)"
 msgstr "(... ja on telefonisõbralik!)"
 
 #: templates/about.baakoeh.html:20 templates/about.muter.html:20
-#: templates/about.sanat.html:20 templates/about.sanit.html:20
-#: templates/about.vada.html:22 templates/about.valks.html:22
+#: templates/about.pikiskwewina.html:20 templates/about.sanat.html:20
+#: templates/about.sanit.html:20 templates/about.vada.html:22
+#: templates/about.valks.html:22
 msgid "Free"
 msgstr "Vaba"
 
 #: templates/about.baakoeh.html:21 templates/about.muter.html:21
-#: templates/about.sanat.html:21 templates/about.sanit.html:21
-#: templates/about.vada.html:23 templates/about.valks.html:23
+#: templates/about.pikiskwewina.html:21 templates/about.sanat.html:21
+#: templates/about.sanit.html:21 templates/about.vada.html:23
+#: templates/about.valks.html:23
 msgid ""
 "Everything (or, well, almost everything) that\n"
 "                    concerns minority languages should be free. Here\n"
@@ -325,14 +448,16 @@ msgstr ""
 "                    analüüsivahendeid."
 
 #: templates/about.baakoeh.html:27 templates/about.muter.html:27
-#: templates/about.sanat.html:27 templates/about.sanit.html:27
-#: templates/about.vada.html:29 templates/about.valks.html:29
+#: templates/about.pikiskwewina.html:27 templates/about.sanat.html:27
+#: templates/about.sanit.html:27 templates/about.vada.html:29
+#: templates/about.valks.html:29
 msgid "Open-Source"
 msgstr "Avatud lähtekoodiga"
 
 #: templates/about.baakoeh.html:28 templates/about.muter.html:28
-#: templates/about.sanat.html:28 templates/about.sanit.html:28
-#: templates/about.vada.html:30 templates/about.valks.html:30
+#: templates/about.pikiskwewina.html:28 templates/about.sanat.html:28
+#: templates/about.sanit.html:28 templates/about.vada.html:30
+#: templates/about.valks.html:30
 msgid ""
 "Everything here is based on open-source tools. Do you\n"
 "                have an idea for an app or research project that needs\n"
@@ -344,14 +469,16 @@ msgid ""
 msgstr ""
 
 #: templates/about.baakoeh.html:36 templates/about.muter.html:36
-#: templates/about.sanat.html:36 templates/about.sanit.html:36
-#: templates/about.vada.html:38 templates/about.valks.html:38
+#: templates/about.pikiskwewina.html:36 templates/about.sanat.html:36
+#: templates/about.sanit.html:36 templates/about.vada.html:38
+#: templates/about.valks.html:38
 msgid "Linguistic basis"
 msgstr "Lingvistiline alus"
 
 #: templates/about.baakoeh.html:37 templates/about.muter.html:37
-#: templates/about.sanat.html:37 templates/about.sanit.html:37
-#: templates/about.vada.html:39 templates/about.valks.html:39
+#: templates/about.pikiskwewina.html:37 templates/about.sanat.html:37
+#: templates/about.sanit.html:37 templates/about.vada.html:39
+#: templates/about.valks.html:39
 msgid ""
 "Write what you wish, and the dictionary will analyze it to break apart "
 "compound words and find base forms."
@@ -364,8 +491,9 @@ msgid "gå, dra, reise"
 msgstr "gå, dra, reise"
 
 #: templates/about.baakoeh.html:50 templates/about.muter.html:50
-#: templates/about.sanat.html:50 templates/about.sanit.html:50
-#: templates/about.vada.html:52 templates/about.valks.html:52
+#: templates/about.pikiskwewina.html:50 templates/about.sanat.html:50
+#: templates/about.sanit.html:50 templates/about.vada.html:52
+#: templates/about.valks.html:52
 msgid "Source material"
 msgstr "Algmaterjalid"
 
@@ -440,8 +568,8 @@ msgid "Each of the dictionaries contains about 11,000 base words."
 msgstr "Iga sõnaraamat sisaldab umbes 11000 sõna."
 
 #: templates/about.baakoeh.html:76 templates/about.muter.html:79
-#: templates/about.sanat.html:86 templates/about.vada.html:78
-#: templates/about.valks.html:90
+#: templates/about.pikiskwewina.html:71 templates/about.sanat.html:86
+#: templates/about.vada.html:78 templates/about.valks.html:90
 msgid "More to come..."
 msgstr "Uued on tulekul..."
 
@@ -477,6 +605,23 @@ msgstr ""
 "                    sõnaraamat (1981). Tõlketööd teeb Julia Kuprina "
 "Helsingi\n"
 "                    ülikoolis Kone sihtasutuse rahastusel."
+
+#: templates/about.pikiskwewina.html:43
+msgid "s/he speaks Cree"
+msgstr ""
+
+#: templates/about.pikiskwewina.html:57
+#, fuzzy
+msgid "crk ↔ eng"
+msgstr "yrk ↔ fin"
+
+#: templates/about.pikiskwewina.html:58
+msgid ""
+"Dictionaries for Plains Cree and English are based\n"
+"                on the lexical materials and scientific research in "
+"nêhiyawêwin : itwêwina / Cree: Words.. Compiled by Arok Wolvengrey.  "
+"Regina: Canadian Plains Research Center, 2001."
+msgstr ""
 
 #: templates/about.sanat.html:43
 msgid "mennä, tapahtua, viedä, johtaa, edistyä"
@@ -610,19 +755,19 @@ msgid ""
 "Foundation."
 msgstr ""
 
-#: templates/base.html:114
+#: templates/base.html:129
 msgid "Home"
 msgstr "Algus"
 
-#: templates/base.html:118
+#: templates/base.html:133
 msgid "Plugins"
 msgstr "Pluginad"
 
-#: templates/base.html:127
+#: templates/base.html:142
 msgid "Interface language"
 msgstr "Kasutajaliidese keel"
 
-#: templates/base.html:193
+#: templates/base.html:208
 msgid ""
 "Created with free and open-source language tools from <em><a "
 "href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, a Sámi Language "
@@ -642,41 +787,42 @@ msgstr "Neahttadigisánit"
 msgid "Dictionaries"
 msgstr "Sõnaraamatud"
 
-#: templates/index.html:37 templates/left_dictionary_list.html:52
+#: templates/index.html:37 templates/left_dictionary_list.html:9
 #: templates/more_dictionaries.html:21
 msgid "Other dictionaries"
 msgstr "Muud sõnaraamatud"
 
-#: templates/index.html:58
+#: templates/index.html:55
 msgid "Swap"
 msgstr "Vaheta"
 
-#: templates/index.html:66 templates/index.html:151
-#: templates/word_detail_new_style.html:106 views/reader.py:122
+#: templates/index.html:65 templates/index.html:150
+#: templates/word_detail_new_style.html:106
+#: templates/word_detail_new_style.html:137 views/reader.py:122
 msgid " is a possible form of ... "
 msgstr " võib olla vorm sõnast ... "
 
-#: templates/index.html:121
+#: templates/index.html:120
 msgid "Definition not found for:"
 msgstr "Tähendust ei leitud"
 
-#: templates/index.html:173
+#: templates/index.html:172
 #, python-format
 msgid "Word %(input)s not found."
 msgstr "Sõna %(input)s ei leitud."
 
-#: templates/index.html:182
+#: templates/index.html:181
 msgid ""
 "If you are using a device without a Sámi keyboard, consider using <a "
 "href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
 "<em>acdnstz</em> for <em>áčđŋšŧž</em>."
 msgstr ""
 
-#: templates/index.html:186
+#: templates/index.html:185
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
 
-#: templates/index.html:190
+#: templates/index.html:189
 msgid ""
 "You selected #SoMe, the variant for social media, which means that the "
 "letters acdnstz\n"
@@ -709,7 +855,12 @@ msgstr "<span class=\"reposition_hide\">Keel</span>"
 msgid "Language"
 msgstr "Keel"
 
-#: templates/left_dictionary_list.html:38
+#: templates/left_dictionary_list.html:17
+msgid "Escape Text-TV mode"
+msgstr ""
+
+#: templates/left_nav_grouped_language_pair_select.html:49
+#: templates/left_nav_language_pair_select_list.html:37
 msgid "Written variant"
 msgstr "Kirjalik variant"
 
@@ -789,6 +940,12 @@ msgid ""
 "                built with our tools, <a "
 "href=\"http://dicts.uit.no/\">see this\n"
 "                    list</a>."
+msgstr ""
+
+#: templates/notice.sanat.html:1
+msgid ""
+"We have moved some languages to <a "
+"href=\"http://sonad.oahpa.no/\">Sonad</a>, please update your bookmarks."
 msgstr ""
 
 #: templates/reader.html:3 templates/reader.html:20
@@ -945,7 +1102,7 @@ msgstr " võib olla vorm sõnast ... "
 msgid "More information about this word"
 msgstr ""
 
-#: views/main.py:89
+#: views/search.py:833
 msgid "Invalid format. Only json and html allowed."
 msgstr "Vigane formaat. Ainult json ja html on lubatud."
 
@@ -963,4 +1120,19 @@ msgstr "Vigane formaat. Ainult json ja html on lubatud."
 
 #~ msgid "More information about this word"
 #~ msgstr "Rohkem teavet selle sõna kohta"
+
+#~ msgid "Standard (ǩ)"
+#~ msgstr "Standard (äǟ)"
+
+#~ msgid "Mobile friendly (k &rarr; k ~ ǩ)"
+#~ msgstr "Telefonisõbralik (a &rarr; ä ~ ǟ)"
+
+#~ msgid "Molotsov orthography (ԅ &rarr; зь)"
+#~ msgstr "Molotsovi ortograafia (ԅ &rarr; зь)"
+
+#~ msgid "Standard (aâ)"
+#~ msgstr "Standard (äǟ)"
+
+#~ msgid "Mobile friendly (a &rarr; a ~ â)"
+#~ msgstr "Telefonisõbralik (a &rarr; ä ~ ǟ)"
 

@@ -65,11 +65,13 @@ Dictionaries:
     path: 'dicts/sms2X.xml'
     input_variants: &spell_relax
       - type: "standard"
-        description: !gettext "Standard (ǩ)"
+        description: !gettext "Standard"
+        example: "(ǩ)"
         # NB: must be same as analyser name
         short_name: "sms"
       - type: "mobile"
-        description: !gettext "Mobile friendly (k &rarr; k ~ ǩ)"
+        description: !gettext "Mobile friendly"
+        example: "(k &rarr; k ~ ǩ)"
         short_name: "smsM"
   - source: sms
     target: eng

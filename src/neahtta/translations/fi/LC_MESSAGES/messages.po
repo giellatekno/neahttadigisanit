@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-07-08 15:34-0500\n"
+"POT-Creation-Date: 2014-07-08 16:02-0500\n"
 "PO-Revision-Date: 2014-02-15 20:48+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language-Team: fi <LL@li.org>\n"
@@ -17,13 +17,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: configs/kyv.config.yaml.in:93
+#: configs/kyv.config.yaml.in:93 configs/pikiskwewina.config.yaml.in:54
+#: configs/saan.config.yaml.in:68 configs/sample.config.yaml.in:115
+#: configs/sanit.config.yaml.in:118
 msgid "Standard"
 msgstr "Standardi"
 
-#: configs/kyv.config.yaml.in:96
-msgid "Molotsov orthography (ԅ &rarr; зь)"
-msgstr "Molotsovin ortografia (ԅ &rarr; зь)"
+#: configs/kyv.config.yaml.in:96 configs/language_names.py:34
+msgid "Molotsov orthography"
+msgstr "Molotsovin ortografia"
 
 #: configs/language_names.py:23 configs/language_names.py:24
 #: templates/more_dictionaries.html:27
@@ -49,10 +51,6 @@ msgstr "Eteläsaame"
 #: configs/language_names.py:33 configs/language_names.py:34
 msgid "Komi"
 msgstr "Komi"
-
-#: configs/language_names.py:34
-msgid "Molotsov orthography"
-msgstr "Molotsovin ortografia"
 
 #: configs/language_names.py:35
 msgid "Udmurt"
@@ -153,29 +151,27 @@ msgstr "Latvia"
 msgid "Haida"
 msgstr "Haida"
 
-#: configs/pikiskwewina.config.yaml.in:55
-msgid "Standard (aâ)"
-msgstr "Standardi (äǟ)"
+#: configs/pikiskwewina.config.yaml.in:59 configs/saan.config.yaml.in:73
+msgid "Mobile friendly"
+msgstr "Mobiiliystävällinen"
 
-#: configs/pikiskwewina.config.yaml.in:58
-msgid "Mobile friendly (a &rarr; a ~ â)"
-msgstr "Mobiiliystävällinen (a &rarr; a ~ â)"
+#: configs/sample.config.yaml.in:120
+msgid "Sosiála media"
+msgstr ""
 
-#: configs/saan.config.yaml.in:69
-msgid "Standard (ǩ)"
-msgstr "Standardi (ǩ)"
+#: configs/sample.config.yaml.in:121 configs/sanit.config.yaml.in:125
+msgid "(incl. <em>acdnstz</em>)"
+msgstr "(myös <em>acdnstz</em>)"
 
-#: configs/saan.config.yaml.in:72
-msgid "Mobile friendly (k &rarr; k ~ ǩ)"
-msgstr "Mobiiliystävällinen (k &rarr; k ~ ǩ)"
+#: configs/sanit.config.yaml.in:124
+msgid "Social media"
+msgstr "Sosiaalimedia"
 
-#: configs/sample.config.yaml.in:114 configs/sanit.config.yaml.in:117
-#: configs/sanit.config.yaml.in:144
+#: configs/sanit.config.yaml.in:148
 msgid "Standárda (<em>áčđŋšŧž</em>)"
 msgstr "Kirjakielen kirjaimet (<em>áčđŋšŧž</em>)"
 
-#: configs/sample.config.yaml.in:117 configs/sanit.config.yaml.in:120
-#: configs/sanit.config.yaml.in:147
+#: configs/sanit.config.yaml.in:151
 msgid "Sosiála media (maiddái <em>acdnstz</em>)"
 msgstr "Sosiaalimedia (myös <em>acdnstz</em>)"
 
