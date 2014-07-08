@@ -154,24 +154,20 @@ msgid "Haida"
 msgstr "Haida"
 
 #: configs/pikiskwewina.config.yaml.in:55
-#, fuzzy
 msgid "Standard (aâ)"
 msgstr "Standardi (äǟ)"
 
 #: configs/pikiskwewina.config.yaml.in:58
-#, fuzzy
 msgid "Mobile friendly (a &rarr; a ~ â)"
-msgstr "(... ja on kännykkä-ystävällinen!)"
+msgstr "Mobiiliystävällinen (a &rarr; a ~ â)"
 
 #: configs/saan.config.yaml.in:69
-#, fuzzy
 msgid "Standard (ǩ)"
-msgstr "Standardi (äǟ)"
+msgstr "Standardi (ǩ)"
 
 #: configs/saan.config.yaml.in:72
-#, fuzzy
 msgid "Mobile friendly (k &rarr; k ~ ǩ)"
-msgstr "(... ja on kännykkä-ystävällinen!)"
+msgstr "Mobiiliystävällinen (k &rarr; k ~ ǩ)"
 
 #: configs/sample.config.yaml.in:114 configs/sanit.config.yaml.in:117
 #: configs/sanit.config.yaml.in:144
@@ -361,7 +357,6 @@ msgid "ignored"
 msgstr ""
 
 #: static/js/neahttadigisanit.jquery.js:5028
-#, fuzzy
 msgid "nextPos"
 msgstr "Nenetsi"
 
@@ -590,7 +585,6 @@ msgid "s/he speaks Cree"
 msgstr ""
 
 #: templates/about.pikiskwewina.html:57
-#, fuzzy
 msgid "crk ↔ eng"
 msgstr "Nenetsi ↔ suomi"
 
@@ -722,7 +716,7 @@ msgstr ""
 
 #: templates/base.html:129
 msgid "Home"
-msgstr ""
+msgstr "Etusivu"
 
 #: templates/base.html:133
 msgid "Plugins"
@@ -793,7 +787,7 @@ msgstr ""
 
 #: templates/index_search_form.html:11
 msgid "Press Tab to select a word"
-msgstr ""
+msgstr "Valitse sana painamalla sarkainnäppäintä"
 
 #: templates/index_search_form.html:15
 msgid "ohcansátni"
