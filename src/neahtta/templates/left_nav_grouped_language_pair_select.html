@@ -50,7 +50,7 @@
                             </div>
                             {% for variant in pair_options.input_variants %}
                            	    <div {% if _from == variant.short_name %} class="active span12"{% else %} class="span12"{% endif %}>
-                                    <a href="/{{ variant.short_name }}/{{ _to }}">{{ gettext(variant.description)|safe }}</a>
+                                    <a href="/{{ variant.short_name }}/{{ _to }}">{{ gettext(variant.description)|safe }}{% if variant.example %} {{ gettext(variant.example)|safe }}{% endif %}</a>
                                 </div>
                             {% endfor %}
                         </div>
