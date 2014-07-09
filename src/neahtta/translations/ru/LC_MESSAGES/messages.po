@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-07-08 16:02-0500\n"
+"POT-Creation-Date: 2014-07-09 14:26-0500\n"
 "PO-Revision-Date: 2013-11-07 11:33+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language-Team: ru <LL@li.org>\n"
@@ -750,7 +750,11 @@ msgstr "Плагин"
 msgid "Interface language"
 msgstr "язык интерфейса"
 
-#: templates/base.html:208
+#: templates/config_doc.html:4
+msgid "Neahttadigisánit"
+msgstr "Neahttadigisánit программа чтения"
+
+#: templates/default_footer.html:9
 msgid ""
 "Created with free and open-source language tools from <em><a "
 "href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, a Sámi Language "
@@ -762,25 +766,23 @@ msgstr ""
 "группы языков саами в <a href=\"http://uit.no\"> университете Тромса "
 "</a>."
 
-#: templates/config_doc.html:4
-msgid "Neahttadigisánit"
-msgstr "Neahttadigisánit программа чтения"
-
-#: templates/index.html:19 templates/left_dictionary_list.html:1
+#: templates/index.html:19 templates/index_new_style.html:55
+#: templates/left_dictionary_list.html:1
 msgid "Dictionaries"
 msgstr "Словарей"
 
-#: templates/index.html:37 templates/left_dictionary_list.html:9
-#: templates/more_dictionaries.html:21
+#: templates/index.html:37 templates/index_new_style.html:73
+#: templates/left_dictionary_list.html:9 templates/more_dictionaries.html:21
 msgid "Other dictionaries"
 msgstr "Другие словарей"
 
-#: templates/index.html:55
+#: templates/index.html:55 templates/index_new_style.html:88
 msgid "Swap"
 msgstr ""
 
 #: templates/index.html:65 templates/index.html:150
-#: templates/word_detail_new_style.html:106
+#: templates/index_new_style.html:102 templates/index_new_style.html:142
+#: templates/word_detail.html:106 templates/word_detail_new_style.html:106
 #: templates/word_detail_new_style.html:137 views/reader.py:122
 msgid " is a possible form of ... "
 msgstr "форма на левой стороне образованна из формы правой стороны"
@@ -789,7 +791,7 @@ msgstr "форма на левой стороне образованна из ф
 msgid "Definition not found for:"
 msgstr "Значение не нашлось для:"
 
-#: templates/index.html:172
+#: templates/index.html:172 templates/index_new_style.html:127
 #, python-format
 msgid "Word %(input)s not found."
 msgstr ""
@@ -813,6 +815,12 @@ msgid ""
 "their usual values."
 msgstr ""
 
+#: templates/index_new_style.html:19 templates/macros.html:5
+#: templates/macros.html:13
+#, fuzzy
+msgid "Texts"
+msgstr "Ненецкий"
+
 #: templates/index_search_form.html:11
 msgid "Press Tab to select a word"
 msgstr ""
@@ -822,7 +830,8 @@ msgid "ohcansátni"
 msgstr "Слово искании"
 
 #: templates/index_search_form.html:20 templates/index_search_form.html:39
-#: templates/index_search_form.html:43 templates/word_detail_new_style.html:97
+#: templates/index_search_form.html:43 templates/word_detail.html:97
+#: templates/word_detail_new_style.html:97
 msgid "Search"
 msgstr "Искать"
 
@@ -1078,15 +1087,15 @@ msgstr ""
 "                 служба будет автоматически установлена, и вы увидите, \n"
 "                 значок меню на левой стороне страницы."
 
-#: templates/word_detail_new_style.html:39
+#: templates/word_detail.html:39 templates/word_detail_new_style.html:39
 msgid "is a possible form of ... "
 msgstr "форма на левой стороне образованна из формы правой стороны"
 
-#: templates/word_detail_new_style.html:129
+#: templates/word_detail.html:190 templates/word_detail_new_style.html:129
 msgid "More information about this word"
 msgstr ""
 
-#: views/search.py:833
+#: views/search.py:860
 msgid "Invalid format. Only json and html allowed."
 msgstr "Недопустимый формат. Только json и html допустимые."
 

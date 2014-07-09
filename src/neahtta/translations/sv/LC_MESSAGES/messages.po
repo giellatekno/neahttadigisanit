@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-07-08 16:02-0500\n"
+"POT-Creation-Date: 2014-07-09 14:26-0500\n"
 "PO-Revision-Date: 2013-02-01 01:55-0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: sv <LL@li.org>\n"
@@ -733,7 +733,11 @@ msgstr "Klicka-i-text"
 msgid "Interface language"
 msgstr "Gränssnittspråk"
 
-#: templates/base.html:208
+#: templates/config_doc.html:4
+msgid "Neahttadigisánit"
+msgstr "Neahttadigisánit Läsordbok"
+
+#: templates/default_footer.html:9
 msgid ""
 "Created with free and open-source language tools from <em><a "
 "href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, a Sámi Language "
@@ -745,25 +749,23 @@ msgstr ""
 "samisk språkteknologi vid <a href=\"http://uit.no\">Universitetet i "
 "Tromsö</a>."
 
-#: templates/config_doc.html:4
-msgid "Neahttadigisánit"
-msgstr "Neahttadigisánit Läsordbok"
-
-#: templates/index.html:19 templates/left_dictionary_list.html:1
+#: templates/index.html:19 templates/index_new_style.html:55
+#: templates/left_dictionary_list.html:1
 msgid "Dictionaries"
 msgstr "Ordböcker"
 
-#: templates/index.html:37 templates/left_dictionary_list.html:9
-#: templates/more_dictionaries.html:21
+#: templates/index.html:37 templates/index_new_style.html:73
+#: templates/left_dictionary_list.html:9 templates/more_dictionaries.html:21
 msgid "Other dictionaries"
 msgstr ""
 
-#: templates/index.html:55
+#: templates/index.html:55 templates/index_new_style.html:88
 msgid "Swap"
 msgstr ""
 
 #: templates/index.html:65 templates/index.html:150
-#: templates/word_detail_new_style.html:106
+#: templates/index_new_style.html:102 templates/index_new_style.html:142
+#: templates/word_detail.html:106 templates/word_detail_new_style.html:106
 #: templates/word_detail_new_style.html:137 views/reader.py:122
 msgid " is a possible form of ... "
 msgstr " är en möjlig form av ... "
@@ -772,7 +774,7 @@ msgstr " är en möjlig form av ... "
 msgid "Definition not found for:"
 msgstr ""
 
-#: templates/index.html:172
+#: templates/index.html:172 templates/index_new_style.html:127
 #, python-format
 msgid "Word %(input)s not found."
 msgstr ""
@@ -796,6 +798,12 @@ msgid ""
 "their usual values."
 msgstr ""
 
+#: templates/index_new_style.html:19 templates/macros.html:5
+#: templates/macros.html:13
+#, fuzzy
+msgid "Texts"
+msgstr "Nenetsiska"
+
 #: templates/index_search_form.html:11
 msgid "Press Tab to select a word"
 msgstr ""
@@ -805,7 +813,8 @@ msgid "ohcansátni"
 msgstr ""
 
 #: templates/index_search_form.html:20 templates/index_search_form.html:39
-#: templates/index_search_form.html:43 templates/word_detail_new_style.html:97
+#: templates/index_search_form.html:43 templates/word_detail.html:97
+#: templates/word_detail_new_style.html:97
 msgid "Search"
 msgstr "Sök"
 
@@ -1059,15 +1068,15 @@ msgstr ""
 "Tjänsten installeras automatiskt, och du kommer at se en\n"
 "meny-ikon längst til vänster på sidan."
 
-#: templates/word_detail_new_style.html:39
+#: templates/word_detail.html:39 templates/word_detail_new_style.html:39
 msgid "is a possible form of ... "
 msgstr " är en möjlig form av ... "
 
-#: templates/word_detail_new_style.html:129
+#: templates/word_detail.html:190 templates/word_detail_new_style.html:129
 msgid "More information about this word"
 msgstr "Mera information om det här ordet"
 
-#: views/search.py:833
+#: views/search.py:860
 msgid "Invalid format. Only json and html allowed."
 msgstr "Ogiltigt format. Bara json och html tillåtit"
 

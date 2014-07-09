@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-07-08 16:02-0500\n"
+"POT-Creation-Date: 2014-07-09 14:26-0500\n"
 "PO-Revision-Date: 2014-02-15 20:48+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language-Team: fi <LL@li.org>\n"
@@ -722,7 +722,11 @@ msgstr "Klikkaa-tekstissä"
 msgid "Interface language"
 msgstr "Käyttöliittymän kieli"
 
-#: templates/base.html:208
+#: templates/config_doc.html:4
+msgid "Neahttadigisánit"
+msgstr "Nettidigisanat"
+
+#: templates/default_footer.html:9
 msgid ""
 "Created with free and open-source language tools from <em><a "
 "href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, a Sámi Language "
@@ -730,25 +734,23 @@ msgid ""
 "Tromsø</a>."
 msgstr ""
 
-#: templates/config_doc.html:4
-msgid "Neahttadigisánit"
-msgstr "Nettidigisanat"
-
-#: templates/index.html:19 templates/left_dictionary_list.html:1
+#: templates/index.html:19 templates/index_new_style.html:55
+#: templates/left_dictionary_list.html:1
 msgid "Dictionaries"
 msgstr "Sanakirjoja"
 
-#: templates/index.html:37 templates/left_dictionary_list.html:9
-#: templates/more_dictionaries.html:21
+#: templates/index.html:37 templates/index_new_style.html:73
+#: templates/left_dictionary_list.html:9 templates/more_dictionaries.html:21
 msgid "Other dictionaries"
 msgstr "Muita sanakirjoja"
 
-#: templates/index.html:55
+#: templates/index.html:55 templates/index_new_style.html:88
 msgid "Swap"
 msgstr "Vaihda"
 
 #: templates/index.html:65 templates/index.html:150
-#: templates/word_detail_new_style.html:106
+#: templates/index_new_style.html:102 templates/index_new_style.html:142
+#: templates/word_detail.html:106 templates/word_detail_new_style.html:106
 #: templates/word_detail_new_style.html:137 views/reader.py:122
 msgid " is a possible form of ... "
 msgstr " on mahdollinen muoto sanasta ..."
@@ -757,7 +759,7 @@ msgstr " on mahdollinen muoto sanasta ..."
 msgid "Definition not found for:"
 msgstr "Merkitystä ei löydy"
 
-#: templates/index.html:172
+#: templates/index.html:172 templates/index_new_style.html:127
 #, python-format
 msgid "Word %(input)s not found."
 msgstr ""
@@ -781,6 +783,12 @@ msgid ""
 "their usual values."
 msgstr ""
 
+#: templates/index_new_style.html:19 templates/macros.html:5
+#: templates/macros.html:13
+#, fuzzy
+msgid "Texts"
+msgstr "Nenetsi"
+
 #: templates/index_search_form.html:11
 msgid "Press Tab to select a word"
 msgstr "Valitse sana painamalla sarkainnäppäintä"
@@ -790,7 +798,8 @@ msgid "ohcansátni"
 msgstr "hakusana"
 
 #: templates/index_search_form.html:20 templates/index_search_form.html:39
-#: templates/index_search_form.html:43 templates/word_detail_new_style.html:97
+#: templates/index_search_form.html:43 templates/word_detail.html:97
+#: templates/word_detail_new_style.html:97
 msgid "Search"
 msgstr "Etsi"
 
@@ -1031,15 +1040,15 @@ msgid ""
 "    menu icon on the left-hand side of the page."
 msgstr ""
 
-#: templates/word_detail_new_style.html:39
+#: templates/word_detail.html:39 templates/word_detail_new_style.html:39
 msgid "is a possible form of ... "
 msgstr " on mahdollinen muoto sanasta ..."
 
-#: templates/word_detail_new_style.html:129
+#: templates/word_detail.html:190 templates/word_detail_new_style.html:129
 msgid "More information about this word"
 msgstr ""
 
-#: views/search.py:833
+#: views/search.py:860
 msgid "Invalid format. Only json and html allowed."
 msgstr ""
 

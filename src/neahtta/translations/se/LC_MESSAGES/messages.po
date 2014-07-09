@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-07-08 16:02-0500\n"
+"POT-Creation-Date: 2014-07-09 14:26-0500\n"
 "PO-Revision-Date: 2013-02-01 01:55-0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: se <LL@li.org>\n"
@@ -152,9 +152,8 @@ msgid "Haida"
 msgstr ""
 
 #: configs/pikiskwewina.config.yaml.in:59 configs/saan.config.yaml.in:73
-#, fuzzy
 msgid "Mobile friendly"
-msgstr "(... ja doaibmá mobiilatelefovnnas!)"
+msgstr "Doaibmá mobiilatelefovnnas"
 
 #: configs/sample.config.yaml.in:120
 msgid "Sosiála media"
@@ -166,7 +165,7 @@ msgstr ""
 
 #: configs/sanit.config.yaml.in:124
 msgid "Social media"
-msgstr ""
+msgstr "Sosiála media"
 
 #: configs/sanit.config.yaml.in:148
 msgid "Standárda (<em>áčđŋšŧž</em>)"
@@ -750,7 +749,11 @@ msgstr "Coahkkal-teavsttas"
 msgid "Interface language"
 msgstr ""
 
-#: templates/base.html:208
+#: templates/config_doc.html:4
+msgid "Neahttadigisánit"
+msgstr "Neahttadigisániid lohkanveahkki"
+
+#: templates/default_footer.html:9
 msgid ""
 "Created with free and open-source language tools from <em><a "
 "href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, a Sámi Language "
@@ -762,25 +765,23 @@ msgstr ""
 "gáldokoda reaidduiguin. Giellatekno lea <a href=\"http://uit.no\">UiT "
 "Norgga árktalaš universtehta</a> sámi giellateknologiija joavku."
 
-#: templates/config_doc.html:4
-msgid "Neahttadigisánit"
-msgstr "Neahttadigisániid lohkanveahkki"
-
-#: templates/index.html:19 templates/left_dictionary_list.html:1
+#: templates/index.html:19 templates/index_new_style.html:55
+#: templates/left_dictionary_list.html:1
 msgid "Dictionaries"
 msgstr "Sátnegirjjit"
 
-#: templates/index.html:37 templates/left_dictionary_list.html:9
-#: templates/more_dictionaries.html:21
+#: templates/index.html:37 templates/index_new_style.html:73
+#: templates/left_dictionary_list.html:9 templates/more_dictionaries.html:21
 msgid "Other dictionaries"
 msgstr "Eará sátnegirjjit"
 
-#: templates/index.html:55
+#: templates/index.html:55 templates/index_new_style.html:88
 msgid "Swap"
 msgstr "Molsso"
 
 #: templates/index.html:65 templates/index.html:150
-#: templates/word_detail_new_style.html:106
+#: templates/index_new_style.html:102 templates/index_new_style.html:142
+#: templates/word_detail.html:106 templates/word_detail_new_style.html:106
 #: templates/word_detail_new_style.html:137 views/reader.py:122
 msgid " is a possible form of ... "
 msgstr " lea vejolaččat dán sáni hápmi:"
@@ -789,7 +790,7 @@ msgstr " lea vejolaččat dán sáni hápmi:"
 msgid "Definition not found for:"
 msgstr "Ii gávnna:"
 
-#: templates/index.html:172
+#: templates/index.html:172 templates/index_new_style.html:127
 #, python-format
 msgid "Word %(input)s not found."
 msgstr "Sátni %(input)s ii gávdnon."
@@ -823,6 +824,11 @@ msgstr ""
 "acdnstz\n"
 "                                dohkkehuvvojit maiddái áčđŋšŧž:n."
 
+#: templates/index_new_style.html:19 templates/macros.html:5
+#: templates/macros.html:13
+msgid "Texts"
+msgstr "Teavsttain"
+
 #: templates/index_search_form.html:11
 msgid "Press Tab to select a word"
 msgstr ""
@@ -832,7 +838,8 @@ msgid "ohcansátni"
 msgstr ""
 
 #: templates/index_search_form.html:20 templates/index_search_form.html:39
-#: templates/index_search_form.html:43 templates/word_detail_new_style.html:97
+#: templates/index_search_form.html:43 templates/word_detail.html:97
+#: templates/word_detail_new_style.html:97
 msgid "Search"
 msgstr "Oza"
 
@@ -1093,20 +1100,17 @@ msgstr ""
 "            ravddas ihtá dalle fállu (<em>Á</em>) gos sáhtát válljet "
 "giela."
 
-#: templates/word_detail_new_style.html:39
+#: templates/word_detail.html:39 templates/word_detail_new_style.html:39
 msgid "is a possible form of ... "
 msgstr " lea vejolaččat dán sáni hápmi:"
 
-#: templates/word_detail_new_style.html:129
+#: templates/word_detail.html:190 templates/word_detail_new_style.html:129
 msgid "More information about this word"
 msgstr ""
 
-#: views/search.py:833
+#: views/search.py:860
 msgid "Invalid format. Only json and html allowed."
 msgstr "Formáhta ii doaimma. Dušše json ja html doibmet."
-
-#~ msgid "Texts"
-#~ msgstr "Teavsttain"
 
 #~ msgid "is a possible form of ... "
 #~ msgstr "lea vejolaččat dán sáni hápmi: "
