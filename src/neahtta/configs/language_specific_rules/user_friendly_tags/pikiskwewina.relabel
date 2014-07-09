@@ -67,6 +67,7 @@
       Px2Pl: "2nd person plural possessive"
       Px3Pl: "3rd person plural possessive"
       Px4Pl: "4th person plural possessive"
+      Der/Dim: "Derived diminutive"
       Dim/Der: "Derived diminutive"
       IA: "Intransitive Animate"
       II: "Intransitive Inanimate"
