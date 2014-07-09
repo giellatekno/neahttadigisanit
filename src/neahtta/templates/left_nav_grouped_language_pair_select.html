@@ -28,7 +28,21 @@
 
             <ul class="{{ nav_classes }}">
 
-                <li>
+                {% if not is_variant %}
+                    {%- if iso_pair[0] == _from and iso_pair[1] == _to %}
+                        <li class="active">
+                    {% else -%}
+                        <li>
+                    {% endif -%}
+                {% elif is_variant -%}
+                    {%- if iso_pair[1] == orig_pair[1] and iso_pair[0] == orig_pair[0] %}
+                        <li class="active">
+                    {% else -%}
+                        <li>
+                    {% endif -%}
+                {% else -%}
+                    <li>
+                {% endif %}
                     <a href="/{{ iso_pair[0] }}/{{ iso_pair[1] }}/" class="block_title">
                         <span>{{ iso_pair[0]|iso_to_i18n }} &rarr; {{ iso_pair[1]|iso_to_i18n }}</span>
                     </a>
@@ -56,14 +70,14 @@
 {#  <div class="container-fluid" id="language_grouped_nav"> #}
 <div class="container-fluid" id="language_grouped_nav">
 {% for iso_group, grouped_items in language_pairs_grouped_by_source.iteritems() %}
-    {# TODO: active pair bug for _to lang #}
-    {% if iso_group == _from %}
+    {# TODO: active pair bug for _from lang when _from is a variant #}
+    {% if iso_group == _from or iso_group == _to %}
         {% set active_group = "active-group" %}
     {% else %}
         {% set active_group = "inactive-group" %}
     {% endif %}
-<h5 class="{{ active_group }}-title"><a href="#" class="expander">{{ iso_group|iso_to_language_own_name }} <span class="inactive-placeholder label label-grey">+</span></a></h5>
-<div class="row-fluid {{ active_group }}">
+    <h5 class="{{ active_group }}-title"><a href="#" data-iso-group="{{ iso_group }}" class="expander">{{ iso_group|iso_to_language_own_name }} <span class="inactive-placeholder label label-grey">+</span></a></h5>
+    <div class="expander-group row-fluid {{ active_group }}" data-iso-expander="{{ iso_group }}">
     {{ render_pair_blocks(grouped_items) }}
             {#
         {% set source_items = grouped_items|filter_pairs_by_source(iso_group) %}
@@ -78,5 +92,17 @@
 {% endfor %}
 
 </div>
+<script type="text/javascript">
+    $(document).ready( function(){
+    	$('h5.inactive-group-title a.expander').click( function(e) {
+    		var expander_group = $(e.target).attr('data-iso-group');
+    		var expander_target = "div.expander-group[data-iso-expander='" + expander_group + "']" ;
+    		$('div.expander-group.inactive-group').slideUp();
+    		$(expander_target).slideToggle();
+
+    	    e.preventDefault();
+    	});
+    });
+</script>
 
 {# vim: set ts=4 sw=4 tw=0 syntax=htmljinja : #}

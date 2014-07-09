@@ -61,10 +61,7 @@ class AppViewSettingsMixin(object):
 
         super(AppViewSettingsMixin, self).__init__(*args, **kwargs)
 
-class IndexSearchPage(View, AppViewSettingsMixin):
-    """ A simple view to handle potential mobile redirects to a default
-    language pair specified only for mobile.
-    """
+class IndexSearch(object):
 
     @property
     def template_name(self):
@@ -72,6 +69,11 @@ class IndexSearchPage(View, AppViewSettingsMixin):
             return 'index_new_style.html'
         else:
             return 'index.html'
+
+class IndexSearchPage(IndexSearch, View, AppViewSettingsMixin):
+    """ A simple view to handle potential mobile redirects to a default
+    language pair specified only for mobile.
+    """
 
     def maybe_do_mobile_redirect(self):
         """ If this is a mobile platform, redirect; otherwise return
@@ -586,7 +588,7 @@ class DictionaryView(MethodView):
 
         return reverse_exists
 
-class LanguagePairSearchView(DictionaryView, SearcherMixin):
+class LanguagePairSearchView(IndexSearch, DictionaryView, SearcherMixin):
     """ This view returns either the search form, or processes the
     search request.
 
@@ -600,16 +602,8 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
     """
 
     methods = ['GET', 'POST']
-    template_name = 'index.html'
 
     formatter = FrontPageFormat
-
-    @property
-    def template_name(self):
-        if current_app.config.new_style_templates:
-            return 'index_new_style.html'
-        else:
-            return 'index.html'
 
     def get_shared_context(self, _from, _to):
         """ Return some things that are in all templates. """

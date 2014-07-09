@@ -375,25 +375,29 @@ img.i18n_flag {
     margin-left: .75em;
 }
 
+#language_grouped_nav ul.nav-tabs:last-child {
+    margin-bottom: .25em;
+}
+
 #language_grouped_nav h5 {
-    font-size: 105%;
+    font-size: 120%;
     font-variant: small-caps;
     text-transform: lowercase;
     color: #999;
 }
 
 #language_grouped_nav div.active-group {
-    margin-top: 1em;
-    margin-bottom: 1em;
-    border-top: 1px solid #CCC;
-    border-bottom: 1px solid #CCC;
 }
 
 #language_grouped_nav h5.active-group-title .inactive-placeholder {
     display: none;
 }
 
-#language_grouped_nav h5.inactive-group-title a, #language_grouped_nav h5.active-group-title a {
+#language_grouped_nav h5.inactive-group-title a {
+    color: #999;
+}
+
+#language_grouped_nav h5.active-group-title a {
     color: #666;
 }
 
