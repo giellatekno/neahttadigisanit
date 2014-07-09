@@ -192,9 +192,9 @@ PIKISKWEWINA_WORDS_DICTS_LEXICA   :=
 #
 
 
-CRKENG_DIRS  := $(GTHOME)/art/dicts/crk/Wolvengrey/ \
+CRKENG_DIRS  := $(GTHOME)/art/dicts/crk/Wolvengrey/ # \
 #				$(GTHOME)/art/dicts/crk/Elders/ \
-				$(GTHOME)/art/dicts/crk/Maskwacis/
+#				$(GTHOME)/art/dicts/crk/Maskwacis/
 
 
 # add more directories as a list to CRKENG_DIRS
