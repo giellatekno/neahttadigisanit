@@ -66,7 +66,12 @@ class IndexSearchPage(View, AppViewSettingsMixin):
     language pair specified only for mobile.
     """
 
-    template_name = 'index.html'
+    @property
+    def template_name(self):
+        if current_app.config.new_style_templates:
+            return 'index_new_style.html'
+        else:
+            return 'index.html'
 
     def maybe_do_mobile_redirect(self):
         """ If this is a mobile platform, redirect; otherwise return
@@ -113,6 +118,14 @@ class IndexSearchPage(View, AppViewSettingsMixin):
             'swap_to': self.default_from,
             'show_info': True,
         }
+
+        if current_app.config.new_style_templates:
+            search_info = current_app.lexicon_templates.render_individual_template(
+                self.default_from,
+                'search_info.template',
+                **{}
+            )
+            template_context['search_info_template'] = search_info
 
         return render_template(self.template_name, **template_context)
 
@@ -591,6 +604,13 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
 
     formatter = FrontPageFormat
 
+    @property
+    def template_name(self):
+        if current_app.config.new_style_templates:
+            return 'index_new_style.html'
+        else:
+            return 'index.html'
+
     def get_shared_context(self, _from, _to):
         """ Return some things that are in all templates. """
 
@@ -600,6 +620,13 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
             # TODO: 'show_info': ? set this based on sesion and whether
             # the user has seen the message once, etc.
         }
+        if current_app.config.new_style_templates:
+            search_info = current_app.lexicon_templates.render_individual_template(
+                g._from,
+                'search_info.template',
+                **{}
+            )
+            shared_context['search_info_template'] = search_info
         shared_context.update(**orig_pair_opts)
         return shared_context
 

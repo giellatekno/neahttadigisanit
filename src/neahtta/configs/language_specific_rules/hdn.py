@@ -1,4 +1,4 @@
-﻿# -*- encoding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 """ Various rules for displaying ``hdn`` entries properly, and
 connecting FST to Lexicon.
 """

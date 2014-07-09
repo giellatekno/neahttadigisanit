@@ -84,7 +84,9 @@
     {% set t_nodes = tg.xpath('./t') %}
 
     {# Need to check for renderable texts for languages with incomplete lexica,
-       where there is sometimes an empty <t /> node. #}
+       where there is sometimes an empty <t /> node. Also sme-nob allows
+       for only annotations, and empty t nodes.
+     #}
 
     {% set renderable_texts = tg.xpath('./t/text()')|count + tg.xpath('./re/text()')|count %}
 
