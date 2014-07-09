@@ -20,7 +20,7 @@
       Med: "Medial"
       Dist: "Distal"
       Prs: "Present"
-      Fut: "Future
+      Fut: "Future"
       Prt: "Past"
       Prf: "Perfect"
       Cnj: "Conjunction"
@@ -79,5 +79,5 @@
       WAK: "-wak stem"
       Obv: "Obviative"
       Err/Sub: "??"
-      Use/NG: "??
+      Use/NG: "??"
 
