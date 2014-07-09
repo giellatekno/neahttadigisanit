@@ -115,3 +115,16 @@ def detect_mobile_variables():
         iphone = True
 
     return dict(mobile=mobile, iphone=iphone)
+
+@blueprint.context_processor
+def footer_template():
+    if current_app.config.new_style_templates:
+        _from, _to = current_app.config.default_language_pair
+        footer_template = current_app.lexicon_templates.render_individual_template(
+            _from,
+            'footer.template',
+            **{}
+        )
+        return {'footer_template': footer_template}
+    else:
+        return {'footer_template': False}

@@ -6,3 +6,12 @@ span.entry_source {
     font-size: 90%;
     margin-top: .25em;
 }
+
+#logos img {
+    padding-top: .5em;
+    position: relative;
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    margin-left: 20px;
+}
