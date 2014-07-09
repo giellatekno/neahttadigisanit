@@ -1,9 +1,9 @@
-﻿# TODO: spellrelax examples, säämkiõll 
+# -*- encoding: utf-8 -*-
+
+# TODO: spellrelax examples, säämkiõll 
 
 # sää´mkiõll
 # sää´mkiõll  sääˊmǩiõll+N+Sg+Nom
-
-# -*- encoding: utf-8 -*-
 
 import os
 import neahtta
