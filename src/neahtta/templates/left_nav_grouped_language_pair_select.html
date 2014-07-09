@@ -97,7 +97,9 @@
     	$('h5.inactive-group-title a.expander').click( function(e) {
     		var expander_group = $(e.target).attr('data-iso-group');
     		var expander_target = "div.expander-group[data-iso-expander='" + expander_group + "']" ;
+    		$('h5.inactive-group-title .inactive-placeholder').fadeIn(50);
     		$('div.expander-group.inactive-group').slideUp();
+    		$(e.target).parents('h5').find('.inactive-placeholder').fadeOut(100);
     		$(expander_target).slideToggle();
 
     	    e.preventDefault();
