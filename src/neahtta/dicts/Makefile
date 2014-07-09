@@ -193,7 +193,7 @@ PIKISKWEWINA_WORDS_DICTS_LEXICA   :=
 
 
 CRKENG_DIRS  := $(GTHOME)/art/dicts/crk/Wolvengrey/ \
-				$(GTHOME)/art/dicts/crk/Elders/ \
+#				$(GTHOME)/art/dicts/crk/Elders/ \
 				$(GTHOME)/art/dicts/crk/Maskwacis/
 
 
