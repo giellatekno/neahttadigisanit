@@ -1,6 +1,5 @@
 {%- macro render_pair_blocks(grouped_items) -%}
     {%- for iso_pair, pair_options in grouped_items -%}
-        <div class="row-fluid">
             {%- if pair_options.input_variants -%}
                 {% set pair_has_variant = true  %}
             {%- else -%}
@@ -11,59 +10,53 @@
             {%- if not is_variant %}
                 {%- if iso_pair[0] == _from and iso_pair[1] == _to %}
                     {% set active_pair = true %}
-                    {% set div_classes = "active language-item" %}
+                    {% set nav_classes = "active nav nav-collapse nav-tabs nav-stacked" %}
                 {% else -%}
-                    {% set div_classes = "language-item" %}
+                    {% set nav_classes = "nav nav-collapse nav-tabs nav-stacked" %}
                 {% endif -%}
             {% elif is_variant -%}
                 {%- if iso_pair[1] == orig_pair[1] and iso_pair[0] == orig_pair[0] %}
-                    {% set div_classes = "active language-item" %}
+                    {% set nav_classes = "active nav nav-collapse nav-tabs nav-stacked" %}
                     {% set active_pair = true %}
                 {% else -%}
-                    {% set div_classes = "language-item" %}
+                    {% set nav_classes = "nav nav-collapse nav-tabs nav-stacked" %}
                 {% endif -%}
             {% else -%}
-                {% set div_classes = "language-item" %}
+                {% set nav_classes = "nav nav-collapse nav-tabs nav-stacked" %}
             {% endif -%}
 
-            {% if loop.first and not active_pair %}
-                {% set display_tag = "display" %}
-            {% else %}
-                {% set display_tag = "transparent_text" %}
-            {% endif %}
 
-            <div class="{{ div_classes }}">
+            <ul class="{{ nav_classes }}">
 
-                <div class="row-fluid block-header">
+                <li>
                     <a href="/{{ iso_pair[0] }}/{{ iso_pair[1] }}/" class="block_title">
-                        <span><span class="{{ display_tag }}">{{ iso_pair[0]|iso_to_i18n }}</span> &rarr; {{ iso_pair[1]|iso_to_i18n }}</span>
+                        <span>{{ iso_pair[0]|iso_to_i18n }} &rarr; {{ iso_pair[1]|iso_to_i18n }}</span>
                     </a>
-                </div>
+                </li>
 
                 {# Start a new nav if there are variants #}
-                {% if pair_has_variant %}
+                {% if pair_has_variant and active_pair %}
+                    </ul>
+                    <span class="nav-header variantnote">{% trans %}Written variant{% endtrans %}</span>
+                    <ul class="nav nav-collapse nav-tabs nav-stacked subnavcoloring">
                     {# Only display if the pair is the current one the user is looking at #}
                     {%- if iso_pair[0] == _from and iso_pair[1] == _to or orig_pair == iso_pair %}
-                        <div class="row-fluid variant-select-menu">
-                            <div class="span12">
-                                <span class="nav-header variantnote">{% trans %}Written variant{% endtrans %}</span>
-                            </div>
-                            {% for variant in pair_options.input_variants %}
-                           	    <div {% if _from == variant.short_name %} class="active span12"{% else %} class="span12"{% endif %}>
-                                    <a href="/{{ variant.short_name }}/{{ _to }}">{{ gettext(variant.description)|safe }}{% if variant.example %} {{ gettext(variant.example)|safe }}{% endif %}</a>
-                                </div>
-                            {% endfor %}
-                        </div>
+                        {% for variant in pair_options.input_variants %}
+                           	<li {% if _from == variant.short_name %} class="active"{% endif %}>
+                                <a href="/{{ variant.short_name }}/{{ _to }}">{{ gettext(variant.description)|safe }}{% if variant.example %} {{ gettext(variant.example)|safe }}{% endif %}</a>
+                            </li>
+                        {% endfor %}
                     {%- endif -%}
+                    </ul>
                 {%- endif -%}
-
-            </div>
-        </div>
     {% endfor %}
+    </ul>
 {%- endmacro -%}
 
+{#  <div class="container-fluid" id="language_grouped_nav"> #}
 <div class="container-fluid" id="language_grouped_nav">
 {% for iso_group, grouped_items in language_pairs_grouped_by_source.iteritems() %}
+    {# TODO: active pair bug for _to lang #}
     {% if iso_group == _from %}
         {% set active_group = "active-group" %}
     {% else %}
@@ -71,7 +64,8 @@
     {% endif %}
 <h5 class="{{ active_group }}-title"><a href="#" class="expander">{{ iso_group|iso_to_language_own_name }} <span class="inactive-placeholder label label-grey">+</span></a></h5>
 <div class="row-fluid {{ active_group }}">
-    <div class="span6">
+    {{ render_pair_blocks(grouped_items) }}
+            {#
         {% set source_items = grouped_items|filter_pairs_by_source(iso_group) %}
         {{ render_pair_blocks(source_items) }}
     </div>
@@ -79,6 +73,7 @@
         {% set target_items = grouped_items|filter_pairs_by_target(iso_group) %}
         {{ render_pair_blocks(target_items) }}
     </div>
+    #}
 </div>
 {% endfor %}
 
