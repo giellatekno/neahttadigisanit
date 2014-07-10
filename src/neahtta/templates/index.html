@@ -15,26 +15,8 @@
 
 
 {% block extra_nav %}
-{# Dictionaries #}
-    <li class="display-phone hidden-tablet visible-mid hidden-desktop"><span>{% trans %}Dictionaries{% endtrans %}</span></li>
-    {% for iso_pair, pair_options in language_pairs.iteritems() %}
-        <li class="visible-thin visible-mid hidden-desktop hidden-tablet {%- if iso_pair[0] == _from and iso_pair[1] == _to %} active{% endif -%}">
-            <a href="/{{ iso_pair[0] }}/{{ iso_pair[1] }}/">
-                <span>{{ iso_pair[0]|iso_to_i18n }} → {{ iso_pair[1]|iso_to_i18n }}</span>
-            </a></li>
-            {% if pair_options.input_variants %}
-                {% for variant in pair_options.input_variants %}
-                    {% if iso_pair != (variant.short_name, iso_pair[1]) %}
-                    <li class="visible-thin visible-mid hidden-desktop hidden-tablet {%- if variant.short_name == _from and iso_pair[1] == _to %} active{% endif -%}">
-                    <a href="/{{ variant.short_name }}/{{ iso_pair[1] }}/">
-                    <span>{{ variant.short_name|iso_to_i18n }} → {{ iso_pair[1]|iso_to_i18n }}</span>
-                    </a></li>
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
-
-        {% endfor %}
-        <li class="visible-thin hidden-desktop hidden-tablet hidden-mid"><a href="/more/">{% trans %}Other dictionaries{% endtrans %}</a></li>
+    {# Dictionaries #}
+    {% include 'mobile_nav_dictionary_list.html' %}
 {% endblock %}
 
 {% block bodyclass %}main_search{% endblock %}
