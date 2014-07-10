@@ -69,20 +69,18 @@
 
 {#  <div class="container-fluid" id="language_grouped_nav"> #}
 <div class="container-fluid" id="language_grouped_nav">
-{% for iso_group, grouped_items in language_pairs_grouped_by_source.iteritems() %}
-    {# TODO: active pair bug for _from lang when _from is a variant #}
-    {% if iso_group == _from or iso_group == _to %}
-        {% set active_group = "active-group" %}
-    {% else %}
-        {% set active_group = "inactive-group" %}
-    {% endif %}
-    <h5 class="{{ active_group }}-title"><a href="#" data-iso-group="{{ iso_group }}" class="expander">{{ iso_group|iso_to_language_own_name }} <span class="inactive-placeholder label label-grey">+</span></a></h5>
-    <div class="expander-group row-fluid {{ active_group }}" data-iso-expander="{{ iso_group }}">
-    {{ render_pair_blocks(grouped_items) }}
-    </div>
-</div>
-{% endfor %}
-
+    {% for iso_group, grouped_items in language_pairs_grouped_by_source.iteritems() %}
+        {# TODO: active pair bug for _from lang when _from is a variant #}
+        {% if iso_group == _from or iso_group == _to %}
+            {% set active_group = "active-group" %}
+        {% else %}
+            {% set active_group = "inactive-group" %}
+        {% endif %}
+        <h5 class="{{ active_group }}-title"><a href="#" data-iso-group="{{ iso_group }}" class="expander">{{ iso_group|iso_to_language_own_name }} <span class="inactive-placeholder label label-grey">+</span></a></h5>
+        <div class="expander-group row-fluid {{ active_group }}" data-iso-expander="{{ iso_group }}">
+        {{ render_pair_blocks(grouped_items) }}
+        </div>
+    {% endfor %}
 </div>
 <script type="text/javascript">
     $(document).ready( function(){
