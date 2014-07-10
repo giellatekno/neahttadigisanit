@@ -17,6 +17,18 @@ def register_filters(app):
         from configs.language_names import LOCALISATION_NAMES_BY_LANGUAGE
         return LOCALISATION_NAMES_BY_LANGUAGE.get(_iso, _iso)
 
+    @app.template_filter('filter_pairs_by_source')
+    def filter_pairs_by_source(pairs, source):
+        for ((_from, _to), data) in pairs:
+            if _from == source:
+                yield ((_from, _to), data)
+
+    @app.template_filter('filter_pairs_by_target')
+    def filter_pairs_by_target(pairs, target):
+        for ((_from, _to), data) in pairs:
+            if _to == target:
+                yield ((_from, _to), data)
+
     @app.template_filter('iso_to_i18n')
     def append_language_names_i18n(s):
         from configs.language_names import NAMES
