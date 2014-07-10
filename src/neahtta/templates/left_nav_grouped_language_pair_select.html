@@ -79,15 +79,7 @@
     <h5 class="{{ active_group }}-title"><a href="#" data-iso-group="{{ iso_group }}" class="expander">{{ iso_group|iso_to_language_own_name }} <span class="inactive-placeholder label label-grey">+</span></a></h5>
     <div class="expander-group row-fluid {{ active_group }}" data-iso-expander="{{ iso_group }}">
     {{ render_pair_blocks(grouped_items) }}
-            {#
-        {% set source_items = grouped_items|filter_pairs_by_source(iso_group) %}
-        {{ render_pair_blocks(source_items) }}
     </div>
-    <div class="span6">
-        {% set target_items = grouped_items|filter_pairs_by_target(iso_group) %}
-        {{ render_pair_blocks(target_items) }}
-    </div>
-    #}
 </div>
 {% endfor %}
 
