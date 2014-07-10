@@ -71,7 +71,7 @@
 <div class="container-fluid" id="language_grouped_nav">
     {% for iso_group, grouped_items in language_pairs_grouped_by_source.iteritems() %}
         {# TODO: active pair bug for _from lang when _from is a variant #}
-        {% if iso_group == _from or iso_group == _to or iso_group|is_variant_of(grouped_items) %}
+        {% if iso_group == _from or iso_group == _to or _from|is_variant_of(grouped_items) %}
             {% set active_group = "active-group" %}
         {% else %}
             {% set active_group = "inactive-group" %}
