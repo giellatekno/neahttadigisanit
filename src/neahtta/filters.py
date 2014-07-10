@@ -29,6 +29,15 @@ def register_filters(app):
             if _to == target:
                 yield ((_from, _to), data)
 
+    @app.template_filter('is_variant_of')
+    def is_variant_of(s, items):
+        is_variant = False
+        available_variants = sum([i.get('input_variants') for k, i in items if i.get('input_variants')]
+                                 , [])
+        is_variant = any([True for av in available_variants
+                          if av.get('short_name') == s])
+        return is_variant
+
     @app.template_filter('iso_to_i18n')
     def append_language_names_i18n(s):
         from configs.language_names import NAMES

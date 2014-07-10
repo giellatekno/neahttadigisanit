@@ -78,10 +78,17 @@
 {% block content %}
 <div class="container-fluid">
     <div class="row-fluid">
-        <div class="span4 hidden-phone hidden-mid" id="left_nav">
+        {% if grouped_nav %}
+            {% set nav_width = "span3" %}
+            {% set dict_width = "span9" %}
+        {% else %}
+            {% set nav_width = "span4" %}
+            {% set dict_width = "span8" %}
+        {% endif %}
+        <div class="{{ nav_width }}  hidden-phone hidden-mid" id="left_nav">
             {% include 'left_dictionary_list.html' %}
         </div>
-        <div class="span8">
+        <div class="{{ dict_width }}">
             <h4 class="dict_title">
                 <span>{{ _from|iso_to_i18n }} → {{ _to|iso_to_i18n }}</span>
                 {% if display_swap %}
