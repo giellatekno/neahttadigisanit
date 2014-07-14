@@ -5,6 +5,7 @@ ApplicationSettings:
   default_locale: "mrj"
   default_pair: ["mrj", "fin"]
   mobile_default_pair: false
+  new_style_templates: true
   locales_available:
     - mrj
     - fi
