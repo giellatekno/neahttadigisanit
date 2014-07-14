@@ -11,7 +11,7 @@ ApplicationSettings:
     - fi
     - en
   # TODO: more keywords and descriptions
-  app_meta_title: "online dictionaries"
+  app_meta_title: "Mari dictionaries"
   meta_description: >
       Free online, mobile friendly dictionaries for Eastern and Western Mari
   meta_keywords: >
