@@ -298,38 +298,44 @@ jQuery(document).ready ($) ->
 
       # TODO: at least with the whole hdn multiword list this seems to be
       # overgenerating. need to reconsider how to build the regex
-      #
-      ## if opts.multiword_lookups
-      ##   multiword_opts = {}
-      ##   multiword_after = opts.word_regex
+      
+      if opts.multiword_lookups
+        multiword_opts = {}
+        multiword_after = opts.word_regex
 
-      ##   # compile regex and store it to some global variable
-      ##   if not window.lookup_regex
-      ##     # regex_string = opts.multiwords.join(')|(')
-      ##     #                               .split('%WORD%')
-      ##     #                               .join(opts.word_regex)
-      ##     ws = ["%WORD%( ñasa'áa)?", "%WORD%( ñasa'áang)?",
-      ##           "(tla ýáng )?%WORD%"]
-      ##     regex_string = ws.join(')|(')
-      ##                      .split('%WORD%')
-      ##                      .join(opts.word_regex)
+        # compile regex and store it to some global variable
+        if not window.lookup_regex
+          # this needs the ( )? wrap around the word to match, so this kind of
+          # split and joining is insufficient
+          regex_string = opts.multiwords.join(')|(')
+                                        .split('%WORD%')
+                                        .join(opts.word_regex)
+          console.log opts.multiwords
 
-      ##     # multiword_after = /[\u00C0-\u1FFF\u2C00-\uD7FF\w\.']+( ñasa'áa)?/g
+          # can at least confirm that this part works... 
+          # ws = ["%WORD%( ñasa'áa)?", "%WORD%( ñasa'áang)?",
+          #       "(tla ýáng )?%WORD%"]
+          # regex_string = ws.join(')|(')
+          #                  .split('%WORD%')
+          #                  .join(opts.word_regex)
 
-      ##     window.lookup_regex = new RegExp("(#{regex_string})", 'g')
+          # multiword_after = /[\u00C0-\u1FFF\u2C00-\uD7FF\w\.']+( ñasa'áa)?/g
 
-      ##   if window.lookup_regex
-      ##     multiwords_after_options =
-      ##       wordOptions:
-      ##         wordRegex: window.lookup_regex
-      ##       trim: true
+          window.lookup_regex = new RegExp("(#{regex_string})", 'g')
+
+        if window.lookup_regex
+          multiwords_after_options =
+            wordOptions:
+              wordRegex: window.lookup_regex
+            trim: true
 
     sel = rangy.getSelection()
     if word_opts
       sel.expand("word", word_opts)
 
-    # if multiwords_after_options
-    #   sel.expand("word", multiwords_after_options)
+    # maybe need to split into two parts that expand left and then right?
+    if multiwords_after_options
+      sel.expand("word", multiwords_after_options)
 
     return (if sel.rangeCount then sel.getRangeAt(0) else null)
   
@@ -584,6 +590,7 @@ jQuery(document).ready ($) ->
             return false
           range = getFirstRange()
           string = cloneContents(range)
+          console.log string
           if range and string
             lookupSelectEvent(evt, string, element, range, window.nds_opts)
           return false
