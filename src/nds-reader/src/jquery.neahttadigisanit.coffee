@@ -4,6 +4,39 @@ A jQuery plugin for enabling the Kursadict functionality
 
 ###
 
+String::startsWith = (str) ->
+  return this.slice(0, str.length) == str
+
+String::endsWith = (str) ->
+  return this.slice(-str.length) == str
+
+
+compileRegex = (word_regex, str_list) ->
+  createWordChunk = (part) =>
+    raw = part
+  
+    after = false
+    before = false
+    # inner = false
+  
+    if part.startsWith('%WORD%')
+      after = true
+    if part.endsWith('%WORD%')
+      before = true
+    # if not after and before and '%WORD%' in part
+    #   inner = true
+  
+    extension = part.replace('%WORD%', '')
+    wrapped = "(#{extension})?"
+  
+    if after
+      return word_regex + wrapped
+    if before
+      return wrapped + word_regex
+  regex_string = str_list.map(createWordChunk)
+                         .join(')|(')
+  return "(#{regex_string})"
+
 # Wrap jQuery and add plugin functionality
 jQuery(document).ready ($) ->
 
@@ -305,23 +338,11 @@ jQuery(document).ready ($) ->
 
         # compile regex and store it to some global variable
         if not window.lookup_regex
-          # this needs the ( )? wrap around the word to match, so this kind of
-          # split and joining is insufficient
-          regex_string = opts.multiwords.join(')|(')
-                                        .split('%WORD%')
-                                        .join(opts.word_regex)
-          console.log opts.multiwords
-
-          # can at least confirm that this part works... 
-          # ws = ["%WORD%( ñasa'áa)?", "%WORD%( ñasa'áang)?",
-          #       "(tla ýáng )?%WORD%"]
-          # regex_string = ws.join(')|(')
-          #                  .split('%WORD%')
-          #                  .join(opts.word_regex)
-
-          # multiword_after = /[\u00C0-\u1FFF\u2C00-\uD7FF\w\.']+( ñasa'áa)?/g
-
-          window.lookup_regex = new RegExp("(#{regex_string})", 'g')
+          # TODO: haida still has issues with the whole expansion wordlist --
+          # so far only words after work, and not all words provide a result.
+          # gatáa.ang ñasaasdlä'ánggang
+          regex_string = compileRegex(opts.word_regex, opts.multiwords)
+          window.lookup_regex = new RegExp(regex_string, 'g')
 
         if window.lookup_regex
           multiwords_after_options =
@@ -590,6 +611,8 @@ jQuery(document).ready ($) ->
             return false
           range = getFirstRange()
           string = cloneContents(range)
+          # TODO: what breaks here
+          console.log range
           console.log string
           if range and string
             lookupSelectEvent(evt, string, element, range, window.nds_opts)
