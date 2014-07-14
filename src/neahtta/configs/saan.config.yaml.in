@@ -86,3 +86,16 @@ Dictionaries:
     path: 'dicts/sms2X.xml'
     input_variants: *spell_relax
 
+ReaderConfig:
+  sms:
+    multiword_lookups: false
+    # NB: this is JavaScript format, since it will be sent to the reader via
+    # config. It must also be stored as a string.
+    #
+    # JavaScript is problematic with unicode, and \w in a regex ends up meaning
+    # just the ASCII range, thus it's necessary to be very explicit.
+    #
+    word_regex: |
+      [\u00C0-\u1FFF\u2C00-\uD7FF\w´]+
+    word_regex_opts: "g"
+
