@@ -312,52 +312,64 @@ jQuery(document).ready ($) ->
   ## Some rangy helper functions 
   ## 
 
-  getFirstRange = ->
-    opts = $.fn.getCurrentDictOpts().settings
-
-    word_opts = false
-    multiword_opts = false
-    multiwords_after_options = false
-
-    if opts
-      word_opts = {}
-      if opts.word_regex and opts.word_regex_opts
-        word_regex = new RegExp(opts.word_regex, opts.word_regex_opts)
-        word_opts.trim = true
-        word_opts.wordOptions =
-          wordRegex: word_regex
-
-      # TODO: at least with the whole hdn multiword list this seems to be
-      # overgenerating. need to reconsider how to build the regex
-      
-      if opts.multiword_lookups
-        multiword_opts = {}
-        multiword_after = opts.word_regex
-
-        # compile regex and store it to some global variable
-        if not window.lookup_regex
-          # TODO: haida still has issues with the whole expansion wordlist --
-          # so far only words after work, and not all words provide a result.
-          # gatáa.ang ñasaasdlä'ánggang
-          regex_string = compileRegex(opts.word_regex, opts.multiwords)
-          window.lookup_regex = new RegExp(regex_string, 'g')
-
-        if window.lookup_regex
-          multiwords_after_options =
-            wordOptions:
-              wordRegex: window.lookup_regex
-            trim: true
-
-    sel = rangy.getSelection()
-    if word_opts
-      sel.expand("word", word_opts)
-
+  expandMultiWords = (selection) ->
     # TODO: either list of words before works, or list of words after works--
     # apparently need to run expansion of selection in two rounds-- one for
     # left and one for right
 
-    if multiwords_after_options
-      sel.expand("word", multiwords_after_options)
+    opts = $.fn.getCurrentDictOpts().settings
+
+    # TODO: at least with the whole hdn multiword list this seems to be
+    # overgenerating. need to reconsider how to build the regex
+
+    multiword_opts = {}
+
+    # compile regex and store it to some global variable
+    if not window.multiword_lookup_regex
+      #
+      # TODO: haida still has issues with the whole expansion wordlist --
+      # so far only words after work, and not all words provide a result.
+      # gatáa.ang ñasaasdlä'ánggang
+      #
+      # TODO: compileRegex filter by before and after to make this into two
+      # steps? 
+      regex_string = compileRegex(opts.word_regex, opts.multiwords)
+      window.multiword_lookup_regex = new RegExp(regex_string, 'g')
+
+    if window.multiword_lookup_regex
+      multiwords_after_options =
+        wordOptions:
+          wordRegex: window.multiword_lookup_regex
+        trim: true
+
+      selection.expand("word", multiwords_after_options)
+
+    return selection
+
+  expandByWordRegex = (selection) ->
+    opts = $.fn.getCurrentDictOpts().settings
+
+    word_opts = {}
+
+    word_regex = new RegExp(opts.word_regex, opts.word_regex_opts)
+    word_opts.trim = true
+    word_opts.wordOptions =
+      wordRegex: word_regex
+
+    selection.expand("word", word_opts)
+
+    return selection
+
+  getFirstRange = ->
+    opts = $.fn.getCurrentDictOpts().settings
+
+    sel = rangy.getSelection()
+
+    if opts
+      if opts.word_regex and opts.word_regex_opts
+        sel = expandByWordRegex sel
+      if opts.multiword_lookups
+        sel = expandMultiWords sel
 
     return (if sel.rangeCount then sel.getRangeAt(0) else null)
   
