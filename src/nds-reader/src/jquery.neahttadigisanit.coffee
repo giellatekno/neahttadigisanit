@@ -1,6 +1,7 @@
 ###
 
-A jQuery plugin for enabling the Kursadict functionality
+A jQuery plugin for allowing users to click to look up words
+from Neahttadigisánit dictionary services.
 
 ###
 
@@ -10,8 +11,8 @@ String::startsWith = (str) ->
 String::endsWith = (str) ->
   return this.slice(-str.length) == str
 
-
 compileRegex = (word_regex, str_list) ->
+
   createWordChunk = (part) =>
     raw = part
   
@@ -33,6 +34,7 @@ compileRegex = (word_regex, str_list) ->
       return word_regex + wrapped
     if before
       return wrapped + word_regex
+
   regex_string = str_list.map(createWordChunk)
                          .join(')|(')
   return "(#{regex_string})"
@@ -83,20 +85,22 @@ jQuery(document).ready ($) ->
           return localized
     return string
 
+  # A shortcut
   _ = fakeGetText
 
-  # API_HOST = "http://sanit.oahpa.no/"
-  # API_HOST = "http://localhost:5000/"
-  #
-  # Check for the
-  #
+  # Global values set by the bookmarklet init script or manual inclusion
   API_HOST = window.NDS_API_HOST || window.API_HOST
-
   window.NDS_SHORT_NAME = getHostShortname(API_HOST)
 
+  # Increment this whenever the bookmarklet code (_not this file_) has changed.
+  # This way the plugin will notify users to update their bookmark.
   EXPECT_BOOKMARKLET_VERSION = '0.0.3'
 
+  # An object to store all the templates.
+  #
+  # TODO: switch to another file, and compile together-- maybe require.js?
   Templates =
+
     NotifyWindow: (text) ->
       return $("""
         <div class="modal hide fade" id="notifications">
@@ -116,11 +120,6 @@ jQuery(document).ready ($) ->
             </div>
         </div>
         """)
-
-    OptionsMenu: (opts) ->
-      # TODO: navmenu fixed at bottom containing language option, and
-      #       lookup button
-      return "omg"
     
     OptionsTab: (opts) ->
       makeLanguageOption = (options) ->
@@ -288,7 +287,6 @@ jQuery(document).ready ($) ->
       return spinner
     return spinnerExists
 
-
   ## Some global ajax stuff
   ##
   ## 
@@ -416,7 +414,6 @@ jQuery(document).ready ($) ->
         result_string = "<em>#{lookup.left}</em> (#{lookup.pos}) &mdash; #{right}"
         result_strings.push(result_string)
 
-    
     langpair = DSt.get(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair')
     [_f_from, _t_to] = langpair.split('-')
 
@@ -468,6 +465,9 @@ jQuery(document).ready ($) ->
 
   
   lookupSelectEvent = (evt, string, element, range, opts) ->
+
+    # TODO: what breaks here with spaces
+    #
     result_elem = $(document).find(opts.formResults)
 
     # Remove punctuation, some browsers select it by default with double
@@ -475,11 +475,22 @@ jQuery(document).ready ($) ->
     string = $.trim(string)
               .replace(/\b[-.,()&$#!\[\]{}"]+\B|\B[-.,()&$#!\[\]{}"]+\b/g, "")
 
-    if (string.length > 60) or (string.search(' ') > -1)
-      return false
+    # TODO: spaces allowed parameter set by existence of MWE list
 
-    langpair = $(opts.langPairSelect).val()
-    # "aaabbb"
+    settings = $.fn.getCurrentDictOpts().settings
+    if settings.multiword_lookups
+      if (string.length > 120)
+        console.log "DEBUG: string was too long."
+        console.log string.length
+        return false
+    else
+      if (string.length > 60) or (string.search(' ') > -1)
+        console.log "DEBUG: string was too long or contained spaces."
+        console.log string.length
+        return false
+
+    langpair = DSt.get(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair')
+    # "aaa-bbb"
     [source_lang, target_lang] = langpair.split('-')
     lookup_string = string
 
@@ -611,9 +622,6 @@ jQuery(document).ready ($) ->
             return false
           range = getFirstRange()
           string = cloneContents(range)
-          # TODO: what breaks here
-          console.log range
-          console.log string
           if range and string
             lookupSelectEvent(evt, string, element, range, window.nds_opts)
           return false
