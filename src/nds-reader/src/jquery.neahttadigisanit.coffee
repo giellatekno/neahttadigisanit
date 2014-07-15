@@ -11,7 +11,7 @@ String::startsWith = (str) ->
 String::endsWith = (str) ->
   return this.slice(-str.length) == str
 
-compileRegex = (word_regex, str_list) ->
+compileRegex = (word_regex, str_list, filter=false) ->
 
   createWordChunk = (part) =>
     raw = part
@@ -35,8 +35,18 @@ compileRegex = (word_regex, str_list) ->
     if before
       return wrapped + word_regex
 
+  if filter
+  	filterBySide = (i) =>
+  	  if filter == 'start'
+  	  	return i.startsWith('%WORD%')
+  	  if filter == 'end'
+  	  	return i.endsWith('%WORD%')
+  	  return false
+  	str_list = str_list.filter filterBySide
+
   regex_string = str_list.map(createWordChunk)
                          .join(')|(')
+
   return "(#{regex_string})"
 
 # Wrap jQuery and add plugin functionality
@@ -333,16 +343,29 @@ jQuery(document).ready ($) ->
       #
       # TODO: compileRegex filter by before and after to make this into two
       # steps? 
-      regex_string = compileRegex(opts.word_regex, opts.multiwords)
-      window.multiword_lookup_regex = new RegExp(regex_string, 'g')
+      # regex_string = compileRegex(opts.word_regex, opts.multiwords)
+      # TODO: what to do if the result of one of these is none?
+      #
+      # TODO: try selection.moveStart and selection.moveEnd, specifying accepted words as MWE list
+      # moveStart('word', 1, multiwords_after_options)
+      regex_string_start = compileRegex(opts.word_regex, opts.multiwords, filter='start')
+      regex_string_end = compileRegex(opts.word_regex, opts.multiwords, filter='end')
+
+      window.multiword_lookup_regex_start = new RegExp(regex_string_start, 'g')
+      window.multiword_lookup_regex_end = new RegExp(regex_string_end, 'g')
 
     if window.multiword_lookup_regex
       multiwords_after_options =
         wordOptions:
-          wordRegex: window.multiword_lookup_regex
+          wordRegex: window.multiword_lookup_regex_start
+        trim: true
+      multiwords_before_options =
+        wordOptions:
+          wordRegex: window.multiword_lookup_regex_end
         trim: true
 
-      selection.expand("word", multiwords_after_options)
+      selection = selection.expand("word", multiwords_after_options)
+      selection = selection.expand("word", multiwords_before_options)
 
     return selection
 
@@ -779,111 +802,5 @@ jQuery(document).ready ($) ->
         uri: '/lookup/sme/nob/'
       }
     ]
-
-
-  ##
-   # $('#divname').digisanit();
-   #
-   #
-   ## 
-    
-  $.fn.digiSanit = (opts) ->
-    opts = $.extend {}, $.fn.digiSanit.options, opts
-
-    this.each ->
-      
-      elem = $(this)
-      result_elem = $(this).find('#results')
-
-      # set up dropdown events for selecting language pair
-      # Also store the default value in localStorage using DSt.js
-      #
-      # $(this).find('#langpairs li a').click (obj) =>
-      #   new_val = $(obj.target).attr('data-value')
-      #   elem.find('button span.val_name').html(
-      #     "#{new_val.slice(0,3)}->#{new_val.slice(3,6)}"
-      #   )
-      #   elem.find('select[name="target_lang"]').val new_val
-      #   DSt.set('digisanit-form-langpair', new_val)
-      
-      # Recall previous value if stored in session.
-      # previous_setting = DSt.get('digisanit-form-langpair')
-      # if previous_setting
-      #   elem.find('select[name="target_lang"]').val previous_setting
-
-      elem.find('input[name="lookup"]').keydown (event) ->
-        if event.keyCode == 13
-          elem.submit()
-          return false
-        return true
-
-      elem.submit () =>
-        lookup_value = elem.find('input[name="lookup"]').val()
-
-        lang_pair = $(this).find('input[name="target_lang"]').val()
-        source_lang = lang_pair.slice(0,3)
-        target_lang = lang_pair.slice(3,6)
-
-        post_data =
-          lookup: lookup_value
-
-        if lookup_value.slice(-1) == '*'
-          post_data.type = 'startswith'
-          post_data.lookup = post_data.lookup.replace('*', '')
-
-        unknownWord = (response) ->
-          $(result_elem).append $("""
-            <p xml:lang="no" class="alert">#{_("Unknown word")}</p>
-          """)
-          return false
-
-        cleanResponse = (response) =>
-          $(result_elem).html ""
-
-          if (response.success == false)
-            unknownWord()
-          else if (response.result.length == 1) and not response.result[0].lookups
-            unknownWord()
-
-          for result in response.result
-            for lookup in result.lookups
-              result_list = lookup.right.join(', ')
-              
-              $(result_elem).append $("""
-                <p>#{lookup.left} (#{lookup.pos}) &mdash; #{result_list}</p>
-              """)
-        
-        url = "#{window.nds_opts.api_host}/lookup/#{source_lang}/#{target_lang}/"
-        $.getJSON(
-          url + '?callback=?'
-          post_data
-          cleanResponse
-        )
-
-        return false
-
-  $.fn.digiSanit.options =
-    api_host: API_HOST
-    formIDName: "#digisanit"
-    formResults: "#results"
-
-  $.fn.digiSanitTest = (opts) ->
-    opts = $.extend {}, $.fn.digiSanit.options, opts
-    cleanResp = (response) ->
-      console.log "Can connect."
-      console.log response
-    data = {
-      lookup: "mannat"
-    }
-    $.getJSON(
-      "#{window.nds_opts.api_host}/lookup/sme/nob/?callback=?",
-      data,
-      cleanResp
-    )
-
-  $.fn.digiSanitTest.options =
-    api_host: API_HOST
-    formIDName: "#digisanit"
-    formResults: "#results"
 
 # End jQuery wrap
