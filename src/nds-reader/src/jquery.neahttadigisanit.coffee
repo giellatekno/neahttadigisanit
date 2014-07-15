@@ -352,7 +352,10 @@ jQuery(document).ready ($) ->
     if word_opts
       sel.expand("word", word_opts)
 
-    # maybe need to split into two parts that expand left and then right?
+    # TODO: either list of words before works, or list of words after works--
+    # apparently need to run expansion of selection in two rounds-- one for
+    # left and one for right
+
     if multiwords_after_options
       sel.expand("word", multiwords_after_options)
 
