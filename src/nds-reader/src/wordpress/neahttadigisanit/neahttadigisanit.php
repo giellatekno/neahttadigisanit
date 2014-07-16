@@ -3,7 +3,7 @@
 Plugin Name: Neahttadigisánit
 Plugin URI: http://sanit.oahpa.no
 Description: A plugin for providing access to dictionaries via clicking.
-Version: 0.1.0
+Version: 0.1.1
 Author: Ryan Johnson / Giellatekno
 Author URI: http://giellatekno.uit.no/
 License: GPL2

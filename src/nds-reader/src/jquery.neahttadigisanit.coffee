@@ -11,6 +11,41 @@ String::startsWith = (str) ->
 String::endsWith = (str) ->
   return this.slice(-str.length) == str
 
+compileBareRegex = (word_regex, str_list, filter=false) ->
+
+  createWordChunk = (part) =>
+    raw = part
+  
+    after = false
+    before = false
+    # inner = false
+  
+    if part.startsWith('%WORD%')
+      after = true
+    if part.endsWith('%WORD%')
+      before = true
+    # if not after and before and '%WORD%' in part
+    #   inner = true
+  
+    extension = part.replace('%WORD%', '')
+  
+    return extension.trim()
+
+  if filter
+    filterBySide = (i) =>
+      if filter == 'start'
+        return i.startsWith('%WORD%')
+      if filter == 'end'
+        return i.endsWith('%WORD%')
+      return false
+    str_list = str_list.filter filterBySide
+
+  regex_string = str_list.map(createWordChunk)
+                         .join('|')
+
+  return "(#{regex_string})"
+
+
 compileRegex = (word_regex, str_list, filter=false) ->
 
   createWordChunk = (part) =>
@@ -36,13 +71,13 @@ compileRegex = (word_regex, str_list, filter=false) ->
       return wrapped + word_regex
 
   if filter
-  	filterBySide = (i) =>
-  	  if filter == 'start'
-  	  	return i.startsWith('%WORD%')
-  	  if filter == 'end'
-  	  	return i.endsWith('%WORD%')
-  	  return false
-  	str_list = str_list.filter filterBySide
+    filterBySide = (i) =>
+      if filter == 'start'
+        return i.startsWith('%WORD%')
+      if filter == 'end'
+        return i.endsWith('%WORD%')
+      return false
+    str_list = str_list.filter filterBySide
 
   regex_string = str_list.map(createWordChunk)
                          .join(')|(')
@@ -66,41 +101,15 @@ jQuery(document).ready ($) ->
     else
       return false
 
-  fakeGetText = (string) ->
-    ### Want to mark strings as requiring gettext somehow, so that
-        a babel can find them.
-
-        NB: Babel only has a javascript extractor, so, just compile this
-        with cake: 
-
-            cake clean
-            cake build
-            cake build-bookmarklet
-
-        Then when you run pybabel's extract command, it will find the
-        strings in the unminified source in static/js/.
-
-        Internationalizations are downloaded and stored in localStorage
-        on the first run of the plugin. Translations should degrade to
-        english if they are missing, or the localization is not present.
-
-        The system will not store multiple localizations at a time, so
-        we assume the user does not really want to switch.
-    ###
-    
-    if window.nds_opts.localization?
-      localized = window.nds_opts.localization[string]
-      if localized?
-        if localized
-          return localized
-    return string
-
   # A shortcut
-  _ = fakeGetText
+  Templates = module.Templates
+  _ = module.fakeGetText
 
   # Global values set by the bookmarklet init script or manual inclusion
   API_HOST = window.NDS_API_HOST || window.API_HOST
   window.NDS_SHORT_NAME = getHostShortname(API_HOST)
+
+  window.nds_exports = {}
 
   # Increment this whenever the bookmarklet code (_not this file_) has changed.
   # This way the plugin will notify users to update their bookmark.
@@ -109,180 +118,6 @@ jQuery(document).ready ($) ->
   # An object to store all the templates.
   #
   # TODO: switch to another file, and compile together-- maybe require.js?
-  Templates =
-
-    NotifyWindow: (text) ->
-      return $("""
-        <div class="modal hide fade" id="notifications">
-            <div class="modal-header">
-                <button
-                    type="button"
-                    class="close"
-                    data-dismiss="modal"
-                    aria-hidden="true">&times;</button>
-                <h3>Neahttadigisánit</h3>
-            </div>
-            <div class="modal-body">#{text}</div>
-            <div class="modal-footer">
-                <a href="#" class="btn btn-primary" id="close_modal">
-                  Continue
-                </a>
-            </div>
-        </div>
-        """)
-    
-    OptionsTab: (opts) ->
-      makeLanguageOption = (options) ->
-        options_block = []
-        for data, i in options
-          if i+1 == 1
-            checked = "checked"
-          else
-            checked = ""
-
-          options_block.push """
-            <option value="#{data.from.iso}-#{data.to.iso}">
-            #{data.from.name} → #{data.to.name}
-            </option>
-          """
-        return options_block.join('\n')
-    
-      el = $("""
-      <div id="webdict_options">
-        <div class="well">
-        <a class="close" href="#" style="display: none;">&times;</a>
-        <div class="trigger">
-          <h1><a href="#" class="open">#{_("Á")}</a></h1>
-        </div>
-
-        <div class="option_panel" style="display: none;">
-          <ul class="nav nav-pills">
-            <li class="active">
-              <a href="#" data-target="#options">#{ _("Options") }</a>
-            </li>
-            <li><a href="#" data-target="#help">#{ _("Help") }</a></li>
-            <li><a href="#" data-target="#about">#{ _("About") }</a></li>
-            <li style="display: none;" id="debug"><a href="#" data-target="#advanced">#{ _("Advanced") }</a></li>
-          </ul>
-          <div id="options" class="minipanel">
-            <form class="">
-              <label class="control-label" for="inputEmail">#{ _("Dictionary") }</label>
-              <select type="radio"
-                     name="language_pair">
-              #{makeLanguageOption(opts.dictionaries)}
-              </select>
-              <br />
-              <button type="submit" class="btn" id="save">#{_('Save')}</button>
-            </form>
-          </div>
-          <div id="advanced" style="display: none;" class="minipanel">
-            <br />
-            <strong>Advanced settings</strong>
-            <p>This deletes all stored settings, dictionary names, and translations of the application.</p>
-            <a href="#" type="submit" class="btn btn-small" id="refresh_settings">#{_('Refresh settings')}</a>
-            <br />
-            <br />
-            <strong>Hostname:</strong>
-            <blockquote><pre>#{API_HOST}</pre></blockquote>
-            <strong>Alerts:</strong>
-            <p>Display an alert for debugging.</p>
-            <a href="#" type="submit" class="btn btn-small" id="display_update_window">#{_('Update detected')}</a>
-            <a href="#" type="submit" class="btn btn-small" id="display_ie8_warning_window">#{_('IE8 Warning')}</a>
-            <br />
-            <br />
-          </div>
-          <div id="help" style="display: none;" class="minipanel">
-              <p>#{ _("In order to look up a word, hold down the <em>Alt</em> or <em>Option</em> (⌥) key, and doubleclick on a word. The service will contact the dictionary, and return a word after a short pause.") }</p>
-              <p> </p>
-              <p>#{ _('If you find a bug, or if the bookmark does not work on a specific page <a href="mailto:giellatekno@hum.uit.no">please contact us</a>. Tell us what page didn\'t work, or what you did when you discovered the problem.') }
-              </p>
-          </div>
-          <div id="about" style="display: none;" class="minipanel">
-              <p>#{ _("This tool was made by Giellatekno at UiT: The Arctic University of Norway.") }</p>
-
-              <ul id="about-links" class="nav nav-tabs nav-stacked">
-                <li><a href="http://sanit.oahpa.no/about/">#{ _("Read more") }</a></li>
-                <li><a href="http://oahpa.no">#{ _("More tools") }</a></li>
-              </ul>
-          </div>
-        </div>
-      </div>
-      """)
-      
-      el.find('ul.nav-pills a').click (evt) ->
-        target_element = $(evt.target).attr('data-target')
-        el.find('ul.nav-pills a').parent('li').removeClass('active')
-        $(evt.target).parent('li').addClass('active')
-        el.find('div.minipanel').hide()
-        el.find(target_element).show()
-        return false
-
-      el.find('.trigger').click () ->
-        optsp = el.find('div.option_panel')
-        optsp.toggle()
-        el.find('a.close').toggle()
-        return false
-
-      el.find('a.close').click () ->
-        optsp = el.find('div.option_panel')
-        optsp.toggle()
-        el.find('a.close').toggle()
-        return false
-      
-      el.find('button#save').click () ->
-        optsp = el.find('div.option_panel')
-        optsp.toggle()
-        el.find('a.close').toggle()
-        return false
-
-      el.find('a#refresh_settings').click () ->
-        DSt.set(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair', null)
-        DSt.set(NDS_SHORT_NAME + '-' + 'nds-languages', null)
-        DSt.set(NDS_SHORT_NAME + '-' + 'nds-localization', null)
-        DSt.set(NDS_SHORT_NAME + '-' + 'nds-stored-config', null)
-        el.find('#advanced').append $('<p />').html("Reload the plugin...")
-        delete window.lookup_regex
-        # window.location.reload()
-        return false
-
-      el.find('a#display_update_window').click () ->
-        window.newVersionNotify()
-        return false
-      
-      el.find('a#display_ie8_warning_window').click () ->
-        window.ie8Notify()
-        return false
-
-      el.find('select[name="language_pair"]').change (e) ->
-        store_val = $(e.target).val()
-        DSt.set(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair', store_val)
-        delete window.lookup_regex
-        return true
-
-      el.find('form').submit () ->
-        optsp = el.find('div.option_panel')
-        optsp.toggle()
-        el.find('a.close').toggle()
-        return false
-      
-      return el
-
-    ErrorBar: (args) ->
-      host = args.host
-      el = $("""
-       <div id="nds_errors" class="errornav navbar-inverse navbar-fixed-bottom">
-         <div class="navbar-inner">
-           <div class="container">
-             <p><strong>#{_("Error!")}</strong> #{_("Could not connect to dictionary server")} (host: #{host}).
-                <a href="#" class="dismiss">#{_("Close")}</a>.</p>
-           </div>
-         </div>
-       </div>
-       """)
-      el.find('a.dismiss').click () ->
-        $('body .errornav').remove()
-        return false
-      return el
 
   initSpinner = (imgPath) ->
     ###
@@ -335,7 +170,7 @@ jQuery(document).ready ($) ->
     multiword_opts = {}
 
     # compile regex and store it to some global variable
-    if not window.multiword_lookup_regex
+    if not window.regex_compiled
       #
       # TODO: haida still has issues with the whole expansion wordlist --
       # so far only words after work, and not all words provide a result.
@@ -348,24 +183,29 @@ jQuery(document).ready ($) ->
       #
       # TODO: try selection.moveStart and selection.moveEnd, specifying accepted words as MWE list
       # moveStart('word', 1, multiwords_after_options)
-      regex_string_start = compileRegex(opts.word_regex, opts.multiwords, filter='start')
-      regex_string_end = compileRegex(opts.word_regex, opts.multiwords, filter='end')
+      regex_string_ends = compileBareRegex(opts.word_regex, opts.multiwords, filter='start')
+      regex_string_starts = compileBareRegex(opts.word_regex, opts.multiwords, filter='end')
 
-      window.multiword_lookup_regex_start = new RegExp(regex_string_start, 'g')
-      window.multiword_lookup_regex_end = new RegExp(regex_string_end, 'g')
+      window.multiword_lookup_regex_start = new RegExp(regex_string_starts, 'g')
+      window.multiword_lookup_regex_end = new RegExp(regex_string_ends, 'g')
+      window.regex_compiled = true
 
-    if window.multiword_lookup_regex
-      multiwords_after_options =
-        wordOptions:
-          wordRegex: window.multiword_lookup_regex_start
-        trim: true
-      multiwords_before_options =
-        wordOptions:
-          wordRegex: window.multiword_lookup_regex_end
-        trim: true
+    multiwords_start_options =
+      wordOptions:
+        wordRegex: window.multiword_lookup_regex_start
+      trim: true
+    multiwords_end_options =
+      wordOptions:
+        wordRegex: window.multiword_lookup_regex_end
+      trim: true
 
-      selection = selection.expand("word", multiwords_after_options)
-      selection = selection.expand("word", multiwords_before_options)
+    console.log "moving selection"
+    console.log selection
+
+    # NB: this works on range object only.
+    selection.moveStart("word", 1, multiwords_start_options)
+    selection.moveEnd("word", 1, multiwords_end_options)
+    console.log selection
 
     return selection
 
@@ -386,15 +226,25 @@ jQuery(document).ready ($) ->
   getFirstRange = ->
     opts = $.fn.getCurrentDictOpts().settings
 
+    # make the selection
     sel = rangy.getSelection()
+
+    # moveStart requires a range instead
 
     if opts
       if opts.word_regex and opts.word_regex_opts
+        console.log "words expand yes"
         sel = expandByWordRegex sel
-      if opts.multiword_lookups
-        sel = expandMultiWords sel
+      # if opts.multiword_lookups
+      #   console.log "mwe yes"
+      #   sel = expandMultiWords sel
 
-    return (if sel.rangeCount then sel.getRangeAt(0) else null)
+    current_range_obj = (if sel.rangeCount then sel.getRangeAt(0) else null)
+    if opts and current_range_obj
+      if opts.multiword_lookups
+        console.log "mwe yes"
+        current_range_obj = expandMultiWords current_range_obj
+    return current_range_obj
   
   cloneContents = (range) ->
     range.cloneContents().textContent
@@ -501,7 +351,6 @@ jQuery(document).ready ($) ->
       # Done
       _tooltipTarget.popover('show')
 
-  
   lookupSelectEvent = (evt, string, element, range, opts) ->
 
     # TODO: what breaks here with spaces
@@ -769,7 +618,6 @@ jQuery(document).ready ($) ->
     #       return false
     #   else
     #     window.optTab.find('.well').removeClass('highlight')
-
 
   $.fn.getOptsForDict = (_from, _to) ->
     for dict in window.nds_opts.dictionaries

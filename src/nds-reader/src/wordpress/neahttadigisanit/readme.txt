@@ -25,6 +25,11 @@ Blah blah.
 
 == Changelog ==
 
+= 0.1.1 = 
+* Was causing link clicking issues, fixed
+* Misc syntax cleanup in .coffee
+* Build deps updated.
+
 = 0.1.0 = 
 
 * Using sanit.oahpa.no API

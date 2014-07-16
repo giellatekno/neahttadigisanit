@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>NDS Reader tests</title>
+  <link rel="stylesheet" media="all" href="tests/mocha.css">
+
+  <link href="bin/standalone/neahttadigisanit.css" rel="stylesheet" />
+</head>
+<body>
+  <div id="mocha"><p><a href=".">Index</a></p></div>
+  <div id="messages"></div>
+  <div id="fixtures"></div>
+  <script type='text/javascript' src='bin/standalone/neahttadigisanit.jquery.min.js'></script>
+  <script src="tests/mocha.js"></script>
+  <script src="tests/chai.js"></script>
+  <script>mocha.setup('bdd')</script>
+  <script src="tests/jquery.neahttadigisanit.js"></script>
+  <script>
+      jQuery(document).ready( function(){
+          mocha.run();
+      });
+  </script>
+</body>
+</html>
