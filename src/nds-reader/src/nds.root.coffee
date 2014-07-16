@@ -1,3 +1,9 @@
+String::startsWith = (str) ->
+  return this.slice(0, str.length) == str
+
+String::endsWith = (str) ->
+  return this.slice(-str.length) == str
+
 module = {}
 
 module.fakeGetText = (string) ->

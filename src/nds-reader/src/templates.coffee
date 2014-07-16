@@ -159,6 +159,7 @@ module.Templates = @Templates =
     return el
 
   ErrorBar: (args) ->
+    _ = module.fakeGetText
     host = args.host
     el = $("""
      <div id="nds_errors" class="errornav navbar-inverse navbar-fixed-bottom">

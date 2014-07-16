@@ -3,11 +3,16 @@
 # targets built.
 
 MODULES = ./node_modules/.bin
-COFFEE  = $(MODULES)/coffee --compile --bare --print
+MOCHA   = $(MODULES)/mocha --colors --reporter spec --compilers coffee:coffee-script/register
+COFFEE  = $(MODULES)/coffee --compile --bare --print --map
 UGLY    = $(MODULES)/uglifyjs
 BOOK    = $(MODULES)/bookmarklet
 
-COFFEES = src/jquery.neahttadigisanit.coffee
+COFFEES = src/nds.root.coffee \
+		  src/dictionary.coffee \
+		  src/selection.coffee \
+		  src/templates.coffee \
+		  src/jquery.neahttadigisanit.coffee
 
 # Things listed here will be concatenated into the vendor .js file 
 #
@@ -53,7 +58,6 @@ bin/standalone/neahttadigisanit.jquery.min.js: tmp/nds.with.deps.jq.js
 
 bin/standalone/neahttadigisanit.jquery.js: tmp/nds.with.deps.jq.js
 	cp $^ $@
-
 
 bin/standalone/neahttadigisanit.css: tmp/jq.css
 	@echo "   ... copying"
@@ -118,6 +122,13 @@ bookmarklet-install: bin/bookmarklet/jquery.neahttadigisanit.css \
 # 	$(BOOK) $^ > $@
 #
 # need to first test output from bookmarklet.
+
+test:
+	@echo "Open the browser test page when this completes."
+	$(MODULES)/coffee --compile --bare tests/
+
+test-watch:
+	$(MOCHA) -w tests/*.coffee src/*.coffee
 
 .PHONY: install
 install: standalone-install \
