@@ -3,6 +3,10 @@ module.DictionaryAPI = class DictionaryAPI
   constructor: (configs) ->
     @host = configs.host
 
+  readConfig: (callback) ->
+    # TODO: /read/config/, extend language opts.
+    return false
+
   lookup: (source_lang, target_lang, string, callback=false) ->
     post_data =
       lookup: string
