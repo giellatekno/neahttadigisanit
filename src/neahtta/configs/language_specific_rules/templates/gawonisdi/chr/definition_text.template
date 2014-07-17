@@ -1,0 +1,18 @@
+﻿{# This entry is evaluated on a translation-group by translation-group
+   basis, and so far only receives the `translation_group` <tg /> node.
+
+   The intent here is to make it easier to insert additional text
+   without needing to alter or understand the larger amount of HTML. See
+   `sme` for an example of including the @reg attribute.
+
+   NB: cherokee includes <span class="cherokee" /> to ensure that text gets proper webfont
+
+ #}
+
+{%- import 'lexicon.macros' as macros with context -%}
+{%- if translation_group -%}
+<span class="cherokee">{{ macros.definition_text_and_link(translation_group) }}</span>
+{%- endif -%}
+
+{#  vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}
+

@@ -1,0 +1,13 @@
+{# Here we render only what should appear as the entry text, but try to
+   avoid any additional HTML formatting.
+
+   NB: you probably need tag filters `text`.
+
+   NB: cherokee includes <span class="cherokee" /> to ensure that text gets proper webfont
+#}
+{%- import "lexicon.macros" as macros with context -%}
+{%- set first_l = lexicon_entry|xpath('lg/l')|first %}
+<span class="cherokee">{{ first_l|text }}</span> ({{ first_l|xpath('@pos')|tagfilter(_from, _to) }})
+
+{# vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}
+

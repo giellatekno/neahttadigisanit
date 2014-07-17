@@ -5,6 +5,7 @@ ApplicationSettings:
   # not have to resemble the app name, or anything, and the following is
   # just a suggestion.
   mobile_bookmark_name: "NDS: Gawonisdi"
+  new_style_templates: true
   default_locale: "en"
   default_pair: ["chr", "eng"]
   mobile_default_pair: false # ["chrM", "eng"]
@@ -48,7 +49,7 @@ Languages:
 Dictionaries:
   - source: chr
     target: eng
-    path: 'dicts/chreng.xml'
+    path: 'dicts/chr-all.xml'
     # This key may be present and set to True and False, or missing--
     # default is False
     show_korp_search: True
