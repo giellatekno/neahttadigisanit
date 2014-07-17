@@ -67,6 +67,9 @@ NAMES = dict([
     ('crk', _(u"Plains Cree")),
     ('crkM', _(u"Plains Cree") + " (" + _("mobile friendly") + ")"),
 
+    # gawonisdi
+    ('chr', _(u"Cherokee")),
+
     # guusaaw
     ('hdn', _(u"Northern Haida")),
 
@@ -121,6 +124,7 @@ LOCALISATION_NAMES_BY_LANGUAGE = dict([
     ('en', u"English"),
     ('fr', u"Français"),
     ('hun', u"Magyar"),
+    ('chr', u"ᏣᎳᎩ ᎦᏬᏂᎯᏍᏗ"),
 
     ('vep', u"Vepsän kel’"),
     ('vro', u"Võru keel"),
