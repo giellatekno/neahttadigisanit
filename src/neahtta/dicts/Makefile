@@ -14,6 +14,8 @@
 ###         
 ###         #pikiskwewinatargets
 ###         
+###         #gawonisditargets
+###         
 ###         #saantargets
 ###         
 ###         #vadatargets
@@ -176,6 +178,38 @@ guusaaw: GT_COMPILE_LANGS := $(GUUSAAW_LANGS_ANALYSERS)
 guusaaw: LEX_COMPILE_LANGS := $(GUUSAAW_LANGS_LEXICA)
 guusaaw: LEX_COMPILE_WORDS_DICTS := $(GUUSAAW_WORDS_DICTS_LEXICA)
 guusaaw: guusaaw-lexica compile_langs_fsts print_complete_message
+
+#####
+##### #gawonisditargets
+#####
+
+GAWONISDI_LANGS_ANALYSERS      :=   chr
+GAWONISDI_LANGS_LEXICA         :=   chr
+GAWONISDI_WORDS_DICTS_LEXICA   :=   
+
+.PHONY: gawonisdi-lexica
+gawonisdi-lexica: LEX_COMPILE_LANGS := sms
+gawonisdi-lexica: compile_langs_lexicon
+
+.PHONY: gawonisdi-lexica
+gawonisdi-lexica: LEX_COMPILE_LANGS := $(GAWONISDI_LANGS_LEXICA)
+gawonisdi-lexica: LEX_COMPILE_WORDS_DICTS := $(GAWONISDI_WORDS_DICTS_LEXICA)
+gawonisdi-lexica: compile_langs_lexicon compile_words_dicts_lexicon
+
+.PHONY: gawonisdi
+gawonisdi: GT_COMPILE_LANGS := $(GAWONISDI_LANGS_ANALYSERS)
+gawonisdi: LEX_COMPILE_LANGS := $(GAWONISDI_LANGS_LEXICA)
+gawonisdi: LEX_COMPILE_WORDS_DICTS := $(GAWONISDI_WORDS_DICTS_LEXICA)
+gawonisdi: gawonisdi-lexica compile_langs_fsts print_complete_message
+
+rm-gawonisdi-lexica: $(foreach xx, $(GAWONISDI_LANGS_LEXICA), $(xx)-all.xml) \
+				 $(foreach yy, $(GAWONISDI_WORDS_DICTS_LEXICA), $(yy).xml)
+	@rm -rf $^
+
+.PHONY: gawonisdi-install
+gawonisdi-install: GT_COMPILE_LANGS := $(GAWONISDI_LANGS_ANALYSERS)
+gawonisdi-install: install_langs_fsts
+
 
 #####
 ##### #pikiskwewinatargets
