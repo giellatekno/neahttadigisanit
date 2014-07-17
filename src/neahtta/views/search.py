@@ -215,6 +215,7 @@ class SearchResult(object):
         )
         if paradigm_from_file:
             form_tags = [_t.split('+')[1::] for _t in paradigm_from_file.splitlines()]
+            # TODO: bool not iterable
             _generated = morph.generate_to_objs(lemma, form_tags, node)
         else:
             # For pregenerated things
