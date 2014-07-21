@@ -67,7 +67,7 @@ NAMES = dict([
     ('crk', _(u"Plains Cree")),
     ('crkM', _(u"Plains Cree") + " (" + _("mobile friendly") + ")"),
 
-    # gawonisdi
+    # gawonihisdi
     ('chr', _(u"Cherokee")),
 
     # guusaaw

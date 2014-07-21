@@ -119,9 +119,9 @@ def pikiskwewina():
     env.current_dict = "pikiskwewina"
 
 @task
-def gawonisdi():
-    """ Use gawonisdi """
-    env.current_dict = "gawonisdi"
+def gawonihisdi():
+    """ Use gawonihisdi """
+    env.current_dict = "gawonihisdi"
 
 @task
 def saan():
