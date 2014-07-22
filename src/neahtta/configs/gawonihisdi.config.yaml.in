@@ -37,10 +37,17 @@ Morphology:
     inverse_file: [*OPT, '/chr/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options: &chr_fst_options
-      compoundBoundary: "+Cmp#"
+      compoundBoundary: "+Use/Circ#"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
+  chrL:
+    tool: *LOOKUP
+    file: [*OPT, '/chr/bin/analyser-dict-gt-desc-mobile.xfst']
+    inverse_file: [*OPT, '/chr/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options:
+      <<: *chr_fst_options
 
 Languages:
   - iso: chr
@@ -58,19 +65,15 @@ Dictionaries:
     # mobile users the correct default pair. If a variant is anything
     # other than the standard or mobile, use something else.
     #
-    # Note that it's also a good idea to mark the strings here with
-    # the gettext marker, so that they're translated.
-    # input_variants:
-    #   - type: "standard"
-    #     description: !gettext "Standard" 
-    #     # Standárda 
-    #     example: "(<em>áčđŋšŧž</em>)"
-    #     short_name: "sme"
-    #   - type: "mobile"
-    #     description: !gettext "Sosiála media"
-    #     # example: !gettext "(maiddái <em>acdnstz</em>)"
-    #     example: !gettext "(incl. <em>acdnstz</em>)"
-    #     short_name: "SoMe"
+    input_variants:
+      - type: "standard"
+        description: !gettext "Standard (syllabics)"
+        # NB: must be same as analyser name
+        short_name: "chr"
+      - type: "transliteration"
+        description: !gettext "Transliterated"
+        example: "(ha &rarr; Ꭽ)"
+        short_name: "chrL"
 
 ReaderConfig:
   chr:
