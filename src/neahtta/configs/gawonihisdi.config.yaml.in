@@ -1,10 +1,10 @@
 ApplicationSettings:
   app_name: "Neahttadigisánit"
-  short_name: "gawonisdi"
+  short_name: "gawonihisdi"
   # This will be the default bookmark title suggested to the user, does
   # not have to resemble the app name, or anything, and the following is
   # just a suggestion.
-  mobile_bookmark_name: "NDS: Gawonisdi"
+  mobile_bookmark_name: "NDS: Gawonihisdi"
   new_style_templates: true
   default_locale: "en"
   default_pair: ["chr", "eng"]
