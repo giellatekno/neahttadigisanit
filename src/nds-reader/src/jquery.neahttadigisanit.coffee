@@ -5,11 +5,11 @@ from Neahttadigisánit dictionary services.
 
 ###
 
+Templates = module.Templates
+Selection = module.Selection
+
 # Wrap jQuery and add plugin functionality
 jQuery(document).ready ($) ->
-
-  Templates = module.Templates
-  Selection = module.Selection
 
   _ = module.fakeGetText
 
