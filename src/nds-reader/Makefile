@@ -32,37 +32,43 @@ STYLESHEETS = src/css/bootstrap.custom.css \
 			  src/css/jquery.neahttadigisanit.css
 
 tmp/jq.css: $(STYLESHEETS)
-	cat $^ > $@
+	@echo "   COMPILING:   " $(STYLESHEETS)
+	@cat $^ > $@
 
 tmp/nds.js: $(COFFEES)
-	$(COFFEE) $^ > $@
+	@echo "   COMPILING:    nds.js"
+	@$(COFFEE) $^ > $@
 
 tmp/vendor.deps.js: $(JS_DEPS)
-	cat $^ > $@
+	@echo "   BUILDING:     vendor.deps.js"
+	@cat $^ > $@
 
 tmp/nds.with.deps.js: tmp/vendor.deps.js \
 					  tmp/nds.js
-	cat $^ > $@
+	@echo "   BUILDING:     nds.with.deps.js"
+	@cat $^ > $@
 
 tmp/nds.with.deps.jq.js: dev/jquery.1.7.2.js \
 						 tmp/nds.with.deps.js
-	cat $^ > $@
+	@echo "   CAT:         " $@
+	@cat $^ > $@
 
 bin/standalone/neahttadigisanit.min.js: tmp/nds.with.deps.js
-	@echo "   ... copying"
-	cp $^ $@
+	@echo "   COPY:        " $@
+	@cp $^ $@
 
 bin/standalone/neahttadigisanit.jquery.min.js: tmp/nds.with.deps.jq.js
-	@echo "   ... uglifying"
-	$(UGLY) $^ > $@
+	@echo "   COMPRESSING: " $^
+	@$(UGLY) $^ > $@
 
 bin/standalone/neahttadigisanit.jquery.js: tmp/nds.with.deps.jq.js
-	cp $^ $@
+	@echo "   COPY:        " $@
+	@cp $^ $@
 
 bin/standalone/neahttadigisanit.css: tmp/jq.css
-	@echo "   ... copying"
-	mkdir -p bin/standalone
-	cp $^ $@
+	@echo "   COPY:        " $@
+	@mkdir -p bin/standalone
+	@cp $^ $@
 
 # We build one with jquery and one without, to give the user the option of how
 # they include it on their site.
@@ -71,47 +77,55 @@ standalone: bin/standalone/neahttadigisanit.css \
 			bin/standalone/neahttadigisanit.jquery.min.js \
 			bin/standalone/neahttadigisanit.jquery.js \
 			bin/standalone/neahttadigisanit.min.js
+	@echo "   DONE:        " "STANDALONE"
+	@echo " - "
 
 standalone-install: bin/standalone/neahttadigisanit.css \
 					bin/standalone/neahttadigisanit.jquery.min.js \
 					bin/standalone/neahttadigisanit.min.js
-	cp bin/standalone/*.js ../neahtta/static/js/
-	cp bin/standalone/*.css ../neahtta/static/css/
-	@echo "    ... Installed"
+	@echo "   INSTALL:     " "standalone"
+	@cp bin/standalone/*.js ../neahtta/static/js/
+	@cp bin/standalone/*.css ../neahtta/static/css/
+	@echo "   DONE:        " "standalone"
+	@echo " - "
 
 bin/wordpress-neahttadigisanit.zip: src/wordpress \
 				   		tmp/jq.css \
 				   		tmp/nds.with.deps.jq.js
 	@echo "   ... Copying css and js."
-	cp -R src/wordpress tmp/wordpress
-	cp tmp/jq.css tmp/wordpress/neahttadigisanit/jquery.neahttadigisanit.css
-	cp tmp/nds.with.deps.jq.js tmp/wordpress/neahttadigisanit/jquery.neahttadigisanit.js
+	@cp -R src/wordpress tmp/wordpress
+	@cp tmp/jq.css tmp/wordpress/neahttadigisanit/jquery.neahttadigisanit.css
+	@cp tmp/nds.with.deps.jq.js tmp/wordpress/neahttadigisanit/jquery.neahttadigisanit.js
 	@echo "   ... Zipping"
-	cd tmp/wordpress && zip -r neahttadigisanit.zip neahttadigisanit/*
-	cp tmp/wordpress/neahttadigisanit.zip bin/wordpress-neahttadigisanit.zip
+	@cd tmp/wordpress && zip -r neahttadigisanit.zip neahttadigisanit/*
+	@cp tmp/wordpress/neahttadigisanit.zip bin/wordpress-neahttadigisanit.zip
 
 .PHONY: wordpress
 wordpress: bin/wordpress-neahttadigisanit.zip
+	@echo "   DONE:        " "wordpress"
+	@echo " - "
 
 tmp/neahttadigisanit.init.min.js: src/neahttadigisanit.init.js
-	$(UGLY) $^ > $@
+	@$(UGLY) $^ > $@
 
 bin/bookmarklet/bookmarklet.min.js: tmp/nds.with.deps.jq.js \
 						tmp/neahttadigisanit.init.min.js
-	mkdir -p bin/bookmarklet
-	cat $^ > $@
+	@mkdir -p bin/bookmarklet
+	@cat $^ > $@
 
 bin/bookmarklet/jquery.neahttadigisanit.css: tmp/jq.css
-	mkdir -p bin/bookmarklet
-	cp $^ $@
+	@mkdir -p bin/bookmarklet
+	@cp $^ $@
 
 bookmarklet: bin/bookmarklet/jquery.neahttadigisanit.css \
 			 bin/bookmarklet/bookmarklet.min.js
+	@echo "   DONE:        " "bookmarklet"
+	@echo " - "
 
 bookmarklet-install: bin/bookmarklet/jquery.neahttadigisanit.css \
 					bin/bookmarklet/bookmarklet.min.js
-	cp bin/bookmarklet/*.js ../neahtta/static/js/
-	cp bin/bookmarklet/*.css ../neahtta/static/css/
+	@cp bin/bookmarklet/*.js ../neahtta/static/js/
+	@cp bin/bookmarklet/*.css ../neahtta/static/css/
 	@echo "    ... Installed"
 
 # TODO: actual bookmark code, need to urlencode that and copy somewhere.

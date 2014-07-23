@@ -19,6 +19,9 @@
   <script src="/tests/jquery.neahttadigisanit.js"></script>
   <script>
       jQuery(document).ready( function(){
+          jQuery(document).selectToLookup({
+            api_host: 'http://localhost:5000',
+          });
           mocha.run();
       });
   </script>

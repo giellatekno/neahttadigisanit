@@ -1,3 +1,8 @@
+### This is the initial coffeescript file that sets up the module
+    and provides some prototype definitions, as well as the
+    internationalization function which must be present for everything else.
+###
+
 String::startsWith = (str) ->
   return this.slice(0, str.length) == str
 

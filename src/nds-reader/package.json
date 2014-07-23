@@ -15,8 +15,9 @@
     "uglify-js": "~1.3.5",
     "wrench": "~1.5.5",
     "expect.js": "~0.1.2",
-    "coffee-script": "~1.3.3",
+    "coffee-script": "~1.7",
     "bookmarklet": "~0.0.4",
-    "mocha": "~0.14.0"
+    "mocha": "latest",
+    "chai": "latest"
   }
 }

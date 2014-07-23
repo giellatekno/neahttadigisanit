@@ -6,7 +6,18 @@ are looking at.
 
 ## Goals and TODOs
 
-- TODO: iOS selection: http://stackoverflow.com/questions/11300590/how-to-captured-selected-text-range-in-ios-after-text-selection-expansion
+- TODO: language-specific word tokenization for extending selections:
+
+    https://code.google.com/p/rangy/wiki/TextRangeModule
+
+    Will be supported in 1.3. Time to try!
+
+    include regex for each language in /read/config/
+
+
+- TODO: iOS selection: 
+
+    http://stackoverflow.com/questions/11300590/how-to-captured-selected-text-range-in-ios-after-text-selection-expansion
 
 - TODO: wordpress plugin needs to have an option in the UI to define the host.
         beware NDS_BOOKMARK_VERSION; should disable this check for wordpress
@@ -82,7 +93,7 @@ Also some specific ones:
     make bookmarklet-install
 
 
-## Twitter Bootstrap
+# Twitter Bootstrap
 
 Twitter Bootstrap is in use for CSS and JavaScript conveniences like popups,
 tooltips, and form elements. There is also a little custom code to handle
