@@ -17,7 +17,7 @@ from morphology.utils import tagfilter
 from flaskext.babel import gettext as _
 
 @blueprint.route('/lookup/<from_language>/<to_language>/',
-           methods=['GET'], endpoint="lookup")
+           methods=['GET', 'POST'], endpoint="lookup")
 def lookupWord(from_language, to_language):
     """
     .. http:post:: /lookup/(string:from_language)/(string:to_language)
@@ -34,6 +34,8 @@ def lookupWord(from_language, to_language):
            JSON data is returned with the help of the formatter
            :py:class:`lexicon.formatters.SimpleJSON`
     """
+    import simplejson
+
     from lexicon import SimpleJSON
 
     if (from_language, to_language) not in current_app.config.dictionaries and \
@@ -42,10 +44,17 @@ def lookupWord(from_language, to_language):
 
     success = False
 
-    # URL parameters
-    lookup_key = user_input = request.args.get('lookup', False)
-    has_callback            = request.args.get('callback', False)
-    pretty                  = request.args.get('pretty', False)
+    if request.method == 'GET':
+        # URL parameters
+        lookup_key = user_input = request.args.get('lookup', False)
+        has_callback            = request.args.get('callback', False)
+        pretty                  = request.args.get('pretty', False)
+    elif request.method == 'POST':
+        input_json = simplejson.loads(request.data)
+
+        lookup_key = user_input = input_json.get('lookup', False)
+        has_callback            = input_json.get('callback', False)
+        pretty                  = input_json.get('pretty', False)
 
     # Sometimes due to probably weird client-side behavior, the lookup
     # key is set but set to nothing, as such we need to return a
