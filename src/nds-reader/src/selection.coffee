@@ -1,109 +1,19 @@
 module.Selection = @Selection =
-
-  compileBareRegex: (word_regex, str_list, filter=false) ->
-    # TODO: another option
-    #   expand to include word +1 and -1, do multiple lookups, move selection
-    #   to the one that matches.
-    #
-    # TODO: escape word list
-    #
-    escapeRegExp = (str) ->
-      return str.replace(/([.*+?^${}()|\[\]\/\\])/g, "\\$1")
-  
-    createWordChunk = (part) =>
-      raw = part
-    
-      after = false
-      before = false
-      # inner = false
-    
-      if part.startsWith('%WORD%')
-        after = true
-      if part.endsWith('%WORD%')
-        before = true
-      # if not after and before and '%WORD%' in part
-      #   inner = true
-    
-      extension = part.replace('%WORD%', '')
-    
-      return extension.trim()
-  
-    if filter
-      filterBySide = (i) =>
-        if filter == 'start'
-          return i.startsWith('%WORD%')
-        if filter == 'end'
-          return i.endsWith('%WORD%')
-        return false
-      str_list = str_list.filter filterBySide
-  
-    regex_string = str_list.map(createWordChunk)
-                           .map(escapeRegExp)
-                           .join('|')
-  
-    return "(#{regex_string})"
-  
-  expandMultiWords: (selection) ->
-    # TODO: either list of words before works, or list of words after works--
-    # apparently need to run expansion of selection in two rounds-- one for
-    # left and one for right
-
-    opts = $.fn.getCurrentDictOpts().settings
-
-    # TODO: at least with the whole hdn multiword list this seems to be
-    # overgenerating. need to reconsider how to build the regex
-
-    multiword_opts = {}
-
-    # compile regex and store it to some global variable
-    if not window.regex_compiled
-      #
-      # TODO: haida still has issues with the whole expansion wordlist --
-      # so far only words after work, and not all words provide a result.
-      # gatáa.ang ñasaasdlä'ánggang
-      #
-      # TODO: try selection.moveStart and selection.moveEnd, specifying accepted words as MWE list
-      # moveStart('word', 1, multiwords_after_options)
-      #    - this didn't entirely seem to work, or the regex was compiled
-      #    wrong-- plus it's a method on range, which takes other code changes
-      #    elsewhere
-      # 
-      # TODO: also consider just one big regex including optional ends with the
-      # multiword lists... that shouuuld be able to work.
-      #
-      regex_string_ends = @compileBareRegex(opts.word_regex, opts.multiwords, filter='end')
-      regex_string_starts = @compileBareRegex(opts.word_regex, opts.multiwords, filter='start')
-
-      window.multiword_lookup_regex_start = new RegExp(regex_string_starts, 'g')
-      window.multiword_lookup_regex_end = new RegExp(regex_string_ends, 'g')
-      window.multiword_word_regex = new RegExp(opts.word_regex, opts.word_regex_opts)
-      window.regex_compiled = true
-
-    multiwords_start_options =
-      wordOptions:
-        # wordRegex: window.multiword_word_regex
-        wordRegex: window.multiword_lookup_regex_start
-      trim: true
-    multiwords_end_options =
-      wordOptions:
-        # wordRegex: window.multiword_word_regex
-        wordRegex: window.multiword_lookup_regex_end
-      trim: true
-
-    console.log "moving selection"
-    console.log "before"
-    console.log selection
-
-    # NB: this works on range object only.
-    selection.expand("word", multiwords_start_options)
-    selection.expand("word", multiwords_end_options)
-    console.log "after"
-    console.log selection
-
-    return selection
+  # MWE attempts so far: 
+  #  
+  #  * selection.expand using regular expressions containing potential MWE
+  #    surroundign material
+  #
+  #  * selection.move for arbitrary expansion based on word regexp and word
+  #  units
+  #
+  #  * TODO: expand text to parent container to get whole sentence as a string, then
+  #  determine based on selection range what w+1 and w-1 are-- skip rangy for
+  #  expansion
 
   expandByWordRegex: (selection) ->
-    # TODO: consider including before and after in the main lookup regex
+    # This expands text by word regexp, to include any characters that might
+    # not be perceived as standard word characters by a browser.
     opts = $.fn.getCurrentDictOpts().settings
 
     word_opts = {}
@@ -121,34 +31,14 @@ module.Selection = @Selection =
     selection.expand("word", word_opts)
 
     return selection
-
-  expandFollowingWords: (sel, direction) ->
-    # TODO: another attempt to use rangy for expanding selections-- for some
-    # reason it works to expand to preceding words, but not after.
-    opts = $.fn.getCurrentDictOpts().settings
-
-    console.log "sel text"
-    console.log sel.text()
-    duplicated = jQuery.extend(true, {}, sel)
-    duplicated_b = jQuery.extend(true, {}, sel)
-
-    window.multiword_word_regex = new RegExp(opts.word_regex, opts.word_regex_opts)
-
-    expand_opts =
-      wordOptions:
-        wordRegex: window.multiword_word_regex
-    duplicated.move("word", -2, expand_opts)
-    duplicated.expand("word", expand_opts)
-
-    before_text = duplicated.text()
-    duplicated_b.move("word", 2, expand_opts)
-    duplicated_b.expand("word", expand_opts)
-    after_text = duplicated_b.text()
-    console.log "2"
-    console.log [before_text, after_text]
-
-    return duplicated
     
+  getParentFullText: (selection) ->
+    range = (if selection.rangeCount then selection.getRangeAt(0) else null)
+    if range
+      return range.commonAncestorContainer.wholeText
+    else
+      return false
+
   getFirstRange: ->
     opts = $.fn.getCurrentDictOpts().settings
 
@@ -161,18 +51,15 @@ module.Selection = @Selection =
       if opts.word_regex and opts.word_regex_opts
         console.log "words expand yes"
         sel = @expandByWordRegex sel
-      # if opts.multiword_lookups
-      #   console.log "mwe yes"
-      #   sel_new = @expandFollowingWords sel, "1"
-      #   console.log "+1"
-      #   console.log "new text: " + sel_new.text()
+
+    full_text = @getParentFullText(sel)
 
     current_range_obj = (if sel.rangeCount then sel.getRangeAt(0) else null)
-    # if opts and current_range_obj
-    #   if opts.multiword_lookups
-    #     console.log "mwe yes"
-    #     current_range_obj = @expandMultiWords current_range_obj
-    return current_range_obj
+    
+    # TODO: how to access range in indexes of selected item? Apparently can
+    # only do this relative to all text in the document.
+
+    return [current_range_obj, full_text]
   
   cloneContents: (range) ->
     range.cloneContents().textContent

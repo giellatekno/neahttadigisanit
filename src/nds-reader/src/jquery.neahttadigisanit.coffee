@@ -60,7 +60,6 @@ jQuery(document).ready ($) ->
   ## 
 
   $.ajaxSetup
-    type: "GET"
     timeout: 10 * 1000
     beforeSend: (args) ->
       spinner = initSpinner()
@@ -86,7 +85,7 @@ jQuery(document).ready ($) ->
 
   cleanTooltipResponse = (selection, response, opts) ->
     ###
-        Clean response from tooltip $.getJSON query, and display results
+        Clean response from tooltip $.post query, and display results
     ###
 
     string   = selection.string
@@ -164,7 +163,7 @@ jQuery(document).ready ($) ->
       # Done
       _tooltipTarget.popover('show')
 
-  lookupSelectEvent = (evt, string, element, range, opts) ->
+  lookupSelectEvent = (evt, string, element, range, opts, full_text) ->
 
     # TODO: what breaks here with spaces
     #
@@ -174,8 +173,6 @@ jQuery(document).ready ($) ->
     # click
     string = $.trim(string)
               .replace(/\b[-.,()&$#!\[\]{}"]+\B|\B[-.,()&$#!\[\]{}"]+\b/g, "")
-
-    # TODO: spaces allowed parameter set by existence of MWE list
 
     settings = $.fn.getCurrentDictOpts().settings
     if settings.multiword_lookups
@@ -209,19 +206,29 @@ jQuery(document).ready ($) ->
       lookup: lookup_string
       lemmatize: true
 
-    url = "#{opts.api_host}/#{uri}"
+    if full_text
+      post_data.text_string = full_text
+    
+    # TODO: MWE option for including full text
+    # TODO: also need to pass the indexes for the selected word
 
-    $.getJSON(
-      url + '?callback=?'
-      post_data
-      (response) =>
-        selection = {
-          string: string
-          element: element
-          range: range
-        }
-        cleanTooltipResponse(selection, response, opts)
-    )
+    url = "#{opts.api_host}/#{uri}?callback=?"
+    console.log url
+
+    # TODO: switch to actual post method, because GET will run out of space
+    # fast.
+    response_func = (response, textStatus) =>
+      selection = {
+        string: string
+        element: element
+        range: range
+      }
+      cleanTooltipResponse(selection, response, opts)
+
+    $.post(url, post_data, response_func, "json")
+
+    console.log "what"
+
     return false
 
   ##
@@ -321,10 +328,10 @@ jQuery(document).ready ($) ->
           if within_options.length > 0
             $(within_options[0]).find('#debug').show()
             return false
-          range = Selection.getFirstRange()
+          [range, full_text] = Selection.getFirstRange()
           string = Selection.cloneContents(range)
           if range and string
-            lookupSelectEvent(evt, string, element, range, window.nds_opts)
+            lookupSelectEvent(evt, string, element, range, window.nds_opts, full_text)
           return false
         return true
 

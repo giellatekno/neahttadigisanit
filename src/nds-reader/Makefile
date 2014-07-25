@@ -48,7 +48,7 @@ tmp/nds.with.deps.js: tmp/vendor.deps.js \
 	@echo "   BUILDING:     nds.with.deps.js"
 	@cat $^ > $@
 
-tmp/nds.with.deps.jq.js: dev/jquery.1.7.2.js \
+tmp/nds.with.deps.jq.js: dev/jquery-1.11.1.js \
 						 tmp/nds.with.deps.js
 	@echo "   CAT:         " $@
 	@cat $^ > $@
