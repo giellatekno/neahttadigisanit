@@ -71,8 +71,8 @@ module.Selection = @Selection =
       # TODO: also consider just one big regex including optional ends with the
       # multiword lists... that shouuuld be able to work.
       #
-      regex_string_ends = @compileBareRegex(opts.word_regex, opts.multiwords, filter='start')
-      regex_string_starts = @compileBareRegex(opts.word_regex, opts.multiwords, filter='end')
+      regex_string_ends = @compileBareRegex(opts.word_regex, opts.multiwords, filter='end')
+      regex_string_starts = @compileBareRegex(opts.word_regex, opts.multiwords, filter='start')
 
       window.multiword_lookup_regex_start = new RegExp(regex_string_starts, 'g')
       window.multiword_lookup_regex_end = new RegExp(regex_string_ends, 'g')
@@ -81,13 +81,13 @@ module.Selection = @Selection =
 
     multiwords_start_options =
       wordOptions:
-        wordRegex: window.multiword_word_regex
-        # wordRegex: window.multiword_lookup_regex_start
+        # wordRegex: window.multiword_word_regex
+        wordRegex: window.multiword_lookup_regex_start
       trim: true
     multiwords_end_options =
       wordOptions:
-        wordRegex: window.multiword_word_regex
-        # wordRegex: window.multiword_lookup_regex_end
+        # wordRegex: window.multiword_word_regex
+        wordRegex: window.multiword_lookup_regex_end
       trim: true
 
     console.log "moving selection"
@@ -108,11 +108,12 @@ module.Selection = @Selection =
 
     word_opts = {}
 
-    word_regex = new RegExp(opts.word_regex, opts.word_regex_opts)
+    if not window.word_regex
+      word_regex = new RegExp(opts.word_regex, opts.word_regex_opts)
+      window.word_regex = word_regex
+    else
+      word_regex = window.word_regex
 
-    console.log opts.word_regex
-    window.word_regex = opts.word_regex
-    
     word_opts.trim = true
     word_opts.wordOptions =
       wordRegex: word_regex
@@ -121,6 +122,33 @@ module.Selection = @Selection =
 
     return selection
 
+  expandFollowingWords: (sel, direction) ->
+    # TODO: another attempt to use rangy for expanding selections-- for some
+    # reason it works to expand to preceding words, but not after.
+    opts = $.fn.getCurrentDictOpts().settings
+
+    console.log "sel text"
+    console.log sel.text()
+    duplicated = jQuery.extend(true, {}, sel)
+    duplicated_b = jQuery.extend(true, {}, sel)
+
+    window.multiword_word_regex = new RegExp(opts.word_regex, opts.word_regex_opts)
+
+    expand_opts =
+      wordOptions:
+        wordRegex: window.multiword_word_regex
+    duplicated.move("word", -2, expand_opts)
+    duplicated.expand("word", expand_opts)
+
+    before_text = duplicated.text()
+    duplicated_b.move("word", 2, expand_opts)
+    duplicated_b.expand("word", expand_opts)
+    after_text = duplicated_b.text()
+    console.log "2"
+    console.log [before_text, after_text]
+
+    return duplicated
+    
   getFirstRange: ->
     opts = $.fn.getCurrentDictOpts().settings
 
@@ -135,13 +163,15 @@ module.Selection = @Selection =
         sel = @expandByWordRegex sel
       # if opts.multiword_lookups
       #   console.log "mwe yes"
-      #   sel = expandMultiWords sel
+      #   sel_new = @expandFollowingWords sel, "1"
+      #   console.log "+1"
+      #   console.log "new text: " + sel_new.text()
 
     current_range_obj = (if sel.rangeCount then sel.getRangeAt(0) else null)
-    if opts and current_range_obj
-      if opts.multiword_lookups
-        console.log "mwe yes"
-        current_range_obj = @expandMultiWords current_range_obj
+    # if opts and current_range_obj
+    #   if opts.multiword_lookups
+    #     console.log "mwe yes"
+    #     current_range_obj = @expandMultiWords current_range_obj
     return current_range_obj
   
   cloneContents: (range) ->
