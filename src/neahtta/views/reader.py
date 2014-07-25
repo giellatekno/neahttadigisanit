@@ -53,7 +53,7 @@ def lookupWord(from_language, to_language):
         input_json = simplejson.loads(request.data)
 
         lookup_key = user_input = input_json.get('lookup', False)
-        has_callback            = input_json.get('callback', False)
+        has_callback            = request.args.get('callback', False) or input_json.get('callback', False)
         pretty                  = input_json.get('pretty', False)
 
     # Sometimes due to probably weird client-side behavior, the lookup

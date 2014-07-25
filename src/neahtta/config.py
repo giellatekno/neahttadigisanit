@@ -685,11 +685,11 @@ class Config(Config):
                 else:
                     self._reader_options[l]['word_regex_opts'] = DEFAULT_WORD_REGEX_OPTS
                 mwe = conf.get('multiword_lookups', False)
-                mwe_l = conf.get('multiword_list', False)
-                if mwe and mwe_l:
-                    is_file = mwe_l.get('file', False)
-                    if is_file:
-                        self._reader_options[l]['multiwords'] = self.read_multiword_list(is_file)
+                # mwe_l = conf.get('multiword_list', False)
+                # if mwe and mwe_l:
+                #     is_file = mwe_l.get('file', False)
+                #     if is_file:
+                #         self._reader_options[l]['multiwords'] = self.read_multiword_list(is_file)
 
             all_isos = list(set(self.languages.keys() + self.yaml.get('Morphology').keys()))
             missing_isos = [a for a in all_isos if a not in self._reader_options.keys()]
