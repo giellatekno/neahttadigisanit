@@ -183,31 +183,33 @@ guusaaw: guusaaw-lexica compile_langs_fsts print_complete_message
 ##### #gawonihisditargets
 #####
 
-GAWONISDI_LANGS_ANALYSERS      :=   chr
-GAWONISDI_LANGS_LEXICA         :=   chr
-GAWONISDI_WORDS_DICTS_LEXICA   :=   
+GAWONIHISDI_LANGS_ANALYSERS      :=   chr
+GAWONIHISDI_LANGS_LEXICA         :=
+GAWONIHISDI_WORDS_DICTS_LEXICA   :=   chreng
 
 .PHONY: gawonihisdi-lexica
-gawonihisdi-lexica: LEX_COMPILE_LANGS := sms
-gawonihisdi-lexica: compile_langs_lexicon
+gawonihisdi-lexica: LEX_COMPILE_LANGS := $(GAWONIHISDI_LANGS_LEXICA)
+gawonihisdi-lexica: LEX_COMPILE_WORDS_DICTS := $(GAWONIHISDI_WORDS_DICTS_LEXICA)
+gawonihisdi-lexica: compile_langs_lexicon \
+			        compile_words_dicts_lexicon
 
 .PHONY: gawonihisdi-lexica
-gawonihisdi-lexica: LEX_COMPILE_LANGS := $(GAWONISDI_LANGS_LEXICA)
-gawonihisdi-lexica: LEX_COMPILE_WORDS_DICTS := $(GAWONISDI_WORDS_DICTS_LEXICA)
+gawonihisdi-lexica: LEX_COMPILE_LANGS := $(GAWONIHISDI_LANGS_LEXICA)
+gawonihisdi-lexica: LEX_COMPILE_WORDS_DICTS := $(GAWONIHISDI_WORDS_DICTS_LEXICA)
 gawonihisdi-lexica: compile_langs_lexicon compile_words_dicts_lexicon
 
 .PHONY: gawonihisdi
-gawonihisdi: GT_COMPILE_LANGS := $(GAWONISDI_LANGS_ANALYSERS)
-gawonihisdi: LEX_COMPILE_LANGS := $(GAWONISDI_LANGS_LEXICA)
-gawonihisdi: LEX_COMPILE_WORDS_DICTS := $(GAWONISDI_WORDS_DICTS_LEXICA)
+gawonihisdi: GT_COMPILE_LANGS := $(GAWONIHISDI_LANGS_ANALYSERS)
+gawonihisdi: LEX_COMPILE_LANGS := $(GAWONIHISDI_LANGS_LEXICA)
+gawonihisdi: LEX_COMPILE_WORDS_DICTS := $(GAWONIHISDI_WORDS_DICTS_LEXICA)
 gawonihisdi: gawonihisdi-lexica compile_langs_fsts print_complete_message
 
-rm-gawonihisdi-lexica: $(foreach xx, $(GAWONISDI_LANGS_LEXICA), $(xx)-all.xml) \
-				 $(foreach yy, $(GAWONISDI_WORDS_DICTS_LEXICA), $(yy).xml)
+rm-gawonihisdi-lexica: $(foreach xx, $(GAWONIHISDI_LANGS_LEXICA), $(xx)-all.xml) \
+				 $(foreach yy, $(GAWONIHISDI_WORDS_DICTS_LEXICA), $(yy).xml)
 	@rm -rf $^
 
 .PHONY: gawonihisdi-install
-gawonihisdi-install: GT_COMPILE_LANGS := $(GAWONISDI_LANGS_ANALYSERS)
+gawonihisdi-install: GT_COMPILE_LANGS := $(GAWONIHISDI_LANGS_ANALYSERS)
 gawonihisdi-install: install_langs_fsts
 
 

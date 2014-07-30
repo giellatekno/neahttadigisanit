@@ -56,7 +56,7 @@ Languages:
 Dictionaries:
   - source: chr
     target: eng
-    path: 'dicts/chr-all.xml'
+    path: 'dicts/chreng.xml'
     # This key may be present and set to True and False, or missing--
     # default is False
     show_korp_search: True
