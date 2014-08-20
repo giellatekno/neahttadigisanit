@@ -69,6 +69,7 @@ NAMES = dict([
 
     # gawonihisdi
     ('chr', _(u"Cherokee")),
+    # NB: .lower() here to save on translation strings
     ('chrL', _(u"Cherokee") + " (" + _("Transliterated").lower() + ")"),
 
     # guusaaw
