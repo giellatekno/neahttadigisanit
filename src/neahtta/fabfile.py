@@ -235,6 +235,7 @@ def update_gtsvn():
             'gt/',
             'gtcore/',
             'langs/',
+            'startup-langs/',
             'words/',
         ]
         print(cyan("** svn up **"))
