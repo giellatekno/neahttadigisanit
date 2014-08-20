@@ -72,7 +72,7 @@ endef
 #
 # Or just see one of the languages below and copy...
 
-compile_langs_fsts: $(foreach lang, $(GT_COMPILE_LANGS), langs/$(lang)/src/analyser-gt-desc.xfst)
+compile_langs_fsts: $(foreach lang, $(GT_COMPILE_LANGS), langs/$(lang)/src/analyser-gt-desc.xfst) 
 compile_langs_fsts: $(langs)
 	@echo $*
 	@echo "***********************"
@@ -84,6 +84,12 @@ compile_langs_fsts: $(langs)
 			cd $(GTHOME)/langs/$$ll ; ./autogen.sh ; ./configure --enable-dicts ; \
 		fi ; \
 		cd $(GTHOME)/langs/$$ll ; make ; \
+	done 
+	for ll in $(GT_COMPILE_STARTUP_LANGS) ; do \
+		if ! test -e "$(GTHOME)/startup-langs/$$ll/src/Makefile" ; then \
+			cd $(GTHOME)/startup-langs/$$ll ; ./autogen.sh ; ./configure --enable-dicts ; \
+		fi ; \
+		cd $(GTHOME)/startup-langs/$$ll ; make ; \
 	done 
 
 install_langs_fsts: $(foreach lang, $(GT_COMPILE_LANGS), langs/$(lang)/src/analyser-gt-desc.xfst)
@@ -434,9 +440,10 @@ sanat-install: install_langs_fsts
 ##### #sonadtargets
 #####
 
-SONAD_LANGS_ANALYSERS      :=   izh liv fin vep vro vot
-SONAD_LANGS_LEXICA         :=   liv izh vep vro vot
-SONAD_WORDS_DICTS_LEXICA   :=   finliv finizh
+SONAD_LANGS_ANALYSERS           :=   izh liv fin vep vro vot
+SONAD_STARTUP_LANGS_ANALYSERS   :=   lav
+SONAD_LANGS_LEXICA              :=   liv izh vep vro vot
+SONAD_WORDS_DICTS_LEXICA        :=   finliv finizh livlav
 
 .PHONY: sonad-lexica
 sonad-lexica: LEX_COMPILE_LANGS := $(SONAD_LANGS_LEXICA)
@@ -446,6 +453,7 @@ sonad-lexica: compile_langs_lexicon \
 
 .PHONY: sonad
 sonad: GT_COMPILE_LANGS := $(SONAD_LANGS_ANALYSERS)
+sonad: GT_COMPILE_STARTUP_LANGS := $(SONAD_STARTUP_LANGS_ANALYSERS)
 sonad: LEX_COMPILE_LANGS := $(SONAD_LANGS_LEXICA)
 sonad: LEX_COMPILE_WORDS_DICTS := $(SONAD_WORDS_DICTS_LEXICA)
 sonad: sonad-lexica compile_langs_fsts print_complete_message
