@@ -76,7 +76,7 @@ compile_langs_fsts: $(foreach lang, $(GT_COMPILE_LANGS), langs/$(lang)/src/analy
 compile_langs_fsts: $(langs)
 	@echo $*
 	@echo "***********************"
-	@echo "** Building $(GT_COMPILE_LANGS) FSTs **"
+	@echo "** Building $(GT_COMPILE_LANGS) $(GT_COMPILE_STARTUP_LANGS) FSTs **"
 	@echo "***********************"
 	@echo ""
 	for ll in $(GT_COMPILE_LANGS) ; do \
@@ -96,7 +96,7 @@ install_langs_fsts: $(foreach lang, $(GT_COMPILE_LANGS), langs/$(lang)/src/analy
 install_langs_fsts: $(langs)
 	@echo $*
 	@echo "***********************"
-	@echo "** Copying to target for: $(GT_COMPILE_LANGS) **"
+	@echo "** Copying to target for: $(GT_COMPILE_LANGS) $(GT_COMPILE_STARTUP_LANGS) **"
 	@echo "***********************"
 	@echo ""
 	for ll in $(GT_COMPILE_LANGS) ; do \
@@ -105,6 +105,13 @@ install_langs_fsts: $(langs)
 		cp $(GTHOME)/langs/$$ll/src/generator-dict-gt-norm.xfst /opt/smi/$$ll/bin/ ; \
 		cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc-mobile.xfst  /opt/smi/$$ll/bin/ 2>/dev/null || : ; \
 	done 
+	for ll in $(GT_COMPILE_STARTUP_LANGS) ; do \
+		mkdir -p /opt/smi/$$ll/bin/ ; \
+		cp $(GTHOME)/startup-langs/$$ll/src/analyser-dict-gt-desc.xfst  /opt/smi/$$ll/bin/ ; \
+		cp $(GTHOME)/startup-langs/$$ll/src/generator-dict-gt-norm.xfst /opt/smi/$$ll/bin/ ; \
+		cp $(GTHOME)/startup-langs/$$ll/src/analyser-dict-gt-desc-mobile.xfst  /opt/smi/$$ll/bin/ 2>/dev/null || : ; \
+	done 
+
 
 .PHONY: compile_langs_lexicon
 compile_langs_lexicon: $(LEX_COMPILE_LANGS)
@@ -443,7 +450,7 @@ sanat-install: install_langs_fsts
 SONAD_LANGS_ANALYSERS           :=   izh liv fin vep vro vot
 SONAD_STARTUP_LANGS_ANALYSERS   :=   lav
 SONAD_LANGS_LEXICA              :=   liv izh vep vro vot
-SONAD_WORDS_DICTS_LEXICA        :=   finliv finizh livlav
+SONAD_WORDS_DICTS_LEXICA        :=   finliv finizh lavliv
 
 .PHONY: sonad-lexica
 sonad-lexica: LEX_COMPILE_LANGS := $(SONAD_LANGS_LEXICA)
@@ -464,6 +471,7 @@ rm-sonad-lexica: $(foreach xx, $(SONAD_LANGS_LEXICA), $(xx)-all.xml) \
 
 .PHONY: sonad-install
 sonad-install: GT_COMPILE_LANGS := $(SONAD_LANGS_ANALYSERS)
+sonad-install: GT_COMPILE_STARTUP_LANGS := $(SONAD_STARTUP_LANGS_ANALYSERS)
 sonad-install: install_langs_fsts
 
 #####

@@ -5,6 +5,7 @@ ApplicationSettings:
   default_pair: ["izh", "fin"]
   mobile_default_pair: false
   grouped_nav: true
+  new_style_templates: true
   locales_available:
     - "et"
     - "fi"
@@ -51,6 +52,16 @@ Morphology:
     tool: *LOOKUP
     file: [*OPT, '/liv/bin/analyser-dict-gt-desc.xfst']
     inverse_file: [*OPT, '/liv/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  lav:
+    tool: *LOOKUP
+    file: [*OPT, '/lav/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/lav/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -147,6 +158,10 @@ Dictionaries:
     target: lav
     path: 'dicts/liv-all.xml'
     input_variants: *liv_variants
+
+  - source: lav
+    target: liv
+    path: 'dicts/lavliv.xml'
 
   # izh
   - source: izh
