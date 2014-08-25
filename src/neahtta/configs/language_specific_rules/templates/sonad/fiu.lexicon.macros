@@ -1,0 +1,73 @@
+{%- import 'lexicon.macros' as macros with context -%}
+
+{%- macro tCtn_text(tg) -%}
+    {% set tCtns = tg.xpath("./tCtn") %}
+
+    {% for tCtn in tCtns %}
+
+        {# TODO: this may need to be its own template so it's easier to override? #}
+        {% set annotations = tCtn.xpath('./re') %}
+
+        {% if annotations|count > 0 %}
+            {% set annotation = '(' + annotations[0].text + ')' %}
+        {% else  %}
+            {% set annotation = false %}
+        {% endif %}
+
+        {% set t_nodes = tCtn.xpath('./t') %}
+
+        {# Need to check for renderable texts for languages with incomplete lexica,
+           where there is sometimes an empty <t /> node. Also sme-nob allows
+           for only annotations, and empty t nodes.
+         #}
+
+        {% set renderable_texts = tCtn.xpath('./t/text()')|count + tCtn.xpath('./re/text()')|count %}
+
+        {% if renderable_texts > 0 %}
+
+            {% if t_nodes|count > 1 %}
+                {% set many_t_nodes = true %}
+            {% else %}
+                {% set many_t_nodes = false %}
+            {% endif %}
+
+            {# Check for how many translation nodes we have. One will cause
+               problems if it is empty, because it produces a 'None' string,
+               while more than one means we need separate links that are comma
+               separated. #} 
+
+            {% if many_t_nodes %}
+                {% set translation_text = t_nodes|map(attribute='text') %}
+            {% else %}
+                {% set translation_text = false %}
+                {% if t_nodes|count == 1 %}
+                    {# Here's where we might end up with a 'None' string #}
+                    {% set translation_text = t_nodes[0].text %}
+                    {% if translation_text == 'None' %}
+                        {% set translation_text = false %}
+                    {% endif %}
+                {% else %}
+                {% endif %}
+            {% endif %}
+
+            {% if not many_t_nodes %}
+                {% if translation_text and annotation %}
+                    {{ macros.definition_reference_link(tg, translation_text, annotation) }}
+                {% else %}
+                    {% if translation_text %}
+                        {{ macros.definition_reference_link(tg, translation_text) }}
+                    {% else %}
+                        {{ macros.definition_reference_link(tg, annotation) }}
+                    {% endif %}
+                {% endif %}
+            {% else %}
+                {{ macros.definition_reference_link_many(t_nodes, annotation) }}
+            {% endif %}
+
+        {% endif %}
+    
+    {% endfor %}
+
+{%- endmacro -%}
+
+{#  vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}

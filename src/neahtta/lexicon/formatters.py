@@ -101,6 +101,12 @@ class EntryNodeIterator(object):
         definition.
         """
 
+        tCtn = tg.find('tCtn')
+
+        if tCtn is not None:
+            return self.find_translation_text(tCtn)
+
+
         def orFalse(l):
             if len(l) > 0:
                 return l[0]

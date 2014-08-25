@@ -1,0 +1,21 @@
+{# This entry is evaluated on a translation-group by translation-group
+   basis, and so far only receives the `translation_group` <tg /> node.
+
+   The intent here is to make it easier to insert additional text
+   without needing to alter or understand the larger amount of HTML. See
+   `sme` for an example of including the @reg attribute.
+
+ #}
+
+{%- import 'fiu.lexicon.macros' as fiu with context -%}
+{%- import 'lexicon.macros' as macros with context -%}
+
+{%- if translation_group -%}
+    {%- if translation_group.xpath("./tCtn") %}
+        {{ fiu.tCtn_text(translation_group) }}
+    {%- else -%}
+        {{ macros.definition_text_and_link(translation_group) }}
+    {%- endif -%}
+{%- endif -%}
+
+{#  vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}

@@ -5,6 +5,9 @@ $(window).bind("unload", function() {
 });
 
 $(document).ready( function() {
+    // Select everything when the document loads
+    $('input[name="lookup"]').select();
+
     $('input[name="lookup"]').typeahead({
         items: 5,
         source: function (typeahead, query) {
