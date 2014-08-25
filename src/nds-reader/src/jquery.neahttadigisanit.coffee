@@ -206,14 +206,35 @@ jQuery(document).ready ($) ->
       lookup: lookup_string
       lemmatize: true
 
-    if full_text
-      post_data.text_string = full_text
+    # if full_text
+    #   post_data.text_string = full_text
     
     # TODO: MWE option for including full text
+    console.log range, full_text
+
+    # TODO: partition on the selected word by the range
+    ind = Selection.getIndexes()
+
+    # TODO: move this to Selection module
+
+    t = rangy.innerText(selected_range.startContainer)
+    
+    # This isn't actaully reproducing the selection with these indexes
+    #
+
+    previous_words = Selection.getPreviousWords(1)
+    following_words = Selection.getNextWords(1)
+
+    last_word = previous_words.slice(-1)[0]
+    first_word = following_words[0]
+
+    console.log [last_word, string, first_word]
+
+    console.log "--"
+
     # TODO: also need to pass the indexes for the selected word
 
     url = "#{opts.api_host}/#{uri}?callback=?"
-    console.log url
 
     # TODO: switch to actual post method, because GET will run out of space
     # fast.
@@ -225,9 +246,8 @@ jQuery(document).ready ($) ->
       }
       cleanTooltipResponse(selection, response, opts)
 
+    # TODO: complete WTF, why is this coming out as a GET?
     $.post(url, post_data, response_func, "json")
-
-    console.log "what"
 
     return false
 
@@ -337,6 +357,13 @@ jQuery(document).ready ($) ->
 
       clean = (event) ->
         parents = []
+        # TODO: any rangy cleaning operations
+        # console.log "clean"
+        # if window.last_selection
+        #   console.log "last_selection"
+        #   console.log window.last_selection
+        #   console.log window.selected_range
+
         $(document).find('a.tooltip_target').each () ->
           parents.push $(this).parent()
           $(this).popover('destroy')

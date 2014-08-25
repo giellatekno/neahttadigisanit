@@ -55,6 +55,10 @@ module.Selection = @Selection =
     full_text = @getParentFullText(sel)
 
     current_range_obj = (if sel.rangeCount then sel.getRangeAt(0) else null)
+    window.last_selection = sel
+    window.selected_range = current_range_obj
+    # TODO: track selection parent node-- if it is the same, it will change how
+    # we index text, since indexes are recalculated when nodes are destroyed
     
     # TODO: how to access range in indexes of selected item? Apparently can
     # only do this relative to all text in the document.
@@ -63,7 +67,46 @@ module.Selection = @Selection =
   
   cloneContents: (range) ->
     range.cloneContents().textContent
-  
+
+  getIndexes: () ->
+    node = window.selected_range.startContainer
+    ranges = window.selected_range.toCharacterRange(node)
+    return [ranges.start, ranges.end]
+
+  getPartitionedSelection: () ->
+    t = rangy.innerText(selected_range.startContainer)
+    ind = @getIndexes()
+
+    before = t.slice(0, ind[0])
+    partition = t.slice(ind[0], ind[1])
+    after = t.slice(ind[1])
+
+    return [before, partition, after]
+
+  getPreviousWords: (n=1) ->
+    [before, _, _] = @getPartitionedSelection()
+
+    # TODO: make sure word regex is set-- currently a bad practice to expect it to be
+    #
+    before = before.match(window.word_regex)
+    if before
+      selected_words = before.slice(before.length-n, before.length)
+    else
+      selected_words = []
+
+    return selected_words
+
+  getNextWords: (n=1) ->
+    [_, _, after] = @getPartitionedSelection()
+    # TODO: make sure word regex is set-- currently a bad practice to expect it to be
+    #
+    after = after.match(window.word_regex)
+    if after
+      selected_words = after.slice(0, n)
+    else
+      selected_words = []
+    return selected_words
+
   surroundRange: (range, surrounder) ->
     if range
       if not range.canSurroundContents()

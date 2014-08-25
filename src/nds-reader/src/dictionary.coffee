@@ -8,10 +8,11 @@ module.DictionaryAPI = class DictionaryAPI
     return false
 
   lookup: (source_lang, target_lang, string, callback=false) ->
+
     post_data =
       lookup: string
       lemmatize: true
-
+      
     url = "#{@host}/lookup/#{source_lang}/#{target_lang}/" + '?callback=?'
 
     if not callback
@@ -22,7 +23,7 @@ module.DictionaryAPI = class DictionaryAPI
     # TODO: convert this to a $.get or something to be able to supply expected
     # success/fail funcs
     #
-    $.getJSON(
+    $.post(
       url + '?callback=?',
       post_data,
       callback_func
