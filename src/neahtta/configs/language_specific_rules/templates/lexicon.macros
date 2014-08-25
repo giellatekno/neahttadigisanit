@@ -70,9 +70,8 @@
     {% endif %}
 {%- endmacro -%}
 
-{# TODO: this may need to be its own template so it's easier to override? #}
-
 {%- macro definition_text_and_link(tg) -%}
+    {# TODO: this may need to be its own template so it's easier to override? #}
     {% set annotations = tg.xpath('./re') %}
 
     {% if annotations|count > 0 %}
