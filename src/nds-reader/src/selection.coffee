@@ -96,6 +96,17 @@ module.Selection = @Selection =
 
     return selected_words
 
+  getMultiwordEnvironment: (l=1, r=1) ->
+    previous_words = @getPreviousWords l
+    following_words = @getNextWords r
+
+    # TODO: l/r
+    last_word = previous_words.slice(-1)[0]
+    first_word = following_words[0]
+
+    return [last_word, "#LOOKUP#", first_word]
+
+
   getNextWords: (n=1) ->
     [_, _, after] = @getPartitionedSelection()
     # TODO: make sure word regex is set-- currently a bad practice to expect it to be

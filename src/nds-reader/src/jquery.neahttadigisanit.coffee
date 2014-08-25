@@ -213,28 +213,17 @@ jQuery(document).ready ($) ->
     console.log range, full_text
 
     # TODO: partition on the selected word by the range
-    ind = Selection.getIndexes()
 
-    # TODO: move this to Selection module
-
-    t = rangy.innerText(selected_range.startContainer)
-    
-    # This isn't actaully reproducing the selection with these indexes
-    #
-
-    previous_words = Selection.getPreviousWords(1)
-    following_words = Selection.getNextWords(1)
-
-    last_word = previous_words.slice(-1)[0]
-    first_word = following_words[0]
-
-    console.log [last_word, string, first_word]
+    if settings.multiword_lookups
+      console.log "include multiwords"
+      post_data.multiword_environment = Selection.getMultiwordEnvironment()
 
     console.log "--"
 
     # TODO: also need to pass the indexes for the selected word
 
-    url = "#{opts.api_host}/#{uri}?callback=?"
+    url = "#{opts.api_host}/#{uri}"
+    console.log url
 
     # TODO: switch to actual post method, because GET will run out of space
     # fast.
@@ -247,7 +236,15 @@ jQuery(document).ready ($) ->
       cleanTooltipResponse(selection, response, opts)
 
     # TODO: complete WTF, why is this coming out as a GET?
-    $.post(url, post_data, response_func, "json")
+    # $.post(url, post_data, response_func, "json")
+
+    $.ajax({
+      url: url,
+      type: "POST",
+      contentType: "application/json; charset=UTF-8",
+      dataType: "jsonp",
+      data: post_data
+    }).done(response_func)
 
     return false
 
