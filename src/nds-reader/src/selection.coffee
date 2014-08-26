@@ -106,6 +106,22 @@ module.Selection = @Selection =
 
     return [last_word, "#LOOKUP#", first_word]
 
+  getMultiwordPermutations: (l=1, r=1) ->
+    mws = @getMultiwordEnvironment(l, r)
+    word_delimiter = ' '
+
+    t = selected_range.text()
+
+    mwes = [t]
+
+    if mws[0]
+      mwes.push [mws[0], t].join(word_delimiter)
+    if mws.slice(-1)[0]
+      mwes.push [t, mws.slice(-1)[0]].join(word_delimiter)
+    if mws[0] and mws.slice(-1)[0]
+      mwes.push [mws[0], t, mws.slice(-1)[0]].join(word_delimiter)
+
+    return mwes
 
   getNextWords: (n=1) ->
     [_, _, after] = @getPartitionedSelection()

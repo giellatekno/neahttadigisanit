@@ -206,11 +206,21 @@ jQuery(document).ready ($) ->
       lookup: lookup_string
       lemmatize: true
     
+    # TODO: there is now some bug where clicking on a word prevents the
+    # surrrounding environment from being recognized on subsequent lookups.
+    # TODO: results should be displayed clearly: currently if there's a match
+    # in two things for the same result, it isn't clear which is for which
     if settings.multiword_lookups
-      post_data.multiword_environment = Selection.getMultiwordEnvironment().join(',')
+      post_data.multiword = true
+      mws = Selection.getMultiwordPermutations()
+
+      # TODO: filter only on permitted mwes from list? 
+      console.log mws
+      post_data.lookup = mws.join('|')
 
     url = "#{opts.api_host}/#{uri}"
 
+    console.log post_data
     response_func = (response, textStatus) =>
       selection = {
         string: string
