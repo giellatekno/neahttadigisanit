@@ -91,13 +91,16 @@ def lookupWord(from_language, to_language):
 
     success = False
 
+    # TODO: going to do the multiword processing on the client, and send
+    # a list of lookups.
+
     if request.method == 'GET':
         # URL parameters
         lookup_key = user_input = request.args.get('lookup', False)
         has_callback            = request.args.get('callback', False)
         pretty                  = request.args.get('pretty', False)
 
-        multiword_environment   = request.args.get('multiword_environment', False)
+        multiword   = request.args.get('multiword', False)
 
     elif request.method == 'POST':
         input_json = simplejson.loads(request.data)
@@ -106,17 +109,14 @@ def lookupWord(from_language, to_language):
         has_callback            = request.args.get('callback', False) or input_json.get('callback', False)
         pretty                  = input_json.get('pretty', False)
 
-        multiword_environment   = input_json.get('multiword_environment', False)
+        multiword   = input_json.get('multiword', False)
 
-    # TODO: multiword_environment processing
-    # So far limit is only at +1 or -1 words, or both, so run separate
-    # lookups for:
-    #
-    #   pre #LOOKUP#
-    #   #LOOKUP# post
-    #   pre #LOOKUP# post
-    #
-    # Then return these all as separate items in the search result list.
+    if multiword:
+        lookups = lookup_key.split('|')
+    else:
+        lookups = [lookup_key]
+
+    # TODO: multiple lookups processing
 
     # Sometimes due to probably weird client-side behavior, the lookup
     # key is set but set to nothing, as such we need to return a
@@ -145,50 +145,59 @@ def lookupWord(from_language, to_language):
 
     mlex = current_app.morpholexicon
 
-    entries_and_tags = mlex.lookup( lookup_key
-                                  , source_lang=from_language
-                                  , target_lang=to_language
-                                  , split_compounds=True
-                                  # , non_compound_only=True
-                                  # , no_derivations=True
-                                  )
+    multi_lookups = []
+    multi_tags = []
 
-    def filterPOSAndTag(analysis):
-        filtered_pos = tagfilter(analysis.pos, from_language, to_language)
-        joined = ' '.join(analysis.tag)
-        return (analysis.lemma, joined)
+    for lookup in lookups:
+        entries_and_tags = mlex.lookup( lookup
+                                      , source_lang=from_language
+                                      , target_lang=to_language
+                                      , split_compounds=True
+                                      # , non_compound_only=True
+                                      # , no_derivations=True
+                                      )
 
-    analyses = [lem for e, lems in entries_and_tags
-                for lem in lems
-                if lem is not None]
+        def filterPOSAndTag(analysis):
+            filtered_pos = tagfilter(analysis.pos, from_language, to_language)
+            joined = ' '.join(analysis.tag)
+            return (analysis.lemma, joined)
 
-    tags = map(
-        filterPOSAndTag,
-        analyses
-    )
+        analyses = [lem for e, lems in entries_and_tags
+                    for lem in lems
+                    if lem is not None]
 
-    ui_lang = iso_filter(session.get('locale', to_language))
-    result = SimpleJSON( [e for e, analyses in entries_and_tags]
-                       , target_lang=to_language
-                       , source_lang=from_language
-                       , ui_lang=ui_lang
-                       , user_input=user_input
-                       )
+        tags = map(
+            filterPOSAndTag,
+            analyses
+        )
 
-    result = map(filterPOS, list(result))
+        ui_lang = iso_filter(session.get('locale', to_language))
+        result = SimpleJSON( [e for e, analyses in entries_and_tags]
+                           , target_lang=to_language
+                           , source_lang=from_language
+                           , ui_lang=ui_lang
+                           , user_input=user_input
+                           )
 
-    if len(result) > 0:
-        success = True
+        result = map(filterPOS, list(result))
 
-    result_with_input = [{'input': lookup_key, 'lookups': result}]
+        if len(result) > 0:
+            success = True
 
-    logSimpleLookups( user_input
-                    , result_with_input
-                    , from_language
-                    , to_language
-                    )
+        result_with_input = [{'input': lookup, 'lookups': result}]
 
-    data = json.dumps({ 'result': result_with_input
+        logSimpleLookups( lookup
+                        , result_with_input
+                        , from_language
+                        , to_language
+                        )
+
+        multi_lookups.extend(result)
+        multi_tags.extend(tags)
+
+    results_with_input = [{'input': lookup_key, 'lookups': multi_lookups}]
+
+    data = json.dumps({ 'result': results_with_input
                       , 'tags': tags
                       , 'tag_msg': _(" is a possible form of ... ")
                       , 'success': success
