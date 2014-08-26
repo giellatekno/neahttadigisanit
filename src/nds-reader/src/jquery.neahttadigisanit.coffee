@@ -205,28 +205,12 @@ jQuery(document).ready ($) ->
     post_data =
       lookup: lookup_string
       lemmatize: true
-
-    # if full_text
-    #   post_data.text_string = full_text
     
-    # TODO: MWE option for including full text
-    console.log range, full_text
-
-    # TODO: partition on the selected word by the range
-
     if settings.multiword_lookups
-      console.log "include multiwords"
-      post_data.multiword_environment = Selection.getMultiwordEnvironment()
-
-    console.log "--"
-
-    # TODO: also need to pass the indexes for the selected word
+      post_data.multiword_environment = Selection.getMultiwordEnvironment().join(',')
 
     url = "#{opts.api_host}/#{uri}"
-    console.log url
 
-    # TODO: switch to actual post method, because GET will run out of space
-    # fast.
     response_func = (response, textStatus) =>
       selection = {
         string: string
@@ -235,13 +219,21 @@ jQuery(document).ready ($) ->
       }
       cleanTooltipResponse(selection, response, opts)
 
-    # TODO: complete WTF, why is this coming out as a GET?
+    # TODO: this will need to use POST if we end up sending the whole text
+    # string due to size limitations with HTTP parameters, however some
+    # problems to overcome:
+    #
+    # * POST: server will need an OPTIONS request for this endpoint to tell the
+    # client it is allowed to make the crossdomain request.
+    #
+    # * jsonp is GET only, thus will have a limitation
+    #
     # $.post(url, post_data, response_func, "json")
 
     $.ajax({
       url: url,
-      type: "POST",
-      contentType: "application/json; charset=UTF-8",
+      type: "GET",
+      contentType: "application/jsonp; charset=UTF-8",
       dataType: "jsonp",
       data: post_data
     }).done(response_func)
