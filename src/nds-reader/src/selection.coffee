@@ -1,15 +1,4 @@
 module.Selection = @Selection =
-  # MWE attempts so far: 
-  #  
-  #  * selection.expand using regular expressions containing potential MWE
-  #    surroundign material
-  #
-  #  * selection.move for arbitrary expansion based on word regexp and word
-  #  units
-  #
-  #  * TODO: expand text to parent container to get whole sentence as a string, then
-  #  determine based on selection range what w+1 and w-1 are-- skip rangy for
-  #  expansion
 
   expandByWordRegex: (selection) ->
     # This expands text by word regexp, to include any characters that might
@@ -35,7 +24,7 @@ module.Selection = @Selection =
   getParentFullText: (selection) ->
     range = (if selection.rangeCount then selection.getRangeAt(0) else null)
     if range
-      return range.commonAncestorContainer.wholeText
+      return rangy.innerText(range.commonAncestorContainer)
     else
       return false
 
@@ -55,8 +44,10 @@ module.Selection = @Selection =
     full_text = @getParentFullText(sel)
 
     current_range_obj = (if sel.rangeCount then sel.getRangeAt(0) else null)
-    window.last_selection = sel
+    # window.last_selection = sel
     window.selected_range = current_range_obj
+    window.previous_contents = window.selected_range.commonAncestorContainer.innerHTML
+
     # TODO: track selection parent node-- if it is the same, it will change how
     # we index text, since indexes are recalculated when nodes are destroyed
     
@@ -69,12 +60,16 @@ module.Selection = @Selection =
     range.cloneContents().textContent
 
   getIndexes: () ->
-    node = window.selected_range.startContainer
+    console.log "getIndexes"
+    node = window.selected_range.commonAncestorContainer
+    # get indexes relative to parent container if this node is a text node
     ranges = window.selected_range.toCharacterRange(node)
+    console.log node.nodeName
+    console.log ranges
     return [ranges.start, ranges.end]
 
   getPartitionedSelection: () ->
-    t = rangy.innerText(selected_range.startContainer)
+    t = rangy.innerText(window.selected_range.startContainer)
     ind = @getIndexes()
 
     before = t.slice(0, ind[0])
@@ -110,7 +105,7 @@ module.Selection = @Selection =
     mws = @getMultiwordEnvironment(l, r)
     word_delimiter = ' '
 
-    t = selected_range.text()
+    t = window.selected_range.text()
 
     mwes = [t]
 
@@ -121,6 +116,7 @@ module.Selection = @Selection =
     if mws[0] and mws.slice(-1)[0]
       mwes.push [mws[0], t, mws.slice(-1)[0]].join(word_delimiter)
 
+    console.log mwes
     return mwes
 
   getNextWords: (n=1) ->
@@ -133,6 +129,19 @@ module.Selection = @Selection =
     else
       selected_words = []
     return selected_words
+
+  cleanRange: () ->
+    console.log "zomgbbq"
+    # TODO: attempt #1 - restore the contents of the node with the selection
+    # range 
+    #
+    # TODO: attempt #2 - follow the 'not guaranteed' version
+    #    https://code.google.com/p/rangy/wiki/RangyRange
+    if window.selected_range and window.previous_contents
+      console.log "yep"
+      # window.selected_range.commonAncestorContainer.innerHTML = window.previous_contents
+      
+    return "TODO: "
 
   surroundRange: (range, surrounder) ->
     if range
@@ -151,4 +160,3 @@ module.Selection = @Selection =
                    information.\n\n""" + ex
         else
           alert "Unexpected errror: " + ex
-

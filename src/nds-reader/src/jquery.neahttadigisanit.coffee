@@ -205,11 +205,13 @@ jQuery(document).ready ($) ->
     post_data =
       lookup: lookup_string
       lemmatize: true
-    
+
     # TODO: there is now some bug where clicking on a word prevents the
     # surrrounding environment from being recognized on subsequent lookups.
+    #
     # TODO: results should be displayed clearly: currently if there's a match
     # in two things for the same result, it isn't clear which is for which
+    #
     if settings.multiword_lookups
       post_data.multiword = true
       mws = Selection.getMultiwordPermutations()
@@ -221,6 +223,7 @@ jQuery(document).ready ($) ->
     url = "#{opts.api_host}/#{uri}"
 
     console.log post_data
+    
     response_func = (response, textStatus) =>
       selection = {
         string: string
@@ -358,10 +361,12 @@ jQuery(document).ready ($) ->
         parents = []
         # TODO: any rangy cleaning operations
         # console.log "clean"
-        # if window.last_selection
+        # if window.selected_range
         #   console.log "last_selection"
         #   console.log window.last_selection
         #   console.log window.selected_range
+
+        Selection.cleanRange()
 
         $(document).find('a.tooltip_target').each () ->
           parents.push $(this).parent()
