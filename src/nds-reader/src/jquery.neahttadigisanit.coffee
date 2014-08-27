@@ -7,6 +7,7 @@ from Neahttadigisánit dictionary services.
 
 Templates = module.Templates
 Selection = module.Selection
+selectionizer = new Selection()
 
 # Wrap jQuery and add plugin functionality
 jQuery(document).ready ($) ->
@@ -97,7 +98,7 @@ jQuery(document).ready ($) ->
       <a style="font-style: italic; border: 1px solid #CEE; padding: 0 2px" 
          class="tooltip_target">#{string}</a>
       """)[0]
-      Selection.surroundRange(range, _wrapElement)
+      selectionizer.surroundRange(range, _wrapElement)
 
     # Compile result strings
     result_strings = []
@@ -214,7 +215,7 @@ jQuery(document).ready ($) ->
     #
     if settings.multiword_lookups
       post_data.multiword = true
-      mws = Selection.getMultiwordPermutations()
+      mws = selectionizer.getMultiwordPermutations()
 
       # TODO: filter only on permitted mwes from list? 
       console.log mws
@@ -350,30 +351,20 @@ jQuery(document).ready ($) ->
           if within_options.length > 0
             $(within_options[0]).find('#debug').show()
             return false
-          [range, full_text] = Selection.getFirstRange()
-          string = Selection.cloneContents(range)
+          [range, full_text] = selectionizer.getFirstRange()
+          string = selectionizer.cloneContents(range)
           if range and string
             lookupSelectEvent(evt, string, element, range, window.nds_opts, full_text)
           return false
         return true
 
       clean = (event) ->
-        parents = []
-        # TODO: any rangy cleaning operations
-        # console.log "clean"
-        # if window.selected_range
-        #   console.log "last_selection"
-        #   console.log window.last_selection
-        #   console.log window.selected_range
-
-        Selection.cleanRange()
-
         $(document).find('a.tooltip_target').each () ->
           parents.push $(this).parent()
           $(this).popover('destroy')
           $(this).replaceWith(this.childNodes)
-
         $(document).find('a.tooltip_target').contents().unwrap()
+        selectionizer.cleanRange()
 
       window.cleanTooltips = clean
       $(document).bind('click', holdingOption)

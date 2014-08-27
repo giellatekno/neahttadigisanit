@@ -1,4 +1,4 @@
-module.Selection = @Selection =
+module.Selection = class Selection
 
   expandByWordRegex: (selection) ->
     # This expands text by word regexp, to include any characters that might
@@ -131,17 +131,9 @@ module.Selection = @Selection =
     return selected_words
 
   cleanRange: () ->
-    console.log "zomgbbq"
-    # TODO: attempt #1 - restore the contents of the node with the selection
-    # range 
-    #
-    # TODO: attempt #2 - follow the 'not guaranteed' version
-    #    https://code.google.com/p/rangy/wiki/RangyRange
-    if window.selected_range and window.previous_contents
-      console.log "yep"
-      # window.selected_range.commonAncestorContainer.innerHTML = window.previous_contents
-      
-    return "TODO: "
+    if window.selected_range
+      window.selected_range.commonAncestorContainer.normalize()
+    return true
 
   surroundRange: (range, surrounder) ->
     if range
