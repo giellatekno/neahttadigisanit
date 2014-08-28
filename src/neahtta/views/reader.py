@@ -62,9 +62,9 @@ def crossdomain(origin=None, methods=None, headers=None,
         return update_wrapper(wrapped_function, f)
     return decorator
 
+# @crossdomain(origin='*')
 @blueprint.route('/lookup/<from_language>/<to_language>/',
            methods=['GET', 'POST'], endpoint="lookup")
-@crossdomain(origin='*')
 def lookupWord(from_language, to_language):
     """
     .. http:post:: /lookup/(string:from_language)/(string:to_language)
@@ -72,9 +72,15 @@ def lookupWord(from_language, to_language):
        Looks up a query in the lexicon. Lookups are lemmatized first,
        but the non-lemmatized input is also checked in the lexicon.
 
+       The lookup string may contain multiple lookups as well, separated
+       by `|`, but this needs to be signaled by an additional parameter,
+       `multiword`.
+
        :param from_language: the source language of the lookup
        :param to_language:   the target language to display translations
        :form lookup: the search word.
+       :form multiword: (optional) enable multiple lookups, separated by
+           `|` in the lookup string.
 
        :throws Http404: In the event that the language pair does not exist.
        :returns:
@@ -171,12 +177,17 @@ def lookupWord(from_language, to_language):
             analyses
         )
 
+        if multiword:
+            _u_in = lookup
+        else:
+            _u_in = user_input
+
         ui_lang = iso_filter(session.get('locale', to_language))
         result = SimpleJSON( [e for e, analyses in entries_and_tags]
                            , target_lang=to_language
                            , source_lang=from_language
                            , ui_lang=ui_lang
-                           , user_input=user_input
+                           , user_input=_u_in
                            )
 
         result = map(filterPOS, list(result))
