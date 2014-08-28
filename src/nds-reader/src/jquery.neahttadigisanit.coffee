@@ -100,6 +100,20 @@ jQuery(document).ready ($) ->
       """)[0]
       selectionizer.surroundRange(range, _wrapElement)
 
+    # See how many unique inputs resulted in lookups
+    matches_differ_from_click = false
+    longest_input = string
+
+    _inputs = {}
+    for r in response.result
+      for l in r.lookups
+      	_inputs[l.input] = true
+      	if l.input.length > longest_input.length
+      	  longest_input = l.input
+      	if string != l.input
+      	  matches_differ_from_click = true
+    multiple_inputs = (if Object.keys(_inputs).length > 1 then true else false)
+
     # Compile result strings
     result_strings = []
     for result in response.result
@@ -133,9 +147,18 @@ jQuery(document).ready ($) ->
         if response.tags.length > 0
           _tooltipTitle = _('Meaning not found')
 
+    # TODO: if there are multiple same result matches:
+    #   user clicks: gatáa.ang, results for:
+    #     - gatáa.ang
+    #     - gatáa.ang ñasa'áa
+    #   collapse to one result, display longest match in title
+    
     if opts.tooltip
       if !_tooltipTitle
         _tooltipTitle = string
+    
+      if _tooltipTitle != longest_input
+      	_tooltipTitle = "#{_tooltipTitle} &rarr; #{longest_input}"
       
       _tooltipTarget = $(element).find('a.tooltip_target')
 
@@ -218,13 +241,10 @@ jQuery(document).ready ($) ->
       mws = selectionizer.getMultiwordPermutations()
 
       # TODO: filter only on permitted mwes from list? 
-      console.log mws
       post_data.lookup = mws.join('|')
 
     url = "#{opts.api_host}/#{uri}"
 
-    console.log post_data
-    
     response_func = (response, textStatus) =>
       selection = {
         string: string
@@ -359,6 +379,7 @@ jQuery(document).ready ($) ->
         return true
 
       clean = (event) ->
+        parents = []
         $(document).find('a.tooltip_target').each () ->
           parents.push $(this).parent()
           $(this).popover('destroy')

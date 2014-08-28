@@ -38,7 +38,6 @@ module.Selection = class Selection
 
     if opts
       if opts.word_regex and opts.word_regex_opts
-        console.log "words expand yes"
         sel = @expandByWordRegex sel
 
     full_text = @getParentFullText(sel)
@@ -60,12 +59,9 @@ module.Selection = class Selection
     range.cloneContents().textContent
 
   getIndexes: () ->
-    console.log "getIndexes"
     node = window.selected_range.commonAncestorContainer
     # get indexes relative to parent container if this node is a text node
     ranges = window.selected_range.toCharacterRange(node)
-    console.log node.nodeName
-    console.log ranges
     return [ranges.start, ranges.end]
 
   getPartitionedSelection: () ->
@@ -116,7 +112,6 @@ module.Selection = class Selection
     if mws[0] and mws.slice(-1)[0]
       mwes.push [mws[0], t, mws.slice(-1)[0]].join(word_delimiter)
 
-    console.log mwes
     return mwes
 
   getNextWords: (n=1) ->
