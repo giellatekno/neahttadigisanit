@@ -81,7 +81,7 @@ jQuery(document).ready ($) ->
   ## 
 
   dictionary = new module.DictionaryAPI {
-  	host: "//"
+    host: "//"
   }
 
   cleanTooltipResponse = (selection, response, opts) ->
@@ -94,98 +94,16 @@ jQuery(document).ready ($) ->
     range    = selection.range
 
     if opts.tooltip
+      # TODO: expand wrapped range to include MWEs
+      #
       _wrapElement = $("""
       <a style="font-style: italic; border: 1px solid #CEE; padding: 0 2px" 
          class="tooltip_target">#{string}</a>
       """)[0]
       selectionizer.surroundRange(range, _wrapElement)
 
-    # See how many unique inputs resulted in lookups
-    matches_differ_from_click = false
-    longest_input = string
+    Templates.renderPopup(response, selection)
 
-    _inputs = {}
-    for r in response.result
-      for l in r.lookups
-      	_inputs[l.input] = true
-      	if l.input.length > longest_input.length
-      	  longest_input = l.input
-      	if string != l.input
-      	  matches_differ_from_click = true
-    multiple_inputs = (if Object.keys(_inputs).length > 1 then true else false)
-
-    # Compile result strings
-    result_strings = []
-    for result in response.result
-      for lookup in result.lookups
-        if lookup.right.length > 1
-          clean_right = []
-          for r, i in lookup.right
-            clean_right.push "#{i+1}. #{r}"
-          right = clean_right.join(', ')
-        else
-          right = lookup.right[0]
-
-        result_string = "<em>#{lookup.left}</em> (#{lookup.pos}) &mdash; #{right}"
-        result_strings.push(result_string)
-
-    langpair = DSt.get(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair')
-    [_f_from, _t_to] = langpair.split('-')
-
-    _cp = first window.nds_opts.dictionaries.filter (e) =>
-      e.from.iso == _f_from and e.to.iso == _t_to
-    
-    if _cp
-      current_pair_names = "#{_cp.from.name} → #{_cp.to.name}"
-    else
-      current_pair_names = ""
-
-    if result_strings.length == 0 or response.success == false
-      if opts.tooltip
-        _tooltipTitle = _('Unknown word')
-        result_strings.push("<span class='tags'><em>#{_('You are using')} #{current_pair_names}</em></span>")
-        if response.tags.length > 0
-          _tooltipTitle = _('Meaning not found')
-
-    # TODO: if there are multiple same result matches:
-    #   user clicks: gatáa.ang, results for:
-    #     - gatáa.ang
-    #     - gatáa.ang ñasa'áa
-    #   collapse to one result, display longest match in title
-    
-    if opts.tooltip
-      if !_tooltipTitle
-        _tooltipTitle = string
-    
-      if _tooltipTitle != longest_input
-      	_tooltipTitle = "#{_tooltipTitle} &rarr; #{longest_input}"
-      
-      _tooltipTarget = $(element).find('a.tooltip_target')
-
-      _tooltipTarget.popover
-        title: _tooltipTitle
-        content: $("<p />").html(result_strings.join('<br />')).html()
-        html: true
-        placement: () =>
-          if _tooltipTarget[0].offsetLeft < 125
-            'right'
-          else
-            'bottom'
-        trigger: 'hover'
-      
-      # Remove selection
-      if window.getSelection
-        # Chrome
-        if window.getSelection().empty
-          window.getSelection().empty()
-        # Firefox
-        else if window.getSelection().removeAllRanges
-          window.getSelection().removeAllRanges()
-      # IE
-      else if document.selection
-        document.selection.empty()
-      # Done
-      _tooltipTarget.popover('show')
 
   lookupSelectEvent = (evt, string, element, range, opts, full_text) ->
 
