@@ -220,6 +220,7 @@ class SimpleJSON(EntryNodeIterator):
                , 'right': right_text
                , 'lang': right_langs
                , 'hid': lemma_hid
+               , 'input': self.query_kwargs.get('user_input', '')
                }
 
 class FrontPageFormat(EntryNodeIterator):
