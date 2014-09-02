@@ -14,9 +14,6 @@ jQuery(document).ready ($) ->
 
   _ = module.fakeGetText
 
-  # TODO: generalized NDS API module
-  # TODO: generalized reader module for handling requests
-
   getHostShortname = (url_path) ->
     url = document.createElement('a')
     url.href = url_path
@@ -104,11 +101,8 @@ jQuery(document).ready ($) ->
 
     Templates.renderPopup(response, selection)
 
-
   lookupSelectEvent = (evt, string, element, range, opts, full_text) ->
 
-    # TODO: what breaks here with spaces
-    #
     result_elem = $(document).find(opts.formResults)
 
     # Remove punctuation, some browsers select it by default with double
@@ -148,9 +142,6 @@ jQuery(document).ready ($) ->
       lookup: lookup_string
       lemmatize: true
 
-    # TODO: there is now some bug where clicking on a word prevents the
-    # surrrounding environment from being recognized on subsequent lookups.
-    #
     # TODO: results should be displayed clearly: currently if there's a match
     # in two things for the same result, it isn't clear which is for which
     #
