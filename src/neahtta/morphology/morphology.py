@@ -648,11 +648,14 @@ class Morphology(object):
             _pos      = tag[0]
             _analysis = tag
             _fulltag  = tag
-            for f in forms:
-                lem = GeneratedForm(lemma, _pos, _analysis, fulltag=_fulltag,
-                         _input=f, tool=self.tool,
-                         tagsets=self.tagsets)
-                lems.append(lem)
+            if isinstance(forms, list):
+                for f in forms:
+                    lem = GeneratedForm(lemma, _pos, _analysis, fulltag=_fulltag,
+                             _input=f, tool=self.tool,
+                             tagsets=self.tagsets)
+                    lems.append(lem)
+            else:
+                lems = []
             return lems
 
         generated = sum(map(make_lemma, self.generate(*args, **kwargs)), [])
