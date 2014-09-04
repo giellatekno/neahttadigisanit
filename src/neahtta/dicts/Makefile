@@ -14,7 +14,7 @@
 ###         
 ###         #pikiskwewinatargets
 ###         
-###         #gawonihisditargets
+###         #dikaneisditargets
 ###         
 ###         #saantargets
 ###         
@@ -193,37 +193,37 @@ guusaaw: LEX_COMPILE_WORDS_DICTS := $(GUUSAAW_WORDS_DICTS_LEXICA)
 guusaaw: guusaaw-lexica compile_langs_fsts print_complete_message
 
 #####
-##### #gawonihisditargets
+##### #dikaneisditargets
 #####
 
-GAWONIHISDI_LANGS_ANALYSERS      :=   chr
-GAWONIHISDI_LANGS_LEXICA         :=
-GAWONIHISDI_WORDS_DICTS_LEXICA   :=   chreng
+DIKANEISDI_LANGS_ANALYSERS      :=   chr
+DIKANEISDI_LANGS_LEXICA         :=
+DIKANEISDI_WORDS_DICTS_LEXICA   :=   chreng
 
-.PHONY: gawonihisdi-lexica
-gawonihisdi-lexica: LEX_COMPILE_LANGS := $(GAWONIHISDI_LANGS_LEXICA)
-gawonihisdi-lexica: LEX_COMPILE_WORDS_DICTS := $(GAWONIHISDI_WORDS_DICTS_LEXICA)
-gawonihisdi-lexica: compile_langs_lexicon \
+.PHONY: dikaneisdi-lexica
+dikaneisdi-lexica: LEX_COMPILE_LANGS := $(DIKANEISDI_LANGS_LEXICA)
+dikaneisdi-lexica: LEX_COMPILE_WORDS_DICTS := $(DIKANEISDI_WORDS_DICTS_LEXICA)
+dikaneisdi-lexica: compile_langs_lexicon \
 			        compile_words_dicts_lexicon
 
-.PHONY: gawonihisdi-lexica
-gawonihisdi-lexica: LEX_COMPILE_LANGS := $(GAWONIHISDI_LANGS_LEXICA)
-gawonihisdi-lexica: LEX_COMPILE_WORDS_DICTS := $(GAWONIHISDI_WORDS_DICTS_LEXICA)
-gawonihisdi-lexica: compile_langs_lexicon compile_words_dicts_lexicon
+.PHONY: dikaneisdi-lexica
+dikaneisdi-lexica: LEX_COMPILE_LANGS := $(DIKANEISDI_LANGS_LEXICA)
+dikaneisdi-lexica: LEX_COMPILE_WORDS_DICTS := $(DIKANEISDI_WORDS_DICTS_LEXICA)
+dikaneisdi-lexica: compile_langs_lexicon compile_words_dicts_lexicon
 
-.PHONY: gawonihisdi
-gawonihisdi: GT_COMPILE_LANGS := $(GAWONIHISDI_LANGS_ANALYSERS)
-gawonihisdi: LEX_COMPILE_LANGS := $(GAWONIHISDI_LANGS_LEXICA)
-gawonihisdi: LEX_COMPILE_WORDS_DICTS := $(GAWONIHISDI_WORDS_DICTS_LEXICA)
-gawonihisdi: gawonihisdi-lexica compile_langs_fsts print_complete_message
+.PHONY: dikaneisdi
+dikaneisdi: GT_COMPILE_LANGS := $(DIKANEISDI_LANGS_ANALYSERS)
+dikaneisdi: LEX_COMPILE_LANGS := $(DIKANEISDI_LANGS_LEXICA)
+dikaneisdi: LEX_COMPILE_WORDS_DICTS := $(DIKANEISDI_WORDS_DICTS_LEXICA)
+dikaneisdi: dikaneisdi-lexica compile_langs_fsts print_complete_message
 
-rm-gawonihisdi-lexica: $(foreach xx, $(GAWONIHISDI_LANGS_LEXICA), $(xx)-all.xml) \
-				 $(foreach yy, $(GAWONIHISDI_WORDS_DICTS_LEXICA), $(yy).xml)
+rm-dikaneisdi-lexica: $(foreach xx, $(DIKANEISDI_LANGS_LEXICA), $(xx)-all.xml) \
+				 $(foreach yy, $(DIKANEISDI_WORDS_DICTS_LEXICA), $(yy).xml)
 	@rm -rf $^
 
-.PHONY: gawonihisdi-install
-gawonihisdi-install: GT_COMPILE_LANGS := $(GAWONIHISDI_LANGS_ANALYSERS)
-gawonihisdi-install: install_langs_fsts
+.PHONY: dikaneisdi-install
+dikaneisdi-install: GT_COMPILE_LANGS := $(DIKANEISDI_LANGS_ANALYSERS)
+dikaneisdi-install: install_langs_fsts
 
 
 #####
