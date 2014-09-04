@@ -629,6 +629,9 @@ class Config(Config):
         return self.from_yamlfile(rv, silent=silent)
 
     def read_multiword_list(self, path):
+        """ Read the user-specified MWE list.
+        """
+
         try:
             with open(os.path.join(os.getcwd(), path), 'r') as F:
                 lines = F.readlines()

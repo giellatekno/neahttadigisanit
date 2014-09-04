@@ -1,10 +1,10 @@
 ApplicationSettings:
   app_name: "Neahttadigisánit"
-  short_name: "gawonihisdi"
+  short_name: "dikaneisdi"
   # This will be the default bookmark title suggested to the user, does
   # not have to resemble the app name, or anything, and the following is
   # just a suggestion.
-  mobile_bookmark_name: "NDS: Gawonihisdi"
+  mobile_bookmark_name: "NDS: Dikaneisdi"
   new_style_templates: true
   default_locale: "en"
   default_pair: ["chr", "eng"]
@@ -15,6 +15,7 @@ ApplicationSettings:
   admins_to_email:
     - "lene.antonsen@uit.no"
     - "trond.trosterud@uit.no"
+    - "arppe@ualberta.ca"
   locales_available:
     - en
   # Meta description and keywords for Google search results.
