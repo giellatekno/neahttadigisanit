@@ -30,12 +30,19 @@ To do the same remotely, and restart the service, you would run:
 With the latter, Fabric will connect via SSH and run commands remotely.
 You may be asked for your SSH password.
 
-    TODO: fab local start_project PROJNAME
-      - create infrastructure for new project
-    TODO: fab local add_language PROJNAME LANGISO
-      - create basic files for languages
-
 """
+
+#    TODO: fab local start_project PROJNAME
+#      - create infrastructure for new project
+#        - configs/sample.config.yaml.in -> configs/PROJNAME.config.yaml.in
+#        - templates/about.blank.html -> configs/about.PROJNAME.html
+#        - mkdir:
+#
+#    TODO: fab local add_language PROJNAME LANGISO
+#      - create basic files for languages
+#        - mkdir:
+#            configs/language_specific_rules/tagsets/
+
 
 import os, sys
 
