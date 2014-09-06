@@ -428,6 +428,23 @@ img.i18n_flag {
     display: none; 
 }
 
+span.entry_source {
+    display: block;
+    width: 100%;
+    text-align: right;
+    font-style: italic;
+    font-size: 90%;
+    margin-top: .25em;
+}
+
+@media (max-width: 767px) {
+    span.entry_source {
+        margin-top: .5em;
+        margin-bottom: .5em;
+        font-size: 80%;
+    }
+}
+
 @media (min-width: 767px) {
     .entry_row {
         margin-bottom: 1em;
