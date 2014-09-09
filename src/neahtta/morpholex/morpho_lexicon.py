@@ -107,6 +107,7 @@ class MorphoLexicon(object):
                     'lemma': analysis.lemma,
                     'pos': analysis.pos,
                     'pos_type': False,
+                    'user_input': wordform,
                 }
 
                 if not analysis.lemma:
@@ -130,6 +131,7 @@ class MorphoLexicon(object):
                                              , target_lang
                                              , wordform
                                              , lemma_attrs=lemma_attrs
+                                             , user_input=wordform
                                              )
 
         if no_analysis_xml:

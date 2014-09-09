@@ -475,7 +475,7 @@ class Lexicon(object):
 
     def lookup(self, _from, _to, lemma,
                pos=False, pos_type=False,
-               _format=False, lemma_attrs=False):
+               _format=False, lemma_attrs=False, user_input=False):
 
         _dict = self.language_pairs.get((_from, _to), False)
 
@@ -486,10 +486,12 @@ class Lexicon(object):
 
         if not _lookup_func:
             raise Exception(
-                "Unknown lookup type for lemma: %s, pos: %s, pos_type: %s" %
-                ( lemma
+                "Unknown lookup type for <%s> (lemma: %s, pos: %s, pos_type: %s)" %
+                ( user_input
+                , lemma
                 , pos
-                , pos_type )
+                , pos_type
+                )
             )
 
         if lemma_attrs:
