@@ -21,6 +21,13 @@ from flask import make_response, request, current_app
 from functools import update_wrapper
 
 
+def json_response(data, *args, **kwargs):
+    return Response( response=json.dumps(data)
+                   , status=200
+                   , mimetype="application/json"
+                   )
+
+
 def crossdomain(origin=None, methods=None, headers=None,
                 max_age=21600, attach_to_all=True,
                 automatic_options=True):
@@ -97,9 +104,6 @@ def lookupWord(from_language, to_language):
 
     success = False
 
-    # TODO: going to do the multiword processing on the client, and send
-    # a list of lookups.
-
     if request.method == 'GET':
         # URL parameters
         lookup_key = user_input = request.args.get('lookup', False)
@@ -122,32 +126,19 @@ def lookupWord(from_language, to_language):
     else:
         lookups = [lookup_key]
 
-    # TODO: multiple lookups processing
-
     # Sometimes due to probably weird client-side behavior, the lookup
     # key is set but set to nothing, as such we need to return a
     # response when this happens, but the response is nothing.
+
+    response_data = {
+        'result'  : [],
+        'tags'    : [],
+        'tag_msg' : "",
+        'success' : False
+    }
+
     if lookup_key is False or not lookup_key.strip():
-
-        data = json.dumps({ 'result': []
-                          , 'tags': []
-                          , 'tag_msg': ""
-                          , 'success': False
-                          })
-
-        return Response( response=data
-                       , status=200
-                       , mimetype="application/json"
-                       )
-
-    def filterPOS(r):
-        def fixTag(t):
-            t_pos = t.get('pos', False)
-            if not t_pos:
-                return t
-            t['pos'] = tagfilter(t_pos, from_language, to_language)
-            return t
-        return fixTag(r)
+        return json_response(response_data)
 
     mlex = current_app.morpholexicon
 
@@ -155,7 +146,7 @@ def lookupWord(from_language, to_language):
     multi_tags = []
 
     for lookup in lookups:
-        entries_and_tags = mlex.lookup( lookup
+        morpholexicon_lookup = mlex.lookup( lookup
                                       , source_lang=from_language
                                       , target_lang=to_language
                                       , split_compounds=True
@@ -168,9 +159,7 @@ def lookupWord(from_language, to_language):
             joined = ' '.join(analysis.tag)
             return (analysis.lemma, joined)
 
-        analyses = [lem for e, lems in entries_and_tags
-                    for lem in lems
-                    if lem is not None]
+        analyses = morpholexicon_lookup.analyses
 
         tags = map(
             filterPOSAndTag,
@@ -183,14 +172,14 @@ def lookupWord(from_language, to_language):
             _u_in = user_input
 
         ui_lang = iso_filter(session.get('locale', to_language))
-        result = SimpleJSON( [e for e, analyses in entries_and_tags]
+        result = SimpleJSON( morpholexicon_lookup.entries
                            , target_lang=to_language
                            , source_lang=from_language
                            , ui_lang=ui_lang
                            , user_input=_u_in
                            )
 
-        result = map(filterPOS, list(result))
+        result = result.sorted_by_pos()
 
         if len(result) > 0:
             success = True

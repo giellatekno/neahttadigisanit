@@ -1,6 +1,6 @@
 ApplicationSettings:
-  app_name: "Neahttadigisánit"
-  app_meta_title: "Neahttadigisánit"
+  app_name: "Guusaaw"
+  app_meta_title: "Online Northern Haida dictionary"
   short_name: "guusaaw"
   default_locale: "hdn"
   default_pair: ["hdn", "eng"]

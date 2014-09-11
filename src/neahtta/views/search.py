@@ -315,12 +315,9 @@ class SearchResult(object):
         if filterer is not None:
             self.entry_filterer = filterer
 
-        analyses = sum(map(itemgetter(1), entries_and_tags), [])
-        analyses = [ (lem.input, lem.lemma, list(lem.tag))
-                     for lem in analyses
-                   ]
-
-        self.analyses = analyses
+        self.analyses = [ (lem.input, lem.lemma, list(lem.tag))
+                          for lem in entries_and_tags.analyses
+                        ]
 
         if len(self.formatted_results) > 0:
             self.successful_entry_exists = True

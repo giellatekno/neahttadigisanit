@@ -188,6 +188,21 @@ class SimpleJSON(EntryNodeIterator):
     """ A simple JSON-ready format for /lookups/
     """
 
+    def sorted_by_pos(self):
+        _from = self.query_kwargs.get('source_lang')
+        _to = self.query_kwargs.get('target_lang')
+
+        def filterPOS(r):
+            def fixTag(t):
+                t_pos = t.get('pos', False)
+                if not t_pos:
+                    return t
+                t['pos'] = tagfilter(t_pos, _from, _to)
+                return t
+            return fixTag(r)
+
+        return map(filterPOS, list(self))
+
     def clean(self, e):
         lemma, lemma_pos, lemma_context, _, lemma_hid = self.l_node(e)
         tgs, ts = self.tg_nodes(e)

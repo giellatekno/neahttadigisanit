@@ -1,6 +1,6 @@
 ApplicationSettings:
-  app_name: "Neahttadigisánit"
-  app_meta_title: "Neahttadigisánit"
+  app_name: "Pikiskwewina"
+  app_meta_title: "Online Plains Cree dictionary"
   short_name: "pikiskwewina"
   default_locale: "crk"
   default_pair: ["crk", "eng"]

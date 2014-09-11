@@ -1,4 +1,4 @@
-from flask import current_app, request, g, session
+from flask import current_app, request, g, session, render_template
 from . import blueprint
 
 @blueprint.context_processor
@@ -6,6 +6,21 @@ def project_css():
     if current_app.config.has_project_css:
         return {'project_css': current_app.config.has_project_css}
     return {}
+
+
+@blueprint.context_processor
+def sources_template():
+    get_template = current_app.jinja_env.select_template
+
+    sources_template_exists = False
+    try:
+        sources_template_path = './templates/references.%s.html' % current_app.config.short_name
+        with open(sources_template_path, 'r') as F:
+            sources_template_exists = True
+    except Exception, e:
+        sources_template_exists = False
+
+    return {'sources_template_exists': sources_template_exists}
 
 @blueprint.context_processor
 def text_tv():
