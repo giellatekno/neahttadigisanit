@@ -88,8 +88,8 @@ def about():
 
 @blueprint.route('/about/references/', methods=['GET'])
 def about_references():
-	""" This is also tied to a context processer making this item
-	visible in the navigational menu if the template is found. """
+    """ This is also tied to a context processer making this item
+    visible in the navigational menu if the template is found. """
 
     from jinja2 import TemplateNotFound
 
