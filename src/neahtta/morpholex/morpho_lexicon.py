@@ -50,6 +50,29 @@ class MorphoLexiconOverrides(object):
 
 morpholex_overrides = MorphoLexiconOverrides()
 
+from operator import itemgetter
+
+class MorphoLexiconResult(list):
+    """ A subcalss of the List object meant to make sorting through
+    results more readable.
+    """
+
+    @property
+    def analyses(self):
+        """ Return a list of Lemma objects for each entry result
+        """
+        # return [lem for e, lems in self
+        #             for lem in lems
+        #             if lem is not None]
+        return sum(map(itemgetter(1), self), [])
+
+    @property
+    def entries(self):
+        """ Return a list of entry objects for each entry result
+        """
+        # return [e for e, analyses in self]
+        return map(itemgetter(0), self)
+
 class MorphoLexicon(object):
     morphology_kwarg_names = [
         'split_compounds',
@@ -167,9 +190,9 @@ class MorphoLexicon(object):
             else:
                 return []
         elif (len(entries_and_tags) == 0) and not analyses:
-            return []
+            return MorphoLexiconResult([])
         else:
-            return entries_and_tags
+            return MorphoLexiconResult(entries_and_tags)
 
     def __init__(self, config):
         self.analyzers = config.morphologies

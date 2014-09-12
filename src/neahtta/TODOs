@@ -1,18 +1,11 @@
 
-* Reader needs some code cleanup
 * Wordpress install process needs to be fixed also: it's easy to forget
   to define what hostname that the wordpress plugin should use. This should
   be an option in the wordpress UI, instead of something that is hardcoded
 
-
 * tests should be yamlized too, and need clearer error messages. 
 
-* autocomplete - enter should select if navigating through box
-
 * mobile width - detail - paradigm disappears
-
-* POS needs to be selected by tagset always, not by being the first tag in
-  order. reduces requirement that analyser have special tagsets itself
 
 * need to hide 'more information' link when there isn't actually more information
   - probably slightly easier now
@@ -22,7 +15,7 @@
       http://localhost:5000/detail/sme/nob/goabbat%20guoibm%C3%A1me.html?no_compounds=true&lemma_match=true
 
      --
-      pron. resipr. 1.p.tot. Acc/G ... 
+      pron. resipr. 1.p.tot. Acc/G ...
      --
 
 # General design stuff
@@ -30,7 +23,7 @@
   example from detailed view:
     - lexicon( xml -> parser )
                 + language specific formatting (chance for markup)
-    - 
+    -
 
     - user query -> view -> lexicon lookup results -> formatter ->
       view does some more things, sorting, object manipulation
@@ -43,7 +36,7 @@
   morphology are clear, it needs to be improved and simplified.
 
    - morphology needs:
-     - 
+     -
 
    - lexicon needs:
 
@@ -62,7 +55,6 @@
 
         - pos=N, type=Prop and has @reg; -> display l/text() with l/@reg
         - pos=N, type=Prop and has @reg; -> display l/text() with l/@reg
-
 
      - able to programmatically define links to other entries
 

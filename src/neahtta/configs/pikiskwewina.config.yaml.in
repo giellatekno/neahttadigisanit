@@ -73,3 +73,10 @@ Dictionaries:
     lemma_multiword_delimiter: &korp_lemma_delim
       "%22%5D%20%5Bword%20%3D%20%22"
 
+ReaderConfig:
+  crk:
+    multiword_lookups: false
+    word_regex: |
+      [\u00C0-\u1FFF\u2C00-\uD7FF\w\.\-']+
+    word_regex_opts: "g"
+

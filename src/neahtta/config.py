@@ -20,7 +20,7 @@ yaml.add_constructor('!gettext', gettext_yaml_wrapper)
 # does not include the cases where a language uses a period or
 # apostrophe within a word.
 
-DEFAULT_WORD_REGEX = '[\u00C0-\u1FFF\u2C00-\uD7FF\w]+'
+DEFAULT_WORD_REGEX = '[\u00C0-\u1FFF\u2C00-\uD7FF\w\-]+'
 DEFAULT_WORD_REGEX_OPTS = 'g'
 
 class Config(Config):
@@ -688,6 +688,30 @@ class Config(Config):
                 else:
                     self._reader_options[l]['word_regex_opts'] = DEFAULT_WORD_REGEX_OPTS
                 mwe = conf.get('multiword_lookups', False)
+                mwe_range = conf.get('multiword_range', False)
+                if mwe_range:
+                    _min, _, _max = mwe_range.partition(',')
+                    try:
+                        _min = int(_min.strip().replace('-', ''))
+                    except Exception, e:
+                        _min = False
+
+                    try:
+                        _max = int(_max.strip().replace('+', ''))
+                    except Exception, e:
+                        _max = False
+
+                    if _min and _max:
+                        self._reader_options[l]['multiword_range'] = (_min, _max)
+                    else:
+                        print " * Multiword range must specify min _and_ max. If there is no min or max, specify 0"
+                        print "   got: " + mwe_range
+                        print "   expecting:"
+                        print '    multiword_range: "-2,+2"'
+                        print '  or '
+                        print '    multiword_range: "0,+2"'
+                        print e
+                        sys.exit()
                 # mwe_l = conf.get('multiword_list', False)
                 # if mwe and mwe_l:
                 #     is_file = mwe_l.get('file', False)

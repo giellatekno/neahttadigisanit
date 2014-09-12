@@ -136,6 +136,11 @@
                                 <li><a href="/about/">
                                         <span>{% trans %}About{% endtrans %}</span>
                                 </a></li>
+                                {% if sources_template_exists %}
+                                    <li><a href="/about/references/">
+                                            <span>{% trans %}References{% endtrans %}</span>
+                                    </a></li>
+                                {% endif %}
                                 {% block extra_nav %}
                                 {# TODO: locales available #}
                                 {% endblock %}

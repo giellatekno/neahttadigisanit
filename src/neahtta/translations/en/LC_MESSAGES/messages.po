@@ -804,7 +804,7 @@ msgstr ""
 
 #: templates/index_search_form.html:15
 msgid "ohcansátni"
-msgstr ""
+msgstr "Search term"
 
 #: templates/index_search_form.html:20 templates/index_search_form.html:39
 #: templates/index_search_form.html:43 templates/word_detail.html:97

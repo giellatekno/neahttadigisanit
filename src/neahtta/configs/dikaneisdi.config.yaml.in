@@ -1,5 +1,6 @@
 ApplicationSettings:
-  app_name: "Dikaneisdi"
+  # "ᏗᎧᏁᎢᏍᏗ" ? 
+  app_name: !gettext "Dikaneisdi" 
   short_name: "dikaneisdi"
   # This will be the default bookmark title suggested to the user, does
   # not have to resemble the app name, or anything, and the following is

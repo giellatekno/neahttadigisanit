@@ -75,7 +75,7 @@ Dictionaries:
 ReaderConfig:
   hdn:
     multiword_lookups: true
-    # TODO: multiword_distance: "-1,+1"
+    multiword_range: "-4,+4"
     multiword_list:
       # File format-- plain text, but line coments allowed:
       # Use %WORD% as a marker for any word these may co-occur with, i.e., if

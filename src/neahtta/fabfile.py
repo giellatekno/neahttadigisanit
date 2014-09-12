@@ -36,6 +36,7 @@ You may be asked for your SSH password.
 #      - create infrastructure for new project
 #        - configs/sample.config.yaml.in -> configs/PROJNAME.config.yaml.in
 #        - templates/about.blank.html -> configs/about.PROJNAME.html
+#        - grey box search notice template
 #        - mkdir:
 #
 #    TODO: fab local add_language PROJNAME LANGISO
