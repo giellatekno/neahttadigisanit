@@ -147,7 +147,12 @@ jQuery(document).ready ($) ->
     #
     if settings.multiword_lookups
       post_data.multiword = true
-      mws = selectionizer.getMultiwordPermutations()
+      _min = settings.multiword_range[0]
+      _max = settings.multiword_range[1]
+
+      console.log [_min, _max]
+      mws = selectionizer.getMultiwordPermutations(_min, _max)
+      console.log mws
 
       # TODO: filter only on permitted mwes from list? 
       post_data.lookup = mws.join('|')

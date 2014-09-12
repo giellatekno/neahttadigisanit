@@ -47,12 +47,6 @@ module.Selection = class Selection
     window.selected_range = current_range_obj
     window.previous_contents = window.selected_range.commonAncestorContainer.innerHTML
 
-    # TODO: track selection parent node-- if it is the same, it will change how
-    # we index text, since indexes are recalculated when nodes are destroyed
-    
-    # TODO: how to access range in indexes of selected item? Apparently can
-    # only do this relative to all text in the document.
-
     return [current_range_obj, full_text]
   
   cloneContents: (range) ->
@@ -76,43 +70,47 @@ module.Selection = class Selection
 
   getPreviousWords: (n=1) ->
     [before, _, _] = @getPartitionedSelection()
+    # index of current word, slicing is inaccurate.
 
     # TODO: make sure word regex is set-- currently a bad practice to expect it to be
     #
     before = before.match(window.word_regex)
     if before
-      selected_words = before.slice(before.length-n, before.length)
+      # selected_words = before.slice(before.length-n, before.length)
+      selected_words = before.slice(parseInt("-#{n}"))
     else
       selected_words = []
 
     return selected_words
 
-  getMultiwordEnvironment: (l=1, r=1) ->
+  getMultiwordEnvironment: (l=1, r=1, t="#LOOKUP#") ->
     previous_words = @getPreviousWords l
     following_words = @getNextWords r
 
-    # TODO: l/r
-    last_word = previous_words.slice(-1)[0]
-    first_word = following_words[0]
+    if previous_words.length > 0
+      previous_words.push(t)
+    else if previous_words.length == 0 and following_words.length > 0
+      following_words.unshift(t)
 
-    return [last_word, "#LOOKUP#", first_word]
+    combinations = previous_words.zipPermutations(following_words)
+
+    return combinations
 
   getMultiwordPermutations: (l=1, r=1) ->
-    mws = @getMultiwordEnvironment(l, r)
+    t = window.selected_range.text()
+    mws = @getMultiwordEnvironment(l, r, t)
     word_delimiter = ' '
 
-    t = window.selected_range.text()
+    joined = []
 
-    mwes = [t]
+    for mw in mws
+      _mw = mw.join(word_delimiter)
+      if _mw.length > 0 and _mw.search(t) > -1
+        joined.push(_mw)
 
-    if mws[0]
-      mwes.push [mws[0], t].join(word_delimiter)
-    if mws.slice(-1)[0]
-      mwes.push [t, mws.slice(-1)[0]].join(word_delimiter)
-    if mws[0] and mws.slice(-1)[0]
-      mwes.push [mws[0], t, mws.slice(-1)[0]].join(word_delimiter)
+    joined = _.uniq(joined)
 
-    return mwes
+    return joined
 
   getNextWords: (n=1) ->
     [_, _, after] = @getPartitionedSelection()
