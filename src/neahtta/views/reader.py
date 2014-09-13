@@ -58,9 +58,11 @@ def crossdomain(origin=None, methods=None, headers=None,
 
             h = resp.headers
 
+            # origin is '*' here
             h['Access-Control-Allow-Origin'] = origin
             h['Access-Control-Allow-Methods'] = get_methods()
             h['Access-Control-Max-Age'] = str(max_age)
+            h['Content-Type'] = 'application/json'
             if headers is not None:
                 h['Access-Control-Allow-Headers'] = headers
             return resp
@@ -69,9 +71,9 @@ def crossdomain(origin=None, methods=None, headers=None,
         return update_wrapper(wrapped_function, f)
     return decorator
 
-# @crossdomain(origin='*')
 @blueprint.route('/lookup/<from_language>/<to_language>/',
-           methods=['GET', 'POST'], endpoint="lookup")
+           methods=['OPTIONS', 'GET', 'POST'], endpoint="lookup")
+@crossdomain(origin='*', headers=['Content-Type'])
 def lookupWord(from_language, to_language):
     """
     .. http:post:: /lookup/(string:from_language)/(string:to_language)
