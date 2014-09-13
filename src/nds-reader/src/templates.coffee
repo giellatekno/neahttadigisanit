@@ -3,6 +3,7 @@ module.Templates = @Templates =
   renderPopup: (response, selection) ->
     # TODO: make this a uniform template with logic separated.
     #
+    # NB: overriding underscorejs here.
     _ = module.fakeGetText
 
     first = (somearray) ->
@@ -114,6 +115,7 @@ module.Templates = @Templates =
       _tooltipTarget.popover('show')
     
   NotifyWindow: (text) ->
+    # NB: overriding underscorejs here.
     _ = module.fakeGetText
     return $("""
       <div class="modal hide fade" id="notifications">
@@ -135,6 +137,7 @@ module.Templates = @Templates =
       """)
   
   OptionsTab: (opts) ->
+    # NB: overriding underscorejs here.
     _ = module.fakeGetText
     makeLanguageOption = (options) ->
       options_block = []
@@ -272,6 +275,7 @@ module.Templates = @Templates =
     return el
 
   ErrorBar: (args) ->
+    # NB: overriding underscorejs here.
     _ = module.fakeGetText
     host = args.host
     el = $("""

@@ -155,7 +155,8 @@ jQuery(document).ready ($) ->
       console.log mws
 
       # TODO: filter only on permitted mwes from list? 
-      post_data.lookup = mws.join('|')
+      # TODO: now that we're sending json, can drop the join
+      post_data.lookup = mws
 
     url = "#{opts.api_host}/#{uri}"
 
@@ -180,10 +181,10 @@ jQuery(document).ready ($) ->
 
     $.ajax({
       url: url,
-      type: "GET",
-      contentType: "application/jsonp; charset=UTF-8",
-      dataType: "jsonp",
-      data: post_data
+      type: "POST",
+      contentType: "application/json; charset=UTF-8",
+      # dataType: "jsonp",
+      data: JSON.stringify post_data
     }).done(response_func)
 
     return false
