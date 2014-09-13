@@ -124,7 +124,11 @@ def lookupWord(from_language, to_language):
         multiword   = input_json.get('multiword', False)
 
     if multiword:
-        lookups = lookup_key.split('|')
+        if isinstance(lookup_key, str) or isinstance(lookup_key, unicode):
+            lookups = lookup_key.split('|')
+        else:
+            lookups = lookup_key
+            lookup_key = '|'.join(lookup_key)
     else:
         lookups = [lookup_key]
 
