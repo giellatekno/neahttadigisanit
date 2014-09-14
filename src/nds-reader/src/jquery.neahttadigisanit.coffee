@@ -108,7 +108,11 @@ jQuery(document).ready ($) ->
     # Remove punctuation, some browsers select it by default with double
     # click
     string = $.trim(string)
-              .replace(/\b[-.,()&$#!\[\]{}"]+\B|\B[-.,()&$#!\[\]{}"]+\b/g, "")
+    # TODO: this doesn't seem to actually be adhering to \b, or is considering
+    # - surroundings to be part of \b and thus stripping word-internal -. Need
+    # to replace with beginning and ends, but evaluate first whether this is
+    # actually necessary
+    # .replace(/\b[-.,()&$#!\[\]{}"]+\B|\B[-.,()&$#!\[\]{}"]+\b/g, "")
 
     settings = $.fn.getCurrentDictOpts().settings
     if settings.multiword_lookups
