@@ -35,8 +35,6 @@ def crossdomain(origin=None, methods=None, headers=None,
     modifications. This provides an OPTIONS response containing
     permitted headers and content types.
     """
-    from   logging                        import getLogger
-    debug_log = getLogger("debug_log")
 
     if methods is not None:
         methods = ', '.join(sorted(x.upper() for x in methods))
@@ -64,19 +62,6 @@ def crossdomain(origin=None, methods=None, headers=None,
                 return resp
 
             h = resp.headers
-            debug_log.info(request.method)
-            debug_log.info(repr(origin))
-
-            debug_log.info("headers: " + repr(headers))
-
-            debug_log.info("request.headers:")
-            for k, v in request.headers:
-                debug_log.info("    %s\t%s" % (k, v))
-
-            debug_log.info("h:")
-            for k, v in h:
-                debug_log.info("    %s\t%s" % (k, v))
-            debug_log.info(" -- ")
 
             # origin is '*' here
             h['Access-Control-Allow-Origin'] = origin
@@ -144,6 +129,8 @@ def lookupWord(from_language, to_language):
         pretty                  = input_json.get('pretty', False)
 
         multiword   = input_json.get('multiword', False)
+    elif request.method == 'OPTIONS':
+        return json_response({})
 
     if multiword:
         if isinstance(lookup_key, str) or isinstance(lookup_key, unicode):

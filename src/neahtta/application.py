@@ -29,11 +29,6 @@ useLogFile = logging.FileHandler('user_log.txt')
 user_log.addHandler(useLogFile)
 user_log.setLevel("INFO")
 
-debug_log = getLogger("debug_log")
-useLogFile = logging.FileHandler('debug_log.txt')
-debug_log.addHandler(useLogFile)
-debug_log.setLevel("INFO")
-
 def jinja_options_and_filters(app):
 
     from filters import register_filters
@@ -160,7 +155,15 @@ def create_app():
         sys.exit()
 
     app = register_babel(app)
-
+    if not app.debug:
+        import logging
+        from logging.handlers import SMTPHandler
+        mail_handler = SMTPHandler('127.0.0.1',
+                                   'server-error@gtweb.uit.no',
+                                   ADMINS, 'NDS error')
+        mail_handler.setLevel(logging.ERROR)
+        app.logger.addHandler(mail_handler)
+    
     from logging import FileHandler
     from logging.handlers import SMTPHandler
     from socket import gethostname
