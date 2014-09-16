@@ -29,6 +29,11 @@ useLogFile = logging.FileHandler('user_log.txt')
 user_log.addHandler(useLogFile)
 user_log.setLevel("INFO")
 
+debug_log = getLogger("debug_log")
+useLogFile = logging.FileHandler('debug_log.txt')
+debug_log.addHandler(useLogFile)
+debug_log.setLevel("INFO")
+
 def jinja_options_and_filters(app):
 
     from filters import register_filters
