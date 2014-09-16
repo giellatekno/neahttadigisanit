@@ -249,6 +249,26 @@ def ie8_instrux_json():
                    , mimetype="application/json"
                    )
 
+@blueprint.route('/read/test/', methods=['GET'])
+def reader_test_page():
+    """ This is also tied to a context processer making this item
+    visible in the navigational menu if the template is found. """
+
+    # TODO: make this work
+    from jinja2 import TemplateNotFound
+
+    context = {
+        'current_host': request.host,
+    }
+
+    try:
+        return render_template('reader_tests.%s.html' % current_app.config.short_name, **context)
+    except TemplateNotFound:
+        return Response( response=formatted
+                       , status=404
+                       , mimetype="application/json"
+                       )
+
 @blueprint.route('/read/update/', methods=['GET'])
 def reader_update():
     from bookmarklet_code import bookmarklet_escaped
