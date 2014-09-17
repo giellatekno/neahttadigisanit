@@ -1,29 +1,26 @@
 <footer class="footer">
     <div class="container-fluid">
         <div class="row-fluid">
-            <div class="span4 offset1" id="logos">
-                <img src="{{url_for('static', filename='img/uitlogo.png')}}" id="uitlogo" class="pull-right" alt="UiT logo">
-                {# TODO: extra logos for other institutions need
-                mobile-specific classes. maybe they should go under the
-                text below
-                <img src="{{url_for('static', filename='img/uitlogo.png')}}" id="uoalogo" class="pull-right" alt="UiT logo">
-                <img src="{{url_for('static', filename='img/uitlogo.png')}}" id="uoalogo" class="pull-right" alt="UiT logo">
-                #}
+            <div class="span12">
+            <ul class="partners">
+                <li class="logo logo-left">
+                    <img src="{{url_for('static', filename='img/pikiskwewina/fnuclogo-color-transp.png')}}" 
+                         id="fnuclogo"
+                         class="pull-right" 
+                         alt="First Nations University Logo">
+                </li>
+                <li class="center_text">
+                    <p class="lead">
+                        <span>{% trans %}Created with free and open-source language tools from <em><a href="http://giellatekno.uit.no">Giellatekno</a></em>, a Sámi Language Technology group at the <a href="http://uit.no">University of Tromsø</a>.{% endtrans %}</span>
+                    </p>
+                </li>
+                <li class="logo logo-right">
+                    <img src="{{url_for('static', filename='img/pikiskwewina/ualogo-color-small.png')}}" 
+                         id="ualogo"
+                         class="pull-right" 
+                         alt="University of Alberta">
+                </li>
             </div>
-            <div class="span4">
-                <p class="lead">
-                    <span>{% trans %}Created with free and open-source language tools from <em><a href="http://giellatekno.uit.no">Giellatekno</a></em>, a Sámi Language Technology group at the <a href="http://uit.no">University of Tromsø</a>.{% endtrans %}</span>
-                </p>
-            </div>
-            {# 
-            <div class="span4" style="border-left: 1px solid #CCC">
-                <ul>
-                    <li><a href="#">Divvun</a></li>
-                    <li><a href="#">Oahpa</a></li>
-                    <li><a href="#">Kursa</a></li>
-                </ul>
-            </div>
-            #}
         </div>
     </div>
 </footer>

@@ -254,7 +254,6 @@ def reader_test_page():
     """ This is also tied to a context processer making this item
     visible in the navigational menu if the template is found. """
 
-    # TODO: make this work
     from jinja2 import TemplateNotFound
 
     context = {

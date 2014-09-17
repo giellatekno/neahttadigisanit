@@ -1,8 +1,43 @@
+.footer {
+    height: 300px;
+}
 #logos img {
     padding-top: .5em;
     position: relative;
     margin: 0 auto;
-    width: 100px;
-    height: 100px;
     margin-left: 20px;
+}
+
+.partners {
+    display: block;
+    list-style-type: none;
+    margin: 0 auto;
+    width: 660px;
+    height: 300px;
+}
+
+.partners li {
+    display: block;
+    margin: 0 0 0 0;
+    padding: 0 10px;
+    float: left;
+    width: 200px;
+}
+
+.partners .center_text {
+    display: block;
+}
+
+.partners .lead {
+    font-size: 18px !important;
+    line-height: 24px !important;
+
+}
+
+#fnuclogo {
+    margin-right: 25px;
+}
+
+#ualogo {
+    margin-top: 50px;
 }
