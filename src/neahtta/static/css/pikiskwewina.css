@@ -1,6 +1,7 @@
 .footer {
-    height: 300px;
+    height: 550px;
 }
+
 #logos img {
     padding-top: .5em;
     position: relative;
@@ -12,7 +13,10 @@
     display: block;
     list-style-type: none;
     margin: 0 auto;
-    width: 660px;
+}
+
+.partners-desktop {
+    width: 860px;
     height: 300px;
 }
 
@@ -20,6 +24,9 @@
     display: block;
     margin: 0 0 0 0;
     padding: 0 10px;
+}
+
+.partners-desktop li {
     float: left;
     width: 200px;
 }
@@ -28,16 +35,25 @@
     display: block;
 }
 
-.partners .lead {
+.partners-desktop .lead {
     font-size: 18px !important;
     line-height: 24px !important;
 
 }
 
-#fnuclogo {
+.partners-desktop #fnuclogo {
     margin-right: 25px;
 }
 
-#ualogo {
+.partners-desktop #ualogo {
     margin-top: 50px;
+}
+
+.partners-mobile #fnuclogo {
+    margin-top: 15px;
+}
+
+
+.partners-mobile #ualogo {
+    margin-top: 20px;
 }
