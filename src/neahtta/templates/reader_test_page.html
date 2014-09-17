@@ -6,19 +6,10 @@
         <script type='text/javascript' src='/static/js/neahttadigisanit.jquery.min.js'></script>
 
         <script type='text/javascript'>
-            var NDS_SHORT_NAME = '{{ current_host }}';
-            DSt.set(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair', null);
-            DSt.set(NDS_SHORT_NAME + '-' + 'nds-languages', null);
-            DSt.set(NDS_SHORT_NAME + '-' + 'nds-localization', null);
-            DSt.set(NDS_SHORT_NAME + '-' + 'nds-stored-config', null);
-            delete window.lookup_regex;
+            localStorage.clear();
             jQuery(document).ready(function (){
-                // Register the input form with options
-                // NOTE: this doesn't need to be included for mouseclick lookups
-
-                // Enable options for inline clicking
                 jQuery(document).selectToLookup({
-                    api_host: 'http://{{ current_host }}',
+                    api_host: 'http://' + window.location.host,
                 });
             });
         </script>
