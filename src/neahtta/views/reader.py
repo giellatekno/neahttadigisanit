@@ -264,10 +264,7 @@ def reader_test_page():
     try:
         return render_template('reader_tests.%s.html' % current_app.config.short_name, **context)
     except TemplateNotFound:
-        return Response( response=formatted
-                       , status=404
-                       , mimetype="application/json"
-                       )
+        return render_template('reader_test_page.html')
 
 @blueprint.route('/read/update/', methods=['GET'])
 def reader_update():
