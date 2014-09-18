@@ -27,7 +27,7 @@ class MorphoLexiconOverrides(object):
                 else:
                     continue
 
-            return entries_and_tags
+            return MorphoLexiconResult(entries_and_tags)
 
         return decorate
 
