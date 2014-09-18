@@ -154,9 +154,7 @@ jQuery(document).ready ($) ->
       _min = settings.multiword_range[0]
       _max = settings.multiword_range[1]
 
-      console.log [_min, _max]
       mws = selectionizer.getMultiwordPermutations(_min, _max)
-      console.log mws
 
       # TODO: filter only on permitted mwes from list? 
       # TODO: now that we're sending json, can drop the join
@@ -342,10 +340,10 @@ jQuery(document).ready ($) ->
         locales = JSON.parse locales
       window.nds_opts.localization = locales
 
-      dicts = DSt.get(NDS_SHORT_NAME + '-' + 'nds-languages')
-      if typeof dicts == "string"
-        dicts = JSON.parse dicts
-      window.nds_opts.dictionaries = dicts
+      # dicts = DSt.get(NDS_SHORT_NAME + '-' + 'nds-languages')
+      # if typeof dicts == "string"
+      #   dicts = JSON.parse dicts
+      # window.nds_opts.dictionaries = dicts
 
       initializeWithSettings()
 
@@ -380,12 +378,11 @@ jQuery(document).ready ($) ->
       stored_config = DSt.get(NDS_SHORT_NAME + '-' + 'nds-stored-config')
       if stored_config?
         recallLanguageOpts()
-      else
-        url = "#{opts.api_host}/read/config/"
-        $.getJSON(
-          url + '?callback=?'
-          extendLanguageOptsAndInit
-        )
+      url = "#{opts.api_host}/read/config/"
+      $.getJSON(
+        url + '?callback=?'
+        extendLanguageOptsAndInit
+      )
       return false
     else
       newVersionNotify()
