@@ -1,0 +1,47 @@
+<footer class="footer">
+    <div class="container-fluid hidden-phone">
+        <div class="row-fluid">
+            <div class="span12">
+                <ul class="partners partners-desktop">
+                    <li class="logo logo-right">
+                        <img src="{{url_for('static', filename='img/pikiskwewina/ualogo-color-small.png')}}" 
+                             id="ualogo"
+                             alt="University of Alberta">
+                    </li>
+                    <li class="center_text">
+                        <p class="lead">
+                            <span>{% trans %}Created with free and open-source language tools from <em><a href="http://giellatekno.uit.no">Giellatekno</a></em>, a Sámi Language Technology group at the <a href="http://uit.no">University of Tromsø</a>.{% endtrans %}</span>
+                        </p>
+                    </li>
+                    <li class="logo logo-left">
+                        <img src="{{url_for('static', filename='img/uitlogo.png')}}" 
+                             id="uitlogo"
+                             class="pull-left" 
+                             alt="UiT logo">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid visible-phone">
+        <div class="row-fluid partners-mobile">
+            <div class="span3">
+                <img src="{{url_for('static', filename='img/pikiskwewina/ualogo-color-small.png')}}" 
+                     id="ualogo"
+                     alt="University of Alberta">
+            </div>
+            <div class="span3">
+                <p class="lead">
+                    <span>{% trans %}Created with free and open-source language tools from <em><a href="http://giellatekno.uit.no">Giellatekno</a></em>, a Sámi Language Technology group at the <a href="http://uit.no">University of Tromsø</a>.{% endtrans %}</span>
+                </p>
+            </div>
+            <div class="span3">
+                <img src="{{url_for('static', filename='img/uitlogo.png')}}" 
+                     id="uitlogo"
+                     alt="UiT Logo">
+            </div>
+        </div>
+    </div>
+</footer>
+
+{# vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}

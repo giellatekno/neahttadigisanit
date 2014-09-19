@@ -1,0 +1,61 @@
+.footer {
+    height: 550px;
+}
+
+#logos img {
+    padding-top: .5em;
+    position: relative;
+    margin: 0 auto;
+    margin-left: 20px;
+}
+
+.partners {
+    display: block;
+    list-style-type: none;
+    margin: 0 auto;
+}
+
+.partners-desktop {
+    width: 660px;
+    height: 300px;
+}
+
+.partners li {
+    display: block;
+    margin: 0 0 0 0;
+    padding: 0 10px;
+}
+
+.partners-desktop li {
+    float: left;
+    width: 200px;
+}
+
+.partners .center_text {
+    display: block;
+}
+
+.partners-desktop .lead {
+    font-size: 18px !important;
+    line-height: 24px !important;
+
+}
+
+.partners-desktop #uitlogo {
+    margin-top: 25px;
+}
+
+.partners-desktop #ualogo {
+    margin-top: 50px;
+}
+
+.partners-mobile #ualogo {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    width: 75%;
+}
+.partners-mobile #uitlogo {
+    margin-bottom: 15px;
+    width: 100px;
+    height: 100px;
+}
