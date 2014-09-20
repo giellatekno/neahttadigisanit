@@ -70,6 +70,18 @@ Dictionaries:
     # "] [word = "
     lemma_multiword_delimiter: &korp_lemma_delim
       "%22%5D%20%5Bword%20%3D%20%22"
+    input_variants:
+      # "mobile" is important, otherwise templates and swapping won't
+      # work
+      - type: "standard"
+        description: !gettext "Standard"
+        example: "(aá)"
+        # NB: must be same as analyser name
+        short_name: "hdn"
+      - type: "mobile"
+        description: !gettext "Mobile friendly"
+        example: "(a &rarr; a ~ á)"
+        short_name: "hdnM"
 
 # TODO: move this section to its own file in language_specific_confs.
 
