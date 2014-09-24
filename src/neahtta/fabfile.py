@@ -250,6 +250,7 @@ def update_gtsvn():
             'langs/',
             'startup-langs/',
             'words/',
+            'art/dicts/',
         ]
         print(cyan("** svn up **"))
     for p in paths:
@@ -324,6 +325,11 @@ def compile_dictionary(dictionary=False, restart=False):
 
     if failed:
         print(red("** Something went wrong while compiling <%s> **" % dictionary))
+
+# @task
+# def restart_all_running():
+# TODO: ""ls -c1 *.pid | grep -o '^\w*' | xargs -I fab local {} restart_service"
+
 
 @task
 def compile(dictionary=False,restart=False):
