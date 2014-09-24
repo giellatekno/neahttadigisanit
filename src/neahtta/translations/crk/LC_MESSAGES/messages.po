@@ -1,17 +1,18 @@
-# French translations for PROJECT.
-# Copyright (C) 2013 ORGANIZATION
+# None translations for PROJECT.
+# Copyright (C) 2014 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
 #
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-09-24 18:20-0500\n"
-"PO-Revision-Date: 2013-11-07 11:38+0200\n"
-"Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
-"Language-Team: fr <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"PO-Revision-Date: 2014-09-24 18:20-0500\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: crk <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -47,15 +48,15 @@ msgstr ""
 #: configs/language_names.py:23 configs/language_names.py:24
 #: templates/more_dictionaries.html:27
 msgid "North Sámi"
-msgstr "Same du nord"
+msgstr ""
 
 #: configs/language_names.py:25
 msgid "North Sámi (#SoMe)"
-msgstr "Same du nord (#SoMe)"
+msgstr ""
 
 #: configs/language_names.py:26 configs/language_names.py:90
 msgid "English"
-msgstr "Anglais"
+msgstr ""
 
 #: configs/language_names.py:27
 msgid "Hungarian"
@@ -63,11 +64,11 @@ msgstr ""
 
 #: configs/language_names.py:30 templates/more_dictionaries.html:28
 msgid "South Sámi"
-msgstr "Same du sud"
+msgstr ""
 
 #: configs/language_names.py:33 configs/language_names.py:34
 msgid "Komi"
-msgstr "Komi"
+msgstr ""
 
 #: configs/language_names.py:35
 msgid "Udmurt"
@@ -75,20 +76,20 @@ msgstr ""
 
 #: configs/language_names.py:38 templates/more_dictionaries.html:38
 msgid "Kven"
-msgstr "Kvène"
+msgstr ""
 
 #: configs/language_names.py:39
 msgid "Olonetsian"
-msgstr "Olonetsien"
+msgstr ""
 
 #: configs/language_names.py:40
 msgid "Estonian"
-msgstr "Estonien"
+msgstr ""
 
 #: configs/language_names.py:43 configs/language_names.py:44
 #: templates/more_dictionaries.html:38
 msgid "Livonian"
-msgstr "Live"
+msgstr ""
 
 #: configs/language_names.py:44 configs/language_names.py:64
 #: configs/language_names.py:68
@@ -97,7 +98,7 @@ msgstr ""
 
 #: configs/language_names.py:45 templates/more_dictionaries.html:38
 msgid "Izhorian"
-msgstr "Ingrien"
+msgstr ""
 
 #: configs/language_names.py:46
 msgid "Veps"
@@ -113,31 +114,31 @@ msgstr ""
 
 #: configs/language_names.py:51
 msgid "Erzya Mordvin"
-msgstr "Erzya"
+msgstr ""
 
 #: configs/language_names.py:52 templates/more_dictionaries.html:39
 msgid "Moksha"
-msgstr "Mokcha"
+msgstr ""
 
 #: configs/language_names.py:53 configs/language_names.py:92
 msgid "French"
-msgstr "Français"
+msgstr ""
 
 #: configs/language_names.py:56
 msgid "Western Mari"
-msgstr "Mari des montagnes"
+msgstr ""
 
 #: configs/language_names.py:57
 msgid "Eastern Mari"
-msgstr "Mari des prairies"
+msgstr ""
 
 #: configs/language_names.py:60
 msgid "Nenets"
-msgstr "Nénètse"
+msgstr ""
 
 #: configs/language_names.py:63 configs/language_names.py:64
 msgid "Skolt Sámi"
-msgstr "Same de Skolt"
+msgstr ""
 
 #: configs/language_names.py:67 configs/language_names.py:68
 msgid "Plains Cree"
@@ -149,20 +150,20 @@ msgstr ""
 
 #: configs/language_names.py:76
 msgid "Northern Haida"
-msgstr "Haida du nord"
+msgstr ""
 
 #: configs/language_names.py:79 configs/language_names.py:85
 msgid "Finnish"
-msgstr "Finnois"
+msgstr ""
 
 #: configs/language_names.py:80 configs/language_names.py:86
 #: configs/language_names.py:87
 msgid "Norwegian"
-msgstr "Norvégien"
+msgstr ""
 
 #: configs/language_names.py:82 configs/language_names.py:83
 msgid "Russian"
-msgstr "Russe"
+msgstr ""
 
 #: configs/language_names.py:88 configs/language_names.py:89
 msgid "Latvian"
@@ -226,7 +227,7 @@ msgstr ""
 #: static/js/neahttadigisanit.jquery.js:13272
 #: static/js/neahttadigisanit.min.js:2964
 msgid "Dictionary"
-msgstr "Dictionnaire"
+msgstr ""
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13272
 #: static/js/neahttadigisanit.jquery.js:13272
@@ -274,7 +275,7 @@ msgstr ""
 #: static/js/neahttadigisanit.jquery.js:13340
 #: static/js/neahttadigisanit.min.js:3032
 msgid "Error!"
-msgstr "Erreur!"
+msgstr ""
 
 #: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:13340
 #: static/js/neahttadigisanit.jquery.js:13340
@@ -737,9 +738,8 @@ msgstr ""
 
 #: templates/index_new_style.html:19 templates/macros.html:5
 #: templates/macros.html:13
-#, fuzzy
 msgid "Texts"
-msgstr "Nénètse"
+msgstr ""
 
 #: templates/index_search_form.html:12
 msgid "Press Tab to select a word"
@@ -770,7 +770,7 @@ msgstr ""
 #: templates/left_dictionary_list.html:1
 #: templates/mobile_nav_dictionary_list.html:1
 msgid "Dictionaries"
-msgstr "Dictionnaires"
+msgstr ""
 
 #: templates/left_dictionary_list.html:9
 #: templates/mobile_nav_dictionary_list.html:48
@@ -821,11 +821,11 @@ msgstr ""
 
 #: templates/more_dictionaries.html:39
 msgid "Mordvinic languages"
-msgstr "Langues mordves"
+msgstr ""
 
 #: templates/more_dictionaries.html:39
 msgid "Erzya"
-msgstr "Erzya"
+msgstr ""
 
 #: templates/more_dictionaries.html:41
 msgid "Mari languages"
@@ -1013,91 +1013,4 @@ msgstr ""
 #: views/search.py:852
 msgid "Invalid format. Only json and html allowed."
 msgstr ""
-
-#~ msgid "Standard (äǟ)"
-#~ msgstr ""
-
-#~ msgid "Mobile friendly (a &rarr; ä ~ ǟ)"
-#~ msgstr ""
-
-#~ msgid "Standard (ǩ)"
-#~ msgstr ""
-
-#~ msgid "Mobile friendly (k &rarr; k ~ ǩ)"
-#~ msgstr ""
-
-#~ msgid "Molotsov orthography (ԅ &rarr; зь)"
-#~ msgstr ""
-
-#~ msgid "Standard (aâ)"
-#~ msgstr ""
-
-#~ msgid "Mobile friendly (a &rarr; a ~ â)"
-#~ msgstr ""
-
-#~ msgid "isCharacterDataNode"
-#~ msgstr ""
-
-#~ msgid "nodeIndex"
-#~ msgstr ""
-
-#~ msgid "nodeLength"
-#~ msgstr ""
-
-#~ msgid "containsPositions"
-#~ msgstr ""
-
-#~ msgid "isWhitespace"
-#~ msgstr ""
-
-#~ msgid "isCollapsedWhitespace"
-#~ msgstr ""
-
-#~ msgid "computedDisplay"
-#~ msgstr ""
-
-#~ msgid "collapsed"
-#~ msgstr ""
-
-#~ msgid "ignored"
-#~ msgstr ""
-
-#~ msgid "nextPos"
-#~ msgstr "Nénètse"
-
-#~ msgid "previous"
-#~ msgstr ""
-
-#~ msgid "textNodeInfo"
-#~ msgstr ""
-
-#~ msgid "hasInnerText"
-#~ msgstr ""
-
-#~ msgid "isRenderedBlock"
-#~ msgstr ""
-
-#~ msgid "trailingSpace"
-#~ msgstr ""
-
-#~ msgid "leadingSpace"
-#~ msgstr ""
-
-#~ msgid "nextVisible"
-#~ msgstr ""
-
-#~ msgid "nextUncollapsed"
-#~ msgstr ""
-
-#~ msgid "previousVisible"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Dictionaries for Plains Cree and English are based\n"
-#~ "                on the lexical materials "
-#~ "and scientific research in nêhiyawêwin :"
-#~ " itwêwina / Cree: Words.. Compiled by"
-#~ " Arok Wolvengrey.  Regina: Canadian Plains"
-#~ " Research Center, 2001."
-#~ msgstr ""
 

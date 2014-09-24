@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-07-09 14:26-0500\n"
+"POT-Creation-Date: 2014-09-24 18:20-0500\n"
 "PO-Revision-Date: 2013-03-04 07:02+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: kpv <LL@li.org>\n"
@@ -18,10 +18,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: configs/kyv.config.yaml.in:93 configs/pikiskwewina.config.yaml.in:54
-#: configs/saan.config.yaml.in:68 configs/sample.config.yaml.in:115
-#: configs/sanit.config.yaml.in:118
+#: configs/dikaneisdi.config.yaml.in:3
+msgid "Dikaneisdi"
+msgstr ""
+
+#: configs/dikaneisdi.config.yaml.in:73
+msgid "Standard (syllabics)"
+msgstr ""
+
+#: configs/dikaneisdi.config.yaml.in:76 configs/language_names.py:73
+msgid "Transliterated"
+msgstr ""
+
+#: configs/guusaaw.config.yaml.in:77 configs/kyv.config.yaml.in:93
+#: configs/pikiskwewina.config.yaml.in:54 configs/saan.config.yaml.in:68
+#: configs/sample.config.yaml.in:115 configs/sanit.config.yaml.in:118
 msgid "Standard"
+msgstr ""
+
+#: configs/guusaaw.config.yaml.in:82 configs/pikiskwewina.config.yaml.in:59
+#: configs/saan.config.yaml.in:73
+msgid "Mobile friendly"
 msgstr ""
 
 #: configs/kyv.config.yaml.in:96 configs/language_names.py:34
@@ -37,7 +54,7 @@ msgstr ""
 msgid "North Sámi (#SoMe)"
 msgstr ""
 
-#: configs/language_names.py:26 configs/language_names.py:85
+#: configs/language_names.py:26 configs/language_names.py:90
 msgid "English"
 msgstr ""
 
@@ -103,7 +120,7 @@ msgstr ""
 msgid "Moksha"
 msgstr ""
 
-#: configs/language_names.py:53 configs/language_names.py:87
+#: configs/language_names.py:53 configs/language_names.py:92
 msgid "French"
 msgstr ""
 
@@ -127,33 +144,33 @@ msgstr ""
 msgid "Plains Cree"
 msgstr ""
 
-#: configs/language_names.py:71
+#: configs/language_names.py:71 configs/language_names.py:73
+msgid "Cherokee"
+msgstr ""
+
+#: configs/language_names.py:76
 msgid "Northern Haida"
 msgstr ""
 
-#: configs/language_names.py:74 configs/language_names.py:80
+#: configs/language_names.py:79 configs/language_names.py:85
 msgid "Finnish"
 msgstr ""
 
-#: configs/language_names.py:75 configs/language_names.py:81
-#: configs/language_names.py:82
+#: configs/language_names.py:80 configs/language_names.py:86
+#: configs/language_names.py:87
 msgid "Norwegian"
 msgstr ""
 
-#: configs/language_names.py:77 configs/language_names.py:78
+#: configs/language_names.py:82 configs/language_names.py:83
 msgid "Russian"
 msgstr ""
 
-#: configs/language_names.py:83 configs/language_names.py:84
+#: configs/language_names.py:88 configs/language_names.py:89
 msgid "Latvian"
 msgstr ""
 
-#: configs/language_names.py:86
+#: configs/language_names.py:91
 msgid "Haida"
-msgstr ""
-
-#: configs/pikiskwewina.config.yaml.in:59 configs/saan.config.yaml.in:73
-msgid "Mobile friendly"
 msgstr ""
 
 #: configs/sample.config.yaml.in:120
@@ -176,215 +193,143 @@ msgstr ""
 msgid "Sosiála media (maiddái <em>acdnstz</em>)"
 msgstr ""
 
-#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
-#: static/js/neahttadigisanit.jquery.js:5116
-#: static/js/neahttadigisanit.min.js:1246
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13272
+#: static/js/neahttadigisanit.jquery.js:13272
+#: static/js/neahttadigisanit.min.js:2964
 msgid "Á"
 msgstr ""
 
-#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
-#: static/js/neahttadigisanit.jquery.js:5116
-#: static/js/neahttadigisanit.min.js:1246
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13272
+#: static/js/neahttadigisanit.jquery.js:13272
+#: static/js/neahttadigisanit.min.js:2964
 msgid "Options"
 msgstr ""
 
-#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
-#: static/js/neahttadigisanit.jquery.js:5116
-#: static/js/neahttadigisanit.min.js:1246 templates/about.baakoeh.html:6
-#: templates/about.muter.html:6 templates/about.pikiskwewina.html:6
-#: templates/about.sanat.html:6 templates/about.sanit.html:6
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13272
+#: static/js/neahttadigisanit.jquery.js:13272
+#: static/js/neahttadigisanit.min.js:2964 templates/about.baakoeh.html:6
+#: templates/about.guusaaw.html:6 templates/about.muter.html:6
+#: templates/about.pikiskwewina.html:6 templates/about.sanat.html:6
+#: templates/about.sanit.html:6 templates/about.sonad.html:6
 #: templates/about.vada.html:7 templates/about.valks.html:7
-#: templates/base.html:137
+#: templates/base.html:137 templates/navigation_full.html:10
+#: templates/navigation_full.pikiskwewina.html:10
 msgid "About"
 msgstr ""
 
-#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
-#: static/js/neahttadigisanit.jquery.js:5116
-#: static/js/neahttadigisanit.min.js:1246
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13272
+#: static/js/neahttadigisanit.jquery.js:13272
+#: static/js/neahttadigisanit.min.js:2964
 msgid "Advanced"
 msgstr ""
 
-#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
-#: static/js/neahttadigisanit.jquery.js:5116
-#: static/js/neahttadigisanit.min.js:1246
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13272
+#: static/js/neahttadigisanit.jquery.js:13272
+#: static/js/neahttadigisanit.min.js:2964
 msgid "Dictionary"
 msgstr ""
 
-#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
-#: static/js/neahttadigisanit.jquery.js:5116
-#: static/js/neahttadigisanit.min.js:1246
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13272
+#: static/js/neahttadigisanit.jquery.js:13272
+#: static/js/neahttadigisanit.min.js:2964
 msgid "Save"
 msgstr ""
 
-#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
-#: static/js/neahttadigisanit.jquery.js:5116
-#: static/js/neahttadigisanit.min.js:1246
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13272
+#: static/js/neahttadigisanit.jquery.js:13272
+#: static/js/neahttadigisanit.min.js:2964
 msgid "Refresh settings"
 msgstr ""
 
-#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
-#: static/js/neahttadigisanit.jquery.js:5116
-#: static/js/neahttadigisanit.min.js:1246
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13272
+#: static/js/neahttadigisanit.jquery.js:13272
+#: static/js/neahttadigisanit.min.js:2964
 msgid "Update detected"
 msgstr ""
 
-#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
-#: static/js/neahttadigisanit.jquery.js:5116
-#: static/js/neahttadigisanit.min.js:1246
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13272
+#: static/js/neahttadigisanit.jquery.js:13272
+#: static/js/neahttadigisanit.min.js:2964
 msgid "IE8 Warning"
 msgstr ""
 
-#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
-#: static/js/neahttadigisanit.jquery.js:5116
-#: static/js/neahttadigisanit.min.js:1246
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13272
+#: static/js/neahttadigisanit.jquery.js:13272
+#: static/js/neahttadigisanit.min.js:2964
 msgid ""
 "In order to look up a word, hold down the <em>Alt</em> or <em>Option</em>"
 " (⌥) key, and doubleclick on a word. The service will contact the "
 "dictionary, and return a word after a short pause."
 msgstr ""
 
-#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:1251
-#: static/js/neahttadigisanit.jquery.js:5116
-#: static/js/neahttadigisanit.min.js:1246
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13272
+#: static/js/neahttadigisanit.jquery.js:13272
+#: static/js/neahttadigisanit.min.js:2964
 msgid ""
 "If you find a bug, or if the bookmark does not work on a specific page <a"
 " href=\"mailto:giellatekno@hum.uit.no\">please contact us</a>. Tell us "
 "what page didn't work, or what you did when you discovered the problem."
 msgstr ""
 
-#: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:1316
-#: static/js/neahttadigisanit.jquery.js:5181
-#: static/js/neahttadigisanit.min.js:1311
+#: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:13340
+#: static/js/neahttadigisanit.jquery.js:13340
+#: static/js/neahttadigisanit.min.js:3032
 msgid "Error!"
 msgstr ""
 
-#: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:1316
-#: static/js/neahttadigisanit.jquery.js:5181
-#: static/js/neahttadigisanit.min.js:1311
+#: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:13340
+#: static/js/neahttadigisanit.jquery.js:13340
+#: static/js/neahttadigisanit.min.js:3032
 msgid "Could not connect to dictionary server"
 msgstr ""
 
-#: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:1316
-#: static/js/neahttadigisanit.jquery.js:5181
-#: static/js/neahttadigisanit.min.js:1311
+#: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:13340
+#: static/js/neahttadigisanit.jquery.js:13340
+#: static/js/neahttadigisanit.min.js:3032
 msgid "Close"
 msgstr ""
 
 #: static/js/bookmarklet.js:1438 static/js/bookmarklet.js:1729
-#: static/js/bookmarklet.min.js:1438 static/js/bookmarklet.min.js:1729
-#: static/js/neahttadigisanit.jquery.js:5315
-#: static/js/neahttadigisanit.jquery.js:5623
-#: static/js/neahttadigisanit.min.js:1433
-#: static/js/neahttadigisanit.min.js:1724
+#: static/js/bookmarklet.min.js:13208
+#: static/js/neahttadigisanit.jquery.js:13208
+#: static/js/neahttadigisanit.min.js:2900
 msgid "Unknown word"
 msgstr ""
 
-#: static/js/bookmarklet.js:1439 static/js/bookmarklet.min.js:1439
-#: static/js/neahttadigisanit.jquery.js:5316
-#: static/js/neahttadigisanit.min.js:1434
+#: static/js/bookmarklet.js:1439 static/js/bookmarklet.min.js:13209
+#: static/js/neahttadigisanit.jquery.js:13209
+#: static/js/neahttadigisanit.min.js:2901
 msgid "You are using"
 msgstr ""
 
-#: static/js/bookmarklet.js:1441 static/js/bookmarklet.min.js:1441
-#: static/js/neahttadigisanit.jquery.js:5318
-#: static/js/neahttadigisanit.min.js:1436
+#: static/js/bookmarklet.js:1441 static/js/bookmarklet.min.js:13211
+#: static/js/neahttadigisanit.jquery.js:13211
+#: static/js/neahttadigisanit.min.js:2903
 msgid "Meaning not found"
 msgstr ""
 
-#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.jquery.js:5116
-#: static/js/neahttadigisanit.min.js:1246
+#: static/js/bookmarklet.min.js:13272
+#: static/js/neahttadigisanit.jquery.js:13272
+#: static/js/neahttadigisanit.min.js:2964
 msgid "Help"
 msgstr ""
 
-#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.jquery.js:5116
-#: static/js/neahttadigisanit.min.js:1246
+#: static/js/bookmarklet.min.js:13272
+#: static/js/neahttadigisanit.jquery.js:13272
+#: static/js/neahttadigisanit.min.js:2964
 msgid "This tool was made by Giellatekno at UiT: The Arctic University of Norway."
 msgstr ""
 
-#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.jquery.js:5116
-#: static/js/neahttadigisanit.min.js:1246
+#: static/js/bookmarklet.min.js:13272
+#: static/js/neahttadigisanit.jquery.js:13272
+#: static/js/neahttadigisanit.min.js:2964
 msgid "Read more"
 msgstr ""
 
-#: static/js/bookmarklet.min.js:1251 static/js/neahttadigisanit.jquery.js:5116
-#: static/js/neahttadigisanit.min.js:1246
+#: static/js/bookmarklet.min.js:13272
+#: static/js/neahttadigisanit.jquery.js:13272
+#: static/js/neahttadigisanit.min.js:2964
 msgid "More tools"
-msgstr ""
-
-#: static/js/neahttadigisanit.jquery.js:5028
-msgid "isCharacterDataNode"
-msgstr ""
-
-#: static/js/neahttadigisanit.jquery.js:5028
-msgid "nodeIndex"
-msgstr ""
-
-#: static/js/neahttadigisanit.jquery.js:5028
-msgid "nodeLength"
-msgstr ""
-
-#: static/js/neahttadigisanit.jquery.js:5028
-msgid "containsPositions"
-msgstr ""
-
-#: static/js/neahttadigisanit.jquery.js:5028
-msgid "isWhitespace"
-msgstr ""
-
-#: static/js/neahttadigisanit.jquery.js:5028
-msgid "isCollapsedWhitespace"
-msgstr ""
-
-#: static/js/neahttadigisanit.jquery.js:5028
-msgid "computedDisplay"
-msgstr ""
-
-#: static/js/neahttadigisanit.jquery.js:5028
-msgid "collapsed"
-msgstr ""
-
-#: static/js/neahttadigisanit.jquery.js:5028
-msgid "ignored"
-msgstr ""
-
-#: static/js/neahttadigisanit.jquery.js:5028
-msgid "nextPos"
-msgstr ""
-
-#: static/js/neahttadigisanit.jquery.js:5028
-msgid "previous"
-msgstr ""
-
-#: static/js/neahttadigisanit.jquery.js:5028
-msgid "textNodeInfo"
-msgstr ""
-
-#: static/js/neahttadigisanit.jquery.js:5028
-msgid "hasInnerText"
-msgstr ""
-
-#: static/js/neahttadigisanit.jquery.js:5028
-msgid "isRenderedBlock"
-msgstr ""
-
-#: static/js/neahttadigisanit.jquery.js:5028
-msgid "trailingSpace"
-msgstr ""
-
-#: static/js/neahttadigisanit.jquery.js:5028
-msgid "leadingSpace"
-msgstr ""
-
-#: static/js/neahttadigisanit.jquery.js:5028
-msgid "nextVisible"
-msgstr ""
-
-#: static/js/neahttadigisanit.jquery.js:5028
-msgid "nextUncollapsed"
-msgstr ""
-
-#: static/js/neahttadigisanit.jquery.js:5028
-msgid "previousVisible"
 msgstr ""
 
 #: templates/404.html:51
@@ -403,30 +348,34 @@ msgstr ""
 msgid "Whoops! There was some kind of error."
 msgstr ""
 
-#: templates/about.baakoeh.html:15 templates/about.muter.html:15
-#: templates/about.pikiskwewina.html:15 templates/about.sanat.html:15
-#: templates/about.sanit.html:15 templates/about.vada.html:17
+#: templates/about.baakoeh.html:15 templates/about.guusaaw.html:15
+#: templates/about.muter.html:15 templates/about.pikiskwewina.html:15
+#: templates/about.sanat.html:15 templates/about.sanit.html:15
+#: templates/about.sonad.html:15 templates/about.vada.html:17
 #: templates/about.valks.html:17
 msgid "A dictionary that understands what you're looking for."
 msgstr ""
 
-#: templates/about.baakoeh.html:16 templates/about.muter.html:16
-#: templates/about.pikiskwewina.html:16 templates/about.sanat.html:16
-#: templates/about.sanit.html:16 templates/about.vada.html:18
+#: templates/about.baakoeh.html:16 templates/about.guusaaw.html:16
+#: templates/about.muter.html:16 templates/about.pikiskwewina.html:16
+#: templates/about.sanat.html:16 templates/about.sanit.html:16
+#: templates/about.sonad.html:16 templates/about.vada.html:18
 #: templates/about.valks.html:18
 msgid "(... And is mobile-friendly!)"
 msgstr ""
 
-#: templates/about.baakoeh.html:20 templates/about.muter.html:20
-#: templates/about.pikiskwewina.html:20 templates/about.sanat.html:20
-#: templates/about.sanit.html:20 templates/about.vada.html:22
+#: templates/about.baakoeh.html:20 templates/about.guusaaw.html:20
+#: templates/about.muter.html:20 templates/about.pikiskwewina.html:20
+#: templates/about.sanat.html:20 templates/about.sanit.html:20
+#: templates/about.sonad.html:20 templates/about.vada.html:22
 #: templates/about.valks.html:22
 msgid "Free"
 msgstr ""
 
-#: templates/about.baakoeh.html:21 templates/about.muter.html:21
-#: templates/about.pikiskwewina.html:21 templates/about.sanat.html:21
-#: templates/about.sanit.html:21 templates/about.vada.html:23
+#: templates/about.baakoeh.html:21 templates/about.guusaaw.html:21
+#: templates/about.muter.html:21 templates/about.pikiskwewina.html:21
+#: templates/about.sanat.html:21 templates/about.sanit.html:21
+#: templates/about.sonad.html:21 templates/about.vada.html:23
 #: templates/about.valks.html:23
 msgid ""
 "Everything (or, well, almost everything) that\n"
@@ -435,16 +384,18 @@ msgid ""
 "                    tools."
 msgstr ""
 
-#: templates/about.baakoeh.html:27 templates/about.muter.html:27
-#: templates/about.pikiskwewina.html:27 templates/about.sanat.html:27
-#: templates/about.sanit.html:27 templates/about.vada.html:29
+#: templates/about.baakoeh.html:27 templates/about.guusaaw.html:27
+#: templates/about.muter.html:27 templates/about.pikiskwewina.html:27
+#: templates/about.sanat.html:27 templates/about.sanit.html:27
+#: templates/about.sonad.html:27 templates/about.vada.html:29
 #: templates/about.valks.html:29
 msgid "Open-Source"
 msgstr ""
 
-#: templates/about.baakoeh.html:28 templates/about.muter.html:28
-#: templates/about.pikiskwewina.html:28 templates/about.sanat.html:28
-#: templates/about.sanit.html:28 templates/about.vada.html:30
+#: templates/about.baakoeh.html:28 templates/about.guusaaw.html:28
+#: templates/about.muter.html:28 templates/about.pikiskwewina.html:28
+#: templates/about.sanat.html:28 templates/about.sanit.html:28
+#: templates/about.sonad.html:28 templates/about.vada.html:30
 #: templates/about.valks.html:30
 msgid ""
 "Everything here is based on open-source tools. Do you\n"
@@ -456,16 +407,18 @@ msgid ""
 "                files, and morphological and syntactic analyzers."
 msgstr ""
 
-#: templates/about.baakoeh.html:36 templates/about.muter.html:36
-#: templates/about.pikiskwewina.html:36 templates/about.sanat.html:36
-#: templates/about.sanit.html:36 templates/about.vada.html:38
+#: templates/about.baakoeh.html:36 templates/about.guusaaw.html:36
+#: templates/about.muter.html:36 templates/about.pikiskwewina.html:36
+#: templates/about.sanat.html:36 templates/about.sanit.html:36
+#: templates/about.sonad.html:36 templates/about.vada.html:38
 #: templates/about.valks.html:38
 msgid "Linguistic basis"
 msgstr ""
 
-#: templates/about.baakoeh.html:37 templates/about.muter.html:37
-#: templates/about.pikiskwewina.html:37 templates/about.sanat.html:37
-#: templates/about.sanit.html:37 templates/about.vada.html:39
+#: templates/about.baakoeh.html:37 templates/about.guusaaw.html:37
+#: templates/about.muter.html:37 templates/about.pikiskwewina.html:37
+#: templates/about.sanat.html:37 templates/about.sanit.html:37
+#: templates/about.sonad.html:37 templates/about.vada.html:39
 #: templates/about.valks.html:39
 msgid ""
 "Write what you wish, and the dictionary will analyze it to break apart "
@@ -476,10 +429,11 @@ msgstr ""
 msgid "gå, dra, reise"
 msgstr ""
 
-#: templates/about.baakoeh.html:50 templates/about.muter.html:50
-#: templates/about.pikiskwewina.html:50 templates/about.sanat.html:50
-#: templates/about.sanit.html:50 templates/about.vada.html:52
-#: templates/about.valks.html:52
+#: templates/about.baakoeh.html:50 templates/about.guusaaw.html:48
+#: templates/about.muter.html:50 templates/about.pikiskwewina.html:50
+#: templates/about.sanat.html:50 templates/about.sanit.html:50
+#: templates/about.sonad.html:50 templates/about.vada.html:52
+#: templates/about.valks.html:52 templates/references.pikiskwewina.html:12
 msgid "Source material"
 msgstr ""
 
@@ -534,10 +488,51 @@ msgstr ""
 msgid "Each of the dictionaries contains about 11,000 base words."
 msgstr ""
 
-#: templates/about.baakoeh.html:76 templates/about.muter.html:79
-#: templates/about.pikiskwewina.html:71 templates/about.sanat.html:86
+#: templates/about.baakoeh.html:76 templates/about.guusaaw.html:89
+#: templates/about.muter.html:79 templates/about.pikiskwewina.html:97
+#: templates/about.sanat.html:86 templates/about.sonad.html:86
 #: templates/about.vada.html:78 templates/about.valks.html:90
 msgid "More to come..."
+msgstr ""
+
+#: templates/about.guusaaw.html:41 templates/about.pikiskwewina.html:43
+msgid "s/he speaks Cree"
+msgstr ""
+
+#: templates/about.guusaaw.html:56 templates/about.pikiskwewina.html:67
+msgid ""
+"The dictionary software behind pîkiskwêwina is Neahttadigisánit, "
+"originally created for North Saami and South Saami at the University of "
+"Tromsø. New languages always present new challenges for the software, so "
+"be sure to get in touch with us if you have questions or comments."
+msgstr ""
+
+#: templates/about.guusaaw.html:64 templates/about.pikiskwewina.html:72
+#: templates/about.sanit.html:73
+msgid "Find a problem?"
+msgstr ""
+
+#: templates/about.guusaaw.html:65 templates/about.pikiskwewina.html:73
+#: templates/about.sanit.html:74
+msgid ""
+"If you find any bugs, please get in touch with us. Describe the problem,\n"
+"                and tell us what web browser or mobile phone you were "
+"using, or what word you\n"
+"                were searching for when you encountered the problem."
+msgstr ""
+
+#: templates/about.guusaaw.html:70 templates/about.guusaaw.html:75
+#: templates/about.pikiskwewina.html:78 templates/about.pikiskwewina.html:83
+#: templates/about.sanit.html:79 templates/about.sanit.html:84
+msgid "Contact us"
+msgstr ""
+
+#: templates/about.guusaaw.html:80 templates/about.pikiskwewina.html:88
+#: templates/about.sanit.html:89
+msgid ""
+"Need more dictionaries? <a href=\"http://dicts.uit.no/\">Here's our full "
+"list</a>, and more\n"
+"                resources."
 msgstr ""
 
 #: templates/about.muter.html:43 templates/about.vada.html:45
@@ -565,31 +560,29 @@ msgid ""
 "                the Kone Foundation."
 msgstr ""
 
-#: templates/about.pikiskwewina.html:43
-msgid "s/he speaks Cree"
-msgstr ""
-
 #: templates/about.pikiskwewina.html:57
 msgid "crk ↔ eng"
 msgstr ""
 
-#: templates/about.pikiskwewina.html:58
+#: templates/about.pikiskwewina.html:59
 msgid ""
 "Dictionaries for Plains Cree and English are based\n"
-"                on the lexical materials and scientific research in "
-"nêhiyawêwin : itwêwina / Cree: Words.. Compiled by Arok Wolvengrey.  "
-"Regina: Canadian Plains Research Center, 2001."
+"                on the lexical materials and scientific research in <a "
+"href=\"http://uofrpress.ca/publications/cree-words\"><em>nêhiyawêwin : "
+"itwêwina / Cree: Words</em></a>.\n"
+"                 Compiled by Arok Wolvengrey.  Regina: Canadian Plains "
+"Research Center, 2001."
 msgstr ""
 
-#: templates/about.sanat.html:43
+#: templates/about.sanat.html:43 templates/about.sonad.html:43
 msgid "mennä, tapahtua, viedä, johtaa, edistyä"
 msgstr ""
 
-#: templates/about.sanat.html:57
+#: templates/about.sanat.html:57 templates/about.sonad.html:57
 msgid "liv ↔ fin"
 msgstr ""
 
-#: templates/about.sanat.html:58
+#: templates/about.sanat.html:58 templates/about.sonad.html:58
 msgid ""
 "Dictionaries for Livonian and Finnish are based\n"
 "                on the lexical materials and scientific research behind "
@@ -603,11 +596,11 @@ msgid ""
 "                Blumberga with funding from the Kone Foundation."
 msgstr ""
 
-#: templates/about.sanat.html:67
+#: templates/about.sanat.html:67 templates/about.sonad.html:67
 msgid "olo ↔ fin"
 msgstr ""
 
-#: templates/about.sanat.html:68
+#: templates/about.sanat.html:68 templates/about.sonad.html:68
 msgid ""
 "Dictionaries for Livvi Karelian (Olonets) and\n"
 "                Finnish are based on lexical material from the Livvi "
@@ -616,29 +609,6 @@ msgid ""
 "                Translation work is being conducted at the University of\n"
 "                Helsinki by Timo Rantakaulio with funding from the Kone\n"
 "                Foundation."
-msgstr ""
-
-#: templates/about.sanit.html:73
-msgid "Find a problem?"
-msgstr ""
-
-#: templates/about.sanit.html:74
-msgid ""
-"If you find any bugs, please get in touch with us. Describe the problem,\n"
-"                and tell us what web browser or mobile phone you were "
-"using, or what word you\n"
-"                were searching for when you encountered the problem."
-msgstr ""
-
-#: templates/about.sanit.html:79 templates/about.sanit.html:84
-msgid "Contact us"
-msgstr ""
-
-#: templates/about.sanit.html:89
-msgid ""
-"Need more dictionaries? <a href=\"http://dicts.uit.no/\">Here's our full "
-"list</a>, and more\n"
-"                resources."
 msgstr ""
 
 #: templates/about.vada.html:59
@@ -697,15 +667,21 @@ msgid ""
 "Foundation."
 msgstr ""
 
-#: templates/base.html:129
+#: templates/base.html:129 templates/navigation_full.html:2
+#: templates/navigation_full.pikiskwewina.html:2
 msgid "Home"
 msgstr ""
 
-#: templates/base.html:133
+#: templates/base.html:133 templates/navigation_full.html:6
+#: templates/navigation_full.pikiskwewina.html:6
 msgid "Plugins"
 msgstr ""
 
-#: templates/base.html:142
+#: templates/base.html:141 templates/navigation_full.pikiskwewina.html:13
+msgid "References"
+msgstr ""
+
+#: templates/base.html:147
 msgid "Interface language"
 msgstr ""
 
@@ -721,48 +697,38 @@ msgid ""
 "Tromsø</a>."
 msgstr ""
 
-#: templates/index.html:19 templates/index_new_style.html:55
-#: templates/left_dictionary_list.html:1
-msgid "Dictionaries"
-msgstr ""
-
-#: templates/index.html:37 templates/index_new_style.html:73
-#: templates/left_dictionary_list.html:9 templates/more_dictionaries.html:21
-msgid "Other dictionaries"
-msgstr ""
-
-#: templates/index.html:55 templates/index_new_style.html:88
+#: templates/index.html:44 templates/index_new_style.html:77
 msgid "Swap"
 msgstr ""
 
-#: templates/index.html:65 templates/index.html:150
-#: templates/index_new_style.html:102 templates/index_new_style.html:142
+#: templates/index.html:54 templates/index.html:139
+#: templates/index_new_style.html:91 templates/index_new_style.html:131
 #: templates/word_detail.html:106 templates/word_detail_new_style.html:106
-#: templates/word_detail_new_style.html:137 views/reader.py:122
+#: templates/word_detail_new_style.html:137 views/reader.py:217
 msgid " is a possible form of ... "
 msgstr ""
 
-#: templates/index.html:120
+#: templates/index.html:109
 msgid "Definition not found for:"
 msgstr ""
 
-#: templates/index.html:172 templates/index_new_style.html:127
+#: templates/index.html:161 templates/index_new_style.html:116
 #, python-format
 msgid "Word %(input)s not found."
 msgstr ""
 
-#: templates/index.html:181
+#: templates/index.html:170
 msgid ""
 "If you are using a device without a Sámi keyboard, consider using <a "
 "href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
 "<em>acdnstz</em> for <em>áčđŋšŧž</em>."
 msgstr ""
 
-#: templates/index.html:185
+#: templates/index.html:174
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
 
-#: templates/index.html:189
+#: templates/index.html:178
 msgid ""
 "You selected #SoMe, the variant for social media, which means that the "
 "letters acdnstz\n"
@@ -775,21 +741,21 @@ msgstr ""
 msgid "Texts"
 msgstr ""
 
-#: templates/index_search_form.html:11
+#: templates/index_search_form.html:12
 msgid "Press Tab to select a word"
 msgstr ""
 
-#: templates/index_search_form.html:15
+#: templates/index_search_form.html:16
 msgid "ohcansátni"
 msgstr ""
 
-#: templates/index_search_form.html:20 templates/index_search_form.html:39
-#: templates/index_search_form.html:43 templates/word_detail.html:97
+#: templates/index_search_form.html:21 templates/index_search_form.html:40
+#: templates/index_search_form.html:44 templates/word_detail.html:97
 #: templates/word_detail_new_style.html:97
 msgid "Search"
 msgstr ""
 
-#: templates/index_search_form.html:31 templates/index_search_form.html:54
+#: templates/index_search_form.html:32 templates/index_search_form.html:55
 msgid "Search texts"
 msgstr ""
 
@@ -801,11 +767,22 @@ msgstr ""
 msgid "Language"
 msgstr ""
 
+#: templates/left_dictionary_list.html:1
+#: templates/mobile_nav_dictionary_list.html:1
+msgid "Dictionaries"
+msgstr ""
+
+#: templates/left_dictionary_list.html:9
+#: templates/mobile_nav_dictionary_list.html:48
+#: templates/more_dictionaries.html:21
+msgid "Other dictionaries"
+msgstr ""
+
 #: templates/left_dictionary_list.html:17
 msgid "Escape Text-TV mode"
 msgstr ""
 
-#: templates/left_nav_grouped_language_pair_select.html:49
+#: templates/left_nav_grouped_language_pair_select.html:54
 #: templates/left_nav_language_pair_select_list.html:37
 msgid "Written variant"
 msgstr ""
@@ -1021,6 +998,10 @@ msgid ""
 "    menu icon on the left-hand side of the page."
 msgstr ""
 
+#: templates/references.pikiskwewina.html:6
+msgid "Sources and References"
+msgstr ""
+
 #: templates/word_detail.html:39 templates/word_detail_new_style.html:39
 msgid "is a possible form of ... "
 msgstr ""
@@ -1029,7 +1010,7 @@ msgstr ""
 msgid "More information about this word"
 msgstr ""
 
-#: views/search.py:860
+#: views/search.py:852
 msgid "Invalid format. Only json and html allowed."
 msgstr ""
 
@@ -1052,5 +1033,71 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "Mobile friendly (a &rarr; a ~ â)"
+#~ msgstr ""
+
+#~ msgid "isCharacterDataNode"
+#~ msgstr ""
+
+#~ msgid "nodeIndex"
+#~ msgstr ""
+
+#~ msgid "nodeLength"
+#~ msgstr ""
+
+#~ msgid "containsPositions"
+#~ msgstr ""
+
+#~ msgid "isWhitespace"
+#~ msgstr ""
+
+#~ msgid "isCollapsedWhitespace"
+#~ msgstr ""
+
+#~ msgid "computedDisplay"
+#~ msgstr ""
+
+#~ msgid "collapsed"
+#~ msgstr ""
+
+#~ msgid "ignored"
+#~ msgstr ""
+
+#~ msgid "nextPos"
+#~ msgstr ""
+
+#~ msgid "previous"
+#~ msgstr ""
+
+#~ msgid "textNodeInfo"
+#~ msgstr ""
+
+#~ msgid "hasInnerText"
+#~ msgstr ""
+
+#~ msgid "isRenderedBlock"
+#~ msgstr ""
+
+#~ msgid "trailingSpace"
+#~ msgstr ""
+
+#~ msgid "leadingSpace"
+#~ msgstr ""
+
+#~ msgid "nextVisible"
+#~ msgstr ""
+
+#~ msgid "nextUncollapsed"
+#~ msgstr ""
+
+#~ msgid "previousVisible"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Dictionaries for Plains Cree and English are based\n"
+#~ "                on the lexical materials "
+#~ "and scientific research in nêhiyawêwin :"
+#~ " itwêwina / Cree: Words.. Compiled by"
+#~ " Arok Wolvengrey.  Regina: Canadian Plains"
+#~ " Research Center, 2001."
 #~ msgstr ""
 
