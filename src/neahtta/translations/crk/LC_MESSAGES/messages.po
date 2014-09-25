@@ -757,7 +757,7 @@ msgstr "nitonam"
 
 #: templates/index_search_form.html:32 templates/index_search_form.html:55
 msgid "Search texts"
-msgstr "nitonam"
+msgstr "nitonam masinahikana"
 
 #: templates/language_select.html:7
 msgid "<span class=\"reposition_hide\">Language</span>"
