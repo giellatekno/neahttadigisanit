@@ -56,7 +56,7 @@ msgstr ""
 
 #: configs/language_names.py:26 configs/language_names.py:90
 msgid "English"
-msgstr ""
+msgstr "âkayâsîmowin"
 
 #: configs/language_names.py:27
 msgid "Hungarian"
@@ -142,7 +142,7 @@ msgstr ""
 
 #: configs/language_names.py:67 configs/language_names.py:68
 msgid "Plains Cree"
-msgstr ""
+msgstr "nêhiyawêwin"
 
 #: configs/language_names.py:71 configs/language_names.py:73
 msgid "Cherokee"
