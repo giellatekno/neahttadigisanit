@@ -753,7 +753,7 @@ msgstr "itewina"
 #: templates/index_search_form.html:44 templates/word_detail.html:97
 #: templates/word_detail_new_style.html:97
 msgid "Search"
-msgstr "nitohtam"
+msgstr "nitonam"
 
 #: templates/index_search_form.html:32 templates/index_search_form.html:55
 msgid "Search texts"
