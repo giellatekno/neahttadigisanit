@@ -726,7 +726,7 @@ msgstr ""
 
 #: templates/index.html:174
 msgid "Search for a word, or a word form for a word analysis and definition."
-msgstr ""
+msgstr "nitonam"
 
 #: templates/index.html:178
 msgid ""
@@ -757,7 +757,7 @@ msgstr "nitohtam"
 
 #: templates/index_search_form.html:32 templates/index_search_form.html:55
 msgid "Search texts"
-msgstr ""
+msgstr "nitonam"
 
 #: templates/language_select.html:7
 msgid "<span class=\"reposition_hide\">Language</span>"
