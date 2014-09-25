@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
 #
-#, fuzzy
+
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
@@ -747,13 +747,13 @@ msgstr ""
 
 #: templates/index_search_form.html:16
 msgid "ohcansátni"
-msgstr ""
+msgstr "guusaaw"
 
 #: templates/index_search_form.html:21 templates/index_search_form.html:40
 #: templates/index_search_form.html:44 templates/word_detail.html:97
 #: templates/word_detail_new_style.html:97
 msgid "Search"
-msgstr ""
+msgstr "di.íng"
 
 #: templates/index_search_form.html:32 templates/index_search_form.html:55
 msgid "Search texts"
