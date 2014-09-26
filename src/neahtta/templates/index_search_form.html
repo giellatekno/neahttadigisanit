@@ -44,15 +44,15 @@
                        <span>{% trans %}Search{% endtrans %}</span>
                    </button>
               {% endif %}
+       {% if current_pair_settings.wordform_search_url %}
+           <button type="submit"
+                   formaction="/extern/{{ _from }}/{{ _to }}/korp_wordform/"
+                   formmethod="post"
+                   formtarget="_blank"
+                   class="btn hidden-phone display-tablet korp_search" 
+                   name="korp_search">
+               {% trans %}Search texts{% endtrans %}
+           </button>
+       {% endif %}
     </div>
-   {% if current_pair_settings.wordform_search_url %}
-       <button type="submit"
-               formaction="/extern/{{ _from }}/{{ _to }}/korp_wordform/"
-               formmethod="post"
-               formtarget="_blank"
-               class="btn hidden-phone display-tablet korp_search" 
-               name="korp_search">
-           {% trans %}Search texts{% endtrans %}
-       </button>
-   {% endif %}
 </form>
