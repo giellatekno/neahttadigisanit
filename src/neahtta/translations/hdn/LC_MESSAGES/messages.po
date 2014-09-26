@@ -150,7 +150,7 @@ msgstr ""
 
 #: configs/language_names.py:76
 msgid "Northern Haida"
-msgstr ""
+msgstr "X_aad Kíl"
 
 #: configs/language_names.py:79 configs/language_names.py:85
 msgid "Finnish"
@@ -776,7 +776,7 @@ msgstr "Gúusaaw K_ugíinaay"
 #: templates/mobile_nav_dictionary_list.html:48
 #: templates/more_dictionaries.html:21
 msgid "Other dictionaries"
-msgstr ""
+msgstr "Gúusaa K_ugíinaay K_'aláad"
 
 #: templates/left_dictionary_list.html:17
 msgid "Escape Text-TV mode"
