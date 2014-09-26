@@ -34,7 +34,7 @@ msgstr ""
 #: configs/pikiskwewina.config.yaml.in:54 configs/saan.config.yaml.in:68
 #: configs/sample.config.yaml.in:115 configs/sanit.config.yaml.in:118
 msgid "Standard"
-msgstr "K_'áalangaa 'láa"
+msgstr "Ḵ'áalangaa 'láa"
 
 #: configs/guusaaw.config.yaml.in:82 configs/pikiskwewina.config.yaml.in:59
 #: configs/saan.config.yaml.in:73
@@ -757,7 +757,7 @@ msgstr "Ga hl diyíng!"
 
 #: templates/index_search_form.html:32 templates/index_search_form.html:55
 msgid "Search texts"
-msgstr "Ga hl k_íng k_'agwsdluwáa!"
+msgstr "Ga hl ḵíng ḵ'agwsdluwáa!"
 
 #: templates/language_select.html:7
 msgid "<span class=\"reposition_hide\">Language</span>"
@@ -770,13 +770,13 @@ msgstr ""
 #: templates/left_dictionary_list.html:1
 #: templates/mobile_nav_dictionary_list.html:1
 msgid "Dictionaries"
-msgstr "Gúusaaw K_ugíinaay"
+msgstr "Gúusaaw Ḵugíinaay"
 
 #: templates/left_dictionary_list.html:9
 #: templates/mobile_nav_dictionary_list.html:48
 #: templates/more_dictionaries.html:21
 msgid "Other dictionaries"
-msgstr "Gúusaa K_ugíinaay K_'aláad"
+msgstr "Gúusaa Ḵugíinaay Ḵ'aláad"
 
 #: templates/left_dictionary_list.html:17
 msgid "Escape Text-TV mode"
@@ -785,7 +785,7 @@ msgstr ""
 #: templates/left_nav_grouped_language_pair_select.html:54
 #: templates/left_nav_language_pair_select_list.html:37
 msgid "Written variant"
-msgstr "Gin K_'áalangaa"
+msgstr "Gin Ḵ'áalangaa"
 
 #: templates/more_dictionaries.html:4
 msgid "More dictionaris"
@@ -970,7 +970,7 @@ msgstr ""
 msgid ""
 "If you are looking for other languages, please see our <a "
 "href=\"/more/\">other dictionaries</a>."
-msgstr "Gúusaa K_ugíinaay K_'aláad"
+msgstr "Gúusaa Ḵugíinaay Ḵ'aláad"
 
 #: templates/reader_example.html:32
 msgid "Additional instructions"
