@@ -726,7 +726,7 @@ msgstr ""
 
 #: templates/index.html:174
 msgid "Search for a word, or a word form for a word analysis and definition."
-msgstr "nitonam"
+msgstr "natona itwêwin ê-kici-wâpahtaman itwêstamâkêwin."
 
 #: templates/index.html:178
 msgid ""
@@ -753,11 +753,11 @@ msgstr "itwêwin"
 #: templates/index_search_form.html:44 templates/word_detail.html:97
 #: templates/word_detail_new_style.html:97
 msgid "Search"
-msgstr "nitonam"
+msgstr "natona"
 
 #: templates/index_search_form.html:32 templates/index_search_form.html:55
 msgid "Search texts"
-msgstr "nitonam masinahikana"
+msgstr "natonam masinahikana"
 
 #: templates/language_select.html:7
 msgid "<span class=\"reposition_hide\">Language</span>"
