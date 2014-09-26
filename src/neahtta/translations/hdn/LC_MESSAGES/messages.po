@@ -171,7 +171,7 @@ msgstr ""
 
 #: configs/language_names.py:91
 msgid "Haida"
-msgstr ""
+msgstr "X_aad Kíl"
 
 #: configs/sample.config.yaml.in:120
 msgid "Sosiála media"
