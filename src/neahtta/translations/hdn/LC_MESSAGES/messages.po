@@ -34,12 +34,12 @@ msgstr ""
 #: configs/pikiskwewina.config.yaml.in:54 configs/saan.config.yaml.in:68
 #: configs/sample.config.yaml.in:115 configs/sanit.config.yaml.in:118
 msgid "Standard"
-msgstr ""
+msgstr "K_'áalangaa 'láa"
 
 #: configs/guusaaw.config.yaml.in:82 configs/pikiskwewina.config.yaml.in:59
 #: configs/saan.config.yaml.in:73
 msgid "Mobile friendly"
-msgstr ""
+msgstr "Gwáalaay"
 
 #: configs/kyv.config.yaml.in:96 configs/language_names.py:34
 msgid "Molotsov orthography"
@@ -56,7 +56,7 @@ msgstr ""
 
 #: configs/language_names.py:26 configs/language_names.py:90
 msgid "English"
-msgstr ""
+msgstr "Yáats' X_aad'áay Kíl"
 
 #: configs/language_names.py:27
 msgid "Hungarian"
@@ -726,7 +726,7 @@ msgstr ""
 
 #: templates/index.html:174
 msgid "Search for a word, or a word form for a word analysis and definition."
-msgstr ""
+msgstr "Gúusaaw ga dáng diyíngs dluu, gúusaawaay an dáng t'aláng kíl únsadgahläsaang"
 
 #: templates/index.html:178
 msgid ""
@@ -753,11 +753,11 @@ msgstr "guusaaw"
 #: templates/index_search_form.html:44 templates/word_detail.html:97
 #: templates/word_detail_new_style.html:97
 msgid "Search"
-msgstr "di.íng"
+msgstr "Ga hl diyíng!"
 
 #: templates/index_search_form.html:32 templates/index_search_form.html:55
 msgid "Search texts"
-msgstr ""
+msgstr "Ga hl k_íng k_'agwsdluwáa!"
 
 #: templates/language_select.html:7
 msgid "<span class=\"reposition_hide\">Language</span>"
@@ -770,7 +770,7 @@ msgstr ""
 #: templates/left_dictionary_list.html:1
 #: templates/mobile_nav_dictionary_list.html:1
 msgid "Dictionaries"
-msgstr ""
+msgstr "Gúusaaw K_ugíinaay"
 
 #: templates/left_dictionary_list.html:9
 #: templates/mobile_nav_dictionary_list.html:48
@@ -785,7 +785,7 @@ msgstr ""
 #: templates/left_nav_grouped_language_pair_select.html:54
 #: templates/left_nav_language_pair_select_list.html:37
 msgid "Written variant"
-msgstr ""
+msgstr "Gin K_'áalangaa"
 
 #: templates/more_dictionaries.html:4
 msgid "More dictionaris"
@@ -970,7 +970,7 @@ msgstr ""
 msgid ""
 "If you are looking for other languages, please see our <a "
 "href=\"/more/\">other dictionaries</a>."
-msgstr ""
+msgstr "Gúusaa K_ugíinaay K_'aláad"
 
 #: templates/reader_example.html:32
 msgid "Additional instructions"
