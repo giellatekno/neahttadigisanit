@@ -1,3 +1,14 @@
+
+FLAGS = {}
+
+def file_exists(path):
+    try:
+        with open(path, 'r'):
+            return True
+    except:
+        return False
+    return False
+
 def register_filters(app):
 
     from flask import render_template
@@ -16,6 +27,16 @@ def register_filters(app):
     def iso_to_language_own_name(_iso):
         from configs.language_names import LOCALISATION_NAMES_BY_LANGUAGE
         return LOCALISATION_NAMES_BY_LANGUAGE.get(_iso, _iso)
+
+    @app.template_filter('iso_has_flag')
+    def iso_has_flag(iso):
+        import os
+        if iso in FLAGS:
+            return FLAGS[iso]
+        _path = os.path.join('static/img/flags/', iso + '_20x15.png')
+        exists = file_exists(_path)
+        FLAGS[iso] = exists
+        return FLAGS[iso]
 
     @app.template_filter('filter_pairs_by_source')
     def filter_pairs_by_source(pairs, source):
