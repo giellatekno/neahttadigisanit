@@ -94,7 +94,7 @@ msgstr ""
 #: configs/language_names.py:44 configs/language_names.py:64
 #: configs/language_names.py:68
 msgid "mobile friendly"
-msgstr ""
+msgstr "X̱aad Kíl"
 
 #: configs/language_names.py:45 templates/more_dictionaries.html:38
 msgid "Izhorian"
