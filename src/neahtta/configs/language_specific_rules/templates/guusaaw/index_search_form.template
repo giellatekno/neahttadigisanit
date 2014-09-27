@@ -1,0 +1,46 @@
+{# This template renders the search form on the main page.
+ #}
+
+<form id="neahttasaanit" class="form-inline"
+    method="post"
+    action="/{{ _from }}/{{ _to }}/"> 
+    
+    <div class="input-append">
+        <input type="text" 
+               name="lookup" 
+               autocorrect="off"
+               autofocus
+               autocapitalize="off"
+               autocomplete="off"
+               data-autocomplete-text="{% trans %}Press Tab to select a word{% endtrans %}"
+               data-language-from="{{ _from }}"
+               data-language-to="{{ _to }}"
+               {% if user_input -%}value="{{ user_input }}"{% endif %}
+               placeholder="{% trans %}ohcansátni{% endtrans %}">
+               {# TODO: show text search only if the dictionary supports this #}
+               {% if current_pair_settings.wordform_search_url %}
+                   <div class="btn-group">
+                       <button type="submit" class="btn" name="search">
+                           <span>{% trans %}Search{% endtrans %}</span>
+                       </button>
+                       <button class="btn dropdown-toggle" data-toggle="dropdown">
+                          <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><button 
+                                   type="submit"
+                                   class="btn"
+                                   formaction="/extern/{{ _from }}/{{ _to }}/korp_wordform/"
+                                   formmethod="post"
+                                   formtarget="_blank">{% trans %}Search texts{% endtrans %} (Korp)</button></li>
+                        </ul>
+                   </div>
+               {% else %}
+                   <button type="submit" class="btn" name="search">
+                       <span>{% trans %}Search{% endtrans %}</span>
+                   </button>
+              {% endif %}
+    </div>
+</form>
+
+{# vim: set ts=4 sw=4 tw=0 syntax=htmljinja : #}
