@@ -358,22 +358,27 @@ img.i18n_flag {
 
 div.default_flag {
     width: 20px;
-    border: 1px solid #888;
-    box-shadow: 1px 1px 1px #ccc;
-    -webkit-border-radius: 1px;
-    -moz-border-radius: 1px;
-    border-radius: 1px;
-    background-color: #F7E3F3;
+    /* border: 1px solid #888; */
+    box-shadow: 1px 1px 2px #CCC;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    /* background-color: #F7E3F3; */
     height: 15px;
     display: inline-block;
     overflow: hidden;
-    font-size: 8pt;
     text-shadow: none;
     font-family: sans-serif;
     line-height: 15px;
-    color: #777;
+    /* color: #777; */
     text-align: center;
     vertical-align: middle;
+
+    background-color: #595;
+    border: 1px solid #595;
+    color: #FFF;
+    font-weight: 100;
+    font-size: 8pt;
 }
 
 .other_link {

@@ -1,6 +1,6 @@
-{# This template is in flux-- this is the default maintained for projects not
-   using the new template system. Ideally, do not change this, but upgrade
-   projects to the new system and make changes in that structure.  #}
+{# This template renders the search form on the main page.
+ #}
+
 <form id="neahttasaanit" class="form-inline"
     method="post"
     action="/{{ _from }}/{{ _to }}/"> 
@@ -59,3 +59,5 @@
        {% endif %}
     </div>
 </form>
+
+{# vim: set ts=4 sw=4 tw=0 syntax=htmljinja : #}

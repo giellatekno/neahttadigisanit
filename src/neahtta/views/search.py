@@ -114,20 +114,30 @@ class IndexSearchPage(IndexSearch, View, AppViewSettingsMixin):
                                                , False
                                                )
 
+        current_pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(self.default_from, self.default_to)
         template_context = {
             'display_swap': reverse_exists,
             'swap_from': self.default_to,
             'swap_to': self.default_from,
             'show_info': True,
+            'current_pair_settings': current_pair_settings,
+            '_from': self.default_from,
+            '_to': self.default_to
         }
 
         if current_app.config.new_style_templates:
             search_info = current_app.lexicon_templates.render_individual_template(
                 self.default_from,
                 'search_info.template',
-                **{}
+                **template_context
+            )
+            search_form = current_app.lexicon_templates.render_individual_template(
+                self.default_from,
+                'index_search_form.template',
+                **template_context
             )
             template_context['search_info_template'] = search_info
+            template_context['index_search_form'] = search_form
 
         return render_template(self.template_name, **template_context)
 
@@ -606,9 +616,12 @@ class LanguagePairSearchView(IndexSearch, DictionaryView, SearcherMixin):
     def get_shared_context(self, _from, _to):
         """ Return some things that are in all templates. """
 
-        _, orig_pair_opts = current_app.config.resolve_original_pair(_from, _to)
+        current_pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(_from, _to)
         shared_context = {
             'display_swap': self.get_reverse_pair(_from, _to),
+            'current_pair_settings': current_pair_settings,
+            '_from': _from,
+            '_to': _to,
             # TODO: 'show_info': ? set this based on sesion and whether
             # the user has seen the message once, etc.
         }
@@ -618,7 +631,13 @@ class LanguagePairSearchView(IndexSearch, DictionaryView, SearcherMixin):
                 'search_info.template',
                 **{}
             )
+            search_form = current_app.lexicon_templates.render_individual_template(
+                g._from,
+                'index_search_form.template',
+                **shared_context
+            )
             shared_context['search_info_template'] = search_info
+            shared_context['index_search_form'] = search_form
         shared_context.update(**orig_pair_opts)
         return shared_context
 

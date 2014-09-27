@@ -84,7 +84,7 @@
 
             <div class="row-fluid form-row">
                 <div class="span8">
-                    {% include 'index_search_form.html' %}
+                    {{ index_search_form|safe }}
                 </div>
                 <div class="span4 hidden-phone valign_block">
                     {% if analyses %}
