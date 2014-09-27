@@ -36,7 +36,12 @@ import yaml
 
 from lxml import etree
 
-__all__ = ['TemplateConfig']
+__all__ = ['TemplateConfig', 'LanguageNotFound']
+
+
+class LanguageNotFound(Exception):
+    """ Language not found for this project. """
+    pass
 
 # A collection for tracking compiled templates. This may provide more
 # complexity than necessary: need to check, 
@@ -105,19 +110,23 @@ class TemplateConfig(object):
         return
 
     def get_template(self, language, template):
-        """ .. py:function:: get_paradigm(language, node, analyses)
+        """ .. py:function:: get_template(language, template)
 
         Render a paradigm if one exists for language.
 
         :param str language: The 3-character ISO for the language.
-        :param lxml node: The lxml element for the <e /> node selected from a lookup
-        :param list analyses: A list containing Lemma objects from a lookup.
+        :param str template: The  template name
 
-        :return unicode: Plaintext string containing the paradigm to be generated, including
-        any context provided.
+        :return Template: Parsed template object
 
         """
+        from jinja2.exceptions import TemplateNotFound
 
+        # TODO: what exception works best if template doesn't exist
+        if language not in self.language_templates:
+            raise LanguageNotFound("Missing language <%s>" % language)
+        if template not in self.language_templates[language]:
+            raise TemplateNotFound("Missing template <%s>" % template)
         return self.language_templates[language][template]
 
     def render_individual_template(self, language, template, **kwargs):
