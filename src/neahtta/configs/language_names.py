@@ -74,6 +74,7 @@ NAMES = dict([
 
     # guusaaw
     ('hdn', _(u"Northern Haida")),
+    ('hdnM', _(u"Northern Haida") + " (" + _("mobile friendly") + ")"),
 
     # target languages
     ('fin', _(u"Finnish")),
@@ -124,6 +125,7 @@ LOCALISATION_NAMES_BY_LANGUAGE = dict([
     ('est', u"Eesti"),
     ('sms', u"sääˊmǩiõll"),
     ('hdn', u"X̲aat Kíl"),
+    ('hdnM', u"X̲aat Kíl"),
     ('en', u"English"),
     ('fr', u"Français"),
     ('hun', u"Magyar"),
