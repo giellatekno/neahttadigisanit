@@ -748,7 +748,7 @@ msgstr ""
 
 #: templates/index_search_form.html:19
 msgid "ohcansátni"
-msgstr "guusaaw"
+msgstr "gúusaaw"
 
 #: templates/index_search_form.html:24 templates/index_search_form.html:43
 #: templates/index_search_form.html:47 templates/word_detail.html:97
