@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-28 15:17-0500\n"
+"POT-Creation-Date: 2014-09-28 15:39-0500\n"
 "PO-Revision-Date: 2014-05-24 09:18+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language-Team: myv <LL@li.org>\n"
@@ -46,7 +46,7 @@ msgid "Molotsov orthography"
 msgstr "Молодцовонь орфографиясо"
 
 #: configs/language_names.py:23 configs/language_names.py:24
-#: templates/more_dictionaries.html:27
+#: templates/more_dictionaries.html:28
 msgid "North Sámi"
 msgstr "Пелевеёнксонь саамонь кель"
 
@@ -62,7 +62,7 @@ msgstr "Англань кель"
 msgid "Hungarian"
 msgstr "Венгрань кель"
 
-#: configs/language_names.py:30 templates/more_dictionaries.html:28
+#: configs/language_names.py:30 templates/more_dictionaries.html:29
 msgid "South Sámi"
 msgstr "Чиньэлеёнксонь саамонь кель"
 
@@ -74,7 +74,7 @@ msgstr "Коминь кель"
 msgid "Udmurt"
 msgstr "Удмуртонь кель"
 
-#: configs/language_names.py:38 templates/more_dictionaries.html:38
+#: configs/language_names.py:38 templates/more_dictionaries.html:39
 msgid "Kven"
 msgstr "Квенэнь кель"
 
@@ -87,7 +87,7 @@ msgid "Estonian"
 msgstr "Эстэнь кель"
 
 #: configs/language_names.py:43 configs/language_names.py:44
-#: templates/more_dictionaries.html:38
+#: templates/more_dictionaries.html:39
 msgid "Livonian"
 msgstr "Ливень кель"
 
@@ -96,7 +96,7 @@ msgstr "Ливень кель"
 msgid "mobile friendly"
 msgstr "сотовойнень шожда"
 
-#: configs/language_names.py:45 templates/more_dictionaries.html:38
+#: configs/language_names.py:45 templates/more_dictionaries.html:39
 msgid "Izhorian"
 msgstr "Ижорань кель"
 
@@ -116,7 +116,7 @@ msgstr ""
 msgid "Erzya Mordvin"
 msgstr "Эрзянь кель"
 
-#: configs/language_names.py:52 templates/more_dictionaries.html:39
+#: configs/language_names.py:52 templates/more_dictionaries.html:40
 msgid "Moksha"
 msgstr "Мокшонь кель"
 
@@ -756,8 +756,8 @@ msgstr "Ушодома тарка"
 msgid "Plugins"
 msgstr "Текникань поладкст"
 
-#: templates/base.html:141
-msgid "References"
+#: templates/base.html:141 templates/navigation_full.pikiskwewina.html:14
+msgid "Sources"
 msgstr ""
 
 #: templates/base.html:147
@@ -876,7 +876,7 @@ msgstr "Сёрмадозь вариантось"
 msgid "More dictionaris"
 msgstr "Лия валкст"
 
-#: templates/more_dictionaries.html:23
+#: templates/more_dictionaries.html:24
 msgid ""
 "Neahttadigisánit is available for the following\n"
 "                language groups."
@@ -884,7 +884,7 @@ msgstr ""
 "\"Neahttadigisánit\" валкстнэ муевить вана неть кельпусмотнень\n"
 "                туртов."
 
-#: templates/more_dictionaries.html:31
+#: templates/more_dictionaries.html:32
 msgid ""
 "We're currently working on some new dictionaries for\n"
 "                the following language groups. Since these may not always"
@@ -899,47 +899,47 @@ msgstr ""
 "                мезесь кундамс. Ули мелеть сындест демо неемс, сёрмадт "
 "миненек!"
 
-#: templates/more_dictionaries.html:37
+#: templates/more_dictionaries.html:38
 msgid "Balto-finnic languages"
 msgstr "Балтикань финнэнь кельтне"
 
-#: templates/more_dictionaries.html:38
+#: templates/more_dictionaries.html:39
 msgid "Olonets"
 msgstr "Ливви-карелень кель"
 
-#: templates/more_dictionaries.html:38
+#: templates/more_dictionaries.html:39
 msgid "and"
 msgstr ""
 
-#: templates/more_dictionaries.html:39
+#: templates/more_dictionaries.html:40
 msgid "Mordvinic languages"
 msgstr "Мокшэрзянь кельтне"
 
-#: templates/more_dictionaries.html:39
+#: templates/more_dictionaries.html:40
 msgid "Erzya"
 msgstr "Эрзя"
 
-#: templates/more_dictionaries.html:41
+#: templates/more_dictionaries.html:42
 msgid "Mari languages"
 msgstr "Маринь кельтне"
 
-#: templates/more_dictionaries.html:41
+#: templates/more_dictionaries.html:42
 msgid "Eastern and Western."
 msgstr "Чилисемань-чивалгомань"
 
-#: templates/more_dictionaries.html:42
+#: templates/more_dictionaries.html:43
 msgid "Permic languages"
 msgstr "Пермень кельтне"
 
-#: templates/more_dictionaries.html:42
+#: templates/more_dictionaries.html:43
 msgid "Komi-Zyrian"
 msgstr "Зырьянонь коминь кель"
 
-#: templates/more_dictionaries.html:45
+#: templates/more_dictionaries.html:46
 msgid "Even more dictionaries..."
 msgstr "Таго лия валкст…"
 
-#: templates/more_dictionaries.html:46
+#: templates/more_dictionaries.html:47
 msgid ""
 "<a href=\"http://giellatekno.uit.no/\">Giellatekno</a> also has\n"
 "                other languages and dictionaries that are not yet "
@@ -956,10 +956,6 @@ msgstr ""
 "                валкстнэнь, конат анокстазь минек кедьёнкстнэсэ, \n"
 "                варштыка <a href=\"http://dicts.uit.no/\">вана тень</a>."
 
-#: templates/navigation_full.pikiskwewina.html:14
-msgid "Sources"
-msgstr ""
-
 #: templates/notice.sanat.html:1
 msgid ""
 "We have moved some languages to <a "
@@ -967,8 +963,9 @@ msgid ""
 msgstr ""
 
 #: templates/reader.html:3 templates/reader.html:20
-msgid "Neahttadigisánit Reader"
-msgstr "Neahttadigisánit Ловныця"
+#, python-format
+msgid "%(project_name)s Reader"
+msgstr ""
 
 #: templates/reader.html:21
 msgid "Bookmarklet"
@@ -989,8 +986,9 @@ msgstr ""
 "                лопанть керш крайнесэ."
 
 #: templates/reader.html:26 templates/reader_update.html:15
-msgid "Read with Neahttadigisánit"
-msgstr "Ловномс \"Neahttadigisánit\" марто"
+#, python-format
+msgid "Read with %(project_name)s"
+msgstr ""
 
 #: templates/reader.html:27
 msgid ""
@@ -1096,10 +1094,11 @@ msgid "Additional instructions"
 msgstr "Поладкс превс путомат"
 
 #: templates/reader_ie8_notice.html:1
+#, fuzzy, python-format
 msgid ""
 "\n"
 "Your web browser is supported, however, you will need to change some\n"
-"options for the Neahttadigisánit Reader to work.\n"
+"options for the %(app_name)s Reader to work.\n"
 msgstr ""
 "\n"
 "Браузерэть маштови нолдамс тевс, ансяк кой-мезе сави полавтомс,\n"
@@ -1235,4 +1234,13 @@ msgstr "Амаштовикс формат. Ансяк json-т -- html-т маш�
 
 #~ msgid "previousVisible"
 #~ msgstr ""
+
+#~ msgid "References"
+#~ msgstr ""
+
+#~ msgid "Neahttadigisánit Reader"
+#~ msgstr "Neahttadigisánit Ловныця"
+
+#~ msgid "Read with Neahttadigisánit"
+#~ msgstr "Ловномс \"Neahttadigisánit\" марто"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-28 15:17-0500\n"
+"POT-Creation-Date: 2014-09-28 15:39-0500\n"
 "PO-Revision-Date: 2013-11-07 11:33+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language-Team: ru <LL@li.org>\n"
@@ -47,7 +47,7 @@ msgid "Molotsov orthography"
 msgstr ""
 
 #: configs/language_names.py:23 configs/language_names.py:24
-#: templates/more_dictionaries.html:27
+#: templates/more_dictionaries.html:28
 msgid "North Sámi"
 msgstr "Северно-саамский"
 
@@ -63,7 +63,7 @@ msgstr "Английслий"
 msgid "Hungarian"
 msgstr ""
 
-#: configs/language_names.py:30 templates/more_dictionaries.html:28
+#: configs/language_names.py:30 templates/more_dictionaries.html:29
 msgid "South Sámi"
 msgstr "Южно-саамский"
 
@@ -75,7 +75,7 @@ msgstr "Коми"
 msgid "Udmurt"
 msgstr ""
 
-#: configs/language_names.py:38 templates/more_dictionaries.html:38
+#: configs/language_names.py:38 templates/more_dictionaries.html:39
 msgid "Kven"
 msgstr "Квен"
 
@@ -88,7 +88,7 @@ msgid "Estonian"
 msgstr "Эстонский"
 
 #: configs/language_names.py:43 configs/language_names.py:44
-#: templates/more_dictionaries.html:38
+#: templates/more_dictionaries.html:39
 msgid "Livonian"
 msgstr "Лив"
 
@@ -97,7 +97,7 @@ msgstr "Лив"
 msgid "mobile friendly"
 msgstr "(... И для мобильных устройств!)"
 
-#: configs/language_names.py:45 templates/more_dictionaries.html:38
+#: configs/language_names.py:45 templates/more_dictionaries.html:39
 msgid "Izhorian"
 msgstr "Ижорский"
 
@@ -117,7 +117,7 @@ msgstr ""
 msgid "Erzya Mordvin"
 msgstr "Эрзянский"
 
-#: configs/language_names.py:52 templates/more_dictionaries.html:39
+#: configs/language_names.py:52 templates/more_dictionaries.html:40
 msgid "Moksha"
 msgstr "Мокша"
 
@@ -717,8 +717,8 @@ msgstr "Домашняя страница"
 msgid "Plugins"
 msgstr "Плагин"
 
-#: templates/base.html:141
-msgid "References"
+#: templates/base.html:141 templates/navigation_full.pikiskwewina.html:14
+msgid "Sources"
 msgstr ""
 
 #: templates/base.html:147
@@ -836,13 +836,13 @@ msgstr "Писменный вариант"
 msgid "More dictionaris"
 msgstr "Больше словарей"
 
-#: templates/more_dictionaries.html:23
+#: templates/more_dictionaries.html:24
 msgid ""
 "Neahttadigisánit is available for the following\n"
 "                language groups."
 msgstr ""
 
-#: templates/more_dictionaries.html:31
+#: templates/more_dictionaries.html:32
 msgid ""
 "We're currently working on some new dictionaries for\n"
 "                the following language groups. Since these may not always"
@@ -852,47 +852,47 @@ msgid ""
 "                would like to see a demo!"
 msgstr ""
 
-#: templates/more_dictionaries.html:37
+#: templates/more_dictionaries.html:38
 msgid "Balto-finnic languages"
 msgstr "Прибалтийско-финские языки"
 
-#: templates/more_dictionaries.html:38
+#: templates/more_dictionaries.html:39
 msgid "Olonets"
 msgstr "Ливвиковский"
 
-#: templates/more_dictionaries.html:38
+#: templates/more_dictionaries.html:39
 msgid "and"
 msgstr "и"
 
-#: templates/more_dictionaries.html:39
+#: templates/more_dictionaries.html:40
 msgid "Mordvinic languages"
 msgstr "Мордовские языки"
 
-#: templates/more_dictionaries.html:39
+#: templates/more_dictionaries.html:40
 msgid "Erzya"
 msgstr "Эрзянский язык"
 
-#: templates/more_dictionaries.html:41
+#: templates/more_dictionaries.html:42
 msgid "Mari languages"
 msgstr "Марийские языки"
 
-#: templates/more_dictionaries.html:41
+#: templates/more_dictionaries.html:42
 msgid "Eastern and Western."
 msgstr "лугово-восточний и горномарийский"
 
-#: templates/more_dictionaries.html:42
+#: templates/more_dictionaries.html:43
 msgid "Permic languages"
 msgstr "Пермские языки"
 
-#: templates/more_dictionaries.html:42
+#: templates/more_dictionaries.html:43
 msgid "Komi-Zyrian"
 msgstr "Коми-зырянский"
 
-#: templates/more_dictionaries.html:45
+#: templates/more_dictionaries.html:46
 msgid "Even more dictionaries..."
 msgstr "Еще больше словарей"
 
-#: templates/more_dictionaries.html:46
+#: templates/more_dictionaries.html:47
 msgid ""
 "<a href=\"http://giellatekno.uit.no/\">Giellatekno</a> also has\n"
 "                other languages and dictionaries that are not yet "
@@ -904,10 +904,6 @@ msgid ""
 "                    list</a>."
 msgstr ""
 
-#: templates/navigation_full.pikiskwewina.html:14
-msgid "Sources"
-msgstr ""
-
 #: templates/notice.sanat.html:1
 msgid ""
 "We have moved some languages to <a "
@@ -915,8 +911,9 @@ msgid ""
 msgstr ""
 
 #: templates/reader.html:3 templates/reader.html:20
-msgid "Neahttadigisánit Reader"
-msgstr "Neahttadigisánit программа чтения"
+#, python-format
+msgid "%(project_name)s Reader"
+msgstr ""
 
 #: templates/reader.html:21
 msgid "Bookmarklet"
@@ -937,8 +934,9 @@ msgstr ""
 "                 значок меню на левой стороне страницы."
 
 #: templates/reader.html:26 templates/reader_update.html:15
-msgid "Read with Neahttadigisánit"
-msgstr "Читайте с программой Neahttadigisánit"
+#, python-format
+msgid "Read with %(project_name)s"
+msgstr ""
 
 #: templates/reader.html:27
 msgid ""
@@ -1042,10 +1040,11 @@ msgid "Additional instructions"
 msgstr ""
 
 #: templates/reader_ie8_notice.html:1
+#, python-format
 msgid ""
 "\n"
 "Your web browser is supported, however, you will need to change some\n"
-"options for the Neahttadigisánit Reader to work.\n"
+"options for the %(app_name)s Reader to work.\n"
 msgstr ""
 
 #: templates/reader_update.html:1
@@ -1159,5 +1158,20 @@ msgstr "Недопустимый формат. Только json и html доп�
 #~ msgstr ""
 
 #~ msgid ""
+#~ msgstr ""
+
+#~ msgid "References"
+#~ msgstr ""
+
+#~ msgid "Neahttadigisánit Reader"
+#~ msgstr "Neahttadigisánit программа чтения"
+
+#~ msgid "Read with Neahttadigisánit"
+#~ msgstr "Читайте с программой Neahttadigisánit"
+
+#~ msgid ""
+#~ "\n"
+#~ "Your web browser is supported, however, you will need to change some\n"
+#~ "options for the Neahttadigisánit Reader to work.\n"
 #~ msgstr ""
 

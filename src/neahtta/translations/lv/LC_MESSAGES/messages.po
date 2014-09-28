@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-28 15:17-0500\n"
+"POT-Creation-Date: 2014-09-28 15:39-0500\n"
 "PO-Revision-Date: 2013-03-25 12:21+0200\n"
 "Last-Translator: \n"
 "Language-Team: lv <LL@li.org>\n"
@@ -47,7 +47,7 @@ msgid "Molotsov orthography"
 msgstr ""
 
 #: configs/language_names.py:23 configs/language_names.py:24
-#: templates/more_dictionaries.html:27
+#: templates/more_dictionaries.html:28
 msgid "North Sámi"
 msgstr "Ziemeļsāmu"
 
@@ -63,7 +63,7 @@ msgstr "Angļu"
 msgid "Hungarian"
 msgstr ""
 
-#: configs/language_names.py:30 templates/more_dictionaries.html:28
+#: configs/language_names.py:30 templates/more_dictionaries.html:29
 msgid "South Sámi"
 msgstr "Dienvidsāmu"
 
@@ -75,7 +75,7 @@ msgstr "Komiešu"
 msgid "Udmurt"
 msgstr ""
 
-#: configs/language_names.py:38 templates/more_dictionaries.html:38
+#: configs/language_names.py:38 templates/more_dictionaries.html:39
 msgid "Kven"
 msgstr "Kvenu"
 
@@ -88,7 +88,7 @@ msgid "Estonian"
 msgstr "Estų"
 
 #: configs/language_names.py:43 configs/language_names.py:44
-#: templates/more_dictionaries.html:38
+#: templates/more_dictionaries.html:39
 msgid "Livonian"
 msgstr "Lībiešu"
 
@@ -97,7 +97,7 @@ msgstr "Lībiešu"
 msgid "mobile friendly"
 msgstr "(Un ir draudzīga mobilajiem tālruņiem!)"
 
-#: configs/language_names.py:45 templates/more_dictionaries.html:38
+#: configs/language_names.py:45 templates/more_dictionaries.html:39
 msgid "Izhorian"
 msgstr "Ižoru"
 
@@ -117,7 +117,7 @@ msgstr ""
 msgid "Erzya Mordvin"
 msgstr "Erzas mordiešu"
 
-#: configs/language_names.py:52 templates/more_dictionaries.html:39
+#: configs/language_names.py:52 templates/more_dictionaries.html:40
 msgid "Moksha"
 msgstr "Mokšas mordviešu"
 
@@ -717,8 +717,8 @@ msgstr "Sākumlapa"
 msgid "Plugins"
 msgstr "Spraudņi"
 
-#: templates/base.html:141
-msgid "References"
+#: templates/base.html:141 templates/navigation_full.pikiskwewina.html:14
+msgid "Sources"
 msgstr ""
 
 #: templates/base.html:147
@@ -837,13 +837,13 @@ msgstr "Rakstu valodas variants"
 msgid "More dictionaris"
 msgstr "Citas vārdnīcas"
 
-#: templates/more_dictionaries.html:23
+#: templates/more_dictionaries.html:24
 msgid ""
 "Neahttadigisánit is available for the following\n"
 "                language groups."
 msgstr ""
 
-#: templates/more_dictionaries.html:31
+#: templates/more_dictionaries.html:32
 msgid ""
 "We're currently working on some new dictionaries for\n"
 "                the following language groups. Since these may not always"
@@ -853,47 +853,47 @@ msgid ""
 "                would like to see a demo!"
 msgstr ""
 
-#: templates/more_dictionaries.html:37
+#: templates/more_dictionaries.html:38
 msgid "Balto-finnic languages"
 msgstr ""
 
-#: templates/more_dictionaries.html:38
+#: templates/more_dictionaries.html:39
 msgid "Olonets"
 msgstr "Oloņecas karēļu"
 
-#: templates/more_dictionaries.html:38
+#: templates/more_dictionaries.html:39
 msgid "and"
 msgstr ""
 
-#: templates/more_dictionaries.html:39
+#: templates/more_dictionaries.html:40
 msgid "Mordvinic languages"
 msgstr ""
 
-#: templates/more_dictionaries.html:39
+#: templates/more_dictionaries.html:40
 msgid "Erzya"
 msgstr ""
 
-#: templates/more_dictionaries.html:41
+#: templates/more_dictionaries.html:42
 msgid "Mari languages"
 msgstr "Marių kalbos"
 
-#: templates/more_dictionaries.html:41
+#: templates/more_dictionaries.html:42
 msgid "Eastern and Western."
 msgstr ""
 
-#: templates/more_dictionaries.html:42
+#: templates/more_dictionaries.html:43
 msgid "Permic languages"
 msgstr "Permių kalbos"
 
-#: templates/more_dictionaries.html:42
+#: templates/more_dictionaries.html:43
 msgid "Komi-Zyrian"
 msgstr "Komių-Zyrianų"
 
-#: templates/more_dictionaries.html:45
+#: templates/more_dictionaries.html:46
 msgid "Even more dictionaries..."
 msgstr "Citas vārdnīcas"
 
-#: templates/more_dictionaries.html:46
+#: templates/more_dictionaries.html:47
 msgid ""
 "<a href=\"http://giellatekno.uit.no/\">Giellatekno</a> also has\n"
 "                other languages and dictionaries that are not yet "
@@ -905,10 +905,6 @@ msgid ""
 "                    list</a>."
 msgstr ""
 
-#: templates/navigation_full.pikiskwewina.html:14
-msgid "Sources"
-msgstr ""
-
 #: templates/notice.sanat.html:1
 msgid ""
 "We have moved some languages to <a "
@@ -916,7 +912,8 @@ msgid ""
 msgstr ""
 
 #: templates/reader.html:3 templates/reader.html:20
-msgid "Neahttadigisánit Reader"
+#, python-format
+msgid "%(project_name)s Reader"
 msgstr ""
 
 #: templates/reader.html:21
@@ -938,8 +935,9 @@ msgstr ""
 "ikonu."
 
 #: templates/reader.html:26 templates/reader_update.html:15
-msgid "Read with Neahttadigisánit"
-msgstr "Lasīt ar \"Neahttadigisánit\" vārdnīcas palīdzību"
+#, python-format
+msgid "Read with %(project_name)s"
+msgstr ""
 
 #: templates/reader.html:27
 msgid ""
@@ -1041,10 +1039,11 @@ msgid "Additional instructions"
 msgstr "Papildu instrukcijas"
 
 #: templates/reader_ie8_notice.html:1
+#, fuzzy, python-format
 msgid ""
 "\n"
 "Your web browser is supported, however, you will need to change some\n"
-"options for the Neahttadigisánit Reader to work.\n"
+"options for the %(app_name)s Reader to work.\n"
 msgstr ""
 "\n"
 "Jūsu tīmekļa pārlukprogramma tiek atbalstīta, taču jums ir jānomaina "
@@ -1166,4 +1165,13 @@ msgstr "Nederīgs formāts. Tiek atzīts tikai json un html."
 
 #~ msgid ""
 #~ msgstr ""
+
+#~ msgid "References"
+#~ msgstr ""
+
+#~ msgid "Neahttadigisánit Reader"
+#~ msgstr ""
+
+#~ msgid "Read with Neahttadigisánit"
+#~ msgstr "Lasīt ar \"Neahttadigisánit\" vārdnīcas palīdzību"
 

@@ -87,7 +87,7 @@ def about():
         return render_template('about.sanit.html')
 
 @blueprint.route('/about/sources/', methods=['GET'])
-def about_references():
+def about_sources():
     """ This is also tied to a context processer making this item
     visible in the navigational menu if the template is found. """
 
