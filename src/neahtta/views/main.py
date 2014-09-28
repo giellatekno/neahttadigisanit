@@ -86,7 +86,7 @@ def about():
         )
         return render_template('about.sanit.html')
 
-@blueprint.route('/about/references/', methods=['GET'])
+@blueprint.route('/about/sources/', methods=['GET'])
 def about_references():
     """ This is also tied to a context processer making this item
     visible in the navigational menu if the template is found. """
@@ -94,7 +94,7 @@ def about_references():
     from jinja2 import TemplateNotFound
 
     try:
-        return render_template('references.%s.html' % current_app.config.short_name)
+        return render_template('sources.%s.html' % current_app.config.short_name)
     except TemplateNotFound:
         print >> sys.stderr, (
             ' * OBS! about.%s.html not found, '

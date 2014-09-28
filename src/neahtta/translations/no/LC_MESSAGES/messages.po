@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-24 18:20-0500\n"
+"POT-Creation-Date: 2014-09-28 15:17-0500\n"
 "PO-Revision-Date: 2013-02-01 01:54-0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: no <LL@li.org>\n"
@@ -54,7 +54,7 @@ msgstr "Nordsamisk"
 msgid "North Sámi (#SoMe)"
 msgstr "Nordsamisk (#SoMe)"
 
-#: configs/language_names.py:26 configs/language_names.py:90
+#: configs/language_names.py:26 configs/language_names.py:91
 msgid "English"
 msgstr "Engelsk"
 
@@ -92,7 +92,7 @@ msgid "Livonian"
 msgstr "Livisk"
 
 #: configs/language_names.py:44 configs/language_names.py:64
-#: configs/language_names.py:68
+#: configs/language_names.py:68 configs/language_names.py:77
 msgid "mobile friendly"
 msgstr "(... og er tilpassa mobiltelefonen!)"
 
@@ -120,7 +120,7 @@ msgstr "Ersjamordvinsk"
 msgid "Moksha"
 msgstr "Moksjamordvinsk"
 
-#: configs/language_names.py:53 configs/language_names.py:92
+#: configs/language_names.py:53 configs/language_names.py:93
 msgid "French"
 msgstr "Fransk"
 
@@ -148,28 +148,28 @@ msgstr "Plains Cree"
 msgid "Cherokee"
 msgstr ""
 
-#: configs/language_names.py:76
+#: configs/language_names.py:76 configs/language_names.py:77
 msgid "Northern Haida"
 msgstr "Nord-haida"
 
-#: configs/language_names.py:79 configs/language_names.py:85
+#: configs/language_names.py:80 configs/language_names.py:86
 msgid "Finnish"
 msgstr "Finsk"
 
-#: configs/language_names.py:80 configs/language_names.py:86
-#: configs/language_names.py:87
+#: configs/language_names.py:81 configs/language_names.py:87
+#: configs/language_names.py:88
 msgid "Norwegian"
 msgstr "Norsk"
 
-#: configs/language_names.py:82 configs/language_names.py:83
+#: configs/language_names.py:83 configs/language_names.py:84
 msgid "Russian"
 msgstr "Russisk"
 
-#: configs/language_names.py:88 configs/language_names.py:89
+#: configs/language_names.py:89 configs/language_names.py:90
 msgid "Latvian"
 msgstr "Latvisk"
 
-#: configs/language_names.py:91
+#: configs/language_names.py:92
 msgid "Haida"
 msgstr "Haida"
 
@@ -213,7 +213,7 @@ msgstr "Alternativer"
 #: templates/about.sanit.html:6 templates/about.sonad.html:6
 #: templates/about.vada.html:7 templates/about.valks.html:7
 #: templates/base.html:137 templates/navigation_full.html:10
-#: templates/navigation_full.pikiskwewina.html:10
+#: templates/navigation_full.pikiskwewina.html:11
 msgid "About"
 msgstr "Om oss"
 
@@ -457,7 +457,7 @@ msgstr "gå, dra, reise"
 #: templates/about.muter.html:50 templates/about.pikiskwewina.html:50
 #: templates/about.sanat.html:50 templates/about.sanit.html:50
 #: templates/about.sonad.html:50 templates/about.vada.html:52
-#: templates/about.valks.html:52 templates/references.pikiskwewina.html:12
+#: templates/about.valks.html:52 templates/sources.pikiskwewina.html:12
 msgid "Source material"
 msgstr "Kildemateriale"
 
@@ -746,16 +746,16 @@ msgstr ""
 "Helsingfors, med finansiering av Kone-stiftelsen."
 
 #: templates/base.html:129 templates/navigation_full.html:2
-#: templates/navigation_full.pikiskwewina.html:2
+#: templates/navigation_full.pikiskwewina.html:3
 msgid "Home"
 msgstr "Hjem"
 
 #: templates/base.html:133 templates/navigation_full.html:6
-#: templates/navigation_full.pikiskwewina.html:6
+#: templates/navigation_full.pikiskwewina.html:7
 msgid "Plugins"
 msgstr "Klikk-i-tekst"
 
-#: templates/base.html:141 templates/navigation_full.pikiskwewina.html:13
+#: templates/base.html:141
 msgid "References"
 msgstr ""
 
@@ -834,21 +834,21 @@ msgstr ""
 msgid "Texts"
 msgstr "Nenetsisk"
 
-#: templates/index_search_form.html:12
+#: templates/index_search_form.html:15
 msgid "Press Tab to select a word"
 msgstr ""
 
-#: templates/index_search_form.html:16
+#: templates/index_search_form.html:19
 msgid "ohcansátni"
 msgstr "søkeord"
 
-#: templates/index_search_form.html:21 templates/index_search_form.html:40
-#: templates/index_search_form.html:44 templates/word_detail.html:97
+#: templates/index_search_form.html:24 templates/index_search_form.html:43
+#: templates/index_search_form.html:47 templates/word_detail.html:97
 #: templates/word_detail_new_style.html:97
 msgid "Search"
 msgstr "Søk"
 
-#: templates/index_search_form.html:32 templates/index_search_form.html:55
+#: templates/index_search_form.html:35 templates/index_search_form.html:57
 msgid "Search texts"
 msgstr "Søk i tekst"
 
@@ -958,6 +958,10 @@ msgstr ""
 "språk og ordbøker som fremdeles ikke er tilgjengelige i Neahttadigisánit."
 " Ei liste over alle andre nettordbøker som har blitt bygd med våre "
 "verktøy finner du <a href=\"http://dicts.uit.no/\">her</a>."
+
+#: templates/navigation_full.pikiskwewina.html:14
+msgid "Sources"
+msgstr ""
 
 #: templates/notice.sanat.html:1
 msgid ""
@@ -1124,7 +1128,7 @@ msgstr ""
 "du gjerne vil lese. Tjenesten vil bli installert automatisk,\n"
 "og du ser et menyikon (<em>Á</em>) på venstre side av nettsida."
 
-#: templates/references.pikiskwewina.html:6
+#: templates/sources.pikiskwewina.html:6
 msgid "Sources and References"
 msgstr ""
 
@@ -1136,7 +1140,7 @@ msgstr " er en mulig form av ... "
 msgid "More information about this word"
 msgstr ""
 
-#: views/search.py:852
+#: views/search.py:871
 msgid "Invalid format. Only json and html allowed."
 msgstr "Ugyldig format. Bare json og html er tillatt."
 
@@ -1222,11 +1226,5 @@ msgstr "Ugyldig format. Bare json og html er tillatt."
 #~ msgstr ""
 
 #~ msgid ""
-#~ "Dictionaries for Plains Cree and English are based\n"
-#~ "                on the lexical materials "
-#~ "and scientific research in nêhiyawêwin :"
-#~ " itwêwina / Cree: Words.. Compiled by"
-#~ " Arok Wolvengrey.  Regina: Canadian Plains"
-#~ " Research Center, 2001."
 #~ msgstr ""
 

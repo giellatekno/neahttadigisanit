@@ -3,12 +3,11 @@
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
 #
-
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-24 18:20-0500\n"
+"POT-Creation-Date: 2014-09-28 15:17-0500\n"
 "PO-Revision-Date: 2014-09-25 16:23-0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: hdn <LL@li.org>\n"
@@ -54,7 +53,7 @@ msgstr ""
 msgid "North Sámi (#SoMe)"
 msgstr ""
 
-#: configs/language_names.py:26 configs/language_names.py:90
+#: configs/language_names.py:26 configs/language_names.py:91
 msgid "English"
 msgstr "Yáats' X̱aad'áay Kíl"
 
@@ -92,7 +91,7 @@ msgid "Livonian"
 msgstr ""
 
 #: configs/language_names.py:44 configs/language_names.py:64
-#: configs/language_names.py:68
+#: configs/language_names.py:68 configs/language_names.py:77
 msgid "mobile friendly"
 msgstr "X̱aad Kíl"
 
@@ -120,7 +119,7 @@ msgstr ""
 msgid "Moksha"
 msgstr ""
 
-#: configs/language_names.py:53 configs/language_names.py:92
+#: configs/language_names.py:53 configs/language_names.py:93
 msgid "French"
 msgstr ""
 
@@ -148,28 +147,28 @@ msgstr ""
 msgid "Cherokee"
 msgstr ""
 
-#: configs/language_names.py:76
+#: configs/language_names.py:76 configs/language_names.py:77
 msgid "Northern Haida"
 msgstr "X̱aad Kíl"
 
-#: configs/language_names.py:79 configs/language_names.py:85
+#: configs/language_names.py:80 configs/language_names.py:86
 msgid "Finnish"
 msgstr ""
 
-#: configs/language_names.py:80 configs/language_names.py:86
-#: configs/language_names.py:87
+#: configs/language_names.py:81 configs/language_names.py:87
+#: configs/language_names.py:88
 msgid "Norwegian"
 msgstr ""
 
-#: configs/language_names.py:82 configs/language_names.py:83
+#: configs/language_names.py:83 configs/language_names.py:84
 msgid "Russian"
 msgstr ""
 
-#: configs/language_names.py:88 configs/language_names.py:89
+#: configs/language_names.py:89 configs/language_names.py:90
 msgid "Latvian"
 msgstr ""
 
-#: configs/language_names.py:91
+#: configs/language_names.py:92
 msgid "Haida"
 msgstr "X̱aad Kíl"
 
@@ -213,7 +212,7 @@ msgstr ""
 #: templates/about.sanit.html:6 templates/about.sonad.html:6
 #: templates/about.vada.html:7 templates/about.valks.html:7
 #: templates/base.html:137 templates/navigation_full.html:10
-#: templates/navigation_full.pikiskwewina.html:10
+#: templates/navigation_full.pikiskwewina.html:11
 msgid "About"
 msgstr ""
 
@@ -433,7 +432,7 @@ msgstr ""
 #: templates/about.muter.html:50 templates/about.pikiskwewina.html:50
 #: templates/about.sanat.html:50 templates/about.sanit.html:50
 #: templates/about.sonad.html:50 templates/about.vada.html:52
-#: templates/about.valks.html:52 templates/references.pikiskwewina.html:12
+#: templates/about.valks.html:52 templates/sources.pikiskwewina.html:12
 msgid "Source material"
 msgstr ""
 
@@ -668,16 +667,16 @@ msgid ""
 msgstr ""
 
 #: templates/base.html:129 templates/navigation_full.html:2
-#: templates/navigation_full.pikiskwewina.html:2
+#: templates/navigation_full.pikiskwewina.html:3
 msgid "Home"
 msgstr ""
 
 #: templates/base.html:133 templates/navigation_full.html:6
-#: templates/navigation_full.pikiskwewina.html:6
+#: templates/navigation_full.pikiskwewina.html:7
 msgid "Plugins"
 msgstr ""
 
-#: templates/base.html:141 templates/navigation_full.pikiskwewina.html:13
+#: templates/base.html:141
 msgid "References"
 msgstr ""
 
@@ -726,7 +725,9 @@ msgstr ""
 
 #: templates/index.html:174
 msgid "Search for a word, or a word form for a word analysis and definition."
-msgstr "Gúusaaw ga dáng diyíngs dluu, gúusaawaay an dáng t'aláng kíl únsadgahläsaang"
+msgstr ""
+"Gúusaaw ga dáng diyíngs dluu, gúusaawaay an dáng t'aláng kíl "
+"únsadgahläsaang"
 
 #: templates/index.html:178
 msgid ""
@@ -741,21 +742,21 @@ msgstr ""
 msgid "Texts"
 msgstr ""
 
-#: templates/index_search_form.html:12
+#: templates/index_search_form.html:15
 msgid "Press Tab to select a word"
 msgstr ""
 
-#: templates/index_search_form.html:16
+#: templates/index_search_form.html:19
 msgid "ohcansátni"
 msgstr "guusaaw"
 
-#: templates/index_search_form.html:21 templates/index_search_form.html:40
-#: templates/index_search_form.html:44 templates/word_detail.html:97
+#: templates/index_search_form.html:24 templates/index_search_form.html:43
+#: templates/index_search_form.html:47 templates/word_detail.html:97
 #: templates/word_detail_new_style.html:97
 msgid "Search"
 msgstr "Ga hl diyíng!"
 
-#: templates/index_search_form.html:32 templates/index_search_form.html:55
+#: templates/index_search_form.html:35 templates/index_search_form.html:57
 msgid "Search texts"
 msgstr "Ga hl ḵíng ḵ'agwsdluwáa!"
 
@@ -857,6 +858,10 @@ msgid ""
 "                built with our tools, <a "
 "href=\"http://dicts.uit.no/\">see this\n"
 "                    list</a>."
+msgstr ""
+
+#: templates/navigation_full.pikiskwewina.html:14
+msgid "Sources"
 msgstr ""
 
 #: templates/notice.sanat.html:1
@@ -998,7 +1003,7 @@ msgid ""
 "    menu icon on the left-hand side of the page."
 msgstr ""
 
-#: templates/references.pikiskwewina.html:6
+#: templates/sources.pikiskwewina.html:6
 msgid "Sources and References"
 msgstr ""
 
@@ -1010,7 +1015,7 @@ msgstr ""
 msgid "More information about this word"
 msgstr ""
 
-#: views/search.py:852
+#: views/search.py:871
 msgid "Invalid format. Only json and html allowed."
 msgstr ""
 

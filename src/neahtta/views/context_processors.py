@@ -14,7 +14,7 @@ def sources_template():
 
     sources_template_exists = False
     try:
-        sources_template_path = './templates/references.%s.html' % current_app.config.short_name
+        sources_template_path = './templates/sources.%s.html' % current_app.config.short_name
         with open(sources_template_path, 'r') as F:
             sources_template_exists = True
     except Exception, e:
