@@ -257,17 +257,20 @@ ul.unknown_lexemes {
 }
 
 #bookmarklet a {
-    color:#900; 
+    color: #FFF;
     font-size: 130%; 
     text-shadow: none;
-    font-weight: 500;
+    font-weight: 300;
 }
 
 #bookmarklet {
-    background-color: #CCC;
     text-shadow: none;
     padding: 4px 4px;
     margin-left: 1em;
+
+    background-color: rgba(85, 153, 85, .9);
+    border: 1px solid #595;
+    box-shadow: 1px 1px 2px #CCC;
 }
 
 .lemma_action {
@@ -363,7 +366,6 @@ div.default_flag {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-    /* background-color: #F7E3F3; */
     height: 15px;
     display: inline-block;
     overflow: hidden;
