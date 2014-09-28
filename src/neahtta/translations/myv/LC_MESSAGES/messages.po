@@ -80,7 +80,7 @@ msgstr "Квенэнь кель"
 
 #: configs/language_names.py:39
 msgid "Olonetsian"
-msgstr "Ливви-карелень кель"
+msgstr "Ливвиковской карелень кель"
 
 #: configs/language_names.py:40
 msgid "Estonian"
@@ -102,15 +102,15 @@ msgstr "Ижорань кель"
 
 #: configs/language_names.py:46
 msgid "Veps"
-msgstr ""
+msgstr "Вепс"
 
 #: configs/language_names.py:47
 msgid "Võro"
-msgstr ""
+msgstr "Выро"
 
 #: configs/language_names.py:48
 msgid "Votic"
-msgstr ""
+msgstr "Водь"
 
 #: configs/language_names.py:51
 msgid "Erzya Mordvin"
@@ -175,7 +175,7 @@ msgstr "Хайда"
 
 #: configs/sample.config.yaml.in:120
 msgid "Sosiála media"
-msgstr ""
+msgstr "Социалной медия"
 
 #: configs/sample.config.yaml.in:121 configs/sanit.config.yaml.in:125
 #, fuzzy
@@ -184,7 +184,7 @@ msgstr "Соцмедия  (<em>acdnstz</em> букватнеяк)"
 
 #: configs/sanit.config.yaml.in:124
 msgid "Social media"
-msgstr ""
+msgstr "Соцмедия"
 
 #: configs/sanit.config.yaml.in:148
 msgid "Standárda (<em>áčđŋšŧž</em>)"
