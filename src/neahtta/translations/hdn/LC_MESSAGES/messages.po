@@ -777,7 +777,7 @@ msgstr "Gúusaaw Ḵugíinaay"
 #: templates/mobile_nav_dictionary_list.html:48
 #: templates/more_dictionaries.html:21
 msgid "Other dictionaries"
-msgstr "Gúusaa Ḵugíinaay Ḵ'aláad"
+msgstr "Gúusaaw Ḵugíinaay Ḵ'aláad"
 
 #: templates/left_dictionary_list.html:17
 msgid "Escape Text-TV mode"
