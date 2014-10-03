@@ -681,6 +681,33 @@ help:
 	@echo ""
 	@echo "NB! Make sure you have saxon9.jar in ~/lib/ !"
 
+BACKS := $(shell ls -c1 *.xml.*.bak | sed "s/\.xml.[0-9]*\.bak//" | sort | uniq)
+
+
+ # | sed 's/\./   /g' | cut -f 1 | sort -u > dicts.tmp
+
+# This will store all old dictionaries with a particular suffix and
+# *.xml.bak in an archive. Each archive will be expanded and
+# recompressed if new files are found. We need backups, but they take up
+# a lot of space in some cases 
+#
+.PHONY: collect-backups
+collect-backups:
+	@echo $(BACKS)
+	@echo "******************************"
+	@echo "** (re-)compressing backups **"
+	@echo "******************************"
+	@echo ""
+	for b in $(BACKS) ; do \
+		echo "** Recompressing: $$b" ; \
+		tar -jxvf $$b.backups.tar.bz2 ; \
+		rm $$b.backups.tar.bz2 ; \
+		echo "** Adding: " ; \
+		ls -c1 $$b.xml.*.bak ; \
+		BZIP=--best tar -jcf $$b.backups.tar.bz2 $$b.xml.*.bak ; \
+		rm $$b.xml.*.bak ; \
+	done 
+
 .PHONY: all
 all: vada  \
 	 valks \
