@@ -73,7 +73,7 @@
         <div class="{{ dict_width }}">
             <h4 class="dict_title">
                 {% if current_variant_options %}
-                    <span>{{ _from|iso_to_i18n }} ({{ current_variant_options.description }}) → {{ _to|iso_to_i18n }}</span>
+                    <span>{{ _from|iso_to_i18n }} ({{ gettext(current_variant_options.description) }}) → {{ _to|iso_to_i18n }}</span>
                 {% else %}
                     <span>{{ _from|iso_to_i18n }} → {{ _to|iso_to_i18n }}</span>
                 {% endif %}
