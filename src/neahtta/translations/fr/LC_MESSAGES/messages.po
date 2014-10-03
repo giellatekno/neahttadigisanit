@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-29 17:29-0500\n"
+"POT-Creation-Date: 2014-10-03 17:51-0500\n"
 "PO-Revision-Date: 2013-11-07 11:38+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language-Team: fr <LL@li.org>\n"
@@ -25,13 +25,14 @@ msgstr ""
 msgid "Standard (syllabics)"
 msgstr ""
 
-#: configs/dikaneisdi.config.yaml.in:76 configs/language_names.py:73
+#: configs/dikaneisdi.config.yaml.in:76
 msgid "Transliterated"
 msgstr ""
 
 #: configs/guusaaw.config.yaml.in:74 configs/kyv.config.yaml.in:93
 #: configs/pikiskwewina.config.yaml.in:54 configs/saan.config.yaml.in:68
 #: configs/sample.config.yaml.in:115 configs/sanit.config.yaml.in:118
+#: configs/sonad.config.yaml.in:141
 msgid "Standard"
 msgstr ""
 
@@ -40,7 +41,7 @@ msgstr ""
 msgid "Mobile friendly"
 msgstr ""
 
-#: configs/kyv.config.yaml.in:96 configs/language_names.py:34
+#: configs/kyv.config.yaml.in:96
 msgid "Molotsov orthography"
 msgstr ""
 
@@ -53,7 +54,7 @@ msgstr "Same du nord"
 msgid "North Sámi (#SoMe)"
 msgstr "Same du nord (#SoMe)"
 
-#: configs/language_names.py:26 configs/language_names.py:91
+#: configs/language_names.py:26 configs/language_names.py:90
 msgid "English"
 msgstr "Anglais"
 
@@ -90,11 +91,6 @@ msgstr "Estonien"
 msgid "Livonian"
 msgstr "Live"
 
-#: configs/language_names.py:44 configs/language_names.py:64
-#: configs/language_names.py:68 configs/language_names.py:77
-msgid "mobile friendly"
-msgstr ""
-
 #: configs/language_names.py:45 templates/more_dictionaries.html:39
 msgid "Izhorian"
 msgstr "Ingrien"
@@ -119,7 +115,7 @@ msgstr "Erzya"
 msgid "Moksha"
 msgstr "Mokcha"
 
-#: configs/language_names.py:53 configs/language_names.py:93
+#: configs/language_names.py:53 configs/language_names.py:92
 msgid "French"
 msgstr "Français"
 
@@ -143,32 +139,32 @@ msgstr "Same de Skolt"
 msgid "Plains Cree"
 msgstr ""
 
-#: configs/language_names.py:71 configs/language_names.py:73
+#: configs/language_names.py:71 configs/language_names.py:72
 msgid "Cherokee"
 msgstr ""
 
-#: configs/language_names.py:76 configs/language_names.py:77
+#: configs/language_names.py:75 configs/language_names.py:76
 msgid "Northern Haida"
 msgstr "Haida du nord"
 
-#: configs/language_names.py:80 configs/language_names.py:86
+#: configs/language_names.py:79 configs/language_names.py:85
 msgid "Finnish"
 msgstr "Finnois"
 
-#: configs/language_names.py:81 configs/language_names.py:87
-#: configs/language_names.py:88
+#: configs/language_names.py:80 configs/language_names.py:86
+#: configs/language_names.py:87
 msgid "Norwegian"
 msgstr "Norvégien"
 
-#: configs/language_names.py:83 configs/language_names.py:84
+#: configs/language_names.py:82 configs/language_names.py:83
 msgid "Russian"
 msgstr "Russe"
 
-#: configs/language_names.py:89 configs/language_names.py:90
+#: configs/language_names.py:88 configs/language_names.py:89
 msgid "Latvian"
 msgstr ""
 
-#: configs/language_names.py:92
+#: configs/language_names.py:91
 msgid "Haida"
 msgstr ""
 
@@ -190,6 +186,10 @@ msgstr ""
 
 #: configs/sanit.config.yaml.in:151
 msgid "Sosiála media (maiddái <em>acdnstz</em>)"
+msgstr ""
+
+#: configs/sonad.config.yaml.in:146
+msgid "mobile friendly"
 msgstr ""
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13272
@@ -696,12 +696,12 @@ msgid ""
 "Tromsø</a>."
 msgstr ""
 
-#: templates/index.html:44 templates/index_new_style.html:77
+#: templates/index.html:44 templates/index_new_style.html:81
 msgid "Swap"
 msgstr ""
 
 #: templates/index.html:54 templates/index.html:139
-#: templates/index_new_style.html:91 templates/index_new_style.html:131
+#: templates/index_new_style.html:95 templates/index_new_style.html:135
 #: templates/word_detail.html:106 templates/word_detail_new_style.html:106
 #: templates/word_detail_new_style.html:137 views/reader.py:217
 msgid " is a possible form of ... "
@@ -711,7 +711,7 @@ msgstr ""
 msgid "Definition not found for:"
 msgstr ""
 
-#: templates/index.html:161 templates/index_new_style.html:116
+#: templates/index.html:161 templates/index_new_style.html:120
 #, python-format
 msgid "Word %(input)s not found."
 msgstr ""
@@ -1013,7 +1013,7 @@ msgstr ""
 msgid "More information about this word"
 msgstr ""
 
-#: views/search.py:871
+#: views/search.py:873
 msgid "Invalid format. Only json and html allowed."
 msgstr ""
 
