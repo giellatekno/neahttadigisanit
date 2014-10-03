@@ -138,11 +138,13 @@ Dictionaries:
     path: 'dicts/liv-all.xml'
     input_variants: &liv_variants
       - type: "standard"
-        description: "Standard (äǟ)"
+        description: !gettext "Standard"
+        example: "(äǟ)"
         # NB: must be same as analyser name
         short_name: "liv"
       - type: "mobile"
-        description: "Mobile friendly (a &rarr; ä ~ ǟ)"
+        description: !gettext "mobile friendly"
+        example: "(a &rarr; ä ~ ǟ)"
         short_name: "livM"
 
   - source: fin

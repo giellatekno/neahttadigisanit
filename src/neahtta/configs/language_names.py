@@ -31,7 +31,7 @@ NAMES = dict([
 
     # kyv
     ('kpv', _(u"Komi")),
-    ('kpvS', _(u"Komi") + " (" + _("Molotsov orthography") + ")"),
+    ('kpvS', _(u"Komi")),
     ('udm', _(u"Udmurt")),
 
     # sanat
@@ -41,7 +41,7 @@ NAMES = dict([
 
     # sonad
     ('liv', _(u"Livonian")),
-    ('livM', _(u"Livonian") + " (" + _("mobile friendly") + ")"),
+    ('livM', _(u"Livonian")),
     ('izh', _(u"Izhorian")),
     ('vep', _(u"Veps")),
     ('vro', _(u"Võro")),
@@ -61,7 +61,7 @@ NAMES = dict([
 
     # saan
     ('sms', _(u"Skolt Sámi")),
-    ('smsM', _(u"Skolt Sámi") + " (" + _("mobile friendly") + ")"),
+    ('smsM', _(u"Skolt Sámi")),
 
     # pikiskwewina
     ('crk', _(u"Plains Cree")),
@@ -69,12 +69,11 @@ NAMES = dict([
 
     # dikaneisdi 
     ('chr', _(u"Cherokee")),
-    # NB: .lower() here to save on translation strings
-    ('chrL', _(u"Cherokee") + " (" + _("Transliterated").lower() + ")"),
+    ('chrL', _(u"Cherokee")),
 
     # guusaaw
     ('hdn', _(u"Northern Haida")),
-    ('hdnM', _(u"Northern Haida") + " (" + _("mobile friendly") + ")"),
+    ('hdnM', _(u"Northern Haida")),
 
     # target languages
     ('fin', _(u"Finnish")),
