@@ -64,7 +64,7 @@ msgstr "Венгрань кель"
 
 #: configs/language_names.py:30 templates/more_dictionaries.html:29
 msgid "South Sámi"
-msgstr "Чиньэлеёнксонь саамонь кель"
+msgstr "Лембе ёнксонь саамонь кель"
 
 #: configs/language_names.py:33 configs/language_names.py:34
 msgid "Komi"
@@ -134,7 +134,7 @@ msgstr "Лугамаринь кель"
 
 #: configs/language_names.py:60
 msgid "Nenets"
-msgstr "Ненэцень кель"
+msgstr "Ненецэнь кель"
 
 #: configs/language_names.py:63 configs/language_names.py:64
 msgid "Skolt Sámi"
@@ -142,11 +142,11 @@ msgstr "Сколт саамонь кель"
 
 #: configs/language_names.py:67 configs/language_names.py:68
 msgid "Plains Cree"
-msgstr "Степкринь"
+msgstr "Степень кринь кель"
 
 #: configs/language_names.py:71 configs/language_names.py:73
 msgid "Cherokee"
-msgstr ""
+msgstr "Черокинь кель"
 
 #: configs/language_names.py:76 configs/language_names.py:77
 msgid "Northern Haida"
@@ -222,7 +222,7 @@ msgstr "Минденек"
 #: static/js/neahttadigisanit.jquery.js:13272
 #: static/js/neahttadigisanit.min.js:2964
 msgid "Advanced"
-msgstr "Аволь ушодыцянь"
+msgstr "Маштыцянь"
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13272
 #: static/js/neahttadigisanit.jquery.js:13272
@@ -492,7 +492,7 @@ msgstr ""
 
 #: templates/about.baakoeh.html:62 templates/about.sanit.html:62
 msgid "sma ↔ nob"
-msgstr "чиньэлеёнксонь саамонь кель ↔ норвегень вук мол"
+msgstr "чиньэлеёнксонь саамонь кель ↔ норвегень бук мол"
 
 #: templates/about.baakoeh.html:63 templates/about.sanit.html:63
 msgid ""
@@ -772,7 +772,7 @@ msgid ""
 "Technology group at the <a href=\"http://uit.no\">University of "
 "Tromsø</a>."
 msgstr ""
-"Неть тевтне шказь (теезь) питнень апак сае ды весенень панжадо "
+"Неть тевтне теезь ярмактомо ды сынь эрьванень панжадот"
 "кедьёнкстнэсэ, конатнень теицяст <em><a "
 "href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, <a "
 "href=\"http://uit.no\">Тромсёнь университетэнь</a> Саамонь Келень "
@@ -807,7 +807,7 @@ msgstr ""
 
 #: templates/index.html:174
 msgid "Search for a word, or a word form for a word analysis and definition."
-msgstr ""
+msgstr "Сёрмадозь валонтень эли валонь формантень тееви анализ ды ютавтома."
 
 #: templates/index.html:178
 msgid ""
@@ -962,7 +962,7 @@ msgstr ""
 #: templates/reader.html:3 templates/reader.html:20
 #, python-format
 msgid "%(project_name)s Reader"
-msgstr "%(project_name)-нь лездывалкс"
+msgstr "%(project_name)s лездывалкс"
 
 #: templates/reader.html:21
 msgid "Bookmarklet"
@@ -985,7 +985,7 @@ msgstr ""
 #: templates/reader.html:26 templates/reader_update.html:15
 #, python-format
 msgid "Read with %(project_name)s"
-msgstr "Ловнок %(project_name) марто"
+msgstr "Ловнок %(project_name)s марто"
 
 #: templates/reader.html:27
 msgid ""
@@ -1129,7 +1129,7 @@ msgstr ""
 
 #: templates/word_detail.html:39 templates/word_detail_new_style.html:39
 msgid "is a possible form of ... "
-msgstr "валпарцунось маштови саемс истямо валсто ..."
+msgstr "валонь форманть маштови саемс истямо валсто ..."
 
 #: templates/word_detail.html:190 templates/word_detail_new_style.html:129
 msgid "More information about this word"
