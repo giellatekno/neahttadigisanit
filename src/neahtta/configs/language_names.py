@@ -65,7 +65,7 @@ NAMES = dict([
 
     # pikiskwewina
     ('crk', _(u"Plains Cree")),
-    ('crkM', _(u"Plains Cree") + " (" + _("mobile friendly") + ")"),
+    ('crkM', _(u"Plains Cree")),
 
     # dikaneisdi 
     ('chr', _(u"Cherokee")),

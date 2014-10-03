@@ -829,10 +829,23 @@ class Config(Config):
             if is_variant:
                 swap_to, swap_from = orig_pair
 
+        # Get the description and such for the variaint in the
+        # original definition
+
+        variant_options = False
+        if is_variant:
+            orig_pair_variants = pair_settings.get('input_variants')
+            variant_opts = filter( lambda x: x.get('short_name') == _from
+                                 , orig_pair_variants
+                                 )
+            if len(variant_opts) > 0:
+                variant_options = variant_opts[0]
+
         pair_opts = {
             'has_mobile_variant': has_mobile_variant,
             'has_variant': has_variant,
             'is_variant': is_variant,
+            'variant_options': variant_options,
             'orig_pair': orig_pair,
             'swap_to': swap_to,
             'swap_from': swap_from
