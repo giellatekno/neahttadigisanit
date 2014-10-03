@@ -121,6 +121,7 @@ class IndexSearchPage(IndexSearch, View, AppViewSettingsMixin):
             'swap_to': self.default_from,
             'show_info': True,
             'current_pair_settings': current_pair_settings,
+            'current_variant_options': orig_pair_opts.get('variant_options'),
             '_from': self.default_from,
             '_to': self.default_to
         }
@@ -620,6 +621,7 @@ class LanguagePairSearchView(IndexSearch, DictionaryView, SearcherMixin):
         shared_context = {
             'display_swap': self.get_reverse_pair(_from, _to),
             'current_pair_settings': current_pair_settings,
+            'current_variant_options': orig_pair_opts.get('variant_options'),
             '_from': _from,
             '_to': _to,
             # TODO: 'show_info': ? set this based on sesion and whether

@@ -62,7 +62,9 @@ def register_filters(app):
     @app.template_filter('iso_to_i18n')
     def append_language_names_i18n(s):
         from configs.language_names import NAMES
-        return NAMES.get(s, s)
+        _n = NAMES.get(s, s)
+        print (s, _n)
+        return _n
 
     @app.template_filter('sneak_in_link')
     def sneak_in_link(s, link_src):
