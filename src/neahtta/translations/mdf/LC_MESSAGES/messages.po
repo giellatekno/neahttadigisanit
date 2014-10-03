@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-28 15:39-0500\n"
+"POT-Creation-Date: 2014-09-29 17:29-0500\n"
 "PO-Revision-Date: 2013-03-14 20:06-0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: mdf <LL@li.org>\n"
@@ -29,13 +29,13 @@ msgstr ""
 msgid "Transliterated"
 msgstr ""
 
-#: configs/guusaaw.config.yaml.in:77 configs/kyv.config.yaml.in:93
+#: configs/guusaaw.config.yaml.in:74 configs/kyv.config.yaml.in:93
 #: configs/pikiskwewina.config.yaml.in:54 configs/saan.config.yaml.in:68
 #: configs/sample.config.yaml.in:115 configs/sanit.config.yaml.in:118
 msgid "Standard"
 msgstr ""
 
-#: configs/guusaaw.config.yaml.in:82 configs/pikiskwewina.config.yaml.in:59
+#: configs/guusaaw.config.yaml.in:79 configs/pikiskwewina.config.yaml.in:59
 #: configs/saan.config.yaml.in:73
 msgid "Mobile friendly"
 msgstr ""
@@ -1104,11 +1104,5 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "Read with Neahttadigisánit"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "\n"
-#~ "Your web browser is supported, however, you will need to change some\n"
-#~ "options for the Neahttadigisánit Reader to work.\n"
 #~ msgstr ""
 

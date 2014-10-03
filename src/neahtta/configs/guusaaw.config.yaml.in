@@ -47,11 +47,8 @@ Morphology:
 
 Languages:
   - iso: hdn
-    name:
-      eng: "Northern Haida"
+  - iso: hdnM
   - iso: eng
-    name:
-      eng: "English"
 
 Dictionaries:
   - source: hdn
