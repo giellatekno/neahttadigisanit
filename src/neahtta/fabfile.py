@@ -90,15 +90,11 @@ no_fst_install = [
 @task
 def baakoeh():
     """ Use baakoeh """
-    # TODO: change on gtoahpa.uit.no: compile only does dictionary, not
-    # fst
     env.current_dict = "baakoeh"
 
 @task
 def sanit():
     """ Use sanit """
-    # TODO: change on gtoahpa.uit.no: compile only does dictionary, not
-    # fst
     env.current_dict = "sanit"
 
 @task
@@ -264,6 +260,16 @@ def update_gtsvn():
                     red("  Correct this (maybe with `svn cleanup`) and rerun the command, or run with `no_svn_up`.")
                 )
 
+    # TODO: necessary to run autogen just in case? 
+    print(cyan("** Compiling gtcore **"))
+    gtcore = env.svn_path + 'gtcore/'
+    with cd(gtcore):
+        make_file = env.svn_path + 'gtcore/Makefile'
+        make_ = "make -C %s -f %s" % ( gtcore
+                                     , make_file
+                                     )
+        result = env.run(make_)
+
 @task
 def restart_service(dictionary=False):
     """ Restarts the service. """
@@ -300,9 +306,6 @@ def compile_dictionary(dictionary=False, restart=False):
     corresponding service.
 
         $ fab compile_dictionary:DICT
-
-    # TODO: restarting doesn't actually work yet.
-
     """
 
     failed = False
@@ -325,11 +328,6 @@ def compile_dictionary(dictionary=False, restart=False):
 
     if failed:
         print(red("** Something went wrong while compiling <%s> **" % dictionary))
-
-# @task
-# def restart_all_running():
-# TODO: ""ls -c1 *.pid | grep -o '^\w*' | xargs -I fab local {} restart_service"
-
 
 @task
 def compile(dictionary=False,restart=False):
