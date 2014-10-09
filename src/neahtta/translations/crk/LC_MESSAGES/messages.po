@@ -769,7 +769,7 @@ msgstr "crk"
 #: templates/left_dictionary_list.html:1
 #: templates/mobile_nav_dictionary_list.html:1
 msgid "Dictionaries"
-msgstr ""
+msgstr "itwêwasinahikana"
 
 #: templates/left_dictionary_list.html:9
 #: templates/mobile_nav_dictionary_list.html:48
@@ -783,8 +783,8 @@ msgstr ""
 
 #: templates/left_nav_grouped_language_pair_select.html:54
 #: templates/left_nav_language_pair_select_list.html:37
-msgid "nawasôna tânisi kâ-isi-nêhiyawasinahikêyan"
-msgstr ""
+msgid "Written variant"
+msgstr "nawasôna tânisi kâ-isi-nêhiyawasinahikêyan"
 
 #: templates/more_dictionaries.html:4
 msgid "More dictionaris"
