@@ -752,11 +752,11 @@ msgstr "itwêwin"
 #: templates/index_search_form.html:47 templates/word_detail.html:97
 #: templates/word_detail_new_style.html:97
 msgid "Search"
-msgstr "natona"
+msgstr "nitona"
 
 #: templates/index_search_form.html:35 templates/index_search_form.html:57
 msgid "Search texts"
-msgstr "natona masinahikana"
+msgstr "nitona masinahikêwinihk"
 
 #: templates/language_select.html:7
 msgid "<span class=\"reposition_hide\">Language</span>"
