@@ -497,30 +497,66 @@ class Config(Config):
         from itertools import groupby
         from collections import defaultdict
 
+        # TODO: order with minority lang as source first
+
         # TODO: group by minority language
 
-        def grouper(i):
-            # iso_pair, pair_options = i
-            # _has_variant = False
-            # if pair_options.input_variants:
-            #     _has_variant = True
-            return i[0][0]
+        def group_by_source_first(((source, target), pair_options)):
+            """ Return the source and target.
+            """
+            return (source, target)
 
-        # TODO: include minority as source first, then aux langs
-        # following
+        def minority_langs_first((a_source_iso, a_target_iso),
+                                 (b_source_iso, b_target_iso)):
+            """ This is the cmp function, which accepts two ISO pairs
+            and returns -1, 0, or 1 to sort the values depending on a few criteria:
 
-        # TODO: assign a grouping color code to each lang. ex.)
-        #   livonian as a source gets blue
-        #   finnish as a source gets yellow
-        #   estonian as a source gets green
-        #   
-        #   background of link button is shaded based on this source tagging
+                * are the source languages both marked as minority langs?
+                * are the source languages both *not* marked as minority langs?
 
-        # orrr, 
+                 -> sort them as normal
+
+                * is one of the source langs marked as a minority lang?
+
+                 -> return the minority language first
+
+            Then... Also sort by the target languages, so each grouping
+            is still alphabetical. """
+
+            # TODO: compare on UI display name instead of ISOs.
+
+            a_min = a_source_iso in self.minority_languages
+            b_min = b_source_iso in self.minority_languages
+
+            def gt_return(a, b):
+                if a > b:     return -1
+                elif a < b:   return 1
+                else:         return 0
+
+            def gt_return_reverse(a, b):
+                if a > b:     return 1
+                elif a < b:   return -1
+                else:         return 0
+
+            if a_source_iso == b_source_iso:
+                return gt_return_reverse(a_target_iso, b_target_iso)
+
+            # cases of equal status
+            if (a_min and b_min) or (not a_min and not b_min):
+                return gt_return(a_min, b_min)
+
+            # one is a minority lang, and one is not
+            if a_min and not b_min:
+                return -1
+            if b_min and not a_min:
+                return 1
 
         if not hasattr(self, '_pair_definitions_grouped_source'):
 
-            pairs = sorted(self.pair_definitions.iteritems(), key=grouper)
+            pairs = sorted(self.pair_definitions.iteritems(),
+                           key=group_by_source_first,
+                           cmp=minority_langs_first)
+
             grouped_pairs = defaultdict(list)
             for p in pairs:
                 if p[0][0] in self.minority_languages:
