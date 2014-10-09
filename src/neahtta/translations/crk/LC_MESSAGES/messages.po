@@ -34,12 +34,12 @@ msgstr ""
 #: configs/sample.config.yaml.in:115 configs/sanit.config.yaml.in:118
 #: configs/sonad.config.yaml.in:141
 msgid "Standard"
-msgstr ""
+msgstr "papêyâhtak nêhiyawasinahikêwin"
 
 #: configs/guusaaw.config.yaml.in:79 configs/pikiskwewina.config.yaml.in:59
 #: configs/saan.config.yaml.in:73
 msgid "Mobile friendly"
-msgstr ""
+msgstr "wêhci-masinahikêwin"
 
 #: configs/kyv.config.yaml.in:96
 msgid "Molotsov orthography"
@@ -226,7 +226,7 @@ msgstr ""
 #: static/js/neahttadigisanit.jquery.js:13272
 #: static/js/neahttadigisanit.min.js:2964
 msgid "Dictionary"
-msgstr ""
+msgstr "itwêwasinahikan"
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13272
 #: static/js/neahttadigisanit.jquery.js:13272
@@ -725,7 +725,7 @@ msgstr ""
 
 #: templates/index.html:174
 msgid "Search for a word, or a word form for a word analysis and definition."
-msgstr "natona itwêwin ê-kici-wâpahtaman itwêstamâkêwin."
+msgstr "nitona nêhiyaw-itwêwin ta-miskaman âkayâsiwascikêwin (êkwa mîna tânisi kâ-isi-âniskôpitamihk)."
 
 #: templates/index.html:178
 msgid ""
@@ -775,7 +775,7 @@ msgstr ""
 #: templates/mobile_nav_dictionary_list.html:48
 #: templates/more_dictionaries.html:21
 msgid "Other dictionaries"
-msgstr ""
+msgstr "kotaka itwêwasinahikana"
 
 #: templates/left_dictionary_list.html:17
 msgid "Escape Text-TV mode"
@@ -783,7 +783,7 @@ msgstr ""
 
 #: templates/left_nav_grouped_language_pair_select.html:54
 #: templates/left_nav_language_pair_select_list.html:37
-msgid "Written variant"
+msgid "nawasôna tânisi kâ-isi-nêhiyawasinahikêyan"
 msgstr ""
 
 #: templates/more_dictionaries.html:4
