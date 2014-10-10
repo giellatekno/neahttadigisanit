@@ -308,3 +308,17 @@
 .no-js .mp-menu > .mp-level {
 	display: block;
 }
+
+/* 
+ *  Here are some fixes for the rest of the layout
+ */ 
+
+body.flyout-nav {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+#wrap {
+    padding-left: 20px;
+    padding-right: 20px;
+}

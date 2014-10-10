@@ -76,6 +76,19 @@
         <link href="{{url_for('static', filename='css/base.css')}}" rel="stylesheet" />
     {% endif %}
 
+    {% if new_mobile_nav %}
+
+		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navmenu/css/normalize.css')}}" />
+		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navmenu/css/icons.css')}}" />
+		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navmenu/css/component.css')}}" />
+
+		{#
+		    <link rel="stylesheet" type="text/css" href="css/demo.css" />
+        #}
+
+    {% endif %}
+
+
     {# for some reason {% set %} tag to compile css path didn't see variables in scope. 
     #}
 
@@ -112,7 +125,7 @@
 </head>
 
 <body lang="{% if session_locale %}{{ session_locale }}{% endif %}"
-      class="{% block bodyclass %}{% endblock %}">
+    class="{% block bodyclass %}{% endblock %}{% if new_mobile_nav %} flyout-nav{% endif %}">
 
       {% if new_mobile_nav %}
         <div class="nav-container">
@@ -222,14 +235,6 @@
             </div>
         </div>
 
-        {% if new_mobile_nav %}
-					    </div><!-- /scroller-inner -->
-				    </div><!-- /scroller -->
-
-			    </div><!-- /pusher -->
-		    </div><!-- /container -->
-        {% endif %}
-
         {% block footer_block %}
             {% if footer_template %}
                 {{ footer_template|safe }}
@@ -237,6 +242,14 @@
                 {% include 'default_footer.html' %}
             {% endif %}
         {% endblock %}
+
+        {% if new_mobile_nav %}
+					    </div><!-- /scroller-inner -->
+				    </div><!-- /scroller -->
+
+			    </div><!-- /pusher -->
+		    </div><!-- /container -->
+        {% endif %}
 
     <script type="text/javascript">
 
@@ -254,6 +267,17 @@
     </script>    
     {% block footer_js %}
     {% endblock %}
+
+    {% if new_mobile_nav %}
+        {# push nav #}
+	    <script src="{{url_for('static', filename='navmenu/js/modernizr.custom.js')}}"></script>
+	    <script src="{{url_for('static', filename='navmenu/js/classie.js')}}"></script>
+	    <script src="{{url_for('static', filename='navmenu/js/mlpushmenu.js')}}"></script>
+	    {# TODO: namespace? #}
+	    <script>
+		    new mlPushMenu( document.getElementById( 'mp-menu' ), document.getElementById( 'trigger' ) );
+	    </script>
+    {% endif %}
 
 </body>
 
