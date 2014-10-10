@@ -57,8 +57,8 @@
                                         <li><a href="#" class="icon icon-arrow-left">{{ iso_pair[0]|iso_to_i18n }} &rarr; {{ iso_pair[1]|iso_to_i18n }}</a>
                                             <div class="mp-level">
                                                 <h2>{{ iso_pair[0]|iso_to_i18n }} &rarr; {{ iso_pair[1]|iso_to_i18n }}<br />
-                                                <a class="mp-back" href="#">{% trans %}Back{% endtrans %}</a>
                                                 {% trans %}Written variant{% endtrans %}</h2>
+                                                <a class="mp-back" href="#">{% trans %}Back{% endtrans %}</a>
                                                 <ul>
                                                     {% for variant in pair_options.input_variants %}
                                                     <li>
