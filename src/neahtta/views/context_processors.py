@@ -80,7 +80,7 @@ def define_app_name():
 
 @blueprint.context_processor
 def nav_style():
-    return dict(grouped_nav=current_app.config.grouped_nav)
+    return dict(grouped_nav=current_app.config.grouped_nav, new_mobile_nav=current_app.config.new_mobile_nav)
 
 @blueprint.context_processor
 def define_app_meta():

@@ -113,15 +113,36 @@
 
 <body lang="{% if session_locale %}{{ session_locale }}{% endif %}"
       class="{% block bodyclass %}{% endblock %}">
+
+      {% if new_mobile_nav %}
+        <div class="nav-container">
+			<!-- Push Wrapper -->
+			<div class="mp-pusher" id="mp-pusher">
+                <!-- mp-menu -->
+          {% include "mobile_nav_push_menu.html" %}
+          {# NB: we also close these tags below #}
+                <!-- /mp-menu -->
+				<div class="scroller"><!-- this is for emulating position fixed of the nav -->
+					<div class="scroller-inner">
+        {% endif %}
+
         <header>
             <div class="navbar navbar-static-top">
                 <div class="navbar-inner">
                     <div class="container">
-                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".main-nav">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </a>
+                        {% if new_mobile_nav %}
+                            <a href="#" id="trigger" class="btn btn-navbar">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </a>
+                        {% else %}
+                            <a class="btn btn-navbar" data-toggle="collapse" data-target=".main-nav">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </a>
+                        {% endif %}
                         <a class="brand" href="/">{{ app_name }}</a>
                         <div class="nav-collapse main-nav">
                             <ul class="nav">
@@ -201,6 +222,14 @@
             </div>
         </div>
 
+        {% if new_mobile_nav %}
+					    </div><!-- /scroller-inner -->
+				    </div><!-- /scroller -->
+
+			    </div><!-- /pusher -->
+		    </div><!-- /container -->
+        {% endif %}
+
         {% block footer_block %}
             {% if footer_template %}
                 {{ footer_template|safe }}
@@ -223,6 +252,8 @@
       })();
 
     </script>    
+    {% block footer_js %}
+    {% endblock %}
 
 </body>
 

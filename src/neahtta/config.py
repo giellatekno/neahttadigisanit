@@ -146,6 +146,12 @@ class Config(Config):
         return _p
 
     @property
+    def new_mobile_nav(self):
+        _p = self.yaml.get('ApplicationSettings', {})\
+                      .get('new_mobile_nav', False)
+        return _p
+
+    @property
     def app_meta_title(self):
         _p = self.yaml.get('ApplicationSettings', {})\
                       .get('app_meta_title', False)
@@ -497,9 +503,7 @@ class Config(Config):
         from itertools import groupby
         from collections import defaultdict
 
-        # TODO: order with minority lang as source first
-
-        # TODO: group by minority language
+        # TODO: use this for sorting languages in the non-grouped nav?
 
         def group_by_source_first(((source, target), pair_options)):
             """ Return the source and target.
@@ -887,4 +891,3 @@ class Config(Config):
             'swap_from': swap_from
         }
         return pair_settings, pair_opts
-
