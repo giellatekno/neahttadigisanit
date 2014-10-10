@@ -56,10 +56,12 @@
                                     {% if pair_options.input_variants %}
                                         <li><a href="#" class="icon icon-arrow-left">{{ iso_pair[0]|iso_to_i18n }} &rarr; {{ iso_pair[1]|iso_to_i18n }}</a>
                                             <div class="mp-level">
-                                                <h2>{{ iso_pair[0]|iso_to_i18n }} &rarr; {{ iso_pair[1]|iso_to_i18n }}<br />
-                                                {% trans %}Written variant{% endtrans %}</h2>
+                                                <h2>{{ iso_pair[0]|iso_to_i18n }} &rarr; {{ iso_pair[1]|iso_to_i18n }}</h2>
                                                 <a class="mp-back" href="#">{% trans %}Back{% endtrans %}</a>
                                                 <ul>
+                                                    <li>
+                                                        <span class="section-note">{% trans %}Written variant{% endtrans %}</span>
+                                                    </li>
                                                     {% for variant in pair_options.input_variants %}
                                                     <li>
                                                     <a href="/{{ variant.short_name }}/{{ iso_pair[1] }}/">
