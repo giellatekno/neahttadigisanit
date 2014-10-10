@@ -1,0 +1,93 @@
+<nav id="mp-menu" class="mp-menu">
+    <div class="mp-level">
+        <h2 class="icon icon-world">{{ app_name }}</h2>
+        <ul>
+            <li><a href="/">
+                    <span>{% trans %}Home{% endtrans %}</span>
+            </a></li>
+            <li>
+                <a href="/read/">
+                    <span>{% trans %}Plugins{% endtrans %}</span>
+                </a>
+            </li>
+            <li><a href="/about/">
+                    <span>{% trans %}About{% endtrans %}</span>
+            </a></li>
+            {% if sources_template_exists %}
+                <li><a href="/about/sources/">
+                        <span>{% trans %}Sources{% endtrans %}</span>
+                </a></li>
+            {% endif %}
+            <li class="icon icon-arrow-left">
+                <a class="icon icon-arrow-left" href="#">{% trans %}Interface language{% endtrans %}</a>
+                 
+                <div class="mp-level">
+                    <h2 class="icon icon-arrow-left">{% trans %}Interface language{% endtrans %}</h2>
+                    <a class="mp-back" href="#">{% trans %}Back{% endtrans %}</a>
+                    <ul>
+                        {% for iso in internationalizations %}
+                        <li class="display-phone hidden-tablet visible-mid hidden-desktop">
+                            <a href="/locale/{{ iso }}/">
+                                <img class="i18n_flag" alt="[{{ iso|iso_to_language_own_name }} flag]" src="{{url_for('static', filename='img/flags/' + iso + '_20x15.png')}}"> {{ iso|iso_to_language_own_name }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </li>
+
+            {# TODO: document all the iteration here #}
+            {# TODO: be clearer with use of icons vs. no icons #}
+            <li class="icon icon-arrow-left">
+                <a class="icon icon-arrow-left" href="#">{% trans %}Dictionaries{% endtrans %}</a>
+                 
+                <div class="mp-level">
+                    <h2 class="icon icon-display">{% trans %}Dictionaries{% endtrans %}</h2>
+                    <a class="mp-back" href="#">{% trans %}Back{% endtrans %}</a>
+                    <ul>
+                        {% for iso_group, grouped_items in language_pairs_grouped_by_source.iteritems() %}
+                        <li class="icon icon-arrow-left">
+                            <a class="icon icon-arrow-left" href="#">{{ iso_group|iso_to_language_own_name }}</a>
+ 
+                            <div class="mp-level">
+                                <h2>{{ iso_group|iso_to_language_own_name }}</h2>
+                                <a class="mp-back" href="#">{% trans %}Back{% endtrans %}</a>
+                                <ul>
+                                {%- for iso_pair, pair_options in grouped_items -%}
+                                    {% if pair_options.input_variants %}
+                                        <li><a href="#" class="icon icon-arrow-left">{{ iso_pair[0]|iso_to_i18n }} &rarr; {{ iso_pair[1]|iso_to_i18n }}</a>
+                                            <div class="mp-level">
+                                                <h2>{{ iso_pair[0]|iso_to_i18n }} &rarr; {{ iso_pair[1]|iso_to_i18n }}<br />
+                                                <a class="mp-back" href="#">{% trans %}Back{% endtrans %}</a>
+                                                {% trans %}Written variant{% endtrans %}</h2>
+                                                <ul>
+                                                    {% for variant in pair_options.input_variants %}
+                                                    <li>
+                                                    <a href="/{{ variant.short_name }}/{{ iso_pair[1] }}/">
+                                                        <span>{{ gettext(variant.description)|safe }}{% if variant.example %} {{ gettext(variant.example)|safe }}{% endif %}</span>
+                                                    </a></li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    {% else %}
+                                    <li>
+                                        <a href="/{{ iso_pair[0] }}/{{ iso_pair[1] }}/" class="block_title">
+                                            <span>{{ iso_pair[0]|iso_to_i18n }} &rarr; {{ iso_pair[1]|iso_to_i18n }}</span>
+                                        </a>
+                                    </li>
+                                    {% endif %}
+                                {% endfor %}
+                                </ul>
+                            </div>
+
+ 
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </li>
+            <li><!-- ... --></li>
+            <!-- ... -->
+        </ul>
+    </div>
+</nav>
