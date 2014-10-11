@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-10-03 17:51-0500\n"
+"POT-Creation-Date: 2014-10-11 17:05-0500\n"
 "PO-Revision-Date: 2013-11-07 11:38+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language-Team: fr <LL@li.org>\n"
@@ -32,7 +32,7 @@ msgstr ""
 #: configs/guusaaw.config.yaml.in:74 configs/kyv.config.yaml.in:93
 #: configs/pikiskwewina.config.yaml.in:54 configs/saan.config.yaml.in:68
 #: configs/sample.config.yaml.in:115 configs/sanit.config.yaml.in:118
-#: configs/sonad.config.yaml.in:141
+#: configs/sonad.config.yaml.in:142
 msgid "Standard"
 msgstr ""
 
@@ -188,7 +188,7 @@ msgstr ""
 msgid "Sosiála media (maiddái <em>acdnstz</em>)"
 msgstr ""
 
-#: configs/sonad.config.yaml.in:146
+#: configs/sonad.config.yaml.in:147
 msgid "mobile friendly"
 msgstr ""
 
@@ -211,7 +211,8 @@ msgstr ""
 #: templates/about.pikiskwewina.html:6 templates/about.sanat.html:6
 #: templates/about.sanit.html:6 templates/about.sonad.html:6
 #: templates/about.vada.html:7 templates/about.valks.html:7
-#: templates/base.html:137 templates/navigation_full.html:10
+#: templates/base.html:171 templates/mobile_nav_push_menu.html:14
+#: templates/navigation_full.html:10
 #: templates/navigation_full.pikiskwewina.html:11
 msgid "About"
 msgstr ""
@@ -666,21 +667,25 @@ msgid ""
 "Foundation."
 msgstr ""
 
-#: templates/base.html:129 templates/navigation_full.html:2
+#: templates/base.html:163 templates/mobile_nav_push_menu.html:6
+#: templates/navigation_full.html:2
 #: templates/navigation_full.pikiskwewina.html:3
 msgid "Home"
 msgstr ""
 
-#: templates/base.html:133 templates/navigation_full.html:6
+#: templates/base.html:167 templates/mobile_nav_push_menu.html:10
+#: templates/navigation_full.html:6
 #: templates/navigation_full.pikiskwewina.html:7
 msgid "Plugins"
 msgstr ""
 
-#: templates/base.html:141 templates/navigation_full.pikiskwewina.html:14
+#: templates/base.html:175 templates/mobile_nav_push_menu.html:18
+#: templates/navigation_full.pikiskwewina.html:14
 msgid "Sources"
 msgstr ""
 
-#: templates/base.html:147
+#: templates/base.html:181 templates/mobile_nav_push_menu.html:22
+#: templates/mobile_nav_push_menu.html:25
 msgid "Interface language"
 msgstr ""
 
@@ -696,12 +701,12 @@ msgid ""
 "Tromsø</a>."
 msgstr ""
 
-#: templates/index.html:44 templates/index_new_style.html:81
+#: templates/index.html:44 templates/index_new_style.html:85
 msgid "Swap"
 msgstr ""
 
 #: templates/index.html:54 templates/index.html:139
-#: templates/index_new_style.html:95 templates/index_new_style.html:135
+#: templates/index_new_style.html:99 templates/index_new_style.html:139
 #: templates/word_detail.html:106 templates/word_detail_new_style.html:106
 #: templates/word_detail_new_style.html:137 views/reader.py:217
 msgid " is a possible form of ... "
@@ -711,7 +716,7 @@ msgstr ""
 msgid "Definition not found for:"
 msgstr ""
 
-#: templates/index.html:161 templates/index_new_style.html:120
+#: templates/index.html:161 templates/index_new_style.html:124
 #, python-format
 msgid "Word %(input)s not found."
 msgstr ""
@@ -735,7 +740,7 @@ msgid ""
 "their usual values."
 msgstr ""
 
-#: templates/index_new_style.html:19 templates/macros.html:5
+#: templates/index_new_style.html:23 templates/macros.html:5
 #: templates/macros.html:13
 #, fuzzy
 msgid "Texts"
@@ -769,6 +774,8 @@ msgstr ""
 
 #: templates/left_dictionary_list.html:1
 #: templates/mobile_nav_dictionary_list.html:1
+#: templates/mobile_nav_push_menu.html:41
+#: templates/mobile_nav_push_menu.html:44
 msgid "Dictionaries"
 msgstr "Dictionnaires"
 
@@ -784,7 +791,15 @@ msgstr ""
 
 #: templates/left_nav_grouped_language_pair_select.html:54
 #: templates/left_nav_language_pair_select_list.html:37
+#: templates/mobile_nav_push_menu.html:63
 msgid "Written variant"
+msgstr ""
+
+#: templates/mobile_nav_push_menu.html:26
+#: templates/mobile_nav_push_menu.html:45
+#: templates/mobile_nav_push_menu.html:53
+#: templates/mobile_nav_push_menu.html:60
+msgid "Back"
 msgstr ""
 
 #: templates/more_dictionaries.html:4
