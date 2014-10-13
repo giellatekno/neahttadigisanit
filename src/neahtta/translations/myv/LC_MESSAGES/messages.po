@@ -688,7 +688,7 @@ msgstr "Ловныцянь Neahttadigisánit"
 
 #: templates/default_footer.html:9
 msgid "Created with free and open-source language tools from <em><a href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, a Sámi Language Technology group at the <a href=\"http://uit.no\">University of Tromsø</a>."
-msgstr "Неть тевтне теезь ярмактомо ды сынь эрьванень панжадоткедьёнкстнэсэ, конатнень теицяст <em><a href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, <a href=\"http://uit.no\">Тромсёнь университетэнь</a> Саамонь Келень Технологиянь курось."
+msgstr "Неть тевтне теезь ярмаконь апак веше, кедьёнкссо, конатне эрьванень панжадот. Теицяст <em><a href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, <a href=\"http://uit.no\">Тромсёнь университетэнь</a> Саамонь Келень Технологиянь курось."
 
 #: templates/index.html:44 templates/index_new_style.html:85
 msgid "Swap"
