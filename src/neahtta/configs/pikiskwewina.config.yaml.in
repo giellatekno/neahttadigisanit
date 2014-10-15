@@ -43,6 +43,7 @@ Morphology:
 Languages:
   - iso: crk
   - iso: crkM
+    variant: True
   - iso: eng
 
 Dictionaries:

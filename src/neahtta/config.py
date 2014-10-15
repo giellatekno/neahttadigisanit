@@ -12,8 +12,6 @@ def gettext_yaml_wrapper(loader, node):
     from flaskext.babel import lazy_gettext as _
     return node.value
 
-# TODO: make this work, or figure out how babel wants a parser for yaml
-# constructed.
 yaml.add_constructor('!gettext', gettext_yaml_wrapper)
 
 # This should match most language words, with few surprises, however it

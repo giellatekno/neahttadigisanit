@@ -6,6 +6,8 @@ ApplicationSettings:
   default_pair: ["olo", "fin"]
   new_style_templates: true
   mobile_default_pair: false
+  grouped_nav: true
+  new_mobile_nav: true
   locales_available:
     - "fi"
     - "no"
@@ -80,9 +82,13 @@ Morphology:
 
 Languages:
   - iso: olo
-  - iso: fin
+    minority_lang: true
   - iso: fkv
+    minority_lang: true
   - iso: vep
+    minority_lang: true
+
+  - iso: fin
   - iso: nob
   - iso: lav
   - iso: est

@@ -232,22 +232,54 @@ def update_configs():
         with cd(_p):
             env.run('svn up ' + _p)
 
+def read_config(proj):
+
+    import yaml
+
+    def gettext_yaml_wrapper(loader, node):
+        from flaskext.babel import lazy_gettext as _
+        return node.value
+
+    yaml.add_constructor('!gettext', gettext_yaml_wrapper)
+
+    _path = 'configs/%s.config.yaml' % proj
+
+    try:
+        open(_path, 'r').read()
+    except IOError:
+        if env.real_hostname not in running_service:
+            _path = 'configs/%s.config.yaml.in' % proj
+            print(yellow("** Production config not found, using development (*.in)"))
+        else:
+            print(red("** Production config not found, and on a production server. Exiting."))
+            sys.exit()
+
+    with open(_path, 'r') as F:
+        config = yaml.load(F)
+
+    return config
+
+
 @task
 def update_gtsvn():
     """ SVN up the various ~/gtsvn/ directories """
+
     if env.no_svn_up:
         print(yellow("** skipping svn up **"))
         return
 
     with cd(env.svn_path):
+        config = read_config(env.current_dict)
+        svn_langs = [l.get('iso') for l in config.get('Languages')
+                     if not l.get('variant', False)]
+        svn_lang_paths = [ 'langs/%s' % l for l in svn_langs ]
+        # TODO: replace langs with specific list of langs from config
+        # file
         paths = [
-            'gt/',
             'gtcore/',
-            'langs/',
-            'startup-langs/',
             'words/',
             'art/dicts/',
-        ]
+        ] + svn_lang_paths
         print(cyan("** svn up **"))
     for p in paths:
         _p = os.path.join(env.svn_path, p)
@@ -348,8 +380,8 @@ def compile(dictionary=False,restart=False):
     if not dictionary:
         dictionary = env.current_dict
 
-    update_gtsvn()
     update_configs()
+    update_gtsvn()
 
     with cd(env.dict_path):
         if env.no_svn_up:
