@@ -116,6 +116,7 @@ Languages:
 
   - iso: livM
     minority_lang: true
+    variant: True # this makes the fab process skip attempting `svn up` here.
 
   - iso: izh
     minority_lang: true

@@ -89,6 +89,7 @@ Morphology:
 Languages:
   - iso: sme
   - iso: SoMe
+    variant: True # this makes the fab process skip attempting `svn up` here.
   - iso: nob
   - iso: fin
   - iso: sma
