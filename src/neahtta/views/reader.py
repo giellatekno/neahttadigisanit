@@ -15,6 +15,7 @@ from i18n.utils import iso_filter
 
 from morphology.utils import tagfilter
 from flaskext.babel import gettext as _
+from flaskext.babel import lazy_gettext
 
 from datetime import timedelta
 from flask import make_response, request, current_app
@@ -351,8 +352,8 @@ def bookmarklet_configs():
                 variant_dict_opts = current_app.config.reader_options.get(v_from, {})
                 if not (v_from, _to) in prepared:
                     dictionaries.append(
-                        { 'from': {'iso': v_from, 'name': unicode(NAMES.get(v_from))}
-                        , 'to':   {'iso': _to,    'name': unicode(NAMES.get(_to))}
+                        { 'from': {'iso': v_from, 'name': "%s (%s)" % (unicode(NAMES.get(v_from)), _(variant.get('description', '')))}
+                        , 'to':   {'iso': _to,    'name': "%s" % unicode(NAMES.get(_to))}
                         , 'uri': "/lookup/%s/%s/" % (_from, _to)
                         , 'settings': variant_dict_opts
                         }
