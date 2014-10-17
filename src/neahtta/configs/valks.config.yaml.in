@@ -62,27 +62,31 @@ Morphology:
 
 Languages:
   - iso: myv
+    minority_lang: true
+
   - iso: mdf
+    minority_lang: true
+
   - iso: eng
   - iso: fin
   - iso: rus
   - iso: fra
 
 Dictionaries:
+  - source: myv
+    target: fin
+    path: 'dicts/myv-all.xml'
+
   - source: fin
     target: myv
     path: 'dicts/finmyv.xml'
 
   - source: myv
-    target: eng
-    path: 'dicts/myv-all.xml'
-
-  - source: myv
-    target: fin
-    path: 'dicts/myv-all.xml'
-
-  - source: myv
     target: rus
+    path: 'dicts/myv-all.xml'
+
+  - source: myv
+    target: eng
     path: 'dicts/myv-all.xml'
 
   - source: myv
