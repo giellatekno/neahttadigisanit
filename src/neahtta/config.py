@@ -319,6 +319,48 @@ class Config(Config):
         return self._unittests
 
     @property
+    def variant_dictionaries(self):
+        from collections import OrderedDict
+        if hasattr(self, '_variant_dictionaries'):
+            return self._variant_dictionaries
+
+        dicts = self.yaml.get('Dictionaries')
+        language_pairs = OrderedDict()
+        for item in dicts:
+            source = item.get('source')
+            target = item.get('target')
+            path = item.get('path')
+            variants = item.get('input_variants')
+            if variants:
+                for v in variants:
+                    if v.get('short_name') != source:
+                        language_pairs[(v.get('short_name'), target)] = {
+                            'orig_pair': (source, target),
+                            'path': path,
+                        }
+
+        self._variant_dictionaries = language_pairs
+        return language_pairs
+
+    @property
+    def input_variants(self):
+        from collections import OrderedDict
+        if self._input_variants:
+            return self._input_variants
+
+        dicts = self.yaml.get('Dictionaries')
+        language_pairs = OrderedDict()
+        for item in dicts:
+            source = item.get('source')
+            target = item.get('target')
+            input_variants = item.get('input_variants', False)
+            if input_variants:
+                language_pairs[(source, target)] = input_variants
+
+        self._input_variants = language_pairs
+        return language_pairs
+
+    @property
     def dictionaries(self):
         from collections import OrderedDict
         if self._dictionaries:
@@ -496,12 +538,16 @@ class Config(Config):
 
         return self._pair_definitions
 
-    @property
-    def pair_definitions_grouped_source(self):
+    def pair_definitions_grouped_source_locale(self):
         from itertools import groupby
-        from collections import defaultdict
+        from collections import defaultdict, OrderedDict
 
-        # TODO: use this for sorting languages in the non-grouped nav?
+        from flask.ext.babel import get_locale
+        locale = get_locale()
+
+        from configs.language_names import NAMES
+
+        # TODO: cache list by locale
 
         def group_by_source_first(((source, target), pair_options)):
             """ Return the source and target.
@@ -530,6 +576,12 @@ class Config(Config):
             a_min = a_source_iso in self.minority_languages
             b_min = b_source_iso in self.minority_languages
 
+            a_source_name = NAMES.get(a_source_iso)
+            b_source_name = NAMES.get(b_source_iso)
+
+            a_target_name = NAMES.get(a_target_iso)
+            b_target_name = NAMES.get(b_target_iso)
+
             def gt_return(a, b):
                 if a > b:     return -1
                 elif a < b:   return 1
@@ -541,11 +593,11 @@ class Config(Config):
                 else:         return 0
 
             if a_source_iso == b_source_iso:
-                return gt_return_reverse(a_target_iso, b_target_iso)
+                return gt_return_reverse(a_target_name, b_target_name)
 
             # cases of equal status
             if (a_min and b_min) or (not a_min and not b_min):
-                return gt_return(a_min, b_min)
+                return gt_return(a_source_name, b_source_name)
 
             # one is a minority lang, and one is not
             if a_min and not b_min:
@@ -565,7 +617,16 @@ class Config(Config):
                     grouped_pairs[p[0][0]].append(p)
                 if p[0][1] in self.minority_languages:
                     grouped_pairs[p[0][1]].append(p)
-            self._pair_definitions_grouped_source = grouped_pairs
+            # sort by alphabetical order of language name
+
+            def lang_name(n):
+                return NAMES.get(n)
+
+            grouped_pairs_name_order = OrderedDict()
+            for k in sorted(grouped_pairs.keys(), key=lang_name):
+                grouped_pairs_name_order[k] = grouped_pairs[k]
+
+            self._pair_definitions_grouped_source = grouped_pairs_name_order
 
         return self._pair_definitions_grouped_source
 

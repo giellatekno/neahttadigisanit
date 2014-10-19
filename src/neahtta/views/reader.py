@@ -318,7 +318,7 @@ def bookmarklet_configs():
     and internationalization strings.
     """
     from flaskext.babel import get_locale
-    from configs.language_names import NAMES
+    from configs.language_names import NAMES, LOCALISATION_NAMES_BY_LANGUAGE
 
     has_callback = request.args.get('callback', False)
     sess_lang = request.args.get('language', get_locale())
@@ -329,39 +329,54 @@ def bookmarklet_configs():
 
     prepared = []
 
-    for (_from, _to), pair_options in current_app.config.dictionaries.iteritems():
-        prepared.append((_from, _to))
+    pair_groups = current_app.config.pair_definitions_grouped_source_locale()
 
-        reader_dict_opts = current_app.config.reader_options.get(_from, {})
+    new_group = False
+    for grouper, group in pair_groups.iteritems():
+        for (_from, _to), pair_options in group:
+            prepared.append((_from, _to))
 
-        dictionaries.append(
-            { 'from': {'iso': _from, 'name': unicode(NAMES.get(_from))}
-            , 'to':   {'iso': _to,   'name': unicode(NAMES.get(_to))}
-            , 'uri': "/lookup/%s/%s/" % (_from, _to)
-            , 'settings': reader_dict_opts
-            }
-        )
+            reader_dict_opts = current_app.config.reader_options.get(_from, {})
 
-
-        _has_variant = current_app.config.pair_definitions.get((_from, _to), {}) \
-                                         .get('input_variants', False)
-
-        if _has_variant:
-            for variant in _has_variant:
-                v_from = variant.get('short_name')
-                variant_dict_opts = current_app.config.reader_options.get(v_from, {})
-                if not (v_from, _to) in prepared:
-                    dictionaries.append(
-                        { 'from': {'iso': v_from, 'name': "%s (%s)" % (unicode(NAMES.get(v_from)), _(variant.get('description', '')))}
-                        , 'to':   {'iso': _to,    'name': "%s" % unicode(NAMES.get(_to))}
-                        , 'uri': "/lookup/%s/%s/" % (_from, _to)
-                        , 'settings': variant_dict_opts
+            if grouper != new_group:
+                group = { 'iso': grouper
+                        , 'locale_name': unicode(NAMES.get(grouper))
+                        , 'self_name': unicode(LOCALISATION_NAMES_BY_LANGUAGE.get(grouper))
                         }
-                    )
-                    prepared.append((v_from, _to))
+            else:
+                group = False
+
+            new_group = grouper
+
+            dictionaries.append(
+                { 'from': {'iso': _from, 'name': unicode(NAMES.get(_from))}
+                , 'to':   {'iso': _to,   'name': unicode(NAMES.get(_to))}
+                , 'uri': "/lookup/%s/%s/" % (_from, _to)
+                , 'settings': reader_dict_opts
+                , 'group': group
+                }
+            )
+
+            _has_variant = current_app.config.pair_definitions.get((_from, _to), {}) \
+                                             .get('input_variants', False)
+
+            if _has_variant:
+                for variant in _has_variant:
+                    v_from = variant.get('short_name')
+                    variant_dict_opts = current_app.config.reader_options.get(v_from, {})
+                    if not (v_from, _to) in prepared:
+                        dictionaries.append(
+                            { 'from': {'iso': v_from, 'name': "%s (%s)" % (unicode(NAMES.get(v_from)), _(variant.get('description', '')))}
+                            , 'to':   {'iso': _to,    'name': "%s" % unicode(NAMES.get(_to))}
+                            , 'uri': "/lookup/%s/%s/" % (_from, _to)
+                            , 'settings': variant_dict_opts
+                            }
+                        )
+                        prepared.append((v_from, _to))
 
     data = { 'dictionaries': dictionaries
            , 'localization': translated_messages
+           , 'default_language_pair': current_app.config.default_language_pair
            }
 
     formatted = fmtForCallback(json.dumps(data), has_callback)

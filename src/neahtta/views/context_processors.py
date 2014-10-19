@@ -110,9 +110,11 @@ def define_app_production_mode():
 def define_global_language_pairs():
     return dict(language_pairs=current_app.config.pair_definitions)
 
+# TODO:
 @blueprint.context_processor
 def language_pairs_grouped_by_source():
-    return dict(language_pairs_grouped_by_source=current_app.config.pair_definitions_grouped_source)
+    return dict(language_pairs_grouped_by_source=current_app.config.pair_definitions_grouped_source_locale())
+
 
 @blueprint.context_processor
 def define_variant_dictionaries():
