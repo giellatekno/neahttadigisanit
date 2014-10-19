@@ -77,10 +77,12 @@ Morphology:
 
 Languages:
   - iso: kpv
+    minority_lang: true
   - iso: eng
   - iso: fin
   - iso: rus
   - iso: udm
+    minority_lang: true
   - iso: hun
 
 Dictionaries:

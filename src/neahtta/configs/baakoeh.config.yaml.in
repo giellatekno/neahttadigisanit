@@ -59,6 +59,8 @@ Languages:
   - iso: nob
   - iso: fin
   - iso: sma
+    minority_lang: true
+
 
 # This also dictates the order of the dictionaries in the UI for now.
 Dictionaries:

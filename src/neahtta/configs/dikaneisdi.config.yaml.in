@@ -53,6 +53,7 @@ Morphology:
 
 Languages:
   - iso: chr
+    minority_lang: true
   - iso: eng
 
 Dictionaries:

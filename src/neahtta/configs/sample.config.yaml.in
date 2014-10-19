@@ -88,8 +88,14 @@ Morphology:
 #
 Languages:
   - iso: sme
+    # this ensures that if there are multiple minority languages in a project,
+    # that they will be sorted into groups by this status. Input variants do
+    # not need this marking.
+    minority_lang: true 
+
   - iso: SoMe
     variant: True # this makes the fab process skip attempting `svn up` here.
+
   - iso: nob
   - iso: fin
   - iso: sma

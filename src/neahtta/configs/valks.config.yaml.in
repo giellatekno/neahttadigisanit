@@ -104,4 +104,3 @@ Dictionaries:
   - source: mdf
     target: fra
     path: 'dicts/mdf-all.xml'
-

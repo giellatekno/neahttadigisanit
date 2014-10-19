@@ -42,6 +42,7 @@ Morphology:
 
 Languages:
   - iso: crk
+    minority_lang: true
   - iso: crkM
     variant: True # this makes the fab process skip attempting `svn up` here.
   - iso: eng

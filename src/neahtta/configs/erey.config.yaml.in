@@ -39,6 +39,7 @@ Morphology:
 
 Languages:
   - iso: som
+    minority_lang: true
   - iso: eng
   - iso: fin
 

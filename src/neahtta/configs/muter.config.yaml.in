@@ -58,7 +58,9 @@ Morphology:
 
 Languages:
   - iso: mrj
+    minority_lang: true
   - iso: mhr
+    minority_lang: true
   - iso: eng
   - iso: fin
   - iso: rus

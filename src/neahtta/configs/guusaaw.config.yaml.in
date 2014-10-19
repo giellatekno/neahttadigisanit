@@ -47,6 +47,7 @@ Morphology:
 
 Languages:
   - iso: hdn
+    minority_lang: true
   - iso: hdnM
     variant: True # this makes the fab process skip attempting `svn up` here.
   - iso: eng
