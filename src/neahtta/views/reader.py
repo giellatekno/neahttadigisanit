@@ -317,6 +317,9 @@ def bookmarklet_configs():
     """ Compile a JSON response containing dictionary pairs,
     and internationalization strings.
     """
+    # TODO: nds sanit, SoMe iso goes missing from from config object
+    # FIXME: 
+
     from flaskext.babel import get_locale
     from configs.language_names import NAMES, LOCALISATION_NAMES_BY_LANGUAGE
 
@@ -366,9 +369,9 @@ def bookmarklet_configs():
                     variant_dict_opts = current_app.config.reader_options.get(v_from, {})
                     if not (v_from, _to) in prepared:
                         dictionaries.append(
-                            { 'from': {'iso': v_from, 'name': "%s (%s)" % (unicode(NAMES.get(v_from)), _(variant.get('description', '')))}
+                            { 'from': {'iso': v_from, 'name': "%s (%s)" % (unicode(NAMES.get(_from, _from)), _(variant.get('description', '')))}
                             , 'to':   {'iso': _to,    'name': "%s" % unicode(NAMES.get(_to))}
-                            , 'uri': "/lookup/%s/%s/" % (_from, _to)
+                            , 'uri': "/lookup/%s/%s/" % (v_from, _to)
                             , 'settings': variant_dict_opts
                             }
                         )
