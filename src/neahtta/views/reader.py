@@ -317,8 +317,6 @@ def bookmarklet_configs():
     """ Compile a JSON response containing dictionary pairs,
     and internationalization strings.
     """
-    # TODO: nds sanit, SoMe iso goes missing from from config object
-    # FIXME: 
 
     from flaskext.babel import get_locale
     from configs.language_names import NAMES, LOCALISATION_NAMES_BY_LANGUAGE
