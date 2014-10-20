@@ -21,6 +21,26 @@ yaml.add_constructor('!gettext', gettext_yaml_wrapper)
 DEFAULT_WORD_REGEX = '[\u00C0-\u1FFF\u2C00-\uD7FF\w\-]+'
 DEFAULT_WORD_REGEX_OPTS = 'g'
 
+def validate_variants(variants, lexicon):
+    if not variants:
+        return variants
+    obligatory_keys = set([
+        'type', 'description', 'short_name'
+    ])
+    optional_keys = set([
+        'example',
+    ])
+    variant_count = 1
+    for v in variants:
+        missing_keys = obligatory_keys - set(v.keys())
+        if len(missing_keys) > 0:
+            print >> sys.stderr, "Missing settings in `input_variants`:%d for lexicon <%s>" % (variant_count, repr(lexicon))
+            print >> sys.stderr, "    " + ','.join(missing_keys)
+            sys.exit()
+        variant_count += 1
+
+    return variants
+
 class Config(Config):
     """ An object for exposing the settings in app.config.yaml in a nice
     objecty way, and validating some of the contents.
@@ -529,7 +549,7 @@ class Config(Config):
                 for iso in _lang_isos:
                     _pair_options['langs'][iso] = (_from_langs[iso], _to_langs[iso])
 
-                _pair_options['input_variants'] = self.input_variants.get(key, False)
+                _pair_options['input_variants'] = validate_variants(self.input_variants.get(key, False), key)
 
                 _par_defs[key] = _pair_options
 
