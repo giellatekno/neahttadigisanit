@@ -140,18 +140,41 @@ module.Templates = @Templates =
     # NB: overriding underscorejs here.
     _ = module.fakeGetText
     makeLanguageOption = (options) ->
+      # Count groups available-- if there are more than one then we need to
+      # display them
+      #
+      groups = (data.group for data, i in options).length > 1
+      
       options_block = []
-      for data, i in options
-        if i+1 == 1
-          checked = "checked"
-        else
-          checked = ""
 
-        options_block.push """
-          <option value="#{data.from.iso}-#{data.to.iso}">
-          #{data.from.name} → #{data.to.name}
-          </option>
-        """
+      if groups
+        in_group = false
+        # In order to make sure the new changes work with the old code, there
+        # are no groups with members to iterate.  Thus, we add optgroup
+        # whenever a group is detected, and end the tag when it goes away.
+        #
+        for data, i in options
+          if data.group
+            if not in_group
+              options_block.push "</optgroup>"
+            options_block.push """<optgroup label="#{data.group.self_name}">"""
+            in_group = true
+
+          options_block.push """
+            <option value="#{data.from.iso}-#{data.to.iso}">
+            #{data.from.name} → #{data.to.name}
+            </option>
+          """
+
+        options_block.push "</optgroup>"
+
+      else
+        for data, i in options
+          options_block.push """
+            <option value="#{data.from.iso}-#{data.to.iso}">
+            #{data.from.name} → #{data.to.name}
+            </option>
+          """
       return options_block.join('\n')
   
     el = $("""

@@ -275,9 +275,16 @@ jQuery(document).ready ($) ->
         _select = "select[name='language_pair']"
         _opt = window.optTab.find(_select).val(previous_langpair)
       else
-        _select = "select[name='language_pair']"
-        _opt = window.optTab.find(_select).val()
-        previous_langpair = DSt.set(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair', _opt)
+        # TODO: default language pair
+        if window.nds_opts.default_language_pair
+          [_from, _to] = window.nds_opts.default_language_pair
+          _select = "select[name='language_pair'] option[value='#{_from}-#{_to}']"
+          _opt = window.optTab.find(_select).val()
+          previous_langpair = DSt.set(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair', _opt)
+        else
+          _select = "select[name='language_pair']"
+          _opt = window.optTab.find(_select).val()
+          previous_langpair = DSt.set(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair', _opt)
       
       holdingOption = (evt) =>
         clean(evt)
@@ -318,6 +325,7 @@ jQuery(document).ready ($) ->
       window.r_test = response
       window.nds_opts.dictionaries = response.dictionaries
       window.nds_opts.localization = response.localization
+      window.nds_opts.default_language_pair = response.default_language_pair
       storeConfigs(response)
       return
 
@@ -375,9 +383,9 @@ jQuery(document).ready ($) ->
         console.log "ie8 detected"
         if not dismissed
           ie8Notify()
-      stored_config = DSt.get(NDS_SHORT_NAME + '-' + 'nds-stored-config')
-      if stored_config?
-        recallLanguageOpts()
+      # stored_config = DSt.get(NDS_SHORT_NAME + '-' + 'nds-stored-config')
+      # if stored_config?
+      #   recallLanguageOpts()
       url = "#{opts.api_host}/read/config/"
       $.getJSON(
         url + '?callback=?'
