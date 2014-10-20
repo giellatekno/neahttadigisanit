@@ -125,6 +125,7 @@ Dictionaries:
         # description: !gettext "Sosiála media"
         # example: !gettext "(maiddái <em>acdnstz</em>)"
         example: !gettext "(incl. <em>acdnstz</em>)"
+        short_name: "SoMe"
 
   - source: nob
     target: sme
