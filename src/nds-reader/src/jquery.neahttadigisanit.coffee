@@ -275,7 +275,6 @@ jQuery(document).ready ($) ->
         _select = "select[name='language_pair']"
         _opt = window.optTab.find(_select).val(previous_langpair)
       else
-        # TODO: default language pair
         if window.nds_opts.default_language_pair
           [_from, _to] = window.nds_opts.default_language_pair
           _select = "select[name='language_pair'] option[value='#{_from}-#{_to}']"
