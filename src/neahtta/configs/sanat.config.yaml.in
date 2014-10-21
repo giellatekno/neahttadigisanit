@@ -124,5 +124,5 @@ ReaderConfig:
   olo:
     multiword_lookups: false
     word_regex: |
-      [\u00C0-\u1FFF\u2C00-\uD7FF\w\.'’]+
+      [\u00C0-\u1FFF\u2C00-\uD7FF\w'’]+
     word_regex_opts: "g"
