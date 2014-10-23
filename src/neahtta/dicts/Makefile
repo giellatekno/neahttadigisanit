@@ -621,7 +621,7 @@ baakoeh: baakoeh-lexica compile_langs_fsts
 
 KYV_LANGS_ANALYSERS      :=   kpv fin udm
 KYV_LANGS_LEXICA         :=   udm
-KYV_WORDS_DICTS_LEXICA   :=   kom2X
+KYV_WORDS_DICTS_LEXICA   :=   kom2X finkpv
 
 .PHONY: kyv-lexica
 kyv-lexica: LEX_COMPILE_LANGS := $(KYV_LANGS_LEXICA)

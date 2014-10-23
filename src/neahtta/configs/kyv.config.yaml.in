@@ -104,6 +104,10 @@ Dictionaries:
     path: 'dicts/kom2X.xml'
     input_variants: *KOMI_VARIANTS
 
+  - source: fin
+    target: kpv
+    path: 'dicts/finkpv.xml'
+
   - source: kpv
     target: rus
     path: 'dicts/kom2X.xml'
