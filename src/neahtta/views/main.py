@@ -52,10 +52,6 @@ def externalFormSearch(_from, _to, _search_type):
 
       * Redirect patterns can be stored in the dictionary config
 
-    TODO: Templates will need a non-hardcoded means for displaying
-    alternate search types. Jaska has some ideas if more examples are
-    needed!
-
     """
 
     from lexicon import lexicon_overrides

@@ -5,6 +5,7 @@ ApplicationSettings:
   default_locale: "sms"
   default_pair: ["sms", "fin"]
   mobile_default_pair: false
+  # onscreen_keyboard: ["á", "ä", "ö", "´"]
   locales_available:
     - "sms"
     - "fi"

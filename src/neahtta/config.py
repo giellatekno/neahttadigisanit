@@ -58,6 +58,12 @@ class Config(Config):
                                self.filename)
 
     @property
+    def onscreen_keyboard(self):
+        _p = self.yaml.get('ApplicationSettings', {})\
+                      .get('onscreen_keyboard', False)
+        return _p
+
+    @property
     def locales_available(self):
         _p = self.yaml.get('ApplicationSettings', {})\
                       .get('locales_available', False)
@@ -593,8 +599,16 @@ class Config(Config):
 
             # TODO: compare on UI display name instead of ISOs.
 
+
             a_min = a_source_iso in self.minority_languages
             b_min = b_source_iso in self.minority_languages
+
+            # TODO: Also sort reverse pairs together somehow.
+            reverse_pairs = ((a_source_iso, a_target_iso) == (b_target_iso, b_source_iso)) or \
+                            ((a_target_iso, a_source_iso) == (b_source_iso, b_target_iso))
+
+            print reverse_pairs
+            print [(a_target_iso, a_source_iso), (b_source_iso, b_target_iso)]
 
             a_source_name = NAMES.get(a_source_iso)
             b_source_name = NAMES.get(b_source_iso)
@@ -603,27 +617,34 @@ class Config(Config):
             b_target_name = NAMES.get(b_target_iso)
 
             def gt_return(a, b):
-                if a > b:     return -1
-                elif a < b:   return 1
+                if a > b:     return -2
+                elif a < b:   return 2
                 else:         return 0
 
             def gt_return_reverse(a, b):
-                if a > b:     return 1
-                elif a < b:   return -1
+                if a > b:     return 2
+                elif a < b:   return -2
                 else:         return 0
 
+            if reverse_pairs:
+                return 0
+
             if a_source_iso == b_source_iso:
+                print gt_return_reverse(a_target_name, b_target_name)
                 return gt_return_reverse(a_target_name, b_target_name)
 
             # cases of equal status
             if (a_min and b_min) or (not a_min and not b_min):
+                print gt_return(a_source_name, b_source_name)
                 return gt_return(a_source_name, b_source_name)
 
             # one is a minority lang, and one is not
             if a_min and not b_min:
-                return -1
+                print -2
+                return -2
             if b_min and not a_min:
-                return 1
+                print 2
+                return 2
 
         if not hasattr(self, '_pair_definitions_grouped_source'):
 

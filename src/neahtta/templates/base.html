@@ -115,9 +115,7 @@
 
     <script type="text/javascript" src="{{url_for('static', filename='js/standalone-app.js')}}"></script>
 
-    {# Not actually in use
     <script type="text/javascript" src="{{url_for('static', filename='js/base.js')}}"></script>
-    #}
 
     {% block extra_js %}
     {% endblock %}
@@ -249,6 +247,17 @@
 
 			    </div><!-- /pusher -->
 		    </div><!-- /container -->
+        {% endif %}
+
+        {% if onscreen_keyboard %}
+            <div id="keyboard">
+                <ul>
+                    {% for key in onscreen_keyboard %}
+                        <li><a href="#" class="key" data-char="{{ key }}">{{ key }}</a></li>
+                    {% endfor %}
+                    {# TODO: help popup, with links to GT keyboard app stuff #}
+                </ul>
+            </div>
         {% endif %}
 
     <script type="text/javascript">

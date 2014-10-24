@@ -103,6 +103,10 @@ def define_app_meta_keywords():
     return dict(app_meta_keywords=current_app.config.meta_keywords)
 
 @blueprint.context_processor
+def define_app_onscreen_keyboard():
+    return dict(onscreen_keyboard=current_app.config.onscreen_keyboard)
+
+@blueprint.context_processor
 def define_app_production_mode():
     return dict(production_mode=current_app.production)
 
@@ -110,11 +114,9 @@ def define_app_production_mode():
 def define_global_language_pairs():
     return dict(language_pairs=current_app.config.pair_definitions)
 
-# TODO:
 @blueprint.context_processor
 def language_pairs_grouped_by_source():
     return dict(language_pairs_grouped_by_source=current_app.config.pair_definitions_grouped_source_locale())
-
 
 @blueprint.context_processor
 def define_variant_dictionaries():

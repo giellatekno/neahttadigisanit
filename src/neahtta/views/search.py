@@ -498,7 +498,6 @@ class SearcherMixin(object):
 
         for lz, az, paradigm in sorted(search_result_obj.entries_and_tags_and_paradigms, key=sort_entry):
             if lz is not None:
-                # TODO: include paradigm in tplkwargs
 
                 tplkwargs = { 'lexicon_entry': lz
                             , 'analyses': az
@@ -624,8 +623,6 @@ class LanguagePairSearchView(IndexSearch, DictionaryView, SearcherMixin):
             'current_variant_options': orig_pair_opts.get('variant_options'),
             '_from': _from,
             '_to': _to,
-            # TODO: 'show_info': ? set this based on sesion and whether
-            # the user has seen the message once, etc.
         }
         if current_app.config.new_style_templates:
             search_info = current_app.lexicon_templates.render_individual_template(
@@ -751,8 +748,6 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
     is that this view also accepts some parameters for filtering
     entries, because it corresponds to links followed from the main page
     search results.
-
-    TODO: analyses missing from mobile screen width
 
     .. http:get::
               /detail/(string:from)/(string:to)/(string:wordform).(string:fmt)
