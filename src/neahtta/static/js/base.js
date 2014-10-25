@@ -16,41 +16,96 @@
 
 var _im_listening = false;
 $(document).ready(function(){
+
     $(window).resize(function(o){
         $('a.last').html(window.outerHeight);
 
     });
 
+    var unblurable = false;
+
     if (!_im_listening) {
+        $("#keyboard").mousedown(function() {
+            window.click_in_keyboard = true;
+        });
+
+        $("#keyboard").bind('touchstart', function(){
+            window.click_in_keyboard = true;
+        })
+
         $('#keyboard a').click(function(_char){
-            window.unblurable = true;
             _im_listening = true;
-            var _val = $(current_input.target).val()
+            var _val = $(current_input).val()
               , _c   = $(_char.target).attr('data-char')
               ;
-            $(current_input.target).val(_val + _c)
+            $(current_input).val(_val + _c)
                                    .trigger("keyup")
                                    .focus()
                                    ;
-            window.unblurable = false;
             return false;
         });
     }
-    $('#keyboard ul').css({width:(($('#keyboard ul li').length) * 40) + "px"});
-    $("input").focus(function(o){
-        $('#keyboard').fadeIn();
-        window.current_input = o;
 
-        // $('#keyboard').css({top:window.outerHeight + "px"});
-        //
-        // var _h = window.outerHeight - $('#keyboard').height();
-        // $('#keyboard').css({top: _h-100})
+    $('#keyboard ul').css({width:(($('#keyboard ul li').length) * 40) + "px"});
+
+    $(window).resize(function(o){
+        // TODO: responsive
+        if($(document).width() > 801) {
+
+            var input_bottom_end = $(current_input).offset().top + $(current_input).height() + 15
+              , input_left_end   = $(current_input).offset().left
+              ;
+
+            $('#keyboard').css({
+                top: input_bottom_end,
+                left: input_left_end,
+            });
+
+        } else {
+            $('#keyboard').css({
+                top: null,
+                left: 0,
+                bottom: 0,
+                position: "fixed",
+            });
+        }
 
     });
-    // TODO: fade out when not in use
-    // $("input").blur(function(o) {
-    //     if (!unblurable){
-    //         $("#keyboard").fadeOut();
-    //     }
-    // });
+
+    $("input").focus(function(o){
+        $('#keyboard').fadeIn();
+
+        window.current_input = o.target;
+
+        // On desktops we position this floating under the input, so, determine
+        // the input location
+        if($(document).width() > 801) {
+
+            var input_bottom_end = $(current_input).offset().top + $(current_input).height() + 15
+              , input_left_end   = $(current_input).offset().left
+              ;
+
+            $('#keyboard').css({
+                top: input_bottom_end,
+                left: input_left_end,
+            });
+
+        }
+
+    });
+
+    $("input").blur(function(o) {
+        if (window.click_in_keyboard) {
+            window.click_in_keyboard = false;
+        } else {
+            // The keyboard is more in the way on desktop widths, so, need to hide
+            // when not in use
+            //
+            if (!unblurable){
+                $("#keyboard").fadeOut();
+            }
+        }
+
+    });
+
 });
