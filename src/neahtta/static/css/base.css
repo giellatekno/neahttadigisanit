@@ -547,6 +547,19 @@ span.entry_source {
         font-weight: 200;
         padding: 2px;
     }
+
+    #keyboard ul li {
+        background-color: #DDD;
+    }
+
+    #keyboard ul li a {
+	    color: #454;
+    }
+
+    #keyboard ul li a:hover {
+        text-shadow: 0px 0px 10px #88F;
+        color: #111;
+    }
 }
 
 

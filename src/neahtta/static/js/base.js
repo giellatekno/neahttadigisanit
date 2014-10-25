@@ -145,8 +145,8 @@ $(document).ready(function(){
                     left: input_left_end,
                 });
 
-                $('.results').animate({
-                    "padding-top": "30px",
+                $('.form-row').animate({
+                    "padding-bottom": "35px",
                 });
 
             }
@@ -162,8 +162,8 @@ $(document).ready(function(){
                 //
                 if (!unblurable){
                     $("#keyboard").fadeOut();
-                    $('.results').animate({
-                        "padding-top": "0px",
+                    $('.form-row').animate({
+                        "padding-bottom": "0px",
                     });
                 }
             }
