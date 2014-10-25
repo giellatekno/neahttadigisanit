@@ -493,12 +493,14 @@ span.entry_source {
 #keyboard ul {
     list-style-type: none;
     margin: 0 auto;
+    display: table-row;
 }
 
 #keyboard ul li {
 	display: block;
     float: left;
     background-color: #222;
+    display: table-cell;
 }
 
 #keyboard ul li a {

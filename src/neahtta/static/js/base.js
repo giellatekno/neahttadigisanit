@@ -48,6 +48,59 @@ $(document).ready(function(){
 
     $('#keyboard ul').css({width:(($('#keyboard ul li').length) * 40) + "px"});
 
+    (function() {
+
+        // Do not run on desktop widths, they probably need another solution
+        if ($(document).width() > 801) {
+            return false;
+        }
+
+        // Determine whether all elements are visible:
+        //  * run on an interval, because this is an expensive calculation for
+        //    the dom to perform without a small delay
+        //  * clear the function after a number of iterations
+        //  * each time elements fall outside, double the height
+        //  TODO: rerun on window resize?
+
+        expand = false;
+        outside_count = 1;
+        position_fixed_attempts = 0;
+
+        poll_i = setInterval(function() {
+            position_fixed_attempts += 1;
+
+            if (outside_count > 0) {
+
+                // How many elements are outside?
+                $('#keyboard ul li').each( function(i, elem) {
+                    var doc_top = $(window).scrollTop();
+                    var doc_bot = doc_top + $(window).height();
+
+                    var elem_top = $(elem).offset().top;
+                    var elem_bot = elem_top + $(elem).height();
+
+                    if ((elem_bot <= doc_bot) && (elem_top >= doc_top)) {
+                        expand = true;
+                        outside_count += 1;
+                    }
+                })
+
+                // Double height
+                if (expand) {
+                    var h = $('#keyboard').height();
+                    $('#keyboard').height(h*2);
+                    outside_count = 0;
+                }
+            }
+
+            // Clear handler once we've run this several times
+            if (position_fixed_attempts > 7) {
+                clearInterval(poll_i);
+            }
+        }, 200);
+
+    })();
+
     $(window).resize(function(o){
         // TODO: responsive
         if($(document).width() > 801) {
@@ -94,18 +147,18 @@ $(document).ready(function(){
 
     });
 
-    $("input").blur(function(o) {
-        if (window.click_in_keyboard) {
-            window.click_in_keyboard = false;
-        } else {
-            // The keyboard is more in the way on desktop widths, so, need to hide
-            // when not in use
-            //
-            if (!unblurable){
-                $("#keyboard").fadeOut();
-            }
-        }
+    // $("input").blur(function(o) {
+    //     if (window.click_in_keyboard) {
+    //         window.click_in_keyboard = false;
+    //     } else {
+    //         // The keyboard is more in the way on desktop widths, so, need to hide
+    //         // when not in use
+    //         //
+    //         if (!unblurable){
+    //             $("#keyboard").fadeOut();
+    //         }
+    //     }
 
-    });
+    // });
 
 });
