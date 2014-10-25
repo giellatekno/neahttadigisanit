@@ -607,9 +607,6 @@ class Config(Config):
             reverse_pairs = ((a_source_iso, a_target_iso) == (b_target_iso, b_source_iso)) or \
                             ((a_target_iso, a_source_iso) == (b_source_iso, b_target_iso))
 
-            print reverse_pairs
-            print [(a_target_iso, a_source_iso), (b_source_iso, b_target_iso)]
-
             a_source_name = NAMES.get(a_source_iso)
             b_source_name = NAMES.get(b_source_iso)
 
@@ -630,20 +627,16 @@ class Config(Config):
                 return 0
 
             if a_source_iso == b_source_iso:
-                print gt_return_reverse(a_target_name, b_target_name)
                 return gt_return_reverse(a_target_name, b_target_name)
 
             # cases of equal status
             if (a_min and b_min) or (not a_min and not b_min):
-                print gt_return(a_source_name, b_source_name)
                 return gt_return(a_source_name, b_source_name)
 
             # one is a minority lang, and one is not
             if a_min and not b_min:
-                print -2
                 return -2
             if b_min and not a_min:
-                print 2
                 return 2
 
         if not hasattr(self, '_pair_definitions_grouped_source'):
