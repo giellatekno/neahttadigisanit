@@ -8,18 +8,21 @@ ApplicationSettings:
   # TODO: language-specific sets
   onscreen_keyboard:
     sms: &SMS_KEYS
-      - "á"
-      - "â"
-      - "õ"
-      - "č"
-      - "đ"
-      - "ŋ"
-      - "š"
-      - "ž"
-      - "ǥ"
-      - "ǧ"
-      - "ǩ"
-      - "ǯ"
+     - "â"
+     - "č"
+     - "ʒ"
+     - "ǯ"
+     - "g"
+     - "ǧ"
+     - "ǩ"
+     - "ŋ"
+     - "õ"
+     - "š"
+     - "ž"
+     - "å"
+     - "ä"
+     - "ö"
+     - "´"
     smsM: *SMS_KEYS
   locales_available:
     - "sms"
