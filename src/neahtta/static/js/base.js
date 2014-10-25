@@ -22,150 +22,153 @@ $(document).ready(function(){
 
     });
 
-    var unblurable = false;
+    if($('#keyboard').length > 0) {
 
-    if (!_im_listening) {
-        $("#keyboard").mousedown(function() {
-            window.click_in_keyboard = true;
-        });
+        var unblurable = false;
 
-        $("#keyboard").bind('touchstart', function(){
-            window.click_in_keyboard = true;
-        })
+        if (!_im_listening) {
+            $("#keyboard").mousedown(function() {
+                window.click_in_keyboard = true;
+            });
 
-        $('#keyboard a').click(function(_char){
-            _im_listening = true;
-            var _val = $(current_input).val()
-              , _c   = $(_char.target).attr('data-char')
-              ;
-            $(current_input).val(_val + _c)
-                                   .trigger("keyup")
-                                   .focus()
-                                   ;
-            return false;
-        });
-    }
+            $("#keyboard").bind('touchstart', function(){
+                window.click_in_keyboard = true;
+            })
 
-    $('#keyboard ul').css({width:(($('#keyboard ul li').length) * 40) + "px"});
-
-    (function() {
-
-        // Do not run on desktop widths, they probably need another solution
-        if ($(document).width() > 801) {
-            return false;
+            $('#keyboard a').click(function(_char){
+                _im_listening = true;
+                var _val = $(current_input).val()
+                  , _c   = $(_char.target).attr('data-char')
+                  ;
+                $(current_input).val(_val + _c)
+                                       .trigger("keyup")
+                                       .focus()
+                                       ;
+                return false;
+            });
         }
 
-        // Determine whether all elements are visible:
-        //  * run on an interval, because this is an expensive calculation for
-        //    the dom to perform without a small delay
-        //  * clear the function after a number of iterations
-        //  * each time elements fall outside, double the height
-        //  TODO: rerun on window resize?
+        $('#keyboard ul').css({width:(($('#keyboard ul li').length) * 40) + "px"});
 
-        expand = false;
-        outside_count = 1;
-        position_fixed_attempts = 0;
+        (function() {
 
-        poll_i = setInterval(function() {
-            position_fixed_attempts += 1;
+            // Do not run on desktop widths, they probably need another solution
+            if ($(document).width() > 801) {
+                return false;
+            }
 
-            if (outside_count > 0) {
+            // Determine whether all elements are visible:
+            //  * run on an interval, because this is an expensive calculation for
+            //    the dom to perform without a small delay
+            //  * clear the function after a number of iterations
+            //  * each time elements fall outside, double the height
+            //  TODO: rerun on window resize?
 
-                // How many elements are outside?
-                $('#keyboard ul li').each( function(i, elem) {
-                    var doc_top = $(window).scrollTop();
-                    var doc_bot = doc_top + $(window).height();
+            expand = false;
+            outside_count = 1;
+            position_fixed_attempts = 0;
 
-                    var elem_top = $(elem).offset().top;
-                    var elem_bot = elem_top + $(elem).height();
+            poll_i = setInterval(function() {
+                position_fixed_attempts += 1;
 
-                    if ((elem_bot <= doc_bot) && (elem_top >= doc_top)) {
-                        expand = true;
-                        outside_count += 1;
+                if (outside_count > 0) {
+
+                    // How many elements are outside?
+                    $('#keyboard ul li').each( function(i, elem) {
+                        var doc_top = $(window).scrollTop();
+                        var doc_bot = doc_top + $(window).height();
+
+                        var elem_top = $(elem).offset().top;
+                        var elem_bot = elem_top + $(elem).height();
+
+                        if ((elem_bot <= doc_bot) && (elem_top >= doc_top)) {
+                            expand = true;
+                            outside_count += 1;
+                        }
+                    })
+
+                    // Double height
+                    if (expand) {
+                        var h = $('#keyboard').height();
+                        $('#keyboard').height(h*2);
+                        outside_count = 0;
                     }
-                })
+                }
 
-                // Double height
-                if (expand) {
-                    var h = $('#keyboard').height();
-                    $('#keyboard').height(h*2);
-                    outside_count = 0;
+                // Clear handler once we've run this several times
+                if (position_fixed_attempts > 7) {
+                    clearInterval(poll_i);
+                }
+            }, 200);
+
+        })();
+
+        $(window).resize(function(o){
+            // TODO: responsive
+            if($(document).width() > 801) {
+
+                var input_bottom_end = $(current_input).offset().top + $(current_input).height() + 15
+                  , input_left_end   = $(current_input).offset().left
+                  ;
+
+                $('#keyboard').css({
+                    top: input_bottom_end,
+                    left: input_left_end,
+                });
+
+            } else {
+                $('#keyboard').css({
+                    top: null,
+                    left: 0,
+                    bottom: 0,
+                    position: "fixed",
+                });
+            }
+
+        });
+
+        $("input").focus(function(o){
+            $('#keyboard').fadeIn();
+
+            window.current_input = o.target;
+
+            // On desktops we position this floating under the input, so, determine
+            // the input location
+            if($(document).width() > 801) {
+
+                var input_bottom_end = $(current_input).offset().top + $(current_input).height() + 20
+                  , input_left_end   = $(current_input).offset().left
+                  ;
+
+                $('#keyboard').css({
+                    top: input_bottom_end,
+                    left: input_left_end,
+                });
+
+                $('.results').animate({
+                    "padding-top": "30px",
+                });
+
+            }
+
+        });
+
+        $("input").blur(function(o) {
+            if (window.click_in_keyboard) {
+                window.click_in_keyboard = false;
+            } else {
+                // The keyboard is more in the way on desktop widths, so, need to hide
+                // when not in use
+                //
+                if (!unblurable){
+                    $("#keyboard").fadeOut();
+                    $('.results').animate({
+                        "padding-top": "0px",
+                    });
                 }
             }
 
-            // Clear handler once we've run this several times
-            if (position_fixed_attempts > 7) {
-                clearInterval(poll_i);
-            }
-        }, 200);
-
-    })();
-
-    $(window).resize(function(o){
-        // TODO: responsive
-        if($(document).width() > 801) {
-
-            var input_bottom_end = $(current_input).offset().top + $(current_input).height() + 15
-              , input_left_end   = $(current_input).offset().left
-              ;
-
-            $('#keyboard').css({
-                top: input_bottom_end,
-                left: input_left_end,
-            });
-
-        } else {
-            $('#keyboard').css({
-                top: null,
-                left: 0,
-                bottom: 0,
-                position: "fixed",
-            });
-        }
-
-    });
-
-    $("input").focus(function(o){
-        $('#keyboard').fadeIn();
-
-        window.current_input = o.target;
-
-        // On desktops we position this floating under the input, so, determine
-        // the input location
-        if($(document).width() > 801) {
-
-            var input_bottom_end = $(current_input).offset().top + $(current_input).height() + 20
-              , input_left_end   = $(current_input).offset().left
-              ;
-
-            $('#keyboard').css({
-                top: input_bottom_end,
-                left: input_left_end,
-            });
-
-            $('.results').animate({
-                "padding-top": "30px",
-            });
-
-        }
-
-    });
-
-    $("input").blur(function(o) {
-        if (window.click_in_keyboard) {
-            window.click_in_keyboard = false;
-        } else {
-            // The keyboard is more in the way on desktop widths, so, need to hide
-            // when not in use
-            //
-            if (!unblurable){
-                $("#keyboard").fadeOut();
-                $('.results').animate({
-                    "padding-top": "0px",
-                });
-            }
-        }
-
-    });
+        });
+    }
 
 });
