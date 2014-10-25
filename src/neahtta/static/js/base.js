@@ -134,13 +134,17 @@ $(document).ready(function(){
         // the input location
         if($(document).width() > 801) {
 
-            var input_bottom_end = $(current_input).offset().top + $(current_input).height() + 15
+            var input_bottom_end = $(current_input).offset().top + $(current_input).height() + 20
               , input_left_end   = $(current_input).offset().left
               ;
 
             $('#keyboard').css({
                 top: input_bottom_end,
                 left: input_left_end,
+            });
+
+            $('.results').animate({
+                "padding-top": "30px",
             });
 
         }
@@ -156,6 +160,9 @@ $(document).ready(function(){
             //
             if (!unblurable){
                 $("#keyboard").fadeOut();
+                $('.results').animate({
+                    "padding-top": "0px",
+                });
             }
         }
 
