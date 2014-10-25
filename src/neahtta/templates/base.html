@@ -249,11 +249,11 @@
 		    </div><!-- /container -->
         {% endif %}
 
-        {% if onscreen_keyboard %}
-            {% if _from in onscreen_keyboard %}
+        {% if current_variant_options %}
+            {% if current_variant_options.onscreen_keyboard %}
                 <div id="keyboard">
                     <ul>
-                        {% for key in onscreen_keyboard[_from] %}
+                        {% for key in current_variant_options.onscreen_keyboard %}
                             <li><a href="#" class="key" data-char="{{ key }}">{{ key }}</a></li>
                         {% endfor %}
                         {# TODO: help popup, with links to GT keyboard app stuff #}

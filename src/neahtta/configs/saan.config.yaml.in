@@ -5,32 +5,13 @@ ApplicationSettings:
   default_locale: "sms"
   default_pair: ["sms", "fin"]
   mobile_default_pair: false
-  # TODO: language-specific sets
-  onscreen_keyboard:
-    sms: &SMS_KEYS
-     - "â"
-     - "č"
-     - "ʒ"
-     - "ǯ"
-     - "đ"
-     - "ǧ"
-     - "ǥ"
-     - "ǩ"
-     - "ŋ"
-     - "õ"
-     - "š"
-     - "ž"
-     - "å"
-     - "ä"
-     - "ö"
-     - "´"
-    smsM: *SMS_KEYS
   locales_available:
     - "sms"
     - "fi"
     - "en"
     - "no"
     - "ru"
+  # TODO: language-specific sets
   meta_description: >
       Free online, mobile friendly dictionaries for Skolt Saami
   meta_keywords: >
@@ -88,12 +69,30 @@ Dictionaries:
       - type: "standard"
         description: !gettext "Standard"
         example: "(ǩ)"
+        onscreen_keyboard: &SMS_KEYS
+          - "â"
+          - "č"
+          - "ʒ"
+          - "ǯ"
+          - "đ"
+          - "ǧ"
+          - "ǥ"
+          - "ǩ"
+          - "ŋ"
+          - "õ"
+          - "š"
+          - "ž"
+          - "å"
+          - "ä"
+          - "ö"
+          - "´"
         # NB: must be same as analyser name
         short_name: "sms"
       - type: "mobile"
         description: !gettext "Mobile friendly"
         example: "(k &rarr; k ~ ǩ)"
         short_name: "smsM"
+        onscreen_keyboard: *SMS_KEYS
   - source: sms
     target: eng
     path: 'dicts/sms2X.xml'

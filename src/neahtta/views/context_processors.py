@@ -103,10 +103,6 @@ def define_app_meta_keywords():
     return dict(app_meta_keywords=current_app.config.meta_keywords)
 
 @blueprint.context_processor
-def define_app_onscreen_keyboard():
-    return dict(onscreen_keyboard=current_app.config.onscreen_keyboard)
-
-@blueprint.context_processor
 def define_app_production_mode():
     return dict(production_mode=current_app.production)
 

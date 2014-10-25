@@ -28,7 +28,7 @@ def validate_variants(variants, lexicon):
         'type', 'description', 'short_name'
     ])
     optional_keys = set([
-        'example',
+        'example', 'onscreen_keyboard'
     ])
     variant_count = 1
     for v in variants:
@@ -57,11 +57,11 @@ class Config(Config):
                                'config file %s, in ApplicationSettings.' %
                                self.filename)
 
-    @property
-    def onscreen_keyboard(self):
-        _p = self.yaml.get('ApplicationSettings', {})\
-                      .get('onscreen_keyboard', False)
-        return _p
+    # @property
+    # def onscreen_keyboard(self):
+    #     _p = self.yaml.get('ApplicationSettings', {})\
+    #                   .get('onscreen_keyboard', False)
+    #     return _p
 
     @property
     def locales_available(self):
@@ -973,6 +973,15 @@ class Config(Config):
                                  )
             if len(variant_opts) > 0:
                 variant_options = variant_opts[0]
+        else:
+            if pair_settings:
+                orig_pair_variants = pair_settings.get('input_variants')
+                if orig_pair_variants:
+                    variant_opts = filter( lambda x: x.get('short_name') == _from
+                                         , orig_pair_variants
+                                         )
+                    if len(variant_opts) > 0:
+                        variant_options = variant_opts[0]
 
         pair_opts = {
             'has_mobile_variant': has_mobile_variant,
