@@ -250,14 +250,16 @@
         {% endif %}
 
         {% if onscreen_keyboard %}
-            <div id="keyboard">
-                <ul>
-                    {% for key in onscreen_keyboard %}
-                        <li><a href="#" class="key" data-char="{{ key }}">{{ key }}</a></li>
-                    {% endfor %}
-                    {# TODO: help popup, with links to GT keyboard app stuff #}
-                </ul>
-            </div>
+            {% if _from in onscreen_keyboard %}
+                <div id="keyboard">
+                    <ul>
+                        {% for key in onscreen_keyboard[_from] %}
+                            <li><a href="#" class="key" data-char="{{ key }}">{{ key }}</a></li>
+                        {% endfor %}
+                        {# TODO: help popup, with links to GT keyboard app stuff #}
+                    </ul>
+                </div>
+            {% endif %}
         {% endif %}
 
     <script type="text/javascript">

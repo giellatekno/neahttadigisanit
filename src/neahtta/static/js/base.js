@@ -147,18 +147,18 @@ $(document).ready(function(){
 
     });
 
-    // $("input").blur(function(o) {
-    //     if (window.click_in_keyboard) {
-    //         window.click_in_keyboard = false;
-    //     } else {
-    //         // The keyboard is more in the way on desktop widths, so, need to hide
-    //         // when not in use
-    //         //
-    //         if (!unblurable){
-    //             $("#keyboard").fadeOut();
-    //         }
-    //     }
+    $("input").blur(function(o) {
+        if (window.click_in_keyboard) {
+            window.click_in_keyboard = false;
+        } else {
+            // The keyboard is more in the way on desktop widths, so, need to hide
+            // when not in use
+            //
+            if (!unblurable){
+                $("#keyboard").fadeOut();
+            }
+        }
 
-    // });
+    });
 
 });
