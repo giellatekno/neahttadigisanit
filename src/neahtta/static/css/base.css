@@ -472,19 +472,6 @@ span.entry_source {
     }
 }
 
-/* desktop positioning */
-/* TODO: JS to position next to input */
-
-@media (min-width: 801px) {
-    #keyboard {
-        position: absolute;
-        top: 40px;
-        left: 10px;
-        height: 40px;
-    }
-}
-
-
 /* TODO: different design for desktop, closer to input, maybe use bootstrap
  * tooltip buttons  
  */
@@ -519,6 +506,50 @@ span.entry_source {
     text-shadow: 0px 0px 10px #88F;
     color: #FFF;
 }
+
+/* desktop positioning */
+/* TODO: JS to position next to input */
+
+@media (min-width: 801px) {
+    #keyboard {
+        position: absolute;
+        top: 30px;
+        left: 10px;
+        height: 30px;
+    }
+
+    #keyboard, #keyboard ul {
+        border-radius: 4px 4px 0px 0px;
+        -moz-border-radius: 4px 4px 0px 0px;
+        -webkit-border-radius: 4px 4px 0px 0px;
+    }
+
+    #keyboard ul li:first-child {
+        border-radius: 4px 0px 0px 4px;
+        -moz-border-radius: 4px 0px 0px 4px;
+        -webkit-border-radius: 4px 0px 0px 4px;
+    }
+
+    #keyboard ul li:last-child {
+        border-radius: 0px 4px 4px 0px;
+        -moz-border-radius: 0px 4px 4px 0px;
+        -webkit-border-radius: 0px 4px 4px 0px;
+    }
+
+    #keyboard ul li a {
+        display: block;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        position: relative;
+        line-height: 30px;
+        font-size: 18px;
+        font-weight: 200;
+        padding: 2px;
+    }
+}
+
+
 
 @media (max-width: 767px) {
     span.entry_source {
