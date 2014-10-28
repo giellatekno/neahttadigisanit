@@ -14,6 +14,30 @@
 // 	});
 // });
 
+// Note viewport sizing broken in Android 2.x see http://stackoverflow.com/questions/6601881/problem-with-meta-viewport-and-android
+window.getViewport = function (elem) {    
+    // http://www.quirksmode.org/mobile/tableViewport.html
+    var isTouchDevice = true;
+    
+    var viewport = {
+            left: window.pageXOffset || document.scrollLeft || 0,    
+            top: window.pageYOffset || document.scrollTop || 0,
+            width: window.innerWidth || document.clientWidth,
+            height: window.innerHeight || document.clientHeight
+    };
+    // iOS *lies* about viewport size when keyboard is visible. See http://stackoverflow.com/questions/2593139/ipad-web-app-detect-virtual-keyboard-using-javascript-in-safari Input focus/blur can indicate, also scrollTop: 
+    if (isTouchDevice && elem) {     
+        // Fudge factor to allow for keyboard on iPad
+        return {
+            left: viewport.left,
+            top: viewport.top,
+            width: viewport.width,
+            height: viewport.height * (viewport.height > viewport.width ? 0.66 : 0.45)  
+        };
+    }
+    return viewport;
+}
+
 var _im_listening = false;
 $(document).ready(function(){
 
@@ -127,8 +151,20 @@ $(document).ready(function(){
 
         });
 
-        $("input").focus(function(o){
-            $('#keyboard').fadeIn();
+
+        // TODO: resize event for detecting height changes on mobile
+        // safari
+        // TODO: orientationchange
+        // TODO: android sends orientationchange before resize, iOS
+        // sends resize before orientationchange
+
+        function keyboard_focus (o) {
+
+            // Test for on screen keyboard
+            $(window).scrollTop(10);
+
+            var keyboard_shown = getViewport(o.target).height < document.clientHeight ;
+            $(window).scrollTop(0);
 
             window.current_input = o.target;
 
@@ -151,7 +187,33 @@ $(document).ready(function(){
 
             }
 
+            if (keyboard_shown) {
+                $('#keyboard').addClass(keyboard_shown? 'keyboard': 'nokeyboard ');
+                var h = getViewport(o.target).height;
+                $('#keyboard').css({
+                    top: h - $('#keyboard').height() - 20,
+                });
+            } 
+
+            $('#keyboard').fadeIn();
+
+        }
+
+        // function is_focused() {
+        //     if (!$("input").is(":focus")) {
+        //         keyboard_focus( $("input") );
+        //     } 
+
+        // }
+
+        $("input").focus(function(o) {
+            // Need a small delay for mobile keyboards to appear.
+            setTimeout(function(){
+                keyboard_focus(o);
+            }, 100);
         });
+
+        // setTimeout(is_focused, 40);
 
         $("input").blur(function(o) {
             if (window.click_in_keyboard) {
