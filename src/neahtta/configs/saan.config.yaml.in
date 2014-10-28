@@ -85,7 +85,7 @@ Dictionaries:
           - "å"
           - "ä"
           - "ö"
-          - "´"
+          - "ˊ"
           - "ʼ"
         # NB: must be same as analyser name
         short_name: "sms"
