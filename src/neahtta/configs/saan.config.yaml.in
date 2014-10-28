@@ -86,6 +86,7 @@ Dictionaries:
           - "ä"
           - "ö"
           - "´"
+          - "ʼ"
         # NB: must be same as analyser name
         short_name: "sms"
       - type: "mobile"
