@@ -8,6 +8,7 @@
     <div class="input-append">
         <input type="text" 
                name="lookup" 
+               lang="{{ _from }}"
                autocorrect="off"
                autofocus
                autocapitalize="off"
@@ -21,7 +22,7 @@
                {% if current_pair_settings.wordform_search_url %}
                    <div class="btn-group display-phone hidden-desktop hidden-tablet">
                        <button type="submit" class="btn" name="search">
-                           <span>{% trans %}Search{% endtrans %}</span>
+                           <span lang="{{ current_locale }}">{% trans %}Search{% endtrans %}</span>
                        </button>
                        <button class="btn dropdown-toggle" data-toggle="dropdown">
                           <span class="caret"></span>
@@ -32,6 +33,7 @@
                                    class="btn"
                                    formaction="/extern/{{ _from }}/{{ _to }}/korp_wordform/"
                                    formmethod="post"
+                                   lang="{{ current_locale }}"
                                    formtarget="_blank">{% trans %}Search texts{% endtrans %} (Korp)</button></li>
                         </ul>
                    </div>
@@ -40,11 +42,11 @@
                            formaction="/{{ _from }}/{{ _to }}/"
                            formmethod="post"
                            name="search">
-                       <span>{% trans %}Search{% endtrans %}</span>
+                       <span lang="{{ current_locale }}">{% trans %}Search{% endtrans %}</span>
                    </button>
                {% else %}
                    <button type="submit" class="btn" name="search">
-                       <span>{% trans %}Search{% endtrans %}</span>
+                       <span lang="{{ current_locale }}">{% trans %}Search{% endtrans %}</span>
                    </button>
               {% endif %}
        {% if current_pair_settings.wordform_search_url %}
@@ -52,6 +54,7 @@
                    formaction="/extern/{{ _from }}/{{ _to }}/korp_wordform/"
                    formmethod="post"
                    formtarget="_blank"
+                   lang="{{ current_locale }}"
                    class="btn hidden-phone display-tablet korp_search" 
                    name="korp_search">
                {% trans %}Search texts{% endtrans %}

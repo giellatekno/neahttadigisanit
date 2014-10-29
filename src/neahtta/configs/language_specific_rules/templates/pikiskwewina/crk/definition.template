@@ -23,7 +23,7 @@
 
         {# TODO: examples should move to definition notes template,
            which will need to be rendered for each tg #}
-        {% set examples = translation_group|xpath('./xg') %}
+        {% set examples = meaning_group|xpath('./xg') or translation_group|xpath('./xg') %}
 
         {% if examples %}
             <div class="example_set">

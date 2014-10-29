@@ -10,7 +10,7 @@
                     </li>
                     <li class="center_text">
                         <p class="lead">
-                            <span>{% trans %}Created with free and open-source language tools from <em><a href="http://giellatekno.uit.no">Giellatekno</a></em>, a Sámi Language Technology group at the <a href="http://uit.no">University of Tromsø</a>.{% endtrans %}</span>
+                            <span lang="{{ current_locale }}">{% trans %}Created with free and open-source language tools from <em><a href="http://giellatekno.uit.no">Giellatekno</a></em>, a Sámi Language Technology group at the <a href="http://uit.no">University of Tromsø</a>.{% endtrans %}</span>
                         </p>
                     </li>
                     <li class="logo logo-left">
@@ -32,7 +32,7 @@
             </div>
             <div class="span3">
                 <p class="lead">
-                    <span>{% trans %}Created with free and open-source language tools from <em><a href="http://giellatekno.uit.no">Giellatekno</a></em>, a Sámi Language Technology group at the <a href="http://uit.no">University of Tromsø</a>.{% endtrans %}</span>
+                    <span lang="{{ current_locale }}">{% trans %}Created with free and open-source language tools from <em><a href="http://giellatekno.uit.no">Giellatekno</a></em>, a Sámi Language Technology group at the <a href="http://uit.no">University of Tromsø</a>.{% endtrans %}</span>
                 </p>
             </div>
             <div class="span3">

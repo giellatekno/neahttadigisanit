@@ -25,7 +25,7 @@
 
     {# NB: examples for mrj fall under the mg level, which may change in
        other languages too. #}
-    {% set examples = meaning_group|xpath('./xg') %}
+    {% set examples = meaning_group|xpath('./xg') or translation_group|xpath('./xg') %}
 
     {% if examples %}
         <div class="example_set">

@@ -1,6 +1,6 @@
 <div class="alert alert-success intro-note">
     <p>
-        <span>{% trans %}Search for a word, or a word form for a word analysis and definition.{% endtrans %}</span>
+        <span lang="{{ current_locale }}">{% trans %}Search for a word, or a word form for a word analysis and definition.{% endtrans %}</span>
     </p>
 </div>
 

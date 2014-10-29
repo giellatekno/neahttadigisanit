@@ -21,7 +21,7 @@
                {% if current_pair_settings.wordform_search_url %}
                    <div class="btn-group">
                        <button type="submit" class="btn" name="search">
-                           <span>{% trans %}Search{% endtrans %}</span>
+                           <span lang="{{ current_locale }}">{% trans %}Search{% endtrans %}</span>
                        </button>
                        <button class="btn dropdown-toggle" data-toggle="dropdown">
                           <span class="caret"></span>
@@ -32,12 +32,13 @@
                                    class="btn"
                                    formaction="/extern/{{ _from }}/{{ _to }}/korp_wordform/"
                                    formmethod="post"
+                                   lang="{{ current_locale }}"
                                    formtarget="_blank">{% trans %}Search texts{% endtrans %} (Korp)</button></li>
                         </ul>
                    </div>
                {% else %}
                    <button type="submit" class="btn" name="search">
-                       <span>{% trans %}Search{% endtrans %}</span>
+                       <span lang="{{ current_locale }}">{% trans %}Search{% endtrans %}</span>
                    </button>
               {% endif %}
     </div>

@@ -1,15 +1,15 @@
 <div class="alert alert-success intro-note">
     {% if _from == 'sme' %}
-    <p class="visible-phone visible-tablet visible-mid">
+    <p class="visible-phone visible-tablet visible-mid" lang="{{ current_locale }}">
         {% trans %}If you are using a device without a Sámi keyboard, consider using <a href="/SoMe/nob/">social media mode</a>, which allows you to type <em>acdnstz</em> for <em>áčđŋšŧž</em>.{% endtrans %}
     </p>
     {% endif %}
     <p>
-        <span>{% trans %}Search for a word, or a word form for a word analysis and definition.{% endtrans %}</span>
+        <span lang="{{ current_locale }}">{% trans %}Search for a word, or a word form for a word analysis and definition.{% endtrans %}</span>
         {% if _from == "SoMe" %}
         <br />
         <br />
-        <span><strong>NB</strong>: {% trans %}You selected #SoMe, the variant for social media, which means that the letters acdnstz
+        <span lang="{{ current_locale }}"><strong>NB</strong>: {% trans %}You selected #SoMe, the variant for social media, which means that the letters acdnstz
             will be accepted as áčđŋšŧž in addition to their usual values.{% endtrans %}</span>
         {% endif %}
     </p>

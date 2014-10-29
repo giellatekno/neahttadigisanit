@@ -6,9 +6,9 @@
     {% endif %}
 
     {% if form.form %}
-    <dd>{{ form.form }}</dd>
+    <dd lang="{{ _from }}">{{ form.form }}</dd>
     {% else %}
-        <dd>?</dd>
+        <dd lang="{{ _from }}">?</dd>
     {% endif %}
 {%- endfor -%}
 </dl>

@@ -5,6 +5,6 @@
 #}
 {%- import "lexicon.macros" as macros with context -%}
 {%- set first_l = lexicon_entry|xpath('lg/l')|first %}
-{{ first_l|text }} ({{ first_l|xpath('@pos')|tagfilter(_from, _to) }})
+<span lang="{{ _from }}">{{ first_l|text }}</span> (<span lang="{{ _to }}">{{ first_l|xpath('@pos')|tagfilter(_from, _to) }}</span>)
 
 {# vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}
