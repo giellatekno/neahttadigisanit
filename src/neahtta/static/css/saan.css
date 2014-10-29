@@ -316,6 +316,7 @@
 /*
  * Inputs and all language elements
  */
+
 input[data-language-from="sms"] *, input[data-language-from="smsM"] *, *[lang="sms"], *[lang="smsM"] {
-    font-family: 'Noto Sans', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+    font-family: 'Open Sans', 'Noto Sans', Helvetica, Arial, sans-serif !important;
 }
