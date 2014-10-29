@@ -35,7 +35,7 @@
         {# Only display if the pair is the current one the user is looking at #}
         {%- if iso_pair[0] == _from and iso_pair[1] == _to or orig_pair == iso_pair %}
             </ul>
-            <span class="nav-header variantnote">{% trans %}Written variant{% endtrans %}</span>
+            <span class="nav-header variantnote" lang="{{ current_locale }}">{% trans %}Written variant{% endtrans %}</span>
             <ul class="nav nav-collapse nav-tabs nav-stacked subnavcoloring">
                 {% for variant in pair_options.input_variants %}
                     <li{% if _from == variant.short_name %} class="active"{% endif %}>

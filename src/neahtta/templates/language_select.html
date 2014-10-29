@@ -25,7 +25,7 @@
                 {% else %}
                     <div class="default_flag">{{ iso }}</div>
                 {% endif %}
-                 {{ iso|iso_to_language_own_name }}</a></li>
+                 <span lang="{{ iso }}">{{ iso|iso_to_language_own_name }}</span></a></li>
             {% endfor %}
         </ul>
       </li>

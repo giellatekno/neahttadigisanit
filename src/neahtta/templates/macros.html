@@ -2,7 +2,7 @@
 {% if current_pair_settings.lemma_search_url -%}
     {% set search_url = current_pair_settings.lemma_search_url.replace('INPUT_LEMMA', lemma) %}
     <a class="korp_search lemma_action"
-       href="{{ search_url }}">{% trans %}Texts{% endtrans %} &rarr;</a>
+       href="{{ search_url }}" lang="{{ current_locale }}">{% trans %}Texts{% endtrans %} &rarr;</a>
 {%- endif %}
 {%- endmacro %}
 
@@ -10,7 +10,7 @@
 {% if current_pair_settings.lemma_search_url -%}
     {% set search_url = current_pair_settings.lemma_search_url.replace('INPUT_LEMMA', lemma) %}
     <a class="korp_search lemma_action"
-       href="{{ search_url }}">{% trans %}Texts{% endtrans %} &rarr;</a>
+       href="{{ search_url }}" lang="{{ current_locale }}">{% trans %}Texts{% endtrans %} &rarr;</a>
 {%- endif %}
 {%- endmacro %}
 
@@ -21,12 +21,12 @@
         {% for lemmagroup, lemmafs in forms|groupby('pos') %}
             {% if current_pair_settings.show_korp_search %}
                 {% if lemmagroup and grouper %}
-                    <dt>{{ grouper }} {{ korp_link_lemma(grouper) }}</dt>
+                    <dt><span lang="{{ _from }}">{{ grouper }}</span> {{ korp_link_lemma(grouper) }}</dt>
                 {% else %}
-                    <dt>{{ grouper }}</dt>
+                    <dt><span lang="{{ _from }}">{{ grouper }}</span></dt>
                 {% endif %}
             {% else %}
-                <dt>{{ grouper }}</dt>
+                <dt><span lang="{{ _from }}">{{ grouper }}</span></dt>
             {% endif %}
             <dd>
                 <ul class="possible_forms">

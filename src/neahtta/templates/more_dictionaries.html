@@ -18,33 +18,33 @@
     <div class="row-fluid">
         <div class="span5 offset1">
 
-            <h3>{% trans %}Other dictionaries{% endtrans %}</h3>
+            <h3 lang="{{ current_locale }}">{% trans %}Other dictionaries{% endtrans %}</h3>
 
             {# NB: this hard-coded use of Neahttadigisánit is alright. #}
-            <p>{% trans %}Neahttadigisánit is available for the following
+            <p lang="{{ current_locale }}">{% trans %}Neahttadigisánit is available for the following
                 language groups.{% endtrans %}</p>
 
             <ul>
-                <li><a href="http://sánit.oahpa.no/">{% trans %}North Sámi{% endtrans %}</a></li>
-                <li><a href="http://baakoeh.oahpa.no/">{% trans %}South Sámi{% endtrans %}</a></li>
+                <li><a href="http://sánit.oahpa.no/" lang="{{ current_locale }}">{% trans %}North Sámi{% endtrans %}</a></li>
+                <li><a href="http://baakoeh.oahpa.no/" lang="{{ current_locale }}">{% trans %}South Sámi{% endtrans %}</a></li>
             </ul>
 
-            <p>{% trans %}We're currently working on some new dictionaries for
+            <p lang="{{ current_locale }}">{% trans %}We're currently working on some new dictionaries for
                 the following language groups. Since these may not always be
                 online, they are not linked here, but please contact us if you
                 would like to see a demo!{% endtrans %}
             </p>
             <ul>
-                <li><em>{% trans %}Balto-finnic languages{% endtrans
+                <li lang="{{ current_locale }}"><em>{% trans %}Balto-finnic languages{% endtrans
                 %}</em>: {% trans %}Kven{% endtrans %}, {% trans %}Olonets{% endtrans %}, {% trans %}Livonian{% endtrans %}, {% trans %}and{% endtrans %} {% trans %}Izhorian{% endtrans %}.</li>
-                <li><em>{% trans %}Mordvinic languages{% endtrans %}</em>: {% trans %}Moksha{% endtrans %} and {% trans %}Erzya{% endtrans %}.</li>
+                <li lang="{{ current_locale }}"><em>{% trans %}Mordvinic languages{% endtrans %}</em>: {% trans %}Moksha{% endtrans %} and {% trans %}Erzya{% endtrans %}.</li>
 
-                <li><em>{% trans %}Mari languages{% endtrans %}</em>: {% trans %}Eastern and Western.{% endtrans %}</li>
-                <li><em>{% trans %}Permic languages{% endtrans %}</em>: {% trans %}Komi-Zyrian{% endtrans %}</li>
+                <li lang="{{ current_locale }}"><em>{% trans %}Mari languages{% endtrans %}</em>: {% trans %}Eastern and Western.{% endtrans %}</li>
+                <li lang="{{ current_locale }}"><em>{% trans %}Permic languages{% endtrans %}</em>: {% trans %}Komi-Zyrian{% endtrans %}</li>
             </ul>
 
-            <h4>{% trans %}Even more dictionaries...{% endtrans %}</h4>
-            <p>{% trans %}<a href="http://giellatekno.uit.no/">Giellatekno</a> also has
+            <h4 lang="{{ current_locale }}">{% trans %}Even more dictionaries...{% endtrans %}</h4>
+            <p lang="{{ current_locale }}">{% trans %}<a href="http://giellatekno.uit.no/">Giellatekno</a> also has
                 other languages and dictionaries that are not yet available in
                 Neahttadigisánit. For a list of all other online dictionaries
                 built with our tools, <a href="http://dicts.uit.no/">see this

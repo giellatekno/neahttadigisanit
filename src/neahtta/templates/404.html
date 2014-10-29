@@ -47,7 +47,7 @@
           {# Hide this on mobiles, because it is too big, and the name
              is in the header anyway #}
           <h1 class="hidden-phone">404</h1>
-          <p class="lead" style="margin-bottom: .25em;">
+          <p class="lead" style="margin-bottom: .25em;" lang="{{ current_locale }}">
               {%- trans -%}Whoops! The page you requested was not found. If you think you are receiving this in error, please contact us.{%- endtrans -%}&nbsp;&nbsp;{%- trans -%}If you followed a link from the front page, it may be that the dictionary you were browsing is not yet bilingual.{%- endtrans -%}
           </p>
         {% if project_notice %}

@@ -1,4 +1,4 @@
-﻿{{ tx.target_formatted|safe }}
+﻿<span lang="{{ _to }}">{{ tx.target_formatted|safe }}</span>
 
 {% if not tx.target_reformatted %}{% if tx.re %} ({% for annotation in tx.re %}{{ annotation }}{% endfor %}){% endif %}{% endif %}
 {% if tx.examples %}
@@ -6,8 +6,8 @@
         <blockquote class="examples">
         <dl>
             # for f_ex, t_ex in tx.examples
-            <dt>{{ f_ex }}</dt>
-            <dd>{{ t_ex }}</dd>
+            <dt lang="{{ _from }}">{{ f_ex }}</dt>
+            <dd lang="{{ _to }}">{{ t_ex }}</dd>
             # endfor
         </dl>
         </blockquote>

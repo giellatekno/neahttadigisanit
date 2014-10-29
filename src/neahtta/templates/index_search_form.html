@@ -30,6 +30,7 @@
                                    type="submit"
                                    class="btn"
                                    formaction="/extern/{{ _from }}/{{ _to }}/korp_wordform/"
+                                   lang="{{ current_locale }}"
                                    formmethod="post"
                                    formtarget="_blank">{% trans %}Search texts{% endtrans %} (Korp)</button></li>
                         </ul>
@@ -37,19 +38,21 @@
                    <button type="submit" class="btn hidden-phone" 
                            formtarget="_self"
                            formaction="/{{ _from }}/{{ _to }}/"
+                           lang="{{ current_locale }}"
                            formmethod="post"
                            name="search">
-                       <span>{% trans %}Search{% endtrans %}</span>
+                       <span lang="{{ current_locale }}">{% trans %}Search{% endtrans %}</span>
                    </button>
                {% else %}
                    <button type="submit" class="btn" name="search">
-                       <span>{% trans %}Search{% endtrans %}</span>
+                       <span lang="{{ current_locale }}">{% trans %}Search{% endtrans %}</span>
                    </button>
               {% endif %}
        {% if current_pair_settings.wordform_search_url %}
            <button type="submit"
                    formaction="/extern/{{ _from }}/{{ _to }}/korp_wordform/"
                    formmethod="post"
+                   lang="{{ current_locale }}"
                    formtarget="_blank"
                    class="btn hidden-phone display-tablet korp_search" 
                    name="korp_search">

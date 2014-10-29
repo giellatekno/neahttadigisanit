@@ -20,7 +20,7 @@
 {% if current_pair_settings.lemma_search_url -%}
     {% set search_url = current_pair_settings.lemma_search_url.replace('INPUT_LEMMA', lemma) %}
     <a class="korp_search lemma_action"
-       href="{{ search_url }}">{% trans %}Texts{% endtrans %} &rarr;</a>
+       href="{{ search_url }}" lang="{{ current_locale }}">{% trans %}Texts{% endtrans %} &rarr;</a>
 {%- endif %}
 {%- endmacro %}
 
@@ -82,7 +82,7 @@
                     <span>{{ _from|iso_to_i18n }} → {{ _to|iso_to_i18n }}</span>
                 {% endif %}
                 {% if display_swap %}
-                <span class="swaplink" style="font-size: 80%">(<a href="/{{ swap_from }}/{{ swap_to }}/">⇄ {% trans %}Swap{% endtrans %}</a>)</span>
+                <span class="swaplink" style="font-size: 80%">(<a href="/{{ swap_from }}/{{ swap_to }}/">⇄ <span lang="{{ current_locale }}">{% trans %}Swap{% endtrans %}</span></a>)</span>
                 {% endif %}
             </h4>
 
@@ -96,7 +96,7 @@
                 </div>
                 <div class="span4 hidden-phone valign_block">
                     {% if analyses %}
-                        <p class="analysis_note"><em>{{ user_input }}</em>{% trans user_input=user_input %} is a possible form of ... {% endtrans %}</p>
+                        <p class="analysis_note"><em lang="{{ _from }}">{{ user_input }}</em><span lang="{{ current_locale }}"{% trans user_input=user_input %} is a possible form of ... {% endtrans %}</span></p>
                     {% endif %}
                 </div>
             </div>
@@ -121,7 +121,7 @@
                 {% if not show_info %}
                 <div class="alert alert-error">
                     <p>
-                        <span>{% trans input=user_input %}Word {{ input }} not found.{% endtrans %}</span>
+                        <span lang="{{ current_locale }}">{% trans input=user_input %}Word <span lang="{{ _from }}">{{ input }}</span> not found.{% endtrans %}</span>
                     </p>
                 </div>
                 {% endif %}
@@ -136,7 +136,7 @@
     {%- if analyses %}
     <div class="visible-phone">
         <div class="well">
-            <p style="font-size: 95%;"><em>{{ user_input }}</em>{% trans user_input=user_input %} is a possible form of ... {% endtrans %}</p>
+            <p style="font-size: 95%;"><em lang="{{ _from }}">{{ user_input }}</em><span lang="{{ current_locale }}">{% trans user_input=user_input %} is a possible form of ... {% endtrans %}</span></p>
 
             {{ all_analysis_template|safe }}
         </div>

@@ -44,20 +44,20 @@
                     <li>
                 {% endif %}
                     <a href="/{{ iso_pair[0] }}/{{ iso_pair[1] }}/" class="block_title">
-                        <span>{{ iso_pair[0]|iso_to_i18n }} &rarr; {{ iso_pair[1]|iso_to_i18n }}</span>
+                        <span lang="{{ current_locale }}">{{ iso_pair[0]|iso_to_i18n }} &rarr; {{ iso_pair[1]|iso_to_i18n }}</span>
                     </a>
                 </li>
 
                 {# Start a new nav if there are variants #}
                 {% if pair_has_variant and active_pair %}
                     </ul>
-                    <span class="nav-header variantnote">{% trans %}Written variant{% endtrans %}</span>
+                    <span class="nav-header variantnote" lang="{{ current_locale }}">{% trans %}Written variant{% endtrans %}</span>
                     <ul class="nav nav-collapse nav-tabs nav-stacked subnavcoloring">
                     {# Only display if the pair is the current one the user is looking at #}
                     {%- if iso_pair[0] == _from and iso_pair[1] == _to or orig_pair == iso_pair %}
                         {% for variant in pair_options.input_variants %}
                            	<li {% if _from == variant.short_name %} class="active"{% endif %}>
-                                <a href="/{{ variant.short_name }}/{{ _to }}">{{ gettext(variant.description)|safe }}{% if variant.example %} {{ gettext(variant.example)|safe }}{% endif %}</a>
+                                <a href="/{{ variant.short_name }}/{{ _to }}"><span lang="{{ current_locale }}">{{ gettext(variant.description)|safe }}</span>{% if variant.example %} <span lang="{{ current_locale }}">{{ gettext(variant.example)|safe }}</span>{% endif %}</a>
                             </li>
                         {% endfor %}
                     {%- endif -%}
@@ -76,7 +76,7 @@
         {% else %}
             {% set active_group = "inactive-group" %}
         {% endif %}
-        <h5 class="{{ active_group }}-title"><a href="#" data-iso-group="{{ iso_group }}" class="expander">{{ iso_group|iso_to_language_own_name }}</a> <span class="inactive-placeholder label label-grey">+</span></h5>
+        <h5 class="{{ active_group }}-title"><a href="#" data-iso-group="{{ iso_group }}" class="expander" lang="{{ iso_group }}">{{ iso_group|iso_to_language_own_name }}</a> <span class="inactive-placeholder label label-grey">+</span></h5>
         <div class="expander-group row-fluid {{ active_group }}" data-iso-expander="{{ iso_group }}">
         {{ render_pair_blocks(grouped_items) }}
         </div>

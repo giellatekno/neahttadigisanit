@@ -1,8 +1,8 @@
-<li class="display-phone hidden-tablet visible-mid hidden-desktop"><span>{% trans %}Dictionaries{% endtrans %}</span></li>
+<li class="display-phone hidden-tablet visible-mid hidden-desktop"><span lang="{{ current_locale }}">{% trans %}Dictionaries{% endtrans %}</span></li>
 
 {%- if grouped_nav -%}
     {% for iso_group, grouped_items in language_pairs_grouped_by_source.iteritems() %}
-        <li class="display-phone hidden-tablet visible-mid hidden-desktop language-group"><span>{{ iso_group|iso_to_language_own_name }}</span></li>
+        <li class="display-phone hidden-tablet visible-mid hidden-desktop language-group"><span lang="{{ iso_group }}">{{ iso_group|iso_to_language_own_name }}</span></li>
 
         {%- for iso_pair, pair_options in grouped_items -%}
             <li class="visible-thin visible-mid hidden-desktop hidden-tablet {%- if iso_pair[0] == _from and iso_pair[1] == _to %} active{% endif -%}">
@@ -45,4 +45,4 @@
     {% endfor %}
 {%- endif -%}
 
-<li class="visible-thin hidden-desktop hidden-tablet hidden-mid"><a href="/more/">{% trans %}Other dictionaries{% endtrans %}</a></li>
+<li class="visible-thin hidden-desktop hidden-tablet hidden-mid"><a href="/more/" lang="{{ current_locale }}">{% trans %}Other dictionaries{% endtrans %}</a></li>

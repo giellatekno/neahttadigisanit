@@ -158,25 +158,25 @@
                         <div class="nav-collapse main-nav">
                             <ul class="nav">
                                 <li><a href="/">
-                                        <span>{% trans %}Home{% endtrans %}</span>
+                                        <span lang="{{ current_locale }}">{% trans %}Home{% endtrans %}</span>
                                 </a></li>
                                 <li>
                                     <a href="/read/">
-                                        <span>{% trans %}Plugins{% endtrans %}</span>
+                                        <span lang="{{ current_locale }}">{% trans %}Plugins{% endtrans %}</span>
                                     </a>
                                 </li>
                                 <li><a href="/about/">
-                                        <span>{% trans %}About{% endtrans %}</span>
+                                        <span lang="{{ current_locale }}">{% trans %}About{% endtrans %}</span>
                                 </a></li>
                                 {% if sources_template_exists %}
                                     <li><a href="/about/sources/">
-                                            <span>{% trans %}Sources{% endtrans %}</span>
+                                            <span lang="{{ current_locale }}">{% trans %}Sources{% endtrans %}</span>
                                     </a></li>
                                 {% endif %}
                                 {% block extra_nav %}
                                 {# TODO: locales available #}
                                 {% endblock %}
-                                <li class="display-phone hidden-tablet visible-mid hidden-desktop"><span>{% trans %}Interface language{% endtrans %}</span></li>
+                                <li class="display-phone hidden-tablet visible-mid hidden-desktop"><span lang="{{ current_locale }}">{% trans %}Interface language{% endtrans %}</span></li>
                                 {% for iso in internationalizations %}
                                 <li class="display-phone hidden-tablet visible-mid hidden-desktop">
                                     <a href="/locale/{{ iso }}/">
@@ -212,24 +212,6 @@
                 </div>
                 {% endblock %}
 
-                {#
-                <div id="keyboard" class="navbar navbar-inverse navbar-fixed-bottom">
-                    <div class="navbar-inner">
-                        <div class="container">
-                            <ul class="nav">
-                                <li><a href="#" data-char="á">á</a></li>
-                                <li><a href="#" data-char="ŋ">ŋ</a></li>
-                                <li><a href="#" data-char="š">š</a></li>
-                                <li><a href="#" data-char="ž">ž</a></li>
-                                <li><a href="#" data-char="č">č</a></li>
-                                <li><a href="#" data-char="ŧ">ŧ</a></li>
-                                <li><a href="#" data-char="đ">đ</a></li>
-                                <li><a href="#" class="last"></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                #}
             </div>
         </div>
 
@@ -254,7 +236,7 @@
                 <div id="keyboard">
                     <ul>
                         {% for key in current_variant_options.onscreen_keyboard %}
-                            <li><a href="#" class="key" data-char="{{ key }}">{{ key }}</a></li>
+                            <li><a href="#" class="key" data-char="{{ key }}" lang="{{ _from }}">{{ key }}</a></li>
                         {% endfor %}
                         {# TODO: help popup, with links to GT keyboard app stuff #}
                     </ul>

@@ -1,4 +1,4 @@
-<h4 class="dict_title no_indent">{% trans %}Dictionaries{% endtrans %}</h4>
+<h4 class="dict_title no_indent" lang="{{ current_locale }}">{% trans %}Dictionaries{% endtrans %}</h4>
 
 {%- if grouped_nav -%}
     {%- include 'left_nav_grouped_language_pair_select.html' -%}
@@ -6,7 +6,7 @@
     {%- include 'left_nav_language_pair_select_list.html' -%}
 {%- endif -%}
 
-<p><a href="/more/" class="other_link">{% trans %}Other dictionaries{% endtrans %}</a></p>
+<p><a href="/more/" class="other_link" lang="{{ current_locale }}">{% trans %}Other dictionaries{% endtrans %}</a></p>
 {% if project_notice %}
 <div class="alert alert-error">
     <p>{{ project_notice|safe }}</p>
@@ -14,7 +14,7 @@
 {% endif %}
 {% if text_tv %}
 <div class="alert alert-warning"><a href="/escape/text-tv/">
-        <span>{% trans %}Escape Text-TV mode{% endtrans %}</span>
+        <span lang="{{ current_locale }}">{% trans %}Escape Text-TV mode{% endtrans %}</span>
 </a></div>
 {% endif %}
 
