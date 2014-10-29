@@ -155,6 +155,6 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
 
-#keyboard a, .results a, .results li, dl.possible_analyses, .lexeme p.lead, .lexeme .meanings {
+input[data-language-from="liv"] *, input[data-language-from="livM"] *, *[lang="liv"], *[lang="livM"] {
     font-family: 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }

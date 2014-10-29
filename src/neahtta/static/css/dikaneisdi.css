@@ -15,6 +15,6 @@
 }
 
 /* TODO: setting font changes display width for some reason */
-input[data-language-from="chr"] * {
+*[lang="chr"], input[data-language-from="chr"] * {
     font-family: "Noto Sans Cherokee", sans-serif;
 }
