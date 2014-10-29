@@ -511,10 +511,10 @@ span.entry_source {
     font-weight: 200;
 }
 
-#keyboard ul li a:hover {
-    text-decoration: none;
-    text-shadow: 0px 0px 10px #88F;
-    color: #FFF;
+#keyboard ul li a {
+    /* text-decoration: none; */
+    text-shadow: 0px 0px 1px rgba(255,255,255,.1);
+    color: #0088cc;
 }
 
 /* desktop positioning */
@@ -566,13 +566,7 @@ span.entry_source {
 	    color: #454;
     }
 
-    #keyboard ul li a:hover {
-        text-shadow: 0px 0px 10px #88F;
-        color: #111;
-    }
 }
-
-
 
 @media (max-width: 767px) {
     span.entry_source {

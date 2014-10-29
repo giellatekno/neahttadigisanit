@@ -319,6 +319,6 @@
 
 @media (max-width: 801px) {
     input[data-language-from="sms"] *, input[data-language-from="smsM"] *, *[lang="sms"], *[lang="smsM"] {
-        font-family: 'Open Sans', 'Noto Sans', Helvetica, Arial, sans-serif !important;
+        font-family: 'Open Sans', 'Noto Sans', Helvetica, Arial, sans-serif;
     }
 }
