@@ -5,3 +5,12 @@
     """
     from configs.language_names import ISO_TRANSFORMS
     return ISO_TRANSFORMS.get(_iso, _iso)
+
+def get_locale():
+    """ Always return the three character locales
+    """
+    from flask.ext.babel import get_locale as get_
+
+    locale = iso_filter(unicode(get_()))
+
+    return locale

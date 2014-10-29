@@ -46,6 +46,11 @@ def check_notice():
     return {'project_notice': notice}
 
 @blueprint.context_processor
+def add_current_locale_code():
+    from i18n.utils import get_locale
+    return {'current_locale': get_locale()}
+
+@blueprint.context_processor
 def add_current_pair():
     """ If the request is for a form or a lookup, we include
     """
@@ -133,12 +138,14 @@ def detect_mobile_variables():
 
 @blueprint.context_processor
 def footer_template():
+    from i18n.utils import get_locale
+
     if current_app.config.new_style_templates:
         _from, _to = current_app.config.default_language_pair
         footer_template = current_app.lexicon_templates.render_individual_template(
             _from,
             'footer.template',
-            **{}
+            **{'current_locale': get_locale()}
         )
         return {'footer_template': footer_template}
     else:

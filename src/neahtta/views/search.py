@@ -46,6 +46,8 @@ user_log = getLogger("user_log")
 ####   simplify the amount of context that is needed to be passed into
 ####   templates. SearchResult object should actually be enough.
 
+from i18n.utils import get_locale
+
 from flask.views import View, MethodView
 
 class AppViewSettingsMixin(object):
@@ -122,6 +124,7 @@ class IndexSearchPage(IndexSearch, View, AppViewSettingsMixin):
             'show_info': True,
             'current_pair_settings': current_pair_settings,
             'current_variant_options': orig_pair_opts.get('variant_options'),
+            'current_locale': get_locale(),
             '_from': self.default_from,
             '_to': self.default_to
         }
@@ -441,6 +444,7 @@ class SearcherMixin(object):
             'analyses': search_result_obj.analyses,
             'analyses_without_lex': search_result_obj.analyses_without_lex,
             'user_input': search_result_obj.search_term,
+            'current_locale': get_locale(),
 
             # ?
             'errors': errors, # is this actually getting set?
@@ -621,14 +625,16 @@ class LanguagePairSearchView(IndexSearch, DictionaryView, SearcherMixin):
             'display_swap': self.get_reverse_pair(_from, _to),
             'current_pair_settings': current_pair_settings,
             'current_variant_options': orig_pair_opts.get('variant_options'),
+            'current_locale': get_locale(),
             '_from': _from,
             '_to': _to,
         }
+
         if current_app.config.new_style_templates:
             search_info = current_app.lexicon_templates.render_individual_template(
                 g._from,
                 'search_info.template',
-                **{}
+                **shared_context
             )
             search_form = current_app.lexicon_templates.render_individual_template(
                 g._from,
