@@ -550,7 +550,8 @@ class Config(Config):
                     'show_korp_search': dict_def.get('show_korp_search', False),
                     'wordform_search_url': dict_def.get('wordform_search_url', False),
                     'lemma_search_url': dict_def.get('lemma_search_url', False),
-                    'lemma_multiword_delimiter': dict_def.get('lemma_multiword_delimiter', False)
+                    'lemma_multiword_delimiter': dict_def.get('lemma_multiword_delimiter', False),
+                    'asynchronous_paradigms': dict_def.get('asynchronous_paradigms', False)
                 }
                 for iso in _lang_isos:
                     _pair_options['langs'][iso] = (_from_langs[iso], _to_langs[iso])

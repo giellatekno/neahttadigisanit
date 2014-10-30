@@ -1,0 +1,43 @@
+{%- set lemma = lexicon_entry|xpath('lg/l')|first %}
+{%- set pos = lemma|xpath('@pos')|first %}
+
+{# TODO: tagfilter 
+ #}
+
+<dl class="dl-horizontal miniparadigm" 
+    word-paradigm 
+    lemma="{{ lemma|text }}" 
+    source-lang="{{ _from }}" 
+    target-lang="{{ _to }}" 
+    pos-restrict="{{ pos }}">
+
+    <div ng-if="requesting" class="loading_spinner">
+        <p>Fetching paradigm...</p>
+    </div>
+
+    <div ng-repeat="p in paradigm" ng-if="paradigm">
+        <dt><% p[1].join('+') %></dt>
+        <dd><% p[2].join(', ') %></dd>
+    </div>
+
+</dl>
+
+{# 
+
+<em>TODO: async</em>
+{%- for form in paradigm -%}
+
+    {% if form.tag %}
+        <dt>{{ form.tag|tagfilter(_from, _to)  }}</dt>
+    {% endif %}
+
+    {% if form.form %}
+    <dd lang="{{ _from }}">{{ form.form }}</dd>
+    {% else %}
+        <dd lang="{{ _from }}">?</dd>
+    {% endif %}
+{%- endfor -%}
+#}
+</dl>
+
+{# vim: set ts=4 sw=4 tw=72 syntax=jinja : #}

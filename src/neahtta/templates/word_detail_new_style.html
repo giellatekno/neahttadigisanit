@@ -9,6 +9,7 @@
     <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-typeahead-fork.js')}}"></script>
     <script type="text/javascript" src="{{url_for('static', filename='js/detail.js')}}"></script>
 
+    {{ new_template_header_includes|safe }}
 {# Not actually in use
     <script type="text/javascript" src="{{url_for('static', filename='js/dropdown-button.js')}}"></script> 
 #}
@@ -109,7 +110,12 @@
        <br />
     </div>
 
-    <div>
+    {% if current_pair_settings.asynchronous_paradigms %}
+        <div ng-app="NDS">
+    {% else %}
+        <div>
+    {% endif %}
+
         {% for tpl in new_templates %}
             {{ tpl|safe }}
         {% endfor %}
@@ -120,7 +126,12 @@
                {% endif %}
            </div>
        </div>
-    </div>
+
+    {% if current_pair_settings.asynchronous_paradigms %}
+        </div>
+    {% else %}
+        </div>
+    {% endif %}
 
 
     {% if more_detail_link %}

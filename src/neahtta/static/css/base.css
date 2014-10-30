@@ -15,7 +15,23 @@ html, body {
   text-overflow: no !important;
 }
 
+.miniparadigm.loading {
+    background-color: #CCC;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
 
+    display: block;
+    height: 3em;
+    width: 15em;
+}
+
+.miniparadigm.loading .loading_spinner p {
+	display: block;
+    width: 100%;
+    text-align: center;
+    line-height: 2.5em;
+}
 .container-fluid {
 	padding: 0 0;
 }

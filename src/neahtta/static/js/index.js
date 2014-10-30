@@ -10,12 +10,12 @@ $(document).ready( function() {
 
     // Doublecheck focus-- need to retrigger the event because sometimes it
     // isn't properly trigggered 
-    setTimeout(function() {
-        $('input[name="lookup"]').focus().select();
-        // if ( $('input[name="lookup"]').is(":focus") ) {
-        //     $('input[name="lookup"]').focus();
-        // }
-    }, 120);
+    //
+    if($(document).width() > 801) {
+        setTimeout(function() {
+            $('input[name="lookup"]').focus().select();
+        }, 120);
+    }
 
     $('input[name="lookup"]').typeahead({
         items: 5,

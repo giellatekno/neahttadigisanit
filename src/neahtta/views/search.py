@@ -467,7 +467,11 @@ class SearcherMixin(object):
               * search_context - simplify
         """
 
-        if detailed:
+        # TODO: ajax paradigms
+        current_pair, _ = current_app.config.resolve_original_pair(g._from, g._to)
+        async_paradigm = current_pair.get('asynchronous_paradigms', False)
+
+        if detailed and not async_paradigm:
             generate = True
         else:
             generate = False
@@ -535,6 +539,10 @@ class SearcherMixin(object):
         all_analysis_template = \
             current_app.lexicon_templates.render_individual_template(g._from, 'analyses.template', **indiv_template_kwargs)
 
+        header_template = \
+            current_app.lexicon_templates.render_individual_template(g._from, 'includes.template', **indiv_template_kwargs)
+
+
         if search_result_obj.analyses_without_lex:
             leftover_tpl_kwargs = {
                 'analyses': search_result_obj.analyses_without_lex,
@@ -555,6 +563,8 @@ class SearcherMixin(object):
 
             # This is the new style stuff.
             'new_templates': _rendered_entry_templates,
+            'new_template_header_includes': header_template,
+
             'leftover_analyses_template': leftover_analyses_template,
             'all_analysis_template': all_analysis_template,
 
@@ -748,6 +758,8 @@ class ReferredLanguagePairSearchView(LanguagePairSearchView):
         search_result_context.update(**self.get_shared_context(_from, _to))
 
         return render_template(self.template_name, **search_result_context)
+
+from .reader import json_response
 
 class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
     """ The major difference between this view and the main index search
@@ -944,6 +956,8 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
             'no_derivations': _non_d,
         }
 
+        # TODO: ajax paradigms
+
         has_analyses = False
 
         if current_app.config.new_style_templates:
@@ -975,3 +989,126 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
             template = self.template_name
 
         return render_template(template, **search_result_context)
+
+class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
+
+    from lexicon import DetailedFormat as formatter
+
+    def get(self, _from, _to, lemma):
+
+        # Check for cache entry here
+
+        # TODO: include e node / enry_filterer
+
+        self.check_pair_exists_or_abort(_from, _to)
+        # self.validate_request()
+
+        user_input = lemma = decodeOrFail(lemma)
+
+        # Generation constraints
+        pos_filter = request.args.get('pos', False)
+        e_node = request.args.get('e_node', False)
+
+        _split = True
+        _non_c = True
+        _non_d = False
+
+        search_kwargs = {
+            'split_compounds': _split,
+            'non_compounds_only': _non_c,
+            'no_derivations': _non_d,
+        }
+
+        has_analyses = False
+        cache_key = '+'.join([a for a in [
+            lemma,
+            pos_filter,
+            e_node,
+        ] if a])
+
+        paradigms = current_app.cache.get(cache_key)
+
+        if not paradigms:
+            paradigms = \
+                self.search_to_paradigm(user_input,
+                                        detailed=True,
+                                        **search_kwargs)
+
+            current_app.cache.set(cache_key, paradigms)
+
+        # TODO: cache search result here
+        # current_app.cache.set(entry_cache_key,
+        # search_result_context.detailed_entry_pickleable)
+
+        # search_result_context.update(**self.get_shared_context(_from, _to))
+
+        return json_response({
+            'paradigms': paradigms,
+            'input': {
+                'lemma': lemma,
+                'pos': pos_filter,
+            }
+        })
+
+
+    def search_to_paradigm(self, lookup_value, **search_kwargs):
+
+        errors = []
+
+        search_result_obj = self.do_search_to_obj(lookup_value, generate=True, **search_kwargs)
+
+        paradigms = []
+
+        for a in search_result_obj.formatted_results:
+            paradigms.append(a.get('paradigm'))
+
+        return paradigms
+
+    def entry_filterer(self, entries, **kwargs):
+        """ Runs on formatted result from DetailedFormat thing
+
+            TODO: will need to reconstruct this for new style views
+            because the formatters are going away
+        """
+
+        # Post-analysis filter arguments
+        pos_filter = request.args.get('pos', False)
+        e_node = request.args.get('e_node', False)
+
+        def _byPOS(r):
+            if r.get('input')[1].upper() == pos_filter.upper():
+                return True
+            else:
+                return False
+
+        def _byLemma(r):
+            if r.get('input')[0] == wordform:
+                return True
+            else:
+                return False
+
+        def _byNodeHash(r):
+            node = r.get('entry_hash')
+            if node == e_node:
+                return True
+            else:
+                return False
+
+        def default_result(r):
+            return r
+
+        entry_filters = [default_result]
+
+        if e_node:
+            entry_filters.append(_byNodeHash)
+
+        if pos_filter:
+            entry_filters.append(_byPOS)
+
+        def filter_entries_for_view(entries):
+            _entries = []
+            for f in entry_filters:
+                _entries = filter(f, entries)
+            return _entries
+
+        return filter_entries_for_view(entries)
