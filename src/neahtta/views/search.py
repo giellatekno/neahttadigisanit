@@ -1021,6 +1021,7 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
 
         has_analyses = False
         cache_key = '+'.join([a for a in [
+            _from,
             lemma,
             pos_filter,
             e_node,
