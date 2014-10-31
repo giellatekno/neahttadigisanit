@@ -32,15 +32,10 @@ NDS.directive('wordParadigm', function() {
 
             // Wait until a little bit after load to begin requesting
             setTimeout(function(){
-                delay = setTimeout(function(){
-                    $element.addClass('loading');
-                    $scope.requesting = true;
-                }, 500);
+                $element.addClass('loading');
                 $http({url: paradigm_url, method: "GET", params: get_attrs}).success(function(data){ 
-                    clearTimeout(delay);
                     $scope.paradigm = data.paradigms[0];
                     $element.removeClass('loading');
-                    $scope.requesting = false;
                 });
             }, 100);
 

@@ -48,7 +48,6 @@ dl dd .extraexpand .extralabel {
 
 
 dl.miniparadigm dt {
-	text-overflow: "asdf";
 	font-size: 90%;
 	font-weight: light;
 	letter-spacing: -px;
@@ -73,6 +72,33 @@ ul.possible_forms {
 
 ul.possible_forms li {
 	margin-left: 0;
+}
+
+.miniparadigm .loading_spinner {
+    display: none;
+}
+
+.miniparadigm.loading {
+    background-color: #CCC;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+
+    display: block;
+    height: 3em;
+    width: 15em;
+    overflow: hidden;
+}
+
+.miniparadigm.loading .loading_spinner {
+    display: block;
+}
+
+.miniparadigm.loading .loading_spinner p {
+	display: block;
+    width: 100%;
+    text-align: center;
+    line-height: 2.5em;
 }
 
 @media (max-width: 550px) {
@@ -110,4 +136,22 @@ ul.possible_forms li {
 	form#neahttadigisanit input[type="text"] {
 		max-width: 8em;
 	}
+}
+
+.visible-phone dl.dl-horizontal.miniparadigm {
+    overflow: hidden;
+}
+
+.visible-phone dl.dl-horizontal.miniparadigm dd {
+    width: 100%;
+    overflow: word-wrap;
+    
+}
+
+.visible-phone dl.dl-horizontal.miniparadigm dt {
+    width: 100%;
+    word-wrap: break-word;
+    white-space: nowrap;
+    float: none;    
+    margin-top: .5em;
 }

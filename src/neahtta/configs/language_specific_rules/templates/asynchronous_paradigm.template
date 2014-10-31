@@ -11,12 +11,14 @@
     target-lang="{{ _to }}" 
     pos-restrict="{{ pos }}">
 
-    <div ng-if="requesting" class="loading_spinner">
+    <div class="loading_spinner">
         <p>Fetching paradigm...</p>
+        <br />
+        <img src="/static/img/spinner.gif" />
     </div>
 
     <div ng-repeat="p in paradigm" ng-if="paradigm">
-        <dt><% p[1].join('+') %></dt>
+        <dt><% p[1].join(' ') %></dt>
         <dd><% p[2].join(', ') %></dd>
     </div>
 

@@ -29,6 +29,24 @@
             <ul class="meanings">
                 {{- rendered_templates.definition -}}
             </ul>
+            <div class="span3 visible-phone hidden-tablet hidden-desktop floatingparadigm">
+                <div class="row-fluid">
+                    <div class="span6">
+                        <button href="#" class="btn btn-info pull-right" data-toggle="collapse" data-target="#paradigm-asdf" type="button" lang="{{ current_locale }}">
+                            {% trans %}Paradigm{% endtrans %}
+                        </button>
+                    </div>
+                    <div class="span6">
+                        <div class="paradigm-expanded collapse" id="paradigm-asdf">
+                        {% if current_pair_settings.asynchronous_paradigms %}
+                            {{- rendered_templates.asynchronous_paradigm -}}
+                        {% else %}
+                            {{- rendered_templates.paradigm -}}
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% else %}&nbsp;{% endif %}
     </div>
     <div class="span3 offset1 hidden-phone">
