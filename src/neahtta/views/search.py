@@ -1036,6 +1036,16 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
 
             current_app.cache.set(cache_key, paradigms)
 
+        from morphology.utils import tagfilter
+
+        ui_locale = get_locale()
+
+        def filter_tag((_input, tag, forms)):
+            filtered_tag = tagfilter(tag, g._from, g._to).split(' ')
+            return (_input, filtered_tag, forms)
+
+        paradigms = [map(filter_tag, _p) for _p in paradigms]
+
         # TODO: cache search result here
         # current_app.cache.set(entry_cache_key,
         # search_result_context.detailed_entry_pickleable)
