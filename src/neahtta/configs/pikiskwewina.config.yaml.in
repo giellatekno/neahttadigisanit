@@ -4,7 +4,7 @@ ApplicationSettings:
   short_name: "pikiskwewina"
   default_locale: "crk"
   default_pair: ["crk", "eng"]
-  mobile_default_pair: false
+  mobile_default_pair: ["crkM", "eng"]
   new_style_templates: true
   locales_available:
     - crk
