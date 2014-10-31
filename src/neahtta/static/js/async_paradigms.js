@@ -35,6 +35,15 @@ NDS.directive('wordParadigm', function() {
                         $element.removeClass('loading');
                         $element.find('.loading_spinner').remove();
 
+                        window.thanks_android = setInterval( function (){
+                            if ($scope.paradigm) {
+                                $element.removeClass('loading');
+                                $element.find('.loading_spinner').remove();
+                                clearInterval(window.thanks_android);
+                                delete window.thanks_android;
+                            }
+                        }, 100);
+
                         $scope.complete = true;
 
                         if(data.paradigms.length > 0) {
