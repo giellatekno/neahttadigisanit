@@ -51,6 +51,7 @@ Dictionaries:
   - source: crk
     target: eng
     path: 'dicts/crkeng.xml'
+    asynchronous_paradigms: true
     input_variants: &spell_relax
       - type: "standard"
         description: !gettext "Standard"
