@@ -24,18 +24,32 @@ NDS.directive('wordParadigm', function() {
                 get_attrs['pos'] = $attrs.posRestrict;
             }
 
-            $scope.requesting = false;
-            // Wait a little bit to display that the request is in
-            // progress, prevent blinking.
-
             // Wait until a little bit after load to begin requesting
+            $element.addClass('loading');
+            $scope.complete = false;
+            $scope.paradigm = false;
             setTimeout(function(){
                 $element.addClass('loading');
-                $http({url: paradigm_url, method: "GET", params: get_attrs}).success(function(data){ 
-                    $scope.paradigm = data.paradigms[0];
-                    $element.removeClass('loading');
-                    $element.find('.loading_spinner').remove();
-                });
+                $http({url: paradigm_url, method: "GET", params: get_attrs})
+                    .success(function(data){ 
+                        $element.removeClass('loading');
+                        $element.find('.loading_spinner').remove();
+
+                        $scope.complete = true;
+
+                        if(data.paradigms.length > 0) {
+                            if(data.paradigms[0].length > 0) {
+                                $scope.paradigm = data.paradigms[0];
+                                $scope.no_paradigm = false;
+                            } else {
+                                $scope.paradigm = false;
+                                $scope.no_paradigm = true;
+                            }
+                        } else {
+                            $scope.paradigm = false;
+                            $scope.no_paradigm = true;
+                        }
+                    })
             }, 100);
 
         } ,

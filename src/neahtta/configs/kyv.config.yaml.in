@@ -5,6 +5,8 @@ ApplicationSettings:
   default_locale: "kv"
   default_pair: ["kpv", "fin"]
   mobile_default_pair: false
+  grouped_nav: true
+  new_mobile_nav: true
   locales_available:
     - kv
     - fi

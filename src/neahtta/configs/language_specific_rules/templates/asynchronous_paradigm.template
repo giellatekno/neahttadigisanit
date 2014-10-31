@@ -15,11 +15,15 @@
         <p><img src="/static/img/spinner.gif" /><br />Fetching paradigm... </p>
     </div>
 
-    <div ng-repeat="p in paradigm" ng-if="paradigm">
+    <div ng-show="no_paradigm && complete">
+        <em>No paradigm generated.</em>
+    </div>
+
+    <div ng-repeat="p in paradigm" ng-if="paradigm && complete">
         <dt><% p[1].join(' ') %></dt>
         <dd><% p[2].join(', ') %></dd>
     </div>
-
+    
 </dl>
 
 {# 
@@ -40,4 +44,4 @@
 #}
 </dl>
 
-{# vim: set ts=4 sw=4 tw=72 syntax=jinja : #}
+{# vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}
