@@ -31,18 +31,20 @@
             </ul>
             <div class="span3 visible-phone hidden-tablet hidden-desktop floatingparadigm">
                 <div class="row-fluid">
+                    {%- set lemma_key = lexicon_entry|xpath('lg/l')|first|text %}
+
                     <div class="span6">
                         <button href="#" 
                                 class="btn btn-info pull-right" 
                                 data-toggle="collapse" 
-                                data-target="#paradigm-asdf" 
+                                data-target="#paradigm-{{ lemma_key }}" 
                                 type="button" 
                                 lang="{{ current_locale }}">
                             {% trans %}Paradigm{% endtrans %}
                         </button>
                     </div>
                     <div class="span6">
-                        <div class="paradigm-expanded collapse" id="paradigm-asdf">
+                        <div class="paradigm-expanded collapse" id="paradigm-{{ lemma_key }}">
                         {% if current_pair_settings.asynchronous_paradigms %}
                             {{- rendered_templates.asynchronous_paradigm -}}
                         {% else %}
