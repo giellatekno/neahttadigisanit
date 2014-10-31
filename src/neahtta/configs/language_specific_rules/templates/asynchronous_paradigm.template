@@ -12,9 +12,7 @@
     pos-restrict="{{ pos }}">
 
     <div class="loading_spinner">
-        <p>Fetching paradigm...</p>
-        <br />
-        <img src="/static/img/spinner.gif" />
+        <p><img src="/static/img/spinner.gif" /><br />Fetching paradigm... </p>
     </div>
 
     <div ng-repeat="p in paradigm" ng-if="paradigm">

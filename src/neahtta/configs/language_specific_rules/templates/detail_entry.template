@@ -32,7 +32,12 @@
             <div class="span3 visible-phone hidden-tablet hidden-desktop floatingparadigm">
                 <div class="row-fluid">
                     <div class="span6">
-                        <button href="#" class="btn btn-info pull-right" data-toggle="collapse" data-target="#paradigm-asdf" type="button" lang="{{ current_locale }}">
+                        <button href="#" 
+                                class="btn btn-info pull-right" 
+                                data-toggle="collapse" 
+                                data-target="#paradigm-asdf" 
+                                type="button" 
+                                lang="{{ current_locale }}">
                             {% trans %}Paradigm{% endtrans %}
                         </button>
                     </div>

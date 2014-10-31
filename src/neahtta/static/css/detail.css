@@ -79,18 +79,18 @@ ul.possible_forms li {
 }
 
 .miniparadigm.loading {
-    background-color: #CCC;
+    background-color: #EEE;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
 
     display: block;
-    height: 3em;
     width: 15em;
     overflow: hidden;
 }
 
 .miniparadigm.loading .loading_spinner {
+    padding-top: .75em;
     display: block;
 }
 

@@ -14,8 +14,6 @@ NDS.directive('wordParadigm', function() {
     return {
         restrict: 'A',
         controller: function ($scope, $http, $element, $attrs) {
-            console.log("get_paradigm");
-            console.log($element);
             var lem = $attrs.lemma;
 
             var paradigm_url = "/paradigm/" + $attrs.sourceLang + '/' + $attrs.targetLang + '/' + lem;
@@ -36,6 +34,7 @@ NDS.directive('wordParadigm', function() {
                 $http({url: paradigm_url, method: "GET", params: get_attrs}).success(function(data){ 
                     $scope.paradigm = data.paradigms[0];
                     $element.removeClass('loading');
+                    $element.find('.loading_spinner').remove();
                 });
             }, 100);
 
