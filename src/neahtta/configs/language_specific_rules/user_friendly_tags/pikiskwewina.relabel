@@ -1,7 +1,7 @@
 Relabel:
   - source_morphology: 'crk'
     target_ui_language: 'eng'
-    tags: 
+    tags: &crk_eng
       N: "Noun"
       V: "Verb"
       PV: "Preverb"
@@ -81,4 +81,7 @@ Relabel:
       Obv: "Obviative"
       Err/Sub: "??"
       Use/NG: "??"
+  - source_morphology: 'crkM'
+    target_ui_language: 'eng'
+    tags: <<: *crk_eng
 
