@@ -83,5 +83,6 @@ Relabel:
       Use/NG: "??"
   - source_morphology: 'crkM'
     target_ui_language: 'eng'
-    tags: <<: *crk_eng
+    tags: 
+      <<: *crk_eng
 
