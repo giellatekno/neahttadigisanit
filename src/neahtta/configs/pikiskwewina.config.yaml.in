@@ -29,6 +29,16 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
+  crkS:
+    tool: *LOOKUP
+    file: [*OPT, '/crk/bin/analyser-gt-desc-syll.xfst']
+    inverse_file: [*OPT, '/crk/bin/generator-gt-norm-syll.xfst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
   crkM:
     tool: *LOOKUP
     file: [*OPT, '/crk/bin/analyser-dict-gt-desc-mobile.xfst']
@@ -58,6 +68,10 @@ Dictionaries:
         example: "(aâ)"
         # NB: must be same as analyser name
         short_name: "crk"
+      - type: "syllabics"
+        description: !gettext "Syllabics"
+        # example: ""
+        short_name: "crkS"
       - type: "mobile"
         description: !gettext "Mobile friendly"
         example: "(a &rarr; a ~ â)"
