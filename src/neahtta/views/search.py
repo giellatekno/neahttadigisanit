@@ -467,7 +467,6 @@ class SearcherMixin(object):
               * search_context - simplify
         """
 
-        # TODO: ajax paradigms
         current_pair, _ = current_app.config.resolve_original_pair(g._from, g._to)
         async_paradigm = current_pair.get('asynchronous_paradigms', False)
 
@@ -956,8 +955,6 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
             'no_derivations': _non_d,
         }
 
-        # TODO: ajax paradigms
-
         has_analyses = False
 
         if current_app.config.new_style_templates:
@@ -998,10 +995,7 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
 
         # Check for cache entry here
 
-        # TODO: include e node / enry_filterer
-
         self.check_pair_exists_or_abort(_from, _to)
-        # self.validate_request()
 
         user_input = lemma = decodeOrFail(lemma)
 
@@ -1029,7 +1023,7 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
 
         paradigms = current_app.cache.get(cache_key)
 
-        if not paradigms:
+        if paradigms is None:
             paradigms = \
                 self.search_to_paradigm(user_input,
                                         detailed=True,
