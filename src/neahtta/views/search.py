@@ -1021,7 +1021,7 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
             e_node,
         ] if a])
 
-        paradigms = current_app.cache.get(cache_key)
+        paradigms = current_app.cache.get(cache_key.encode('utf-8'))
 
         if paradigms is None:
             paradigms = \
@@ -1029,7 +1029,7 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
                                         detailed=True,
                                         **search_kwargs)
 
-            current_app.cache.set(cache_key, paradigms, timeout=None)
+            current_app.cache.set(cache_key.encode('utf-8'), paradigms, timeout=None)
 
         from morphology.utils import tagfilter
 

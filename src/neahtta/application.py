@@ -6,7 +6,7 @@ ADMINS = [
     'ryan.txanson+nds@gmail.com',
 ]
 
-import sys
+import sys, os
 import logging
 import urllib
 
@@ -114,9 +114,17 @@ def create_app():
     app.production = False
     app.register_blueprint(views.blueprint)
 
-    cache.init_app(app, {'CACHE_TYPE': 'simple'})
+    cache_path = os.path.join(os.getcwd(), 'tmp/generator_cache/')
+    cache.init_app(app, {'CACHE_TYPE': 'filesystem', 'CACHE_DIR': cache_path})
+    app.cache = cache
+    app.config['cache'] = cache
+    app.config['jinja_env'] = app.jinja_env
 
     app.cache = cache
+
+    with app.app_context():
+        app.cache.clear()
+
     app.config['cache'] = cache
     app.config['jinja_env'] = app.jinja_env
     app.config = Config('.', defaults=app.config)
