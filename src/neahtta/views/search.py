@@ -1002,6 +1002,8 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
         # Generation constraints
         pos_filter = request.args.get('pos', False)
         e_node = request.args.get('e_node', False)
+        # This is the same
+        self.lemma_match = user_input
 
         _split = True
         _non_c = True
@@ -1079,6 +1081,7 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
         # Post-analysis filter arguments
         pos_filter = request.args.get('pos', False)
         e_node = request.args.get('e_node', False)
+        lemma_match = self.lemma_match
 
         def _byPOS(r):
             if r.get('input')[1].upper() == pos_filter.upper():
@@ -1087,7 +1090,7 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
                 return False
 
         def _byLemma(r):
-            if r.get('input')[0] == wordform:
+            if r.get('input')[0] == lemma_match:
                 return True
             else:
                 return False
@@ -1103,6 +1106,9 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
             return r
 
         entry_filters = [default_result]
+
+        if lemma_match:
+            entry_filters.append(_byLemma)
 
         if e_node:
             entry_filters.append(_byNodeHash)
