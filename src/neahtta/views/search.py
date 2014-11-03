@@ -1029,7 +1029,7 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
                                         detailed=True,
                                         **search_kwargs)
 
-            current_app.cache.set(cache_key, paradigms)
+            current_app.cache.set(cache_key, paradigms, timeout=None)
 
         from morphology.utils import tagfilter
 
