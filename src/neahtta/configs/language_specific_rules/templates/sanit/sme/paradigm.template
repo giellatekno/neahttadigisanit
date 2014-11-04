@@ -1,20 +1,30 @@
 {%- set first_l = lexicon_entry|xpath('lg/l')|first %}
 {% set pos = first_l|xpath('@pos')|first|upper %}
-{% if pos == 'V' %}
+{%- if pos == 'V' %}
     {% set verbs = true %}
     {% set present_verbs = paradigm|by_tagset_value("tense", "Prs") %}
     {% set preterite_verbs = paradigm|by_tagset_value("tense", "Prt") %}
 
+    {# As long as the paradigm files are in order, this will zip
+    accurately. If not we need to manually select each form and display
+    it. #}
+
     {% set zipped_verbs = zip(present_verbs, preterite_verbs) %}
+
+    {# strip some parts of the tags that we don't need #}
 
     {% set prs_text = "Prs"|tagfilter(_from, _to) %}
     {% set prt_text = "Prt"|tagfilter(_from, _to) %}
+    {% set verb_text = "V"|tagfilter(_from, _to) %}
+    {% set verb_text_ind = "Ind"|tagfilter(_from, _to) %}
+
+    {% macro clean_tag(tag_input) %}
+        {{ tag_input|tagfilter(_from, _to)|replace(prs_text, "")|replace(verb_text, "")|replace(verb_text_ind, "") }}
+    {% endmacro %}
 
 {% else %}
     {% set verbs = false %}
-{% endif %}
-
-
+{% endif -%}
 
 {% if verbs %}
     <table class="tableparadigm miniparadigm">
@@ -27,7 +37,7 @@
         <tr>
 
         {% if present_form.tag %}
-            <th class="tag" lang="{{ _to }}">{{ present_form.tag|tagfilter(_from, _to)|replace(prs_text, "") }}</th>
+            <th class="tag" lang="{{ _to }}">{{ clean_tag(present_form.tag) }}
         {% endif %}
 
         {% if present_form.form %}
