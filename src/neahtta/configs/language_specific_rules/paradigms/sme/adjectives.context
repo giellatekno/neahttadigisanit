@@ -1,12 +1,5 @@
 # EX: heittot
 
-- entry_context: "bivttas"
+- entry_context: None
   tag_context: "A+Attr"
   template: "{{ word_form }} ({{ context }})"
-
-# EX: guhkki/guhkkes 
-
-- entry_context: "báddi"
-  tag_context: "A+Attr"
-  template: "{{ word_form }} ({{ context }})"
-
