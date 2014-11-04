@@ -222,9 +222,12 @@ def word_generation_context(generated_result, *generation_input_args, **generati
         lemma, tag, forms = form
         tag = '+'.join(tag)
 
+        # Get the context, but also fall back to the None option.
         context_formatter = context_for_tags.get(
-            (context, tag), False
+            (context, tag), context_for_tags.get( (None, tag), False ),
+
         )
+
         if context_formatter:
             formatted = []
             if forms:
