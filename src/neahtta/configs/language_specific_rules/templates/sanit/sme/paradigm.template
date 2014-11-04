@@ -1,0 +1,69 @@
+{%- set first_l = lexicon_entry|xpath('lg/l')|first %}
+{% set pos = first_l|xpath('@pos')|first|upper %}
+{% if pos == 'V' %}
+    {% set verbs = true %}
+    {% set present_verbs = paradigm|by_tagset_value("tense", "Prs") %}
+    {% set preterite_verbs = paradigm|by_tagset_value("tense", "Prt") %}
+
+    {% set zipped_verbs = zip(present_verbs, preterite_verbs) %}
+
+    {% set prs_text = "Prs"|tagfilter(_from, _to) %}
+    {% set prt_text = "Prt"|tagfilter(_from, _to) %}
+
+{% else %}
+    {% set verbs = false %}
+{% endif %}
+
+
+
+{% if verbs %}
+    <table class="tableparadigm miniparadigm">
+        <tr>
+            <th></th>
+            <th lang="{{ _to }}">{{ prs_text }}</th>
+            <th lang="{{ _to }}">{{ prt_text }}</th>
+        </tr>
+    {%- for present_form, preterite_form in zipped_verbs -%}
+        <tr>
+
+        {% if present_form.tag %}
+            <th class="tag" lang="{{ _to }}">{{ present_form.tag|tagfilter(_from, _to)|replace(prs_text, "") }}</th>
+        {% endif %}
+
+        {% if present_form.form %}
+            <td lang="{{ _from }}">{{ present_form.form }}</td>
+        {% else %}
+            <td lang="{{ _from }}">&mdash;</td>
+        {% endif %}
+
+        {% if preterite_form.form %}
+            <td lang="{{ _from }}">{{ preterite_form.form }}</td>
+        {% else %}
+            <td lang="{{ _from }}">&mdash;</td>
+        {% endif %}
+
+        </tr>
+
+    {%- endfor -%}
+    </table>
+
+{% else %}
+    <dl class="dl-horizontal miniparadigm">
+        {%- for form in paradigm -%}
+
+            {% if form.tag %}
+                <dt>{{ form.tag|tagfilter(_from, _to)  }}</dt>
+            {% endif %}
+
+            {% if form.form %}
+            <dd lang="{{ _from }}">{{ form.form }}</dd>
+            {% else %}
+                <dd lang="{{ _from }}">?</dd>
+            {% endif %}
+        {%- endfor -%}
+    </dl>
+
+{% endif %}
+
+
+{# vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}

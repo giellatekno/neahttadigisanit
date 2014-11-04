@@ -26,6 +26,9 @@ type:
  - "prop."
 possessive:
  - "PxSg2"
+tense:
+ - "Prs"
+ - "Prt"
 number:
  - "Sg"
  - "Pl"
