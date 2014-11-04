@@ -11,5 +11,9 @@ lexicon:
   illpl: "no"
   lex_pos: "N"
 --
-{{ lemma }}+N+Sg+Gen
+{{ lemma }}+N+Sg+Nom
+{{ lemma }}+N+Sg+Acc
 {{ lemma }}+N+Sg+Ill
+{{ lemma }}+N+Sg+Loc
+{{ lemma }}+N+Sg+Com
+{{ lemma }}+N+Ess

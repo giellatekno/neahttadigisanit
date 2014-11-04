@@ -6,6 +6,14 @@ lexicon:
     type: ".//l/@type"
   type: "G3"
 --
-{{ lemma }}+N+G3+Sg+Gen
+{{ lemma }}+N+G3+Sg+Nom
+{{ lemma }}+N+G3+Sg+Acc
 {{ lemma }}+N+G3+Sg+Ill
+{{ lemma }}+N+G3+Sg+Loc
+{{ lemma }}+N+G3+Sg+Com
+{{ lemma }}+N+G3+Ess
+{{ lemma }}+N+G3+Pl+Nom
+{{ lemma }}+N+G3+Pl+Acc
 {{ lemma }}+N+G3+Pl+Ill
+{{ lemma }}+N+G3+Pl+Loc
+{{ lemma }}+N+G3+Pl+Com

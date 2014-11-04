@@ -2,6 +2,14 @@
 morphology:
   pos: N
 --
-{{ lemma }}+N+Sg+Gen
+{{ lemma }}+N+Sg+Nom
+{{ lemma }}+N+Sg+Acc
 {{ lemma }}+N+Sg+Ill
+{{ lemma }}+N+Sg+Loc
+{{ lemma }}+N+Sg+Com
+{{ lemma }}+N+Ess
+{{ lemma }}+N+Pl+Nom
+{{ lemma }}+N+Pl+Acc
 {{ lemma }}+N+Pl+Ill
+{{ lemma }}+N+Pl+Loc
+{{ lemma }}+N+Pl+Com
