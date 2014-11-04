@@ -767,6 +767,19 @@ paradigm_generation_tests = [
             "Overgenerating forms",
             form_doesnt_contain(set([u'deaivvadan']))),
 
+
+    ('sme', 'nob', u'girji',
+            "Overgenerating forms. Possible tag filtration issue.",
+            form_doesnt_contain(set([u'girjje']))),
+
+###  - N 
+###    - <l pos="N" type="G3">sámeášši</l>
+
+    ('sme', 'nob', u'sámeášši',
+            "Forms not generated",
+            form_contains(set([u'sámeášši', u'sámeáššái', u'sámeáššiiguin']))),
+
+
     #     u'Ráisa', 
     #     u'dálkkádagat', 
     #     u'deaivvadit' - check that Pl3 deaivvadedje and deaivvadit are
