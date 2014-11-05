@@ -24,3 +24,4 @@ morphology:
 {{ lemma }}+{{ homonymy }}+V+Ind+Prt+Pl2
 {{ lemma }}+{{ homonymy }}+V+Ind+Prt+Pl3
 {{ lemma }}+{{ homonymy }}+V+Ind+Prs+ConNeg
+{{ lemma }}+{{ homonymy }}+V+PrfPrc

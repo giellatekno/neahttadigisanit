@@ -4,11 +4,42 @@
 
 - entry_context: "mun"
   tag_context: "V+Ind+Prs+Sg1"
-  template: "(odne mun) {{ word_form }}"
+  template: "(mun) {{ word_form }}"
 
 - entry_context: "mun"
-  tag_context: "V+Ind+Prt+Sg1"
-  template: "(ikte mun) {{ word_form }}"
+  tag_context: "V+Ind+Prs+Sg2"
+  template: "(don) {{ word_form }}"
+
+- entry_context: "mun"
+  tag_context: "V+Ind+Prs+Sg3"
+  template: "(son) {{ word_form }}"
+
+
+- entry_context: "mun"
+  tag_context: "V+Ind+Prs+Du1"
+  template: "(moai) {{ word_form }}"
+
+- entry_context: "mun"
+  tag_context: "V+Ind+Prs+Du2"
+  template: "(doai) {{ word_form }}"
+
+- entry_context: "mun"
+  tag_context: "V+Ind+Prs+Du3"
+  template: "(soai) {{ word_form }}"
+
+- entry_context: "mun"
+  tag_context: "V+Ind+Prs+Pl1"
+  template: "(mii) {{ word_form }}"
+
+- entry_context: "mun"
+  tag_context: "V+Ind+Prs+Pl2"
+  template: "(dii) {{ word_form }}"
+
+- entry_context: "mun"
+  tag_context: "V+Ind+Prs+Pl3"
+  template: "(sii) {{ word_form }}"
+
+
 
 - entry_context: "mun"
   tag_context: "V+Ind+Prs+ConNeg"

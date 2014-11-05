@@ -14,3 +14,4 @@ lexicon:
 {{ lemma }}+V+Ind+Prs+Sg3
 {{ lemma }}+V+Ind+Prt+Sg3
 {{ lemma }}+V+Ind+Prs+ConNeg
+{{ lemma }}+V+PrfPrc
