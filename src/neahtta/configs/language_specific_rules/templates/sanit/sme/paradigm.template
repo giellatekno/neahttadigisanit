@@ -1,9 +1,25 @@
+{# This is the paradigm template for North Sámi.
+
+ * Nouns: Display everything in the paradigm in a definition list
+ * Verbs: Display a table with one column for present tense, and one for
+   preterite tense; then display a separate definition list for
+   nonfinite forms.
+
+   - These are controlled by tagsets. Including more forms for verbs can
+   	 be handled by adding more tags to the file `tagsets/sme.tagset`
+
+ #}
+
 {%- set first_l = lexicon_entry|xpath('lg/l')|first %}
 {% set pos = first_l|xpath('@pos')|first|upper %}
+
 {%- if pos == 'V' %}
     {% set verbs = true %}
+
     {% set present_verbs = paradigm|by_tagset_value("tense", "Prs") %}
     {% set preterite_verbs = paradigm|by_tagset_value("tense", "Prt") %}
+
+    {% set nonfinite_forms = paradigm|by_tagset("nonfinite_paradigm") %}
 
     {# As long as the paradigm files are in order, this will zip
     accurately. If not we need to manually select each form and display
@@ -30,8 +46,8 @@
     <table class="tableparadigm miniparadigm">
         <tr>
             <th></th>
-            <th lang="{{ _to }}">{{ prs_text }}</th>
-            <th lang="{{ _to }}">{{ prt_text }}</th>
+            <th lang="{{ _to }}">{{ prs_text }} <em>(odne)</em></th>
+            <th lang="{{ _to }}">{{ prt_text }} <em>(ikte)</em></th>
         </tr>
     {%- for present_form, preterite_form in zipped_verbs -%}
         <tr>
@@ -56,6 +72,21 @@
 
     {%- endfor -%}
     </table>
+
+    <dl class="dl-horizontal miniparadigm">
+        {%- for form in nonfinite_forms -%}
+
+            {% if form.tag %}
+                <dt>{{ clean_tag(form.tag)  }}</dt>
+            {% endif %}
+
+            {% if form.form %}
+            <dd lang="{{ _from }}">{{ form.form }}</dd>
+            {% else %}
+                <dd lang="{{ _from }}">?</dd>
+            {% endif %}
+        {%- endfor -%}
+    </dl>
 
 {% else %}
     <dl class="dl-horizontal miniparadigm">
