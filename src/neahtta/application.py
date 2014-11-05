@@ -60,6 +60,7 @@ def register_babel(app):
         loc = get_locale()
 
         app.jinja_env.globals['session_locale'] = loc
+        app.jinja_env.globals['zip'] = zip
         app.jinja_env.globals['session_locale_long_iso'] = iso_filter(loc)
 
     @app.babel.localeselector
