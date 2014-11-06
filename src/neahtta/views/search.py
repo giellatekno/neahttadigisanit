@@ -498,12 +498,14 @@ class SearcherMixin(object):
         current_pair, _ = current_app.config.resolve_original_pair(g._from, g._to)
         async_paradigm = current_pair.get('asynchronous_paradigms', False)
 
+        lemma_attrs = default_context_kwargs.get('lemma_attrs', {})
+
         if detailed and not async_paradigm:
             generate = True
         else:
             generate = False
 
-        search_result_obj = self.do_search_to_obj(lookup_value, generate=generate)
+        search_result_obj = self.do_search_to_obj(lookup_value, generate=generate, lemma_attrs=lemma_attrs)
 
         if detailed:
             template = 'detail_entry.template'
@@ -758,12 +760,14 @@ class ReferredLanguagePairSearchView(LanguagePairSearchView):
         'l_til_ref': 'til_ref',
     }
 
-    def get(self, _from, _to):
+    def get_lemma_lookup_args(self):
+        lemma_lookup_args = {}
+        for k, v in request.args.iteritems():
+            if k in self.accepted_lemma_args:
+                lemma_lookup_args[self.accepted_lemma_args.get(k)] = v
+        return lemma_lookup_args
 
-        self.check_pair_exists_or_abort(_from, _to)
-
-        if current_app.config.new_style_templates:
-            return self.handle_newstyle_post(_from, _to)
+    def handle_newstyle_get(self, _from, _to):
 
         user_input = lookup_val = request.form.get('lookup', False)
 
@@ -772,15 +776,32 @@ class ReferredLanguagePairSearchView(LanguagePairSearchView):
             show_info = True
             # TODO: return an error.
 
-        # Get URL parameters for lookup
-
-        lemma_lookup_args = {}
-        for k, v in request.args.iteritems():
-            if k in self.accepted_lemma_args:
-                lemma_lookup_args[self.accepted_lemma_args.get(k)] = v
+        lookup_context = self.get_shared_context(_from, _to)
+        lookup_context['lemma_attrs'] = self.get_lemma_lookup_args()
 
         # This performs lots of the work...
-        search_result_context = self.search_to_context(user_input, lemma_attrs=lemma_lookup_args)
+        search_result_context = self.search_to_newstyle_context(user_input, **lookup_context)
+
+        # missing current_pair_settings
+        return render_template('index_new_style.html', **search_result_context)
+
+    def get(self, _from, _to):
+
+        self.check_pair_exists_or_abort(_from, _to)
+
+        if current_app.config.new_style_templates:
+            return self.handle_newstyle_get(_from, _to)
+
+        user_input = lookup_val = request.form.get('lookup', False)
+
+        if not user_input:
+            user_input = ''
+            show_info = True
+            # TODO: return an error.
+
+        # This performs lots of the work...
+        search_result_context = self.search_to_context(user_input,
+                                                       lemma_attrs=self.get_lemma_lookup_args())
 
         search_result_context.update(**self.get_shared_context(_from, _to))
 
