@@ -298,7 +298,35 @@ class SearchResult(object):
                                                              morph_analyses,
                                                              paradigm))
 
-        return self._entries_and_tags_and_paradigms
+        # TODO: custom alphabetical order.
+
+        def sort_key((lex, morph, p)):
+            _str_norm = 'string(normalize-space(%s))'
+            lemma = lex.xpath(_str_norm % './lg/l/text()')
+            return lemma
+
+        def sort_with_user_input_first(a_lemma, b_lemma):
+            # If one of these is the same as the user input, it goes
+            # first
+            if a_lemma == self.user_input:
+                return -1
+            elif b_lemma == self.user_input:
+                return 1
+            else:
+                # Otherwise sort as usual
+                if a_lemma < b_lemma:
+                    return -1
+                elif a_lemma > b_lemma:
+                    return 1
+                else:
+                    return 0
+
+            return 1
+
+        return sorted( self._entries_and_tags_and_paradigms
+                     , key=sort_key
+                     , cmp=sort_with_user_input_first
+                     )
 
     @property
     def analyses_without_lex(self):
@@ -503,7 +531,7 @@ class SearcherMixin(object):
             except:
                 return False
 
-        for lz, az, paradigm in sorted(search_result_obj.entries_and_tags_and_paradigms, key=sort_entry):
+        for lz, az, paradigm in search_result_obj.entries_and_tags_and_paradigms:
             if lz is not None:
 
                 tplkwargs = { 'lexicon_entry': lz
