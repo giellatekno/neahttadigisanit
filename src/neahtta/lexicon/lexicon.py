@@ -486,11 +486,12 @@ class Lexicon(object):
 
         if not _lookup_func:
             raise Exception(
-                "Unknown lookup type for <%s> (lemma: %s, pos: %s, pos_type: %s)" %
+                "Unknown lookup type for <%s> (lemma: %s, pos: %s, pos_type: %s, lemma_attrs: %s)" %
                 ( user_input
                 , lemma
                 , pos
                 , pos_type
+                , repr(lemma_attrs)
                 )
             )
 
