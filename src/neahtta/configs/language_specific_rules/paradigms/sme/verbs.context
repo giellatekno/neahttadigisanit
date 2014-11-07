@@ -54,7 +54,7 @@
   template: "(dat) {{ word_form }}"
 
 - entry_context: "dat"
-  tag_context: "V+Ind+Prt+Sg3"
+  tag_context: "V+Ind+Prs+Pl3"
   template: "(dat) {{ word_form }}"
 
 - entry_context: "dat"
