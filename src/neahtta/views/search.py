@@ -892,7 +892,7 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
                 return False
 
         def _byLemma(r):
-            if r.get('input')[0] == wordform:
+            if r.get('input')[0] == self.user_input:
                 return True
             else:
                 return False
@@ -938,6 +938,7 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
     def request_cache_key(self):
         return u'%s?%s?%s' % (request.path, request.query_string, g.ui_lang)
 
+    # TODO: this
     def get_cache_entry(self):
         # TODO: return response from cache
 
@@ -974,6 +975,7 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
         self.validate_request()
 
         user_input = wordform = decodeOrFail(wordform)
+        self.user_input = user_input
 
         # Analyzer arguments
         no_compounds = request.args.get('no_compounds', False)
