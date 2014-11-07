@@ -43,7 +43,7 @@
   tag_context: "V+Ind+Prs+ConNeg"
   template: "(in) {{ word_form }}"
 
-- entry_context: None
+- entry_context: "mun"
   tag_context: "V+PrfPrc"
   template: "(lea) {{ word_form }}"
 
@@ -60,6 +60,10 @@
 - entry_context: "dat"
   tag_context: "V+Ind+Prs+ConNeg"
   template: "(ii) {{ word_form }}"
+
+- entry_context: "dat"
+  tag_context: "V+PrfPrc"
+  template: "(lea) {{ word_form }}"
 
 # EX: deaivvadit
 
@@ -117,6 +121,10 @@
   tag_context: "V+Ind+Prs+ConNeg"
   template: "(eai) {{ word_form }}"
 
+- entry_context: "sii"
+  tag_context: "V+PrfPrc"
+  template: "(leat) {{ word_form }}"
+
 # EX: bieggat
 
 - entry_context: "upers"
@@ -130,4 +138,8 @@
 - entry_context: "upers"
   tag_context: "V+Ind+Prs+ConNeg"
   template: "(ii) {{ word_form }}"
+
+- entry_context: "dat"
+  tag_context: "V+PrfPrc"
+  template: "(lea) {{ word_form }}"
 
