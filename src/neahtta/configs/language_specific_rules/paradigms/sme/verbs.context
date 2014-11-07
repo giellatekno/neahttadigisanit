@@ -39,21 +39,23 @@
   tag_context: "V+Ind+Prs+Pl3"
   template: "(sii) {{ word_form }}"
 
-
-
 - entry_context: "mun"
   tag_context: "V+Ind+Prs+ConNeg"
   template: "(in) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+PrfPrc"
+  template: "(lea) {{ word_form }}"
 
 # EX: ciellat
 
 - entry_context: "dat"
   tag_context: "V+Ind+Prs+Sg3"
-  template: "(odne dat) {{ word_form }}"
+  template: "(dat) {{ word_form }}"
 
 - entry_context: "dat"
   tag_context: "V+Ind+Prt+Sg3"
-  template: "(ikte dat) {{ word_form }}"
+  template: "(dat) {{ word_form }}"
 
 - entry_context: "dat"
   tag_context: "V+Ind+Prs+ConNeg"
@@ -62,12 +64,54 @@
 # EX: deaivvadit
 
 - entry_context: "sii"
+  tag_context: "V+Ind+Prs+Du1"
+  template: "(moai) {{ word_form }}"
+
+- entry_context: "sii"
+  tag_context: "V+Ind+Prt+Du1"
+  template: "(moai) {{ word_form }}"
+
+- entry_context: "sii"
+  tag_context: "V+Ind+Prs+Du2"
+  template: "(doai) {{ word_form }}"
+
+- entry_context: "sii"
+  tag_context: "V+Ind+Prt+Du2"
+  template: "(doai) {{ word_form }}"
+
+- entry_context: "sii"
+  tag_context: "V+Ind+Prs+Du3"
+  template: "(soai) {{ word_form }}"
+
+- entry_context: "sii"
+  tag_context: "V+Ind+Prt+Du3"
+  template: "(soai) {{ word_form }}"
+
+
+
+- entry_context: "sii"
+  tag_context: "V+Ind+Prs+Pl1"
+  template: "(mii) {{ word_form }}"
+
+- entry_context: "sii"
+  tag_context: "V+Ind+Prt+Pl1"
+  template: "(mii) {{ word_form }}"
+
+- entry_context: "sii"
+  tag_context: "V+Ind+Prs+Pl2"
+  template: "(dii) {{ word_form }}"
+
+- entry_context: "sii"
+  tag_context: "V+Ind+Prt+Pl2"
+  template: "(dii) {{ word_form }}"
+
+- entry_context: "sii"
   tag_context: "V+Ind+Prs+Pl3"
-  template: "(odne sii) {{ word_form }}"
+  template: "(sii) {{ word_form }}"
 
 - entry_context: "sii"
   tag_context: "V+Ind+Prt+Pl3"
-  template: "(ikte sii) {{ word_form }}"
+  template: "(sii) {{ word_form }}"
 
 - entry_context: "sii"
   tag_context: "V+Ind+Prs+ConNeg"
@@ -77,11 +121,11 @@
 
 - entry_context: "upers"
   tag_context: "V+Ind+Prs+Sg3"
-  template: "(odne) {{ word_form }}"
+  template: "{{ word_form }}"
 
 - entry_context: "upers"
   tag_context: "V+Ind+Prt+Sg3"
-  template: "(ikte) {{ word_form }}"
+  template: "{{ word_form }}"
 
 - entry_context: "upers"
   tag_context: "V+Ind+Prs+ConNeg"

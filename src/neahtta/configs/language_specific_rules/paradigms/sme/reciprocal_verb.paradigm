@@ -8,7 +8,17 @@ lexicon:
   context:
     - "sii"
 --
+{{ lemma }}+V+Ind+Prs+Du1
+{{ lemma }}+V+Ind+Prs+Du2
+{{ lemma }}+V+Ind+Prs+Du3
+{{ lemma }}+V+Ind+Prs+Pl1
+{{ lemma }}+V+Ind+Prs+Pl2
 {{ lemma }}+V+Ind+Prs+Pl3
+{{ lemma }}+V+Ind+Prt+Du1
+{{ lemma }}+V+Ind+Prt+Du2
+{{ lemma }}+V+Ind+Prt+Du3
+{{ lemma }}+V+Ind+Prt+Pl1
+{{ lemma }}+V+Ind+Prt+Pl2
 {{ lemma }}+V+Ind+Prt+Pl3
 {{ lemma }}+V+Ind+Prs+ConNeg
 {{ lemma }}+V+PrfPrc
