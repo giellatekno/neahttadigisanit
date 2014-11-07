@@ -43,7 +43,7 @@ SAXON := java -Xmx2048m -cp ~/lib/saxon9.jar \
 		 -Dfile.encoding=UTF8 net.sf.saxon.Transform \
 		 -it:main $(COLLECT_PARTS)
 
-COLLECT_PARTS_SME_NOB := $(GTHOME)/words/dicts/scripts/collect-dict-parts-smenob.xsl
+COLLECT_PARTS_SME_NOB := $(GTHOME)/words/dicts/scripts/collect-dict-parts-nds-smenob.xsl
 SAXON_SME_NOB := java -Xmx2048m -cp ~/lib/saxon9.jar \
 		 -Dfile.encoding=UTF8 net.sf.saxon.Transform \
 		 -it:main $(COLLECT_PARTS_SME_NOB)
@@ -282,7 +282,13 @@ rm-pikiskwewina-lexica: $(foreach xx, $(PIKISKWEWINA_LANGS_LEXICA), $(xx)-all.xm
 
 .PHONY: pikiskwewina-install
 pikiskwewina-install: GT_COMPILE_LANGS := $(PIKISKWEWINA_LANGS_ANALYSERS)
-pikiskwewina-install: install_langs_fsts
+pikiskwewina-install: install_langs_fsts copy_syllabics
+
+.PHONY: copy_syllabics
+copy_syllabics: $(GTHOME)/langs/crk/src/analyser-gt-desc-syll.xfst \
+				$(GTHOME)/langs/crk/src/generator-gt-norm-syll.xfst
+	cp $^ /opt/smi/crk/bin/
+
 
 #####
 ##### #saantargets
@@ -484,6 +490,7 @@ sonad-install: install_langs_fsts
 
 # NB: these are different than the langs/ lexica
 # also, need to filter here
+# TODO: filter out entries without usage="nds" 
 sme-nob.all.xml: $(GTHOME)/words/dicts/smenob/src/
 	@echo "******************************"
 	@echo "** Building sme-nob lexicon **"
