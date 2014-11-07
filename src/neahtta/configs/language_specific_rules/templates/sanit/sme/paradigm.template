@@ -16,8 +16,8 @@
 {%- if pos == 'V' %}
     {% set verbs = true %}
 
-    {% set present_verbs = paradigm|by_tagset_value("tense", "Prs") %}
-    {% set preterite_verbs = paradigm|by_tagset_value("tense", "Prt") %}
+    {% set present_verbs = paradigm|by_tagset_value("tense", "Prs")|group_by_tag %}
+    {% set preterite_verbs = paradigm|by_tagset_value("tense", "Prt")|group_by_tag %}
 
     {% set nonfinite_forms = paradigm|by_tagset("nonfinite_paradigm") %}
 
@@ -49,21 +49,22 @@
             <th lang="{{ _to }}">{{ prs_text }} <em>(odne)</em></th>
             <th lang="{{ _to }}">{{ prt_text }} <em>(ikte)</em></th>
         </tr>
-    {%- for present_form, preterite_form in zipped_verbs -%}
+
+    {%- for present_forms, preterite_forms in zipped_verbs -%}
         <tr>
 
-        {% if present_form.tag %}
-            <th class="tag" lang="{{ _to }}">{{ clean_tag(present_form.tag) }}
+        {% if present_forms[0].tag %}
+            <th class="tag" lang="{{ _to }}">{{ clean_tag(present_forms[0].tag) }}
         {% endif %}
 
-        {% if present_form.form %}
-            <td lang="{{ _from }}">{{ present_form.form }}</td>
+        {% if present_forms %}
+            <td lang="{{ _from }}">{{ present_forms|join('<br />', attribute='form') }}</td>
         {% else %}
             <td lang="{{ _from }}">&mdash;</td>
         {% endif %}
 
-        {% if preterite_form.form %}
-            <td lang="{{ _from }}">{{ preterite_form.form }}</td>
+        {% if preterite_forms %}
+            <td lang="{{ _from }}">{{ preterite_forms|join(', ', attribute='form') }}</td>
         {% else %}
             <td lang="{{ _from }}">&mdash;</td>
         {% endif %}

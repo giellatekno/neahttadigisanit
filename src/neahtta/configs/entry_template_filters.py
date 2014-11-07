@@ -1,18 +1,39 @@
 ﻿
 def register_template_filters(app):
 
+    @app.template_filter('group_by_tag')
+    def group_by_tag(forms):
+        """ Group a list of GeneratedForms by the tag, and return a list
+        of lists
+        """
+        from itertools import groupby
+        from operator import itemgetter
+
+        # For some reason groupby with a key function did not work for
+        # this... 
+
+        tag_by_form = [(g.tag.tag_string, g) for g in forms]
+        groups = groupby( tag_by_form, itemgetter(0))
+        forms = [map(itemgetter(1), b) for a, b in groups]
+
+        return forms
+
     @app.template_filter('by_tagset')
     def by_tagset(generated_forms, tagset_name):
+        fs = []
         for g in generated_forms:
             if g.tag[tagset_name]:
-                yield g
+                fs.append(g)
+        return fs
 
     @app.template_filter('by_tagset_value')
     def by_tagset_value(generated_forms, tagset_name, tagset_value):
+        fs = []
         for g in generated_forms:
             if g.tag[tagset_name]:
                 if g.tag[tagset_name] == tagset_value:
-                    yield g
+                    fs.append(g)
+        return fs
 
     @app.template_filter('xpath')
     def xpath(node_obj, xpath_str):
