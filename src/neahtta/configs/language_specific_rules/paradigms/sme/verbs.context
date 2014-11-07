@@ -139,7 +139,7 @@
   tag_context: "V+Ind+Prs+ConNeg"
   template: "(ii) {{ word_form }}"
 
-- entry_context: "dat"
+- entry_context: "upers"
   tag_context: "V+PrfPrc"
   template: "(lea) {{ word_form }}"
 
