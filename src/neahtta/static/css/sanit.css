@@ -25,3 +25,7 @@ table.miniparadigm th.tag {
     text-align: right;
     padding-right: 8px;
 }
+
+table.miniparadigm .center {
+    text-align: center;
+}
