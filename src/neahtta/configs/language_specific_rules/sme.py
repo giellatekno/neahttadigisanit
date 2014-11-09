@@ -287,14 +287,17 @@ NOB_SME = [
     ('nob', 'sme'),
 ]
 
-@lexicon.postlookup_filters_for_lexicon(*SME_NOB_DICTS)
-def usage_vd_only_for_entry(lexicon, nodelist, lookup_kwargs):
-    def filter_node(n):
-        return n.get('usage', '') == 'vd'
-    if nodelist:
-        return filter(filter_node, nodelist)
-    else:
-        return nodelist
+# NB: this filter is what would be needed, but now we're going to trust
+# the lexicon is pre-prepared instead.
+# @lexicon.postlookup_filters_for_lexicon(*SME_NOB_DICTS)
+# def usage_vd_only_for_entry(lexicon, nodelist, lookup_kwargs):
+#     def filter_node(n):
+#         usages = n.get('usage', '').split(',')
+#         return 'vd' in usages or 'nds' in usages
+#     if nodelist:
+#         return filter(filter_node, nodelist)
+#     else:
+#         return nodelist
 
 # @lexicon.postlookup_filters_for_lexicon(*NOB_SME)
 # def clean_tgs_with_no_usage_vd(lexicon, nodelist, lookup_kwargs):
