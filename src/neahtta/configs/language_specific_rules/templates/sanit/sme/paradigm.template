@@ -142,7 +142,7 @@
     {%- for form in numberless_forms -%}
         <tr>
         {% if form.tag %}
-            <th class="tag" lang="{{ _to }}">{{ form.tag|tagfilter(_from, _to)  }}</th>
+            <th class="tag" lang="{{ _to }}">{{ clean_tag(form.tag)  }}</th>
         {% endif %}
 
         {% if form.form %}
