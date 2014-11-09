@@ -35,6 +35,22 @@ nonfinite_paradigm:
 number:
  - "Sg"
  - "Pl"
+nouns_null_number:
+ - "Ess"
+case:
+ - "Nom"
+ - "Acc"
+ - "Gen"
+ - "Ill"
+ - "Loc"
+ - "Ess"
+ - "Com"
+vmax:
+ - "v1"
+ - "v2"
+ - "v3"
+ - "v4"
+ - "v5"
 homonymy:
  - "v1"
  - "v2"
