@@ -68,14 +68,21 @@ Dictionaries:
         example: "(aâ)"
         # NB: must be same as analyser name
         short_name: "crk"
-      - type: "syllabics"
-        description: !gettext "Syllabics"
-        # example: ""
-        short_name: "crkS"
+        onscreen_keyboard: &CRK_KEYS
+          - "â"
+          - "ê"
+          - "î"
+          - "ô"
+          - " "
+          - "ā"
+          - "ē"
+          - "ī"
+          - "ō"
       - type: "mobile"
         description: !gettext "Mobile friendly"
         example: "(a &rarr; a ~ â)"
         short_name: "crkM"
+        onscreen_keyboard: *CRK_KEYS
     show_korp_search: True
     wordform_search_url: &alt_korp_search 
       "http://gtweb.uit.no/c_korp/#search=word%7CUSER_INPUT&page=0"
