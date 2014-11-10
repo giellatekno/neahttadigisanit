@@ -3,6 +3,8 @@ from morphology.utils import tagfilter
 from utils.data import flatten
 from flask import current_app
 
+from .lexicon import hash_node
+
 class FormattingError(Exception):
     pass
 
@@ -362,13 +364,15 @@ class FrontPageFormat(EntryNodeIterator):
         right_langs = [lang for _, lang in _right]
         right_nodes = [fmt_node for fmt_node, _ in _right]
 
-        # Make our own hash, 'cause lxml won't
-        entry_hash = [ unicode(lemma)
-                     , unicode(lemma_context)
-                     , unicode(lemma_pos)
-                     , ','.join(sorted([t['tx'] for t in right_nodes]))
-                     ]
-        entry_hash = str('-'.join(entry_hash).__hash__())
+        # # Make our own hash, 'cause lxml won't
+        # entry_hash = [ unicode(lemma)
+        #              , unicode(lemma_context)
+        #              , unicode(lemma_pos)
+        #              , ','.join(sorted([t['tx'] for t in right_nodes]))
+        #              ]
+        # entry_hash = str('-'.join(entry_hash).__hash__())
+
+        entry_hash = hash_node(e)
 
         # node, and default format for if a formatter doesn't exist for
         # iso
@@ -451,13 +455,7 @@ class DetailedFormat(FrontPageFormat):
         right_langs = [lang for _, lang in _right]
         right_nodes = [fmt_node for fmt_node, _ in _right]
 
-        # Make our own hash, 'cause lxml won't
-        entry_hash = [ unicode(lemma)
-                     , unicode(lemma_context)
-                     , unicode(lemma_pos)
-                     , ','.join(sorted([t['tx'] for t in right_nodes]))
-                     ]
-        entry_hash = str('-'.join(entry_hash).__hash__())
+        entry_hash = hash_node(e)
 
         # node, and default format for if a formatter doesn't exist for
         # iso
