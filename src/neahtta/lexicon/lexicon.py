@@ -7,6 +7,24 @@
 
 import sys
 
+def hash_node(node):
+    # Make our own hash, 'cause lxml won't
+    # l = node.find('lg/l')
+    # lemma = l.text or ''
+
+    # lemma_context = l.get('context')
+    # lemma_pos = l.get('pos')
+    # hid = l.get('hid')
+
+    # entry_hash = [ unicode(lemma)
+    #              , unicode(lemma_context)
+    #              , unicode(lemma_pos)
+    #              , ','.join(sorted([t['tx'] for t in right_nodes]))
+    #              ]
+    # entry_hash = str('-'.join(entry_hash).__hash__())
+    # print node
+    return unicode(hash(etree.tostring(node)))
+
 class LexiconOverrides(object):
     """ Class for collecting functions marked with decorators that
     provide special handling of tags. One class instantiated in

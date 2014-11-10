@@ -9,6 +9,8 @@
 
 from flask import current_app
 
+from lexicon.lexicon import hash_node
+
 class MorphoLexiconOverrides(object):
 
     def override_results(self, function):
@@ -86,6 +88,7 @@ class MorphoLexicon(object):
         'lemma',
         'pos',
         'pos_type',
+        'entry_hash',
     ]
 
     def lookup(self, wordform, **kwargs):
@@ -93,13 +96,24 @@ class MorphoLexicon(object):
         target_lang = kwargs.get('target_lang')
 
         morph_kwargs = {}
+        lex_kwargs = {}
         lemma_attrs = {}
+
         if 'lemma_attrs' in kwargs:
             lemma_attrs = kwargs.pop('lemma_attrs')
+
+        if 'entry_hash' in lemma_attrs:
+            entry_hash_filter = lemma_attrs.pop('entry_hash')
+        else:
+            entry_hash_filter = False
 
         for k, v in kwargs.iteritems():
             if k in self.morphology_kwarg_names:
                 morph_kwargs[k] = v
+
+        for k, v in kwargs.iteritems():
+            if k in self.lexicon_kwarg_names:
+                lex_kwargs[k] = v
 
         # TODO: if analyses dropping componuds results in lexicalized
         # form that does not exist in lexicon, then fall back to
@@ -160,6 +174,13 @@ class MorphoLexicon(object):
         if no_analysis_xml:
             for e in no_analysis_xml:
                 entries_and_tags.append((e, None))
+
+        if entry_hash_filter:
+            def filt((x, _)):
+                if x is not None:
+                    return hash_node(x) == entry_hash_filter
+                return True
+            entries_and_tags = filter(filt, entries_and_tags)
 
         # group by entry
 
