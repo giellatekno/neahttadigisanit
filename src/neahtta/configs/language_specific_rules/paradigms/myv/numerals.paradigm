@@ -1,0 +1,11 @@
+name: "General numeral paradigm"
+morphology:
+  pos: Num
+--
+{{ lemma }}+Num+Card
+{{ lemma }}+Num+Card+Iter
+{{ lemma }}+Num+Card+Appr
+{{ lemma }}+Num+Card+Coll
+{{ lemma }}+Num+Card+AssocColl+PxSg3
+{{ lemma }}+Num+Card+Lat
+{{ lemma }}+Num+Der/це+A+Ord
