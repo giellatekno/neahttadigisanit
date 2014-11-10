@@ -441,13 +441,14 @@ class Lexicon(object):
 
         autocomplete_tries = {}
         for k, v in language_pairs.iteritems():
-            has_root = language_pairs.get(k)
-            if has_root:
-                fname = settings.dictionaries.get(k)
-                autocomplete_tries[k] = AutocompleteTrie( tree=has_root.tree
-                                                        , filename=fname
-                                                        , language_pair=k
-                                                        )
+            if settings.pair_definitions.get(k).get('autocomplete'):
+                has_root = language_pairs.get(k)
+                if has_root:
+                    fname = settings.dictionaries.get(k)
+                    autocomplete_tries[k] = AutocompleteTrie( tree=has_root.tree
+                                                            , filename=fname
+                                                            , language_pair=k
+                                                            )
 
         self.autocomplete_tries = autocomplete_tries
 
