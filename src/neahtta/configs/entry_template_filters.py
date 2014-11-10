@@ -1,6 +1,11 @@
 ﻿
 def register_template_filters(app):
 
+    @app.template_filter('hash_node')
+    def hash_node(node):
+        from lexicon.lexicon import hash_node
+        return hash_node(node)
+
     @app.template_filter('group_by_tag')
     def group_by_tag(forms):
         """ Group a list of GeneratedForms by the tag, and return a list
