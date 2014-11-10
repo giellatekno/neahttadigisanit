@@ -547,6 +547,7 @@ class Config(Config):
 
                 _pair_options = {
                     'langs': {},
+                    'autocomplete': dict_def.get('autocomplete', True),
                     'show_korp_search': dict_def.get('show_korp_search', False),
                     'wordform_search_url': dict_def.get('wordform_search_url', False),
                     'lemma_search_url': dict_def.get('lemma_search_url', False),
