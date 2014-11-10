@@ -619,6 +619,13 @@ class DictionaryView(MethodView):
 
     validate_request = lambda self, x: True
 
+    def get_lemma_lookup_args(self):
+        lemma_lookup_args = {}
+        for k, v in request.args.iteritems():
+            if k in self.accepted_lemma_args:
+                lemma_lookup_args[self.accepted_lemma_args.get(k)] = v
+        return lemma_lookup_args
+
     def check_pair_exists_or_abort(self, _from, _to):
 
         if (_from, _to) not in current_app.config.dictionaries and \
@@ -730,7 +737,8 @@ class LanguagePairSearchView(IndexSearch, DictionaryView, SearcherMixin):
             # TODO: return an error.
 
         # This performs lots of the work...
-        search_result_context = self.search_to_context(user_input)
+        search_result_context = self.search_to_context(user_input,
+                                                       lemma_attrs=self.get_lemma_lookup_args())
 
         search_result_context.update(**self.get_shared_context(_from, _to))
 
@@ -758,14 +766,8 @@ class ReferredLanguagePairSearchView(LanguagePairSearchView):
 
     accepted_lemma_args = {
         'l_til_ref': 'til_ref',
+        'e_node': 'entry_hash',
     }
-
-    def get_lemma_lookup_args(self):
-        lemma_lookup_args = {}
-        for k, v in request.args.iteritems():
-            if k in self.accepted_lemma_args:
-                lemma_lookup_args[self.accepted_lemma_args.get(k)] = v
-        return lemma_lookup_args
 
     def handle_newstyle_get(self, _from, _to):
 
@@ -868,6 +870,10 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
 
     """
     from lexicon import DetailedFormat as formatter
+
+    accepted_lemma_args = {
+        'e_node': 'entry_hash',
+    }
 
     methods = ['GET']
     template_name = 'word_detail.html'
@@ -1005,6 +1011,8 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
             'non_compounds_only': _non_c,
             'no_derivations': _non_d,
         }
+
+        search_kwargs['lemma_attrs'] = self.get_lemma_lookup_args()
 
         has_analyses = False
 
