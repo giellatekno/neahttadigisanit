@@ -158,3 +158,12 @@
 input[data-language-from="liv"] *, input[data-language-from="livM"] *, *[lang="liv"], *[lang="livM"] {
     font-family: 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
+
+/*
+ * There's some weird spacing issue with noto sans in small-caps
+ */
+
+#language_grouped_nav a.expander[lang=liv] {
+    letter-spacing: -1px;
+}
+

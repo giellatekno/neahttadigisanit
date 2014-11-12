@@ -19,6 +19,21 @@ table.miniparadigm tr:first-child th em {
     font-style: normal;
 }
 
+a.full-paradigm-link {
+    float: right;
+    font-style: italic;
+    font-size: 10pt;
+    margin-bottom: 1em;
+}
+
+@media (max-width: 550px) {
+    a.full-paradigm-link {
+        float: left;
+        margin-left: 2em;
+    }
+
+}
+
 table.miniparadigm th.tag {
     font-size: 9pt;
     text-transform: lowercase;

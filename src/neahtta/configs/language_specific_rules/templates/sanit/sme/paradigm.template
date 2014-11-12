@@ -11,9 +11,9 @@
  #}
 
 {%- set first_l = lexicon_entry|xpath('lg/l')|first %}
+{% set lemma = first_l|text %}
 {% set pos = first_l|xpath('@pos')|first|upper %}
-
-{% set has_forms = paradigm and paradigm|length > 0 %}
+{% set has_forms = paradigm and paradigm|length > 0 -%}
 
 {%- if pos == 'V' %}
     {% set verbs = true %}
@@ -27,7 +27,10 @@
     accurately. If not we need to manually select each form and display
     it. #}
 
-    {% set zipped_verbs = zip(present_verbs, preterite_verbs) %}
+    {# Use izip_longest to fill in the extra blanks spaces when one list
+       ends first #}
+
+    {% set zipped_verbs = izip_longest(present_verbs, preterite_verbs, fillvalue='-') %}
 
     {# strip some parts of the tags that we don't need #}
 
@@ -45,7 +48,11 @@
 
     {% set sg_forms = paradigm|by_tagset_value("number", "Sg")|group_by_tag %}
     {% set pl_forms = paradigm|by_tagset_value("number", "Pl")|group_by_tag %}
-    {% set zipped_numbers = zip(sg_forms, pl_forms) %}
+
+    {# Use izip_longest to fill in the extra blanks spaces when one list
+       ends first #}
+
+    {% set zipped_numbers = izip_longest(sg_forms, pl_forms, fillvalue='-') %}
 
     {% set numberless_forms = paradigm|by_tagset("nouns_null_number") %}
 
@@ -58,6 +65,14 @@
     {% endmacro %}
 
 {% endif -%}
+
+{%- macro full_paradigm_link() %}
+    <a class="full-paradigm-link"
+       style="opacity: .8;"
+       href="http://gtweb.uit.no/cgi-bin/smi/smi.cgi?text={{ lemma }}&pos={{ pos }}&mode=full&action=paradigm&lang=sme&plang=sme">
+        {%- trans -%}Full paradigm{%- endtrans -%} &nbsp;&rarr;
+    </a>
+{% endmacro -%}
 
 {%- if has_forms %}
 {%- if pos == 'V' %}
@@ -72,16 +87,20 @@
         <tr>
 
         {% if present_forms[0].tag %}
-            <th class="tag" lang="{{ _to }}">{{ clean_tag(present_forms[0].tag) }}
+            {% set tag_display = clean_tag(present_forms[0].tag) %}
+        {% elif preterite_forms[0].tag %}
+            {% set tag_display = clean_tag(preterite_forms[0].tag) %}
         {% endif %}
 
-        {% if present_forms %}
+        <th class="tag" lang="{{ _to }}">{{ tag_display }}</th>
+
+        {% if present_forms and present_forms != '-' %}
             <td lang="{{ _from }}">{{ present_forms|join('<br />', attribute='form') }}</td>
         {% else %}
             <td lang="{{ _from }}">&mdash;</td>
         {% endif %}
 
-        {% if preterite_forms %}
+        {% if preterite_forms and preterite_forms != '-' %}
             <td lang="{{ _from }}">{{ preterite_forms|join('<br />', attribute='form') }}</td>
         {% else %}
             <td lang="{{ _from }}">&mdash;</td>
@@ -108,6 +127,7 @@
     </dl>
 
 {% elif pos == 'N' %}
+    {{ zipped_numbers }}
     <table class="tableparadigm miniparadigm">
         <tr>
             <th></th>
@@ -119,19 +139,23 @@
         <tr>
 
         {% if sgs[0].tag %}
-            <th class="tag" lang="{{ _to }}">{{ clean_tag(sgs[0].tag) }}
+            {% set tag_display = clean_tag(sgs[0].tag) %}
+        {% elif pls[0].tag %}
+            {% set tag_display = clean_tag(pls[0].tag) %}
         {% endif %}
 
-        {% if sgs %}
+        <th class="tag" lang="{{ _to }}">{{ tag_display }}</th>
+
+        {% if sgs and sgs != '-' %}
             <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form') }}</td>
         {% else %}
-            <td lang="{{ _from }}">&mdash;</td>
+            <td lang="{{ _from }}" class="center">&mdash;</td>
         {% endif %}
 
-        {% if pls %}
+        {% if pls and pls != '-' %}
             <td lang="{{ _from }}">{{ pls|join('<br />', attribute='form') }}</td>
         {% else %}
-            <td lang="{{ _from }}">&mdash;</td>
+            <td lang="{{ _from }}" class="center">&mdash;</td>
         {% endif %}
 
         </tr>
@@ -172,6 +196,7 @@
     </dl>
 
 {% endif %}
+    {{ full_paradigm_link() }}
 {% endif -%}
 
 

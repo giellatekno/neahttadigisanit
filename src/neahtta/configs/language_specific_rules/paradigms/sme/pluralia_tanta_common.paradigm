@@ -5,10 +5,15 @@ morphology:
 lexicon:
   XPATH:
     nr: ".//l/@nr"
+    lex_pos: ".//l/@pos"
   nr:
     - "Pl"
     - "pl"
+  lex_pos: "N"
 --
 {{ lemma }}+N+Pl+Nom
+{{ lemma }}+N+Pl+Acc
 {{ lemma }}+N+Pl+Ill
 {{ lemma }}+N+Pl+Loc
+{{ lemma }}+N+Pl+Com
+{{ lemma }}+N+Ess
