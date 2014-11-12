@@ -56,11 +56,13 @@ def register_babel(app):
 
         from i18n.utils import iso_filter
         from socket import gethostname
+        from itertools import izip_longest
 
         loc = get_locale()
 
         app.jinja_env.globals['session_locale'] = loc
         app.jinja_env.globals['zip'] = zip
+        app.jinja_env.globals['izip_longest'] = izip_longest
         app.jinja_env.globals['session_locale_long_iso'] = iso_filter(loc)
 
     @app.babel.localeselector
