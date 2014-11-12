@@ -198,13 +198,19 @@ class SearchResult(object):
             lemma, pos, tag, _type = r.get('input')
             node = r.get('node')
 
-            paradigm_from_file = mlex.paradigms.get_paradigm(
-                g._from, node, morph_analyses
+            paradigm_from_file, paradigm_template = mlex.paradigms.get_paradigm(
+                g._from, node, morph_analyses, return_template=True
             )
             if paradigm_from_file:
                 form_tags = [_t.split('+')[1::] for _t in paradigm_from_file.splitlines()]
-                _generated = morph.generate(lemma, form_tags, node)
+                extra_log_info = {
+                    'template_path': paradigm_template,
+                }
+                _generated = morph.generate(lemma, form_tags, node, extra_log_info=extra_log_info)
             else:
+                extra_log_info = {
+                    'pregenerated': 'true',
+                }
                 # For pregenerated things
                 _generated = morph.generate(lemma, [], node)
 
@@ -224,13 +230,16 @@ class SearchResult(object):
         l = node.xpath('./lg/l')[0]
         lemma = l.xpath(_str_norm % './text()')
 
-        paradigm_from_file = mlex.paradigms.get_paradigm(
-            g._from, node, morph_analyses
+        paradigm_from_file, paradigm_template = mlex.paradigms.get_paradigm(
+            g._from, node, morph_analyses, return_template=True
         )
         if paradigm_from_file:
+            extra_log_info = {
+                'template_path': paradigm_template,
+            }
             form_tags = [_t.split('+')[1::] for _t in paradigm_from_file.splitlines()]
             # TODO: bool not iterable
-            _generated = morph.generate_to_objs(lemma, form_tags, node)
+            _generated = morph.generate_to_objs(lemma, form_tags, node, extra_log_info=extra_log_info)
         else:
             # For pregenerated things
             _generated = morph.generate_to_objs(lemma, [], node)

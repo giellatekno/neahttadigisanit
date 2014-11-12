@@ -73,8 +73,8 @@ def pos_to_fst(*args, **kwargs):
             kwargs['pos'] = new_pos
         else:
             if _k:
-                morph_log.error("Missing LEX_TO_FST pair for %s" % _k.encode('utf-8'))
-                morph_log.error("in morphology.morphological_definitions.sme")
+                morph_log.error("sme.py: Missing LEX_TO_FST pair for %s" % _k.encode('utf-8'))
+                morph_log.error("sme.py: in morphology.morphological_definitions.sme")
     return args, kwargs
 
 @autocomplete_filters.autocomplete_filter_for_lang(('nob', 'sme'))
@@ -83,7 +83,7 @@ def remove_orig_entry(entries):
     return _entries
 
 @morphology.pregenerated_form_selector(*['sme', 'SoMe'])
-def pregenerate_sme(form, tags, node):
+def pregenerate_sme(form, tags, node, **kwargs):
     """ **pregenerated form selector**: mini_paradigm / lemma_ref
 
     If mini_paradigm and lemma_ref exist for this node, then grab
@@ -119,7 +119,7 @@ def pregenerate_sme(form, tags, node):
 
 
 @morphology.tag_filter_for_iso(*['sme', 'SoMe'])
-def lexicon_pos_to_fst(form, tags, node=None):
+def lexicon_pos_to_fst(form, tags, node=None, **kwargs):
     """ **tag filter**: Lexicon -> FST changes.
 
     Change POS to be compatible with FST for when they are not.
@@ -134,23 +134,6 @@ def lexicon_pos_to_fst(form, tags, node=None):
 
     return form, new_tags, node
 
-
-# TODO: paradigm file, and tests for this
-@morphology.tag_filter_for_iso(*['sme', 'SoMe'])
-def compound_numerals(form, tags, node):
-    """ **Tag filter**
-
-    Filters tags before generation, in this case, we provide some extra
-    tags for Num.
-    """
-    if len(node) > 0:
-        if 'num' in node.xpath('.//l/@pos'):
-            tags = [
-                'Num+Sg+Gen'.split('+'),
-                'Num+Sg+Ill'.split('+'),
-                'Num+Sg+Loc'.split('+'),
-            ]
-    return form, tags, node
 
 _str_norm = 'string(normalize-space(%s))'
 

@@ -291,7 +291,7 @@ class ParadigmConfig(object):
         self._app = app
         self.read_paradigm_directory()
 
-    def get_paradigm(self, language, node, analyses, debug=False):
+    def get_paradigm(self, language, node, analyses, debug=False, return_template=False):
         """ .. py:function:: get_paradigm(language, node, analyses)
 
         Render a paradigm if one exists for language.
@@ -317,6 +317,7 @@ class ParadigmConfig(object):
         for paradigm_rule in self.paradigm_rules.get(language, []):
             condition = paradigm_rule.get('condition')
             template = paradigm_rule.get('template')
+            _, _, path = paradigm_rule.get('path').partition('language_specific_rules')
 
             try:
                 truth, context = condition.evaluate(node, analyses)
@@ -333,7 +334,7 @@ class ParadigmConfig(object):
             # We have a match, so count how extensive it was.
             if truth:
                 possible_matches.append(
-                    (len(context.keys()), context, template)
+                    (len(context.keys()), context, template, path)
                 )
 
         # Sort by count, and pick the first
@@ -342,7 +343,7 @@ class ParadigmConfig(object):
             print >> sys.stderr, " - Possible matches: %d" % len(possible_matches)
 
         if len(possible_matches) > 0:
-            count, context, template = possible_matches[0]
+            count, context, template, path = possible_matches[0]
             if debug:
                 print >> sys.stderr, context
 
@@ -351,9 +352,16 @@ class ParadigmConfig(object):
             template_context['lexicon'] = node
             template_context['analyses'] = analyses
 
-            return template.render(**template_context)
+            rendered = template.render(**template_context)
+            if return_template:
+                return rendered, path
+            else:
+                return rendered
 
-        return False
+        if return_template:
+            return False, False
+        else:
+            return False
 
     def read_paradigm_directory(self):
         """ .. py:method:: read_paradigm_directory()

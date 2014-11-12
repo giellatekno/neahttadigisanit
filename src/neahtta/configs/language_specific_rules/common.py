@@ -1,4 +1,4 @@
-def remove_blank(generated_result, *generation_input_args):
+def remove_blank(generated_result, *generation_input_args, **kwargs):
     """ **Remove empty analyses**
 
     This is a language specific filter, more or less to aid in discovery

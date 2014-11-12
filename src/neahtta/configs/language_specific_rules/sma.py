@@ -81,7 +81,7 @@ def format_source_sma(ui_lang, e, target_lang):
 # }
 
 @morphology.pregenerated_form_selector('sma')
-def pregenerate_sma(form, tags, node):
+def pregenerate_sma(form, tags, node, **kwargs):
     _has_mini_paradigm = node.xpath('.//mini_paradigm[1]')
 
     _has_lemma_ref     = node.xpath('.//lemma_ref')

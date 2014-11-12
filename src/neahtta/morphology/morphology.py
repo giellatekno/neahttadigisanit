@@ -525,7 +525,7 @@ class XFST(object):
         output, err = self._exec(lookup_string, cmd=self.cmd)
         if len(output) == 0 and len(err) > 0:
             name = self.__class__.__name__
-            msg = """%s: %s""" % (name, err)
+            msg = """%s - %s: %s""" % (self.langcode, name, err)
             self.logger.error(msg.strip())
         return self.clean(output)
 
@@ -664,7 +664,7 @@ class Morphology(object):
         generated = sum(map(make_lemma, self.generate(*args, **kwargs)), [])
         return generated
 
-    def generate(self, lemma, tagsets, node=None, pregenerated=None):
+    def generate(self, lemma, tagsets, node=None, pregenerated=None, **kwargs):
         """ Run the lookup command, parse output into
             [(lemma, ['Verb', 'Inf'], ['form1', 'form2'])]
 
@@ -713,6 +713,30 @@ class Morphology(object):
                 tag = parts[1::]
                 forms = False
                 reformatted.append((lemma, tag, forms))
+
+        # Log generation error:
+        if len(reformatted) == 0:
+
+            logg_args = [
+                'GENERATE',
+                self.langcode,
+                lemma,
+            ]
+
+            if len(tagsets) > 0:
+                _tagsets = ','.join(['+'.join(t) for t in tagsets])
+            else:
+                _tagsets = ''
+            logg_args.append(_tagsets)
+
+            if 'extra_log_info' in kwargs:
+                _extra_log_info = kwargs.pop('extra_log_info')
+                extra_log_info = ', '.join(["%s: %s" % (k, v) for (k, v) in _extra_log_info.iteritems()])
+                extra_log_info = extra_log_info.encode('utf-8')
+                logg_args.append(extra_log_info)
+
+            logg = "\t".join([a for a in logg_args if a])
+            self.logger.error(logg.strip())
 
         _is_cached = self.cache.set(key, reformatted)
         return reformatted
