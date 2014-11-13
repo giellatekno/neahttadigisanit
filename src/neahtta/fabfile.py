@@ -123,9 +123,9 @@ def no_svn_up():
     env.no_svn_up = True
 
 @task
-def pikiskwewina():
-    """ Use pikiskwewina """
-    env.current_dict = "pikiskwewina"
+def itwewina():
+    """ Use itwewina """
+    env.current_dict = "itwewina"
 
 @task
 def dikaneisdi():

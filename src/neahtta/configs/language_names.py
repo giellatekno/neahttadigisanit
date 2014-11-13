@@ -63,7 +63,7 @@ NAMES = dict([
     ('sms', _(u"Skolt Sámi")),
     ('smsM', _(u"Skolt Sámi")),
 
-    # pikiskwewina
+    # itwewina 
     ('crk', _(u"Plains Cree")),
     ('crkM', _(u"Plains Cree")),
 

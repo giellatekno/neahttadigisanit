@@ -12,7 +12,7 @@
 
 ###         #guusaawtargets
 ###         
-###         #pikiskwewinatargets
+###         #itwewinatargets
 ###         
 ###         #dikaneisditargets
 ###         
@@ -155,10 +155,10 @@ print_complete_message:
 print_complete_message:
 	@echo 
 	@echo 
-	@echo "** Built lexica for sanat:            "
+	@echo "** Built lexica for:            "
 	@echo "**    + $(LEX_COMPILE_LANGS)          "
 	@echo "**    + $(LEX_COMPILE_WORDS_DICTS)    "
-	@echo "** Built FSTs for sanat:              "
+	@echo "** Built FSTs for:              "
 	@echo "**    + $(GT_COMPILE_LANGS)           "
 	@echo
 	@echo
@@ -227,7 +227,7 @@ dikaneisdi-install: install_langs_fsts
 
 
 #####
-##### #pikiskwewinatargets
+##### #itwewinatargets
 #####
 
 PIKISKWEWINA_LANGS_ANALYSERS      :=   crk
@@ -265,24 +265,24 @@ crkeng.xml: $(foreach d, $(CRKENG_DIRS), $(shell find $d -name '*.xml'))
 	@rm -rf crkeng_tmp/
 	@rm -rf ../scripts
 
-.PHONY: pikiskwewina-lexica
-pikiskwewina-lexica: LEX_COMPILE_LANGS := $(PIKISKWEWINA_LANGS_LEXICA)
-pikiskwewina-lexica: LEX_COMPILE_WORDS_DICTS := $(PIKISKWEWINA_WORDS_DICTS_LEXICA)
-pikiskwewina-lexica: crkeng.xml compile_langs_lexicon compile_words_dicts_lexicon
+.PHONY: itwewina-lexica
+itwewina-lexica: LEX_COMPILE_LANGS := $(PIKISKWEWINA_LANGS_LEXICA)
+itwewina-lexica: LEX_COMPILE_WORDS_DICTS := $(PIKISKWEWINA_WORDS_DICTS_LEXICA)
+itwewina-lexica: crkeng.xml compile_langs_lexicon compile_words_dicts_lexicon
 
-.PHONY: pikiskwewina
-pikiskwewina: GT_COMPILE_LANGS := $(PIKISKWEWINA_LANGS_ANALYSERS)
-pikiskwewina: LEX_COMPILE_LANGS := $(PIKISKWEWINA_LANGS_LEXICA)
-pikiskwewina: LEX_COMPILE_WORDS_DICTS := $(PIKISKWEWINA_WORDS_DICTS_LEXICA)
-pikiskwewina: pikiskwewina-lexica compile_langs_fsts print_complete_message
+.PHONY: itwewina
+itwewina: GT_COMPILE_LANGS := $(PIKISKWEWINA_LANGS_ANALYSERS)
+itwewina: LEX_COMPILE_LANGS := $(PIKISKWEWINA_LANGS_LEXICA)
+itwewina: LEX_COMPILE_WORDS_DICTS := $(PIKISKWEWINA_WORDS_DICTS_LEXICA)
+itwewina: itwewina-lexica compile_langs_fsts print_complete_message
 
-rm-pikiskwewina-lexica: $(foreach xx, $(PIKISKWEWINA_LANGS_LEXICA), $(xx)-all.xml) \
+rm-itwewina-lexica: $(foreach xx, $(PIKISKWEWINA_LANGS_LEXICA), $(xx)-all.xml) \
 				 $(foreach yy, $(PIKISKWEWINA_WORDS_DICTS_LEXICA), $(yy).xml)
 	@rm -rf $^
 
-.PHONY: pikiskwewina-install
-pikiskwewina-install: GT_COMPILE_LANGS := $(PIKISKWEWINA_LANGS_ANALYSERS)
-pikiskwewina-install: install_langs_fsts copy_syllabics
+.PHONY: itwewina-install
+itwewina-install: GT_COMPILE_LANGS := $(PIKISKWEWINA_LANGS_ANALYSERS)
+itwewina-install: install_langs_fsts copy_syllabics
 
 .PHONY: copy_syllabics
 copy_syllabics: $(GTHOME)/langs/crk/src/analyser-gt-desc-syll.xfst \
@@ -731,7 +731,7 @@ all-lexica: baakoeh-lexica \
 	guusaaw-lexica \
 	kyv-lexica \
 	muter-lexica \
-	pikiskwewina-lexica \
+	itwewina-lexica \
 	saan-lexica \
 	sanat-lexica \
 	sonad-lexica \

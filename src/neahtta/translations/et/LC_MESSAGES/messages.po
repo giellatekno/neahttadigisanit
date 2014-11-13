@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-10-11 17:05-0500\n"
+"POT-Creation-Date: 2014-11-13 15:51-0600\n"
 "PO-Revision-Date: 2014-01-18 16:52+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language-Team: en <LL@li.org>\n"
@@ -21,28 +21,28 @@ msgstr ""
 msgid "Dikaneisdi"
 msgstr ""
 
-#: configs/dikaneisdi.config.yaml.in:73
+#: configs/dikaneisdi.config.yaml.in:74
 msgid "Standard (syllabics)"
 msgstr ""
 
-#: configs/dikaneisdi.config.yaml.in:76
+#: configs/dikaneisdi.config.yaml.in:77
 msgid "Transliterated"
 msgstr ""
 
-#: configs/guusaaw.config.yaml.in:74 configs/kyv.config.yaml.in:93
-#: configs/pikiskwewina.config.yaml.in:54 configs/saan.config.yaml.in:68
-#: configs/sample.config.yaml.in:115 configs/sanit.config.yaml.in:118
-#: configs/sonad.config.yaml.in:142
+#: configs/guusaaw.config.yaml.in:76 configs/itwewina.config.yaml.in:67
+#: configs/kyv.config.yaml.in:97 configs/saan.config.yaml.in:70
+#: configs/sample.config.yaml.in:122 configs/sanit.config.yaml.in:121
+#: configs/sonad.config.yaml.in:143
 msgid "Standard"
 msgstr "Standard"
 
-#: configs/guusaaw.config.yaml.in:79 configs/pikiskwewina.config.yaml.in:59
-#: configs/saan.config.yaml.in:73
+#: configs/guusaaw.config.yaml.in:81 configs/itwewina.config.yaml.in:77
+#: configs/saan.config.yaml.in:93
 #, fuzzy
 msgid "Mobile friendly"
 msgstr "telefonisõbralik"
 
-#: configs/kyv.config.yaml.in:96
+#: configs/kyv.config.yaml.in:100
 msgid "Molotsov orthography"
 msgstr "Molotsovi ortograafia"
 
@@ -169,95 +169,94 @@ msgstr "läti"
 msgid "Haida"
 msgstr "haida"
 
-#: configs/sample.config.yaml.in:120
+#: configs/sample.config.yaml.in:127
 msgid "Sosiála media"
 msgstr ""
 
-#: configs/sample.config.yaml.in:121 configs/sanit.config.yaml.in:125
+#: configs/sample.config.yaml.in:128 configs/sanit.config.yaml.in:128
 #, fuzzy
 msgid "(incl. <em>acdnstz</em>)"
 msgstr "Social media (incl. <em>acdnstz</em>)"
 
-#: configs/sanit.config.yaml.in:124
+#: configs/sanit.config.yaml.in:127
 msgid "Social media"
 msgstr ""
 
-#: configs/sanit.config.yaml.in:148
+#: configs/sanit.config.yaml.in:154
 msgid "Standárda (<em>áčđŋšŧž</em>)"
 msgstr "Standard (<em>áčđŋšŧž</em>)"
 
-#: configs/sanit.config.yaml.in:151
+#: configs/sanit.config.yaml.in:157
 msgid "Sosiála media (maiddái <em>acdnstz</em>)"
 msgstr "Social media (incl. <em>acdnstz</em>)"
 
-#: configs/sonad.config.yaml.in:147
+#: configs/sonad.config.yaml.in:148
 msgid "mobile friendly"
 msgstr "telefonisõbralik"
 
-#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13272
-#: static/js/neahttadigisanit.jquery.js:13272
-#: static/js/neahttadigisanit.min.js:2964
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13292
+#: static/js/neahttadigisanit.jquery.js:13292
+#: static/js/neahttadigisanit.min.js:2984
 msgid "Á"
 msgstr "Á"
 
-#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13272
-#: static/js/neahttadigisanit.jquery.js:13272
-#: static/js/neahttadigisanit.min.js:2964
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13292
+#: static/js/neahttadigisanit.jquery.js:13292
+#: static/js/neahttadigisanit.min.js:2984
 msgid "Options"
 msgstr "Valikud"
 
-#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13272
-#: static/js/neahttadigisanit.jquery.js:13272
-#: static/js/neahttadigisanit.min.js:2964 templates/about.baakoeh.html:6
-#: templates/about.guusaaw.html:6 templates/about.muter.html:6
-#: templates/about.pikiskwewina.html:6 templates/about.sanat.html:6
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13292
+#: static/js/neahttadigisanit.jquery.js:13292
+#: static/js/neahttadigisanit.min.js:2984 templates/about.baakoeh.html:6
+#: templates/about.guusaaw.html:6 templates/about.itwewina.html:6
+#: templates/about.muter.html:6 templates/about.sanat.html:6
 #: templates/about.sanit.html:6 templates/about.sonad.html:6
 #: templates/about.vada.html:7 templates/about.valks.html:7
-#: templates/base.html:171 templates/mobile_nav_push_menu.html:14
-#: templates/navigation_full.html:10
-#: templates/navigation_full.pikiskwewina.html:11
+#: templates/base.html:169 templates/mobile_nav_push_menu.html:14
+#: templates/navigation_full.html:10 templates/navigation_full.itwewina.html:11
 msgid "About"
 msgstr "Meist"
 
-#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13272
-#: static/js/neahttadigisanit.jquery.js:13272
-#: static/js/neahttadigisanit.min.js:2964
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13292
+#: static/js/neahttadigisanit.jquery.js:13292
+#: static/js/neahttadigisanit.min.js:2984
 msgid "Advanced"
 msgstr "edasijõudnud"
 
-#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13272
-#: static/js/neahttadigisanit.jquery.js:13272
-#: static/js/neahttadigisanit.min.js:2964
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13292
+#: static/js/neahttadigisanit.jquery.js:13292
+#: static/js/neahttadigisanit.min.js:2984
 msgid "Dictionary"
 msgstr "Sõnaraamat"
 
-#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13272
-#: static/js/neahttadigisanit.jquery.js:13272
-#: static/js/neahttadigisanit.min.js:2964
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13292
+#: static/js/neahttadigisanit.jquery.js:13292
+#: static/js/neahttadigisanit.min.js:2984
 msgid "Save"
 msgstr "Salvesta"
 
-#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13272
-#: static/js/neahttadigisanit.jquery.js:13272
-#: static/js/neahttadigisanit.min.js:2964
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13292
+#: static/js/neahttadigisanit.jquery.js:13292
+#: static/js/neahttadigisanit.min.js:2984
 msgid "Refresh settings"
 msgstr "Värskenda seadistust"
 
-#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13272
-#: static/js/neahttadigisanit.jquery.js:13272
-#: static/js/neahttadigisanit.min.js:2964
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13292
+#: static/js/neahttadigisanit.jquery.js:13292
+#: static/js/neahttadigisanit.min.js:2984
 msgid "Update detected"
 msgstr "Uuendus avastatud"
 
-#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13272
-#: static/js/neahttadigisanit.jquery.js:13272
-#: static/js/neahttadigisanit.min.js:2964
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13292
+#: static/js/neahttadigisanit.jquery.js:13292
+#: static/js/neahttadigisanit.min.js:2984
 msgid "IE8 Warning"
 msgstr "IE8 hoiatus"
 
-#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13272
-#: static/js/neahttadigisanit.jquery.js:13272
-#: static/js/neahttadigisanit.min.js:2964
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13292
+#: static/js/neahttadigisanit.jquery.js:13292
+#: static/js/neahttadigisanit.min.js:2984
 msgid ""
 "In order to look up a word, hold down the <em>Alt</em> or <em>Option</em>"
 " (⌥) key, and doubleclick on a word. The service will contact the "
@@ -266,9 +265,9 @@ msgstr ""
 "Sõna tähenduse vaatamiseks hoia all <em>Alt</em> või <em>Option</em> (⌥) "
 "klahvi ja tee topeltklõps sõnal."
 
-#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13272
-#: static/js/neahttadigisanit.jquery.js:13272
-#: static/js/neahttadigisanit.min.js:2964
+#: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13292
+#: static/js/neahttadigisanit.jquery.js:13292
+#: static/js/neahttadigisanit.min.js:2984
 msgid ""
 "If you find a bug, or if the bookmark does not work on a specific page <a"
 " href=\"mailto:giellatekno@hum.uit.no\">please contact us</a>. Tell us "
@@ -277,21 +276,21 @@ msgstr ""
 "Kui sa leiad vea või mõni link ei tööta teatud lehel  <a "
 "href=\"mailto:giellatekno@hum.uit.n"
 
-#: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:13340
-#: static/js/neahttadigisanit.jquery.js:13340
-#: static/js/neahttadigisanit.min.js:3032
+#: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:13360
+#: static/js/neahttadigisanit.jquery.js:13360
+#: static/js/neahttadigisanit.min.js:3052
 msgid "Error!"
 msgstr "Viga!"
 
-#: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:13340
-#: static/js/neahttadigisanit.jquery.js:13340
-#: static/js/neahttadigisanit.min.js:3032
+#: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:13360
+#: static/js/neahttadigisanit.jquery.js:13360
+#: static/js/neahttadigisanit.min.js:3052
 msgid "Could not connect to dictionary server"
 msgstr "Ei saa ühendust sõnaraamatuserveriga"
 
-#: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:13340
-#: static/js/neahttadigisanit.jquery.js:13340
-#: static/js/neahttadigisanit.min.js:3032
+#: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:13360
+#: static/js/neahttadigisanit.jquery.js:13360
+#: static/js/neahttadigisanit.min.js:3052
 msgid "Close"
 msgstr "Sulge"
 
@@ -314,28 +313,32 @@ msgstr "Sa kasutad"
 msgid "Meaning not found"
 msgstr "Tähendust ei leitud"
 
-#: static/js/bookmarklet.min.js:13272
-#: static/js/neahttadigisanit.jquery.js:13272
-#: static/js/neahttadigisanit.min.js:2964
+#: static/js/bookmarklet.min.js:13292
+#: static/js/neahttadigisanit.jquery.js:13292
+#: static/js/neahttadigisanit.min.js:2984
 msgid "Help"
 msgstr ""
 
-#: static/js/bookmarklet.min.js:13272
-#: static/js/neahttadigisanit.jquery.js:13272
-#: static/js/neahttadigisanit.min.js:2964
+#: static/js/bookmarklet.min.js:13292
+#: static/js/neahttadigisanit.jquery.js:13292
+#: static/js/neahttadigisanit.min.js:2984
 msgid "This tool was made by Giellatekno at UiT: The Arctic University of Norway."
 msgstr ""
 
-#: static/js/bookmarklet.min.js:13272
-#: static/js/neahttadigisanit.jquery.js:13272
-#: static/js/neahttadigisanit.min.js:2964
+#: static/js/bookmarklet.min.js:13292
+#: static/js/neahttadigisanit.jquery.js:13292
+#: static/js/neahttadigisanit.min.js:2984
 msgid "Read more"
 msgstr ""
 
-#: static/js/bookmarklet.min.js:13272
-#: static/js/neahttadigisanit.jquery.js:13272
-#: static/js/neahttadigisanit.min.js:2964
+#: static/js/bookmarklet.min.js:13292
+#: static/js/neahttadigisanit.jquery.js:13292
+#: static/js/neahttadigisanit.min.js:2984
 msgid "More tools"
+msgstr ""
+
+#: static/js/jquery-ui.min.js:8
+msgid "'"
 msgstr ""
 
 #: templates/404.html:51
@@ -357,7 +360,7 @@ msgid "Whoops! There was some kind of error."
 msgstr "Tohoh! Tekkis mingi tõrge."
 
 #: templates/about.baakoeh.html:15 templates/about.guusaaw.html:15
-#: templates/about.muter.html:15 templates/about.pikiskwewina.html:15
+#: templates/about.itwewina.html:15 templates/about.muter.html:15
 #: templates/about.sanat.html:15 templates/about.sanit.html:15
 #: templates/about.sonad.html:15 templates/about.vada.html:17
 #: templates/about.valks.html:17
@@ -365,7 +368,7 @@ msgid "A dictionary that understands what you're looking for."
 msgstr "Sõnaraamat, mis saab aru, mida sa otsid."
 
 #: templates/about.baakoeh.html:16 templates/about.guusaaw.html:16
-#: templates/about.muter.html:16 templates/about.pikiskwewina.html:16
+#: templates/about.itwewina.html:16 templates/about.muter.html:16
 #: templates/about.sanat.html:16 templates/about.sanit.html:16
 #: templates/about.sonad.html:16 templates/about.vada.html:18
 #: templates/about.valks.html:18
@@ -373,7 +376,7 @@ msgid "(... And is mobile-friendly!)"
 msgstr "(... ja on telefonisõbralik!)"
 
 #: templates/about.baakoeh.html:20 templates/about.guusaaw.html:20
-#: templates/about.muter.html:20 templates/about.pikiskwewina.html:20
+#: templates/about.itwewina.html:20 templates/about.muter.html:20
 #: templates/about.sanat.html:20 templates/about.sanit.html:20
 #: templates/about.sonad.html:20 templates/about.vada.html:22
 #: templates/about.valks.html:22
@@ -381,7 +384,7 @@ msgid "Free"
 msgstr "Vaba"
 
 #: templates/about.baakoeh.html:21 templates/about.guusaaw.html:21
-#: templates/about.muter.html:21 templates/about.pikiskwewina.html:21
+#: templates/about.itwewina.html:21 templates/about.muter.html:21
 #: templates/about.sanat.html:21 templates/about.sanit.html:21
 #: templates/about.sonad.html:21 templates/about.vada.html:23
 #: templates/about.valks.html:23
@@ -397,7 +400,7 @@ msgstr ""
 "                    analüüsivahendeid."
 
 #: templates/about.baakoeh.html:27 templates/about.guusaaw.html:27
-#: templates/about.muter.html:27 templates/about.pikiskwewina.html:27
+#: templates/about.itwewina.html:27 templates/about.muter.html:27
 #: templates/about.sanat.html:27 templates/about.sanit.html:27
 #: templates/about.sonad.html:27 templates/about.vada.html:29
 #: templates/about.valks.html:29
@@ -405,7 +408,7 @@ msgid "Open-Source"
 msgstr "Avatud lähtekoodiga"
 
 #: templates/about.baakoeh.html:28 templates/about.guusaaw.html:28
-#: templates/about.muter.html:28 templates/about.pikiskwewina.html:28
+#: templates/about.itwewina.html:28 templates/about.muter.html:28
 #: templates/about.sanat.html:28 templates/about.sanit.html:28
 #: templates/about.sonad.html:28 templates/about.vada.html:30
 #: templates/about.valks.html:30
@@ -420,7 +423,7 @@ msgid ""
 msgstr ""
 
 #: templates/about.baakoeh.html:36 templates/about.guusaaw.html:36
-#: templates/about.muter.html:36 templates/about.pikiskwewina.html:36
+#: templates/about.itwewina.html:36 templates/about.muter.html:36
 #: templates/about.sanat.html:36 templates/about.sanit.html:36
 #: templates/about.sonad.html:36 templates/about.vada.html:38
 #: templates/about.valks.html:38
@@ -428,7 +431,7 @@ msgid "Linguistic basis"
 msgstr "Lingvistiline alus"
 
 #: templates/about.baakoeh.html:37 templates/about.guusaaw.html:37
-#: templates/about.muter.html:37 templates/about.pikiskwewina.html:37
+#: templates/about.itwewina.html:37 templates/about.muter.html:37
 #: templates/about.sanat.html:37 templates/about.sanit.html:37
 #: templates/about.sonad.html:37 templates/about.vada.html:39
 #: templates/about.valks.html:39
@@ -444,10 +447,10 @@ msgid "gå, dra, reise"
 msgstr "gå, dra, reise"
 
 #: templates/about.baakoeh.html:50 templates/about.guusaaw.html:48
-#: templates/about.muter.html:50 templates/about.pikiskwewina.html:50
+#: templates/about.itwewina.html:50 templates/about.muter.html:50
 #: templates/about.sanat.html:50 templates/about.sanit.html:50
 #: templates/about.sonad.html:50 templates/about.vada.html:52
-#: templates/about.valks.html:52 templates/sources.pikiskwewina.html:12
+#: templates/about.valks.html:52 templates/sources.itwewina.html:12
 msgid "Source material"
 msgstr "Algmaterjalid"
 
@@ -522,17 +525,17 @@ msgid "Each of the dictionaries contains about 11,000 base words."
 msgstr "Iga sõnaraamat sisaldab umbes 11000 sõna."
 
 #: templates/about.baakoeh.html:76 templates/about.guusaaw.html:89
-#: templates/about.muter.html:79 templates/about.pikiskwewina.html:97
+#: templates/about.itwewina.html:97 templates/about.muter.html:79
 #: templates/about.sanat.html:86 templates/about.sonad.html:86
 #: templates/about.vada.html:78 templates/about.valks.html:90
 msgid "More to come..."
 msgstr "Uued on tulekul..."
 
-#: templates/about.guusaaw.html:41 templates/about.pikiskwewina.html:43
+#: templates/about.guusaaw.html:41 templates/about.itwewina.html:43
 msgid "s/he speaks Cree"
 msgstr ""
 
-#: templates/about.guusaaw.html:56 templates/about.pikiskwewina.html:67
+#: templates/about.guusaaw.html:56 templates/about.itwewina.html:67
 msgid ""
 "The dictionary software behind pîkiskwêwina is Neahttadigisánit, "
 "originally created for North Saami and South Saami at the University of "
@@ -540,12 +543,12 @@ msgid ""
 "be sure to get in touch with us if you have questions or comments."
 msgstr ""
 
-#: templates/about.guusaaw.html:64 templates/about.pikiskwewina.html:72
+#: templates/about.guusaaw.html:64 templates/about.itwewina.html:72
 #: templates/about.sanit.html:73
 msgid "Find a problem?"
 msgstr "Kas tekkis probleem?"
 
-#: templates/about.guusaaw.html:65 templates/about.pikiskwewina.html:73
+#: templates/about.guusaaw.html:65 templates/about.itwewina.html:73
 #: templates/about.sanit.html:74
 msgid ""
 "If you find any bugs, please get in touch with us. Describe the problem,\n"
@@ -559,17 +562,32 @@ msgstr ""
 "                sa otsisid, kui probleem tekkis."
 
 #: templates/about.guusaaw.html:70 templates/about.guusaaw.html:75
-#: templates/about.pikiskwewina.html:78 templates/about.pikiskwewina.html:83
+#: templates/about.itwewina.html:78 templates/about.itwewina.html:83
 #: templates/about.sanit.html:79 templates/about.sanit.html:84
 msgid "Contact us"
 msgstr "Võta meiega ühendust"
 
-#: templates/about.guusaaw.html:80 templates/about.pikiskwewina.html:88
+#: templates/about.guusaaw.html:80 templates/about.itwewina.html:88
 #: templates/about.sanit.html:89
 msgid ""
 "Need more dictionaries? <a href=\"http://dicts.uit.no/\">Here's our full "
 "list</a>, and more\n"
 "                resources."
+msgstr ""
+
+#: templates/about.itwewina.html:57
+#, fuzzy
+msgid "crk ↔ eng"
+msgstr "yrk ↔ fin"
+
+#: templates/about.itwewina.html:59
+msgid ""
+"Dictionaries for Plains Cree and English are based\n"
+"                on the lexical materials and scientific research in <a "
+"href=\"http://uofrpress.ca/publications/cree-words\"><em>nêhiyawêwin : "
+"itwêwina / Cree: Words</em></a>.\n"
+"                 Compiled by Arok Wolvengrey.  Regina: Canadian Plains "
+"Research Center, 2001."
 msgstr ""
 
 #: templates/about.muter.html:43 templates/about.vada.html:45
@@ -604,21 +622,6 @@ msgstr ""
 "                    sõnaraamat (1981). Tõlketööd teeb Julia Kuprina "
 "Helsingi\n"
 "                    ülikoolis Kone sihtasutuse rahastusel."
-
-#: templates/about.pikiskwewina.html:57
-#, fuzzy
-msgid "crk ↔ eng"
-msgstr "yrk ↔ fin"
-
-#: templates/about.pikiskwewina.html:59
-msgid ""
-"Dictionaries for Plains Cree and English are based\n"
-"                on the lexical materials and scientific research in <a "
-"href=\"http://uofrpress.ca/publications/cree-words\"><em>nêhiyawêwin : "
-"itwêwina / Cree: Words</em></a>.\n"
-"                 Compiled by Arok Wolvengrey.  Regina: Canadian Plains "
-"Research Center, 2001."
-msgstr ""
 
 #: templates/about.sanat.html:43 templates/about.sonad.html:43
 msgid "mennä, tapahtua, viedä, johtaa, edistyä"
@@ -725,24 +728,22 @@ msgid ""
 "Foundation."
 msgstr ""
 
-#: templates/base.html:163 templates/mobile_nav_push_menu.html:6
-#: templates/navigation_full.html:2
-#: templates/navigation_full.pikiskwewina.html:3
+#: templates/base.html:161 templates/mobile_nav_push_menu.html:6
+#: templates/navigation_full.html:2 templates/navigation_full.itwewina.html:3
 msgid "Home"
 msgstr "Algus"
 
-#: templates/base.html:167 templates/mobile_nav_push_menu.html:10
-#: templates/navigation_full.html:6
-#: templates/navigation_full.pikiskwewina.html:7
+#: templates/base.html:165 templates/mobile_nav_push_menu.html:10
+#: templates/navigation_full.html:6 templates/navigation_full.itwewina.html:7
 msgid "Plugins"
 msgstr "Pluginad"
 
-#: templates/base.html:175 templates/mobile_nav_push_menu.html:18
-#: templates/navigation_full.pikiskwewina.html:14
+#: templates/base.html:173 templates/mobile_nav_push_menu.html:18
+#: templates/navigation_full.itwewina.html:14
 msgid "Sources"
 msgstr ""
 
-#: templates/base.html:181 templates/mobile_nav_push_menu.html:22
+#: templates/base.html:179 templates/mobile_nav_push_menu.html:22
 #: templates/mobile_nav_push_menu.html:25
 msgid "Interface language"
 msgstr "Kasutajaliidese keel"
@@ -769,8 +770,8 @@ msgstr "Vaheta"
 
 #: templates/index.html:54 templates/index.html:139
 #: templates/index_new_style.html:99 templates/index_new_style.html:139
-#: templates/word_detail.html:106 templates/word_detail_new_style.html:106
-#: templates/word_detail_new_style.html:137 views/reader.py:217
+#: templates/word_detail.html:106 templates/word_detail_new_style.html:107
+#: templates/word_detail_new_style.html:148 views/reader.py:218
 msgid " is a possible form of ... "
 msgstr " võib olla vorm sõnast ... "
 
@@ -778,10 +779,10 @@ msgstr " võib olla vorm sõnast ... "
 msgid "Definition not found for:"
 msgstr "Tähendust ei leitud"
 
-#: templates/index.html:161 templates/index_new_style.html:124
+#: templates/index.html:161
 #, python-format
-msgid "Word %(input)s not found."
-msgstr "Sõna %(input)s ei leitud."
+msgid "Word <span class=\"%(_from)s\">%(input)s</span> not found."
+msgstr ""
 
 #: templates/index.html:170
 msgid ""
@@ -808,21 +809,26 @@ msgstr ""
 msgid "Texts"
 msgstr "neenetsi"
 
+#: templates/index_new_style.html:124
+#, fuzzy, python-format
+msgid "Word <span lang=\"%(_from)s\">%(input)s</span> not found."
+msgstr "Sõna %(input)s ei leitud."
+
 #: templates/index_search_form.html:15
 msgid "Press Tab to select a word"
 msgstr ""
 
-#: templates/index_search_form.html:19
+#: templates/index_search_form.html:20
 msgid "ohcansátni"
 msgstr ""
 
-#: templates/index_search_form.html:24 templates/index_search_form.html:43
-#: templates/index_search_form.html:47 templates/word_detail.html:97
-#: templates/word_detail_new_style.html:97
+#: templates/index_search_form.html:25 templates/index_search_form.html:46
+#: templates/index_search_form.html:50 templates/word_detail.html:97
+#: templates/word_detail_new_style.html:98
 msgid "Search"
 msgstr "otsing"
 
-#: templates/index_search_form.html:35 templates/index_search_form.html:57
+#: templates/index_search_form.html:37 templates/index_search_form.html:61
 msgid "Search texts"
 msgstr "Otsi tekste"
 
@@ -852,7 +858,7 @@ msgid "Escape Text-TV mode"
 msgstr ""
 
 #: templates/left_nav_grouped_language_pair_select.html:54
-#: templates/left_nav_language_pair_select_list.html:37
+#: templates/left_nav_language_pair_select_list.html:38
 #: templates/mobile_nav_push_menu.html:63
 msgid "Written variant"
 msgstr "Kirjalik variant"
@@ -940,6 +946,13 @@ msgid ""
 "                built with our tools, <a "
 "href=\"http://dicts.uit.no/\">see this\n"
 "                    list</a>."
+msgstr ""
+
+#: templates/notice.itwewina.html:1
+msgid ""
+"We have updated our URL to <a "
+"href=\"http://itwewina.oahpa.no/\">itwewina.oahpa.no</a>, please update "
+"your bookmarks."
 msgstr ""
 
 #: templates/notice.sanat.html:1
@@ -1097,19 +1110,19 @@ msgstr ""
 "\"\n"
 "\"    menüüikooni lehekülje vasakus servas."
 
-#: templates/sources.pikiskwewina.html:6
+#: templates/sources.itwewina.html:6
 msgid "Sources and References"
 msgstr ""
 
-#: templates/word_detail.html:39 templates/word_detail_new_style.html:39
+#: templates/word_detail.html:39 templates/word_detail_new_style.html:40
 msgid "is a possible form of ... "
 msgstr " võib olla vorm sõnast ... "
 
-#: templates/word_detail.html:190 templates/word_detail_new_style.html:129
+#: templates/word_detail.html:190 templates/word_detail_new_style.html:140
 msgid "More information about this word"
 msgstr ""
 
-#: views/search.py:873
+#: views/search.py:949
 msgid "Invalid format. Only json and html allowed."
 msgstr "Vigane formaat. Ainult json ja html on lubatud."
 

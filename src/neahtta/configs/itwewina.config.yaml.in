@@ -1,7 +1,7 @@
 ApplicationSettings:
-  app_name: "pîkiskwêwina"
+  app_name: "itwêwina"
   app_meta_title: "Online Plains Cree dictionary"
-  short_name: "pikiskwewina"
+  short_name: "itwewina"
   default_locale: "crk"
   default_pair: ["crk", "eng"]
   mobile_default_pair: ["crkM", "eng"]
@@ -73,11 +73,6 @@ Dictionaries:
           - "ê"
           - "î"
           - "ô"
-          - " "
-          - "ā"
-          - "ē"
-          - "ī"
-          - "ō"
       - type: "mobile"
         description: !gettext "Mobile friendly"
         example: "(a &rarr; a ~ â)"
