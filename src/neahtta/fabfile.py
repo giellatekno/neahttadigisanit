@@ -506,12 +506,27 @@ def update_strings():
 def compile_strings():
     """ Compile .po strings to .mo strings for use in the live server. """
 
-    cmd = "pybabel compile -d translations"
-    extract_cmd = env.run(cmd)
-    if extract_cmd.failed:
-        print(red("** Compilation failed, aborting."))
+    if hasattr(env, 'current_dict'):
+        config = 'configs/%s.config.yaml.in' % env.current_dict
+        with open(config, 'r') as F:
+            _y = yaml.load(F.read())
+            langs = _y.get('ApplicationSettings', {}).get('locales_available')
+
+        for lang in langs:
+            # run for each language 
+            cmd = "pybabel compile -d translations -l %s" % lang
+            extract_cmd = env.run(cmd)
+            if extract_cmd.failed:
+                print(red("** Compilation failed, aborting."))
+            else:
+                print(green("** Compilation successful."))
     else:
-        print(green("** Compilation successful."))
+        cmd = "pybabel compile -d translations"
+        extract_cmd = env.run(cmd)
+        if extract_cmd.failed:
+            print(red("** Compilation failed, aborting."))
+        else:
+            print(green("** Compilation successful."))
 
 def where(iso):
     """ Searches Config and Config.in files for languages defined in
