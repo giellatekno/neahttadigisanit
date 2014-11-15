@@ -14,6 +14,7 @@
 {% set lemma = first_l|text %}
 {% set pos = first_l|xpath('@pos')|first|upper %}
 {% set has_forms = paradigm and paradigm|length > 0 -%}
+{% set paradigm_exists = paradigm|length > 0 %}
 
 {%- if pos == 'V' %}
     {% set verbs = true %}
@@ -30,7 +31,8 @@
     {# Use izip_longest to fill in the extra blanks spaces when one list
        ends first #}
 
-    {% set zipped_verbs = izip_longest(present_verbs, preterite_verbs, fillvalue='-') %}
+    {% set zipped_verbs = izip_longest(present_verbs, preterite_verbs, fillvalue='-')|list %}
+    {% set paradigm_exists = zipped_verbs|length > 0 or nonfinite_forms|length > 0 %}
 
     {# strip some parts of the tags that we don't need #}
 
@@ -42,7 +44,7 @@
     {% macro clean_tag(tag_input) %}
         {{ tag_input|tagfilter(_from, _to)|replace(prs_text, "")|replace(verb_text, "")|replace(verb_text_ind, "") }}
     {% endmacro %}
-{% endif -%}
+{%- endif %}
 
 {%- if pos == 'N' %}
 
@@ -52,7 +54,8 @@
     {# Use izip_longest to fill in the extra blanks spaces when one list
        ends first #}
 
-    {% set zipped_numbers = izip_longest(sg_forms, pl_forms, fillvalue='-') %}
+    {% set zipped_numbers = izip_longest(sg_forms, pl_forms, fillvalue='-')|list %}
+    {% set paradigm_exists = zipped_numbers|length > 0 %}
 
     {% set numberless_forms = paradigm|by_tagset("nouns_null_number") %}
 
@@ -63,7 +66,6 @@
     {% macro clean_tag(tag_input) %}
         {{ tag_input|tagfilter(_from, _to)|replace(noun_text, "")|replace(sg_text, "")|replace(pl_text, "") }}
     {% endmacro %}
-
 {% endif -%}
 
 {%- macro full_paradigm_link() %}
@@ -76,12 +78,16 @@
 
 {%- if has_forms %}
 {%- if pos == 'V' %}
+    {% if paradigm_exists %}
+
     <table class="tableparadigm miniparadigm">
+        {% if zipped_verbs %}
         <tr>
             <th></th>
             <th lang="{{ _to }}">{{ prs_text }} <em>(odne)</em></th>
             <th lang="{{ _to }}">{{ prt_text }} <em>(ikte)</em></th>
         </tr>
+        {% endif %}
 
     {%- for present_forms, preterite_forms in zipped_verbs -%}
         <tr>
@@ -125,9 +131,10 @@
             {% endif %}
         {%- endfor -%}
     </dl>
+    {% endif %}
 
 {% elif pos == 'N' %}
-    {{ zipped_numbers }}
+    {% if paradigm_exists %}
     <table class="tableparadigm miniparadigm">
         <tr>
             <th></th>
@@ -178,6 +185,7 @@
         </tr>
     {%- endfor -%}
     </table>
+    {% endif %}
 
 {% else %}
     <dl class="dl-horizontal miniparadigm">
@@ -196,7 +204,9 @@
     </dl>
 
 {% endif %}
+{% if paradigm_exists %}
     {{ full_paradigm_link() }}
+{% endif %}
 {% endif -%}
 
 

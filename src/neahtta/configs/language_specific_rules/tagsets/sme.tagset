@@ -32,6 +32,7 @@ tense:
 nonfinite_paradigm:
  - "ConNeg"
  - "PrfPrc"
+ - "Neg"
 number:
  - "Sg"
  - "Pl"
