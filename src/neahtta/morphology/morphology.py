@@ -520,13 +520,15 @@ class XFST(object):
         self.logger = morph.logger
         return morph
 
-    def lookup(self, lookups_list):
+    def lookup(self, lookups_list, raw=False):
         lookup_string = '\n'.join(lookups_list)
         output, err = self._exec(lookup_string, cmd=self.cmd)
         if len(output) == 0 and len(err) > 0:
             name = self.__class__.__name__
             msg = """%s - %s: %s""" % (self.langcode, name, err)
             self.logger.error(msg.strip())
+        if raw:
+            return self.clean(output), output, err
         return self.clean(output)
 
     def inverselookup_by_string(self, lookup_string):
@@ -744,7 +746,7 @@ class Morphology(object):
     # TODO: option, or separate function to also return discarded to
     # find out what's been removed to hide more_info link 
     def lemmatize(self, form, split_compounds=False,
-                  non_compound_only=False, no_derivations=False):
+                  non_compound_only=False, no_derivations=False, return_raw_data=False):
         """ For a wordform, return a list of lemmas
         """
         def remove_compound_analyses(_a):
@@ -772,7 +774,10 @@ class Morphology(object):
             else:
                 return iterable
 
-        lookups = self.tool.lookup([form])
+        if return_raw_data:
+            lookups, raw_output, raw_errors = self.tool.lookup([form], raw=True)
+        else:
+            lookups = self.tool.lookup([form])
 
         # Check for unknown
 
@@ -783,7 +788,10 @@ class Morphology(object):
                     unknown = True
 
         if unknown:
-            return False
+            if return_raw_data:
+                return False, raw_output, raw_errors
+            else:
+                return False
 
         lemmas = set()
 
@@ -818,7 +826,10 @@ class Morphology(object):
                                )
                 lemmas.add(lem)
 
-        return list(lemmas)
+        if return_raw_data:
+            return list(lemmas), raw_output, raw_errors
+        else:
+            return list(lemmas)
 
     def de_pickle_lemma(self, lem, tag):
         _tag = self.tool.splitAnalysis(tag)

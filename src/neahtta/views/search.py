@@ -349,7 +349,7 @@ class SearchResult(object):
 
         return self._analyses_without_lex
 
-    def __init__(self, _from, _to, user_input, entries_and_tags, formatter, generate, sorter=None, filterer=None):
+    def __init__(self, _from, _to, user_input, entries_and_tags, formatter, generate, sorter=None, filterer=None, debug_text=False):
         self.user_input = user_input
         self.search_term = user_input
         self.entries_and_tags = entries_and_tags
@@ -359,6 +359,7 @@ class SearchResult(object):
         self._to = _to
         self.formatter = formatter
         self.generate = generate
+        self.debug_text = debug_text
 
         if sorter is not None:
             self.entry_sorter_key = sorter
@@ -390,21 +391,26 @@ class SearcherMixin(object):
             'split_compounds': kwargs.get('split_compounds', True),
             'non_compounds_only': kwargs.get('non_compounds_only', False),
             'no_derivations': kwargs.get('no_derivations', False),
+            'return_raw_data': True,
             'lemma_attrs': kwargs.get('lemma_attrs', {}),
         }
 
-        entries_and_tags = mlex.lookup( lookup_value
+        morpholex_result = mlex.lookup( lookup_value
                                       , source_lang=g._from
                                       , target_lang=g._to
                                       , **search_kwargs
                                       )
+
+        entries_and_tags, raw_output, raw_error = morpholex_result
+        fst_text = raw_error + '\n--\n' + raw_output
 
         generate = kwargs.get('generate', False)
         search_result_obj = SearchResult(g._from, g._to, lookup_value,
                                          entries_and_tags,
                                          self.formatter,
                                          generate=generate,
-                                         filterer=self.entry_filterer)
+                                         filterer=self.entry_filterer,
+                                         debug_text=fst_text)
 
         return search_result_obj
 
@@ -442,6 +448,7 @@ class SearcherMixin(object):
             # ?
             'errors': errors, # is this actually getting set?
             'show_info': show_info,
+            'debug_text': search_result_obj.debug_text
         }
 
         return search_context
@@ -486,6 +493,7 @@ class SearcherMixin(object):
             # ?
             'errors': errors, # is this actually getting set?
             'show_info': show_info,
+            'debug_text': search_result_obj.debug_text
         }
 
         return search_context
@@ -616,6 +624,7 @@ class SearcherMixin(object):
 
             # ?
             'errors': False, # where should we expect errors?
+            'debug_text': search_result_obj.debug_text
         }
 
         search_context.update(**default_context_kwargs)

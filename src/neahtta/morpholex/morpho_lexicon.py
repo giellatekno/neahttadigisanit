@@ -80,6 +80,7 @@ class MorphoLexicon(object):
         'split_compounds',
         'non_compound_only',
         'no_derivations',
+        'return_raw_data',
     ]
 
     lexicon_kwarg_names = [
@@ -131,6 +132,10 @@ class MorphoLexicon(object):
             analyses = analyzer.lemmatize(wordform, **morph_kwargs)
         except AttributeError:
             analyses = []
+
+        return_raw_data = morph_kwargs.get('return_raw_data', False)
+        if return_raw_data:
+            analyses, raw_output, raw_errors = analyses
 
         # if analyses:
         #     lookup_lemmas = [l.lemma for l in analyses]
@@ -203,17 +208,23 @@ class MorphoLexicon(object):
         # TODO: may need to do the same for derivation?
         # NOTE: test with things that will never return results just to
         # make sure recursion doesn't get carried away.
+        _ret = None
         if (len(entries_and_tags) == 0) and ('non_compound_only' in kwargs):
             if kwargs['non_compound_only']:
                 new_kwargs = kwargs.copy()
                 new_kwargs.pop('non_compound_only')
-                return self.lookup(wordform, **new_kwargs)
+                _ret = self.lookup(wordform, **new_kwargs)
             else:
-                return []
+                _ret = []
         elif (len(entries_and_tags) == 0) and not analyses:
-            return MorphoLexiconResult([])
+            _ret = MorphoLexiconResult([])
         else:
-            return MorphoLexiconResult(entries_and_tags)
+            _ret = MorphoLexiconResult(entries_and_tags)
+
+        if return_raw_data:
+            return _ret, raw_output, raw_errors
+        else:
+            return _ret
 
     def __init__(self, config):
         self.analyzers = config.morphologies

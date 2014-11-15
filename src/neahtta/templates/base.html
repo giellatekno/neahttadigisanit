@@ -272,6 +272,17 @@
 	    </script>
     {% endif %}
 
+    {% block debug_text %}
+        {% if debug_text %}
+        <div id="debug_text" style="display: none;">{{ debug_text }}</div>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                console.log($('#debug_text').text());
+            });
+        </script>
+        {% endif %}
+    {% endblock %}
+
 </body>
 
 </html>
