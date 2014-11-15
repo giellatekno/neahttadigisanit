@@ -19,8 +19,11 @@ class MorphoLexiconOverrides(object):
         """
         def decorate(wordform, **input_kwargs):
             _from = input_kwargs.get('source_lang')
+            raw_return = input_kwargs.get('return_raw_data', False)
 
             entries_and_tags = function(wordform, **input_kwargs)
+            if raw_return:
+                entries_and_tags, stdout, stderr = entries_and_tags
 
             for f in self.override_functions[_from]:
                 new_res = f(entries_and_tags)
@@ -29,7 +32,10 @@ class MorphoLexiconOverrides(object):
                 else:
                     continue
 
-            return MorphoLexiconResult(entries_and_tags)
+            if raw_return:
+                return MorphoLexiconResult(entries_and_tags), stdout, stderr
+            else:
+                return MorphoLexiconResult(entries_and_tags)
 
         return decorate
 
@@ -134,7 +140,7 @@ class MorphoLexicon(object):
             analyses = []
 
         return_raw_data = morph_kwargs.get('return_raw_data', False)
-        if return_raw_data:
+        if return_raw_data and analyses:
             analyses, raw_output, raw_errors = analyses
 
         # if analyses:
