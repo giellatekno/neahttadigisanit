@@ -5,6 +5,8 @@ ApplicationSettings:
   default_locale: "ru"
   default_pair: ["myv", "rus"]
   mobile_default_pair: false
+  grouped_nav: true
+  new_mobile_nav: true
   # new_style_templates: true
   locales_available:
     - myv
@@ -35,7 +37,7 @@ Morphology:
     inverse_file: [*OPT, '/myv/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
-      compoundBoundary: "+Use/Circ#"
+      compoundBoundary: "+Cmp-"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
