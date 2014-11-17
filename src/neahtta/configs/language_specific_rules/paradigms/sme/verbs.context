@@ -125,7 +125,7 @@
   tag_context: "V+Ind+Prs+ConNeg"
   template: "(eai) {{ word_form }}"
 
-- entry_context: "dat"
+- entry_context: "sii"
   tag_context: "V+Ind+Prt+ConNeg"
   template: "(eai leat) {{ word_form }}"
 
