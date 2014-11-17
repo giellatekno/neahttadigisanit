@@ -62,7 +62,7 @@
 
 {%- endif %}
 
-{%- if pos == 'N' %}
+{%- if pos == 'N' or pos == 'NUM' %}
 
     {% set sg_forms = paradigm|by_tagset_value("number", "Sg")|group_by_tag %}
     {% set pl_forms = paradigm|by_tagset_value("number", "Pl")|group_by_tag %}
@@ -77,11 +77,20 @@
 
     {% set sg_text = "Sg"|tagfilter(_from, _to) %}
     {% set pl_text = "Pl"|tagfilter(_from, _to) %}
-    {% set noun_text = "N"|tagfilter(_from, _to) %}
+
+    {% if pos == 'N' %}
+        {% set pos_text = pos|tagfilter(_from, _to) %}
+    {% elif pos == 'NUM' %}
+        {% set pos_text = 'Num'|tagfilter(_from, _to) %}
+    {% endif %}
 
     {% macro clean_tag(tag_input) %}
-        {{ tag_input|tagfilter(_from, _to)|replace(noun_text, "")|replace(sg_text, "")|replace(pl_text, "") }}
+        {{ tag_input|tagfilter(_from, _to)
+                    |replace(pos_text, "")
+                    |replace(sg_text, "")
+                    |replace(pl_text, "") }}
     {% endmacro %}
+
 {% endif -%}
 
 {%- macro full_paradigm_link() %}
@@ -149,7 +158,7 @@
     </dl>
     {% endif %}
 
-{% elif pos == 'N' %}
+{% elif pos == 'N' or pos == 'NUM' %}
     {% if paradigm_exists %}
     <table class="tableparadigm miniparadigm">
         <tr>

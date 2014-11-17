@@ -4,5 +4,12 @@ morphology:
 --
 {{ lemma }}+Num+Sg+Nom
 {{ lemma }}+Num+Sg+Gen
+{{ lemma }}+Num+Sg+Ill
+{{ lemma }}+Num+Sg+Loc
+{{ lemma }}+Num+Sg+Com
 {{ lemma }}+Num+Pl+Nom
 {{ lemma }}+Num+Pl+Gen
+{{ lemma }}+Num+Pl+Ill
+{{ lemma }}+Num+Pl+Loc
+{{ lemma }}+Num+Pl+Com
+{{ lemma }}+Num+Ess
