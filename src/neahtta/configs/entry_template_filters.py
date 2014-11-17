@@ -1,5 +1,33 @@
-﻿
+﻿from flask import current_app
+from flask import g
+
 def register_template_filters(app):
+
+    # An idea, if specific forms need to be generated
+    # however, for this to be available from context files, some 
+    # changes need to be made: context management should be moved from
+    # config.py to TemplateConfig.
+
+    # @app.template_filter('generate_form')
+    # def generate_form(lemma, tags):
+    #     print lemma, tags
+    #     extra_log_info = {
+    #         'template_path': 'generate_form filter',
+    #     }
+    #     if type(tags) != list:
+    #         tags = [tags]
+
+    #     generate_tags = []
+    #     for t in tags:
+    #         # use morph tagsep function
+    #         generate_tags.append(t.split('+'))
+
+    #     morph = current_app.config.morphologies.get(g._from, False)
+    #     print lemma, generate_tags
+    #     forms = morph.generate(lemma, generate_tags, None,
+    #                            extra_log_info=extra_log_info)
+
+    #     return forms
 
     @app.template_filter('hash_node')
     def hash_node(node):
