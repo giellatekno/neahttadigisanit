@@ -29,6 +29,8 @@ possessive:
 tense:
  - "Prs"
  - "Prt"
+negation:
+ - "ConNeg"
 nonfinite_paradigm:
  - "ConNeg"
  - "PrfPrc"

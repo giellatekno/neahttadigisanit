@@ -62,6 +62,10 @@
   template: "(ii) {{ word_form }}"
 
 - entry_context: "dat"
+  tag_context: "V+Ind+Prt+ConNeg"
+  template: "(ii lea) {{ word_form }}"
+
+- entry_context: "dat"
   tag_context: "V+PrfPrc"
   template: "(lea) {{ word_form }}"
 
@@ -121,6 +125,10 @@
   tag_context: "V+Ind+Prs+ConNeg"
   template: "(eai) {{ word_form }}"
 
+- entry_context: "dat"
+  tag_context: "V+Ind+Prt+ConNeg"
+  template: "(eai leat) {{ word_form }}"
+
 - entry_context: "sii"
   tag_context: "V+PrfPrc"
   template: "(leat) {{ word_form }}"
@@ -138,6 +146,10 @@
 - entry_context: "upers"
   tag_context: "V+Ind+Prs+ConNeg"
   template: "(ii) {{ word_form }}"
+
+- entry_context: "upers"
+  tag_context: "V+Ind+Prt+ConNeg"
+  template: "(ii lea) {{ word_form }}"
 
 - entry_context: "upers"
   tag_context: "V+PrfPrc"

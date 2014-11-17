@@ -21,4 +21,5 @@ morphology:
 {{ lemma }}+V+Ind+Prt+Pl2
 {{ lemma }}+V+Ind+Prt+Pl3
 {{ lemma }}+V+Ind+Prs+ConNeg
+{{ lemma }}+V+Ind+Prt+ConNeg
 {{ lemma }}+V+PrfPrc

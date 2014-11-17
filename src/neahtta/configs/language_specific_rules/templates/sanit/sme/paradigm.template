@@ -19,8 +19,13 @@
 {%- if pos == 'V' %}
     {% set verbs = true %}
 
-    {% set present_verbs = paradigm|by_tagset_value("tense", "Prs")|group_by_tag %}
-    {% set preterite_verbs = paradigm|by_tagset_value("tense", "Prt")|group_by_tag %}
+    {% set present_verbs   = paradigm|by_tagset_value("tense", "Prs")
+                                     |without_tagset("negation")
+                                     |group_by_tag %}
+
+    {% set preterite_verbs = paradigm|by_tagset_value("tense", "Prt")
+                                     |without_tagset("negation")
+                                     |group_by_tag %}
 
     {% set nonfinite_forms = paradigm|by_tagset("nonfinite_paradigm") %}
 
@@ -38,12 +43,23 @@
 
     {% set prs_text = "Prs"|tagfilter(_from, _to) %}
     {% set prt_text = "Prt"|tagfilter(_from, _to) %}
+    {% set conneg_text = "ConNeg"|tagfilter(_from, _to) %}
     {% set verb_text = "V"|tagfilter(_from, _to) %}
     {% set verb_text_ind = "Ind"|tagfilter(_from, _to) %}
 
-    {% macro clean_tag(tag_input) %}
-        {{ tag_input|tagfilter(_from, _to)|replace(prs_text, "")|replace(verb_text, "")|replace(verb_text_ind, "") }}
-    {% endmacro %}
+    {% macro clean_tag(tag_input) -%}
+        {% set filtered_tag = tag_input|tagfilter(_from, _to) %}
+        {% if conneg_text in filtered_tag %}
+            {{ filtered_tag|replace(verb_text, "")
+                           |replace(verb_text_ind, "") }}
+        {% else %}
+            {{ filtered_tag|replace(prs_text, "")
+                           |replace(prt_text, "")
+                           |replace(verb_text, "")
+                           |replace(verb_text_ind, "") }}
+        {% endif %}
+    {%- endmacro %}
+
 {%- endif %}
 
 {%- if pos == 'N' %}
