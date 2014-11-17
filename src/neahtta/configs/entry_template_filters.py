@@ -40,6 +40,14 @@ def register_template_filters(app):
                     fs.append(g)
         return fs
 
+    @app.template_filter('without_tagset')
+    def without_tagset(generated_forms, tagset_name):
+        fs = []
+        for g in generated_forms:
+            if not g.tag[tagset_name]:
+                fs.append(g)
+        return fs
+
     @app.template_filter('xpath')
     def xpath(node_obj, xpath_str):
         if node_obj is not None:
