@@ -4,6 +4,8 @@
 Morphological tools
 """
 
+from cache import cache
+
 class Tagset(object):
     def __init__(self, name, members):
         self.name = name
@@ -455,7 +457,7 @@ class XFST(object):
 
         return cleaned
 
-    # TODO: need to cache eeeeeeeeeeeeverything.
+    @cache.memoize(60 * 5)
     def _exec(self, _input, cmd, timeout=5):
         """ Execute a process, but kill it after 5 seconds. Generally
         we expect small things here, not big things.
