@@ -50,13 +50,10 @@ table.miniparadigm .center {
 
 table.miniparadigm th, td {
     vertical-align: top;
-    width: 110px;
-    text-align: center;
 }
 
 table.miniparadigm {
     table-layout: fixed;
-    width: 250px;
 }
 
 table.miniparadigm .double-width {

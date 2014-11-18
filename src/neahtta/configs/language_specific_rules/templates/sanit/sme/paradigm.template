@@ -45,10 +45,10 @@
 
     {# strip some parts of the tags that we don't need #}
 
-    {% set prs_text = "Prs"|tagfilter(_from, _to) %}
-    {% set prt_text = "Prt"|tagfilter(_from, _to) %}
-    {% set conneg_text = "ConNeg"|tagfilter(_from, _to) %}
-    {% set verb_text = "V"|tagfilter(_from, _to) %}
+    {% set prs_text      = "Prs"|tagfilter(_from, _to) %}
+    {% set prt_text      = "Prt"|tagfilter(_from, _to) %}
+    {% set conneg_text   = "ConNeg"|tagfilter(_from, _to) %}
+    {% set verb_text     = "V"|tagfilter(_from, _to) %}
     {% set verb_text_ind = "Ind"|tagfilter(_from, _to) %}
 
     {% macro clean_tag(tag_input) -%}
@@ -209,21 +209,28 @@
     {%- endfor -%}
 
 
-    {%- for form in numberless_forms -%}
-        <tr{% if loop.first %} class="double-width"{% endif %}>
-
-        {% if form.tag %}
-            <th class="tag" lang="{{ _to }}">{{ clean_tag(form.tag)  }}</th>
-        {% endif %}
-
-        {% if form.form %}
-            <td colspan="2" lang="{{ _from }}" class="center">{{ form.form }}</td>
-        {% else %}
-            <td colspan="2" lang="{{ _from }}">?</td>
-        {% endif %}
-
+    {% if numberless_forms|length > 0 %}
+        <tr class="double-width">
+            <th class="tag">&nbsp;</th>
+            <th colspan="2" lang="{{ _to }}">{{ clean_tag("Ess")  }}</th>
         </tr>
-    {%- endfor -%}
+        
+        {%- for form in numberless_forms -%}
+            <tr>
+
+            <th class="tag" lang="{{ _to }}"></th>
+
+            {% if form.form %}
+                <td colspan="2" lang="{{ _from }}" class="center">{{ form.form }}</td>
+            {% else %}
+                <td colspan="2" lang="{{ _from }}">?</td>
+            {% endif %}
+            </tr>
+
+        {%- endfor -%}
+        </tr>
+    {% endif %}
+
     </table>
     {% endif %}
 
