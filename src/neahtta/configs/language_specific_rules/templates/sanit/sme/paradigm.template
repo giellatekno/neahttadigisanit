@@ -1,12 +1,16 @@
 {# This is the paradigm template for North Sámi.
 
- * Nouns: Display everything in the paradigm in a definition list
+ * Nouns and numerals: Display a table with columns for numerals,
+   non-numbered cases get a double-width row. 
+
  * Verbs: Display a table with one column for present tense, and one for
    preterite tense; then display a separate definition list for
    nonfinite forms.
 
    - These are controlled by tagsets. Including more forms for verbs can
    	 be handled by adding more tags to the file `tagsets/sme.tagset`
+
+ * Adjectives: definition list, but filter out +A tag from row names.
 
  #}
 
