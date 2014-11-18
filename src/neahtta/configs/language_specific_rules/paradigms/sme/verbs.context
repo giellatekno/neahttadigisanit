@@ -63,7 +63,7 @@
 
 - entry_context: "dat"
   tag_context: "V+Ind+Prt+ConNeg"
-  template: "(ii lea) {{ word_form }}"
+  template: "(ikte ii) {{ word_form }}"
 
 - entry_context: "dat"
   tag_context: "V+PrfPrc"
@@ -127,7 +127,7 @@
 
 - entry_context: "sii"
   tag_context: "V+Ind+Prt+ConNeg"
-  template: "(eai leat) {{ word_form }}"
+  template: "(ikte eai) {{ word_form }}"
 
 - entry_context: "sii"
   tag_context: "V+PrfPrc"
@@ -149,7 +149,7 @@
 
 - entry_context: "upers"
   tag_context: "V+Ind+Prt+ConNeg"
-  template: "(ii lea) {{ word_form }}"
+  template: "(ikte ii) {{ word_form }}"
 
 - entry_context: "upers"
   tag_context: "V+PrfPrc"

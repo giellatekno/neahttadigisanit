@@ -44,3 +44,21 @@ table.miniparadigm th.tag {
 table.miniparadigm .center {
     text-align: center;
 }
+
+/*  fixing essive positioning
+ */
+
+table.miniparadigm th, td {
+    vertical-align: top;
+    width: 110px;
+    text-align: center;
+}
+
+table.miniparadigm {
+    table-layout: fixed;
+    width: 250px;
+}
+
+table.miniparadigm .double-width {
+    border-top: 1px dotted #CCC; 
+}

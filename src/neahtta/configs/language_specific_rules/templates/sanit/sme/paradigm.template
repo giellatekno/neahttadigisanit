@@ -93,6 +93,16 @@
 
 {% endif -%}
 
+{%- if pos == 'A' %}
+
+    {% set pos_text = "A"|tagfilter(_from, _to) %}
+    {% macro clean_tag(tag_input) %}
+        {{ tag_input|tagfilter(_from, _to)
+                    |replace(pos_text, "") }}
+    {% endmacro %}
+
+{% endif -%}
+
 {%- macro full_paradigm_link() %}
     <a class="full-paradigm-link"
        style="opacity: .8;"
@@ -196,7 +206,7 @@
 
 
     {%- for form in numberless_forms -%}
-        <tr>
+        <tr class="double-width">
         {% if form.tag %}
             <th class="tag" lang="{{ _to }}">{{ clean_tag(form.tag)  }}</th>
         {% endif %}
@@ -212,6 +222,21 @@
     </table>
     {% endif %}
 
+{% elif pos == 'A' %}
+    <dl class="dl-horizontal miniparadigm">
+        {%- for form in paradigm -%}
+
+            {% if form.tag %}
+                <dt>{{ clean_tag(form.tag)  }}</dt>
+            {% endif %}
+
+            {% if form.form %}
+            <dd lang="{{ _from }}">{{ form.form }}</dd>
+            {% else %}
+                <dd lang="{{ _from }}">?</dd>
+            {% endif %}
+        {%- endfor -%}
+    </dl>
 {% else %}
     <dl class="dl-horizontal miniparadigm">
         {%- for form in paradigm -%}

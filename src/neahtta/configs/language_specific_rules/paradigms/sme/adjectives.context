@@ -4,9 +4,9 @@
   tag_context: "A+Attr"
   template: "{{ word_form }} ({{ context }})"
 
-- entry_context: "olmmoš"
+- entry_context: None
   tag_context: "A+Pl+Nom"
-  template: "(olbmot leat) {{ word_form }}"
+  template: "(dat leat) {{ word_form }}"
 
 - entry_context: None
   tag_context: "A+Pl+Nom"
