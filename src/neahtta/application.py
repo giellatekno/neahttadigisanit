@@ -117,18 +117,9 @@ def create_app():
     app.production = False
     app.register_blueprint(views.blueprint)
 
-    cache_path = os.path.join(os.getcwd(), 'tmp/generator_cache/')
-    cache.init_app(app, {'CACHE_TYPE': 'filesystem', 'CACHE_DIR': cache_path})
-    app.cache = cache
     app.config['cache'] = cache
     app.config['jinja_env'] = app.jinja_env
 
-    app.cache = cache
-
-    with app.app_context():
-        app.cache.clear()
-
-    app.config['cache'] = cache
     app.config['jinja_env'] = app.jinja_env
     app.config = Config('.', defaults=app.config)
     app.config.from_envvar('NDS_CONFIG')
@@ -137,6 +128,17 @@ def create_app():
 
     # Register language specific config information
     app.register_blueprint(configs.blueprint)
+
+    # Prepare cache
+    cache_path = os.path.join(os.getcwd(), 'tmp/generator_cache/%s/' % app.config.short_name)
+    cache.init_app(app, {'CACHE_TYPE': 'filesystem', 'CACHE_DIR': cache_path})
+
+    app.cache = cache
+
+    with app.app_context():
+        app.cache.clear()
+
+    app.config['cache'] = cache
 
     app.morpholexicon = MorphoLexicon(app.config)
 
