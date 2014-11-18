@@ -140,6 +140,9 @@ class MorphoLexicon(object):
             analyses = []
 
         return_raw_data = morph_kwargs.get('return_raw_data', False)
+        raw_output = ''
+        raw_errors = ''
+
         if return_raw_data and analyses:
             analyses, raw_output, raw_errors = analyses
 
