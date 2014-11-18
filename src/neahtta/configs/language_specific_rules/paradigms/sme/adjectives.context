@@ -4,13 +4,13 @@
   tag_context: "A+Attr"
   template: "{{ word_form }} ({{ context }})"
 
-- entry_context: None
+- entry_context: "olmmoš"
   tag_context: "A+Pl+Nom"
-  template: "(dat leat) {{ word_form }}"
+  template: "(olbmot leat) {{ word_form }}"
 
 - entry_context: None
   tag_context: "A+Pl+Nom"
-  template: "(X leat) {{ word_form }}"
+  template: "(dat leat) {{ word_form }}"
 
 - entry_context: None
   tag_context: "A+Comp+Attr"
