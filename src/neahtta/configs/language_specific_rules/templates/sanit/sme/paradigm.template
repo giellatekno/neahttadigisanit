@@ -206,7 +206,8 @@
 
 
     {%- for form in numberless_forms -%}
-        <tr class="double-width">
+        <tr{% if loop.first %} class="double-width"{% endif %}>
+
         {% if form.tag %}
             <th class="tag" lang="{{ _to }}">{{ clean_tag(form.tag)  }}</th>
         {% endif %}
