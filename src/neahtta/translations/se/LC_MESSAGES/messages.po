@@ -732,7 +732,7 @@ msgstr ""
 
 #: templates/config_doc.html:4
 msgid "Neahttadigisánit"
-msgstr "Neahttadigisániid lohkanveahkki"
+msgstr "Neahttadigisániid coahkkal-teavsttas"
 
 #: templates/default_footer.html:9
 msgid ""
@@ -973,7 +973,7 @@ msgstr ""
 #: templates/reader.html:26 templates/reader_update.html:15
 #, python-format
 msgid "Read with %(project_name)s"
-msgstr ""
+msgstr "%(project_name)s geavahussii"
 
 #: templates/reader.html:27
 msgid ""
@@ -1019,7 +1019,7 @@ msgstr "Neahttalohkkiid doarjja"
 
 #: templates/reader.html:41
 msgid "The reader is supported in the following browsers:"
-msgstr "Lohkanveahkki doabimá dáin neahttalohkkiin:"
+msgstr "Coahkkal-teavsttas doaibmá dáin neahttalohkkiin:"
 
 #: templates/reader.html:43
 msgid "Chrome (version 20 and newer)"
@@ -1086,7 +1086,7 @@ msgid ""
 msgstr ""
 "Vuogádat doarju du neahttalohkki, muhto don dárbbašat rievdadit ásahasaid"
 " \n"
-"oažžut Lohkanveahkki doaibmat."
+"oažžut Coahkkal-teavsttas doaibmat."
 
 #: templates/reader_update.html:1
 msgid ""
@@ -1211,8 +1211,8 @@ msgstr "Formáhta ii doaimma. Dušše json ja html doibmet."
 #~ msgstr ""
 
 #~ msgid "Neahttadigisánit Reader"
-#~ msgstr "Neahttadigisániid lohkanveahkki"
+#~ msgstr "Neahttadigisániid Coahkkal-teavsttas"
 
 #~ msgid "Read with Neahttadigisánit"
-#~ msgstr "Neahttadigisániid lohkanveahkki"
+#~ msgstr "Loga Neahttadigisániiguin"
 

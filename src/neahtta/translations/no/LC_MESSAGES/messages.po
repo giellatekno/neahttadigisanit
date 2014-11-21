@@ -771,7 +771,7 @@ msgstr "Grensesnittspråk"
 
 #: templates/config_doc.html:4
 msgid "Neahttadigisánit"
-msgstr "Neahttadigisánit Lesehjelper"
+msgstr "Neahttadigisánit Klikk-i-tekst"
 
 #: templates/default_footer.html:9
 msgid ""
@@ -1019,7 +1019,7 @@ msgstr ""
 #: templates/reader.html:26 templates/reader_update.html:15
 #, python-format
 msgid "Read with %(project_name)s"
-msgstr ""
+msgstr "Les med %(project_name)s"
 
 #: templates/reader.html:27
 msgid ""
@@ -1066,7 +1066,7 @@ msgstr "Nettleserstøtte"
 
 #: templates/reader.html:41
 msgid "The reader is supported in the following browsers:"
-msgstr "Lesehjelper fungerer med følgende nettlesere:"
+msgstr "Klikk-i-tekst fungerer med følgende nettlesere:"
 
 #: templates/reader.html:43
 msgid "Chrome (version 20 and newer)"
@@ -1261,7 +1261,7 @@ msgstr "Ugyldig format. Bare json og html er tillatt."
 #~ msgstr ""
 
 #~ msgid "Neahttadigisánit Reader"
-#~ msgstr "Neahttadigisánit Lesehjelper"
+#~ msgstr "Neahttadigisánit Klikk-i-tekst"
 
 #~ msgid "Read with Neahttadigisánit"
 #~ msgstr "Les med Neahttadigisánit"
