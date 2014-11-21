@@ -1041,7 +1041,7 @@ msgstr ""
 
 #: templates/reader.html:32
 msgid "Installing on a website"
-msgstr ""
+msgstr "Installering på en internettside"
 
 #: templates/reader.html:34
 msgid ""
@@ -1049,14 +1049,16 @@ msgid ""
 "                so that users will have access to dictionaries without "
 "the\n"
 "                bookmarklet."
-msgstr ""
+msgstr "Det er også mulig å installere klikk-i-tekst på en internettside, "
+"slik at brukere vil kunne bruke ordboka uten bruk av bokmerke."
 
 #: templates/reader.html:39
 msgid ""
 "To do so, <a "
 "href=\"http://giellatekno.uit.no/doc/dicts/nds/AddingNDSPluginToOtherSites.html\">follow"
 " our documentation</a>."
-msgstr ""
+msgstr "Følg vår <a "
+"href=\"http://giellatekno.uit.no/doc/dicts/nds/AddingNDSPluginToOtherSites.html\">dokumentasjon</a>."
 
 #: templates/reader.html:40
 msgid "Browser support"

@@ -993,7 +993,7 @@ msgstr "Sáhtát lonuhit sátnegirjji <em>Á</em>-fálus."
 
 #: templates/reader.html:32
 msgid "Installing on a website"
-msgstr ""
+msgstr "Neahttasiidui sajáiduhttin"
 
 #: templates/reader.html:34
 msgid ""
@@ -1001,7 +1001,8 @@ msgid ""
 "                so that users will have access to dictionaries without "
 "the\n"
 "                bookmarklet."
-msgstr ""
+msgstr "Lea maiddái vejolaš sajáiduhttit coahkkal-teavsttas neahttasiidui, "
+"vai geavaheaddjit sáhttet geavahit sátnegirjji girjemearkka haga."
 
 #: templates/reader.html:39
 msgid ""
@@ -1009,6 +1010,8 @@ msgid ""
 "href=\"http://giellatekno.uit.no/doc/dicts/nds/AddingNDSPluginToOtherSites.html\">follow"
 " our documentation</a>."
 msgstr ""
+"Čuovo <a "
+"href=\"http://giellatekno.uit.no/doc/dicts/nds/AddingNDSPluginToOtherSites.html\">bagadeami</a>."
 
 #: templates/reader.html:40
 msgid "Browser support"
