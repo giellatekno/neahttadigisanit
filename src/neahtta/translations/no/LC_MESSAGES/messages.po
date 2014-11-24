@@ -818,10 +818,10 @@ msgstr ""
 #: templates/index.html:174
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
-"Søk etter et ord, evt. en bøyd form, som da blir både analysert og "
-"oversatt. Ved å klikke på ordet, får du informasjon om bøyning. Du kan "
-"også søke ordformen i tekster, eller alle bøyningsformer ved å "
-"brukelinken i høyre marg."
+"Søk etter et ord, evt. en bøyd form. Ved å klikke på ordet "
+"får du en liste med bøyningsformer. Du kan "
+"også søke ordet i tekster, eller alle bøyningsformer ved å "
+"bruke linken som dukker opp i høyre marg."
 
 #: templates/index.html:178
 msgid ""

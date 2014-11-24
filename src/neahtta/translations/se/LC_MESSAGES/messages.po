@@ -779,10 +779,10 @@ msgstr ""
 #: templates/index.html:174
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
-"Oza sáni, vej. sojahuvvon sátnehámi, mii dalle sihke analyserejuvvo ja "
-"jorgaluvvo. Jus coahkkalat sáni, de oaččut eanet dieđuid sáni sojaheames."
-" Don sáhtát ohcat sátnehámi teavsttain, dahje buot sojahanhámiid liŋkkain"
-" olgeš ravddas."
+"Oza sáni, vej. sojahuvvon hámi. Jus coahkkalat sáni, de oaččut " 
+"listtu mas leat sojaheamit."
+" Don sáhtát ohcat sáni teavsttain, dahje buot sojahanhámiid liŋkkain"
+" mii dihtto olgeš ravddas."
 
 #: templates/index.html:178
 msgid ""

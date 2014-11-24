@@ -756,6 +756,10 @@ msgstr ""
 #: templates/index.html:174
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
+"Search for a word, also an inflected form. By clicking the word "
+"you get a list of inflected forms. You can search for the word "
+"in texts, or for all inflected forms by clicking the link, "
+"which pop up to the right."
 
 #: templates/index.html:178
 msgid ""
