@@ -214,7 +214,7 @@ msgstr ""
 #: templates/base.html:169 templates/mobile_nav_push_menu.html:14
 #: templates/navigation_full.html:10 templates/navigation_full.itwewina.html:11
 msgid "About"
-msgstr "Min birra"
+msgstr "Sátnegirjji birra"
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13292
 #: static/js/neahttadigisanit.jquery.js:13292
