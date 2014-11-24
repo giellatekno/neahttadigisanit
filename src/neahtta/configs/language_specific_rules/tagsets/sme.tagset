@@ -29,6 +29,11 @@ possessive:
 tense:
  - "Prs"
  - "Prt"
+supinum:
+ - "Sup"
+negative:
+ - "Neg"
+ - "ConNeg"
 negation:
  - "ConNeg"
 nonfinite_paradigm:
