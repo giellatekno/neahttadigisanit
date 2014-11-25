@@ -3,7 +3,8 @@
  * Nouns: Display everything in the paradigm in a definition list
  * Verbs: Display a table with one column for present tense, and one for
    preterite tense; then display a separate definition list for
-   nonfinite forms.
+   nonfinite forms. For the negative verb and supinum negative verb, we
+   also add a title on the table.
 
    - These are controlled by tagsets. Including more forms for verbs can
    	 be handled by adding more tags to the file `tagsets/sme.tagset`
@@ -42,13 +43,13 @@
 
     {# strip some parts of the tags that we don't need #}
 
-    {% set prs_text = "Prs"|tagfilter(_from, _to) %}
-    {% set prt_text = "Prt"|tagfilter(_from, _to) %}
-    {% set conneg_text = "ConNeg"|tagfilter(_from, _to) %}
-    {% set verb_text = "V"|tagfilter(_from, _to) %}
+    {% set prs_text      = "Prs"|tagfilter(_from, _to) %}
+    {% set prt_text      = "Prt"|tagfilter(_from, _to) %}
+    {% set conneg_text   = "ConNeg"|tagfilter(_from, _to) %}
+    {% set verb_text     = "V"|tagfilter(_from, _to) %}
     {% set verb_text_ind = "Ind"|tagfilter(_from, _to) %}
-    {% set sup_text = "Sup"|tagfilter(_from, _to) %}
-    {% set neg_text = "Neg"|tagfilter(_from, _to) %}
+    {% set sup_text      = "Sup"|tagfilter(_from, _to) %}
+    {% set neg_text      = "Neg"|tagfilter(_from, _to) %}
 
     {% set nonfinite_header = False %}
     {% set is_supinum = nonfinite_forms|by_tagset("supinum")|length > 0 %}
@@ -63,7 +64,6 @@
     {% if is_negative and not is_supinum %}
         {% set nonfinite_header = neg_text %}
     {% endif %}
-
 
     {% macro clean_tag(tag_input) -%}
         {% set filtered_tag = tag_input|tagfilter(_from, _to) %}
