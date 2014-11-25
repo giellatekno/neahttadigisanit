@@ -29,13 +29,29 @@ possessive:
 tense:
  - "Prs"
  - "Prt"
+# Selecting Negative and Supinum forms in paradigm files
 supinum:
  - "Sup"
 negative:
  - "Neg"
- - "ConNeg"
 negation:
  - "ConNeg"
+# Tags for displaying only one tense, e.g. in negative and supinum forms
+single_tense_display:
+ - "Sup"
+first_persons:
+ - "Sg1"
+ - "Du1"
+ - "Pl1"
+second_persons:
+ - "Sg2"
+ - "Du2"
+ - "Pl2"
+third_persons:
+ - "Sg3"
+ - "Du3"
+ - "Pl3"
+# Tags for display after the tensed paradigm
 nonfinite_paradigm:
  - "ConNeg"
  - "PrfPrc"
