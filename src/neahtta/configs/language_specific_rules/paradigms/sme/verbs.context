@@ -234,4 +234,3 @@
 - entry_context: None
   tag_context: "IV+Neg+Sup+Pl3"
   template: "{{ word_form }} (sii)"
-
