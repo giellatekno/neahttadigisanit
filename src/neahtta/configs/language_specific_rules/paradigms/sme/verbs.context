@@ -194,3 +194,44 @@
   tag_context: "V+Neg+Ind+Pl3"
   template: "(sii) {{ word_form }}"
 
+# negative supinum
+
+# NB: the tags are like this with no POS, because the miniparadigm has it this
+# way: IV_Neg_Sup_Sg1
+
+- entry_context: None
+  tag_context: "IV+Neg+Sup+Sg1"
+  template: "{{ word_form }} (mun)"
+
+- entry_context: None
+  tag_context: "IV+Neg+Sup+Sg2"
+  template: "{{ word_form }} (don)"
+
+- entry_context: None
+  tag_context: "IV+Neg+Sup+Sg3"
+  template: "{{ word_form }} (son)"
+
+- entry_context: None
+  tag_context: "IV+Neg+Sup+Du1"
+  template: "{{ word_form }} (moai)"
+
+- entry_context: None
+  tag_context: "IV+Neg+Sup+Du2"
+  template: "{{ word_form }} (doai)"
+
+- entry_context: None
+  tag_context: "IV+Neg+Sup+Du3"
+  template: "{{ word_form }} (soai)"
+
+- entry_context: None
+  tag_context: "IV+Neg+Sup+Pl1"
+  template: "{{ word_form }} (mii)"
+
+- entry_context: None
+  tag_context: "IV+Neg+Sup+Pl2"
+  template: "{{ word_form }} (dii)"
+
+- entry_context: None
+  tag_context: "IV+Neg+Sup+Pl3"
+  template: "{{ word_form }} (sii)"
+
