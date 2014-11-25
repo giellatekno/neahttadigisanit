@@ -294,14 +294,21 @@ class GenerationOverrides(object):
         function in the registry.
         """
         def decorate(*input_args, **input_kwargs):
-            generated_forms = function(*input_args, **input_kwargs)
+            raw = input_kwargs.get('return_raw_data', False)
+            if raw:
+                generated_forms, stdout, stderr = function(*input_args, **input_kwargs)
+            else:
+                generated_forms = function(*input_args, **input_kwargs)
             for f in self.postgeneration_processors[lang_code]:
                 generated_forms = f(generated_forms, *input_args, **input_kwargs)
             for f in self.postgeneration_processors['all']:
                 input_kwargs['language'] = lang_code
                 if f not in self.postgeneration_processors[lang_code]:
                     generated_forms = f(generated_forms, *input_args, **input_kwargs)
-            return generated_forms
+            if raw:
+                return generated_forms, stdout, stderr
+            else:
+                return generated_forms
         return decorate
 
     def process_analysis_output(self, lang_code, function):
@@ -542,7 +549,7 @@ class XFST(object):
         output, err = self._exec(lookup_string, cmd=self.icmd)
         return self.clean(output)
 
-    def inverselookup(self, lemma, tags):
+    def inverselookup(self, lemma, tags, raw=False):
         import sys
         if not self.icmd:
             print >> sys.stderr, " * Inverse lookups not available."
@@ -553,7 +560,10 @@ class XFST(object):
             lookups_list.append(self.formatTag([lemma] + tag, inverse=True))
         lookup_string = '\n'.join(lookups_list)
         output, err = self._exec(lookup_string, cmd=self.icmd)
-        return self.clean(output)
+        if raw:
+            return self.clean(output), output, err
+        else:
+            return self.clean(output)
 
     def tagUnknown(self, analysis):
         if '+?' in analysis:
@@ -665,8 +675,14 @@ class Morphology(object):
                 lems = []
             return lems
 
-        generated = sum(map(make_lemma, self.generate(*args, **kwargs)), [])
-        return generated
+        generate_out, stdin, stderr = self.generate(*args, **kwargs)
+        generated = sum(map(make_lemma, generate_out), [])
+
+        return_raw_data = kwargs.get('return_raw_data', False)
+        if return_raw_data:
+            return generated, stdin, stderr
+        else:
+            return generated
 
     def generate(self, lemma, tagsets, node=None, pregenerated=None, **kwargs):
         """ Run the lookup command, parse output into
@@ -681,20 +697,42 @@ class Morphology(object):
             TODO: cache pregenerated forms, return them.
 
         """
+        return_raw_data = kwargs.get('return_raw_data', False)
+
         if len(node) > 0:
             key = self.generate_cache_key(lemma, tagsets, node)
         else:
             key = self.generate_cache_key(lemma, tagsets)
 
+        stdout_key = key + 'stdout'
+        stderr_key = key + 'stderr'
+
         _is_cached = self.cache.get(key)
         if _is_cached:
-            return _is_cached
+            if return_raw_data:
+                cache_stdout = self.cache.get(stdout_key)
+                cache_stderr = self.cache.get(stdout_key)
+                if cache_stdout is None: cache_stdout = 'no cache data'
+                if cache_stderr is None: cache_stderr = 'no cache data'
+                return _is_cached, 'stdout cached: ' + cache_stdout, 'stderr cached: ' + cache_stderr
+            else:
+                return _is_cached
 
+        # TODO: cache
         if pregenerated:
             _is_cached = self.cache.set(key, pregenerated)
-            return pregenerated
+            if return_raw_data:
+                return pregenerated, 'pregenerated', ''
+            else:
+                return pregenerated
 
-        res = self.tool.inverselookup(lemma, tagsets)
+        if return_raw_data:
+            res, raw_output, raw_errors = self.tool.inverselookup(lemma, tagsets, raw=True)
+        else:
+            res = self.tool.inverselookup(lemma, tagsets)
+            raw_output = ''
+            raw_errors = ''
+
         reformatted = []
         for tag, forms in res:
             unknown = False
@@ -743,7 +781,13 @@ class Morphology(object):
             self.logger.error(logg.strip())
 
         _is_cached = self.cache.set(key, reformatted)
-        return reformatted
+        _is_cached_out = self.cache.set(stdout_key, raw_output)
+        _is_cached_ert = self.cache.set(stderr_key, raw_errors)
+
+        if return_raw_data:
+            return reformatted, raw_output, raw_errors
+        else:
+            return reformatted
 
     # TODO: option, or separate function to also return discarded to
     # find out what's been removed to hide more_info link 

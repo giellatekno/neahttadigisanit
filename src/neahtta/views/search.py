@@ -206,13 +206,15 @@ class SearchResult(object):
                 extra_log_info = {
                     'template_path': paradigm_template,
                 }
-                _generated = morph.generate(lemma, form_tags, node, extra_log_info=extra_log_info)
+                _generated, raw_out, raw_in = morph.generate(lemma, form_tags, node, extra_log_info=extra_log_info, return_raw_data=True)
             else:
                 extra_log_info = {
                     'pregenerated': 'true',
                 }
                 # For pregenerated things
                 _generated = morph.generate(lemma, [], node)
+                raw_out = 'pregenerated'
+                raw_in = '...'
 
             r['paradigm'] = _generated
             generated_and_formatted.append(r)
@@ -239,10 +241,12 @@ class SearchResult(object):
             }
             form_tags = [_t.split('+')[1::] for _t in paradigm_from_file.splitlines()]
             # TODO: bool not iterable
-            _generated = morph.generate_to_objs(lemma, form_tags, node, extra_log_info=extra_log_info)
+            _generated, _stdout, _stderr = morph.generate_to_objs(lemma, form_tags, node, extra_log_info=extra_log_info, return_raw_data=True)
         else:
             # For pregenerated things
-            _generated = morph.generate_to_objs(lemma, [], node)
+            _generated, _stdout, _stderr = morph.generate_to_objs(lemma, [], node, return_raw_data=True)
+
+        self.debug_text += '\n\n' + _stdout + '\n\n'
 
         return _generated
 
