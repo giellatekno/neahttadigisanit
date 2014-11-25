@@ -155,3 +155,42 @@
   tag_context: "V+PrfPrc"
   template: "(lea) {{ word_form }}"
 
+
+# negation
+
+- entry_context: "mun"
+  tag_context: "V+Neg+Ind+Sg1"
+  template: "(mun) {{ word_form }}"
+
+- entry_context: "mun"
+  tag_context: "V+Neg+Ind+Sg2"
+  template: "(don) {{ word_form }}"
+
+- entry_context: "mun"
+  tag_context: "V+Neg+Ind+Sg3"
+  template: "(son) {{ word_form }}"
+
+- entry_context: "mun"
+  tag_context: "V+Neg+Ind+Du1"
+  template: "(moai) {{ word_form }}"
+
+- entry_context: "mun"
+  tag_context: "V+Neg+Ind+Du2"
+  template: "(doai) {{ word_form }}"
+
+- entry_context: "mun"
+  tag_context: "V+Neg+Ind+Du3"
+  template: "(soai) {{ word_form }}"
+
+- entry_context: "mun"
+  tag_context: "V+Neg+Ind+Pl1"
+  template: "(mii) {{ word_form }}"
+
+- entry_context: "mun"
+  tag_context: "V+Neg+Ind+Pl2"
+  template: "(dii) {{ word_form }}"
+
+- entry_context: "mun"
+  tag_context: "V+Neg+Ind+Pl3"
+  template: "(sii) {{ word_form }}"
+
