@@ -97,7 +97,7 @@ msgstr "Inkeroinen"
 
 #: configs/language_names.py:46
 msgid "Veps"
-msgstr ""
+msgstr "Vepsä"
 
 #: configs/language_names.py:47
 msgid "Võro"
@@ -105,7 +105,7 @@ msgstr ""
 
 #: configs/language_names.py:48
 msgid "Votic"
-msgstr ""
+msgstr "Vatja"
 
 #: configs/language_names.py:51
 msgid "Erzya Mordvin"
@@ -113,7 +113,7 @@ msgstr "Ersä"
 
 #: configs/language_names.py:52 templates/more_dictionaries.html:40
 msgid "Moksha"
-msgstr "Moksha"
+msgstr "Mokša"
 
 #: configs/language_names.py:53 configs/language_names.py:92
 msgid "French"
@@ -170,7 +170,7 @@ msgstr "Haida"
 
 #: configs/sample.config.yaml.in:127
 msgid "Sosiála media"
-msgstr ""
+msgstr "Sosiaalinen media"
 
 #: configs/sample.config.yaml.in:128 configs/sanit.config.yaml.in:128
 msgid "(incl. <em>acdnstz</em>)"
@@ -178,7 +178,7 @@ msgstr "(myös <em>acdnstz</em>)"
 
 #: configs/sanit.config.yaml.in:127
 msgid "Social media"
-msgstr "Sosiaalimedia"
+msgstr "Sosiaalinen media"
 
 #: configs/sanit.config.yaml.in:154
 msgid "Standárda (<em>áčđŋšŧž</em>)"
@@ -260,9 +260,9 @@ msgid ""
 " (⌥) key, and doubleclick on a word. The service will contact the "
 "dictionary, and return a word after a short pause."
 msgstr ""
-"Tarkistaaksesi sana, pidä <em>Alt</em> tai \"\n"
-"\"<em>Option</em> (⌥), ja kaksoisklikkaa sitä. Ohjelma ottaa \"\n"
-"\"yhteyttä sanakirjaan, ja antaa käännöksen pienen viiven jälkeen."
+"Tarkistaaksesi sana, pidä <em>Alt</em> tai <em>Option</em> (⌥), "
+"ja kaksoisklikkaa sitä. Ohjelma ottaa "
+"yhteyttä sanakirjaan, ja antaa käännöksen pienen viiven jälkeen."
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13292
 #: static/js/neahttadigisanit.jquery.js:13292
@@ -273,8 +273,8 @@ msgid ""
 "what page didn't work, or what you did when you discovered the problem."
 msgstr ""
 "Jos löydät virheen, tai jos kirjainmerkki ei toimi tietyllä sivulla, <a "
-"href=\"mailto:giellatekno@hum.uit.no\">ota yhteyttä meihin</a>. Kerro "
-"mikä sivu ei toiminnut, tai mitä teit kun törmäsit ongelmaan."
+"href=\"mailto:giellatekno@uit.no\">ota yhteyttä meihin</a>. Kerro "
+"mikä sivu ei toiminut, tai mitä teit kun törmäsit ongelmaan."
 
 #: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:13360
 #: static/js/neahttadigisanit.jquery.js:13360
@@ -317,25 +317,25 @@ msgstr "Merkitystä ei löydy"
 #: static/js/neahttadigisanit.jquery.js:13292
 #: static/js/neahttadigisanit.min.js:2984
 msgid "Help"
-msgstr ""
+msgstr "Apu"
 
 #: static/js/bookmarklet.min.js:13292
 #: static/js/neahttadigisanit.jquery.js:13292
 #: static/js/neahttadigisanit.min.js:2984
 msgid "This tool was made by Giellatekno at UiT: The Arctic University of Norway."
-msgstr ""
+msgstr "Tämän ohjelman teki UiT Norjan arktisen yliopiston Giellatekno-tutkimusryhmä"
 
 #: static/js/bookmarklet.min.js:13292
 #: static/js/neahttadigisanit.jquery.js:13292
 #: static/js/neahttadigisanit.min.js:2984
 msgid "Read more"
-msgstr ""
+msgstr "Lue lisää"
 
 #: static/js/bookmarklet.min.js:13292
 #: static/js/neahttadigisanit.jquery.js:13292
 #: static/js/neahttadigisanit.min.js:2984
 msgid "More tools"
-msgstr ""
+msgstr "Lisää työkaluja"
 
 #: static/js/jquery-ui.min.js:8
 msgid "'"
@@ -347,7 +347,7 @@ msgid ""
 "receiving this in error, please contact us."
 msgstr ""
 "Hupsis! Emme löytäneet etsimäsi sivua. Ota yhteyttä meihin, jos luulet, "
-"että tämä virheilmoitus itse on virheelinen"
+"että tämä virheilmoitus itse on virheellinen"
 
 #: templates/404.html:51
 msgid ""
@@ -396,6 +396,9 @@ msgid ""
 "                    you'll find free dictionaries, and other analytical\n"
 "                    tools."
 msgstr ""
+"Kaikki (tai melkein kaikki) mitä koskee vähemmistökieliä "
+"pitäisi olla vapaasti saatavana. Tästä löydät vapaita ja ilmaisia "
+"sanakirjoja ja muita analyysiohjelmia."
 
 #: templates/about.baakoeh.html:27 templates/about.guusaaw.html:27
 #: templates/about.itwewina.html:27 templates/about.muter.html:27
@@ -419,6 +422,14 @@ msgid ""
 "                website for information on how to get access to lexicon\n"
 "                files, and morphological and syntactic analyzers."
 msgstr ""
+"Kaikki, mitä tästä löytyy, perustuu avoimen lähdekoodin avulla tehtyihin "
+"työkaluihin. Onko sinulla idea tai tutkimusprojekti, joka tarvitsee "
+"lingvistisiä resursseja? Käy tutustumassa <a class=\"blue\"\n"
+"                    href=\"http://giellatekno.uit.no/\">Giellateknon</a>'s"
+"\n"
+"                nettisivulla tutkimassa miten pääset käyttämään leksikkotiedostoja, "
+"morfologisia ja syntaktisia analyysiohjelmia."
+
 
 #: templates/about.baakoeh.html:36 templates/about.guusaaw.html:36
 #: templates/about.itwewina.html:36 templates/about.muter.html:36
@@ -550,7 +561,7 @@ msgid ""
 "                resources."
 msgstr ""
 "Tarvitsetko lisää sanakirjoja? <a href=\"http://dicts.uit.no/\">tästä "
-"löydät sananakirjaluettelomme</a>, ja muitakin ressurseja."
+"löydät sanakirjaluettelomme</a>, ja muitakin resursseja."
 
 #: templates/about.itwewina.html:57
 msgid "crk ↔ eng"
@@ -697,7 +708,7 @@ msgstr "Klikkaa-tekstissä"
 #: templates/base.html:173 templates/mobile_nav_push_menu.html:18
 #: templates/navigation_full.itwewina.html:14
 msgid "Sources"
-msgstr ""
+msgstr "Lähteet"
 
 #: templates/base.html:179 templates/mobile_nav_push_menu.html:22
 #: templates/mobile_nav_push_menu.html:25
@@ -754,6 +765,10 @@ msgid ""
 "                            will be accepted as áčđŋšŧž in addition to "
 "their usual values."
 msgstr ""
+"Sinä valitsit #SoMe, sosiaalisen median lukemista varten. Se tarkoittaa, "
+"että kirjaimet acdnstz\n"
+"hyväksytään myös áčđŋšŧž-kirjainten tilalle"
+
 
 #: templates/index_new_style.html:23 templates/macros.html:5
 #: templates/macros.html:13
@@ -820,7 +835,7 @@ msgstr "Kirjoitettu variantti"
 #: templates/mobile_nav_push_menu.html:53
 #: templates/mobile_nav_push_menu.html:60
 msgid "Back"
-msgstr ""
+msgstr "Takaisin"
 
 #: templates/more_dictionaries.html:4
 msgid "More dictionaris"
@@ -831,6 +846,7 @@ msgid ""
 "Neahttadigisánit is available for the following\n"
 "                language groups."
 msgstr ""
+"Neahttadigisánit on saatavana seuraaville kieliryhmille."
 
 #: templates/more_dictionaries.html:32
 msgid ""
@@ -934,7 +950,7 @@ msgstr ""
 #: templates/reader.html:26 templates/reader_update.html:15
 #, python-format
 msgid "Read with %(project_name)s"
-msgstr ""
+msgstr "Read %(project_name)n avulla"
 
 #: templates/reader.html:27
 msgid ""
@@ -943,14 +959,17 @@ msgid ""
 "                website and return dictionary entries after a brief\n"
 "                pause."
 msgstr ""
+"Etsiäksesi sanaa, pidä Alt tai Optio (⌥)-näppäintä alhaalla, ja "
+"kaksoisklikkaa sanaa. Ohjelma yhistyy tähän sivuun, ja hakee sanakirja-artikkelin "
+"pienen viivästyksen jälkeen."
 
 #: templates/reader.html:31
 msgid "To change the dictionary, click the menu icon."
-msgstr ""
+msgstr "Vaihtaaksesi sanakirjaa, klikkaa valikon ikonia."
 
 #: templates/reader.html:32
 msgid "Installing on a website"
-msgstr ""
+msgstr "Asentaminen nettisivulla"
 
 #: templates/reader.html:34
 msgid ""
@@ -959,6 +978,9 @@ msgid ""
 "the\n"
 "                bookmarklet."
 msgstr ""
+"On myös mahdollista asentaa lukijalisäyksen nettisivulla, "
+"niin, että lukijat pääsevät käyttämään sanakirjaa ilman kirjamerkin "
+"asentamista."
 
 #: templates/reader.html:39
 msgid ""
@@ -966,6 +988,9 @@ msgid ""
 "href=\"http://giellatekno.uit.no/doc/dicts/nds/AddingNDSPluginToOtherSites.html\">follow"
 " our documentation</a>."
 msgstr ""
+"Saat palvelun seuraamalla, <a "
+"href=\"http://giellatekno.uit.no/doc/dicts/nds/AddingNDSPluginToOtherSites.html\">meidän"
+" dokumentaatiota</a>."
 
 #: templates/reader.html:40
 msgid "Browser support"
@@ -1047,10 +1072,13 @@ msgid ""
 "    service will automatically be installed, and you will see a\n"
 "    menu icon on the left-hand side of the page."
 msgstr ""
+"Vedä ja pudota seuraava linkki Kirjamerkkipalkkiin, ja klikkaa sitä, "
+"kun olet sivulla, jota haluat lukea sanakirjan avulla. Palvelu asennetaan "
+"automaattisesti, ja tulet näkemään valikko-ikoonin (Á) sivun vasemmalla puolella."
 
 #: templates/sources.itwewina.html:6
 msgid "Sources and References"
-msgstr ""
+msgstr "Lähteet ja viitteet"
 
 #: templates/word_detail.html:39 templates/word_detail_new_style.html:40
 msgid "is a possible form of ... "
@@ -1058,11 +1086,11 @@ msgstr " on mahdollinen muoto sanasta ..."
 
 #: templates/word_detail.html:190 templates/word_detail_new_style.html:140
 msgid "More information about this word"
-msgstr ""
+msgstr "Lisää tietoa tästä sanasta"
 
 #: views/search.py:949
 msgid "Invalid format. Only json and html allowed."
-msgstr ""
+msgstr "Kelvoton formaatti. Vain json ja html ovat sallittuja."
 
 #~ msgid "isCharacterDataNode"
 #~ msgstr ""
