@@ -1001,7 +1001,7 @@ msgid ""
 "                so that users will have access to dictionaries without "
 "the\n"
 "                bookmarklet."
-msgstr "Lea maiddái vejolaš sajáiduhttit coahkkal-teavsttas neahttasiidui, "
+msgstr "Lea maiddái vejolaš sajáiduhttit coahkkal-teavsttas neahttasiidui, \n"
 "vai geavaheaddjit sáhttet geavahit sátnegirjji girjemearkka haga."
 
 #: templates/reader.html:39
