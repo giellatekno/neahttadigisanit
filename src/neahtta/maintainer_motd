@@ -1,10 +1,6 @@
 ﻿    ###
     ###  Neahttadigisánit maintainer tasks
     ###
-    
-    Svn up relevant configuration files and translation files
-    
-        $ fab local update_configs
 
     Updating dictionaries & FSTs
     
@@ -16,7 +12,7 @@
     
     Updating translation strings
     
-        $ fab local update_strings
+        $ fab local PROJECT compile_strings
     
     Testing configuration (run before restart, always)
 
