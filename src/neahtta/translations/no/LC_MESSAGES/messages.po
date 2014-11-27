@@ -819,7 +819,7 @@ msgstr ""
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
 "Søk etter et ord, evt. en bøyd form. Ved å klikke på ordet "
-"får du en liste med bøyningsformer. Du kan "
+"får du en liste med bøyningsformer. <br /><br /> Du kan "
 "også søke ordet i tekster, eller alle bøyningsformer ved å "
 "bruke linken som dukker opp i høyre marg."
 
