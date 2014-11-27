@@ -780,7 +780,7 @@ msgstr ""
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
 "Oza sáni, vej. sojahuvvon hámi. Jus coahkkalat sáni, de oaččut " 
-"listtu mas leat sojaheamit. <br /><br /> Don sáhtát ohcat sáni teavsttain, dahje buot sojahanhámiid liŋkkain"
+"listtu mas leat sojaheamit. <br /><br /> Don sáhtát sáni "Oza teavsttain", dahje buot sojahanhámiid ohcat liŋkkain"
 " mii dihtto olgeš ravddas."
 
 #: templates/index.html:178
