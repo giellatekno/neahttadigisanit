@@ -102,7 +102,7 @@
             </div>
 
             {# TODO: deep link needs to go to specific lexeme when it comes from the front page #}
-            {% if word_searches %}
+            {% if analyses|length > 0 or analyses_without_lex|length > 0 %}
                 <div class="results">
                     {% for tpl in new_templates %}
                         {{ tpl|safe }}
@@ -110,7 +110,15 @@
                     {% if leftover_analyses_template %}
                         <div class="row-fluid entry_row">
                             <div class="span8 lexeme">
+                                {% if new_templates|length == 0 %}
+                                    <div class="alert alert-warning">
+                                        <p>
+                                            <span lang="{{ current_locale }}">{% trans input=user_input %}Word <span lang="{{ _from }}">{{ input }}</span> not found.{% endtrans %}</span>
+                                        </p>
+                                    </div>
+                                {% else %}
                                 &nbsp;
+                                {% endif %}
                             </div>
                             <div class="span4 hidden-phone">{{- leftover_analyses_template|safe -}}</div>
                         </div>
