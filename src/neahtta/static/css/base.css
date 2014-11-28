@@ -401,8 +401,14 @@ div.default_flag {
     display: none;
 }
 
+#language_grouped_nav .inactive-placeholder {
+    position: relative;
+    left: -.5em;
+    margin-left: -1.25em;
+}
+
 #language_grouped_nav h5.inactive-group-title a {
-    color: #999;
+    color: #777;
 }
 
 #language_grouped_nav h5.active-group-title a {

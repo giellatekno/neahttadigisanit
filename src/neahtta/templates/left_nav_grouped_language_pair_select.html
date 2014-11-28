@@ -76,7 +76,7 @@
         {% else %}
             {% set active_group = "inactive-group" %}
         {% endif %}
-        <h5 class="{{ active_group }}-title"><a href="#" data-iso-group="{{ iso_group }}" class="expander" lang="{{ iso_group }}">{{ iso_group|iso_to_language_own_name }}</a> <span class="inactive-placeholder label label-grey">+</span></h5>
+        <h5 class="{{ active_group }}-title"><span class="inactive-placeholder label label-grey">+</span><a href="#" data-iso-group="{{ iso_group }}" class="expander" lang="{{ iso_group }}">{{ iso_group|iso_to_language_own_name }}</a> </h5>
         <div class="expander-group row-fluid {{ active_group }}" data-iso-expander="{{ iso_group }}">
         {{ render_pair_blocks(grouped_items) }}
         </div>
