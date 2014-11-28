@@ -102,7 +102,6 @@
             </div>
 
             {# TODO: deep link needs to go to specific lexeme when it comes from the front page #}
-            {% if analyses and analyses_without_lex %}
             {% if analyses|length > 0 or analyses_without_lex|length > 0 %}
                 <div class="results">
                     {% for tpl in new_templates %}
@@ -134,7 +133,6 @@
                     </p>
                 </div>
                 {% endif %}
-            {% endif %}
             {% endif %}
             {% if show_info %}
                 {{ search_info_template|safe }}
