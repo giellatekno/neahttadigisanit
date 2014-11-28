@@ -1,4 +1,4 @@
-﻿{% extends 'base.html' %}
+{% extends 'base.html' %}
 
 {% block extra_js %}
     {# https://gist.github.com/1866577 #}
@@ -102,6 +102,7 @@
             </div>
 
             {# TODO: deep link needs to go to specific lexeme when it comes from the front page #}
+            {% if analyses and analyses_without_lex %}
             {% if analyses|length > 0 or analyses_without_lex|length > 0 %}
                 <div class="results">
                     {% for tpl in new_templates %}
@@ -117,7 +118,7 @@
                                         </p>
                                     </div>
                                 {% else %}
-                                &nbsp;
+                                    &nbsp;
                                 {% endif %}
                             </div>
                             <div class="span4 hidden-phone">{{- leftover_analyses_template|safe -}}</div>
@@ -133,6 +134,7 @@
                     </p>
                 </div>
                 {% endif %}
+            {% endif %}
             {% endif %}
             {% if show_info %}
                 {{ search_info_template|safe }}
@@ -154,4 +156,3 @@
 </div>
 
 {% endblock %}
-
