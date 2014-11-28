@@ -5,6 +5,7 @@ ApplicationSettings:
   default_locale: "sms"
   default_pair: ["sms", "fin"]
   mobile_default_pair: false
+  new_style_templates: true
   locales_available:
     - "sms"
     - "fi"

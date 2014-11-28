@@ -7,6 +7,7 @@ ApplicationSettings:
   mobile_default_pair: false
   grouped_nav: true
   new_mobile_nav: true
+  new_style_templates: true
   locales_available:
     - kv
     - fi
