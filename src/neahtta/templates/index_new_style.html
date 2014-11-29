@@ -102,7 +102,7 @@
             </div>
 
             {# TODO: deep link needs to go to specific lexeme when it comes from the front page #}
-            {% if analyses|length > 0 or analyses_without_lex|length > 0 %}
+            {% if successful_entry_exists %}
                 <div class="results">
                     {% for tpl in new_templates %}
                         {{ tpl|safe }}
