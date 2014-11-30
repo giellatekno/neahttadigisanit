@@ -82,8 +82,11 @@ class TemplateConfig(object):
 
     def process_template_paths(self):
         from jinja2 import ChoiceLoader, FileSystemLoader
-        # TODO: possible to config filesystem loader to reread
-        # templates? If so, ensure the template cache is refreshed.
+
+        # A choice loader for the deepest potential directory first,
+        # so when the template loader is used to select a template
+        # (generally only when rendering full page templates), the
+        # intended option will appear.
 
         reversed_priority = self.template_loader_dirs[::-1]
 
