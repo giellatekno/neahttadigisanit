@@ -6,12 +6,12 @@
     {%- include 'left_nav_language_pair_select_list.html' -%}
 {%- endif -%}
 
-<p><a href="/more/" class="other_link" lang="{{ current_locale }}">{% trans %}Other dictionaries{% endtrans %}</a></p>
 {% if project_notice %}
-<div class="alert alert-error">
-    <p>{{ project_notice|safe }}</p>
-</div>
+    {{ project_notice|safe }}
 {% endif %}
+
+<p><a href="/more/" class="other_link" lang="{{ current_locale }}">{% trans %}Other dictionaries{% endtrans %}</a></p>
+
 {% if text_tv %}
 <div class="alert alert-warning"><a href="/escape/text-tv/">
         <span lang="{{ current_locale }}">{% trans %}Escape Text-TV mode{% endtrans %}</span>
