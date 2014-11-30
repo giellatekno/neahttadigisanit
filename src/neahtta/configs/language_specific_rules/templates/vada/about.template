@@ -1,4 +1,4 @@
-﻿{% extends 'base.html' %}
+{% extends 'base.html' %}
 {% block extra_css %}
     <link href="{{url_for('static', filename='css/about.css')}}" rel="stylesheet" />
 {% endblock %}
@@ -84,6 +84,3 @@
 </div>
 
 {% endblock %}
-
-
-

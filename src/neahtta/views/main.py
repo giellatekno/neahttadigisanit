@@ -73,6 +73,15 @@ def externalFormSearch(_from, _to, _search_type):
 @blueprint.route('/about/', methods=['GET'])
 def about():
     from jinja2 import TemplateNotFound
+    from flask import make_response
+
+    if current_app.config.new_style_templates:
+        _from, _to = current_app.config.default_language_pair
+        footer_template = current_app.lexicon_templates.get_template(
+            _from,
+            'about.template')
+        return render_template('about.template')
+
     try:
         return render_template('about.%s.html' % current_app.config.short_name)
     except TemplateNotFound:
@@ -87,16 +96,25 @@ def about_sources():
     """ This is also tied to a context processer making this item
     visible in the navigational menu if the template is found. """
 
-    from jinja2 import TemplateNotFound
+    from flask import make_response
+    from flask import make_response
+    from i18n.utils import get_locale
 
-    try:
-        return render_template('sources.%s.html' % current_app.config.short_name)
-    except TemplateNotFound:
-        print >> sys.stderr, (
-            ' * OBS! about.%s.html not found, '
-            'falling back to about.sanit.html.' % current_app.config.short_name
-        )
-        return render_template('about.sanit.html')
+    if current_app.config.new_style_templates:
+        _from, _to = current_app.config.default_language_pair
+        try:
+            return render_template('sources.template')
+        except:
+            return render_template('about.template')
+    else:
+        try:
+            return render_template('sources.%s.html' % current_app.config.short_name)
+        except TemplateNotFound:
+            print >> sys.stderr, (
+                ' * OBS! about.%s.html not found, '
+                'falling back to about.sanit.html.' % current_app.config.short_name
+            )
+            return render_template('about.sanit.html')
 
 def gen_doc(from_language, docs_list):
     _docs = []
