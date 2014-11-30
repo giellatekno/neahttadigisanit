@@ -8,9 +8,9 @@
 
 {% if project_notice %}
     {{ project_notice|safe }}
+{% else %}
+    <p><a href="/more/" class="other_link" lang="{{ current_locale }}">{% trans %}Other dictionaries{% endtrans %}</a></p>
 {% endif %}
-
-<p><a href="/more/" class="other_link" lang="{{ current_locale }}">{% trans %}Other dictionaries{% endtrans %}</a></p>
 
 {% if text_tv %}
 <div class="alert alert-warning"><a href="/escape/text-tv/">

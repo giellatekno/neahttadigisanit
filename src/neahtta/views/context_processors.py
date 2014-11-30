@@ -1,6 +1,8 @@
 from flask import current_app, request, g, session, render_template
 from . import blueprint
 
+from i18n.utils import get_locale
+
 @blueprint.context_processor
 def project_css():
     if current_app.config.has_project_css:
@@ -33,21 +35,20 @@ def text_tv():
 def check_notice():
     from jinja2 import TemplateNotFound
 
-    try:
-        tpl = current_app.jinja_env.get_template('notice.%s.html' % current_app.config.short_name)
-    except TemplateNotFound:
-        tpl = False
-
-    if tpl:
-        notice = tpl.render()
+    if current_app.config.new_style_templates:
+        _from, _to = current_app.config.default_language_pair
+        project_notice = current_app.lexicon_templates.render_individual_template(
+            _from,
+            'notice.template',
+            **{'current_locale': get_locale()}
+        )
     else:
-        notice = False
+        project_notice = False
 
-    return {'project_notice': notice}
+    return {'project_notice': project_notice}
 
 @blueprint.context_processor
 def add_current_locale_code():
-    from i18n.utils import get_locale
     return {'current_locale': get_locale()}
 
 @blueprint.context_processor
@@ -138,7 +139,6 @@ def detect_mobile_variables():
 
 @blueprint.context_processor
 def footer_template():
-    from i18n.utils import get_locale
 
     if current_app.config.new_style_templates:
         _from, _to = current_app.config.default_language_pair
