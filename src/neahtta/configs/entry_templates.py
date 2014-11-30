@@ -88,6 +88,12 @@ class TemplateConfig(object):
         # (generally only when rendering full page templates), the
         # intended option will appear.
 
+        # NB: if this becomes insufficient, PrefixLoader might be good.
+        # Can bind options to a prefix, so, sanit/blah.template would
+        # resolve to the right thing. Could thus make a loader on top of
+        # that to try with a prefix, and then return the unprefixed
+        # variant
+
         reversed_priority = self.template_loader_dirs[::-1]
 
         self.jinja_env.loader = ChoiceLoader([
@@ -115,6 +121,16 @@ class TemplateConfig(object):
         self.language_templates = _l_ts
 
         return
+
+    def has_local_override(self, language, template):
+        """ TODO: Determine whether there is a template in the local project
+        to display.
+        """
+        try:
+            tpl = self.get_template(language, template)
+        except:
+            tpl = False
+        return False
 
     def get_template(self, language, template):
         """ .. py:function:: get_template(language, template)
