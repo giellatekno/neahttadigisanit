@@ -81,11 +81,15 @@ class TemplateConfig(object):
             self.print_debug_tree()
 
     def process_template_paths(self):
-        from jinja2 import FileSystemLoader
+        from jinja2 import ChoiceLoader, FileSystemLoader
         # TODO: possible to config filesystem loader to reread
         # templates? If so, ensure the template cache is refreshed.
 
-        self.jinja_env.loader = FileSystemLoader(self.template_loader_dirs)
+        reversed_priority = self.template_loader_dirs[::-1]
+
+        self.jinja_env.loader = ChoiceLoader([
+            FileSystemLoader(p) for p in reversed_priority
+        ])
 
         def process_template_set(ts):
             _ts = {}
