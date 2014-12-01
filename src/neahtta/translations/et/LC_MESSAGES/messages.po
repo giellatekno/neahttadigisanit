@@ -270,11 +270,11 @@ msgstr ""
 #: static/js/neahttadigisanit.min.js:2984
 msgid ""
 "If you find a bug, or if the bookmark does not work on a specific page <a"
-" href=\"mailto:giellatekno@hum.uit.no\">please contact us</a>. Tell us "
+" href=\"mailto:giellatekno@uit.no\">please contact us</a>. Tell us "
 "what page didn't work, or what you did when you discovered the problem."
 msgstr ""
 "Kui sa leiad vea või mõni link ei tööta teatud lehel  <a "
-"href=\"mailto:giellatekno@hum.uit.n"
+"href=\"mailto:giellatekno@uit.n"
 
 #: static/js/bookmarklet.js:1316 static/js/bookmarklet.min.js:13360
 #: static/js/neahttadigisanit.jquery.js:13360

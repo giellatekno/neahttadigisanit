@@ -266,7 +266,7 @@ msgstr ""
 #: static/js/neahttadigisanit.min.js:2984
 msgid ""
 "If you find a bug, or if the bookmark does not work on a specific page <a"
-" href=\"mailto:giellatekno@hum.uit.no\">please contact us</a>. Tell us "
+" href=\"mailto:giellatekno@uit.no\">please contact us</a>. Tell us "
 "what page didn't work, or what you did when you discovered the problem."
 msgstr ""
 

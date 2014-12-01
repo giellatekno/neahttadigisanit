@@ -269,7 +269,7 @@ msgstr ""
 #: static/js/neahttadigisanit.min.js:2984
 msgid ""
 "If you find a bug, or if the bookmark does not work on a specific page <a"
-" href=\"mailto:giellatekno@hum.uit.no\">please contact us</a>. Tell us "
+" href=\"mailto:giellatekno@uit.no\">please contact us</a>. Tell us "
 "what page didn't work, or what you did when you discovered the problem."
 msgstr ""
 "Jos löydät virheen, tai jos kirjainmerkki ei toimi tietyllä sivulla, <a "
@@ -560,7 +560,7 @@ msgid ""
 "list</a>, and more\n"
 "                resources."
 msgstr ""
-"Tarvitsetko lisää sanakirjoja? <a href=\"http://dicts.uit.no/\">tästä "
+"Tarvitsetko lisää sanakirjoja? <a href=\"http://dicts.uit.no/index.fin.html\">tästä "
 "löydät sanakirjaluettelomme</a>, ja muitakin resursseja."
 
 #: templates/about.itwewina.html:57
@@ -726,6 +726,10 @@ msgid ""
 "Technology group at the <a href=\"http://uit.no\">University of "
 "Tromsø</a>."
 msgstr ""
+"Created with free and open-source language tools from <em><a "
+"href=\"http://giellatekno.uit.no/index.eng.html">Giellatekno</a></em>, a Sámi Language "
+"Technology group at the <a href=\"http://uit.no\">University of "
+"Tromsø</a>."
 
 #: templates/index.html:44 templates/index_new_style.html:85
 msgid "Swap"
