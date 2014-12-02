@@ -934,7 +934,7 @@ msgstr ""
 #: templates/index_new_style.html:23 templates/macros.html:5
 #: templates/macros.html:13
 msgid "Texts"
-msgstr "Tekster"
+msgstr "I tekster"
 
 #: templates/index_new_style.html:116 templates/index_new_style.html:132
 #, python-format
