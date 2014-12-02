@@ -657,9 +657,8 @@ msgid ""
 msgstr ""
 
 #: configs/language_specific_rules/templates/sanit/notice.template:5
-#, fuzzy
 msgid "Other North Saami dictionaries"
-msgstr "Eará sátnegirjjit"
+msgstr "Eará davvisámi sátnegirjjit"
 
 #: configs/language_specific_rules/templates/sanit/search_info.template:4
 #: templates/index.html:170
@@ -673,7 +672,6 @@ msgstr ""
 "<em>acdnstz</em> danin bustávvan: <em>áčđŋšŧž</em>."
 
 #: configs/language_specific_rules/templates/sanit/search_info.template:12
-#, fuzzy
 msgid ""
 "You selected #SoMe, the variant for social media, which means that the "
 "letters acdnstz\n"

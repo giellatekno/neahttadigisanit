@@ -230,7 +230,6 @@ msgstr ""
 #: configs/language_specific_rules/templates/sonad/about.template:16
 #: configs/language_specific_rules/templates/vada/about.template:18
 #: configs/language_specific_rules/templates/valks/about.template:18
-#, fuzzy
 msgid "(... And is mobile-friendly!)"
 msgstr "(... og er tilpassa mobiltelefonen!)"
 
@@ -624,9 +623,8 @@ msgid ""
 msgstr ""
 
 #: configs/language_specific_rules/templates/sanit/notice.template:5
-#, fuzzy
 msgid "Other North Saami dictionaries"
-msgstr "Andre ordbøker"
+msgstr "Andre nordsamiske ordbøker"
 
 #: configs/language_specific_rules/templates/sanit/search_info.template:4
 #: templates/index.html:170
@@ -640,13 +638,12 @@ msgstr ""
 "<em>acdnstz</em> når du mener <em>áčđŋšŧž</em>."
 
 #: configs/language_specific_rules/templates/sanit/search_info.template:12
-#, fuzzy
 msgid ""
 "You selected #SoMe, the variant for social media, which means that the "
 "letters acdnstz\n"
 "            will be accepted as áčđŋšŧž in addition to their usual values."
 msgstr ""
-"Du har valgt #SoMe, varianten for sosiale media. Det innebærer at "
+"Du har valgt #SoMe-varianten for sosiale media. Det innebærer at "
 "bokstavene adcnstz blir akseptert som áčđŋšŧž i tillegg til sine vanlige "
 "verdier."
 
@@ -849,7 +846,6 @@ msgid "'"
 msgstr ""
 
 #: static/js/neahttadigisanit.jquery.js:13292
-#, fuzzy
 msgid ""
 "If you find a bug, or if the bookmark does not work on a specific page <a"
 " href=\"mailto:giellatekno@hum.uit.no\">please contact us</a>. Tell us "
