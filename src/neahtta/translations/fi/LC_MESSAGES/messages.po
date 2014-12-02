@@ -621,9 +621,8 @@ msgid ""
 msgstr ""
 
 #: configs/language_specific_rules/templates/sanit/notice.template:5
-#, fuzzy
 msgid "Other North Saami dictionaries"
-msgstr "Muita sanakirjoja"
+msgstr "Muita pohjoissaamen sanakirjoja"
 
 #: configs/language_specific_rules/templates/sanit/search_info.template:4
 #: templates/index.html:170
