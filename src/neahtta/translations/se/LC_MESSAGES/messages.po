@@ -578,9 +578,8 @@ msgstr ""
 " olles listu</a>, ja eanet resurssat."
 
 #: templates/about.itwewina.html:57
-#, fuzzy
 msgid "crk ↔ eng"
-msgstr "Nenecagiella ↔ suomagiella"
+msgstr "Plains Cree - eŋgelasgiela"
 
 #: templates/about.itwewina.html:59
 msgid ""
@@ -800,9 +799,8 @@ msgid "Texts"
 msgstr "Teavsttain"
 
 #: templates/index_new_style.html:124
-#, fuzzy, python-format
 msgid "Word <span lang=\"%(_from)s\">%(input)s</span> not found."
-msgstr "Sátni %(input)s ii gávdnon."
+msgstr "Sátni <span lang=\"%(_from)s\">%(input)s</span> ii gávdnon."
 
 #: templates/index_search_form.html:15
 msgid "Press Tab to select a word"
@@ -1077,13 +1075,12 @@ msgid "Additional instructions"
 msgstr ""
 
 #: templates/reader_ie8_notice.html:1
-#, fuzzy, python-format
 msgid ""
 "\n"
 "Your web browser is supported, however, you will need to change some\n"
 "options for the %(app_name)s Reader to work.\n"
 msgstr ""
-"Vuogádat doarju du neahttalohkki, muhto don dárbbašat rievdadit ásahasaid"
+"Vuogádat doarju du neahttalohkki, muhto don dárbbašat rievdadit %(app_name)s Reader ásahasaid"
 " \n"
 "oažžut Coahkkal-teavsttas doaibmat."
 
