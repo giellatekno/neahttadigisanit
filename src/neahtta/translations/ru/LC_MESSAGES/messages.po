@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-11-13 15:51-0600\n"
+"POT-Creation-Date: 2014-11-26 14:56-0600\n"
 "PO-Revision-Date: 2013-11-07 11:33+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language-Team: ru <LL@li.org>\n"
@@ -1106,7 +1106,7 @@ msgstr "форма на левой стороне образованна из ф
 msgid "More information about this word"
 msgstr ""
 
-#: views/search.py:949
+#: views/search.py:962
 msgid "Invalid format. Only json and html allowed."
 msgstr "Недопустимый формат. Только json и html допустимые."
 

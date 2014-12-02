@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-11-13 15:51-0600\n"
+"POT-Creation-Date: 2014-11-26 14:56-0600\n"
 "PO-Revision-Date: 2014-01-18 16:52+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language-Team: en <LL@li.org>\n"
@@ -1122,7 +1122,7 @@ msgstr " võib olla vorm sõnast ... "
 msgid "More information about this word"
 msgstr ""
 
-#: views/search.py:949
+#: views/search.py:962
 msgid "Invalid format. Only json and html allowed."
 msgstr "Vigane formaat. Ainult json ja html on lubatud."
 

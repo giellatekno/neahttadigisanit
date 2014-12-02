@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-11-13 15:51-0600\n"
+"POT-Creation-Date: 2014-11-26 14:56-0600\n"
 "PO-Revision-Date: 2013-02-01 01:54-0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: sma <LL@li.org>\n"
@@ -1115,7 +1115,7 @@ msgstr "Dïhte sån baakoehammoe daehtie baakoste: "
 msgid "More information about this word"
 msgstr ""
 
-#: views/search.py:949
+#: views/search.py:962
 msgid "Invalid format. Only json and html allowed."
 msgstr "Ugyldig format. Bare json og html er tillatt."
 

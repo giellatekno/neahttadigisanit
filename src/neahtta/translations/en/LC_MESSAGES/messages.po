@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-11-13 15:51-0600\n"
+"POT-Creation-Date: 2014-11-26 14:56-0600\n"
 "PO-Revision-Date: 2013-10-16 18:36-0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en <LL@li.org>\n"
@@ -767,10 +767,10 @@ msgstr ""
 #: templates/index.html:174
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
-"Search for a word, or an inflected form. Click the word for "
-"a list of inflected forms. <br /><br /> You can also search for the word "
-"in a text corpus, or for all inflected forms of the word by "
-"clicking the 'texts' link next to it in the search results."
+"Search for a word, or an inflected form. Click the word for a list of "
+"inflected forms. <br /><br /> You can also search for the word in a text "
+"corpus, or for all inflected forms of the word by clicking the 'texts' "
+"link next to it in the search results."
 
 #: templates/index.html:178
 msgid ""
@@ -1088,7 +1088,7 @@ msgstr ""
 msgid "More information about this word"
 msgstr ""
 
-#: views/search.py:949
+#: views/search.py:962
 msgid "Invalid format. Only json and html allowed."
 msgstr ""
 
