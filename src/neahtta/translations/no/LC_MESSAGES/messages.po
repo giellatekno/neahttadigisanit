@@ -38,7 +38,6 @@ msgstr "Standard"
 
 #: configs/guusaaw.config.yaml.in:81 configs/itwewina.config.yaml.in:77
 #: configs/saan.config.yaml.in:93
-#, fuzzy
 msgid "Mobile friendly"
 msgstr "(... og er tilpassa mobiltelefonen!)"
 
@@ -586,9 +585,8 @@ msgstr ""
 "ulike ordbøker for mange språk."
 
 #: templates/about.itwewina.html:57
-#, fuzzy
 msgid "crk ↔ eng"
-msgstr "Nenetsisk ↔ finsk"
+msgstr "Præriecree -> engelsk"
 
 #: templates/about.itwewina.html:59
 msgid ""
@@ -836,14 +834,12 @@ msgstr ""
 
 #: templates/index_new_style.html:23 templates/macros.html:5
 #: templates/macros.html:13
-#, fuzzy
 msgid "Texts"
-msgstr "Nenetsisk"
+msgstr "Tekster"
 
 #: templates/index_new_style.html:124
-#, fuzzy, python-format
 msgid "Word <span lang=\"%(_from)s\">%(input)s</span> not found."
-msgstr "Ordet %(input)s ikke funnet."
+msgstr "<span lang=\"%(_from)s\">%(input)s</span> ble ikke funnet."
 
 #: templates/index_search_form.html:15
 msgid "Press Tab to select a word"
@@ -1127,14 +1123,13 @@ msgid "Additional instructions"
 msgstr "Tilleggsinstrukser"
 
 #: templates/reader_ie8_notice.html:1
-#, fuzzy, python-format
 msgid ""
 "\n"
 "Your web browser is supported, however, you will need to change some\n"
 "options for the %(app_name)s Reader to work.\n"
 msgstr ""
 "Nettleseren din er støttet, men du må endre noen\n"
-"innstillnger for å få ordboka til å fungere.\n"
+"innstillnger for å få  %(app_name)s leseren til å fungere.\n"
 
 #: templates/reader_update.html:1
 msgid ""
