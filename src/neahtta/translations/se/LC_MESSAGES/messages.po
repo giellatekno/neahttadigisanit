@@ -519,7 +519,7 @@ msgstr "Oza teavsttain"
 #: templates/mobile_nav_dictionary_list.html:48
 #: templates/more_dictionaries.html:21
 msgid "Other dictionaries"
-msgstr "Eará sátnegirjjit"
+msgstr "Eará gielat"
 
 #: configs/language_specific_rules/templates/search_info.template:3
 #: configs/language_specific_rules/templates/itwewina/search_info.template:3
