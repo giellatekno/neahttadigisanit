@@ -19,15 +19,15 @@ msgstr ""
 
 #: configs/dikaneisdi.config.yaml.in:3
 msgid "Dikaneisdi"
-msgstr ""
+msgstr "Dikaneisdi"
 
 #: configs/dikaneisdi.config.yaml.in:74
 msgid "Standard (syllabics)"
-msgstr ""
+msgstr "Standardi (tavu-aakkoset)"
 
 #: configs/dikaneisdi.config.yaml.in:77
 msgid "Transliterated"
-msgstr ""
+msgstr "Translitteroitu"
 
 #: configs/guusaaw.config.yaml.in:76 configs/itwewina.config.yaml.in:67
 #: configs/kyv.config.yaml.in:98 configs/saan.config.yaml.in:71
@@ -260,6 +260,9 @@ msgid ""
 "                    you'll find free dictionaries, and other analytical\n"
 "                    tools."
 msgstr ""
+"Kaikki (tai melkein kaikki), mitä "
+"koskee vähemmistökieliä pitäisi olla vapaa. Tästä "
+"löydät vapaita sanakirjoja ja muita analyysiohjelmia."
 
 #: configs/language_specific_rules/templates/about.template:27
 #: configs/language_specific_rules/templates/baakoeh/about.template:27
@@ -302,7 +305,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/vada/about.template:38
 #: configs/language_specific_rules/templates/valks/about.template:38
 msgid "Linguistic basis"
-msgstr ""
+msgstr "Kielitieteellinen perusta"
 
 #: configs/language_specific_rules/templates/about.template:37
 #: configs/language_specific_rules/templates/baakoeh/about.template:37
@@ -543,7 +546,7 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/itwewina/sources.template:6
 msgid "Sources and References"
-msgstr ""
+msgstr "Lähteet ja Kirjallisuus"
 
 #: configs/language_specific_rules/templates/muter/about.template:43
 #: configs/language_specific_rules/templates/vada/about.template:45
@@ -618,6 +621,8 @@ msgid ""
 "We have moved some languages to <a "
 "href=\"http://sonad.oahpa.no/\">Sonad</a>, please update your bookmarks."
 msgstr ""
+"Olemme siirtäneet jotkut kielet osoitteeseen <a "
+"href=\"http://sonad.oahpa.no/\">Sonad</a>, päivitä kirjamerkkiäsi."
 
 #: configs/language_specific_rules/templates/sanit/notice.template:5
 msgid "Other North Saami dictionaries"
@@ -630,6 +635,9 @@ msgid ""
 "href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
 "<em>acdnstz</em> for <em>áčđŋšŧž</em>."
 msgstr ""
+"Jos käytät puhelinta ilman saamen kielen näppäimistöä voit käyttää <a "
+"href=\"/SoMe/nob/\">sosiaalimedia-modusta</a>, joka mahdollistaa kirjainten "
+"<em>acdnstz</em> kirjoittaminen <em>áčđŋšŧž</em>-kirjainten tilalle."
 
 #: configs/language_specific_rules/templates/sanit/search_info.template:12
 msgid ""
@@ -768,7 +776,7 @@ msgid ""
 " href=\"mailto:giellatekno@uit.no\">please contact us</a>. Tell us what "
 "page didn't work, or what you did when you discovered the problem."
 msgstr ""
-"Jos löydät virheen, tai jos kirjainmerkki ei toimi tietyllä sivulla, <a "
+"Jos löydät virheen, tai jos kirjanmerkki ei toimi tietyllä sivulla, <a "
 "href=\"mailto:giellatekno@uit.no\">ota yhteyttä meihin</a>. Kerro mikä "
 "sivu ei toiminut, tai mitä teit kun törmäsit ongelmaan."
 
@@ -837,7 +845,7 @@ msgstr "Lisää työkaluja"
 
 #: static/js/jquery-ui.min.js:8
 msgid "'"
-msgstr ""
+msgstr "'"
 
 #: static/js/neahttadigisanit.jquery.js:13292
 msgid ""
@@ -845,7 +853,7 @@ msgid ""
 " href=\"mailto:giellatekno@hum.uit.no\">please contact us</a>. Tell us "
 "what page didn't work, or what you did when you discovered the problem."
 msgstr ""
-"Jos löydät virheen, tai jos kirjainmerkki ei toimi tietyllä sivulla, <a "
+"Jos löydät virheen, tai jos kirjanmerkki ei toimi tietyllä sivulla, <a "
 "href=\"mailto:giellatekno@uit.no\">ota yhteyttä meihin</a>. Kerro mikä "
 "sivu ei toiminut, tai mitä teit kun törmäsit ongelmaan."
 
@@ -1037,6 +1045,10 @@ msgid ""
 "href=\"http://dicts.uit.no/\">see this\n"
 "                    list</a>."
 msgstr ""
+"<a href=\"http://giellatekno.uit.no/\">Giellatekno</a>lla on myös"
+"muita kieliä ja sanakirjoja, joilla eivät vielä ole "
+"Neahttadigisánit-versiota. Löydät kokonaisen listan osoitteesta "
+"<a href=\"http://dicts.uit.no/\">dicts.uit.no</a>."
 
 #: templates/reader.html:3 templates/reader.html:20
 #, python-format
@@ -1045,7 +1057,7 @@ msgstr ""
 
 #: templates/reader.html:21
 msgid "Bookmarklet"
-msgstr "Kirjainmerkki"
+msgstr "Kirjanmerkki"
 
 #: templates/reader.html:22
 msgid ""
@@ -1141,6 +1153,9 @@ msgid ""
 "of\n"
 "                what you were reading when you encountered the problem."
 msgstr ""
+"Jos löydät virheitä, tai jos kirjanmerkki ei toimi tietyllä nettisivulla, "
+"voit otta yhteyttä meihin, ja kertoa mistä URL:stä on kyse, tak mitä "
+"teit kun ongelma ilmentyi."
 
 #: templates/reader.html:52
 msgid ""
@@ -1149,6 +1164,8 @@ msgid ""
 "improve\n"
 "                the dictionary."
 msgstr ""
+"Emme säästä yksityisiä tietoja, mutta otamme yksittäisiä "
+"sanahakuja taltteen tilastoja ja sanajirjan parantamista varten."
 
 #: templates/reader.html:61
 msgid "Includes"
@@ -1159,10 +1176,12 @@ msgid ""
 "If you are looking for other languages, please see our <a "
 "href=\"/more/\">other dictionaries</a>."
 msgstr ""
+"Jos etsit muita kieliä, voit katsoa <a "
+"href=\"/more/\">muita sanakirjoja</a>."
 
 #: templates/reader_example.html:32
 msgid "Additional instructions"
-msgstr ""
+msgstr "Lisäohjeita"
 
 #: templates/reader_ie8_notice.html:1
 #, python-format
@@ -1171,6 +1190,8 @@ msgid ""
 "Your web browser is supported, however, you will need to change some\n"
 "options for the %(app_name)s Reader to work.\n"
 msgstr ""
+"Nettiselaimesi tuetaan, mutta sinun pitää säätää sen "
+"saadaksesi %(app_name)s Reader toimimaan."
 
 #: templates/reader_update.html:1
 msgid ""
@@ -1178,6 +1199,9 @@ msgid ""
 "We have made some updates to the dictionary, which require you to\n"
 "replace your bookmark with a new version.\n"
 msgstr ""
+"Olemme päivittäneet sanakirjan, jonka takia sinun pitää "
+"korvata kirjanmerkkisi uudella kirjanmerkillä. Poista vanha, ja "
+"tee uuden kirjanmerkin samalla tavalla."
 
 #: templates/reader_update.html:9
 msgid ""
