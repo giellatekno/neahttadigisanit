@@ -141,7 +141,7 @@ msgstr "Plains cree"
 
 #: configs/language_names.py:71 configs/language_names.py:72
 msgid "Cherokee"
-msgstr ""
+msgstr "Cherokee"
 
 #: configs/language_names.py:75 configs/language_names.py:76
 msgid "Northern Haida"
@@ -219,7 +219,7 @@ msgstr "Meistä"
 #: configs/language_specific_rules/templates/vada/about.template:17
 #: configs/language_specific_rules/templates/valks/about.template:17
 msgid "A dictionary that understands what you're looking for."
-msgstr ""
+msgstr "Sanakirja, joka ymmärtää, mitä etsit."
 
 #: configs/language_specific_rules/templates/about.template:16
 #: configs/language_specific_rules/templates/baakoeh/about.template:16
@@ -230,7 +230,6 @@ msgstr ""
 #: configs/language_specific_rules/templates/sonad/about.template:16
 #: configs/language_specific_rules/templates/vada/about.template:18
 #: configs/language_specific_rules/templates/valks/about.template:18
-#, fuzzy
 msgid "(... And is mobile-friendly!)"
 msgstr "(... ja on kännykkä-ystävällinen!)"
 
@@ -244,7 +243,7 @@ msgstr "(... ja on kännykkä-ystävällinen!)"
 #: configs/language_specific_rules/templates/vada/about.template:22
 #: configs/language_specific_rules/templates/valks/about.template:22
 msgid "Free"
-msgstr ""
+msgstr "Vapaa"
 
 #: configs/language_specific_rules/templates/about.template:21
 #: configs/language_specific_rules/templates/baakoeh/about.template:21
@@ -272,7 +271,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/vada/about.template:29
 #: configs/language_specific_rules/templates/valks/about.template:29
 msgid "Open-Source"
-msgstr ""
+msgstr "Avoin lähdekoodi"
 
 #: configs/language_specific_rules/templates/about.template:28
 #: configs/language_specific_rules/templates/baakoeh/about.template:28
@@ -633,7 +632,6 @@ msgid ""
 msgstr ""
 
 #: configs/language_specific_rules/templates/sanit/search_info.template:12
-#, fuzzy
 msgid ""
 "You selected #SoMe, the variant for social media, which means that the "
 "letters acdnstz\n"
@@ -842,7 +840,6 @@ msgid "'"
 msgstr ""
 
 #: static/js/neahttadigisanit.jquery.js:13292
-#, fuzzy
 msgid ""
 "If you find a bug, or if the bookmark does not work on a specific page <a"
 " href=\"mailto:giellatekno@hum.uit.no\">please contact us</a>. Tell us "
@@ -929,9 +926,8 @@ msgstr ""
 
 #: templates/index_new_style.html:23 templates/macros.html:5
 #: templates/macros.html:13
-#, fuzzy
 msgid "Texts"
-msgstr "Nenetsi"
+msgstr "Tekstit"
 
 #: templates/index_new_style.html:116 templates/index_new_style.html:132
 #, python-format
