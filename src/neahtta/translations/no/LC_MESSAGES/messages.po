@@ -649,7 +649,7 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/sanit/sme/paradigm.template:123
 msgid "Full paradigm"
-msgstr ""
+msgstr "Flere bøyningsformer"
 
 #: configs/language_specific_rules/templates/vada/about.template:59
 msgid "yrk ↔ fin"
@@ -934,7 +934,7 @@ msgstr ""
 #: templates/index_new_style.html:23 templates/macros.html:5
 #: templates/macros.html:13
 msgid "Texts"
-msgstr "I tekster"
+msgstr "Søk alle former i tekster"
 
 #: templates/index_new_style.html:116 templates/index_new_style.html:132
 #, python-format
