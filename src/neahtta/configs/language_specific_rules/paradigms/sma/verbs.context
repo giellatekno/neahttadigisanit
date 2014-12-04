@@ -12,7 +12,7 @@
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Pl3"
-  template: "(daan biejjien dat) {{ word_form }}"
+  template: "(daan biejjien dah) {{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prt+Sg1"
@@ -48,7 +48,7 @@
 
 - entry_context: None
   tag_context: "Hom2+V+Ind+Prs+Pl3"
-  template: "(daan biejjien dat) {{ word_form }}"
+  template: "(daan biejjien dah) {{ word_form }}"
 
 - entry_context: None
   tag_context: "Hom2+V+Ind+Prt+Sg1"
@@ -84,7 +84,7 @@
 
 - entry_context: None
   tag_context: "Hom1+V+Ind+Prs+Pl3"
-  template: "(daan biejjien dat) {{ word_form }}"
+  template: "(daan biejjien dah) {{ word_form }}"
 
 - entry_context: None
   tag_context: "Hom1+V+Ind+Prt+Sg1"
