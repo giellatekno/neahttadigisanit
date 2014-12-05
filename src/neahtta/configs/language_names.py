@@ -17,7 +17,7 @@ their names will need to be here too.
 
 """
 
-from flaskext.babel import lazy_gettext as _
+from flask.ext.babel import lazy_gettext as _
 NAMES = dict([
     # sanit
     ('sme', _(u"North Sámi")),

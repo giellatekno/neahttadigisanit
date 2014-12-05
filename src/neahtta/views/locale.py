@@ -7,7 +7,7 @@ from . import blueprint
 
 @blueprint.route('/locale/<iso>/', methods=['GET'])
 def set_locale(iso):
-    from flaskext.babel import refresh
+    from flask.ext.babel import refresh
 
     session['locale'] = iso
     # Refresh the localization infos, and send the user back whence they

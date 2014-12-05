@@ -9,7 +9,7 @@ from configs import *
 import yaml
 
 def gettext_yaml_wrapper(loader, node):
-    from flaskext.babel import lazy_gettext as _
+    from flask.ext.babel import lazy_gettext as _
     return node.value
 
 yaml.add_constructor('!gettext', gettext_yaml_wrapper)

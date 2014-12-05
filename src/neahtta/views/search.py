@@ -24,7 +24,7 @@ from flask import ( request
                   , g
                   )
 
-from flaskext.babel import gettext as _
+from flask.ext.babel import gettext as _
 
 from operator import itemgetter
 

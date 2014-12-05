@@ -158,10 +158,10 @@ wordforms_that_shouldnt_fail = [
     ( ('nob', 'sme'), u'deltaker'),
     ( ('nob', 'sme'), u'der'),
     ( ('nob', 'sme'), u'dessert'),
-    ( ('nob', 'sme'), u'dette '),
+    ( ('nob', 'sme'), u'dette'),
     ( ('nob', 'sme'), u'dette er'),
     ( ('nob', 'sme'), u'dette'),
-    ( ('nob', 'sme'), u'dra '),
+    ( ('nob', 'sme'), u'dra'),
     ( ('nob', 'sme'), u'dra på tur'),
     ( ('nob', 'sme'), u'dåp'),
     ( ('nob', 'sme'), u'eller'),
@@ -327,7 +327,7 @@ wordforms_that_shouldnt_fail = [
     ( ('nob', 'sme'), u'slå'),
     ( ('nob', 'sme'), u'som'),
     ( ('nob', 'sme'), u'sommer'),
-    ( ('nob', 'sme'), u'spille '),
+    ( ('nob', 'sme'), u'spille'),
     ( ('nob', 'sme'), u'spilt'),
     ( ('nob', 'sme'), u'spise'),
     ( ('nob', 'sme'), u'stabble'),
@@ -557,7 +557,7 @@ wordforms_that_shouldnt_fail = [
     ( ('sme', 'nob'), u'garvodan'),
     ( ('sme', 'nob'), u'gaskabiebmu'),
     ( ('sme', 'nob'), u'gaskavahkku'),
-    ( ('sme', 'nob'), u'gassada '),
+    ( ('sme', 'nob'), u'gassada'),
     ( ('sme', 'nob'), u'geahpas'),
     ( ('sme', 'nob'), u'geahppa'),
     ( ('sme', 'nob'), u'geardi'),
@@ -583,7 +583,7 @@ wordforms_that_shouldnt_fail = [
     ( ('sme', 'nob'), u'hállat'),
     ( ('sme', 'nob'), u'hápmá'),
     ( ('sme', 'nob'), u'hápmása'),
-    ( ('sme', 'nob'), u'hápmásažžan  '),
+    ( ('sme', 'nob'), u'hápmásažžan'),
     ( ('sme', 'nob'), u'hárjánan'),
     ( ('sme', 'nob'), u'hárvenaš'),
     ( ('sme', 'nob'), u'i'),
@@ -639,7 +639,7 @@ wordforms_that_shouldnt_fail = [
     ( ('sme', 'nob'), u'ore'),
     ( ('sme', 'nob'), u'ovdal'),
     ( ('sme', 'nob'), u'ovdamus'),
-    ( ('sme', 'nob'), u'rissegierragat '),
+    ( ('sme', 'nob'), u'rissegierragat'),
     ( ('sme', 'nob'), u'rivttes'),
     ( ('sme', 'nob'), u'ruhtaheađis'),
     ( ('sme', 'nob'), u'ruhtahoidu'),
@@ -671,14 +671,14 @@ wordforms_that_shouldnt_fail = [
     ( ('sme', 'nob'), u'vuortnuhit'),
     ( ('sme', 'nob'), u'vuovdnái'),
     ( ('sme', 'nob'), u'váibbas'),
-    ( ('sme', 'nob'), u'válddahagas '),
+    ( ('sme', 'nob'), u'válddahagas'),
     ( ('sme', 'nob'), u'váldit'),
     ( ('sme', 'nob'), u'Ávdnasat'),
     ( ('sme', 'nob'), u'Áđđestaddi'),
     ( ('sme', 'nob'), u'álgit'),
     ( ('sme', 'nob'), u'čeabetbáddi'),
     ( ('sme', 'nob'), u'čivga'),
-    ( ('sme', 'nob'), u'čohkohallat '),
+    ( ('sme', 'nob'), u'čohkohallat'),
     ( ('sme', 'nob'), u'čohkun'),
     ( ('sme', 'nob'), u'čuohppat'),
     ( ('sme', 'nob'), u'čuojaha'),
@@ -694,6 +694,11 @@ wordforms_that_shouldnt_fail = [
 
 # TODO: use api lookups to determine that rule overrides are formatting
 # things correctly
+
+
+# TODO:  tunealla+v1: tunealla vs. tunealla+v2: tunnealla
+
+# TODO: vmax ruovttueana 
 
 # TODO: testcase for miniparadigms, both pregenerated:
 
@@ -831,6 +836,19 @@ class WordLookupAPITests(WordLookupAPITests):
 class ParadigmGenerationTests(ParadigmGenerationTests):
     paradigm_generation_tests = paradigm_generation_tests
 
+vmax = [
+    # source, target, lemma, error_msg, paradigm_test
+
+    ('sme', 'nob', u'ruovttueana',
+            "Not generating from mini_paradigm",
+            form_contains(set([u'ruovttueanan',]))),
+]
+
+
+class VMax(ParadigmGenerationTests):
+
+    paradigm_generation_tests = vmax
+
 class ParadigmSelectionTest(WordLookupTests):
     """ These are really only for testing specifics in the paradigm
     directory structure the code, and don't need to be run as generation
@@ -858,7 +876,4 @@ class ParadigmSelectionTest(WordLookupTests):
             #     print " - " + repr(a.tag.matching_tagsets())
             print pc.get_paradigm('sme', node, analyses, debug=True)
             print '--'
-
-
-
 

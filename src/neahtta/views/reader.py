@@ -14,8 +14,8 @@ from utils.logger import logSimpleLookups
 from i18n.utils import iso_filter
 
 from morphology.utils import tagfilter
-from flaskext.babel import gettext as _
-from flaskext.babel import lazy_gettext
+from flask.ext.babel import gettext as _
+from flask.ext.babel import lazy_gettext
 
 from datetime import timedelta
 from flask import make_response, request, current_app
@@ -318,7 +318,7 @@ def bookmarklet_configs():
     and internationalization strings.
     """
 
-    from flaskext.babel import get_locale
+    from flask.ext.babel import get_locale
     from configs.language_names import NAMES, LOCALISATION_NAMES_BY_LANGUAGE
 
     has_callback = request.args.get('callback', False)

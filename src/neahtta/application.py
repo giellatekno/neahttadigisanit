@@ -19,7 +19,7 @@ from   flask                          import ( Flask
 from   config                         import Config
 from   logging                        import getLogger
 
-from   flaskext.babel                 import Babel
+from   flask.ext.babel                 import Babel
 
 from cache                            import cache
 

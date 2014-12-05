@@ -2,7 +2,7 @@
 # -*- encoding:utf-8 -*-
 
 from flask import Flask
-from flaskext.actions import Manager
+from flask.ext.actions import Manager
 from neahtta import app
 
 from fabric.colors import red, green
