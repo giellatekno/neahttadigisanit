@@ -4,7 +4,6 @@
 ApplicationSettings:
   app_name: "Nedtedigibaakoeh"
   short_name: "baakoeh"
-  # new_style_templates: true
   default_locale: "sma"
   default_pair: ["sma", "nob"]
   mobile_default_pair: false # TODO: spellrelax for sma ["SoMe", "nob"]

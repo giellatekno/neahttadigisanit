@@ -4,7 +4,6 @@ ApplicationSettings:
   short_name: "sanat"
   default_locale: "fi"
   default_pair: ["olo", "fin"]
-  new_style_templates: true
   mobile_default_pair: false
   grouped_nav: true
   new_mobile_nav: true

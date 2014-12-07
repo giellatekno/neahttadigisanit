@@ -103,7 +103,7 @@ class Config(Config):
     @property
     def new_style_templates(self):
         _p = self.yaml.get('ApplicationSettings', {})\
-                      .get('new_style_templates', False)
+                      .get('new_style_templates', True)
         return _p
 
     @property

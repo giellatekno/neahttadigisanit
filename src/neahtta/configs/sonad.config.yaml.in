@@ -5,7 +5,6 @@ ApplicationSettings:
   default_pair: ["izh", "fin"]
   mobile_default_pair: false
   grouped_nav: true
-  new_style_templates: true
   new_mobile_nav: true
   locales_available:
     - "et"

@@ -5,7 +5,6 @@ ApplicationSettings:
   default_locale: "yrk"
   default_pair: ["yrk", "fin"]
   mobile_default_pair: false
-  new_style_templates: true
   locales_available:
     - yrk
     - fi

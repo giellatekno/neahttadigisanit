@@ -6,7 +6,6 @@ ApplicationSettings:
   # not have to resemble the app name, or anything, and the following is
   # just a suggestion.
   mobile_bookmark_name: "NDS: Dikaneisdi"
-  new_style_templates: true
   default_locale: "en"
   default_pair: ["chr", "eng"]
   mobile_default_pair: false # ["chrM", "eng"]
