@@ -87,6 +87,14 @@ no_fst_install = [
 # set up environments
 # Assume local unless otherwise noted
 
+# For new dictionary projects copy this, and uncomment it, 
+# replacing instances of `sample` with your PROJNAME.
+
+### @task
+### def sample():
+###     """ Use sample """
+###     env.current_dict = "sample"
+
 @task
 def baakoeh():
     """ Use baakoeh """
