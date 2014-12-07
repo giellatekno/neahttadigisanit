@@ -8,6 +8,9 @@
 # process for main/langs/, so it might be necessary to do a distclean,
 # and reautogen from time to time
 
+# *** If you are starting a new project ***
+# 	See #sampletargets
+
 # Some helpful tags for jumping around
 
 ###         #guusaawtargets
@@ -162,6 +165,57 @@ print_complete_message:
 	@echo "**    + $(GT_COMPILE_LANGS)           "
 	@echo
 	@echo
+
+
+
+###    #####
+###    ##### #sampletargets
+###    #####
+###    
+###    ### When starting a new project, copy this whole section (down to
+###    ### #/sampletargets), and change the following settings. Then, be sure to
+###    ### replace all instances of SAMPLE and sample in variables and target names
+###    ### with the PROJNAME.
+###    
+###    # These are the ISOs of the languages to compile from GTHOME/langs/
+###    SAMPLE_LANGS_ANALYSERS           :=   izh liv fin vep vro vot
+###    
+###    # These are the ISOs of the languages to compile from GTHOME/startup-langs/
+###    SAMPLE_STARTUP_LANGS_ANALYSERS   :=   lav
+###    
+###    # Compile the lexicon from within GTHOME/langs/LANG/src/morphology/stems/*.xml
+###    
+###    SAMPLE_LANGS_LEXICA              :=   liv izh vep vro vot
+###    
+###    # Compile the lexicon from a directory within GTHOME/words/dicts/
+###    SAMPLE_WORDS_DICTS_LEXICA        :=   finliv finizh lavliv
+###    
+###    .PHONY: sample-lexica
+###    sample-lexica: LEX_COMPILE_LANGS := $(SAMPLE_LANGS_LEXICA)
+###    sample-lexica: LEX_COMPILE_WORDS_DICTS := $(SAMPLE_WORDS_DICTS_LEXICA)
+###    sample-lexica: compile_langs_lexicon \
+###    			  compile_words_dicts_lexicon
+###    
+###    .PHONY: sample
+###    sample: GT_COMPILE_LANGS := $(SAMPLE_LANGS_ANALYSERS)
+###    sample: GT_COMPILE_STARTUP_LANGS := $(SAMPLE_STARTUP_LANGS_ANALYSERS)
+###    sample: LEX_COMPILE_LANGS := $(SAMPLE_LANGS_LEXICA)
+###    sample: LEX_COMPILE_WORDS_DICTS := $(SAMPLE_WORDS_DICTS_LEXICA)
+###    sample: sample-lexica compile_langs_fsts print_complete_message
+###    
+###    rm-sample-lexica: $(foreach xx, $(SAMPLE_LANGS_LEXICA), $(xx)-all.xml) \
+###    				 $(foreach yy, $(SAMPLE_WORDS_DICTS_LEXICA), $(yy).xml)
+###    	@rm -rf $^
+###    
+###    .PHONY: sample-install
+###    sample-install: GT_COMPILE_LANGS := $(SAMPLE_LANGS_ANALYSERS)
+###    sample-install: GT_COMPILE_STARTUP_LANGS := $(SAMPLE_STARTUP_LANGS_ANALYSERS)
+###    sample-install: install_langs_fsts
+###    
+###    #####
+###    ##### #/sampletargets
+###    #####
+
 
 #####
 ##### #guusaawtargets
