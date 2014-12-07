@@ -1,0 +1,130 @@
+# Non-linguistic settings.
+ApplicationSettings:
+  app_name: "NDS TEST"
+  short_name: "ndstesting"
+
+  # This will be the default bookmark title suggested to the user, does
+  # not have to resemble the app name, or anything, and the following is
+  # just a suggestion.
+  mobile_bookmark_name: "NDS: TEST"
+  default_locale: "en"
+  default_pair: ["kca", "eng"]
+  mobile_default_pair: ["kcaM", "eng"]
+
+  # ## Some optional display settings. Setting these to `true` enables them.
+  #
+  # `grouped_nav` enables navigation to be sorted into groups by minority
+  # language. This is recommended for projects with lots of language pairs and
+  # dictionaries.
+  #
+  grouped_nav: true
+  # 
+  # Also recommended for larger projects is the following setting. This uses a
+  # different mobile menu style, which has esparate submenus for language
+  # groups, dictionaries, and subsequently variants (if there are any).
+  #
+  new_mobile_nav: true
+
+  # 
+  # These are the people who will be emailed when there is an error. NB:
+  # it may be useful to use aliases, e.g., my.email+alias@gmail.com in
+  # order to make filtering errors more easy.
+  admins_to_email:
+    - "ryan.txanson@gmail.com"
+  #
+  # Use three-character ISO codes only when there is no corresponding
+  # two-character ISO for the language.
+  locales_available:
+    - "en"
+    - "ru"
+    - "no"
+  # Meta description and keywords for Google search results.
+  app_meta_title: >
+     NDS Testing instance
+  meta_description: >
+     Free, mobile-friendly dictionaries for test languages.
+  meta_keywords: >
+     testing
+
+# For default locals, these must correspond with what exists in the
+# translations/ directory. In the case of languages with a 2-character ISO, use
+# this, instead of the 3-character ISO. There is no connection between these
+# settings and language pair names however, so those may be kept in 3-character
+# format.
+
+# `app_name` is what is displayed in the upper-left corner on every page.
+
+
+##
+### Linguistic settings
+##
+
+# 
+# Some helpful aliases for paths below.
+Tools:
+  xfst_lookup: &LOOKUP '/usr/bin/lookup'
+  opt: &OPT '/opt/smi'
+
+# Note that YAML doesn't support concatenating strings directly, 
+# so in this case I use list notation. See the examples below.
+#
+# To avoid repeating, feel free to set aliases for things like
+# shared FST format settings (as demonstrated with `&sme_fst_options` and 
+# `<<: *sme_fst_options`. This is a YAML alias pattern.
+
+Morphology:
+  # This is the default setup for sme.
+  kca:
+    tool: *LOOKUP
+    file: [*OPT, '/kca/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/kca/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options: &kca_fst_options
+      compoundBoundary: "+Cmp#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  # This is an example of an input variant. Here we use a different analyzer,
+  # but the same generator. Also, `options` are copied from above.
+  kcaM:
+    tool: *LOOKUP
+    file: [*OPT, '/kca/bin/analyser-dict-gt-desc-mobile.xfst']
+    inverse_file: [*OPT, '/kca/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options:
+      <<: *kca_fst_options
+
+# For now, make sure that all languages that will be available are
+# defined here.  example, if only one dictionary file is defined,
+# `sme-nob`, there will still need to be a definition for language names
+# for `nob`.
+#
+Languages:
+  - iso: kca
+    # this ensures that if there are multiple minority languages in a project,
+    # that they will be sorted into groups by this status. Input variants do
+    # not need this marking.
+    minority_lang: true 
+
+  - iso: kcaM
+    variant: True # this makes the fab process skip attempting `svn up` here.
+
+  - iso: nob
+  - iso: eng
+  - iso: rus
+
+# Here are the actual definitions of what dictionaries are available in the
+# system. What is presented in the UI also adheres to the order that is here.
+#
+# The first pair example here is very complex, and includes mobile spell-relax
+# and Korp integration. A minimal example follows in the next definition.
+#
+Dictionaries:
+  - source: kca
+    target: eng
+    path: 'dicts/kca-all.xml'
+
+  - source: kca
+    target: rus
+    path: 'dicts/kca-all.xml'
+

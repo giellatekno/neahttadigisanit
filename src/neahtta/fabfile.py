@@ -96,6 +96,11 @@ no_fst_install = [
 ###     env.current_dict = "sample"
 
 @task
+def ndstesting():
+    """ Use ndstesting """
+    env.current_dict = "ndstesting"
+
+@task
 def baakoeh():
     """ Use baakoeh """
     env.current_dict = "baakoeh"

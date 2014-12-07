@@ -1,6 +1,10 @@
 # Non-linguistic settings.
 ApplicationSettings:
+  # `app_name` is what is displayed in the upper-left corner on every page.
   app_name: "Neahttadigisánit"
+
+  # This will be the same name as PROJNAME, which is also the file name, and
+  # potentially the subdomain.
   short_name: "sample"
 
   # This will be the default bookmark title suggested to the user, does
@@ -51,8 +55,6 @@ ApplicationSettings:
 # this, instead of the 3-character ISO. There is no connection between these
 # settings and language pair names however, so those may be kept in 3-character
 # format.
-
-# `app_name` is what is displayed in the upper-left corner on every page.
 
 
 ##

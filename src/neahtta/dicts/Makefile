@@ -218,6 +218,50 @@ print_complete_message:
 
 
 #####
+##### #ndstestingtargets
+#####
+
+# These are the ISOs of the languages to compile from GTHOME/langs/
+NDSTESTING_LANGS_ANALYSERS           :=   kca nob rus
+
+# These are the ISOs of the languages to compile from GTHOME/startup-langs/
+NDSTESTING_STARTUP_LANGS_ANALYSERS   :=   
+
+# Compile the lexicon from within GTHOME/langs/LANG/src/morphology/stems/*.xml
+
+NDSTESTING_LANGS_LEXICA              :=   kca
+
+# Compile the lexicon from a directory within GTHOME/words/dicts/
+NDSTESTING_WORDS_DICTS_LEXICA        :=   
+
+.PHONY: ndstesting-lexica
+ndstesting-lexica: LEX_COMPILE_LANGS := $(NDSTESTING_LANGS_LEXICA)
+ndstesting-lexica: LEX_COMPILE_WORDS_DICTS := $(NDSTESTING_WORDS_DICTS_LEXICA)
+ndstesting-lexica: compile_langs_lexicon \
+			  compile_words_dicts_lexicon
+
+.PHONY: ndstesting
+ndstesting: GT_COMPILE_LANGS := $(NDSTESTING_LANGS_ANALYSERS)
+ndstesting: GT_COMPILE_STARTUP_LANGS := $(NDSTESTING_STARTUP_LANGS_ANALYSERS)
+ndstesting: LEX_COMPILE_LANGS := $(NDSTESTING_LANGS_LEXICA)
+ndstesting: LEX_COMPILE_WORDS_DICTS := $(NDSTESTING_WORDS_DICTS_LEXICA)
+ndstesting: ndstesting-lexica compile_langs_fsts print_complete_message
+
+rm-ndstesting-lexica: $(foreach xx, $(NDSTESTING_LANGS_LEXICA), $(xx)-all.xml) \
+				 $(foreach yy, $(NDSTESTING_WORDS_DICTS_LEXICA), $(yy).xml)
+	@rm -rf $^
+
+.PHONY: ndstesting-install
+ndstesting-install: GT_COMPILE_LANGS := $(NDSTESTING_LANGS_ANALYSERS)
+ndstesting-install: GT_COMPILE_STARTUP_LANGS := $(NDSTESTING_STARTUP_LANGS_ANALYSERS)
+ndstesting-install: install_langs_fsts
+
+#####
+##### #/ndstestingtargets
+#####
+
+
+#####
 ##### #guusaawtargets
 #####
 
