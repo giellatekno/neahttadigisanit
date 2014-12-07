@@ -2,6 +2,7 @@
 ApplicationSettings:
   app_name: "Neahttadigisánit"
   short_name: "sample"
+
   # This will be the default bookmark title suggested to the user, does
   # not have to resemble the app name, or anything, and the following is
   # just a suggestion.
@@ -9,15 +10,34 @@ ApplicationSettings:
   default_locale: "se"
   default_pair: ["sme", "nob"]
   mobile_default_pair: ["SoMe", "nob"]
+
+  # ## Some optional display settings. Setting these to `true` enables them.
+  #
+  # `grouped_nav` enables navigation to be sorted into groups by minority
+  # language. This is recommended for projects with lots of language pairs and
+  # dictionaries.
+  #
+  grouped_nav: false
+  # 
+  # Also recommended for larger projects is the following setting. This uses a
+  # different mobile menu style, which has esparate submenus for language
+  # groups, dictionaries, and subsequently variants (if there are any).
+  #
+  new_mobile_nav: false
+
+  # 
   # These are the people who will be emailed when there is an error. NB:
   # it may be useful to use aliases, e.g., my.email+alias@gmail.com in
   # order to make filtering errors more easy.
   admins_to_email:
     - "someone.goes.here@email.com"
+  #
+  # Use three-character ISO codes only when there is no corresponding
+  # two-character ISO for the language.
   locales_available:
-    - sme
-    - nob
-    - fin
+    - "sma"
+    - "no"
+    - "fi"
   # Meta description and keywords for Google search results.
   app_meta_title: >
      Digibaakoeh gaskeviermesne 
@@ -43,37 +63,40 @@ ApplicationSettings:
 # Some helpful aliases for paths below.
 Tools:
   xfst_lookup: &LOOKUP '/usr/bin/lookup'
-  gthome: &GTHOME '/home/neahtta/gtsvn'
   opt: &OPT '/opt/smi'
 
 # Note that YAML doesn't support concatenating strings directly, 
 # so in this case I use list notation. See the examples below.
 #
 # To avoid repeating, feel free to set aliases for things like
-# shared FST format settings.
+# shared FST format settings (as demonstrated with `&sme_fst_options` and 
+# `<<: *sme_fst_options`. This is a YAML alias pattern.
 
 Morphology:
+  # This is the default setup for sme.
   sme:
     tool: *LOOKUP
-    file: [*OPT, "/sme/bin/n-sme.fst"]
-    inverse_file: [*OPT, "/sme/bin/dict-isme-norm.fst"]
+    file: [*OPT, '/sme/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/sme/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options: &sme_fst_options
-      compoundBoundary: "  + #"
-      derivationMarker: "suff."
-      tagsep: ' '
+      compoundBoundary: "+Cmp#"
+      derivationMarker: "+Der"
+      tagsep: '+'
       inverse_tagsep: '+'
+  # This is an example of an input variant. Here we use a different analyzer,
+  # but the same generator. Also, `options` are copied from above.
   SoMe:
     tool: *LOOKUP
-    file: [*OPT, "/sme/bin/some-sme.fst"] 
-    inverse_file: [*OPT, "/sme/bin/dict-isme-norm.fst"]
+    file: [*OPT, '/sme/bin/analyser-dict-gt-desc-mobile.xfst']
+    inverse_file: [*OPT, '/sme/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
       <<: *sme_fst_options
   nob:
     tool: *LOOKUP
-    file: [*GTHOME, '/st/nob/bin/nob.fst']
-    inverse_file: [*GTHOME, '/st/nob/bin/inob.fst']
+    file: [*OPT, '/nob/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/nob/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
       compoundBoundary: "#+Cmp+"
@@ -102,11 +125,35 @@ Languages:
 
 # Here are the actual definitions of what dictionaries are available in the
 # system. What is presented in the UI also adheres to the order that is here.
+#
+# The first pair example here is very complex, and includes mobile spell-relax
+# and Korp integration. A minimal example follows in the next definition.
+#
 Dictionaries:
   - source: sme
     target: nob
     path: 'dicts/sme-nob.all.xml'
-    # This key may be present and set to True and False, or missing--
+    input_variants:
+      # "standard" and "mobile" are special values, otherwise templates and
+      # swapping on mobile devices won't work
+      - type: "standard"
+        # Marking this with gettext ensures that it will be extracted to .po
+        # files. This will be displayed to users.
+        description: !gettext "Standard"
+        # Provide a _brief_ example to users of what this standard means
+        example: "(<em>áčđŋšŧž</em>)"
+        # This is the name for the analyzer (defined in Morphology)
+        short_name: "sme"
+
+      - type: "mobile"
+        description: !gettext "Social media"
+        example: !gettext "(incl. <em>acdnstz</em>)"
+        # This is the name for the analyzer (defined in Morphology)
+        short_name: "SoMe"
+
+        # "
+
+    # Following are some optional settings for integration with Korp.
     # default is False
     show_korp_search: True
     # If there are any input variants, specify this. NB: 'standard' and
@@ -116,26 +163,34 @@ Dictionaries:
     #
     # Note that it's also a good idea to mark the strings here with
     # the gettext marker, so that they're translated.
-    input_variants:
-      - type: "standard"
-        description: !gettext "Standard" 
-        # Standárda 
-        example: "(<em>áčđŋšŧž</em>)"
-        short_name: "sme"
-      - type: "mobile"
-        description: !gettext "Sosiála media"
-        # example: !gettext "(maiddái <em>acdnstz</em>)"
-        example: !gettext "(incl. <em>acdnstz</em>)"
-        short_name: "SoMe"
+    #
+    # use http://meyerweb.com/eric/tools/dencoder/ if things are
+    # unreadable or do not work
+    #
+    # Here, whatever the user input is will be replaced into the
+    # following string, marked by USER_INPUT
+    wordform_search_url: &alt_korp_search 
+      "http://gtweb.uit.no/korp/#search=word%7CUSER_INPUT&page=0"
+    #
+    # Here, whatever the input lemma is will be replaced into the
+    # following string, marked by INPUT_LEMMA
+    #
+    # cqp|[lemma = "INPUT_LEMMA"]
+    lemma_search_url: &korp_lemma_search 
+      "http://gtweb.uit.no/korp/#page=0&search-tab=2&search=cqp%7C%5Blemma%20%3D%20%22INPUT_LEMMA%22%5D"
+    # "] [word = "
+    lemma_multiword_delimiter: &korp_lemma_delim 
+      "%22%5D%20%5Bword%20%3D%20%22"
 
-  - source: SoMe
-    target: nob
-    path: 'dicts/sme-nob.all.xml'
-
+  # This is the most minimal example of what is needed.
   - source: nob
     target: sme
     path: 'dicts/nob-sme.all.xml'
 
+# Everything after this point is optional. You may delete them if you do not
+# need them.
+
+# These settings are for the client-side reader bookmarklet. 
 ReaderConfig:
   hdn:
     multiword_lookups: true
