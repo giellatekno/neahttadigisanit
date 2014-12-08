@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
-{% import 'macros.html' as macros with context %}
 
 {% block extra_js %}
     {# https://gist.github.com/1866577 #}
     <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-typeahead-fork.js')}}"></script>
     <script type="text/javascript" src="{{url_for('static', filename='js/index.js')}}"></script>
+
+{% endblock %}
+
+{% block footer_js %}
 {% endblock %}
 
 {% block search_li %}
@@ -13,6 +16,43 @@
 {% block search_li_form %}
 {% endblock %}
 
+{% macro korp_link_lemma(lemma) -%}
+{% if current_pair_settings.lemma_search_url -%}
+    {% set search_url = current_pair_settings.lemma_search_url.replace('INPUT_LEMMA', lemma) %}
+    <a class="korp_search lemma_action"
+       href="{{ search_url }}" lang="{{ current_locale }}">{% trans %}Texts{% endtrans %} &rarr;</a>
+{%- endif %}
+{%- endmacro %}
+
+{% macro possible_analyses_grid(analyses) -%}
+    <dl class="possible_analyses grid_analyses">
+    {% for grouper, forms in analyses|groupby('lemma') %}
+        {% for lemmagroup, lemmafs in forms|groupby('pos') %}
+            {% if current_pair_settings.show_korp_search %}
+                {% if lemmagroup and grouper %}
+                    <dt>{{ grouper }} {{ korp_link_lemma(grouper) }}</dt>
+                {% else %}
+                    <dt>{{ grouper }}</dt>
+                {% endif %}
+            {% else %}
+                <dt>{{ grouper }}</dt>
+            {% endif %}
+            <dd>
+                <ul class="possible_forms">
+                    {% set existing_tags = [] %}
+                    {% for lem in lemmafs %}
+                    {% set formatted_tag = ' '.join(lem.tag)|tagfilter(_from, _to) %}
+                    {% if formatted_tag not in existing_tags %}
+                        <li>{{ formatted_tag }}</li>
+                        {% do existing_tags.append(formatted_tag) %}
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </dd>
+        {% endfor %}
+    {% endfor %}
+    </dl>
+{%- endmacro %}
 
 {% block extra_nav %}
     {# Dictionaries #}
@@ -26,164 +66,90 @@
     <div class="row-fluid">
         {% if grouped_nav %}
             {% set nav_width = "span3" %}
-            {% set dict_width = "span8" %}
+            {% set dict_width = "span9" %}
         {% else %}
             {% set nav_width = "span4" %}
             {% set dict_width = "span8" %}
         {% endif %}
-        <div class="{{ nav_width }} hidden-phone hidden-mid" id="left_nav">{%- include 'left_dictionary_list.html' -%}</div>
+        <div class="{{ nav_width }}  hidden-phone hidden-mid" id="left_nav">
+            {% include 'left_dictionary_list.html' %}
+        </div>
         <div class="{{ dict_width }}">
             <h4 class="dict_title">
-                <span>{{ _from|iso_to_i18n }} → {{ _to|iso_to_i18n }}</span>
-
-                {# figure out if there's a variant, and if the reverse has
-                variants, because if mobile, we want to force mobile variant in
-                swap #}
-
+                {% if current_variant_options %}
+                    <span>{{ _from|iso_to_i18n }} ({{ gettext(current_variant_options.description) }}) → {{ _to|iso_to_i18n }}</span>
+                {% else %}
+                    <span>{{ _from|iso_to_i18n }} → {{ _to|iso_to_i18n }}</span>
+                {% endif %}
                 {% if display_swap %}
-                    <span class="swaplink" style="font-size: 80%">(<a href="/{{ swap_from }}/{{ swap_to }}/">⇄ <span lang="{{ current_locale }}">{% trans %}Swap{% endtrans %}</span></a>)</span>
+                <span class="swaplink" style="font-size: 80%">(<a href="/{{ swap_from }}/{{ swap_to }}/">⇄ <span lang="{{ current_locale }}">{% trans %}Swap{% endtrans %}</span></a>)</span>
                 {% endif %}
             </h4>
 
+            {# figure out if there's a variant, and if the reverse has
+            variants, because if mobile, we want to force mobile variant in
+            swap #}
+
             <div class="row-fluid form-row">
                 <div class="span8">
-                    {% include 'index_search_form.html' %}
+                    {{ index_search_form|safe }}
                 </div>
                 <div class="span4 hidden-phone valign_block">
                     {% if analyses %}
-                        <p class="analysis_note"><em lang="{{ _from }}">{{ user_input }}</em><span lang="{{ current_locale }}">{% trans user_input=user_input %} is a possible form of ... {% endtrans %}</span></p>
+                        <p class="analysis_note"><em lang="{{ _from }}">{{ user_input }}</em><span lang="{{ current_locale }}"{% trans user_input=user_input %} is a possible form of ... {% endtrans %}</span></p>
                     {% endif %}
                 </div>
             </div>
 
             {# TODO: deep link needs to go to specific lexeme when it comes from the front page #}
-            {% if word_searches %}
+            {% if successful_entry_exists %}
                 <div class="results">
-                        {% for lexeme in word_searches %}
-                            {% if lexeme.lookups %}
-                                {% for lookup in lexeme.lookups %}
-                                    <div class="row-fluid entry_row">
-                                        <div class="span8">
-
-                                        <p>{{ lookup.source_formatted|safe }}
-
-                                        {% if lookup.right|length == 1 %}
-                                            <ul class="meanings">
-                                        {% else %}
-                                            <ol class="meanings">
-                                        {% endif %}
-
-                                        {%- for tx in lookup.right -%}
-                                            <li>
-                                                {%- include 'main_page_li.html' -%}
-                                            </li>
-                                        {%- endfor -%}
-
-                                        {% if lookup.right|length == 1 %}
-                                            </ul>
-                                        {% else %}
-                                            </ol>
-                                        {% endif %}
-
-                                        </div>
-                                        <div class="span4 hidden-phone">
-                                            {{ macros.possible_analyses_grid(lookup.analyses) }}
-                                        </div>
+                    {% for tpl in entry_templates %}
+                        {{ tpl|safe }}
+                    {% endfor %}
+                    {% if leftover_analyses_template %}
+                        <div class="row-fluid entry_row">
+                            <div class="span8 lexeme">
+                                {% if new_templates|length == 0 %}
+                                    <div class="alert alert-warning">
+                                        <p>
+                                            <span lang="{{ current_locale }}">{% trans input=user_input %}Word <span lang="{{ _from }}">{{ input }}</span> not found.{% endtrans %}</span>
+                                        </p>
                                     </div>
-                                {% endfor %}
-                            {% else %}
-                                {% if errors %}
-                                    <div class="alert">
-                                        <ul>
-                                            {% for error in errors %}
-                                            <li>{{ error }}</li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
+                                {% else %}
+                                    &nbsp;
                                 {% endif %}
-                            {% endif %}
-                        {% endfor %}
-
-                        {% if not successful_entry_exists %}
-                            <div class="span8">
-                            <p lang="{{ current_locale }}">{% trans %}Definition not found for:{% endtrans %}</p>
-                            <ul class="unknown_lexemes">
-                            {% for lexeme in word_searches %}
-                                <li>{{ lexeme.input }}</li>
-                            {% endfor %}
-                            </ul>
-                            <p class="lead">&nbsp;</p>
                             </div>
-                            <div class="span4 hidden-phone">
-                                {{ macros.possible_analyses_grid(analyses_without_lex) }}
-                            </div>
-                        {% else %}
-                            <div class="row-fluid entry_row">
-                                <div class="span8">
-                                    <p class="lead">&nbsp;</p>
-                                </div>
-                                <div class="span4 hidden-phone">
-                                    {{ macros.possible_analyses_grid(analyses_without_lex) }}
-                                </div>
-                            </div>
-                        {% endif %}
-
+                            <div class="span4 hidden-phone">{{- leftover_analyses_template|safe -}}</div>
                         </div>
-
-                    </div>
+                    {% endif %}
                 </div>
 
-                {%- if analyses %}
-                <div class="visible-phone">
-                    <div class="well">
-                        <p style="font-size: 95%;"><em lang="{{ _from }}">{{ user_input }}</em><span lang="{{ current_locale }}">{% trans user_input=user_input %} is a possible form of ... {% endtrans %}</span></p>
-                        <dl class="possible_analyses">
-                            {% for grouper, forms in analyses|groupby(0) %}
-                                {% for lemmagroup, lemmafs in forms|groupby(1) %}
-                                    <dt lang="{{ _from }}">{{ lemmagroup }}</dt>
-                                    <dt>
-                                        <ul class="possible_forms">
-                                            {% for form, lemma, tag in lemmafs %}
-                                                <li>{{ ' '.join(tag)|tagfilter(_from, _to) }}</li>
-                                            {% endfor %}
-                                        </ul>
-                                    </dd>
-                                {% endfor %}
-                            {% endfor %}
-                        </dl>
-                    </div>
-                </div>
-                {%- endif -%}
             {% else %}
                 {% if not show_info %}
                 <div class="alert alert-error">
                     <p>
-                        <span lang="{{ current_locale }}">{% trans input=user_input %}Word <span class="{{ _from }}">{{ input }}</span> not found.{% endtrans %}</span>
+                        <span lang="{{ current_locale }}">{% trans input=user_input %}Word <span lang="{{ _from }}">{{ input }}</span> not found.{% endtrans %}</span>
                     </p>
                 </div>
                 {% endif %}
             {% endif %}
             {% if show_info %}
-                <div class="alert alert-success intro-note">
-                    {% if _from == 'sme' %}
-                    <p class="visible-phone visible-tablet visible-mid" lang="{{ current_locale }}">
-                        {% trans %}If you are using a device without a Sámi keyboard, consider using <a href="/SoMe/nob/">social media mode</a>, which allows you to type <em>acdnstz</em> for <em>áčđŋšŧž</em>.{% endtrans %}
-                    </p>
-                    {% endif %}
-                    <p>
-                        <span lang="{{ current_locale }}">{% trans %}Search for a word, or a word form for a word analysis and definition.{% endtrans %}</span>
-                        {% if _from == "SoMe" %}
-                        <br />
-                        <br />
-                        <span lang="{{ current_locale }}"><strong>NB</strong>: {% trans %}You selected #SoMe, the variant for social media, which means that the letters acdnstz
-                            will be accepted as áčđŋšŧž in addition to their usual values.{% endtrans %}</span>
-                        {% endif %}
-                    </p>
-                </div>
+                {{ search_info_template|safe }}
             {% endif %}
         </div>
         
     </div>
+
+    {%- if analyses %}
+    <div class="visible-phone">
+        <div class="well">
+            <p style="font-size: 95%;"><em lang="{{ _from }}">{{ user_input }}</em><span lang="{{ current_locale }}">{% trans user_input=user_input %} is a possible form of ... {% endtrans %}</span></p>
+
+            {{ all_analysis_template|safe }}
+        </div>
+    </div>
+    {%- endif -%}
 
 </div>
 

@@ -147,15 +147,13 @@ def create_app():
     pc = ParadigmConfig(app)
     app.morpholexicon.paradigms = pc
 
-    if app.config.new_style_templates:
-        from configs.entry_template_filters import register_template_filters
-        app = register_template_filters(app)
+    ## Read and prepare the templates
 
-        from configs.entry_templates import TemplateConfig
-        pc = TemplateConfig(app, debug=True)
-        app.lexicon_templates = pc
-    else:
-        app.lexicon_templates = False
+    from configs.entry_template_filters import register_template_filters
+    from configs.entry_templates import TemplateConfig
+
+    app = register_template_filters(app)
+    app.lexicon_templates = TemplateConfig(app, debug=True)
 
     try:
         with open('secret_key.do.not.check.in', 'r') as F:

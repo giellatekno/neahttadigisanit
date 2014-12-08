@@ -17,11 +17,11 @@ def sources_template():
     sources_template_exists = False
     has_sources = False
 
-    if current_app.config.new_style_templates:
-        _from, _to = current_app.config.default_language_pair
-        has_sources = current_app.lexicon_templates.has_local_override(
-            _from,
-            'sources.template',)
+    _from, _to = current_app.config.default_language_pair
+    has_sources = current_app.lexicon_templates.has_local_override(
+        _from,
+        'sources.template',)
+
     try:
         sources_template_path = './templates/sources.%s.html' % current_app.config.short_name
         with open(sources_template_path, 'r') as F:
@@ -42,15 +42,12 @@ def text_tv():
 def check_notice():
     from jinja2 import TemplateNotFound
 
-    if current_app.config.new_style_templates:
-        _from, _to = current_app.config.default_language_pair
-        project_notice = current_app.lexicon_templates.render_individual_template(
-            _from,
-            'notice.template',
-            **{'current_locale': get_locale()}
-        )
-    else:
-        project_notice = False
+    _from, _to = current_app.config.default_language_pair
+    project_notice = current_app.lexicon_templates.render_individual_template(
+        _from,
+        'notice.template',
+        **{'current_locale': get_locale()}
+    )
 
     return {'project_notice': project_notice}
 
@@ -147,13 +144,10 @@ def detect_mobile_variables():
 @blueprint.context_processor
 def footer_template():
 
-    if current_app.config.new_style_templates:
-        _from, _to = current_app.config.default_language_pair
-        footer_template = current_app.lexicon_templates.render_individual_template(
-            _from,
-            'footer.template',
-            **{'current_locale': get_locale()}
-        )
-        return {'footer_template': footer_template}
-    else:
-        return {'footer_template': False}
+    _from, _to = current_app.config.default_language_pair
+    footer_template = current_app.lexicon_templates.render_individual_template(
+        _from,
+        'footer.template',
+        **{'current_locale': get_locale()}
+    )
+    return {'footer_template': footer_template}

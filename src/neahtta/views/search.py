@@ -26,6 +26,14 @@ from flask import ( request
 
 from flask.ext.babel import gettext as _
 
+from i18n.utils import get_locale
+
+from flask.views import View, MethodView
+
+from lexicon import FrontPageFormat
+
+from .reader import json_response
+
 from operator import itemgetter
 
 user_log = getLogger("user_log")
@@ -46,10 +54,6 @@ user_log = getLogger("user_log")
 ####   simplify the amount of context that is needed to be passed into
 ####   templates. SearchResult object should actually be enough.
 
-from i18n.utils import get_locale
-
-from flask.views import View, MethodView
-
 class AppViewSettingsMixin(object):
 
     def __init__(self, *args, **kwargs):
@@ -63,19 +67,81 @@ class AppViewSettingsMixin(object):
 
         super(AppViewSettingsMixin, self).__init__(*args, **kwargs)
 
-class IndexSearch(object):
+class DictionaryView(MethodView):
 
-    @property
-    def template_name(self):
-        if current_app.config.new_style_templates:
-            return 'index_new_style.html'
-        else:
-            return 'index.html'
+    entry_filterer = lambda self, x: x
 
-class IndexSearchPage(IndexSearch, View, AppViewSettingsMixin):
+    validate_request = lambda self, x: True
+
+    def get_shared_context(self, _from, _to):
+        """ Return some things that are in all templates. """
+
+        current_pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(_from, _to)
+        shared_context = {
+            'display_swap': self.get_reverse_pair(_from, _to),
+            'current_pair_settings': current_pair_settings,
+            'current_variant_options': orig_pair_opts.get('variant_options'),
+            'current_locale': get_locale(),
+            '_from': _from,
+            '_to': _to,
+        }
+
+        # Render some additional templates
+        search_info = current_app.lexicon_templates.render_individual_template(
+            _from,
+            'search_info.template',
+            **shared_context
+        )
+        search_form = current_app.lexicon_templates.render_individual_template(
+            _from,
+            'index_search_form.template',
+            **shared_context
+        )
+        shared_context['search_info_template'] = search_info
+        shared_context['index_search_form'] = search_form
+
+        shared_context.update(**orig_pair_opts)
+        return shared_context
+
+
+    def get_lemma_lookup_args(self):
+        lemma_lookup_args = {}
+        for k, v in request.args.iteritems():
+            if k in self.accepted_lemma_args:
+                lemma_lookup_args[self.accepted_lemma_args.get(k)] = v
+        return lemma_lookup_args
+
+    def check_pair_exists_or_abort(self, _from, _to):
+
+        if (_from, _to) not in current_app.config.dictionaries and \
+           (_from, _to) not in current_app.config.variant_dictionaries:
+            abort(404)
+
+        return False
+
+    def get_reverse_pair(self, _from, _to):
+        """ If the reverse pair for (_from, _to) exists, return the
+        pair's settings, otherwise False. """
+
+        # TODO: move this to config object.
+
+        pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(_from, _to)
+        _r_from, _r_to = orig_pair_opts.get('swap_from'), orig_pair_opts.get('swap_to')
+        reverse_exists = current_app.config.dictionaries.get((_r_from, _r_to), False)
+
+        # check to see if the reversed pair is not a variant 
+        rev_orig_pair_settings, rev_orig_pair_opts = current_app.config.resolve_original_pair(_r_from, _r_to)
+        _r_var_from, _r_var_to = rev_orig_pair_opts.get('swap_from'), rev_orig_pair_opts.get('swap_to')
+        reverse_variant_exists = current_app.config.dictionaries.get((_r_var_from, _r_var_to), False)
+
+        return reverse_exists or reverse_variant_exists
+
+class IndexSearchPage(DictionaryView, AppViewSettingsMixin):
     """ A simple view to handle potential mobile redirects to a default
     language pair specified only for mobile.
     """
+
+    template_name = 'index.html'
 
     def maybe_do_mobile_redirect(self):
         """ If this is a mobile platform, redirect; otherwise return
@@ -107,7 +173,9 @@ class IndexSearchPage(IndexSearch, View, AppViewSettingsMixin):
 
     def dispatch_request(self):
 
-        self.maybe_do_mobile_redirect()
+        redir = self.maybe_do_mobile_redirect()
+        if redir:
+            return redir
 
         reverse_exists = \
             current_app.config.dictionaries.get( ( self.default_to
@@ -117,7 +185,8 @@ class IndexSearchPage(IndexSearch, View, AppViewSettingsMixin):
                                                )
 
         current_pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(self.default_from, self.default_to)
-        template_context = {
+        template_context = self.get_shared_context(self.default_from, self.default_to)
+        template_context.update({
             'display_swap': reverse_exists,
             'swap_from': self.default_to,
             'swap_to': self.default_from,
@@ -127,21 +196,7 @@ class IndexSearchPage(IndexSearch, View, AppViewSettingsMixin):
             'current_locale': get_locale(),
             '_from': self.default_from,
             '_to': self.default_to
-        }
-
-        if current_app.config.new_style_templates:
-            search_info = current_app.lexicon_templates.render_individual_template(
-                self.default_from,
-                'search_info.template',
-                **template_context
-            )
-            search_form = current_app.lexicon_templates.render_individual_template(
-                self.default_from,
-                'index_search_form.template',
-                **template_context
-            )
-            template_context['search_info_template'] = search_info
-            template_context['index_search_form'] = search_form
+        })
 
         return render_template(self.template_name, **template_context)
 
@@ -378,8 +433,6 @@ class SearchResult(object):
         if len(self.formatted_results) > 0:
             self.successful_entry_exists = True
 
-from lexicon import FrontPageFormat
-
 class SearcherMixin(object):
     """ This mixin provides common methods for performing the search,
     and returning view-ready results.
@@ -417,45 +470,6 @@ class SearcherMixin(object):
                                          debug_text=fst_text)
 
         return search_result_obj
-
-    def search_to_context(self, lookup_value, lemma_attrs={}):
-        # TODO: There's a big mess contained here, and part of it
-        # relates to lexicon formatters. Slowly working on unravelling
-        # it.
-
-        errors = []
-
-        search_result_obj = self.do_search_to_obj(lookup_value, lemma_attrs=lemma_attrs)
-
-        template_results = [{
-            'input': search_result_obj.search_term,
-            'lookups': search_result_obj.formatted_results_sorted
-        }]
-
-        logIndexLookups(search_result_obj.search_term, template_results, g._from, g._to)
-
-        show_info = False
-
-        if len(errors) == 0:
-            errors = False
-
-        search_context = {
-
-            # These variables can be turned into something more general
-            'successful_entry_exists': search_result_obj.successful_entry_exists,
-
-            'word_searches': template_results,
-            'analyses': search_result_obj.analyses,
-            'analyses_without_lex': search_result_obj.analyses_without_lex,
-            'user_input': search_result_obj.search_term,
-
-            # ?
-            'errors': errors, # is this actually getting set?
-            'show_info': show_info,
-            'debug_text': search_result_obj.debug_text
-        }
-
-        return search_context
 
     def search_to_detailed_context(self, lookup_value, **search_kwargs):
         # TODO: There's a big mess contained here, and part of it
@@ -502,7 +516,8 @@ class SearcherMixin(object):
 
         return search_context
 
-    def search_to_newstyle_context(self, lookup_value, detailed=False, **default_context_kwargs):
+    # TODO: NST removal
+    def search_to_context(self, lookup_value, detailed=False, **default_context_kwargs):
         """ This needs a big redo.
 
             Note however: new-style templates require similar input
@@ -612,8 +627,8 @@ class SearcherMixin(object):
         search_context = {
 
             # This is the new style stuff.
-            'new_templates': _rendered_entry_templates,
-            'new_template_header_includes': header_template,
+            'entry_templates': _rendered_entry_templates,
+            'entry_template_header_includes': header_template,
 
             'leftover_analyses_template': leftover_analyses_template,
             'all_analysis_template': all_analysis_template,
@@ -635,40 +650,7 @@ class SearcherMixin(object):
 
         return search_context
 
-class DictionaryView(MethodView):
-
-    entry_filterer = lambda self, x: x
-
-    validate_request = lambda self, x: True
-
-    def get_lemma_lookup_args(self):
-        lemma_lookup_args = {}
-        for k, v in request.args.iteritems():
-            if k in self.accepted_lemma_args:
-                lemma_lookup_args[self.accepted_lemma_args.get(k)] = v
-        return lemma_lookup_args
-
-    def check_pair_exists_or_abort(self, _from, _to):
-
-        if (_from, _to) not in current_app.config.dictionaries and \
-           (_from, _to) not in current_app.config.variant_dictionaries:
-            abort(404)
-
-        return False
-
-    def get_reverse_pair(self, _from, _to):
-        """ If the reverse pair for (_from, _to) exists, return the
-        pair's settings, otherwise False. """
-
-        # TODO: move this to config object.
-
-        pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(_from, _to)
-        _r_from, _r_to = orig_pair_opts.get('swap_from'), orig_pair_opts.get('swap_to')
-        reverse_exists = current_app.config.dictionaries.get((_r_from, _r_to), False)
-
-        return reverse_exists
-
-class LanguagePairSearchView(IndexSearch, DictionaryView, SearcherMixin):
+class LanguagePairSearchView(DictionaryView, SearcherMixin):
     """ This view returns either the search form, or processes the
     search request.
 
@@ -683,36 +665,9 @@ class LanguagePairSearchView(IndexSearch, DictionaryView, SearcherMixin):
 
     methods = ['GET', 'POST']
 
+    template_name = 'index.html'
+
     formatter = FrontPageFormat
-
-    def get_shared_context(self, _from, _to):
-        """ Return some things that are in all templates. """
-
-        current_pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(_from, _to)
-        shared_context = {
-            'display_swap': self.get_reverse_pair(_from, _to),
-            'current_pair_settings': current_pair_settings,
-            'current_variant_options': orig_pair_opts.get('variant_options'),
-            'current_locale': get_locale(),
-            '_from': _from,
-            '_to': _to,
-        }
-
-        if current_app.config.new_style_templates:
-            search_info = current_app.lexicon_templates.render_individual_template(
-                g._from,
-                'search_info.template',
-                **shared_context
-            )
-            search_form = current_app.lexicon_templates.render_individual_template(
-                g._from,
-                'index_search_form.template',
-                **shared_context
-            )
-            shared_context['search_info_template'] = search_info
-            shared_context['index_search_form'] = search_form
-        shared_context.update(**orig_pair_opts)
-        return shared_context
 
     def get(self, _from, _to):
 
@@ -750,36 +705,15 @@ class LanguagePairSearchView(IndexSearch, DictionaryView, SearcherMixin):
         if user_input in ['teksti-tv', 'tekst tv', 'teaksta tv']:
             session['text_tv'] = True
 
-        if current_app.config.new_style_templates:
-            return self.handle_newstyle_post(_from, _to)
-
         if not user_input:
             user_input = ''
             show_info = True
-            # TODO: return an error.
 
         # This performs lots of the work...
-        search_result_context = self.search_to_context(user_input,
-                                                       lemma_attrs=self.get_lemma_lookup_args())
-
-        search_result_context.update(**self.get_shared_context(_from, _to))
-
-        return render_template(self.template_name, **search_result_context)
-
-    def handle_newstyle_post(self, _from, _to):
-
-        user_input = lookup_val = request.form.get('lookup', False)
-
-        if not user_input:
-            user_input = ''
-            show_info = True
-            # TODO: return an error.
-
-        # This performs lots of the work...
-        search_result_context = self.search_to_newstyle_context(user_input, **self.get_shared_context(_from, _to))
+        search_result_context = self.search_to_context(user_input, **self.get_shared_context(_from, _to))
 
         # missing current_pair_settings
-        return render_template('index_new_style.html', **search_result_context)
+        return render_template('index.html', **search_result_context)
 
 class ReferredLanguagePairSearchView(LanguagePairSearchView):
     """ This overrides some functionality in order to provide the
@@ -791,7 +725,10 @@ class ReferredLanguagePairSearchView(LanguagePairSearchView):
         'e_node': 'entry_hash',
     }
 
-    def handle_newstyle_get(self, _from, _to):
+    # TODO: NST removal
+    def get(self, _from, _to):
+
+        self.check_pair_exists_or_abort(_from, _to)
 
         user_input = lookup_val = request.form.get('lookup', False)
 
@@ -804,34 +741,10 @@ class ReferredLanguagePairSearchView(LanguagePairSearchView):
         lookup_context['lemma_attrs'] = self.get_lemma_lookup_args()
 
         # This performs lots of the work...
-        search_result_context = self.search_to_newstyle_context(user_input, **lookup_context)
+        search_result_context = self.search_to_context(user_input, **lookup_context)
 
         # missing current_pair_settings
-        return render_template('index_new_style.html', **search_result_context)
-
-    def get(self, _from, _to):
-
-        self.check_pair_exists_or_abort(_from, _to)
-
-        if current_app.config.new_style_templates:
-            return self.handle_newstyle_get(_from, _to)
-
-        user_input = lookup_val = request.form.get('lookup', False)
-
-        if not user_input:
-            user_input = ''
-            show_info = True
-            # TODO: return an error.
-
-        # This performs lots of the work...
-        search_result_context = self.search_to_context(user_input,
-                                                       lemma_attrs=self.get_lemma_lookup_args())
-
-        search_result_context.update(**self.get_shared_context(_from, _to))
-
-        return render_template(self.template_name, **search_result_context)
-
-from .reader import json_response
+        return render_template('index.html', **search_result_context)
 
 class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
     """ The major difference between this view and the main index search
@@ -1038,19 +951,11 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
 
         has_analyses = False
 
-        if current_app.config.new_style_templates:
-            search_result_context = \
-                self.search_to_newstyle_context(user_input,
-                                                detailed=True,
-                                                **search_kwargs)
-            has_analyses = search_result_context.get('successful_entry_exists')
-        else:
-            search_result_context = self.search_to_detailed_context(user_input, **search_kwargs)
-
-            for result in search_result_context.get('result'):
-                if result.get('analyses'):
-                    if len(result.get('analyses')) > 0:
-                        has_analyses = True
+        search_result_context = \
+            self.search_to_context(user_input,
+                                            detailed=True,
+                                            **search_kwargs)
+        has_analyses = search_result_context.get('successful_entry_exists')
 
         # TODO: cache search result here
         # current_app.cache.set(entry_cache_key,
@@ -1061,12 +966,7 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
         search_result_context['has_analyses'] = has_analyses
         search_result_context['more_detail_link'] = want_more_detail
 
-        if current_app.config.new_style_templates:
-            template = 'word_detail_new_style.html'
-        else:
-            template = self.template_name
-
-        return render_template(template, **search_result_context)
+        return render_template(self.template_name, **search_result_context)
 
 class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
 

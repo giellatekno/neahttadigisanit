@@ -9,6 +9,7 @@
     <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-typeahead-fork.js')}}"></script>
     <script type="text/javascript" src="{{url_for('static', filename='js/detail.js')}}"></script>
 
+    {{ entry_template_header_includes|safe }}
 {# Not actually in use
     <script type="text/javascript" src="{{url_for('static', filename='js/dropdown-button.js')}}"></script> 
 #}
@@ -109,81 +110,30 @@
        <br />
     </div>
 
-    {% for lexeme in result %}
-    <div class="row-fluid">
-        <div class="span8 lexeme">
-            {# This is the non-mobile version, otherwise we display it below #}
-            {% set context = lexeme.context %}
-            {% if lexeme.paradigm %}
-                <div class="pull-right hidden-phone floatingparadigm">
-                    {% include 'detail_paradigm_dl.html' %}
-                </div>
-            {% endif %}
+    {% if current_pair_settings.asynchronous_paradigms %}
+        <div ng-app="NDS">
+    {% else %}
+        <div>
+    {% endif %}
 
-            <p class="lead">{{ lexeme.source_formatted|safe }}</p>
+        {% for tpl in entry_templates %}
+            {{ tpl|safe }}
+        {% endfor %}
+        <div class="row-fluid entry_row">
+            <div class="span3 offset9 hidden-phone">
+               {% if analyses_without_entry %}
+                   {{ analyses_without_entry|safe }}
+               {% endif %}
+           </div>
+       </div>
 
-            {% if lexeme.right|length == 1 %}
-                <ul class="meanings">
-            {% else %}
-                <ol class="meanings">
-            {% endif %}
-
-            {% for tx in lexeme.right %}
-                <li>{% include 'word_detail_li.html' %}</li>
-            {% endfor %}
-
-            {% if lexeme.right|length == 1 %}
-                </ul>
-            {% else %}
-                </ol>
-            {% endif %}
-
-            {# This is the non-mobile version, otherwise we display it below #}
-            {% set context = lexeme.context %}
-            {% if lexeme.paradigm %}
-                <div class="pull-left visible-phone">
-                    {% include 'detail_paradigm_dl.html' %}
-                </div>
-            {% endif %}
+    {% if current_pair_settings.asynchronous_paradigms %}
         </div>
-
-        <div class="span3 offset1 hidden-phone">
-            <dl class="possible_analyses grid_analyses">
-            {% for grouper, forms in lexeme.analyses|groupby('lemma') %}
-                {% for lemmagroup, lemmafs in forms|groupby('pos') %}
-                    {% if current_pair_settings.show_korp_search %}
-                        {# http://gtweb.uit.no/korp/#search-tab=0&search=cqp|[lemma = "dagai"]&page=0
-                         #}
-                         {% if lemmagroup and grouper %}
-                            {% set search_url = "http://gtweb.uit.no/korp/#search-tab=0&page=0&search=" %}
-                            {% set search_query = 'cqp|[lemma = "' + grouper + '"]' %}
-                            <dt><span lang="{{ _from }}">{{ grouper }}</span> {{ macros.korp_link_lemma_detail(grouper) }}</dt>
-                        {% else %}
-                            <dt><span lang="{{ _from }}">{{ grouper }}</span></dt>
-                        {% endif %}
-                    {% else %}
-                        <dt><span lang="{{ _from }}">{{ grouper }}</span></dt>
-                    {% endif %}
-                    <dd>
-                        <ul class="possible_forms">
-                            {% set existing_tags = [] %}
-                            {% for lem in lemmafs %}
-                                {% set formatted_tag = lem.tag|tagfilter(_from, _to) %}
-                                {% if formatted_tag not in existing_tags %}
-                                    <li>{{ formatted_tag }}</li>
-                                    {% do existing_tags.append(formatted_tag) %}
-                                {% endif %}
-                            {% endfor %}
-                        </ul>
-                    </dd>
-                {% endfor %}
-            {% endfor %}
-            </dl>
+    {% else %}
         </div>
+    {% endif %}
 
-    </div>
-    {% endfor %}
-    
+
     {% if more_detail_link %}
         <p>
             <a href="/detail/{{ _from }}/{{ _to }}/{{ user_input }}.html">
@@ -191,5 +141,16 @@
             </a>
         </p>
     {% endif %}
+
+    {%- if analyses %}
+    <div class="visible-phone">
+        <div class="well">
+            <p style="font-size: 95%;"><em lang="{{ _from }}">{{ user_input }}</em><span lang="{{ current_locale }}">{% trans user_input=user_input %} is a possible form of ... {% endtrans %}</span></p>
+
+            {{ all_analysis_template|safe }}
+        </div>
+    </div>
+    {%- endif -%}
+
 
 {% endblock %}
