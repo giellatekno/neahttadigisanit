@@ -1,4 +1,4 @@
-﻿
+
 {% extends 'reader_test_page.html' %}
 
 {% block reader_tests %}

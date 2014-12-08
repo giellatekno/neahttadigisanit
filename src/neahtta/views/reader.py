@@ -255,16 +255,7 @@ def reader_test_page():
     """ This is also tied to a context processer making this item
     visible in the navigational menu if the template is found. """
 
-    from jinja2 import TemplateNotFound
-
-    context = {
-        'current_host': request.host,
-    }
-
-    try:
-        return render_template('reader_tests.%s.html' % current_app.config.short_name, **context)
-    except TemplateNotFound:
-        return render_template('reader_test_page.html')
+    return render_template('reader_tests.template')
 
 @blueprint.route('/read/update/', methods=['GET'])
 def reader_update():
