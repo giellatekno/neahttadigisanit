@@ -12,24 +12,12 @@ def project_css():
 
 @blueprint.context_processor
 def sources_template():
-    get_template = current_app.jinja_env.select_template
-
-    sources_template_exists = False
-    has_sources = False
-
     _from, _to = current_app.config.default_language_pair
-    has_sources = current_app.lexicon_templates.has_local_override(
+    has_sources = current_app.lexicon_templates.has_template(
         _from,
         'sources.template',)
 
-    try:
-        sources_template_path = './templates/sources.%s.html' % current_app.config.short_name
-        with open(sources_template_path, 'r') as F:
-            sources_template_exists = True
-    except Exception, e:
-        sources_template_exists = False
-
-    return {'sources_template_exists': sources_template_exists or has_sources}
+    return {'sources_template_exists': has_sources}
 
 @blueprint.context_processor
 def text_tv():

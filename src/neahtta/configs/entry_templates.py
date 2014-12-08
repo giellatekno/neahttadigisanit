@@ -122,15 +122,36 @@ class TemplateConfig(object):
 
         return
 
-    def has_local_override(self, language, template):
-        """ TODO: Determine whether there is a template in the local project
-        to display.
+    def has_template(self, language, template):
+        """ Returns a boolean value for the source language iso
+        and the template name.
         """
         try:
             tpl = self.get_template(language, template)
         except:
             tpl = False
-        return False
+
+        if tpl:
+            return True
+        else:
+            return False
+
+    def has_local_override(self, language, template):
+        """ Returns a boolean value for the source language iso and teh
+        template name, but only if the project short name is found in
+        the template path (meaning a local override exists).
+        """
+
+        try:
+            tpl = self.get_template(language, template)
+        except:
+            tpl = False
+
+        if tpl:
+            _, _, _path = tpl.path.partition('language_specific_rules')
+            return self.instance in _path
+
+        return tpl
 
     def get_template(self, language, template):
         """ .. py:function:: get_template(language, template)
