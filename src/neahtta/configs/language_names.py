@@ -75,6 +75,9 @@ NAMES = dict([
     ('hdn', _(u"Northern Haida")),
     ('hdnM', _(u"Northern Haida")),
 
+    # ndstesting
+    ('kca', _(u"Khanty")),
+
     # target languages
     ('fin', _(u"Finnish")),
     ('nob', _(u"Norwegian")),
@@ -133,6 +136,9 @@ LOCALISATION_NAMES_BY_LANGUAGE = dict([
     ('vep', u"Vepsän kel’"),
     ('vro', u"Võru keel"),
     ('vot', u"Vađđa ceeli "),
+
+    # ndstesting
+    ('kca', u"ханты ясаӈ"),
 ])
 
 # Only put the exceptional ISOs here
