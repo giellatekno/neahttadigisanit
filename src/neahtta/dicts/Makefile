@@ -627,7 +627,7 @@ nob-sme.all.xml: $(GTHOME)/words/dicts/nobsme/src/*.xml
 	@echo "******************************"
 	@echo ""
 	-@cp $@ $@.$(shell date +%s).bak
-	mkdir nobsme
+	mkdir -p nobsme
 	cp $^ nobsme/
 	$(SAXON) inDir=$(pwd)/nobsme/ > $@
 	rm -rf nobsme/
