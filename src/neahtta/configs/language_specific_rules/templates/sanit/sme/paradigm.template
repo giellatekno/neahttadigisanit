@@ -13,11 +13,11 @@
 
 {%- set first_l = lexicon_entry|xpath('lg/l')|first %}
 {% set lemma = first_l|text %}
-{% set pos = first_l|xpath('@pos')|first|upper %}
+{% set pos = first_l|xpath('@pos')|first %}
 {% set has_forms = paradigm and paradigm|length > 0 -%}
 {% set paradigm_exists = paradigm|length > 0 %}
 
-{%- if pos == 'V' %}
+{%- if pos|upper == 'V' %}
     {% set verbs = true %}
 
     {% set present_verbs   = paradigm|by_tagset_value("tense", "Prs")
@@ -85,7 +85,7 @@
 
 {%- endif %}
 
-{%- if pos == 'N' or pos == 'NUM' %}
+{%- if pos|upper == 'N' or pos|upper == 'NUM' %}
 
     {% set sg_forms = paradigm|by_tagset_value("number", "Sg")|group_by_tag %}
     {% set pl_forms = paradigm|by_tagset_value("number", "Pl")|group_by_tag %}
@@ -101,9 +101,9 @@
     {% set sg_text = "Sg"|tagfilter(_from, _to) %}
     {% set pl_text = "Pl"|tagfilter(_from, _to) %}
 
-    {% if pos == 'N' %}
-        {% set pos_text = pos|tagfilter(_from, _to) %}
-    {% elif pos == 'NUM' %}
+    {% if pos|upper == 'N' %}
+        {% set pos_text = pos|upper|tagfilter(_from, _to) %}
+    {% elif pos|upper == 'NUM' %}
         {% set pos_text = 'Num'|tagfilter(_from, _to) %}
     {% endif %}
 
@@ -126,7 +126,7 @@
 
 {%- if has_forms %}
 
-{%- if pos == 'V' %}
+{%- if pos|upper == 'V' %}
 
     {% if paradigm_exists %}
         {% if zipped_verbs %}
@@ -190,7 +190,7 @@
         </dl>
     {% endif %}
 
-{% elif pos == 'N' or pos == 'NUM' %}
+{% elif pos|upper == 'N' or pos|upper == 'NUM' %}
 
     {% if paradigm_exists %}
 
