@@ -120,7 +120,10 @@
                                     &nbsp;
                                 {% endif %}
                             </div>
-                            <div class="span4 hidden-phone">{{- leftover_analyses_template|safe -}}</div>
+                            <div class="span4 hidden-phone lexeme_analyses">
+                                <p class="leftover">{% trans user_input=user_input %}Other analyses for <em>{{ user_input }}</em> without a translation.{% endtrans %}</p>
+                                {{- leftover_analyses_template|safe -}}
+                            </div>
                         </div>
                     {% endif %}
                 </div>

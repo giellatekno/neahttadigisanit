@@ -13,7 +13,7 @@
 
 {%- import "lexicon.macros" as macros with context -%}
 <div class="row-fluid entry_row">
-    <div class="span8">
+    <div class="span8 lexeme">
         {% if lexicon_entry|count > 0 %}
             <p>
                 <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
@@ -23,7 +23,7 @@
             </ul>
         {% else %}&nbsp;{% endif %}
     </div>
-    <div class="span4 hidden-phone">
+    <div class="span4 hidden-phone lexeme_analyses">
         {{- rendered_templates.analyses -}}
     </div>
 </div>

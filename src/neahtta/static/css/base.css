@@ -112,7 +112,15 @@ ul.nav-stacked li.active span {
     margin-top: 0px;
 }
 
-div.results, div.results p {
+p.leftover {
+    font-size: 80%;
+    line-height: 1.2;
+    border-bottom: 1px solid #CCC;
+    padding-bottom: 6px;
+    margin-bottom: 6px;
+}
+
+div.results .lexeme, div.results .lexeme p, div.results .lexeme_analyses {
     font-size: 120%;
 }
 
@@ -178,6 +186,7 @@ ul.possible_forms li {
 a.brand {
     color: #800 !important;
 }
+
 
 .main-nav > .nav > li > a {
     color: #3A3;
