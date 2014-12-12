@@ -97,15 +97,15 @@ msgstr "Ingrisk"
 
 #: configs/language_names.py:46
 msgid "Veps"
-msgstr ""
+msgstr "Vepsisk"
 
 #: configs/language_names.py:47
 msgid "Võro"
-msgstr ""
+msgstr "Võro"
 
 #: configs/language_names.py:48
 msgid "Votic"
-msgstr ""
+msgstr "Votisk"
 
 #: configs/language_names.py:51
 msgid "Erzya Mordvin"
@@ -141,7 +141,7 @@ msgstr "Plains Cree"
 
 #: configs/language_names.py:71 configs/language_names.py:72
 msgid "Cherokee"
-msgstr ""
+msgstr "Cherokee"
 
 #: configs/language_names.py:75 configs/language_names.py:76
 msgid "Northern Haida"
@@ -170,7 +170,7 @@ msgstr "Haida"
 
 #: configs/sample.config.yaml.in:127
 msgid "Sosiála media"
-msgstr ""
+msgstr "Sosiale media"
 
 #: configs/sample.config.yaml.in:128 configs/sanit.config.yaml.in:128
 msgid "(incl. <em>acdnstz</em>)"
@@ -219,7 +219,7 @@ msgstr "Om ordboka"
 #: configs/language_specific_rules/templates/vada/about.template:17
 #: configs/language_specific_rules/templates/valks/about.template:17
 msgid "A dictionary that understands what you're looking for."
-msgstr ""
+msgstr "Ei ordbok som forstår hva du leter etter."
 
 #: configs/language_specific_rules/templates/about.template:16
 #: configs/language_specific_rules/templates/baakoeh/about.template:16
@@ -243,7 +243,7 @@ msgstr "(... og er tilpassa mobiltelefonen!)"
 #: configs/language_specific_rules/templates/vada/about.template:22
 #: configs/language_specific_rules/templates/valks/about.template:22
 msgid "Free"
-msgstr ""
+msgstr "Åpen"
 
 #: configs/language_specific_rules/templates/about.template:21
 #: configs/language_specific_rules/templates/baakoeh/about.template:21
@@ -260,7 +260,9 @@ msgid ""
 "                    you'll find free dictionaries, and other analytical\n"
 "                    tools."
 msgstr ""
-
+"Alt (eller i alle fall nesten alt) som har med minoritetsspråk å gjøre"
+"burde være åpent tilgjengelig. Her vil du finne åpne ordbøker og andre "
+"analyseverktøy."
 #: configs/language_specific_rules/templates/about.template:27
 #: configs/language_specific_rules/templates/baakoeh/about.template:27
 #: configs/language_specific_rules/templates/guusaaw/about.template:27
@@ -271,7 +273,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/vada/about.template:29
 #: configs/language_specific_rules/templates/valks/about.template:29
 msgid "Open-Source"
-msgstr ""
+msgstr "Åpen kildekode"
 
 #: configs/language_specific_rules/templates/about.template:28
 #: configs/language_specific_rules/templates/baakoeh/about.template:28
@@ -291,6 +293,11 @@ msgid ""
 "                website for information on how to get access to lexicon\n"
 "                files, and morphological and syntactic analyzers."
 msgstr ""
+"Alt her er basert på åpen kildekode. Har du en ide for en app "
+"eller et forskingsprosjekt som trenger språklige ressurser? Du finner "
+"informasjon om hvordan du kan få tilgang til leksikonfiler og morfologiske "
+"og syntaktiske analyseprogram på "
+"<a class=\"blue\ href=\"http://giellatekno.uit.no/\">Giellateknos hjemmeside</a>."
 
 #: configs/language_specific_rules/templates/about.template:36
 #: configs/language_specific_rules/templates/baakoeh/about.template:36
@@ -302,7 +309,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/vada/about.template:38
 #: configs/language_specific_rules/templates/valks/about.template:38
 msgid "Linguistic basis"
-msgstr ""
+msgstr "Lingvistisk basis"
 
 #: configs/language_specific_rules/templates/about.template:37
 #: configs/language_specific_rules/templates/baakoeh/about.template:37
@@ -317,11 +324,13 @@ msgid ""
 "Write what you wish, and the dictionary will analyze it to break apart "
 "compound words and find base forms."
 msgstr ""
+"Skriv hva du vil, og ordboka analyserer det for å finne sammensetninger "
+"og grunnformer."
 
 #: configs/language_specific_rules/templates/about.template:43
 #: configs/language_specific_rules/templates/baakoeh/about.template:43
 msgid "gå, dra, reise"
-msgstr ""
+msgstr "gå, dra, reise"
 
 #: configs/language_specific_rules/templates/about.template:50
 #: configs/language_specific_rules/templates/baakoeh/about.template:50
@@ -334,12 +343,12 @@ msgstr ""
 #: configs/language_specific_rules/templates/vada/about.template:52
 #: configs/language_specific_rules/templates/valks/about.template:52
 msgid "Source material"
-msgstr ""
+msgstr "Kildemateriale"
 
 #: configs/language_specific_rules/templates/about.template:57
 #: configs/language_specific_rules/templates/baakoeh/about.template:57
 msgid "sme ↔ nob"
-msgstr ""
+msgstr "Nordsamisk ↔ norsk"
 
 #: configs/language_specific_rules/templates/about.template:58
 #: configs/language_specific_rules/templates/baakoeh/about.template:58
@@ -348,6 +357,10 @@ msgid ""
 "<em>Álgosátnegirji</em>, but here it has been more than doubled in "
 "content."
 msgstr ""
+"Nordsamisk → norsk bygger på Nils Jernslettens ordbpk "
+"<em>Álgosátnegirji</em>, men den har etterhvert blitt mer enn doblet "
+"i omfang."
+
 
 #: configs/language_specific_rules/templates/about.template:59
 #: configs/language_specific_rules/templates/baakoeh/about.template:59
@@ -356,11 +369,13 @@ msgid ""
 "but we have also revised the content and added frequent words from "
 "Norwegian."
 msgstr ""
+"Norsk → nordsamisk er en snudd versjon av Nordsamisk → norsk, men "
+"vi har også revidert innholdet og lagt til og oversatt vanlige norske ord."
 
 #: configs/language_specific_rules/templates/about.template:62
 #: configs/language_specific_rules/templates/baakoeh/about.template:62
 msgid "sma ↔ nob"
-msgstr ""
+msgstr "Sørsamisk ↔ norsk"
 
 #: configs/language_specific_rules/templates/about.template:63
 #: configs/language_specific_rules/templates/baakoeh/about.template:63
@@ -373,11 +388,19 @@ msgid ""
 " href=\"http://aajege.no/\">Aajege</a>'s work with the Southern Sámi <a "
 "class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
 msgstr ""
+"Ordbøkene for sørsamisk og norsk bygger på materiale tilrettelagt av "
+"Albert Jåma og Tove Brustat i <a class=\"blue\" "
+"href=\"http://www.ruovatsijte.no/\">Hemnes sameforening</a>, men har i tillegg"
+" fått lagt til ord fra <a class=\"blue\" "
+"href=\"http://giellatekno.uit.no/\">Giellatekno</a> and <a class=\"blue\""
+" href=\"http://aajege.no/\">Aajege</a> sitt arbed med det sørsamiske "
+"læringsprogrammet <a class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
+
 
 #: configs/language_specific_rules/templates/about.template:66
 #: configs/language_specific_rules/templates/baakoeh/about.template:66
 msgid "sme ↔ fin"
-msgstr ""
+msgstr "Nordsamisk ↔ finsk"
 
 #: configs/language_specific_rules/templates/about.template:67
 #: configs/language_specific_rules/templates/baakoeh/about.template:67
@@ -389,17 +412,22 @@ msgid ""
 "have included frequent words from North Sámi, but especially from "
 "Finnish."
 msgstr ""
+"Ordbøkene for nordsamisk og finsk er basert på leksikalsk materiale "
+"fra <a class=\"green\" href=\"http://kotus.fi\">Intitutionen för de "
+"inhemska språken i Finland</a>, og fra Giellateknos arbeid med nordsamisk "
+"  <a class=\"green\" href=\"http://oahpa.no\">Oahpa</a>. I tillegg har vi "
+"lagt til vanlige ord både fra nordsamisk og spesielt fra finsk."
 
 #: configs/language_specific_rules/templates/about.template:68
 #: configs/language_specific_rules/templates/baakoeh/about.template:68
 msgid "Each of the dictionaries contains about 11,000 base words."
-msgstr ""
+msgstr "Hver av ordbøkene inneholder omtrent 11.000 lemmaer"
 
 #: configs/language_specific_rules/templates/about.template:73
 #: configs/language_specific_rules/templates/guusaaw/about.template:64
 #: configs/language_specific_rules/templates/itwewina/about.template:72
 msgid "Find a problem?"
-msgstr ""
+msgstr "Fant du et problem?"
 
 #: configs/language_specific_rules/templates/about.template:74
 #: configs/language_specific_rules/templates/guusaaw/about.template:65
@@ -410,6 +438,9 @@ msgid ""
 "using, or what word you\n"
 "                were searching for when you encountered the problem."
 msgstr ""
+"Hvis du finner noen feil, vær så snill og ta kontakt med oss. Beskriv "
+"problemet og fortell oss hvilken nettleser eller mobiltelefon du brukte, "
+"eller hvilket ord du søkte etter når du støtte på problemet."
 
 #: configs/language_specific_rules/templates/about.template:79
 #: configs/language_specific_rules/templates/about.template:84
@@ -418,7 +449,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/itwewina/about.template:78
 #: configs/language_specific_rules/templates/itwewina/about.template:83
 msgid "Contact us"
-msgstr ""
+msgstr "Kontakt oss"
 
 #: configs/language_specific_rules/templates/about.template:89
 #: configs/language_specific_rules/templates/guusaaw/about.template:80
@@ -428,10 +459,12 @@ msgid ""
 "list</a>, and more\n"
 "                resources."
 msgstr ""
+"Trenger du flere ordbøker? <a href=\"http://dicts.uit.no/\">Her er den "
+"komplette lista</a>, og flere andre ressurser."
 
 #: configs/language_specific_rules/templates/detail_entry.template:43
 msgid "Paradigm"
-msgstr ""
+msgstr "Paradigme"
 
 #: configs/language_specific_rules/templates/footer.template:9
 #: configs/language_specific_rules/templates/guusaaw/footer.template:13
@@ -454,7 +487,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:15
 #: templates/index_search_form.html:15
 msgid "Press Tab to select a word"
-msgstr ""
+msgstr "Trykk Tab for å velge et ord"
 
 #: configs/language_specific_rules/templates/index_search_form.template:22
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:19
@@ -507,12 +540,12 @@ msgstr ""
 #: configs/language_specific_rules/templates/vada/about.template:78
 #: configs/language_specific_rules/templates/valks/about.template:90
 msgid "More to come..."
-msgstr ""
+msgstr "Her kommer det mer..."
 
 #: configs/language_specific_rules/templates/guusaaw/about.template:41
 #: configs/language_specific_rules/templates/itwewina/about.template:43
 msgid "s/he speaks Cree"
-msgstr ""
+msgstr "Han/hun snakker cree"
 
 #: configs/language_specific_rules/templates/guusaaw/about.template:56
 #: configs/language_specific_rules/templates/itwewina/about.template:67
@@ -552,11 +585,11 @@ msgstr ""
 #: configs/language_specific_rules/templates/vada/about.template:45
 #: configs/language_specific_rules/templates/valks/about.template:45
 msgid "mennä, lähteä, kulkea"
-msgstr ""
+msgstr "mennä, lähteä, kulkea"
 
 #: configs/language_specific_rules/templates/muter/about.template:57
 msgid "mrj ↔ fin"
-msgstr ""
+msgstr "Vestmarisk - finsk"
 
 #: configs/language_specific_rules/templates/muter/about.template:58
 msgid ""
@@ -621,6 +654,9 @@ msgid ""
 "We have moved some languages to <a "
 "href=\"http://sonad.oahpa.no/\">Sonad</a>, please update your bookmarks."
 msgstr ""
+"Vi har flyttet noen språk til <a "
+"href=\"http://sonad.oahpa.no/\">Sonad</a>, så du må oppdatere bokmerket ditt "
+"for disse språkene."
 
 #: configs/language_specific_rules/templates/sanit/notice.template:5
 msgid "Other North Saami dictionaries"
@@ -821,7 +857,7 @@ msgstr "Vi fant ingen oversetting"
 #: static/js/neahttadigisanit.jquery.js:13292
 #: static/js/neahttadigisanit.min.js:2984
 msgid "Help"
-msgstr ""
+msgstr "Hjelp"
 
 #: static/js/bookmarklet.min.js:13292
 #: static/js/neahttadigisanit.jquery.js:13292
@@ -889,7 +925,7 @@ msgstr "Klikk-i-tekst"
 #: templates/base.html:173 templates/mobile_nav_push_menu.html:18
 #: templates/navigation_full.itwewina.html:14
 msgid "Sources"
-msgstr ""
+msgstr "Kilder"
 
 #: templates/base.html:179 templates/mobile_nav_push_menu.html:22
 #: templates/mobile_nav_push_menu.html:25

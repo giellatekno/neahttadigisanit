@@ -294,7 +294,12 @@ msgid ""
 "                website for information on how to get access to lexicon\n"
 "                files, and morphological and syntactic analyzers."
 msgstr ""
-
+"Tämä sanakirja perustuu avoimiin työkaluihin. Onko sinulla ideoita "
+"uusia appeja tai tutkimusprojekteja varten, jotka tarvitsevat kielellisia "
+"datoja? Siinä tapauksessa löydät tietoja leksikkotiedostoista ja "
+" morfologisista ja syntaktisista analyysiohjelmista "
+"<a class=\"blue\" href=\"http://giellatekno.uit.no/\">Giellateknon sivuilta</a>. '
+"
 #: configs/language_specific_rules/templates/about.template:36
 #: configs/language_specific_rules/templates/baakoeh/about.template:36
 #: configs/language_specific_rules/templates/guusaaw/about.template:36
@@ -320,6 +325,8 @@ msgid ""
 "Write what you wish, and the dictionary will analyze it to break apart "
 "compound words and find base forms."
 msgstr ""
+"Kirjoita mitä haluat, ja sanakirjaa analysoi sitä löytääkseensä "
+"yhdyssanojen ja taivutettujen muotojen vartalot."
 
 #: configs/language_specific_rules/templates/about.template:43
 #: configs/language_specific_rules/templates/baakoeh/about.template:43
@@ -337,12 +344,12 @@ msgstr ""
 #: configs/language_specific_rules/templates/vada/about.template:52
 #: configs/language_specific_rules/templates/valks/about.template:52
 msgid "Source material"
-msgstr ""
+msgstr "Lähdemateriaali"
 
 #: configs/language_specific_rules/templates/about.template:57
 #: configs/language_specific_rules/templates/baakoeh/about.template:57
 msgid "sme ↔ nob"
-msgstr ""
+msgstr "Pohjoissaame  ↔ norja"
 
 #: configs/language_specific_rules/templates/about.template:58
 #: configs/language_specific_rules/templates/baakoeh/about.template:58
@@ -351,6 +358,8 @@ msgid ""
 "<em>Álgosátnegirji</em>, but here it has been more than doubled in "
 "content."
 msgstr ""
+"Pohjoissaame → norja perustuu Nils Jernslettenin sanakirjaan "
+"<em>Álgosátnegirji</em>, mutta sanavarasto on kaksinsertaistettu."
 
 #: configs/language_specific_rules/templates/about.template:59
 #: configs/language_specific_rules/templates/baakoeh/about.template:59
@@ -359,11 +368,13 @@ msgid ""
 "but we have also revised the content and added frequent words from "
 "Norwegian."
 msgstr ""
+"Norja → pohjoissaame on Pohjoissaame → norja -sanakirjan käännetty "
+"versio, mihin on lisätty tavallisia norjankielisiä sanoja."
 
 #: configs/language_specific_rules/templates/about.template:62
 #: configs/language_specific_rules/templates/baakoeh/about.template:62
 msgid "sma ↔ nob"
-msgstr ""
+msgstr "Eteläsaame ↔ norja"
 
 #: configs/language_specific_rules/templates/about.template:63
 #: configs/language_specific_rules/templates/baakoeh/about.template:63
@@ -380,7 +391,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/about.template:66
 #: configs/language_specific_rules/templates/baakoeh/about.template:66
 msgid "sme ↔ fin"
-msgstr ""
+msgstr "Pohjoissaame ↔ suomi"
 
 #: configs/language_specific_rules/templates/about.template:67
 #: configs/language_specific_rules/templates/baakoeh/about.template:67
@@ -396,13 +407,13 @@ msgstr ""
 #: configs/language_specific_rules/templates/about.template:68
 #: configs/language_specific_rules/templates/baakoeh/about.template:68
 msgid "Each of the dictionaries contains about 11,000 base words."
-msgstr ""
+msgstr "Molemmat sanakirjat sisältyvät noin 11 000 hakusanaa."
 
 #: configs/language_specific_rules/templates/about.template:73
 #: configs/language_specific_rules/templates/guusaaw/about.template:64
 #: configs/language_specific_rules/templates/itwewina/about.template:72
 msgid "Find a problem?"
-msgstr ""
+msgstr "Törmäsitkö ongelmaan?"
 
 #: configs/language_specific_rules/templates/about.template:74
 #: configs/language_specific_rules/templates/guusaaw/about.template:65
@@ -413,6 +424,8 @@ msgid ""
 "using, or what word you\n"
 "                were searching for when you encountered the problem."
 msgstr ""
+"Ota yhteyttä meihin, jos löydät ongelman. Kuvaile ongelma, "
+"ja kerro meille mitä sanaa etsit, kun löysit ongelman."
 
 #: configs/language_specific_rules/templates/about.template:79
 #: configs/language_specific_rules/templates/about.template:84
@@ -421,7 +434,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/itwewina/about.template:78
 #: configs/language_specific_rules/templates/itwewina/about.template:83
 msgid "Contact us"
-msgstr ""
+msgstr "Ota yhteyttä meihin"
 
 #: configs/language_specific_rules/templates/about.template:89
 #: configs/language_specific_rules/templates/guusaaw/about.template:80
@@ -431,10 +444,12 @@ msgid ""
 "list</a>, and more\n"
 "                resources."
 msgstr ""
+"Tarvitsetkö lisää sanakirjoja? <a href=\"http://dicts.uit.no/\">Tässä "
+"on kaikki meidän sanakirjat.</a>."
 
 #: configs/language_specific_rules/templates/detail_entry.template:43
 msgid "Paradigm"
-msgstr ""
+msgstr "Paradigma"
 
 #: configs/language_specific_rules/templates/footer.template:9
 #: configs/language_specific_rules/templates/guusaaw/footer.template:13
