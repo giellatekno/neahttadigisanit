@@ -110,7 +110,7 @@
                     {% if leftover_analyses_template %}
                         <div class="row-fluid entry_row">
                             <div class="span8 lexeme">
-                                {% if new_templates|length == 0 %}
+                                {% if entry_templates|length == 0 %}
                                     <div class="alert alert-warning">
                                         <p>
                                             <span lang="{{ current_locale }}">{% trans input=user_input %}Word <span lang="{{ _from }}">{{ input }}</span> not found.{% endtrans %}</span>
