@@ -950,7 +950,7 @@ msgstr "<span lang=\"%(_from)s\">%(input)s</span> ble ikke funnet."
 #: templates/index.html:124
 #, python-format
 msgid "Other analyses for <em>%(user_input)s</em> without a translation."
-msgstr ""
+msgstr "Andre analyser for <em>%(user_input)s</em> uten oversetting."
 
 #: templates/language_select.html:7
 msgid "<span class=\"reposition_hide\">Language</span>"
