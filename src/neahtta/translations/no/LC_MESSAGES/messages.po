@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-12-02 17:00-0600\n"
+"POT-Creation-Date: 2014-12-12 13:46-0600\n"
 "PO-Revision-Date: 2013-02-01 01:54-0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: no <LL@li.org>\n"
@@ -21,27 +21,27 @@ msgstr ""
 msgid "Dikaneisdi"
 msgstr ""
 
-#: configs/dikaneisdi.config.yaml.in:74
+#: configs/dikaneisdi.config.yaml.in:73
 msgid "Standard (syllabics)"
 msgstr ""
 
-#: configs/dikaneisdi.config.yaml.in:77
+#: configs/dikaneisdi.config.yaml.in:76
 msgid "Transliterated"
 msgstr ""
 
-#: configs/guusaaw.config.yaml.in:76 configs/itwewina.config.yaml.in:67
-#: configs/kyv.config.yaml.in:98 configs/saan.config.yaml.in:71
-#: configs/sample.config.yaml.in:122 configs/sanit.config.yaml.in:121
-#: configs/sonad.config.yaml.in:143
+#: configs/guusaaw.config.yaml.in:75 configs/itwewina.config.yaml.in:66
+#: configs/kyv.config.yaml.in:97 configs/saan.config.yaml.in:70
+#: configs/sample.config.yaml.in:145 configs/sanit.config.yaml.in:120
+#: configs/sonad.config.yaml.in:142
 msgid "Standard"
 msgstr "Standard"
 
-#: configs/guusaaw.config.yaml.in:81 configs/itwewina.config.yaml.in:77
-#: configs/saan.config.yaml.in:94
+#: configs/guusaaw.config.yaml.in:80 configs/itwewina.config.yaml.in:76
+#: configs/saan.config.yaml.in:93
 msgid "Mobile friendly"
 msgstr "(... og er tilpassa mobiltelefonen!)"
 
-#: configs/kyv.config.yaml.in:101
+#: configs/kyv.config.yaml.in:100
 msgid "Molotsov orthography"
 msgstr "Molotsov-ortografi"
 
@@ -54,7 +54,7 @@ msgstr "Nordsamisk"
 msgid "North Sámi (#SoMe)"
 msgstr "Nordsamisk (#SoMe)"
 
-#: configs/language_names.py:26 configs/language_names.py:90
+#: configs/language_names.py:26 configs/language_names.py:93
 msgid "English"
 msgstr "Engelsk"
 
@@ -115,7 +115,7 @@ msgstr "Ersjamordvinsk"
 msgid "Moksha"
 msgstr "Moksjamordvinsk"
 
-#: configs/language_names.py:53 configs/language_names.py:92
+#: configs/language_names.py:53 configs/language_names.py:95
 msgid "French"
 msgstr "Fransk"
 
@@ -147,48 +147,48 @@ msgstr "Cherokee"
 msgid "Northern Haida"
 msgstr "Nord-haida"
 
-#: configs/language_names.py:79 configs/language_names.py:85
+#: configs/language_names.py:79
+msgid "Khanty"
+msgstr ""
+
+#: configs/language_names.py:82 configs/language_names.py:88
 msgid "Finnish"
 msgstr "Finsk"
 
-#: configs/language_names.py:80 configs/language_names.py:86
-#: configs/language_names.py:87
+#: configs/language_names.py:83 configs/language_names.py:89
+#: configs/language_names.py:90
 msgid "Norwegian"
 msgstr "Norsk"
 
-#: configs/language_names.py:82 configs/language_names.py:83
+#: configs/language_names.py:85 configs/language_names.py:86
 msgid "Russian"
 msgstr "Russisk"
 
-#: configs/language_names.py:88 configs/language_names.py:89
+#: configs/language_names.py:91 configs/language_names.py:92
 msgid "Latvian"
 msgstr "Latvisk"
 
-#: configs/language_names.py:91
+#: configs/language_names.py:94
 msgid "Haida"
 msgstr "Haida"
 
-#: configs/sample.config.yaml.in:127
-msgid "Sosiála media"
-msgstr "Sosiale media"
-
-#: configs/sample.config.yaml.in:128 configs/sanit.config.yaml.in:128
-msgid "(incl. <em>acdnstz</em>)"
-msgstr "(forstår <em>acdnstz</em>)"
-
-#: configs/sanit.config.yaml.in:127
+#: configs/sample.config.yaml.in:151 configs/sanit.config.yaml.in:126
 msgid "Social media"
 msgstr "Sosiale media"
 
-#: configs/sanit.config.yaml.in:154
+#: configs/sample.config.yaml.in:153 configs/sanit.config.yaml.in:127
+msgid "(incl. <em>acdnstz</em>)"
+msgstr "(forstår <em>acdnstz</em>)"
+
+#: configs/sanit.config.yaml.in:153
 msgid "Standárda (<em>áčđŋšŧž</em>)"
 msgstr "Standard (<em>áčđŋšŧž</em>)"
 
-#: configs/sanit.config.yaml.in:157
+#: configs/sanit.config.yaml.in:156
 msgid "Sosiála media (maiddái <em>acdnstz</em>)"
 msgstr "For sosiale media (forstår <em>acdnstz</em>)"
 
-#: configs/sonad.config.yaml.in:148
+#: configs/sonad.config.yaml.in:147
 msgid "mobile friendly"
 msgstr "(... og er tilpassa mobiltelefonen!)"
 
@@ -204,8 +204,7 @@ msgstr "(... og er tilpassa mobiltelefonen!)"
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13292
 #: static/js/neahttadigisanit.jquery.js:13292
 #: static/js/neahttadigisanit.min.js:2984 templates/base.html:169
-#: templates/mobile_nav_push_menu.html:14 templates/navigation_full.html:10
-#: templates/navigation_full.itwewina.html:11
+#: templates/mobile_nav_push_menu.html:14
 msgid "About"
 msgstr "Om ordboka"
 
@@ -260,9 +259,10 @@ msgid ""
 "                    you'll find free dictionaries, and other analytical\n"
 "                    tools."
 msgstr ""
-"Alt (eller i alle fall nesten alt) som har med minoritetsspråk å gjøre"
-"burde være åpent tilgjengelig. Her vil du finne åpne ordbøker og andre "
-"analyseverktøy."
+"Alt (eller i alle fall nesten alt) som har med minoritetsspråk å "
+"gjøreburde være åpent tilgjengelig. Her vil du finne åpne ordbøker og "
+"andre analyseverktøy."
+
 #: configs/language_specific_rules/templates/about.template:27
 #: configs/language_specific_rules/templates/baakoeh/about.template:27
 #: configs/language_specific_rules/templates/guusaaw/about.template:27
@@ -293,11 +293,11 @@ msgid ""
 "                website for information on how to get access to lexicon\n"
 "                files, and morphological and syntactic analyzers."
 msgstr ""
-"Alt her er basert på åpen kildekode. Har du en ide for en app "
-"eller et forskingsprosjekt som trenger språklige ressurser? Du finner "
-"informasjon om hvordan du kan få tilgang til leksikonfiler og morfologiske "
-"og syntaktiske analyseprogram på "
-"<a class=\"blue\ href=\"http://giellatekno.uit.no/\">Giellateknos hjemmeside</a>."
+"Alt her er basert på åpen kildekode. Har du en ide for en app eller et "
+"forskingsprosjekt som trenger språklige ressurser? Du finner informasjon "
+"om hvordan du kan få tilgang til leksikonfiler og morfologiske og "
+"syntaktiske analyseprogram på <a class=\"blue\\ "
+"href=\"http://giellatekno.uit.no/\">Giellateknos hjemmeside</a>."
 
 #: configs/language_specific_rules/templates/about.template:36
 #: configs/language_specific_rules/templates/baakoeh/about.template:36
@@ -358,9 +358,8 @@ msgid ""
 "content."
 msgstr ""
 "Nordsamisk → norsk bygger på Nils Jernslettens ordbpk "
-"<em>Álgosátnegirji</em>, men den har etterhvert blitt mer enn doblet "
-"i omfang."
-
+"<em>Álgosátnegirji</em>, men den har etterhvert blitt mer enn doblet i "
+"omfang."
 
 #: configs/language_specific_rules/templates/about.template:59
 #: configs/language_specific_rules/templates/baakoeh/about.template:59
@@ -369,8 +368,8 @@ msgid ""
 "but we have also revised the content and added frequent words from "
 "Norwegian."
 msgstr ""
-"Norsk → nordsamisk er en snudd versjon av Nordsamisk → norsk, men "
-"vi har også revidert innholdet og lagt til og oversatt vanlige norske ord."
+"Norsk → nordsamisk er en snudd versjon av Nordsamisk → norsk, men vi har "
+"også revidert innholdet og lagt til og oversatt vanlige norske ord."
 
 #: configs/language_specific_rules/templates/about.template:62
 #: configs/language_specific_rules/templates/baakoeh/about.template:62
@@ -390,12 +389,11 @@ msgid ""
 msgstr ""
 "Ordbøkene for sørsamisk og norsk bygger på materiale tilrettelagt av "
 "Albert Jåma og Tove Brustat i <a class=\"blue\" "
-"href=\"http://www.ruovatsijte.no/\">Hemnes sameforening</a>, men har i tillegg"
-" fått lagt til ord fra <a class=\"blue\" "
+"href=\"http://www.ruovatsijte.no/\">Hemnes sameforening</a>, men har i "
+"tillegg fått lagt til ord fra <a class=\"blue\" "
 "href=\"http://giellatekno.uit.no/\">Giellatekno</a> and <a class=\"blue\""
 " href=\"http://aajege.no/\">Aajege</a> sitt arbed med det sørsamiske "
 "læringsprogrammet <a class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
-
 
 #: configs/language_specific_rules/templates/about.template:66
 #: configs/language_specific_rules/templates/baakoeh/about.template:66
@@ -412,11 +410,11 @@ msgid ""
 "have included frequent words from North Sámi, but especially from "
 "Finnish."
 msgstr ""
-"Ordbøkene for nordsamisk og finsk er basert på leksikalsk materiale "
-"fra <a class=\"green\" href=\"http://kotus.fi\">Intitutionen för de "
-"inhemska språken i Finland</a>, og fra Giellateknos arbeid med nordsamisk "
-"  <a class=\"green\" href=\"http://oahpa.no\">Oahpa</a>. I tillegg har vi "
-"lagt til vanlige ord både fra nordsamisk og spesielt fra finsk."
+"Ordbøkene for nordsamisk og finsk er basert på leksikalsk materiale fra "
+"<a class=\"green\" href=\"http://kotus.fi\">Intitutionen för de inhemska "
+"språken i Finland</a>, og fra Giellateknos arbeid med nordsamisk   <a "
+"class=\"green\" href=\"http://oahpa.no\">Oahpa</a>. I tillegg har vi lagt"
+" til vanlige ord både fra nordsamisk og spesielt fra finsk."
 
 #: configs/language_specific_rules/templates/about.template:68
 #: configs/language_specific_rules/templates/baakoeh/about.template:68
@@ -483,31 +481,30 @@ msgstr ""
 "Senter for samisk språkteknologi ved <a href=\"http://uit.no\">UiT Norges"
 " arktiske universitet</a>."
 
-#: configs/language_specific_rules/templates/index_search_form.template:17
+#: configs/language_specific_rules/templates/index_search_form.template:26
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:15
 #: templates/index_search_form.html:15
 msgid "Press Tab to select a word"
 msgstr "Trykk Tab for å velge et ord"
 
-#: configs/language_specific_rules/templates/index_search_form.template:22
+#: configs/language_specific_rules/templates/index_search_form.template:31
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:19
 #: templates/index_search_form.html:20
 msgid "ohcansátni"
 msgstr "søkeord"
 
-#: configs/language_specific_rules/templates/index_search_form.template:27
-#: configs/language_specific_rules/templates/index_search_form.template:47
-#: configs/language_specific_rules/templates/index_search_form.template:51
+#: configs/language_specific_rules/templates/index_search_form.template:36
+#: configs/language_specific_rules/templates/index_search_form.template:56
+#: configs/language_specific_rules/templates/index_search_form.template:60
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:24
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:41
 #: templates/index_search_form.html:25 templates/index_search_form.html:46
-#: templates/index_search_form.html:50 templates/word_detail.html:97
-#: templates/word_detail_new_style.html:98
+#: templates/index_search_form.html:50 templates/word_detail.html:98
 msgid "Search"
 msgstr "Søk"
 
-#: configs/language_specific_rules/templates/index_search_form.template:39
-#: configs/language_specific_rules/templates/index_search_form.template:62
+#: configs/language_specific_rules/templates/index_search_form.template:48
+#: configs/language_specific_rules/templates/index_search_form.template:71
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:36
 #: templates/index_search_form.html:37 templates/index_search_form.html:61
 msgid "Search texts"
@@ -524,7 +521,6 @@ msgstr "Andre språk"
 #: configs/language_specific_rules/templates/search_info.template:3
 #: configs/language_specific_rules/templates/itwewina/search_info.template:3
 #: configs/language_specific_rules/templates/sanit/search_info.template:8
-#: templates/index.html:174
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
 "Søk etter et ord, evt. en bøyd form. Ved å klikke på ordet får du en "
@@ -655,15 +651,14 @@ msgid ""
 "href=\"http://sonad.oahpa.no/\">Sonad</a>, please update your bookmarks."
 msgstr ""
 "Vi har flyttet noen språk til <a "
-"href=\"http://sonad.oahpa.no/\">Sonad</a>, så du må oppdatere bokmerket ditt "
-"for disse språkene."
+"href=\"http://sonad.oahpa.no/\">Sonad</a>, så du må oppdatere bokmerket "
+"ditt for disse språkene."
 
 #: configs/language_specific_rules/templates/sanit/notice.template:5
 msgid "Other North Saami dictionaries"
 msgstr "Andre nordsamiske ordbøker"
 
 #: configs/language_specific_rules/templates/sanit/search_info.template:4
-#: templates/index.html:170
 msgid ""
 "If you are using a device without a Sámi keyboard, consider using <a "
 "href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
@@ -913,17 +908,14 @@ msgid "Whoops! There was some kind of error."
 msgstr "Oops! Nå skjedde det visst en feil her."
 
 #: templates/base.html:161 templates/mobile_nav_push_menu.html:6
-#: templates/navigation_full.html:2 templates/navigation_full.itwewina.html:3
 msgid "Home"
 msgstr "Hjem"
 
 #: templates/base.html:165 templates/mobile_nav_push_menu.html:10
-#: templates/navigation_full.html:6 templates/navigation_full.itwewina.html:7
 msgid "Plugins"
 msgstr "Klikk-i-tekst"
 
 #: templates/base.html:173 templates/mobile_nav_push_menu.html:18
-#: templates/navigation_full.itwewina.html:14
 msgid "Sources"
 msgstr "Kilder"
 
@@ -936,46 +928,29 @@ msgstr "Grensesnittspråk"
 msgid "Neahttadigisánit"
 msgstr "Neahttadigisánit Klikk-i-tekst"
 
-#: templates/index.html:44 templates/index_new_style.html:85
-msgid "Swap"
-msgstr "Snu"
-
-#: templates/index.html:54 templates/index.html:139
-#: templates/index_new_style.html:99 templates/index_new_style.html:147
-#: templates/word_detail.html:106 templates/word_detail_new_style.html:107
-#: templates/word_detail_new_style.html:148 views/reader.py:218
-msgid " is a possible form of ... "
-msgstr " er en mulig form av ... "
-
-#: templates/index.html:109
-msgid "Definition not found for:"
-msgstr "Vi fant ingen oversetting for:"
-
-#: templates/index.html:161
-#, python-format
-msgid "Word <span class=\"%(_from)s\">%(input)s</span> not found."
-msgstr ""
-
-#: templates/index.html:178
-msgid ""
-"You selected #SoMe, the variant for social media, which means that the "
-"letters acdnstz\n"
-"                            will be accepted as áčđŋšŧž in addition to "
-"their usual values."
-msgstr ""
-"Du har valgt #SoMe, varianten for sosiale media. Det innebærer at "
-"bokstavene adcnstz blir akseptert som áčđŋšŧž i tillegg til sine vanlige "
-"verdier."
-
-#: templates/index_new_style.html:23 templates/macros.html:5
-#: templates/macros.html:13
+#: templates/index.html:23 templates/macros.html:5 templates/macros.html:13
 msgid "Texts"
 msgstr "Søk alle former i tekster"
 
-#: templates/index_new_style.html:116 templates/index_new_style.html:132
+#: templates/index.html:85
+msgid "Swap"
+msgstr "Snu"
+
+#: templates/index.html:99 templates/index.html:150
+#: templates/word_detail.html:107 templates/word_detail.html:148
+#: views/reader.py:218
+msgid " is a possible form of ... "
+msgstr " er en mulig form av ... "
+
+#: templates/index.html:116 templates/index.html:135
 #, python-format
 msgid "Word <span lang=\"%(_from)s\">%(input)s</span> not found."
 msgstr "<span lang=\"%(_from)s\">%(input)s</span> ble ikke funnet."
+
+#: templates/index.html:124
+#, python-format
+msgid "Other analyses for <em>%(user_input)s</em> without a translation."
+msgstr ""
 
 #: templates/language_select.html:7
 msgid "<span class=\"reposition_hide\">Language</span>"
@@ -1255,15 +1230,15 @@ msgstr ""
 "du gjerne vil lese. Tjenesten vil bli installert automatisk,\n"
 "og du ser et menyikon (<em>Á</em>) på venstre side av nettsida."
 
-#: templates/word_detail.html:39 templates/word_detail_new_style.html:40
+#: templates/word_detail.html:40
 msgid "is a possible form of ... "
 msgstr " er en mulig form av ... "
 
-#: templates/word_detail.html:190 templates/word_detail_new_style.html:140
+#: templates/word_detail.html:140
 msgid "More information about this word"
 msgstr ""
 
-#: views/search.py:962
+#: views/search.py:875
 msgid "Invalid format. Only json and html allowed."
 msgstr "Ugyldig format. Bare json og html er tillatt."
 
@@ -1434,4 +1409,27 @@ msgstr "Ugyldig format. Bare json og html er tillatt."
 
 #~ msgid "Sources and References"
 #~ msgstr ""
+
+#~ msgid "Sosiála media"
+#~ msgstr "Sosiale media"
+
+#~ msgid "Definition not found for:"
+#~ msgstr "Vi fant ingen oversetting for:"
+
+#~ msgid "Word <span class=\"%(_from)s\">%(input)s</span> not found."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "You selected #SoMe, the variant for "
+#~ "social media, which means that the "
+#~ "letters acdnstz\n"
+#~ "                            will be accepted "
+#~ "as áčđŋšŧž in addition to their "
+#~ "usual values."
+#~ msgstr ""
+#~ "Du har valgt #SoMe, varianten for "
+#~ "sosiale media. Det innebærer at "
+#~ "bokstavene adcnstz blir akseptert som "
+#~ "áčđŋšŧž i tillegg til sine vanlige "
+#~ "verdier."
 

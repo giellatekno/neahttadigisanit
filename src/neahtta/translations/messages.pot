@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-12-02 17:00-0600\n"
+"POT-Creation-Date: 2014-12-12 13:46-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,27 +21,27 @@ msgstr ""
 msgid "Dikaneisdi"
 msgstr ""
 
-#: configs/dikaneisdi.config.yaml.in:74
+#: configs/dikaneisdi.config.yaml.in:73
 msgid "Standard (syllabics)"
 msgstr ""
 
-#: configs/dikaneisdi.config.yaml.in:77
+#: configs/dikaneisdi.config.yaml.in:76
 msgid "Transliterated"
 msgstr ""
 
-#: configs/guusaaw.config.yaml.in:76 configs/itwewina.config.yaml.in:67
-#: configs/kyv.config.yaml.in:98 configs/saan.config.yaml.in:71
-#: configs/sample.config.yaml.in:122 configs/sanit.config.yaml.in:121
-#: configs/sonad.config.yaml.in:143
+#: configs/guusaaw.config.yaml.in:75 configs/itwewina.config.yaml.in:66
+#: configs/kyv.config.yaml.in:97 configs/saan.config.yaml.in:70
+#: configs/sample.config.yaml.in:145 configs/sanit.config.yaml.in:120
+#: configs/sonad.config.yaml.in:142
 msgid "Standard"
 msgstr ""
 
-#: configs/guusaaw.config.yaml.in:81 configs/itwewina.config.yaml.in:77
-#: configs/saan.config.yaml.in:94
+#: configs/guusaaw.config.yaml.in:80 configs/itwewina.config.yaml.in:76
+#: configs/saan.config.yaml.in:93
 msgid "Mobile friendly"
 msgstr ""
 
-#: configs/kyv.config.yaml.in:101
+#: configs/kyv.config.yaml.in:100
 msgid "Molotsov orthography"
 msgstr ""
 
@@ -54,7 +54,7 @@ msgstr ""
 msgid "North Sámi (#SoMe)"
 msgstr ""
 
-#: configs/language_names.py:26 configs/language_names.py:90
+#: configs/language_names.py:26 configs/language_names.py:93
 msgid "English"
 msgstr ""
 
@@ -115,7 +115,7 @@ msgstr ""
 msgid "Moksha"
 msgstr ""
 
-#: configs/language_names.py:53 configs/language_names.py:92
+#: configs/language_names.py:53 configs/language_names.py:95
 msgid "French"
 msgstr ""
 
@@ -147,48 +147,48 @@ msgstr ""
 msgid "Northern Haida"
 msgstr ""
 
-#: configs/language_names.py:79 configs/language_names.py:85
+#: configs/language_names.py:79
+msgid "Khanty"
+msgstr ""
+
+#: configs/language_names.py:82 configs/language_names.py:88
 msgid "Finnish"
 msgstr ""
 
-#: configs/language_names.py:80 configs/language_names.py:86
-#: configs/language_names.py:87
+#: configs/language_names.py:83 configs/language_names.py:89
+#: configs/language_names.py:90
 msgid "Norwegian"
 msgstr ""
 
-#: configs/language_names.py:82 configs/language_names.py:83
+#: configs/language_names.py:85 configs/language_names.py:86
 msgid "Russian"
 msgstr ""
 
-#: configs/language_names.py:88 configs/language_names.py:89
+#: configs/language_names.py:91 configs/language_names.py:92
 msgid "Latvian"
 msgstr ""
 
-#: configs/language_names.py:91
+#: configs/language_names.py:94
 msgid "Haida"
 msgstr ""
 
-#: configs/sample.config.yaml.in:127
-msgid "Sosiála media"
-msgstr ""
-
-#: configs/sample.config.yaml.in:128 configs/sanit.config.yaml.in:128
-msgid "(incl. <em>acdnstz</em>)"
-msgstr ""
-
-#: configs/sanit.config.yaml.in:127
+#: configs/sample.config.yaml.in:151 configs/sanit.config.yaml.in:126
 msgid "Social media"
 msgstr ""
 
-#: configs/sanit.config.yaml.in:154
+#: configs/sample.config.yaml.in:153 configs/sanit.config.yaml.in:127
+msgid "(incl. <em>acdnstz</em>)"
+msgstr ""
+
+#: configs/sanit.config.yaml.in:153
 msgid "Standárda (<em>áčđŋšŧž</em>)"
 msgstr ""
 
-#: configs/sanit.config.yaml.in:157
+#: configs/sanit.config.yaml.in:156
 msgid "Sosiála media (maiddái <em>acdnstz</em>)"
 msgstr ""
 
-#: configs/sonad.config.yaml.in:148
+#: configs/sonad.config.yaml.in:147
 msgid "mobile friendly"
 msgstr ""
 
@@ -204,8 +204,7 @@ msgstr ""
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13292
 #: static/js/neahttadigisanit.jquery.js:13292
 #: static/js/neahttadigisanit.min.js:2984 templates/base.html:169
-#: templates/mobile_nav_push_menu.html:14 templates/navigation_full.html:10
-#: templates/navigation_full.itwewina.html:11
+#: templates/mobile_nav_push_menu.html:14
 msgid "About"
 msgstr ""
 
@@ -446,31 +445,30 @@ msgid ""
 "Tromsø</a>."
 msgstr ""
 
-#: configs/language_specific_rules/templates/index_search_form.template:17
+#: configs/language_specific_rules/templates/index_search_form.template:26
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:15
 #: templates/index_search_form.html:15
 msgid "Press Tab to select a word"
 msgstr ""
 
-#: configs/language_specific_rules/templates/index_search_form.template:22
+#: configs/language_specific_rules/templates/index_search_form.template:31
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:19
 #: templates/index_search_form.html:20
 msgid "ohcansátni"
 msgstr ""
 
-#: configs/language_specific_rules/templates/index_search_form.template:27
-#: configs/language_specific_rules/templates/index_search_form.template:47
-#: configs/language_specific_rules/templates/index_search_form.template:51
+#: configs/language_specific_rules/templates/index_search_form.template:36
+#: configs/language_specific_rules/templates/index_search_form.template:56
+#: configs/language_specific_rules/templates/index_search_form.template:60
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:24
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:41
 #: templates/index_search_form.html:25 templates/index_search_form.html:46
-#: templates/index_search_form.html:50 templates/word_detail.html:97
-#: templates/word_detail_new_style.html:98
+#: templates/index_search_form.html:50 templates/word_detail.html:98
 msgid "Search"
 msgstr ""
 
-#: configs/language_specific_rules/templates/index_search_form.template:39
-#: configs/language_specific_rules/templates/index_search_form.template:62
+#: configs/language_specific_rules/templates/index_search_form.template:48
+#: configs/language_specific_rules/templates/index_search_form.template:71
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:36
 #: templates/index_search_form.html:37 templates/index_search_form.html:61
 msgid "Search texts"
@@ -487,7 +485,6 @@ msgstr ""
 #: configs/language_specific_rules/templates/search_info.template:3
 #: configs/language_specific_rules/templates/itwewina/search_info.template:3
 #: configs/language_specific_rules/templates/sanit/search_info.template:8
-#: templates/index.html:174
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
 
@@ -620,7 +617,6 @@ msgid "Other North Saami dictionaries"
 msgstr ""
 
 #: configs/language_specific_rules/templates/sanit/search_info.template:4
-#: templates/index.html:170
 msgid ""
 "If you are using a device without a Sámi keyboard, consider using <a "
 "href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
@@ -848,17 +844,14 @@ msgid "Whoops! There was some kind of error."
 msgstr ""
 
 #: templates/base.html:161 templates/mobile_nav_push_menu.html:6
-#: templates/navigation_full.html:2 templates/navigation_full.itwewina.html:3
 msgid "Home"
 msgstr ""
 
 #: templates/base.html:165 templates/mobile_nav_push_menu.html:10
-#: templates/navigation_full.html:6 templates/navigation_full.itwewina.html:7
 msgid "Plugins"
 msgstr ""
 
 #: templates/base.html:173 templates/mobile_nav_push_menu.html:18
-#: templates/navigation_full.itwewina.html:14
 msgid "Sources"
 msgstr ""
 
@@ -871,42 +864,28 @@ msgstr ""
 msgid "Neahttadigisánit"
 msgstr ""
 
-#: templates/index.html:44 templates/index_new_style.html:85
-msgid "Swap"
-msgstr ""
-
-#: templates/index.html:54 templates/index.html:139
-#: templates/index_new_style.html:99 templates/index_new_style.html:147
-#: templates/word_detail.html:106 templates/word_detail_new_style.html:107
-#: templates/word_detail_new_style.html:148 views/reader.py:218
-msgid " is a possible form of ... "
-msgstr ""
-
-#: templates/index.html:109
-msgid "Definition not found for:"
-msgstr ""
-
-#: templates/index.html:161
-#, python-format
-msgid "Word <span class=\"%(_from)s\">%(input)s</span> not found."
-msgstr ""
-
-#: templates/index.html:178
-msgid ""
-"You selected #SoMe, the variant for social media, which means that the "
-"letters acdnstz\n"
-"                            will be accepted as áčđŋšŧž in addition to "
-"their usual values."
-msgstr ""
-
-#: templates/index_new_style.html:23 templates/macros.html:5
-#: templates/macros.html:13
+#: templates/index.html:23 templates/macros.html:5 templates/macros.html:13
 msgid "Texts"
 msgstr ""
 
-#: templates/index_new_style.html:116 templates/index_new_style.html:132
+#: templates/index.html:85
+msgid "Swap"
+msgstr ""
+
+#: templates/index.html:99 templates/index.html:150
+#: templates/word_detail.html:107 templates/word_detail.html:148
+#: views/reader.py:218
+msgid " is a possible form of ... "
+msgstr ""
+
+#: templates/index.html:116 templates/index.html:135
 #, python-format
 msgid "Word <span lang=\"%(_from)s\">%(input)s</span> not found."
+msgstr ""
+
+#: templates/index.html:124
+#, python-format
+msgid "Other analyses for <em>%(user_input)s</em> without a translation."
 msgstr ""
 
 #: templates/language_select.html:7
@@ -1149,15 +1128,15 @@ msgid ""
 "    menu icon on the left-hand side of the page."
 msgstr ""
 
-#: templates/word_detail.html:39 templates/word_detail_new_style.html:40
+#: templates/word_detail.html:40
 msgid "is a possible form of ... "
 msgstr ""
 
-#: templates/word_detail.html:190 templates/word_detail_new_style.html:140
+#: templates/word_detail.html:140
 msgid "More information about this word"
 msgstr ""
 
-#: views/search.py:962
+#: views/search.py:875
 msgid "Invalid format. Only json and html allowed."
 msgstr ""
 
