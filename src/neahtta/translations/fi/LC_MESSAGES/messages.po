@@ -461,10 +461,10 @@ msgid ""
 "Technology group at the <a href=\"http://uit.no\">University of "
 "Tromsø</a>."
 msgstr ""
-"Created with free and open-source language tools from <em><a "
-"href=\"http://giellatekno.uit.no/index.eng.html\">Giellatekno</a></em>, a"
-" Sámi Language Technology group at the <a "
-"href=\"http://uit.no\">University of Tromsø</a>."
+"<em> <a href=\"http://uit.no\">UiT Norjan arktisen yliopiston</a> tutkimusryhmä"
+"<a href=\"http://giellatekno.uit.no/index.fin.html\">Giellatekno</a></em> "
+"on tehnyt nämä sanakirjaohjelmat vapaiden ja avoimella lähdekoodilla "
+"laadittujen kieliohjelmien avulla."
 
 #: configs/language_specific_rules/templates/index_search_form.template:26
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:15
@@ -518,7 +518,7 @@ msgstr "Etsi sanaa tai sanamuotoa analysoitavaksi tai määriteltäväksi."
 #: configs/language_specific_rules/templates/vada/about.template:78
 #: configs/language_specific_rules/templates/valks/about.template:90
 msgid "More to come..."
-msgstr ""
+msgstr "Lisää tulossa..."
 
 #: configs/language_specific_rules/templates/guusaaw/about.template:41
 #: configs/language_specific_rules/templates/itwewina/about.template:43
@@ -563,11 +563,11 @@ msgstr "Lähteet ja kirjallisuus"
 #: configs/language_specific_rules/templates/vada/about.template:45
 #: configs/language_specific_rules/templates/valks/about.template:45
 msgid "mennä, lähteä, kulkea"
-msgstr ""
+msgstr "mennä, lähteä, kulkea"
 
 #: configs/language_specific_rules/templates/muter/about.template:57
 msgid "mrj ↔ fin"
-msgstr ""
+msgstr "Länsimari ↔ suomi"
 
 #: configs/language_specific_rules/templates/muter/about.template:58
 msgid ""
@@ -584,16 +584,20 @@ msgid ""
 "from\n"
 "                the Kone Foundation."
 msgstr ""
+"Länsimari-suomi-sanakirja on laadittu usean sanakirjan, eritoten "
+"Anna A. Savatkovan Länsimari-venäjä-sanakirjan, sekä "
+"marinkielisen kirjallisuuden pohjalta. Käännöstyön teki Julia Kuprina "
+"Koneen Säätiön tuella."
 
 #: configs/language_specific_rules/templates/sanat/about.template:43
 #: configs/language_specific_rules/templates/sonad/about.template:43
 msgid "mennä, tapahtua, viedä, johtaa, edistyä"
-msgstr ""
+msgstr "mennä, tapahtua, viedä, johtaa, edistyä"
 
 #: configs/language_specific_rules/templates/sanat/about.template:57
 #: configs/language_specific_rules/templates/sonad/about.template:57
 msgid "liv ↔ fin"
-msgstr ""
+msgstr "Liivi ↔ suomi"
 
 #: configs/language_specific_rules/templates/sanat/about.template:58
 #: configs/language_specific_rules/templates/sonad/about.template:58
@@ -613,7 +617,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanat/about.template:67
 #: configs/language_specific_rules/templates/sonad/about.template:67
 msgid "olo ↔ fin"
-msgstr ""
+msgstr "Livvi ↔ suomi"
 
 #: configs/language_specific_rules/templates/sanat/about.template:68
 #: configs/language_specific_rules/templates/sonad/about.template:68
@@ -666,7 +670,7 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/vada/about.template:59
 msgid "yrk ↔ fin"
-msgstr ""
+msgstr "Nenetsi ↔ suomi"
 
 #: configs/language_specific_rules/templates/vada/about.template:60
 msgid ""
@@ -682,7 +686,7 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/valks/about.template:59
 msgid "myv ↔ fin"
-msgstr ""
+msgstr "ersä ↔ suomi"
 
 #: configs/language_specific_rules/templates/valks/about.template:60
 msgid ""
@@ -703,7 +707,7 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/valks/about.template:70
 msgid "mdf ↔ fin"
-msgstr ""
+msgstr "Mokša ↔ suomi"
 
 #: configs/language_specific_rules/templates/valks/about.template:71
 msgid ""
@@ -931,7 +935,7 @@ msgstr ""
 #: templates/index.html:124
 #, python-format
 msgid "Other analyses for <em>%(user_input)s</em> without a translation."
-msgstr ""
+msgstr "Muita analyyseja sanalle <em>%(user_input)s</em> ilman käännöstä."
 
 #: templates/language_select.html:7
 msgid "<span class=\"reposition_hide\">Language</span>"
