@@ -64,10 +64,12 @@ $(document).ready(function(){
                 var _val = $(current_input).val()
                   , _c   = $(_char.target).attr('data-char')
                   ;
-                $(current_input).val(_val + _c)
-                                       .trigger("keyup")
-                                       .focus()
-                                       ;
+                if (_c) {
+                    $(current_input).val(_val + _c)
+                                           .trigger("keyup")
+                                           .focus()
+                                           ;
+                }
                 return false;
             });
         }
@@ -131,13 +133,19 @@ $(document).ready(function(){
             // TODO: responsive
             if($(document).width() > 801) {
 
-                var input_bottom_end = $(current_input).offset().top + $(current_input).height() + 15
-                  , input_left_end   = $(current_input).offset().left
-                  ;
+                // var input_bottom_end = $(current_input).offset().top + $(current_input).height() + 15
+                //   , input_left_end   = $(current_input).offset().left
+                //   ;
 
+                // $('#keyboard').css({
+                //     top: input_bottom_end,
+                //     left: input_left_end,
+                // });
                 $('#keyboard').css({
-                    top: input_bottom_end,
-                    left: input_left_end,
+                    top: null,
+                    left: null,
+                    bottom: null,
+                    position: "inline",
                 });
 
             } else {
@@ -176,14 +184,14 @@ $(document).ready(function(){
                   , input_left_end   = $(current_input).offset().left
                   ;
 
-                $('#keyboard').css({
-                    top: input_bottom_end,
-                    left: input_left_end,
-                });
+                // $('#keyboard').css({
+                //     top: input_bottom_end,
+                //     left: input_left_end,
+                // });
 
-                $('.form-row').animate({
-                    "padding-bottom": "35px",
-                });
+                // $('.form-row').animate({
+                //     "padding-bottom": "35px",
+                // });
 
             }
 
@@ -195,16 +203,39 @@ $(document).ready(function(){
                 });
             } 
 
-            $('#keyboard').fadeIn();
+            // $('#keyboard').fadeIn();
 
         }
 
-        // function is_focused() {
-        //     if (!$("input").is(":focus")) {
-        //         keyboard_focus( $("input") );
-        //     } 
+        $("#keyboard .hide_keyboard").click(function(o) {
+            o.preventDefault();
+            $("#keyboard").fadeOut();
+            $('form .input-append').addClass('input-prepend');
+            $('form #display_keyboard').fadeIn();
+            if(localStorage) {
+                localStorage.setItem('nds-kbd-visible', false);
+            }
+        });
 
-        // }
+        if(localStorage) {
+            var display_k = localStorage.getItem('nds-kbd-visible');
+            if (display_k === "false") {
+                $("#keyboard").hide();
+                $('form .input-append').addClass('input-prepend');
+                $('form #display_keyboard').show();
+            }
+        }
+
+        $("#display_keyboard").click(function(o){
+            o.preventDefault();
+            if(localStorage) {
+                localStorage.setItem('nds-kbd-visible', true);
+            }
+            $('form .input-append').removeClass('input-prepend');
+            $('form #display_keyboard').fadeOut();
+            $("#keyboard").fadeIn();
+            keyboard_focus(o);
+        });
 
         $("input").focus(function(o) {
             // Need a small delay for mobile keyboards to appear.
@@ -212,8 +243,6 @@ $(document).ready(function(){
                 keyboard_focus(o);
             }, 100);
         });
-
-        // setTimeout(is_focused, 40);
 
         $("input").blur(function(o) {
             if (window.click_in_keyboard) {
@@ -223,10 +252,10 @@ $(document).ready(function(){
                 // when not in use
                 //
                 if (!unblurable){
-                    $("#keyboard").fadeOut();
-                    $('.form-row').animate({
-                        "padding-bottom": "0px",
-                    });
+                    // $("#keyboard").fadeOut();
+                    // $('.form-row').animate({
+                    //     "padding-bottom": "0px",
+                    // });
                 }
             }
 

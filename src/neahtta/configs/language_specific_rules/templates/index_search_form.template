@@ -1,68 +1,84 @@
 {# This template renders the search form on the main page.
  #}
+{%- set keyboard = false %}
+{% if current_variant_options %}
+    {% set keyboard = current_variant_options.onscreen_keyboard %}
+{% endif -%}
 
-<form id="neahttasaanit" class="form-inline"
-    method="post"
-    action="/{{ _from }}/{{ _to }}/"> 
-    
-    <div class="input-append">
-        <input type="text" 
-               name="lookup" 
-               lang="{{ _from }}"
-               autocorrect="off"
-               autofocus
-               autocapitalize="off"
-               {% if current_pair_settings.autocomplete %}
-               autocomplete="off"
-               data-autocomplete-text="{% trans %}Press Tab to select a word{% endtrans %}"
-               data-language-from="{{ _from }}"
-               data-language-to="{{ _to }}"
-               {% endif %}
-               {% if user_input -%}value="{{ user_input }}"{% endif %}
-               placeholder="{% trans %}ohcansátni{% endtrans %}">
-               {# TODO: show text search only if the dictionary supports this #}
-               {% if current_pair_settings.wordform_search_url %}
-                   <div class="btn-group display-phone hidden-desktop hidden-tablet">
-                       <button type="submit" class="btn" name="search">
-                           <span lang="{{ current_locale }}">{% trans %}Search{% endtrans %}</span>
-                       </button>
-                       <button class="btn dropdown-toggle" data-toggle="dropdown">
-                          <span class="caret"></span>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            <form id="neahttasaanit" class="form-inline"
+                method="post"
+                action="/{{ _from }}/{{ _to }}/"> 
+                
+                <div class="input-append">
+                    {%- if keyboard %}
+                        <button class="btn" type="button" id="display_keyboard" style="display: none;">
+                             {{- current_variant_options.onscreen_keyboard|first }}
                         </button>
-                        <ul class="dropdown-menu">
-                            <li><button 
-                                   type="submit"
-                                   class="btn"
-                                   formaction="/extern/{{ _from }}/{{ _to }}/korp_wordform/"
-                                   formmethod="post"
-                                   lang="{{ current_locale }}"
-                                   formtarget="_blank">{% trans %}Search texts{% endtrans %} (Korp)</button></li>
-                        </ul>
-                   </div>
-                   <button type="submit" class="btn hidden-phone" 
-                           formtarget="_self"
-                           formaction="/{{ _from }}/{{ _to }}/"
-                           formmethod="post"
-                           name="search">
-                       <span lang="{{ current_locale }}">{% trans %}Search{% endtrans %}</span>
-                   </button>
-               {% else %}
-                   <button type="submit" class="btn" name="search">
-                       <span lang="{{ current_locale }}">{% trans %}Search{% endtrans %}</span>
-                   </button>
-              {% endif %}
-       {% if current_pair_settings.wordform_search_url %}
-           <button type="submit"
-                   formaction="/extern/{{ _from }}/{{ _to }}/korp_wordform/"
-                   formmethod="post"
-                   formtarget="_blank"
-                   lang="{{ current_locale }}"
-                   class="btn hidden-phone display-tablet korp_search" 
-                   name="korp_search">
-               {% trans %}Search texts{% endtrans %}
-           </button>
-       {% endif %}
+                    {% endif -%}
+                    <input type="text" 
+                           name="lookup" 
+                           lang="{{ _from }}"
+                           autocorrect="off"
+                           autofocus
+                           autocapitalize="off"
+                           {% if current_pair_settings.autocomplete %}
+                           autocomplete="off"
+                           data-autocomplete-text="{% trans %}Press Tab to select a word{% endtrans %}"
+                           data-language-from="{{ _from }}"
+                           data-language-to="{{ _to }}"
+                           {% endif %}
+                           {% if user_input -%}value="{{ user_input }}"{% endif %}
+                           placeholder="{% trans %}ohcansátni{% endtrans %}">
+                           {# TODO: show text search only if the dictionary supports this #}
+                           {% if current_pair_settings.wordform_search_url %}
+                               <div class="btn-group display-phone hidden-desktop hidden-tablet">
+                                   <button type="submit" class="btn" name="search">
+                                       <span lang="{{ current_locale }}">{% trans %}Search{% endtrans %}</span>
+                                   </button>
+                                   <button class="btn dropdown-toggle" data-toggle="dropdown">
+                                      <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><button 
+                                               type="submit"
+                                               class="btn"
+                                               formaction="/extern/{{ _from }}/{{ _to }}/korp_wordform/"
+                                               formmethod="post"
+                                               lang="{{ current_locale }}"
+                                               formtarget="_blank">{% trans %}Search texts{% endtrans %} (Korp)</button></li>
+                                    </ul>
+                               </div>
+                               <button type="submit" class="btn hidden-phone" 
+                                       formtarget="_self"
+                                       formaction="/{{ _from }}/{{ _to }}/"
+                                       formmethod="post"
+                                       name="search">
+                                   <span lang="{{ current_locale }}">{% trans %}Search{% endtrans %}</span>
+                               </button>
+                           {% else %}
+                               <button type="submit" class="btn" name="search">
+                                   <span lang="{{ current_locale }}">{% trans %}Search{% endtrans %}</span>
+                               </button>
+                          {% endif %}
+                   {% if current_pair_settings.wordform_search_url %}
+                       <button type="submit"
+                               formaction="/extern/{{ _from }}/{{ _to }}/korp_wordform/"
+                               formmethod="post"
+                               formtarget="_blank"
+                               lang="{{ current_locale }}"
+                               class="btn hidden-phone display-tablet korp_search" 
+                               name="korp_search">
+                           {% trans %}Search texts{% endtrans %}
+                       </button>
+                   {% endif %}
+                </div>
+            </form>
+        </div>
     </div>
-</form>
+</div>
 
 {# vim: set ts=4 sw=4 tw=0 syntax=htmljinja : #}

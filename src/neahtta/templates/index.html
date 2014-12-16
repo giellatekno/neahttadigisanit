@@ -61,6 +61,11 @@
 
 {% block bodyclass %}main_search{% endblock %}
 
+{%- set keyboard = false %}
+{% if current_variant_options %}
+    {% set keyboard = current_variant_options.onscreen_keyboard %}
+{% endif -%}
+
 {% block content %}
 <div class="container-fluid">
     <div class="row-fluid">
@@ -95,8 +100,21 @@
                     {{ index_search_form|safe }}
                 </div>
                 <div class="span4 hidden-phone valign_block">
-                    {% if analyses %}
-                        <p class="analysis_note"><em lang="{{ _from }}">{{ user_input }}</em><span lang="{{ current_locale }}"{% trans user_input=user_input %} is a possible form of ... {% endtrans %}</span></p>
+                    {% if keyboard %}
+                        <div id="keyboard">
+                            <span class="title" lang="{{ current_locale }}">{% trans %}input help{% endtrans %}</span>
+                            <ul>
+                                {% for key in current_variant_options.onscreen_keyboard %}
+                                    <li><a href="#" class="key" data-char="{{ key }}" lang="{{ _from }}">{{ key }}</a></li>
+                                {% endfor %}
+                                {# TODO: help popup, with links to GT keyboard app stuff #}
+                                    <li><a lang="{{ current_locale }}" data-char="" href="#" class="hide_keyboard">{% trans %}hide{% endtrans %}</a></li>
+                            </ul>
+                        </div>
+                    {% else %}
+                        {% if analyses %}
+                            <p class="analysis_note"><em lang="{{ _from }}">{{ user_input }}</em><span lang="{{ current_locale }}">{% trans user_input=user_input %} is a possible form of ... {% endtrans %}</span></p>
+                        {% endif %}
                     {% endif %}
                 </div>
             </div>

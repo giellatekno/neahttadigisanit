@@ -231,6 +231,7 @@
 		    </div><!-- /container -->
         {% endif %}
 
+        {# TODO: changing position of keyboard so that it displays relative to input
         {% if current_variant_options %}
             {% if current_variant_options.onscreen_keyboard %}
                 <div id="keyboard">
@@ -238,11 +239,11 @@
                         {% for key in current_variant_options.onscreen_keyboard %}
                             <li><a href="#" class="key" data-char="{{ key }}" lang="{{ _from }}">{{ key }}</a></li>
                         {% endfor %}
-                        {# TODO: help popup, with links to GT keyboard app stuff #}
                     </ul>
                 </div>
             {% endif %}
         {% endif %}
+        #}
 
     <script type="text/javascript">
 

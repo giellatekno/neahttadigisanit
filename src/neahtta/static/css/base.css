@@ -460,8 +460,14 @@ span.entry_source {
     margin-top: .25em;
 }
 
+/*
+ *
+ * Key palette / keyboard
+ *
+ */
+
 #keyboard {
-    display: none;
+    /* display: none; */
     background-color: #000;
 }
 
@@ -476,6 +482,7 @@ span.entry_source {
     }
 
 }
+
 /* tablet positioning */
 @media (min-width: 550px) and (max-width: 800px) {
     #keyboard {
@@ -536,10 +543,12 @@ span.entry_source {
 
 @media (min-width: 801px) {
     #keyboard {
-        position: absolute;
-        top: 30px;
-        left: 10px;
-        height: 30px;
+        position: relative;
+        margin-top: -1.25em;
+        padding-bottom: 5px;
+        margin-bottom: 0px;
+        background-color: transparent;
+        width: 300px; /* roughly 9 characters */
     }
 
     #keyboard, #keyboard ul {
@@ -560,24 +569,36 @@ span.entry_source {
         -webkit-border-radius: 0px 4px 4px 0px;
     }
 
+    #keyboard > span.title {
+        font-size: 80%;
+        font-color: #888;
+        margin-left: .75em;
+    }
+
     #keyboard ul li a {
         display: block;
-        width: 30px;
-        height: 30px;
+        width: 25px;
+        height: 25px;
         text-align: center;
         position: relative;
-        line-height: 30px;
+        line-height: 25px;
         font-size: 18px;
         font-weight: 200;
         padding: 2px;
+        color: #444;
     }
 
-    #keyboard ul li {
-        background-color: #DDD;
+    #keyboard ul {
+        background-color: #FFF;
+        border: 1px solid #ccc;
     }
 
-    #keyboard ul li a {
-	    color: #454;
+    #keyboard ul, #keyboard li, #keyboard li a {
+        background-color: #FFF;
+    }
+
+    #keyboard ul .hide_keyboard {
+        font-size: 90%;
     }
 
 }
