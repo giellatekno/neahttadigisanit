@@ -7,9 +7,54 @@
 
  #}
 
-{%- import 'lexicon.macros' as macros with context -%}
+{%- macro render_annotation(tg) -%}
+    {# Render the annotation (<re />) node, unless it has a @fra_ref. #}
+    {%- set annotations = tg.xpath('./re') %}
+    {% set fra_ref = tg.xpath('./re/@fra_ref')|count > 0 %}
+
+    {% if annotations|count > 0 and not fra_ref %}
+        ({{ annotations[0].text }})
+    {% endif -%}
+{%- endmacro -%}
+
+{%- macro render_link(tg, t) -%}
+    {% set text = t.text %}
+    {% set link_target = '' %}
+    {% set fra_ref = tg.xpath('./re/@fra_ref') %}
+
+    {% if fra_ref|count > 0 %}
+        {% set annotations = tg.xpath('./re') %}
+        {% set reference = fra_ref|join('') %}
+        {% set text = annotations[0].text %}
+    {% else %}
+        {% set reference = false %}
+    {% endif %}
+
+    {% if reference %}
+        {% set link_target = "/" + _from + "/" + _to + "/ref/?l_til_ref=" + reference %}
+        {% set mark = ' &rarr;' %}
+    {% else %}
+        {% set link_params = "?no_compounds=true&lemma_match=true" %}
+        {% set dict_path = "/detail/" +  _to + "/" +  _from + "/" %}
+        {% set link_target = dict_path + text + ".html" + link_params %}
+    {% endif %}
+
+    <a href="{{ link_target }}">{{ text }}</a>{{- mark -}}
+{%- endmacro -%}
+
+{%- macro render_tg(tg) -%}
+    {# Render all the texts as individual links, followed by a potential
+    annotation. #}
+
+    {% for t in tg.xpath('./t') %}
+        {{ render_link(tg, t) }}{% if not loop.last %}, {% endif %}
+    {% endfor %}
+
+    {{- render_annotation(tg) -}}
+{%- endmacro -%}
+
 {%- if translation_group -%}
-<span lang="{{ _to }}">{{ macros.definition_text_and_link(translation_group) }}</a></span>
+    <span lang="{{ _to }}">{{ render_tg(translation_group) }}</span>
 {%- endif -%}
 
 {#  vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}
