@@ -10,10 +10,6 @@
   font-weight:  400;
 }
 
-.cherokee {
-    font-family: "Noto Sans Cherokee", sans-serif;
-}
-
 /* TODO: setting font changes display width for some reason */
 *[lang="chr"], input[data-language-from="chr"] * {
     font-family: "Noto Sans Cherokee", sans-serif;
