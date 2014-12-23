@@ -18,11 +18,32 @@
 {%- endmacro -%}
 
 {%- macro render_link(tg, t) -%}
+    {# Render a link to the detailed page. One exception: if the lexicon
+    annotation entry contains a @fra_ref attribute, then we make a
+    reference link, inserting this attribute's value in as a parameter. 
+
+         <tg xml:lang="sme">
+            <re fra_ref="omtopersoner">om to personer</re>
+            <t/>
+         </tg>
+
+         -->
+
+         <l pos="Pron"
+            type="Recipr"
+            orig_entry="hverandre"
+            til_ref="omtopersoner">hverandre: om to personer</l>
+    
+    #}
+
     {% set text = t.text %}
     {% set link_target = '' %}
     {% set fra_ref = tg.xpath('./re/@fra_ref') %}
 
     {% if fra_ref|count > 0 %}
+        {# If this is a reference link, then there is no data in the
+           <t /> node, so the <re /> becomes the link text.  #}
+
         {% set annotations = tg.xpath('./re') %}
         {% set reference = fra_ref|join('') %}
         {% set text = annotations[0].text %}
@@ -31,15 +52,15 @@
     {% endif %}
 
     {% if reference %}
-        {% set link_target = "/" + _from + "/" + _to + "/ref/?l_til_ref=" + reference %}
-        {% set mark = ' &rarr;' %}
-    {% else %}
-        {% set link_params = "?no_compounds=true&lemma_match=true" %}
-        {% set dict_path = "/detail/" +  _to + "/" +  _from + "/" %}
-        {% set link_target = dict_path + text + ".html" + link_params %}
-    {% endif %}
-
-    <a href="{{ link_target }}">{{ text }}</a>{{- mark -}}
+        <a href="/{{ _from }}/{{ _to }}/ref/?l_til_ref={{ reference }}">
+            {{- text -}}
+        </a> &rarr;
+    {%- else %}
+        {# NB: swap from and to for these links since these are definitions. #}
+        <a href="/detail/{{ _to }}/{{ _from }}/{{ text }}.html?no_compounds=true&lemma_match=true">
+            {{- text -}}
+        </a>
+    {%- endif %}
 {%- endmacro -%}
 
 {%- macro render_tg(tg) -%}
@@ -47,7 +68,7 @@
     annotation. #}
 
     {% for t in tg.xpath('./t') %}
-        {{ render_link(tg, t) }}{% if not loop.last %}, {% endif %}
+        {{ render_link(tg, t) -}}{% if not loop.last %}, {% endif %}
     {% endfor %}
 
     {{- render_annotation(tg) -}}
