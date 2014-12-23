@@ -8,7 +8,6 @@
  #}
 
 {%- import 'fiu.lexicon.macros' as fiu with context -%}
-{%- import 'lexicon.macros' as macros with context -%}
 
 {%- if translation_group -%}
     {%- if translation_group.xpath("./tCtn") %}
@@ -16,6 +15,79 @@
     {%- else -%}
         {{ macros.definition_text_and_link(translation_group) }}
     {%- endif -%}
+{%- endif -%}
+
+{# ---- integrate the above ----- #}
+
+{# This entry is evaluated on a translation-group by translation-group
+   basis, and so far only receives the `translation_group` <tg /> node.
+
+   Differences between this template and the parent template involve:
+     - optional existence of tCtn node
+
+ #}
+
+{%- macro render_annotation(tg) -%}
+    {# Render the annotation (<re />) node, unless it has a @fra_ref. #}
+    {%- set annotations = tg.xpath('./re') %}
+    {% set fra_ref = tg.xpath('./re/@fra_ref')|count > 0 %}
+
+    {% if annotations|count > 0 and not fra_ref %}
+        ({{ annotations[0].text }})
+    {% endif -%}
+{%- endmacro -%}
+
+{%- macro render_link(tg, t) -%}
+    {% set text = t.text %}
+    {% set link_target = '' %}
+    {% set fra_ref = tg.xpath('./re/@fra_ref') %}
+
+    {% if fra_ref|count > 0 %}
+        {% set annotations = tg.xpath('./re') %}
+        {% set reference = fra_ref|join('') %}
+        {% set text = annotations[0].text %}
+    {% else %}
+        {% set reference = false %}
+    {% endif %}
+
+    {% if reference %}
+        {% set link_target = "/" + _from + "/" + _to + "/ref/?l_til_ref=" + reference %}
+        {% set mark = ' &rarr;' %}
+    {% else %}
+        {% set link_params = "?no_compounds=true&lemma_match=true" %}
+        {% set dict_path = "/detail/" +  _to + "/" +  _from + "/" %}
+        {% set link_target = dict_path + text + ".html" + link_params %}
+    {% endif %}
+
+    <a href="{{ link_target }}">{{ text }}</a>{{- mark -}}
+{%- endmacro -%}
+
+{%- macro render_tg(tg) -%}
+    {# Render all the texts as individual links, followed by a potential
+    annotation. #}
+
+    {# TODO: kumea (soinniton konsonantti) #}
+
+    {% set tCtns = tg.xpath("./tCtn") %}
+
+    {% if tCtns %}
+        {% for t in tg.xpath('./t') %}
+            {{ render_link(tg, t) }}{% if not loop.last %}, {% endif %}
+        {% endfor %}
+        {% for tCtn in tCtns %}
+            {{ render_link(tCtn, t) }}{{- render_annotation(tCtn) -}}{% if not loop.last %}, {% endif %}
+        {% endfor %}
+    {% else %}
+        {% for t in tg.xpath('./t') %}
+            {{ render_link(tg, t) }}{% if not loop.last %}, {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    
+{%- endmacro -%}
+
+{%- if translation_group -%}
+    <span lang="{{ _to }}">{{ render_tg(translation_group) }}</span>
 {%- endif -%}
 
 {#  vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}
