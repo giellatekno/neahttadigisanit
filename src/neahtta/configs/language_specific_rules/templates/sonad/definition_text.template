@@ -73,11 +73,10 @@
     free-standing <t /> nodes, so we need to do both. #}
 
     {% for t in bare_t %}
-        {{ render_link(tg, t) -}}{% if not loop.last %}, {% endif %}
-    {% endfor %}
+        {{ render_link(tg, t) -}}{% if not loop.last or tCtns|length > 0 %}, {% endif %}
+    {% endfor -%}
 
     {% if tCtns %}
-        {% if bare_t|length > 0 %}, {% endif %}
         {% for tCtn in tCtns %}
             {% set tCtn_ts = tCtn.xpath('./t') %}
             {% for t in tCtn_ts %}
