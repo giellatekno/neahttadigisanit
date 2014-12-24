@@ -67,7 +67,7 @@
     annotation. #}
 
     {% set tCtns = tg.xpath("./tCtn") %}
-    {% set bare_t = tg.xpath('./t') %}
+    {% set bare_t = tg.xpath('./t | ./tf') %}
 
     {# Entries may both have <t /> nodes grouped by tCtns, and
     free-standing <t /> nodes, so we need to do both. #}
@@ -78,7 +78,7 @@
 
     {% if tCtns %}
         {% for tCtn in tCtns %}
-            {% set tCtn_ts = tCtn.xpath('./t') %}
+            {% set tCtn_ts = tCtn.xpath('./t | ./tf') %}
             {% for t in tCtn_ts %}
                 {{ render_link(tCtn, t) }}{{- render_annotation(tCtn) -}}{% if not loop.last %}, {% endif %}
             {% endfor %}
