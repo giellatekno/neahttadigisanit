@@ -9,6 +9,17 @@
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="span12">
+            {% if keyboard %}
+                <div id="keyboard">
+                    <ul>
+                        {% for key in current_variant_options.onscreen_keyboard %}
+                            <li><a href="#" class="key" data-char="{{ key }}" lang="{{ _from }}">{{ key }}</a></li>
+                        {% endfor %}
+                        {# TODO: help popup, with links to GT keyboard app stuff #}
+                            <li><a lang="{{ current_locale }}" data-char="" href="#" class="hide_keyboard">{% trans %}hide{% endtrans %}</a></li>
+                    </ul>
+                </div>
+            {% endif %}
             <form id="neahttasaanit" class="form-inline"
                 method="post"
                 action="/{{ _from }}/{{ _to }}/"> 

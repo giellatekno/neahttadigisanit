@@ -544,7 +544,7 @@ span.entry_source {
 @media (min-width: 801px) {
     #keyboard {
         position: relative;
-        margin-top: -1.25em;
+        margin-top: -.5em;
         padding-bottom: 5px;
         margin-bottom: 0px;
         background-color: transparent;
@@ -577,12 +577,12 @@ span.entry_source {
 
     #keyboard ul li a {
         display: block;
-        width: 25px;
-        height: 25px;
+        width: 20px;
+        height: 20px;
         text-align: center;
         position: relative;
-        line-height: 25px;
-        font-size: 18px;
+        line-height: 22px;
+        font-size: 15px;
         font-weight: 200;
         padding: 2px;
         color: #444;
@@ -598,7 +598,8 @@ span.entry_source {
     }
 
     #keyboard ul .hide_keyboard {
-        font-size: 90%;
+        font-size: 80%;
+        line-height: 25px;
     }
 
 }
