@@ -3,7 +3,11 @@ Relabel:
     target_ui_language: 'eng'
     tags: &crk_eng
       N: "Noun"
+      n: "Noun"
       V: "Verb"
+      v: "Verb"
+      pcle: "Particle"
+      pron: "Pronoun"
       PV: "Preverb"
       Prop: "Proper"
       Adv: "Adjective"
@@ -85,4 +89,3 @@ Relabel:
     target_ui_language: 'eng'
     tags: 
       <<: *crk_eng
-
