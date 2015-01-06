@@ -1,5 +1,6 @@
 {% if current_pair_settings.asynchronous_paradigms %}
     <script src="{{url_for('static', filename='js/angular.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/underscore.min.js')}}"></script>
     <script src="{{url_for('static', filename='js/async_paradigms.js')}}"></script>
 {% endif %}
 
