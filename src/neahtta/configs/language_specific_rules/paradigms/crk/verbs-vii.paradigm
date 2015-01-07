@@ -1,0 +1,7 @@
+﻿name: "inanimate intransitive verbs"
+morphology:
+  pos: V
+  animacy: II
+--
+{{ lemma }}+V+II+Ind+Prs+3Sg+4Sg
+{{ lemma }}+V+II+Ind+Prs+3Pl+4Pl

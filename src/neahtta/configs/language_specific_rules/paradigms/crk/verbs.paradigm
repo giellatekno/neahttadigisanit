@@ -4,6 +4,7 @@ morphology:
   animacy:
     - TA
     - IA
+    - TI
 --
 {{ lemma }}+V+{{ animacy }}+Ind+Prs+1Sg+3SgO
 {{ lemma }}+V+{{ animacy }}+Ind+Prs+2Sg+3SgO
