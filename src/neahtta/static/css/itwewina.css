@@ -62,3 +62,10 @@
     margin-bottom: 15px;
     width: 75%;
 }
+
+.lexeme .entry_stem {
+    font-style: italic;
+    font-size: 90%;
+    margin-left: 2em;
+    color: #333;
+}
