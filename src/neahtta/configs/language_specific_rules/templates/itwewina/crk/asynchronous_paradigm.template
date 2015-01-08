@@ -5,7 +5,7 @@
 
 #}
 
-<dl class="dl-horizontal miniparadigm" 
+<div class="miniparadigm" 
     word-paradigm 
     lemma="{{ lemma|text }}" 
     source-lang="{{ _from }}" 
@@ -20,12 +20,21 @@
         <em>No paradigm generated.</em>
     </div>
 
-    <div ng-repeat="p in paradigm" ng-if="paradigm && complete">
-        <dt><% p[1].join(' ') %></dt>
-        <dd><% p[2].join(', ') %></dd>
-    </div>
-    
-</dl>
+    <% ind = (paradigm|by_tagset:'indicative'); conj = (paradigm|by_tagset:'conjunct'); "" %>
+    <table class="tableparadigm miniparadigm">
+        <tr>
+            <th>&nbsp;</th>
+            <th><% ind[0].tag | get_tagset_value:"indicative" %></th>
+            <th><% conj[0].tag | get_tagset_value:"conjunct" %></th>
+        </tr>
+        <tr ng-repeat="p in _.zip(ind, conj)">
+            <th class="tag"><% p[0].tag | get_tagset_value:"person" %></th>
+            <td><% p[0].generated_forms.join('\n') %></td>
+            <td><% p[1].generated_forms.join('\n') %></td>
+        </tr>
+    </table>
+
+</div>
 
 {# 
 

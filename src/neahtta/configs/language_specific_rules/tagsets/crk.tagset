@@ -5,9 +5,33 @@ pos:
 animacy: 
  - "TA"
  - "IA"
+ - "AI"
+ - "II"
 type: 
  - "NomAg"
 indicative:
  - "Ind"
 conjunct:
  - "Cnj"
+person:
+ - "1Sg"
+ - "2Sg"
+ - "3Sg"
+ - "4Sg"
+ - "5Sg"
+ - "1Pl"
+ - "2Pl"
+ - "3Pl"
+ - "4Pl"
+ - "12Pl"
+ - "1SgO"
+ - "2SgO"
+ - "3SgO"
+ - "SgO"
+ - "4SgO"
+ - "1PlO"
+ - "P2lO"
+ - "3PlO"
+ - "PlO"
+ - "4PlO"
+
