@@ -26,18 +26,17 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
     from lexicon import DetailedFormat as formatter
 
     def options(self, _from, _to, lemma):
+        _filters = current_app.config.tag_filters.get((g._from, g._to), False)
         _tagsets = current_app.config.morphologies.get(g._from).tagsets.sets
 
         tagsets_serializer_ready = {}
 
-        # TODO: user-friendly converted tagsets might result in
-        # comparison errors, so analyses need to be userfriendly and
-        # normal
         for key, ts in _tagsets.iteritems():
             tagsets_serializer_ready[key] = ts.members
 
         return json_response({
             'tagsets': tagsets_serializer_ready,
+            'filters': _filters
         })
 
     def get(self, _from, _to, lemma):

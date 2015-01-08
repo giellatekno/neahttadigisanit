@@ -6,8 +6,9 @@ var Tagsets;
 __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
 Tagsets = (function() {
-  function Tagsets(sets) {
+  function Tagsets(sets, filters) {
     this.sets = sets;
+    this.tag_filters = filters;
   }
 
   Tagsets.prototype.add_tags = function(ts) {
@@ -49,6 +50,14 @@ Tagsets = (function() {
     return _.filter(ts, _filter_pred);
   };
 
+  Tagsets.prototype.translate_tag = function(t) {
+    return this.tag_filters[t];
+  };
+
+  Tagsets.prototype.translate_tags = function(ts) {
+    return ts.map(this.translate_tag);
+  };
+
   return Tagsets;
 
 })();
@@ -84,6 +93,17 @@ NDS.filter('get_tagset_value', function(){
     };
 });
 
+NDS.filter('translate_tag', function(){
+    return function(t) {
+        return window.tagsets.translate_tag(t);
+    };
+});
+
+NDS.filter('translate_tags', function(){
+    return function(ts) {
+        return window.tagsets.translate_tags(ts);
+    };
+});
 
 NDS.filter('by_tagset_value', function(){
     return function(list, tagset, tagset_value){
@@ -138,7 +158,7 @@ NDS.directive('wordParadigm', function() {
                     $http({url: paradigm_url, method: "OPTIONS", params: get_attrs})
                         .success(function(data){
 
-                            window.tagsets = new Tagsets(data.tagsets);
+                            window.tagsets = new Tagsets(data.tagsets, data.filters);
                             $scope.tagsets = window.tagsets ;
 
                             $http({url: paradigm_url, method: "GET", params: get_attrs})

@@ -5,7 +5,7 @@
 
 #}
 
-<div class="miniparadigm" 
+<div class="miniparadigm floatingparadigm" 
     word-paradigm 
     lemma="{{ lemma|text }}" 
     source-lang="{{ _from }}" 
@@ -24,13 +24,13 @@
     <table class="tableparadigm miniparadigm">
         <tr>
             <th>&nbsp;</th>
-            <th><% ind[0].tag | get_tagset_value:"indicative" %></th>
-            <th><% conj[0].tag | get_tagset_value:"conjunct" %></th>
+            <th><% ind[0].tag | get_tagset_value:"indicative" | translate_tag %></th>
+            <th><% conj[0].tag | get_tagset_value:"conjunct" | translate_tag %></th>
         </tr>
         <tr ng-repeat="p in _.zip(ind, conj)">
-            <th class="tag"><% p[0].tag | get_tagset_value:"person" %></th>
-            <td><% p[0].generated_forms.join('\n') %></td>
-            <td><% p[1].generated_forms.join('\n') %></td>
+            <th class="tag"><% p[0].tag | get_tagset_value:"person" | translate_tag %></th>
+            <td><% p[0].generated_forms.slice(0,2).join('\n') %></td>
+            <td><% p[1].generated_forms.slice(0,2).join('\n') %></td>
         </tr>
     </table>
 
