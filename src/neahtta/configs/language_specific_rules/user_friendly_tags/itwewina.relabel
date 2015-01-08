@@ -2,12 +2,14 @@ Relabel:
   - source_morphology: 'crk'
     target_ui_language: 'eng'
     tags: &crk_eng
+      # Lexicon tags
+      n: "noun"
+      v: "verb"
+      pcle: "particle"
+      pron: "pronoun"
+      # morphology tags
       N: "Noun"
-      n: "Noun"
       V: "Verb"
-      v: "Verb"
-      pcle: "Particle"
-      pron: "Pronoun"
       PV: "Preverb"
       Prop: "Proper"
       Adv: "Adjective"
