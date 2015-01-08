@@ -3,9 +3,10 @@
 from search import ( IndexSearchPage
                    , LanguagePairSearchView
                    , DetailedLanguagePairSearchView
-                   , ParadigmLanguagePairSearchView
                    , ReferredLanguagePairSearchView
                    )
+
+from paradigms import ParadigmLanguagePairSearchView
 
 blueprint.add_url_rule( '/'
                       , view_func=IndexSearchPage.as_view('index_search_page')
