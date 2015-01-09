@@ -100,6 +100,7 @@
                     {{ index_search_form|safe }}
                 </div>
                 <div class="span4 hidden-phone valign_block">
+                    {# TODO: template here? #}
                     {% if analyses %}
                         <p class="analysis_note"><em lang="{{ _from }}">{{ user_input }}</em><span lang="{{ current_locale }}">{% trans user_input=user_input %} is a possible form of ... {% endtrans %}</span></p>
                     {% endif %}

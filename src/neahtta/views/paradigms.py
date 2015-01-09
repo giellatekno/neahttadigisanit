@@ -40,6 +40,8 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
         })
 
     def get(self, _from, _to, lemma):
+        # TODO: submit and process on separate thread, optional poll
+        # argument to not submit and just check for result
 
         # Check for cache entry here
 
@@ -91,19 +93,10 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
 
         paradigms = [map(filter_tag, _p) for _p in paradigms]
 
-        # TODO: cache search result here
-        # current_app.cache.set(entry_cache_key,
-        # search_result_context.detailed_entry_pickleable)
-
-        # search_result_context.update(**self.get_shared_context(_from, _to))
-
         _tagsets = current_app.config.morphologies.get(g._from).tagsets.sets
 
         tagsets_serializer_ready = {}
 
-        # TODO: user-friendly converted tagsets might result in
-        # comparison errors, so analyses need to be userfriendly and
-        # normal
         for key, ts in _tagsets.iteritems():
             tagsets_serializer_ready[key] = ts.members
 
