@@ -902,7 +902,7 @@ msgstr "Ruoktu"
 
 #: templates/base.html:165 templates/mobile_nav_push_menu.html:10
 msgid "Plugins"
-msgstr "Coahkkal-teavsttas"
+msgstr "Deaddilastte-teavsttas"
 
 #: templates/base.html:173 templates/mobile_nav_push_menu.html:18
 msgid "Sources"
