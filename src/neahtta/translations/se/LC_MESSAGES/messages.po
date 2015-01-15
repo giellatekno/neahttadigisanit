@@ -480,7 +480,7 @@ msgstr ""
 "Ráhkaduvvon <em><a "
 "href=\"http://giellatekno.uit.no\">Giellatekno</a></em> nuvttá ja rabas "
 "gáldokoda reaidduiguin. Giellatekno lea <a href=\"http://uit.no\">UiT "
-"Norgga árktalaš universtehta</a> sámi giellateknologiija joavku."
+"Norgga árktalaš universitehta</a> sámi giellateknologiija joavku."
 
 #: configs/language_specific_rules/templates/index_search_form.template:26
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:15
