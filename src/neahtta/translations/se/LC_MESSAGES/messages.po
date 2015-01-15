@@ -524,7 +524,7 @@ msgstr "Eará gielat"
 #: configs/language_specific_rules/templates/sanit/search_info.template:8
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
-"Oza sáni, vej. sojahuvvon hámi. Jus coahkkalat sáni, de oaččut listtu mas"
+"Oza sáni, vej. sojahuvvon hámi. Jus deaddilasttát sáni guktii, de oaččut listtu mas"
 " leat sojaheamit. <br /><br /> \"Oza teavsttain\"-boaluin don ozat sáni "
 "teakstačoakkáldagas, dahje sáhtát buot sojahanhámiid ohcat liŋkkain mii "
 "dihtto olgeš ravddas."
@@ -794,7 +794,7 @@ msgid ""
 "dictionary, and return a word after a short pause."
 msgstr ""
 "Go áiggut ohcat sáni, doala <em>Alt</em> dahje <em>Option</em> (⌥) ja\n"
-"             duppalcoahkkal sáni. Bálvalus váldá oktavuođa dáinna "
+"             deaddilastte sáni guktii. Bálvalus váldá oktavuođa dáinna "
 "siidduin\n"
 "            ja addá dutnje jorgalusa. Ádjána binnáš.\n"
 
@@ -915,7 +915,7 @@ msgstr ""
 
 #: templates/config_doc.html:4
 msgid "Neahttadigisánit"
-msgstr "Neahttadigisániid coahkkal-teavsttas"
+msgstr "Neahttadigisániid deaddilastte-teavsttas"
 
 #: templates/index.html:23 templates/macros.html:5 templates/macros.html:13
 msgid "Texts"
@@ -1082,7 +1082,7 @@ msgid ""
 "                pause."
 msgstr ""
 "Go áiggut ohcat sáni, doala <em>Alt</em> dahje <em>Option</em> (⌥) ja\n"
-"             duppalcoahkkal sáni. Bálvalus váldá oktavuođa dáinna "
+"             deaddilastte sáni guktii. Bálvalus váldá oktavuođa dáinna "
 "siidduin\n"
 "            ja addá dutnje jorgalusa. Ádjána binnáš.\n"
 
@@ -1101,7 +1101,7 @@ msgid ""
 "the\n"
 "                bookmarklet."
 msgstr ""
-"Lea maiddái vejolaš sajáiduhttit coahkkal-teavsttas neahttasiidui, \n"
+"Lea maiddái vejolaš sajáiduhttit deaddilastte-teavsttas neahttasiidui, \n"
 "vai geavaheaddjit sáhttet geavahit sátnegirjji girjemearkka haga."
 
 #: templates/reader.html:39
