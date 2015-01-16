@@ -2,7 +2,9 @@
 
 {% block extra_js %}
     {# https://gist.github.com/1866577 #}
+    {% if current_pair_settings.autocomplete %}
     <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-typeahead-fork.js')}}"></script>
+    {% endif %}
     <script type="text/javascript" src="{{url_for('static', filename='js/index.js')}}"></script>
 
 {% endblock %}
