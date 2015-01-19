@@ -84,13 +84,13 @@ compile_langs_fsts: $(langs)
 	@echo ""
 	for ll in $(GT_COMPILE_LANGS) ; do \
 		if ! test -e "$(GTHOME)/langs/$$ll/src/Makefile" ; then \
-			cd $(GTHOME)/langs/$$ll ; ./autogen.sh ; ./configure --enable-dicts ; \
+			cd $(GTHOME)/langs/$$ll ; ./autogen.sh ; ./configure --enable-dicts $(LANGS_FLAGS) ; \
 		fi ; \
 		cd $(GTHOME)/langs/$$ll ; make ; \
 	done 
 	for ll in $(GT_COMPILE_STARTUP_LANGS) ; do \
 		if ! test -e "$(GTHOME)/startup-langs/$$ll/src/Makefile" ; then \
-			cd $(GTHOME)/startup-langs/$$ll ; ./autogen.sh ; ./configure --enable-dicts ; \
+			cd $(GTHOME)/startup-langs/$$ll ; ./autogen.sh ; ./configure --enable-dicts $(LANGS_FLAGS) ; \
 		fi ; \
 		cd $(GTHOME)/startup-langs/$$ll ; make ; \
 	done 
@@ -105,13 +105,19 @@ install_langs_fsts: $(langs)
 	for ll in $(GT_COMPILE_LANGS) ; do \
 		mkdir -p /opt/smi/$$ll/bin/ ; \
 		cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc.xfst  /opt/smi/$$ll/bin/ ; \
+		cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc.hfstol  /opt/smi/$$ll/bin/ ; \
 		cp $(GTHOME)/langs/$$ll/src/generator-dict-gt-norm.xfst /opt/smi/$$ll/bin/ ; \
+		cp $(GTHOME)/langs/$$ll/src/generator-dict-gt-norm.hfstol /opt/smi/$$ll/bin/ ; \
+		cp $(GTHOME)/langs/$$ll/src/generator-dict-gt-desc-mobile.hfstol /opt/smi/$$ll/bin/ ; \
 		cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc-mobile.xfst  /opt/smi/$$ll/bin/ 2>/dev/null || : ; \
 	done 
 	for ll in $(GT_COMPILE_STARTUP_LANGS) ; do \
 		mkdir -p /opt/smi/$$ll/bin/ ; \
 		cp $(GTHOME)/startup-langs/$$ll/src/analyser-dict-gt-desc.xfst  /opt/smi/$$ll/bin/ ; \
+		cp $(GTHOME)/startup-langs/$$ll/src/analyser-dict-gt-desc.hfstol  /opt/smi/$$ll/bin/ ; \
 		cp $(GTHOME)/startup-langs/$$ll/src/generator-dict-gt-norm.xfst /opt/smi/$$ll/bin/ ; \
+		cp $(GTHOME)/startup-langs/$$ll/src/generator-dict-gt-norm.hfstol /opt/smi/$$ll/bin/ ; \
+		cp $(GTHOME)/startup-langs/$$ll/src/generator-dict-gt-desc-mobile.hfstol /opt/smi/$$ll/bin/ ; \
 		cp $(GTHOME)/startup-langs/$$ll/src/analyser-dict-gt-desc-mobile.xfst  /opt/smi/$$ll/bin/ 2>/dev/null || : ; \
 	done 
 
@@ -179,6 +185,9 @@ print_complete_message:
 ###    
 ###    # These are the ISOs of the languages to compile from GTHOME/langs/
 ###    SAMPLE_LANGS_ANALYSERS           :=   izh liv fin vep vro vot
+###
+###    # OPTIONAL: enable miscellaneous ./configure flags
+###    # SAMPLE_LANGS_FLAGS             :=   --with-hfst
 ###    
 ###    # These are the ISOs of the languages to compile from GTHOME/startup-langs/
 ###    SAMPLE_STARTUP_LANGS_ANALYSERS   :=   lav
@@ -328,12 +337,13 @@ dikaneisdi-install: install_langs_fsts
 ##### #itwewinatargets
 #####
 
-PIKISKWEWINA_LANGS_ANALYSERS      :=   crk
-PIKISKWEWINA_LANGS_LEXICA         :=   
+ITWEWINA_LANGS_ANALYSERS      :=   crk
+ITWEWINA_LANGS_FLAGS          :=   --with-hfst
+ITWEWINA_LANGS_LEXICA         :=   
 # Generalized target, but we have some exceptions here, so crkeng is commented
 # out.
 # crkeng
-PIKISKWEWINA_WORDS_DICTS_LEXICA   :=   
+ITWEWINA_WORDS_DICTS_LEXICA   :=   
 
 # NB: if things are in priv, use $(GTPRIV)
 #
@@ -364,22 +374,23 @@ crkeng.xml: $(foreach d, $(CRKENG_DIRS), $(shell find $d -name '*.xml'))
 	@rm -rf ../scripts
 
 .PHONY: itwewina-lexica
-itwewina-lexica: LEX_COMPILE_LANGS := $(PIKISKWEWINA_LANGS_LEXICA)
-itwewina-lexica: LEX_COMPILE_WORDS_DICTS := $(PIKISKWEWINA_WORDS_DICTS_LEXICA)
+itwewina-lexica: LEX_COMPILE_LANGS := $(ITWEWINA_LANGS_LEXICA)
+itwewina-lexica: LEX_COMPILE_WORDS_DICTS := $(ITWEWINA_WORDS_DICTS_LEXICA)
 itwewina-lexica: crkeng.xml compile_langs_lexicon compile_words_dicts_lexicon
 
 .PHONY: itwewina
-itwewina: GT_COMPILE_LANGS := $(PIKISKWEWINA_LANGS_ANALYSERS)
-itwewina: LEX_COMPILE_LANGS := $(PIKISKWEWINA_LANGS_LEXICA)
-itwewina: LEX_COMPILE_WORDS_DICTS := $(PIKISKWEWINA_WORDS_DICTS_LEXICA)
+itwewina: GT_COMPILE_LANGS := $(ITWEWINA_LANGS_ANALYSERS)
+itwewina: LEX_COMPILE_LANGS := $(ITWEWINA_LANGS_LEXICA)
+itwewina: LEX_COMPILE_WORDS_DICTS := $(ITWEWINA_WORDS_DICTS_LEXICA)
+itwewina: LANGS_FLAGS := $(ITWEWINA_LANGS_FLAGS)
 itwewina: itwewina-lexica compile_langs_fsts print_complete_message
 
-rm-itwewina-lexica: $(foreach xx, $(PIKISKWEWINA_LANGS_LEXICA), $(xx)-all.xml) \
-				 $(foreach yy, $(PIKISKWEWINA_WORDS_DICTS_LEXICA), $(yy).xml)
+rm-itwewina-lexica: $(foreach xx, $(ITWEWINA_LANGS_LEXICA), $(xx)-all.xml) \
+				 $(foreach yy, $(ITWEWINA_WORDS_DICTS_LEXICA), $(yy).xml)
 	@rm -rf $^
 
 .PHONY: itwewina-install
-itwewina-install: GT_COMPILE_LANGS := $(PIKISKWEWINA_LANGS_ANALYSERS)
+itwewina-install: GT_COMPILE_LANGS := $(ITWEWINA_LANGS_ANALYSERS)
 itwewina-install: install_langs_fsts copy_syllabics
 
 .PHONY: copy_syllabics
