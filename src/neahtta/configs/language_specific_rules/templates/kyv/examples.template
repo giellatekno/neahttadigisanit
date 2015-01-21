@@ -1,0 +1,110 @@
+﻿{# Komi example sentences are a bit more complex than other dictionaries: 
+
+ * Genre types relate to some data structure
+
+    grep "<xg genreTyp" kpv-all.xml | sort | uniq -c 
+
+       1          <xg genreType="idiom">
+       1          <xg genreType="playOnWords">
+     121          <xg genreType="sign">
+     259          <xg genreType="proverb">
+     280          <xg genreType="riddle">
+     593          <xg genreType="saying">
+
+         <xg genreType="playOnWords">
+            <x>кынӧмыд кӧ сюмалӧ, сюмӧдав</x>
+            <xtCtn>
+               <xt xml:lang="rus">если хочешь есть, навей берёстой</xt>
+               <re>желудок</re>
+            </xtCtn>
+         </xg>
+
+    - 'normal'
+
+         <xg genreType="sign">
+            <x>исерга сімӧ шог водзӧ</x>
+            <xt xml:lang="rus">серьги ржавеют к беде</xt>
+         </xg>
+
+    - two <xt /> per <xg />
+
+         <xg genreType="proverb">
+            <x>бӧрдтӧм кага оз качайтны</x>
+            <xt xml:lang="rus">дитя не плачет — мать не разумеет</xt>
+            <xt tType="literal" xml:lang="rus">неплачущего ребёнка не укачивают</xt>
+         </xg>
+
+    - riddle is a bit more tricky: may have multiple <xt />, with tType, but
+      then also has an <answer /> 
+
+         <xg genreType="riddle">
+            <x>би сьӧлӧма, ва рушкуа, ыргӧн платтьӧа</x>
+            <xt xml:lang="rus">с огненным сердцем, с водяным брюхом, в медном платье</xt>
+            <answer>
+               <native>самӧвар</native>
+               <xt xml:lang="rus">самовар</xt>
+            </answer>
+         </xg>
+
+         <xg genreType="riddle">
+            <x>кузь-кузь мужик да лун и вой юрбитӧ</x>
+            <xt xml:lang="rus">длинный-длинный мужик день и ночь кланяется</xt>
+            <xt tType="equivalent" xml:lang="rus">стоит поп голенаст, он кланяться горазд</x
+t>
+            <answer>
+               <native>зыбка, кага лайкан</native>
+               <xt xml:lang="rus">люлька, колыбельный оцеп</xt>
+            </answer>
+         </xg>
+
+    - saying optionally has an xtCtn, but not always
+         <xg genreType="saying">
+            <x>асъя зэрыд — гӧсьт</x>
+            <xtCtn>
+               <xt xml:lang="rus">утренний дождь — гость</xt>
+               <re>быстро пройдёт</re>
+            </xtCtn>
+         </xg>
+
+ * <xtCtn /> helps group example translations with annotation nodes (<re />)
+
+#}
+
+{%- macro example_text(example, genre_type) %}
+    {% if example|xpath('@re') %}
+        <dt lang="{{ _from }}">{{ example|xpath('./x')|first|text }} ({{ example|xpath('@re')|first }})</dt>
+    {% else %}
+        <dt lang="{{ _from }}">{{ example|xpath('./x')|first|text }}</dt>
+    {% endif %}
+{% endmacro -%}
+
+{%- macro example_translation(example, genre_type) %}
+    {% set xtctn  = example|xpath('./xtCtn')|first %}
+    {% set answer = example|xpath('./answer')|first %}
+
+    {% if xtctn %}
+        <dd lang="{{ _to }}">{{ xtctn|xpath('./xt')|first|text }} ({{ xtctn|xpath('./re')|first|text }})</dd>
+    {% else %}
+        {% if example|xpath('./xt')|length > 0 %}
+            <dd lang="{{ _to }}">{{ example|xpath('./xt')|first|text }}</dd>
+        {% else %}
+            <dd lang="{{ _to }}"><pre><code>XML ERROR</code></pre></dd>
+        {% endif %}
+    {% endif %}
+{% endmacro -%}
+
+<div class="example_set">
+    <blockquote class="examples">
+        <dl>
+        {% for example in examples %}
+            {% set genre_type = example|xpath('@genreType')|first %}
+
+            {{ example_text(example, genre_type) }}
+            {{ example_translation(example, genre_type) }}
+
+        {% endfor %}
+        </dl>
+    </blockquote>
+</div>
+
+{#  vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}
