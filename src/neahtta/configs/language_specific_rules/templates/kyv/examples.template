@@ -70,12 +70,56 @@ t>
 
 #}
 
+{# Convert the text to a localization string #}
+{%- macro genre_type_text(genre_type) -%}
+    {%- if genre_type == 'saying' -%}
+        {{ gettext("saying") }}
+    {%- elif genre_type == "riddle" -%}
+        {{ gettext("riddle") }}
+    {%- elif genre_type == "proverb" -%}
+        {{ gettext("proverb") }}
+    {%- elif genre_type == "sign" -%}
+        {{ gettext("sign") }}
+    {# these don't have many instances #}
+    {%- elif genre_type == "playOnWords" -%}
+        {{ gettext("play on words") }}
+    {%- elif genre_type == "idiom" -%}
+        {{ gettext("idiom") }}
+    {%- endif -%}
+{%- endmacro -%}
+
+
+{# Render the example text, and insert the translated genre if one exists #}
 {%- macro example_text(example, genre_type) %}
-    {% if example|xpath('@re') %}
-        <dt lang="{{ _from }}">{{ example|xpath('./x')|first|text }} ({{ example|xpath('@re')|first }})</dt>
+    <dt lang="{{ _from }}">
+        {%- if genre_type %}<span class="genre-type" lang="{{ _to }}">({{- genre_type_text(genre_type) -}})</span> {% endif -%}
+        {%- if example|xpath('@re') %}
+            {{ example|xpath('./x')|first|text }} ({{ example|xpath('@re')|first }})
+        {% else %}
+            {{ example|xpath('./x')|first|text }}
+        {% endif -%}
+    </dt>
+{% endmacro -%}
+
+{%- macro example_xtctn(xtctn, genre_type) %}
+    {% set x_text = xtctn|xpath('./xt')|first|text %}
+    {% set annotation = xtctn|xpath('./re') %}
+    {% if annotation %}
+        <dd lang="{{ _to }}">{{ x_text }} ({{ annotation|first|text }})</dd>
     {% else %}
-        <dt lang="{{ _from }}">{{ example|xpath('./x')|first|text }}</dt>
+        <dd lang="{{ _to }}">{{ x_text }}</dd>
     {% endif %}
+{% endmacro -%}
+
+{# TODO: xt @tType="literal" #}
+{%- macro example_xts(ex, genre_type) %}
+    {% for xt in ex|xpath('./xt') %}
+        <dd><span lang="{{ _from }}">{{ xt|text }}</span></dd>
+    {% endfor %}
+{% endmacro -%}
+
+{%- macro example_answer(answer, genre_type) %}
+    
 {% endmacro -%}
 
 {%- macro example_translation(example, genre_type) %}
@@ -83,27 +127,34 @@ t>
     {% set answer = example|xpath('./answer')|first %}
 
     {% if xtctn %}
-        <dd lang="{{ _to }}">{{ xtctn|xpath('./xt')|first|text }} ({{ xtctn|xpath('./re')|first|text }})</dd>
+        {{ example_xtctn(xtctn, genre_type) }}
     {% else %}
-        {% if example|xpath('./xt')|length > 0 %}
-            <dd lang="{{ _to }}">{{ example|xpath('./xt')|first|text }}</dd>
-        {% else %}
-            <dd lang="{{ _to }}"><pre><code>XML ERROR</code></pre></dd>
-        {% endif %}
+        {{ example_xts(example, genre_type) }}
     {% endif %}
+
+    {% if answer %}
+        {{ example_answer(answer, genre_type) }}
+    {% endif %}
+
 {% endmacro -%}
 
 <div class="example_set">
     <blockquote class="examples">
-        <dl>
         {% for example in examples %}
-            {% set genre_type = example|xpath('@genreType')|first %}
+        {% set genre_type = example|xpath('@genreType')|first %}
+        {%- if genre_type %}
+            {% set classes = "example " + genre_type %}
+        {% else %}
+            {% set genre_type = false %}
+            {% set classes = "example" %}
+        {% endif -%}
+        <dl class="{{ classes }}">
 
             {{ example_text(example, genre_type) }}
             {{ example_translation(example, genre_type) }}
 
-        {% endfor %}
         </dl>
+        {% endfor %}
     </blockquote>
 </div>
 
