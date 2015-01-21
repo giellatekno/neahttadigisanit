@@ -26,7 +26,7 @@
             <xt xml:lang="rus">серьги ржавеют к беде</xt>
          </xg>
 
-    - two <xt /> per <xg />
+    - TODO: two <xt /> per <xg />
 
          <xg genreType="proverb">
             <x>бӧрдтӧм кага оз качайтны</x>
@@ -34,7 +34,7 @@
             <xt tType="literal" xml:lang="rus">неплачущего ребёнка не укачивают</xt>
          </xg>
 
-    - riddle is a bit more tricky: may have multiple <xt />, with tType, but
+    - TODO: riddle is a bit more tricky: may have multiple <xt />, with tType, but
       then also has an <answer /> 
 
          <xg genreType="riddle">
@@ -57,7 +57,7 @@ t>
             </answer>
          </xg>
 
-    - saying optionally has an xtCtn, but not always
+    - TODO: saying optionally has an xtCtn, but not always
          <xg genreType="saying">
             <x>асъя зэрыд — гӧсьт</x>
             <xtCtn>
@@ -67,6 +67,8 @@ t>
          </xg>
 
  * <xtCtn /> helps group example translations with annotation nodes (<re />)
+
+ TODO: extract strings
 
 #}
 
@@ -118,6 +120,9 @@ t>
     {% endfor %}
 {% endmacro -%}
 
+{# TODO: answer #}
+{# <native /> and <xt /> for translation. #}
+
 {%- macro example_answer(answer, genre_type) %}
     
 {% endmacro -%}
@@ -137,6 +142,8 @@ t>
     {% endif %}
 
 {% endmacro -%}
+
+{# TODO: have some JS collapse for long sets of examples? many entries have >5 #}
 
 <div class="example_set">
     <blockquote class="examples">
