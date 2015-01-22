@@ -1,4 +1,4 @@
-﻿{# Komi example sentences are a bit more complex than other dictionaries: 
+{# Komi example sentences are a bit more complex than other dictionaries: 
 
  * Genre types relate to some data structure
 
@@ -90,7 +90,6 @@ t>
     {%- endif -%}
 {%- endmacro -%}
 
-
 {# Render the example text, and insert the translated genre if one exists #}
 {%- macro example_text(example, genre_type) %}
     <dt lang="{{ _from }}">
@@ -120,11 +119,13 @@ t>
     {% endfor %}
 {% endmacro -%}
 
-{# TODO: answer #}
-{# <native /> and <xt /> for translation. #}
-
 {%- macro example_answer(answer, genre_type) %}
-    
+    <dt class="riddle-answer" lang="{{ _from }}">
+        <em>{{ gettext("answer")}}:</em> {{ answer|xpath('./native')|first|text }}
+    </dt>
+    <dd class="riddle-answer-translation" lang="{{ _to }}">
+        {{ answer|xpath('./xt')|first|text }}
+    </dd>
 {% endmacro -%}
 
 {%- macro example_translation(example, genre_type) %}
@@ -146,6 +147,8 @@ t>
 {# TODO: have some JS collapse for long sets of examples? many entries have >5 #}
 
 <div class="example_set">
+    {# TODO: example collapse #}
+    {#  {% if examples|length > 2 %}data-example-collapse{% endif %} #}
     <blockquote class="examples">
         {% for example in examples %}
         {% set genre_type = example|xpath('@genreType')|first %}
