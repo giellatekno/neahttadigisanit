@@ -1,14 +1,14 @@
 # Translations template for PROJECT.
-# Copyright (C) 2014 ORGANIZATION
+# Copyright (C) 2015 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-12-12 13:46-0600\n"
+"POT-Creation-Date: 2015-01-22 16:10-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -445,21 +445,25 @@ msgid ""
 "Tromsø</a>."
 msgstr ""
 
-#: configs/language_specific_rules/templates/index_search_form.template:26
+#: configs/language_specific_rules/templates/index_search_form.template:19
+msgid "hide"
+msgstr ""
+
+#: configs/language_specific_rules/templates/index_search_form.template:41
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:15
 #: templates/index_search_form.html:15
 msgid "Press Tab to select a word"
 msgstr ""
 
-#: configs/language_specific_rules/templates/index_search_form.template:31
+#: configs/language_specific_rules/templates/index_search_form.template:46
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:19
 #: templates/index_search_form.html:20
 msgid "ohcansátni"
 msgstr ""
 
-#: configs/language_specific_rules/templates/index_search_form.template:36
-#: configs/language_specific_rules/templates/index_search_form.template:56
-#: configs/language_specific_rules/templates/index_search_form.template:60
+#: configs/language_specific_rules/templates/index_search_form.template:51
+#: configs/language_specific_rules/templates/index_search_form.template:71
+#: configs/language_specific_rules/templates/index_search_form.template:75
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:24
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:41
 #: templates/index_search_form.html:25 templates/index_search_form.html:46
@@ -467,8 +471,8 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: configs/language_specific_rules/templates/index_search_form.template:48
-#: configs/language_specific_rules/templates/index_search_form.template:71
+#: configs/language_specific_rules/templates/index_search_form.template:63
+#: configs/language_specific_rules/templates/index_search_form.template:86
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:36
 #: templates/index_search_form.html:37 templates/index_search_form.html:61
 msgid "Search texts"
@@ -536,6 +540,47 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/itwewina/sources.template:6
 msgid "Sources and References"
+msgstr ""
+
+#: configs/language_specific_rules/templates/itwewina/crk/paradigm.template:85
+#: configs/language_specific_rules/templates/sanit/sme/paradigm.template:123
+msgid "Full paradigm"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/examples.template:78
+msgid "saying"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/examples.template:80
+msgid "riddle"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/examples.template:82
+msgid "proverb"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/examples.template:84
+msgid "sign"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/examples.template:87
+msgid "play on words"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/examples.template:89
+msgid "idiom"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/examples.template:124
+msgid "answer"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/includes.template:4
+msgid "More examples"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/includes.template:5
+msgid "Less examples"
 msgstr ""
 
 #: configs/language_specific_rules/templates/muter/about.template:43
@@ -628,10 +673,6 @@ msgid ""
 "You selected #SoMe, the variant for social media, which means that the "
 "letters acdnstz\n"
 "            will be accepted as áčđŋšŧž in addition to their usual values."
-msgstr ""
-
-#: configs/language_specific_rules/templates/sanit/sme/paradigm.template:123
-msgid "Full paradigm"
 msgstr ""
 
 #: configs/language_specific_rules/templates/vada/about.template:59
@@ -864,26 +905,26 @@ msgstr ""
 msgid "Neahttadigisánit"
 msgstr ""
 
-#: templates/index.html:23 templates/macros.html:5 templates/macros.html:13
+#: templates/index.html:27 templates/macros.html:5 templates/macros.html:13
 msgid "Texts"
 msgstr ""
 
-#: templates/index.html:85
+#: templates/index.html:94
 msgid "Swap"
 msgstr ""
 
-#: templates/index.html:99 templates/index.html:150
+#: templates/index.html:109 templates/index.html:160
 #: templates/word_detail.html:107 templates/word_detail.html:148
 #: views/reader.py:218
 msgid " is a possible form of ... "
 msgstr ""
 
-#: templates/index.html:116 templates/index.html:135
+#: templates/index.html:126 templates/index.html:145
 #, python-format
 msgid "Word <span lang=\"%(_from)s\">%(input)s</span> not found."
 msgstr ""
 
-#: templates/index.html:124
+#: templates/index.html:134
 #, python-format
 msgid "Other analyses for <em>%(user_input)s</em> without a translation."
 msgstr ""

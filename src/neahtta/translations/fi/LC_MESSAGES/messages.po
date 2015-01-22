@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-12-12 13:46-0600\n"
+"POT-Creation-Date: 2015-01-22 16:10-0600\n"
 "PO-Revision-Date: 2014-02-15 20:48+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language-Team: fi <LL@li.org>\n"
@@ -461,26 +461,31 @@ msgid ""
 "Technology group at the <a href=\"http://uit.no\">University of "
 "Tromsø</a>."
 msgstr ""
-"<em> <a href=\"http://uit.no\">UiT Norjan arktisen yliopiston</a> tutkimusryhmä"
-"<a href=\"http://giellatekno.uit.no/index.fin.html\">Giellatekno</a></em> "
-"on tehnyt nämä sanakirjaohjelmat vapaiden ja avoimella lähdekoodilla "
+"<em> <a href=\"http://uit.no\">UiT Norjan arktisen yliopiston</a> "
+"tutkimusryhmä<a "
+"href=\"http://giellatekno.uit.no/index.fin.html\">Giellatekno</a></em> on"
+" tehnyt nämä sanakirjaohjelmat vapaiden ja avoimella lähdekoodilla "
 "laadittujen kieliohjelmien avulla."
 
-#: configs/language_specific_rules/templates/index_search_form.template:26
+#: configs/language_specific_rules/templates/index_search_form.template:19
+msgid "hide"
+msgstr ""
+
+#: configs/language_specific_rules/templates/index_search_form.template:41
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:15
 #: templates/index_search_form.html:15
 msgid "Press Tab to select a word"
 msgstr "Valitse sana painamalla sarkainnäppäintä"
 
-#: configs/language_specific_rules/templates/index_search_form.template:31
+#: configs/language_specific_rules/templates/index_search_form.template:46
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:19
 #: templates/index_search_form.html:20
 msgid "ohcansátni"
 msgstr "hakusana"
 
-#: configs/language_specific_rules/templates/index_search_form.template:36
-#: configs/language_specific_rules/templates/index_search_form.template:56
-#: configs/language_specific_rules/templates/index_search_form.template:60
+#: configs/language_specific_rules/templates/index_search_form.template:51
+#: configs/language_specific_rules/templates/index_search_form.template:71
+#: configs/language_specific_rules/templates/index_search_form.template:75
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:24
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:41
 #: templates/index_search_form.html:25 templates/index_search_form.html:46
@@ -488,8 +493,8 @@ msgstr "hakusana"
 msgid "Search"
 msgstr "Etsi"
 
-#: configs/language_specific_rules/templates/index_search_form.template:48
-#: configs/language_specific_rules/templates/index_search_form.template:71
+#: configs/language_specific_rules/templates/index_search_form.template:63
+#: configs/language_specific_rules/templates/index_search_form.template:86
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:36
 #: templates/index_search_form.html:37 templates/index_search_form.html:61
 msgid "Search texts"
@@ -559,6 +564,47 @@ msgstr ""
 msgid "Sources and References"
 msgstr "Lähteet ja kirjallisuus"
 
+#: configs/language_specific_rules/templates/itwewina/crk/paradigm.template:85
+#: configs/language_specific_rules/templates/sanit/sme/paradigm.template:123
+msgid "Full paradigm"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/examples.template:78
+msgid "saying"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/examples.template:80
+msgid "riddle"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/examples.template:82
+msgid "proverb"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/examples.template:84
+msgid "sign"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/examples.template:87
+msgid "play on words"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/examples.template:89
+msgid "idiom"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/examples.template:124
+msgid "answer"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/includes.template:4
+msgid "More examples"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/includes.template:5
+msgid "Less examples"
+msgstr ""
+
 #: configs/language_specific_rules/templates/muter/about.template:43
 #: configs/language_specific_rules/templates/vada/about.template:45
 #: configs/language_specific_rules/templates/valks/about.template:45
@@ -584,10 +630,9 @@ msgid ""
 "from\n"
 "                the Kone Foundation."
 msgstr ""
-"Länsimari-suomi-sanakirja on laadittu usean sanakirjan, eritoten "
-"Anna A. Savatkovan Länsimari-venäjä-sanakirjan, sekä "
-"marinkielisen kirjallisuuden pohjalta. Käännöstyön teki Julia Kuprina "
-"Koneen Säätiön tuella."
+"Länsimari-suomi-sanakirja on laadittu usean sanakirjan, eritoten Anna A. "
+"Savatkovan Länsimari-venäjä-sanakirjan, sekä marinkielisen kirjallisuuden"
+" pohjalta. Käännöstyön teki Julia Kuprina Koneen Säätiön tuella."
 
 #: configs/language_specific_rules/templates/sanat/about.template:43
 #: configs/language_specific_rules/templates/sonad/about.template:43
@@ -663,10 +708,6 @@ msgstr ""
 "Valitsit #SoMe, sosiaalisen median lukemista varten. Se tarkoittaa, että "
 "myös kirjaimet acdnstz\n"
 "hyväksytään áčđŋšŧž-kirjainten tilalle"
-
-#: configs/language_specific_rules/templates/sanit/sme/paradigm.template:123
-msgid "Full paradigm"
-msgstr ""
 
 #: configs/language_specific_rules/templates/vada/about.template:59
 msgid "yrk ↔ fin"
@@ -913,26 +954,26 @@ msgstr "Käyttöliittymän kieli"
 msgid "Neahttadigisánit"
 msgstr "Nettidigisanat"
 
-#: templates/index.html:23 templates/macros.html:5 templates/macros.html:13
+#: templates/index.html:27 templates/macros.html:5 templates/macros.html:13
 msgid "Texts"
 msgstr "Tekstit"
 
-#: templates/index.html:85
+#: templates/index.html:94
 msgid "Swap"
 msgstr "Vaihda"
 
-#: templates/index.html:99 templates/index.html:150
+#: templates/index.html:109 templates/index.html:160
 #: templates/word_detail.html:107 templates/word_detail.html:148
 #: views/reader.py:218
 msgid " is a possible form of ... "
 msgstr " on mahdollinen muoto sanasta ..."
 
-#: templates/index.html:116 templates/index.html:135
+#: templates/index.html:126 templates/index.html:145
 #, python-format
 msgid "Word <span lang=\"%(_from)s\">%(input)s</span> not found."
 msgstr ""
 
-#: templates/index.html:124
+#: templates/index.html:134
 #, python-format
 msgid "Other analyses for <em>%(user_input)s</em> without a translation."
 msgstr "Muita analyyseja sanalle <em>%(user_input)s</em> ilman käännöstä."
@@ -1376,17 +1417,4 @@ msgstr "Virheellinen formaatti. Vain json ja html ovat sallittuja."
 
 #~ msgid "Word <span class=\"%(_from)s\">%(input)s</span> not found."
 #~ msgstr ""
-
-#~ msgid ""
-#~ "You selected #SoMe, the variant for "
-#~ "social media, which means that the "
-#~ "letters acdnstz\n"
-#~ "                            will be accepted "
-#~ "as áčđŋšŧž in addition to their "
-#~ "usual values."
-#~ msgstr ""
-#~ "Sinä valitsit #SoMe, sosiaalisen median "
-#~ "lukemista varten. Se tarkoittaa, että "
-#~ "kirjaimet acdnstz\n"
-#~ "hyväksytään myös áčđŋšŧž-kirjainten tilalle"
 

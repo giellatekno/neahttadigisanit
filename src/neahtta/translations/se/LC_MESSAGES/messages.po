@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-12-12 13:46-0600\n"
+"POT-Creation-Date: 2015-01-22 16:10-0600\n"
 "PO-Revision-Date: 2013-02-01 01:55-0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: se <LL@li.org>\n"
@@ -482,21 +482,25 @@ msgstr ""
 "gáldokoda reaidduiguin. Giellatekno lea <a href=\"http://uit.no\">UiT "
 "Norgga árktalaš universitehta</a> sámi giellateknologiija joavku."
 
-#: configs/language_specific_rules/templates/index_search_form.template:26
+#: configs/language_specific_rules/templates/index_search_form.template:19
+msgid "hide"
+msgstr ""
+
+#: configs/language_specific_rules/templates/index_search_form.template:41
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:15
 #: templates/index_search_form.html:15
 msgid "Press Tab to select a word"
 msgstr ""
 
-#: configs/language_specific_rules/templates/index_search_form.template:31
+#: configs/language_specific_rules/templates/index_search_form.template:46
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:19
 #: templates/index_search_form.html:20
 msgid "ohcansátni"
 msgstr ""
 
-#: configs/language_specific_rules/templates/index_search_form.template:36
-#: configs/language_specific_rules/templates/index_search_form.template:56
-#: configs/language_specific_rules/templates/index_search_form.template:60
+#: configs/language_specific_rules/templates/index_search_form.template:51
+#: configs/language_specific_rules/templates/index_search_form.template:71
+#: configs/language_specific_rules/templates/index_search_form.template:75
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:24
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:41
 #: templates/index_search_form.html:25 templates/index_search_form.html:46
@@ -504,8 +508,8 @@ msgstr ""
 msgid "Search"
 msgstr "Oza"
 
-#: configs/language_specific_rules/templates/index_search_form.template:48
-#: configs/language_specific_rules/templates/index_search_form.template:71
+#: configs/language_specific_rules/templates/index_search_form.template:63
+#: configs/language_specific_rules/templates/index_search_form.template:86
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:36
 #: templates/index_search_form.html:37 templates/index_search_form.html:61
 msgid "Search texts"
@@ -524,10 +528,10 @@ msgstr "Eará gielat"
 #: configs/language_specific_rules/templates/sanit/search_info.template:8
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
-"Oza sáni, vej. sojahuvvon hámi. Jus deaddilasttát sáni guktii, de oaččut listtu mas"
-" leat sojaheamit. <br /><br /> \"Oza teavsttain\"-boaluin don ozat sáni "
-"teakstačoakkáldagas, dahje sáhtát buot sojahanhámiid ohcat liŋkkain mii "
-"dihtto olgeš ravddas."
+"Oza sáni, vej. sojahuvvon hámi. Jus deaddilasttát sáni guktii, de oaččut "
+"listtu mas leat sojaheamit. <br /><br /> \"Oza teavsttain\"-boaluin don "
+"ozat sáni teakstačoakkáldagas, dahje sáhtát buot sojahanhámiid ohcat "
+"liŋkkain mii dihtto olgeš ravddas."
 
 #: configs/language_specific_rules/templates/baakoeh/about.template:76
 #: configs/language_specific_rules/templates/guusaaw/about.template:89
@@ -577,6 +581,47 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/itwewina/sources.template:6
 msgid "Sources and References"
+msgstr ""
+
+#: configs/language_specific_rules/templates/itwewina/crk/paradigm.template:85
+#: configs/language_specific_rules/templates/sanit/sme/paradigm.template:123
+msgid "Full paradigm"
+msgstr "Eanet sojahanhámit"
+
+#: configs/language_specific_rules/templates/kyv/examples.template:78
+msgid "saying"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/examples.template:80
+msgid "riddle"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/examples.template:82
+msgid "proverb"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/examples.template:84
+msgid "sign"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/examples.template:87
+msgid "play on words"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/examples.template:89
+msgid "idiom"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/examples.template:124
+msgid "answer"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/includes.template:4
+msgid "More examples"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/includes.template:5
+msgid "Less examples"
 msgstr ""
 
 #: configs/language_specific_rules/templates/muter/about.template:43
@@ -676,10 +721,6 @@ msgstr ""
 "Don válljejit #SoMe sosiála media várás, ja dat mearkkaša ahte bustávat "
 "acdnstz\n"
 "                                dohkkehuvvojit maiddái áčđŋšŧž:n."
-
-#: configs/language_specific_rules/templates/sanit/sme/paradigm.template:123
-msgid "Full paradigm"
-msgstr "Eanet sojahanhámit"
 
 #: configs/language_specific_rules/templates/vada/about.template:59
 msgid "yrk ↔ fin"
@@ -917,26 +958,26 @@ msgstr ""
 msgid "Neahttadigisánit"
 msgstr "Neahttadigisániid deaddilastte-teavsttas"
 
-#: templates/index.html:23 templates/macros.html:5 templates/macros.html:13
+#: templates/index.html:27 templates/macros.html:5 templates/macros.html:13
 msgid "Texts"
 msgstr "Oza buot hámiid teavsttain"
 
-#: templates/index.html:85
+#: templates/index.html:94
 msgid "Swap"
 msgstr "Molsso"
 
-#: templates/index.html:99 templates/index.html:150
+#: templates/index.html:109 templates/index.html:160
 #: templates/word_detail.html:107 templates/word_detail.html:148
 #: views/reader.py:218
 msgid " is a possible form of ... "
 msgstr " lea vejolaččat dán sáni hápmi:"
 
-#: templates/index.html:116 templates/index.html:135
+#: templates/index.html:126 templates/index.html:145
 #, python-format
 msgid "Word <span lang=\"%(_from)s\">%(input)s</span> not found."
 msgstr "Sátni <span lang=\"%(_from)s\">%(input)s</span> ii gávdnon."
 
-#: templates/index.html:124
+#: templates/index.html:134
 #, python-format
 msgid "Other analyses for <em>%(user_input)s</em> without a translation."
 msgstr ""
@@ -1320,17 +1361,4 @@ msgstr "Formáhta ii doaimma. Dušše json ja html doibmet."
 
 #~ msgid "Word <span class=\"%(_from)s\">%(input)s</span> not found."
 #~ msgstr ""
-
-#~ msgid ""
-#~ "You selected #SoMe, the variant for "
-#~ "social media, which means that the "
-#~ "letters acdnstz\n"
-#~ "                            will be accepted "
-#~ "as áčđŋšŧž in addition to their "
-#~ "usual values."
-#~ msgstr ""
-#~ "Don válljejit #SoMe sosiála media várás,"
-#~ " ja dat mearkkaša ahte bustávat "
-#~ "acdnstz\n"
-#~ "                                dohkkehuvvojit maiddái áčđŋšŧž:n."
 
