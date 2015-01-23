@@ -1,2 +1,17 @@
-﻿pos: ["N", "V", "A", "Pr", "Po", "Num"]
-type: ["NomAg", "G3", "aktor"]
+﻿pos: 
+  - N
+  - V
+  - A
+  - Pr
+  - Po
+  - Num
+finite:
+  - Ind
+  - Pot
+imperative:
+  - Imprt
+nonfinite:
+  - ConNeg
+  - Imprt
+connegative:
+  - ConNeg
