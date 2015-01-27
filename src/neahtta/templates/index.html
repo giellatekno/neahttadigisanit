@@ -7,6 +7,8 @@
     {% endif %}
     <script type="text/javascript" src="{{url_for('static', filename='js/index.js')}}"></script>
 
+    {{ entry_template_header_includes|safe }}
+
 {% endblock %}
 
 {% block footer_js %}
