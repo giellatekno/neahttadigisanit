@@ -1,0 +1,32 @@
+##
+### Standard verb context
+##
+
+- entry_context: None
+  tag_context: "V+Ind+Prs+Sg1"
+  template: "(mon) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+Ind+Prs+Sg2"
+  template: "(ton) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+Ind+Prs+Sg3"
+  template: "(son) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+Ind+Prs+Pl1"
+  template: "(muäna/mij) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+Ind+Prs+Pl2"
+  template: "(tuäna/tij) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+Ind+Prs+Pl3"
+  template: "(suäna/sij) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+PrfPrc"
+  template: "(lij) {{ word_form }}"
+
