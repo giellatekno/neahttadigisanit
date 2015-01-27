@@ -1,21 +1,39 @@
 ﻿pos: 
-  - N
-  - V
-  - A
-  - Pr
-  - Po
-  - Num
+ - N
+ - V
+ - A
+ - Pr
+ - Po
+ - Num
 number:
  - "Sg"
  - "Pl"
+nonfinite_paradigm:
+ - ActEss
+ - Actio
+ - PrsPrc
+ - PrfPrc
+ - VAbess
+ - GerTemp
+ - GerInstr
+verbs_null_number:
+ - "4"
 nouns_null_number:
  - "Ess"
  - "Par"
+tense:
+ - "Prs"
+ - "Prt"
 finite:
-  - Ind
-  - Pot
+ - "Ind"
+ - "Pot"
 imperative:
-  - Imprt
+ - "Imprt"
+negative:
+ - "Neg"
+negation:
+ - "Neg"
+ - "ConNeg"
 nonfinite:
   - ConNeg
   - Imprt

@@ -12,6 +12,65 @@ Relabel:
       V: "v."
       N: "s."
       A: "adj."
+      NomAg: "aktor"
+      G3: ""
+      G7: ""
+      Adv: "adv."
+
+      Prs: "prs."
+      Prt: "prt."
+
+      "v1": ""
+      "v2": ""
+
+      v: "v."
+      n: "s."
+      a: "adj."
+      nomag: ""
+      g3: "x'x"
+      g7: ""
+      adv: "adv."
+      cc: "konj."
+      cs: "subjunk."
+      i: "interj."
+      npl: "mon.subst."
+      num: "num."
+      pcle: "partikkeli"
+      phrase_adv: "adv."
+      phrase_a: "adj."
+      phrase_i: "interj."
+      phrase_n: "subst."
+      phrase_prop: "erisnimi"
+      po: "postp."
+      pr: "prep."
+      pron: "pron."
+      prop: "erisnimi"
+
+      # taken from tag-no.regex, these are the things that need relabeling
+      # in generation
+      "NomAg": "agentti"
+      "Der/NomAg": "avledet aktor"
+      "N": "subst."
+      "A": "adj."
+      "Adv": "adv."
+      "V": "verb"
+      "Pron": "pron."
+      "CS": "subj."
+      "CC": "konj."
+      "Adp": "adp."
+      "Po": "postp."
+      "Pr": "prep."
+      "Interj": "interj."
+      "Pcle": "part."
+      "Num": "num."
+      "Prop": "erisnimi"
+
+  - source_morphology: 'sms'
+    target_ui_language: 'rus'
+    tags:
+      V: "гл."
+      N: "сущ."
+      A: "прил."
 
   - source_morphology: 'sms'
     target_ui_language: 'sms'
@@ -19,5 +78,4 @@ Relabel:
       V: "v."
       N: "s."
       A: "adj."
-
 
