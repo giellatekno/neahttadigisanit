@@ -408,7 +408,7 @@ class SearchResult(object):
 
         return self._analyses_without_lex
 
-    def __init__(self, _from, _to, user_input, entries_and_tags, formatter, generate, sorter=None, filterer=None, debug_text=False):
+    def __init__(self, _from, _to, user_input, entries_and_tags, formatter, generate, sorter=None, filterer=None, debug_text=False, other_counts={}):
         self.user_input = user_input
         self.search_term = user_input
         self.entries_and_tags = entries_and_tags
@@ -419,6 +419,7 @@ class SearchResult(object):
         self.formatter = formatter
         self.generate = generate
         self.debug_text = debug_text
+        self.other_results = other_counts
 
         if sorter is not None:
             self.entry_sorter_key = sorter
@@ -458,6 +459,38 @@ class SearcherMixin(object):
                                       , **search_kwargs
                                       )
 
+        def count_others():
+            """ This counts the results available in other language
+            pairs with the same source to provide visual feedback to the
+            user. """
+
+            def count_tg(e, l):
+                return int( e.xpath("count(./mg/tg[@xml:lang='%s']/t)" % l) )
+
+            look = lambda w, x: mlex.lookup(x,
+                                            source_lang=g._from,
+                                            target_lang=w,
+                                            **search_kwargs)
+
+            other_targs = []
+            for (s, t), _ in current_app.config.dictionaries.iteritems():
+                if g._from == s:
+                    other_targs.append((s, t))
+
+            result_counts = {}
+            for source, other in other_targs:
+                looks, _, _ = look(other, lookup_value)
+                definitions = sum([count_tg(rz, other) for rz, _ in looks])
+                result_counts[(source, other)] = definitions
+
+            return result_counts
+
+
+        if current_app.config.polyglot_lookup:
+            others = count_others()
+        else:
+            others = {}
+
         entries_and_tags, raw_output, raw_error = morpholex_result
         fst_text = raw_error + '\n--\n' + raw_output
 
@@ -467,7 +500,8 @@ class SearcherMixin(object):
                                          self.formatter,
                                          generate=generate,
                                          filterer=self.entry_filterer,
-                                         debug_text=fst_text)
+                                         debug_text=fst_text,
+                                         other_counts=others,)
 
         return search_result_obj
 
@@ -511,6 +545,7 @@ class SearcherMixin(object):
             # ?
             'errors': errors, # is this actually getting set?
             'show_info': show_info,
+            'language_pairs_other_results': search_result_obj.other_results,
             'debug_text': search_result_obj.debug_text
         }
 
@@ -643,6 +678,7 @@ class SearcherMixin(object):
 
             # ?
             'errors': False, # where should we expect errors?
+            'language_pairs_other_results': search_result_obj.other_results,
             'debug_text': search_result_obj.debug_text
         }
 
@@ -692,9 +728,16 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
             'show_info': True,
         }
 
-        default_context.update(**self.get_shared_context(_from, _to))
+        if 'lookup' in request.args:
+            user_input = request.args.get('lookup')
+            # This performs lots of the work...
+            search_result_context = self.search_to_context(user_input, **self.get_shared_context(_from, _to))
 
-        return render_template(self.template_name, **default_context)
+            # missing current_pair_settings
+            return render_template('index.html', **search_result_context)
+        else:
+            default_context.update(**self.get_shared_context(_from, _to))
+            return render_template(self.template_name, **default_context)
 
     def post(self, _from, _to):
 

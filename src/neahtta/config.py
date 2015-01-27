@@ -196,6 +196,12 @@ class Config(Config):
             return self.app_meta_title
 
     @property
+    def polyglot_lookup(self):
+        _p = self.yaml.get('ApplicationSettings', {})\
+                      .get('polyglot_lookup', False)
+        return _p
+
+    @property
     def mobile_redirect_pair(self):
         _p = self.yaml.get('ApplicationSettings', {})\
                       .get('mobile_default_pair', None)
