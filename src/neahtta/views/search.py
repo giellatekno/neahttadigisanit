@@ -465,7 +465,11 @@ class SearcherMixin(object):
             user. """
 
             def count_tg(e, l):
-                return int( e.xpath("count(./mg/tg[@xml:lang='%s']/t)" % l) )
+                if e is not None:
+                    c = int( e.xpath("count(./mg/tg[@xml:lang='%s']/t)" % l) )
+                else:
+                    c = 0
+                return c
 
             look = lambda w, x: mlex.lookup(x,
                                             source_lang=g._from,
