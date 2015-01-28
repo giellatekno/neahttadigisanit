@@ -34,7 +34,12 @@
         <li>
     {% endif %}
 
-        <a href="/{{ iso_pair[0] }}/{{ iso_pair[1] }}/?lookup={{ user_input }}">
+        {% if iso_pair[0] == _from and user_input %}
+            {% set params = "?lookup=" + user_input %}
+        {% else %}
+            {% set params = "" %}
+        {% endif %}
+        <a href="/{{ iso_pair[0] }}/{{ iso_pair[1] }}/{{ params }}">
         <span>{{ iso_pair[0]|iso_to_i18n }} &rarr; {{ iso_pair[1]|iso_to_i18n }}</span>
         {%- if iso_pair[1] != _to %}
         {{ check_result_count(iso_pair[0], iso_pair[1]) }}
