@@ -17,6 +17,10 @@ Relabel:
       G7: ""
       Adv: "adv."
 
+      Pred: "pred."
+      Sg: "yks."
+      Pl: "mon."
+
       Prs: "prs."
       Prt: "prt."
 

@@ -1,0 +1,8 @@
+name: "adjectives"
+morphology:
+  pos: A
+--
+{{ lemma }}+A+Pred+Sg
+{{ lemma }}+A+Attr
+{{ lemma }}+A+Comp
+{{ lemma }}+A+Superl
