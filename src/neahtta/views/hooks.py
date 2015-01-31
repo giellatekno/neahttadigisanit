@@ -29,3 +29,9 @@ def set_pair_request_globals():
 
     current_pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(_from, _to)
     g.current_pair_settings = current_pair_settings
+
+    orig = orig_pair_opts.get('orig_pair')
+    if orig != ():
+        g.orig_from, g.orig_to = orig
+    else:
+        g.orig_from, g.orig_to = g._from, g._to
