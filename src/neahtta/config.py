@@ -551,13 +551,19 @@ class Config(Config):
                     print >> sys.stderr, "Check Languages in app.config.yaml"
                     sys.exit()
 
+                _default_korp = {
+                    'lemma_search_path': '/#page=0&search-tab=2&search=SEARCH_QUERY',
+                    'lemma_search_query': 'cqp|[lemma = "INPUT_LEMMA"]',
+                    'wordform_search_path': '/#search=word|USER_INPUT&page=0',
+                    'lemma_search_delimiter': '] [word = ',
+                }
+
                 _pair_options = {
                     'langs': {},
                     'autocomplete': dict_def.get('autocomplete', True),
                     'show_korp_search': dict_def.get('show_korp_search', False),
-                    'wordform_search_url': dict_def.get('wordform_search_url', False),
-                    'lemma_search_url': dict_def.get('lemma_search_url', False),
-                    'lemma_multiword_delimiter': dict_def.get('lemma_multiword_delimiter', False),
+                    'korp_search_host': dict_def.get('korp_search_host', False),
+                    'korp_options': dict_def.get('korp_options', _default_korp),
                     'asynchronous_paradigms': dict_def.get('asynchronous_paradigms', False)
                 }
                 for iso in _lang_isos:

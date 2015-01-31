@@ -47,13 +47,17 @@ def match_homonymy_entries(entries_and_tags):
 def external_korp_url(pair_details, user_input):
     from flask import redirect
 
-    url_pattern = pair_details.get('wordform_search_url')
-    delimiter_pattern = pair_details.get('lemma_multiword_delimeter', False)
+    korp_opts = pair_details.get('korp_options')
+    korp_host = pair_details.get('korp_search_host')
+
+    url_pattern = korp_opts.get('wordform_search_path')
+
+    delimiter_pattern = korp_opts.get('lemma_multiword_delimeter')
 
     if ' ' in user_input and delimiter_pattern:
         user_input = delimiter_pattern.join(user_input.split(' '))
 
-    redirect_url = url_pattern.replace('USER_INPUT', user_input)
+    redirect_url = korp_host + url_pattern.replace('USER_INPUT', user_input)
 
     return redirect(redirect_url.encode('utf-8'))
 

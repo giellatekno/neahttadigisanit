@@ -11,12 +11,4 @@
     /detail/{{ _from }}/{{ _to }}/{{ lemma_text(entry) }}.html?{{ params }}
 {%- endmacro -%}
 
-{% macro korp_link_lemma(lemma) -%}
-    {% if current_pair_settings.lemma_search_url -%}
-        {% set search_url = current_pair_settings.lemma_search_url.replace('INPUT_LEMMA', lemma) %}
-        <a class="korp_search lemma_action"
-           href="{{ search_url }}">{% trans %}Texts{% endtrans %} &rarr;</a>
-    {%- endif %}
-{%- endmacro %}
-
 {# vim: set ts=4 sw=4 tw=72 syntax=jinja : #}

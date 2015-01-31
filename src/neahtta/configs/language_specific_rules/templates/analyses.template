@@ -6,13 +6,14 @@
 #}
 
 {%- import "lexicon.macros" as macros with context -%}
+{%- import "korp.macros" as korp with context -%}
 
 <dl class="possible_analyses grid_analyses">
     {% for grouper, forms in analyses|groupby('lemma') %}
         {% for lemmagroup, lemmafs in forms|groupby('pos') %}
             {% if current_pair_settings.show_korp_search %}
                 {% if lemmagroup and grouper %}
-                    <dt><span lang="{{ _from }}">{{ grouper }}</span> {{ macros.korp_link_lemma(grouper) }}</dt>
+                    <dt><span lang="{{ _from }}">{{ grouper }}</span> {{ korp.link_lemma(grouper) }}</dt>
                 {% else %}
                     <dt><span lang="{{ _from }}">{{ grouper }}</span></dt>
                 {% endif %}

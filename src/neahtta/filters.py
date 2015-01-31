@@ -93,6 +93,10 @@ def register_filters(app):
     def xml_lang(nodes, _to):
         return [n for n in nodes if _to in n.xpath('@xml:lang')]
 
+    @app.template_filter('split_string')
+    def split_string(s, delim=' '):
+        return s.strip().split(delim)
+
     @app.template_filter('urlencode')
     def urlencode_filter(s):
         if type(s) == 'Markup':
@@ -101,5 +105,12 @@ def register_filters(app):
         s = urllib.quote_plus(s)
         return Markup(s)
 
+    @app.template_filter('urlencode_quote')
+    def urlencode_filter_quote(s, safe='#&='):
+        if type(s) == 'Markup':
+            s = s.unescape()
+        s = s.encode('utf8')
+        s = urllib.quote(s, safe=safe)
+        return Markup(s)
 
     return app
