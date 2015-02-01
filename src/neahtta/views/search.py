@@ -77,6 +77,13 @@ class DictionaryView(MethodView):
         """ Return some things that are in all templates. """
 
         current_pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(_from, _to)
+
+        o_pair = orig_pair_opts.get('orig_pair')
+        if orig_pair_opts.get('orig_pair') != ():
+            orig_from, orig_to = o_pair
+        else:
+            orig_from, orig_to = _from, _to
+
         shared_context = {
             'display_swap': self.get_reverse_pair(_from, _to),
             'current_pair_settings': current_pair_settings,
@@ -84,6 +91,8 @@ class DictionaryView(MethodView):
             'current_locale': get_locale(),
             '_from': _from,
             '_to': _to,
+            'orig_from': orig_from,
+            'orig_to': orig_to,
         }
 
         # Render some additional templates
@@ -186,6 +195,13 @@ class IndexSearchPage(DictionaryView, AppViewSettingsMixin):
 
         current_pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(self.default_from, self.default_to)
         template_context = self.get_shared_context(self.default_from, self.default_to)
+
+        o_pair = orig_pair_opts.get('orig_pair')
+        if orig_pair_opts.get('orig_pair') != ():
+            orig_from, orig_to = o_pair
+        else:
+            orig_from, orig_to = self.default_from, self.default_to
+
         template_context.update({
             'display_swap': reverse_exists,
             'swap_from': self.default_to,
@@ -195,7 +211,9 @@ class IndexSearchPage(DictionaryView, AppViewSettingsMixin):
             'current_variant_options': orig_pair_opts.get('variant_options'),
             'current_locale': get_locale(),
             '_from': self.default_from,
-            '_to': self.default_to
+            '_to': self.default_to,
+            'orig_from': orig_from,
+            'orig_to': orig_to,
         })
 
         return render_template(self.template_name, **template_context)

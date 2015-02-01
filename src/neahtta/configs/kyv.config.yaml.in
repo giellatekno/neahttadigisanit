@@ -91,6 +91,8 @@ Dictionaries:
   - source: kpv
     target: eng
     path: 'dicts/kpv-all.xml'
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/u_korp"
     input_variants: &KOMI_VARIANTS
       - type: "standard"
         description: !gettext "Standard"
@@ -106,20 +108,32 @@ Dictionaries:
     path: 'dicts/kpv-all.xml'
     input_variants: *KOMI_VARIANTS
 
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/u_korp"
+
   - source: fin
     target: kpv
     path: 'dicts/finkpv.xml'
 
   - source: kpv
     target: rus
-    path: 'dicts/kpv-all.xml'
+    show_korp_search: True
     input_variants: *KOMI_VARIANTS
+
+    korp_search_host: "http://gtweb.uit.no/u_korp"
+    path: 'dicts/kpv-all.xml'
 
   - source: udm
     target: hun
     path: 'dicts/udm-all.xml'
 
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/u_korp"
+
   - source: udm
     target: fin
     path: 'dicts/udm-all.xml'
+
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/u_korp"
 

@@ -77,6 +77,8 @@ Dictionaries:
   - source: myv
     target: fin
     path: 'dicts/myv-all.xml'
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/u_korp"
 
   - source: fin
     target: myv
@@ -85,18 +87,26 @@ Dictionaries:
   - source: myv
     target: rus
     path: 'dicts/myv-all.xml'
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/u_korp"
 
   - source: myv
     target: eng
     path: 'dicts/myv-all.xml'
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/u_korp"
 
   - source: myv
     target: fra
     path: 'dicts/myv-all.xml'
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/u_korp"
 
   - source: mdf
     target: fin
     path: 'dicts/mdf-all.xml'
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/u_korp"
 
   - source: fin
     target: mdf
@@ -105,6 +115,8 @@ Dictionaries:
   - source: mdf
     target: fra
     path: 'dicts/mdf-all.xml'
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/u_korp"
 
 ReaderConfig:
   myv:

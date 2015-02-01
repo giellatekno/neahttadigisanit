@@ -46,11 +46,15 @@ def match_homonymy_entries(entries_and_tags):
 
 def external_korp_url(pair_details, user_input):
     from flask import redirect
+    from flask import g
+
+    print pair_details
 
     korp_opts = pair_details.get('korp_options')
     korp_host = pair_details.get('korp_search_host')
 
-    url_pattern = korp_opts.get('wordform_search_path')
+    # TODO: original pair, if current pair is variant
+    url_pattern = korp_opts.get('wordform_search_path').replace('TARGET_LANG_ISO', g.orig_from)
 
     delimiter_pattern = korp_opts.get('lemma_multiword_delimeter')
 
