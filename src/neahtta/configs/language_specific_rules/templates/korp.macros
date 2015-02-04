@@ -1,0 +1,47 @@
+{# some helper functions for rendering a korp link in a variety of places,
+ # generally: in the analyses column.
+ #}
+
+{% macro mix_mwe(expr) -%}
+    {% set delim = current_pair_settings.korp_options.lemma_search_delimiter %}
+    {% if ' ' in expr -%}
+        {{ expr|split_string|join(lemma_search_delimiter) }}
+    {%- else -%}
+        {{ expr }}
+    {%- endif -%}
+{%- endmacro %}
+
+{% macro link_lemma(lemma) -%}
+    {% if not orig_from %}
+        {% set orig_from = _from %}
+    {% endif %}
+    {% if current_pair_settings.korp_options.lemma_search_path and lemma -%}
+        {% set l_host = current_pair_settings.korp_search_host %}
+        {% set query_path = current_pair_settings.korp_options.lemma_search_query %}
+        {% set search_path = current_pair_settings.korp_options.lemma_search_path.replace('TARGET_LANG_ISO', orig_from) %}
+
+        {# Have to only encode half of this, because korp doesn't accept quotes
+        in the query, so we need to urlencode the query, but not the rest of
+        the path #}
+
+        {% set query = search_path.replace(
+            'SEARCH_QUERY', 
+            query_path.replace(
+                'INPUT_LEMMA', 
+                lemma
+            )|urlencode_quote(safe="#&/")) 
+        %}
+
+        {% set s_href = l_host + query %}
+
+        <a class="korp_search lemma_action"
+           href="{{ s_href }}">{% trans %}Texts{% endtrans %} &rarr;</a>
+    {%- endif %}
+{%- endmacro %}
+
+{% macro wordform_search_url() -%}
+    {%- set s_path =  current_pair_settings.korp_search_host + current_pair_settings.korp_options.wordform_search_path -%}
+    {{ s_path.replace('//', '/') }}
+{%- endmacro %}
+
+{# vim: set ts=4 sw=4 tw=72 syntax=jinja : #}
