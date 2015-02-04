@@ -34,4 +34,4 @@ def set_pair_request_globals():
     if orig != ():
         g.orig_from, g.orig_to = orig
     else:
-        g.orig_from, g.orig_to = g._from, g._to
+        g.orig_from, g.orig_to = _from, _to
