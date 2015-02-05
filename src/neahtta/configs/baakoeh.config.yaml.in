@@ -67,7 +67,7 @@ Dictionaries:
   - source: sma
     target: nob
     show_korp_search: True
-    korp_search_host: "http://gtweb.uit.no/u_korp"
+    korp_search_host: "http://gtweb.uit.no/korp"
     path: 'dicts/sma-nob.all.xml'
 
   - source: nob
