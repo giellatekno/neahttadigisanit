@@ -8,6 +8,8 @@ lexicon:
 --
 {{ lemma }}+V+Ind+Prs+Sg3
 {{ lemma }}+V+Ind+Prs+Pl3
+{{ lemma }}+V+Ind+Prt+Sg3
+{{ lemma }}+V+Ind+Prt+Pl3
 {{ lemma }}+V+ConNeg
 {{ lemma }}+V+PrfPrc
 {{ lemma }}+V+Ger

@@ -4,19 +4,39 @@
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Sg1"
-  template: "(daan biejjien manne) {{ word_form }}"
+  template: "(manne) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+Ind+Prs+Sg2"
+  template: "(datne) {{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Sg3"
-  template: "(daan biejjien dïhte) {{ word_form }}"
+  template: "(dïhte) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+Ind+Prs+Du1"
+  template: "(månnoeh) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+Ind+Prs+Du2"
+  template: "(dåtnoeh) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+Ind+Prs+Du3"
+  template: "(dah guaktah/såtnoeh) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+Ind+Prs+Pl1"
+  template: "(mijjieh) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+Ind+Prs+Pl2"
+  template: "(dijjieh) {{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Pl3"
-  template: "(daan biejjien dah) {{ word_form }}"
-
-- entry_context: None
-  tag_context: "V+Ind+Prt+Sg1"
-  template: "(jååktan manne) {{ word_form }}"
+  template: "(dah/sijjieh) {{ word_form }}"
 
 - entry_context: None
   tag_context: "V+ConNeg"
@@ -40,19 +60,39 @@
 
 - entry_context: None
   tag_context: "Hom2+V+Ind+Prs+Sg1"
-  template: "(daan biejjien manne) {{ word_form }}"
+  template: "(manne) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom2+V+Ind+Prs+Sg2"
+  template: "(datne) {{ word_form }}"
 
 - entry_context: None
   tag_context: "Hom2+V+Ind+Prs+Sg3"
-  template: "(daan biejjien dïhte) {{ word_form }}"
+  template: "(dïhte) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom2+V+Ind+Prs+Du1"
+  template: "(månnoeh) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom2+V+Ind+Prs+Du2"
+  template: "(dåtnoeh) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom2+V+Ind+Prs+Du3"
+  template: "(dah guaktah/såtnoeh) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom2+V+Ind+Prs+Pl1"
+  template: "(mijjieh) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom2+V+Ind+Prs+Pl2"
+  template: "(dijjieh) {{ word_form }}"
 
 - entry_context: None
   tag_context: "Hom2+V+Ind+Prs+Pl3"
-  template: "(daan biejjien dah) {{ word_form }}"
-
-- entry_context: None
-  tag_context: "Hom2+V+Ind+Prt+Sg1"
-  template: "(jååktan manne) {{ word_form }}"
+  template: "(dah/sijjieh) {{ word_form }}"
 
 - entry_context: None
   tag_context: "Hom2+V+ConNeg"
@@ -76,19 +116,39 @@
 
 - entry_context: None
   tag_context: "Hom1+V+Ind+Prs+Sg1"
-  template: "(daan biejjien manne) {{ word_form }}"
+  template: "(manne) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom1+V+Ind+Prs+Sg2"
+  template: "(datne) {{ word_form }}"
 
 - entry_context: None
   tag_context: "Hom1+V+Ind+Prs+Sg3"
-  template: "(daan biejjien dïhte) {{ word_form }}"
+  template: "(dïhte) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom1+V+Ind+Prs+Du1"
+  template: "(månnoeh) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom1+V+Ind+Prs+Du2"
+  template: "(dåtnoeh) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom1+V+Ind+Prs+Du3"
+  template: "(dah guaktah/såtnoeh) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom1+V+Ind+Prs+Pl1"
+  template: "(mijjieh) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom1+V+Ind+Prs+Pl2"
+  template: "(dijjieh) {{ word_form }}"
 
 - entry_context: None
   tag_context: "Hom1+V+Ind+Prs+Pl3"
-  template: "(daan biejjien dah) {{ word_form }}"
-
-- entry_context: None
-  tag_context: "Hom1+V+Ind+Prt+Sg1"
-  template: "(jååktan manne) {{ word_form }}"
+  template: "(dah/sijjieh) {{ word_form }}"
 
 - entry_context: None
   tag_context: "Hom1+V+ConNeg"

@@ -1,4 +1,30 @@
-﻿pos: ["N", "V", "A", "Pr", "Po", "Num"]
+﻿pos: 
+ - "N"
+ - "V"
+ - "A"
+ - "Pr"
+ - "Po"
+ - "Num"
 type: ["NomAg", "aktor", "Prop"]
 homonyms: ["Hom1", "Hom2"]
-number: ["Pl", "Sg"]
+number: 
+ - Sg
+ - Pl 
+tense:
+ - Prs
+ - Prt
+nominals_null_number:
+ - Ess
+# Selecting Negative and Supinum forms in paradigm files
+supinum:
+ - "Sup"
+negative:
+ - "Neg"
+negation:
+ - "ConNeg"
+nonfinite_paradigm:
+ - "Neg"
+ - "ConNeg"
+ - "PrfPrc"
+ - "Ger"
+ - "VGen"

@@ -4,5 +4,16 @@ morphology:
 --
 {{ lemma }}+N+Sg+Nom
 {{ lemma }}+N+Sg+Gen
+{{ lemma }}+N+Sg+Acc	
 {{ lemma }}+N+Sg+Ill
+{{ lemma }}+N+Sg+Ine
+{{ lemma }}+N+Sg+Ela
+{{ lemma }}+N+Sg+Com
+{{ lemma }}+N+Pl+Nom
+{{ lemma }}+N+Pl+Gen
+{{ lemma }}+N+Pl+Acc	
 {{ lemma }}+N+Pl+Ill
+{{ lemma }}+N+Pl+Ine
+{{ lemma }}+N+Pl+Ela
+{{ lemma }}+N+Pl+Com
+{{ lemma }}+N+Ess

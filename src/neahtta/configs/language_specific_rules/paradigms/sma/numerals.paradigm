@@ -2,6 +2,18 @@ name: "numerals"
 morphology:
   pos: Num
 --
+{{ lemma }}+Num+Sg+Nom
 {{ lemma }}+Num+Sg+Gen
+{{ lemma }}+Num+Sg+Acc	
 {{ lemma }}+Num+Sg+Ill
+{{ lemma }}+Num+Sg+Ine
+{{ lemma }}+Num+Sg+Ela
+{{ lemma }}+Num+Sg+Com
+{{ lemma }}+Num+Pl+Nom
+{{ lemma }}+Num+Pl+Gen
+{{ lemma }}+Num+Pl+Acc	
 {{ lemma }}+Num+Pl+Ill
+{{ lemma }}+Num+Pl+Ine
+{{ lemma }}+Num+Pl+Ela
+{{ lemma }}+Num+Pl+Com
+{{ lemma }}+Num+Ess
