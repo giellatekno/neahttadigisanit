@@ -41,11 +41,16 @@
 
 - entry_context: "mun"
   tag_context: "V+Ind+Prs+ConNeg"
-  template: "(in) {{ word_form }}"
+  template: "(odne in) {{ word_form }}"
+
+- entry_context: "mun"
+  tag_context: "V+Ind+Prt+ConNeg"
+  template: "(ikte in) {{ word_form }}"
+
 
 - entry_context: "mun"
   tag_context: "V+PrfPrc"
-  template: "(lea) {{ word_form }}"
+  template: "(lean) {{ word_form }}"
 
 # EX: ciellat
 
@@ -59,7 +64,7 @@
 
 - entry_context: "dat"
   tag_context: "V+Ind+Prs+ConNeg"
-  template: "(ii) {{ word_form }}"
+  template: "(odne ii) {{ word_form }}"
 
 - entry_context: "dat"
   tag_context: "V+Ind+Prt+ConNeg"
@@ -123,7 +128,7 @@
 
 - entry_context: "sii"
   tag_context: "V+Ind+Prs+ConNeg"
-  template: "(eai) {{ word_form }}"
+  template: "(odne eai) {{ word_form }}"
 
 - entry_context: "sii"
   tag_context: "V+Ind+Prt+ConNeg"
@@ -145,7 +150,7 @@
 
 - entry_context: "upers"
   tag_context: "V+Ind+Prs+ConNeg"
-  template: "(ii) {{ word_form }}"
+  template: "(odne ii) {{ word_form }}"
 
 - entry_context: "upers"
   tag_context: "V+Ind+Prt+ConNeg"
