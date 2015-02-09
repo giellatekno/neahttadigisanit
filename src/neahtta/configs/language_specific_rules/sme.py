@@ -452,26 +452,10 @@ def format_fra_ref_links(ui_lang, e, tg):
 
     return None
 
-from common import remove_blank, external_korp_url
+from common import remove_blank
 
 # Remove blank analyses
 morphology.postgeneration_filter_for_iso(
     'sme',
     'SoMe'
 )(remove_blank)
-
-KORP_SEARCHES = [
-    ('korp_wordform', 'sme', 'nob'),
-    ('korp_wordform', 'sme', 'fin'),
-    ('korp_wordform', 'SoMe', 'nob'),
-    ('korp_wordform', 'SoMe', 'fin'),
-
-    # These are bilingual, but the URL source is the same, so the
-    # function does not need to be different.
-    ('korp_wordform', 'nob', 'sme'),
-    ('korp_wordform', 'fin', 'sme'),
-]
-
-lexicon.external_search(*KORP_SEARCHES)(
-    external_korp_url
-)

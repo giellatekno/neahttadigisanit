@@ -3,14 +3,14 @@
 connecting FST to Lexicon.
 """
 
-from lexicon import lexicon_overrides as lexicon
-
-from common import remove_blank, external_korp_url
-
-KORP_SEARCHES = [
-    ('korp_wordform', 'hdn', 'eng'),
-]
-
-lexicon.external_search(*KORP_SEARCHES)(
-    external_korp_url
-)
+# from lexicon import lexicon_overrides as lexicon
+# 
+# from common import remove_blank, external_korp_url
+# 
+# KORP_SEARCHES = [
+#     ('korp_wordform', 'hdn', 'eng'),
+# ]
+# 
+# lexicon.external_search(*KORP_SEARCHES)(
+#     external_korp_url
+# )

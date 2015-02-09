@@ -125,6 +125,7 @@ def create_app():
     app.config.from_envvar('NDS_CONFIG')
     app.config.overrides = configs.blueprint.load_language_overrides(app)
     app.config.prepare_lexica()
+    app.config.add_optional_routes()
 
     # Register language specific config information
     app.register_blueprint(configs.blueprint)

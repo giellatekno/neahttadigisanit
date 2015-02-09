@@ -21,6 +21,26 @@ yaml.add_constructor('!gettext', gettext_yaml_wrapper)
 DEFAULT_WORD_REGEX = '[\u00C0-\u1FFF\u2C00-\uD7FF\w\-]+'
 DEFAULT_WORD_REGEX_OPTS = 'g'
 
+def external_korp_url(pair_details, user_input):
+    from flask import redirect
+    from flask import g
+
+    korp_opts = pair_details.get('korp_options')
+    korp_host = pair_details.get('korp_search_host')
+
+    # TODO: original pair, if current pair is variant
+    url_pattern = korp_opts.get('wordform_search_path').replace('TARGET_LANG_ISO', g.orig_from)
+
+    delimiter_pattern = korp_opts.get('lemma_multiword_delimeter')
+
+    if ' ' in user_input and delimiter_pattern:
+        user_input = delimiter_pattern.join(user_input.split(' '))
+
+    redirect_url = korp_host + url_pattern.replace('USER_INPUT', user_input)
+
+    return redirect(redirect_url.encode('utf-8'))
+
+
 def validate_variants(variants, lexicon):
     if not variants:
         return variants
@@ -892,6 +912,17 @@ class Config(Config):
         # Prepare lexica
 
         return True
+
+    def add_optional_routes(self):
+        from lexicon import lexicon_overrides as lexicon
+
+        # add korp_routes
+        korp_pairs = [pair for pair, conf in self.pair_definitions.iteritems()
+                      if conf.get('show_korp_search', False) ]
+
+        searches = [tuple(['korp_wordform'] + list(p)) for p in korp_pairs]
+
+        lexicon.external_search(*searches)(external_korp_url)
 
     def prepare_lexica(self):
         from lexicon import Lexicon
