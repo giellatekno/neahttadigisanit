@@ -552,9 +552,9 @@ class Config(Config):
                     sys.exit()
 
                 _default_korp = {
-                    'lemma_search_path': '/#mode=TARGET_LANG_ISO&page=0&search-tab=2&search=SEARCH_QUERY',
-                    'lemma_search_query': 'cqp|[lemma = "INPUT_LEMMA"]',
-                    'wordform_search_path': '/#mode=TARGET_LANG_ISO&search=word|USER_INPUT&page=0',
+                    'lemma_search_path': '/?mode=TARGET_LANG_ISO#page=0&search-tab=2&search=SEARCH_QUERY',
+                    'lemma_search_query': 'cqp|[word = "INPUT_LEMMA"]',
+                    'wordform_search_path': '/?mode=TARGET_LANG_ISO#search=word|USER_INPUT&page=0',
                     'lemma_search_delimiter': '] [word = ',
                 }
 
