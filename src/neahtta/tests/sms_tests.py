@@ -2,8 +2,8 @@
 
 # TODO: spellrelax examples, säämkiõll 
 
-# sää´mkiõll
-# sää´mkiõll  sääˊmǩiõll+N+Sg+Nom
+# sääʹmkiõll
+# sääʹmkiõll  sääʹmǩiõll+N+Sg+Nom
 
 import os
 import neahtta

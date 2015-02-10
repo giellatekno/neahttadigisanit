@@ -125,7 +125,7 @@ LOCALISATION_NAMES_BY_LANGUAGE = dict([
     ('eng', u"English"),
     ('et', u"Eesti"),
     ('est', u"Eesti"),
-    ('sms', u"sääˊmǩiõll"),
+    ('sms', u"sääʹmǩiõll"),
     ('hdn', u"X̲aat Kíl"),
     ('hdnM', u"X̲aat Kíl"),
     ('en', u"English"),
