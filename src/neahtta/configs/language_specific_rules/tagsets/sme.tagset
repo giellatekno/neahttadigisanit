@@ -17,6 +17,8 @@
  - "verb"
  - "adj."
  - "konj."
+pron_type:
+ - "Indef"
 type:
  - "NomAg"
  - "G3"

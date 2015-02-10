@@ -1,6 +1,7 @@
 ﻿name: "Pronoun indef paradigm"
 morphology:
-  pos: N
+  pos: Pron
+  pron_type: Indef
 --
 {{ lemma }}+Pron+Indef+Sg+Nom
 {{ lemma }}+Pron+Indef+Sg+Acc
