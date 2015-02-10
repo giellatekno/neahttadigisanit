@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-01-22 16:10-0600\n"
+"POT-Creation-Date: 2015-02-10 14:28-0600\n"
 "PO-Revision-Date: 2013-03-17 12:21+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language-Team: kv <LL@li.org>\n"
@@ -30,18 +30,18 @@ msgid "Transliterated"
 msgstr ""
 
 #: configs/guusaaw.config.yaml.in:75 configs/itwewina.config.yaml.in:66
-#: configs/kyv.config.yaml.in:97 configs/saan.config.yaml.in:70
-#: configs/sample.config.yaml.in:145 configs/sanit.config.yaml.in:120
+#: configs/kyv.config.yaml.in:99 configs/saan.config.yaml.in:71
+#: configs/sample.config.yaml.in:145 configs/sanit.config.yaml.in:106
 #: configs/sonad.config.yaml.in:142
 msgid "Standard"
 msgstr ""
 
 #: configs/guusaaw.config.yaml.in:80 configs/itwewina.config.yaml.in:76
-#: configs/saan.config.yaml.in:93
+#: configs/saan.config.yaml.in:94
 msgid "Mobile friendly"
 msgstr ""
 
-#: configs/kyv.config.yaml.in:100
+#: configs/kyv.config.yaml.in:102
 msgid "Molotsov orthography"
 msgstr ""
 
@@ -173,19 +173,19 @@ msgstr "латыша"
 msgid "Haida"
 msgstr ""
 
-#: configs/sample.config.yaml.in:151 configs/sanit.config.yaml.in:126
+#: configs/sample.config.yaml.in:151 configs/sanit.config.yaml.in:112
 msgid "Social media"
 msgstr ""
 
-#: configs/sample.config.yaml.in:153 configs/sanit.config.yaml.in:127
+#: configs/sample.config.yaml.in:153 configs/sanit.config.yaml.in:113
 msgid "(incl. <em>acdnstz</em>)"
 msgstr ""
 
-#: configs/sanit.config.yaml.in:153
+#: configs/sanit.config.yaml.in:133
 msgid "Standárda (<em>áčđŋšŧž</em>)"
 msgstr ""
 
-#: configs/sanit.config.yaml.in:156
+#: configs/sanit.config.yaml.in:136
 msgid "Sosiála media (maiddái <em>acdnstz</em>)"
 msgstr ""
 
@@ -504,6 +504,13 @@ msgstr ""
 msgid "More to come..."
 msgstr ""
 
+#: configs/language_specific_rules/templates/baakoeh/sma/paradigm.template:123
+#: configs/language_specific_rules/templates/itwewina/crk/paradigm.template:85
+#: configs/language_specific_rules/templates/saan/sms/paradigm.template:104
+#: configs/language_specific_rules/templates/sanit/sme/paradigm.template:123
+msgid "Full paradigm"
+msgstr ""
+
 #: configs/language_specific_rules/templates/guusaaw/about.template:41
 #: configs/language_specific_rules/templates/itwewina/about.template:43
 msgid "s/he speaks Cree"
@@ -543,36 +550,31 @@ msgstr ""
 msgid "Sources and References"
 msgstr ""
 
-#: configs/language_specific_rules/templates/itwewina/crk/paradigm.template:85
-#: configs/language_specific_rules/templates/sanit/sme/paradigm.template:123
-msgid "Full paradigm"
-msgstr ""
-
-#: configs/language_specific_rules/templates/kyv/examples.template:78
+#: configs/language_specific_rules/templates/kyv/examples.template:76
 msgid "saying"
 msgstr ""
 
-#: configs/language_specific_rules/templates/kyv/examples.template:80
+#: configs/language_specific_rules/templates/kyv/examples.template:78
 msgid "riddle"
 msgstr ""
 
-#: configs/language_specific_rules/templates/kyv/examples.template:82
+#: configs/language_specific_rules/templates/kyv/examples.template:80
 msgid "proverb"
 msgstr ""
 
-#: configs/language_specific_rules/templates/kyv/examples.template:84
+#: configs/language_specific_rules/templates/kyv/examples.template:82
 msgid "sign"
 msgstr ""
 
-#: configs/language_specific_rules/templates/kyv/examples.template:87
+#: configs/language_specific_rules/templates/kyv/examples.template:85
 msgid "play on words"
 msgstr ""
 
-#: configs/language_specific_rules/templates/kyv/examples.template:89
+#: configs/language_specific_rules/templates/kyv/examples.template:87
 msgid "idiom"
 msgstr ""
 
-#: configs/language_specific_rules/templates/kyv/examples.template:124
+#: configs/language_specific_rules/templates/kyv/examples.template:122
 msgid "answer"
 msgstr ""
 
@@ -950,8 +952,8 @@ msgstr ""
 msgid "Escape Text-TV mode"
 msgstr ""
 
-#: templates/left_nav_grouped_language_pair_select.html:54
-#: templates/left_nav_language_pair_select_list.html:38
+#: templates/left_nav_grouped_language_pair_select.html:71
+#: templates/left_nav_language_pair_select_list.html:55
 #: templates/mobile_nav_push_menu.html:63
 msgid "Written variant"
 msgstr ""
@@ -1180,7 +1182,7 @@ msgstr ""
 msgid "More information about this word"
 msgstr ""
 
-#: views/search.py:875
+#: views/search.py:940
 msgid "Invalid format. Only json and html allowed."
 msgstr ""
 
