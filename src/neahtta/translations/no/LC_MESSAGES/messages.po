@@ -149,7 +149,7 @@ msgstr "Nord-haida"
 
 #: configs/language_names.py:79
 msgid "Khanty"
-msgstr ""
+msgstr "Khantisk"
 
 #: configs/language_names.py:82 configs/language_names.py:88
 msgid "Finnish"
@@ -483,7 +483,7 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/index_search_form.template:19
 msgid "hide"
-msgstr ""
+msgstr "skjul"
 
 #: configs/language_specific_rules/templates/index_search_form.template:41
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:15
@@ -586,43 +586,43 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/itwewina/sources.template:6
 msgid "Sources and References"
-msgstr ""
+msgstr "Kilder og referanser"
 
 #: configs/language_specific_rules/templates/kyv/examples.template:76
 msgid "saying"
-msgstr ""
+msgstr "uttrykk"
 
 #: configs/language_specific_rules/templates/kyv/examples.template:78
 msgid "riddle"
-msgstr ""
+msgstr "gåte"
 
 #: configs/language_specific_rules/templates/kyv/examples.template:80
 msgid "proverb"
-msgstr ""
+msgstr "ordtak"
 
 #: configs/language_specific_rules/templates/kyv/examples.template:82
 msgid "sign"
-msgstr ""
+msgstr "tegn"
 
 #: configs/language_specific_rules/templates/kyv/examples.template:85
 msgid "play on words"
-msgstr ""
+msgstr "ordspill"
 
 #: configs/language_specific_rules/templates/kyv/examples.template:87
 msgid "idiom"
-msgstr ""
+msgstr "idiomatisk uttrykk"
 
 #: configs/language_specific_rules/templates/kyv/examples.template:122
 msgid "answer"
-msgstr ""
+msgstr "svar"
 
 #: configs/language_specific_rules/templates/kyv/includes.template:4
 msgid "More examples"
-msgstr ""
+msgstr "Flere eksempler"
 
 #: configs/language_specific_rules/templates/kyv/includes.template:5
 msgid "Less examples"
-msgstr ""
+msgstr "Færre eksempler"
 
 #: configs/language_specific_rules/templates/muter/about.template:43
 #: configs/language_specific_rules/templates/vada/about.template:45
@@ -658,7 +658,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanat/about.template:57
 #: configs/language_specific_rules/templates/sonad/about.template:57
 msgid "liv ↔ fin"
-msgstr ""
+msgstr "Livisk ↔ finsk"
 
 #: configs/language_specific_rules/templates/sanat/about.template:58
 #: configs/language_specific_rules/templates/sonad/about.template:58
@@ -678,7 +678,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanat/about.template:67
 #: configs/language_specific_rules/templates/sonad/about.template:67
 msgid "olo ↔ fin"
-msgstr ""
+msgstr "Olonetsisk ↔ finsk"
 
 #: configs/language_specific_rules/templates/sanat/about.template:68
 #: configs/language_specific_rules/templates/sonad/about.template:68
@@ -1012,7 +1012,7 @@ msgstr "Ordbøker"
 
 #: templates/left_dictionary_list.html:17
 msgid "Escape Text-TV mode"
-msgstr ""
+msgstr "Gå ut av tekst-TV-modus"
 
 #: templates/left_nav_grouped_language_pair_select.html:71
 #: templates/left_nav_language_pair_select_list.html:55
@@ -1025,7 +1025,7 @@ msgstr "Skriftspråksvariant"
 #: templates/mobile_nav_push_menu.html:53
 #: templates/mobile_nav_push_menu.html:60
 msgid "Back"
-msgstr ""
+msgstr "Tilbake"
 
 #: templates/more_dictionaries.html:4
 msgid "More dictionaris"
@@ -1279,7 +1279,7 @@ msgstr " er en mulig form av ... "
 
 #: templates/word_detail.html:140
 msgid "More information about this word"
-msgstr ""
+msgstr "Mer informasjon om dette ordet"
 
 #: views/search.py:940
 msgid "Invalid format. Only json and html allowed."
