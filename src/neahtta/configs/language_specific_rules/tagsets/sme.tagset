@@ -1,4 +1,5 @@
-﻿pos:
+﻿# These need to only be "raw" tags (befoer user-friendly relabels)
+pos:
  - "A"
  - "Adp"
  - "Adv"
@@ -12,20 +13,14 @@
  - "Pr"
  - "Pron"
  - "V"
- - "pron."
- - "subst."
- - "verb"
- - "adj."
- - "konj."
 pron_type:
  - "Indef"
 type:
  - "NomAg"
  - "G3"
- - "aktor"
+ - "Aktor"
  - "res."
  - "Prop"
- - "prop."
 possessive:
  - "PxSg2"
 tense:
@@ -133,12 +128,3 @@ semantics:
  - "Sem/Veh"
  - "Sem/Wpn"
  - "Sem/Wthr"
-# Do not display analyses with these tag parts
-hideanalysis:
- - "dem."
- - "neg."
- - "pers."
- - "pron."
- - "refl."
- - "res."
-
