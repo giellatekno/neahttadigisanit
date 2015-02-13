@@ -1,6 +1,7 @@
 ﻿name: "Collectiv noun paradigm"
 morphology:
-  pos: N+Coll
+  pos: N
+  noun_type: Coll
 --
 {{ lemma }}+N+Coll+Sg+Nom
 {{ lemma }}+N+Coll+Sg+Acc

@@ -13,6 +13,8 @@ pos:
  - "Pr"
  - "Pron"
  - "V"
+noun_type:
+ - "Coll"
 pron_type:
  - "Indef"
 type:
