@@ -116,6 +116,30 @@
 
 {% endif -%}
 
+{%- if pos|upper == 'A'  %}
+
+    {% set adj_text = "A"|tagfilter(_from, _to) %}
+
+    {% macro clean_tag(tag_input) %}
+        {{ tag_input|tagfilter(_from, _to)
+                    |replace(adj_text, "") }}
+    {% endmacro %}
+
+{% endif -%}
+
+{%- if pos|upper == 'PRON'  %}
+
+    {% set pron_text = "Pron"|tagfilter(_from, _to) %}
+    {% set indef_text = "Indef"|tagfilter(_from, _to) %}
+
+    {% macro clean_tag(tag_input) %}
+        {{ tag_input|tagfilter(_from, _to)
+                    |replace(pron_text, "")
+                    |replace(indef_text, "") }}
+    {% endmacro %}
+
+{% endif -%}
+
 {%- macro full_paradigm_link() %}
     <a class="full-paradigm-link"
        style="opacity: .8;"
@@ -246,6 +270,40 @@
         </table>
 
     {% endif %}
+
+{% elif pos|upper == 'A' %}
+
+    <dl class="dl-horizontal miniparadigm">
+        {%- for form in paradigm -%}
+
+            {% if form.tag %}
+                <dt>{{ clean_tag(form.tag) }}</dt>
+            {% endif %}
+
+            {% if form.form %}
+            <dd lang="{{ _from }}">{{ form.form }}</dd>
+            {% else %}
+                <dd lang="{{ _from }}">?</dd>
+            {% endif %}
+        {%- endfor -%}
+    </dl>
+
+{% elif pos|upper == 'PRON' %}
+
+    <dl class="dl-horizontal miniparadigm">
+        {%- for form in paradigm -%}
+
+            {% if form.tag %}
+                <dt>{{ clean_tag(form.tag) }}</dt>
+            {% endif %}
+
+            {% if form.form %}
+            <dd lang="{{ _from }}">{{ form.form }}</dd>
+            {% else %}
+                <dd lang="{{ _from }}">?</dd>
+            {% endif %}
+        {%- endfor -%}
+    </dl>
 
 {% else %}
     <dl class="dl-horizontal miniparadigm">
