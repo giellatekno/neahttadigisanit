@@ -10,8 +10,3 @@ morphology:
 {{ lemma }}+N+Coll+Sg+Loc
 {{ lemma }}+N+Coll+Sg+Com
 {{ lemma }}+N+Coll+Ess
-{{ lemma }}+N+Coll+Pl+Nom
-{{ lemma }}+N+Coll+Pl+Acc
-{{ lemma }}+N+Coll+Pl+Ill
-{{ lemma }}+N+Coll+Pl+Loc
-{{ lemma }}+N+Coll+Pl+Com
