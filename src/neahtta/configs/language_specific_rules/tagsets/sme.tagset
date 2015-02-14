@@ -16,7 +16,13 @@ pos:
 noun_type:
  - "Coll"
 pron_type:
+ - "Dem"
  - "Indef"
+ - "Interr"
+ - "Pers"
+ - "Recipr"
+ - "Refl"
+ - "Rel"
 type:
  - "NomAg"
  - "G3"
