@@ -17,8 +17,9 @@ $(document).ready( function() {
         }, 120);
     }
 
+    var item_count = parseInt($('input[name="lookup"]').attr('data-items')) || 5;
     $('input[name="lookup"]').typeahead({
-        items: 5,
+        items: item_count,
         source: function (typeahead, query) {
             if (query.length > 1) {
                 var _from = typeahead.$element.attr('data-language-from')

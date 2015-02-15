@@ -41,6 +41,7 @@
                            data-autocomplete-text="{% trans %}Press Tab to select a word{% endtrans %}"
                            data-language-from="{{ _from }}"
                            data-language-to="{{ _to }}"
+                           data-items=10
                            {% endif %}
                            {% if user_input -%}value="{{ user_input }}"{% endif %}
                            placeholder="{% trans %}ohcansátni{% endtrans %}">
