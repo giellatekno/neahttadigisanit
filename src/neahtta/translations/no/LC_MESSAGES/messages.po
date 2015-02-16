@@ -528,7 +528,7 @@ msgstr "Andre språk"
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
 "Søk etter et ord, evt. en bøyd form. Etter at du har søkt: Ved å klikke på ordet får du en "
-"liste med bøyningsformer. <br /><br /> Med \"Søk i tekst\" kan du søke etter setninger med ordet i tekster, "
+"liste med bøyningsformer. <br /><br /> Med \"Søk i tekst\" kan du søke etter setninger med ordet, "
 "og du får med alle bøyningsformer ved å bruke linken som dukker opp i høyre marg etter vanlig søk."
 
 #: configs/language_specific_rules/templates/baakoeh/about.template:76
