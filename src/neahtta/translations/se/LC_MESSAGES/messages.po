@@ -528,10 +528,10 @@ msgstr "Eará gielat"
 #: configs/language_specific_rules/templates/sanit/search_info.template:8
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
-"Oza sáni, vej. sojahuvvon hámi. Jus deaddilasttát sáni guktii, de oaččut "
+"Oza sáni, vej. sojahuvvon hámi. Maŋŋel go leat ohcan: Jus deaddilasttát sáni guktii, de oaččut "
 "listtu mas leat sojaheamit. <br /><br /> \"Oza teavsttain\"-boaluin don "
-"ozat sáni teakstačoakkáldagas, dahje sáhtát buot sojahanhámiid ohcat "
-"liŋkkain mii dihtto olgeš ravddas."
+"ozat sáni cealkagiin, ja oaččut mielde buot sojahanhámiid jus geavahat "
+"liŋkka mii dihtto olgeš ravddas go leat dahkan dábálaš ohcama."
 
 #: configs/language_specific_rules/templates/baakoeh/about.template:76
 #: configs/language_specific_rules/templates/guusaaw/about.template:89
