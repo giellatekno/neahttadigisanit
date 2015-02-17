@@ -531,7 +531,7 @@ msgstr ""
 "Oza sáni, vej. sojahuvvon hámi. Maŋŋel go leat ohcan: Jus deaddilasttát sáni guktii, de oainnát "
 "mo sátni sojahuvvo. <br /><br /> \"Oza teavsttain\"-boaluin "
 "ozat sáni cealkagiin, ja oaččut mielde buot sojahanhámiid jus geavahat "
-"liŋkka mii dihtto olgeš ravddas go leat dahkan dábálaš ohcama."
+"liŋkka mii dihtto olgeš ravddas go leat deaddilan \"Oza\""
 
 #: configs/language_specific_rules/templates/baakoeh/about.template:76
 #: configs/language_specific_rules/templates/guusaaw/about.template:89
