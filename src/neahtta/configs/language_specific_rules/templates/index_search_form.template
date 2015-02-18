@@ -38,7 +38,7 @@
                            autocapitalize="off"
                            {% if current_pair_settings.autocomplete %}
                            autocomplete="off"
-                           data-autocomplete-text="{% trans %}Press Tab to select a word{% endtrans %}"
+                           data-autocomplete-text="{% trans %}Select a word, and press Tab{% endtrans %}"
                            data-language-from="{{ _from }}"
                            data-language-to="{{ _to }}"
                            data-items=10
