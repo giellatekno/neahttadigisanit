@@ -46,7 +46,8 @@
     {% set link_target = '' %}
     {% set fra_ref = tg.xpath('./re/@fra_ref') %}
 
-    {% set explanation = t.attrib.get('type', False) and True %}
+    {% set explanation = t.attrib.get('type', False) %}
+    {% set explanation_exists = explanation and True %}
 
     {% if fra_ref|count > 0 %}
         {# If this is a reference link, then there is no data in the
@@ -62,7 +63,7 @@
     {# NB: link to grammar should go in somewhere around here. Probably
     want to do this with a &rarr; similar to the munnje -> mun stuff #}
 
-    {% if explanation %}
+    {% if explanation_exists and explanation == 'expl' %}
         {{- text -}}
     {%- else %}
         {% if reference %}
