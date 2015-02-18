@@ -4,25 +4,25 @@
 
     Updating dictionaries & FSTs
     
-        $ fab local PROJECT compile
+        $ fab PROJECT compile
     
     Updating just the lexicon
     
-        $ fab local PROJECT compile_dictionary
+        $ fab PROJECT compile_dictionary
     
     Updating translation strings
     
-        $ fab local PROJECT compile_strings
+        $ fab PROJECT compile_strings
     
     Testing configuration (run before restart, always)
 
-        $ fab local PROJECT test_configuration
+        $ fab PROJECT test_configuration
     
     Restarting services
     
-        $ fab local PROJECT restart_service
+        $ fab PROJECT restart_service
     
     Find a language
     
-        $ fab local where_is:ISO
+        $ fab where_is:ISO
 
