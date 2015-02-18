@@ -64,9 +64,40 @@ from fabric.contrib.console import confirm
 
 from fabric.utils import abort
 
+@task
+def local(*args, **kwargs):
+    """ Run a command using the local environment.
+    """
+    from fabric.operations import local as lrun
+    import os
+
+    env.run = lrun
+    env.hosts = ['localhost']
+
+    gthome = os.environ.get('GTHOME')
+    env.path_base = os.getcwd()
+
+    env.svn_path = gthome
+    env.dict_path = os.path.join(env.path_base, 'dicts')
+    env.neahtta_path = env.path_base
+    env.i18n_path = os.path.join(env.path_base, 'translations')
+
+    # Make command needs to include explicit path to file, because of
+    # fabric.
+    env.make_cmd = "make -C %s -f %s" % ( env.dict_path
+                                        , os.path.join(env.dict_path, 'Makefile')
+                                        )
+    env.remote_no_fst = False
+
+    return env
+
+
 env.no_svn_up = False
 env.use_ssh_config = True
 # env.key_filename = '~/.ssh/neahtta'
+
+if ['local', 'gtweb', 'gtoahpa'] not in sys.argv:
+    env = local(env)
 
 from config import yaml
 
@@ -164,31 +195,6 @@ def sonad():
 def vada():
     """ Use vada """
     env.current_dict = "vada"
-
-@task
-def local(*args, **kwargs):
-    """ Run a command using the local environment.
-    """
-    from fabric.operations import local as lrun
-    import os
-
-    env.run = lrun
-    env.hosts = ['localhost']
-
-    gthome = os.environ.get('GTHOME')
-    env.path_base = os.getcwd()
-
-    env.svn_path = gthome
-    env.dict_path = os.path.join(env.path_base, 'dicts')
-    env.neahtta_path = env.path_base
-    env.i18n_path = os.path.join(env.path_base, 'translations')
-
-    # Make command needs to include explicit path to file, because of
-    # fabric.
-    env.make_cmd = "make -C %s -f %s" % ( env.dict_path
-                                        , os.path.join(env.dict_path, 'Makefile')
-                                        )
-    env.remote_no_fst = False
 
 @task
 def gtweb():
