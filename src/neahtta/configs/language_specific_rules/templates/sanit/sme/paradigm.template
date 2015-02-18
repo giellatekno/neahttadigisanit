@@ -150,7 +150,7 @@
              dat nr="Pl", type="Dem"
 
              recipr is broken
-                /detail/sme/nob/goabbat%20guoimmisteame.html?no_compounds=true&lemma_match=true
+                /detail/sme/nob/goabbat%20guoimmisteame.html
     #}
 
     {% set two_columns = False %}

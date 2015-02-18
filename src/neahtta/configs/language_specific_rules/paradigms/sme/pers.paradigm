@@ -1,8 +1,7 @@
-﻿name: "Pronoun pers paradigm"
+name: "Pronoun pers paradigm"
 morphology:
   pos: Pron
   pron_type: Pers
-    
 --
 {{ lemma }}+Pron+Pers+Sg1+Nom
 {{ lemma }}+Pron+Pers+Sg1+Acc
