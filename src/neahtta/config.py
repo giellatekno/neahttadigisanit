@@ -29,7 +29,10 @@ def external_korp_url(pair_details, user_input):
     korp_host = pair_details.get('korp_search_host')
 
     # TODO: original pair, if current pair is variant
-    url_pattern = korp_opts.get('wordform_search_path').replace('TARGET_LANG_ISO', g.orig_from)
+    if korp_opts.get('is_korp_default_lang'):
+        url_pattern = korp_opts.get('wordform_search_path_default_lang')
+    else:
+        url_pattern = korp_opts.get('wordform_search_path').replace('TARGET_LANG_ISO', g.orig_from)
 
     delimiter_pattern = korp_opts.get('lemma_multiword_delimeter')
 

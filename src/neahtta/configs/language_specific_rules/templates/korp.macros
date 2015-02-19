@@ -18,7 +18,11 @@
     {% if current_pair_settings.korp_options.lemma_search_path and lemma -%}
         {% set l_host = current_pair_settings.korp_search_host %}
         {% set query_path = current_pair_settings.korp_options.lemma_search_query %}
-        {% set search_path = current_pair_settings.korp_options.lemma_search_path.replace('TARGET_LANG_ISO', orig_from) %}
+        {% if current_pair_settings.korp_options.is_korp_default_lang %}
+            {% set search_path = current_pair_settings.korp_options.lemma_search_path_default_lang %}
+        {% else %}
+            {% set search_path = current_pair_settings.korp_options.lemma_search_path.replace('TARGET_LANG_ISO', orig_from) %}
+        {% endif %}
 
         {# Have to only encode half of this, because korp doesn't accept quotes
         in the query, so we need to urlencode the query, but not the rest of
@@ -39,8 +43,13 @@
     {%- endif %}
 {%- endmacro %}
 
+{# TODO: necessary? current_pair_settings.korp_options.lemma_search_path.replace('TARGET_LANG_ISO', orig_from) #}
 {% macro wordform_search_url() -%}
-    {%- set s_path =  current_pair_settings.korp_search_host + current_pair_settings.korp_options.wordform_search_path -%}
+    {%- if current_pair_settings.korp_options.is_korp_default_lang %}
+        {%- set s_path =  current_pair_settings.korp_search_host + current_pair_settings.korp_options.wordform_search_path_default_lang -%}
+    {% else %}
+        {%- set s_path =  current_pair_settings.korp_search_host + current_pair_settings.korp_options.wordform_search_path -%}
+    {% endif -%}
     {{ s_path.replace('//', '/') }}
 {%- endmacro %}
 
