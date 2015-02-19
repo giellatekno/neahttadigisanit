@@ -3,11 +3,16 @@
 # targets built.
 
 MODULES = ./node_modules/.bin
+
+# Testing framework
 MOCHA   = $(MODULES)/mocha --colors --reporter spec --compilers coffee:coffee-script/register
+
+# Javascript compliation stuff
 COFFEE  = $(MODULES)/coffee --compile --bare --print --map
 UGLY    = $(MODULES)/uglifyjs
 BOOK    = $(MODULES)/bookmarklet
 
+# These are in order.
 COFFEES = src/nds.root.coffee \
 		  src/dictionary.coffee \
 		  src/selection.coffee \
@@ -23,6 +28,7 @@ JS_DEPS = src/libs/bootstrap-dropdown.js \
           src/libs/bootstrap-tooltip.js \
           src/libs/bootstrap-popover.js \
           src/libs/bootstrap-modal.js \
+          src/libs/underscore.js \
           src/libs/DSt.js \
           src/libs/semver.js \
           src/libs/rangy-core.js \
@@ -73,7 +79,8 @@ bin/standalone/neahttadigisanit.css: tmp/jq.css
 # We build one with jquery and one without, to give the user the option of how
 # they include it on their site.
 .PHONY: standalone
-standalone: bin/standalone/neahttadigisanit.css \
+standalone: bin/bookmarklet/jquery.neahttadigisanit.css \
+			bin/standalone/neahttadigisanit.css \
 			bin/standalone/neahttadigisanit.jquery.min.js \
 			bin/standalone/neahttadigisanit.jquery.js \
 			bin/standalone/neahttadigisanit.min.js
