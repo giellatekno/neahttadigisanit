@@ -160,7 +160,7 @@ jQuery(document).ready ($) ->
       # TODO: now that we're sending json, can drop the join
       post_data.lookup = mws
 
-    url = "#{opts.api_host}/#{uri}"
+    url = "#{opts.api_host}#{uri}"
 
     response_func = (response, textStatus) =>
       selection = {
@@ -205,6 +205,8 @@ jQuery(document).ready ($) ->
     if window.NDS_API_HOST || window.API_HOST
       window.API_HOST = window.NDS_API_HOST || window.API_HOST
     if nds_opts.api_host
+      if /\/$/.test(nds_opts.api_host)
+        nds_opts.api_host = nds_opts.api_host.slice(0, nds_opts.api_host.length - 1)
       window.API_HOST = nds_opts.api_host
 
     window.NDS_SHORT_NAME = getHostShortname(nds_opts.api_host)
