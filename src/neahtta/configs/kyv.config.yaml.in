@@ -93,6 +93,7 @@ Dictionaries:
     path: 'dicts/kpv-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
+    is_korp_default_lang: True
     input_variants: &KOMI_VARIANTS
       - type: "standard"
         description: !gettext "Standard"
@@ -110,6 +111,7 @@ Dictionaries:
 
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
+    is_korp_default_lang: True
 
   - source: fin
     target: kpv
@@ -118,6 +120,7 @@ Dictionaries:
   - source: kpv
     target: rus
     show_korp_search: True
+    is_korp_default_lang: True
     input_variants: *KOMI_VARIANTS
 
     korp_search_host: "http://gtweb.uit.no/u_korp"
