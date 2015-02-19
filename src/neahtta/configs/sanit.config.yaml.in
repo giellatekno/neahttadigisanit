@@ -97,6 +97,7 @@ Dictionaries:
     autocomplete: false
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
+    is_korp_default_lang: True
 
     input_variants:
       # "mobile" is important, otherwise templates and swapping won't
@@ -118,6 +119,7 @@ Dictionaries:
     path: 'dicts/nob-sme.all.xml'
     autocomplete: true
     show_korp_search: True
+    is_korp_default_lang: True
     korp_search_host: "http://gtweb.uit.no/korp"
 
   - source: sme
@@ -126,6 +128,7 @@ Dictionaries:
     autocomplete: false
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
+    is_korp_default_lang: True
     input_variants:
       # "mobile" is important, otherwise templates and swapping won't
       # work

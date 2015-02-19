@@ -573,9 +573,12 @@ class Config(Config):
 
                 _default_korp = {
                     'lemma_search_path': '/?mode=TARGET_LANG_ISO#page=0&search-tab=2&search=SEARCH_QUERY',
+                    'lemma_search_path_default_lang': '/#page=0&search-tab=2&search=SEARCH_QUERY',
                     'lemma_search_query': 'cqp|[word = "INPUT_LEMMA"]',
                     'wordform_search_path': '/?mode=TARGET_LANG_ISO#search=word|USER_INPUT&page=0',
+                    'wordform_search_path_default_lang': '/#search=word|USER_INPUT&page=0',
                     'lemma_search_delimiter': '] [word = ',
+                    'is_korp_default_lang': dict_def.get('is_korp_default_lang', False),
                 }
 
                 _pair_options = {
