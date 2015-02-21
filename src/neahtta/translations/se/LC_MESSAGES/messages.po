@@ -426,7 +426,7 @@ msgstr "Juohke sátnegirjjis leat su. 11000 vuođđosáni. "
 #: configs/language_specific_rules/templates/guusaaw/about.template:64
 #: configs/language_specific_rules/templates/itwewina/about.template:72
 msgid "Find a problem?"
-msgstr "Juoga ii doaibma?"
+msgstr "Juoga ii doaimma?"
 
 #: configs/language_specific_rules/templates/about.template:74
 #: configs/language_specific_rules/templates/guusaaw/about.template:65
