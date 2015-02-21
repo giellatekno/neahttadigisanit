@@ -1,10 +1,6 @@
 {# This entry is evaluated on a translation-group by translation-group
    basis, and so far only receives the `translation_group` <tg /> node.
 
-   The intent here is to make it easier to insert additional text
-   without needing to alter or understand the larger amount of HTML. See
-   `sme` for an example of including the @reg attribute.
-
    NB: There is one override here, which is to deal with the <t
    type="expl" /> nodes. For now these shouldn't be links, but we might
    change the link target to the grammar at some point.
@@ -43,6 +39,7 @@
     #}
 
     {% set text = t.text %}
+    {% set pos = t.attrib.get('pos', '')|tagfilter(_from, _to) %}
     {% set link_target = '' %}
     {% set fra_ref = tg.xpath('./re/@fra_ref') %}
 
@@ -64,16 +61,16 @@
     want to do this with a &rarr; similar to the munnje -> mun stuff #}
 
     {% if explanation_exists and explanation == 'expl' %}
-        {{- text -}}
+        ({{ pos }}) {{  text -}}
     {%- else %}
         {% if reference %}
             <a href="/{{ _from }}/{{ _to }}/ref/?l_til_ref={{ reference }}">
-                {{- text -}}
+                ({{ pos }}) {{ text -}}
             </a> &rarr;
         {%- else %}
             {# NB: swap from and to for these links since these are definitions. #}
             <a href="/detail/{{ _to }}/{{ _from }}/{{ text }}.html?no_compounds=true&lemma_match=true">
-                {{- text -}}
+                ({{ pos }}) {{ text -}}
             </a>
         {%- endif %}
     {%- endif %}
