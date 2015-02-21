@@ -37,7 +37,6 @@
     #}
 
     {% set text = t.text %}
-    {% set pos = t.attrib.get('pos', '')|tagfilter(_from, _to) %}
     {% set link_target = '' %}
     {% set fra_ref = tg.xpath('./re/@fra_ref') %}
 
@@ -54,12 +53,12 @@
 
     {% if reference %}
         <a href="/{{ _from }}/{{ _to }}/ref/?l_til_ref={{ reference }}">
-            ({{ pos }}) {{- text }}
+            {{- text -}}
         </a> &rarr;
     {%- else %}
         {# NB: swap from and to for these links since these are definitions. #}
         <a href="/detail/{{ _to }}/{{ _from }}/{{ text }}.html?no_compounds=true&lemma_match=true">
-            ({{ pos }}) {{- text }}
+            {{- text -}}
         </a>
     {%- endif %}
 {%- endmacro -%}
