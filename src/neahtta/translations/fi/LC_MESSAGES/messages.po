@@ -149,7 +149,7 @@ msgstr "Pohjoishaida"
 
 #: configs/language_names.py:79
 msgid "Khanty"
-msgstr ""
+msgstr "Hanti"
 
 #: configs/language_names.py:82 configs/language_names.py:88
 msgid "Finnish"
@@ -385,6 +385,13 @@ msgid ""
 " href=\"http://aajege.no/\">Aajege</a>'s work with the Southern Sámi <a "
 "class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
 msgstr ""
+"Norja-eteläsaame-sanakirjat perustuvat Albert Jåman ja Tove Brustadin "
+"laatimiin sanalistoihin, jotka löytyvät "
+"a class=\"blue\" href=\"http://www.ruovatsijte.no/\">Hemnes saamen seuran</a> "
+"sivuilta. Tämän lisäksi <a class=\"blue\" "
+"href=\"http://giellatekno.uit.no/\">Giellatekno</a> ja <a class=\"blue\""
+" href=\"http://aajege.no/\">Aajege</a> ovat lisänneet sanoja eteläsaamen "
+"<a class=\"blue\" href=\"http://oahpa.no\">Oahpa-työn</a> yhteydessä."
 
 #: configs/language_specific_rules/templates/about.template:66
 #: configs/language_specific_rules/templates/baakoeh/about.template:66
@@ -401,6 +408,10 @@ msgid ""
 "have included frequent words from North Sámi, but especially from "
 "Finnish."
 msgstr ""
+"Pohjoissaame-suomi-sanakirjat pohjautuvat Giellateknon "
+"<a class=\"green\" href=\"http://oahpa.no\">Oahpa-työhön</a> ja "
+"<a class=\"green\" href=\"http://kotus.fi\">Kotimaiste kielten keskuksen</a> " "sanalistoihin. Olemme myös lisäneet tavanomaisia pohjoissaamen ja erityisesti "
+"suomen kielen sanoja."
 
 #: configs/language_specific_rules/templates/about.template:68
 #: configs/language_specific_rules/templates/baakoeh/about.template:68
@@ -677,6 +688,9 @@ msgid ""
 "                Helsinki by Timo Rantakaulio with funding from the Kone\n"
 "                Foundation."
 msgstr ""
+"Livvi-suomi-sanakirjat perustuvat livvikielisen sanomalehden \"Oma mua\" "
+"sanoihin ja moniin sanakirjoihin. Työn tekee Timo Rantakaulio Helsingin "
+"Yliopistossa Koneen säätiön tuella."
 
 #: configs/language_specific_rules/templates/sanat/notice.template:3
 msgid ""
