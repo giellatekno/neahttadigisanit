@@ -1,4 +1,4 @@
-﻿Relabel:
+Relabel:
   - source_morphology: 'sma'
     target_ui_language: 'nob'
     tags: &smatagrelabels
