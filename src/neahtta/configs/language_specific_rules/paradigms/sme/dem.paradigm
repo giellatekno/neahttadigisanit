@@ -1,4 +1,4 @@
-﻿name: "Pronoun dem paradigm"
+name: "Pronoun dem paradigm"
 morphology:
   pos: Pron
   pron_type: Dem

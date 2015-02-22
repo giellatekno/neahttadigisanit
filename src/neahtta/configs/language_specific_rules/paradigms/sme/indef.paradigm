@@ -1,4 +1,4 @@
-﻿name: "Pronoun indef paradigm"
+name: "Pronoun indef paradigm"
 morphology:
   pos: Pron
   pron_type: Indef
