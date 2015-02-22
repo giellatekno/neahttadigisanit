@@ -51,6 +51,8 @@ String::endsWith = (str) ->
 
 module = {}
 
+module.Rangy = rangy
+
 module.fakeGetText = (string) ->
   ### Want to mark strings as requiring gettext somehow, so that
       a babel can find them.

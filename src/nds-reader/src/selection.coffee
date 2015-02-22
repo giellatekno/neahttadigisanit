@@ -1,3 +1,5 @@
+rangy = module.Rangy
+
 module.Selection = class Selection
 
   expandByWordRegex: (selection) ->
