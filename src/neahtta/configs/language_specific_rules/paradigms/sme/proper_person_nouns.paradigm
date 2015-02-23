@@ -1,0 +1,28 @@
+name: "Proper person nouns"
+description: "Generates a paradigm for proper nouns."
+morphology:
+  pos: N
+lexicon:
+  XPATH:
+    sem_type: ".//l/@sem_type"
+    type: ".//l/@type"
+  type: Prop
+  sem_type: 
+    - "mal"
+    - "Mal"
+    - "fem"
+    - "Fem"
+    - "Ani"
+    - "ani"
+--
+{{ lemma }}+N+Prop+Sem/Mal+Sg+Gen
+{{ lemma }}+N+Prop+Sem/Mal+Sg+Loc
+{{ lemma }}+N+Prop+Sem/Mal+Sg+Ill
+
+{{ lemma }}+N+Prop+Sem/Fem+Sg+Gen
+{{ lemma }}+N+Prop+Sem/Fem+Sg+Loc
+{{ lemma }}+N+Prop+Sem/Fem+Sg+Ill
+
+{{ lemma }}+N+Prop+Sem/Ani+Sg+Gen
+{{ lemma }}+N+Prop+Sem/Ani+Sg+Loc
+{{ lemma }}+N+Prop+Sem/Ani+Sg+Ill

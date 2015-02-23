@@ -1,0 +1,13 @@
+# EX: Máret
+
+- entry_context: None
+  tag_context: "N+Prop+Sem/Mal+Sg+Gen"
+  template: "{{ word_form }} biila"
+
+- entry_context: None
+  tag_context: "N+Prop+Sem/Fem+Sg+Gen"
+  template: "{{ word_form }} biila"
+
+- entry_context: None
+  tag_context: "N+Prop+Sem/Ani+Sg+Gen"
+  template: "{{ word_form }} govva"
