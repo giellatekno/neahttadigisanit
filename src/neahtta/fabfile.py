@@ -522,6 +522,11 @@ def update_strings():
 
     compile_strings()
 
+@task
+def find_babel():
+    import babel
+    print babel
+
 # TODO: handle babel.core.UnknownLocaleError: unknown locale 'hdn', with
 # cleaner error message
 @task
