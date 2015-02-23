@@ -54,6 +54,7 @@ from fabric.api import ( cd
                        , local
                        , env
                        , task
+                       , settings
                        )
 
 from fabric.operations import ( sudo )
@@ -521,6 +522,8 @@ def update_strings():
 
     compile_strings()
 
+# TODO: handle babel.core.UnknownLocaleError: unknown locale 'hdn', with
+# cleaner error message
 @task
 def compile_strings():
     """ Compile .po strings to .mo strings for use in the live server. """
@@ -534,17 +537,28 @@ def compile_strings():
         for lang in langs:
             # run for each language 
             cmd = "pybabel compile -d translations -l %s" % lang
-            extract_cmd = env.run(cmd)
-            if extract_cmd.failed:
+            compile_cmd = env.run(cmd)
+            if compile_cmd.failed:
                 print(red("** Compilation failed, aborting."))
             else:
                 print(green("** Compilation successful."))
     else:
         cmd = "pybabel compile -d translations"
-        extract_cmd = env.run(cmd)
-        if extract_cmd.failed:
-            print(red("** Compilation failed, aborting."))
+        with settings(warn_only=True):
+            compile_cmd = env.run(cmd, capture=True)
+        if compile_cmd.failed:
+            if 'babel.core.UnknownLocaleError' in compile_cmd.stderr:
+                error_line = [l for l in compile_cmd.stderr.splitlines() if 'babel.core.UnknownLocaleError' in l]
+                print(red("** String compilation failed, aborting:  ") + cyan(''.join(error_line)))
+                print("")
+                print(yellow("  Either: "))
+                print(yellow("   * rerun the command with the project name, i.e., `fab PROJNAME compile_strings`."))
+                print(yellow("   * Troubleshoot missing locale. (see Troubleshooting doc)"))
+            else:
+                print(compile_cmd.stderr)
+                print(red("** Compilation failed, aborting."))
         else:
+            print(compile_cmd.stdout)
             print(green("** Compilation successful."))
 
 def where(iso):
