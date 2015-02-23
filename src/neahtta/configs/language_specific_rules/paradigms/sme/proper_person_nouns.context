@@ -11,3 +11,8 @@
 - entry_context: None
   tag_context: "N+Prop+Sem/Ani+Sg+Gen"
   template: "{{ word_form }} govva"
+  
+- entry_context: None
+  tag_context: "N+Prop+Sem/Org+Sg+Gen"
+  template: "{{ word_form }} ovddasteaddji"
+  
