@@ -1,4 +1,4 @@
-# These need to only be "raw" tags (befoer user-friendly relabels)
+# These need to only be "raw" tags (before user-friendly relabels)
 pos:
  - "A"
  - "Adp"
@@ -80,9 +80,6 @@ vmax:
  - "v3"
  - "v4"
  - "v5"
-homonymy:
- - "v1"
- - "v2"
 semantics:
  - "Sem/Act"
  - "Sem/Ani"
