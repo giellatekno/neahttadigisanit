@@ -42,7 +42,7 @@
 
     {% set pos = t.attrib.get('pos', '') %}
 
-    {%- if pos == 'Pron' %}
+    {%- if pos == 'Pron' and t.attrib.get('type') %}
         {% set pos_type = t.attrib.get('type')|tagfilter(_from, _to) %}
         {% set pos_text = pos|tagfilter(_from, _to)  + " " + pos_type %}
     {% else %}
