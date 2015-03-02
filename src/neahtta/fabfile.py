@@ -242,7 +242,6 @@ def update_configs():
 
     with cd(env.neahtta_path):
         paths = [
-            'config.py',
             'configs/',
             'translations/',
         ]
