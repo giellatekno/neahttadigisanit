@@ -22,7 +22,7 @@ LEX_TO_FST = {
     'adp': 'Adp',
     'adv': 'Adv',
     'aktor': 'NomAg',
-    'egen': 'Prop',
+    'egenn': 'Prop',
     'interj': 'Interj',
     'konj': 'CC',
     'n': 'N',

@@ -35,7 +35,7 @@ class Server:
     def open_socket(self):
         try:
             self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            self.server.bind((self.host,9002))
+            self.server.bind((self.host,self.port))
             self.server.listen(5)
         except socket.error, (value,message):
             if self.server:
