@@ -71,6 +71,8 @@ Dictionaries:
         description: !gettext "Standard"
         example: "(ǩ)"
         onscreen_keyboard: &SMS_KEYS
+          - "ʹ"
+          - "ʼ"
           - "â"
           - "č"
           - "ʒ"
@@ -86,8 +88,6 @@ Dictionaries:
           - "å"
           - "ä"
           - "ö"
-          - "ʹ"
-          - "ʼ"
         # NB: must be same as analyser name
         short_name: "sms"
       - type: "mobile"
