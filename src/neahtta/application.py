@@ -150,8 +150,8 @@ def create_app():
 
     ## Read and prepare the templates
 
-    from configs.entry_template_filters import register_template_filters
-    from configs.entry_templates import TemplateConfig
+    from entry_template_filters import register_template_filters
+    from entry_templates import TemplateConfig
 
     app = register_template_filters(app)
     app.lexicon_templates = TemplateConfig(app, debug=True)
