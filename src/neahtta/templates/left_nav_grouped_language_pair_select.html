@@ -1,3 +1,12 @@
+{%- macro check_result_count(f, t) %}
+    {% if language_pairs_other_results %}
+        {% set entry_count = language_pairs_other_results.get((f, t)) %}
+        {% if entry_count > 0 -%}
+            <span class="badge badge-info pull-right">{{ entry_count }}</span>
+        {%- endif %}
+    {% endif %}
+{% endmacro -%}
+
 {%- macro render_pair_blocks(grouped_items) -%}
     {%- for iso_pair, pair_options in grouped_items -%}
             {%- if pair_options.input_variants -%}
@@ -27,6 +36,11 @@
 
 
             <ul class="{{ nav_classes }}">
+                {% if iso_pair[0] == _from and user_input %}
+                    {% set params = "?lookup=" + user_input %}
+                {% else %}
+                    {% set params = "" %}
+                {% endif %}
 
                 {% if not is_variant %}
                     {%- if iso_pair[0] == _from and iso_pair[1] == _to %}
@@ -43,8 +57,11 @@
                 {% else -%}
                     <li>
                 {% endif %}
-                    <a href="/{{ iso_pair[0] }}/{{ iso_pair[1] }}/" class="block_title">
+                    <a href="/{{ iso_pair[0] }}/{{ iso_pair[1] }}/{{ params }}" class="block_title">
                         <span lang="{{ current_locale }}">{{ iso_pair[0]|iso_to_i18n }} &rarr; {{ iso_pair[1]|iso_to_i18n }}</span>
+                        {%- if iso_pair[1] != _to %}
+                        {{ check_result_count(iso_pair[0], iso_pair[1]) }}
+                        {% endif -%}
                     </a>
                 </li>
 
