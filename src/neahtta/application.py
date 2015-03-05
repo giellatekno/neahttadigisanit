@@ -143,7 +143,7 @@ def create_app():
 
     app.morpholexicon = MorphoLexicon(app.config)
 
-    from configs.paradigms import ParadigmConfig
+    from paradigms import ParadigmConfig
 
     pc = ParadigmConfig(app)
     app.morpholexicon.paradigms = pc
