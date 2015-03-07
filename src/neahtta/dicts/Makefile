@@ -391,12 +391,20 @@ rm-itwewina-lexica: $(foreach xx, $(ITWEWINA_LANGS_LEXICA), $(xx)-all.xml) \
 
 .PHONY: itwewina-install
 itwewina-install: GT_COMPILE_LANGS := $(ITWEWINA_LANGS_ANALYSERS)
-itwewina-install: install_langs_fsts copy_syllabics
+itwewina-install: install_langs_fsts 
 
-.PHONY: copy_syllabics
-copy_syllabics: $(GTHOME)/langs/crk/src/analyser-gt-desc-syll.xfst \
-				$(GTHOME)/langs/crk/src/generator-gt-norm-syll.xfst
-	cp $^ /opt/smi/crk/bin/
+# copy-itwewina-variants
+
+.PHONY: copy-itwewina-variants
+copy-itwewina-variants: $(GTHOME)/langs/crk/src/analyser-dict-gt-desc-mobile.Cans.hfstol \
+						$(GTHOME)/langs/crk/src/analyser-dict-gt-desc-mobile.Cans.xfst \
+						$(GTHOME)/langs/crk/src/analyser-dict-gt-desc-mobile.saskatchewan.hfstol \
+						$(GTHOME)/langs/crk/src/analyser-dict-gt-desc-mobile.saskatchewan.xfst \
+						$(GTHOME)/langs/crk/src/analyser-dict-gt-desc.Cans.hfstol \
+						$(GTHOME)/langs/crk/src/analyser-dict-gt-desc.Cans.xfst \
+						$(GTHOME)/langs/crk/src/analyser-dict-gt-desc.saskatchewan.hfstol \
+						$(GTHOME)/langs/crk/src/analyser-dict-gt-desc.saskatchewan.xfst
+	@-cp $^ /opt/smi/crk/bin/
 
 
 #####
@@ -404,6 +412,7 @@ copy_syllabics: $(GTHOME)/langs/crk/src/analyser-gt-desc-syll.xfst \
 #####
 
 SAAN_LANGS_ANALYSERS      :=   sms fin
+# SAAN_LANGS_FLAGS          :=   --with-hfst
 SAAN_LANGS_LEXICA         :=   sms
 SAAN_WORDS_DICTS_LEXICA   :=   sms2X
 
@@ -420,6 +429,7 @@ saan-lexica: compile_langs_lexicon compile_words_dicts_lexicon
 saan: GT_COMPILE_LANGS := $(SAAN_LANGS_ANALYSERS)
 saan: LEX_COMPILE_LANGS := $(SAAN_LANGS_LEXICA)
 saan: LEX_COMPILE_WORDS_DICTS := $(SAAN_WORDS_DICTS_LEXICA)
+# saan: LANGS_FLAGS := $(SAAN_LANGS_FLAGS)
 saan: saan-lexica compile_langs_fsts print_complete_message
 
 rm-saan-lexica: $(foreach xx, $(SAAN_LANGS_LEXICA), $(xx)-all.xml) \
