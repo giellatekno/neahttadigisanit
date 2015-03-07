@@ -15,45 +15,59 @@ ApplicationSettings:
 
 Tools:
   xfst_lookup: &LOOKUP '/usr/bin/lookup'
+  hfst_lookup: &HLOOKUP '/usr/local/bin/hfst-optimized-lookup'
   opt: &OPT '/opt/smi/'
 
 Morphology:
+  # normative
   crk:
+    tool: *HLOOKUP
+    file: [*OPT, '/crk/bin/analyser-dict-gt-desc.hfstol']
+    inverse_file: [*OPT, '/crk/bin/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
+    options: &MORPHOLOGY_OPTS
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  crkMacr:
     tool: *LOOKUP
     file: [*OPT, '/crk/bin/analyser-dict-gt-desc.xfst']
-    inverse_file: [*OPT, '/crk/bin/generator-dict-gt-norm.xfst']
+    inverse_file: [*OPT, '/crk/bin/generator-dict-gt-norm.saskatchewan.xfst']
     format: 'xfst'
-    options:
-      compoundBoundary: "+Use/Circ#"
-      derivationMarker: "+Der"
-      tagsep: '+'
-      inverse_tagsep: '+'
-  crkS:
-    tool: *LOOKUP
-    file: [*OPT, '/crk/bin/analyser-gt-desc-syll.xfst']
-    inverse_file: [*OPT, '/crk/bin/generator-gt-norm-syll.xfst']
-    format: 'xfst'
-    options:
-      compoundBoundary: "+Use/Circ#"
-      derivationMarker: "+Der"
-      tagsep: '+'
-      inverse_tagsep: '+'
+    options: *MORPHOLOGY_OPTS
+  # syllabics
+  ## crkS:
+  ##   tool: *LOOKUP
+  ##   file: [*OPT, '/crk/bin/analyser-gt-desc-syll.xfst']
+  ##   inverse_file: [*OPT, '/crk/bin/generator-gt-norm-syll.xfst']
+  ##   format: 'xfst'
+  ##   options: *MORPHOLOGY_OPTS
+
+  # mobile
   crkM:
     tool: *LOOKUP
     file: [*OPT, '/crk/bin/analyser-dict-gt-desc-mobile.xfst']
     inverse_file: [*OPT, '/crk/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
-    options:
-      compoundBoundary: "+Use/Circ#"
-      derivationMarker: "+Der"
-      tagsep: '+'
-      inverse_tagsep: '+'
+    options: *MORPHOLOGY_OPTS
+  crkMMacr:
+    tool: *LOOKUP
+    file: [*OPT, '/crk/bin/analyser-dict-gt-desc-mobile.saskatchewan.xfst']
+    inverse_file: [*OPT, '/crk/bin/generator-dict-gt-norm.saskatchewan.xfst']
+    format: 'xfst'
+    options: *MORPHOLOGY_OPTS
 
 Languages:
   - iso: crk
     minority_lang: true
   - iso: crkM
     variant: True # this makes the fab process skip attempting `svn up` here.
+  - iso: crkMacr
+    variant: True # this makes the fab process skip attempting `svn up` here.
+  - iso: crkMMacr
+    variant: True # this makes the fab process skip attempting `svn up` here.
+  
   - iso: eng
 
 Dictionaries:
@@ -63,20 +77,35 @@ Dictionaries:
     asynchronous_paradigms: true
     input_variants: &spell_relax
       - type: "standard"
-        description: !gettext "Standard"
+        description: !gettext "Standard | SRO"
         example: "(aâ)"
         # NB: must be same as analyser name
         short_name: "crk"
-        onscreen_keyboard: &CRK_KEYS
+        onscreen_keyboard: &CRK_KEYS_CIRC
           - "â"
           - "ê"
           - "î"
           - "ô"
+      - type: "saskatchewan"
+        description: !gettext "Standard | SRO"
+        example: "(aā)"
+        # NB: must be same as analyser name
+        short_name: "crkMacr"
+        onscreen_keyboard: &CRK_KEYS_MACR
+          - "ā"
+          - "ē"
+          - "ī"
+          - "ō"
       - type: "mobile"
         description: !gettext "Mobile friendly"
-        example: "(a &rarr; a ~ â)"
+        example: "a &rarr; a ~ â"
         short_name: "crkM"
-        onscreen_keyboard: *CRK_KEYS
+        onscreen_keyboard: *CRK_KEYS_CIRC
+      - type: "mobile"
+        description: !gettext "Mobile friendly"
+        example: "a &rarr; a ~ ā"
+        short_name: "crkMMacr"
+        onscreen_keyboard: *CRK_KEYS_MACR
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/c_korp"
     is_korp_default_lang: True
