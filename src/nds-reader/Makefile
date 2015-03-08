@@ -45,13 +45,26 @@ tmp/nds.js: $(COFFEES)
 	@echo "   COMPILING:    nds.js"
 	@$(COFFEE) $^ > $@
 
+tmp/nds.min.js: tmp/nds.js
+	@echo "   COMPRESSING:  nds.min.js"
+	@$(UGLY) $^ > $@
+
 tmp/vendor.deps.js: $(JS_DEPS)
 	@echo "   BUILDING:     vendor.deps.js"
 	@cat $^ > $@
 
+tmp/vendor.deps.min.js: $(JS_DEPS)
+	@echo "   BUILDING:     vendor.deps.min.js"
+	@$(UGLY) $^ > $@
+
 tmp/nds.with.deps.js: tmp/vendor.deps.js \
 					  tmp/nds.js
 	@echo "   BUILDING:     nds.with.deps.js"
+	@cat $^ > $@
+
+tmp/nds.with.deps.min.js: tmp/vendor.deps.min.js \
+						  tmp/nds.min.js
+	@echo "   BUILDING:     nds.with.deps.min.js"
 	@cat $^ > $@
 
 tmp/nds.with.deps.jq.js: dev/jquery-1.11.1.js \
@@ -59,15 +72,27 @@ tmp/nds.with.deps.jq.js: dev/jquery-1.11.1.js \
 	@echo "   CAT:         " $@
 	@cat $^ > $@
 
-bin/standalone/neahttadigisanit.min.js: tmp/nds.with.deps.js
+tmp/jquery-1.11.1.min.js: dev/jquery-1.11.1.js
+	@$(UGLY) $^ > $@
+
+tmp/nds.with.deps.min.jq.js: tmp/jquery-1.11.1.min.js \
+						 tmp/nds.with.deps.min.js
+	@echo "   CAT:         " $@
+	@cat $^ > $@
+
+bin/standalone/neahttadigisanit.js: tmp/nds.with.deps.js
 	@echo "   COPY:        " $@
 	@cp $^ $@
 
-bin/standalone/neahttadigisanit.jquery.min.js: tmp/nds.with.deps.jq.js
-	@echo "   COMPRESSING: " $^
-	@$(UGLY) $^ > $@
+bin/standalone/neahttadigisanit.min.js: tmp/nds.with.deps.min.js
+	@echo "   COPY:        " $@
+	@cp $^ $@
 
-bin/standalone/neahttadigisanit.jquery.js: tmp/nds.with.deps.jq.js
+bin/standalone/neahttadigisanit.jquery.min.js: tmp/nds.with.deps.min.jq.js
+	@echo "   COPY:        " $^
+	@cp $^ $@
+
+bin/standalone/neahttadigisanit.jquery.js: tmp/nds.with.deps.min.jq.js
 	@echo "   COPY:        " $@
 	@cp $^ $@
 
@@ -83,6 +108,7 @@ standalone: bin/bookmarklet/jquery.neahttadigisanit.css \
 			bin/standalone/neahttadigisanit.css \
 			bin/standalone/neahttadigisanit.jquery.min.js \
 			bin/standalone/neahttadigisanit.jquery.js \
+			bin/standalone/neahttadigisanit.js \
 			bin/standalone/neahttadigisanit.min.js
 	@echo "   DONE:        " "STANDALONE"
 	@echo " - "
@@ -98,11 +124,11 @@ standalone-install: bin/standalone/neahttadigisanit.css \
 
 bin/wordpress-neahttadigisanit.zip: src/wordpress \
 				   		tmp/jq.css \
-				   		tmp/nds.with.deps.jq.js
+				   		tmp/nds.with.deps.min.jq.js
 	@echo "   ... Copying css and js."
 	@cp -R src/wordpress tmp/wordpress
 	@cp tmp/jq.css tmp/wordpress/neahttadigisanit/jquery.neahttadigisanit.css
-	@cp tmp/nds.with.deps.jq.js tmp/wordpress/neahttadigisanit/jquery.neahttadigisanit.js
+	@cp tmp/nds.with.deps.min.jq.js tmp/wordpress/neahttadigisanit/jquery.neahttadigisanit.js
 	@echo "   ... Zipping"
 	@cd tmp/wordpress && zip -r neahttadigisanit.zip neahttadigisanit/*
 	@cp tmp/wordpress/neahttadigisanit.zip bin/wordpress-neahttadigisanit.zip
@@ -112,11 +138,20 @@ wordpress: bin/wordpress-neahttadigisanit.zip
 	@echo "   DONE:        " "wordpress"
 	@echo " - "
 
+tmp/neahttadigisanit.init.js: src/neahttadigisanit.init.js
+	@cp $^ $@
+
+
 tmp/neahttadigisanit.init.min.js: src/neahttadigisanit.init.js
 	@$(UGLY) $^ > $@
 
-bin/bookmarklet/bookmarklet.min.js: tmp/nds.with.deps.jq.js \
-						tmp/neahttadigisanit.init.min.js
+bin/bookmarklet/bookmarklet.js: tmp/nds.with.deps.jq.js \
+									tmp/neahttadigisanit.init.js
+	@mkdir -p bin/bookmarklet
+	@cat $^ > $@
+
+bin/bookmarklet/bookmarklet.min.js: tmp/nds.with.deps.min.jq.js \
+									tmp/neahttadigisanit.init.min.js
 	@mkdir -p bin/bookmarklet
 	@cat $^ > $@
 
@@ -125,12 +160,14 @@ bin/bookmarklet/jquery.neahttadigisanit.css: tmp/jq.css
 	@cp $^ $@
 
 bookmarklet: bin/bookmarklet/jquery.neahttadigisanit.css \
+			 bin/bookmarklet/bookmarklet.js \
 			 bin/bookmarklet/bookmarklet.min.js
 	@echo "   DONE:        " "bookmarklet"
 	@echo " - "
 
 bookmarklet-install: bin/bookmarklet/jquery.neahttadigisanit.css \
-					bin/bookmarklet/bookmarklet.min.js
+					bin/bookmarklet/bookmarklet.min.js \
+					bin/bookmarklet/bookmarklet.js
 	@cp bin/bookmarklet/*.js ../neahtta/static/js/
 	@cp bin/bookmarklet/*.css ../neahtta/static/css/
 	@echo "    ... Installed"
