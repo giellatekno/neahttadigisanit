@@ -69,11 +69,26 @@
             </span>
         </div>
         <div class="row-fluid">
-            <blockquote></blockquote>
-        </div>
-        <div class="row-fluid">
-            <span class="span4"><h3 class="red">&nbsp;</h3></span>
-            <span class="span4"><h3 class="blue">{% trans %}More to come...{% endtrans %}</h3></span>
+            <span class="span4">
+                <h2 style="font-weight:300;">{% trans %}Find a problem?{% endtrans %}</h2>
+                <p>{% trans %}If you find any bugs, please get in touch with us. Describe the problem,
+                and tell us what web browser or mobile phone you were using, or what word you
+                were searching for when you encountered the problem.{% endtrans %}</p>
+
+                <div class="visible-phone">
+                    <a class="btn btn-large btn-block" type="button" href="http://www.google.com/recaptcha/mailhide/d?k=01WgZ6byrHkizCLCVzFfG77w==&c=gp0ilXcodB6PLr9Drcf3qHzH8vYJJJS9u_LHyFuFym4=" >{% trans %}Contact us{% endtrans %}</a>
+                    <br />
+                </div>
+                <div class="hidden-phone">
+                    <br />
+                    <a class="btn-contact-thing btn btn-large btn-primary" type="button" href="http://www.google.com/recaptcha/mailhide/d?k=01WgZ6byrHkizCLCVzFfG77w==&c=gp0ilXcodB6PLr9Drcf3qHzH8vYJJJS9u_LHyFuFym4=">{% trans %}Contact us{% endtrans %}</a>
+                    <br />
+                    <br />
+                </div>
+
+                <p>{% trans %}Need more dictionaries? <a href="http://dicts.uit.no/">Here's our full list</a>, and more
+                resources.{% endtrans %}</p>
+            </span>
         </div>
         <div class="row-fluid">
             <blockquote></blockquote>

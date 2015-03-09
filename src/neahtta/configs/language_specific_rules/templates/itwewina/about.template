@@ -75,7 +75,7 @@
                 were searching for when you encountered the problem.{% endtrans %}</p>
 
                 <div class="visible-phone">
-                    <a class="btn btn-large btn-block" type="button" href="http://www.google.com/recaptcha/mailhide/d?k=01WgZ6byrHkizCLCVzFfG77w==&c=gp0ilXcodB6PLr9Drcf3qHzH8vYJJJS9u_LHyFuFym4=" >{% trans %}Contact us{% endtrans %}</a>
+                    <a class="btn btn-large btn-block" type="button" href="http://www.google.com/recaptcha/mailhide/d?k=01NtvuVETvE-L2ZWBNpzwQqg==&c=4PVlUJKUd7ZtoUIm2RboYONMiS4zXZq4TZfzVFYmVZY=" >{% trans %}Contact us{% endtrans %}</a>
                     <br />
                 </div>
                 <div class="hidden-phone">
