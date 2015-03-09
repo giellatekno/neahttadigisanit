@@ -81,7 +81,7 @@
                 </div>
                 <div class="hidden-phone">
                     <br />
-                    <a class="btn-contact-thing btn btn-large btn-primary" type="button" href="http://www.google.com/recaptcha/mailhide/d?k=01WgZ6byrHkizCLCVzFfG77w==&c=gp0ilXcodB6PLr9Drcf3qHzH8vYJJJS9u_LHyFuFym4=">{% trans %}Contact us{% endtrans %}</a>
+                    <a class="btn-contact-thing btn btn-large btn-primary" type="button" href="http://www.google.com/recaptcha/mailhide/d?k=01NtvuVETvE-L2ZWBNpzwQqg==&c=4PVlUJKUd7ZtoUIm2RboYONMiS4zXZq4TZfzVFYmVZY=">{% trans %}Contact us{% endtrans %}</a>
                     <br />
                     <br />
                 </div>
