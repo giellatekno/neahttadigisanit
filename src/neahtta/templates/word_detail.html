@@ -1,18 +1,10 @@
 {% extends 'base.html' %}
 {% import 'macros.html' as macros with context %}
 
-{% block extra_css %}
-    <link href="{{url_for('static', filename='css/detail.css')}}" rel="stylesheet" />
-{% endblock %}
+{% block bodyclass %}word_detail{% endblock %}
 
 {% block extra_js %}
-    <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-typeahead-fork.js')}}"></script>
-    <script type="text/javascript" src="{{url_for('static', filename='js/detail.js')}}"></script>
-
     {{ entry_template_header_includes|safe }}
-{# Not actually in use
-    <script type="text/javascript" src="{{url_for('static', filename='js/dropdown-button.js')}}"></script> 
-#}
 {% endblock %}
 
 {# Construct some useful share information for the meta title #}

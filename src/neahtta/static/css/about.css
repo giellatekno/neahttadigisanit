@@ -1,54 +1,54 @@
-.marketing h1 {
+body.about .marketing h1 {
     margin: 0px 0 10px;
     font-size: 45px;
     font-weight: 200;
     line-height: 1;
     letter-spacing: -1px;
 }
-.marketing h3 {
+body.about .marketing h3 {
     margin: 0px 0 10px;
     font-weight: 300;
     line-height: 1;
     letter-spacing: 0px;
 }
-.hero-unit {
+body.about .hero-unit {
 	padding-top: 1em;
 	padding-bottom: 1em;
 }
 
-.green {
+body.about .green {
     color: #468847;
 }
 
-.red {
+body.about .red {
     color: #b94a48;
 }
 
-.blue {
+body.about .blue {
     color: #3a87ad;
 }
 
-.yellow {
+body.about .yellow {
     color: rgb(224, 224, 4);
 }
 
-.smaller {
+body.about .smaller {
     font-size: 150%;
 }
 
-.row-fluid p a {
+body.about .row-fluid p a {
     border-bottom: 1px dotted;
 }
 
-a:hover {
+body.about a:hover {
     text-decoration: none;
 }
 
 @media (max-width: 550px) {
-	.hero-unit {
+	body.about .hero-unit {
 		margin-bottom: 0em;
 	}
-	.marketing .row-fluid span h3 {
+	body.about .marketing .row-fluid span h3 {
 		margin-top: .75em;
 	}
 }

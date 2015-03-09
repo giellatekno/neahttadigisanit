@@ -1,4 +1,5 @@
 ﻿// TODO: update
+//
 // Language select
 // $(document).ready(function(){
 // 	var has_lang = DSt.get('nds-ui-lang');

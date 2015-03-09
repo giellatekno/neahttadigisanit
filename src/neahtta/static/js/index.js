@@ -1,4 +1,4 @@
-﻿// For Firefox: reenable buttons when back button is pressed
+// For Firefox: reenable buttons when back button is pressed
 $(window).bind("unload", function() {
     $('input').attr('readonly', false);
     $('button').attr('disabled', false);

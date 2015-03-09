@@ -1,4 +1,4 @@
-﻿$(document).ready( function() {
+$(document).ready( function() {
   $('input[name="lookup"]').typeahead({
     items: 5,
     source: function (typeahead, query) {

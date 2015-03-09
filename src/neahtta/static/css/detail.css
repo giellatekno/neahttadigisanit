@@ -3,82 +3,83 @@
 	http://digitesting.oahpa.no/static/css/detail.css
 */
 
-.dl-horizontal dt {
+.word_detail .dl-horizontal dt {
   text-overflow: no;
 }
 
-div.lexeme {
+.word_detail div.lexeme {
     border-bottom: 5px solid #EEE;
     margin-bottom: 15px;
 }
 
-.well dd {
+.word_detail .well dd {
     word-wrap: break-word;
 }
 
-.miniparadigm dd {
+.word_detail .miniparadigm dd {
     white-space: nowrap;
 }
 
-ul.meanings {
+.word_detail ul.meanings {
     list-style-type: circle;
 }
 
-.meanings li {
+.word_detail .meanings li {
     font-size: 120%;
 }
 
-.meanings li {
+.word_detail .meanings li {
 	color: #000;
 }
 
-dl.miniparadigm {
+.word_detail dl.miniparadigm {
 	margin-left: 1em;
 }
 
-dl.miniparadigm dd {
+.word_detail dl.miniparadigm dd {
 	position: relative;
 }
 
-dl dd .extraexpand .extralabel {
+.word_detail dl dd .extraexpand .extralabel {
 	position: absolute;
 	right: -100px;
 	top: 0px;
 }
 
 
-dl.miniparadigm dt {
+.word_detail dl.miniparadigm dt {
 	font-size: 90%;
 	font-weight: light;
 	letter-spacing: -px;
 }
 
-.extralabel {
+.word_detail .extralabel {
 	display: none;
 }
 
-.extra_forms {
+.word_detail .extra_forms {
 	display: none;
 }
 
-dl.possible_analyses dd {
+.word_detail dl.possible_analyses dd {
 	margin-left: 0;
 	padding-left: 0;
 }
-ul.possible_forms {
+
+.word_detail ul.possible_forms {
 	list-style-type: none; 
 	margin-left: 0em;
 }
 
-ul.possible_forms li {
+.word_detail ul.possible_forms li {
 	margin-left: 0;
 }
 
-.miniparadigm .loading_spinner {
+.word_detail .miniparadigm .loading_spinner {
     display: none;
 }
 
-.miniparadigm.loading {
+.word_detail .miniparadigm.loading {
     background-color: #EEE;
     border-radius: 5px;
     -moz-border-radius: 5px;
@@ -89,12 +90,12 @@ ul.possible_forms li {
     overflow: hidden;
 }
 
-.miniparadigm.loading .loading_spinner {
+.word_detail .miniparadigm.loading .loading_spinner {
     padding-top: .75em;
     display: block;
 }
 
-.miniparadigm.loading .loading_spinner p {
+.word_detail .miniparadigm.loading .loading_spinner p {
 	display: block;
     width: 100%;
     text-align: center;
@@ -102,59 +103,59 @@ ul.possible_forms li {
 }
 
 @media (max-width: 550px) {
-	.lexeme p.lead {
+	.word_detail .lexeme p.lead {
 		margin-bottom: .5em;
 	}
 	
-	.meanings {
+	.word_detail .meanings {
 		margin-left: 2.5em;
 	}
 	
 	/* Fix display of mini-paradigm for mobile width */
-	.lexeme > div {
+	.word_detail .lexeme > div {
 		position: inherit;
 	}
 	
-	.miniparadigm {
+	.word_detail .miniparadigm {
 		position: relative;
 		left: -10px;
 		margin-top: 1.5em;
 		padding: 0 0 0 0;
 	}
 
-    .visible-phone .miniparadigm dd {
+    .word_detail .visible-phone .miniparadigm dd {
         float: left;
         text-align: left;
         margin-left: 0px;
     }
 	
-	.dl-horizontal dt {
+	.word_detail .dl-horizontal dt {
     	float: left;
     	width: auto;
     	clear: none;
     	text-align: left;
 	}
   
-	.dl-horizontal dd {
+	.word_detail .dl-horizontal dd {
 		margin-left: 11em;
 	}
 	
-	form#neahttadigisanit input[type="text"] {
+	.word_detail form#neahttadigisanit input[type="text"] {
 		max-width: 8em;
 	}
 }
 
-.visible-phone dl.dl-horizontal.miniparadigm {
+.word_detail .visible-phone dl.dl-horizontal.miniparadigm {
     overflow: hidden;
 }
 
-.visible-phone dl.dl-horizontal.miniparadigm dd {
+.word_detail .visible-phone dl.dl-horizontal.miniparadigm dd {
     width: 100%;
     overflow: word-wrap;
     
 }
 
-.visible-phone dl.dl-horizontal.miniparadigm dt {
+.word_detail .visible-phone dl.dl-horizontal.miniparadigm dt {
     width: 100%;
     word-wrap: break-word;
     white-space: nowrap;

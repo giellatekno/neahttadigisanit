@@ -91,6 +91,151 @@ def register_babel(app):
 
     return app
 
+def prepare_assets(app):
+    """ Prepare asset registries, collect and combine them into several lists.
+
+        Prepare template tags for collecting additional assets along the way.
+
+    """
+
+    # TODO: how to collect additional assets called in templates?
+
+    from flask.ext.assets import Environment, Bundle
+
+    assets = Environment(app)
+    app.assets = assets
+
+    # assumes you've npm install uglify
+    if not os.path.exists('./node_modules/uglify-js/bin/uglifyjs'):
+        print >> sys.stderr, "Couldn't find uglify js: `npm install uglify-js`"
+        sys.exit()
+
+    app.assets.config['UGLIFYJS_BIN'] = './node_modules/uglify-js/bin/uglifyjs'
+    app.assets.init_app(app)
+
+    proj_css = []
+    if app.config.has_project_css:
+        proj_css.append(app.config.has_project_css.replace('static/',''))
+
+    # assets
+    app.assets.main_js_assets = [
+        'js/DSt.js',
+        'js/bootstrap-collapse.js',
+        'js/bootstrap-dropdown.js',
+        'js/standalone-app.js',
+        'js/bootstrap-typeahead-fork.js',
+        'js/base.js',
+        'js/index.js',
+        'js/detail.js',
+        # TODO: underscore? angular? async_paradigms? 
+    ]
+
+    app.assets.main_css_assets = [
+        'css/bootstrap.css',
+        'css/bootstrap-responsive.css',
+        'css/base.css',
+        'css/detail.css',
+        'css/about.css',
+    ] + proj_css
+
+    app.assets.t_css_assets = [
+        "bootstra.386/css/bootstrap.css",
+        "bootstra.386/css/bootstrap-responsive.css",
+        "css/text-tv-base.css",
+    ] + proj_css
+
+    app.assets.t_js_assets = [
+        "bootstra.386/js/jquery.js",
+        "bootstra.386/js/bootstrap-386.js",
+    ]
+
+    # mobile nav
+    app.assets.nav_menu_css = [
+        'navmenu/css/normalize.css',
+        'navmenu/css/icons.css',
+        'navmenu/css/component.css',
+    ]
+
+    # for footer
+    app.assets.nav_menu_js = [
+        'navmenu/js/modernizr.custom.js',
+        'navmenu/js/classie.js',
+        'navmenu/js/mlpushmenu.js',
+        'navmenu/js/mobile_nav_init.js',
+    ]
+
+    app.assets.prepared = False
+
+    # TODO: register separate asset path for inclusion of navmenu stuff
+    # TODO: register separate asset path for texttv
+
+    # TODO: this requires preprocessing templates once so the function
+    # runs.
+
+    #### @app.context_processor
+    #### def register_asset():
+
+    ####     def registerer_js(path):
+    ####         if not app.assets.prepared:
+    ####             print "add " + path
+    ####             app.assets.main_js_assets.append(path)
+    ####         return ''
+
+    ####     def registerer_css(path):
+    ####         if not app.assets.prepared:
+    ####             print "add " + path
+    ####             app.assets.main_css_assets.append(path)
+    ####         return ''
+
+    ####     return dict(register_js_asset=registerer_js, register_css_asset=registerer_css)
+
+    return app
+
+def register_assets(app):
+    """ After all assets have been collected from parsed templates...
+
+      * js/app-compiled-PROJNAME.js
+      * js/app-t-compiled-PROJNAME.js
+      * js/nav-menu-compiled-PROJNAME.js
+
+      * css/app-compiled-PROJNAME.css
+      * css/app-t-compiled-PROJNAME.css
+      * css/nav-menu-compiled-PROJNAME.css
+
+    """
+
+    from flask.ext.assets import Environment, Bundle
+
+    # TODO: register output including proj name
+
+    # app.config['ASSETS_DEBUG'] = True
+
+    js_filters = "uglifyjs"
+    css_filters = "cssmin"
+
+    PROJ = app.config.short_name
+
+    main_js = Bundle(*app.assets.main_js_assets, filters=js_filters, output="js/app-compiled-%s.js" % PROJ)
+    main_css = Bundle(*app.assets.main_css_assets, filters=css_filters, output="css/app-compiled-%s.css" % PROJ)
+    app.assets.register('main_js', main_js)
+    app.assets.register('main_css', main_css)
+
+    main_t_js = Bundle(*app.assets.t_js_assets, filters=js_filters, output="js/app-t-compiled-%s.js" % PROJ)
+    main_t_css = Bundle(*app.assets.t_css_assets, filters=css_filters, output="css/app-t-compiled-%s.css" % PROJ)
+    app.assets.register('main_t_js', main_t_js)
+    app.assets.register('main_t_css', main_t_css)
+
+    nav_menu_js = Bundle(*app.assets.nav_menu_js, filters=js_filters, output="js/nav-menu-compiled-%s.js" % PROJ)
+    nav_menu_css = Bundle(*app.assets.nav_menu_css, filters=css_filters, output="css/nav-menu-compiled-%s.css" % PROJ)
+    app.assets.register('nav_menu_js', nav_menu_js)
+    app.assets.register('nav_menu_css', nav_menu_css)
+
+    # Trigger this to prevent stuff from being reregistered on each
+    # view
+    app.assets.prepared = True
+
+    return app
+
 
 def create_app():
     """ Set up the Flask app, cache, read app configuration file, and
@@ -126,6 +271,9 @@ def create_app():
     app.config.overrides = configs.blueprint.load_language_overrides(app)
     app.config.prepare_lexica()
     app.config.add_optional_routes()
+
+    # Prepare assets before custom templates are read
+    app = prepare_assets(app)
 
     # Register language specific config information
     app.register_blueprint(configs.blueprint)
@@ -188,6 +336,9 @@ def create_app():
                                    "server-error@%s" % gethostname(),
                                    ADMINS, "NDS-%s Failed" %  app.config.short_name)
         app.logger.smtp_handler = mail_handler
+
+    # Templates are read, register the assets
+    register_assets(app)
 
     mail_handler.setLevel(logging.ERROR)
 

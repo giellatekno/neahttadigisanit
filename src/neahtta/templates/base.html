@@ -65,27 +65,22 @@
 	<link rel="icon" href="{{url_for('static', filename='favicon.ico')}}" type="image/x-icon">
 
     {% if text_tv %}
-        <link href="{{url_for('static', filename='bootstra.386/css/bootstrap.css')}}" rel="stylesheet" />
-        <link href="{{url_for('static', filename='bootstra.386/css/bootstrap-responsive.css')}}" rel="stylesheet" />
-        <link href="{{url_for('static', filename='css/text-tv-base.css')}}" rel="stylesheet" /> 
-        <script src="{{url_for('static', filename='bootstra.386/js/jquery.js')}}"></script>
-        <script src="{{url_for('static', filename='bootstra.386/js/bootstrap-386.js')}}"></script>
+        {% assets "main_t_css" %}
+		    <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
+        {% endassets %}
+        {% assets "main_t_js" %}
+            <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+        {% endassets %}
     {% else %}
-        <link href="{{url_for('static', filename='css/bootstrap.css')}}" rel="stylesheet" />
-        <link href="{{url_for('static', filename='css/bootstrap-responsive.css')}}" rel="stylesheet" />
-        <link href="{{url_for('static', filename='css/base.css')}}" rel="stylesheet" />
+        {% assets "main_css" %}
+		    <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
+        {% endassets %}
     {% endif %}
 
     {% if new_mobile_nav %}
-
-		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navmenu/css/normalize.css')}}" />
-		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navmenu/css/icons.css')}}" />
-		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navmenu/css/component.css')}}" />
-
-		{#
-		    <link rel="stylesheet" type="text/css" href="css/demo.css" />
-        #}
-
+        {% assets "nav_menu_css" %}
+		    <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
+        {% endassets %}
     {% endif %}
 
 
@@ -94,10 +89,6 @@
 
     {% block extra_css %}
     {% endblock %}
-
-    {% if project_css %}
-        <link href="/{{ project_css }}" rel="stylesheet" />
-    {% endif %}
 
     <!--[if lt IE 9]>
           <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -109,13 +100,9 @@
         <script type="text/javascript" src="{{url_for('static', filename='js/jquery.1.7.2.min.js')}}"></script>
     {% endif %}
 
-    <script type="text/javascript" src="{{url_for('static', filename='js/DSt.js')}}"></script>
-    <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-collapse.js')}}"></script>
-    <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-dropdown.js')}}"></script>
-
-    <script type="text/javascript" src="{{url_for('static', filename='js/standalone-app.js')}}"></script>
-
-    <script type="text/javascript" src="{{url_for('static', filename='js/base.js')}}"></script>
+    {% assets "main_js" %}
+        <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
 
     {% block extra_js %}
     {% endblock %}
@@ -263,14 +250,9 @@
     {% endblock %}
 
     {% if new_mobile_nav %}
-        {# push nav #}
-	    <script src="{{url_for('static', filename='navmenu/js/modernizr.custom.js')}}"></script>
-	    <script src="{{url_for('static', filename='navmenu/js/classie.js')}}"></script>
-	    <script src="{{url_for('static', filename='navmenu/js/mlpushmenu.js')}}"></script>
-	    {# TODO: namespace? #}
-	    <script>
-		    new mlPushMenu( document.getElementById( 'mp-menu' ), document.getElementById( 'trigger' ) );
-	    </script>
+        {% assets "nav_menu_js" %}
+            <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+        {% endassets %}
     {% endif %}
 
     {% block debug_text %}
