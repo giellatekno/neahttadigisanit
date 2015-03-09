@@ -20,7 +20,6 @@ lexicon:
 --
 {{ lemma }}+N+Prop+Sem/Mal+Sg+Nom
 {{ lemma }}+N+Prop+Sem/Mal+Sg+Acc
-{{ lemma }}+N+Prop+Sem/Mal+Sg+Gen+Allegro
 {{ lemma }}+N+Prop+Sem/Mal+Sg+Gen
 {{ lemma }}+N+Prop+Sem/Mal+Sg+Loc
 {{ lemma }}+N+Prop+Sem/Mal+Sg+Ill
@@ -36,7 +35,6 @@ lexicon:
 {{ lemma }}+N+Prop+Sem/Fem+Sg+Nom
 {{ lemma }}+N+Prop+Sem/Fem+Sg+Acc
 {{ lemma }}+N+Prop+Sem/Fem+Sg+Gen
-{{ lemma }}+N+Prop+Sem/Fem+Sg+Gen+Allegro
 {{ lemma }}+N+Prop+Sem/Fem+Sg+Loc
 {{ lemma }}+N+Prop+Sem/Fem+Sg+Ill
 {{ lemma }}+N+Prop+Sem/Fem+Sg+Com
@@ -51,7 +49,6 @@ lexicon:
 {{ lemma }}+N+Prop+Sem/Ani+Sg+Nom
 {{ lemma }}+N+Prop+Sem/Ani+Sg+Acc
 {{ lemma }}+N+Prop+Sem/Ani+Sg+Gen
-{{ lemma }}+N+Prop+Sem/Ani+Sg+Gen+Allegro
 {{ lemma }}+N+Prop+Sem/Ani+Sg+Loc
 {{ lemma }}+N+Prop+Sem/Ani+Sg+Ill
 {{ lemma }}+N+Prop+Sem/Ani+Sg+Com
@@ -67,7 +64,6 @@ lexicon:
 {{ lemma }}+N+Prop+Sem/Org+Sg+Nom
 {{ lemma }}+N+Prop+Sem/Org+Sg+Acc
 {{ lemma }}+N+Prop+Sem/Org+Sg+Gen
-{{ lemma }}+N+Prop+Sem/Org+Sg+Gen+Allegro
 {{ lemma }}+N+Prop+Sem/Org+Sg+Loc
 {{ lemma }}+N+Prop+Sem/Org+Sg+Ill
 {{ lemma }}+N+Prop+Sem/Org+Sg+Com
