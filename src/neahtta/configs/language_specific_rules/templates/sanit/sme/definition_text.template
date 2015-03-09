@@ -58,6 +58,9 @@
     {% set link_target = '' %}
     {% set fra_ref = tg.xpath('./re/@fra_ref') %}
 
+    {% set explanation = t.attrib.get('type', False) %}
+    {% set explanation_exists = explanation and True %}
+
     {% if fra_ref|count > 0 %}
         {# If this is a reference link, then there is no data in the
            <t /> node, so the <re /> becomes the link text.  #}
@@ -69,15 +72,19 @@
         {% set reference = false %}
     {% endif %}
 
-    {% if reference %}
-        <a href="/{{ _from }}/{{ _to }}/ref/?l_til_ref={{ reference }}">
-            {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{{ text -}}
-        </a> &rarr;
-    {%- else %}
-        {# NB: swap from and to for these links since these are definitions. #}
-        <a href="/detail/{{ _to }}/{{ _from }}/{{ text }}.html?no_compounds=true&lemma_match=true">
-            {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{{ text -}}
-        </a>
+    {% if explanation_exists and explanation == 'expl' %}
+        {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{{ text -}}
+    {% else %}
+        {% if reference %}
+            <a href="/{{ _from }}/{{ _to }}/ref/?l_til_ref={{ reference }}">
+                {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{{ text -}}
+            </a> &rarr;
+        {%- else %}
+            {# NB: swap from and to for these links since these are definitions. #}
+            <a href="/detail/{{ _to }}/{{ _from }}/{{ text }}.html?no_compounds=true&lemma_match=true">
+                {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{{ text -}}
+            </a>
+        {%- endif %}
     {%- endif %}
 {%- endmacro -%}
 
