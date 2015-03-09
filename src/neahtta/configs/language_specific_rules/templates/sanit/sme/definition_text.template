@@ -46,12 +46,14 @@
 
     {% set pos = t.attrib.get('pos', '') %}
 
-    {%- if pos == 'Pron' and t.attrib.get('type')%}
+    {%- if pos == 'Pron' and t.attrib.get('type') %}
         {% set pos_type = t.attrib.get('type')|tagfilter(_from, _to) %}
         {% set pos_text = pos|tagfilter(_from, _to)  + " " + pos_type %}
     {% else %}
         {% set pos_text = pos|tagfilter(_from, _to) %}
     {%- endif %}
+
+    {% set pos_text = pos_text|trim %}
 
     {% set link_target = '' %}
     {% set fra_ref = tg.xpath('./re/@fra_ref') %}
@@ -69,12 +71,12 @@
 
     {% if reference %}
         <a href="/{{ _from }}/{{ _to }}/ref/?l_til_ref={{ reference }}">
-            ({{ pos_text }}) {{ text -}}
+            {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{{ text -}}
         </a> &rarr;
     {%- else %}
         {# NB: swap from and to for these links since these are definitions. #}
         <a href="/detail/{{ _to }}/{{ _from }}/{{ text }}.html?no_compounds=true&lemma_match=true">
-            ({{ pos_text }}) {{ text -}}
+            {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{{ text -}}
         </a>
     {%- endif %}
 {%- endmacro -%}
