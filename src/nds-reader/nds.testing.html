@@ -13,8 +13,10 @@
         <!-- Here's the important part... -->
         <link href="bin/bookmarklet/jquery.neahttadigisanit.css" rel="stylesheet" />
 
-        <script type='text/javascript' src='tmp/vendor.deps.js'></script>
-        <script type='text/javascript' src='tmp/nds.js'></script>
+        <script type='text/javascript' src='bin/app.js'></script>
+        <script type='text/javascript'>
+            require('src/initialize');
+        </script>
         <script type='text/javascript'>
             jQuery(document).ready(function (){
                 // Register the input form with options
@@ -26,7 +28,6 @@
                 });
             });
         </script>
-        <!-- end -->
 
     </head>
 
