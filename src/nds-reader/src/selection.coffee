@@ -1,6 +1,6 @@
-rangy = module.Rangy
+rangy = require 'rangy'
 
-module.Selection = class Selection
+module.exports = class Selection
 
   expandByWordRegex: (selection) ->
     # This expands text by word regexp, to include any characters that might
@@ -19,6 +19,7 @@ module.Selection = class Selection
     word_opts.wordOptions =
       wordRegex: word_regex
 
+    console.log selection
     selection.expand("word", word_opts)
 
     return selection

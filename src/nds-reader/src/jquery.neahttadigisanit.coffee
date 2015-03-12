@@ -5,9 +5,13 @@ from Neahttadigisánit dictionary services.
 
 ###
 
-Templates = module.Templates
-Selection = module.Selection
+Templates = require './templates' 
+Selection = require './selection' 
+DictionaryAPI = require './dictionary'
+DSt = require './DSt'
+
 selectionizer = new Selection()
+templates = new Templates()
 
 # Wrap jQuery and add plugin functionality
 jQuery(document).ready ($) ->
@@ -69,7 +73,7 @@ jQuery(document).ready ($) ->
     cache: true
     error: () =>
       $(document).find('body').find('.errornav').remove()
-      $(document).find('body').append Templates.ErrorBar {
+      $(document).find('body').append templates.ErrorBar {
         host: API_HOST
       }
 
@@ -77,8 +81,8 @@ jQuery(document).ready ($) ->
   ## NDS Functionality
   ## 
 
-  dictionary = new module.DictionaryAPI {
-    host: "//"
+  dictionary = new DictionaryAPI {
+    host: "/"
   }
 
   cleanTooltipResponse = (selection, response, opts) ->
@@ -99,7 +103,7 @@ jQuery(document).ready ($) ->
       """)[0]
       selectionizer.surroundRange(range, _wrapElement)
 
-    Templates.renderPopup(response, selection)
+    templates.renderPopup(response, selection)
 
   lookupSelectEvent = (evt, string, element, range, opts, full_text) ->
 
@@ -204,6 +208,8 @@ jQuery(document).ready ($) ->
 
     if window.NDS_API_HOST || window.API_HOST
       window.API_HOST = window.NDS_API_HOST || window.API_HOST
+      if /\/$/.test(window.API_HOST)
+        window.API_HOST = window.API_HOST.slice(0, window.API_HOST.length - 1)
     if nds_opts.api_host
       if /\/$/.test(nds_opts.api_host)
         nds_opts.api_host = nds_opts.api_host.slice(0, nds_opts.api_host.length - 1)
@@ -217,7 +223,7 @@ jQuery(document).ready ($) ->
         nds_opts.api_host + '/read/update/json/' + '?callback=?'
         (response) ->
           $(document).find('body').append(
-            Templates.NotifyWindow(response)
+            templates.NotifyWindow(response)
           )
           $(document).find('#notifications').modal({
             backdrop: true
@@ -241,7 +247,7 @@ jQuery(document).ready ($) ->
         nds_opts.api_host + "/read/ie8_instructions/json/" + '?callback=?'
         (response) ->
           $(document).find('body').prepend(
-            Templates.NotifyWindow(response)
+            templates.NotifyWindow(response)
           )
           $(document).find('#notifications').modal({
             backdrop: true
@@ -264,7 +270,7 @@ jQuery(document).ready ($) ->
       delete window.lookup_regex
 
       if window.nds_opts.displayOptions
-        $(document).find('body').append Templates.OptionsTab(window.nds_opts)
+        $(document).find('body').append templates.OptionsTab(window.nds_opts)
         window.optTab = $(document).find('#webdict_options')
         ### Over 9000?!! ###
         window.optTab.css('z-index', 9000)

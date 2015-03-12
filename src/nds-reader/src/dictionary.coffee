@@ -1,4 +1,4 @@
-module.DictionaryAPI = class DictionaryAPI
+module.exports = class DictionaryAPI
 
   constructor: (configs) ->
     @host = configs.host

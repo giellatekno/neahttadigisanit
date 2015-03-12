@@ -1,10 +1,11 @@
-module.Templates = @Templates =
+_ = require './localization'
+
+module.exports = class Templates
  
   renderPopup: (response, selection) ->
     # TODO: make this a uniform template with logic separated.
     #
     # NB: overriding underscorejs here.
-    _ = module.fakeGetText
 
     first = (somearray) ->
       if somearray.length > 0
@@ -116,7 +117,6 @@ module.Templates = @Templates =
     
   NotifyWindow: (text) ->
     # NB: overriding underscorejs here.
-    _ = module.fakeGetText
     return $("""
       <div class="modal hide fade" id="notifications">
           <div class="modal-header">
@@ -138,7 +138,6 @@ module.Templates = @Templates =
   
   OptionsTab: (opts) ->
     # NB: overriding underscorejs here.
-    _ = module.fakeGetText
     makeLanguageOption = (options) ->
       # Count groups available-- if there are more than one then we need to
       # display them
@@ -299,7 +298,6 @@ module.Templates = @Templates =
 
   ErrorBar: (args) ->
     # NB: overriding underscorejs here.
-    _ = module.fakeGetText
     host = args.host
     el = $("""
      <div id="nds_errors" class="errornav navbar-inverse navbar-fixed-bottom">
