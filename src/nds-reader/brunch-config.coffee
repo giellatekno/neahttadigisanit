@@ -26,13 +26,13 @@ require.register({"#{path}": function(exports, require, module) {
       "src/bookmarklet.init.js",
       /^src\/chrome/,
       /^src\/wordpress/,
-      /^src\/css/,
       "lib/rangy-1.3",
       "lib/rangy-1.3.0-alpha.20140825",
     ]
   paths:
     public: "bin/"
     watched: [
+      "src/css",
       "src/",
       "lib/"
     ]
@@ -63,4 +63,10 @@ require.register({"#{path}": function(exports, require, module) {
           # that brunch doesn't necessarily allow for 
           "src/initialize.coffee",
         ]
+    stylesheets:
+      joinTo:
+        'app.css': /^src\/css/
+      order:
+        before: "bootstrap.custom.css"
+        after: "jquery.neahttadigisanit.css"
 
