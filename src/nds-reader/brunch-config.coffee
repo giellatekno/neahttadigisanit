@@ -1,18 +1,19 @@
 exports.config =
   modules:
-    #     wrapper: (path, data) ->
-    #       if path == 'lib/rangy-core.js'
-    #         path = 'rangy'
-    #       if path == 'lib/rangy-textrange.js'
-    #         path = 'rangy-textrange'
-    #       # This is the one we don't want to wrap
-    #       # if path == 'src/initialize.coffee'
-    #       #   return data
-    #       return """
-    # require.register({#{path}: function(exports, require, module) {
-    #   #{data}
-    # }});\n\n
-    #  """
+    wrapper: (path, data) ->
+      path = path.replace(/.(js|coffee)$/,'')
+      if path == 'lib/rangy-core'
+        path = 'rangy'
+      if path == 'lib/rangy-textrange'
+        path = 'rangy-textrange'
+      # This is the one we don't want to wrap
+      if path == 'src/initialize'
+        return data
+      return """
+require.register({"#{path}": function(exports, require, module) {
+  #{data}
+}});\n\n
+"""
     nameCleaner: (path) ->
       if path == 'lib/rangy-core.js'
         return 'rangy'
