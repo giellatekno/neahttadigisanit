@@ -12,58 +12,25 @@ COFFEE  = $(MODULES)/coffee --compile --bare --print --map
 UGLY    = $(MODULES)/uglifyjs
 BOOK    = $(MODULES)/bookmarklet
 
-# These are in order.
-COFFEES = src/nds.root.coffee \
-		  src/dictionary.coffee \
-		  src/selection.coffee \
-		  src/templates.coffee \
-		  src/jquery.neahttadigisanit.coffee
+bin/app.js bin/app.css:
+	brunch build
 
-# Things listed here will be concatenated into the vendor .js file 
-#
-# NB: jquery is purposefully lefto out because we want this to be optional for
-# a later phase in the build.
+bin/app.min.js: bin/app.js
+	@$(UGLY) $^ > $@
 
-JS_DEPS = src/libs/bootstrap-dropdown.js \
-          src/libs/bootstrap-tooltip.js \
-          src/libs/bootstrap-popover.js \
-          src/libs/bootstrap-modal.js \
-          src/libs/underscore.js \
-          src/libs/DSt.js \
-          src/libs/semver.js \
-          src/libs/rangy-core.js \
-          src/libs/rangy-textrange.js
-
-STYLESHEETS = src/css/bootstrap.custom.css \
-			  src/css/jquery.neahttadigisanit.css
-
-tmp/jq.css: $(STYLESHEETS)
-	@echo "   COMPILING:   " $(STYLESHEETS)
+tmp/jq.css: bin/app.css
+	@echo "   COMPILING:   tmp/jq.css" 
 	@cat $^ > $@
 
 tmp/nds.js: $(COFFEES)
 	@echo "   COMPILING:    nds.js"
 	@$(COFFEE) $^ > $@
 
-tmp/nds.min.js: tmp/nds.js
-	@echo "   COMPRESSING:  nds.min.js"
-	@$(UGLY) $^ > $@
-
-tmp/vendor.deps.js: $(JS_DEPS)
-	@echo "   BUILDING:     vendor.deps.js"
-	@cat $^ > $@
-
-tmp/vendor.deps.min.js: $(JS_DEPS)
-	@echo "   BUILDING:     vendor.deps.min.js"
-	@$(UGLY) $^ > $@
-
-tmp/nds.with.deps.js: tmp/vendor.deps.js \
-					  tmp/nds.js
+tmp/nds.with.deps.js: bin/app.js
 	@echo "   BUILDING:     nds.with.deps.js"
 	@cat $^ > $@
 
-tmp/nds.with.deps.min.js: tmp/vendor.deps.min.js \
-						  tmp/nds.min.js
+tmp/nds.with.deps.min.js: bin/app.min.js
 	@echo "   BUILDING:     nds.with.deps.min.js"
 	@cat $^ > $@
 
