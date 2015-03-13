@@ -1,4 +1,9 @@
+ * make sure that the jQuery being accessed by $ throughout is the right one
+
  * have everything running off of require('initialize') as part of getting
    everything reorganized, need to remove this requirement for the jquery
    plugin
+
  * some cleanup to do yet in templates
+
+ * fix all the global variables accessed by window\. 

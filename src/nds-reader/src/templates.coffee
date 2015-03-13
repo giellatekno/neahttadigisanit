@@ -2,8 +2,9 @@ _ = require './localization'
 
 BSDropdown = require('../lib/bootstrap-dropdown')
 BSModal = require('../lib/bootstrap-modal')
-BSPopover = require('../lib/bootstrap-popover')
+# popover requires tooltip
 BSTooltip = require('../lib/bootstrap-tooltip')
+BSPopover = require('../lib/bootstrap-popover')
 
 module.exports = class Templates
  
