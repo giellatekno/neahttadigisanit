@@ -1,5 +1,10 @@
 _ = require './localization'
 
+BSDropdown = require('../lib/bootstrap-dropdown')
+BSModal = require('../lib/bootstrap-modal')
+BSPopover = require('../lib/bootstrap-popover')
+BSTooltip = require('../lib/bootstrap-tooltip')
+
 module.exports = class Templates
  
   renderPopup: (response, selection) ->
