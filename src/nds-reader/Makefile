@@ -105,11 +105,19 @@ wordpress: bin/wordpress-neahttadigisanit.zip
 	@echo "   DONE:        " "wordpress"
 	@echo " - "
 
-bin/bookmarklet/bookmarklet.js: tmp/nds.with.deps.jq.js
+tmp/neahttadigisanit.init.js: src/neahttadigisanit.init.js
+	@cp $^ $@
+
+tmp/neahttadigisanit.init.min.js: src/neahttadigisanit.init.js
+	@$(UGLY) $^ > $@
+
+bin/bookmarklet/bookmarklet.js: tmp/nds.with.deps.jq.js \
+									tmp/neahttadigisanit.init.js
 	@mkdir -p bin/bookmarklet
 	@cat $^ > $@
 
-bin/bookmarklet/bookmarklet.min.js: tmp/nds.with.deps.min.jq.js
+bin/bookmarklet/bookmarklet.min.js: tmp/nds.with.deps.min.jq.js \
+									tmp/neahttadigisanit.init.min.js
 	@mkdir -p bin/bookmarklet
 	@cat $^ > $@
 

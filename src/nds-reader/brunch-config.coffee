@@ -14,6 +14,7 @@ exports.config =
 
     wrapper: (path, data) ->
       path = path.replace(/.(js|coffee)$/,'')
+      console.log path
       if path == 'lib/rangy-core'
         path = 'rangy'
       if path == 'lib/rangy-textrange'
@@ -21,14 +22,14 @@ exports.config =
       # This is the one we don't want to wrap with require, but we wrap in a
       # closure anyway to get everything out of the global namespace, with the
       # exception that ndsrequire is included in the whole thing.
-      if path == 'src/initialize' || path == 'src/requirejs_detect'
+      if path == 'src/initialize'
         return """
 (function (require) {
 #{data}
 })(ndsrequire);\n\n
 """
       # Otherwise, register as usual with our own commonjs, 
-      return """
+      return """\n\n
 ndsrequire.register({"#{path}": function(exports, ndsrequire, module) {
   var require = ndsrequire;
   #{data}
@@ -43,7 +44,9 @@ ndsrequire.register({"#{path}": function(exports, ndsrequire, module) {
   conventions:
     ignored: [
       "src/bookmark.js",
+      # these must be ignored and later added to the bookmarklet
       "src/bookmarklet.init.js",
+      "src/neahttadigisanit.init.js",
       /^src\/chrome/,
       /^src\/wordpress/,
       "lib/rangy-1.3",
