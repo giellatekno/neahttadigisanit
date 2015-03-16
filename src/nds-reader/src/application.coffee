@@ -2,8 +2,10 @@
     and provides some prototype definitions, as well as the
     internationalization function which must be present for everything else.
 ###
-rangy = require 'rangy'
-rangy_textrange = require 'rangy-textrange'
+
+# if not window.rangy?
+#   rangy = require 'rangy'
+#   rangy_textrange = require 'rangy-textrange'
 
 Array::zipPermutations = (right_list) ->
   left_list = this
@@ -54,7 +56,28 @@ String::endsWith = (str) ->
 JQPlugin = require('src/jquery.neahttadigisanit')
 FakeGetText = require('src/localization')
 
+rangy = require('rangy')
+rangyTextRange = require('rangy-textrange')
+
 module.exports = class Application
+
+  checkmodules: () ->
+    empty = JSON.stringify {}
+    for l in ndsrequire.list()
+      a = JSON.stringify require(l)
+      if a == empty and (not a.startsWith('lib/bootstrap'))
+        console.log "#{l} failed to initialize"
 
   constructor: () ->
     console.log "Initializing NDS."
+    @checkmodules()
+    if window.rangy?
+      rangz = window.rangy
+    else if rangy?
+      rangz = rangy
+    if rangz.init?
+      console.log "found rangy"
+      window.rangy.init()
+    else
+      console.log "couldn't find rangy"
+

@@ -4,3 +4,4 @@
 
 
  * potentially global exports, ndsrequire, module is conflicting with things on NRK
+ * jquery included in final bookmarklet?

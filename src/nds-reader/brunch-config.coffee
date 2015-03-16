@@ -14,11 +14,12 @@ exports.config =
 
     wrapper: (path, data) ->
       path = path.replace(/.(js|coffee)$/,'')
-      console.log path
       if path == 'lib/rangy-core'
         path = 'rangy'
       if path == 'lib/rangy-textrange'
         path = 'rangy-textrange'
+      if path == 'src/wrapper_start' or path == 'src/wrapper_end'
+        return data
       # This is the one we don't want to wrap with require, but we wrap in a
       # closure anyway to get everything out of the global namespace, with the
       # exception that ndsrequire is included in the whole thing.
@@ -30,8 +31,7 @@ exports.config =
 """
       # Otherwise, register as usual with our own commonjs, 
       return """\n\n
-ndsrequire.register({"#{path}": function(exports, ndsrequire, module) {
-  var require = ndsrequire;
+ndsrequire.register({"#{path}": function(exports, require, module) {
   #{data}
 }});\n\n
 """
@@ -65,6 +65,9 @@ ndsrequire.register({"#{path}": function(exports, ndsrequire, module) {
         'app.js': /^(src|lib)/
       order:
         before: [
+          "src/wrapper_start.js"
+          "lib/rangy-core.js",
+          "lib/rangy-textrange.js",
           "lib/bootstrap-dropdown.js",
           "lib/bootstrap-tooltip.js",
           "lib/bootstrap-popover.js",
@@ -73,8 +76,6 @@ ndsrequire.register({"#{path}": function(exports, ndsrequire, module) {
           "src/DSt.js",
           "lib/underscore.js",
           "lib/semver.js",
-          "lib/rangy-core.js",
-          "lib/rangy-textrange.js",
           "src/application.coffee"
           "src/dictionary.coffee",
           "src/selection.coffee",
@@ -85,6 +86,7 @@ ndsrequire.register({"#{path}": function(exports, ndsrequire, module) {
           # problem here is probably that thing needs to be included in a way
           # that brunch doesn't necessarily allow for 
           "src/initialize.coffee",
+          "src/wrapper_end.js"
         ]
     stylesheets:
       joinTo:

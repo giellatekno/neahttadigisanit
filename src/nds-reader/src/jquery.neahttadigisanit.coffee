@@ -8,8 +8,8 @@ from Neahttadigisánit dictionary services.
 Templates = require './templates'
 Selection = require './selection'
 DictionaryAPI = require './dictionary'
-DSt = require './DSt'
-Semver = require 'lib/semver'
+DSt = require('./DSt').DSt
+Semver = require '../lib/semver'
 
 selectionizer = new Selection()
 templates = new Templates()

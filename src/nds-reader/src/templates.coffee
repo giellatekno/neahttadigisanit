@@ -5,6 +5,7 @@ BSModal = require('../lib/bootstrap-modal')
 # popover requires tooltip
 BSTooltip = require('../lib/bootstrap-tooltip')
 BSPopover = require('../lib/bootstrap-popover')
+DSt = require('./DSt').DSt
 
 module.exports = class Templates
  

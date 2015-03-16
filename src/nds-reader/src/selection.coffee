@@ -1,3 +1,5 @@
+# rangy = module.Rangy
+
 rangy = require 'rangy'
 
 module.exports = class Selection
