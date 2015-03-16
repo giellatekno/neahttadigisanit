@@ -57,5 +57,4 @@ FakeGetText = require('src/localization')
 module.exports = class Application
 
   constructor: () ->
-    @rangy = rangy
-    console.log "zomg"
+    console.log "Initializing NDS."

@@ -5,13 +5,16 @@ from Neahttadigisánit dictionary services.
 
 ###
 
-Templates = require './templates' 
-Selection = require './selection' 
+Templates = require './templates'
+Selection = require './selection'
 DictionaryAPI = require './dictionary'
 DSt = require './DSt'
+Semver = require 'lib/semver'
 
 selectionizer = new Selection()
 templates = new Templates()
+
+SpinnerHex = """data:image/gif;base64,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"""
 
 # Wrap jQuery and add plugin functionality
 jQuery(document).ready ($) ->
@@ -44,7 +47,7 @@ jQuery(document).ready ($) ->
   # This way the plugin will notify users to update their bookmark.
   EXPECT_BOOKMARKLET_VERSION = '0.0.3'
 
-  initSpinner = (imgPath) ->
+  initSpinner = () ->
     ###
         spinner popup in right corner; `spinner = initSpinner()` to
         create or find, then usual `spinner.show()` or `.hide()` as
@@ -52,7 +55,7 @@ jQuery(document).ready ($) ->
     ###
     spinnerExists = $(document).find('.spinner')
     if spinnerExists.length == 0
-      spinner = $("""<img src="#{imgPath}" class="spinner" />""")
+      spinner = $("""<img src="#{SpinnerHex}" class="spinner" />""")
       $(document).find('body').append(spinner)
       return spinner
     return spinnerExists
@@ -204,7 +207,7 @@ jQuery(document).ready ($) ->
   $.fn.selectToLookup = (opts) ->
     opts = $.extend {}, $.fn.selectToLookup.options, opts
     window.nds_opts = opts
-    spinner = initSpinner(opts.spinnerImg)
+    spinner = initSpinner()
 
     if window.NDS_API_HOST || window.API_HOST
       window.API_HOST = window.NDS_API_HOST || window.API_HOST
@@ -373,7 +376,7 @@ jQuery(document).ready ($) ->
     version_ok = false
 
     if window.NDS_BOOKMARK_VERSION?
-      version_ok = semver.gte( window.NDS_BOOKMARK_VERSION
+      version_ok = Semver.gte( window.NDS_BOOKMARK_VERSION
                              , EXPECT_BOOKMARKLET_VERSION
                              )
     else
@@ -427,7 +430,6 @@ jQuery(document).ready ($) ->
   $.fn.selectToLookup.options =
     api_host: API_HOST
     formResults: "#results"
-    spinnerImg: "/static/img/spinner.gif"
     sourceLanguage: "sme"
     langPairSelect: "#webdict_options *[name='language_pair']"
     tooltip: true

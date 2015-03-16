@@ -1,16 +1,36 @@
+# Some websites already using commonjs-require or requirejs will conflict with
+# the local commonjs-require, so in the build process we need to make a
+# no-conflict require definition.
+
+# This is our own brand of commonjs-require-definition, which simply has
+# 'require' replaced with ndsrequire
+
+commonjsNoConflict = require('./commonjs-require-definition')
+
 exports.config =
   modules:
+    definition: (path, data) ->
+      return commonjsNoConflict
+
     wrapper: (path, data) ->
       path = path.replace(/.(js|coffee)$/,'')
       if path == 'lib/rangy-core'
         path = 'rangy'
       if path == 'lib/rangy-textrange'
         path = 'rangy-textrange'
-      # This is the one we don't want to wrap
-      if path == 'src/initialize'
-        return data
+      # This is the one we don't want to wrap with require, but we wrap in a
+      # closure anyway to get everything out of the global namespace, with the
+      # exception that ndsrequire is included in the whole thing.
+      if path == 'src/initialize' || path == 'src/requirejs_detect'
+        return """
+(function (require) {
+#{data}
+})(ndsrequire);\n\n
+"""
+      # Otherwise, register as usual with our own commonjs, 
       return """
-require.register({"#{path}": function(exports, require, module) {
+ndsrequire.register({"#{path}": function(exports, ndsrequire, module) {
+  var require = ndsrequire;
   #{data}
 }});\n\n
 """

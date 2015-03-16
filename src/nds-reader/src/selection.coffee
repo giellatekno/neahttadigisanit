@@ -19,7 +19,6 @@ module.exports = class Selection
     word_opts.wordOptions =
       wordRegex: word_regex
 
-    console.log selection
     selection.expand("word", word_opts)
 
     return selection

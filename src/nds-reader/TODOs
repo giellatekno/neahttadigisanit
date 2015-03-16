@@ -1,3 +1,6 @@
  * make sure that the jQuery being accessed by $ throughout is the right one
  * fix all the global variables accessed by window\. 
  * src/neahttadigisanit.init.js
+
+ * current problem: rangy is still missing, but it's probably because of the require shenanigans
+ * current problem: selectToLookup is registered but not running
