@@ -31,7 +31,8 @@ exports.config =
 """
       # Otherwise, register as usual with our own commonjs, 
       return """\n\n
-ndsrequire.register({"#{path}": function(exports, require, module) {
+ndsrequire.register({"#{path}": function(exports, ndsrequire, module) {
+  var require = ndsrequire;
   #{data}
 }});\n\n
 """

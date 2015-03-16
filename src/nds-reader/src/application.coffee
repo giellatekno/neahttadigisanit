@@ -70,7 +70,7 @@ module.exports = class Application
 
   constructor: () ->
     console.log "Initializing NDS."
-    @checkmodules()
+    # @checkmodules()
     if window.rangy?
       rangz = window.rangy
     else if rangy?
