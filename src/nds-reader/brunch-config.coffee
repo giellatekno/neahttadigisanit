@@ -37,6 +37,8 @@ require.register({"#{path}": function(exports, require, module) {
   conventions:
     ignored: [
       "src/bookmark.js",
+      "src/wrapper_start.js"
+      "src/wrapper_end.js"
       # these must be ignored and later added to the bookmarklet
       "src/bookmarklet.init.js",
       "src/neahttadigisanit.init.js",

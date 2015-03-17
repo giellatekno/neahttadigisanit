@@ -1,80 +1,73 @@
 # What is this?
 
-This is a module for providing access to a dictionary API, giving users access
-to lexical information without need to understand what word or wordform they
-are looking at.
-
-## Goals and TODOs
-
-- TODO: language-specific word tokenization for extending selections:
-
-    https://code.google.com/p/rangy/wiki/TextRangeModule
-
-    Will be supported in 1.3. Time to try!
-
-    include regex for each language in /read/config/
-
-
-- TODO: iOS selection: 
-
-    http://stackoverflow.com/questions/11300590/how-to-captured-selected-text-range-in-ios-after-text-selection-expansion
-
-- TODO: wordpress plugin needs to have an option in the UI to define the host.
-        beware NDS_BOOKMARK_VERSION; should disable this check for wordpress
-
-- TODO: need to modularize a bit, as this is getting unwieldy
-        a good thing to use seems to be stitch: 
-        https://github.com/sstephenson/stitch/
-        
-        - however, it seems like it takes a good amount of work to convert this
-        to something more modular, so, maybe best to wait until it becomes
-        unavoidable
-
-
-- TODO: recompile bootstrap from less with specific namespace to ensure
-        that style changes only occur in webdict_options and the popup.
-
-- TODO: test function for changing hostname of API
-
-- TODO: Alternate means of triggering lookups so that there is no necessity
-  to hold Alt/Opt while clicking, for devices that do not have this.
-  Potentially also, displaying the result lookup in another format for
-  mobile devices (Popup banner fixed to the bottom edge?).
-
-- TODO: automatic compiling of bookmarklet bookmark source-- currently it's
-  kind of a trick, but fortunately does not need to be updated frequently.
-
-
-## Installation of plugin for a specific site
-
-See `kursadict.plugin.html` for an example of the bare minimum. Note the code
-required for the search form.
-
 ## Developing
 
-### Developing with the core files 
+### Development dependencies
 
-You will need some tools to help develop and compile the modules here, namely
-node.js and npm. Otherwise, this module uses both JavaScript, and CoffeeScript[1],
-the latter of which is a fabulous (completely) JavaScript compliant abstraction
-from JavaScript which makes many programming concepts more accessible. It is
-kind of another language, but not really, and is very easy to switch over to
-using.
-
-    [1]: http://coffeescript.org
-
-Coffeescript quickly compiles into JavaScript, but in addition, there are some
-other handy tools available in the Node.js 'system' that are necessary for 
-compiling the modules here into a minimum of files, and a variety of targets.
-
-#### node.js and npm
-
-Install these first, and then run
+Developing with the NDS reader requires node.js, and the npm package manager.
+Install these first, and then run:
 
     npm install
 
 Which will read package.json, and install the development packages to compile
 all the dependencies to one JS file.
+
+#### Brunch
+
+The core application files are compiled using [brunch](http://brunch.io), the
+core files will run within the test html files without further compilation
+steps. It is not enough however, to compile the core files.
+
+Brunch will watch files and recompile as needed.
+
+#### Targets
+
+Further build targets beyond the core files are handled with Make.
+
+##### Bookmarklet / Reader plugin
+
+    make bookmarklet
+    make bookmarklet-install
+
+The bookmarklet has some specific requirements which justify separate build
+targets.
+
+In order to not conflict with most modern, javascript-heavy websites, the core
+code is wrapped within its own closure to provide a separate namespace, and
+isolate from JavaScript library managers that may be running on the site (like
+requirejs, or amd; Brunch itself uses commonjs-require).
+
+This wrapper is defined in the following files:
+
+  * src/wrapper_start.js
+  * src/wrapper_end.js
+
+**Bookmark.js**
+
+In addition to the code compiled for the bookmarklet, there is the bookmarklet
+itself. This is contained in `src/bookmark.js`.
+
+It is important to note that `src/bookmark.js` and
+`src/jquery.neahttadigisanit.coffee` may both specify version numbers, with
+which one can provide a message to end users to "upgrade" (delete, and
+reinstall) their bookmark for the NDS Reader. 
+
+As is, the bookmark.js file is now at maximum complexity: it contains one
+exception for skuvla.info to ensure that the plugin javascript and CSS is
+included in the right frame, since most websites now do not use frames; not
+much more should be needed here; however a note to future developers: find some
+other way of handling exceptional sites like this to keep bookmark.js small.
+
+This file must also be compiled: which means, compressed and URL encoded. This
+is also handled as part of the bookmarklet make targets.
+
+##### Standalone
+
+    make standalone
+    make standalone-install
+
+This version is one that developers may include in their sites, simply by
+linking to the compiled files and including them in pages.
 
 #### Make
 
@@ -93,7 +86,9 @@ Also some specific ones:
     make bookmarklet-install
 
 
-# Twitter Bootstrap
+### Additional development tools
+
+#### Twitter Bootstrap
 
 Twitter Bootstrap is in use for CSS and JavaScript conveniences like popups,
 tooltips, and form elements. There is also a little custom code to handle
@@ -147,23 +142,6 @@ JS Components
  * Popovers
  * Buttons
  * Typeahead
-
-### Bookmarklet development
-
-For Neahttadigisanit there is a bookmarklet that users may install in their
-browser's bookmark bar. The bookmarklet javascript that they include in the
-bookmark simply downloads a compiled javascript file that includes jquery, the
-neahttadigisanit jquery plugin (henceforth plugin code), and a short
-initialization file which calls the rest of the plugin and allows the user to
-begin looking up files. The Makefile thus has a build target
-`bookmarklet`, which handles this.
-
-One of the special bits of this is that the API hostname is not defined in the
-plugin code, but defined within the bookmarklet javascript... This is to make
-testing and development easier.
-
-The code for the actual bookmarklet that downloads the file is instead stored
-within neahtta.py, since compiling it is a little more of a specific process.
 
 #### Gotchas
 

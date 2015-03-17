@@ -26,13 +26,15 @@ tmp/nds.js: $(COFFEES)
 	@echo "   COMPILING:    nds.js"
 	@$(COFFEE) $^ > $@
 
-tmp/nds.with.deps.js: wrapper_start.js \
+tmp/nds.with.deps.js: src/wrapper_start.js \
 					  bin/app.js \
-					  wrapper_end.js
+					  src/wrapper_end.js
 	@echo "   BUILDING:     nds.with.deps.js"
 	@cat $^ > $@
 
-tmp/nds.with.deps.min.js: wrapper_start.js bin/app.min.js wrapper_end.js
+tmp/nds.with.deps.min.js: src/wrapper_start.js \
+						  bin/app.min.js \
+						  src/wrapper_end.js
 	@echo "   BUILDING:     nds.with.deps.min.js"
 	@cat $^ > $@
 
