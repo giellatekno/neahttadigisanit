@@ -77,7 +77,7 @@ module.exports = class Application
       rangz = rangy
     if rangz.init?
       console.log "found rangy"
-      window.rangy.init()
+      rangz.init()
     else
       console.log "couldn't find rangy"
 
