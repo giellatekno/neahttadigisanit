@@ -1,19 +1,11 @@
-# Some websites already using commonjs-require or requirejs will conflict with
-# the local commonjs-require, so in the build process we need to make a
-# no-conflict require definition.
-
-# This is our own brand of commonjs-require-definition, which simply has
-# 'require' replaced with ndsrequire
-
-commonjsNoConflict = require('./commonjs-require-definition')
-
 exports.config =
   modules:
-    definition: (path, data) ->
-      return commonjsNoConflict
-
     wrapper: (path, data) ->
+      # This function wraps compiled code. All modules are wrapped in the
+      # commonjs module registration
+
       path = path.replace(/.(js|coffee)$/,'')
+
       if path == 'lib/rangy-core'
         path = 'rangy'
       if path == 'lib/rangy-textrange'
@@ -25,14 +17,13 @@ exports.config =
       # exception that ndsrequire is included in the whole thing.
       if path == 'src/initialize'
         return """
-(function (require) {
+(function () {
 #{data}
-})(ndsrequire);\n\n
+})();\n\n
 """
       # Otherwise, register as usual with our own commonjs, 
       return """\n\n
-ndsrequire.register({"#{path}": function(exports, ndsrequire, module) {
-  var require = ndsrequire;
+require.register({"#{path}": function(exports, require, module) {
   #{data}
 }});\n\n
 """
@@ -42,6 +33,7 @@ ndsrequire.register({"#{path}": function(exports, ndsrequire, module) {
       if path == 'lib/rangy-textrange.js'
         return 'rangy-textrange'
       return path
+
   conventions:
     ignored: [
       "src/bookmark.js",

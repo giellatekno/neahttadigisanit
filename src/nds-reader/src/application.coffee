@@ -61,12 +61,12 @@ rangyTextRange = require('rangy-textrange')
 
 module.exports = class Application
 
-  checkmodules: () ->
-    empty = JSON.stringify {}
-    for l in ndsrequire.list()
-      a = JSON.stringify require(l)
-      if a == empty and (not a.startsWith('lib/bootstrap'))
-        console.log "#{l} failed to initialize"
+    # checkmodules: () ->
+    # chempty = JSON.stringify {}
+    # chfor l in ndsrequire.list()
+    # ch  a = JSON.stringify require(l)
+    # ch  if a == empty and (not a.startsWith('lib/bootstrap'))
+    # ch    console.log "#{l} failed to initialize"
 
   constructor: () ->
     console.log "Initializing NDS."
