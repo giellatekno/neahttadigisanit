@@ -44,6 +44,7 @@ require.register({"#{path}": function(exports, require, module) {
       "src/neahttadigisanit.init.js",
       /^src\/chrome/,
       /^src\/wordpress/,
+      "lib/jquery-1.11.1.js",
       "lib/rangy-1.3",
       "lib/rangy-1.3.0-alpha.20140825",
     ]
