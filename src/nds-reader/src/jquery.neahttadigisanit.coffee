@@ -280,6 +280,10 @@ jQuery(document).ready ($) ->
         ### Over 9000?!! ###
         window.optTab.css('z-index', 9000)
         $(document).find('#webdict_options').topZIndex()
+        # Demote common social stuff
+        $(document).find('#lessbuttons_holder').css({
+            'z-index': 5000,
+        })
 
       # Recall stored language pair from session
       previous_langpair = DSt.get(
