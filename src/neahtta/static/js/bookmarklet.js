@@ -10306,7 +10306,5821 @@ if ( typeof noGlobal === strundefined ) {
 return jQuery;
 
 }));
-/* ============================================================
+// Global NDS space
+//
+// This goes along with wrapper_end.js to set up one big namespace for NDS. 
+
+(function (){
+    'use strict';
+
+    (function(){
+        // Undefine amd, requirejs, etc., because it conflicts with the local commonjs-require.
+
+        var globals = typeof window !== 'undefined' ? window : global;
+
+        globals.define = undefined;
+        globals.require = undefined;
+        globals.requirejs = undefined;
+
+    }).call(this);
+
+(function(/*! Brunch !*/) {
+  'use strict';
+
+  var globals = typeof window !== 'undefined' ? window : global;
+  if (typeof globals.require === 'function') return;
+
+  var modules = {};
+  var cache = {};
+
+  var has = function(object, name) {
+    return ({}).hasOwnProperty.call(object, name);
+  };
+
+  var expand = function(root, name) {
+    var results = [], parts, part;
+    if (/^\.\.?(\/|$)/.test(name)) {
+      parts = [root, name].join('/').split('/');
+    } else {
+      parts = name.split('/');
+    }
+    for (var i = 0, length = parts.length; i < length; i++) {
+      part = parts[i];
+      if (part === '..') {
+        results.pop();
+      } else if (part !== '.' && part !== '') {
+        results.push(part);
+      }
+    }
+    return results.join('/');
+  };
+
+  var dirname = function(path) {
+    return path.split('/').slice(0, -1).join('/');
+  };
+
+  var localRequire = function(path) {
+    return function(name) {
+      var dir = dirname(path);
+      var absolute = expand(dir, name);
+      return globals.require(absolute, path);
+    };
+  };
+
+  var initModule = function(name, definition) {
+    var module = {id: name, exports: {}};
+    cache[name] = module;
+    definition(module.exports, localRequire(name), module);
+    return module.exports;
+  };
+
+  var require = function(name, loaderPath) {
+    var path = expand(name, '.');
+    if (loaderPath == null) loaderPath = '/';
+
+    if (has(cache, path)) return cache[path].exports;
+    if (has(modules, path)) return initModule(path, modules[path]);
+
+    var dirIndex = expand(path, './index');
+    if (has(cache, dirIndex)) return cache[dirIndex].exports;
+    if (has(modules, dirIndex)) return initModule(dirIndex, modules[dirIndex]);
+
+    throw new Error('Cannot find module "' + name + '" from '+ '"' + loaderPath + '"');
+  };
+
+  var define = function(bundle, fn) {
+    if (typeof bundle === 'object') {
+      for (var key in bundle) {
+        if (has(bundle, key)) {
+          modules[key] = bundle[key];
+        }
+      }
+    } else {
+      modules[bundle] = fn;
+    }
+  };
+
+  var list = function() {
+    var result = [];
+    for (var item in modules) {
+      if (has(modules, item)) {
+        result.push(item);
+      }
+    }
+    return result;
+  };
+
+  globals.require = require;
+  globals.require.define = define;
+  globals.require.register = define;
+  globals.require.list = list;
+  globals.require.brunch = true;
+})();
+
+
+
+require.register({"rangy": function(exports, require, module) {
+  /**
+ * Rangy, a cross-browser JavaScript range and selection library
+ * http://code.google.com/p/rangy/
+ *
+ * Copyright 2014, Tim Down
+ * Licensed under the MIT license.
+ * Version: 1.3.0-alpha.20140825
+ * Build date: 25 August 2014
+ */
+
+(function(factory, global) {
+    if (typeof define == "function" && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(factory);
+    } else if (typeof module != "undefined" && typeof exports == "object") {
+        // Node/CommonJS style
+        module.exports = factory();
+    } else {
+        // No AMD or CommonJS support so we place Rangy in a global variable
+        global.rangy = factory();
+    }
+})(function() {
+
+    var OBJECT = "object", FUNCTION = "function", UNDEFINED = "undefined";
+
+    // Minimal set of properties required for DOM Level 2 Range compliance. Comparison constants such as START_TO_START
+    // are omitted because ranges in KHTML do not have them but otherwise work perfectly well. See issue 113.
+    var domRangeProperties = ["startContainer", "startOffset", "endContainer", "endOffset", "collapsed",
+        "commonAncestorContainer"];
+
+    // Minimal set of methods required for DOM Level 2 Range compliance
+    var domRangeMethods = ["setStart", "setStartBefore", "setStartAfter", "setEnd", "setEndBefore",
+        "setEndAfter", "collapse", "selectNode", "selectNodeContents", "compareBoundaryPoints", "deleteContents",
+        "extractContents", "cloneContents", "insertNode", "surroundContents", "cloneRange", "toString", "detach"];
+
+    var textRangeProperties = ["boundingHeight", "boundingLeft", "boundingTop", "boundingWidth", "htmlText", "text"];
+
+    // Subset of TextRange's full set of methods that we're interested in
+    var textRangeMethods = ["collapse", "compareEndPoints", "duplicate", "moveToElementText", "parentElement", "select",
+        "setEndPoint", "getBoundingClientRect"];
+
+    /*----------------------------------------------------------------------------------------------------------------*/
+
+    // Trio of functions taken from Peter Michaux's article:
+    // http://peter.michaux.ca/articles/feature-detection-state-of-the-art-browser-scripting
+    function isHostMethod(o, p) {
+        var t = typeof o[p];
+        return t == FUNCTION || (!!(t == OBJECT && o[p])) || t == "unknown";
+    }
+
+    function isHostObject(o, p) {
+        return !!(typeof o[p] == OBJECT && o[p]);
+    }
+
+    function isHostProperty(o, p) {
+        return typeof o[p] != UNDEFINED;
+    }
+
+    // Creates a convenience function to save verbose repeated calls to tests functions
+    function createMultiplePropertyTest(testFunc) {
+        return function(o, props) {
+            var i = props.length;
+            while (i--) {
+                if (!testFunc(o, props[i])) {
+                    return false;
+                }
+            }
+            return true;
+        };
+    }
+
+    // Next trio of functions are a convenience to save verbose repeated calls to previous two functions
+    var areHostMethods = createMultiplePropertyTest(isHostMethod);
+    var areHostObjects = createMultiplePropertyTest(isHostObject);
+    var areHostProperties = createMultiplePropertyTest(isHostProperty);
+
+    function isTextRange(range) {
+        return range && areHostMethods(range, textRangeMethods) && areHostProperties(range, textRangeProperties);
+    }
+
+    function getBody(doc) {
+        return isHostObject(doc, "body") ? doc.body : doc.getElementsByTagName("body")[0];
+    }
+
+    var modules = {};
+
+    var isBrowser = (typeof window != UNDEFINED && typeof document != UNDEFINED);
+
+    var util = {
+        isHostMethod: isHostMethod,
+        isHostObject: isHostObject,
+        isHostProperty: isHostProperty,
+        areHostMethods: areHostMethods,
+        areHostObjects: areHostObjects,
+        areHostProperties: areHostProperties,
+        isTextRange: isTextRange,
+        getBody: getBody
+    };
+
+    var api = {
+        version: "1.3.0-alpha.20140825",
+        initialized: false,
+        isBrowser: isBrowser,
+        supported: true,
+        util: util,
+        features: {},
+        modules: modules,
+        config: {
+            alertOnFail: true,
+            alertOnWarn: false,
+            preferTextRange: false,
+            autoInitialize: (typeof rangyAutoInitialize == UNDEFINED) ? true : rangyAutoInitialize
+        }
+    };
+
+    function consoleLog(msg) {
+        if (isHostObject(global, "console") && isHostMethod(global.console, "log")) {
+            global.console.log(msg);
+        }
+    }
+
+    function alertOrLog(msg, shouldAlert) {
+        if (isBrowser && shouldAlert) {
+            alert(msg);
+        } else  {
+            consoleLog(msg);
+        }
+    }
+
+    function fail(reason) {
+        api.initialized = true;
+        api.supported = false;
+        alertOrLog("Rangy is not supported in this environment. Reason: " + reason, api.config.alertOnFail);
+    }
+
+    api.fail = fail;
+
+    function warn(msg) {
+        alertOrLog("Rangy warning: " + msg, api.config.alertOnWarn);
+    }
+
+    api.warn = warn;
+
+    // Add utility extend() method
+    var extend;
+    if ({}.hasOwnProperty) {
+        util.extend = extend = function(obj, props, deep) {
+            var o, p;
+            for (var i in props) {
+                if (props.hasOwnProperty(i)) {
+                    o = obj[i];
+                    p = props[i];
+                    if (deep && o !== null && typeof o == "object" && p !== null && typeof p == "object") {
+                        extend(o, p, true);
+                    }
+                    obj[i] = p;
+                }
+            }
+            // Special case for toString, which does not show up in for...in loops in IE <= 8
+            if (props.hasOwnProperty("toString")) {
+                obj.toString = props.toString;
+            }
+            return obj;
+        };
+
+        util.createOptions = function(optionsParam, defaults) {
+            var options = {};
+            extend(options, defaults);
+            if (optionsParam) {
+                extend(options, optionsParam, true);
+            }
+            return options;
+        };
+    } else {
+        fail("hasOwnProperty not supported");
+    }
+    
+    // Test whether we're in a browser and bail out if not
+    if (!isBrowser) {
+        fail("Rangy can only run in a browser");
+    }
+
+    // Test whether Array.prototype.slice can be relied on for NodeLists and use an alternative toArray() if not
+    (function() {
+        var toArray;
+
+        if (isBrowser) {
+            var el = document.createElement("div");
+            el.appendChild(document.createElement("span"));
+            var slice = [].slice;
+            try {
+                if (slice.call(el.childNodes, 0)[0].nodeType == 1) {
+                    toArray = function(arrayLike) {
+                        return slice.call(arrayLike, 0);
+                    };
+                }
+            } catch (e) {}
+        }
+
+        if (!toArray) {
+            toArray = function(arrayLike) {
+                var arr = [];
+                for (var i = 0, len = arrayLike.length; i < len; ++i) {
+                    arr[i] = arrayLike[i];
+                }
+                return arr;
+            };
+        }
+
+        util.toArray = toArray;
+    })();
+
+    // Very simple event handler wrapper function that doesn't attempt to solve issues such as "this" handling or
+    // normalization of event properties
+    var addListener;
+    if (isBrowser) {
+        if (isHostMethod(document, "addEventListener")) {
+            addListener = function(obj, eventType, listener) {
+                obj.addEventListener(eventType, listener, false);
+            };
+        } else if (isHostMethod(document, "attachEvent")) {
+            addListener = function(obj, eventType, listener) {
+                obj.attachEvent("on" + eventType, listener);
+            };
+        } else {
+            fail("Document does not have required addEventListener or attachEvent method");
+        }
+
+        util.addListener = addListener;
+    }
+
+    var initListeners = [];
+
+    function getErrorDesc(ex) {
+        return ex.message || ex.description || String(ex);
+    }
+
+    // Initialization
+    function init() {
+        if (!isBrowser || api.initialized) {
+            return;
+        }
+        var testRange;
+        var implementsDomRange = false, implementsTextRange = false;
+
+        // First, perform basic feature tests
+
+        if (isHostMethod(document, "createRange")) {
+            testRange = document.createRange();
+            if (areHostMethods(testRange, domRangeMethods) && areHostProperties(testRange, domRangeProperties)) {
+                implementsDomRange = true;
+            }
+        }
+
+        var body = getBody(document);
+        if (!body || body.nodeName.toLowerCase() != "body") {
+            fail("No body element found");
+            return;
+        }
+
+        if (body && isHostMethod(body, "createTextRange")) {
+            testRange = body.createTextRange();
+            if (isTextRange(testRange)) {
+                implementsTextRange = true;
+            }
+        }
+
+        if (!implementsDomRange && !implementsTextRange) {
+            fail("Neither Range nor TextRange are available");
+            return;
+        }
+
+        api.initialized = true;
+        api.features = {
+            implementsDomRange: implementsDomRange,
+            implementsTextRange: implementsTextRange
+        };
+
+        // Initialize modules
+        var module, errorMessage;
+        for (var moduleName in modules) {
+            if ( (module = modules[moduleName]) instanceof Module ) {
+                module.init(module, api);
+            }
+        }
+
+        // Call init listeners
+        for (var i = 0, len = initListeners.length; i < len; ++i) {
+            try {
+                initListeners[i](api);
+            } catch (ex) {
+                errorMessage = "Rangy init listener threw an exception. Continuing. Detail: " + getErrorDesc(ex);
+                consoleLog(errorMessage);
+            }
+        }
+    }
+
+    // Allow external scripts to initialize this library in case it's loaded after the document has loaded
+    api.init = init;
+
+    // Execute listener immediately if already initialized
+    api.addInitListener = function(listener) {
+        if (api.initialized) {
+            listener(api);
+        } else {
+            initListeners.push(listener);
+        }
+    };
+
+    var shimListeners = [];
+
+    api.addShimListener = function(listener) {
+        shimListeners.push(listener);
+    };
+
+    function shim(win) {
+        win = win || window;
+        init();
+
+        // Notify listeners
+        for (var i = 0, len = shimListeners.length; i < len; ++i) {
+            shimListeners[i](win);
+        }
+    }
+
+    if (isBrowser) {
+        api.shim = api.createMissingNativeApi = shim;
+    }
+
+    function Module(name, dependencies, initializer) {
+        this.name = name;
+        this.dependencies = dependencies;
+        this.initialized = false;
+        this.supported = false;
+        this.initializer = initializer;
+    }
+
+    Module.prototype = {
+        init: function() {
+            var requiredModuleNames = this.dependencies || [];
+            for (var i = 0, len = requiredModuleNames.length, requiredModule, moduleName; i < len; ++i) {
+                moduleName = requiredModuleNames[i];
+
+                requiredModule = modules[moduleName];
+                if (!requiredModule || !(requiredModule instanceof Module)) {
+                    throw new Error("required module '" + moduleName + "' not found");
+                }
+
+                requiredModule.init();
+
+                if (!requiredModule.supported) {
+                    throw new Error("required module '" + moduleName + "' not supported");
+                }
+            }
+            
+            // Now run initializer
+            this.initializer(this);
+        },
+        
+        fail: function(reason) {
+            this.initialized = true;
+            this.supported = false;
+            throw new Error("Module '" + this.name + "' failed to load: " + reason);
+        },
+
+        warn: function(msg) {
+            api.warn("Module " + this.name + ": " + msg);
+        },
+
+        deprecationNotice: function(deprecated, replacement) {
+            api.warn("DEPRECATED: " + deprecated + " in module " + this.name + "is deprecated. Please use " +
+                replacement + " instead");
+        },
+
+        createError: function(msg) {
+            return new Error("Error in Rangy " + this.name + " module: " + msg);
+        }
+    };
+    
+    function createModule(name, dependencies, initFunc) {
+        var newModule = new Module(name, dependencies, function(module) {
+            if (!module.initialized) {
+                module.initialized = true;
+                try {
+                    initFunc(api, module);
+                    module.supported = true;
+                } catch (ex) {
+                    var errorMessage = "Module '" + name + "' failed to load: " + getErrorDesc(ex);
+                    consoleLog(errorMessage);
+                }
+            }
+        });
+        modules[name] = newModule;
+        return newModule;
+    }
+
+    api.createModule = function(name) {
+        // Allow 2 or 3 arguments (second argument is an optional array of dependencies)
+        var initFunc, dependencies;
+        if (arguments.length == 2) {
+            initFunc = arguments[1];
+            dependencies = [];
+        } else {
+            initFunc = arguments[2];
+            dependencies = arguments[1];
+        }
+
+        var module = createModule(name, dependencies, initFunc);
+
+        // Initialize the module immediately if the core is already initialized
+        if (api.initialized && api.supported) {
+            module.init();
+        }
+    };
+
+    api.createCoreModule = function(name, dependencies, initFunc) {
+        createModule(name, dependencies, initFunc);
+    };
+
+    /*----------------------------------------------------------------------------------------------------------------*/
+
+    // Ensure rangy.rangePrototype and rangy.selectionPrototype are available immediately
+
+    function RangePrototype() {}
+    api.RangePrototype = RangePrototype;
+    api.rangePrototype = new RangePrototype();
+
+    function SelectionPrototype() {}
+    api.selectionPrototype = new SelectionPrototype();
+
+    /*----------------------------------------------------------------------------------------------------------------*/
+
+    // DOM utility methods used by Rangy
+    api.createCoreModule("DomUtil", [], function(api, module) {
+        var UNDEF = "undefined";
+        var util = api.util;
+
+        // Perform feature tests
+        if (!util.areHostMethods(document, ["createDocumentFragment", "createElement", "createTextNode"])) {
+            module.fail("document missing a Node creation method");
+        }
+
+        if (!util.isHostMethod(document, "getElementsByTagName")) {
+            module.fail("document missing getElementsByTagName method");
+        }
+
+        var el = document.createElement("div");
+        if (!util.areHostMethods(el, ["insertBefore", "appendChild", "cloneNode"] ||
+                !util.areHostObjects(el, ["previousSibling", "nextSibling", "childNodes", "parentNode"]))) {
+            module.fail("Incomplete Element implementation");
+        }
+
+        // innerHTML is required for Range's createContextualFragment method
+        if (!util.isHostProperty(el, "innerHTML")) {
+            module.fail("Element is missing innerHTML property");
+        }
+
+        var textNode = document.createTextNode("test");
+        if (!util.areHostMethods(textNode, ["splitText", "deleteData", "insertData", "appendData", "cloneNode"] ||
+                !util.areHostObjects(el, ["previousSibling", "nextSibling", "childNodes", "parentNode"]) ||
+                !util.areHostProperties(textNode, ["data"]))) {
+            module.fail("Incomplete Text Node implementation");
+        }
+
+        /*----------------------------------------------------------------------------------------------------------------*/
+
+        // Removed use of indexOf because of a bizarre bug in Opera that is thrown in one of the Acid3 tests. I haven't been
+        // able to replicate it outside of the test. The bug is that indexOf returns -1 when called on an Array that
+        // contains just the document as a single element and the value searched for is the document.
+        var arrayContains = /*Array.prototype.indexOf ?
+            function(arr, val) {
+                return arr.indexOf(val) > -1;
+            }:*/
+
+            function(arr, val) {
+                var i = arr.length;
+                while (i--) {
+                    if (arr[i] === val) {
+                        return true;
+                    }
+                }
+                return false;
+            };
+
+        // Opera 11 puts HTML elements in the null namespace, it seems, and IE 7 has undefined namespaceURI
+        function isHtmlNamespace(node) {
+            var ns;
+            return typeof node.namespaceURI == UNDEF || ((ns = node.namespaceURI) === null || ns == "http://www.w3.org/1999/xhtml");
+        }
+
+        function parentElement(node) {
+            var parent = node.parentNode;
+            return (parent.nodeType == 1) ? parent : null;
+        }
+
+        function getNodeIndex(node) {
+            var i = 0;
+            while( (node = node.previousSibling) ) {
+                ++i;
+            }
+            return i;
+        }
+
+        function getNodeLength(node) {
+            switch (node.nodeType) {
+                case 7:
+                case 10:
+                    return 0;
+                case 3:
+                case 8:
+                    return node.length;
+                default:
+                    return node.childNodes.length;
+            }
+        }
+
+        function getCommonAncestor(node1, node2) {
+            var ancestors = [], n;
+            for (n = node1; n; n = n.parentNode) {
+                ancestors.push(n);
+            }
+
+            for (n = node2; n; n = n.parentNode) {
+                if (arrayContains(ancestors, n)) {
+                    return n;
+                }
+            }
+
+            return null;
+        }
+
+        function isAncestorOf(ancestor, descendant, selfIsAncestor) {
+            var n = selfIsAncestor ? descendant : descendant.parentNode;
+            while (n) {
+                if (n === ancestor) {
+                    return true;
+                } else {
+                    n = n.parentNode;
+                }
+            }
+            return false;
+        }
+
+        function isOrIsAncestorOf(ancestor, descendant) {
+            return isAncestorOf(ancestor, descendant, true);
+        }
+
+        function getClosestAncestorIn(node, ancestor, selfIsAncestor) {
+            var p, n = selfIsAncestor ? node : node.parentNode;
+            while (n) {
+                p = n.parentNode;
+                if (p === ancestor) {
+                    return n;
+                }
+                n = p;
+            }
+            return null;
+        }
+
+        function isCharacterDataNode(node) {
+            var t = node.nodeType;
+            return t == 3 || t == 4 || t == 8 ; // Text, CDataSection or Comment
+        }
+
+        function isTextOrCommentNode(node) {
+            if (!node) {
+                return false;
+            }
+            var t = node.nodeType;
+            return t == 3 || t == 8 ; // Text or Comment
+        }
+
+        function insertAfter(node, precedingNode) {
+            var nextNode = precedingNode.nextSibling, parent = precedingNode.parentNode;
+            if (nextNode) {
+                parent.insertBefore(node, nextNode);
+            } else {
+                parent.appendChild(node);
+            }
+            return node;
+        }
+
+        // Note that we cannot use splitText() because it is bugridden in IE 9.
+        function splitDataNode(node, index, positionsToPreserve) {
+            var newNode = node.cloneNode(false);
+            newNode.deleteData(0, index);
+            node.deleteData(index, node.length - index);
+            insertAfter(newNode, node);
+
+            // Preserve positions
+            if (positionsToPreserve) {
+                for (var i = 0, position; position = positionsToPreserve[i++]; ) {
+                    // Handle case where position was inside the portion of node after the split point
+                    if (position.node == node && position.offset > index) {
+                        position.node = newNode;
+                        position.offset -= index;
+                    }
+                    // Handle the case where the position is a node offset within node's parent
+                    else if (position.node == node.parentNode && position.offset > getNodeIndex(node)) {
+                        ++position.offset;
+                    }
+                }
+            }
+            return newNode;
+        }
+
+        function getDocument(node) {
+            if (node.nodeType == 9) {
+                return node;
+            } else if (typeof node.ownerDocument != UNDEF) {
+                return node.ownerDocument;
+            } else if (typeof node.document != UNDEF) {
+                return node.document;
+            } else if (node.parentNode) {
+                return getDocument(node.parentNode);
+            } else {
+                throw module.createError("getDocument: no document found for node");
+            }
+        }
+
+        function getWindow(node) {
+            var doc = getDocument(node);
+            if (typeof doc.defaultView != UNDEF) {
+                return doc.defaultView;
+            } else if (typeof doc.parentWindow != UNDEF) {
+                return doc.parentWindow;
+            } else {
+                throw module.createError("Cannot get a window object for node");
+            }
+        }
+
+        function getIframeDocument(iframeEl) {
+            if (typeof iframeEl.contentDocument != UNDEF) {
+                return iframeEl.contentDocument;
+            } else if (typeof iframeEl.contentWindow != UNDEF) {
+                return iframeEl.contentWindow.document;
+            } else {
+                throw module.createError("getIframeDocument: No Document object found for iframe element");
+            }
+        }
+
+        function getIframeWindow(iframeEl) {
+            if (typeof iframeEl.contentWindow != UNDEF) {
+                return iframeEl.contentWindow;
+            } else if (typeof iframeEl.contentDocument != UNDEF) {
+                return iframeEl.contentDocument.defaultView;
+            } else {
+                throw module.createError("getIframeWindow: No Window object found for iframe element");
+            }
+        }
+
+        // This looks bad. Is it worth it?
+        function isWindow(obj) {
+            return obj && util.isHostMethod(obj, "setTimeout") && util.isHostObject(obj, "document");
+        }
+
+        function getContentDocument(obj, module, methodName) {
+            var doc;
+
+            if (!obj) {
+                doc = document;
+            }
+
+            // Test if a DOM node has been passed and obtain a document object for it if so
+            else if (util.isHostProperty(obj, "nodeType")) {
+                doc = (obj.nodeType == 1 && obj.tagName.toLowerCase() == "iframe") ?
+                    getIframeDocument(obj) : getDocument(obj);
+            }
+
+            // Test if the doc parameter appears to be a Window object
+            else if (isWindow(obj)) {
+                doc = obj.document;
+            }
+
+            if (!doc) {
+                throw module.createError(methodName + "(): Parameter must be a Window object or DOM node");
+            }
+
+            return doc;
+        }
+
+        function getRootContainer(node) {
+            var parent;
+            while ( (parent = node.parentNode) ) {
+                node = parent;
+            }
+            return node;
+        }
+
+        function comparePoints(nodeA, offsetA, nodeB, offsetB) {
+            // See http://www.w3.org/TR/DOM-Level-2-Traversal-Range/ranges.html#Level-2-Range-Comparing
+            var nodeC, root, childA, childB, n;
+            if (nodeA == nodeB) {
+                // Case 1: nodes are the same
+                return offsetA === offsetB ? 0 : (offsetA < offsetB) ? -1 : 1;
+            } else if ( (nodeC = getClosestAncestorIn(nodeB, nodeA, true)) ) {
+                // Case 2: node C (container B or an ancestor) is a child node of A
+                return offsetA <= getNodeIndex(nodeC) ? -1 : 1;
+            } else if ( (nodeC = getClosestAncestorIn(nodeA, nodeB, true)) ) {
+                // Case 3: node C (container A or an ancestor) is a child node of B
+                return getNodeIndex(nodeC) < offsetB  ? -1 : 1;
+            } else {
+                root = getCommonAncestor(nodeA, nodeB);
+                if (!root) {
+                    throw new Error("comparePoints error: nodes have no common ancestor");
+                }
+
+                // Case 4: containers are siblings or descendants of siblings
+                childA = (nodeA === root) ? root : getClosestAncestorIn(nodeA, root, true);
+                childB = (nodeB === root) ? root : getClosestAncestorIn(nodeB, root, true);
+
+                if (childA === childB) {
+                    // This shouldn't be possible
+                    throw module.createError("comparePoints got to case 4 and childA and childB are the same!");
+                } else {
+                    n = root.firstChild;
+                    while (n) {
+                        if (n === childA) {
+                            return -1;
+                        } else if (n === childB) {
+                            return 1;
+                        }
+                        n = n.nextSibling;
+                    }
+                }
+            }
+        }
+
+        /*----------------------------------------------------------------------------------------------------------------*/
+
+        // Test for IE's crash (IE 6/7) or exception (IE >= 8) when a reference to garbage-collected text node is queried
+        var crashyTextNodes = false;
+
+        function isBrokenNode(node) {
+            var n;
+            try {
+                n = node.parentNode;
+                return false;
+            } catch (e) {
+                return true;
+            }
+        }
+
+        (function() {
+            var el = document.createElement("b");
+            el.innerHTML = "1";
+            var textNode = el.firstChild;
+            el.innerHTML = "<br>";
+            crashyTextNodes = isBrokenNode(textNode);
+
+            api.features.crashyTextNodes = crashyTextNodes;
+        })();
+
+        /*----------------------------------------------------------------------------------------------------------------*/
+
+        function inspectNode(node) {
+            if (!node) {
+                return "[No node]";
+            }
+            if (crashyTextNodes && isBrokenNode(node)) {
+                return "[Broken node]";
+            }
+            if (isCharacterDataNode(node)) {
+                return '"' + node.data + '"';
+            }
+            if (node.nodeType == 1) {
+                var idAttr = node.id ? ' id="' + node.id + '"' : "";
+                return "<" + node.nodeName + idAttr + ">[index:" + getNodeIndex(node) + ",length:" + node.childNodes.length + "][" + (node.innerHTML || "[innerHTML not supported]").slice(0, 25) + "]";
+            }
+            return node.nodeName;
+        }
+
+        function fragmentFromNodeChildren(node) {
+            var fragment = getDocument(node).createDocumentFragment(), child;
+            while ( (child = node.firstChild) ) {
+                fragment.appendChild(child);
+            }
+            return fragment;
+        }
+
+        var getComputedStyleProperty;
+        if (typeof window.getComputedStyle != UNDEF) {
+            getComputedStyleProperty = function(el, propName) {
+                return getWindow(el).getComputedStyle(el, null)[propName];
+            };
+        } else if (typeof document.documentElement.currentStyle != UNDEF) {
+            getComputedStyleProperty = function(el, propName) {
+                return el.currentStyle[propName];
+            };
+        } else {
+            module.fail("No means of obtaining computed style properties found");
+        }
+
+        function NodeIterator(root) {
+            this.root = root;
+            this._next = root;
+        }
+
+        NodeIterator.prototype = {
+            _current: null,
+
+            hasNext: function() {
+                return !!this._next;
+            },
+
+            next: function() {
+                var n = this._current = this._next;
+                var child, next;
+                if (this._current) {
+                    child = n.firstChild;
+                    if (child) {
+                        this._next = child;
+                    } else {
+                        next = null;
+                        while ((n !== this.root) && !(next = n.nextSibling)) {
+                            n = n.parentNode;
+                        }
+                        this._next = next;
+                    }
+                }
+                return this._current;
+            },
+
+            detach: function() {
+                this._current = this._next = this.root = null;
+            }
+        };
+
+        function createIterator(root) {
+            return new NodeIterator(root);
+        }
+
+        function DomPosition(node, offset) {
+            this.node = node;
+            this.offset = offset;
+        }
+
+        DomPosition.prototype = {
+            equals: function(pos) {
+                return !!pos && this.node === pos.node && this.offset == pos.offset;
+            },
+
+            inspect: function() {
+                return "[DomPosition(" + inspectNode(this.node) + ":" + this.offset + ")]";
+            },
+
+            toString: function() {
+                return this.inspect();
+            }
+        };
+
+        function DOMException(codeName) {
+            this.code = this[codeName];
+            this.codeName = codeName;
+            this.message = "DOMException: " + this.codeName;
+        }
+
+        DOMException.prototype = {
+            INDEX_SIZE_ERR: 1,
+            HIERARCHY_REQUEST_ERR: 3,
+            WRONG_DOCUMENT_ERR: 4,
+            NO_MODIFICATION_ALLOWED_ERR: 7,
+            NOT_FOUND_ERR: 8,
+            NOT_SUPPORTED_ERR: 9,
+            INVALID_STATE_ERR: 11,
+            INVALID_NODE_TYPE_ERR: 24
+        };
+
+        DOMException.prototype.toString = function() {
+            return this.message;
+        };
+
+        api.dom = {
+            arrayContains: arrayContains,
+            isHtmlNamespace: isHtmlNamespace,
+            parentElement: parentElement,
+            getNodeIndex: getNodeIndex,
+            getNodeLength: getNodeLength,
+            getCommonAncestor: getCommonAncestor,
+            isAncestorOf: isAncestorOf,
+            isOrIsAncestorOf: isOrIsAncestorOf,
+            getClosestAncestorIn: getClosestAncestorIn,
+            isCharacterDataNode: isCharacterDataNode,
+            isTextOrCommentNode: isTextOrCommentNode,
+            insertAfter: insertAfter,
+            splitDataNode: splitDataNode,
+            getDocument: getDocument,
+            getWindow: getWindow,
+            getIframeWindow: getIframeWindow,
+            getIframeDocument: getIframeDocument,
+            getBody: util.getBody,
+            isWindow: isWindow,
+            getContentDocument: getContentDocument,
+            getRootContainer: getRootContainer,
+            comparePoints: comparePoints,
+            isBrokenNode: isBrokenNode,
+            inspectNode: inspectNode,
+            getComputedStyleProperty: getComputedStyleProperty,
+            fragmentFromNodeChildren: fragmentFromNodeChildren,
+            createIterator: createIterator,
+            DomPosition: DomPosition
+        };
+
+        api.DOMException = DOMException;
+    });
+
+    /*----------------------------------------------------------------------------------------------------------------*/
+
+    // Pure JavaScript implementation of DOM Range
+    api.createCoreModule("DomRange", ["DomUtil"], function(api, module) {
+        var dom = api.dom;
+        var util = api.util;
+        var DomPosition = dom.DomPosition;
+        var DOMException = api.DOMException;
+
+        var isCharacterDataNode = dom.isCharacterDataNode;
+        var getNodeIndex = dom.getNodeIndex;
+        var isOrIsAncestorOf = dom.isOrIsAncestorOf;
+        var getDocument = dom.getDocument;
+        var comparePoints = dom.comparePoints;
+        var splitDataNode = dom.splitDataNode;
+        var getClosestAncestorIn = dom.getClosestAncestorIn;
+        var getNodeLength = dom.getNodeLength;
+        var arrayContains = dom.arrayContains;
+        var getRootContainer = dom.getRootContainer;
+        var crashyTextNodes = api.features.crashyTextNodes;
+
+        /*----------------------------------------------------------------------------------------------------------------*/
+
+        // Utility functions
+
+        function isNonTextPartiallySelected(node, range) {
+            return (node.nodeType != 3) &&
+                   (isOrIsAncestorOf(node, range.startContainer) || isOrIsAncestorOf(node, range.endContainer));
+        }
+
+        function getRangeDocument(range) {
+            return range.document || getDocument(range.startContainer);
+        }
+
+        function getBoundaryBeforeNode(node) {
+            return new DomPosition(node.parentNode, getNodeIndex(node));
+        }
+
+        function getBoundaryAfterNode(node) {
+            return new DomPosition(node.parentNode, getNodeIndex(node) + 1);
+        }
+
+        function insertNodeAtPosition(node, n, o) {
+            var firstNodeInserted = node.nodeType == 11 ? node.firstChild : node;
+            if (isCharacterDataNode(n)) {
+                if (o == n.length) {
+                    dom.insertAfter(node, n);
+                } else {
+                    n.parentNode.insertBefore(node, o == 0 ? n : splitDataNode(n, o));
+                }
+            } else if (o >= n.childNodes.length) {
+                n.appendChild(node);
+            } else {
+                n.insertBefore(node, n.childNodes[o]);
+            }
+            return firstNodeInserted;
+        }
+
+        function rangesIntersect(rangeA, rangeB, touchingIsIntersecting) {
+            assertRangeValid(rangeA);
+            assertRangeValid(rangeB);
+
+            if (getRangeDocument(rangeB) != getRangeDocument(rangeA)) {
+                throw new DOMException("WRONG_DOCUMENT_ERR");
+            }
+
+            var startComparison = comparePoints(rangeA.startContainer, rangeA.startOffset, rangeB.endContainer, rangeB.endOffset),
+                endComparison = comparePoints(rangeA.endContainer, rangeA.endOffset, rangeB.startContainer, rangeB.startOffset);
+
+            return touchingIsIntersecting ? startComparison <= 0 && endComparison >= 0 : startComparison < 0 && endComparison > 0;
+        }
+
+        function cloneSubtree(iterator) {
+            var partiallySelected;
+            for (var node, frag = getRangeDocument(iterator.range).createDocumentFragment(), subIterator; node = iterator.next(); ) {
+                partiallySelected = iterator.isPartiallySelectedSubtree();
+                node = node.cloneNode(!partiallySelected);
+                if (partiallySelected) {
+                    subIterator = iterator.getSubtreeIterator();
+                    node.appendChild(cloneSubtree(subIterator));
+                    subIterator.detach();
+                }
+
+                if (node.nodeType == 10) { // DocumentType
+                    throw new DOMException("HIERARCHY_REQUEST_ERR");
+                }
+                frag.appendChild(node);
+            }
+            return frag;
+        }
+
+        function iterateSubtree(rangeIterator, func, iteratorState) {
+            var it, n;
+            iteratorState = iteratorState || { stop: false };
+            for (var node, subRangeIterator; node = rangeIterator.next(); ) {
+                if (rangeIterator.isPartiallySelectedSubtree()) {
+                    if (func(node) === false) {
+                        iteratorState.stop = true;
+                        return;
+                    } else {
+                        // The node is partially selected by the Range, so we can use a new RangeIterator on the portion of
+                        // the node selected by the Range.
+                        subRangeIterator = rangeIterator.getSubtreeIterator();
+                        iterateSubtree(subRangeIterator, func, iteratorState);
+                        subRangeIterator.detach();
+                        if (iteratorState.stop) {
+                            return;
+                        }
+                    }
+                } else {
+                    // The whole node is selected, so we can use efficient DOM iteration to iterate over the node and its
+                    // descendants
+                    it = dom.createIterator(node);
+                    while ( (n = it.next()) ) {
+                        if (func(n) === false) {
+                            iteratorState.stop = true;
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+
+        function deleteSubtree(iterator) {
+            var subIterator;
+            while (iterator.next()) {
+                if (iterator.isPartiallySelectedSubtree()) {
+                    subIterator = iterator.getSubtreeIterator();
+                    deleteSubtree(subIterator);
+                    subIterator.detach();
+                } else {
+                    iterator.remove();
+                }
+            }
+        }
+
+        function extractSubtree(iterator) {
+            for (var node, frag = getRangeDocument(iterator.range).createDocumentFragment(), subIterator; node = iterator.next(); ) {
+
+                if (iterator.isPartiallySelectedSubtree()) {
+                    node = node.cloneNode(false);
+                    subIterator = iterator.getSubtreeIterator();
+                    node.appendChild(extractSubtree(subIterator));
+                    subIterator.detach();
+                } else {
+                    iterator.remove();
+                }
+                if (node.nodeType == 10) { // DocumentType
+                    throw new DOMException("HIERARCHY_REQUEST_ERR");
+                }
+                frag.appendChild(node);
+            }
+            return frag;
+        }
+
+        function getNodesInRange(range, nodeTypes, filter) {
+            var filterNodeTypes = !!(nodeTypes && nodeTypes.length), regex;
+            var filterExists = !!filter;
+            if (filterNodeTypes) {
+                regex = new RegExp("^(" + nodeTypes.join("|") + ")$");
+            }
+
+            var nodes = [];
+            iterateSubtree(new RangeIterator(range, false), function(node) {
+                if (filterNodeTypes && !regex.test(node.nodeType)) {
+                    return;
+                }
+                if (filterExists && !filter(node)) {
+                    return;
+                }
+                // Don't include a boundary container if it is a character data node and the range does not contain any
+                // of its character data. See issue 190.
+                var sc = range.startContainer;
+                if (node == sc && isCharacterDataNode(sc) && range.startOffset == sc.length) {
+                    return;
+                }
+
+                var ec = range.endContainer;
+                if (node == ec && isCharacterDataNode(ec) && range.endOffset == 0) {
+                    return;
+                }
+
+                nodes.push(node);
+            });
+            return nodes;
+        }
+
+        function inspect(range) {
+            var name = (typeof range.getName == "undefined") ? "Range" : range.getName();
+            return "[" + name + "(" + dom.inspectNode(range.startContainer) + ":" + range.startOffset + ", " +
+                    dom.inspectNode(range.endContainer) + ":" + range.endOffset + ")]";
+        }
+
+        /*----------------------------------------------------------------------------------------------------------------*/
+
+        // RangeIterator code partially borrows from IERange by Tim Ryan (http://github.com/timcameronryan/IERange)
+
+        function RangeIterator(range, clonePartiallySelectedTextNodes) {
+            this.range = range;
+            this.clonePartiallySelectedTextNodes = clonePartiallySelectedTextNodes;
+
+
+            if (!range.collapsed) {
+                this.sc = range.startContainer;
+                this.so = range.startOffset;
+                this.ec = range.endContainer;
+                this.eo = range.endOffset;
+                var root = range.commonAncestorContainer;
+
+                if (this.sc === this.ec && isCharacterDataNode(this.sc)) {
+                    this.isSingleCharacterDataNode = true;
+                    this._first = this._last = this._next = this.sc;
+                } else {
+                    this._first = this._next = (this.sc === root && !isCharacterDataNode(this.sc)) ?
+                        this.sc.childNodes[this.so] : getClosestAncestorIn(this.sc, root, true);
+                    this._last = (this.ec === root && !isCharacterDataNode(this.ec)) ?
+                        this.ec.childNodes[this.eo - 1] : getClosestAncestorIn(this.ec, root, true);
+                }
+            }
+        }
+
+        RangeIterator.prototype = {
+            _current: null,
+            _next: null,
+            _first: null,
+            _last: null,
+            isSingleCharacterDataNode: false,
+
+            reset: function() {
+                this._current = null;
+                this._next = this._first;
+            },
+
+            hasNext: function() {
+                return !!this._next;
+            },
+
+            next: function() {
+                // Move to next node
+                var current = this._current = this._next;
+                if (current) {
+                    this._next = (current !== this._last) ? current.nextSibling : null;
+
+                    // Check for partially selected text nodes
+                    if (isCharacterDataNode(current) && this.clonePartiallySelectedTextNodes) {
+                        if (current === this.ec) {
+                            (current = current.cloneNode(true)).deleteData(this.eo, current.length - this.eo);
+                        }
+                        if (this._current === this.sc) {
+                            (current = current.cloneNode(true)).deleteData(0, this.so);
+                        }
+                    }
+                }
+
+                return current;
+            },
+
+            remove: function() {
+                var current = this._current, start, end;
+
+                if (isCharacterDataNode(current) && (current === this.sc || current === this.ec)) {
+                    start = (current === this.sc) ? this.so : 0;
+                    end = (current === this.ec) ? this.eo : current.length;
+                    if (start != end) {
+                        current.deleteData(start, end - start);
+                    }
+                } else {
+                    if (current.parentNode) {
+                        current.parentNode.removeChild(current);
+                    } else {
+                    }
+                }
+            },
+
+            // Checks if the current node is partially selected
+            isPartiallySelectedSubtree: function() {
+                var current = this._current;
+                return isNonTextPartiallySelected(current, this.range);
+            },
+
+            getSubtreeIterator: function() {
+                var subRange;
+                if (this.isSingleCharacterDataNode) {
+                    subRange = this.range.cloneRange();
+                    subRange.collapse(false);
+                } else {
+                    subRange = new Range(getRangeDocument(this.range));
+                    var current = this._current;
+                    var startContainer = current, startOffset = 0, endContainer = current, endOffset = getNodeLength(current);
+
+                    if (isOrIsAncestorOf(current, this.sc)) {
+                        startContainer = this.sc;
+                        startOffset = this.so;
+                    }
+                    if (isOrIsAncestorOf(current, this.ec)) {
+                        endContainer = this.ec;
+                        endOffset = this.eo;
+                    }
+
+                    updateBoundaries(subRange, startContainer, startOffset, endContainer, endOffset);
+                }
+                return new RangeIterator(subRange, this.clonePartiallySelectedTextNodes);
+            },
+
+            detach: function() {
+                this.range = this._current = this._next = this._first = this._last = this.sc = this.so = this.ec = this.eo = null;
+            }
+        };
+
+        /*----------------------------------------------------------------------------------------------------------------*/
+
+        var beforeAfterNodeTypes = [1, 3, 4, 5, 7, 8, 10];
+        var rootContainerNodeTypes = [2, 9, 11];
+        var readonlyNodeTypes = [5, 6, 10, 12];
+        var insertableNodeTypes = [1, 3, 4, 5, 7, 8, 10, 11];
+        var surroundNodeTypes = [1, 3, 4, 5, 7, 8];
+
+        function createAncestorFinder(nodeTypes) {
+            return function(node, selfIsAncestor) {
+                var t, n = selfIsAncestor ? node : node.parentNode;
+                while (n) {
+                    t = n.nodeType;
+                    if (arrayContains(nodeTypes, t)) {
+                        return n;
+                    }
+                    n = n.parentNode;
+                }
+                return null;
+            };
+        }
+
+        var getDocumentOrFragmentContainer = createAncestorFinder( [9, 11] );
+        var getReadonlyAncestor = createAncestorFinder(readonlyNodeTypes);
+        var getDocTypeNotationEntityAncestor = createAncestorFinder( [6, 10, 12] );
+
+        function assertNoDocTypeNotationEntityAncestor(node, allowSelf) {
+            if (getDocTypeNotationEntityAncestor(node, allowSelf)) {
+                throw new DOMException("INVALID_NODE_TYPE_ERR");
+            }
+        }
+
+        function assertValidNodeType(node, invalidTypes) {
+            if (!arrayContains(invalidTypes, node.nodeType)) {
+                throw new DOMException("INVALID_NODE_TYPE_ERR");
+            }
+        }
+
+        function assertValidOffset(node, offset) {
+            if (offset < 0 || offset > (isCharacterDataNode(node) ? node.length : node.childNodes.length)) {
+                throw new DOMException("INDEX_SIZE_ERR");
+            }
+        }
+
+        function assertSameDocumentOrFragment(node1, node2) {
+            if (getDocumentOrFragmentContainer(node1, true) !== getDocumentOrFragmentContainer(node2, true)) {
+                throw new DOMException("WRONG_DOCUMENT_ERR");
+            }
+        }
+
+        function assertNodeNotReadOnly(node) {
+            if (getReadonlyAncestor(node, true)) {
+                throw new DOMException("NO_MODIFICATION_ALLOWED_ERR");
+            }
+        }
+
+        function assertNode(node, codeName) {
+            if (!node) {
+                throw new DOMException(codeName);
+            }
+        }
+
+        function isOrphan(node) {
+            return (crashyTextNodes && dom.isBrokenNode(node)) ||
+                !arrayContains(rootContainerNodeTypes, node.nodeType) && !getDocumentOrFragmentContainer(node, true);
+        }
+
+        function isValidOffset(node, offset) {
+            return offset <= (isCharacterDataNode(node) ? node.length : node.childNodes.length);
+        }
+
+        function isRangeValid(range) {
+            return (!!range.startContainer && !!range.endContainer &&
+                    !isOrphan(range.startContainer) &&
+                    !isOrphan(range.endContainer) &&
+                    isValidOffset(range.startContainer, range.startOffset) &&
+                    isValidOffset(range.endContainer, range.endOffset));
+        }
+
+        function assertRangeValid(range) {
+            if (!isRangeValid(range)) {
+                throw new Error("Range error: Range is no longer valid after DOM mutation (" + range.inspect() + ")");
+            }
+        }
+
+        /*----------------------------------------------------------------------------------------------------------------*/
+
+        // Test the browser's innerHTML support to decide how to implement createContextualFragment
+        var styleEl = document.createElement("style");
+        var htmlParsingConforms = false;
+        try {
+            styleEl.innerHTML = "<b>x</b>";
+            htmlParsingConforms = (styleEl.firstChild.nodeType == 3); // Opera incorrectly creates an element node
+        } catch (e) {
+            // IE 6 and 7 throw
+        }
+
+        api.features.htmlParsingConforms = htmlParsingConforms;
+
+        var createContextualFragment = htmlParsingConforms ?
+
+            // Implementation as per HTML parsing spec, trusting in the browser's implementation of innerHTML. See
+            // discussion and base code for this implementation at issue 67.
+            // Spec: http://html5.org/specs/dom-parsing.html#extensions-to-the-range-interface
+            // Thanks to Aleks Williams.
+            function(fragmentStr) {
+                // "Let node the context object's start's node."
+                var node = this.startContainer;
+                var doc = getDocument(node);
+
+                // "If the context object's start's node is null, raise an INVALID_STATE_ERR
+                // exception and abort these steps."
+                if (!node) {
+                    throw new DOMException("INVALID_STATE_ERR");
+                }
+
+                // "Let element be as follows, depending on node's interface:"
+                // Document, Document Fragment: null
+                var el = null;
+
+                // "Element: node"
+                if (node.nodeType == 1) {
+                    el = node;
+
+                // "Text, Comment: node's parentElement"
+                } else if (isCharacterDataNode(node)) {
+                    el = dom.parentElement(node);
+                }
+
+                // "If either element is null or element's ownerDocument is an HTML document
+                // and element's local name is "html" and element's namespace is the HTML
+                // namespace"
+                if (el === null || (
+                    el.nodeName == "HTML" &&
+                    dom.isHtmlNamespace(getDocument(el).documentElement) &&
+                    dom.isHtmlNamespace(el)
+                )) {
+
+                // "let element be a new Element with "body" as its local name and the HTML
+                // namespace as its namespace.""
+                    el = doc.createElement("body");
+                } else {
+                    el = el.cloneNode(false);
+                }
+
+                // "If the node's document is an HTML document: Invoke the HTML fragment parsing algorithm."
+                // "If the node's document is an XML document: Invoke the XML fragment parsing algorithm."
+                // "In either case, the algorithm must be invoked with fragment as the input
+                // and element as the context element."
+                el.innerHTML = fragmentStr;
+
+                // "If this raises an exception, then abort these steps. Otherwise, let new
+                // children be the nodes returned."
+
+                // "Let fragment be a new DocumentFragment."
+                // "Append all new children to fragment."
+                // "Return fragment."
+                return dom.fragmentFromNodeChildren(el);
+            } :
+
+            // In this case, innerHTML cannot be trusted, so fall back to a simpler, non-conformant implementation that
+            // previous versions of Rangy used (with the exception of using a body element rather than a div)
+            function(fragmentStr) {
+                var doc = getRangeDocument(this);
+                var el = doc.createElement("body");
+                el.innerHTML = fragmentStr;
+
+                return dom.fragmentFromNodeChildren(el);
+            };
+
+        function splitRangeBoundaries(range, positionsToPreserve) {
+            assertRangeValid(range);
+
+            var sc = range.startContainer, so = range.startOffset, ec = range.endContainer, eo = range.endOffset;
+            var startEndSame = (sc === ec);
+
+            if (isCharacterDataNode(ec) && eo > 0 && eo < ec.length) {
+                splitDataNode(ec, eo, positionsToPreserve);
+            }
+
+            if (isCharacterDataNode(sc) && so > 0 && so < sc.length) {
+                sc = splitDataNode(sc, so, positionsToPreserve);
+                if (startEndSame) {
+                    eo -= so;
+                    ec = sc;
+                } else if (ec == sc.parentNode && eo >= getNodeIndex(sc)) {
+                    eo++;
+                }
+                so = 0;
+            }
+            range.setStartAndEnd(sc, so, ec, eo);
+        }
+        
+        function rangeToHtml(range) {
+            assertRangeValid(range);
+            var container = range.commonAncestorContainer.parentNode.cloneNode(false);
+            container.appendChild( range.cloneContents() );
+            return container.innerHTML;
+        }
+
+        /*----------------------------------------------------------------------------------------------------------------*/
+
+        var rangeProperties = ["startContainer", "startOffset", "endContainer", "endOffset", "collapsed",
+            "commonAncestorContainer"];
+
+        var s2s = 0, s2e = 1, e2e = 2, e2s = 3;
+        var n_b = 0, n_a = 1, n_b_a = 2, n_i = 3;
+
+        util.extend(api.rangePrototype, {
+            compareBoundaryPoints: function(how, range) {
+                assertRangeValid(this);
+                assertSameDocumentOrFragment(this.startContainer, range.startContainer);
+
+                var nodeA, offsetA, nodeB, offsetB;
+                var prefixA = (how == e2s || how == s2s) ? "start" : "end";
+                var prefixB = (how == s2e || how == s2s) ? "start" : "end";
+                nodeA = this[prefixA + "Container"];
+                offsetA = this[prefixA + "Offset"];
+                nodeB = range[prefixB + "Container"];
+                offsetB = range[prefixB + "Offset"];
+                return comparePoints(nodeA, offsetA, nodeB, offsetB);
+            },
+
+            insertNode: function(node) {
+                assertRangeValid(this);
+                assertValidNodeType(node, insertableNodeTypes);
+                assertNodeNotReadOnly(this.startContainer);
+
+                if (isOrIsAncestorOf(node, this.startContainer)) {
+                    throw new DOMException("HIERARCHY_REQUEST_ERR");
+                }
+
+                // No check for whether the container of the start of the Range is of a type that does not allow
+                // children of the type of node: the browser's DOM implementation should do this for us when we attempt
+                // to add the node
+
+                var firstNodeInserted = insertNodeAtPosition(node, this.startContainer, this.startOffset);
+                this.setStartBefore(firstNodeInserted);
+            },
+
+            cloneContents: function() {
+                assertRangeValid(this);
+
+                var clone, frag;
+                if (this.collapsed) {
+                    return getRangeDocument(this).createDocumentFragment();
+                } else {
+                    if (this.startContainer === this.endContainer && isCharacterDataNode(this.startContainer)) {
+                        clone = this.startContainer.cloneNode(true);
+                        clone.data = clone.data.slice(this.startOffset, this.endOffset);
+                        frag = getRangeDocument(this).createDocumentFragment();
+                        frag.appendChild(clone);
+                        return frag;
+                    } else {
+                        var iterator = new RangeIterator(this, true);
+                        clone = cloneSubtree(iterator);
+                        iterator.detach();
+                    }
+                    return clone;
+                }
+            },
+
+            canSurroundContents: function() {
+                assertRangeValid(this);
+                assertNodeNotReadOnly(this.startContainer);
+                assertNodeNotReadOnly(this.endContainer);
+
+                // Check if the contents can be surrounded. Specifically, this means whether the range partially selects
+                // no non-text nodes.
+                var iterator = new RangeIterator(this, true);
+                var boundariesInvalid = (iterator._first && (isNonTextPartiallySelected(iterator._first, this)) ||
+                        (iterator._last && isNonTextPartiallySelected(iterator._last, this)));
+                iterator.detach();
+                return !boundariesInvalid;
+            },
+
+            surroundContents: function(node) {
+                assertValidNodeType(node, surroundNodeTypes);
+
+                if (!this.canSurroundContents()) {
+                    throw new DOMException("INVALID_STATE_ERR");
+                }
+
+                // Extract the contents
+                var content = this.extractContents();
+
+                // Clear the children of the node
+                if (node.hasChildNodes()) {
+                    while (node.lastChild) {
+                        node.removeChild(node.lastChild);
+                    }
+                }
+
+                // Insert the new node and add the extracted contents
+                insertNodeAtPosition(node, this.startContainer, this.startOffset);
+                node.appendChild(content);
+
+                this.selectNode(node);
+            },
+
+            cloneRange: function() {
+                assertRangeValid(this);
+                var range = new Range(getRangeDocument(this));
+                var i = rangeProperties.length, prop;
+                while (i--) {
+                    prop = rangeProperties[i];
+                    range[prop] = this[prop];
+                }
+                return range;
+            },
+
+            toString: function() {
+                assertRangeValid(this);
+                var sc = this.startContainer;
+                if (sc === this.endContainer && isCharacterDataNode(sc)) {
+                    return (sc.nodeType == 3 || sc.nodeType == 4) ? sc.data.slice(this.startOffset, this.endOffset) : "";
+                } else {
+                    var textParts = [], iterator = new RangeIterator(this, true);
+                    iterateSubtree(iterator, function(node) {
+                        // Accept only text or CDATA nodes, not comments
+                        if (node.nodeType == 3 || node.nodeType == 4) {
+                            textParts.push(node.data);
+                        }
+                    });
+                    iterator.detach();
+                    return textParts.join("");
+                }
+            },
+
+            // The methods below are all non-standard. The following batch were introduced by Mozilla but have since
+            // been removed from Mozilla.
+
+            compareNode: function(node) {
+                assertRangeValid(this);
+
+                var parent = node.parentNode;
+                var nodeIndex = getNodeIndex(node);
+
+                if (!parent) {
+                    throw new DOMException("NOT_FOUND_ERR");
+                }
+
+                var startComparison = this.comparePoint(parent, nodeIndex),
+                    endComparison = this.comparePoint(parent, nodeIndex + 1);
+
+                if (startComparison < 0) { // Node starts before
+                    return (endComparison > 0) ? n_b_a : n_b;
+                } else {
+                    return (endComparison > 0) ? n_a : n_i;
+                }
+            },
+
+            comparePoint: function(node, offset) {
+                assertRangeValid(this);
+                assertNode(node, "HIERARCHY_REQUEST_ERR");
+                assertSameDocumentOrFragment(node, this.startContainer);
+
+                if (comparePoints(node, offset, this.startContainer, this.startOffset) < 0) {
+                    return -1;
+                } else if (comparePoints(node, offset, this.endContainer, this.endOffset) > 0) {
+                    return 1;
+                }
+                return 0;
+            },
+
+            createContextualFragment: createContextualFragment,
+
+            toHtml: function() {
+                return rangeToHtml(this);
+            },
+
+            // touchingIsIntersecting determines whether this method considers a node that borders a range intersects
+            // with it (as in WebKit) or not (as in Gecko pre-1.9, and the default)
+            intersectsNode: function(node, touchingIsIntersecting) {
+                assertRangeValid(this);
+                assertNode(node, "NOT_FOUND_ERR");
+                if (getDocument(node) !== getRangeDocument(this)) {
+                    return false;
+                }
+
+                var parent = node.parentNode, offset = getNodeIndex(node);
+                assertNode(parent, "NOT_FOUND_ERR");
+
+                var startComparison = comparePoints(parent, offset, this.endContainer, this.endOffset),
+                    endComparison = comparePoints(parent, offset + 1, this.startContainer, this.startOffset);
+
+                return touchingIsIntersecting ? startComparison <= 0 && endComparison >= 0 : startComparison < 0 && endComparison > 0;
+            },
+
+            isPointInRange: function(node, offset) {
+                assertRangeValid(this);
+                assertNode(node, "HIERARCHY_REQUEST_ERR");
+                assertSameDocumentOrFragment(node, this.startContainer);
+
+                return (comparePoints(node, offset, this.startContainer, this.startOffset) >= 0) &&
+                       (comparePoints(node, offset, this.endContainer, this.endOffset) <= 0);
+            },
+
+            // The methods below are non-standard and invented by me.
+
+            // Sharing a boundary start-to-end or end-to-start does not count as intersection.
+            intersectsRange: function(range) {
+                return rangesIntersect(this, range, false);
+            },
+
+            // Sharing a boundary start-to-end or end-to-start does count as intersection.
+            intersectsOrTouchesRange: function(range) {
+                return rangesIntersect(this, range, true);
+            },
+
+            intersection: function(range) {
+                if (this.intersectsRange(range)) {
+                    var startComparison = comparePoints(this.startContainer, this.startOffset, range.startContainer, range.startOffset),
+                        endComparison = comparePoints(this.endContainer, this.endOffset, range.endContainer, range.endOffset);
+
+                    var intersectionRange = this.cloneRange();
+                    if (startComparison == -1) {
+                        intersectionRange.setStart(range.startContainer, range.startOffset);
+                    }
+                    if (endComparison == 1) {
+                        intersectionRange.setEnd(range.endContainer, range.endOffset);
+                    }
+                    return intersectionRange;
+                }
+                return null;
+            },
+
+            union: function(range) {
+                if (this.intersectsOrTouchesRange(range)) {
+                    var unionRange = this.cloneRange();
+                    if (comparePoints(range.startContainer, range.startOffset, this.startContainer, this.startOffset) == -1) {
+                        unionRange.setStart(range.startContainer, range.startOffset);
+                    }
+                    if (comparePoints(range.endContainer, range.endOffset, this.endContainer, this.endOffset) == 1) {
+                        unionRange.setEnd(range.endContainer, range.endOffset);
+                    }
+                    return unionRange;
+                } else {
+                    throw new DOMException("Ranges do not intersect");
+                }
+            },
+
+            containsNode: function(node, allowPartial) {
+                if (allowPartial) {
+                    return this.intersectsNode(node, false);
+                } else {
+                    return this.compareNode(node) == n_i;
+                }
+            },
+
+            containsNodeContents: function(node) {
+                return this.comparePoint(node, 0) >= 0 && this.comparePoint(node, getNodeLength(node)) <= 0;
+            },
+
+            containsRange: function(range) {
+                var intersection = this.intersection(range);
+                return intersection !== null && range.equals(intersection);
+            },
+
+            containsNodeText: function(node) {
+                var nodeRange = this.cloneRange();
+                nodeRange.selectNode(node);
+                var textNodes = nodeRange.getNodes([3]);
+                if (textNodes.length > 0) {
+                    nodeRange.setStart(textNodes[0], 0);
+                    var lastTextNode = textNodes.pop();
+                    nodeRange.setEnd(lastTextNode, lastTextNode.length);
+                    return this.containsRange(nodeRange);
+                } else {
+                    return this.containsNodeContents(node);
+                }
+            },
+
+            getNodes: function(nodeTypes, filter) {
+                assertRangeValid(this);
+                return getNodesInRange(this, nodeTypes, filter);
+            },
+
+            getDocument: function() {
+                return getRangeDocument(this);
+            },
+
+            collapseBefore: function(node) {
+                this.setEndBefore(node);
+                this.collapse(false);
+            },
+
+            collapseAfter: function(node) {
+                this.setStartAfter(node);
+                this.collapse(true);
+            },
+            
+            getBookmark: function(containerNode) {
+                var doc = getRangeDocument(this);
+                var preSelectionRange = api.createRange(doc);
+                containerNode = containerNode || dom.getBody(doc);
+                preSelectionRange.selectNodeContents(containerNode);
+                var range = this.intersection(preSelectionRange);
+                var start = 0, end = 0;
+                if (range) {
+                    preSelectionRange.setEnd(range.startContainer, range.startOffset);
+                    start = preSelectionRange.toString().length;
+                    end = start + range.toString().length;
+                }
+
+                return {
+                    start: start,
+                    end: end,
+                    containerNode: containerNode
+                };
+            },
+            
+            moveToBookmark: function(bookmark) {
+                var containerNode = bookmark.containerNode;
+                var charIndex = 0;
+                this.setStart(containerNode, 0);
+                this.collapse(true);
+                var nodeStack = [containerNode], node, foundStart = false, stop = false;
+                var nextCharIndex, i, childNodes;
+
+                while (!stop && (node = nodeStack.pop())) {
+                    if (node.nodeType == 3) {
+                        nextCharIndex = charIndex + node.length;
+                        if (!foundStart && bookmark.start >= charIndex && bookmark.start <= nextCharIndex) {
+                            this.setStart(node, bookmark.start - charIndex);
+                            foundStart = true;
+                        }
+                        if (foundStart && bookmark.end >= charIndex && bookmark.end <= nextCharIndex) {
+                            this.setEnd(node, bookmark.end - charIndex);
+                            stop = true;
+                        }
+                        charIndex = nextCharIndex;
+                    } else {
+                        childNodes = node.childNodes;
+                        i = childNodes.length;
+                        while (i--) {
+                            nodeStack.push(childNodes[i]);
+                        }
+                    }
+                }
+            },
+
+            getName: function() {
+                return "DomRange";
+            },
+
+            equals: function(range) {
+                return Range.rangesEqual(this, range);
+            },
+
+            isValid: function() {
+                return isRangeValid(this);
+            },
+            
+            inspect: function() {
+                return inspect(this);
+            },
+            
+            detach: function() {
+                // In DOM4, detach() is now a no-op.
+            }
+        });
+
+        function copyComparisonConstantsToObject(obj) {
+            obj.START_TO_START = s2s;
+            obj.START_TO_END = s2e;
+            obj.END_TO_END = e2e;
+            obj.END_TO_START = e2s;
+
+            obj.NODE_BEFORE = n_b;
+            obj.NODE_AFTER = n_a;
+            obj.NODE_BEFORE_AND_AFTER = n_b_a;
+            obj.NODE_INSIDE = n_i;
+        }
+
+        function copyComparisonConstants(constructor) {
+            copyComparisonConstantsToObject(constructor);
+            copyComparisonConstantsToObject(constructor.prototype);
+        }
+
+        function createRangeContentRemover(remover, boundaryUpdater) {
+            return function() {
+                assertRangeValid(this);
+
+                var sc = this.startContainer, so = this.startOffset, root = this.commonAncestorContainer;
+
+                var iterator = new RangeIterator(this, true);
+
+                // Work out where to position the range after content removal
+                var node, boundary;
+                if (sc !== root) {
+                    node = getClosestAncestorIn(sc, root, true);
+                    boundary = getBoundaryAfterNode(node);
+                    sc = boundary.node;
+                    so = boundary.offset;
+                }
+
+                // Check none of the range is read-only
+                iterateSubtree(iterator, assertNodeNotReadOnly);
+
+                iterator.reset();
+
+                // Remove the content
+                var returnValue = remover(iterator);
+                iterator.detach();
+
+                // Move to the new position
+                boundaryUpdater(this, sc, so, sc, so);
+
+                return returnValue;
+            };
+        }
+
+        function createPrototypeRange(constructor, boundaryUpdater) {
+            function createBeforeAfterNodeSetter(isBefore, isStart) {
+                return function(node) {
+                    assertValidNodeType(node, beforeAfterNodeTypes);
+                    assertValidNodeType(getRootContainer(node), rootContainerNodeTypes);
+
+                    var boundary = (isBefore ? getBoundaryBeforeNode : getBoundaryAfterNode)(node);
+                    (isStart ? setRangeStart : setRangeEnd)(this, boundary.node, boundary.offset);
+                };
+            }
+
+            function setRangeStart(range, node, offset) {
+                var ec = range.endContainer, eo = range.endOffset;
+                if (node !== range.startContainer || offset !== range.startOffset) {
+                    // Check the root containers of the range and the new boundary, and also check whether the new boundary
+                    // is after the current end. In either case, collapse the range to the new position
+                    if (getRootContainer(node) != getRootContainer(ec) || comparePoints(node, offset, ec, eo) == 1) {
+                        ec = node;
+                        eo = offset;
+                    }
+                    boundaryUpdater(range, node, offset, ec, eo);
+                }
+            }
+
+            function setRangeEnd(range, node, offset) {
+                var sc = range.startContainer, so = range.startOffset;
+                if (node !== range.endContainer || offset !== range.endOffset) {
+                    // Check the root containers of the range and the new boundary, and also check whether the new boundary
+                    // is after the current end. In either case, collapse the range to the new position
+                    if (getRootContainer(node) != getRootContainer(sc) || comparePoints(node, offset, sc, so) == -1) {
+                        sc = node;
+                        so = offset;
+                    }
+                    boundaryUpdater(range, sc, so, node, offset);
+                }
+            }
+
+            // Set up inheritance
+            var F = function() {};
+            F.prototype = api.rangePrototype;
+            constructor.prototype = new F();
+
+            util.extend(constructor.prototype, {
+                setStart: function(node, offset) {
+                    assertNoDocTypeNotationEntityAncestor(node, true);
+                    assertValidOffset(node, offset);
+
+                    setRangeStart(this, node, offset);
+                },
+
+                setEnd: function(node, offset) {
+                    assertNoDocTypeNotationEntityAncestor(node, true);
+                    assertValidOffset(node, offset);
+
+                    setRangeEnd(this, node, offset);
+                },
+
+                /**
+                 * Convenience method to set a range's start and end boundaries. Overloaded as follows:
+                 * - Two parameters (node, offset) creates a collapsed range at that position
+                 * - Three parameters (node, startOffset, endOffset) creates a range contained with node starting at
+                 *   startOffset and ending at endOffset
+                 * - Four parameters (startNode, startOffset, endNode, endOffset) creates a range starting at startOffset in
+                 *   startNode and ending at endOffset in endNode
+                 */
+                setStartAndEnd: function() {
+                    var args = arguments;
+                    var sc = args[0], so = args[1], ec = sc, eo = so;
+
+                    switch (args.length) {
+                        case 3:
+                            eo = args[2];
+                            break;
+                        case 4:
+                            ec = args[2];
+                            eo = args[3];
+                            break;
+                    }
+
+                    boundaryUpdater(this, sc, so, ec, eo);
+                },
+                
+                setBoundary: function(node, offset, isStart) {
+                    this["set" + (isStart ? "Start" : "End")](node, offset);
+                },
+
+                setStartBefore: createBeforeAfterNodeSetter(true, true),
+                setStartAfter: createBeforeAfterNodeSetter(false, true),
+                setEndBefore: createBeforeAfterNodeSetter(true, false),
+                setEndAfter: createBeforeAfterNodeSetter(false, false),
+
+                collapse: function(isStart) {
+                    assertRangeValid(this);
+                    if (isStart) {
+                        boundaryUpdater(this, this.startContainer, this.startOffset, this.startContainer, this.startOffset);
+                    } else {
+                        boundaryUpdater(this, this.endContainer, this.endOffset, this.endContainer, this.endOffset);
+                    }
+                },
+
+                selectNodeContents: function(node) {
+                    assertNoDocTypeNotationEntityAncestor(node, true);
+
+                    boundaryUpdater(this, node, 0, node, getNodeLength(node));
+                },
+
+                selectNode: function(node) {
+                    assertNoDocTypeNotationEntityAncestor(node, false);
+                    assertValidNodeType(node, beforeAfterNodeTypes);
+
+                    var start = getBoundaryBeforeNode(node), end = getBoundaryAfterNode(node);
+                    boundaryUpdater(this, start.node, start.offset, end.node, end.offset);
+                },
+
+                extractContents: createRangeContentRemover(extractSubtree, boundaryUpdater),
+
+                deleteContents: createRangeContentRemover(deleteSubtree, boundaryUpdater),
+
+                canSurroundContents: function() {
+                    assertRangeValid(this);
+                    assertNodeNotReadOnly(this.startContainer);
+                    assertNodeNotReadOnly(this.endContainer);
+
+                    // Check if the contents can be surrounded. Specifically, this means whether the range partially selects
+                    // no non-text nodes.
+                    var iterator = new RangeIterator(this, true);
+                    var boundariesInvalid = (iterator._first && isNonTextPartiallySelected(iterator._first, this) ||
+                            (iterator._last && isNonTextPartiallySelected(iterator._last, this)));
+                    iterator.detach();
+                    return !boundariesInvalid;
+                },
+
+                splitBoundaries: function() {
+                    splitRangeBoundaries(this);
+                },
+
+                splitBoundariesPreservingPositions: function(positionsToPreserve) {
+                    splitRangeBoundaries(this, positionsToPreserve);
+                },
+
+                normalizeBoundaries: function() {
+                    assertRangeValid(this);
+
+                    var sc = this.startContainer, so = this.startOffset, ec = this.endContainer, eo = this.endOffset;
+
+                    var mergeForward = function(node) {
+                        var sibling = node.nextSibling;
+                        if (sibling && sibling.nodeType == node.nodeType) {
+                            ec = node;
+                            eo = node.length;
+                            node.appendData(sibling.data);
+                            sibling.parentNode.removeChild(sibling);
+                        }
+                    };
+
+                    var mergeBackward = function(node) {
+                        var sibling = node.previousSibling;
+                        if (sibling && sibling.nodeType == node.nodeType) {
+                            sc = node;
+                            var nodeLength = node.length;
+                            so = sibling.length;
+                            node.insertData(0, sibling.data);
+                            sibling.parentNode.removeChild(sibling);
+                            if (sc == ec) {
+                                eo += so;
+                                ec = sc;
+                            } else if (ec == node.parentNode) {
+                                var nodeIndex = getNodeIndex(node);
+                                if (eo == nodeIndex) {
+                                    ec = node;
+                                    eo = nodeLength;
+                                } else if (eo > nodeIndex) {
+                                    eo--;
+                                }
+                            }
+                        }
+                    };
+
+                    var normalizeStart = true;
+
+                    if (isCharacterDataNode(ec)) {
+                        if (ec.length == eo) {
+                            mergeForward(ec);
+                        }
+                    } else {
+                        if (eo > 0) {
+                            var endNode = ec.childNodes[eo - 1];
+                            if (endNode && isCharacterDataNode(endNode)) {
+                                mergeForward(endNode);
+                            }
+                        }
+                        normalizeStart = !this.collapsed;
+                    }
+
+                    if (normalizeStart) {
+                        if (isCharacterDataNode(sc)) {
+                            if (so == 0) {
+                                mergeBackward(sc);
+                            }
+                        } else {
+                            if (so < sc.childNodes.length) {
+                                var startNode = sc.childNodes[so];
+                                if (startNode && isCharacterDataNode(startNode)) {
+                                    mergeBackward(startNode);
+                                }
+                            }
+                        }
+                    } else {
+                        sc = ec;
+                        so = eo;
+                    }
+
+                    boundaryUpdater(this, sc, so, ec, eo);
+                },
+
+                collapseToPoint: function(node, offset) {
+                    assertNoDocTypeNotationEntityAncestor(node, true);
+                    assertValidOffset(node, offset);
+                    this.setStartAndEnd(node, offset);
+                }
+            });
+
+            copyComparisonConstants(constructor);
+        }
+
+        /*----------------------------------------------------------------------------------------------------------------*/
+
+        // Updates commonAncestorContainer and collapsed after boundary change
+        function updateCollapsedAndCommonAncestor(range) {
+            range.collapsed = (range.startContainer === range.endContainer && range.startOffset === range.endOffset);
+            range.commonAncestorContainer = range.collapsed ?
+                range.startContainer : dom.getCommonAncestor(range.startContainer, range.endContainer);
+        }
+
+        function updateBoundaries(range, startContainer, startOffset, endContainer, endOffset) {
+            range.startContainer = startContainer;
+            range.startOffset = startOffset;
+            range.endContainer = endContainer;
+            range.endOffset = endOffset;
+            range.document = dom.getDocument(startContainer);
+
+            updateCollapsedAndCommonAncestor(range);
+        }
+
+        function Range(doc) {
+            this.startContainer = doc;
+            this.startOffset = 0;
+            this.endContainer = doc;
+            this.endOffset = 0;
+            this.document = doc;
+            updateCollapsedAndCommonAncestor(this);
+        }
+
+        createPrototypeRange(Range, updateBoundaries);
+
+        util.extend(Range, {
+            rangeProperties: rangeProperties,
+            RangeIterator: RangeIterator,
+            copyComparisonConstants: copyComparisonConstants,
+            createPrototypeRange: createPrototypeRange,
+            inspect: inspect,
+            toHtml: rangeToHtml,
+            getRangeDocument: getRangeDocument,
+            rangesEqual: function(r1, r2) {
+                return r1.startContainer === r2.startContainer &&
+                    r1.startOffset === r2.startOffset &&
+                    r1.endContainer === r2.endContainer &&
+                    r1.endOffset === r2.endOffset;
+            }
+        });
+
+        api.DomRange = Range;
+    });
+
+    /*----------------------------------------------------------------------------------------------------------------*/
+
+    // Wrappers for the browser's native DOM Range and/or TextRange implementation 
+    api.createCoreModule("WrappedRange", ["DomRange"], function(api, module) {
+        var WrappedRange, WrappedTextRange;
+        var dom = api.dom;
+        var util = api.util;
+        var DomPosition = dom.DomPosition;
+        var DomRange = api.DomRange;
+        var getBody = dom.getBody;
+        var getContentDocument = dom.getContentDocument;
+        var isCharacterDataNode = dom.isCharacterDataNode;
+
+
+        /*----------------------------------------------------------------------------------------------------------------*/
+
+        if (api.features.implementsDomRange) {
+            // This is a wrapper around the browser's native DOM Range. It has two aims:
+            // - Provide workarounds for specific browser bugs
+            // - provide convenient extensions, which are inherited from Rangy's DomRange
+
+            (function() {
+                var rangeProto;
+                var rangeProperties = DomRange.rangeProperties;
+
+                function updateRangeProperties(range) {
+                    var i = rangeProperties.length, prop;
+                    while (i--) {
+                        prop = rangeProperties[i];
+                        range[prop] = range.nativeRange[prop];
+                    }
+                    // Fix for broken collapsed property in IE 9.
+                    range.collapsed = (range.startContainer === range.endContainer && range.startOffset === range.endOffset);
+                }
+
+                function updateNativeRange(range, startContainer, startOffset, endContainer, endOffset) {
+                    var startMoved = (range.startContainer !== startContainer || range.startOffset != startOffset);
+                    var endMoved = (range.endContainer !== endContainer || range.endOffset != endOffset);
+                    var nativeRangeDifferent = !range.equals(range.nativeRange);
+
+                    // Always set both boundaries for the benefit of IE9 (see issue 35)
+                    if (startMoved || endMoved || nativeRangeDifferent) {
+                        range.setEnd(endContainer, endOffset);
+                        range.setStart(startContainer, startOffset);
+                    }
+                }
+
+                var createBeforeAfterNodeSetter;
+
+                WrappedRange = function(range) {
+                    if (!range) {
+                        throw module.createError("WrappedRange: Range must be specified");
+                    }
+                    this.nativeRange = range;
+                    updateRangeProperties(this);
+                };
+
+                DomRange.createPrototypeRange(WrappedRange, updateNativeRange);
+
+                rangeProto = WrappedRange.prototype;
+
+                rangeProto.selectNode = function(node) {
+                    this.nativeRange.selectNode(node);
+                    updateRangeProperties(this);
+                };
+
+                rangeProto.cloneContents = function() {
+                    return this.nativeRange.cloneContents();
+                };
+
+                // Due to a long-standing Firefox bug that I have not been able to find a reliable way to detect,
+                // insertNode() is never delegated to the native range.
+
+                rangeProto.surroundContents = function(node) {
+                    this.nativeRange.surroundContents(node);
+                    updateRangeProperties(this);
+                };
+
+                rangeProto.collapse = function(isStart) {
+                    this.nativeRange.collapse(isStart);
+                    updateRangeProperties(this);
+                };
+
+                rangeProto.cloneRange = function() {
+                    return new WrappedRange(this.nativeRange.cloneRange());
+                };
+
+                rangeProto.refresh = function() {
+                    updateRangeProperties(this);
+                };
+
+                rangeProto.toString = function() {
+                    return this.nativeRange.toString();
+                };
+
+                // Create test range and node for feature detection
+
+                var testTextNode = document.createTextNode("test");
+                getBody(document).appendChild(testTextNode);
+                var range = document.createRange();
+
+                /*--------------------------------------------------------------------------------------------------------*/
+
+                // Test for Firefox 2 bug that prevents moving the start of a Range to a point after its current end and
+                // correct for it
+
+                range.setStart(testTextNode, 0);
+                range.setEnd(testTextNode, 0);
+
+                try {
+                    range.setStart(testTextNode, 1);
+
+                    rangeProto.setStart = function(node, offset) {
+                        this.nativeRange.setStart(node, offset);
+                        updateRangeProperties(this);
+                    };
+
+                    rangeProto.setEnd = function(node, offset) {
+                        this.nativeRange.setEnd(node, offset);
+                        updateRangeProperties(this);
+                    };
+
+                    createBeforeAfterNodeSetter = function(name) {
+                        return function(node) {
+                            this.nativeRange[name](node);
+                            updateRangeProperties(this);
+                        };
+                    };
+
+                } catch(ex) {
+
+                    rangeProto.setStart = function(node, offset) {
+                        try {
+                            this.nativeRange.setStart(node, offset);
+                        } catch (ex) {
+                            this.nativeRange.setEnd(node, offset);
+                            this.nativeRange.setStart(node, offset);
+                        }
+                        updateRangeProperties(this);
+                    };
+
+                    rangeProto.setEnd = function(node, offset) {
+                        try {
+                            this.nativeRange.setEnd(node, offset);
+                        } catch (ex) {
+                            this.nativeRange.setStart(node, offset);
+                            this.nativeRange.setEnd(node, offset);
+                        }
+                        updateRangeProperties(this);
+                    };
+
+                    createBeforeAfterNodeSetter = function(name, oppositeName) {
+                        return function(node) {
+                            try {
+                                this.nativeRange[name](node);
+                            } catch (ex) {
+                                this.nativeRange[oppositeName](node);
+                                this.nativeRange[name](node);
+                            }
+                            updateRangeProperties(this);
+                        };
+                    };
+                }
+
+                rangeProto.setStartBefore = createBeforeAfterNodeSetter("setStartBefore", "setEndBefore");
+                rangeProto.setStartAfter = createBeforeAfterNodeSetter("setStartAfter", "setEndAfter");
+                rangeProto.setEndBefore = createBeforeAfterNodeSetter("setEndBefore", "setStartBefore");
+                rangeProto.setEndAfter = createBeforeAfterNodeSetter("setEndAfter", "setStartAfter");
+
+                /*--------------------------------------------------------------------------------------------------------*/
+
+                // Always use DOM4-compliant selectNodeContents implementation: it's simpler and less code than testing
+                // whether the native implementation can be trusted
+                rangeProto.selectNodeContents = function(node) {
+                    this.setStartAndEnd(node, 0, dom.getNodeLength(node));
+                };
+
+                /*--------------------------------------------------------------------------------------------------------*/
+
+                // Test for and correct WebKit bug that has the behaviour of compareBoundaryPoints round the wrong way for
+                // constants START_TO_END and END_TO_START: https://bugs.webkit.org/show_bug.cgi?id=20738
+
+                range.selectNodeContents(testTextNode);
+                range.setEnd(testTextNode, 3);
+
+                var range2 = document.createRange();
+                range2.selectNodeContents(testTextNode);
+                range2.setEnd(testTextNode, 4);
+                range2.setStart(testTextNode, 2);
+
+                if (range.compareBoundaryPoints(range.START_TO_END, range2) == -1 &&
+                        range.compareBoundaryPoints(range.END_TO_START, range2) == 1) {
+                    // This is the wrong way round, so correct for it
+
+                    rangeProto.compareBoundaryPoints = function(type, range) {
+                        range = range.nativeRange || range;
+                        if (type == range.START_TO_END) {
+                            type = range.END_TO_START;
+                        } else if (type == range.END_TO_START) {
+                            type = range.START_TO_END;
+                        }
+                        return this.nativeRange.compareBoundaryPoints(type, range);
+                    };
+                } else {
+                    rangeProto.compareBoundaryPoints = function(type, range) {
+                        return this.nativeRange.compareBoundaryPoints(type, range.nativeRange || range);
+                    };
+                }
+
+                /*--------------------------------------------------------------------------------------------------------*/
+
+                // Test for IE deleteContents() and extractContents() bug and correct it. See issue 107.
+
+                var el = document.createElement("div");
+                el.innerHTML = "123";
+                var textNode = el.firstChild;
+                var body = getBody(document);
+                body.appendChild(el);
+
+                range.setStart(textNode, 1);
+                range.setEnd(textNode, 2);
+                range.deleteContents();
+
+                if (textNode.data == "13") {
+                    // Behaviour is correct per DOM4 Range so wrap the browser's implementation of deleteContents() and
+                    // extractContents()
+                    rangeProto.deleteContents = function() {
+                        this.nativeRange.deleteContents();
+                        updateRangeProperties(this);
+                    };
+
+                    rangeProto.extractContents = function() {
+                        var frag = this.nativeRange.extractContents();
+                        updateRangeProperties(this);
+                        return frag;
+                    };
+                } else {
+                }
+
+                body.removeChild(el);
+                body = null;
+
+                /*--------------------------------------------------------------------------------------------------------*/
+
+                // Test for existence of createContextualFragment and delegate to it if it exists
+                if (util.isHostMethod(range, "createContextualFragment")) {
+                    rangeProto.createContextualFragment = function(fragmentStr) {
+                        return this.nativeRange.createContextualFragment(fragmentStr);
+                    };
+                }
+
+                /*--------------------------------------------------------------------------------------------------------*/
+
+                // Clean up
+                getBody(document).removeChild(testTextNode);
+
+                rangeProto.getName = function() {
+                    return "WrappedRange";
+                };
+
+                api.WrappedRange = WrappedRange;
+
+                api.createNativeRange = function(doc) {
+                    doc = getContentDocument(doc, module, "createNativeRange");
+                    return doc.createRange();
+                };
+            })();
+        }
+        
+        if (api.features.implementsTextRange) {
+            /*
+            This is a workaround for a bug where IE returns the wrong container element from the TextRange's parentElement()
+            method. For example, in the following (where pipes denote the selection boundaries):
+
+            <ul id="ul"><li id="a">| a </li><li id="b"> b |</li></ul>
+
+            var range = document.selection.createRange();
+            alert(range.parentElement().id); // Should alert "ul" but alerts "b"
+
+            This method returns the common ancestor node of the following:
+            - the parentElement() of the textRange
+            - the parentElement() of the textRange after calling collapse(true)
+            - the parentElement() of the textRange after calling collapse(false)
+            */
+            var getTextRangeContainerElement = function(textRange) {
+                var parentEl = textRange.parentElement();
+                var range = textRange.duplicate();
+                range.collapse(true);
+                var startEl = range.parentElement();
+                range = textRange.duplicate();
+                range.collapse(false);
+                var endEl = range.parentElement();
+                var startEndContainer = (startEl == endEl) ? startEl : dom.getCommonAncestor(startEl, endEl);
+
+                return startEndContainer == parentEl ? startEndContainer : dom.getCommonAncestor(parentEl, startEndContainer);
+            };
+
+            var textRangeIsCollapsed = function(textRange) {
+                return textRange.compareEndPoints("StartToEnd", textRange) == 0;
+            };
+
+            // Gets the boundary of a TextRange expressed as a node and an offset within that node. This function started
+            // out as an improved version of code found in Tim Cameron Ryan's IERange (http://code.google.com/p/ierange/)
+            // but has grown, fixing problems with line breaks in preformatted text, adding workaround for IE TextRange
+            // bugs, handling for inputs and images, plus optimizations.
+            var getTextRangeBoundaryPosition = function(textRange, wholeRangeContainerElement, isStart, isCollapsed, startInfo) {
+                var workingRange = textRange.duplicate();
+                workingRange.collapse(isStart);
+                var containerElement = workingRange.parentElement();
+
+                // Sometimes collapsing a TextRange that's at the start of a text node can move it into the previous node, so
+                // check for that
+                if (!dom.isOrIsAncestorOf(wholeRangeContainerElement, containerElement)) {
+                    containerElement = wholeRangeContainerElement;
+                }
+
+
+                // Deal with nodes that cannot "contain rich HTML markup". In practice, this means form inputs, images and
+                // similar. See http://msdn.microsoft.com/en-us/library/aa703950%28VS.85%29.aspx
+                if (!containerElement.canHaveHTML) {
+                    var pos = new DomPosition(containerElement.parentNode, dom.getNodeIndex(containerElement));
+                    return {
+                        boundaryPosition: pos,
+                        nodeInfo: {
+                            nodeIndex: pos.offset,
+                            containerElement: pos.node
+                        }
+                    };
+                }
+
+                var workingNode = dom.getDocument(containerElement).createElement("span");
+
+                // Workaround for HTML5 Shiv's insane violation of document.createElement(). See Rangy issue 104 and HTML5
+                // Shiv issue 64: https://github.com/aFarkas/html5shiv/issues/64
+                if (workingNode.parentNode) {
+                    workingNode.parentNode.removeChild(workingNode);
+                }
+
+                var comparison, workingComparisonType = isStart ? "StartToStart" : "StartToEnd";
+                var previousNode, nextNode, boundaryPosition, boundaryNode;
+                var start = (startInfo && startInfo.containerElement == containerElement) ? startInfo.nodeIndex : 0;
+                var childNodeCount = containerElement.childNodes.length;
+                var end = childNodeCount;
+
+                // Check end first. Code within the loop assumes that the endth child node of the container is definitely
+                // after the range boundary.
+                var nodeIndex = end;
+
+                while (true) {
+                    if (nodeIndex == childNodeCount) {
+                        containerElement.appendChild(workingNode);
+                    } else {
+                        containerElement.insertBefore(workingNode, containerElement.childNodes[nodeIndex]);
+                    }
+                    workingRange.moveToElementText(workingNode);
+                    comparison = workingRange.compareEndPoints(workingComparisonType, textRange);
+                    if (comparison == 0 || start == end) {
+                        break;
+                    } else if (comparison == -1) {
+                        if (end == start + 1) {
+                            // We know the endth child node is after the range boundary, so we must be done.
+                            break;
+                        } else {
+                            start = nodeIndex;
+                        }
+                    } else {
+                        end = (end == start + 1) ? start : nodeIndex;
+                    }
+                    nodeIndex = Math.floor((start + end) / 2);
+                    containerElement.removeChild(workingNode);
+                }
+
+
+                // We've now reached or gone past the boundary of the text range we're interested in
+                // so have identified the node we want
+                boundaryNode = workingNode.nextSibling;
+
+                if (comparison == -1 && boundaryNode && isCharacterDataNode(boundaryNode)) {
+                    // This is a character data node (text, comment, cdata). The working range is collapsed at the start of
+                    // the node containing the text range's boundary, so we move the end of the working range to the
+                    // boundary point and measure the length of its text to get the boundary's offset within the node.
+                    workingRange.setEndPoint(isStart ? "EndToStart" : "EndToEnd", textRange);
+
+                    var offset;
+
+                    if (/[\r\n]/.test(boundaryNode.data)) {
+                        /*
+                        For the particular case of a boundary within a text node containing rendered line breaks (within a
+                        <pre> element, for example), we need a slightly complicated approach to get the boundary's offset in
+                        IE. The facts:
+                        
+                        - Each line break is represented as \r in the text node's data/nodeValue properties
+                        - Each line break is represented as \r\n in the TextRange's 'text' property
+                        - The 'text' property of the TextRange does not contain trailing line breaks
+                        
+                        To get round the problem presented by the final fact above, we can use the fact that TextRange's
+                        moveStart() and moveEnd() methods return the actual number of characters moved, which is not
+                        necessarily the same as the number of characters it was instructed to move. The simplest approach is
+                        to use this to store the characters moved when moving both the start and end of the range to the
+                        start of the document body and subtracting the start offset from the end offset (the
+                        "move-negative-gazillion" method). However, this is extremely slow when the document is large and
+                        the range is near the end of it. Clearly doing the mirror image (i.e. moving the range boundaries to
+                        the end of the document) has the same problem.
+                        
+                        Another approach that works is to use moveStart() to move the start boundary of the range up to the
+                        end boundary one character at a time and incrementing a counter with the value returned by the
+                        moveStart() call. However, the check for whether the start boundary has reached the end boundary is
+                        expensive, so this method is slow (although unlike "move-negative-gazillion" is largely unaffected
+                        by the location of the range within the document).
+                        
+                        The approach used below is a hybrid of the two methods above. It uses the fact that a string
+                        containing the TextRange's 'text' property with each \r\n converted to a single \r character cannot
+                        be longer than the text of the TextRange, so the start of the range is moved that length initially
+                        and then a character at a time to make up for any trailing line breaks not contained in the 'text'
+                        property. This has good performance in most situations compared to the previous two methods.
+                        */
+                        var tempRange = workingRange.duplicate();
+                        var rangeLength = tempRange.text.replace(/\r\n/g, "\r").length;
+
+                        offset = tempRange.moveStart("character", rangeLength);
+                        while ( (comparison = tempRange.compareEndPoints("StartToEnd", tempRange)) == -1) {
+                            offset++;
+                            tempRange.moveStart("character", 1);
+                        }
+                    } else {
+                        offset = workingRange.text.length;
+                    }
+                    boundaryPosition = new DomPosition(boundaryNode, offset);
+                } else {
+
+                    // If the boundary immediately follows a character data node and this is the end boundary, we should favour
+                    // a position within that, and likewise for a start boundary preceding a character data node
+                    previousNode = (isCollapsed || !isStart) && workingNode.previousSibling;
+                    nextNode = (isCollapsed || isStart) && workingNode.nextSibling;
+                    if (nextNode && isCharacterDataNode(nextNode)) {
+                        boundaryPosition = new DomPosition(nextNode, 0);
+                    } else if (previousNode && isCharacterDataNode(previousNode)) {
+                        boundaryPosition = new DomPosition(previousNode, previousNode.data.length);
+                    } else {
+                        boundaryPosition = new DomPosition(containerElement, dom.getNodeIndex(workingNode));
+                    }
+                }
+
+                // Clean up
+                workingNode.parentNode.removeChild(workingNode);
+
+                return {
+                    boundaryPosition: boundaryPosition,
+                    nodeInfo: {
+                        nodeIndex: nodeIndex,
+                        containerElement: containerElement
+                    }
+                };
+            };
+
+            // Returns a TextRange representing the boundary of a TextRange expressed as a node and an offset within that
+            // node. This function started out as an optimized version of code found in Tim Cameron Ryan's IERange
+            // (http://code.google.com/p/ierange/)
+            var createBoundaryTextRange = function(boundaryPosition, isStart) {
+                var boundaryNode, boundaryParent, boundaryOffset = boundaryPosition.offset;
+                var doc = dom.getDocument(boundaryPosition.node);
+                var workingNode, childNodes, workingRange = getBody(doc).createTextRange();
+                var nodeIsDataNode = isCharacterDataNode(boundaryPosition.node);
+
+                if (nodeIsDataNode) {
+                    boundaryNode = boundaryPosition.node;
+                    boundaryParent = boundaryNode.parentNode;
+                } else {
+                    childNodes = boundaryPosition.node.childNodes;
+                    boundaryNode = (boundaryOffset < childNodes.length) ? childNodes[boundaryOffset] : null;
+                    boundaryParent = boundaryPosition.node;
+                }
+
+                // Position the range immediately before the node containing the boundary
+                workingNode = doc.createElement("span");
+
+                // Making the working element non-empty element persuades IE to consider the TextRange boundary to be within
+                // the element rather than immediately before or after it
+                workingNode.innerHTML = "&#feff;";
+
+                // insertBefore is supposed to work like appendChild if the second parameter is null. However, a bug report
+                // for IERange suggests that it can crash the browser: http://code.google.com/p/ierange/issues/detail?id=12
+                if (boundaryNode) {
+                    boundaryParent.insertBefore(workingNode, boundaryNode);
+                } else {
+                    boundaryParent.appendChild(workingNode);
+                }
+
+                workingRange.moveToElementText(workingNode);
+                workingRange.collapse(!isStart);
+
+                // Clean up
+                boundaryParent.removeChild(workingNode);
+
+                // Move the working range to the text offset, if required
+                if (nodeIsDataNode) {
+                    workingRange[isStart ? "moveStart" : "moveEnd"]("character", boundaryOffset);
+                }
+
+                return workingRange;
+            };
+
+            /*------------------------------------------------------------------------------------------------------------*/
+
+            // This is a wrapper around a TextRange, providing full DOM Range functionality using rangy's DomRange as a
+            // prototype
+
+            WrappedTextRange = function(textRange) {
+                this.textRange = textRange;
+                this.refresh();
+            };
+
+            WrappedTextRange.prototype = new DomRange(document);
+
+            WrappedTextRange.prototype.refresh = function() {
+                var start, end, startBoundary;
+
+                // TextRange's parentElement() method cannot be trusted. getTextRangeContainerElement() works around that.
+                var rangeContainerElement = getTextRangeContainerElement(this.textRange);
+
+                if (textRangeIsCollapsed(this.textRange)) {
+                    end = start = getTextRangeBoundaryPosition(this.textRange, rangeContainerElement, true,
+                        true).boundaryPosition;
+                } else {
+                    startBoundary = getTextRangeBoundaryPosition(this.textRange, rangeContainerElement, true, false);
+                    start = startBoundary.boundaryPosition;
+
+                    // An optimization used here is that if the start and end boundaries have the same parent element, the
+                    // search scope for the end boundary can be limited to exclude the portion of the element that precedes
+                    // the start boundary
+                    end = getTextRangeBoundaryPosition(this.textRange, rangeContainerElement, false, false,
+                        startBoundary.nodeInfo).boundaryPosition;
+                }
+
+                this.setStart(start.node, start.offset);
+                this.setEnd(end.node, end.offset);
+            };
+
+            WrappedTextRange.prototype.getName = function() {
+                return "WrappedTextRange";
+            };
+
+            DomRange.copyComparisonConstants(WrappedTextRange);
+
+            var rangeToTextRange = function(range) {
+                if (range.collapsed) {
+                    return createBoundaryTextRange(new DomPosition(range.startContainer, range.startOffset), true);
+                } else {
+                    var startRange = createBoundaryTextRange(new DomPosition(range.startContainer, range.startOffset), true);
+                    var endRange = createBoundaryTextRange(new DomPosition(range.endContainer, range.endOffset), false);
+                    var textRange = getBody( DomRange.getRangeDocument(range) ).createTextRange();
+                    textRange.setEndPoint("StartToStart", startRange);
+                    textRange.setEndPoint("EndToEnd", endRange);
+                    return textRange;
+                }
+            };
+
+            WrappedTextRange.rangeToTextRange = rangeToTextRange;
+
+            WrappedTextRange.prototype.toTextRange = function() {
+                return rangeToTextRange(this);
+            };
+
+            api.WrappedTextRange = WrappedTextRange;
+
+            // IE 9 and above have both implementations and Rangy makes both available. The next few lines sets which
+            // implementation to use by default.
+            if (!api.features.implementsDomRange || api.config.preferTextRange) {
+                // Add WrappedTextRange as the Range property of the global object to allow expression like Range.END_TO_END to work
+                var globalObj = (function() { return this; })();
+                if (typeof globalObj.Range == "undefined") {
+                    globalObj.Range = WrappedTextRange;
+                }
+
+                api.createNativeRange = function(doc) {
+                    doc = getContentDocument(doc, module, "createNativeRange");
+                    return getBody(doc).createTextRange();
+                };
+
+                api.WrappedRange = WrappedTextRange;
+            }
+        }
+
+        api.createRange = function(doc) {
+            doc = getContentDocument(doc, module, "createRange");
+            return new api.WrappedRange(api.createNativeRange(doc));
+        };
+
+        api.createRangyRange = function(doc) {
+            doc = getContentDocument(doc, module, "createRangyRange");
+            return new DomRange(doc);
+        };
+
+        api.createIframeRange = function(iframeEl) {
+            module.deprecationNotice("createIframeRange()", "createRange(iframeEl)");
+            return api.createRange(iframeEl);
+        };
+
+        api.createIframeRangyRange = function(iframeEl) {
+            module.deprecationNotice("createIframeRangyRange()", "createRangyRange(iframeEl)");
+            return api.createRangyRange(iframeEl);
+        };
+
+        api.addShimListener(function(win) {
+            var doc = win.document;
+            if (typeof doc.createRange == "undefined") {
+                doc.createRange = function() {
+                    return api.createRange(doc);
+                };
+            }
+            doc = win = null;
+        });
+    });
+
+    /*----------------------------------------------------------------------------------------------------------------*/
+
+    // This module creates a selection object wrapper that conforms as closely as possible to the Selection specification
+    // in the HTML Editing spec (http://dvcs.w3.org/hg/editing/raw-file/tip/editing.html#selections)
+    api.createCoreModule("WrappedSelection", ["DomRange", "WrappedRange"], function(api, module) {
+        api.config.checkSelectionRanges = true;
+
+        var BOOLEAN = "boolean";
+        var NUMBER = "number";
+        var dom = api.dom;
+        var util = api.util;
+        var isHostMethod = util.isHostMethod;
+        var DomRange = api.DomRange;
+        var WrappedRange = api.WrappedRange;
+        var DOMException = api.DOMException;
+        var DomPosition = dom.DomPosition;
+        var getNativeSelection;
+        var selectionIsCollapsed;
+        var features = api.features;
+        var CONTROL = "Control";
+        var getDocument = dom.getDocument;
+        var getBody = dom.getBody;
+        var rangesEqual = DomRange.rangesEqual;
+
+
+        // Utility function to support direction parameters in the API that may be a string ("backward" or "forward") or a
+        // Boolean (true for backwards).
+        function isDirectionBackward(dir) {
+            return (typeof dir == "string") ? /^backward(s)?$/i.test(dir) : !!dir;
+        }
+
+        function getWindow(win, methodName) {
+            if (!win) {
+                return window;
+            } else if (dom.isWindow(win)) {
+                return win;
+            } else if (win instanceof WrappedSelection) {
+                return win.win;
+            } else {
+                var doc = dom.getContentDocument(win, module, methodName);
+                return dom.getWindow(doc);
+            }
+        }
+
+        function getWinSelection(winParam) {
+            return getWindow(winParam, "getWinSelection").getSelection();
+        }
+
+        function getDocSelection(winParam) {
+            return getWindow(winParam, "getDocSelection").document.selection;
+        }
+        
+        function winSelectionIsBackward(sel) {
+            var backward = false;
+            if (sel.anchorNode) {
+                backward = (dom.comparePoints(sel.anchorNode, sel.anchorOffset, sel.focusNode, sel.focusOffset) == 1);
+            }
+            return backward;
+        }
+
+        // Test for the Range/TextRange and Selection features required
+        // Test for ability to retrieve selection
+        var implementsWinGetSelection = isHostMethod(window, "getSelection"),
+            implementsDocSelection = util.isHostObject(document, "selection");
+
+        features.implementsWinGetSelection = implementsWinGetSelection;
+        features.implementsDocSelection = implementsDocSelection;
+
+        var useDocumentSelection = implementsDocSelection && (!implementsWinGetSelection || api.config.preferTextRange);
+
+        if (useDocumentSelection) {
+            getNativeSelection = getDocSelection;
+            api.isSelectionValid = function(winParam) {
+                var doc = getWindow(winParam, "isSelectionValid").document, nativeSel = doc.selection;
+
+                // Check whether the selection TextRange is actually contained within the correct document
+                return (nativeSel.type != "None" || getDocument(nativeSel.createRange().parentElement()) == doc);
+            };
+        } else if (implementsWinGetSelection) {
+            getNativeSelection = getWinSelection;
+            api.isSelectionValid = function() {
+                return true;
+            };
+        } else {
+            module.fail("Neither document.selection or window.getSelection() detected.");
+        }
+
+        api.getNativeSelection = getNativeSelection;
+
+        var testSelection = getNativeSelection();
+        var testRange = api.createNativeRange(document);
+        var body = getBody(document);
+
+        // Obtaining a range from a selection
+        var selectionHasAnchorAndFocus = util.areHostProperties(testSelection,
+            ["anchorNode", "focusNode", "anchorOffset", "focusOffset"]);
+
+        features.selectionHasAnchorAndFocus = selectionHasAnchorAndFocus;
+
+        // Test for existence of native selection extend() method
+        var selectionHasExtend = isHostMethod(testSelection, "extend");
+        features.selectionHasExtend = selectionHasExtend;
+        
+        // Test if rangeCount exists
+        var selectionHasRangeCount = (typeof testSelection.rangeCount == NUMBER);
+        features.selectionHasRangeCount = selectionHasRangeCount;
+
+        var selectionSupportsMultipleRanges = false;
+        var collapsedNonEditableSelectionsSupported = true;
+
+        var addRangeBackwardToNative = selectionHasExtend ?
+            function(nativeSelection, range) {
+                var doc = DomRange.getRangeDocument(range);
+                var endRange = api.createRange(doc);
+                endRange.collapseToPoint(range.endContainer, range.endOffset);
+                nativeSelection.addRange(getNativeRange(endRange));
+                nativeSelection.extend(range.startContainer, range.startOffset);
+            } : null;
+
+        if (util.areHostMethods(testSelection, ["addRange", "getRangeAt", "removeAllRanges"]) &&
+                typeof testSelection.rangeCount == NUMBER && features.implementsDomRange) {
+
+            (function() {
+                // Previously an iframe was used but this caused problems in some circumstances in IE, so tests are
+                // performed on the current document's selection. See issue 109.
+
+                // Note also that if a selection previously existed, it is wiped by these tests. This should usually be fine
+                // because initialization usually happens when the document loads, but could be a problem for a script that
+                // loads and initializes Rangy later. If anyone complains, code could be added to save and restore the
+                // selection.
+                var sel = window.getSelection();
+                if (sel) {
+                    // Store the current selection
+                    var originalSelectionRangeCount = sel.rangeCount;
+                    var selectionHasMultipleRanges = (originalSelectionRangeCount > 1);
+                    var originalSelectionRanges = [];
+                    var originalSelectionBackward = winSelectionIsBackward(sel); 
+                    for (var i = 0; i < originalSelectionRangeCount; ++i) {
+                        originalSelectionRanges[i] = sel.getRangeAt(i);
+                    }
+                    
+                    // Create some test elements
+                    var body = getBody(document);
+                    var testEl = body.appendChild( document.createElement("div") );
+                    testEl.contentEditable = "false";
+                    var textNode = testEl.appendChild( document.createTextNode("\u00a0\u00a0\u00a0") );
+
+                    // Test whether the native selection will allow a collapsed selection within a non-editable element
+                    var r1 = document.createRange();
+
+                    r1.setStart(textNode, 1);
+                    r1.collapse(true);
+                    sel.addRange(r1);
+                    collapsedNonEditableSelectionsSupported = (sel.rangeCount == 1);
+                    sel.removeAllRanges();
+
+                    // Test whether the native selection is capable of supporting multiple ranges.
+                    if (!selectionHasMultipleRanges) {
+                        // Doing the original feature test here in Chrome 36 (and presumably later versions) prints a
+                        // console error of "Discontiguous selection is not supported." that cannot be suppressed. There's
+                        // nothing we can do about this while retaining the feature test so we have to resort to a browser
+                        // sniff. I'm not happy about it. See
+                        // https://code.google.com/p/chromium/issues/detail?id=399791
+                        var chromeMatch = window.navigator.appVersion.match(/Chrome\/(.*?) /);
+                        if (chromeMatch && parseInt(chromeMatch[1]) >= 36) {
+                            selectionSupportsMultipleRanges = false;
+                        } else {
+                            var r2 = r1.cloneRange();
+                            r1.setStart(textNode, 0);
+                            r2.setEnd(textNode, 3);
+                            r2.setStart(textNode, 2);
+                            sel.addRange(r1);
+                            sel.addRange(r2);
+                            selectionSupportsMultipleRanges = (sel.rangeCount == 2);
+                        }
+                    }
+
+                    // Clean up
+                    body.removeChild(testEl);
+                    sel.removeAllRanges();
+
+                    for (i = 0; i < originalSelectionRangeCount; ++i) {
+                        if (i == 0 && originalSelectionBackward) {
+                            if (addRangeBackwardToNative) {
+                                addRangeBackwardToNative(sel, originalSelectionRanges[i]);
+                            } else {
+                                api.warn("Rangy initialization: original selection was backwards but selection has been restored forwards because the browser does not support Selection.extend");
+                                sel.addRange(originalSelectionRanges[i]);
+                            }
+                        } else {
+                            sel.addRange(originalSelectionRanges[i]);
+                        }
+                    }
+                }
+            })();
+        }
+
+        features.selectionSupportsMultipleRanges = selectionSupportsMultipleRanges;
+        features.collapsedNonEditableSelectionsSupported = collapsedNonEditableSelectionsSupported;
+
+        // ControlRanges
+        var implementsControlRange = false, testControlRange;
+
+        if (body && isHostMethod(body, "createControlRange")) {
+            testControlRange = body.createControlRange();
+            if (util.areHostProperties(testControlRange, ["item", "add"])) {
+                implementsControlRange = true;
+            }
+        }
+        features.implementsControlRange = implementsControlRange;
+
+        // Selection collapsedness
+        if (selectionHasAnchorAndFocus) {
+            selectionIsCollapsed = function(sel) {
+                return sel.anchorNode === sel.focusNode && sel.anchorOffset === sel.focusOffset;
+            };
+        } else {
+            selectionIsCollapsed = function(sel) {
+                return sel.rangeCount ? sel.getRangeAt(sel.rangeCount - 1).collapsed : false;
+            };
+        }
+
+        function updateAnchorAndFocusFromRange(sel, range, backward) {
+            var anchorPrefix = backward ? "end" : "start", focusPrefix = backward ? "start" : "end";
+            sel.anchorNode = range[anchorPrefix + "Container"];
+            sel.anchorOffset = range[anchorPrefix + "Offset"];
+            sel.focusNode = range[focusPrefix + "Container"];
+            sel.focusOffset = range[focusPrefix + "Offset"];
+        }
+
+        function updateAnchorAndFocusFromNativeSelection(sel) {
+            var nativeSel = sel.nativeSelection;
+            sel.anchorNode = nativeSel.anchorNode;
+            sel.anchorOffset = nativeSel.anchorOffset;
+            sel.focusNode = nativeSel.focusNode;
+            sel.focusOffset = nativeSel.focusOffset;
+        }
+
+        function updateEmptySelection(sel) {
+            sel.anchorNode = sel.focusNode = null;
+            sel.anchorOffset = sel.focusOffset = 0;
+            sel.rangeCount = 0;
+            sel.isCollapsed = true;
+            sel._ranges.length = 0;
+        }
+
+        function getNativeRange(range) {
+            var nativeRange;
+            if (range instanceof DomRange) {
+                nativeRange = api.createNativeRange(range.getDocument());
+                nativeRange.setEnd(range.endContainer, range.endOffset);
+                nativeRange.setStart(range.startContainer, range.startOffset);
+            } else if (range instanceof WrappedRange) {
+                nativeRange = range.nativeRange;
+            } else if (features.implementsDomRange && (range instanceof dom.getWindow(range.startContainer).Range)) {
+                nativeRange = range;
+            }
+            return nativeRange;
+        }
+
+        function rangeContainsSingleElement(rangeNodes) {
+            if (!rangeNodes.length || rangeNodes[0].nodeType != 1) {
+                return false;
+            }
+            for (var i = 1, len = rangeNodes.length; i < len; ++i) {
+                if (!dom.isAncestorOf(rangeNodes[0], rangeNodes[i])) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function getSingleElementFromRange(range) {
+            var nodes = range.getNodes();
+            if (!rangeContainsSingleElement(nodes)) {
+                throw module.createError("getSingleElementFromRange: range " + range.inspect() + " did not consist of a single element");
+            }
+            return nodes[0];
+        }
+
+        // Simple, quick test which only needs to distinguish between a TextRange and a ControlRange
+        function isTextRange(range) {
+            return !!range && typeof range.text != "undefined";
+        }
+
+        function updateFromTextRange(sel, range) {
+            // Create a Range from the selected TextRange
+            var wrappedRange = new WrappedRange(range);
+            sel._ranges = [wrappedRange];
+
+            updateAnchorAndFocusFromRange(sel, wrappedRange, false);
+            sel.rangeCount = 1;
+            sel.isCollapsed = wrappedRange.collapsed;
+        }
+
+        function updateControlSelection(sel) {
+            // Update the wrapped selection based on what's now in the native selection
+            sel._ranges.length = 0;
+            if (sel.docSelection.type == "None") {
+                updateEmptySelection(sel);
+            } else {
+                var controlRange = sel.docSelection.createRange();
+                if (isTextRange(controlRange)) {
+                    // This case (where the selection type is "Control" and calling createRange() on the selection returns
+                    // a TextRange) can happen in IE 9. It happens, for example, when all elements in the selected
+                    // ControlRange have been removed from the ControlRange and removed from the document.
+                    updateFromTextRange(sel, controlRange);
+                } else {
+                    sel.rangeCount = controlRange.length;
+                    var range, doc = getDocument(controlRange.item(0));
+                    for (var i = 0; i < sel.rangeCount; ++i) {
+                        range = api.createRange(doc);
+                        range.selectNode(controlRange.item(i));
+                        sel._ranges.push(range);
+                    }
+                    sel.isCollapsed = sel.rangeCount == 1 && sel._ranges[0].collapsed;
+                    updateAnchorAndFocusFromRange(sel, sel._ranges[sel.rangeCount - 1], false);
+                }
+            }
+        }
+
+        function addRangeToControlSelection(sel, range) {
+            var controlRange = sel.docSelection.createRange();
+            var rangeElement = getSingleElementFromRange(range);
+
+            // Create a new ControlRange containing all the elements in the selected ControlRange plus the element
+            // contained by the supplied range
+            var doc = getDocument(controlRange.item(0));
+            var newControlRange = getBody(doc).createControlRange();
+            for (var i = 0, len = controlRange.length; i < len; ++i) {
+                newControlRange.add(controlRange.item(i));
+            }
+            try {
+                newControlRange.add(rangeElement);
+            } catch (ex) {
+                throw module.createError("addRange(): Element within the specified Range could not be added to control selection (does it have layout?)");
+            }
+            newControlRange.select();
+
+            // Update the wrapped selection based on what's now in the native selection
+            updateControlSelection(sel);
+        }
+
+        var getSelectionRangeAt;
+
+        if (isHostMethod(testSelection, "getRangeAt")) {
+            // try/catch is present because getRangeAt() must have thrown an error in some browser and some situation.
+            // Unfortunately, I didn't write a comment about the specifics and am now scared to take it out. Let that be a
+            // lesson to us all, especially me.
+            getSelectionRangeAt = function(sel, index) {
+                try {
+                    return sel.getRangeAt(index);
+                } catch (ex) {
+                    return null;
+                }
+            };
+        } else if (selectionHasAnchorAndFocus) {
+            getSelectionRangeAt = function(sel) {
+                var doc = getDocument(sel.anchorNode);
+                var range = api.createRange(doc);
+                range.setStartAndEnd(sel.anchorNode, sel.anchorOffset, sel.focusNode, sel.focusOffset);
+
+                // Handle the case when the selection was selected backwards (from the end to the start in the
+                // document)
+                if (range.collapsed !== this.isCollapsed) {
+                    range.setStartAndEnd(sel.focusNode, sel.focusOffset, sel.anchorNode, sel.anchorOffset);
+                }
+
+                return range;
+            };
+        }
+
+        function WrappedSelection(selection, docSelection, win) {
+            this.nativeSelection = selection;
+            this.docSelection = docSelection;
+            this._ranges = [];
+            this.win = win;
+            this.refresh();
+        }
+
+        WrappedSelection.prototype = api.selectionPrototype;
+
+        function deleteProperties(sel) {
+            sel.win = sel.anchorNode = sel.focusNode = sel._ranges = null;
+            sel.rangeCount = sel.anchorOffset = sel.focusOffset = 0;
+            sel.detached = true;
+        }
+
+        var cachedRangySelections = [];
+
+        function actOnCachedSelection(win, action) {
+            var i = cachedRangySelections.length, cached, sel;
+            while (i--) {
+                cached = cachedRangySelections[i];
+                sel = cached.selection;
+                if (action == "deleteAll") {
+                    deleteProperties(sel);
+                } else if (cached.win == win) {
+                    if (action == "delete") {
+                        cachedRangySelections.splice(i, 1);
+                        return true;
+                    } else {
+                        return sel;
+                    }
+                }
+            }
+            if (action == "deleteAll") {
+                cachedRangySelections.length = 0;
+            }
+            return null;
+        }
+
+        var getSelection = function(win) {
+            // Check if the parameter is a Rangy Selection object
+            if (win && win instanceof WrappedSelection) {
+                win.refresh();
+                return win;
+            }
+
+            win = getWindow(win, "getNativeSelection");
+
+            var sel = actOnCachedSelection(win);
+            var nativeSel = getNativeSelection(win), docSel = implementsDocSelection ? getDocSelection(win) : null;
+            if (sel) {
+                sel.nativeSelection = nativeSel;
+                sel.docSelection = docSel;
+                sel.refresh();
+            } else {
+                sel = new WrappedSelection(nativeSel, docSel, win);
+                cachedRangySelections.push( { win: win, selection: sel } );
+            }
+            return sel;
+        };
+
+        api.getSelection = getSelection;
+
+        api.getIframeSelection = function(iframeEl) {
+            module.deprecationNotice("getIframeSelection()", "getSelection(iframeEl)");
+            return api.getSelection(dom.getIframeWindow(iframeEl));
+        };
+
+        var selProto = WrappedSelection.prototype;
+
+        function createControlSelection(sel, ranges) {
+            // Ensure that the selection becomes of type "Control"
+            var doc = getDocument(ranges[0].startContainer);
+            var controlRange = getBody(doc).createControlRange();
+            for (var i = 0, el, len = ranges.length; i < len; ++i) {
+                el = getSingleElementFromRange(ranges[i]);
+                try {
+                    controlRange.add(el);
+                } catch (ex) {
+                    throw module.createError("setRanges(): Element within one of the specified Ranges could not be added to control selection (does it have layout?)");
+                }
+            }
+            controlRange.select();
+
+            // Update the wrapped selection based on what's now in the native selection
+            updateControlSelection(sel);
+        }
+
+        // Selecting a range
+        if (!useDocumentSelection && selectionHasAnchorAndFocus && util.areHostMethods(testSelection, ["removeAllRanges", "addRange"])) {
+            selProto.removeAllRanges = function() {
+                this.nativeSelection.removeAllRanges();
+                updateEmptySelection(this);
+            };
+
+            var addRangeBackward = function(sel, range) {
+                addRangeBackwardToNative(sel.nativeSelection, range);
+                sel.refresh();
+            };
+
+            if (selectionHasRangeCount) {
+                selProto.addRange = function(range, direction) {
+                    if (implementsControlRange && implementsDocSelection && this.docSelection.type == CONTROL) {
+                        addRangeToControlSelection(this, range);
+                    } else {
+                        if (isDirectionBackward(direction) && selectionHasExtend) {
+                            addRangeBackward(this, range);
+                        } else {
+                            var previousRangeCount;
+                            if (selectionSupportsMultipleRanges) {
+                                previousRangeCount = this.rangeCount;
+                            } else {
+                                this.removeAllRanges();
+                                previousRangeCount = 0;
+                            }
+                            // Clone the native range so that changing the selected range does not affect the selection.
+                            // This is contrary to the spec but is the only way to achieve consistency between browsers. See
+                            // issue 80.
+                            var clonedNativeRange = getNativeRange(range).cloneRange();
+                            try {
+                                this.nativeSelection.addRange(clonedNativeRange);
+                            } catch (ex) {
+                            }
+
+                            // Check whether adding the range was successful
+                            this.rangeCount = this.nativeSelection.rangeCount;
+
+                            if (this.rangeCount == previousRangeCount + 1) {
+                                // The range was added successfully
+
+                                // Check whether the range that we added to the selection is reflected in the last range extracted from
+                                // the selection
+                                if (api.config.checkSelectionRanges) {
+                                    var nativeRange = getSelectionRangeAt(this.nativeSelection, this.rangeCount - 1);
+                                    if (nativeRange && !rangesEqual(nativeRange, range)) {
+                                        // Happens in WebKit with, for example, a selection placed at the start of a text node
+                                        range = new WrappedRange(nativeRange);
+                                    }
+                                }
+                                this._ranges[this.rangeCount - 1] = range;
+                                updateAnchorAndFocusFromRange(this, range, selectionIsBackward(this.nativeSelection));
+                                this.isCollapsed = selectionIsCollapsed(this);
+                            } else {
+                                // The range was not added successfully. The simplest thing is to refresh
+                                this.refresh();
+                            }
+                        }
+                    }
+                };
+            } else {
+                selProto.addRange = function(range, direction) {
+                    if (isDirectionBackward(direction) && selectionHasExtend) {
+                        addRangeBackward(this, range);
+                    } else {
+                        this.nativeSelection.addRange(getNativeRange(range));
+                        this.refresh();
+                    }
+                };
+            }
+
+            selProto.setRanges = function(ranges) {
+                if (implementsControlRange && implementsDocSelection && ranges.length > 1) {
+                    createControlSelection(this, ranges);
+                } else {
+                    this.removeAllRanges();
+                    for (var i = 0, len = ranges.length; i < len; ++i) {
+                        this.addRange(ranges[i]);
+                    }
+                }
+            };
+        } else if (isHostMethod(testSelection, "empty") && isHostMethod(testRange, "select") &&
+                   implementsControlRange && useDocumentSelection) {
+
+            selProto.removeAllRanges = function() {
+                // Added try/catch as fix for issue #21
+                try {
+                    this.docSelection.empty();
+
+                    // Check for empty() not working (issue #24)
+                    if (this.docSelection.type != "None") {
+                        // Work around failure to empty a control selection by instead selecting a TextRange and then
+                        // calling empty()
+                        var doc;
+                        if (this.anchorNode) {
+                            doc = getDocument(this.anchorNode);
+                        } else if (this.docSelection.type == CONTROL) {
+                            var controlRange = this.docSelection.createRange();
+                            if (controlRange.length) {
+                                doc = getDocument( controlRange.item(0) );
+                            }
+                        }
+                        if (doc) {
+                            var textRange = getBody(doc).createTextRange();
+                            textRange.select();
+                            this.docSelection.empty();
+                        }
+                    }
+                } catch(ex) {}
+                updateEmptySelection(this);
+            };
+
+            selProto.addRange = function(range) {
+                if (this.docSelection.type == CONTROL) {
+                    addRangeToControlSelection(this, range);
+                } else {
+                    api.WrappedTextRange.rangeToTextRange(range).select();
+                    this._ranges[0] = range;
+                    this.rangeCount = 1;
+                    this.isCollapsed = this._ranges[0].collapsed;
+                    updateAnchorAndFocusFromRange(this, range, false);
+                }
+            };
+
+            selProto.setRanges = function(ranges) {
+                this.removeAllRanges();
+                var rangeCount = ranges.length;
+                if (rangeCount > 1) {
+                    createControlSelection(this, ranges);
+                } else if (rangeCount) {
+                    this.addRange(ranges[0]);
+                }
+            };
+        } else {
+            module.fail("No means of selecting a Range or TextRange was found");
+            return false;
+        }
+
+        selProto.getRangeAt = function(index) {
+            if (index < 0 || index >= this.rangeCount) {
+                throw new DOMException("INDEX_SIZE_ERR");
+            } else {
+                // Clone the range to preserve selection-range independence. See issue 80.
+                return this._ranges[index].cloneRange();
+            }
+        };
+
+        var refreshSelection;
+
+        if (useDocumentSelection) {
+            refreshSelection = function(sel) {
+                var range;
+                if (api.isSelectionValid(sel.win)) {
+                    range = sel.docSelection.createRange();
+                } else {
+                    range = getBody(sel.win.document).createTextRange();
+                    range.collapse(true);
+                }
+
+                if (sel.docSelection.type == CONTROL) {
+                    updateControlSelection(sel);
+                } else if (isTextRange(range)) {
+                    updateFromTextRange(sel, range);
+                } else {
+                    updateEmptySelection(sel);
+                }
+            };
+        } else if (isHostMethod(testSelection, "getRangeAt") && typeof testSelection.rangeCount == NUMBER) {
+            refreshSelection = function(sel) {
+                if (implementsControlRange && implementsDocSelection && sel.docSelection.type == CONTROL) {
+                    updateControlSelection(sel);
+                } else {
+                    sel._ranges.length = sel.rangeCount = sel.nativeSelection.rangeCount;
+                    if (sel.rangeCount) {
+                        for (var i = 0, len = sel.rangeCount; i < len; ++i) {
+                            sel._ranges[i] = new api.WrappedRange(sel.nativeSelection.getRangeAt(i));
+                        }
+                        updateAnchorAndFocusFromRange(sel, sel._ranges[sel.rangeCount - 1], selectionIsBackward(sel.nativeSelection));
+                        sel.isCollapsed = selectionIsCollapsed(sel);
+                    } else {
+                        updateEmptySelection(sel);
+                    }
+                }
+            };
+        } else if (selectionHasAnchorAndFocus && typeof testSelection.isCollapsed == BOOLEAN && typeof testRange.collapsed == BOOLEAN && features.implementsDomRange) {
+            refreshSelection = function(sel) {
+                var range, nativeSel = sel.nativeSelection;
+                if (nativeSel.anchorNode) {
+                    range = getSelectionRangeAt(nativeSel, 0);
+                    sel._ranges = [range];
+                    sel.rangeCount = 1;
+                    updateAnchorAndFocusFromNativeSelection(sel);
+                    sel.isCollapsed = selectionIsCollapsed(sel);
+                } else {
+                    updateEmptySelection(sel);
+                }
+            };
+        } else {
+            module.fail("No means of obtaining a Range or TextRange from the user's selection was found");
+            return false;
+        }
+
+        selProto.refresh = function(checkForChanges) {
+            var oldRanges = checkForChanges ? this._ranges.slice(0) : null;
+            var oldAnchorNode = this.anchorNode, oldAnchorOffset = this.anchorOffset;
+
+            refreshSelection(this);
+            if (checkForChanges) {
+                // Check the range count first
+                var i = oldRanges.length;
+                if (i != this._ranges.length) {
+                    return true;
+                }
+
+                // Now check the direction. Checking the anchor position is the same is enough since we're checking all the
+                // ranges after this
+                if (this.anchorNode != oldAnchorNode || this.anchorOffset != oldAnchorOffset) {
+                    return true;
+                }
+
+                // Finally, compare each range in turn
+                while (i--) {
+                    if (!rangesEqual(oldRanges[i], this._ranges[i])) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        };
+
+        // Removal of a single range
+        var removeRangeManually = function(sel, range) {
+            var ranges = sel.getAllRanges();
+            sel.removeAllRanges();
+            for (var i = 0, len = ranges.length; i < len; ++i) {
+                if (!rangesEqual(range, ranges[i])) {
+                    sel.addRange(ranges[i]);
+                }
+            }
+            if (!sel.rangeCount) {
+                updateEmptySelection(sel);
+            }
+        };
+
+        if (implementsControlRange && implementsDocSelection) {
+            selProto.removeRange = function(range) {
+                if (this.docSelection.type == CONTROL) {
+                    var controlRange = this.docSelection.createRange();
+                    var rangeElement = getSingleElementFromRange(range);
+
+                    // Create a new ControlRange containing all the elements in the selected ControlRange minus the
+                    // element contained by the supplied range
+                    var doc = getDocument(controlRange.item(0));
+                    var newControlRange = getBody(doc).createControlRange();
+                    var el, removed = false;
+                    for (var i = 0, len = controlRange.length; i < len; ++i) {
+                        el = controlRange.item(i);
+                        if (el !== rangeElement || removed) {
+                            newControlRange.add(controlRange.item(i));
+                        } else {
+                            removed = true;
+                        }
+                    }
+                    newControlRange.select();
+
+                    // Update the wrapped selection based on what's now in the native selection
+                    updateControlSelection(this);
+                } else {
+                    removeRangeManually(this, range);
+                }
+            };
+        } else {
+            selProto.removeRange = function(range) {
+                removeRangeManually(this, range);
+            };
+        }
+
+        // Detecting if a selection is backward
+        var selectionIsBackward;
+        if (!useDocumentSelection && selectionHasAnchorAndFocus && features.implementsDomRange) {
+            selectionIsBackward = winSelectionIsBackward;
+
+            selProto.isBackward = function() {
+                return selectionIsBackward(this);
+            };
+        } else {
+            selectionIsBackward = selProto.isBackward = function() {
+                return false;
+            };
+        }
+
+        // Create an alias for backwards compatibility. From 1.3, everything is "backward" rather than "backwards"
+        selProto.isBackwards = selProto.isBackward;
+
+        // Selection stringifier
+        // This is conformant to the old HTML5 selections draft spec but differs from WebKit and Mozilla's implementation.
+        // The current spec does not yet define this method.
+        selProto.toString = function() {
+            var rangeTexts = [];
+            for (var i = 0, len = this.rangeCount; i < len; ++i) {
+                rangeTexts[i] = "" + this._ranges[i];
+            }
+            return rangeTexts.join("");
+        };
+
+        function assertNodeInSameDocument(sel, node) {
+            if (sel.win.document != getDocument(node)) {
+                throw new DOMException("WRONG_DOCUMENT_ERR");
+            }
+        }
+
+        // No current browser conforms fully to the spec for this method, so Rangy's own method is always used
+        selProto.collapse = function(node, offset) {
+            assertNodeInSameDocument(this, node);
+            var range = api.createRange(node);
+            range.collapseToPoint(node, offset);
+            this.setSingleRange(range);
+            this.isCollapsed = true;
+        };
+
+        selProto.collapseToStart = function() {
+            if (this.rangeCount) {
+                var range = this._ranges[0];
+                this.collapse(range.startContainer, range.startOffset);
+            } else {
+                throw new DOMException("INVALID_STATE_ERR");
+            }
+        };
+
+        selProto.collapseToEnd = function() {
+            if (this.rangeCount) {
+                var range = this._ranges[this.rangeCount - 1];
+                this.collapse(range.endContainer, range.endOffset);
+            } else {
+                throw new DOMException("INVALID_STATE_ERR");
+            }
+        };
+
+        // The spec is very specific on how selectAllChildren should be implemented so the native implementation is
+        // never used by Rangy.
+        selProto.selectAllChildren = function(node) {
+            assertNodeInSameDocument(this, node);
+            var range = api.createRange(node);
+            range.selectNodeContents(node);
+            this.setSingleRange(range);
+        };
+
+        selProto.deleteFromDocument = function() {
+            // Sepcial behaviour required for IE's control selections
+            if (implementsControlRange && implementsDocSelection && this.docSelection.type == CONTROL) {
+                var controlRange = this.docSelection.createRange();
+                var element;
+                while (controlRange.length) {
+                    element = controlRange.item(0);
+                    controlRange.remove(element);
+                    element.parentNode.removeChild(element);
+                }
+                this.refresh();
+            } else if (this.rangeCount) {
+                var ranges = this.getAllRanges();
+                if (ranges.length) {
+                    this.removeAllRanges();
+                    for (var i = 0, len = ranges.length; i < len; ++i) {
+                        ranges[i].deleteContents();
+                    }
+                    // The spec says nothing about what the selection should contain after calling deleteContents on each
+                    // range. Firefox moves the selection to where the final selected range was, so we emulate that
+                    this.addRange(ranges[len - 1]);
+                }
+            }
+        };
+
+        // The following are non-standard extensions
+        selProto.eachRange = function(func, returnValue) {
+            for (var i = 0, len = this._ranges.length; i < len; ++i) {
+                if ( func( this.getRangeAt(i) ) ) {
+                    return returnValue;
+                }
+            }
+        };
+
+        selProto.getAllRanges = function() {
+            var ranges = [];
+            this.eachRange(function(range) {
+                ranges.push(range);
+            });
+            return ranges;
+        };
+
+        selProto.setSingleRange = function(range, direction) {
+            this.removeAllRanges();
+            this.addRange(range, direction);
+        };
+
+        selProto.callMethodOnEachRange = function(methodName, params) {
+            var results = [];
+            this.eachRange( function(range) {
+                results.push( range[methodName].apply(range, params) );
+            } );
+            return results;
+        };
+        
+        function createStartOrEndSetter(isStart) {
+            return function(node, offset) {
+                var range;
+                if (this.rangeCount) {
+                    range = this.getRangeAt(0);
+                    range["set" + (isStart ? "Start" : "End")](node, offset);
+                } else {
+                    range = api.createRange(this.win.document);
+                    range.setStartAndEnd(node, offset);
+                }
+                this.setSingleRange(range, this.isBackward());
+            };
+        }
+
+        selProto.setStart = createStartOrEndSetter(true);
+        selProto.setEnd = createStartOrEndSetter(false);
+        
+        // Add select() method to Range prototype. Any existing selection will be removed.
+        api.rangePrototype.select = function(direction) {
+            getSelection( this.getDocument() ).setSingleRange(this, direction);
+        };
+
+        selProto.changeEachRange = function(func) {
+            var ranges = [];
+            var backward = this.isBackward();
+
+            this.eachRange(function(range) {
+                func(range);
+                ranges.push(range);
+            });
+
+            this.removeAllRanges();
+            if (backward && ranges.length == 1) {
+                this.addRange(ranges[0], "backward");
+            } else {
+                this.setRanges(ranges);
+            }
+        };
+
+        selProto.containsNode = function(node, allowPartial) {
+            return this.eachRange( function(range) {
+                return range.containsNode(node, allowPartial);
+            }, true ) || false;
+        };
+
+        selProto.getBookmark = function(containerNode) {
+            return {
+                backward: this.isBackward(),
+                rangeBookmarks: this.callMethodOnEachRange("getBookmark", [containerNode])
+            };
+        };
+
+        selProto.moveToBookmark = function(bookmark) {
+            var selRanges = [];
+            for (var i = 0, rangeBookmark, range; rangeBookmark = bookmark.rangeBookmarks[i++]; ) {
+                range = api.createRange(this.win);
+                range.moveToBookmark(rangeBookmark);
+                selRanges.push(range);
+            }
+            if (bookmark.backward) {
+                this.setSingleRange(selRanges[0], "backward");
+            } else {
+                this.setRanges(selRanges);
+            }
+        };
+
+        selProto.toHtml = function() {
+            var rangeHtmls = [];
+            this.eachRange(function(range) {
+                rangeHtmls.push( DomRange.toHtml(range) );
+            });
+            return rangeHtmls.join("");
+        };
+
+        if (features.implementsTextRange) {
+            selProto.getNativeTextRange = function() {
+                var sel, textRange;
+                if ( (sel = this.docSelection) ) {
+                    var range = sel.createRange();
+                    if (isTextRange(range)) {
+                        return range;
+                    } else {
+                        throw module.createError("getNativeTextRange: selection is a control selection"); 
+                    }
+                } else if (this.rangeCount > 0) {
+                    return api.WrappedTextRange.rangeToTextRange( this.getRangeAt(0) );
+                } else {
+                    throw module.createError("getNativeTextRange: selection contains no range");
+                }
+            };
+        }
+
+        function inspect(sel) {
+            var rangeInspects = [];
+            var anchor = new DomPosition(sel.anchorNode, sel.anchorOffset);
+            var focus = new DomPosition(sel.focusNode, sel.focusOffset);
+            var name = (typeof sel.getName == "function") ? sel.getName() : "Selection";
+
+            if (typeof sel.rangeCount != "undefined") {
+                for (var i = 0, len = sel.rangeCount; i < len; ++i) {
+                    rangeInspects[i] = DomRange.inspect(sel.getRangeAt(i));
+                }
+            }
+            return "[" + name + "(Ranges: " + rangeInspects.join(", ") +
+                    ")(anchor: " + anchor.inspect() + ", focus: " + focus.inspect() + "]";
+        }
+
+        selProto.getName = function() {
+            return "WrappedSelection";
+        };
+
+        selProto.inspect = function() {
+            return inspect(this);
+        };
+
+        selProto.detach = function() {
+            actOnCachedSelection(this.win, "delete");
+            deleteProperties(this);
+        };
+
+        WrappedSelection.detachAll = function() {
+            actOnCachedSelection(null, "deleteAll");
+        };
+
+        WrappedSelection.inspect = inspect;
+        WrappedSelection.isDirectionBackward = isDirectionBackward;
+
+        api.Selection = WrappedSelection;
+
+        api.selectionPrototype = selProto;
+
+        api.addShimListener(function(win) {
+            if (typeof win.getSelection == "undefined") {
+                win.getSelection = function() {
+                    return getSelection(win);
+                };
+            }
+            win = null;
+        });
+    });
+    
+
+    /*----------------------------------------------------------------------------------------------------------------*/
+
+    // Wait for document to load before initializing
+    var docReady = false;
+
+    var loadHandler = function(e) {
+        if (!docReady) {
+            docReady = true;
+            if (!api.initialized && api.config.autoInitialize) {
+                init();
+            }
+        }
+    };
+
+    if (isBrowser) {
+        // Test whether the document has already been loaded and initialize immediately if so
+        if (/^(?:complete|interactive)$/.test(document.readyState)) {
+            loadHandler();
+        } else {
+            if (isHostMethod(document, "addEventListener")) {
+                document.addEventListener("DOMContentLoaded", loadHandler, false);
+            }
+
+            // Add a fallback in case the DOMContentLoaded event isn't supported
+            addListener(window, "load", loadHandler);
+        }
+    }
+
+    return api;
+}, /* Ridiculous nonsense to get the global object in any environment follows */(function(f) { return f('return this;')(); })(Function));
+
+}});
+
+
+
+
+require.register({"rangy-textrange": function(exports, require, module) {
+  /**
+ * Text range module for Rangy.
+ * Text-based manipulation and searching of ranges and selections.
+ *
+ * Features
+ *
+ * - Ability to move range boundaries by character or word offsets
+ * - Customizable word tokenizer
+ * - Ignores text nodes inside <script> or <style> elements or those hidden by CSS display and visibility properties
+ * - Range findText method to search for text or regex within the page or within a range. Flags for whole words and case
+ *   sensitivity
+ * - Selection and range save/restore as text offsets within a node
+ * - Methods to return visible text within a range or selection
+ * - innerText method for elements
+ *
+ * References
+ *
+ * https://www.w3.org/Bugs/Public/show_bug.cgi?id=13145
+ * http://aryeh.name/spec/innertext/innertext.html
+ * http://dvcs.w3.org/hg/editing/raw-file/tip/editing.html
+ *
+ * Part of Rangy, a cross-browser JavaScript range and selection library
+ * http://code.google.com/p/rangy/
+ *
+ * Depends on Rangy core.
+ *
+ * Copyright 2014, Tim Down
+ * Licensed under the MIT license.
+ * Version: 1.3.0-alpha.20140825
+ * Build date: 25 August 2014
+ */
+
+/**
+ * Problem: handling of trailing spaces before line breaks is handled inconsistently between browsers.
+ *
+ * First, a <br>: this is relatively simple. For the following HTML:
+ *
+ * 1 <br>2
+ *
+ * - IE and WebKit render the space, include it in the selection (i.e. when the content is selected and pasted into a
+ *   textarea, the space is present) and allow the caret to be placed after it.
+ * - Firefox does not acknowledge the space in the selection but it is possible to place the caret after it.
+ * - Opera does not render the space but has two separate caret positions on either side of the space (left and right
+ *   arrow keys show this) and includes the space in the selection.
+ *
+ * The other case is the line break or breaks implied by block elements. For the following HTML:
+ *
+ * <p>1 </p><p>2<p>
+ *
+ * - WebKit does not acknowledge the space in any way
+ * - Firefox, IE and Opera as per <br>
+ *
+ * One more case is trailing spaces before line breaks in elements with white-space: pre-line. For the following HTML:
+ *
+ * <p style="white-space: pre-line">1
+ * 2</p>
+ *
+ * - Firefox and WebKit include the space in caret positions
+ * - IE does not support pre-line up to and including version 9
+ * - Opera ignores the space
+ * - Trailing space only renders if there is a non-collapsed character in the line
+ *
+ * Problem is whether Rangy should ever acknowledge the space and if so, when. Another problem is whether this can be
+ * feature-tested
+ */
+(function(factory, global) {
+    if (typeof define == "function" && define.amd) {
+        // AMD. Register as an anonymous module with a dependency on Rangy.
+        define(["./rangy-core"], factory);
+    } else if (typeof module != "undefined" && typeof exports == "object") {
+        // Node/CommonJS style
+        module.exports = factory( require("rangy") );
+    } else {
+        // No AMD or CommonJS support so we use the rangy global variable
+        factory(global.rangy);
+    }
+})(function(rangy) {
+    rangy.createModule("TextRange", ["WrappedSelection"], function(api, module) {
+        var UNDEF = "undefined";
+        var CHARACTER = "character", WORD = "word";
+        var dom = api.dom, util = api.util;
+        var extend = util.extend;
+        var createOptions = util.createOptions;
+        var getBody = dom.getBody;
+
+
+        var spacesRegex = /^[ \t\f\r\n]+$/;
+        var spacesMinusLineBreaksRegex = /^[ \t\f\r]+$/;
+        var allWhiteSpaceRegex = /^[\t-\r \u0085\u00A0\u1680\u180E\u2000-\u200B\u2028\u2029\u202F\u205F\u3000]+$/;
+        var nonLineBreakWhiteSpaceRegex = /^[\t \u00A0\u1680\u180E\u2000-\u200B\u202F\u205F\u3000]+$/;
+        var lineBreakRegex = /^[\n-\r\u0085\u2028\u2029]$/;
+
+        var defaultLanguage = "en";
+
+        var isDirectionBackward = api.Selection.isDirectionBackward;
+
+        // Properties representing whether trailing spaces inside blocks are completely collapsed (as they are in WebKit,
+        // but not other browsers). Also test whether trailing spaces before <br> elements are collapsed.
+        var trailingSpaceInBlockCollapses = false;
+        var trailingSpaceBeforeBrCollapses = false;
+        var trailingSpaceBeforeBlockCollapses = false;
+        var trailingSpaceBeforeLineBreakInPreLineCollapses = true;
+
+        (function() {
+            var el = document.createElement("div");
+            el.contentEditable = "true";
+            el.innerHTML = "<p>1 </p><p></p>";
+            var body = getBody(document);
+            var p = el.firstChild;
+            var sel = api.getSelection();
+
+            body.appendChild(el);
+            sel.collapse(p.lastChild, 2);
+            sel.setStart(p.firstChild, 0);
+            trailingSpaceInBlockCollapses = ("" + sel).length == 1;
+
+            el.innerHTML = "1 <br>";
+            sel.collapse(el, 2);
+            sel.setStart(el.firstChild, 0);
+            trailingSpaceBeforeBrCollapses = ("" + sel).length == 1;
+
+            el.innerHTML = "1 <p>1</p>";
+            sel.collapse(el, 2);
+            sel.setStart(el.firstChild, 0);
+            trailingSpaceBeforeBlockCollapses = ("" + sel).length == 1;
+
+            body.removeChild(el);
+            sel.removeAllRanges();
+        })();
+
+        /*----------------------------------------------------------------------------------------------------------------*/
+
+        // This function must create word and non-word tokens for the whole of the text supplied to it
+        function defaultTokenizer(chars, wordOptions) {
+            var word = chars.join(""), result, tokens = [];
+
+            function createTokenFromRange(start, end, isWord) {
+                var tokenChars = chars.slice(start, end);
+                var token = {
+                    isWord: isWord,
+                    chars: tokenChars,
+                    toString: function() {
+                        return tokenChars.join("");
+                    }
+                };
+                for (var i = 0, len = tokenChars.length; i < len; ++i) {
+                    tokenChars[i].token = token;
+                }
+                tokens.push(token);
+            }
+
+            // Match words and mark characters
+            var lastWordEnd = 0, wordStart, wordEnd;
+            while ( (result = wordOptions.wordRegex.exec(word)) ) {
+                wordStart = result.index;
+                wordEnd = wordStart + result[0].length;
+
+                // Create token for non-word characters preceding this word
+                if (wordStart > lastWordEnd) {
+                    createTokenFromRange(lastWordEnd, wordStart, false);
+                }
+
+                // Get trailing space characters for word
+                if (wordOptions.includeTrailingSpace) {
+                    while (nonLineBreakWhiteSpaceRegex.test(chars[wordEnd])) {
+                        ++wordEnd;
+                    }
+                }
+                createTokenFromRange(wordStart, wordEnd, true);
+                lastWordEnd = wordEnd;
+            }
+
+            // Create token for trailing non-word characters, if any exist
+            if (lastWordEnd < chars.length) {
+                createTokenFromRange(lastWordEnd, chars.length, false);
+            }
+
+            return tokens;
+        }
+
+        var defaultCharacterOptions = {
+            includeBlockContentTrailingSpace: true,
+            includeSpaceBeforeBr: true,
+            includeSpaceBeforeBlock: true,
+            includePreLineTrailingSpace: true,
+            ignoreCharacters: ""
+        };
+        
+        function normalizeIgnoredCharacters(ignoredCharacters) {
+            // Check if character is ignored
+            var ignoredChars = ignoredCharacters || "";
+
+            // Normalize ignored characters into a string consisting of characters in ascending order of character code
+            var ignoredCharsArray = (typeof ignoredChars == "string") ? ignoredChars.split("") : ignoredChars;
+            ignoredCharsArray.sort(function(char1, char2) {
+                return char1.charCodeAt(0) - char2.charCodeAt(0);
+            });
+
+            /// Convert back to a string and remove duplicates 
+            return ignoredCharsArray.join("").replace(/(.)\1+/g, "$1");
+        }
+
+        var defaultCaretCharacterOptions = {
+            includeBlockContentTrailingSpace: !trailingSpaceBeforeLineBreakInPreLineCollapses,
+            includeSpaceBeforeBr: !trailingSpaceBeforeBrCollapses,
+            includeSpaceBeforeBlock: !trailingSpaceBeforeBlockCollapses,
+            includePreLineTrailingSpace: true
+        };
+        
+        var defaultWordOptions = {
+            "en": {
+                wordRegex: /[a-z0-9]+('[a-z0-9]+)*/gi,
+                includeTrailingSpace: false,
+                tokenizer: defaultTokenizer
+            }
+        };
+
+        var defaultFindOptions = {
+            caseSensitive: false,
+            withinRange: null,
+            wholeWordsOnly: false,
+            wrap: false,
+            direction: "forward",
+            wordOptions: null,
+            characterOptions: null
+        };
+
+        var defaultMoveOptions = {
+            wordOptions: null,
+            characterOptions: null
+        };
+
+        var defaultExpandOptions = {
+            wordOptions: null,
+            characterOptions: null,
+            trim: false,
+            trimStart: true,
+            trimEnd: true
+        };
+
+        var defaultWordIteratorOptions = {
+            wordOptions: null,
+            characterOptions: null,
+            direction: "forward"
+        };
+
+        function createWordOptions(options) {
+            var lang, defaults;
+            if (!options) {
+                return defaultWordOptions[defaultLanguage];
+            } else {
+                lang = options.language || defaultLanguage;
+                defaults = {};
+                extend(defaults, defaultWordOptions[lang] || defaultWordOptions[defaultLanguage]);
+                extend(defaults, options);
+                return defaults;
+            }
+        }
+
+        function createCharacterOptions(options) {
+            return createOptions(options, defaultCharacterOptions);
+        }
+
+        function createCaretCharacterOptions(options) {
+            return createOptions(options, defaultCaretCharacterOptions);
+        }
+
+        function createFindOptions(optionsParam) {
+            var options = createOptions(optionsParam, defaultFindOptions);
+            options.characterOptions = createCharacterOptions(options.wordOptions);
+            return options;
+        }
+        
+        /*----------------------------------------------------------------------------------------------------------------*/
+
+        /* DOM utility functions */
+        var getComputedStyleProperty = dom.getComputedStyleProperty;
+
+        // Create cachable versions of DOM functions
+
+        // Test for old IE's incorrect display properties
+        var tableCssDisplayBlock;
+        (function() {
+            var table = document.createElement("table");
+            var body = getBody(document);
+            body.appendChild(table);
+            tableCssDisplayBlock = (getComputedStyleProperty(table, "display") == "block");
+            body.removeChild(table);
+        })();
+
+        api.features.tableCssDisplayBlock = tableCssDisplayBlock;
+
+        var defaultDisplayValueForTag = {
+            table: "table",
+            caption: "table-caption",
+            colgroup: "table-column-group",
+            col: "table-column",
+            thead: "table-header-group",
+            tbody: "table-row-group",
+            tfoot: "table-footer-group",
+            tr: "table-row",
+            td: "table-cell",
+            th: "table-cell"
+        };
+
+        // Corrects IE's "block" value for table-related elements
+        function getComputedDisplay(el, win) {
+            var display = getComputedStyleProperty(el, "display", win);
+            var tagName = el.tagName.toLowerCase();
+            return (display == "block" &&
+                    tableCssDisplayBlock &&
+                    defaultDisplayValueForTag.hasOwnProperty(tagName)) ?
+                defaultDisplayValueForTag[tagName] : display;
+        }
+
+        function isHidden(node) {
+            var ancestors = getAncestorsAndSelf(node);
+            for (var i = 0, len = ancestors.length; i < len; ++i) {
+                if (ancestors[i].nodeType == 1 && getComputedDisplay(ancestors[i]) == "none") {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        function isVisibilityHiddenTextNode(textNode) {
+            var el;
+            return textNode.nodeType == 3 &&
+                (el = textNode.parentNode) &&
+                getComputedStyleProperty(el, "visibility") == "hidden";
+        }
+
+        /*----------------------------------------------------------------------------------------------------------------*/
+
+    
+        // "A block node is either an Element whose "display" property does not have
+        // resolved value "inline" or "inline-block" or "inline-table" or "none", or a
+        // Document, or a DocumentFragment."
+        function isBlockNode(node) {
+            return node &&
+                ((node.nodeType == 1 && !/^(inline(-block|-table)?|none)$/.test(getComputedDisplay(node))) ||
+                node.nodeType == 9 || node.nodeType == 11);
+        }
+
+        function getLastDescendantOrSelf(node) {
+            var lastChild = node.lastChild;
+            return lastChild ? getLastDescendantOrSelf(lastChild) : node;
+        }
+
+        function containsPositions(node) {
+            return dom.isCharacterDataNode(node) ||
+                !/^(area|base|basefont|br|col|frame|hr|img|input|isindex|link|meta|param)$/i.test(node.nodeName);
+        }
+
+        function getAncestors(node) {
+            var ancestors = [];
+            while (node.parentNode) {
+                ancestors.unshift(node.parentNode);
+                node = node.parentNode;
+            }
+            return ancestors;
+        }
+
+        function getAncestorsAndSelf(node) {
+            return getAncestors(node).concat([node]);
+        }
+
+        function nextNodeDescendants(node) {
+            while (node && !node.nextSibling) {
+                node = node.parentNode;
+            }
+            if (!node) {
+                return null;
+            }
+            return node.nextSibling;
+        }
+
+        function nextNode(node, excludeChildren) {
+            if (!excludeChildren && node.hasChildNodes()) {
+                return node.firstChild;
+            }
+            return nextNodeDescendants(node);
+        }
+
+        function previousNode(node) {
+            var previous = node.previousSibling;
+            if (previous) {
+                node = previous;
+                while (node.hasChildNodes()) {
+                    node = node.lastChild;
+                }
+                return node;
+            }
+            var parent = node.parentNode;
+            if (parent && parent.nodeType == 1) {
+                return parent;
+            }
+            return null;
+        }
+
+        // Adpated from Aryeh's code.
+        // "A whitespace node is either a Text node whose data is the empty string; or
+        // a Text node whose data consists only of one or more tabs (0x0009), line
+        // feeds (0x000A), carriage returns (0x000D), and/or spaces (0x0020), and whose
+        // parent is an Element whose resolved value for "white-space" is "normal" or
+        // "nowrap"; or a Text node whose data consists only of one or more tabs
+        // (0x0009), carriage returns (0x000D), and/or spaces (0x0020), and whose
+        // parent is an Element whose resolved value for "white-space" is "pre-line"."
+        function isWhitespaceNode(node) {
+            if (!node || node.nodeType != 3) {
+                return false;
+            }
+            var text = node.data;
+            if (text === "") {
+                return true;
+            }
+            var parent = node.parentNode;
+            if (!parent || parent.nodeType != 1) {
+                return false;
+            }
+            var computedWhiteSpace = getComputedStyleProperty(node.parentNode, "whiteSpace");
+
+            return (/^[\t\n\r ]+$/.test(text) && /^(normal|nowrap)$/.test(computedWhiteSpace)) ||
+                (/^[\t\r ]+$/.test(text) && computedWhiteSpace == "pre-line");
+        }
+
+        // Adpated from Aryeh's code.
+        // "node is a collapsed whitespace node if the following algorithm returns
+        // true:"
+        function isCollapsedWhitespaceNode(node) {
+            // "If node's data is the empty string, return true."
+            if (node.data === "") {
+                return true;
+            }
+
+            // "If node is not a whitespace node, return false."
+            if (!isWhitespaceNode(node)) {
+                return false;
+            }
+
+            // "Let ancestor be node's parent."
+            var ancestor = node.parentNode;
+
+            // "If ancestor is null, return true."
+            if (!ancestor) {
+                return true;
+            }
+
+            // "If the "display" property of some ancestor of node has resolved value "none", return true."
+            if (isHidden(node)) {
+                return true;
+            }
+
+            return false;
+        }
+
+        function isCollapsedNode(node) {
+            var type = node.nodeType;
+            return type == 7 /* PROCESSING_INSTRUCTION */ ||
+                type == 8 /* COMMENT */ ||
+                isHidden(node) ||
+                /^(script|style)$/i.test(node.nodeName) ||
+                isVisibilityHiddenTextNode(node) ||
+                isCollapsedWhitespaceNode(node);
+        }
+
+        function isIgnoredNode(node, win) {
+            var type = node.nodeType;
+            return type == 7 /* PROCESSING_INSTRUCTION */ ||
+                type == 8 /* COMMENT */ ||
+                (type == 1 && getComputedDisplay(node, win) == "none");
+        }
+
+        /*----------------------------------------------------------------------------------------------------------------*/
+
+        // Possibly overengineered caching system to prevent repeated DOM calls slowing everything down
+
+        function Cache() {
+            this.store = {};
+        }
+
+        Cache.prototype = {
+            get: function(key) {
+                return this.store.hasOwnProperty(key) ? this.store[key] : null;
+            },
+
+            set: function(key, value) {
+                return this.store[key] = value;
+            }
+        };
+
+        var cachedCount = 0, uncachedCount = 0;
+        
+        function createCachingGetter(methodName, func, objProperty) {
+            return function(args) {
+                var cache = this.cache;
+                if (cache.hasOwnProperty(methodName)) {
+                    cachedCount++;
+                    return cache[methodName];
+                } else {
+                    uncachedCount++;
+                    var value = func.call(this, objProperty ? this[objProperty] : this, args);
+                    cache[methodName] = value;
+                    return value;
+                }
+            };
+        }
+
+        /*----------------------------------------------------------------------------------------------------------------*/
+
+        function NodeWrapper(node, session) {
+            this.node = node;
+            this.session = session;
+            this.cache = new Cache();
+            this.positions = new Cache();
+        }
+
+        var nodeProto = {
+            getPosition: function(offset) {
+                var positions = this.positions;
+                return positions.get(offset) || positions.set(offset, new Position(this, offset));
+            },
+
+            toString: function() {
+                return "[NodeWrapper(" + dom.inspectNode(this.node) + ")]";
+            }
+        };
+
+        NodeWrapper.prototype = nodeProto;
+
+        var EMPTY = "EMPTY",
+            NON_SPACE = "NON_SPACE",
+            UNCOLLAPSIBLE_SPACE = "UNCOLLAPSIBLE_SPACE",
+            COLLAPSIBLE_SPACE = "COLLAPSIBLE_SPACE",
+            TRAILING_SPACE_BEFORE_BLOCK = "TRAILING_SPACE_BEFORE_BLOCK",
+            TRAILING_SPACE_IN_BLOCK = "TRAILING_SPACE_IN_BLOCK",
+            TRAILING_SPACE_BEFORE_BR = "TRAILING_SPACE_BEFORE_BR",
+            PRE_LINE_TRAILING_SPACE_BEFORE_LINE_BREAK = "PRE_LINE_TRAILING_SPACE_BEFORE_LINE_BREAK",
+            TRAILING_LINE_BREAK_AFTER_BR = "TRAILING_LINE_BREAK_AFTER_BR";
+
+        extend(nodeProto, {
+            isCharacterDataNode: createCachingGetter("isCharacterDataNode", dom.isCharacterDataNode, "node"),
+            getNodeIndex: createCachingGetter("nodeIndex", dom.getNodeIndex, "node"),
+            getLength: createCachingGetter("nodeLength", dom.getNodeLength, "node"),
+            containsPositions: createCachingGetter("containsPositions", containsPositions, "node"),
+            isWhitespace: createCachingGetter("isWhitespace", isWhitespaceNode, "node"),
+            isCollapsedWhitespace: createCachingGetter("isCollapsedWhitespace", isCollapsedWhitespaceNode, "node"),
+            getComputedDisplay: createCachingGetter("computedDisplay", getComputedDisplay, "node"),
+            isCollapsed: createCachingGetter("collapsed", isCollapsedNode, "node"),
+            isIgnored: createCachingGetter("ignored", isIgnoredNode, "node"),
+            next: createCachingGetter("nextPos", nextNode, "node"),
+            previous: createCachingGetter("previous", previousNode, "node"),
+
+            getTextNodeInfo: createCachingGetter("textNodeInfo", function(textNode) {
+                var spaceRegex = null, collapseSpaces = false;
+                var cssWhitespace = getComputedStyleProperty(textNode.parentNode, "whiteSpace");
+                var preLine = (cssWhitespace == "pre-line");
+                if (preLine) {
+                    spaceRegex = spacesMinusLineBreaksRegex;
+                    collapseSpaces = true;
+                } else if (cssWhitespace == "normal" || cssWhitespace == "nowrap") {
+                    spaceRegex = spacesRegex;
+                    collapseSpaces = true;
+                }
+
+                return {
+                    node: textNode,
+                    text: textNode.data,
+                    spaceRegex: spaceRegex,
+                    collapseSpaces: collapseSpaces,
+                    preLine: preLine
+                };
+            }, "node"),
+
+            hasInnerText: createCachingGetter("hasInnerText", function(el, backward) {
+                var session = this.session;
+                var posAfterEl = session.getPosition(el.parentNode, this.getNodeIndex() + 1);
+                var firstPosInEl = session.getPosition(el, 0);
+
+                var pos = backward ? posAfterEl : firstPosInEl;
+                var endPos = backward ? firstPosInEl : posAfterEl;
+
+                /*
+                 <body><p>X  </p><p>Y</p></body>
+
+                 Positions:
+
+                 body:0:""
+                 p:0:""
+                 text:0:""
+                 text:1:"X"
+                 text:2:TRAILING_SPACE_IN_BLOCK
+                 text:3:COLLAPSED_SPACE
+                 p:1:""
+                 body:1:"\n"
+                 p:0:""
+                 text:0:""
+                 text:1:"Y"
+
+                 A character is a TRAILING_SPACE_IN_BLOCK iff:
+
+                 - There is no uncollapsed character after it within the visible containing block element
+
+                 A character is a TRAILING_SPACE_BEFORE_BR iff:
+
+                 - There is no uncollapsed character after it preceding a <br> element
+
+                 An element has inner text iff
+
+                 - It is not hidden
+                 - It contains an uncollapsed character
+
+                 All trailing spaces (pre-line, before <br>, end of block) require definite non-empty characters to render.
+                 */
+
+                while (pos !== endPos) {
+                    pos.prepopulateChar();
+                    if (pos.isDefinitelyNonEmpty()) {
+                        return true;
+                    }
+                    pos = backward ? pos.previousVisible() : pos.nextVisible();
+                }
+
+                return false;
+            }, "node"),
+            
+            isRenderedBlock: createCachingGetter("isRenderedBlock", function(el) {
+                // Ensure that a block element containing a <br> is considered to have inner text 
+                var brs = el.getElementsByTagName("br");
+                for (var i = 0, len = brs.length; i < len; ++i) {
+                    if (!isCollapsedNode(brs[i])) {
+                        return true;
+                    }
+                }
+                return this.hasInnerText();
+            }, "node"),
+
+            getTrailingSpace: createCachingGetter("trailingSpace", function(el) {
+                if (el.tagName.toLowerCase() == "br") {
+                    return "";
+                } else {
+                    switch (this.getComputedDisplay()) {
+                        case "inline":
+                            var child = el.lastChild;
+                            while (child) {
+                                if (!isIgnoredNode(child)) {
+                                    return (child.nodeType == 1) ? this.session.getNodeWrapper(child).getTrailingSpace() : "";
+                                }
+                                child = child.previousSibling;
+                            }
+                            break;
+                        case "inline-block":
+                        case "inline-table":
+                        case "none":
+                        case "table-column":
+                        case "table-column-group":
+                            break;
+                        case "table-cell":
+                            return "\t";
+                        default:
+                            return this.isRenderedBlock(true) ? "\n" : "";
+                    }
+                }
+                return "";
+            }, "node"),
+
+            getLeadingSpace: createCachingGetter("leadingSpace", function(el) {
+                switch (this.getComputedDisplay()) {
+                    case "inline":
+                    case "inline-block":
+                    case "inline-table":
+                    case "none":
+                    case "table-column":
+                    case "table-column-group":
+                    case "table-cell":
+                        break;
+                    default:
+                        return this.isRenderedBlock(false) ? "\n" : "";
+                }
+                return "";
+            }, "node")
+        });
+
+        /*----------------------------------------------------------------------------------------------------------------*/
+
+    
+        function Position(nodeWrapper, offset) {
+            this.offset = offset;
+            this.nodeWrapper = nodeWrapper;
+            this.node = nodeWrapper.node;
+            this.session = nodeWrapper.session;
+            this.cache = new Cache();
+        }
+
+        function inspectPosition() {
+            return "[Position(" + dom.inspectNode(this.node) + ":" + this.offset + ")]";
+        }
+
+        var positionProto = {
+            character: "",
+            characterType: EMPTY,
+            isBr: false,
+
+            /*
+            This method:
+            - Fully populates positions that have characters that can be determined independently of any other characters.
+            - Populates most types of space positions with a provisional character. The character is finalized later.
+             */
+            prepopulateChar: function() {
+                var pos = this;
+                if (!pos.prepopulatedChar) {
+                    var node = pos.node, offset = pos.offset;
+                    var visibleChar = "", charType = EMPTY;
+                    var finalizedChar = false;
+                    if (offset > 0) {
+                        if (node.nodeType == 3) {
+                            var text = node.data;
+                            var textChar = text.charAt(offset - 1);
+
+                            var nodeInfo = pos.nodeWrapper.getTextNodeInfo();
+                            var spaceRegex = nodeInfo.spaceRegex;
+                            if (nodeInfo.collapseSpaces) {
+                                if (spaceRegex.test(textChar)) {
+                                    // "If the character at position is from set, append a single space (U+0020) to newdata and advance
+                                    // position until the character at position is not from set."
+
+                                    // We also need to check for the case where we're in a pre-line and we have a space preceding a
+                                    // line break, because such spaces are collapsed in some browsers
+                                    if (offset > 1 && spaceRegex.test(text.charAt(offset - 2))) {
+                                    } else if (nodeInfo.preLine && text.charAt(offset) === "\n") {
+                                        visibleChar = " ";
+                                        charType = PRE_LINE_TRAILING_SPACE_BEFORE_LINE_BREAK;
+                                    } else {
+                                        visibleChar = " ";
+                                        //pos.checkForFollowingLineBreak = true;
+                                        charType = COLLAPSIBLE_SPACE;
+                                    }
+                                } else {
+                                    visibleChar = textChar;
+                                    charType = NON_SPACE;
+                                    finalizedChar = true;
+                                }
+                            } else {
+                                visibleChar = textChar;
+                                charType = UNCOLLAPSIBLE_SPACE;
+                                finalizedChar = true;
+                            }
+                        } else {
+                            var nodePassed = node.childNodes[offset - 1];
+                            if (nodePassed && nodePassed.nodeType == 1 && !isCollapsedNode(nodePassed)) {
+                                if (nodePassed.tagName.toLowerCase() == "br") {
+                                    visibleChar = "\n";
+                                    pos.isBr = true;
+                                    charType = COLLAPSIBLE_SPACE;
+                                    finalizedChar = false;
+                                } else {
+                                    pos.checkForTrailingSpace = true;
+                                }
+                            }
+
+                            // Check the leading space of the next node for the case when a block element follows an inline
+                            // element or text node. In that case, there is an implied line break between the two nodes.
+                            if (!visibleChar) {
+                                var nextNode = node.childNodes[offset];
+                                if (nextNode && nextNode.nodeType == 1 && !isCollapsedNode(nextNode)) {
+                                    pos.checkForLeadingSpace = true;
+                                }
+                            }
+                        }
+                    }
+
+                    pos.prepopulatedChar = true;
+                    pos.character = visibleChar;
+                    pos.characterType = charType;
+                    pos.isCharInvariant = finalizedChar;
+                }
+            },
+
+            isDefinitelyNonEmpty: function() {
+                var charType = this.characterType;
+                return charType == NON_SPACE || charType == UNCOLLAPSIBLE_SPACE;
+            },
+
+            // Resolve leading and trailing spaces, which may involve prepopulating other positions
+            resolveLeadingAndTrailingSpaces: function() {
+                if (!this.prepopulatedChar) {
+                    this.prepopulateChar();
+                }
+                if (this.checkForTrailingSpace) {
+                    var trailingSpace = this.session.getNodeWrapper(this.node.childNodes[this.offset - 1]).getTrailingSpace();
+                    if (trailingSpace) {
+                        this.isTrailingSpace = true;
+                        this.character = trailingSpace;
+                        this.characterType = COLLAPSIBLE_SPACE;
+                    }
+                    this.checkForTrailingSpace = false;
+                }
+                if (this.checkForLeadingSpace) {
+                    var leadingSpace = this.session.getNodeWrapper(this.node.childNodes[this.offset]).getLeadingSpace();
+                    if (leadingSpace) {
+                        this.isLeadingSpace = true;
+                        this.character = leadingSpace;
+                        this.characterType = COLLAPSIBLE_SPACE;
+                    }
+                    this.checkForLeadingSpace = false;
+                }
+            },
+            
+            getPrecedingUncollapsedPosition: function(characterOptions) {
+                var pos = this, character;
+                while ( (pos = pos.previousVisible()) ) {
+                    character = pos.getCharacter(characterOptions);
+                    if (character !== "") {
+                        return pos;
+                    }
+                }
+
+                return null;
+            },
+
+            getCharacter: function(characterOptions) {
+                this.resolveLeadingAndTrailingSpaces();
+                
+                var thisChar = this.character, returnChar;
+
+                // Check if character is ignored
+                var ignoredChars = normalizeIgnoredCharacters(characterOptions.ignoreCharacters);
+                var isIgnoredCharacter = (thisChar !== "" && ignoredChars.indexOf(thisChar) > -1);
+                
+                // Check if this position's  character is invariant (i.e. not dependent on character options) and return it
+                // if so
+                if (this.isCharInvariant) {
+                    returnChar = isIgnoredCharacter ? "" : thisChar;
+                    return returnChar;
+                }
+                
+                var cacheKey = ["character", characterOptions.includeSpaceBeforeBr, characterOptions.includeBlockContentTrailingSpace, characterOptions.includePreLineTrailingSpace, ignoredChars].join("_");
+                var cachedChar = this.cache.get(cacheKey);
+                if (cachedChar !== null) {
+                    return cachedChar;
+                }
+                
+                // We need to actually get the character
+                var character = "";
+                var collapsible = (this.characterType == COLLAPSIBLE_SPACE);
+                
+                var nextPos, previousPos;
+                var gotPreviousPos = false;
+                var pos = this;
+                
+                function getPreviousPos() {
+                    if (!gotPreviousPos) {
+                        previousPos = pos.getPrecedingUncollapsedPosition(characterOptions);
+                        gotPreviousPos = true;
+                    }
+                    return previousPos;
+                }
+
+                // Disallow a collapsible space that is followed by a line break or is the last character
+                if (collapsible) {
+                    // Disallow a collapsible space that follows a trailing space or line break, or is the first character
+                    if (thisChar == " " &&
+                            (!getPreviousPos() || previousPos.isTrailingSpace || previousPos.character == "\n")) {
+                    }
+                    // Allow a leading line break unless it follows a line break
+                    else if (thisChar == "\n" && this.isLeadingSpace) {
+                        if (getPreviousPos() && previousPos.character != "\n") {
+                            character = "\n";
+                        } else {
+                        }
+                    } else {
+                        nextPos = this.nextUncollapsed();
+                        if (nextPos) {
+                            if (nextPos.isBr) {
+                                this.type = TRAILING_SPACE_BEFORE_BR;
+                            } else if (nextPos.isTrailingSpace && nextPos.character == "\n") {
+                                this.type = TRAILING_SPACE_IN_BLOCK;
+                            } else if (nextPos.isLeadingSpace && nextPos.character == "\n") {
+                                this.type = TRAILING_SPACE_BEFORE_BLOCK;
+                            }
+                            
+                            if (nextPos.character == "\n") {
+                                if (this.type == TRAILING_SPACE_BEFORE_BR && !characterOptions.includeSpaceBeforeBr) {
+                                } else if (this.type == TRAILING_SPACE_BEFORE_BLOCK && !characterOptions.includeSpaceBeforeBlock) {
+                                } else if (this.type == TRAILING_SPACE_IN_BLOCK && nextPos.isTrailingSpace && !characterOptions.includeBlockContentTrailingSpace) {
+                                } else if (this.type == PRE_LINE_TRAILING_SPACE_BEFORE_LINE_BREAK && nextPos.type == NON_SPACE && !characterOptions.includePreLineTrailingSpace) {
+                                } else if (thisChar == "\n") {
+                                    if (nextPos.isTrailingSpace) {
+                                        if (this.isTrailingSpace) {
+                                        } else if (this.isBr) {
+                                            nextPos.type = TRAILING_LINE_BREAK_AFTER_BR;
+                                            
+                                            if (getPreviousPos() && previousPos.isLeadingSpace && previousPos.character == "\n") {
+                                                nextPos.character = "";
+                                            } else {
+                                            }
+                                        }
+                                    } else {
+                                        character = "\n";
+                                    }
+                                } else if (thisChar == " ") {
+                                    character = " ";
+                                } else {
+                                }
+                            } else {
+                                character = thisChar;
+                            }
+                        } else {
+                        }
+                    }
+                }
+
+                // Collapse a br element that is followed by a trailing space
+                else if (thisChar == "\n" &&
+                        (!(nextPos = this.nextUncollapsed()) || nextPos.isTrailingSpace)) {
+                }
+                
+                if (ignoredChars.indexOf(character) > -1) {
+                    character = "";
+                }
+                
+                
+                this.cache.set(cacheKey, character);
+
+                return character;
+            },
+
+            equals: function(pos) {
+                return !!pos && this.node === pos.node && this.offset === pos.offset;
+            },
+
+            inspect: inspectPosition,
+
+            toString: function() {
+                return this.character;
+            }
+        };
+
+        Position.prototype = positionProto;
+
+        extend(positionProto, {
+            next: createCachingGetter("nextPos", function(pos) {
+                var nodeWrapper = pos.nodeWrapper, node = pos.node, offset = pos.offset, session = nodeWrapper.session;
+                if (!node) {
+                    return null;
+                }
+                var nextNode, nextOffset, child;
+                if (offset == nodeWrapper.getLength()) {
+                    // Move onto the next node
+                    nextNode = node.parentNode;
+                    nextOffset = nextNode ? nodeWrapper.getNodeIndex() + 1 : 0;
+                } else {
+                    if (nodeWrapper.isCharacterDataNode()) {
+                        nextNode = node;
+                        nextOffset = offset + 1;
+                    } else {
+                        child = node.childNodes[offset];
+                        // Go into the children next, if children there are
+                        if (session.getNodeWrapper(child).containsPositions()) {
+                            nextNode = child;
+                            nextOffset = 0;
+                        } else {
+                            nextNode = node;
+                            nextOffset = offset + 1;
+                        }
+                    }
+                }
+
+                return nextNode ? session.getPosition(nextNode, nextOffset) : null;
+            }),
+
+            previous: createCachingGetter("previous", function(pos) {
+                var nodeWrapper = pos.nodeWrapper, node = pos.node, offset = pos.offset, session = nodeWrapper.session;
+                var previousNode, previousOffset, child;
+                if (offset == 0) {
+                    previousNode = node.parentNode;
+                    previousOffset = previousNode ? nodeWrapper.getNodeIndex() : 0;
+                } else {
+                    if (nodeWrapper.isCharacterDataNode()) {
+                        previousNode = node;
+                        previousOffset = offset - 1;
+                    } else {
+                        child = node.childNodes[offset - 1];
+                        // Go into the children next, if children there are
+                        if (session.getNodeWrapper(child).containsPositions()) {
+                            previousNode = child;
+                            previousOffset = dom.getNodeLength(child);
+                        } else {
+                            previousNode = node;
+                            previousOffset = offset - 1;
+                        }
+                    }
+                }
+                return previousNode ? session.getPosition(previousNode, previousOffset) : null;
+            }),
+
+            /*
+             Next and previous position moving functions that filter out
+
+             - Hidden (CSS visibility/display) elements
+             - Script and style elements
+             */
+            nextVisible: createCachingGetter("nextVisible", function(pos) {
+                var next = pos.next();
+                if (!next) {
+                    return null;
+                }
+                var nodeWrapper = next.nodeWrapper, node = next.node;
+                var newPos = next;
+                if (nodeWrapper.isCollapsed()) {
+                    // We're skipping this node and all its descendants
+                    newPos = nodeWrapper.session.getPosition(node.parentNode, nodeWrapper.getNodeIndex() + 1);
+                }
+                return newPos;
+            }),
+
+            nextUncollapsed: createCachingGetter("nextUncollapsed", function(pos) {
+                var nextPos = pos;
+                while ( (nextPos = nextPos.nextVisible()) ) {
+                    nextPos.resolveLeadingAndTrailingSpaces();
+                    if (nextPos.character !== "") {
+                        return nextPos;
+                    }
+                }
+                return null;
+            }),
+
+            previousVisible: createCachingGetter("previousVisible", function(pos) {
+                var previous = pos.previous();
+                if (!previous) {
+                    return null;
+                }
+                var nodeWrapper = previous.nodeWrapper, node = previous.node;
+                var newPos = previous;
+                if (nodeWrapper.isCollapsed()) {
+                    // We're skipping this node and all its descendants
+                    newPos = nodeWrapper.session.getPosition(node.parentNode, nodeWrapper.getNodeIndex());
+                }
+                return newPos;
+            })
+        });
+
+        /*----------------------------------------------------------------------------------------------------------------*/
+
+        var currentSession = null;
+
+        var Session = (function() {
+            function createWrapperCache(nodeProperty) {
+                var cache = new Cache();
+
+                return {
+                    get: function(node) {
+                        var wrappersByProperty = cache.get(node[nodeProperty]);
+                        if (wrappersByProperty) {
+                            for (var i = 0, wrapper; wrapper = wrappersByProperty[i++]; ) {
+                                if (wrapper.node === node) {
+                                    return wrapper;
+                                }
+                            }
+                        }
+                        return null;
+                    },
+
+                    set: function(nodeWrapper) {
+                        var property = nodeWrapper.node[nodeProperty];
+                        var wrappersByProperty = cache.get(property) || cache.set(property, []);
+                        wrappersByProperty.push(nodeWrapper);
+                    }
+                };
+            }
+
+            var uniqueIDSupported = util.isHostProperty(document.documentElement, "uniqueID");
+
+            function Session() {
+                this.initCaches();
+            }
+
+            Session.prototype = {
+                initCaches: function() {
+                    this.elementCache = uniqueIDSupported ? (function() {
+                        var elementsCache = new Cache();
+
+                        return {
+                            get: function(el) {
+                                return elementsCache.get(el.uniqueID);
+                            },
+
+                            set: function(elWrapper) {
+                                elementsCache.set(elWrapper.node.uniqueID, elWrapper);
+                            }
+                        };
+                    })() : createWrapperCache("tagName");
+
+                    // Store text nodes keyed by data, although we may need to truncate this
+                    this.textNodeCache = createWrapperCache("data");
+                    this.otherNodeCache = createWrapperCache("nodeName");
+                },
+
+                getNodeWrapper: function(node) {
+                    var wrapperCache;
+                    switch (node.nodeType) {
+                        case 1:
+                            wrapperCache = this.elementCache;
+                            break;
+                        case 3:
+                            wrapperCache = this.textNodeCache;
+                            break;
+                        default:
+                            wrapperCache = this.otherNodeCache;
+                            break;
+                    }
+
+                    var wrapper = wrapperCache.get(node);
+                    if (!wrapper) {
+                        wrapper = new NodeWrapper(node, this);
+                        wrapperCache.set(wrapper);
+                    }
+                    return wrapper;
+                },
+
+                getPosition: function(node, offset) {
+                    return this.getNodeWrapper(node).getPosition(offset);
+                },
+
+                getRangeBoundaryPosition: function(range, isStart) {
+                    var prefix = isStart ? "start" : "end";
+                    return this.getPosition(range[prefix + "Container"], range[prefix + "Offset"]);
+                },
+
+                detach: function() {
+                    this.elementCache = this.textNodeCache = this.otherNodeCache = null;
+                }
+            };
+
+            return Session;
+        })();
+
+        /*----------------------------------------------------------------------------------------------------------------*/
+
+        function startSession() {
+            endSession();
+            return (currentSession = new Session());
+        }
+
+        function getSession() {
+            return currentSession || startSession();
+        }
+
+        function endSession() {
+            if (currentSession) {
+                currentSession.detach();
+            }
+            currentSession = null;
+        }
+
+        /*----------------------------------------------------------------------------------------------------------------*/
+
+        // Extensions to the rangy.dom utility object
+
+        extend(dom, {
+            nextNode: nextNode,
+            previousNode: previousNode
+        });
+
+        /*----------------------------------------------------------------------------------------------------------------*/
+
+        function createCharacterIterator(startPos, backward, endPos, characterOptions) {
+
+            // Adjust the end position to ensure that it is actually reached
+            if (endPos) {
+                if (backward) {
+                    if (isCollapsedNode(endPos.node)) {
+                        endPos = startPos.previousVisible();
+                    }
+                } else {
+                    if (isCollapsedNode(endPos.node)) {
+                        endPos = endPos.nextVisible();
+                    }
+                }
+            }
+
+            var pos = startPos, finished = false;
+
+            function next() {
+                var charPos = null;
+                if (backward) {
+                    charPos = pos;
+                    if (!finished) {
+                        pos = pos.previousVisible();
+                        finished = !pos || (endPos && pos.equals(endPos));
+                    }
+                } else {
+                    if (!finished) {
+                        charPos = pos = pos.nextVisible();
+                        finished = !pos || (endPos && pos.equals(endPos));
+                    }
+                }
+                if (finished) {
+                    pos = null;
+                }
+                return charPos;
+            }
+
+            var previousTextPos, returnPreviousTextPos = false;
+
+            return {
+                next: function() {
+                    if (returnPreviousTextPos) {
+                        returnPreviousTextPos = false;
+                        return previousTextPos;
+                    } else {
+                        var pos, character;
+                        while ( (pos = next()) ) {
+                            character = pos.getCharacter(characterOptions);
+                            if (character) {
+                                previousTextPos = pos;
+                                return pos;
+                            }
+                        }
+                        return null;
+                    }
+                },
+
+                rewind: function() {
+                    if (previousTextPos) {
+                        returnPreviousTextPos = true;
+                    } else {
+                        throw module.createError("createCharacterIterator: cannot rewind. Only one position can be rewound.");
+                    }
+                },
+
+                dispose: function() {
+                    startPos = endPos = null;
+                }
+            };
+        }
+
+        var arrayIndexOf = Array.prototype.indexOf ?
+            function(arr, val) {
+                return arr.indexOf(val);
+            } :
+            function(arr, val) {
+                for (var i = 0, len = arr.length; i < len; ++i) {
+                    if (arr[i] === val) {
+                        return i;
+                    }
+                }
+                return -1;
+            };
+
+        // Provides a pair of iterators over text positions, tokenized. Transparently requests more text when next()
+        // is called and there is no more tokenized text
+        function createTokenizedTextProvider(pos, characterOptions, wordOptions) {
+            var forwardIterator = createCharacterIterator(pos, false, null, characterOptions);
+            var backwardIterator = createCharacterIterator(pos, true, null, characterOptions);
+            var tokenizer = wordOptions.tokenizer;
+
+            // Consumes a word and the whitespace beyond it
+            function consumeWord(forward) {
+                var pos, textChar;
+                var newChars = [], it = forward ? forwardIterator : backwardIterator;
+
+                var passedWordBoundary = false, insideWord = false;
+
+                while ( (pos = it.next()) ) {
+                    textChar = pos.character;
+                    
+
+                    if (allWhiteSpaceRegex.test(textChar)) {
+                        if (insideWord) {
+                            insideWord = false;
+                            passedWordBoundary = true;
+                        }
+                    } else {
+                        if (passedWordBoundary) {
+                            it.rewind();
+                            break;
+                        } else {
+                            insideWord = true;
+                        }
+                    }
+                    newChars.push(pos);
+                }
+
+
+                return newChars;
+            }
+
+            // Get initial word surrounding initial position and tokenize it
+            var forwardChars = consumeWord(true);
+            var backwardChars = consumeWord(false).reverse();
+            var tokens = tokenizer(backwardChars.concat(forwardChars), wordOptions);
+
+            // Create initial token buffers
+            var forwardTokensBuffer = forwardChars.length ?
+                tokens.slice(arrayIndexOf(tokens, forwardChars[0].token)) : [];
+
+            var backwardTokensBuffer = backwardChars.length ?
+                tokens.slice(0, arrayIndexOf(tokens, backwardChars.pop().token) + 1) : [];
+
+            function inspectBuffer(buffer) {
+                var textPositions = ["[" + buffer.length + "]"];
+                for (var i = 0; i < buffer.length; ++i) {
+                    textPositions.push("(word: " + buffer[i] + ", is word: " + buffer[i].isWord + ")");
+                }
+                return textPositions;
+            }
+
+
+            return {
+                nextEndToken: function() {
+                    var lastToken, forwardChars;
+
+                    // If we're down to the last token, consume character chunks until we have a word or run out of
+                    // characters to consume
+                    while ( forwardTokensBuffer.length == 1 &&
+                        !(lastToken = forwardTokensBuffer[0]).isWord &&
+                        (forwardChars = consumeWord(true)).length > 0) {
+
+                        // Merge trailing non-word into next word and tokenize
+                        forwardTokensBuffer = tokenizer(lastToken.chars.concat(forwardChars), wordOptions);
+                    }
+
+                    return forwardTokensBuffer.shift();
+                },
+
+                previousStartToken: function() {
+                    var lastToken, backwardChars;
+
+                    // If we're down to the last token, consume character chunks until we have a word or run out of
+                    // characters to consume
+                    while ( backwardTokensBuffer.length == 1 &&
+                        !(lastToken = backwardTokensBuffer[0]).isWord &&
+                        (backwardChars = consumeWord(false)).length > 0) {
+
+                        // Merge leading non-word into next word and tokenize
+                        backwardTokensBuffer = tokenizer(backwardChars.reverse().concat(lastToken.chars), wordOptions);
+                    }
+
+                    return backwardTokensBuffer.pop();
+                },
+
+                dispose: function() {
+                    forwardIterator.dispose();
+                    backwardIterator.dispose();
+                    forwardTokensBuffer = backwardTokensBuffer = null;
+                }
+            };
+        }
+
+        function movePositionBy(pos, unit, count, characterOptions, wordOptions) {
+            var unitsMoved = 0, currentPos, newPos = pos, charIterator, nextPos, absCount = Math.abs(count), token;
+            if (count !== 0) {
+                var backward = (count < 0);
+
+                switch (unit) {
+                    case CHARACTER:
+                        charIterator = createCharacterIterator(pos, backward, null, characterOptions);
+                        while ( (currentPos = charIterator.next()) && unitsMoved < absCount ) {
+                            ++unitsMoved;
+                            newPos = currentPos;
+                        }
+                        nextPos = currentPos;
+                        charIterator.dispose();
+                        break;
+                    case WORD:
+                        var tokenizedTextProvider = createTokenizedTextProvider(pos, characterOptions, wordOptions);
+                        var next = backward ? tokenizedTextProvider.previousStartToken : tokenizedTextProvider.nextEndToken;
+
+                        while ( (token = next()) && unitsMoved < absCount ) {
+                            if (token.isWord) {
+                                ++unitsMoved;
+                                newPos = backward ? token.chars[0] : token.chars[token.chars.length - 1];
+                            }
+                        }
+                        break;
+                    default:
+                        throw new Error("movePositionBy: unit '" + unit + "' not implemented");
+                }
+
+                // Perform any necessary position tweaks
+                if (backward) {
+                    newPos = newPos.previousVisible();
+                    unitsMoved = -unitsMoved;
+                } else if (newPos && newPos.isLeadingSpace) {
+                    // Tweak the position for the case of a leading space. The problem is that an uncollapsed leading space
+                    // before a block element (for example, the line break between "1" and "2" in the following HTML:
+                    // "1<p>2</p>") is considered to be attached to the position immediately before the block element, which
+                    // corresponds with a different selection position in most browsers from the one we want (i.e. at the
+                    // start of the contents of the block element). We get round this by advancing the position returned to
+                    // the last possible equivalent visible position.
+                    if (unit == WORD) {
+                        charIterator = createCharacterIterator(pos, false, null, characterOptions);
+                        nextPos = charIterator.next();
+                        charIterator.dispose();
+                    }
+                    if (nextPos) {
+                        newPos = nextPos.previousVisible();
+                    }
+                }
+            }
+
+
+            return {
+                position: newPos,
+                unitsMoved: unitsMoved
+            };
+        }
+
+        function createRangeCharacterIterator(session, range, characterOptions, backward) {
+            var rangeStart = session.getRangeBoundaryPosition(range, true);
+            var rangeEnd = session.getRangeBoundaryPosition(range, false);
+            var itStart = backward ? rangeEnd : rangeStart;
+            var itEnd = backward ? rangeStart : rangeEnd;
+
+            return createCharacterIterator(itStart, !!backward, itEnd, characterOptions);
+        }
+
+        function getRangeCharacters(session, range, characterOptions) {
+
+            var chars = [], it = createRangeCharacterIterator(session, range, characterOptions), pos;
+            while ( (pos = it.next()) ) {
+                chars.push(pos);
+            }
+
+            it.dispose();
+            return chars;
+        }
+
+        function isWholeWord(startPos, endPos, wordOptions) {
+            var range = api.createRange(startPos.node);
+            range.setStartAndEnd(startPos.node, startPos.offset, endPos.node, endPos.offset);
+            var returnVal = !range.expand("word", wordOptions);
+            return returnVal;
+        }
+
+        function findTextFromPosition(initialPos, searchTerm, isRegex, searchScopeRange, findOptions) {
+            var backward = isDirectionBackward(findOptions.direction);
+            var it = createCharacterIterator(
+                initialPos,
+                backward,
+                initialPos.session.getRangeBoundaryPosition(searchScopeRange, backward),
+                findOptions.characterOptions
+            );
+            var text = "", chars = [], pos, currentChar, matchStartIndex, matchEndIndex;
+            var result, insideRegexMatch;
+            var returnValue = null;
+
+            function handleMatch(startIndex, endIndex) {
+                var startPos = chars[startIndex].previousVisible();
+                var endPos = chars[endIndex - 1];
+                var valid = (!findOptions.wholeWordsOnly || isWholeWord(startPos, endPos, findOptions.wordOptions));
+
+                return {
+                    startPos: startPos,
+                    endPos: endPos,
+                    valid: valid
+                };
+            }
+
+            while ( (pos = it.next()) ) {
+                currentChar = pos.character;
+                if (!isRegex && !findOptions.caseSensitive) {
+                    currentChar = currentChar.toLowerCase();
+                }
+
+                if (backward) {
+                    chars.unshift(pos);
+                    text = currentChar + text;
+                } else {
+                    chars.push(pos);
+                    text += currentChar;
+                }
+                
+                //console.log("text " + text)
+
+                if (isRegex) {
+                    result = searchTerm.exec(text);
+                    if (result) {
+                        if (insideRegexMatch) {
+                            // Check whether the match is now over
+                            matchStartIndex = result.index;
+                            matchEndIndex = matchStartIndex + result[0].length;
+                            if ((!backward && matchEndIndex < text.length) || (backward && matchStartIndex > 0)) {
+                                returnValue = handleMatch(matchStartIndex, matchEndIndex);
+                                break;
+                            }
+                        } else {
+                            insideRegexMatch = true;
+                        }
+                    }
+                } else if ( (matchStartIndex = text.indexOf(searchTerm)) != -1 ) {
+                    returnValue = handleMatch(matchStartIndex, matchStartIndex + searchTerm.length);
+                    break;
+                }
+            }
+
+            // Check whether regex match extends to the end of the range
+            if (insideRegexMatch) {
+                returnValue = handleMatch(matchStartIndex, matchEndIndex);
+            }
+            it.dispose();
+
+            return returnValue;
+        }
+
+        function createEntryPointFunction(func) {
+            return function() {
+                var sessionRunning = !!currentSession;
+                var session = getSession();
+                var args = [session].concat( util.toArray(arguments) );
+                var returnValue = func.apply(this, args);
+                if (!sessionRunning) {
+                    endSession();
+                }
+                return returnValue;
+            };
+        }
+
+        /*----------------------------------------------------------------------------------------------------------------*/
+
+        // Extensions to the Rangy Range object
+
+        function createRangeBoundaryMover(isStart, collapse) {
+            /*
+             Unit can be "character" or "word"
+             Options:
+
+             - includeTrailingSpace
+             - wordRegex
+             - tokenizer
+             - collapseSpaceBeforeLineBreak
+             */
+            return createEntryPointFunction(
+                function(session, unit, count, moveOptions) {
+                    if (typeof count == "undefined") {
+                        count = unit;
+                        unit = CHARACTER;
+                    }
+                    moveOptions = createOptions(moveOptions, defaultMoveOptions);
+                    var characterOptions = createCharacterOptions(moveOptions.characterOptions);
+                    var wordOptions = createWordOptions(moveOptions.wordOptions);
+
+                    var boundaryIsStart = isStart;
+                    if (collapse) {
+                        boundaryIsStart = (count >= 0);
+                        this.collapse(!boundaryIsStart);
+                    }
+                    var moveResult = movePositionBy(session.getRangeBoundaryPosition(this, boundaryIsStart), unit, count, characterOptions, wordOptions);
+                    var newPos = moveResult.position;
+                    this[boundaryIsStart ? "setStart" : "setEnd"](newPos.node, newPos.offset);
+                    return moveResult.unitsMoved;
+                }
+            );
+        }
+
+        function createRangeTrimmer(isStart) {
+            return createEntryPointFunction(
+                function(session, characterOptions) {
+                    characterOptions = createCharacterOptions(characterOptions);
+                    var pos;
+                    var it = createRangeCharacterIterator(session, this, characterOptions, !isStart);
+                    var trimCharCount = 0;
+                    while ( (pos = it.next()) && allWhiteSpaceRegex.test(pos.character) ) {
+                        ++trimCharCount;
+                    }
+                    it.dispose();
+                    var trimmed = (trimCharCount > 0);
+                    if (trimmed) {
+                        this[isStart ? "moveStart" : "moveEnd"](
+                            "character",
+                            isStart ? trimCharCount : -trimCharCount,
+                            { characterOptions: characterOptions }
+                        );
+                    }
+                    return trimmed;
+                }
+            );
+        }
+
+        extend(api.rangePrototype, {
+            moveStart: createRangeBoundaryMover(true, false),
+
+            moveEnd: createRangeBoundaryMover(false, false),
+
+            move: createRangeBoundaryMover(true, true),
+
+            trimStart: createRangeTrimmer(true),
+
+            trimEnd: createRangeTrimmer(false),
+
+            trim: createEntryPointFunction(
+                function(session, characterOptions) {
+                    var startTrimmed = this.trimStart(characterOptions), endTrimmed = this.trimEnd(characterOptions);
+                    return startTrimmed || endTrimmed;
+                }
+            ),
+
+            expand: createEntryPointFunction(
+                function(session, unit, expandOptions) {
+                    var moved = false;
+                    expandOptions = createOptions(expandOptions, defaultExpandOptions);
+                    var characterOptions = createCharacterOptions(expandOptions.characterOptions);
+                    if (!unit) {
+                        unit = CHARACTER;
+                    }
+                    if (unit == WORD) {
+                        var wordOptions = createWordOptions(expandOptions.wordOptions);
+                        var startPos = session.getRangeBoundaryPosition(this, true);
+                        var endPos = session.getRangeBoundaryPosition(this, false);
+
+                        var startTokenizedTextProvider = createTokenizedTextProvider(startPos, characterOptions, wordOptions);
+                        var startToken = startTokenizedTextProvider.nextEndToken();
+                        var newStartPos = startToken.chars[0].previousVisible();
+                        var endToken, newEndPos;
+
+                        if (this.collapsed) {
+                            endToken = startToken;
+                        } else {
+                            var endTokenizedTextProvider = createTokenizedTextProvider(endPos, characterOptions, wordOptions);
+                            endToken = endTokenizedTextProvider.previousStartToken();
+                        }
+                        newEndPos = endToken.chars[endToken.chars.length - 1];
+
+                        if (!newStartPos.equals(startPos)) {
+                            this.setStart(newStartPos.node, newStartPos.offset);
+                            moved = true;
+                        }
+                        if (newEndPos && !newEndPos.equals(endPos)) {
+                            this.setEnd(newEndPos.node, newEndPos.offset);
+                            moved = true;
+                        }
+
+                        if (expandOptions.trim) {
+                            if (expandOptions.trimStart) {
+                                moved = this.trimStart(characterOptions) || moved;
+                            }
+                            if (expandOptions.trimEnd) {
+                                moved = this.trimEnd(characterOptions) || moved;
+                            }
+                        }
+
+                        return moved;
+                    } else {
+                        return this.moveEnd(CHARACTER, 1, expandOptions);
+                    }
+                }
+            ),
+
+            text: createEntryPointFunction(
+                function(session, characterOptions) {
+                    return this.collapsed ?
+                        "" : getRangeCharacters(session, this, createCharacterOptions(characterOptions)).join("");
+                }
+            ),
+
+            selectCharacters: createEntryPointFunction(
+                function(session, containerNode, startIndex, endIndex, characterOptions) {
+                    var moveOptions = { characterOptions: characterOptions };
+                    if (!containerNode) {
+                        containerNode = getBody( this.getDocument() );
+                    }
+                    this.selectNodeContents(containerNode);
+                    this.collapse(true);
+                    this.moveStart("character", startIndex, moveOptions);
+                    this.collapse(true);
+                    this.moveEnd("character", endIndex - startIndex, moveOptions);
+                }
+            ),
+
+            // Character indexes are relative to the start of node
+            toCharacterRange: createEntryPointFunction(
+                function(session, containerNode, characterOptions) {
+                    if (!containerNode) {
+                        containerNode = getBody( this.getDocument() );
+                    }
+                    var parent = containerNode.parentNode, nodeIndex = dom.getNodeIndex(containerNode);
+                    var rangeStartsBeforeNode = (dom.comparePoints(this.startContainer, this.endContainer, parent, nodeIndex) == -1);
+                    var rangeBetween = this.cloneRange();
+                    var startIndex, endIndex;
+                    if (rangeStartsBeforeNode) {
+                        rangeBetween.setStartAndEnd(this.startContainer, this.startOffset, parent, nodeIndex);
+                        startIndex = -rangeBetween.text(characterOptions).length;
+                    } else {
+                        rangeBetween.setStartAndEnd(parent, nodeIndex, this.startContainer, this.startOffset);
+                        startIndex = rangeBetween.text(characterOptions).length;
+                    }
+                    endIndex = startIndex + this.text(characterOptions).length;
+        
+                    return {
+                        start: startIndex,
+                        end: endIndex
+                    };
+                }
+            ),
+
+            findText: createEntryPointFunction(
+                function(session, searchTermParam, findOptions) {
+                    // Set up options
+                    findOptions = createFindOptions(findOptions);
+        
+                    // Create word options if we're matching whole words only
+                    if (findOptions.wholeWordsOnly) {
+                        findOptions.wordOptions = createWordOptions(findOptions.wordOptions);
+        
+                        // We don't ever want trailing spaces for search results
+                        findOptions.wordOptions.includeTrailingSpace = false;
+                    }
+        
+                    var backward = isDirectionBackward(findOptions.direction);
+        
+                    // Create a range representing the search scope if none was provided
+                    var searchScopeRange = findOptions.withinRange;
+                    if (!searchScopeRange) {
+                        searchScopeRange = api.createRange();
+                        searchScopeRange.selectNodeContents(this.getDocument());
+                    }
+        
+                    // Examine and prepare the search term
+                    var searchTerm = searchTermParam, isRegex = false;
+                    if (typeof searchTerm == "string") {
+                        if (!findOptions.caseSensitive) {
+                            searchTerm = searchTerm.toLowerCase();
+                        }
+                    } else {
+                        isRegex = true;
+                    }
+        
+                    var initialPos = session.getRangeBoundaryPosition(this, !backward);
+        
+                    // Adjust initial position if it lies outside the search scope
+                    var comparison = searchScopeRange.comparePoint(initialPos.node, initialPos.offset);
+                    
+                    if (comparison === -1) {
+                        initialPos = session.getRangeBoundaryPosition(searchScopeRange, true);
+                    } else if (comparison === 1) {
+                        initialPos = session.getRangeBoundaryPosition(searchScopeRange, false);
+                    }
+        
+                    var pos = initialPos;
+                    var wrappedAround = false;
+        
+                    // Try to find a match and ignore invalid ones
+                    var findResult;
+                    while (true) {
+                        findResult = findTextFromPosition(pos, searchTerm, isRegex, searchScopeRange, findOptions);
+        
+                        if (findResult) {
+                            if (findResult.valid) {
+                                this.setStartAndEnd(findResult.startPos.node, findResult.startPos.offset, findResult.endPos.node, findResult.endPos.offset);
+                                return true;
+                            } else {
+                                // We've found a match that is not a whole word, so we carry on searching from the point immediately
+                                // after the match
+                                pos = backward ? findResult.startPos : findResult.endPos;
+                            }
+                        } else if (findOptions.wrap && !wrappedAround) {
+                            // No result found but we're wrapping around and limiting the scope to the unsearched part of the range
+                            searchScopeRange = searchScopeRange.cloneRange();
+                            pos = session.getRangeBoundaryPosition(searchScopeRange, !backward);
+                            searchScopeRange.setBoundary(initialPos.node, initialPos.offset, backward);
+                            wrappedAround = true;
+                        } else {
+                            // Nothing found and we can't wrap around, so we're done
+                            return false;
+                        }
+                    }
+                }
+            ),
+
+            pasteHtml: function(html) {
+                this.deleteContents();
+                if (html) {
+                    var frag = this.createContextualFragment(html);
+                    var lastChild = frag.lastChild;
+                    this.insertNode(frag);
+                    this.collapseAfter(lastChild);
+                }
+            }
+        });
+
+        /*----------------------------------------------------------------------------------------------------------------*/
+
+        // Extensions to the Rangy Selection object
+
+        function createSelectionTrimmer(methodName) {
+            return createEntryPointFunction(
+                function(session, characterOptions) {
+                    var trimmed = false;
+                    this.changeEachRange(function(range) {
+                        trimmed = range[methodName](characterOptions) || trimmed;
+                    });
+                    return trimmed;
+                }
+            );
+        }
+
+        extend(api.selectionPrototype, {
+            expand: createEntryPointFunction(
+                function(session, unit, expandOptions) {
+                    this.changeEachRange(function(range) {
+                        range.expand(unit, expandOptions);
+                    });
+                }
+            ),
+
+            move: createEntryPointFunction(
+                function(session, unit, count, options) {
+                    var unitsMoved = 0;
+                    if (this.focusNode) {
+                        this.collapse(this.focusNode, this.focusOffset);
+                        var range = this.getRangeAt(0);
+                        if (!options) {
+                            options = {};
+                        }
+                        options.characterOptions = createCaretCharacterOptions(options.characterOptions);
+                        unitsMoved = range.move(unit, count, options);
+                        this.setSingleRange(range);
+                    }
+                    return unitsMoved;
+                }
+            ),
+
+            trimStart: createSelectionTrimmer("trimStart"),
+            trimEnd: createSelectionTrimmer("trimEnd"),
+            trim: createSelectionTrimmer("trim"),
+
+            selectCharacters: createEntryPointFunction(
+                function(session, containerNode, startIndex, endIndex, direction, characterOptions) {
+                    var range = api.createRange(containerNode);
+                    range.selectCharacters(containerNode, startIndex, endIndex, characterOptions);
+                    this.setSingleRange(range, direction);
+                }
+            ),
+
+            saveCharacterRanges: createEntryPointFunction(
+                function(session, containerNode, characterOptions) {
+                    var ranges = this.getAllRanges(), rangeCount = ranges.length;
+                    var rangeInfos = [];
+        
+                    var backward = rangeCount == 1 && this.isBackward();
+        
+                    for (var i = 0, len = ranges.length; i < len; ++i) {
+                        rangeInfos[i] = {
+                            characterRange: ranges[i].toCharacterRange(containerNode, characterOptions),
+                            backward: backward,
+                            characterOptions: characterOptions
+                        };
+                    }
+        
+                    return rangeInfos;
+                }
+            ),
+
+            restoreCharacterRanges: createEntryPointFunction(
+                function(session, containerNode, saved) {
+                    this.removeAllRanges();
+                    for (var i = 0, len = saved.length, range, rangeInfo, characterRange; i < len; ++i) {
+                        rangeInfo = saved[i];
+                        characterRange = rangeInfo.characterRange;
+                        range = api.createRange(containerNode);
+                        range.selectCharacters(containerNode, characterRange.start, characterRange.end, rangeInfo.characterOptions);
+                        this.addRange(range, rangeInfo.backward);
+                    }
+                }
+            ),
+
+            text: createEntryPointFunction(
+                function(session, characterOptions) {
+                    var rangeTexts = [];
+                    for (var i = 0, len = this.rangeCount; i < len; ++i) {
+                        rangeTexts[i] = this.getRangeAt(i).text(characterOptions);
+                    }
+                    return rangeTexts.join("");
+                }
+            )
+        });
+
+        /*----------------------------------------------------------------------------------------------------------------*/
+
+        // Extensions to the core rangy object
+
+        api.innerText = function(el, characterOptions) {
+            var range = api.createRange(el);
+            range.selectNodeContents(el);
+            var text = range.text(characterOptions);
+            return text;
+        };
+
+        api.createWordIterator = function(startNode, startOffset, iteratorOptions) {
+            var session = getSession();
+            iteratorOptions = createOptions(iteratorOptions, defaultWordIteratorOptions);
+            var characterOptions = createCharacterOptions(iteratorOptions.characterOptions);
+            var wordOptions = createWordOptions(iteratorOptions.wordOptions);
+            var startPos = session.getPosition(startNode, startOffset);
+            var tokenizedTextProvider = createTokenizedTextProvider(startPos, characterOptions, wordOptions);
+            var backward = isDirectionBackward(iteratorOptions.direction);
+
+            return {
+                next: function() {
+                    return backward ? tokenizedTextProvider.previousStartToken() : tokenizedTextProvider.nextEndToken();
+                },
+
+                dispose: function() {
+                    tokenizedTextProvider.dispose();
+                    this.next = function() {};
+                }
+            };
+        };
+
+        /*----------------------------------------------------------------------------------------------------------------*/
+        
+        api.noMutation = function(func) {
+            var session = getSession();
+            func(session);
+            endSession();
+        };
+
+        api.noMutation.createEntryPointFunction = createEntryPointFunction;
+
+        api.textRange = {
+            isBlockNode: isBlockNode,
+            isCollapsedWhitespaceNode: isCollapsedWhitespaceNode,
+
+            createPosition: createEntryPointFunction(
+                function(session, node, offset) {
+                    return session.getPosition(node, offset);
+                }
+            )
+        };
+    });
+    
+}, /* Ridiculous nonsense to get the global object in any environment follows */(function(f) { return f('return this;')(); })(Function));
+
+}});
+
+
+
+
+require.register({"lib/bootstrap-dropdown": function(exports, require, module) {
+  /* ============================================================
  * bootstrap-dropdown.js v2.2.1
  * http://twitter.github.com/bootstrap/javascript.html#dropdowns
  * ============================================================
@@ -10453,7 +16267,15 @@ return jQuery;
     .on('click.dropdown.data-api touchstart.dropdown.data-api'  , toggle, Dropdown.prototype.toggle)
     .on('keydown.dropdown.data-api touchstart.dropdown.data-api', toggle + ', [role=menu]' , Dropdown.prototype.keydown)
 
-}(window.jQuery);/* ===========================================================
+}(window.jQuery);
+
+}});
+
+
+
+
+require.register({"lib/bootstrap-tooltip": function(exports, require, module) {
+  /* ===========================================================
  * bootstrap-tooltip.js v2.2.1
  * http://twitter.github.com/bootstrap/javascript.html#tooltips
  * Inspired by the original jQuery.tipsy by Jason Frame
@@ -10728,7 +16550,15 @@ return jQuery;
   , html: false
   }
 
-}(window.jQuery);/* ===========================================================
+}(window.jQuery);
+
+}});
+
+
+
+
+require.register({"lib/bootstrap-popover": function(exports, require, module) {
+  /* ===========================================================
  * bootstrap-popover.js v2.2.1
  * http://twitter.github.com/bootstrap/javascript.html#popovers
  * ===========================================================
@@ -10830,7 +16660,15 @@ return jQuery;
   , template: '<div class="popover"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>'
   })
 
-}(window.jQuery);/* =========================================================
+}(window.jQuery);
+
+}});
+
+
+
+
+require.register({"lib/bootstrap-modal": function(exports, require, module) {
+  /* =========================================================
  * bootstrap-modal.js v2.2.1
  * http://twitter.github.com/bootstrap/javascript.html#modals
  * =========================================================
@@ -11064,7 +16902,28 @@ return jQuery;
   })
 
 }(window.jQuery);
-//     Underscore.js 1.7.0
+
+
+}});
+
+
+
+
+require.register({"src/DSt": function(exports, require, module) {
+  /*  NB: this is a modified version of DSt to get it to behave with exports
+ *
+ *
+ */
+module.exports.DSt = (function(){var a={version:0.002005,get:function(b){var c=localStorage.getItem(b);if(c===undefined||c===null){c="null"}else{c=c.toString()}return JSON.parse(c)},set:function(b,c){return localStorage.setItem(b,JSON.stringify(c))},store:function(b){if(typeof(b)=="string"){b=document.getElementById(b)}if(!b||b.name==""){return this}var c=a._form_elt_key(b);if(b.type=="checkbox"){a.set(c,b.checked?1:0)}else{if(b.type=="radio"){a.set(c,a._radio_value(b))}else{a.set(c,b.value||"")}}return this},recall:function(b){if(typeof(b)=="string"){b=document.getElementById(b)}if(!b||b.name==""){return this}var c=a._form_elt_key(b);var d=a.get(c);if(b.type=="checkbox"){b.checked=!!d}else{if(b.type=="radio"){if(b.value==d){b.checked=true}}else{b.value=d||""}}return this},_form_elt_key:function(b){return"_form_"+b.form.name+"_field_"+b.name},_radio_value:function(e){if(typeof(e)=="string"){e=document.getElementById(e)}var f=e.form.elements[e.name];var b=f.length;var d=null;for(var c=0;c<b;c++){if(f[c].checked){d=f[c].value}}return d},recall_form:function(b){return a._apply_fn_to_form_inputs(b,a.recall)},store_form:function(b){return a._apply_fn_to_form_inputs(b,a.store)},_apply_fn_to_form_inputs:function(e,c){if(typeof(e)=="string"){e=document.getElementById(e)}var f=e.elements.length;for(var b=0;b<f;b++){var d=e.elements[b];if(d.tagName=="TEXTAREA"||d.tagName=="INPUT"&&d.type!="file"&&d.type!="button"&&d.type!="image"&&d.type!="password"&&d.type!="submit"&&d.type!="reset"){c(d)}}return this},_storage_types:function(){var b="";for(var c in window){if(c=="sessionStorage"||c=="globalStorage"||c=="localStorage"||c=="openDatabase"){b+=b?(" "+c):c}}return b},javascript_accepts_trailing_comma:false};return a})();
+
+
+}});
+
+
+
+
+require.register({"lib/underscore": function(exports, require, module) {
+  //     Underscore.js 1.7.0
 //     http://underscorejs.org
 //     (c) 2009-2014 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 //     Underscore may be freely distributed under the MIT license.
@@ -12480,7 +18339,15 @@ return jQuery;
     });
   }
 }.call(this));
-var DSt=(function(){var a={version:0.002005,get:function(b){var c=localStorage.getItem(b);if(c===undefined||c===null){c="null"}else{c=c.toString()}return JSON.parse(c)},set:function(b,c){return localStorage.setItem(b,JSON.stringify(c))},store:function(b){if(typeof(b)=="string"){b=document.getElementById(b)}if(!b||b.name==""){return this}var c=a._form_elt_key(b);if(b.type=="checkbox"){a.set(c,b.checked?1:0)}else{if(b.type=="radio"){a.set(c,a._radio_value(b))}else{a.set(c,b.value||"")}}return this},recall:function(b){if(typeof(b)=="string"){b=document.getElementById(b)}if(!b||b.name==""){return this}var c=a._form_elt_key(b);var d=a.get(c);if(b.type=="checkbox"){b.checked=!!d}else{if(b.type=="radio"){if(b.value==d){b.checked=true}}else{b.value=d||""}}return this},_form_elt_key:function(b){return"_form_"+b.form.name+"_field_"+b.name},_radio_value:function(e){if(typeof(e)=="string"){e=document.getElementById(e)}var f=e.form.elements[e.name];var b=f.length;var d=null;for(var c=0;c<b;c++){if(f[c].checked){d=f[c].value}}return d},recall_form:function(b){return a._apply_fn_to_form_inputs(b,a.recall)},store_form:function(b){return a._apply_fn_to_form_inputs(b,a.store)},_apply_fn_to_form_inputs:function(e,c){if(typeof(e)=="string"){e=document.getElementById(e)}var f=e.elements.length;for(var b=0;b<f;b++){var d=e.elements[b];if(d.tagName=="TEXTAREA"||d.tagName=="INPUT"&&d.type!="file"&&d.type!="button"&&d.type!="image"&&d.type!="password"&&d.type!="submit"&&d.type!="reset"){c(d)}}return this},_storage_types:function(){var b="";for(var c in window){if(c=="sessionStorage"||c=="globalStorage"||c=="localStorage"||c=="openDatabase"){b+=b?(" "+c):c}}return b},javascript_accepts_trailing_comma:false};return a})();;(function (exports) { // nothing in here is node-specific.
+
+
+}});
+
+
+
+
+require.register({"lib/semver": function(exports, require, module) {
+  ;(function (exports) { // nothing in here is node-specific.
 
 // See http://semver.org/
 // This implementation is a *hair* less strict in that it allows
@@ -12786,2137 +18653,20 @@ function inc (version, release) {
   return stringify(version)
 }
 })(typeof exports === "object" ? exports : semver = {})
-/**
- * Rangy, a cross-browser JavaScript range and selection library
- * http://code.google.com/p/rangy/
- *
- * Copyright 2014, Tim Down
- * Licensed under the MIT license.
- * Version: 1.3.0-alpha.20140825
- * Build date: 25 August 2014
- */
-!function(e,t){"function"==typeof define&&define.amd?define(e):"undefined"!=typeof module&&"object"==typeof exports?module.exports=e():t.rangy=e()}(function(){function e(e,t){var n=typeof e[t];return n==v||!(n!=R||!e[t])||"unknown"==n}function t(e,t){return!(typeof e[t]!=R||!e[t])}function n(e,t){return typeof e[t]!=C}function r(e){return function(t,n){for(var r=n.length;r--;)if(!e(t,n[r]))return!1;return!0}}function o(e){return e&&w(e,y)&&T(e,S)}function i(e){return t(e,"body")?e.body:e.getElementsByTagName("body")[0]}function a(n){t(global,"console")&&e(global.console,"log")&&global.console.log(n)}function s(e,t){D&&t?alert(e):a(e)}function c(e){A.initialized=!0,A.supported=!1,s("Rangy is not supported in this environment. Reason: "+e,A.config.alertOnFail)}function d(e){s("Rangy warning: "+e,A.config.alertOnWarn)}function f(e){return e.message||e.description||String(e)}function u(){if(D&&!A.initialized){var t,n=!1,r=!1;e(document,"createRange")&&(t=document.createRange(),w(t,E)&&T(t,N)&&(n=!0));var s=i(document);if(!s||"body"!=s.nodeName.toLowerCase())return void c("No body element found");if(s&&e(s,"createTextRange")&&(t=s.createTextRange(),o(t)&&(r=!0)),!n&&!r)return void c("Neither Range nor TextRange are available");A.initialized=!0,A.features={implementsDomRange:n,implementsTextRange:r};var d,u;for(var l in _)(d=_[l])instanceof h&&d.init(d,A);for(var g=0,p=I.length;p>g;++g)try{I[g](A)}catch(m){u="Rangy init listener threw an exception. Continuing. Detail: "+f(m),a(u)}}}function l(e){e=e||window,u();for(var t=0,n=B.length;n>t;++t)B[t](e)}function h(e,t,n){this.name=e,this.dependencies=t,this.initialized=!1,this.supported=!1,this.initializer=n}function g(e,t,n){var r=new h(e,t,function(t){if(!t.initialized){t.initialized=!0;try{n(A,t),t.supported=!0}catch(r){var o="Module '"+e+"' failed to load: "+f(r);a(o)}}});return _[e]=r,r}function p(){}function m(){}var R="object",v="function",C="undefined",N=["startContainer","startOffset","endContainer","endOffset","collapsed","commonAncestorContainer"],E=["setStart","setStartBefore","setStartAfter","setEnd","setEndBefore","setEndAfter","collapse","selectNode","selectNodeContents","compareBoundaryPoints","deleteContents","extractContents","cloneContents","insertNode","surroundContents","cloneRange","toString","detach"],S=["boundingHeight","boundingLeft","boundingTop","boundingWidth","htmlText","text"],y=["collapse","compareEndPoints","duplicate","moveToElementText","parentElement","select","setEndPoint","getBoundingClientRect"],w=r(e),O=r(t),T=r(n),_={},D=typeof window!=C&&typeof document!=C,x={isHostMethod:e,isHostObject:t,isHostProperty:n,areHostMethods:w,areHostObjects:O,areHostProperties:T,isTextRange:o,getBody:i},A={version:"1.3.0-alpha.20140825",initialized:!1,isBrowser:D,supported:!0,util:x,features:{},modules:_,config:{alertOnFail:!0,alertOnWarn:!1,preferTextRange:!1,autoInitialize:typeof rangyAutoInitialize==C?!0:rangyAutoInitialize}};A.fail=c,A.warn=d;var b;({}).hasOwnProperty?(x.extend=b=function(e,t,n){var r,o;for(var i in t)t.hasOwnProperty(i)&&(r=e[i],o=t[i],n&&null!==r&&"object"==typeof r&&null!==o&&"object"==typeof o&&b(r,o,!0),e[i]=o);return t.hasOwnProperty("toString")&&(e.toString=t.toString),e},x.createOptions=function(e,t){var n={};return b(n,t),e&&b(n,e,!0),n}):c("hasOwnProperty not supported"),D||c("Rangy can only run in a browser"),function(){var e;if(D){var t=document.createElement("div");t.appendChild(document.createElement("span"));var n=[].slice;try{1==n.call(t.childNodes,0)[0].nodeType&&(e=function(e){return n.call(e,0)})}catch(r){}}e||(e=function(e){for(var t=[],n=0,r=e.length;r>n;++n)t[n]=e[n];return t}),x.toArray=e}();var P;D&&(e(document,"addEventListener")?P=function(e,t,n){e.addEventListener(t,n,!1)}:e(document,"attachEvent")?P=function(e,t,n){e.attachEvent("on"+t,n)}:c("Document does not have required addEventListener or attachEvent method"),x.addListener=P);var I=[];A.init=u,A.addInitListener=function(e){A.initialized?e(A):I.push(e)};var B=[];A.addShimListener=function(e){B.push(e)},D&&(A.shim=A.createMissingNativeApi=l),h.prototype={init:function(){for(var e,t,n=this.dependencies||[],r=0,o=n.length;o>r;++r){if(t=n[r],e=_[t],!(e&&e instanceof h))throw new Error("required module '"+t+"' not found");if(e.init(),!e.supported)throw new Error("required module '"+t+"' not supported")}this.initializer(this)},fail:function(e){throw this.initialized=!0,this.supported=!1,new Error("Module '"+this.name+"' failed to load: "+e)},warn:function(e){A.warn("Module "+this.name+": "+e)},deprecationNotice:function(e,t){A.warn("DEPRECATED: "+e+" in module "+this.name+"is deprecated. Please use "+t+" instead")},createError:function(e){return new Error("Error in Rangy "+this.name+" module: "+e)}},A.createModule=function(e){var t,n;2==arguments.length?(t=arguments[1],n=[]):(t=arguments[2],n=arguments[1]);var r=g(e,n,t);A.initialized&&A.supported&&r.init()},A.createCoreModule=function(e,t,n){g(e,t,n)},A.RangePrototype=p,A.rangePrototype=new p,A.selectionPrototype=new m,A.createCoreModule("DomUtil",[],function(e,t){function n(e){var t;return typeof e.namespaceURI==x||null===(t=e.namespaceURI)||"http://www.w3.org/1999/xhtml"==t}function r(e){var t=e.parentNode;return 1==t.nodeType?t:null}function o(e){for(var t=0;e=e.previousSibling;)++t;return t}function i(e){switch(e.nodeType){case 7:case 10:return 0;case 3:case 8:return e.length;default:return e.childNodes.length}}function a(e,t){var n,r=[];for(n=e;n;n=n.parentNode)r.push(n);for(n=t;n;n=n.parentNode)if(I(r,n))return n;return null}function s(e,t,n){for(var r=n?t:t.parentNode;r;){if(r===e)return!0;r=r.parentNode}return!1}function c(e,t){return s(e,t,!0)}function d(e,t,n){for(var r,o=n?e:e.parentNode;o;){if(r=o.parentNode,r===t)return o;o=r}return null}function f(e){var t=e.nodeType;return 3==t||4==t||8==t}function u(e){if(!e)return!1;var t=e.nodeType;return 3==t||8==t}function l(e,t){var n=t.nextSibling,r=t.parentNode;return n?r.insertBefore(e,n):r.appendChild(e),e}function h(e,t,n){var r=e.cloneNode(!1);if(r.deleteData(0,t),e.deleteData(t,e.length-t),l(r,e),n)for(var i,a=0;i=n[a++];)i.node==e&&i.offset>t?(i.node=r,i.offset-=t):i.node==e.parentNode&&i.offset>o(e)&&++i.offset;return r}function g(e){if(9==e.nodeType)return e;if(typeof e.ownerDocument!=x)return e.ownerDocument;if(typeof e.document!=x)return e.document;if(e.parentNode)return g(e.parentNode);throw t.createError("getDocument: no document found for node")}function p(e){var n=g(e);if(typeof n.defaultView!=x)return n.defaultView;if(typeof n.parentWindow!=x)return n.parentWindow;throw t.createError("Cannot get a window object for node")}function m(e){if(typeof e.contentDocument!=x)return e.contentDocument;if(typeof e.contentWindow!=x)return e.contentWindow.document;throw t.createError("getIframeDocument: No Document object found for iframe element")}function R(e){if(typeof e.contentWindow!=x)return e.contentWindow;if(typeof e.contentDocument!=x)return e.contentDocument.defaultView;throw t.createError("getIframeWindow: No Window object found for iframe element")}function v(e){return e&&A.isHostMethod(e,"setTimeout")&&A.isHostObject(e,"document")}function C(e,t,n){var r;if(e?A.isHostProperty(e,"nodeType")?r=1==e.nodeType&&"iframe"==e.tagName.toLowerCase()?m(e):g(e):v(e)&&(r=e.document):r=document,!r)throw t.createError(n+"(): Parameter must be a Window object or DOM node");return r}function N(e){for(var t;t=e.parentNode;)e=t;return e}function E(e,n,r,i){var s,c,f,u,l;if(e==r)return n===i?0:i>n?-1:1;if(s=d(r,e,!0))return n<=o(s)?-1:1;if(s=d(e,r,!0))return o(s)<i?-1:1;if(c=a(e,r),!c)throw new Error("comparePoints error: nodes have no common ancestor");if(f=e===c?c:d(e,c,!0),u=r===c?c:d(r,c,!0),f===u)throw t.createError("comparePoints got to case 4 and childA and childB are the same!");for(l=c.firstChild;l;){if(l===f)return-1;if(l===u)return 1;l=l.nextSibling}}function S(e){var t;try{return t=e.parentNode,!1}catch(n){return!0}}function y(e){if(!e)return"[No node]";if(B&&S(e))return"[Broken node]";if(f(e))return'"'+e.data+'"';if(1==e.nodeType){var t=e.id?' id="'+e.id+'"':"";return"<"+e.nodeName+t+">[index:"+o(e)+",length:"+e.childNodes.length+"]["+(e.innerHTML||"[innerHTML not supported]").slice(0,25)+"]"}return e.nodeName}function w(e){for(var t,n=g(e).createDocumentFragment();t=e.firstChild;)n.appendChild(t);return n}function O(e){this.root=e,this._next=e}function T(e){return new O(e)}function _(e,t){this.node=e,this.offset=t}function D(e){this.code=this[e],this.codeName=e,this.message="DOMException: "+this.codeName}var x="undefined",A=e.util;A.areHostMethods(document,["createDocumentFragment","createElement","createTextNode"])||t.fail("document missing a Node creation method"),A.isHostMethod(document,"getElementsByTagName")||t.fail("document missing getElementsByTagName method");var b=document.createElement("div");A.areHostMethods(b,["insertBefore","appendChild","cloneNode"]||!A.areHostObjects(b,["previousSibling","nextSibling","childNodes","parentNode"]))||t.fail("Incomplete Element implementation"),A.isHostProperty(b,"innerHTML")||t.fail("Element is missing innerHTML property");var P=document.createTextNode("test");A.areHostMethods(P,["splitText","deleteData","insertData","appendData","cloneNode"]||!A.areHostObjects(b,["previousSibling","nextSibling","childNodes","parentNode"])||!A.areHostProperties(P,["data"]))||t.fail("Incomplete Text Node implementation");var I=function(e,t){for(var n=e.length;n--;)if(e[n]===t)return!0;return!1},B=!1;!function(){var t=document.createElement("b");t.innerHTML="1";var n=t.firstChild;t.innerHTML="<br>",B=S(n),e.features.crashyTextNodes=B}();var H;typeof window.getComputedStyle!=x?H=function(e,t){return p(e).getComputedStyle(e,null)[t]}:typeof document.documentElement.currentStyle!=x?H=function(e,t){return e.currentStyle[t]}:t.fail("No means of obtaining computed style properties found"),O.prototype={_current:null,hasNext:function(){return!!this._next},next:function(){var e,t,n=this._current=this._next;if(this._current)if(e=n.firstChild)this._next=e;else{for(t=null;n!==this.root&&!(t=n.nextSibling);)n=n.parentNode;this._next=t}return this._current},detach:function(){this._current=this._next=this.root=null}},_.prototype={equals:function(e){return!!e&&this.node===e.node&&this.offset==e.offset},inspect:function(){return"[DomPosition("+y(this.node)+":"+this.offset+")]"},toString:function(){return this.inspect()}},D.prototype={INDEX_SIZE_ERR:1,HIERARCHY_REQUEST_ERR:3,WRONG_DOCUMENT_ERR:4,NO_MODIFICATION_ALLOWED_ERR:7,NOT_FOUND_ERR:8,NOT_SUPPORTED_ERR:9,INVALID_STATE_ERR:11,INVALID_NODE_TYPE_ERR:24},D.prototype.toString=function(){return this.message},e.dom={arrayContains:I,isHtmlNamespace:n,parentElement:r,getNodeIndex:o,getNodeLength:i,getCommonAncestor:a,isAncestorOf:s,isOrIsAncestorOf:c,getClosestAncestorIn:d,isCharacterDataNode:f,isTextOrCommentNode:u,insertAfter:l,splitDataNode:h,getDocument:g,getWindow:p,getIframeWindow:R,getIframeDocument:m,getBody:A.getBody,isWindow:v,getContentDocument:C,getRootContainer:N,comparePoints:E,isBrokenNode:S,inspectNode:y,getComputedStyleProperty:H,fragmentFromNodeChildren:w,createIterator:T,DomPosition:_},e.DOMException=D}),A.createCoreModule("DomRange",["DomUtil"],function(e){function t(e,t){return 3!=e.nodeType&&(F(e,t.startContainer)||F(e,t.endContainer))}function n(e){return e.document||j(e.startContainer)}function r(e){return new M(e.parentNode,k(e))}function o(e){return new M(e.parentNode,k(e)+1)}function i(e,t,n){var r=11==e.nodeType?e.firstChild:e;return W(t)?n==t.length?B.insertAfter(e,t):t.parentNode.insertBefore(e,0==n?t:U(t,n)):n>=t.childNodes.length?t.appendChild(e):t.insertBefore(e,t.childNodes[n]),r}function a(e,t,r){if(w(e),w(t),n(t)!=n(e))throw new L("WRONG_DOCUMENT_ERR");var o=z(e.startContainer,e.startOffset,t.endContainer,t.endOffset),i=z(e.endContainer,e.endOffset,t.startContainer,t.startOffset);return r?0>=o&&i>=0:0>o&&i>0}function s(e){for(var t,r,o,i=n(e.range).createDocumentFragment();r=e.next();){if(t=e.isPartiallySelectedSubtree(),r=r.cloneNode(!t),t&&(o=e.getSubtreeIterator(),r.appendChild(s(o)),o.detach()),10==r.nodeType)throw new L("HIERARCHY_REQUEST_ERR");i.appendChild(r)}return i}function c(e,t,n){var r,o;n=n||{stop:!1};for(var i,a;i=e.next();)if(e.isPartiallySelectedSubtree()){if(t(i)===!1)return void(n.stop=!0);if(a=e.getSubtreeIterator(),c(a,t,n),a.detach(),n.stop)return}else for(r=B.createIterator(i);o=r.next();)if(t(o)===!1)return void(n.stop=!0)}function d(e){for(var t;e.next();)e.isPartiallySelectedSubtree()?(t=e.getSubtreeIterator(),d(t),t.detach()):e.remove()}function f(e){for(var t,r,o=n(e.range).createDocumentFragment();t=e.next();){if(e.isPartiallySelectedSubtree()?(t=t.cloneNode(!1),r=e.getSubtreeIterator(),t.appendChild(f(r)),r.detach()):e.remove(),10==t.nodeType)throw new L("HIERARCHY_REQUEST_ERR");o.appendChild(t)}return o}function u(e,t,n){var r,o=!(!t||!t.length),i=!!n;o&&(r=new RegExp("^("+t.join("|")+")$"));var a=[];return c(new h(e,!1),function(t){if(!(o&&!r.test(t.nodeType)||i&&!n(t))){var s=e.startContainer;if(t!=s||!W(s)||e.startOffset!=s.length){var c=e.endContainer;t==c&&W(c)&&0==e.endOffset||a.push(t)}}}),a}function l(e){var t="undefined"==typeof e.getName?"Range":e.getName();return"["+t+"("+B.inspectNode(e.startContainer)+":"+e.startOffset+", "+B.inspectNode(e.endContainer)+":"+e.endOffset+")]"}function h(e,t){if(this.range=e,this.clonePartiallySelectedTextNodes=t,!e.collapsed){this.sc=e.startContainer,this.so=e.startOffset,this.ec=e.endContainer,this.eo=e.endOffset;var n=e.commonAncestorContainer;this.sc===this.ec&&W(this.sc)?(this.isSingleCharacterDataNode=!0,this._first=this._last=this._next=this.sc):(this._first=this._next=this.sc!==n||W(this.sc)?V(this.sc,n,!0):this.sc.childNodes[this.so],this._last=this.ec!==n||W(this.ec)?V(this.ec,n,!0):this.ec.childNodes[this.eo-1])}}function g(e){return function(t,n){for(var r,o=n?t:t.parentNode;o;){if(r=o.nodeType,Y(e,r))return o;o=o.parentNode}return null}}function p(e,t){if(nt(e,t))throw new L("INVALID_NODE_TYPE_ERR")}function m(e,t){if(!Y(t,e.nodeType))throw new L("INVALID_NODE_TYPE_ERR")}function R(e,t){if(0>t||t>(W(e)?e.length:e.childNodes.length))throw new L("INDEX_SIZE_ERR")}function v(e,t){if(et(e,!0)!==et(t,!0))throw new L("WRONG_DOCUMENT_ERR")}function C(e){if(tt(e,!0))throw new L("NO_MODIFICATION_ALLOWED_ERR")}function N(e,t){if(!e)throw new L(t)}function E(e){return G&&B.isBrokenNode(e)||!Y(Z,e.nodeType)&&!et(e,!0)}function S(e,t){return t<=(W(e)?e.length:e.childNodes.length)}function y(e){return!!e.startContainer&&!!e.endContainer&&!E(e.startContainer)&&!E(e.endContainer)&&S(e.startContainer,e.startOffset)&&S(e.endContainer,e.endOffset)}function w(e){if(!y(e))throw new Error("Range error: Range is no longer valid after DOM mutation ("+e.inspect()+")")}function O(e,t){w(e);var n=e.startContainer,r=e.startOffset,o=e.endContainer,i=e.endOffset,a=n===o;W(o)&&i>0&&i<o.length&&U(o,i,t),W(n)&&r>0&&r<n.length&&(n=U(n,r,t),a?(i-=r,o=n):o==n.parentNode&&i>=k(n)&&i++,r=0),e.setStartAndEnd(n,r,o,i)}function T(e){w(e);var t=e.commonAncestorContainer.parentNode.cloneNode(!1);return t.appendChild(e.cloneContents()),t.innerHTML}function _(e){e.START_TO_START=ct,e.START_TO_END=dt,e.END_TO_END=ft,e.END_TO_START=ut,e.NODE_BEFORE=lt,e.NODE_AFTER=ht,e.NODE_BEFORE_AND_AFTER=gt,e.NODE_INSIDE=pt}function D(e){_(e),_(e.prototype)}function x(e,t){return function(){w(this);var n,r,i=this.startContainer,a=this.startOffset,s=this.commonAncestorContainer,d=new h(this,!0);i!==s&&(n=V(i,s,!0),r=o(n),i=r.node,a=r.offset),c(d,C),d.reset();var f=e(d);return d.detach(),t(this,i,a,i,a),f}}function A(n,i){function a(e,t){return function(n){m(n,X),m(Q(n),Z);var i=(e?r:o)(n);(t?s:c)(this,i.node,i.offset)}}function s(e,t,n){var r=e.endContainer,o=e.endOffset;(t!==e.startContainer||n!==e.startOffset)&&((Q(t)!=Q(r)||1==z(t,n,r,o))&&(r=t,o=n),i(e,t,n,r,o))}function c(e,t,n){var r=e.startContainer,o=e.startOffset;(t!==e.endContainer||n!==e.endOffset)&&((Q(t)!=Q(r)||-1==z(t,n,r,o))&&(r=t,o=n),i(e,r,o,t,n))}var u=function(){};u.prototype=e.rangePrototype,n.prototype=new u,H.extend(n.prototype,{setStart:function(e,t){p(e,!0),R(e,t),s(this,e,t)},setEnd:function(e,t){p(e,!0),R(e,t),c(this,e,t)},setStartAndEnd:function(){var e=arguments,t=e[0],n=e[1],r=t,o=n;switch(e.length){case 3:o=e[2];break;case 4:r=e[2],o=e[3]}i(this,t,n,r,o)},setBoundary:function(e,t,n){this["set"+(n?"Start":"End")](e,t)},setStartBefore:a(!0,!0),setStartAfter:a(!1,!0),setEndBefore:a(!0,!1),setEndAfter:a(!1,!1),collapse:function(e){w(this),e?i(this,this.startContainer,this.startOffset,this.startContainer,this.startOffset):i(this,this.endContainer,this.endOffset,this.endContainer,this.endOffset)},selectNodeContents:function(e){p(e,!0),i(this,e,0,e,q(e))},selectNode:function(e){p(e,!1),m(e,X);var t=r(e),n=o(e);i(this,t.node,t.offset,n.node,n.offset)},extractContents:x(f,i),deleteContents:x(d,i),canSurroundContents:function(){w(this),C(this.startContainer),C(this.endContainer);var e=new h(this,!0),n=e._first&&t(e._first,this)||e._last&&t(e._last,this);return e.detach(),!n},splitBoundaries:function(){O(this)},splitBoundariesPreservingPositions:function(e){O(this,e)},normalizeBoundaries:function(){w(this);var e=this.startContainer,t=this.startOffset,n=this.endContainer,r=this.endOffset,o=function(e){var t=e.nextSibling;t&&t.nodeType==e.nodeType&&(n=e,r=e.length,e.appendData(t.data),t.parentNode.removeChild(t))},a=function(o){var i=o.previousSibling;if(i&&i.nodeType==o.nodeType){e=o;var a=o.length;if(t=i.length,o.insertData(0,i.data),i.parentNode.removeChild(i),e==n)r+=t,n=e;else if(n==o.parentNode){var s=k(o);r==s?(n=o,r=a):r>s&&r--}}},s=!0;if(W(n))n.length==r&&o(n);else{if(r>0){var c=n.childNodes[r-1];c&&W(c)&&o(c)}s=!this.collapsed}if(s){if(W(e))0==t&&a(e);else if(t<e.childNodes.length){var d=e.childNodes[t];d&&W(d)&&a(d)}}else e=n,t=r;i(this,e,t,n,r)},collapseToPoint:function(e,t){p(e,!0),R(e,t),this.setStartAndEnd(e,t)}}),D(n)}function b(e){e.collapsed=e.startContainer===e.endContainer&&e.startOffset===e.endOffset,e.commonAncestorContainer=e.collapsed?e.startContainer:B.getCommonAncestor(e.startContainer,e.endContainer)}function P(e,t,n,r,o){e.startContainer=t,e.startOffset=n,e.endContainer=r,e.endOffset=o,e.document=B.getDocument(t),b(e)}function I(e){this.startContainer=e,this.startOffset=0,this.endContainer=e,this.endOffset=0,this.document=e,b(this)}var B=e.dom,H=e.util,M=B.DomPosition,L=e.DOMException,W=B.isCharacterDataNode,k=B.getNodeIndex,F=B.isOrIsAncestorOf,j=B.getDocument,z=B.comparePoints,U=B.splitDataNode,V=B.getClosestAncestorIn,q=B.getNodeLength,Y=B.arrayContains,Q=B.getRootContainer,G=e.features.crashyTextNodes;h.prototype={_current:null,_next:null,_first:null,_last:null,isSingleCharacterDataNode:!1,reset:function(){this._current=null,this._next=this._first},hasNext:function(){return!!this._next},next:function(){var e=this._current=this._next;return e&&(this._next=e!==this._last?e.nextSibling:null,W(e)&&this.clonePartiallySelectedTextNodes&&(e===this.ec&&(e=e.cloneNode(!0)).deleteData(this.eo,e.length-this.eo),this._current===this.sc&&(e=e.cloneNode(!0)).deleteData(0,this.so))),e},remove:function(){var e,t,n=this._current;!W(n)||n!==this.sc&&n!==this.ec?n.parentNode&&n.parentNode.removeChild(n):(e=n===this.sc?this.so:0,t=n===this.ec?this.eo:n.length,e!=t&&n.deleteData(e,t-e))},isPartiallySelectedSubtree:function(){var e=this._current;return t(e,this.range)},getSubtreeIterator:function(){var e;if(this.isSingleCharacterDataNode)e=this.range.cloneRange(),e.collapse(!1);else{e=new I(n(this.range));var t=this._current,r=t,o=0,i=t,a=q(t);F(t,this.sc)&&(r=this.sc,o=this.so),F(t,this.ec)&&(i=this.ec,a=this.eo),P(e,r,o,i,a)}return new h(e,this.clonePartiallySelectedTextNodes)},detach:function(){this.range=this._current=this._next=this._first=this._last=this.sc=this.so=this.ec=this.eo=null}};var X=[1,3,4,5,7,8,10],Z=[2,9,11],$=[5,6,10,12],J=[1,3,4,5,7,8,10,11],K=[1,3,4,5,7,8],et=g([9,11]),tt=g($),nt=g([6,10,12]),rt=document.createElement("style"),ot=!1;try{rt.innerHTML="<b>x</b>",ot=3==rt.firstChild.nodeType}catch(it){}e.features.htmlParsingConforms=ot;var at=ot?function(e){var t=this.startContainer,n=j(t);if(!t)throw new L("INVALID_STATE_ERR");var r=null;return 1==t.nodeType?r=t:W(t)&&(r=B.parentElement(t)),r=null===r||"HTML"==r.nodeName&&B.isHtmlNamespace(j(r).documentElement)&&B.isHtmlNamespace(r)?n.createElement("body"):r.cloneNode(!1),r.innerHTML=e,B.fragmentFromNodeChildren(r)}:function(e){var t=n(this),r=t.createElement("body");return r.innerHTML=e,B.fragmentFromNodeChildren(r)},st=["startContainer","startOffset","endContainer","endOffset","collapsed","commonAncestorContainer"],ct=0,dt=1,ft=2,ut=3,lt=0,ht=1,gt=2,pt=3;H.extend(e.rangePrototype,{compareBoundaryPoints:function(e,t){w(this),v(this.startContainer,t.startContainer);var n,r,o,i,a=e==ut||e==ct?"start":"end",s=e==dt||e==ct?"start":"end";return n=this[a+"Container"],r=this[a+"Offset"],o=t[s+"Container"],i=t[s+"Offset"],z(n,r,o,i)},insertNode:function(e){if(w(this),m(e,J),C(this.startContainer),F(e,this.startContainer))throw new L("HIERARCHY_REQUEST_ERR");var t=i(e,this.startContainer,this.startOffset);this.setStartBefore(t)},cloneContents:function(){w(this);var e,t;if(this.collapsed)return n(this).createDocumentFragment();if(this.startContainer===this.endContainer&&W(this.startContainer))return e=this.startContainer.cloneNode(!0),e.data=e.data.slice(this.startOffset,this.endOffset),t=n(this).createDocumentFragment(),t.appendChild(e),t;var r=new h(this,!0);return e=s(r),r.detach(),e},canSurroundContents:function(){w(this),C(this.startContainer),C(this.endContainer);var e=new h(this,!0),n=e._first&&t(e._first,this)||e._last&&t(e._last,this);return e.detach(),!n},surroundContents:function(e){if(m(e,K),!this.canSurroundContents())throw new L("INVALID_STATE_ERR");var t=this.extractContents();if(e.hasChildNodes())for(;e.lastChild;)e.removeChild(e.lastChild);i(e,this.startContainer,this.startOffset),e.appendChild(t),this.selectNode(e)},cloneRange:function(){w(this);for(var e,t=new I(n(this)),r=st.length;r--;)e=st[r],t[e]=this[e];return t},toString:function(){w(this);var e=this.startContainer;if(e===this.endContainer&&W(e))return 3==e.nodeType||4==e.nodeType?e.data.slice(this.startOffset,this.endOffset):"";var t=[],n=new h(this,!0);return c(n,function(e){(3==e.nodeType||4==e.nodeType)&&t.push(e.data)}),n.detach(),t.join("")},compareNode:function(e){w(this);var t=e.parentNode,n=k(e);if(!t)throw new L("NOT_FOUND_ERR");var r=this.comparePoint(t,n),o=this.comparePoint(t,n+1);return 0>r?o>0?gt:lt:o>0?ht:pt},comparePoint:function(e,t){return w(this),N(e,"HIERARCHY_REQUEST_ERR"),v(e,this.startContainer),z(e,t,this.startContainer,this.startOffset)<0?-1:z(e,t,this.endContainer,this.endOffset)>0?1:0},createContextualFragment:at,toHtml:function(){return T(this)},intersectsNode:function(e,t){if(w(this),N(e,"NOT_FOUND_ERR"),j(e)!==n(this))return!1;var r=e.parentNode,o=k(e);N(r,"NOT_FOUND_ERR");var i=z(r,o,this.endContainer,this.endOffset),a=z(r,o+1,this.startContainer,this.startOffset);return t?0>=i&&a>=0:0>i&&a>0},isPointInRange:function(e,t){return w(this),N(e,"HIERARCHY_REQUEST_ERR"),v(e,this.startContainer),z(e,t,this.startContainer,this.startOffset)>=0&&z(e,t,this.endContainer,this.endOffset)<=0},intersectsRange:function(e){return a(this,e,!1)},intersectsOrTouchesRange:function(e){return a(this,e,!0)},intersection:function(e){if(this.intersectsRange(e)){var t=z(this.startContainer,this.startOffset,e.startContainer,e.startOffset),n=z(this.endContainer,this.endOffset,e.endContainer,e.endOffset),r=this.cloneRange();return-1==t&&r.setStart(e.startContainer,e.startOffset),1==n&&r.setEnd(e.endContainer,e.endOffset),r}return null},union:function(e){if(this.intersectsOrTouchesRange(e)){var t=this.cloneRange();return-1==z(e.startContainer,e.startOffset,this.startContainer,this.startOffset)&&t.setStart(e.startContainer,e.startOffset),1==z(e.endContainer,e.endOffset,this.endContainer,this.endOffset)&&t.setEnd(e.endContainer,e.endOffset),t}throw new L("Ranges do not intersect")},containsNode:function(e,t){return t?this.intersectsNode(e,!1):this.compareNode(e)==pt},containsNodeContents:function(e){return this.comparePoint(e,0)>=0&&this.comparePoint(e,q(e))<=0},containsRange:function(e){var t=this.intersection(e);return null!==t&&e.equals(t)},containsNodeText:function(e){var t=this.cloneRange();t.selectNode(e);var n=t.getNodes([3]);if(n.length>0){t.setStart(n[0],0);var r=n.pop();return t.setEnd(r,r.length),this.containsRange(t)}return this.containsNodeContents(e)},getNodes:function(e,t){return w(this),u(this,e,t)},getDocument:function(){return n(this)},collapseBefore:function(e){this.setEndBefore(e),this.collapse(!1)},collapseAfter:function(e){this.setStartAfter(e),this.collapse(!0)},getBookmark:function(t){var r=n(this),o=e.createRange(r);t=t||B.getBody(r),o.selectNodeContents(t);var i=this.intersection(o),a=0,s=0;return i&&(o.setEnd(i.startContainer,i.startOffset),a=o.toString().length,s=a+i.toString().length),{start:a,end:s,containerNode:t}},moveToBookmark:function(e){var t=e.containerNode,n=0;this.setStart(t,0),this.collapse(!0);for(var r,o,i,a,s=[t],c=!1,d=!1;!d&&(r=s.pop());)if(3==r.nodeType)o=n+r.length,!c&&e.start>=n&&e.start<=o&&(this.setStart(r,e.start-n),c=!0),c&&e.end>=n&&e.end<=o&&(this.setEnd(r,e.end-n),d=!0),n=o;else for(a=r.childNodes,i=a.length;i--;)s.push(a[i])},getName:function(){return"DomRange"},equals:function(e){return I.rangesEqual(this,e)},isValid:function(){return y(this)},inspect:function(){return l(this)},detach:function(){}}),A(I,P),H.extend(I,{rangeProperties:st,RangeIterator:h,copyComparisonConstants:D,createPrototypeRange:A,inspect:l,toHtml:T,getRangeDocument:n,rangesEqual:function(e,t){return e.startContainer===t.startContainer&&e.startOffset===t.startOffset&&e.endContainer===t.endContainer&&e.endOffset===t.endOffset}}),e.DomRange=I}),A.createCoreModule("WrappedRange",["DomRange"],function(e,t){var n,r,o=e.dom,i=e.util,a=o.DomPosition,s=e.DomRange,c=o.getBody,d=o.getContentDocument,f=o.isCharacterDataNode;if(e.features.implementsDomRange&&!function(){function r(e){for(var t,n=l.length;n--;)t=l[n],e[t]=e.nativeRange[t];e.collapsed=e.startContainer===e.endContainer&&e.startOffset===e.endOffset}function a(e,t,n,r,o){var i=e.startContainer!==t||e.startOffset!=n,a=e.endContainer!==r||e.endOffset!=o,s=!e.equals(e.nativeRange);(i||a||s)&&(e.setEnd(r,o),e.setStart(t,n))}var f,u,l=s.rangeProperties;n=function(e){if(!e)throw t.createError("WrappedRange: Range must be specified");this.nativeRange=e,r(this)},s.createPrototypeRange(n,a),f=n.prototype,f.selectNode=function(e){this.nativeRange.selectNode(e),r(this)},f.cloneContents=function(){return this.nativeRange.cloneContents()},f.surroundContents=function(e){this.nativeRange.surroundContents(e),r(this)},f.collapse=function(e){this.nativeRange.collapse(e),r(this)},f.cloneRange=function(){return new n(this.nativeRange.cloneRange())},f.refresh=function(){r(this)},f.toString=function(){return this.nativeRange.toString()};var h=document.createTextNode("test");c(document).appendChild(h);var g=document.createRange();g.setStart(h,0),g.setEnd(h,0);try{g.setStart(h,1),f.setStart=function(e,t){this.nativeRange.setStart(e,t),r(this)},f.setEnd=function(e,t){this.nativeRange.setEnd(e,t),r(this)},u=function(e){return function(t){this.nativeRange[e](t),r(this)}}}catch(p){f.setStart=function(e,t){try{this.nativeRange.setStart(e,t)}catch(n){this.nativeRange.setEnd(e,t),this.nativeRange.setStart(e,t)}r(this)},f.setEnd=function(e,t){try{this.nativeRange.setEnd(e,t)}catch(n){this.nativeRange.setStart(e,t),this.nativeRange.setEnd(e,t)}r(this)},u=function(e,t){return function(n){try{this.nativeRange[e](n)}catch(o){this.nativeRange[t](n),this.nativeRange[e](n)}r(this)}}}f.setStartBefore=u("setStartBefore","setEndBefore"),f.setStartAfter=u("setStartAfter","setEndAfter"),f.setEndBefore=u("setEndBefore","setStartBefore"),f.setEndAfter=u("setEndAfter","setStartAfter"),f.selectNodeContents=function(e){this.setStartAndEnd(e,0,o.getNodeLength(e))},g.selectNodeContents(h),g.setEnd(h,3);var m=document.createRange();m.selectNodeContents(h),m.setEnd(h,4),m.setStart(h,2),f.compareBoundaryPoints=-1==g.compareBoundaryPoints(g.START_TO_END,m)&&1==g.compareBoundaryPoints(g.END_TO_START,m)?function(e,t){return t=t.nativeRange||t,e==t.START_TO_END?e=t.END_TO_START:e==t.END_TO_START&&(e=t.START_TO_END),this.nativeRange.compareBoundaryPoints(e,t)}:function(e,t){return this.nativeRange.compareBoundaryPoints(e,t.nativeRange||t)};var R=document.createElement("div");R.innerHTML="123";var v=R.firstChild,C=c(document);C.appendChild(R),g.setStart(v,1),g.setEnd(v,2),g.deleteContents(),"13"==v.data&&(f.deleteContents=function(){this.nativeRange.deleteContents(),r(this)},f.extractContents=function(){var e=this.nativeRange.extractContents();return r(this),e}),C.removeChild(R),C=null,i.isHostMethod(g,"createContextualFragment")&&(f.createContextualFragment=function(e){return this.nativeRange.createContextualFragment(e)}),c(document).removeChild(h),f.getName=function(){return"WrappedRange"},e.WrappedRange=n,e.createNativeRange=function(e){return e=d(e,t,"createNativeRange"),e.createRange()}}(),e.features.implementsTextRange){var u=function(e){var t=e.parentElement(),n=e.duplicate();n.collapse(!0);var r=n.parentElement();n=e.duplicate(),n.collapse(!1);var i=n.parentElement(),a=r==i?r:o.getCommonAncestor(r,i);return a==t?a:o.getCommonAncestor(t,a)},l=function(e){return 0==e.compareEndPoints("StartToEnd",e)},h=function(e,t,n,r,i){var s=e.duplicate();s.collapse(n);var c=s.parentElement();if(o.isOrIsAncestorOf(t,c)||(c=t),!c.canHaveHTML){var d=new a(c.parentNode,o.getNodeIndex(c));return{boundaryPosition:d,nodeInfo:{nodeIndex:d.offset,containerElement:d.node}}}var u=o.getDocument(c).createElement("span");u.parentNode&&u.parentNode.removeChild(u);for(var l,h,g,p,m,R=n?"StartToStart":"StartToEnd",v=i&&i.containerElement==c?i.nodeIndex:0,C=c.childNodes.length,N=C,E=N;;){if(E==C?c.appendChild(u):c.insertBefore(u,c.childNodes[E]),s.moveToElementText(u),l=s.compareEndPoints(R,e),0==l||v==N)break;if(-1==l){if(N==v+1)break;v=E}else N=N==v+1?v:E;E=Math.floor((v+N)/2),c.removeChild(u)}if(m=u.nextSibling,-1==l&&m&&f(m)){s.setEndPoint(n?"EndToStart":"EndToEnd",e);var S;if(/[\r\n]/.test(m.data)){var y=s.duplicate(),w=y.text.replace(/\r\n/g,"\r").length;for(S=y.moveStart("character",w);-1==(l=y.compareEndPoints("StartToEnd",y));)S++,y.moveStart("character",1)}else S=s.text.length;p=new a(m,S)}else h=(r||!n)&&u.previousSibling,g=(r||n)&&u.nextSibling,p=g&&f(g)?new a(g,0):h&&f(h)?new a(h,h.data.length):new a(c,o.getNodeIndex(u));return u.parentNode.removeChild(u),{boundaryPosition:p,nodeInfo:{nodeIndex:E,containerElement:c}}},g=function(e,t){var n,r,i,a,s=e.offset,d=o.getDocument(e.node),u=c(d).createTextRange(),l=f(e.node);return l?(n=e.node,r=n.parentNode):(a=e.node.childNodes,n=s<a.length?a[s]:null,r=e.node),i=d.createElement("span"),i.innerHTML="&#feff;",n?r.insertBefore(i,n):r.appendChild(i),u.moveToElementText(i),u.collapse(!t),r.removeChild(i),l&&u[t?"moveStart":"moveEnd"]("character",s),u};r=function(e){this.textRange=e,this.refresh()},r.prototype=new s(document),r.prototype.refresh=function(){var e,t,n,r=u(this.textRange);l(this.textRange)?t=e=h(this.textRange,r,!0,!0).boundaryPosition:(n=h(this.textRange,r,!0,!1),e=n.boundaryPosition,t=h(this.textRange,r,!1,!1,n.nodeInfo).boundaryPosition),this.setStart(e.node,e.offset),this.setEnd(t.node,t.offset)},r.prototype.getName=function(){return"WrappedTextRange"},s.copyComparisonConstants(r);var p=function(e){if(e.collapsed)return g(new a(e.startContainer,e.startOffset),!0);var t=g(new a(e.startContainer,e.startOffset),!0),n=g(new a(e.endContainer,e.endOffset),!1),r=c(s.getRangeDocument(e)).createTextRange();return r.setEndPoint("StartToStart",t),r.setEndPoint("EndToEnd",n),r};if(r.rangeToTextRange=p,r.prototype.toTextRange=function(){return p(this)},e.WrappedTextRange=r,!e.features.implementsDomRange||e.config.preferTextRange){var m=function(){return this
-}();"undefined"==typeof m.Range&&(m.Range=r),e.createNativeRange=function(e){return e=d(e,t,"createNativeRange"),c(e).createTextRange()},e.WrappedRange=r}}e.createRange=function(n){return n=d(n,t,"createRange"),new e.WrappedRange(e.createNativeRange(n))},e.createRangyRange=function(e){return e=d(e,t,"createRangyRange"),new s(e)},e.createIframeRange=function(n){return t.deprecationNotice("createIframeRange()","createRange(iframeEl)"),e.createRange(n)},e.createIframeRangyRange=function(n){return t.deprecationNotice("createIframeRangyRange()","createRangyRange(iframeEl)"),e.createRangyRange(n)},e.addShimListener(function(t){var n=t.document;"undefined"==typeof n.createRange&&(n.createRange=function(){return e.createRange(n)}),n=t=null})}),A.createCoreModule("WrappedSelection",["DomRange","WrappedRange"],function(e,t){function n(e){return"string"==typeof e?/^backward(s)?$/i.test(e):!!e}function r(e,n){if(e){if(D.isWindow(e))return e;if(e instanceof R)return e.win;var r=D.getContentDocument(e,t,n);return D.getWindow(r)}return window}function o(e){return r(e,"getWinSelection").getSelection()}function i(e){return r(e,"getDocSelection").document.selection}function a(e){var t=!1;return e.anchorNode&&(t=1==D.comparePoints(e.anchorNode,e.anchorOffset,e.focusNode,e.focusOffset)),t}function s(e,t,n){var r=n?"end":"start",o=n?"start":"end";e.anchorNode=t[r+"Container"],e.anchorOffset=t[r+"Offset"],e.focusNode=t[o+"Container"],e.focusOffset=t[o+"Offset"]}function c(e){var t=e.nativeSelection;e.anchorNode=t.anchorNode,e.anchorOffset=t.anchorOffset,e.focusNode=t.focusNode,e.focusOffset=t.focusOffset}function d(e){e.anchorNode=e.focusNode=null,e.anchorOffset=e.focusOffset=0,e.rangeCount=0,e.isCollapsed=!0,e._ranges.length=0}function f(t){var n;return t instanceof b?(n=e.createNativeRange(t.getDocument()),n.setEnd(t.endContainer,t.endOffset),n.setStart(t.startContainer,t.startOffset)):t instanceof P?n=t.nativeRange:H.implementsDomRange&&t instanceof D.getWindow(t.startContainer).Range&&(n=t),n}function u(e){if(!e.length||1!=e[0].nodeType)return!1;for(var t=1,n=e.length;n>t;++t)if(!D.isAncestorOf(e[0],e[t]))return!1;return!0}function l(e){var n=e.getNodes();if(!u(n))throw t.createError("getSingleElementFromRange: range "+e.inspect()+" did not consist of a single element");return n[0]}function h(e){return!!e&&"undefined"!=typeof e.text}function g(e,t){var n=new P(t);e._ranges=[n],s(e,n,!1),e.rangeCount=1,e.isCollapsed=n.collapsed}function p(t){if(t._ranges.length=0,"None"==t.docSelection.type)d(t);else{var n=t.docSelection.createRange();if(h(n))g(t,n);else{t.rangeCount=n.length;for(var r,o=L(n.item(0)),i=0;i<t.rangeCount;++i)r=e.createRange(o),r.selectNode(n.item(i)),t._ranges.push(r);t.isCollapsed=1==t.rangeCount&&t._ranges[0].collapsed,s(t,t._ranges[t.rangeCount-1],!1)}}}function m(e,n){for(var r=e.docSelection.createRange(),o=l(n),i=L(r.item(0)),a=W(i).createControlRange(),s=0,c=r.length;c>s;++s)a.add(r.item(s));try{a.add(o)}catch(d){throw t.createError("addRange(): Element within the specified Range could not be added to control selection (does it have layout?)")}a.select(),p(e)}function R(e,t,n){this.nativeSelection=e,this.docSelection=t,this._ranges=[],this.win=n,this.refresh()}function v(e){e.win=e.anchorNode=e.focusNode=e._ranges=null,e.rangeCount=e.anchorOffset=e.focusOffset=0,e.detached=!0}function C(e,t){for(var n,r,o=tt.length;o--;)if(n=tt[o],r=n.selection,"deleteAll"==t)v(r);else if(n.win==e)return"delete"==t?(tt.splice(o,1),!0):r;return"deleteAll"==t&&(tt.length=0),null}function N(e,n){for(var r,o=L(n[0].startContainer),i=W(o).createControlRange(),a=0,s=n.length;s>a;++a){r=l(n[a]);try{i.add(r)}catch(c){throw t.createError("setRanges(): Element within one of the specified Ranges could not be added to control selection (does it have layout?)")}}i.select(),p(e)}function E(e,t){if(e.win.document!=L(t))throw new I("WRONG_DOCUMENT_ERR")}function S(t){return function(n,r){var o;this.rangeCount?(o=this.getRangeAt(0),o["set"+(t?"Start":"End")](n,r)):(o=e.createRange(this.win.document),o.setStartAndEnd(n,r)),this.setSingleRange(o,this.isBackward())}}function y(e){var t=[],n=new B(e.anchorNode,e.anchorOffset),r=new B(e.focusNode,e.focusOffset),o="function"==typeof e.getName?e.getName():"Selection";if("undefined"!=typeof e.rangeCount)for(var i=0,a=e.rangeCount;a>i;++i)t[i]=b.inspect(e.getRangeAt(i));return"["+o+"(Ranges: "+t.join(", ")+")(anchor: "+n.inspect()+", focus: "+r.inspect()+"]"}e.config.checkSelectionRanges=!0;var w,O,T="boolean",_="number",D=e.dom,x=e.util,A=x.isHostMethod,b=e.DomRange,P=e.WrappedRange,I=e.DOMException,B=D.DomPosition,H=e.features,M="Control",L=D.getDocument,W=D.getBody,k=b.rangesEqual,F=A(window,"getSelection"),j=x.isHostObject(document,"selection");H.implementsWinGetSelection=F,H.implementsDocSelection=j;var z=j&&(!F||e.config.preferTextRange);z?(w=i,e.isSelectionValid=function(e){var t=r(e,"isSelectionValid").document,n=t.selection;return"None"!=n.type||L(n.createRange().parentElement())==t}):F?(w=o,e.isSelectionValid=function(){return!0}):t.fail("Neither document.selection or window.getSelection() detected."),e.getNativeSelection=w;var U=w(),V=e.createNativeRange(document),q=W(document),Y=x.areHostProperties(U,["anchorNode","focusNode","anchorOffset","focusOffset"]);H.selectionHasAnchorAndFocus=Y;var Q=A(U,"extend");H.selectionHasExtend=Q;var G=typeof U.rangeCount==_;H.selectionHasRangeCount=G;var X=!1,Z=!0,$=Q?function(t,n){var r=b.getRangeDocument(n),o=e.createRange(r);o.collapseToPoint(n.endContainer,n.endOffset),t.addRange(f(o)),t.extend(n.startContainer,n.startOffset)}:null;x.areHostMethods(U,["addRange","getRangeAt","removeAllRanges"])&&typeof U.rangeCount==_&&H.implementsDomRange&&!function(){var t=window.getSelection();if(t){for(var n=t.rangeCount,r=n>1,o=[],i=a(t),s=0;n>s;++s)o[s]=t.getRangeAt(s);var c=W(document),d=c.appendChild(document.createElement("div"));d.contentEditable="false";var f=d.appendChild(document.createTextNode("   ")),u=document.createRange();if(u.setStart(f,1),u.collapse(!0),t.addRange(u),Z=1==t.rangeCount,t.removeAllRanges(),!r){var l=window.navigator.appVersion.match(/Chrome\/(.*?) /);if(l&&parseInt(l[1])>=36)X=!1;else{var h=u.cloneRange();u.setStart(f,0),h.setEnd(f,3),h.setStart(f,2),t.addRange(u),t.addRange(h),X=2==t.rangeCount}}for(c.removeChild(d),t.removeAllRanges(),s=0;n>s;++s)0==s&&i?$?$(t,o[s]):(e.warn("Rangy initialization: original selection was backwards but selection has been restored forwards because the browser does not support Selection.extend"),t.addRange(o[s])):t.addRange(o[s])}}(),H.selectionSupportsMultipleRanges=X,H.collapsedNonEditableSelectionsSupported=Z;var J,K=!1;q&&A(q,"createControlRange")&&(J=q.createControlRange(),x.areHostProperties(J,["item","add"])&&(K=!0)),H.implementsControlRange=K,O=Y?function(e){return e.anchorNode===e.focusNode&&e.anchorOffset===e.focusOffset}:function(e){return e.rangeCount?e.getRangeAt(e.rangeCount-1).collapsed:!1};var et;A(U,"getRangeAt")?et=function(e,t){try{return e.getRangeAt(t)}catch(n){return null}}:Y&&(et=function(t){var n=L(t.anchorNode),r=e.createRange(n);return r.setStartAndEnd(t.anchorNode,t.anchorOffset,t.focusNode,t.focusOffset),r.collapsed!==this.isCollapsed&&r.setStartAndEnd(t.focusNode,t.focusOffset,t.anchorNode,t.anchorOffset),r}),R.prototype=e.selectionPrototype;var tt=[],nt=function(e){if(e&&e instanceof R)return e.refresh(),e;e=r(e,"getNativeSelection");var t=C(e),n=w(e),o=j?i(e):null;return t?(t.nativeSelection=n,t.docSelection=o,t.refresh()):(t=new R(n,o,e),tt.push({win:e,selection:t})),t};e.getSelection=nt,e.getIframeSelection=function(n){return t.deprecationNotice("getIframeSelection()","getSelection(iframeEl)"),e.getSelection(D.getIframeWindow(n))};var rt=R.prototype;if(!z&&Y&&x.areHostMethods(U,["removeAllRanges","addRange"])){rt.removeAllRanges=function(){this.nativeSelection.removeAllRanges(),d(this)};var ot=function(e,t){$(e.nativeSelection,t),e.refresh()};rt.addRange=G?function(t,r){if(K&&j&&this.docSelection.type==M)m(this,t);else if(n(r)&&Q)ot(this,t);else{var o;X?o=this.rangeCount:(this.removeAllRanges(),o=0);var i=f(t).cloneRange();try{this.nativeSelection.addRange(i)}catch(a){}if(this.rangeCount=this.nativeSelection.rangeCount,this.rangeCount==o+1){if(e.config.checkSelectionRanges){var c=et(this.nativeSelection,this.rangeCount-1);c&&!k(c,t)&&(t=new P(c))}this._ranges[this.rangeCount-1]=t,s(this,t,st(this.nativeSelection)),this.isCollapsed=O(this)}else this.refresh()}}:function(e,t){n(t)&&Q?ot(this,e):(this.nativeSelection.addRange(f(e)),this.refresh())},rt.setRanges=function(e){if(K&&j&&e.length>1)N(this,e);else{this.removeAllRanges();for(var t=0,n=e.length;n>t;++t)this.addRange(e[t])}}}else{if(!(A(U,"empty")&&A(V,"select")&&K&&z))return t.fail("No means of selecting a Range or TextRange was found"),!1;rt.removeAllRanges=function(){try{if(this.docSelection.empty(),"None"!=this.docSelection.type){var e;if(this.anchorNode)e=L(this.anchorNode);else if(this.docSelection.type==M){var t=this.docSelection.createRange();t.length&&(e=L(t.item(0)))}if(e){var n=W(e).createTextRange();n.select(),this.docSelection.empty()}}}catch(r){}d(this)},rt.addRange=function(t){this.docSelection.type==M?m(this,t):(e.WrappedTextRange.rangeToTextRange(t).select(),this._ranges[0]=t,this.rangeCount=1,this.isCollapsed=this._ranges[0].collapsed,s(this,t,!1))},rt.setRanges=function(e){this.removeAllRanges();var t=e.length;t>1?N(this,e):t&&this.addRange(e[0])}}rt.getRangeAt=function(e){if(0>e||e>=this.rangeCount)throw new I("INDEX_SIZE_ERR");return this._ranges[e].cloneRange()};var it;if(z)it=function(t){var n;e.isSelectionValid(t.win)?n=t.docSelection.createRange():(n=W(t.win.document).createTextRange(),n.collapse(!0)),t.docSelection.type==M?p(t):h(n)?g(t,n):d(t)};else if(A(U,"getRangeAt")&&typeof U.rangeCount==_)it=function(t){if(K&&j&&t.docSelection.type==M)p(t);else if(t._ranges.length=t.rangeCount=t.nativeSelection.rangeCount,t.rangeCount){for(var n=0,r=t.rangeCount;r>n;++n)t._ranges[n]=new e.WrappedRange(t.nativeSelection.getRangeAt(n));s(t,t._ranges[t.rangeCount-1],st(t.nativeSelection)),t.isCollapsed=O(t)}else d(t)};else{if(!Y||typeof U.isCollapsed!=T||typeof V.collapsed!=T||!H.implementsDomRange)return t.fail("No means of obtaining a Range or TextRange from the user's selection was found"),!1;it=function(e){var t,n=e.nativeSelection;n.anchorNode?(t=et(n,0),e._ranges=[t],e.rangeCount=1,c(e),e.isCollapsed=O(e)):d(e)}}rt.refresh=function(e){var t=e?this._ranges.slice(0):null,n=this.anchorNode,r=this.anchorOffset;if(it(this),e){var o=t.length;if(o!=this._ranges.length)return!0;if(this.anchorNode!=n||this.anchorOffset!=r)return!0;for(;o--;)if(!k(t[o],this._ranges[o]))return!0;return!1}};var at=function(e,t){var n=e.getAllRanges();e.removeAllRanges();for(var r=0,o=n.length;o>r;++r)k(t,n[r])||e.addRange(n[r]);e.rangeCount||d(e)};rt.removeRange=K&&j?function(e){if(this.docSelection.type==M){for(var t,n=this.docSelection.createRange(),r=l(e),o=L(n.item(0)),i=W(o).createControlRange(),a=!1,s=0,c=n.length;c>s;++s)t=n.item(s),t!==r||a?i.add(n.item(s)):a=!0;i.select(),p(this)}else at(this,e)}:function(e){at(this,e)};var st;!z&&Y&&H.implementsDomRange?(st=a,rt.isBackward=function(){return st(this)}):st=rt.isBackward=function(){return!1},rt.isBackwards=rt.isBackward,rt.toString=function(){for(var e=[],t=0,n=this.rangeCount;n>t;++t)e[t]=""+this._ranges[t];return e.join("")},rt.collapse=function(t,n){E(this,t);var r=e.createRange(t);r.collapseToPoint(t,n),this.setSingleRange(r),this.isCollapsed=!0},rt.collapseToStart=function(){if(!this.rangeCount)throw new I("INVALID_STATE_ERR");var e=this._ranges[0];this.collapse(e.startContainer,e.startOffset)},rt.collapseToEnd=function(){if(!this.rangeCount)throw new I("INVALID_STATE_ERR");var e=this._ranges[this.rangeCount-1];this.collapse(e.endContainer,e.endOffset)},rt.selectAllChildren=function(t){E(this,t);var n=e.createRange(t);n.selectNodeContents(t),this.setSingleRange(n)},rt.deleteFromDocument=function(){if(K&&j&&this.docSelection.type==M){for(var e,t=this.docSelection.createRange();t.length;)e=t.item(0),t.remove(e),e.parentNode.removeChild(e);this.refresh()}else if(this.rangeCount){var n=this.getAllRanges();if(n.length){this.removeAllRanges();for(var r=0,o=n.length;o>r;++r)n[r].deleteContents();this.addRange(n[o-1])}}},rt.eachRange=function(e,t){for(var n=0,r=this._ranges.length;r>n;++n)if(e(this.getRangeAt(n)))return t},rt.getAllRanges=function(){var e=[];return this.eachRange(function(t){e.push(t)}),e},rt.setSingleRange=function(e,t){this.removeAllRanges(),this.addRange(e,t)},rt.callMethodOnEachRange=function(e,t){var n=[];return this.eachRange(function(r){n.push(r[e].apply(r,t))}),n},rt.setStart=S(!0),rt.setEnd=S(!1),e.rangePrototype.select=function(e){nt(this.getDocument()).setSingleRange(this,e)},rt.changeEachRange=function(e){var t=[],n=this.isBackward();this.eachRange(function(n){e(n),t.push(n)}),this.removeAllRanges(),n&&1==t.length?this.addRange(t[0],"backward"):this.setRanges(t)},rt.containsNode=function(e,t){return this.eachRange(function(n){return n.containsNode(e,t)},!0)||!1},rt.getBookmark=function(e){return{backward:this.isBackward(),rangeBookmarks:this.callMethodOnEachRange("getBookmark",[e])}},rt.moveToBookmark=function(t){for(var n,r,o=[],i=0;n=t.rangeBookmarks[i++];)r=e.createRange(this.win),r.moveToBookmark(n),o.push(r);t.backward?this.setSingleRange(o[0],"backward"):this.setRanges(o)},rt.toHtml=function(){var e=[];return this.eachRange(function(t){e.push(b.toHtml(t))}),e.join("")},H.implementsTextRange&&(rt.getNativeTextRange=function(){var n;if(n=this.docSelection){var r=n.createRange();if(h(r))return r;throw t.createError("getNativeTextRange: selection is a control selection")}if(this.rangeCount>0)return e.WrappedTextRange.rangeToTextRange(this.getRangeAt(0));throw t.createError("getNativeTextRange: selection contains no range")}),rt.getName=function(){return"WrappedSelection"},rt.inspect=function(){return y(this)},rt.detach=function(){C(this.win,"delete"),v(this)},R.detachAll=function(){C(null,"deleteAll")},R.inspect=y,R.isDirectionBackward=n,e.Selection=R,e.selectionPrototype=rt,e.addShimListener(function(e){"undefined"==typeof e.getSelection&&(e.getSelection=function(){return nt(e)}),e=null})});var H=!1,M=function(){H||(H=!0,!A.initialized&&A.config.autoInitialize&&u())};return D&&(/^(?:complete|interactive)$/.test(document.readyState)?M():(e(document,"addEventListener")&&document.addEventListener("DOMContentLoaded",M,!1),P(window,"load",M))),A},function(e){return e("return this;")()}(Function));/**
- * Text range module for Rangy.
- * Text-based manipulation and searching of ranges and selections.
- *
- * Features
- *
- * - Ability to move range boundaries by character or word offsets
- * - Customizable word tokenizer
- * - Ignores text nodes inside <script> or <style> elements or those hidden by CSS display and visibility properties
- * - Range findText method to search for text or regex within the page or within a range. Flags for whole words and case
- *   sensitivity
- * - Selection and range save/restore as text offsets within a node
- * - Methods to return visible text within a range or selection
- * - innerText method for elements
- *
- * References
- *
- * https://www.w3.org/Bugs/Public/show_bug.cgi?id=13145
- * http://aryeh.name/spec/innertext/innertext.html
- * http://dvcs.w3.org/hg/editing/raw-file/tip/editing.html
- *
- * Part of Rangy, a cross-browser JavaScript range and selection library
- * http://code.google.com/p/rangy/
- *
- * Depends on Rangy core.
- *
- * Copyright 2014, Tim Down
- * Licensed under the MIT license.
- * Version: 1.3.0-alpha.20140825
- * Build date: 25 August 2014
- */
-!function(e,t){"function"==typeof define&&define.amd?define(["./rangy-core"],e):"undefined"!=typeof module&&"object"==typeof exports?module.exports=e(require("rangy")):e(t.rangy)}(function(e){e.createModule("TextRange",["WrappedSelection"],function(e,t){function n(e,t){function n(t,n,r){for(var i=e.slice(t,n),o={isWord:r,chars:i,toString:function(){return i.join("")}},a=0,c=i.length;c>a;++a)i[a].token=o;s.push(o)}for(var r,i,o,a=e.join(""),s=[],c=0;r=t.wordRegex.exec(a);){if(i=r.index,o=i+r[0].length,i>c&&n(c,i,!1),t.includeTrailingSpace)for(;Q.test(e[o]);)++o;n(i,o,!0),c=o}return c<e.length&&n(c,e.length,!1),s}function r(e){var t=e||"",n="string"==typeof t?t.split(""):t;return n.sort(function(e,t){return e.charCodeAt(0)-t.charCodeAt(0)}),n.join("").replace(/(.)\1+/g,"$1")}function i(e){var t,n;return e?(t=e.language||X,n={},G(n,st[t]||st[X]),G(n,e),n):st[X]}function o(e){return H(e,ot)}function a(e){return H(e,at)}function s(e){var t=H(e,ct);return t.characterOptions=o(t.wordOptions),t}function c(e,t){var n=ht(e,"display",t),r=e.tagName.toLowerCase();return"block"==n&&it&&pt.hasOwnProperty(r)?pt[r]:n}function u(e){for(var t=f(e),n=0,r=t.length;r>n;++n)if(1==t[n].nodeType&&"none"==c(t[n]))return!0;return!1}function d(e){var t;return 3==e.nodeType&&(t=e.parentNode)&&"hidden"==ht(t,"visibility")}function l(e){return e&&(1==e.nodeType&&!/^(inline(-block|-table)?|none)$/.test(c(e))||9==e.nodeType||11==e.nodeType)}function h(e){return j.isCharacterDataNode(e)||!/^(area|base|basefont|br|col|frame|hr|img|input|isindex|link|meta|param)$/i.test(e.nodeName)}function p(e){for(var t=[];e.parentNode;)t.unshift(e.parentNode),e=e.parentNode;return t}function f(e){return p(e).concat([e])}function g(e){for(;e&&!e.nextSibling;)e=e.parentNode;return e?e.nextSibling:null}function v(e,t){return!t&&e.hasChildNodes()?e.firstChild:g(e)}function C(e){var t=e.previousSibling;if(t){for(e=t;e.hasChildNodes();)e=e.lastChild;return e}var n=e.parentNode;return n&&1==n.nodeType?n:null}function S(e){if(!e||3!=e.nodeType)return!1;var t=e.data;if(""===t)return!0;var n=e.parentNode;if(!n||1!=n.nodeType)return!1;var r=ht(e.parentNode,"whiteSpace");return/^[\t\n\r ]+$/.test(t)&&/^(normal|nowrap)$/.test(r)||/^[\t\r ]+$/.test(t)&&"pre-line"==r}function N(e){if(""===e.data)return!0;if(!S(e))return!1;var t=e.parentNode;return t?u(e)?!0:!1:!0}function y(e){var t=e.nodeType;return 7==t||8==t||u(e)||/^(script|style)$/i.test(e.nodeName)||d(e)||N(e)}function m(e,t){var n=e.nodeType;return 7==n||8==n||1==n&&"none"==c(e,t)}function x(){this.store={}}function T(e,t,n){return function(r){var i=this.cache;if(i.hasOwnProperty(e))return ft++,i[e];gt++;var o=t.call(this,n?this[n]:this,r);return i[e]=o,o}}function b(e,t){this.node=e,this.session=t,this.cache=new x,this.positions=new x}function P(e,t){this.offset=t,this.nodeWrapper=e,this.node=e.node,this.session=e.session,this.cache=new x}function w(){return"[Position("+j.inspectNode(this.node)+":"+this.offset+")]"}function R(){return E(),Rt=new Bt}function B(){return Rt||R()}function E(){Rt&&Rt.detach(),Rt=null}function k(e,n,r,i){function o(){var e=null;return n?(e=s,c||(s=s.previousVisible(),c=!s||r&&s.equals(r))):c||(e=s=s.nextVisible(),c=!s||r&&s.equals(r)),c&&(s=null),e}r&&(n?y(r.node)&&(r=e.previousVisible()):y(r.node)&&(r=r.nextVisible()));var a,s=e,c=!1,u=!1;return{next:function(){if(u)return u=!1,a;for(var e,t;e=o();)if(t=e.getCharacter(i))return a=e,e;return null},rewind:function(){if(!a)throw t.createError("createCharacterIterator: cannot rewind. Only one position can be rewound.");u=!0},dispose:function(){e=r=null}}}function O(e,t,n){function r(e){for(var t,n,r=[],a=e?i:o,s=!1,c=!1;t=a.next();){if(n=t.character,J.test(n))c&&(c=!1,s=!0);else{if(s){a.rewind();break}c=!0}r.push(t)}return r}var i=k(e,!1,null,t),o=k(e,!0,null,t),a=n.tokenizer,s=r(!0),c=r(!1).reverse(),u=a(c.concat(s),n),d=s.length?u.slice(Et(u,s[0].token)):[],l=c.length?u.slice(0,Et(u,c.pop().token)+1):[];return{nextEndToken:function(){for(var e,t;1==d.length&&!(e=d[0]).isWord&&(t=r(!0)).length>0;)d=a(e.chars.concat(t),n);return d.shift()},previousStartToken:function(){for(var e,t;1==l.length&&!(e=l[0]).isWord&&(t=r(!1)).length>0;)l=a(t.reverse().concat(e.chars),n);return l.pop()},dispose:function(){i.dispose(),o.dispose(),d=l=null}}}function L(e,t,n,r,i){var o,a,s,c,u=0,d=e,l=Math.abs(n);if(0!==n){var h=0>n;switch(t){case M:for(a=k(e,h,null,r);(o=a.next())&&l>u;)++u,d=o;s=o,a.dispose();break;case q:for(var p=O(e,r,i),f=h?p.previousStartToken:p.nextEndToken;(c=f())&&l>u;)c.isWord&&(++u,d=h?c.chars[0]:c.chars[c.chars.length-1]);break;default:throw new Error("movePositionBy: unit '"+t+"' not implemented")}h?(d=d.previousVisible(),u=-u):d&&d.isLeadingSpace&&(t==q&&(a=k(e,!1,null,r),s=a.next(),a.dispose()),s&&(d=s.previousVisible()))}return{position:d,unitsMoved:u}}function A(e,t,n,r){var i=e.getRangeBoundaryPosition(t,!0),o=e.getRangeBoundaryPosition(t,!1),a=r?o:i,s=r?i:o;return k(a,!!r,s,n)}function I(e,t,n){for(var r,i=[],o=A(e,t,n);r=o.next();)i.push(r);return o.dispose(),i}function W(t,n,r){var i=e.createRange(t.node);i.setStartAndEnd(t.node,t.offset,n.node,n.offset);var o=!i.expand("word",r);return o}function _(e,t,n,r,i){function o(e,t){var n=g[e].previousVisible(),r=g[t-1],o=!i.wholeWordsOnly||W(n,r,i.wordOptions);return{startPos:n,endPos:r,valid:o}}for(var a,s,c,u,d,l,h=Z(i.direction),p=k(e,h,e.session.getRangeBoundaryPosition(r,h),i.characterOptions),f="",g=[],v=null;a=p.next();)if(s=a.character,n||i.caseSensitive||(s=s.toLowerCase()),h?(g.unshift(a),f=s+f):(g.push(a),f+=s),n){if(d=t.exec(f))if(l){if(c=d.index,u=c+d[0].length,!h&&u<f.length||h&&c>0){v=o(c,u);break}}else l=!0}else if(-1!=(c=f.indexOf(t))){v=o(c,c+t.length);break}return l&&(v=o(c,u)),p.dispose(),v}function D(e){return function(){var t=!!Rt,n=B(),r=[n].concat(U.toArray(arguments)),i=e.apply(this,r);return t||E(),i}}function F(e,t){return D(function(n,r,a,s){"undefined"==typeof a&&(a=r,r=M),s=H(s,ut);var c=o(s.characterOptions),u=i(s.wordOptions),d=e;t&&(d=a>=0,this.collapse(!d));var l=L(n.getRangeBoundaryPosition(this,d),r,a,c,u),h=l.position;return this[d?"setStart":"setEnd"](h.node,h.offset),l.unitsMoved})}function V(e){return D(function(t,n){n=o(n);for(var r,i=A(t,this,n,!e),a=0;(r=i.next())&&J.test(r.character);)++a;i.dispose();var s=a>0;return s&&this[e?"moveStart":"moveEnd"]("character",e?a:-a,{characterOptions:n}),s})}function $(e){return D(function(t,n){var r=!1;return this.changeEachRange(function(t){r=t[e](n)||r}),r})}var M="character",q="word",j=e.dom,U=e.util,G=U.extend,H=U.createOptions,z=j.getBody,K=/^[ \t\f\r\n]+$/,Y=/^[ \t\f\r]+$/,J=/^[\t-\r \u0085\u00A0\u1680\u180E\u2000-\u200B\u2028\u2029\u202F\u205F\u3000]+$/,Q=/^[\t \u00A0\u1680\u180E\u2000-\u200B\u202F\u205F\u3000]+$/,X="en",Z=e.Selection.isDirectionBackward,et=!1,tt=!1,nt=!1,rt=!0;!function(){var t=document.createElement("div");t.contentEditable="true",t.innerHTML="<p>1 </p><p></p>";var n=z(document),r=t.firstChild,i=e.getSelection();n.appendChild(t),i.collapse(r.lastChild,2),i.setStart(r.firstChild,0),et=1==(""+i).length,t.innerHTML="1 <br>",i.collapse(t,2),i.setStart(t.firstChild,0),tt=1==(""+i).length,t.innerHTML="1 <p>1</p>",i.collapse(t,2),i.setStart(t.firstChild,0),nt=1==(""+i).length,n.removeChild(t),i.removeAllRanges()}();var it,ot={includeBlockContentTrailingSpace:!0,includeSpaceBeforeBr:!0,includeSpaceBeforeBlock:!0,includePreLineTrailingSpace:!0,ignoreCharacters:""},at={includeBlockContentTrailingSpace:!rt,includeSpaceBeforeBr:!tt,includeSpaceBeforeBlock:!nt,includePreLineTrailingSpace:!0},st={en:{wordRegex:/[a-z0-9]+('[a-z0-9]+)*/gi,includeTrailingSpace:!1,tokenizer:n}},ct={caseSensitive:!1,withinRange:null,wholeWordsOnly:!1,wrap:!1,direction:"forward",wordOptions:null,characterOptions:null},ut={wordOptions:null,characterOptions:null},dt={wordOptions:null,characterOptions:null,trim:!1,trimStart:!0,trimEnd:!0},lt={wordOptions:null,characterOptions:null,direction:"forward"},ht=j.getComputedStyleProperty;!function(){var e=document.createElement("table"),t=z(document);t.appendChild(e),it="block"==ht(e,"display"),t.removeChild(e)}(),e.features.tableCssDisplayBlock=it;var pt={table:"table",caption:"table-caption",colgroup:"table-column-group",col:"table-column",thead:"table-header-group",tbody:"table-row-group",tfoot:"table-footer-group",tr:"table-row",td:"table-cell",th:"table-cell"};x.prototype={get:function(e){return this.store.hasOwnProperty(e)?this.store[e]:null},set:function(e,t){return this.store[e]=t}};var ft=0,gt=0,vt={getPosition:function(e){var t=this.positions;return t.get(e)||t.set(e,new P(this,e))},toString:function(){return"[NodeWrapper("+j.inspectNode(this.node)+")]"}};b.prototype=vt;var Ct="EMPTY",St="NON_SPACE",Nt="UNCOLLAPSIBLE_SPACE",yt="COLLAPSIBLE_SPACE",mt="TRAILING_SPACE_BEFORE_BLOCK",xt="TRAILING_SPACE_IN_BLOCK",Tt="TRAILING_SPACE_BEFORE_BR",bt="PRE_LINE_TRAILING_SPACE_BEFORE_LINE_BREAK",Pt="TRAILING_LINE_BREAK_AFTER_BR";G(vt,{isCharacterDataNode:T("isCharacterDataNode",j.isCharacterDataNode,"node"),getNodeIndex:T("nodeIndex",j.getNodeIndex,"node"),getLength:T("nodeLength",j.getNodeLength,"node"),containsPositions:T("containsPositions",h,"node"),isWhitespace:T("isWhitespace",S,"node"),isCollapsedWhitespace:T("isCollapsedWhitespace",N,"node"),getComputedDisplay:T("computedDisplay",c,"node"),isCollapsed:T("collapsed",y,"node"),isIgnored:T("ignored",m,"node"),next:T("nextPos",v,"node"),previous:T("previous",C,"node"),getTextNodeInfo:T("textNodeInfo",function(e){var t=null,n=!1,r=ht(e.parentNode,"whiteSpace"),i="pre-line"==r;return i?(t=Y,n=!0):("normal"==r||"nowrap"==r)&&(t=K,n=!0),{node:e,text:e.data,spaceRegex:t,collapseSpaces:n,preLine:i}},"node"),hasInnerText:T("hasInnerText",function(e,t){for(var n=this.session,r=n.getPosition(e.parentNode,this.getNodeIndex()+1),i=n.getPosition(e,0),o=t?r:i,a=t?i:r;o!==a;){if(o.prepopulateChar(),o.isDefinitelyNonEmpty())return!0;o=t?o.previousVisible():o.nextVisible()}return!1},"node"),isRenderedBlock:T("isRenderedBlock",function(e){for(var t=e.getElementsByTagName("br"),n=0,r=t.length;r>n;++n)if(!y(t[n]))return!0;return this.hasInnerText()},"node"),getTrailingSpace:T("trailingSpace",function(e){if("br"==e.tagName.toLowerCase())return"";switch(this.getComputedDisplay()){case"inline":for(var t=e.lastChild;t;){if(!m(t))return 1==t.nodeType?this.session.getNodeWrapper(t).getTrailingSpace():"";t=t.previousSibling}break;case"inline-block":case"inline-table":case"none":case"table-column":case"table-column-group":break;case"table-cell":return"	";default:return this.isRenderedBlock(!0)?"\n":""}return""},"node"),getLeadingSpace:T("leadingSpace",function(){switch(this.getComputedDisplay()){case"inline":case"inline-block":case"inline-table":case"none":case"table-column":case"table-column-group":case"table-cell":break;default:return this.isRenderedBlock(!1)?"\n":""}return""},"node")});var wt={character:"",characterType:Ct,isBr:!1,prepopulateChar:function(){var e=this;if(!e.prepopulatedChar){var t=e.node,n=e.offset,r="",i=Ct,o=!1;if(n>0)if(3==t.nodeType){var a=t.data,s=a.charAt(n-1),c=e.nodeWrapper.getTextNodeInfo(),u=c.spaceRegex;c.collapseSpaces?u.test(s)?n>1&&u.test(a.charAt(n-2))||(c.preLine&&"\n"===a.charAt(n)?(r=" ",i=bt):(r=" ",i=yt)):(r=s,i=St,o=!0):(r=s,i=Nt,o=!0)}else{var d=t.childNodes[n-1];if(d&&1==d.nodeType&&!y(d)&&("br"==d.tagName.toLowerCase()?(r="\n",e.isBr=!0,i=yt,o=!1):e.checkForTrailingSpace=!0),!r){var l=t.childNodes[n];l&&1==l.nodeType&&!y(l)&&(e.checkForLeadingSpace=!0)}}e.prepopulatedChar=!0,e.character=r,e.characterType=i,e.isCharInvariant=o}},isDefinitelyNonEmpty:function(){var e=this.characterType;return e==St||e==Nt},resolveLeadingAndTrailingSpaces:function(){if(this.prepopulatedChar||this.prepopulateChar(),this.checkForTrailingSpace){var e=this.session.getNodeWrapper(this.node.childNodes[this.offset-1]).getTrailingSpace();e&&(this.isTrailingSpace=!0,this.character=e,this.characterType=yt),this.checkForTrailingSpace=!1}if(this.checkForLeadingSpace){var t=this.session.getNodeWrapper(this.node.childNodes[this.offset]).getLeadingSpace();t&&(this.isLeadingSpace=!0,this.character=t,this.characterType=yt),this.checkForLeadingSpace=!1}},getPrecedingUncollapsedPosition:function(e){for(var t,n=this;n=n.previousVisible();)if(t=n.getCharacter(e),""!==t)return n;return null},getCharacter:function(e){function t(){return p||(d=f.getPrecedingUncollapsedPosition(e),p=!0),d}this.resolveLeadingAndTrailingSpaces();var n,i=this.character,o=r(e.ignoreCharacters),a=""!==i&&o.indexOf(i)>-1;if(this.isCharInvariant)return n=a?"":i;var s=["character",e.includeSpaceBeforeBr,e.includeBlockContentTrailingSpace,e.includePreLineTrailingSpace,o].join("_"),c=this.cache.get(s);if(null!==c)return c;var u,d,l="",h=this.characterType==yt,p=!1,f=this;return h?(" "!=i||t()&&!d.isTrailingSpace&&"\n"!=d.character)&&("\n"==i&&this.isLeadingSpace?t()&&"\n"!=d.character&&(l="\n"):(u=this.nextUncollapsed(),u&&(u.isBr?this.type=Tt:u.isTrailingSpace&&"\n"==u.character?this.type=xt:u.isLeadingSpace&&"\n"==u.character&&(this.type=mt),"\n"==u.character?(this.type!=Tt||e.includeSpaceBeforeBr)&&(this.type!=mt||e.includeSpaceBeforeBlock)&&(this.type==xt&&u.isTrailingSpace&&!e.includeBlockContentTrailingSpace||(this.type!=bt||u.type!=St||e.includePreLineTrailingSpace)&&("\n"==i?u.isTrailingSpace?this.isTrailingSpace||this.isBr&&(u.type=Pt,t()&&d.isLeadingSpace&&"\n"==d.character&&(u.character="")):l="\n":" "==i&&(l=" "))):l=i))):"\n"==i&&(!(u=this.nextUncollapsed())||u.isTrailingSpace),o.indexOf(l)>-1&&(l=""),this.cache.set(s,l),l},equals:function(e){return!!e&&this.node===e.node&&this.offset===e.offset},inspect:w,toString:function(){return this.character}};P.prototype=wt,G(wt,{next:T("nextPos",function(e){var t=e.nodeWrapper,n=e.node,r=e.offset,i=t.session;if(!n)return null;var o,a,s;return r==t.getLength()?(o=n.parentNode,a=o?t.getNodeIndex()+1:0):t.isCharacterDataNode()?(o=n,a=r+1):(s=n.childNodes[r],i.getNodeWrapper(s).containsPositions()?(o=s,a=0):(o=n,a=r+1)),o?i.getPosition(o,a):null}),previous:T("previous",function(e){var t,n,r,i=e.nodeWrapper,o=e.node,a=e.offset,s=i.session;return 0==a?(t=o.parentNode,n=t?i.getNodeIndex():0):i.isCharacterDataNode()?(t=o,n=a-1):(r=o.childNodes[a-1],s.getNodeWrapper(r).containsPositions()?(t=r,n=j.getNodeLength(r)):(t=o,n=a-1)),t?s.getPosition(t,n):null}),nextVisible:T("nextVisible",function(e){var t=e.next();if(!t)return null;var n=t.nodeWrapper,r=t.node,i=t;return n.isCollapsed()&&(i=n.session.getPosition(r.parentNode,n.getNodeIndex()+1)),i}),nextUncollapsed:T("nextUncollapsed",function(e){for(var t=e;t=t.nextVisible();)if(t.resolveLeadingAndTrailingSpaces(),""!==t.character)return t;return null}),previousVisible:T("previousVisible",function(e){var t=e.previous();if(!t)return null;var n=t.nodeWrapper,r=t.node,i=t;return n.isCollapsed()&&(i=n.session.getPosition(r.parentNode,n.getNodeIndex())),i})});var Rt=null,Bt=function(){function e(e){var t=new x;return{get:function(n){var r=t.get(n[e]);if(r)for(var i,o=0;i=r[o++];)if(i.node===n)return i;return null},set:function(n){var r=n.node[e],i=t.get(r)||t.set(r,[]);i.push(n)}}}function t(){this.initCaches()}var n=U.isHostProperty(document.documentElement,"uniqueID");return t.prototype={initCaches:function(){this.elementCache=n?function(){var e=new x;return{get:function(t){return e.get(t.uniqueID)},set:function(t){e.set(t.node.uniqueID,t)}}}():e("tagName"),this.textNodeCache=e("data"),this.otherNodeCache=e("nodeName")},getNodeWrapper:function(e){var t;switch(e.nodeType){case 1:t=this.elementCache;break;case 3:t=this.textNodeCache;break;default:t=this.otherNodeCache}var n=t.get(e);return n||(n=new b(e,this),t.set(n)),n},getPosition:function(e,t){return this.getNodeWrapper(e).getPosition(t)},getRangeBoundaryPosition:function(e,t){var n=t?"start":"end";return this.getPosition(e[n+"Container"],e[n+"Offset"])},detach:function(){this.elementCache=this.textNodeCache=this.otherNodeCache=null}},t}();G(j,{nextNode:v,previousNode:C});var Et=Array.prototype.indexOf?function(e,t){return e.indexOf(t)}:function(e,t){for(var n=0,r=e.length;r>n;++n)if(e[n]===t)return n;return-1};G(e.rangePrototype,{moveStart:F(!0,!1),moveEnd:F(!1,!1),move:F(!0,!0),trimStart:V(!0),trimEnd:V(!1),trim:D(function(e,t){var n=this.trimStart(t),r=this.trimEnd(t);return n||r}),expand:D(function(e,t,n){var r=!1;n=H(n,dt);var a=o(n.characterOptions);if(t||(t=M),t==q){var s,c,u=i(n.wordOptions),d=e.getRangeBoundaryPosition(this,!0),l=e.getRangeBoundaryPosition(this,!1),h=O(d,a,u),p=h.nextEndToken(),f=p.chars[0].previousVisible();if(this.collapsed)s=p;else{var g=O(l,a,u);s=g.previousStartToken()}return c=s.chars[s.chars.length-1],f.equals(d)||(this.setStart(f.node,f.offset),r=!0),c&&!c.equals(l)&&(this.setEnd(c.node,c.offset),r=!0),n.trim&&(n.trimStart&&(r=this.trimStart(a)||r),n.trimEnd&&(r=this.trimEnd(a)||r)),r}return this.moveEnd(M,1,n)}),text:D(function(e,t){return this.collapsed?"":I(e,this,o(t)).join("")}),selectCharacters:D(function(e,t,n,r,i){var o={characterOptions:i};t||(t=z(this.getDocument())),this.selectNodeContents(t),this.collapse(!0),this.moveStart("character",n,o),this.collapse(!0),this.moveEnd("character",r-n,o)}),toCharacterRange:D(function(e,t,n){t||(t=z(this.getDocument()));var r,i,o=t.parentNode,a=j.getNodeIndex(t),s=-1==j.comparePoints(this.startContainer,this.endContainer,o,a),c=this.cloneRange();return s?(c.setStartAndEnd(this.startContainer,this.startOffset,o,a),r=-c.text(n).length):(c.setStartAndEnd(o,a,this.startContainer,this.startOffset),r=c.text(n).length),i=r+this.text(n).length,{start:r,end:i}}),findText:D(function(t,n,r){r=s(r),r.wholeWordsOnly&&(r.wordOptions=i(r.wordOptions),r.wordOptions.includeTrailingSpace=!1);var o=Z(r.direction),a=r.withinRange;a||(a=e.createRange(),a.selectNodeContents(this.getDocument()));var c=n,u=!1;"string"==typeof c?r.caseSensitive||(c=c.toLowerCase()):u=!0;var d=t.getRangeBoundaryPosition(this,!o),l=a.comparePoint(d.node,d.offset);-1===l?d=t.getRangeBoundaryPosition(a,!0):1===l&&(d=t.getRangeBoundaryPosition(a,!1));for(var h,p=d,f=!1;;)if(h=_(p,c,u,a,r)){if(h.valid)return this.setStartAndEnd(h.startPos.node,h.startPos.offset,h.endPos.node,h.endPos.offset),!0;p=o?h.startPos:h.endPos}else{if(!r.wrap||f)return!1;a=a.cloneRange(),p=t.getRangeBoundaryPosition(a,!o),a.setBoundary(d.node,d.offset,o),f=!0}}),pasteHtml:function(e){if(this.deleteContents(),e){var t=this.createContextualFragment(e),n=t.lastChild;this.insertNode(t),this.collapseAfter(n)}}}),G(e.selectionPrototype,{expand:D(function(e,t,n){this.changeEachRange(function(e){e.expand(t,n)})}),move:D(function(e,t,n,r){var i=0;if(this.focusNode){this.collapse(this.focusNode,this.focusOffset);var o=this.getRangeAt(0);r||(r={}),r.characterOptions=a(r.characterOptions),i=o.move(t,n,r),this.setSingleRange(o)}return i}),trimStart:$("trimStart"),trimEnd:$("trimEnd"),trim:$("trim"),selectCharacters:D(function(t,n,r,i,o,a){var s=e.createRange(n);s.selectCharacters(n,r,i,a),this.setSingleRange(s,o)}),saveCharacterRanges:D(function(e,t,n){for(var r=this.getAllRanges(),i=r.length,o=[],a=1==i&&this.isBackward(),s=0,c=r.length;c>s;++s)o[s]={characterRange:r[s].toCharacterRange(t,n),backward:a,characterOptions:n};return o}),restoreCharacterRanges:D(function(t,n,r){this.removeAllRanges();for(var i,o,a,s=0,c=r.length;c>s;++s)o=r[s],a=o.characterRange,i=e.createRange(n),i.selectCharacters(n,a.start,a.end,o.characterOptions),this.addRange(i,o.backward)}),text:D(function(e,t){for(var n=[],r=0,i=this.rangeCount;i>r;++r)n[r]=this.getRangeAt(r).text(t);return n.join("")})}),e.innerText=function(t,n){var r=e.createRange(t);r.selectNodeContents(t);var i=r.text(n);return i},e.createWordIterator=function(e,t,n){var r=B();n=H(n,lt);var a=o(n.characterOptions),s=i(n.wordOptions),c=r.getPosition(e,t),u=O(c,a,s),d=Z(n.direction);return{next:function(){return d?u.previousStartToken():u.nextEndToken()},dispose:function(){u.dispose(),this.next=function(){}}}},e.noMutation=function(e){var t=B();e(t),E()},e.noMutation.createEntryPointFunction=D,e.textRange={isBlockNode:l,isCollapsedWhitespaceNode:N,createPosition:D(function(e,t,n){return e.getPosition(t,n)})}})},function(e){return e("return this;")()}(Function));/** vim: et:ts=4:sw=4:sts=4
- * @license RequireJS 2.1.16 Copyright (c) 2010-2015, The Dojo Foundation All Rights Reserved.
- * Available via the MIT or new BSD license.
- * see: http://github.com/jrburke/requirejs for details
- */
-//Not using strict: uneven strict support in browsers, #392, and causes
-//problems with requirejs.exec()/transpiler plugins that may not be strict.
-/*jslint regexp: true, nomen: true, sloppy: true */
-/*global window, navigator, document, importScripts, setTimeout, opera */
 
-var requirejs, require, define;
-(function (global) {
-    var req, s, head, baseElement, dataMain, src,
-        interactiveScript, currentlyAddingScript, mainScript, subPath,
-        version = '2.1.16',
-        commentRegExp = /(\/\*([\s\S]*?)\*\/|([^:]|^)\/\/(.*)$)/mg,
-        cjsRequireRegExp = /[^.]\s*require\s*\(\s*["']([^'"\s]+)["']\s*\)/g,
-        jsSuffixRegExp = /\.js$/,
-        currDirRegExp = /^\.\//,
-        op = Object.prototype,
-        ostring = op.toString,
-        hasOwn = op.hasOwnProperty,
-        ap = Array.prototype,
-        apsp = ap.splice,
-        isBrowser = !!(typeof window !== 'undefined' && typeof navigator !== 'undefined' && window.document),
-        isWebWorker = !isBrowser && typeof importScripts !== 'undefined',
-        //PS3 indicates loaded and complete, but need to wait for complete
-        //specifically. Sequence is 'loading', 'loaded', execution,
-        // then 'complete'. The UA check is unfortunate, but not sure how
-        //to feature test w/o causing perf issues.
-        readyRegExp = isBrowser && navigator.platform === 'PLAYSTATION 3' ?
-                      /^complete$/ : /^(complete|loaded)$/,
-        defContextName = '_',
-        //Oh the tragedy, detecting opera. See the usage of isOpera for reason.
-        isOpera = typeof opera !== 'undefined' && opera.toString() === '[object Opera]',
-        contexts = {},
-        cfg = {},
-        globalDefQueue = [],
-        useInteractive = false;
 
-    function isFunction(it) {
-        return ostring.call(it) === '[object Function]';
-    }
+}});
 
-    function isArray(it) {
-        return ostring.call(it) === '[object Array]';
-    }
+;
 
-    /**
-     * Helper function for iterating over an array. If the func returns
-     * a true value, it will break out of the loop.
-     */
-    function each(ary, func) {
-        if (ary) {
-            var i;
-            for (i = 0; i < ary.length; i += 1) {
-                if (ary[i] && func(ary[i], i, ary)) {
-                    break;
-                }
-            }
-        }
-    }
 
-    /**
-     * Helper function for iterating over an array backwards. If the func
-     * returns a true value, it will break out of the loop.
-     */
-    function eachReverse(ary, func) {
-        if (ary) {
-            var i;
-            for (i = ary.length - 1; i > -1; i -= 1) {
-                if (ary[i] && func(ary[i], i, ary)) {
-                    break;
-                }
-            }
-        }
-    }
-
-    function hasProp(obj, prop) {
-        return hasOwn.call(obj, prop);
-    }
-
-    function getOwn(obj, prop) {
-        return hasProp(obj, prop) && obj[prop];
-    }
-
-    /**
-     * Cycles over properties in an object and calls a function for each
-     * property value. If the function returns a truthy value, then the
-     * iteration is stopped.
-     */
-    function eachProp(obj, func) {
-        var prop;
-        for (prop in obj) {
-            if (hasProp(obj, prop)) {
-                if (func(obj[prop], prop)) {
-                    break;
-                }
-            }
-        }
-    }
-
-    /**
-     * Simple function to mix in properties from source into target,
-     * but only if target does not already have a property of the same name.
-     */
-    function mixin(target, source, force, deepStringMixin) {
-        if (source) {
-            eachProp(source, function (value, prop) {
-                if (force || !hasProp(target, prop)) {
-                    if (deepStringMixin && typeof value === 'object' && value &&
-                        !isArray(value) && !isFunction(value) &&
-                        !(value instanceof RegExp)) {
-
-                        if (!target[prop]) {
-                            target[prop] = {};
-                        }
-                        mixin(target[prop], value, force, deepStringMixin);
-                    } else {
-                        target[prop] = value;
-                    }
-                }
-            });
-        }
-        return target;
-    }
-
-    //Similar to Function.prototype.bind, but the 'this' object is specified
-    //first, since it is easier to read/figure out what 'this' will be.
-    function bind(obj, fn) {
-        return function () {
-            return fn.apply(obj, arguments);
-        };
-    }
-
-    function scripts() {
-        return document.getElementsByTagName('script');
-    }
-
-    function defaultOnError(err) {
-        throw err;
-    }
-
-    //Allow getting a global that is expressed in
-    //dot notation, like 'a.b.c'.
-    function getGlobal(value) {
-        if (!value) {
-            return value;
-        }
-        var g = global;
-        each(value.split('.'), function (part) {
-            g = g[part];
-        });
-        return g;
-    }
-
-    /**
-     * Constructs an error with a pointer to an URL with more information.
-     * @param {String} id the error ID that maps to an ID on a web page.
-     * @param {String} message human readable error.
-     * @param {Error} [err] the original error, if there is one.
-     *
-     * @returns {Error}
-     */
-    function makeError(id, msg, err, requireModules) {
-        var e = new Error(msg + '\nhttp://requirejs.org/docs/errors.html#' + id);
-        e.requireType = id;
-        e.requireModules = requireModules;
-        if (err) {
-            e.originalError = err;
-        }
-        return e;
-    }
-
-    if (typeof define !== 'undefined') {
-        //If a define is already in play via another AMD loader,
-        //do not overwrite.
-        return;
-    }
-
-    if (typeof requirejs !== 'undefined') {
-        if (isFunction(requirejs)) {
-            //Do not overwrite an existing requirejs instance.
-            return;
-        }
-        cfg = requirejs;
-        requirejs = undefined;
-    }
-
-    //Allow for a require config object
-    if (typeof require !== 'undefined' && !isFunction(require)) {
-        //assume it is a config object.
-        cfg = require;
-        require = undefined;
-    }
-
-    function newContext(contextName) {
-        var inCheckLoaded, Module, context, handlers,
-            checkLoadedTimeoutId,
-            config = {
-                //Defaults. Do not set a default for map
-                //config to speed up normalize(), which
-                //will run faster if there is no default.
-                waitSeconds: 7,
-                baseUrl: './',
-                paths: {},
-                bundles: {},
-                pkgs: {},
-                shim: {},
-                config: {}
-            },
-            registry = {},
-            //registry of just enabled modules, to speed
-            //cycle breaking code when lots of modules
-            //are registered, but not activated.
-            enabledRegistry = {},
-            undefEvents = {},
-            defQueue = [],
-            defined = {},
-            urlFetched = {},
-            bundlesMap = {},
-            requireCounter = 1,
-            unnormalizedCounter = 1;
-
-        /**
-         * Trims the . and .. from an array of path segments.
-         * It will keep a leading path segment if a .. will become
-         * the first path segment, to help with module name lookups,
-         * which act like paths, but can be remapped. But the end result,
-         * all paths that use this function should look normalized.
-         * NOTE: this method MODIFIES the input array.
-         * @param {Array} ary the array of path segments.
-         */
-        function trimDots(ary) {
-            var i, part;
-            for (i = 0; i < ary.length; i++) {
-                part = ary[i];
-                if (part === '.') {
-                    ary.splice(i, 1);
-                    i -= 1;
-                } else if (part === '..') {
-                    // If at the start, or previous value is still ..,
-                    // keep them so that when converted to a path it may
-                    // still work when converted to a path, even though
-                    // as an ID it is less than ideal. In larger point
-                    // releases, may be better to just kick out an error.
-                    if (i === 0 || (i == 1 && ary[2] === '..') || ary[i - 1] === '..') {
-                        continue;
-                    } else if (i > 0) {
-                        ary.splice(i - 1, 2);
-                        i -= 2;
-                    }
-                }
-            }
-        }
-
-        /**
-         * Given a relative module name, like ./something, normalize it to
-         * a real name that can be mapped to a path.
-         * @param {String} name the relative name
-         * @param {String} baseName a real name that the name arg is relative
-         * to.
-         * @param {Boolean} applyMap apply the map config to the value. Should
-         * only be done if this normalization is for a dependency ID.
-         * @returns {String} normalized name
-         */
-        function normalize(name, baseName, applyMap) {
-            var pkgMain, mapValue, nameParts, i, j, nameSegment, lastIndex,
-                foundMap, foundI, foundStarMap, starI, normalizedBaseParts,
-                baseParts = (baseName && baseName.split('/')),
-                map = config.map,
-                starMap = map && map['*'];
-
-            //Adjust any relative paths.
-            if (name) {
-                name = name.split('/');
-                lastIndex = name.length - 1;
-
-                // If wanting node ID compatibility, strip .js from end
-                // of IDs. Have to do this here, and not in nameToUrl
-                // because node allows either .js or non .js to map
-                // to same file.
-                if (config.nodeIdCompat && jsSuffixRegExp.test(name[lastIndex])) {
-                    name[lastIndex] = name[lastIndex].replace(jsSuffixRegExp, '');
-                }
-
-                // Starts with a '.' so need the baseName
-                if (name[0].charAt(0) === '.' && baseParts) {
-                    //Convert baseName to array, and lop off the last part,
-                    //so that . matches that 'directory' and not name of the baseName's
-                    //module. For instance, baseName of 'one/two/three', maps to
-                    //'one/two/three.js', but we want the directory, 'one/two' for
-                    //this normalization.
-                    normalizedBaseParts = baseParts.slice(0, baseParts.length - 1);
-                    name = normalizedBaseParts.concat(name);
-                }
-
-                trimDots(name);
-                name = name.join('/');
-            }
-
-            //Apply map config if available.
-            if (applyMap && map && (baseParts || starMap)) {
-                nameParts = name.split('/');
-
-                outerLoop: for (i = nameParts.length; i > 0; i -= 1) {
-                    nameSegment = nameParts.slice(0, i).join('/');
-
-                    if (baseParts) {
-                        //Find the longest baseName segment match in the config.
-                        //So, do joins on the biggest to smallest lengths of baseParts.
-                        for (j = baseParts.length; j > 0; j -= 1) {
-                            mapValue = getOwn(map, baseParts.slice(0, j).join('/'));
-
-                            //baseName segment has config, find if it has one for
-                            //this name.
-                            if (mapValue) {
-                                mapValue = getOwn(mapValue, nameSegment);
-                                if (mapValue) {
-                                    //Match, update name to the new value.
-                                    foundMap = mapValue;
-                                    foundI = i;
-                                    break outerLoop;
-                                }
-                            }
-                        }
-                    }
-
-                    //Check for a star map match, but just hold on to it,
-                    //if there is a shorter segment match later in a matching
-                    //config, then favor over this star map.
-                    if (!foundStarMap && starMap && getOwn(starMap, nameSegment)) {
-                        foundStarMap = getOwn(starMap, nameSegment);
-                        starI = i;
-                    }
-                }
-
-                if (!foundMap && foundStarMap) {
-                    foundMap = foundStarMap;
-                    foundI = starI;
-                }
-
-                if (foundMap) {
-                    nameParts.splice(0, foundI, foundMap);
-                    name = nameParts.join('/');
-                }
-            }
-
-            // If the name points to a package's name, use
-            // the package main instead.
-            pkgMain = getOwn(config.pkgs, name);
-
-            return pkgMain ? pkgMain : name;
-        }
-
-        function removeScript(name) {
-            if (isBrowser) {
-                each(scripts(), function (scriptNode) {
-                    if (scriptNode.getAttribute('data-requiremodule') === name &&
-                            scriptNode.getAttribute('data-requirecontext') === context.contextName) {
-                        scriptNode.parentNode.removeChild(scriptNode);
-                        return true;
-                    }
-                });
-            }
-        }
-
-        function hasPathFallback(id) {
-            var pathConfig = getOwn(config.paths, id);
-            if (pathConfig && isArray(pathConfig) && pathConfig.length > 1) {
-                //Pop off the first array value, since it failed, and
-                //retry
-                pathConfig.shift();
-                context.require.undef(id);
-
-                //Custom require that does not do map translation, since
-                //ID is "absolute", already mapped/resolved.
-                context.makeRequire(null, {
-                    skipMap: true
-                })([id]);
-
-                return true;
-            }
-        }
-
-        //Turns a plugin!resource to [plugin, resource]
-        //with the plugin being undefined if the name
-        //did not have a plugin prefix.
-        function splitPrefix(name) {
-            var prefix,
-                index = name ? name.indexOf('!') : -1;
-            if (index > -1) {
-                prefix = name.substring(0, index);
-                name = name.substring(index + 1, name.length);
-            }
-            return [prefix, name];
-        }
-
-        /**
-         * Creates a module mapping that includes plugin prefix, module
-         * name, and path. If parentModuleMap is provided it will
-         * also normalize the name via require.normalize()
-         *
-         * @param {String} name the module name
-         * @param {String} [parentModuleMap] parent module map
-         * for the module name, used to resolve relative names.
-         * @param {Boolean} isNormalized: is the ID already normalized.
-         * This is true if this call is done for a define() module ID.
-         * @param {Boolean} applyMap: apply the map config to the ID.
-         * Should only be true if this map is for a dependency.
-         *
-         * @returns {Object}
-         */
-        function makeModuleMap(name, parentModuleMap, isNormalized, applyMap) {
-            var url, pluginModule, suffix, nameParts,
-                prefix = null,
-                parentName = parentModuleMap ? parentModuleMap.name : null,
-                originalName = name,
-                isDefine = true,
-                normalizedName = '';
-
-            //If no name, then it means it is a require call, generate an
-            //internal name.
-            if (!name) {
-                isDefine = false;
-                name = '_@r' + (requireCounter += 1);
-            }
-
-            nameParts = splitPrefix(name);
-            prefix = nameParts[0];
-            name = nameParts[1];
-
-            if (prefix) {
-                prefix = normalize(prefix, parentName, applyMap);
-                pluginModule = getOwn(defined, prefix);
-            }
-
-            //Account for relative paths if there is a base name.
-            if (name) {
-                if (prefix) {
-                    if (pluginModule && pluginModule.normalize) {
-                        //Plugin is loaded, use its normalize method.
-                        normalizedName = pluginModule.normalize(name, function (name) {
-                            return normalize(name, parentName, applyMap);
-                        });
-                    } else {
-                        // If nested plugin references, then do not try to
-                        // normalize, as it will not normalize correctly. This
-                        // places a restriction on resourceIds, and the longer
-                        // term solution is not to normalize until plugins are
-                        // loaded and all normalizations to allow for async
-                        // loading of a loader plugin. But for now, fixes the
-                        // common uses. Details in #1131
-                        normalizedName = name.indexOf('!') === -1 ?
-                                         normalize(name, parentName, applyMap) :
-                                         name;
-                    }
-                } else {
-                    //A regular module.
-                    normalizedName = normalize(name, parentName, applyMap);
-
-                    //Normalized name may be a plugin ID due to map config
-                    //application in normalize. The map config values must
-                    //already be normalized, so do not need to redo that part.
-                    nameParts = splitPrefix(normalizedName);
-                    prefix = nameParts[0];
-                    normalizedName = nameParts[1];
-                    isNormalized = true;
-
-                    url = context.nameToUrl(normalizedName);
-                }
-            }
-
-            //If the id is a plugin id that cannot be determined if it needs
-            //normalization, stamp it with a unique ID so two matching relative
-            //ids that may conflict can be separate.
-            suffix = prefix && !pluginModule && !isNormalized ?
-                     '_unnormalized' + (unnormalizedCounter += 1) :
-                     '';
-
-            return {
-                prefix: prefix,
-                name: normalizedName,
-                parentMap: parentModuleMap,
-                unnormalized: !!suffix,
-                url: url,
-                originalName: originalName,
-                isDefine: isDefine,
-                id: (prefix ?
-                        prefix + '!' + normalizedName :
-                        normalizedName) + suffix
-            };
-        }
-
-        function getModule(depMap) {
-            var id = depMap.id,
-                mod = getOwn(registry, id);
-
-            if (!mod) {
-                mod = registry[id] = new context.Module(depMap);
-            }
-
-            return mod;
-        }
-
-        function on(depMap, name, fn) {
-            var id = depMap.id,
-                mod = getOwn(registry, id);
-
-            if (hasProp(defined, id) &&
-                    (!mod || mod.defineEmitComplete)) {
-                if (name === 'defined') {
-                    fn(defined[id]);
-                }
-            } else {
-                mod = getModule(depMap);
-                if (mod.error && name === 'error') {
-                    fn(mod.error);
-                } else {
-                    mod.on(name, fn);
-                }
-            }
-        }
-
-        function onError(err, errback) {
-            var ids = err.requireModules,
-                notified = false;
-
-            if (errback) {
-                errback(err);
-            } else {
-                each(ids, function (id) {
-                    var mod = getOwn(registry, id);
-                    if (mod) {
-                        //Set error on module, so it skips timeout checks.
-                        mod.error = err;
-                        if (mod.events.error) {
-                            notified = true;
-                            mod.emit('error', err);
-                        }
-                    }
-                });
-
-                if (!notified) {
-                    req.onError(err);
-                }
-            }
-        }
-
-        /**
-         * Internal method to transfer globalQueue items to this context's
-         * defQueue.
-         */
-        function takeGlobalQueue() {
-            //Push all the globalDefQueue items into the context's defQueue
-            if (globalDefQueue.length) {
-                //Array splice in the values since the context code has a
-                //local var ref to defQueue, so cannot just reassign the one
-                //on context.
-                apsp.apply(defQueue,
-                           [defQueue.length, 0].concat(globalDefQueue));
-                globalDefQueue = [];
-            }
-        }
-
-        handlers = {
-            'require': function (mod) {
-                if (mod.require) {
-                    return mod.require;
-                } else {
-                    return (mod.require = context.makeRequire(mod.map));
-                }
-            },
-            'exports': function (mod) {
-                mod.usingExports = true;
-                if (mod.map.isDefine) {
-                    if (mod.exports) {
-                        return (defined[mod.map.id] = mod.exports);
-                    } else {
-                        return (mod.exports = defined[mod.map.id] = {});
-                    }
-                }
-            },
-            'module': function (mod) {
-                if (mod.module) {
-                    return mod.module;
-                } else {
-                    return (mod.module = {
-                        id: mod.map.id,
-                        uri: mod.map.url,
-                        config: function () {
-                            return  getOwn(config.config, mod.map.id) || {};
-                        },
-                        exports: mod.exports || (mod.exports = {})
-                    });
-                }
-            }
-        };
-
-        function cleanRegistry(id) {
-            //Clean up machinery used for waiting modules.
-            delete registry[id];
-            delete enabledRegistry[id];
-        }
-
-        function breakCycle(mod, traced, processed) {
-            var id = mod.map.id;
-
-            if (mod.error) {
-                mod.emit('error', mod.error);
-            } else {
-                traced[id] = true;
-                each(mod.depMaps, function (depMap, i) {
-                    var depId = depMap.id,
-                        dep = getOwn(registry, depId);
-
-                    //Only force things that have not completed
-                    //being defined, so still in the registry,
-                    //and only if it has not been matched up
-                    //in the module already.
-                    if (dep && !mod.depMatched[i] && !processed[depId]) {
-                        if (getOwn(traced, depId)) {
-                            mod.defineDep(i, defined[depId]);
-                            mod.check(); //pass false?
-                        } else {
-                            breakCycle(dep, traced, processed);
-                        }
-                    }
-                });
-                processed[id] = true;
-            }
-        }
-
-        function checkLoaded() {
-            var err, usingPathFallback,
-                waitInterval = config.waitSeconds * 1000,
-                //It is possible to disable the wait interval by using waitSeconds of 0.
-                expired = waitInterval && (context.startTime + waitInterval) < new Date().getTime(),
-                noLoads = [],
-                reqCalls = [],
-                stillLoading = false,
-                needCycleCheck = true;
-
-            //Do not bother if this call was a result of a cycle break.
-            if (inCheckLoaded) {
-                return;
-            }
-
-            inCheckLoaded = true;
-
-            //Figure out the state of all the modules.
-            eachProp(enabledRegistry, function (mod) {
-                var map = mod.map,
-                    modId = map.id;
-
-                //Skip things that are not enabled or in error state.
-                if (!mod.enabled) {
-                    return;
-                }
-
-                if (!map.isDefine) {
-                    reqCalls.push(mod);
-                }
-
-                if (!mod.error) {
-                    //If the module should be executed, and it has not
-                    //been inited and time is up, remember it.
-                    if (!mod.inited && expired) {
-                        if (hasPathFallback(modId)) {
-                            usingPathFallback = true;
-                            stillLoading = true;
-                        } else {
-                            noLoads.push(modId);
-                            removeScript(modId);
-                        }
-                    } else if (!mod.inited && mod.fetched && map.isDefine) {
-                        stillLoading = true;
-                        if (!map.prefix) {
-                            //No reason to keep looking for unfinished
-                            //loading. If the only stillLoading is a
-                            //plugin resource though, keep going,
-                            //because it may be that a plugin resource
-                            //is waiting on a non-plugin cycle.
-                            return (needCycleCheck = false);
-                        }
-                    }
-                }
-            });
-
-            if (expired && noLoads.length) {
-                //If wait time expired, throw error of unloaded modules.
-                err = makeError('timeout', 'Load timeout for modules: ' + noLoads, null, noLoads);
-                err.contextName = context.contextName;
-                return onError(err);
-            }
-
-            //Not expired, check for a cycle.
-            if (needCycleCheck) {
-                each(reqCalls, function (mod) {
-                    breakCycle(mod, {}, {});
-                });
-            }
-
-            //If still waiting on loads, and the waiting load is something
-            //other than a plugin resource, or there are still outstanding
-            //scripts, then just try back later.
-            if ((!expired || usingPathFallback) && stillLoading) {
-                //Something is still waiting to load. Wait for it, but only
-                //if a timeout is not already in effect.
-                if ((isBrowser || isWebWorker) && !checkLoadedTimeoutId) {
-                    checkLoadedTimeoutId = setTimeout(function () {
-                        checkLoadedTimeoutId = 0;
-                        checkLoaded();
-                    }, 50);
-                }
-            }
-
-            inCheckLoaded = false;
-        }
-
-        Module = function (map) {
-            this.events = getOwn(undefEvents, map.id) || {};
-            this.map = map;
-            this.shim = getOwn(config.shim, map.id);
-            this.depExports = [];
-            this.depMaps = [];
-            this.depMatched = [];
-            this.pluginMaps = {};
-            this.depCount = 0;
-
-            /* this.exports this.factory
-               this.depMaps = [],
-               this.enabled, this.fetched
-            */
-        };
-
-        Module.prototype = {
-            init: function (depMaps, factory, errback, options) {
-                options = options || {};
-
-                //Do not do more inits if already done. Can happen if there
-                //are multiple define calls for the same module. That is not
-                //a normal, common case, but it is also not unexpected.
-                if (this.inited) {
-                    return;
-                }
-
-                this.factory = factory;
-
-                if (errback) {
-                    //Register for errors on this module.
-                    this.on('error', errback);
-                } else if (this.events.error) {
-                    //If no errback already, but there are error listeners
-                    //on this module, set up an errback to pass to the deps.
-                    errback = bind(this, function (err) {
-                        this.emit('error', err);
-                    });
-                }
-
-                //Do a copy of the dependency array, so that
-                //source inputs are not modified. For example
-                //"shim" deps are passed in here directly, and
-                //doing a direct modification of the depMaps array
-                //would affect that config.
-                this.depMaps = depMaps && depMaps.slice(0);
-
-                this.errback = errback;
-
-                //Indicate this module has be initialized
-                this.inited = true;
-
-                this.ignore = options.ignore;
-
-                //Could have option to init this module in enabled mode,
-                //or could have been previously marked as enabled. However,
-                //the dependencies are not known until init is called. So
-                //if enabled previously, now trigger dependencies as enabled.
-                if (options.enabled || this.enabled) {
-                    //Enable this module and dependencies.
-                    //Will call this.check()
-                    this.enable();
-                } else {
-                    this.check();
-                }
-            },
-
-            defineDep: function (i, depExports) {
-                //Because of cycles, defined callback for a given
-                //export can be called more than once.
-                if (!this.depMatched[i]) {
-                    this.depMatched[i] = true;
-                    this.depCount -= 1;
-                    this.depExports[i] = depExports;
-                }
-            },
-
-            fetch: function () {
-                if (this.fetched) {
-                    return;
-                }
-                this.fetched = true;
-
-                context.startTime = (new Date()).getTime();
-
-                var map = this.map;
-
-                //If the manager is for a plugin managed resource,
-                //ask the plugin to load it now.
-                if (this.shim) {
-                    context.makeRequire(this.map, {
-                        enableBuildCallback: true
-                    })(this.shim.deps || [], bind(this, function () {
-                        return map.prefix ? this.callPlugin() : this.load();
-                    }));
-                } else {
-                    //Regular dependency.
-                    return map.prefix ? this.callPlugin() : this.load();
-                }
-            },
-
-            load: function () {
-                var url = this.map.url;
-
-                //Regular dependency.
-                if (!urlFetched[url]) {
-                    urlFetched[url] = true;
-                    context.load(this.map.id, url);
-                }
-            },
-
-            /**
-             * Checks if the module is ready to define itself, and if so,
-             * define it.
-             */
-            check: function () {
-                if (!this.enabled || this.enabling) {
-                    return;
-                }
-
-                var err, cjsModule,
-                    id = this.map.id,
-                    depExports = this.depExports,
-                    exports = this.exports,
-                    factory = this.factory;
-
-                if (!this.inited) {
-                    this.fetch();
-                } else if (this.error) {
-                    this.emit('error', this.error);
-                } else if (!this.defining) {
-                    //The factory could trigger another require call
-                    //that would result in checking this module to
-                    //define itself again. If already in the process
-                    //of doing that, skip this work.
-                    this.defining = true;
-
-                    if (this.depCount < 1 && !this.defined) {
-                        if (isFunction(factory)) {
-                            //If there is an error listener, favor passing
-                            //to that instead of throwing an error. However,
-                            //only do it for define()'d  modules. require
-                            //errbacks should not be called for failures in
-                            //their callbacks (#699). However if a global
-                            //onError is set, use that.
-                            if ((this.events.error && this.map.isDefine) ||
-                                req.onError !== defaultOnError) {
-                                try {
-                                    exports = context.execCb(id, factory, depExports, exports);
-                                } catch (e) {
-                                    err = e;
-                                }
-                            } else {
-                                exports = context.execCb(id, factory, depExports, exports);
-                            }
-
-                            // Favor return value over exports. If node/cjs in play,
-                            // then will not have a return value anyway. Favor
-                            // module.exports assignment over exports object.
-                            if (this.map.isDefine && exports === undefined) {
-                                cjsModule = this.module;
-                                if (cjsModule) {
-                                    exports = cjsModule.exports;
-                                } else if (this.usingExports) {
-                                    //exports already set the defined value.
-                                    exports = this.exports;
-                                }
-                            }
-
-                            if (err) {
-                                err.requireMap = this.map;
-                                err.requireModules = this.map.isDefine ? [this.map.id] : null;
-                                err.requireType = this.map.isDefine ? 'define' : 'require';
-                                return onError((this.error = err));
-                            }
-
-                        } else {
-                            //Just a literal value
-                            exports = factory;
-                        }
-
-                        this.exports = exports;
-
-                        if (this.map.isDefine && !this.ignore) {
-                            defined[id] = exports;
-
-                            if (req.onResourceLoad) {
-                                req.onResourceLoad(context, this.map, this.depMaps);
-                            }
-                        }
-
-                        //Clean up
-                        cleanRegistry(id);
-
-                        this.defined = true;
-                    }
-
-                    //Finished the define stage. Allow calling check again
-                    //to allow define notifications below in the case of a
-                    //cycle.
-                    this.defining = false;
-
-                    if (this.defined && !this.defineEmitted) {
-                        this.defineEmitted = true;
-                        this.emit('defined', this.exports);
-                        this.defineEmitComplete = true;
-                    }
-
-                }
-            },
-
-            callPlugin: function () {
-                var map = this.map,
-                    id = map.id,
-                    //Map already normalized the prefix.
-                    pluginMap = makeModuleMap(map.prefix);
-
-                //Mark this as a dependency for this plugin, so it
-                //can be traced for cycles.
-                this.depMaps.push(pluginMap);
-
-                on(pluginMap, 'defined', bind(this, function (plugin) {
-                    var load, normalizedMap, normalizedMod,
-                        bundleId = getOwn(bundlesMap, this.map.id),
-                        name = this.map.name,
-                        parentName = this.map.parentMap ? this.map.parentMap.name : null,
-                        localRequire = context.makeRequire(map.parentMap, {
-                            enableBuildCallback: true
-                        });
-
-                    //If current map is not normalized, wait for that
-                    //normalized name to load instead of continuing.
-                    if (this.map.unnormalized) {
-                        //Normalize the ID if the plugin allows it.
-                        if (plugin.normalize) {
-                            name = plugin.normalize(name, function (name) {
-                                return normalize(name, parentName, true);
-                            }) || '';
-                        }
-
-                        //prefix and name should already be normalized, no need
-                        //for applying map config again either.
-                        normalizedMap = makeModuleMap(map.prefix + '!' + name,
-                                                      this.map.parentMap);
-                        on(normalizedMap,
-                            'defined', bind(this, function (value) {
-                                this.init([], function () { return value; }, null, {
-                                    enabled: true,
-                                    ignore: true
-                                });
-                            }));
-
-                        normalizedMod = getOwn(registry, normalizedMap.id);
-                        if (normalizedMod) {
-                            //Mark this as a dependency for this plugin, so it
-                            //can be traced for cycles.
-                            this.depMaps.push(normalizedMap);
-
-                            if (this.events.error) {
-                                normalizedMod.on('error', bind(this, function (err) {
-                                    this.emit('error', err);
-                                }));
-                            }
-                            normalizedMod.enable();
-                        }
-
-                        return;
-                    }
-
-                    //If a paths config, then just load that file instead to
-                    //resolve the plugin, as it is built into that paths layer.
-                    if (bundleId) {
-                        this.map.url = context.nameToUrl(bundleId);
-                        this.load();
-                        return;
-                    }
-
-                    load = bind(this, function (value) {
-                        this.init([], function () { return value; }, null, {
-                            enabled: true
-                        });
-                    });
-
-                    load.error = bind(this, function (err) {
-                        this.inited = true;
-                        this.error = err;
-                        err.requireModules = [id];
-
-                        //Remove temp unnormalized modules for this module,
-                        //since they will never be resolved otherwise now.
-                        eachProp(registry, function (mod) {
-                            if (mod.map.id.indexOf(id + '_unnormalized') === 0) {
-                                cleanRegistry(mod.map.id);
-                            }
-                        });
-
-                        onError(err);
-                    });
-
-                    //Allow plugins to load other code without having to know the
-                    //context or how to 'complete' the load.
-                    load.fromText = bind(this, function (text, textAlt) {
-                        /*jslint evil: true */
-                        var moduleName = map.name,
-                            moduleMap = makeModuleMap(moduleName),
-                            hasInteractive = useInteractive;
-
-                        //As of 2.1.0, support just passing the text, to reinforce
-                        //fromText only being called once per resource. Still
-                        //support old style of passing moduleName but discard
-                        //that moduleName in favor of the internal ref.
-                        if (textAlt) {
-                            text = textAlt;
-                        }
-
-                        //Turn off interactive script matching for IE for any define
-                        //calls in the text, then turn it back on at the end.
-                        if (hasInteractive) {
-                            useInteractive = false;
-                        }
-
-                        //Prime the system by creating a module instance for
-                        //it.
-                        getModule(moduleMap);
-
-                        //Transfer any config to this other module.
-                        if (hasProp(config.config, id)) {
-                            config.config[moduleName] = config.config[id];
-                        }
-
-                        try {
-                            req.exec(text);
-                        } catch (e) {
-                            return onError(makeError('fromtexteval',
-                                             'fromText eval for ' + id +
-                                            ' failed: ' + e,
-                                             e,
-                                             [id]));
-                        }
-
-                        if (hasInteractive) {
-                            useInteractive = true;
-                        }
-
-                        //Mark this as a dependency for the plugin
-                        //resource
-                        this.depMaps.push(moduleMap);
-
-                        //Support anonymous modules.
-                        context.completeLoad(moduleName);
-
-                        //Bind the value of that module to the value for this
-                        //resource ID.
-                        localRequire([moduleName], load);
-                    });
-
-                    //Use parentName here since the plugin's name is not reliable,
-                    //could be some weird string with no path that actually wants to
-                    //reference the parentName's path.
-                    plugin.load(map.name, localRequire, load, config);
-                }));
-
-                context.enable(pluginMap, this);
-                this.pluginMaps[pluginMap.id] = pluginMap;
-            },
-
-            enable: function () {
-                enabledRegistry[this.map.id] = this;
-                this.enabled = true;
-
-                //Set flag mentioning that the module is enabling,
-                //so that immediate calls to the defined callbacks
-                //for dependencies do not trigger inadvertent load
-                //with the depCount still being zero.
-                this.enabling = true;
-
-                //Enable each dependency
-                each(this.depMaps, bind(this, function (depMap, i) {
-                    var id, mod, handler;
-
-                    if (typeof depMap === 'string') {
-                        //Dependency needs to be converted to a depMap
-                        //and wired up to this module.
-                        depMap = makeModuleMap(depMap,
-                                               (this.map.isDefine ? this.map : this.map.parentMap),
-                                               false,
-                                               !this.skipMap);
-                        this.depMaps[i] = depMap;
-
-                        handler = getOwn(handlers, depMap.id);
-
-                        if (handler) {
-                            this.depExports[i] = handler(this);
-                            return;
-                        }
-
-                        this.depCount += 1;
-
-                        on(depMap, 'defined', bind(this, function (depExports) {
-                            this.defineDep(i, depExports);
-                            this.check();
-                        }));
-
-                        if (this.errback) {
-                            on(depMap, 'error', bind(this, this.errback));
-                        } else if (this.events.error) {
-                            // No direct errback on this module, but something
-                            // else is listening for errors, so be sure to
-                            // propagate the error correctly.
-                            on(depMap, 'error', bind(this, function(err) {
-                                this.emit('error', err);
-                            }));
-                        }
-                    }
-
-                    id = depMap.id;
-                    mod = registry[id];
-
-                    //Skip special modules like 'require', 'exports', 'module'
-                    //Also, don't call enable if it is already enabled,
-                    //important in circular dependency cases.
-                    if (!hasProp(handlers, id) && mod && !mod.enabled) {
-                        context.enable(depMap, this);
-                    }
-                }));
-
-                //Enable each plugin that is used in
-                //a dependency
-                eachProp(this.pluginMaps, bind(this, function (pluginMap) {
-                    var mod = getOwn(registry, pluginMap.id);
-                    if (mod && !mod.enabled) {
-                        context.enable(pluginMap, this);
-                    }
-                }));
-
-                this.enabling = false;
-
-                this.check();
-            },
-
-            on: function (name, cb) {
-                var cbs = this.events[name];
-                if (!cbs) {
-                    cbs = this.events[name] = [];
-                }
-                cbs.push(cb);
-            },
-
-            emit: function (name, evt) {
-                each(this.events[name], function (cb) {
-                    cb(evt);
-                });
-                if (name === 'error') {
-                    //Now that the error handler was triggered, remove
-                    //the listeners, since this broken Module instance
-                    //can stay around for a while in the registry.
-                    delete this.events[name];
-                }
-            }
-        };
-
-        function callGetModule(args) {
-            //Skip modules already defined.
-            if (!hasProp(defined, args[0])) {
-                getModule(makeModuleMap(args[0], null, true)).init(args[1], args[2]);
-            }
-        }
-
-        function removeListener(node, func, name, ieName) {
-            //Favor detachEvent because of IE9
-            //issue, see attachEvent/addEventListener comment elsewhere
-            //in this file.
-            if (node.detachEvent && !isOpera) {
-                //Probably IE. If not it will throw an error, which will be
-                //useful to know.
-                if (ieName) {
-                    node.detachEvent(ieName, func);
-                }
-            } else {
-                node.removeEventListener(name, func, false);
-            }
-        }
-
-        /**
-         * Given an event from a script node, get the requirejs info from it,
-         * and then removes the event listeners on the node.
-         * @param {Event} evt
-         * @returns {Object}
-         */
-        function getScriptData(evt) {
-            //Using currentTarget instead of target for Firefox 2.0's sake. Not
-            //all old browsers will be supported, but this one was easy enough
-            //to support and still makes sense.
-            var node = evt.currentTarget || evt.srcElement;
-
-            //Remove the listeners once here.
-            removeListener(node, context.onScriptLoad, 'load', 'onreadystatechange');
-            removeListener(node, context.onScriptError, 'error');
-
-            return {
-                node: node,
-                id: node && node.getAttribute('data-requiremodule')
-            };
-        }
-
-        function intakeDefines() {
-            var args;
-
-            //Any defined modules in the global queue, intake them now.
-            takeGlobalQueue();
-
-            //Make sure any remaining defQueue items get properly processed.
-            while (defQueue.length) {
-                args = defQueue.shift();
-                if (args[0] === null) {
-                    return onError(makeError('mismatch', 'Mismatched anonymous define() module: ' + args[args.length - 1]));
-                } else {
-                    //args are id, deps, factory. Should be normalized by the
-                    //define() function.
-                    callGetModule(args);
-                }
-            }
-        }
-
-        context = {
-            config: config,
-            contextName: contextName,
-            registry: registry,
-            defined: defined,
-            urlFetched: urlFetched,
-            defQueue: defQueue,
-            Module: Module,
-            makeModuleMap: makeModuleMap,
-            nextTick: req.nextTick,
-            onError: onError,
-
-            /**
-             * Set a configuration for the context.
-             * @param {Object} cfg config object to integrate.
-             */
-            configure: function (cfg) {
-                //Make sure the baseUrl ends in a slash.
-                if (cfg.baseUrl) {
-                    if (cfg.baseUrl.charAt(cfg.baseUrl.length - 1) !== '/') {
-                        cfg.baseUrl += '/';
-                    }
-                }
-
-                //Save off the paths since they require special processing,
-                //they are additive.
-                var shim = config.shim,
-                    objs = {
-                        paths: true,
-                        bundles: true,
-                        config: true,
-                        map: true
-                    };
-
-                eachProp(cfg, function (value, prop) {
-                    if (objs[prop]) {
-                        if (!config[prop]) {
-                            config[prop] = {};
-                        }
-                        mixin(config[prop], value, true, true);
-                    } else {
-                        config[prop] = value;
-                    }
-                });
-
-                //Reverse map the bundles
-                if (cfg.bundles) {
-                    eachProp(cfg.bundles, function (value, prop) {
-                        each(value, function (v) {
-                            if (v !== prop) {
-                                bundlesMap[v] = prop;
-                            }
-                        });
-                    });
-                }
-
-                //Merge shim
-                if (cfg.shim) {
-                    eachProp(cfg.shim, function (value, id) {
-                        //Normalize the structure
-                        if (isArray(value)) {
-                            value = {
-                                deps: value
-                            };
-                        }
-                        if ((value.exports || value.init) && !value.exportsFn) {
-                            value.exportsFn = context.makeShimExports(value);
-                        }
-                        shim[id] = value;
-                    });
-                    config.shim = shim;
-                }
-
-                //Adjust packages if necessary.
-                if (cfg.packages) {
-                    each(cfg.packages, function (pkgObj) {
-                        var location, name;
-
-                        pkgObj = typeof pkgObj === 'string' ? { name: pkgObj } : pkgObj;
-
-                        name = pkgObj.name;
-                        location = pkgObj.location;
-                        if (location) {
-                            config.paths[name] = pkgObj.location;
-                        }
-
-                        //Save pointer to main module ID for pkg name.
-                        //Remove leading dot in main, so main paths are normalized,
-                        //and remove any trailing .js, since different package
-                        //envs have different conventions: some use a module name,
-                        //some use a file name.
-                        config.pkgs[name] = pkgObj.name + '/' + (pkgObj.main || 'main')
-                                     .replace(currDirRegExp, '')
-                                     .replace(jsSuffixRegExp, '');
-                    });
-                }
-
-                //If there are any "waiting to execute" modules in the registry,
-                //update the maps for them, since their info, like URLs to load,
-                //may have changed.
-                eachProp(registry, function (mod, id) {
-                    //If module already has init called, since it is too
-                    //late to modify them, and ignore unnormalized ones
-                    //since they are transient.
-                    if (!mod.inited && !mod.map.unnormalized) {
-                        mod.map = makeModuleMap(id);
-                    }
-                });
-
-                //If a deps array or a config callback is specified, then call
-                //require with those args. This is useful when require is defined as a
-                //config object before require.js is loaded.
-                if (cfg.deps || cfg.callback) {
-                    context.require(cfg.deps || [], cfg.callback);
-                }
-            },
-
-            makeShimExports: function (value) {
-                function fn() {
-                    var ret;
-                    if (value.init) {
-                        ret = value.init.apply(global, arguments);
-                    }
-                    return ret || (value.exports && getGlobal(value.exports));
-                }
-                return fn;
-            },
-
-            makeRequire: function (relMap, options) {
-                options = options || {};
-
-                function localRequire(deps, callback, errback) {
-                    var id, map, requireMod;
-
-                    if (options.enableBuildCallback && callback && isFunction(callback)) {
-                        callback.__requireJsBuild = true;
-                    }
-
-                    if (typeof deps === 'string') {
-                        if (isFunction(callback)) {
-                            //Invalid call
-                            return onError(makeError('requireargs', 'Invalid require call'), errback);
-                        }
-
-                        //If require|exports|module are requested, get the
-                        //value for them from the special handlers. Caveat:
-                        //this only works while module is being defined.
-                        if (relMap && hasProp(handlers, deps)) {
-                            return handlers[deps](registry[relMap.id]);
-                        }
-
-                        //Synchronous access to one module. If require.get is
-                        //available (as in the Node adapter), prefer that.
-                        if (req.get) {
-                            return req.get(context, deps, relMap, localRequire);
-                        }
-
-                        //Normalize module name, if it contains . or ..
-                        map = makeModuleMap(deps, relMap, false, true);
-                        id = map.id;
-
-                        if (!hasProp(defined, id)) {
-                            return onError(makeError('notloaded', 'Module name "' +
-                                        id +
-                                        '" has not been loaded yet for context: ' +
-                                        contextName +
-                                        (relMap ? '' : '. Use require([])')));
-                        }
-                        return defined[id];
-                    }
-
-                    //Grab defines waiting in the global queue.
-                    intakeDefines();
-
-                    //Mark all the dependencies as needing to be loaded.
-                    context.nextTick(function () {
-                        //Some defines could have been added since the
-                        //require call, collect them.
-                        intakeDefines();
-
-                        requireMod = getModule(makeModuleMap(null, relMap));
-
-                        //Store if map config should be applied to this require
-                        //call for dependencies.
-                        requireMod.skipMap = options.skipMap;
-
-                        requireMod.init(deps, callback, errback, {
-                            enabled: true
-                        });
-
-                        checkLoaded();
-                    });
-
-                    return localRequire;
-                }
-
-                mixin(localRequire, {
-                    isBrowser: isBrowser,
-
-                    /**
-                     * Converts a module name + .extension into an URL path.
-                     * *Requires* the use of a module name. It does not support using
-                     * plain URLs like nameToUrl.
-                     */
-                    toUrl: function (moduleNamePlusExt) {
-                        var ext,
-                            index = moduleNamePlusExt.lastIndexOf('.'),
-                            segment = moduleNamePlusExt.split('/')[0],
-                            isRelative = segment === '.' || segment === '..';
-
-                        //Have a file extension alias, and it is not the
-                        //dots from a relative path.
-                        if (index !== -1 && (!isRelative || index > 1)) {
-                            ext = moduleNamePlusExt.substring(index, moduleNamePlusExt.length);
-                            moduleNamePlusExt = moduleNamePlusExt.substring(0, index);
-                        }
-
-                        return context.nameToUrl(normalize(moduleNamePlusExt,
-                                                relMap && relMap.id, true), ext,  true);
-                    },
-
-                    defined: function (id) {
-                        return hasProp(defined, makeModuleMap(id, relMap, false, true).id);
-                    },
-
-                    specified: function (id) {
-                        id = makeModuleMap(id, relMap, false, true).id;
-                        return hasProp(defined, id) || hasProp(registry, id);
-                    }
-                });
-
-                //Only allow undef on top level require calls
-                if (!relMap) {
-                    localRequire.undef = function (id) {
-                        //Bind any waiting define() calls to this context,
-                        //fix for #408
-                        takeGlobalQueue();
-
-                        var map = makeModuleMap(id, relMap, true),
-                            mod = getOwn(registry, id);
-
-                        removeScript(id);
-
-                        delete defined[id];
-                        delete urlFetched[map.url];
-                        delete undefEvents[id];
-
-                        //Clean queued defines too. Go backwards
-                        //in array so that the splices do not
-                        //mess up the iteration.
-                        eachReverse(defQueue, function(args, i) {
-                            if(args[0] === id) {
-                                defQueue.splice(i, 1);
-                            }
-                        });
-
-                        if (mod) {
-                            //Hold on to listeners in case the
-                            //module will be attempted to be reloaded
-                            //using a different config.
-                            if (mod.events.defined) {
-                                undefEvents[id] = mod.events;
-                            }
-
-                            cleanRegistry(id);
-                        }
-                    };
-                }
-
-                return localRequire;
-            },
-
-            /**
-             * Called to enable a module if it is still in the registry
-             * awaiting enablement. A second arg, parent, the parent module,
-             * is passed in for context, when this method is overridden by
-             * the optimizer. Not shown here to keep code compact.
-             */
-            enable: function (depMap) {
-                var mod = getOwn(registry, depMap.id);
-                if (mod) {
-                    getModule(depMap).enable();
-                }
-            },
-
-            /**
-             * Internal method used by environment adapters to complete a load event.
-             * A load event could be a script load or just a load pass from a synchronous
-             * load call.
-             * @param {String} moduleName the name of the module to potentially complete.
-             */
-            completeLoad: function (moduleName) {
-                var found, args, mod,
-                    shim = getOwn(config.shim, moduleName) || {},
-                    shExports = shim.exports;
-
-                takeGlobalQueue();
-
-                while (defQueue.length) {
-                    args = defQueue.shift();
-                    if (args[0] === null) {
-                        args[0] = moduleName;
-                        //If already found an anonymous module and bound it
-                        //to this name, then this is some other anon module
-                        //waiting for its completeLoad to fire.
-                        if (found) {
-                            break;
-                        }
-                        found = true;
-                    } else if (args[0] === moduleName) {
-                        //Found matching define call for this script!
-                        found = true;
-                    }
-
-                    callGetModule(args);
-                }
-
-                //Do this after the cycle of callGetModule in case the result
-                //of those calls/init calls changes the registry.
-                mod = getOwn(registry, moduleName);
-
-                if (!found && !hasProp(defined, moduleName) && mod && !mod.inited) {
-                    if (config.enforceDefine && (!shExports || !getGlobal(shExports))) {
-                        if (hasPathFallback(moduleName)) {
-                            return;
-                        } else {
-                            return onError(makeError('nodefine',
-                                             'No define call for ' + moduleName,
-                                             null,
-                                             [moduleName]));
-                        }
-                    } else {
-                        //A script that does not call define(), so just simulate
-                        //the call for it.
-                        callGetModule([moduleName, (shim.deps || []), shim.exportsFn]);
-                    }
-                }
-
-                checkLoaded();
-            },
-
-            /**
-             * Converts a module name to a file path. Supports cases where
-             * moduleName may actually be just an URL.
-             * Note that it **does not** call normalize on the moduleName,
-             * it is assumed to have already been normalized. This is an
-             * internal API, not a public one. Use toUrl for the public API.
-             */
-            nameToUrl: function (moduleName, ext, skipExt) {
-                var paths, syms, i, parentModule, url,
-                    parentPath, bundleId,
-                    pkgMain = getOwn(config.pkgs, moduleName);
-
-                if (pkgMain) {
-                    moduleName = pkgMain;
-                }
-
-                bundleId = getOwn(bundlesMap, moduleName);
-
-                if (bundleId) {
-                    return context.nameToUrl(bundleId, ext, skipExt);
-                }
-
-                //If a colon is in the URL, it indicates a protocol is used and it is just
-                //an URL to a file, or if it starts with a slash, contains a query arg (i.e. ?)
-                //or ends with .js, then assume the user meant to use an url and not a module id.
-                //The slash is important for protocol-less URLs as well as full paths.
-                if (req.jsExtRegExp.test(moduleName)) {
-                    //Just a plain path, not module name lookup, so just return it.
-                    //Add extension if it is included. This is a bit wonky, only non-.js things pass
-                    //an extension, this method probably needs to be reworked.
-                    url = moduleName + (ext || '');
-                } else {
-                    //A module that needs to be converted to a path.
-                    paths = config.paths;
-
-                    syms = moduleName.split('/');
-                    //For each module name segment, see if there is a path
-                    //registered for it. Start with most specific name
-                    //and work up from it.
-                    for (i = syms.length; i > 0; i -= 1) {
-                        parentModule = syms.slice(0, i).join('/');
-
-                        parentPath = getOwn(paths, parentModule);
-                        if (parentPath) {
-                            //If an array, it means there are a few choices,
-                            //Choose the one that is desired
-                            if (isArray(parentPath)) {
-                                parentPath = parentPath[0];
-                            }
-                            syms.splice(0, i, parentPath);
-                            break;
-                        }
-                    }
-
-                    //Join the path parts together, then figure out if baseUrl is needed.
-                    url = syms.join('/');
-                    url += (ext || (/^data\:|\?/.test(url) || skipExt ? '' : '.js'));
-                    url = (url.charAt(0) === '/' || url.match(/^[\w\+\.\-]+:/) ? '' : config.baseUrl) + url;
-                }
-
-                return config.urlArgs ? url +
-                                        ((url.indexOf('?') === -1 ? '?' : '&') +
-                                         config.urlArgs) : url;
-            },
-
-            //Delegates to req.load. Broken out as a separate function to
-            //allow overriding in the optimizer.
-            load: function (id, url) {
-                req.load(context, id, url);
-            },
-
-            /**
-             * Executes a module callback function. Broken out as a separate function
-             * solely to allow the build system to sequence the files in the built
-             * layer in the right sequence.
-             *
-             * @private
-             */
-            execCb: function (name, callback, args, exports) {
-                return callback.apply(exports, args);
-            },
-
-            /**
-             * callback for script loads, used to check status of loading.
-             *
-             * @param {Event} evt the event from the browser for the script
-             * that was loaded.
-             */
-            onScriptLoad: function (evt) {
-                //Using currentTarget instead of target for Firefox 2.0's sake. Not
-                //all old browsers will be supported, but this one was easy enough
-                //to support and still makes sense.
-                if (evt.type === 'load' ||
-                        (readyRegExp.test((evt.currentTarget || evt.srcElement).readyState))) {
-                    //Reset interactive script so a script node is not held onto for
-                    //to long.
-                    interactiveScript = null;
-
-                    //Pull out the name of the module and the context.
-                    var data = getScriptData(evt);
-                    context.completeLoad(data.id);
-                }
-            },
-
-            /**
-             * Callback for script errors.
-             */
-            onScriptError: function (evt) {
-                var data = getScriptData(evt);
-                if (!hasPathFallback(data.id)) {
-                    return onError(makeError('scripterror', 'Script error for: ' + data.id, evt, [data.id]));
-                }
-            }
-        };
-
-        context.require = context.makeRequire();
-        return context;
-    }
-
-    /**
-     * Main entry point.
-     *
-     * If the only argument to require is a string, then the module that
-     * is represented by that string is fetched for the appropriate context.
-     *
-     * If the first argument is an array, then it will be treated as an array
-     * of dependency string names to fetch. An optional function callback can
-     * be specified to execute when all of those dependencies are available.
-     *
-     * Make a local req variable to help Caja compliance (it assumes things
-     * on a require that are not standardized), and to give a short
-     * name for minification/local scope use.
-     */
-    req = requirejs = function (deps, callback, errback, optional) {
-
-        //Find the right context, use default
-        var context, config,
-            contextName = defContextName;
-
-        // Determine if have config object in the call.
-        if (!isArray(deps) && typeof deps !== 'string') {
-            // deps is a config object
-            config = deps;
-            if (isArray(callback)) {
-                // Adjust args if there are dependencies
-                deps = callback;
-                callback = errback;
-                errback = optional;
-            } else {
-                deps = [];
-            }
-        }
-
-        if (config && config.context) {
-            contextName = config.context;
-        }
-
-        context = getOwn(contexts, contextName);
-        if (!context) {
-            context = contexts[contextName] = req.s.newContext(contextName);
-        }
-
-        if (config) {
-            context.configure(config);
-        }
-
-        return context.require(deps, callback, errback);
-    };
-
-    /**
-     * Support require.config() to make it easier to cooperate with other
-     * AMD loaders on globally agreed names.
-     */
-    req.config = function (config) {
-        return req(config);
-    };
-
-    /**
-     * Execute something after the current tick
-     * of the event loop. Override for other envs
-     * that have a better solution than setTimeout.
-     * @param  {Function} fn function to execute later.
-     */
-    req.nextTick = typeof setTimeout !== 'undefined' ? function (fn) {
-        setTimeout(fn, 4);
-    } : function (fn) { fn(); };
-
-    /**
-     * Export require as a global, but only if it does not already exist.
-     */
-    if (!require) {
-        require = req;
-    }
-
-    req.version = version;
-
-    //Used to filter out dependencies that are already paths.
-    req.jsExtRegExp = /^\/|:|\?|\.js$/;
-    req.isBrowser = isBrowser;
-    s = req.s = {
-        contexts: contexts,
-        newContext: newContext
-    };
-
-    //Create default context.
-    req({});
-
-    //Exports some context-sensitive methods on global require.
-    each([
-        'toUrl',
-        'undef',
-        'defined',
-        'specified'
-    ], function (prop) {
-        //Reference from contexts instead of early binding to default context,
-        //so that during builds, the latest instance of the default context
-        //with its config gets used.
-        req[prop] = function () {
-            var ctx = contexts[defContextName];
-            return ctx.require[prop].apply(ctx, arguments);
-        };
-    });
-
-    if (isBrowser) {
-        head = s.head = document.getElementsByTagName('head')[0];
-        //If BASE tag is in play, using appendChild is a problem for IE6.
-        //When that browser dies, this can be removed. Details in this jQuery bug:
-        //http://dev.jquery.com/ticket/2709
-        baseElement = document.getElementsByTagName('base')[0];
-        if (baseElement) {
-            head = s.head = baseElement.parentNode;
-        }
-    }
-
-    /**
-     * Any errors that require explicitly generates will be passed to this
-     * function. Intercept/override it if you want custom error handling.
-     * @param {Error} err the error object.
-     */
-    req.onError = defaultOnError;
-
-    /**
-     * Creates the node for the load command. Only used in browser envs.
-     */
-    req.createNode = function (config, moduleName, url) {
-        var node = config.xhtml ?
-                document.createElementNS('http://www.w3.org/1999/xhtml', 'html:script') :
-                document.createElement('script');
-        node.type = config.scriptType || 'text/javascript';
-        node.charset = 'utf-8';
-        node.async = true;
-        return node;
-    };
-
-    /**
-     * Does the request to load a module for the browser case.
-     * Make this a separate function to allow other environments
-     * to override it.
-     *
-     * @param {Object} context the require context to find state.
-     * @param {String} moduleName the name of the module.
-     * @param {Object} url the URL to the module.
-     */
-    req.load = function (context, moduleName, url) {
-        var config = (context && context.config) || {},
-            node;
-        if (isBrowser) {
-            //In the browser so use a script tag
-            node = req.createNode(config, moduleName, url);
-
-            node.setAttribute('data-requirecontext', context.contextName);
-            node.setAttribute('data-requiremodule', moduleName);
-
-            //Set up load listener. Test attachEvent first because IE9 has
-            //a subtle issue in its addEventListener and script onload firings
-            //that do not match the behavior of all other browsers with
-            //addEventListener support, which fire the onload event for a
-            //script right after the script execution. See:
-            //https://connect.microsoft.com/IE/feedback/details/648057/script-onload-event-is-not-fired-immediately-after-script-execution
-            //UNFORTUNATELY Opera implements attachEvent but does not follow the script
-            //script execution mode.
-            if (node.attachEvent &&
-                    //Check if node.attachEvent is artificially added by custom script or
-                    //natively supported by browser
-                    //read https://github.com/jrburke/requirejs/issues/187
-                    //if we can NOT find [native code] then it must NOT natively supported.
-                    //in IE8, node.attachEvent does not have toString()
-                    //Note the test for "[native code" with no closing brace, see:
-                    //https://github.com/jrburke/requirejs/issues/273
-                    !(node.attachEvent.toString && node.attachEvent.toString().indexOf('[native code') < 0) &&
-                    !isOpera) {
-                //Probably IE. IE (at least 6-8) do not fire
-                //script onload right after executing the script, so
-                //we cannot tie the anonymous define call to a name.
-                //However, IE reports the script as being in 'interactive'
-                //readyState at the time of the define call.
-                useInteractive = true;
-
-                node.attachEvent('onreadystatechange', context.onScriptLoad);
-                //It would be great to add an error handler here to catch
-                //404s in IE9+. However, onreadystatechange will fire before
-                //the error handler, so that does not help. If addEventListener
-                //is used, then IE will fire error before load, but we cannot
-                //use that pathway given the connect.microsoft.com issue
-                //mentioned above about not doing the 'script execute,
-                //then fire the script load event listener before execute
-                //next script' that other browsers do.
-                //Best hope: IE10 fixes the issues,
-                //and then destroys all installs of IE 6-9.
-                //node.attachEvent('onerror', context.onScriptError);
-            } else {
-                node.addEventListener('load', context.onScriptLoad, false);
-                node.addEventListener('error', context.onScriptError, false);
-            }
-            node.src = url;
-
-            //For some cache cases in IE 6-8, the script executes before the end
-            //of the appendChild execution, so to tie an anonymous define
-            //call to the module name (which is stored on the node), hold on
-            //to a reference to this node, but clear after the DOM insertion.
-            currentlyAddingScript = node;
-            if (baseElement) {
-                head.insertBefore(node, baseElement);
-            } else {
-                head.appendChild(node);
-            }
-            currentlyAddingScript = null;
-
-            return node;
-        } else if (isWebWorker) {
-            try {
-                //In a web worker, use importScripts. This is not a very
-                //efficient use of importScripts, importScripts will block until
-                //its script is downloaded and evaluated. However, if web workers
-                //are in play, the expectation that a build has been done so that
-                //only one script needs to be loaded anyway. This may need to be
-                //reevaluated if other use cases become common.
-                importScripts(url);
-
-                //Account for anonymous modules
-                context.completeLoad(moduleName);
-            } catch (e) {
-                context.onError(makeError('importscripts',
-                                'importScripts failed for ' +
-                                    moduleName + ' at ' + url,
-                                e,
-                                [moduleName]));
-            }
-        }
-    };
-
-    function getInteractiveScript() {
-        if (interactiveScript && interactiveScript.readyState === 'interactive') {
-            return interactiveScript;
-        }
-
-        eachReverse(scripts(), function (script) {
-            if (script.readyState === 'interactive') {
-                return (interactiveScript = script);
-            }
-        });
-        return interactiveScript;
-    }
-
-    //Look for a data-main script attribute, which could also adjust the baseUrl.
-    if (isBrowser && !cfg.skipDataMain) {
-        //Figure out baseUrl. Get it from the script tag with require.js in it.
-        eachReverse(scripts(), function (script) {
-            //Set the 'head' where we can append children by
-            //using the script's parent.
-            if (!head) {
-                head = script.parentNode;
-            }
-
-            //Look for a data-main attribute to set main script for the page
-            //to load. If it is there, the path to data main becomes the
-            //baseUrl, if it is not already set.
-            dataMain = script.getAttribute('data-main');
-            if (dataMain) {
-                //Preserve dataMain in case it is a path (i.e. contains '?')
-                mainScript = dataMain;
-
-                //Set final baseUrl if there is not already an explicit one.
-                if (!cfg.baseUrl) {
-                    //Pull off the directory of data-main for use as the
-                    //baseUrl.
-                    src = mainScript.split('/');
-                    mainScript = src.pop();
-                    subPath = src.length ? src.join('/')  + '/' : './';
-
-                    cfg.baseUrl = subPath;
-                }
-
-                //Strip off any trailing .js since mainScript is now
-                //like a module name.
-                mainScript = mainScript.replace(jsSuffixRegExp, '');
-
-                 //If mainScript is still a path, fall back to dataMain
-                if (req.jsExtRegExp.test(mainScript)) {
-                    mainScript = dataMain;
-                }
-
-                //Put the data-main script in the files to load.
-                cfg.deps = cfg.deps ? cfg.deps.concat(mainScript) : [mainScript];
-
-                return true;
-            }
-        });
-    }
-
-    /**
-     * The function that handles definitions of modules. Differs from
-     * require() in that a string for the module should be the first argument,
-     * and the function to execute after dependencies are loaded should
-     * return a value to define the module corresponding to the first argument's
-     * name.
-     */
-    define = function (name, deps, callback) {
-        var node, context;
-
-        //Allow for anonymous modules
-        if (typeof name !== 'string') {
-            //Adjust args appropriately
-            callback = deps;
-            deps = name;
-            name = null;
-        }
-
-        //This module may not have dependencies
-        if (!isArray(deps)) {
-            callback = deps;
-            deps = null;
-        }
-
-        //If no name, and callback is a function, then figure out if it a
-        //CommonJS thing with dependencies.
-        if (!deps && isFunction(callback)) {
-            deps = [];
-            //Remove comments from the callback string,
-            //look for require calls, and pull them into the dependencies,
-            //but only if there are function args.
-            if (callback.length) {
-                callback
-                    .toString()
-                    .replace(commentRegExp, '')
-                    .replace(cjsRequireRegExp, function (match, dep) {
-                        deps.push(dep);
-                    });
-
-                //May be a CommonJS thing even without require calls, but still
-                //could use exports, and module. Avoid doing exports and module
-                //work though if it just needs require.
-                //REQUIRES the function to expect the CommonJS variables in the
-                //order listed below.
-                deps = (callback.length === 1 ? ['require'] : ['require', 'exports', 'module']).concat(deps);
-            }
-        }
-
-        //If in IE 6-8 and hit an anonymous define() call, do the interactive
-        //work.
-        if (useInteractive) {
-            node = currentlyAddingScript || getInteractiveScript();
-            if (node) {
-                if (!name) {
-                    name = node.getAttribute('data-requiremodule');
-                }
-                context = contexts[node.getAttribute('data-requirecontext')];
-            }
-        }
-
-        //Always save off evaluating the def call until the script onload handler.
-        //This allows multiple modules to be in a file without prematurely
-        //tracing dependencies, and allows for anonymous module support,
-        //where the module name is not known until the script onload event
-        //occurs. If no context, use the global queue, and get it processed
-        //in the onscript load callback.
-        (context ? context.defQueue : globalDefQueue).push([name, deps, callback]);
-    };
-
-    define.amd = {
-        jQuery: true
-    };
-
-
-    /**
-     * Executes the text. Normally just uses eval, but can be modified
-     * to use a better, environment-specific call. Only used for transpiling
-     * loader plugins, not for plain JS modules.
-     * @param {String} text the text to execute/evaluate.
-     */
-    req.exec = function (text) {
-        /*jslint evil: true */
-        return eval(text);
-    };
-
-    //Set up with config info.
-    req(cfg);
-}(this));
-// Generated by CoffeeScript 1.7.1
-
-/* This is the initial coffeescript file that sets up the module
+require.register({"src/application": function(exports, require, module) {
+  /* This is the initial coffeescript file that sets up the module
     and provides some prototype definitions, as well as the
     internationalization function which must be present for everything else.
- */
-var module;
+*/
+
+var Application, FakeGetText, JQPlugin, JQZIndex, rangy, rangyTextRange;
 
 Array.prototype.zipPermutations = function(right_list) {
   var combine, combined, l, leftPermutations, left_list, lefts, r, rightPermutations, rights, _i, _j, _k, _l, _len, _len1, _len2, _len3;
@@ -14974,41 +18724,48 @@ String.prototype.endsWith = function(str) {
   return this.slice(-str.length) === str;
 };
 
-module = {};
+JQZIndex = require('lib/jquery.topZindex');
 
-module.Rangy = rangy;
+JQPlugin = require('src/jquery.neahttadigisanit');
 
-module.fakeGetText = function(string) {
+FakeGetText = require('src/localization');
 
-  /* Want to mark strings as requiring gettext somehow, so that
-      a babel can find them.
-  
-      NB: Babel only has a javascript extractor, so, just compile the project
-      to JS as normal, then when you run pybabel's extract command, it will
-      find the strings in the unminified source in static/js/.
-  
-      Internationalizations are downloaded and stored in localStorage
-      on the first run of the plugin. Translations should degrade to
-      english if they are missing, or the localization is not present.
-  
-      The system will not store multiple localizations at a time, so
-      we assume the user does not really want to switch.
-   */
-  var localized;
-  if (window.nds_opts.localization != null) {
-    localized = window.nds_opts.localization[string];
-    if (localized != null) {
-      if (localized) {
-        return localized;
-      }
+rangy = require('rangy');
+
+rangyTextRange = require('rangy-textrange');
+
+module.exports = Application = (function() {
+  function Application() {
+    var rangz;
+    this.$ = jQuery;
+    this.options = {};
+    console.log("Initializing NDS.");
+    if (window.rangy != null) {
+      rangz = window.rangy;
+    } else if (rangy != null) {
+      rangz = rangy;
+    }
+    if (rangz.init != null) {
+      console.log("found rangy");
+      rangz.init();
+    } else {
+      console.log("couldn't find rangy");
     }
   }
-  return string;
-};
-// Generated by CoffeeScript 1.7.1
-var DictionaryAPI;
 
-module.DictionaryAPI = DictionaryAPI = (function() {
+  return Application;
+
+})();
+
+}});
+
+;
+
+
+require.register({"src/dictionary": function(exports, require, module) {
+  var DictionaryAPI;
+
+module.exports = DictionaryAPI = (function() {
   function DictionaryAPI(configs) {
     this.host = configs.host;
   }
@@ -15040,12 +18797,20 @@ module.DictionaryAPI = DictionaryAPI = (function() {
   return DictionaryAPI;
 
 })();
-// Generated by CoffeeScript 1.7.1
-var Selection, rangy;
 
-rangy = module.Rangy;
+}});
 
-module.Selection = Selection = (function() {
+;
+
+
+require.register({"src/selection": function(exports, require, module) {
+  var Selection, rangy, rangy_textrange;
+
+rangy = require('rangy');
+
+rangy_textrange = require('rangy-textrange');
+
+module.exports = Selection = (function() {
   function Selection() {}
 
   Selection.prototype.expandByWordRegex = function(selection) {
@@ -15078,7 +18843,7 @@ module.Selection = Selection = (function() {
 
   Selection.prototype.getFirstRange = function() {
     var current_range_obj, full_text, opts, sel;
-    opts = $.fn.getCurrentDictOpts().settings;
+    opts = NDS.$.fn.getCurrentDictOpts().settings;
     sel = rangy.getSelection();
     if (opts) {
       if (opts.word_regex && opts.word_regex_opts) {
@@ -15217,13 +18982,34 @@ module.Selection = Selection = (function() {
   return Selection;
 
 })();
-// Generated by CoffeeScript 1.7.1
-var __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
-module.Templates = this.Templates = {
-  renderPopup: function(response, selection) {
-    var clean_right, current_pair_names, element, first, i, l, langpair, longest_input, lookup, matches_differ_from_click, multiple_inputs, opts, r, range, result, result_string, result_strings, right, string, _, _cp, _f_from, _i, _inputs, _j, _k, _l, _len, _len1, _len2, _len3, _len4, _m, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _t_to, _tooltipTarget, _tooltipTitle;
-    _ = module.fakeGetText;
+}});
+
+;
+
+
+require.register({"src/templates": function(exports, require, module) {
+  var BSDropdown, BSModal, BSPopover, BSTooltip, DSt, Templates, _,
+  __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+
+_ = require('./localization');
+
+BSDropdown = require('../lib/bootstrap-dropdown');
+
+BSModal = require('../lib/bootstrap-modal');
+
+BSTooltip = require('../lib/bootstrap-tooltip');
+
+BSPopover = require('../lib/bootstrap-popover');
+
+DSt = require('./DSt').DSt;
+
+module.exports = Templates = (function() {
+  function Templates() {}
+
+  Templates.prototype.renderPopup = function(response, selection) {
+    var clean_right, current_pair_names, element, first, i, l, langpair, longest_input, lookup, matches_differ_from_click, multiple_inputs, opts, r, range, result, result_string, result_strings, right, string, _cp, _f_from, _i, _inputs, _j, _k, _l, _len, _len1, _len2, _len3, _len4, _m, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _t_to, _tooltipTarget, _tooltipTitle,
+      _this = this;
     first = function(somearray) {
       if (somearray.length > 0) {
         return somearray[0];
@@ -15231,7 +19017,7 @@ module.Templates = this.Templates = {
         return false;
       }
     };
-    opts = window.nds_opts;
+    opts = NDS.options;
     string = selection.string;
     element = selection.element;
     range = selection.range;
@@ -15280,11 +19066,9 @@ module.Templates = this.Templates = {
     }
     langpair = DSt.get(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair');
     _ref5 = langpair.split('-'), _f_from = _ref5[0], _t_to = _ref5[1];
-    _cp = first(window.nds_opts.dictionaries.filter((function(_this) {
-      return function(e) {
-        return e.from.iso === _f_from && e.to.iso === _t_to;
-      };
-    })(this)));
+    _cp = first(NDS.options.dictionaries.filter(function(e) {
+      return e.from.iso === _f_from && e.to.iso === _t_to;
+    }));
     if (_cp) {
       current_pair_names = "" + _cp.from.name + " → " + _cp.to.name;
     } else {
@@ -15311,15 +19095,13 @@ module.Templates = this.Templates = {
         title: _tooltipTitle,
         content: $("<p />").html(result_strings.join('<br />')).html(),
         html: true,
-        placement: (function(_this) {
-          return function() {
-            if (_tooltipTarget[0].offsetLeft < 125) {
-              return 'right';
-            } else {
-              return 'bottom';
-            }
-          };
-        })(this),
+        placement: function() {
+          if (_tooltipTarget[0].offsetLeft < 125) {
+            return 'right';
+          } else {
+            return 'bottom';
+          }
+        },
         trigger: 'hover'
       });
       if (window.getSelection) {
@@ -15333,15 +19115,14 @@ module.Templates = this.Templates = {
       }
       return _tooltipTarget.popover('show');
     }
-  },
-  NotifyWindow: function(text) {
-    var _;
-    _ = module.fakeGetText;
+  };
+
+  Templates.prototype.NotifyWindow = function(text) {
     return $("<div class=\"modal hide fade\" id=\"notifications\">\n    <div class=\"modal-header\">\n        <button\n            type=\"button\"\n            class=\"close\"\n            data-dismiss=\"modal\"\n            aria-hidden=\"true\">&times;</button>\n        <h3>Neahttadigisánit</h3>\n    </div>\n    <div class=\"modal-body\">" + text + "</div>\n    <div class=\"modal-footer\">\n        <a href=\"#\" class=\"btn btn-primary\" id=\"close_modal\">\n          Continue\n        </a>\n    </div>\n</div>");
-  },
-  OptionsTab: function(opts) {
-    var el, makeLanguageOption, _;
-    _ = module.fakeGetText;
+  };
+
+  Templates.prototype.OptionsTab = function(opts) {
+    var el, makeLanguageOption;
     makeLanguageOption = function(options) {
       var data, groups, i, in_group, options_block, _i, _j, _len, _len1;
       groups = ((function() {
@@ -15439,10 +19220,10 @@ module.Templates = this.Templates = {
       return false;
     });
     return el;
-  },
-  ErrorBar: function(args) {
-    var el, host, _;
-    _ = module.fakeGetText;
+  };
+
+  Templates.prototype.ErrorBar = function(args) {
+    var el, host;
     host = args.host;
     el = $("<div id=\"nds_errors\" class=\"errornav navbar-inverse navbar-fixed-bottom\">\n  <div class=\"navbar-inner\">\n    <div class=\"container\">\n      <p><strong>" + (_("Error!")) + "</strong> " + (_("Could not connect to dictionary server")) + " (host: " + host + ").\n         <a href=\"#\" class=\"dismiss\">" + (_("Close")) + "</a>.</p>\n    </div>\n  </div>\n</div>");
     el.find('a.dismiss').click(function() {
@@ -15450,26 +19231,48 @@ module.Templates = this.Templates = {
       return false;
     });
     return el;
-  }
-};
-// Generated by CoffeeScript 1.7.1
+  };
 
-/*
+  return Templates;
+
+})();
+
+}});
+
+;
+
+
+require.register({"src/jquery.neahttadigisanit": function(exports, require, module) {
+  /*
 
 A jQuery plugin for allowing users to click to look up words
 from Neahttadigisánit dictionary services.
- */
-var Selection, Templates, selectionizer,
+*/
+
+var DSt, DictionaryAPI, JQZIndex, Selection, Semver, SpinnerHex, Templates, selectionizer, templates,
   __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
-Templates = module.Templates;
+Templates = require('./templates');
 
-Selection = module.Selection;
+Selection = require('./selection');
+
+DictionaryAPI = require('./dictionary');
+
+DSt = require('./DSt').DSt;
+
+Semver = require('../lib/semver');
+
+JQZIndex = require('lib/jquery.topZindex');
 
 selectionizer = new Selection();
 
+templates = new Templates();
+
+SpinnerHex = "data:image/gif;base64,R0lGODlhIAAgALMAAOLi4tbW1sXFxbm5ubW1tZiYmIiIiFZWVjU1NR0dHQQEBP///wAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQFCgALACwAAAAAIAAgAAAE53DJSWlRperNZ1JJFQCdRhiVolICQZQUkCQHpSoT4A4wNScvyW0ycAV6E8MMMRkuAjskBTFDLZwuAkkqIfxIQyhBQBFvFwQEIjM5VDW6XNE4KagRh6Agwe60smQUB3d4Rz1ZBANnFASDd0hihh12CEE9kjAAVlycXIg7AAIFBqSlnJ87paqbSKiKoqusnbMdmDC2tXQlkUhziYtyWTxIfy6BE8WJt5YAvpJivxNaGmLHT0VnOgSYf0dZXS7APdpB309RnHOG5gvqXGLDaC457D1zZ/V/nmOM82XiHQDYKhKP1oZmADdEAAAh+QQFCgALACwAAAAAGAAXAAAEcXDJSWsiNeuJEqpGsYlUYlKIomjIV55SoSZs+9JSohpa0R4TE84w2ywOLZJwEVApSJuWa3lQuZgGw6Biy8gEk0E2G5AEEBgjhTAOAdSbQJsH34gN4Loxre/DAQMEgoN+C4GDhH6AiIKFjo+QkZJGeXoRACH5BAUKAAsALAAAAAAeAA4AAAR1cMlJKUE16y0POhnBUcFQISh1JMk4GYY4oZhEsLULG8GcSgiWazLY+XK44aQAMy1oCwArIZsAOAHjM2VggV4KRSFKGPSWsCqlJSkkwgrDIkCoD65Rg2AkQMAVOQJ1dXtKf1QVAAODTjphcht0BGdDB5RYShwRACH5BAUKAAsALAcAAAAZABEAAARncMm5hBE0611Myd+2AEFmnBmCiASBTadBqeLSEgCMSocaaoHWQCdbFFSH2mLQKi1iEtVKCbhJoAtaJpEgUARNDQHhHHMTYmftcE4klZv2FM7h0uGG3H3P1yj+gAk/e4CFCn0LhgqCEQAh+QQFCgALACwOAAAAEgAYAAAEZTCUsKq9mBS8BuVLIV6FYYDhWAXmCYpb1Q4oXA0tmsbt944EU6xSQCBQAgPAcjAihiCK86irTA/VixGa7Xq7ibCYqhObE9VzAkH4fg2+rkGhcHXp9AQXJEDgFWRVBQl4dllzCm0RACH5BAUKAAsALA4AAAASAB4AAAR+EAywqr2YkIEFvhoBFsVXhRcpmuhJeqxWCWRpLm19nzJdrJWBwRAwBYCB4ZCzAxSUBtsOStxZBEtrRsvtIr7gA9AELiOsZsShy7ZQ2IVEoi2XI8a3wKGeWJsMCjAECHUmBwoKZxeEJgCIClJagApzbAmIBmwEj20IiG9dUSYRACH5BAUKAAsALA8AAQARAB8AAAR7cMm5AqAYC0KyB5wncoFIBdxgUhxxrRUnnNxL2QswtKW5tTNTizDAeVCEHqyybJoM0Ggh6IlaDc/r1MltEhCIQhMMPjjJCFEhQTmQxRRDImGeFMAShV4yT3Q8egoTc2mAexIIcyKBFH2GghMHihmMGH8YCQpsTQUKcEsRACH5BAUKAAsALAgADgAYABIAAARscMlJ6yI4D2D7zODgeSC2jWiKEioqGIbYWnAdzBRQ1EYxE4jbIsCTLQQKQweBqAxgwgVCoTgsElgJszkqUBUcbEJSYFo9CarympUcmD4adSwRU7adtCLOpk+YHVRcdW0TfBU7FQgJgzgffioRACH5BAUKAAsALAIAEgAdAA4AAAR4cMlJq13h0nC0DQSRXYaiGB41hMQAUERimiklsIQgIbOC6B6B4bUArEKBkilRkASYFoLB0JwEVoCCCTU5JBIohFgyNYwsxEnsuxsvBuXaBMFuIyaF6UC++N7tVnE1dAkEc24SeVwpXx2HfxMDZx6GFQcIjnxykDURACH5BAUKAAsALAAADwAZABEAAARnsCRF67o461u72mAmeV9onugJGCmaJEULIu8rZ0edHGhAbDXE7yLc+AiCDMGmQSAuhuiFQAWgnM9FlLU4Dk4HZ0wrvQyogVDByYOWFwDqcJZ1cy8Caoid2WoCVmoaBQZjNxoCBkkbEQAh+QQFCgALACwAAAgAEgAYAAAEXHARpcy6OGdDVSpaeCGdggiiViRlGnKVGwaWbN94ru+8XiCI3AEIvBGDAdkPeMAADCgREIQpGAwECSGbol0vW67oahiAt6kBGRNOkZNnseYqb4sC8sWAYM4BBgARACH5BAkKAAsALAAAAAAgACAAAASDcMlJq704612L4WClKEhojgphgsaYrGAyfrBWoEE9JSWFjAedJEFEqBYCBU14IBIPOWGFgHC+pBdiAXsBcL8awgFBLn/L6B5WnFaD32G4ZGAwCN6Buh7s0Re8XHR1BXcSBIA6eQYDFAIEBFFgAI9HbwOPkV8Bj4xwl4dyj4VwAJlyWBEAOw==";
+
 jQuery(document).ready(function($) {
-  var API_HOST, EXPECT_BOOKMARKLET_VERSION, cleanTooltipResponse, dictionary, first, getHostShortname, initSpinner, lookupSelectEvent, _;
+  var API_HOST, EXPECT_BOOKMARKLET_VERSION, cleanTooltipResponse, dictionary, first, getHostShortname, initSpinner, lookupSelectEvent, _,
+    _this = this;
   _ = module.fakeGetText;
   getHostShortname = function(url_path) {
     var host, url;
@@ -15492,17 +19295,17 @@ jQuery(document).ready(function($) {
   window.NDS_SHORT_NAME = getHostShortname(API_HOST);
   window.nds_exports = {};
   EXPECT_BOOKMARKLET_VERSION = '0.0.3';
-  initSpinner = function(imgPath) {
-
+  initSpinner = function() {
     /*
         spinner popup in right corner; `spinner = initSpinner()` to
         create or find, then usual `spinner.show()` or `.hide()` as
         needed.
-     */
+    */
+
     var spinner, spinnerExists;
     spinnerExists = $(document).find('.spinner');
     if (spinnerExists.length === 0) {
-      spinner = $("<img src=\"" + imgPath + "\" class=\"spinner\" />");
+      spinner = $("<img src=\"" + SpinnerHex + "\" class=\"spinner\" />");
       $(document).find('body').append(spinner);
       return spinner;
     }
@@ -15522,23 +19325,21 @@ jQuery(document).ready(function($) {
     },
     dataType: "json",
     cache: true,
-    error: (function(_this) {
-      return function() {
-        $(document).find('body').find('.errornav').remove();
-        return $(document).find('body').append(Templates.ErrorBar({
-          host: API_HOST
-        }));
-      };
-    })(this)
+    error: function() {
+      $(document).find('body').find('.errornav').remove();
+      return $(document).find('body').append(templates.ErrorBar({
+        host: API_HOST
+      }));
+    }
   });
-  dictionary = new module.DictionaryAPI({
+  dictionary = new DictionaryAPI({
     host: "/"
   });
   cleanTooltipResponse = function(selection, response, opts) {
-
     /*
         Clean response from tooltip $.post query, and display results
-     */
+    */
+
     var element, range, string, _wrapElement;
     string = selection.string;
     element = selection.element;
@@ -15547,13 +19348,14 @@ jQuery(document).ready(function($) {
       _wrapElement = $("<a style=\"font-style: italic; border: 1px solid #CEE; padding: 0 2px\" \n   class=\"tooltip_target\">" + string + "</a>")[0];
       selectionizer.surroundRange(range, _wrapElement);
     }
-    return Templates.renderPopup(response, selection);
+    return templates.renderPopup(response, selection);
   };
   lookupSelectEvent = function(evt, string, element, range, opts, full_text) {
-    var langpair, lookup_string, mws, post_data, response_func, result_elem, settings, source_lang, target_lang, uri, url, _cp, _max, _min, _ref;
+    var langpair, lookup_string, mws, post_data, response_func, result_elem, settings, source_lang, target_lang, uri, url, _cp, _max, _min, _ref,
+      _this = this;
     result_elem = $(document).find(opts.formResults);
     string = $.trim(string);
-    settings = $.fn.getCurrentDictOpts().settings;
+    settings = NDS.$.fn.getCurrentDictOpts().settings;
     if (settings.multiword_lookups) {
       if (string.length > 120) {
         console.log("DEBUG: string was too long.");
@@ -15570,11 +19372,9 @@ jQuery(document).ready(function($) {
     langpair = DSt.get(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair');
     _ref = langpair.split('-'), source_lang = _ref[0], target_lang = _ref[1];
     lookup_string = string;
-    _cp = first(window.nds_opts.dictionaries.filter((function(_this) {
-      return function(e) {
-        return e.from.iso === source_lang && e.to.iso === target_lang;
-      };
-    })(this)));
+    _cp = first(NDS.options.dictionaries.filter(function(e) {
+      return e.from.iso === source_lang && e.to.iso === target_lang;
+    }));
     if (_cp != null) {
       uri = _cp.uri;
     } else {
@@ -15593,17 +19393,15 @@ jQuery(document).ready(function($) {
       post_data.lookup = mws;
     }
     url = "" + opts.api_host + uri;
-    response_func = (function(_this) {
-      return function(response, textStatus) {
-        var selection;
-        selection = {
-          string: string,
-          element: element,
-          range: range
-        };
-        return cleanTooltipResponse(selection, response, opts);
+    response_func = function(response, textStatus) {
+      var selection;
+      selection = {
+        string: string,
+        element: element,
+        range: range
       };
-    })(this);
+      return cleanTooltipResponse(selection, response, opts);
+    };
     $.ajax({
       url: url,
       type: "POST",
@@ -15613,26 +19411,27 @@ jQuery(document).ready(function($) {
     return false;
   };
   $.fn.selectToLookup = function(opts) {
-    var dismissed, extendLanguageOpts, extendLanguageOptsAndInit, fetchConfigs, ie8Notify, initializeWithSettings, newVersionNotify, old_ie, recallLanguageOpts, spinner, storeConfigs, uagent, url, version_ok, _ref;
+    var dismissed, extendLanguageOpts, extendLanguageOptsAndInit, fetchConfigs, ie8Notify, initializeWithSettings, newVersionNotify, old_ie, recallLanguageOpts, spinner, storeConfigs, uagent, url, version_ok, _ref,
+      _this = this;
     opts = $.extend({}, $.fn.selectToLookup.options, opts);
-    window.nds_opts = opts;
-    spinner = initSpinner(opts.spinnerImg);
+    NDS.options = opts;
+    spinner = initSpinner();
     if (window.NDS_API_HOST || window.API_HOST) {
       window.API_HOST = window.NDS_API_HOST || window.API_HOST;
       if (/\/$/.test(window.API_HOST)) {
         window.API_HOST = window.API_HOST.slice(0, window.API_HOST.length - 1);
       }
     }
-    if (nds_opts.api_host) {
-      if (/\/$/.test(nds_opts.api_host)) {
-        nds_opts.api_host = nds_opts.api_host.slice(0, nds_opts.api_host.length - 1);
+    if (NDS.options.api_host) {
+      if (/\/$/.test(NDS.options.api_host)) {
+        NDS.options.api_host = NDS.options.api_host.slice(0, NDS.options.api_host.length - 1);
       }
-      window.API_HOST = nds_opts.api_host;
+      window.API_HOST = NDS.options.api_host;
     }
-    window.NDS_SHORT_NAME = getHostShortname(nds_opts.api_host);
+    window.NDS_SHORT_NAME = getHostShortname(NDS.options.api_host);
     newVersionNotify = function() {
-      $.getJSON(nds_opts.api_host + '/read/update/json/' + '?callback=?', function(response) {
-        $(document).find('body').append(Templates.NotifyWindow(response));
+      $.getJSON(NDS.options.api_host + '/read/update/json/' + '?callback=?', function(response) {
+        $(document).find('body').append(templates.NotifyWindow(response));
         $(document).find('#notifications').modal({
           backdrop: true,
           keyboard: true
@@ -15651,8 +19450,8 @@ jQuery(document).ready(function($) {
     };
     window.newVersionNotify = newVersionNotify;
     ie8Notify = function() {
-      $.getJSON(nds_opts.api_host + "/read/ie8_instructions/json/" + '?callback=?', function(response) {
-        $(document).find('body').prepend(Templates.NotifyWindow(response));
+      $.getJSON(NDS.options.api_host + "/read/ie8_instructions/json/" + '?callback=?', function(response) {
+        $(document).find('body').prepend(templates.NotifyWindow(response));
         $(document).find('#notifications').modal({
           backdrop: true,
           keyboard: true
@@ -15667,22 +19466,27 @@ jQuery(document).ready(function($) {
     };
     window.ie8Notify = ie8Notify;
     initializeWithSettings = function() {
-      var clean, holdingOption, previous_langpair, _from, _opt, _ref, _select, _to;
+      var clean, holdingOption, previous_langpair, _from, _opt, _ref, _select, _to,
+        _this = this;
       delete window.lookup_regex;
-      if (window.nds_opts.displayOptions) {
-        $(document).find('body').append(Templates.OptionsTab(window.nds_opts));
+      if (NDS.options.displayOptions) {
+        $(document).find('body').append(templates.OptionsTab(NDS.options));
         window.optTab = $(document).find('#webdict_options');
+        /* Over 9000?!!*/
 
-        /* Over 9000?!! */
         window.optTab.css('z-index', 9000);
+        $(document).find('#webdict_options').topZIndex();
+        $(document).find('#lessbuttons_holder').css({
+          'z-index': 5000
+        });
       }
       previous_langpair = DSt.get(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair');
       if (previous_langpair) {
         _select = "select[name='language_pair']";
         _opt = window.optTab.find(_select).val(previous_langpair);
       } else {
-        if (window.nds_opts.default_language_pair) {
-          _ref = window.nds_opts.default_language_pair, _from = _ref[0], _to = _ref[1];
+        if (NDS.options.default_language_pair) {
+          _ref = NDS.options.default_language_pair, _from = _ref[0], _to = _ref[1];
           _select = "select[name='language_pair'] option[value='" + _from + "-" + _to + "']";
           _opt = window.optTab.find(_select).val();
           previous_langpair = DSt.set(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair', _opt);
@@ -15692,27 +19496,25 @@ jQuery(document).ready(function($) {
           previous_langpair = DSt.set(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair', _opt);
         }
       }
-      holdingOption = (function(_this) {
-        return function(evt) {
-          var element, full_text, range, string, within_options, _ref1;
-          clean(evt);
-          if (evt.altKey) {
-            element = evt.target;
-            within_options = $(element).parents('#webdict_options');
-            if (within_options.length > 0) {
-              $(within_options[0]).find('#debug').show();
-              return false;
-            }
-            _ref1 = selectionizer.getFirstRange(), range = _ref1[0], full_text = _ref1[1];
-            string = selectionizer.cloneContents(range);
-            if (range && string) {
-              lookupSelectEvent(evt, string, element, range, window.nds_opts, full_text);
-            }
+      holdingOption = function(evt) {
+        var element, full_text, range, string, within_options, _ref1;
+        clean(evt);
+        if (evt.altKey) {
+          element = evt.target;
+          within_options = $(element).parents('#webdict_options');
+          if (within_options.length > 0) {
+            $(within_options[0]).find('#debug').show();
             return false;
           }
-          return true;
-        };
-      })(this);
+          _ref1 = selectionizer.getFirstRange(), range = _ref1[0], full_text = _ref1[1];
+          string = selectionizer.cloneContents(range);
+          if (range && string) {
+            lookupSelectEvent(evt, string, element, range, NDS.options, full_text);
+          }
+          return false;
+        }
+        return true;
+      };
       clean = function(event) {
         var parents;
         parents = [];
@@ -15733,40 +19535,34 @@ jQuery(document).ready(function($) {
       DSt.set(NDS_SHORT_NAME + '-' + 'nds-stored-config', "true");
       return true;
     };
-    extendLanguageOpts = (function(_this) {
-      return function(response) {
-        window.r_test = response;
-        window.nds_opts.dictionaries = response.dictionaries;
-        window.nds_opts.localization = response.localization;
-        window.nds_opts.default_language_pair = response.default_language_pair;
-        storeConfigs(response);
-      };
-    })(this);
+    extendLanguageOpts = function(response) {
+      window.r_test = response;
+      NDS.options.dictionaries = response.dictionaries;
+      NDS.options.localization = response.localization;
+      NDS.options.default_language_pair = response.default_language_pair;
+      storeConfigs(response);
+    };
     fetchConfigs = function() {
       var url;
       url = "" + opts.api_host + "/read/config/";
       return $.getJSON(url + '?callback=?', extendLanguageOpts);
     };
-    extendLanguageOptsAndInit = (function(_this) {
-      return function(response) {
-        extendLanguageOpts(response);
-        return initializeWithSettings();
-      };
-    })(this);
-    recallLanguageOpts = (function(_this) {
-      return function() {
-        var locales;
-        locales = DSt.get(NDS_SHORT_NAME + '-' + 'nds-localization');
-        if (typeof locales === "string") {
-          locales = JSON.parse(locales);
-        }
-        window.nds_opts.localization = locales;
-        return initializeWithSettings();
-      };
-    })(this);
+    extendLanguageOptsAndInit = function(response) {
+      extendLanguageOpts(response);
+      return initializeWithSettings();
+    };
+    recallLanguageOpts = function() {
+      var locales;
+      locales = DSt.get(NDS_SHORT_NAME + '-' + 'nds-localization');
+      if (typeof locales === "string") {
+        locales = JSON.parse(locales);
+      }
+      NDS.options.localization = locales;
+      return initializeWithSettings();
+    };
     version_ok = false;
     if (window.NDS_BOOKMARK_VERSION != null) {
-      version_ok = semver.gte(window.NDS_BOOKMARK_VERSION, EXPECT_BOOKMARKLET_VERSION);
+      version_ok = Semver.gte(window.NDS_BOOKMARK_VERSION, EXPECT_BOOKMARKLET_VERSION);
     } else {
       version_ok = true;
     }
@@ -15793,7 +19589,7 @@ jQuery(document).ready(function($) {
   };
   $.fn.getOptsForDict = function(_from, _to) {
     var dict, _i, _len, _ref;
-    _ref = window.nds_opts.dictionaries;
+    _ref = NDS.options.dictionaries;
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       dict = _ref[_i];
       if (dict.from.iso === _from && dict.to.iso === _to) {
@@ -15805,12 +19601,11 @@ jQuery(document).ready(function($) {
     var pair, _from, _ref, _to;
     pair = DSt.get(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair');
     _ref = pair.split('-'), _from = _ref[0], _to = _ref[1];
-    return $.fn.getOptsForDict(_from, _to);
+    return NDS.$.fn.getOptsForDict(_from, _to);
   };
   return $.fn.selectToLookup.options = {
     api_host: API_HOST,
     formResults: "#results",
-    spinnerImg: "/static/img/spinner.gif",
     sourceLanguage: "sme",
     langPairSelect: "#webdict_options *[name='language_pair']",
     tooltip: true,
@@ -15831,34 +19626,192 @@ jQuery(document).ready(function($) {
     ]
   };
 });
-// NDS_API_HOST references variable declared above in the bookmarklet
-// compilation, to be referenced within bookmarklet js stored in user's
-// browser (separate js from the actual bookmarklet.init.js, which is
-// the whole app..
 
-require.config({
-    paths: {
-        rangy: 'rangy/rangy-core',
-    },
-    shim: {
-        rangy: {
-            exports: "rangy",
-            init: function() { return this.rangy; },
-        },
-    },
-});
+}});
 
-jQuery(document).ready(function (){
-	// For some reason rangy needs to be initialized, but apparently only for
-	// the bookmarklet.
-    define(['rangy'], function(rangy) {
-        console.log("got rangy");
-        rangy.init();
-        jQuery(document).selectToLookup({
-            api_host: NDS_API_HOST + '/',
-            tooltip: true,
-            displayOptions: true,
-            spinnerImg: NDS_API_HOST + '/static/img/spinner.gif'
-        });
+;
+
+
+require.register({"lib/jquery.topZindex": function(exports, require, module) {
+  /*	
+	TopZIndex plugin for jQuery
+	Version: 1.2
+
+	http://topzindex.googlecode.com/
+	
+	Copyright (c) 2009-2011 Todd Northrop
+	http://www.speednet.biz/
+	
+	October 21, 2010
+	
+	Calculates the highest CSS z-index value in the current document
+	or specified set of elements.  Provides ability to push one or more
+	elements to the top of the z-index.  Useful for dynamic HTML
+	popup windows/panels.
+	
+	Based on original idea by Rick Strahl
+	http://west-wind.com/weblog/posts/876332.aspx
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version, subject to the following conditions:
+	
+	The above copyright notice and this permission notice shall be
+	included in all copies or substantial portions of the Software.
+	
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+------------------------------------------------------*/
+
+(function ($) {
+
+$.topZIndex = function (selector) {
+	/// <summary>
+	/// 	Returns the highest (top-most) zIndex in the document
+	/// 	(minimum value returned: 0).
+	/// </summary>	
+	/// <param name="selector" type="String" optional="true">
+	/// 	(optional, default = "*") jQuery selector specifying
+	/// 	the elements to use for calculating the highest zIndex.
+	/// </param>
+	/// <returns type="Number">
+	/// 	The minimum number returned is 0 (zero).
+	/// </returns>
+	
+	return Math.max(0, Math.max.apply(null, $.map(((selector || "*") === "*")? $.makeArray(document.getElementsByTagName("*")) : $(selector),
+		function (v) {
+			return parseFloat($(v).css("z-index")) || null;
+		}
+	)));
+};
+
+$.fn.topZIndex = function (opt) {
+	/// <summary>
+	/// 	Increments the CSS z-index of each element in the matched set
+	/// 	to a value larger than the highest current zIndex in the document.
+	/// 	(i.e., brings all elements in the matched set to the top of the
+	/// 	z-index order.)
+	/// </summary>	
+	/// <param name="opt" type="Object" optional="true">
+	/// 	(optional) Options, with the following possible values:
+	/// 	increment: (Number, default = 1) increment value added to the
+	/// 		highest z-index number to bring an element to the top.
+	/// 	selector: (String, default = "*") jQuery selector specifying
+	/// 		the elements to use for calculating the highest zIndex.
+	/// </param>
+	/// <returns type="jQuery" />
+	
+	// Do nothing if matched set is empty
+	if (this.length === 0) {
+		return this;
+	}
+	
+	opt = $.extend({increment: 1}, opt);
+
+	// Get the highest current z-index value
+	var zmax = $.topZIndex(opt.selector),
+		inc = opt.increment;
+
+	// Increment the z-index of each element in the matched set to the next highest number
+	return this.each(function () {
+		$(this).css({'z-index': (zmax += inc)});
+	});
+};
+
+})(jQuery);
+
+$.maxZIndex = $.fn.maxZIndex = function(opt) {
+    /// <summary>
+    /// Returns the max zOrder in the document (no parameter)
+    /// Sets max zOrder by passing a non-zero number
+    /// which gets added to the highest zOrder.
+    /// </summary>    
+    /// <param name="opt" type="object">
+    /// inc: increment value, 
+    /// group: selector for zIndex elements to find max for
+    /// </param>
+    /// <returns type="jQuery" />
+    var def = { inc: 10, group: "*" };
+    $.extend(def, opt);
+    var zmax = 0;
+    $(def.group).each(function() {
+        var cur = parseInt($(this).css('z-index'));
+        zmax = cur > zmax ? cur : zmax;
+    });
+    if (!this.jquery)
+        return zmax;
+
+    return this.each(function() {
+        zmax += def.inc;
+        $(this).css("z-index", zmax);
+    });
+}
+
+
+}});
+
+;
+
+
+require.register({"src/localization": function(exports, require, module) {
+  var fakeGetText;
+
+module.exports = fakeGetText = function(string) {
+  /* Want to mark strings as requiring gettext somehow, so that
+      a babel can find them.
+    
+      NB: Babel only has a javascript extractor, so, just compile the project
+      to JS as normal, then when you run pybabel's extract command, it will
+      find the strings in the unminified source in static/js/.
+    
+      Internationalizations are downloaded and stored in localStorage
+      on the first run of the plugin. Translations should degrade to
+      english if they are missing, or the localization is not present.
+    
+      The system will not store multiple localizations at a time, so
+      we assume the user does not really want to switch.
+  */
+
+  var localized;
+  if (NDS.options.localization != null) {
+    localized = NDS.options.localization[string];
+    if (localized != null) {
+      if (localized) {
+        return localized;
+      }
     }
+  }
+  return string;
+};
+
+}});
+
+;(function () {
+var Application;
+
+Application = require('src/application');
+
+window.NDS = new Application();
+
+})();
+
+;
+//# sourceMappingURL=app.js.map
+}).call(this);
+// End global NDS space
+// API_HOST references variable declared above in the bookmarklet
+// compilation.
+jQuery(document).ready(function (){
+    // For some reason rangy needs to be initialized here, but only for the
+    // bookmarklet
+    jQuery(document).selectToLookup({
+        api_host: NDS_API_HOST + '/',
+        spinnerImg: NDS_API_HOST + '/static/img/spinner.gif'
+    });
 });
