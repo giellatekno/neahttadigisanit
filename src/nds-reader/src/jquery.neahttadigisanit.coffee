@@ -10,6 +10,7 @@ Selection = require './selection'
 DictionaryAPI = require './dictionary'
 DSt = require('./DSt').DSt
 Semver = require '../lib/semver'
+JQZIndex = require('lib/jquery.topZindex')
 
 selectionizer = new Selection()
 templates = new Templates()
@@ -121,7 +122,7 @@ jQuery(document).ready ($) ->
     # actually necessary
     # .replace(/\b[-.,()&$#!\[\]{}"]+\B|\B[-.,()&$#!\[\]{}"]+\b/g, "")
 
-    settings = $.fn.getCurrentDictOpts().settings
+    settings = NDS.$.fn.getCurrentDictOpts().settings
     if settings.multiword_lookups
       if (string.length > 120)
         console.log "DEBUG: string was too long."
@@ -139,7 +140,7 @@ jQuery(document).ready ($) ->
     lookup_string = string
 
     # Now why am I doing it this way? provide default pair from menu?
-    _cp = first window.nds_opts.dictionaries.filter (e) =>
+    _cp = first NDS.options.dictionaries.filter (e) =>
       e.from.iso == source_lang and e.to.iso == target_lang
     
     if _cp?
@@ -206,24 +207,24 @@ jQuery(document).ready ($) ->
 
   $.fn.selectToLookup = (opts) ->
     opts = $.extend {}, $.fn.selectToLookup.options, opts
-    window.nds_opts = opts
+    NDS.options = opts
     spinner = initSpinner()
 
     if window.NDS_API_HOST || window.API_HOST
       window.API_HOST = window.NDS_API_HOST || window.API_HOST
       if /\/$/.test(window.API_HOST)
         window.API_HOST = window.API_HOST.slice(0, window.API_HOST.length - 1)
-    if nds_opts.api_host
-      if /\/$/.test(nds_opts.api_host)
-        nds_opts.api_host = nds_opts.api_host.slice(0, nds_opts.api_host.length - 1)
-      window.API_HOST = nds_opts.api_host
+    if NDS.options.api_host
+      if /\/$/.test(NDS.options.api_host)
+        NDS.options.api_host = NDS.options.api_host.slice(0, NDS.options.api_host.length - 1)
+      window.API_HOST = NDS.options.api_host
 
-    window.NDS_SHORT_NAME = getHostShortname(nds_opts.api_host)
+    window.NDS_SHORT_NAME = getHostShortname(NDS.options.api_host)
 
     # version notify
     newVersionNotify = () ->
       $.getJSON(
-        nds_opts.api_host + '/read/update/json/' + '?callback=?'
+        NDS.options.api_host + '/read/update/json/' + '?callback=?'
         (response) ->
           $(document).find('body').append(
             templates.NotifyWindow(response)
@@ -247,7 +248,7 @@ jQuery(document).ready ($) ->
 
     ie8Notify = () ->
       $.getJSON(
-        nds_opts.api_host + "/read/ie8_instructions/json/" + '?callback=?'
+        NDS.options.api_host + "/read/ie8_instructions/json/" + '?callback=?'
         (response) ->
           $(document).find('body').prepend(
             templates.NotifyWindow(response)
@@ -272,11 +273,13 @@ jQuery(document).ready ($) ->
       # Delete temporary thing.
       delete window.lookup_regex
 
-      if window.nds_opts.displayOptions
-        $(document).find('body').append templates.OptionsTab(window.nds_opts)
+      if NDS.options.displayOptions
+          
+        $(document).find('body').append templates.OptionsTab(NDS.options)
         window.optTab = $(document).find('#webdict_options')
         ### Over 9000?!! ###
         window.optTab.css('z-index', 9000)
+        $(document).find('#webdict_options').topZIndex()
 
       # Recall stored language pair from session
       previous_langpair = DSt.get(
@@ -286,8 +289,8 @@ jQuery(document).ready ($) ->
         _select = "select[name='language_pair']"
         _opt = window.optTab.find(_select).val(previous_langpair)
       else
-        if window.nds_opts.default_language_pair
-          [_from, _to] = window.nds_opts.default_language_pair
+        if NDS.options.default_language_pair
+          [_from, _to] = NDS.options.default_language_pair
           _select = "select[name='language_pair'] option[value='#{_from}-#{_to}']"
           _opt = window.optTab.find(_select).val()
           previous_langpair = DSt.set(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair', _opt)
@@ -308,7 +311,7 @@ jQuery(document).ready ($) ->
           [range, full_text] = selectionizer.getFirstRange()
           string = selectionizer.cloneContents(range)
           if range and string
-            lookupSelectEvent(evt, string, element, range, window.nds_opts, full_text)
+            lookupSelectEvent(evt, string, element, range, NDS.options, full_text)
           return false
         return true
 
@@ -333,9 +336,9 @@ jQuery(document).ready ($) ->
 
     extendLanguageOpts = (response) =>
       window.r_test = response
-      window.nds_opts.dictionaries = response.dictionaries
-      window.nds_opts.localization = response.localization
-      window.nds_opts.default_language_pair = response.default_language_pair
+      NDS.options.dictionaries = response.dictionaries
+      NDS.options.localization = response.localization
+      NDS.options.default_language_pair = response.default_language_pair
       storeConfigs(response)
       return
 
@@ -356,12 +359,12 @@ jQuery(document).ready ($) ->
       locales = DSt.get(NDS_SHORT_NAME + '-' + 'nds-localization')
       if typeof locales == "string"
         locales = JSON.parse locales
-      window.nds_opts.localization = locales
+      NDS.options.localization = locales
 
       # dicts = DSt.get(NDS_SHORT_NAME + '-' + 'nds-languages')
       # if typeof dicts == "string"
       #   dicts = JSON.parse dicts
-      # window.nds_opts.dictionaries = dicts
+      # NDS.options.dictionaries = dicts
 
       initializeWithSettings()
 
@@ -418,14 +421,14 @@ jQuery(document).ready ($) ->
     #     window.optTab.find('.well').removeClass('highlight')
 
   $.fn.getOptsForDict = (_from, _to) ->
-    for dict in window.nds_opts.dictionaries
+    for dict in NDS.options.dictionaries
       if dict.from.iso == _from and dict.to.iso == _to
         return dict
 
   $.fn.getCurrentDictOpts = () ->
     pair = DSt.get(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair')
     [_from, _to] = pair.split('-')
-    $.fn.getOptsForDict _from, _to
+    NDS.$.fn.getOptsForDict _from, _to
 
   $.fn.selectToLookup.options =
     api_host: API_HOST

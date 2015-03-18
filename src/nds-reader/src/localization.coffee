@@ -14,8 +14,8 @@ module.exports = fakeGetText = (string) ->
         we assume the user does not really want to switch.
     ###
     
-    if window.nds_opts.localization?
-      localized = window.nds_opts.localization[string]
+    if NDS.options.localization?
+      localized = NDS.options.localization[string]
       if localized?
         if localized
           return localized

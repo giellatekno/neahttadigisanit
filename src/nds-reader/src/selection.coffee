@@ -1,6 +1,7 @@
 # rangy = module.Rangy
 
 rangy = require 'rangy'
+rangy_textrange = require 'rangy-textrange'
 
 module.exports = class Selection
 
@@ -33,7 +34,7 @@ module.exports = class Selection
       return false
 
   getFirstRange: ->
-    opts = $.fn.getCurrentDictOpts().settings
+    opts = NDS.$.fn.getCurrentDictOpts().settings
 
     # make the selection
     sel = rangy.getSelection()

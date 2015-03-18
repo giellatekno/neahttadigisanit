@@ -1,7 +1,8 @@
  * fix all the global variables accessed by window\. 
- * current problem: rangy is still missing, but it's probably because of the require shenanigans
- * current problem: selectToLookup is registered but not running
 
 
- * potentially global exports, ndsrequire, module is conflicting with things on NRK
  * jquery included in final bookmarklet?
+
+ * register default options on startup if options are not able to be found: 
+    NDS.$.fn.getCurrentDictOpts().settings == undefined
+

@@ -1,3 +1,3 @@
 Application = require 'src/application'
 
-window.nds_app = new Application()
+window.NDS = new Application()

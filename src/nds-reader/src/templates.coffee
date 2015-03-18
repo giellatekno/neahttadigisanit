@@ -20,7 +20,7 @@ module.exports = class Templates
       else
         return false
 
-    opts = window.nds_opts
+    opts = NDS.options
     string   = selection.string
     element  = selection.element
     range    = selection.range
@@ -65,7 +65,7 @@ module.exports = class Templates
     langpair = DSt.get(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair')
     [_f_from, _t_to] = langpair.split('-')
 
-    _cp = first window.nds_opts.dictionaries.filter (e) =>
+    _cp = first NDS.options.dictionaries.filter (e) =>
       e.from.iso == _f_from and e.to.iso == _t_to
     
     if _cp

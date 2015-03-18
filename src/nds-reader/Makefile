@@ -38,12 +38,12 @@ tmp/nds.with.deps.min.js: src/wrapper_start.js \
 	@echo "   BUILDING:     nds.with.deps.min.js"
 	@cat $^ > $@
 
-tmp/nds.with.deps.jq.js: dev/jquery-1.11.1.js \
+tmp/nds.with.deps.jq.js: lib/jquery-1.11.1.js \
 						 tmp/nds.with.deps.js
 	@echo "   CAT:         " $@
 	@cat $^ > $@
 
-tmp/jquery-1.11.1.min.js: dev/jquery-1.11.1.js
+tmp/jquery-1.11.1.min.js: lib/jquery-1.11.1.js
 	@$(UGLY) $^ > $@
 
 tmp/nds.with.deps.min.jq.js: tmp/jquery-1.11.1.min.js \
