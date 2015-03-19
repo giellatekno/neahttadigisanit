@@ -64,3 +64,17 @@ table.miniparadigm {
 table.miniparadigm .double-width {
     border-top: 1px dotted #CCC; 
 }
+
+/* grammar links
+ *
+ */
+
+span.grammar_link_text {
+    font-variant: small-caps;
+    font-size: 110%;
+}
+
+em.grammar_link {
+    font-style: italic;
+    color: #207098;
+}
