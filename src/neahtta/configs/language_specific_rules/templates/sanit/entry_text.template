@@ -9,6 +9,13 @@
 {%- if pos == 'Pron' %}
     {% set pos_type = first_l|xpath('@type')|tagfilter(_from, _to) %}
     {% set pos_text = pos|tagfilter(_from, _to)  + " " + pos_type %}
+{% elif pos == 'N' and first_l.attrib.get('type') %}
+    {% if first_l.attrib.get('type') == 'Prop' %}
+        {% set pos_type = first_l.attrib.get('type')|tagfilter(_from, _to) %}
+    {% else %}
+        {% set pos_type = '' %}
+    {% endif %}
+    {% set pos_text = pos|tagfilter(_from, _to)  + " " + pos_type %}
 {% else %}
     {% set pos_text = pos|tagfilter(_from, _to) %}
 {%- endif %}
