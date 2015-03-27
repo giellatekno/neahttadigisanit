@@ -28,6 +28,8 @@
         in the query, so we need to urlencode the query, but not the rest of
         the path #}
 
+        {# TODO: bilingual #}
+
         {% set query = search_path.replace(
             'SEARCH_QUERY', 
             query_path.replace(

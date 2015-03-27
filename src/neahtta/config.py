@@ -22,8 +22,17 @@ DEFAULT_WORD_REGEX = '[\u00C0-\u1FFF\u2C00-\uD7FF\w\-]+'
 DEFAULT_WORD_REGEX_OPTS = 'g'
 
 def external_korp_url(pair_details, user_input):
+    import urllib
+
     from flask import redirect
     from flask import g
+
+    # TODO: bilingual
+
+    #    'korp_parallel'
+
+    #    'bilingual_wordform_search_path'
+    #    'bilingual_wordform_search_query'
 
     korp_opts = pair_details.get('korp_options')
     korp_host = pair_details.get('korp_search_host')
@@ -34,14 +43,26 @@ def external_korp_url(pair_details, user_input):
     else:
         url_pattern = korp_opts.get('wordform_search_path').replace('TARGET_LANG_ISO', g.orig_from)
 
+    if korp_opts.get('korp_parallel'):
+        url_pattern = korp_opts.get('bilingual_wordform_search_path').replace('TARGET_LANG_ISO', g.orig_from)
+        url_pattern = url_pattern.replace(
+            'SEARCH_QUERY',
+            urllib.quote(
+                korp_opts.get('bilingual_wordform_search_query'),
+                safe="#&/"
+            )
+        )
+
     delimiter_pattern = korp_opts.get('lemma_multiword_delimeter')
 
     if ' ' in user_input and delimiter_pattern:
         user_input = delimiter_pattern.join(user_input.split(' '))
 
-    redirect_url = korp_host + url_pattern.replace('USER_INPUT', user_input)
+    url_pattern = url_pattern.replace('USER_INPUT', user_input)
 
-    return redirect(redirect_url.encode('utf-8'))
+    redirect_url = korp_host + url_pattern
+
+    return redirect(redirect_url)
 
 
 def validate_variants(variants, lexicon):
@@ -580,8 +601,11 @@ class Config(Config):
                     'lemma_search_query': 'cqp|[lemma = "INPUT_LEMMA"]',
                     'wordform_search_path': '/?mode=TARGET_LANG_ISO#search=word|USER_INPUT&page=0',
                     'wordform_search_path_default_lang': '/#search=word|USER_INPUT&page=0',
+                    'bilingual_wordform_search_path': '/?mode=parallel#parallel_corpora=TARGET_LANG_ISO&page=0&search=SEARCH_QUERY',
+                    'bilingual_wordform_search_query': 'cqp|[(word = "USER_INPUT")]',
                     'lemma_search_delimiter': '] [lemma = ',
                     'is_korp_default_lang': dict_def.get('is_korp_default_lang', False),
+                    'korp_parallel': dict_def.get('korp_parallel', False),
                 }
 
                 _pair_options = {
@@ -590,7 +614,7 @@ class Config(Config):
                     'show_korp_search': dict_def.get('show_korp_search', False),
                     'korp_search_host': dict_def.get('korp_search_host', False),
                     'korp_options': dict_def.get('korp_options', _default_korp),
-                    'asynchronous_paradigms': dict_def.get('asynchronous_paradigms', False)
+                    'asynchronous_paradigms': dict_def.get('asynchronous_paradigms', False),
                 }
                 for iso in _lang_isos:
                     _pair_options['langs'][iso] = (_from_langs[iso], _to_langs[iso])
