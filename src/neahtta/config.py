@@ -734,12 +734,13 @@ class Config(Config):
 
         self._morphologies = {}
 
-        from morphology import XFST, OBT, Morphology, HFST
+        from morphology import XFST, OBT, Morphology
+        # , HFST
         morph_cache = self.get('cache', False)
 
         formats = {
             'xfst': XFST,
-            'hfst': HFST,
+            # 'hfst': HFST,
             'obt': OBT,
         }
 
