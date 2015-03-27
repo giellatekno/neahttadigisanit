@@ -27,17 +27,9 @@ def external_korp_url(pair_details, user_input):
     from flask import redirect
     from flask import g
 
-    # TODO: bilingual
-
-    #    'korp_parallel'
-
-    #    'bilingual_wordform_search_path'
-    #    'bilingual_wordform_search_query'
-
     korp_opts = pair_details.get('korp_options')
     korp_host = pair_details.get('korp_search_host')
 
-    # TODO: original pair, if current pair is variant
     if korp_opts.get('is_korp_default_lang'):
         url_pattern = korp_opts.get('wordform_search_path_default_lang')
     else:
