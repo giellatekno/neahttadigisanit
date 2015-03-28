@@ -15,13 +15,23 @@
     {% if not orig_from %}
         {% set orig_from = _from %}
     {% endif %}
-    {% if current_pair_settings.korp_options.lemma_search_path and lemma -%}
+    {%- set korp_opts = current_pair_settings.korp_options %}
+    {% if korp_opts.lemma_search_path and lemma -%}
         {% set l_host = current_pair_settings.korp_search_host %}
-        {% set query_path = current_pair_settings.korp_options.lemma_search_query %}
-        {% if current_pair_settings.korp_options.is_korp_default_lang %}
-            {% set search_path = current_pair_settings.korp_options.lemma_search_path_default_lang %}
+        {% set query_path = korp_opts.lemma_search_query %}
+
+        {% if korp_opts.is_korp_default_lang %}
+            {% set search_path = korp_opts.lemma_search_path_default_lang %}
         {% else %}
-            {% set search_path = current_pair_settings.korp_options.lemma_search_path.replace('TARGET_LANG_ISO', orig_from) %}
+            {% set search_path = korp_opts.lemma_search_path.replace('TARGET_LANG_ISO', orig_from) %}
+        {% endif %}
+
+        {% if korp_opts.korp_parallel %}
+            {% set search_path = korp_opts.bilingual_wordform_search_path
+                        .replace('TARGET_LANG_ISO', orig_from) %}
+            {% set query_path = korp_opts.bilingual_wordform_search_query
+                        .replace('word', 'lemma')
+                        .replace('USER_INPUT', 'INPUT_LEMMA') %}
         {% endif %}
 
         {# Have to only encode half of this, because korp doesn't accept quotes
