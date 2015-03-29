@@ -109,6 +109,7 @@ install_langs_fsts: $(langs)
 		cp $(GTHOME)/langs/$$ll/src/generator-dict-gt-norm.xfst /opt/smi/$$ll/bin/ ; \
 		cp $(GTHOME)/langs/$$ll/src/generator-dict-gt-norm.hfstol /opt/smi/$$ll/bin/ ; \
 		cp $(GTHOME)/langs/$$ll/src/generator-dict-gt-desc-mobile.hfstol /opt/smi/$$ll/bin/ ; \
+		cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc-mobile.hfstol /opt/smi/$$ll/bin/ ; \
 		cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc-mobile.xfst  /opt/smi/$$ll/bin/ 2>/dev/null || : ; \
 	done 
 	for ll in $(GT_COMPILE_STARTUP_LANGS) ; do \
@@ -412,7 +413,7 @@ copy-itwewina-variants: $(GTHOME)/langs/crk/src/analyser-dict-gt-desc-mobile.Can
 #####
 
 SAAN_LANGS_ANALYSERS      :=   sms fin
-# SAAN_LANGS_FLAGS          :=   --with-hfst
+SAAN_LANGS_FLAGS          :=   --with-hfst --enable-twostep-intersect
 SAAN_LANGS_LEXICA         :=   sms
 SAAN_WORDS_DICTS_LEXICA   :=   sms2X
 
@@ -429,7 +430,7 @@ saan-lexica: compile_langs_lexicon compile_words_dicts_lexicon
 saan: GT_COMPILE_LANGS := $(SAAN_LANGS_ANALYSERS)
 saan: LEX_COMPILE_LANGS := $(SAAN_LANGS_LEXICA)
 saan: LEX_COMPILE_WORDS_DICTS := $(SAAN_WORDS_DICTS_LEXICA)
-# saan: LANGS_FLAGS := $(SAAN_LANGS_FLAGS)
+saan: LANGS_FLAGS := $(SAAN_LANGS_FLAGS)
 saan: saan-lexica compile_langs_fsts print_complete_message
 
 rm-saan-lexica: $(foreach xx, $(SAAN_LANGS_LEXICA), $(xx)-all.xml) \
@@ -648,10 +649,9 @@ nob-sme.all.xml: $(GTHOME)/words/dicts/nobsme/src/*.xml
 	@echo "******************************"
 	@echo ""
 	-@cp $@ $@.$(shell date +%s).bak
-	mkdir -p nobsme
-	cp $^ nobsme/
-	$(SAXON) inDir=$(pwd)/nobsme/ > $@
-	rm -rf nobsme/
+	cd $(GTHOME)/words/dicts/nobsme/src/ ; \
+		$(SAXON) inDir=. > $@
+	mv $(GTHOME)/words/dicts/nobsme/src/$@ $@
 
 .PHONY: sanit-lexica
 sanit-lexica: fin-sme.all.xml \
