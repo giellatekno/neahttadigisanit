@@ -649,9 +649,12 @@ nob-sme.all.xml: $(GTHOME)/words/dicts/nobsme/src/*.xml
 	@echo "******************************"
 	@echo ""
 	-@cp $@ $@.$(shell date +%s).bak
-	cd $(GTHOME)/words/dicts/nobsme/src/ ; \
-		$(SAXON) inDir=. > $@
-	mv $(GTHOME)/words/dicts/nobsme/src/$@ $@
+	mkdir -p nobsme
+	-@cp -r $(GTHOME)/words/dicts/nobsme/dtd dtd
+	cp $^ nobsme/
+	$(SAXON) inDir=$(pwd)/nobsme/ > $@
+	rm -rf nobsme/
+	rm -rf dtd/
 
 .PHONY: sanit-lexica
 sanit-lexica: fin-sme.all.xml \
