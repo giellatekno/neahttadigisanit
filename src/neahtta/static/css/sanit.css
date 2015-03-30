@@ -70,11 +70,10 @@ table.miniparadigm .double-width {
  */
 
 span.grammar_link_text {
-    font-variant: small-caps;
-    font-size: 110%;
+    font-style: italic;
+    font-weight: 400;
 }
 
 em.grammar_link {
     font-style: italic;
-    color: #207098;
 }

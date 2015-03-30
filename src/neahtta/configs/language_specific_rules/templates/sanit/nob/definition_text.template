@@ -17,7 +17,7 @@
 
     {%- if contains_grammar_link -%}
         {%- if annotations|count > 0 and not fra_ref -%}
-            &mdash; {{ annotations[0].text }}
+            ({{ annotations[0].text }})
         {% endif -%}
     {% else %}
         {% if annotations|count > 0 and not fra_ref %}
