@@ -23,7 +23,7 @@ Morphology:
   crk:
     tool: *HLOOKUP
     file: [*OPT, '/crk/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/crk/bin/generator-dict-gt-norm.hfstol']
+    inverse_file: [*OPT, '/crk/bin/generator-dict-gt-norm.Cans.hfstol']
     format: 'hfst'
     options: &MORPHOLOGY_OPTS
       compoundBoundary: "+Use/Circ#"
@@ -32,7 +32,7 @@ Morphology:
       inverse_tagsep: '+'
   crkMacr:
     tool: *LOOKUP
-    file: [*OPT, '/crk/bin/analyser-dict-gt-desc.xfst']
+    file: [*OPT, '/crk/bin/analyser-dict-gt-desc.hfstol']
     inverse_file: [*OPT, '/crk/bin/generator-dict-gt-norm.saskatchewan.xfst']
     format: 'xfst'
     options: *MORPHOLOGY_OPTS
@@ -44,20 +44,6 @@ Morphology:
   ##   format: 'xfst'
   ##   options: *MORPHOLOGY_OPTS
 
-  # mobile
-  crkM:
-    tool: *LOOKUP
-    file: [*OPT, '/crk/bin/analyser-dict-gt-desc-mobile.xfst']
-    inverse_file: [*OPT, '/crk/bin/generator-dict-gt-norm.xfst']
-    format: 'xfst'
-    options: *MORPHOLOGY_OPTS
-  crkMMacr:
-    tool: *LOOKUP
-    file: [*OPT, '/crk/bin/analyser-dict-gt-desc-mobile.saskatchewan.xfst']
-    inverse_file: [*OPT, '/crk/bin/generator-dict-gt-norm.saskatchewan.xfst']
-    format: 'xfst'
-    options: *MORPHOLOGY_OPTS
-
 Languages:
   - iso: crk
     minority_lang: true
@@ -65,20 +51,15 @@ Languages:
     variant: True # this makes the fab process skip attempting `svn up` here.
   - iso: crkMacr
     variant: True # this makes the fab process skip attempting `svn up` here.
-  - iso: crkMMacr
-    variant: True # this makes the fab process skip attempting `svn up` here.
-  
   - iso: eng
 
 Dictionaries:
   - source: crk
     target: eng
     path: 'dicts/crkeng.xml'
-    asynchronous_paradigms: true
     input_variants: &spell_relax
       - type: "standard"
-        description: !gettext "Standard | SRO"
-        example: "(aâ)"
+        description: !gettext "aio âêîô"
         # NB: must be same as analyser name
         short_name: "crk"
         onscreen_keyboard: &CRK_KEYS_CIRC
@@ -86,9 +67,8 @@ Dictionaries:
           - "ê"
           - "î"
           - "ô"
-      - type: "saskatchewan"
-        description: !gettext "Standard | SRO"
-        example: "(aā)"
+      - type: "macron"
+        description: !gettext "aio āēīō"
         # NB: must be same as analyser name
         short_name: "crkMacr"
         onscreen_keyboard: &CRK_KEYS_MACR
@@ -96,16 +76,6 @@ Dictionaries:
           - "ē"
           - "ī"
           - "ō"
-      - type: "mobile"
-        description: !gettext "Mobile friendly"
-        example: "a &rarr; a ~ â"
-        short_name: "crkM"
-        onscreen_keyboard: *CRK_KEYS_CIRC
-      - type: "mobile"
-        description: !gettext "Mobile friendly"
-        example: "a &rarr; a ~ ā"
-        short_name: "crkMMacr"
-        onscreen_keyboard: *CRK_KEYS_MACR
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/c_korp"
     is_korp_default_lang: True
