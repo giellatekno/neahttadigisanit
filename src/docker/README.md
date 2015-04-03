@@ -21,3 +21,24 @@ takes to set up a system with these tools.
 
 TODO: nginx
 
+## Installing Docker on Mac
+
+### Basic terms
+
+ * image - VM image
+ * container - containers are 'cheap', easy to create one from an image, and
+   they can be destroyed easily
+
+### Basic commands
+
+ * boot2docker
+
+ * docker ps -a - show running containers
+ * docker images - show images
+ 
+
+### Getting started
+
+## NDS Development
+
+
