@@ -938,14 +938,14 @@ msgstr ""
 
 #: templates/language_select_noflags.html:7
 msgid "Language"
-msgstr ""
+msgstr "Ǩiõll"
 
 #: templates/left_dictionary_list.html:1
 #: templates/mobile_nav_dictionary_list.html:1
 #: templates/mobile_nav_push_menu.html:41
 #: templates/mobile_nav_push_menu.html:44
 msgid "Dictionaries"
-msgstr ""
+msgstr "Sääʹnnǩeeʹrj"
 
 #: templates/left_dictionary_list.html:17
 msgid "Escape Text-TV mode"
