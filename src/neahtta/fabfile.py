@@ -76,6 +76,10 @@ def local(*args, **kwargs):
     env.hosts = ['localhost']
 
     gthome = os.environ.get('GTHOME')
+
+    if gthome is None:
+        sys.exit("GTHOME environment variable is not set.")
+
     env.path_base = os.getcwd()
 
     env.svn_path = gthome
