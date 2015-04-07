@@ -23,7 +23,7 @@ Morphology:
   crk:
     tool: *HLOOKUP
     file: [*OPT, '/crk/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/crk/bin/generator-dict-gt-norm.Cans.hfstol']
+    inverse_file: [*OPT, '/crk/bin/generator-dict-gt-norm.hfstol']
     format: 'hfst'
     options: &MORPHOLOGY_OPTS
       compoundBoundary: "+Use/Circ#"
@@ -32,9 +32,9 @@ Morphology:
       inverse_tagsep: '+'
   crkMacr:
     tool: *LOOKUP
-    file: [*OPT, '/crk/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/crk/bin/generator-dict-gt-norm.saskatchewan.xfst']
-    format: 'xfst'
+    file: [*OPT, '/crk/bin/analyser-dict-gt-desc.macron.hfstol']
+    inverse_file: [*OPT, '/crk/bin/generator-dict-gt-norm.macron.hfstol']
+    format: 'hfst'
     options: *MORPHOLOGY_OPTS
   # syllabics
   ## crkS:
