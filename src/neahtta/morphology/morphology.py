@@ -14,6 +14,9 @@ class Tagset(object):
     def __str__(self):
         return '<Tagset: "%s">' % self.name
 
+    def __contains__(self, item):
+        return item in self.members
+
 class Tagsets(object):
     def __init__(self, set_definitions):
         self.sets = {}
@@ -597,6 +600,17 @@ class XFST(object):
             delim = self.options.get('tagsep', '+')
 
         return analysis.split(delim)
+
+class HFST(XFST):
+
+    def __init__(self, lookup_tool, fst_file, ifst_file=False, options={}):
+        self.cmd = "%s %s" % (lookup_tool, fst_file)
+        self.options = options
+
+        if ifst_file:
+            self.icmd = "%s %s" % (lookup_tool, ifst_file)
+        else:
+            self.icmd = False
 
 class OBT(XFST):
     """ TODO: this is almost like CG, so separate out those things if
