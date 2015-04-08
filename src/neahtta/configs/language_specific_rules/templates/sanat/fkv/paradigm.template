@@ -1,4 +1,4 @@
-{# This is the paradigm template for North Sámi.
+{# This is the paradigm template for Kven.
 
  * Nouns: Display everything in the paradigm in a definition list
  * Verbs: Display a table with one column for present tense, and one for
@@ -7,7 +7,7 @@
    also add a title on the table.
 
    - These are controlled by tagsets. Including more forms for verbs can
-   	 be handled by adding more tags to the file `tagsets/sme.tagset`
+   	 be handled by adding more tags to the file `tagsets/fkv.tagset`
 
  #}
 
@@ -48,26 +48,16 @@
     {% set conneg_text   = "ConNeg"|tagfilter(_from, _to) %}
     {% set verb_text     = "V"|tagfilter(_from, _to) %}
     {% set verb_text_ind = "Ind"|tagfilter(_from, _to) %}
-    {% set sup_text      = "Sup"|tagfilter(_from, _to) %}
     {% set neg_text      = "Neg"|tagfilter(_from, _to) %}
 
     {% set nonfinite_header = False %}
-    {% set is_supinum = nonfinite_forms|by_tagset("supinum")|length > 0 %}
     {# we'll know this isn't just a normal verb with a couple negative
         forms because there are 9 #}
     {% set is_negative = nonfinite_forms|by_tagset("negative")|length == 9 %}
 
-    {% if is_supinum and is_negative %}
-        {% set nonfinite_header = sup_text + " " + neg_text %}
-    {% endif %}
-
-    {% if is_negative and not is_supinum %}
-        {% set nonfinite_header = neg_text %}
-    {% endif %}
-
     {% macro clean_tag(tag_input) -%}
         {% set filtered_tag = tag_input|tagfilter(_from, _to) %}
-        {% if nonfinite_header and (is_supinum or is_negative) %}
+        {% if nonfinite_header and is_negative %}
             {% set filtered_tag = filtered_tag|replace(sup_text, "")
                                               |replace(neg_text, "") %}
         {% endif %}
@@ -141,16 +131,6 @@
     {# If there are nomainal number markings, then we'll split these
        into two columns. Must determine this by checking the tagsets. 
 
-       Works for words like eará, soames, etc.
-
-       TODO: mii +Rel
-             gii +Rel
-             makkár +Rel / +Interr
-             dat nr="Sg", type="Dem"
-             dat nr="Pl", type="Dem"
-
-             recipr is broken
-                /detail/sme/nob/goabbat%20guoimmisteame.html
     #}
 
     {% set two_columns = False %}
@@ -182,7 +162,7 @@
 {%- macro full_paradigm_link() %}
     <a class="full-paradigm-link"
        style="opacity: .8;"
-       href="http://gtweb.uit.no/cgi-bin/smi/smi.cgi?text={{ lemma }}&pos={{ pos }}&mode=full&action=paradigm&lang=sme&plang=sme">
+       href="http://gtweb.uit.no/cgi-bin/smi/smi.cgi?text={{ lemma }}&pos={{ pos }}&mode=full&action=paradigm&lang=fkv&plang=nob">
         {%- trans -%}Full paradigm{%- endtrans -%} &nbsp;&rarr;
     </a>
 {% endmacro -%}
@@ -200,8 +180,8 @@
 
                 <tr>
                     <th></th>
-                    <th lang="{{ _to }}">{{ prs_text }} <em>(odne)</em></th>
-                    <th lang="{{ _to }}">{{ prt_text }} <em>(ikte)</em></th>
+                    <th lang="{{ _to }}">{{ prs_text }} <em>(tääpåanåa)</em></th>
+                    <th lang="{{ _to }}">{{ prt_text }} <em>(eilen)</em></th>
                 </tr>
 
                 {%- for present_forms, preterite_forms in zipped_verbs -%}
