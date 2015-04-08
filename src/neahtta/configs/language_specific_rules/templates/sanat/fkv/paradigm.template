@@ -180,7 +180,7 @@
 
                 <tr>
                     <th></th>
-                    <th lang="{{ _to }}">{{ prs_text }} <em>(tääpåanåa)</em></th>
+                    <th lang="{{ _to }}">{{ prs_text }} <em>(tääpänä)</em></th>
                     <th lang="{{ _to }}">{{ prt_text }} <em>(eilen)</em></th>
                 </tr>
 
