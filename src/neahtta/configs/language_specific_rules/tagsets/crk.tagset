@@ -34,4 +34,10 @@ person:
  - "3PlO"
  - "PlO"
  - "4PlO"
-
+# These are the tag parts to hide in the paradigm tags.
+invisible_in_paradigms:
+ - "V"
+ - "TA"
+ - "Cnj"
+ - "Ind"
+ - "Prs"

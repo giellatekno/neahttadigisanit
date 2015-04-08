@@ -1,0 +1,156 @@
+{# This is the paradigm template for North Sámi.
+
+ * Nouns: Display everything in the paradigm in a definition list
+ * Verbs: Display a table with one column for present tense, and one for
+   preterite tense; then display a separate definition list for
+   nonfinite forms. For the negative verb and supinum negative verb, we
+   also add a title on the table.
+
+   - These are controlled by tagsets. Including more forms for verbs can
+   	 be handled by adding more tags to the file `tagsets/sme.tagset`
+
+ #}
+
+{%- set first_l = lexicon_entry|xpath('lg/l')|first %}
+{% set lemma = first_l|text %}
+{% set pos = first_l|xpath('@pos')|first %}
+{% set has_forms = paradigm and paradigm|length > 0 -%}
+{% set paradigm_exists = paradigm|length > 0 %}
+
+{%- if pos|upper == 'V' %}
+    {% set verbs = true %}
+
+    {% set indicative_v    = paradigm|by_tagset("indicative")
+                                     |group_by_tag %}
+
+    {% set conjunct_v      = paradigm|by_tagset("conjunct")
+                                     |group_by_tag %}
+
+    {% set nonfinite_forms = [] %}
+
+    {# As long as the paradigm files are in order, this will zip
+    accurately. If not we need to manually select each form and display
+    it. #}
+
+    {# Use izip_longest to fill in the extra blanks spaces when one list
+       ends first #}
+
+    {% set zipped_verbs = izip_longest(indicative_v, conjunct_v, fillvalue='-')|list %}
+    
+    {% set paradigm_exists = zipped_verbs|length > 0 or nonfinite_forms|length > 0 %}
+
+    {# strip some parts of the tags that we don't need #}
+
+    {% set ind_text      = "Ind"|tagfilter(_from, _to) %}
+    {% set cnj_text      = "Cnj"|tagfilter(_from, _to) %}
+
+    {% set conneg_text   = "ConNeg"|tagfilter(_from, _to) %}
+    {% set verb_text     = "V"|tagfilter(_from, _to) %}
+    {% set verb_text_ind = "Ind"|tagfilter(_from, _to) %}
+    {% set sup_text      = "Sup"|tagfilter(_from, _to) %}
+    {% set neg_text      = "Neg"|tagfilter(_from, _to) %}
+
+    {% set nonfinite_header = False %}
+    {% set is_supinum = nonfinite_forms|by_tagset("supinum")|length > 0 %}
+    {# we'll know this isn't just a normal verb with a couple negative
+        forms because there are 9 #}
+    {% set is_negative = nonfinite_forms|by_tagset("negative")|length == 9 %}
+
+    {% set nonfinite_header = "omg" %}
+
+    {% macro clean_tag(tag_input) -%}
+        {% set filtered_tag = tag_input|remove_by_tagset('invisible_in_paradigms')|tagfilter(_from, _to) %}
+        {% if nonfinite_header and (is_supinum or is_negative) %}
+            {% set filtered_tag = filtered_tag|replace(sup_text, "")
+                                              |replace(neg_text, "") %}
+        {% endif %}
+
+        {% if conneg_text in filtered_tag %}
+            {{ filtered_tag|replace(verb_text, "")
+                           |replace(verb_text_ind, "") }}
+        {% else %}
+            {{ filtered_tag|replace(ind_text, "")
+                           |replace(cnj_text, "")
+                           |replace(verb_text, "")
+                           |replace(verb_text_ind, "") }}
+        {% endif %}
+    {%- endmacro %}
+
+{%- endif %}
+
+{# TODO: #}
+{%- macro full_paradigm_link() %}
+    <a class="full-paradigm-link"
+       style="opacity: .8;"
+       href="http://gtweb.uit.no/cgi-bin/smi/smi.cgi?text={{ lemma }}&pos={{ pos }}&mode=full&action=paradigm&lang=crk&plang=crk">
+        {%- trans -%}Full paradigm{%- endtrans -%} &nbsp;&rarr;
+    </a>
+{% endmacro -%}
+
+{%- if has_forms %}
+
+{%- if pos|upper == 'V' %}
+    {% if paradigm_exists %}
+        {% if zipped_verbs %}
+        <table class="tableparadigm miniparadigm">
+
+            {# This is the two-column tense paradigm #}
+
+                <tr>
+                    <th></th>
+                    <th lang="{{ _to }}">{{ ind_text }}</th>
+                    <th lang="{{ _to }}">{{ cnj_text }}</th>
+                </tr>
+
+                {%- for present_forms, preterite_forms in zipped_verbs -%}
+                    <tr>
+
+                    {% if present_forms[0].tag %}
+                        {% set tag_display = clean_tag(present_forms[0].tag) %}
+                    {% elif preterite_forms[0].tag %}
+                        {% set tag_display = clean_tag(preterite_forms[0].tag) %}
+                    {% endif %}
+
+                    <th class="tag" lang="{{ _to }}">{{ tag_display }}</th>
+
+                    {% if present_forms and present_forms != '-' %}
+                        <td lang="{{ _from }}">{{ present_forms|join('<br />', attribute='form') }}</td>
+                    {% else %}
+                        <td lang="{{ _from }}">&mdash;</td>
+                    {% endif %}
+
+                    {% if preterite_forms and preterite_forms != '-' %}
+                        <td lang="{{ _from }}">{{ preterite_forms|join('<br />', attribute='form') }}</td>
+                    {% else %}
+                        <td lang="{{ _from }}">&mdash;</td>
+                    {% endif %}
+
+                    </tr>
+
+                {%- endfor -%}
+        </table>
+        {% endif %}
+    {% endif %}
+{% else %}
+    <dl class="dl-horizontal miniparadigm">
+        {%- for form in paradigm -%}
+
+            {% if form.tag %}
+                <dt>{{ form.tag|tagfilter(_from, _to)  }}</dt>
+            {% endif %}
+
+            {% if form.form %}
+            <dd lang="{{ _from }}">{{ form.form }}</dd>
+            {% else %}
+                <dd lang="{{ _from }}">?</dd>
+            {% endif %}
+        {%- endfor -%}
+    </dl>
+{% endif %}
+
+{% if paradigm_exists %}
+    {{ full_paradigm_link() }}
+{% endif %}
+{% endif -%}
+
+{# vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}
