@@ -1,1 +1,16 @@
 ﻿pos: ["N", "V", "A", "Pr", "Po", "Num"]
+tense:
+ - Prt
+ - Prs
+nonfinite_paradigm:
+ - ConNeg
+ - PrfPrc
+negation:
+ - Neg
+ - ConNeg
+number:
+ - Sg
+ - Pl
+nouns_null_number:
+ - Ess
+
