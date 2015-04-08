@@ -51,6 +51,17 @@ def register_template_filters(app):
 
         return forms
 
+
+    @app.template_filter('remove_by_tagset')
+    def remove_by_tagset(tag_as_list, tagset_name):
+        m = current_app.config.morphologies.get(g._from)
+        filter_set = m.tagsets.get(tagset_name)
+        if m and filter_set:
+            return [t for t in tag_as_list if t not in filter_set]
+        else:
+            return tag_as_list
+
+
     @app.template_filter('by_tagset')
     def by_tagset(generated_forms, tagset_name):
         fs = []
