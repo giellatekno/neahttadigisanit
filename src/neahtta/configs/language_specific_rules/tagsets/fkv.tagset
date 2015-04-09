@@ -13,4 +13,13 @@ number:
  - Pl
 nouns_null_number:
  - 'Asdf'
-
+invisible_in_paradigms:
+ - V
+ - A
+ - N
+ - Pron
+ - Indef
+ - Sg
+ - Pl
+ - Act
+# vim: set ts=4 sw=4 tw=72 syntax=yaml :

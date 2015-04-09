@@ -56,7 +56,8 @@
     {% set is_negative = nonfinite_forms|by_tagset("negative")|length == 9 %}
 
     {% macro clean_tag(tag_input) -%}
-        {% set filtered_tag = tag_input|tagfilter(_from, _to) %}
+        {% set filtered_tag = tag_input|remove_by_tagset('invisible_in_paradigms')
+                                       |tagfilter(_from, _to) %}
         {% if nonfinite_header and is_negative %}
             {% set filtered_tag = filtered_tag|replace(sup_text, "")
                                               |replace(neg_text, "") %}
@@ -98,10 +99,8 @@
     {% endif %}
 
     {% macro clean_tag(tag_input) %}
-        {{ tag_input|tagfilter(_from, _to)
-                    |replace(pos_text, "")
-                    |replace(sg_text, "")
-                    |replace(pl_text, "") }}
+        {{ tag_input|remove_by_tagset('invisible_in_paradigms')
+                    |tagfilter(_from, _to) }}
     {% endmacro %}
 
 {% endif -%}
@@ -129,20 +128,12 @@
     {% endif %}
 
     {% macro clean_tag(tag_input) %}
-        {{ tag_input|tagfilter(_from, _to)
-                    |replace(pos_text, "")
-                    |replace(sg_text, "")
-                    |replace(pl_text, "") }}
+        {{ tag_input|remove_by_tagset('invisible_in_paradigms')
+                    |tagfilter(_from, _to) }}
     {% endmacro %}
 {% endif -%}
 
 {%- if pos|upper == 'PRON'  %}
-
-    {% set pron_text  = "Pron"|tagfilter(_from, _to) %}
-    {% set indef_text = "Indef"|tagfilter(_from, _to) %}
-    {% set sg_text    = "Sg"|tagfilter(_from, _to) %}
-    {% set pl_text    = "Pl"|tagfilter(_from, _to) %}
-
 
     {% set pron_type = lexicon_entry|xpath('./lg/l/@type')|first %}
     {% set pron_type_text = pron_type|tagfilter(_from, _to) %}
@@ -163,16 +154,13 @@
     {% endif %}
 
     {% macro clean_tag(tag_input) %}
+        {% set filtered_tag = tag_input|remove_by_tagset('invisible_in_paradigms') %}
         {% if two_columns %}
-            {{ tag_input|tagfilter(_from, _to)
-                        |replace(pron_text, "")
-                        |replace(sg_text, "")
-                        |replace(pl_text, "")
-                        |replace(pron_type_text, "") }}
+            {{ filtered_tag|tagfilter(_from, _to)
+                           |replace(pron_type_text, "") }}
         {% else %}
-            {{ tag_input|tagfilter(_from, _to)
-                        |replace(pron_text, "")
-                        |replace(pron_type_text, "") }}
+            {{ filtered_tag|tagfilter(_from, _to)
+                           |replace(pron_type_text, "") }}
         {% endif %}
     {% endmacro %}
 
@@ -365,7 +353,6 @@
         </table>
 
     {% endif %}
-
 {% elif pos|upper == 'PRON' %}
 
     {% if pron_type|upper == 'INDEF' and two_columns %}
@@ -441,7 +428,6 @@
             {%- endfor -%}
         </dl>
     {% endif %}
-
 {% else %}
     <dl class="dl-horizontal miniparadigm">
         {%- for form in paradigm -%}
