@@ -108,7 +108,9 @@
                                 {% endif %}
                             </div>
                             <div class="span4 hidden-phone lexeme_analyses">
-                                {{- leftover_analyses_template|safe -}}
+                                {% if analyses %}
+                                    {{- leftover_analyses_template|safe -}}
+                                {% endif %}
                             </div>
                         </div>
 
