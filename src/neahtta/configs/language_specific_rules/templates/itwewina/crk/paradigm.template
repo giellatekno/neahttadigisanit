@@ -42,8 +42,8 @@
     {% set cnj_text      = "Cnj"|tagfilter(_from, _to) %}
 
     {% macro clean_tag(tag_input) -%}
-        {% set filtered_tag = tag_input|remove_by_tagset('invisible_in_paradigms')
-                                       |tagfilter(_from, _to) %}
+        {{ tag_input|remove_by_tagset('invisible_in_paradigms')
+                    |tagfilter(_from, _to) }}
     {%- endmacro %}
 
 {%- endif %}

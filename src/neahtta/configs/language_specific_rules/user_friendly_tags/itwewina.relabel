@@ -41,7 +41,7 @@ Relabel:
       1Sg: "1s"
       2Sg: "2s"
       3Sg: "3s"
-      4Sg: "4s"
+      4Sg: "4"
       5Sg: "5s"
       1Pl: "1p exclusive"
       2Pl: "2p"
