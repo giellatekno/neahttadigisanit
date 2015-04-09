@@ -3,17 +3,19 @@
 #
 FROM ubuntu:14.10
 MAINTAINER Ryan Johnson <ryan.txanson@gmail.com>
-# set the locale
+
+# Set the locale environment variables, compile the locale: otherwise things
+# will fail, because default ubuntu is not configured to use UTF-8. Use
+# `locale` to confirm.
 RUN locale-gen en_US.UTF-8  
 ENV LANG en_US.UTF-8  
 ENV LANGUAGE en_US:en  
 ENV LC_ALL en_US.UTF-8  
 
 RUN apt-get update
-RUN apt-get install -y subversion build-essential wget
-RUN apt-get install -y autoconf automake libtool flex bison g++ libreadline-dev libglib2.0-dev
-
-# TODO: glibtoolize?
+RUN apt-get install -y subversion build-essential wget \
+                       autoconf automake libtool flex bison g++ libreadline-dev \
+                       libglib2.0-dev
 
 ## automake 1.14 -- required for gtcore and langs builds
 ## RUN cd ~/ && wget http://ftp.gnu.org/gnu/automake/automake-1.14.tar.gz
@@ -39,10 +41,3 @@ RUN cd ~/hfst-3.8.2/ && make distclean
 RUN ldconfig
 
 RUN apt-get clean
-
-# TODO: rm temp build files?
-
-# TODO: ? need to create some bash function / alias that will run commands via the image
-#   function hfstdocker $1 {
-#       eval "docker run -it --rm IMGNAME $1"
-#   } 
