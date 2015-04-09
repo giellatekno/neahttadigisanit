@@ -13,44 +13,6 @@
 {% block search_li_form %}
 {% endblock %}
 
-{% macro korp_link_lemma(lemma) -%}
-{% if current_pair_settings.lemma_search_url -%}
-    {% set search_url = current_pair_settings.lemma_search_url.replace('INPUT_LEMMA', lemma) %}
-    <a class="korp_search lemma_action"
-       href="{{ search_url }}" lang="{{ current_locale }}">{% trans %}Texts{% endtrans %} &rarr;</a>
-{%- endif %}
-{%- endmacro %}
-
-{% macro possible_analyses_grid(analyses) -%}
-    <dl class="possible_analyses grid_analyses">
-    {% for grouper, forms in analyses|groupby('lemma') %}
-        {% for lemmagroup, lemmafs in forms|groupby('pos') %}
-            {% if current_pair_settings.show_korp_search %}
-                {% if lemmagroup and grouper %}
-                    <dt>{{ grouper }} {{ korp_link_lemma(grouper) }}</dt>
-                {% else %}
-                    <dt>{{ grouper }}</dt>
-                {% endif %}
-            {% else %}
-                <dt>{{ grouper }}</dt>
-            {% endif %}
-            <dd>
-                <ul class="possible_forms">
-                    {% set existing_tags = [] %}
-                    {% for lem in lemmafs %}
-                    {% set formatted_tag = ' '.join(lem.tag)|tagfilter(_from, _to) %}
-                    {% if formatted_tag not in existing_tags %}
-                        <li>{{ formatted_tag }}</li>
-                        {% do existing_tags.append(formatted_tag) %}
-                    {% endif %}
-                    {% endfor %}
-                </ul>
-            </dd>
-        {% endfor %}
-    {% endfor %}
-    </dl>
-{%- endmacro %}
-
 {% block extra_nav %}
     {# Dictionaries #}
     {% include 'mobile_nav_dictionary_list.html' %}
@@ -133,11 +95,30 @@
 
             {% else %}
                 {% if not show_info %}
-                <div class="alert alert-error">
-                    <p>
-                        <span lang="{{ current_locale }}">{% trans input=user_input %}Word <span lang="{{ _from }}">{{ input }}</span> not found.{% endtrans %}</span>
-                    </p>
-                </div>
+                        <div class="row-fluid entry_row">
+                            <div class="span8 lexeme">
+                                {% if entry_templates|length == 0 %}
+                                    <div class="alert alert-error">
+                                        <p>
+                                            <span lang="{{ current_locale }}">{% trans input=user_input %}Word <span lang="{{ _from }}">{{ input }}</span> not found.{% endtrans %}</span>
+                                        </p>
+                                    </div>
+                                {% else %}
+                                    &nbsp;
+                                {% endif %}
+                            </div>
+                            <div class="span4 hidden-phone lexeme_analyses">
+                                {{- leftover_analyses_template|safe -}}
+                            </div>
+                        </div>
+
+                {#
+                    <div class="alert alert-error">
+                        <p>
+                            <span lang="{{ current_locale }}">{% trans input=user_input %}Word <span lang="{{ _from }}">{{ input }}</span> not found.{% endtrans %}</span>
+                        </p>
+                    </div>
+                #}
                 {% endif %}
             {% endif %}
             {% if show_info %}
