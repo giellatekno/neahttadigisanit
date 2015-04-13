@@ -585,7 +585,6 @@ sonad-install: install_langs_fsts
 
 # NB: these are different than the langs/ lexica
 # also, need to filter here
-# TODO: filter out entries without usage="nds" 
 sme-nob.all.xml: $(GTHOME)/words/dicts/smenob/src/
 	@echo "******************************"
 	@echo "** Building sme-nob lexicon **"
