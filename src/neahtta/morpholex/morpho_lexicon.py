@@ -99,6 +99,47 @@ class MorphoLexicon(object):
     ]
 
     def lookup(self, wordform, **kwargs):
+        """ Performs a lookup with morphology and lexicon working
+        together. Numerous keyword arguments/parameters are available
+        here.
+
+            morpholexicon.lookup(wordform, keyword_arg_1=asdf,
+                                 keyword_arg_2=bbq)
+
+        Required keyword arguments:
+          - `source_lang` - the 3-character ISO for the source language
+          - `target_lang` - the 3-character ISO for the target language
+
+        Optional lexicon keyword arguments:
+          - `lemma` - A lemma, if a lemma is known
+          - `pos` - Part of speech filter
+          - `pos_type` - POS type filter
+          - `entry_hash` - an entry hash to return a specific entry
+
+        Optional morphology keyword arguments:
+          - `split_compounds` - Split compounds in the morphology, and
+            return lemmas for each part of the compound.
+
+          - `non_compound_only` - Filter out compounds by removing
+          analyses with the compound tag (this is set in the Morphology
+          configuration for the language analyser:
+
+              configs/sanit.config.yaml:
+                  Morphology
+                    sme:
+                      options:
+                        compoundBoundary: "here."
+
+          - `no_derivations` - Filter out derivations by removing
+
+            analyses with the derivation tag. This is also specified in
+            the configuration for `derivationMarker`
+
+          - `return_raw_data` - Include the raw stdout/stderr data from
+          the analyzer.
+
+        """
+
         source_lang = kwargs.get('source_lang')
         target_lang = kwargs.get('target_lang')
 
