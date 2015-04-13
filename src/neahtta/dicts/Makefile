@@ -592,7 +592,6 @@ sme-nob.all.xml: $(GTHOME)/words/dicts/smenob/src/
 	@echo "** Backup made (.bak)       **"
 	@echo "******************************"
 	@echo ""
-	-@cp $@ $@.$(shell date +%s).bak
 	$(SAXON_SME_NOB) inDir=$^ > $@
 
 sme-fin.all.xml: $(GTHOME)/words/dicts/smefin/src/
@@ -784,8 +783,6 @@ help:
 	@echo ""
 	@echo "NB! Make sure you have saxon9.jar in ~/lib/ !"
 
-BACKS := $(shell ls -c1 *.xml.*.bak | sed "s/\.xml.[0-9]*\.bak//" | sort | uniq)
-
 
  # | sed 's/\./   /g' | cut -f 1 | sort -u > dicts.tmp
 
@@ -795,7 +792,8 @@ BACKS := $(shell ls -c1 *.xml.*.bak | sed "s/\.xml.[0-9]*\.bak//" | sort | uniq)
 # a lot of space in some cases 
 #
 .PHONY: collect-backups
-collect-backups:
+collect-backups: BACKS := $(shell ls -c1 *.xml.*.bak | sed "s/\.xml.[0-9]*\.bak//" | sort | uniq)
+collect-backups: 
 	@echo $(BACKS)
 	@echo "******************************"
 	@echo "** (re-)compressing backups **"
