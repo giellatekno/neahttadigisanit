@@ -104,22 +104,18 @@ install_langs_fsts: $(langs)
 	@echo ""
 	for ll in $(GT_COMPILE_LANGS) ; do \
 		mkdir -p /opt/smi/$$ll/bin/ ; \
-		cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc.xfst  /opt/smi/$$ll/bin/ ; \
-		cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc.hfstol  /opt/smi/$$ll/bin/ ; \
-		cp $(GTHOME)/langs/$$ll/src/generator-dict-gt-norm.xfst /opt/smi/$$ll/bin/ ; \
-		cp $(GTHOME)/langs/$$ll/src/generator-dict-gt-norm.hfstol /opt/smi/$$ll/bin/ ; \
-		cp $(GTHOME)/langs/$$ll/src/generator-dict-gt-desc-mobile.hfstol /opt/smi/$$ll/bin/ ; \
-		cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc-mobile.hfstol /opt/smi/$$ll/bin/ ; \
-		cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc-mobile.xfst  /opt/smi/$$ll/bin/ 2>/dev/null || : ; \
+		cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc.*  /opt/smi/$$ll/bin/ ; \
+		cp $(GTHOME)/langs/$$ll/src/generator-dict-gt-norm.* /opt/smi/$$ll/bin/ ; \
+		cp $(GTHOME)/langs/$$ll/src/generator-dict-gt-desc-mobile.* /opt/smi/$$ll/bin/ ; \
+		cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc-mobile.* /opt/smi/$$ll/bin/ ; \
+		cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc-mobile.*  /opt/smi/$$ll/bin/ ; \
 	done 
 	for ll in $(GT_COMPILE_STARTUP_LANGS) ; do \
 		mkdir -p /opt/smi/$$ll/bin/ ; \
-		cp $(GTHOME)/startup-langs/$$ll/src/analyser-dict-gt-desc.xfst  /opt/smi/$$ll/bin/ ; \
-		cp $(GTHOME)/startup-langs/$$ll/src/analyser-dict-gt-desc.hfstol  /opt/smi/$$ll/bin/ ; \
-		cp $(GTHOME)/startup-langs/$$ll/src/generator-dict-gt-norm.xfst /opt/smi/$$ll/bin/ ; \
-		cp $(GTHOME)/startup-langs/$$ll/src/generator-dict-gt-norm.hfstol /opt/smi/$$ll/bin/ ; \
-		cp $(GTHOME)/startup-langs/$$ll/src/generator-dict-gt-desc-mobile.hfstol /opt/smi/$$ll/bin/ ; \
-		cp $(GTHOME)/startup-langs/$$ll/src/analyser-dict-gt-desc-mobile.xfst  /opt/smi/$$ll/bin/ 2>/dev/null || : ; \
+		cp $(GTHOME)/startup-langs/$$ll/src/analyser-dict-gt-desc.*  /opt/smi/$$ll/bin/ ; \
+		cp $(GTHOME)/startup-langs/$$ll/src/generator-dict-gt-norm.* /opt/smi/$$ll/bin/ ; \
+		cp $(GTHOME)/startup-langs/$$ll/src/generator-dict-gt-desc-mobile.* /opt/smi/$$ll/bin/ ; \
+		cp $(GTHOME)/startup-langs/$$ll/src/analyser-dict-gt-desc-mobile.*  /opt/smi/$$ll/bin/ ; \
 	done 
 
 
@@ -390,22 +386,18 @@ rm-itwewina-lexica: $(foreach xx, $(ITWEWINA_LANGS_LEXICA), $(xx)-all.xml) \
 				 $(foreach yy, $(ITWEWINA_WORDS_DICTS_LEXICA), $(yy).xml)
 	@rm -rf $^
 
-.PHONY: itwewina-install
+.PHONY: copy-itwewina-variants
+copy-itwewina-variants: $(GTHOME)/langs/crk/src/analyser-dict-gt-desc-mobile.* \
+						$(GTHOME)/langs/crk/src/analyser-dict-gt-desc.* \
+						$(GTHOME)/langs/crk/src/generator-dict-gt-norm.*
+	@-cp $^ /opt/smi/crk/bin/
+
+
+.PHONY: itwewina-install 
 itwewina-install: GT_COMPILE_LANGS := $(ITWEWINA_LANGS_ANALYSERS)
-itwewina-install: install_langs_fsts 
+itwewina-install: install_langs_fsts copy-itwewina-variants
 
 # copy-itwewina-variants
-
-.PHONY: copy-itwewina-variants
-copy-itwewina-variants: $(GTHOME)/langs/crk/src/analyser-dict-gt-desc-mobile.Cans.hfstol \
-						$(GTHOME)/langs/crk/src/analyser-dict-gt-desc-mobile.Cans.xfst \
-						$(GTHOME)/langs/crk/src/analyser-dict-gt-desc-mobile.saskatchewan.hfstol \
-						$(GTHOME)/langs/crk/src/analyser-dict-gt-desc-mobile.saskatchewan.xfst \
-						$(GTHOME)/langs/crk/src/analyser-dict-gt-desc.Cans.hfstol \
-						$(GTHOME)/langs/crk/src/analyser-dict-gt-desc.Cans.xfst \
-						$(GTHOME)/langs/crk/src/analyser-dict-gt-desc.saskatchewan.hfstol \
-						$(GTHOME)/langs/crk/src/analyser-dict-gt-desc.saskatchewan.xfst
-	@-cp $^ /opt/smi/crk/bin/
 
 
 #####
@@ -413,7 +405,7 @@ copy-itwewina-variants: $(GTHOME)/langs/crk/src/analyser-dict-gt-desc-mobile.Can
 #####
 
 SAAN_LANGS_ANALYSERS      :=   sms fin
-SAAN_LANGS_FLAGS          :=   --with-hfst --enable-twostep-intersect
+SAAN_LANGS_FLAGS          :=   --with-hfst --enable-twostep-intersect --no-recursion
 SAAN_LANGS_LEXICA         :=   sms
 SAAN_WORDS_DICTS_LEXICA   :=   sms2X
 
@@ -531,23 +523,6 @@ SANAT_LANGS_LEXICA         :=   olo izh
 SANAT_WORDS_DICTS_LEXICA   :=   nobfkv fkvnob finolo
 
 # finizh
-
-# NOTE: some temporary fixes to add usage to everything, and include <lg>
-# node
-# adjust_nobfkv: nobfkv.xml
-# 	@echo "*******************************"
-# 	@echo "** Adjusting nob-fkv lexicon **"
-# 	@echo "*******************************"
-# 	@echo "** Backup made (.bak)        **"
-# 	@echo "*******************************"
-# 	@echo ""
-# 	cp $^ $^.tmp
-# 	cat $^.tmp | sed 's/<e>/<e usage="vd">/g' | \
-# 				 sed 's/  <l /  <lg><l /g'    | \
-# 				 sed 's/<\/l>/<\/l><\/lg>/g'  | \
-# 				 xmllint --format - \
-# 				 > $^
-# 	rm $^.tmp
 
 .PHONY: sanat-lexica
 sanat-lexica: LEX_COMPILE_LANGS := $(SANAT_LANGS_LEXICA)
