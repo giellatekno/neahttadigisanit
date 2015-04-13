@@ -8,21 +8,6 @@
 import sys
 
 def hash_node(node):
-    # Make our own hash, 'cause lxml won't
-    # l = node.find('lg/l')
-    # lemma = l.text or ''
-
-    # lemma_context = l.get('context')
-    # lemma_pos = l.get('pos')
-    # hid = l.get('hid')
-
-    # entry_hash = [ unicode(lemma)
-    #              , unicode(lemma_context)
-    #              , unicode(lemma_pos)
-    #              , ','.join(sorted([t['tx'] for t in right_nodes]))
-    #              ]
-    # entry_hash = str('-'.join(entry_hash).__hash__())
-    # print node
     return unicode(hash(etree.tostring(node)))
 
 class LexiconOverrides(object):
@@ -317,7 +302,6 @@ class XMLDict(object):
             attr_conditions.append("lg/l/@%s = '%s'" % (k, v))
         attr_conditions = ' and '.join(attr_conditions)
 
-        # .//e[lg/l/@til_ref = 'omtopersoner' and lg/l/@til_ref = 'omtopersoner']
         _xpath_expr = ".//e[%s]" % attr_conditions
         _xp = etree.XPath(_xpath_expr , namespaces={'re': regexpNS})
         return _xp(self.tree)
@@ -387,12 +371,9 @@ class AutocompleteTrie(XMLDict):
 class ReverseLookups(XMLDict):
     """
 
-    1. use only entries that have the attribute usage="vd" at entry
-    level
+    1. don't use entries with reverse="no" at entry level
 
-    2. don't use entries with reverse="no" at entry level
-
-    3. search by e/mg/tg/t/text() instead of /e/lg/l/text()
+    2. search by e/mg/tg/t/text() instead of /e/lg/l/text()
 
     """
 
@@ -430,6 +411,14 @@ class ReverseLookups(XMLDict):
 class Lexicon(object):
 
     def __init__(self, settings):
+        """ Create a lexicon based on the configuration.
+
+        Each XML file will be loaded individually, and the file handle
+        will be cached, so if multiple dictionaries (for example, one
+        lexicon may have multiple input variants), these will not be
+        loaded into memory separately.
+
+        """
 
         language_pairs = dict(
             [ (k, XMLDict(filename=v))
@@ -471,6 +460,10 @@ class Lexicon(object):
         self.autocomplete_tries = autocomplete_tries
 
     def get_lookup_type(self, lexicon, lemma, pos, pos_type, lem_args):
+        """ Determine what type of lookup to perform based on the
+            available arguments, and return that lookup function.
+        """
+
         args = ( bool(lemma)
                , bool(pos)
                , bool(pos_type)
@@ -495,6 +488,28 @@ class Lexicon(object):
     def lookup(self, _from, _to, lemma,
                pos=False, pos_type=False,
                _format=False, lemma_attrs=False, user_input=False):
+        """ Perform a lexicon lookup. Depending on the keyword
+        arguments, several types of lookups may be performed.
+
+          * lemma lookup -
+            `lexicon.lookup(source_lang, target_lang, lemma)`
+
+          * lemma lookup + POS -
+            `lexicon.lookup(source_lang, target_lang, lemma, pos=POS)`
+
+             This lookup uses the lemma, and the `@pos` attribute on the <l /> node.
+
+          * lemma lookup + POS + Type -
+             `lexicon.lookup(source_lang, target_lang, lemma, pos=POS)`
+
+             This lookup uses the lemma, the `@pos` attribute on the <l /> node,
+             and the `@type` attribute.
+
+          * lemma lookup + other attributes
+            `lexicon.lookup(source_lang, target_lang, lemma, lemma_attrs={'attr_1': asdf, 'attr_2': asdf}`
+
+            A dictionary of arguments may be supplied, matching attributes on the <l /> node.
+        """
 
         _dict = self.language_pairs.get((_from, _to), False)
 
