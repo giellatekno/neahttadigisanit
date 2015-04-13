@@ -594,7 +594,7 @@ sme-nob.all.xml: $(GTHOME)/words/dicts/smenob/src/
 	@echo "******************************"
 	@echo ""
 	-@cp $@ $@.$(shell date +%s).bak
-	$(SAXON_SME_NOB) inDir=$^ | grep -v 'dict="no"' > $@
+	$(SAXON_SME_NOB) inDir=$^ > $@
 
 sme-fin.all.xml: $(GTHOME)/words/dicts/smefin/src/
 	@echo "******************************"
