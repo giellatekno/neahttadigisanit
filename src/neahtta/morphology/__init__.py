@@ -4,6 +4,7 @@
 from morphology import ( Tagsets
                        , Tagset
                        , Tag
+                       , HFST
                        , XFST
                        , OBT
                        , Morphology
@@ -12,6 +13,7 @@ from morphology import ( Tagsets
 
 
 __all__ = [ 'XFST'
+          , 'HFST'
           , 'OBT'
           , 'Morphology'
           , 'generation_overrides'

@@ -438,6 +438,45 @@ class XFST(object):
         else:
             return [analysis]
 
+    def tag_processor(self, analysis_line):
+        """ This is a default tag processor which just returns the
+        wordform separated from the tag for a given line of analysis.
+
+        You can write a function to replace this for an individual
+        morphology by adding it to a file somewhere in the PYTHONPATH,
+        and then setting the Morphology option `tagProcessor` to this path.
+
+        Ex.)
+
+            Morphology:
+              crk:
+                options:
+                  tagProcessor: "configs.language_specific_rules.file:function_name"
+
+        Note the colon. It may also be a good idea to write some tests
+        in the docstring for that function. If these are present they
+        will be quickly tested on launch of the service, and failures
+        will prevent launch.
+
+        A tag processor must accept a string as input, and return a
+        tuple of the wordform and processed tag. You may do this to for
+        example, re-order tags, or relabel them, but whateve the output
+        is, it must be a string.
+
+        Ex.)
+
+            'wordform\tlemma+Tag+Tag+Tag'
+
+            ->
+
+            ('wordform', 'lemma+Tag+Tag+Tag')
+
+        """
+
+        lemma, _, tag = analysis_line.partition('\t')
+
+        return (lemma, tag)
+
     def clean(self, _output):
         """
             Clean XFST lookup text into
@@ -455,7 +494,7 @@ class XFST(object):
             analyses = []
 
             for part in chunk.split('\n'):
-                lemma, _, analysis = part.partition('\t')
+                (lemma, analysis) = self.tag_processor(part)
                 lemmas.append(lemma)
                 analyses.append(analysis)
 
@@ -513,6 +552,35 @@ class XFST(object):
 
         return (output, err)
 
+    def load_tag_processor(self):
+        import sys
+        # import doctest
+
+        print >> sys.stdout, "Loading the tag processor."
+
+        _path = self.options.get('tagProcessor')
+        module_path, _, from_list = _path.partition(':')
+
+        try:
+            asdf = __import__(module_path, fromlist=[from_list])
+        except:
+            sys.exit("Unable to import <%s>" % _path)
+
+        try:
+            func = asdf.__getattribute__(from_list)
+        except:
+            sys.exit("Unable to load <%s> from <%s>" % (from_list, module_path))
+
+        self.tag_processor = func
+
+        # result = doctest.testmod(asdf)
+
+        # if result.failed > 0:
+        #     print result
+        #     sys.exit("Unable to pass all doctests for %s.%s. Fix these in order to launch the service." % (module_path, from_list))
+
+        # return True
+
     def __init__(self, lookup_tool, fst_file, ifst_file=False, options={}):
         self.cmd = "%s -flags mbTT %s" % (lookup_tool, fst_file)
         self.options = options
@@ -522,10 +590,8 @@ class XFST(object):
         else:
             self.icmd = False
 
-    # def __rshift__(left, right):
-    #     right.tool = left
-    #     left.logger = right.logger
-    #     return right
+        if 'tagProcessor' in self.options:
+            self.load_tag_processor()
 
     def applyMorph(self, morph):
         morph.tool = self
@@ -611,6 +677,10 @@ class HFST(XFST):
             self.icmd = "%s %s" % (lookup_tool, ifst_file)
         else:
             self.icmd = False
+
+        if 'tagProcessor' in self.options:
+            self.load_tag_processor()
+
 
 class OBT(XFST):
     """ TODO: this is almost like CG, so separate out those things if
@@ -869,6 +939,9 @@ class Morphology(object):
                               )
 
             for analysis in analyses:
+                # TODO: here's where to begin solving finding a lemma
+                # from:
+                # PV/maci+PV/pwana+nipâw+V+AI+Ind+Prs+1Sg
                 _an_parts = self.tool.splitAnalysis(analysis)
                 # If a word doesn't have a PoS in an analysis, we try to
                 # handle it as best as possible.
