@@ -121,7 +121,7 @@ LOCALISATION_NAMES_BY_LANGUAGE = dict([
     ('fkv', u"Kveenin kieli"),
     ('fi', u"Suomi"),
     ('crk', u"nêhiyawêwin"),
-    ('crkM', u"nêhiyawêwin"),
+    ('crkM', u"nēhiyawēwin"),
     ('eng', u"English"),
     ('et', u"Eesti"),
     ('est', u"Eesti"),
