@@ -408,6 +408,7 @@ class Config(Config):
             variants = item.get('input_variants')
             if variants:
                 for v in variants:
+                    path = v.get('path', item.get('path'))
                     if v.get('short_name') != source:
                         language_pairs[(v.get('short_name'), target)] = {
                             'orig_pair': (source, target),
@@ -450,48 +451,6 @@ class Config(Config):
             language_pairs[(source, target)] = path
 
         self._dictionaries = language_pairs
-        return language_pairs
-
-    @property
-    def variant_dictionaries(self):
-        from collections import OrderedDict
-        if hasattr(self, '_variant_dictionaries'):
-            return self._variant_dictionaries
-
-        dicts = self.yaml.get('Dictionaries')
-        language_pairs = OrderedDict()
-        for item in dicts:
-            source = item.get('source')
-            target = item.get('target')
-            path = item.get('path')
-            variants = item.get('input_variants')
-            if variants:
-                for v in variants:
-                    if v.get('short_name') != source:
-                        language_pairs[(v.get('short_name'), target)] = {
-                            'orig_pair': (source, target),
-                            'path': path,
-                        }
-
-        self._variant_dictionaries = language_pairs
-        return language_pairs
-
-    @property
-    def input_variants(self):
-        from collections import OrderedDict
-        if self._input_variants:
-            return self._input_variants
-
-        dicts = self.yaml.get('Dictionaries')
-        language_pairs = OrderedDict()
-        for item in dicts:
-            source = item.get('source')
-            target = item.get('target')
-            input_variants = item.get('input_variants', False)
-            if input_variants:
-                language_pairs[(source, target)] = input_variants
-
-        self._input_variants = language_pairs
         return language_pairs
 
     @property
@@ -734,13 +693,12 @@ class Config(Config):
 
         self._morphologies = {}
 
-        from morphology import XFST, OBT, Morphology
-        # , HFST
+        from morphology import XFST, OBT, Morphology, HFST
         morph_cache = self.get('cache', False)
 
         formats = {
             'xfst': XFST,
-            # 'hfst': HFST,
+            'hfst': HFST,
             'obt': OBT,
         }
 
