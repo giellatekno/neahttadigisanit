@@ -41,6 +41,15 @@
 ###         
 ###         #Globaltargets
 
+# Use GSED if available. Probably a good idea for macs.
+#
+GSED := $(shell which gsed)
+ifdef GSED
+ SED := $(shell which gsed)
+else
+ SED := $(shell which sed)
+endif
+
 COLLECT_PARTS := $(GTHOME)/words/dicts/scripts/collect-dict-parts.xsl 
 SAXON := java -Xmx2048m -cp ~/lib/saxon9.jar \
 		 -Dfile.encoding=UTF8 net.sf.saxon.Transform \
@@ -366,14 +375,31 @@ crkeng.xml: $(foreach d, $(CRKENG_DIRS), $(shell find $d -name '*.xml'))
 	mkdir -p crkeng_tmp/
 	cp -R $(GTHOME)/words/dicts/scripts ../scripts
 	cp $^ crkeng_tmp/
-	$(SAXON) inDir=$(pwd)/crkeng_tmp/ > $@
+	$(SAXON) inDir=$(pwd)/crkeng_tmp/ > $@.tmp
 	@rm -rf crkeng_tmp/
 	@rm -rf ../scripts
+	cat $@.tmp | $(SED) -e 's/pos="\(.\)/pos="\U\1/' > $@
+	rm $@.tmp
+
+crkeng-macron.xml: crkeng.xml
+	@echo "*************************************"
+	@echo "** Building crk-eng-macron lexicon **"
+	@echo "*************************************"
+	@echo "** Backup made (.bak)       **"
+	@echo "*************************************"
+	@echo ""
+	@echo $(SED)
+	cat crkeng.xml | $(SED) -e 's/pos="\(.\)/pos="\U\1/'  \
+					| $(SED) -e 's/â/ā/'  \
+					| $(SED) -e 's/ê/ē/'  \
+					| $(SED) -e 's/î/ī/'  \
+					| $(SED) -e 's/ô/ō/'  \
+					> $@
 
 .PHONY: itwewina-lexica
 itwewina-lexica: LEX_COMPILE_LANGS := $(ITWEWINA_LANGS_LEXICA)
 itwewina-lexica: LEX_COMPILE_WORDS_DICTS := $(ITWEWINA_WORDS_DICTS_LEXICA)
-itwewina-lexica: crkeng.xml compile_langs_lexicon compile_words_dicts_lexicon
+itwewina-lexica: crkeng.xml crkeng-macron.xml compile_langs_lexicon compile_words_dicts_lexicon
 
 .PHONY: itwewina
 itwewina: GT_COMPILE_LANGS := $(ITWEWINA_LANGS_ANALYSERS)
@@ -592,6 +618,7 @@ sme-nob.all.xml: $(GTHOME)/words/dicts/smenob/src/
 	@echo "** Backup made (.bak)       **"
 	@echo "******************************"
 	@echo ""
+	-@cp $@ $@.$(shell date +%s).bak
 	$(SAXON_SME_NOB) inDir=$^ > $@
 
 sme-fin.all.xml: $(GTHOME)/words/dicts/smefin/src/
