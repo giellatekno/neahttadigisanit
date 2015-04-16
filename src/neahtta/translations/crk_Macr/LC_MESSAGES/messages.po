@@ -1,17 +1,16 @@
 # None translations for PROJECT.
-# Copyright (C) 2015 ORGANIZATION
+# Copyright (C) 2014 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2015-02-10 14:28-0600\n"
-"PO-Revision-Date: 2015-03-06 16:56-0600\n"
+"PO-Revision-Date: 2014-09-24 18:20-0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: crk <LL@li.org>\n"
+"Language-Team: crkM <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -35,12 +34,12 @@ msgstr ""
 #: configs/sample.config.yaml.in:145 configs/sanit.config.yaml.in:106
 #: configs/sonad.config.yaml.in:142
 msgid "Standard"
-msgstr ""
+msgstr "papēyāhtak nēhiyawasinahikēwin"
 
 #: configs/guusaaw.config.yaml.in:80 configs/itwewina.config.yaml.in:76
 #: configs/saan.config.yaml.in:94
 msgid "Mobile friendly"
-msgstr ""
+msgstr "wēhci-masinahikēwin"
 
 #: configs/kyv.config.yaml.in:102
 msgid "Molotsov orthography"
@@ -57,7 +56,7 @@ msgstr ""
 
 #: configs/language_names.py:26 configs/language_names.py:93
 msgid "English"
-msgstr ""
+msgstr "ākayāsīmowin"
 
 #: configs/language_names.py:27
 msgid "Hungarian"
@@ -138,7 +137,7 @@ msgstr ""
 
 #: configs/language_names.py:67 configs/language_names.py:68
 msgid "Plains Cree"
-msgstr ""
+msgstr "nēhiyawēwin"
 
 #: configs/language_names.py:71 configs/language_names.py:72
 msgid "Cherokee"
@@ -460,7 +459,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:19
 #: templates/index_search_form.html:20
 msgid "ohcansátni"
-msgstr ""
+msgstr "itwēwin"
 
 #: configs/language_specific_rules/templates/index_search_form.template:51
 #: configs/language_specific_rules/templates/index_search_form.template:71
@@ -470,14 +469,14 @@ msgstr ""
 #: templates/index_search_form.html:25 templates/index_search_form.html:46
 #: templates/index_search_form.html:50 templates/word_detail.html:98
 msgid "Search"
-msgstr ""
+msgstr "nitona"
 
 #: configs/language_specific_rules/templates/index_search_form.template:63
 #: configs/language_specific_rules/templates/index_search_form.template:86
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:36
 #: templates/index_search_form.html:37 templates/index_search_form.html:61
 msgid "Search texts"
-msgstr ""
+msgstr "nitona masinahikēwinihk"
 
 #: configs/language_specific_rules/templates/notice.template:5
 #: configs/language_specific_rules/templates/sanit/notice.template:6
@@ -485,13 +484,15 @@ msgstr ""
 #: templates/mobile_nav_dictionary_list.html:48
 #: templates/more_dictionaries.html:21
 msgid "Other dictionaries"
-msgstr ""
+msgstr "kotaka itwēwasinahikana"
 
 #: configs/language_specific_rules/templates/search_info.template:3
 #: configs/language_specific_rules/templates/itwewina/search_info.template:3
 #: configs/language_specific_rules/templates/sanit/search_info.template:8
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
+"nitona nēhiyaw-itwēwin ta-miskaman ākayāsiwascikēwin (ēkwa mīna tānisi "
+"kā-isi-āniskōpitamihk)."
 
 #: configs/language_specific_rules/templates/baakoeh/about.template:76
 #: configs/language_specific_rules/templates/guusaaw/about.template:89
@@ -519,7 +520,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/guusaaw/about.template:56
 #: configs/language_specific_rules/templates/itwewina/about.template:67
 msgid ""
-"The dictionary software behind pîkiskwêwina is Neahttadigisánit, "
+"The dictionary software behind pīkiskwēwina is Neahttadigisánit, "
 "originally created for North Saami and South Saami at the University of "
 "Tromsø. New languages always present new challenges for the software, so "
 "be sure to get in touch with us if you have questions or comments."
@@ -533,8 +534,8 @@ msgstr ""
 msgid ""
 "Dictionaries for Plains Cree and English are based\n"
 "                on the lexical materials and scientific research in <a "
-"href=\"http://uofrpress.ca/publications/cree-words\"><em>nêhiyawêwin : "
-"itwêwina / Cree: Words</em></a>.\n"
+"href=\"http://uofrpress.ca/publications/cree-words\"><em>nēhiyawēwin : "
+"itwēwina / Cree: Words</em></a>.\n"
 "                 Compiled by Arok Wolvengrey.  Regina: Canadian Plains "
 "Research Center, 2001."
 msgstr ""
@@ -661,8 +662,9 @@ msgid ""
 msgstr ""
 
 #: configs/language_specific_rules/templates/sanit/notice.template:5
+#, fuzzy
 msgid "Other North Saami dictionaries"
-msgstr ""
+msgstr "kotaka itwēwasinahikana"
 
 #: configs/language_specific_rules/templates/sanit/search_info.template:4
 msgid ""
@@ -756,7 +758,7 @@ msgstr ""
 #: static/js/neahttadigisanit.jquery.js:13292
 #: static/js/neahttadigisanit.min.js:2984
 msgid "Dictionary"
-msgstr ""
+msgstr "itwēwasinahikan"
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13292
 #: static/js/neahttadigisanit.jquery.js:13292
@@ -793,7 +795,6 @@ msgstr ""
 
 #: static/js/bookmarklet.js:1251 static/js/bookmarklet.min.js:13292
 #: static/js/neahttadigisanit.min.js:2984
-#: static/js/neahttadigisanit.jquery.js:13292
 msgid ""
 "If you find a bug, or if the bookmark does not work on a specific page <a"
 " href=\"mailto:giellatekno@uit.no\">please contact us</a>. Tell us what "
@@ -865,6 +866,13 @@ msgstr ""
 msgid "'"
 msgstr ""
 
+#: static/js/neahttadigisanit.jquery.js:13292
+msgid ""
+"If you find a bug, or if the bookmark does not work on a specific page <a"
+" href=\"mailto:giellatekno@hum.uit.no\">please contact us</a>. Tell us "
+"what page didn't work, or what you did when you discovered the problem."
+msgstr ""
+
 #: templates/404.html:51
 msgid ""
 "Whoops! The page you requested was not found. If you think you are "
@@ -932,14 +940,14 @@ msgstr ""
 
 #: templates/language_select_noflags.html:7
 msgid "Language"
-msgstr ""
+msgstr "crk"
 
 #: templates/left_dictionary_list.html:1
 #: templates/mobile_nav_dictionary_list.html:1
 #: templates/mobile_nav_push_menu.html:41
 #: templates/mobile_nav_push_menu.html:44
 msgid "Dictionaries"
-msgstr ""
+msgstr "itwēwasinahikana"
 
 #: templates/left_dictionary_list.html:17
 msgid "Escape Text-TV mode"
@@ -949,7 +957,7 @@ msgstr ""
 #: templates/left_nav_language_pair_select_list.html:55
 #: templates/mobile_nav_push_menu.html:63
 msgid "Written variant"
-msgstr ""
+msgstr "nawasōna tānisi kā-isi-nēhiyawasinahikēyan"
 
 #: templates/mobile_nav_push_menu.html:26
 #: templates/mobile_nav_push_menu.html:45
@@ -1177,4 +1185,103 @@ msgstr ""
 #: views/search.py:940
 msgid "Invalid format. Only json and html allowed."
 msgstr ""
+
+#~ msgid "References"
+#~ msgstr ""
+
+#~ msgid "Neahttadigisánit Reader"
+#~ msgstr ""
+
+#~ msgid "Read with Neahttadigisánit"
+#~ msgstr ""
+
+#~ msgid ""
+#~ msgstr ""
+
+#~ msgid "Word %(input)s not found."
+#~ msgstr ""
+
+#~ msgid "A dictionary that understands what you're looking for."
+#~ msgstr ""
+
+#~ msgid "(... And is mobile-friendly!)"
+#~ msgstr ""
+
+#~ msgid "Free"
+#~ msgstr ""
+
+#~ msgid "Open-Source"
+#~ msgstr ""
+
+#~ msgid "Linguistic basis"
+#~ msgstr ""
+
+#~ msgid "gå, dra, reise"
+#~ msgstr ""
+
+#~ msgid "Source material"
+#~ msgstr ""
+
+#~ msgid "sme ↔ nob"
+#~ msgstr ""
+
+#~ msgid "sma ↔ nob"
+#~ msgstr ""
+
+#~ msgid "sme ↔ fin"
+#~ msgstr ""
+
+#~ msgid "Each of the dictionaries contains about 11,000 base words."
+#~ msgstr ""
+
+#~ msgid "More to come..."
+#~ msgstr ""
+
+#~ msgid "s/he speaks Cree"
+#~ msgstr ""
+
+#~ msgid "Find a problem?"
+#~ msgstr ""
+
+#~ msgid "Contact us"
+#~ msgstr ""
+
+#~ msgid "crk ↔ eng"
+#~ msgstr ""
+
+#~ msgid "mennä, lähteä, kulkea"
+#~ msgstr ""
+
+#~ msgid "mrj ↔ fin"
+#~ msgstr ""
+
+#~ msgid "mennä, tapahtua, viedä, johtaa, edistyä"
+#~ msgstr ""
+
+#~ msgid "liv ↔ fin"
+#~ msgstr ""
+
+#~ msgid "olo ↔ fin"
+#~ msgstr ""
+
+#~ msgid "yrk ↔ fin"
+#~ msgstr ""
+
+#~ msgid "myv ↔ fin"
+#~ msgstr ""
+
+#~ msgid "mdf ↔ fin"
+#~ msgstr ""
+
+#~ msgid "Sources and References"
+#~ msgstr ""
+
+#~ msgid "Sosiála media"
+#~ msgstr ""
+
+#~ msgid "Definition not found for:"
+#~ msgstr ""
+
+#~ msgid "Word <span class=\"%(_from)s\">%(input)s</span> not found."
+#~ msgstr ""
 
