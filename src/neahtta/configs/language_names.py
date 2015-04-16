@@ -95,6 +95,11 @@ NAMES = dict([
     ('fra', _(u"French")),
 ])
 
+ISO_DISPLAY_RELABELS = dict([
+    ('crk',      u'â'),
+    ('crk_Macr', u'ā'),
+])
+
 # These will show up in the localization menu, or wherever the
 # language's own name needs to be visible. If the language
 # also has a two-character ISO, that will need to be listed too.
@@ -121,7 +126,7 @@ LOCALISATION_NAMES_BY_LANGUAGE = dict([
     ('fkv', u"Kveenin kieli"),
     ('fi', u"Suomi"),
     ('crk', u"nêhiyawêwin"),
-    ('crkM', u"nēhiyawēwin"),
+    ('crk_Macr', u"nēhiyawēwin"),
     ('eng', u"English"),
     ('et', u"Eesti"),
     ('est', u"Eesti"),

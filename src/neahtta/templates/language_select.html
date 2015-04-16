@@ -11,7 +11,7 @@
                     <img class="i18n_flag" alt="[flag]" src="{{url_for('static', filename='img/flags/' + iso + '_20x15.png')}}">
                 {% else %}
                     {# TODO: CSS #}
-                    <div class="default_flag">{{ iso }}</div>
+                    <div class="default_flag">{{ iso|iso_display_relabel }}</div>
                 {% endif %}
             {% endfor %}
             </span>
@@ -23,7 +23,7 @@
                 {% if iso|iso_has_flag %}
                     <img class="i18n_flag" alt="[flag]" src="{{url_for('static', filename='img/flags/' + iso + '_20x15.png')}}">
                 {% else %}
-                    <div class="default_flag">{{ iso }}</div>
+                    <div class="default_flag">{{ iso|iso_display_relabel }}</div>
                 {% endif %}
                  <span lang="{{ iso }}">{{ iso|iso_to_language_own_name }}</span></a></li>
             {% endfor %}

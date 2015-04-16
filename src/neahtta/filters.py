@@ -29,6 +29,12 @@ def register_filters(app):
         from flask import g
         return LOCALISATION_NAMES_BY_LANGUAGE.get(_iso, LOCALISATION_NAMES_BY_LANGUAGE.get(g.orig_from, _iso))
 
+    @app.template_filter('iso_display_relabel')
+    def iso_display_relabel(_iso):
+        from configs.language_names import ISO_DISPLAY_RELABELS as L
+        from flask import g
+        return L.get(_iso, _iso)
+
     @app.template_filter('iso_has_flag')
     def iso_has_flag(iso):
         import os
