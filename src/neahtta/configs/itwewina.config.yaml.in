@@ -7,6 +7,7 @@ ApplicationSettings:
   mobile_default_pair: ["crkM", "eng"]
   locales_available:
     - crk
+    - crk_Macr
     - en
   meta_description: >
       Free online, mobile friendly dictionaries for Plains Cree
@@ -26,12 +27,13 @@ Morphology:
     inverse_file: [*OPT, '/crk/bin/generator-dict-gt-norm.hfstol']
     format: 'hfst'
     options: &MORPHOLOGY_OPTS
+      # tagProcessor: "configs.language_specific_rules.crk_tags:process_crk_analysis"
       compoundBoundary: "+Use/Circ#"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
   crkMacr:
-    tool: *LOOKUP
+    tool: *HLOOKUP
     file: [*OPT, '/crk/bin/analyser-dict-gt-desc.macron.hfstol']
     inverse_file: [*OPT, '/crk/bin/generator-dict-gt-norm.macron.hfstol']
     format: 'hfst'
@@ -59,18 +61,27 @@ Dictionaries:
     path: 'dicts/crkeng.xml'
     input_variants: &spell_relax
       - type: "standard"
-        description: !gettext "aio âêîô"
+        description: !gettext "aio âêîô" # " 
         # NB: must be same as analyser name
         short_name: "crk"
+        # force locale: (but because english isn't specified, we don't change
+        # anything)
+        force_locale: 
+          crk: "crk"
         onscreen_keyboard: &CRK_KEYS_CIRC
           - "â"
           - "ê"
           - "î"
           - "ô"
       - type: "macron"
-        description: !gettext "aio āēīō"
+        description: !gettext "aio āēīō" # " 
         # NB: must be same as analyser name
+        path: 'dicts/crkeng-macron.xml'
         short_name: "crkMacr"
+        # force locale: (but because english isn't specified, we don't change
+        # anything)
+        force_locale: 
+          crk: "crk_Macr"
         onscreen_keyboard: &CRK_KEYS_MACR
           - "ā"
           - "ē"

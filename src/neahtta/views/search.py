@@ -128,6 +128,27 @@ class DictionaryView(MethodView):
 
         return False
 
+    def force_locale(self, _from, _to):
+
+        from flask.ext.babel import refresh
+
+        pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(_from, _to)
+
+        opts = orig_pair_opts.get('variant_options')
+
+        current_locale = get_locale()
+
+        if opts and ('force_locale' in opts):
+            layout_forces = opts.get('force_locale', {})
+
+            if current_locale in layout_forces:
+                session['locale'] = layout_forces[current_locale]
+                # Refresh the localization infos, and send the user back whence they
+                # came.
+                refresh()
+
+        return False
+
     def get_reverse_pair(self, _from, _to):
         """ If the reverse pair for (_from, _to) exists, return the
         pair's settings, otherwise False. """
@@ -730,6 +751,7 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
     def get(self, _from, _to):
 
         self.check_pair_exists_or_abort(_from, _to)
+        self.force_locale(_from, _to)
 
         # If the view is for an input variant, we need the original
         # pair:
