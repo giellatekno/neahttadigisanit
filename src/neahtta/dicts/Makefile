@@ -275,6 +275,57 @@ ndstesting-install: install_langs_fsts
 ##### #/ndstestingtargets
 #####
 
+#####
+##### #saanihtargets
+#####
+
+### When starting a new project, copy this whole section (down to
+### #/saanihtargets), and change the following settings. Then, be sure to
+### replace all instances of SAANIH and saanih in variables and target names
+### with the PROJNAME.
+
+# These are the ISOs of the languages to compile from GTHOME/langs/
+SAANIH_LANGS_ANALYSERS           :=   smn
+
+# OPTIONAL: enable miscellaneous ./configure flags
+# SAANIH_LANGS_FLAGS             :=   --with-hfst
+
+# These are the ISOs of the languages to compile from GTHOME/startup-langs/
+# SAANIH_STARTUP_LANGS_ANALYSERS   :=   lav
+
+# Compile the lexicon from within GTHOME/langs/LANG/src/morphology/stems/*.xml
+
+# SAANIH_LANGS_LEXICA              :=   smn
+
+# Compile the lexicon from a directory within GTHOME/words/dicts/
+SAANIH_WORDS_DICTS_LEXICA        :=   smnfin # finsmn
+
+.PHONY: saanih-lexica
+saanih-lexica: LEX_COMPILE_LANGS := $(SAANIH_LANGS_LEXICA)
+saanih-lexica: LEX_COMPILE_WORDS_DICTS := $(SAANIH_WORDS_DICTS_LEXICA)
+saanih-lexica: compile_langs_lexicon \
+			  compile_words_dicts_lexicon
+
+.PHONY: saanih
+saanih: GT_COMPILE_LANGS := $(SAANIH_LANGS_ANALYSERS)
+saanih: GT_COMPILE_STARTUP_LANGS := $(SAANIH_STARTUP_LANGS_ANALYSERS)
+saanih: LEX_COMPILE_LANGS := $(SAANIH_LANGS_LEXICA)
+saanih: LEX_COMPILE_WORDS_DICTS := $(SAANIH_WORDS_DICTS_LEXICA)
+saanih: saanih-lexica compile_langs_fsts print_complete_message
+
+rm-saanih-lexica: $(foreach xx, $(SAANIH_LANGS_LEXICA), $(xx)-all.xml) \
+				 $(foreach yy, $(SAANIH_WORDS_DICTS_LEXICA), $(yy).xml)
+	@rm -rf $^
+
+.PHONY: saanih-install
+saanih-install: GT_COMPILE_LANGS := $(SAANIH_LANGS_ANALYSERS)
+saanih-install: GT_COMPILE_STARTUP_LANGS := $(SAANIH_STARTUP_LANGS_ANALYSERS)
+saanih-install: install_langs_fsts
+
+#####
+##### #/saanihtargets
+#####
+
 
 #####
 ##### #guusaawtargets

@@ -1,0 +1,79 @@
+ApplicationSettings:
+  app_name: "Neahttadigisánit"
+  app_meta_title: "Neahttadigisánit"
+  short_name: "saan"
+  default_locale: "smn"
+  default_pair: ["smn", "fin"]
+  mobile_default_pair: false
+  locales_available:
+    - "smn"
+    - "fi"
+    - "en"
+  # TODO: language-specific sets
+  meta_description: >
+      Free online, mobile friendly dictionaries for Inari Saami
+  meta_keywords: >
+      inari saami, inarisaame, enare samisk, mobile, dictionary, free
+
+Tools:
+  xfst_lookup: &LOOKUP '/usr/bin/lookup'
+  hfst_lookup: &HLOOKUP '/usr/local/bin/hfst-optimized-lookup'
+  opt: &OPT '/opt/smi/'
+
+Morphology:
+  smn:
+    tool: *HLOOKUP
+    file: [*OPT, '/smn/bin/analyser-dict-gt-desc.hfstol']
+    inverse_file: [*OPT, '/smn/bin/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  smnM:
+    tool: *HLOOKUP
+    file: [*OPT, '/smn/bin/analyser-dict-gt-desc-mobile.hfstol']
+    inverse_file: [*OPT, '/smn/bin/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  fin:
+    tool: *LOOKUP
+    file: [*OPT, '/fin/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/fin/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+
+Languages:
+  - iso: smn
+    minority_lang: true
+  - iso: fin
+
+Dictionaries:
+  - source: smn
+    target: fin
+    path: 'dicts/smnfin.xml'
+    input_variants: &spell_relax
+      - type: "standard"
+        description: !gettext "Standard"
+        example: "(TODO: )"
+        # TODO:
+        # onscreen_keyboard: &SMN_KEYS
+        #   - "â"
+        #   - "ö"
+        # NB: must be same as analyser name
+        short_name: "smn"
+      - type: "mobile"
+        description: !gettext "Mobile friendly"
+        example: "(TODO: )"
+        short_name: "smnM"
+        # onscreen_keyboard: *SMN_KEYS
+

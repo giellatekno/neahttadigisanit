@@ -187,6 +187,12 @@ def saan():
     env.current_dict = "saan"
 
 @task
+def saanih():
+    """ Use saanih """
+    env.current_dict = "saanih"
+
+
+@task
 def sanat():
     """ Use sanat """
     env.current_dict = "sanat"
