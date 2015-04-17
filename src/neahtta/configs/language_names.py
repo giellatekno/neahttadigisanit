@@ -75,6 +75,9 @@ NAMES = dict([
     ('hdn', _(u"Northern Haida")),
     ('hdnM', _(u"Northern Haida")),
 
+    # saanih
+    ('smn', _(u"Inari Saami")),
+
     # ndstesting
     ('kca', _(u"Khanty")),
 
@@ -96,8 +99,8 @@ NAMES = dict([
 ])
 
 ISO_DISPLAY_RELABELS = dict([
-    ('crk',      u'â'),
-    ('crk_Macr', u'ā'),
+    ('crk',      u'âêîô'),
+    ('crk_Macr', u'āēīō'),
 ])
 
 # These will show up in the localization menu, or wherever the
@@ -131,6 +134,7 @@ LOCALISATION_NAMES_BY_LANGUAGE = dict([
     ('et', u"Eesti"),
     ('est', u"Eesti"),
     ('sms', u"sääʹmǩiõll"),
+    ('smn', u'Anarâškielâ'),
     ('hdn', u"X̲aat Kíl"),
     ('hdnM', u"X̲aat Kíl"),
     ('en', u"English"),
