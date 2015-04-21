@@ -409,6 +409,15 @@ ITWEWINA_WORDS_DICTS_LEXICA   :=
 CRKENG_DIRS  := $(GTHOME)/art/dicts/crk/Wolvengrey/ \
 				$(GTHOME)/art/dicts/crk/Maskwacis/
 
+engcrk.xml: $(GTHOME)/art/dicts/crk/Wolvengrey/engcrk.xml
+	@echo "******************************"
+	@echo "** Building crk-eng lexicon **"
+	@echo "******************************"
+	@echo "** Backup made (.bak)       **"
+	@echo "******************************"
+	@echo ""
+	mkdir -p crkeng_tmp/
+	cat $^ | $(SED) -e 's/pos="\(\w*\)"/pos="\L\1"/' | $(SED) -e 's/pos="\(.\)/pos="\U\1/' > $@
 
 # add more directories as a list to CRKENG_DIRS
 #
@@ -416,7 +425,7 @@ CRKENG_DIRS  := $(GTHOME)/art/dicts/crk/Wolvengrey/ \
 
 # TODO: for now /scripts/ is copied to make sure that things work, and deleted at
 # the end. in the future, remove this.
-crkeng.xml: $(foreach d, $(CRKENG_DIRS), $(shell find $d -name '*.xml'))
+crkeng.xml: $(foreach d, $(CRKENG_DIRS), $(shell find $d -name '*crkeng.xml'))
 	@echo "******************************"
 	@echo "** Building crk-eng lexicon **"
 	@echo "******************************"
@@ -447,10 +456,26 @@ crkeng-macron.xml: crkeng.xml
 					| $(SED) -e 's/ô/ō/'  \
 					> $@
 
+engcrk-macron.xml: engcrk.xml
+	@echo "*************************************"
+	@echo "** Building eng-crk-macron lexicon **"
+	@echo "*************************************"
+	@echo "** Backup made (.bak)       **"
+	@echo "*************************************"
+	@echo ""
+	@echo $(SED)
+	cat engcrk.xml | $(SED) -e 's/pos="\(.\)/pos="\U\1/'  \
+					| $(SED) -e 's/â/ā/'  \
+					| $(SED) -e 's/ê/ē/'  \
+					| $(SED) -e 's/î/ī/'  \
+					| $(SED) -e 's/ô/ō/'  \
+					> $@
+
+
 .PHONY: itwewina-lexica
 itwewina-lexica: LEX_COMPILE_LANGS := $(ITWEWINA_LANGS_LEXICA)
 itwewina-lexica: LEX_COMPILE_WORDS_DICTS := $(ITWEWINA_WORDS_DICTS_LEXICA)
-itwewina-lexica: crkeng.xml crkeng-macron.xml compile_langs_lexicon compile_words_dicts_lexicon
+itwewina-lexica: crkeng.xml engcrk.xml engcrk-macron.xml crkeng-macron.xml compile_langs_lexicon compile_words_dicts_lexicon
 
 .PHONY: itwewina
 itwewina: GT_COMPILE_LANGS := $(ITWEWINA_LANGS_ANALYSERS)

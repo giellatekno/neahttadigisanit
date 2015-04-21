@@ -54,6 +54,8 @@ Languages:
   - iso: crkMacr
     variant: True # this makes the fab process skip attempting `svn up` here.
   - iso: eng
+  - iso: engM
+    variant: True # this makes the fab process skip attempting `svn up` here.
 
 Dictionaries:
   - source: crk
@@ -90,6 +92,29 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/c_korp"
     is_korp_default_lang: True
+  - source: eng
+    target: crk
+    path: 'dicts/engcrk.xml'
+    # TODO: there are some problems with how linking back to crk works here.
+    #
+    # input_variants:
+    #   - type: "standard"
+    #     description: !gettext "aio âêîô" # " 
+    #     # NB: must be same as analyser name
+    #     short_name: "eng"
+    #     # force locale: (but because english isn't specified, we don't change
+    #     # anything)
+    #     force_locale: 
+    #       crk: "crk"
+    #   - type: "macron"
+    #     description: !gettext "aio āēīō" # " 
+    #     # NB: must be same as analyser name
+    #     path: 'dicts/engcrk-macron.xml'
+    #     short_name: "engM"
+    #     # force locale: (but because english isn't specified, we don't change
+    #     # anything)
+    #     force_locale: 
+    #       crk: "crk_Macr"
 
 ReaderConfig:
   crk:
