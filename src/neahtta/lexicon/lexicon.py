@@ -410,6 +410,7 @@ class ReverseLookups(XMLDict):
 
 class KeywordLookups(XMLDict):
     """
+    NB: for the moment this is eng-crk specific
 
     2. search by e/mg/tg/t/text() instead of /e/lg/l/text()
 
@@ -457,7 +458,13 @@ class KeywordLookups(XMLDict):
     def modifyNodes(self, nodes, lemma):
         """ Modify the nodes in some way, but by duplicating them first.
 
-        Here we select the children of the <e /> and run a test on them.
+        Here we select the children of the <e /> and run a test on them,
+        if they succeed, then don't pop the node. Then return the
+        trimmed elements.
+
+        This is probably the best option for compatibility with the rest
+        of NDS, but need to have a way of generalizing this, because at
+        the moment, this is lexicon-specific.
         """
 
         def duplicate_node(node):
