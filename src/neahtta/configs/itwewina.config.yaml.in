@@ -95,6 +95,11 @@ Dictionaries:
   - source: eng
     target: crk
     path: 'dicts/engcrk.xml'
+
+    search_variants:
+     - type: "keyword"
+       path: "dicts/engcrk.xml"
+
     # TODO: there are some problems with how linking back to crk works here.
     #
     # input_variants:

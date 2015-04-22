@@ -437,6 +437,24 @@ class Config(Config):
         return language_pairs
 
     @property
+    def search_variants(self):
+        from collections import OrderedDict
+        if hasattr(self, '_search_variants'):
+            return self._search_variants
+
+        dicts = self.yaml.get('Dictionaries')
+        language_pairs = OrderedDict()
+        for item in dicts:
+            source = item.get('source')
+            target = item.get('target')
+            input_variants = item.get('search_variants', False)
+            if input_variants:
+                language_pairs[(source, target)] = input_variants
+
+        self._search_variants = language_pairs
+        return language_pairs
+
+    @property
     def dictionaries(self):
         from collections import OrderedDict
         if self._dictionaries:

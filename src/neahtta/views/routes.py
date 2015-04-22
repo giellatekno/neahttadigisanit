@@ -2,6 +2,7 @@
 
 from search import ( IndexSearchPage
                    , LanguagePairSearchView
+                   , LanguagePairSearchVariantView
                    , DetailedLanguagePairSearchView
                    , ReferredLanguagePairSearchView
                    )
@@ -19,6 +20,10 @@ blueprint.add_url_rule( '/<_from>/<_to>/'
 
 blueprint.add_url_rule( '/<_from>/<_to>/ref/'
                       , view_func=ReferredLanguagePairSearchView.as_view('referred_language_pair_search')
+                      )
+
+blueprint.add_url_rule( '/v/<_from>/<_to>/<variant_type>/'
+                      , view_func=LanguagePairSearchVariantView.as_view('language_pair_variant_search')
                       )
 
 blueprint.add_url_rule( '/detail/<_from>/<_to>/<wordform>.<format>'

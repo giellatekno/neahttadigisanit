@@ -492,11 +492,20 @@ class SearcherMixin(object):
             'lemma_attrs': kwargs.get('lemma_attrs', {}),
         }
 
-        morpholex_result = mlex.lookup( lookup_value
-                                      , source_lang=g._from
-                                      , target_lang=g._to
-                                      , **search_kwargs
-                                      )
+        variant_type = kwargs.get('variant_type', False)
+        if variant_type:
+            morpholex_result = mlex.variant_lookup( variant_type
+                                                  , lookup_value
+                                                  , source_lang=g._from
+                                                  , target_lang=g._to
+                                                  , **search_kwargs
+                                                  )
+        else:
+            morpholex_result = mlex.lookup( lookup_value
+                                          , source_lang=g._from
+                                          , target_lang=g._to
+                                          , **search_kwargs
+                                          )
 
         def count_others():
             """ This counts the results available in other language
@@ -619,7 +628,14 @@ class SearcherMixin(object):
         else:
             generate = False
 
-        search_result_obj = self.do_search_to_obj(lookup_value, generate=generate, lemma_attrs=lemma_attrs)
+        if 'variant_type' in default_context_kwargs:
+            variant_type = default_context_kwargs.get('variant_type')
+            search_result_obj = self.do_search_to_obj(lookup_value,
+                                                      generate=generate,
+                                                      lemma_attrs=lemma_attrs,
+                                                      variant_type=variant_type)
+        else:
+            search_result_obj = self.do_search_to_obj(lookup_value, generate=generate, lemma_attrs=lemma_attrs)
 
         if detailed:
             template = 'detail_entry.template'
@@ -801,6 +817,74 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
 
         # missing current_pair_settings
         return render_template('index.html', **search_result_context)
+
+class LanguagePairSearchVariantView(LanguagePairSearchView):
+
+    methods = ['GET', 'POST']
+
+    template_name = 'index.html'
+
+    formatter = FrontPageFormat
+
+    def get(self, variant_type, _from, _to):
+
+        self.check_pair_exists_or_abort(_from, _to)
+        self.force_locale(_from, _to)
+
+        # If the view is for an input variant, we need the original
+        # pair:
+
+        default_context = {
+
+            # These variables are produced from a search.
+            'successful_entry_exists': False,
+            'word_searches': False,
+            'analyses': False,
+            'analyses_without_lex': False,
+            'user_input': False,
+
+            # ?
+            'errors': False, # is this actually getting set?
+
+            # Show the default info under search box
+            'show_info': True,
+
+            'search_variant_type': variant_type,
+        }
+
+        if 'lookup' in request.args:
+            user_input = request.args.get('lookup')
+            # This performs lots of the work...
+            s_context = self.get_shared_context(_from, _to)
+            s_context['variant_type'] = variant_type
+            search_result_context = self.search_to_context(user_input, **s_context)
+
+            # missing current_pair_settings
+            return render_template('index.html', **search_result_context)
+        else:
+            default_context.update(**self.get_shared_context(_from, _to))
+            return render_template(self.template_name, **default_context)
+
+    def post(self, _from, _to):
+
+        self.check_pair_exists_or_abort(_from, _to)
+
+        user_input = lookup_val = request.form.get('lookup', False)
+
+        if user_input in ['teksti-tv', 'tekst tv', 'teaksta tv']:
+            session['text_tv'] = True
+
+        if not user_input:
+            user_input = ''
+            show_info = True
+
+        # This performs lots of the work...
+        search_result_context = self.search_to_context(user_input, **self.get_shared_context(_from, _to))
+
+        # missing current_pair_settings
+        return render_template('index.html', **search_result_context)
+
+
 
 class ReferredLanguagePairSearchView(LanguagePairSearchView):
     """ This overrides some functionality in order to provide the

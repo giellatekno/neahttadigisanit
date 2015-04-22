@@ -396,7 +396,8 @@ class ReverseLookups(XMLDict):
                  , 'not(@reverse)]'
                  ]
         _xpath = ' and '.join(_xpath)
-        return self.XPath(_xpath)
+        nodes = self.XPath(_xpath)
+        return self.modifyNodes(nodes)
 
     def lookupLemmaPOS(self, lemma, pos):
         _xpath = ' and '.join(
@@ -407,6 +408,81 @@ class ReverseLookups(XMLDict):
         )
         return self.XPath(_xpath)
 
+class KeywordLookups(XMLDict):
+    """
+
+    2. search by e/mg/tg/t/text() instead of /e/lg/l/text()
+
+    """
+
+    def __init__(self, filename=False, tree=False):
+        if not tree:
+            if filename not in PARSED_TREES:
+                print "parsing %s" % filename
+                try:
+                    self.tree = etree.parse(filename)
+                    PARSED_TREES[filename] = self.tree
+                except Exception, e:
+                    print
+                    print " *** ** ** ** ** ** * ***"
+                    print " *** ERROR parsing %s" % filename
+                    print " *** ** ** ** ** ** * ***"
+                    print
+                    print " Check the compilation process... "
+                    print " Is the file empty?"
+                    print " Saxon errors?"
+                    print
+                    sys.exit(2)
+            else:
+                self.tree = PARSED_TREES[filename]
+        else:
+            self.tree = tree
+
+        self.xpath_evaluator = etree.XPathDocumentEvaluator(self.tree)
+
+        # Initialize XPath queries
+
+        self.lemma = etree.XPath('.//e[mg/tg/key/text() = $lemma]')
+
+    def cleanEntry(self, e):
+        ts = e.findall('mg/tg/t')
+        ts_text = [t.text for t in ts]
+        ts_pos = [t.get('pos') for t in ts]
+
+        l = e.find('lg/l')
+        right_text = [l.text]
+
+        return {'left': ts_text, 'pos': ts_pos, 'right': right_text}
+
+    def modifyNodes(self, nodes, lemma):
+        """ Modify the nodes in some way, but by duplicating them first.
+
+        Here we select the children of the <e /> and run a test on them.
+        """
+
+        def duplicate_node(node):
+            # There should be a better way to do this.
+            return etree.XML(etree.tostring(node))
+
+        def test_node(node):
+            _xp = 'tg[key/text() = "%s"]' % lemma
+            return len(node.xpath(_xp)) == 0
+
+        def process_node(node):
+            for mg in node.findall('mg'):
+                if test_node(mg):
+                    node.remove(mg)
+            return node
+
+        new_nodes = []
+        for node in map(duplicate_node, nodes):
+            new_nodes.append(process_node(node))
+
+        return new_nodes
+
+    def lookupLemma(self, lemma):
+        nodes = self.XPath( self.lemma, lemma=lemma)
+        return self.modifyNodes(nodes, lemma=lemma)
 
 class Lexicon(object):
 
@@ -420,17 +496,35 @@ class Lexicon(object):
 
         """
 
+        from collections import OrderedDict
+
         language_pairs = dict(
             [ (k, XMLDict(filename=v))
               for k, v in settings.dictionaries.iteritems() ]
         )
-
 
         alternate_dicts = dict(
             [ (k, XMLDict(filename=v.get('path')))
               for k, v in settings.variant_dictionaries.iteritems() ]
         )
 
+        search_types = {
+            'keyword': KeywordLookups,
+            'regular': XMLDict,
+        }
+
+        variant_searches = dict()
+
+        for k, variants in settings.search_variants.iteritems():
+            pair_variants = OrderedDict()
+            for var in variants:
+                variant_type = var.get('type', 'regular')
+                cls = search_types.get(variant_type)
+                variant_search = cls(filename=var.get('path'))
+                pair_variants[variant_type] = variant_search
+            variant_searches[k] = pair_variants
+
+        self.variant_searches = variant_searches
         # language_pairs.update(alternate_dicts)
         langs_and_alternates = {}
         langs_and_alternates.update(language_pairs)
@@ -441,6 +535,14 @@ class Lexicon(object):
             lexicon_overrides.process_prelookups(
                 langs_and_alternates,
                 self.lookup
+            )
+        )
+
+        self.variant_lookup = lexicon_overrides.process_postlookups(
+            variant_searches,
+            lexicon_overrides.process_prelookups(
+                variant_searches,
+                self.variant_lookup
             )
         )
 
@@ -512,6 +614,65 @@ class Lexicon(object):
         """
 
         _dict = self.language_pairs.get((_from, _to), False)
+
+        if not _dict:
+            raise Exception("Undefined language pair %s %s" % (_from, _to))
+
+        _lookup_func, largs = self.get_lookup_type(_dict, lemma, pos, pos_type, lemma_attrs)
+
+        if not _lookup_func:
+            raise Exception(
+                "Unknown lookup type for <%s> (lemma: %s, pos: %s, pos_type: %s, lemma_attrs: %s)" %
+                ( user_input
+                , lemma
+                , pos
+                , pos_type
+                , repr(lemma_attrs)
+                )
+            )
+
+        if lemma_attrs:
+            result = _lookup_func(**lemma_attrs)
+        else:
+            result = _lookup_func(*largs)
+
+        if len(result) == 0:
+            return False
+
+        if _format:
+            result = list(_format(result))
+
+        return result
+
+    def variant_lookup(self, _from, _to, search_type, lemma,
+               pos=False, pos_type=False,
+               _format=False, lemma_attrs=False, user_input=False):
+        """ Perform a lexicon lookup. Depending on the keyword
+        arguments, several types of lookups may be performed.
+
+          * term lookup -
+            `lexicon.lookup(source_lang, target_lang, type, term)`
+
+          TODO: these
+
+          * lemma lookup + POS -
+            `lexicon.lookup(source_lang, target_lang, lemma, pos=POS)`
+
+             This lookup uses the lemma, and the `@pos` attribute on the <l /> node.
+
+          * lemma lookup + POS + Type -
+             `lexicon.lookup(source_lang, target_lang, lemma, pos=POS)`
+
+             This lookup uses the lemma, the `@pos` attribute on the <l /> node,
+             and the `@type` attribute.
+
+          * lemma lookup + other attributes
+            `lexicon.lookup(source_lang, target_lang, lemma, lemma_attrs={'attr_1': asdf, 'attr_2': asdf}`
+
+            A dictionary of arguments may be supplied, matching attributes on the <l /> node.
+        """
+
+        _dict = self.variant_searches.get((_from, _to), {}).get(search_type, False)
 
         if not _dict:
             raise Exception("Undefined language pair %s %s" % (_from, _to))
