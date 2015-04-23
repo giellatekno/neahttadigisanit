@@ -3,5 +3,11 @@ morphology:
   pos: V
   animacy: II
 --
-{{ lemma }}+V+II+Ind+Prs+3Sg+4Sg
-{{ lemma }}+V+II+Ind+Prs+3Pl+4Pl
+{{ lemma }}+V+II+Ind+Prs+3Sg
+{{ lemma }}+V+II+Ind+Prs+3Pl
+{{ lemma }}+V+II+Cnj+Prs+3Sg
+{{ lemma }}+V+II+Cnj+Prs+3Pl
+{{ lemma }}+V+II+Ind+Prt+3Sg
+{{ lemma }}+V+II+Ind+Prt+3Pl
+{{ lemma }}+V+II+Cnj+Prt+3Sg
+{{ lemma }}+V+II+Cnj+Prt+3Pl
