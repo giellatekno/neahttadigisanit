@@ -2,13 +2,14 @@ pos:
  - "N"
  - "V"
  - "Num"
+ - "Ipc"
 animacy: 
  - "TA"
- - "IA"
+ - "TI"
  - "AI"
  - "II"
 type: 
- - "NomAg"
+ - "Interr"
 indicative:
  - "Ind"
 conjunct:
