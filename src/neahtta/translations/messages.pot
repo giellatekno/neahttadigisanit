@@ -518,7 +518,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/guusaaw/about.template:56
 #: configs/language_specific_rules/templates/itwewina/about.template:67
 msgid ""
-"The dictionary software behind pîkiskwêwina is Neahttadigisánit, "
+"The dictionary software behind itwêwina is Neahttadigisánit, "
 "originally created for North Saami and South Saami at the University of "
 "Tromsø. New languages always present new challenges for the software, so "
 "be sure to get in touch with us if you have questions or comments."
