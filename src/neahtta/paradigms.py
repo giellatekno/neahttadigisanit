@@ -445,7 +445,16 @@ class ParadigmConfig(object):
 
         parsed_condition = False
         if condition_yaml and paradigm_string_txt:
-            condition_yaml = yaml.load(condition_yaml)
+            try:
+                condition_yaml = yaml.load(condition_yaml)
+            except Exception, e:
+                print >> sys.stderr, "\n** Problem reading paradigm rule condition at: "
+                print >> sys.stderr, e
+                print >> sys.stderr, " in:"
+                _, lx, path = path.partition('language_specific_rules')
+                print >> sys.stderr, "    " + lx + path
+                print >> sys.stderr, "\n** Could not start service."
+                sys.exit()
 
             name = condition_yaml.get('name')
             desc = condition_yaml.get('desc', '')
