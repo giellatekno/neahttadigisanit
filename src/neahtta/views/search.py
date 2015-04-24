@@ -73,8 +73,10 @@ class DictionaryView(MethodView):
 
     validate_request = lambda self, x: True
 
-    def get_shared_context(self, _from, _to):
-        """ Return some things that are in all templates. """
+    def get_shared_context(self, _from, _to, *args, **kwargs):
+        """ Return some things that are in all templates. Additional
+        kwargs passed here will end up in the context passsed to
+        templates. """
 
         current_pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(_from, _to)
 
@@ -94,6 +96,8 @@ class DictionaryView(MethodView):
             'orig_from': orig_from,
             'orig_to': orig_to,
         }
+
+        shared_context.update(**kwargs)
 
         # Render some additional templates
         search_info = current_app.lexicon_templates.render_individual_template(
@@ -821,68 +825,37 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
 class LanguagePairSearchVariantView(LanguagePairSearchView):
 
     methods = ['GET', 'POST']
-
-    template_name = 'index.html'
-
+    template_name = 'variant_search.html'
     formatter = FrontPageFormat
 
+    def get_shared_context(self, _from, _to):
+        """ Return some things that are in all templates. Include the
+        variant type in the search request. """
+        _sup = super(LanguagePairSearchVariantView, self)
+        shared_context = _sup.get_shared_context(_from, _to,
+                                                 search_form_action=request.path,
+                                                 search_variant_type=self.variant_type)
+        shared_context['variant_type'] = self.variant_type
+        shared_context['search_form_action'] = request.path
+        return shared_context
+
     def get(self, variant_type, _from, _to):
+        """ The only difference here between the normal type of search
+        is that there's an extra argument in the URL, to select the
+        variant type. This is easy to extract, and once removed and
+        included elsewhere in the search everything else is the same.
+        """
+        self.variant_type = variant_type
+        return super(LanguagePairSearchVariantView, self).get(_from, _to)
 
-        self.check_pair_exists_or_abort(_from, _to)
-        self.force_locale(_from, _to)
-
-        # If the view is for an input variant, we need the original
-        # pair:
-
-        default_context = {
-
-            # These variables are produced from a search.
-            'successful_entry_exists': False,
-            'word_searches': False,
-            'analyses': False,
-            'analyses_without_lex': False,
-            'user_input': False,
-
-            # ?
-            'errors': False, # is this actually getting set?
-
-            # Show the default info under search box
-            'show_info': True,
-
-            'search_variant_type': variant_type,
-        }
-
-        if 'lookup' in request.args:
-            user_input = request.args.get('lookup')
-            # This performs lots of the work...
-            s_context = self.get_shared_context(_from, _to)
-            s_context['variant_type'] = variant_type
-            search_result_context = self.search_to_context(user_input, **s_context)
-
-            # missing current_pair_settings
-            return render_template('index.html', **search_result_context)
-        else:
-            default_context.update(**self.get_shared_context(_from, _to))
-            return render_template(self.template_name, **default_context)
-
-    def post(self, _from, _to):
-
-        self.check_pair_exists_or_abort(_from, _to)
-
-        user_input = lookup_val = request.form.get('lookup', False)
-
-        if user_input in ['teksti-tv', 'tekst tv', 'teaksta tv']:
-            session['text_tv'] = True
-
-        if not user_input:
-            user_input = ''
-            show_info = True
-
-        # This performs lots of the work...
-        search_result_context = self.search_to_context(user_input, **self.get_shared_context(_from, _to))
-
-        # missing current_pair_settings
-        return render_template('index.html', **search_result_context)
+    def post(self, variant_type, _from, _to):
+        """ The only difference here between the normal type of search
+        is that there's an extra argument in the URL, to select the
+        variant type. This is easy to extract, and once removed and
+        included elsewhere in the search everything else is the same.
+        """
+        self.variant_type = variant_type
+        return super(LanguagePairSearchVariantView, self).post(_from, _to)
 
 
 
