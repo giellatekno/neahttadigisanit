@@ -443,6 +443,7 @@ class KeywordLookups(XMLDict):
 
         # Initialize XPath queries
 
+        # self.lemma = etree.XPath('.//e[(mg/tg/key/text() = $lemma) and (mg/tg/key/text() = "take")]')
         self.lemma = etree.XPath('.//e[mg/tg/key/text() = $lemma]')
 
     def cleanEntry(self, e):
@@ -472,23 +473,46 @@ class KeywordLookups(XMLDict):
             return etree.XML(etree.tostring(node))
 
         def test_node(node):
-            _xp = 'tg[key/text() = "%s"]' % lemma
+            tg_node_expr = " and ".join([
+                '(key/text() = "%s")' % l_part
+                for l_part in lemma.split('##')
+            ])
+            _xp = 'tg[%s]' % tg_node_expr
             return len(node.xpath(_xp)) == 0
 
         def process_node(node):
-            for mg in node.findall('mg'):
+            mgs = node.findall('mg')
+            c = len(node.findall('mg'))
+            for mg in mgs:
                 if test_node(mg):
+                    c -= 1
                     node.remove(mg)
-            return node
+
+            if c == 0:
+                return None
+            else:
+                return node
 
         new_nodes = []
         for node in map(duplicate_node, nodes):
             new_nodes.append(process_node(node))
 
-        return new_nodes
+        return [n for n in new_nodes if n != None]
 
     def lookupLemma(self, lemma):
-        nodes = self.XPath( self.lemma, lemma=lemma)
+        # self.lemma = etree.XPath('.//e[(mg/tg/key/text() = $lemma) and (mg/tg/key/text() = "take")]')
+        # self.lemma = etree.XPath('.//e[mg/tg/key/text() = $lemma]')
+
+        keys = ' and '.join([
+            '(mg/tg/key/text() = "%s")' % l
+            for l in lemma.split('##')
+        ])
+
+        key_expr = './/e[%s]' % keys
+
+        xp = etree.XPath(key_expr)
+
+        nodes = self.XPath( xp, lemma=lemma)
         return self.modifyNodes(nodes, lemma=lemma)
 
 class Lexicon(object):
