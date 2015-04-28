@@ -1,0 +1,34 @@
+{# This is solely for rendering the search variants for any given pair, and
+   this template is included within the nav <ul />, which means that in order
+   to create the variant list, that unordered list must be closed and a new one
+   opened.
+#}
+
+{% if pair_options.search_variants %}
+    {# TODO: current variant 'active' class #}
+
+    {# Only display if the pair is the current one the user is looking at #}
+    {%- if iso_pair[0] == _from and iso_pair[1] == _to or orig_pair == iso_pair %}
+        </ul>
+
+        <span class="nav-header variantnote" lang="{{ current_locale }}">{% trans %}Search type{% endtrans %}</span>
+        <ul class="nav nav-collapse nav-tabs nav-stacked subnavcoloring">
+            <li class="active">
+                <a href="/{{ _from }}/{{ _to }}/">Word search</a>
+            </li>
+
+            {% for variant in pair_options.search_variants %}
+                {# /v/eng/crk/keyword/?lookup=wander #}
+                <li{% if _from == variant.short_name %} class="active"{% endif %}>
+                    <a href="/v/{{ _from }}/{{ _to }}/{{ variant.type }}">{{ gettext(variant.description)|safe }}{% if variant.example %} {{ gettext(variant.example)|safe }}{% endif %}</a>
+                </li>
+            {% endfor %}
+
+        </ul>
+
+        {# create a <ul /> for the main nav again #}
+        <ul class="nav nav-collapse nav-tabs nav-stacked">
+
+    {%- endif -%}
+{%- endif -%}
+
