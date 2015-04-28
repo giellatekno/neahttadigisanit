@@ -442,8 +442,6 @@ class KeywordLookups(XMLDict):
         self.xpath_evaluator = etree.XPathDocumentEvaluator(self.tree)
 
         # Initialize XPath queries
-
-        # self.lemma = etree.XPath('.//e[(mg/tg/key/text() = $lemma) and (mg/tg/key/text() = "take")]')
         self.lemma = etree.XPath('.//e[mg/tg/key/text() = $lemma]')
 
     def cleanEntry(self, e):
@@ -501,8 +499,6 @@ class KeywordLookups(XMLDict):
         return [n for n in new_nodes if n != None]
 
     def lookupLemma(self, lemma):
-        # self.lemma = etree.XPath('.//e[(mg/tg/key/text() = $lemma) and (mg/tg/key/text() = "take")]')
-        # self.lemma = etree.XPath('.//e[mg/tg/key/text() = $lemma]')
 
         keys = ' and '.join([
             '(mg/tg/key/text() = "%s")' % l
