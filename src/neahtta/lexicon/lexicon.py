@@ -467,10 +467,11 @@ class KeywordLookups(XMLDict):
         of NDS, but need to have a way of generalizing this, because at
         the moment, this is lexicon-specific.
         """
+        import copy
 
         def duplicate_node(node):
-            # There should be a better way to do this.
-            return etree.XML(etree.tostring(node))
+            # previously: etree.XML(etree.tostring(node))
+            return copy.deepcopy(node) 
 
         def test_node(node):
             tg_node_expr = " and ".join([
