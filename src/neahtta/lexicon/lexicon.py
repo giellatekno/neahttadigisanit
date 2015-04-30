@@ -410,9 +410,22 @@ class ReverseLookups(XMLDict):
 
 class KeywordLookups(XMLDict):
     """
-    NB: for the moment this is eng-crk specific
+    NB: for the moment this is eng-crk specific.
 
-    2. search by e/mg/tg/t/text() instead of /e/lg/l/text()
+    1. search by //e/mg/tg/t/text() instead of //e/lg/l/text()
+    2. after the search, we duplicate and re-test the matched <e />
+       nodes to remove any <mg /> that do not apply to the query.
+    3. Duplicated nodes are returned to the rest of the query, and no
+       one knows the difference
+
+    TODO: how to provide an entry hash for these? Linkability to search
+      results would be great.
+
+    TODO: think about how to generalize this. Since this is code beyond
+    a sort of 'base functionality', it may need to stand somewhere other
+    than in `lexicon.lexicon`. Providing an easy API for extending
+    search types would be great, because down the line there will be
+    more search types.
 
     """
 
@@ -482,11 +495,14 @@ class KeywordLookups(XMLDict):
         def process_node(node):
             mgs = node.findall('mg')
             c = len(node.findall('mg'))
+            # Remove nodes not passing the test, these shall diminish
+            # and go into the west, and remain <mg />.
             for mg in mgs:
                 if test_node(mg):
                     c -= 1
                     node.remove(mg)
-
+            # If trimming <mg /> results in no actual translations, we
+            # don't display the node.
             if c == 0:
                 return None
             else:
