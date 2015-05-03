@@ -99,6 +99,8 @@ Dictionaries:
     search_variants:
      - type: "keyword"
        path: "dicts/engcrk.xml"
+       description: "Keyword search"
+       example: "go -> go by foot, go by boat"
 
     # TODO: there are some problems with how linking back to crk works here.
     #
