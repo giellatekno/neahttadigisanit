@@ -596,6 +596,7 @@ class Config(Config):
                     _pair_options['langs'][iso] = (_from_langs[iso], _to_langs[iso])
 
                 _pair_options['input_variants'] = validate_variants(self.input_variants.get(key, False), key)
+                _pair_options['search_variants'] = self.search_variants.get(key, False)
 
                 _par_defs[key] = _pair_options
 
