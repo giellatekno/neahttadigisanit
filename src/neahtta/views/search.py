@@ -86,10 +86,20 @@ class DictionaryView(MethodView):
         else:
             orig_from, orig_to = _from, _to
 
+        current_search_variant = False
+
+        if 'search_variant_type' in kwargs:
+            _t = kwargs['search_variant_type']
+            variants = [v for v in current_pair_settings.get('search_variants')
+                        if v.get('type') == _t]
+            if len(variants) > 0:
+                current_search_variant = variants[0]
+
         shared_context = {
             'display_swap': self.get_reverse_pair(_from, _to),
             'current_pair_settings': current_pair_settings,
             'current_variant_options': orig_pair_opts.get('variant_options'),
+            'current_search_variant': current_search_variant,
             'current_locale': get_locale(),
             '_from': _from,
             '_to': _to,
@@ -798,7 +808,7 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
             search_result_context = self.search_to_context(user_input, **self.get_shared_context(_from, _to))
 
             # missing current_pair_settings
-            return render_template('index.html', **search_result_context)
+            return render_template(self.template_name, **search_result_context)
         else:
             default_context.update(**self.get_shared_context(_from, _to))
             return render_template(self.template_name, **default_context)
@@ -820,7 +830,7 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
         search_result_context = self.search_to_context(user_input, **self.get_shared_context(_from, _to))
 
         # missing current_pair_settings
-        return render_template('index.html', **search_result_context)
+        return render_template(self.template_name, **search_result_context)
 
 class LanguagePairSearchVariantView(LanguagePairSearchView):
 
@@ -835,6 +845,7 @@ class LanguagePairSearchVariantView(LanguagePairSearchView):
         shared_context = _sup.get_shared_context(_from, _to,
                                                  search_form_action=request.path,
                                                  search_variant_type=self.variant_type)
+        # TODO: current variant options
         shared_context['variant_type'] = self.variant_type
         shared_context['search_form_action'] = request.path
         return shared_context
@@ -888,7 +899,7 @@ class ReferredLanguagePairSearchView(LanguagePairSearchView):
         search_result_context = self.search_to_context(user_input, **lookup_context)
 
         # missing current_pair_settings
-        return render_template('index.html', **search_result_context)
+        return render_template(self.template_name, **search_result_context)
 
 class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
     """ The major difference between this view and the main index search

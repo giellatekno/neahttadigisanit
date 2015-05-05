@@ -13,13 +13,13 @@
 
         <span class="nav-header variantnote" lang="{{ current_locale }}">{% trans %}Search type{% endtrans %}</span>
         <ul class="nav nav-collapse nav-tabs nav-stacked subnavcoloring">
-            <li class="active">
+            <li {% if not current_search_variant %}class="active"{% endif %}>
                 <a href="/{{ _from }}/{{ _to }}/">Word search</a>
             </li>
 
             {% for variant in pair_options.search_variants %}
                 {# /v/eng/crk/keyword/?lookup=wander #}
-                <li{% if _from == variant.short_name %} class="active"{% endif %}>
+                <li{% if current_search_variant.type == variant.type %} class="active"{% endif %}>
                     <a href="/v/{{ _from }}/{{ _to }}/{{ variant.type }}">{{ gettext(variant.description)|safe }}{% if variant.example %} {{ gettext(variant.example)|safe }}{% endif %}</a>
                 </li>
             {% endfor %}
