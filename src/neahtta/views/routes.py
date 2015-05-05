@@ -5,6 +5,7 @@ from search import ( IndexSearchPage
                    , LanguagePairSearchVariantView
                    , DetailedLanguagePairSearchView
                    , ReferredLanguagePairSearchView
+                   , search_keyword_list
                    )
 
 from paradigms import ParadigmLanguagePairSearchView
@@ -32,4 +33,9 @@ blueprint.add_url_rule( '/detail/<_from>/<_to>/<wordform>.<format>'
 
 blueprint.add_url_rule( '/paradigm/<_from>/<_to>/<lemma>'
                       , view_func=ParadigmLanguagePairSearchView.as_view('paradigm_generator')
+                      )
+
+blueprint.add_url_rule( '/list/keywords/<_from>/<_to>/'
+                      , view_func=search_keyword_list
+                      , methods=['GET']
                       )

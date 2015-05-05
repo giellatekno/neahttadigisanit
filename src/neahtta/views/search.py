@@ -1122,3 +1122,27 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
         search_result_context['more_detail_link'] = want_more_detail
 
         return render_template(self.template_name, **search_result_context)
+
+
+from .reader import crossdomain
+
+@crossdomain(origin='*', headers=['Content-Type'])
+def search_keyword_list(_from, _to):
+    # TODO: cache query for teh whole duration of the service running
+
+    import simplejson
+
+    if (_from, _to) not in current_app.config.dictionaries and \
+       (_from, _to) not in current_app.config.variant_dictionaries:
+        abort(404)
+
+    # cache_key = "keywords-%s-%s" % (_from, _to)
+
+    keywords = ["car", "drive", "squirrel", "horse"]
+
+    data = simplejson.dumps({ 'keywords': keywords })
+
+    return Response( response=data
+                   , status=200
+                   , mimetype="application/json"
+                   )

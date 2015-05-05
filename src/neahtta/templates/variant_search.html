@@ -165,31 +165,37 @@
                     </div>
                     {# TODO: apply when keyword search on #}
                     <script type="text/javascript">
-                        var citynames = new Bloodhound({
-                          datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-                          queryTokenizer: Bloodhound.tokenizers.whitespace,
-                          // TODO: fetch all keywords from some endpoint?
-                          local: [
-                            {"id": 1, "name": "car"},
-                            {"id": 2, "name": "drive"},
-                            {"id": 3, "name": "captive"}
-                          ]
-                        });
-                        citynames.initialize();
-
-                        // Unregister the submit event that prevents null submitting
                         $(document).ready(function(){
+                            // Unregister the submit event that prevents null submitting
                             $('form').unbind('submit');
+
+                            // TODO: /list/keywords/eng/crk/
+                            var citynames = new Bloodhound({
+                              datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+                              queryTokenizer: Bloodhound.tokenizers.whitespace,
+                              // TODO: fetch all keywords from some endpoint?
+                              prefetch: {
+                                  url: '/list/keywords/{{ _from }}/{{ _to }}/',
+                                  cache: false,
+                                  transform: function(response) {
+                                    return $.map(response.keywords, function(k) {
+                                            return { name: k }; });
+                                  }
+                              }
+                            });
+                            citynames.initialize();
+
+                            $('input[name="lookup"]').tagsinput({
+                              typeaheadjs: {
+                                name: 'keywords',
+                                displayKey: 'name',
+                                valueKey: 'name',
+                                source: citynames.ttAdapter()
+                              }
+                            });
+
                         });
 
-                        $('input[name="lookup"]').tagsinput({
-                          typeaheadjs: {
-                            name: 'keywords',
-                            displayKey: 'name',
-                            valueKey: 'name',
-                            source: citynames.ttAdapter()
-                          }
-                        });
                     </script>
                     {# /copy-for-now #}
                     {# TODO: keyword JS stuff #}
