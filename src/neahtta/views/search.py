@@ -1136,11 +1136,17 @@ def search_keyword_list(_from, _to):
        (_from, _to) not in current_app.config.variant_dictionaries:
         abort(404)
 
-    # cache_key = "keywords-%s-%s" % (_from, _to)
+    @cache.memoize()
+    def fetch_keywords():
+        lex = current_app.config.lexicon.language_pairs.get(('eng', 'crk'))
+        tree = lex.tree
+        entries = lex.tree.findall('.//e/mg/tg/key')
+        keys = list(set([k for k in
+                [e.text for e in entries]
+                if k]))
+        return keys
 
-    keywords = ["car", "drive", "squirrel", "horse"]
-
-    data = simplejson.dumps({ 'keywords': keywords })
+    data = simplejson.dumps({ 'keywords': fetch_keywords() })
 
     return Response( response=data
                    , status=200

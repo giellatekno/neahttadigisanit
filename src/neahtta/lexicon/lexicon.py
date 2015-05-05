@@ -487,7 +487,7 @@ class KeywordLookups(XMLDict):
         def test_node(node):
             tg_node_expr = " and ".join([
                 '(key/text() = "%s")' % l_part
-                for l_part in lemma.split('##')
+                for l_part in lemma.split(',')
             ])
             _xp = 'tg[%s]' % tg_node_expr
             return len(node.xpath(_xp)) == 0
@@ -518,7 +518,7 @@ class KeywordLookups(XMLDict):
 
         keys = ' and '.join([
             '(mg/tg/key/text() = "%s")' % l
-            for l in lemma.split('##')
+            for l in lemma.split(',')
         ])
 
         key_expr = './/e[%s]' % keys
