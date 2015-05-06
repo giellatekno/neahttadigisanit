@@ -2,11 +2,13 @@
 
 from search import ( IndexSearchPage
                    , LanguagePairSearchView
-                   , LanguagePairSearchVariantView
                    , DetailedLanguagePairSearchView
                    , ReferredLanguagePairSearchView
-                   , search_keyword_list
                    )
+
+from keyword_search import ( LanguagePairSearchVariantView
+                           , search_keyword_list
+                           )
 
 from paradigms import ParadigmLanguagePairSearchView
 

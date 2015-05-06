@@ -846,6 +846,25 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
         # missing current_pair_settings
         return render_template(self.template_name, **search_result_context)
 
+
+@cache.memoize()
+def fetch_keywords(_f, _t, counts=False):
+    from collections import Counter
+
+    lex = current_app.config.lexicon.language_pairs.get((_f, _t))
+    tree = lex.tree
+    entries = lex.tree.findall('.//e/mg/tg/key')
+
+    _ks = [k for k in [e.text for e in entries] if k]
+
+    keys = list(set(_ks))
+
+    if counts:
+        counts = Counter(_ks)
+        return keys, counts
+    else:
+        return keys
+
 class LanguagePairSearchVariantView(LanguagePairSearchView):
 
     # TODO: cache on search args and session lang
@@ -862,6 +881,13 @@ class LanguagePairSearchVariantView(LanguagePairSearchView):
                                                  search_variant_type=self.variant_type)
         shared_context['variant_type'] = self.variant_type
         shared_context['search_form_action'] = request.path
+
+        from operator import itemgetter
+
+        if request.method == 'GET':
+            keys, key_counts = fetch_keywords(_from, _to, counts=True)
+            # shared_context['initial_keywords'] = sorted(key_counts.iteritems(), key=itemgetter(1), reverse=True)
+
         # TODO: send additional keywords in the current search.
         return shared_context
 
@@ -901,10 +927,15 @@ class LanguagePairSearchVariantView(LanguagePairSearchView):
         included elsewhere in the search everything else is the same.
         """
         self.variant_type = variant_type
+
+        # TODO: if there are way too many results with the query, user
+        # must be invited to narrow them down by adding another keyword.
+        # will need to have a quick function that just counts the
+        # results for a given query without sending them off to be
+        # rendered, so that things go faster.
+
         # missing current_pair_settings
         return super(LanguagePairSearchVariantView, self).post(_from, _to)
-
-
 
 class ReferredLanguagePairSearchView(LanguagePairSearchView):
     """ This overrides some functionality in order to provide the
@@ -1173,17 +1204,7 @@ def search_keyword_list(_from, _to):
        (_from, _to) not in current_app.config.variant_dictionaries:
         abort(404)
 
-    @cache.memoize()
-    def fetch_keywords():
-        lex = current_app.config.lexicon.language_pairs.get(('eng', 'crk'))
-        tree = lex.tree
-        entries = lex.tree.findall('.//e/mg/tg/key')
-        keys = list(set([k for k in
-                [e.text for e in entries]
-                if k]))
-        return keys
-
-    data = simplejson.dumps({ 'keywords': fetch_keywords() })
+    data = simplejson.dumps({ 'keywords': fetch_keywords(_from, _to) })
 
     return Response( response=data
                    , status=200
