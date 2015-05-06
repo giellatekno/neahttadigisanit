@@ -238,6 +238,7 @@
             </div>
 
             {# TODO: deep link needs to go to specific lexeme when it comes from the front page #}
+
             {% if successful_entry_exists %}
                 <div class="results">
                     {% for tpl in entry_templates %}
@@ -297,6 +298,45 @@
             {% if show_info %}
                 {{ search_info_template|safe }}
             {% endif %}
+
+            {# NB: this could be a fun idea, but would take work to sort out.
+               tl;dr: visual grid of keywords with counts, allow the user to
+               pick one, and warn if there are too many entries, displaying
+               keywords to narrow it down. #}
+
+            {#
+            {% if initial_keywords %}
+                <div class="initial_keywords">
+                    <div class="keyword_grid">
+                        {% for kw, count in initial_keywords[0:100] %}
+                            <div class="element-item" data-count="{{ count }}">
+                                <span class="keyword">{{ kw }}</span>
+                                <span class="count">{{ count }} entries</span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <script src="{{url_for('static', filename='js/isotope.pkgd.min.js')}}"></script>
+                <script type="text/javascript">
+                    $(document).ready(function(o){
+                        var input_field = 'input[name="lookup"]';
+
+                        $("div.keyword_grid").isotope({
+                              itemSelector: '.element-item',
+                              layoutMode: 'fitRows',
+                        });
+
+                        $("div.keyword_grid .element-item").click(function(evt){
+                          // Target is a bit weird, sometimes <span /> sometimes <a />
+                          var kw = $(evt.target).find('.keyword').text();
+                          $(input_field).tagsinput('add', kw);
+                        });
+
+                    });
+                </script>
+            {% endif %}
+            #}
+
         </div>
         
     </div>
