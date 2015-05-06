@@ -160,6 +160,20 @@
                                        {% endif %}
                                     </div>
                                 </form>
+                                
+                                <div class="search_options">
+                                    {% if available_keywords %}
+                                        <p class="note">Your search turned up words with one or more keywords. Narrow your search down by choosing more:</p>
+                                        <div class="search_keywords">
+                                            <p>
+                                        {% for k in available_keywords %}
+                                            <a href="#" class="add_keyword" data-keyword-value="{{ k }}"><span class="label label-success">+ {{ k }}</span></a>
+                                        {% endfor %}
+                                            </p>
+                                        </div>
+                                    {% endif %}
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -167,6 +181,8 @@
                     <script type="text/javascript">
                         $(document).ready(function(){
                             // Unregister the submit event that prevents null submitting
+                            var input_field = 'input[name="lookup"]';
+
                             $('form').unbind('submit');
 
                             // TODO: /list/keywords/eng/crk/
@@ -185,13 +201,25 @@
                             });
                             citynames.initialize();
 
-                            $('input[name="lookup"]').tagsinput({
+                            $(input_field).tagsinput({
+                              allowDuplicates: false,
                               typeaheadjs: {
                                 name: 'keywords',
                                 displayKey: 'name',
                                 valueKey: 'name',
                                 source: citynames.ttAdapter()
                               }
+                            });
+                            $('form input').on('itemAdded', function(event) {
+                              $('form input[placeholder]').attr('placeholder', null);
+                            });
+
+                            $('.search_options .add_keyword').click( function(evt){
+                              // Target is a bit weird, sometimes <span /> sometimes <a />
+                              var kw = $(evt.target).find('span').attr('data-keyword-value') ||
+                                       $(evt.target).parents('[data-keyword-value]').attr('data-keyword-value');
+                                    ;
+                              $(input_field).tagsinput('add', kw);
                             });
 
                         });

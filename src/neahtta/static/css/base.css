@@ -844,3 +844,52 @@ span.entry_source {
     }
 
 }
+
+
+/*
+ * Search keyword CSS
+ *
+ */
+
+.search_options {
+    margin-top: -1.75em;
+    margin-bottom: .75em;
+    border-left: 5px #ddd solid;
+}
+
+.search_options .note {
+    font-size: 95%;
+    font-weight: 500;
+    margin-top: 7px;
+    margin-bottom: 5px;
+    margin-left: 1.75em;
+    line-height: 1.3em;
+    color: #777;
+}
+
+.search_options div.search_keywords {
+    margin-bottom: .5em;
+    display: block;
+    margin-left: 1.75em;
+}
+
+.search_options a.add_keyword .label {
+    font-size: 11pt;
+    margin-top: 3px;
+    margin-bottom: 0px;
+    line-height: 20px;
+}
+
+.search_options div.search_keywords p {
+    line-height: 1.8em;
+}
+
+.search_options div.search_keywords a {
+    padding-right: 5px;
+}
+form[tagsinput] .label {
+    font-size: 11pt;
+    margin-top: 3px;
+    margin-bottom: 0px;
+    line-height: 20px;
+}
