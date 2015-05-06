@@ -73,6 +73,11 @@ class DictionaryView(MethodView):
 
     validate_request = lambda self, x: True
 
+    def post_search_context_modification(self, search_result, context):
+        """ Perform any additional alterations to the context generated
+        from the search before it is rendered.  """
+        return context
+
     def get_shared_context(self, _from, _to, *args, **kwargs):
         """ Return some things that are in all templates. Additional
         kwargs passed here will end up in the context passsed to
@@ -391,6 +396,15 @@ class SearchResult(object):
                 self._formatted_results.extend(_formatted)
 
         return self._formatted_results
+
+    @property
+    def entries(self):
+        if hasattr(self, '_entries'):
+            return self._entries
+
+        self._entries = [a for a, _ in self.entries_and_tags]
+
+        return self._entries
 
     @property
     def entries_and_tags_and_paradigms(self):
@@ -757,7 +771,7 @@ class SearcherMixin(object):
 
         search_context.update(**default_context_kwargs)
 
-        return search_context
+        return self.post_search_context_modification(search_result_obj, search_context)
 
 class LanguagePairSearchView(DictionaryView, SearcherMixin):
     """ This view returns either the search form, or processes the
@@ -834,6 +848,7 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
 
 class LanguagePairSearchVariantView(LanguagePairSearchView):
 
+    # TODO: cache on search args and session lang
     methods = ['GET', 'POST']
     template_name = 'variant_search.html'
     formatter = FrontPageFormat
@@ -845,10 +860,29 @@ class LanguagePairSearchVariantView(LanguagePairSearchView):
         shared_context = _sup.get_shared_context(_from, _to,
                                                  search_form_action=request.path,
                                                  search_variant_type=self.variant_type)
-        # TODO: current variant options
         shared_context['variant_type'] = self.variant_type
         shared_context['search_form_action'] = request.path
+        # TODO: send additional keywords in the current search.
         return shared_context
+
+    def post_search_context_modification(self, search_result, context):
+
+        # TODO: remove keywords present in search
+        def get_entry_keywords():
+            _str_norm = 'string(normalize-space(%s))'
+            search_result.entries
+            keys = []
+
+            existing_keywords = context['user_input'].split(',')
+
+            for e in search_result.entries:
+                keys.append(e.xpath(_str_norm % './mg/tg/key/text()'))
+
+            return [a for a in list(set(keys)) if a not in existing_keywords]
+
+        context['available_keywords'] = get_entry_keywords()
+
+        return context
 
     def get(self, variant_type, _from, _to):
         """ The only difference here between the normal type of search
@@ -857,6 +891,7 @@ class LanguagePairSearchVariantView(LanguagePairSearchView):
         included elsewhere in the search everything else is the same.
         """
         self.variant_type = variant_type
+        # TODO: need more from parent get to retrieve result of search_to_context
         return super(LanguagePairSearchVariantView, self).get(_from, _to)
 
     def post(self, variant_type, _from, _to):
@@ -866,6 +901,7 @@ class LanguagePairSearchVariantView(LanguagePairSearchView):
         included elsewhere in the search everything else is the same.
         """
         self.variant_type = variant_type
+        # missing current_pair_settings
         return super(LanguagePairSearchVariantView, self).post(_from, _to)
 
 
@@ -1128,6 +1164,7 @@ from .reader import crossdomain
 
 @crossdomain(origin='*', headers=['Content-Type'])
 def search_keyword_list(_from, _to):
+    # TODO: this is lang specific too, but probably fine for the moment.
     # TODO: cache query for teh whole duration of the service running
 
     import simplejson
