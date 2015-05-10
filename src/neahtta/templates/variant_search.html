@@ -3,10 +3,13 @@
 {% block extra_js %}
     {{ entry_template_header_includes|safe }}
 
-    {# TODO: move #}
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap-tagsinput.css')}}" />
+
+    {# TODO: compile these together #}
     <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-tagsinput-typeahead.js')}}"></script>
     <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-tagsinput.min.js')}}"></script>
-	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap-tagsinput.css')}}" />
+    <script type="text/javascript" src="{{url_for('static', filename='js/variant_search.js')}}"></script>
+
 {% endblock %}
 
 {% block footer_js %}
@@ -23,7 +26,7 @@
     {% include 'mobile_nav_dictionary_list.html' %}
 {% endblock %}
 
-{% block bodyclass %}main_search{% endblock %}
+{% block bodyclass %}main_search keyword_search{% endblock %}
 
 {%- set keyboard = false %}
 {% if current_variant_options %}
@@ -73,93 +76,20 @@
                     <div class="container-fluid">
                         <div class="row-fluid">
                             <div class="span12">
+                                {# 
                                 {% if keyboard %}
                                     <div id="keyboard">
                                         <ul>
                                             {% for key in current_variant_options.onscreen_keyboard %}
                                                 <li><a href="#" class="key" data-char="{{ key }}" lang="{{ _from }}">{{ key }}</a></li>
                                             {% endfor %}
-                                            {# TODO: help popup, with links to GT keyboard app stuff #}
                                                 <li><a lang="{{ current_locale }}" data-char="" href="#" class="hide_keyboard">{% trans %}hide{% endtrans %}</a></li>
                                         </ul>
                                     </div>
                                 {% endif %}
-                                <form id="neahttasaanit" class="form-inline"
-                                    method="post"
-                                    tagsinput
-                                    action="/v/{{ _from }}/{{ _to }}/{{ current_search_variant.type }}/"> 
-                                    
-                                    <div class="input-append">
-                                        {%- if keyboard %}
-                                            <button class="btn" type="button" id="display_keyboard" style="display: none;">
-                                                 {{- current_variant_options.onscreen_keyboard|first }}
-                                            </button>
-                                        {% endif -%}
-                                        <input type="text" 
-                                               name="lookup" 
-                                               lang="{{ _from }}"
-                                               autocorrect="off"
-                                               autofocus
-                                               autocapitalize="off"
+                                #}
 
-                                               {# TODO: disable for keywords 
-                                               {% if current_pair_settings.autocomplete %}
-                                               autocomplete="off"
-                                               data-autocomplete-text="{% trans %}Select a word, and press Tab{% endtrans %}"
-                                               data-language-from="{{ _from }}"
-                                               data-language-to="{{ _to }}"
-                                               data-items=10
-                                               {% endif %}
-                                               #}
-
-                                               {% if user_input -%}value="{{ user_input }}"{% endif %}
-                                               placeholder="{% trans %}Enter keyword(s){% endtrans %}">
-                                               {# TODO: show text search only if the dictionary supports this #}
-                                               {% if current_pair_settings.show_korp_search %}
-                                                       {# TODO: disable for keywords
-                                                       <div class="btn-group display-phone hidden-desktop hidden-tablet">
-                                                       <button type="submit" class="btn" name="search">
-                                                           <span lang="{{ current_locale }}">{% trans %}Search{% endtrans %}</span>
-                                                       </button>
-                                                       <button class="btn dropdown-toggle" data-toggle="dropdown">
-                                                          <span class="caret"></span>
-                                                        </button>
-                                                        <ul class="dropdown-menu">
-                                                            <li><button 
-                                                                   type="submit"
-                                                                   class="btn"
-                                                                   formaction="/extern/{{ _from }}/{{ _to }}/korp_wordform/"
-                                                                   formmethod=""
-                                                                   lang="{{ current_locale }}"
-                                                                   formtarget="_blank">{% trans %}Search texts{% endtrans %} (Korp)</button></li>
-                                                        </ul>
-                                                   </div>
-                                                   <button type="submit" class="btn hidden-phone" 
-                                                           formtarget="_self"
-                                                           formaction="/{{ _from }}/{{ _to }}/"
-                                                           formmethod="post"
-                                                           name="search">
-                                                       <span lang="{{ current_locale }}">{% trans %}Search{% endtrans %}</span>
-                                                   </button>
-                                                       #}
-                                               {% else %}
-                                                   <button type="submit" class="btn" name="search">
-                                                       <span lang="{{ current_locale }}">{% trans %}Search{% endtrans %}</span>
-                                                   </button>
-                                              {% endif %}
-                                       {% if current_pair_settings.show_korp_search %}
-                                           <button type="submit"
-                                                   formaction="/extern/{{ _from }}/{{ _to }}/korp_wordform/"
-                                                   formmethod="post"
-                                                   formtarget="_blank"
-                                                   lang="{{ current_locale }}"
-                                                   class="btn hidden-phone display-tablet korp_search" 
-                                                   name="korp_search">
-                                               {% trans %}Search texts{% endtrans %}
-                                           </button>
-                                       {% endif %}
-                                    </div>
-                                </form>
+                                {% include 'keyword_search_form.html' %}
                                 
                                 <div class="search_options">
                                     {% if available_keywords %}
@@ -177,67 +107,17 @@
                             </div>
                         </div>
                     </div>
-                    {# TODO: apply when keyword search on #}
-                    <script type="text/javascript">
-                        $(document).ready(function(){
-                            // Unregister the submit event that prevents null submitting
-                            var input_field = 'input[name="lookup"]';
-
-                            $('form').unbind('submit');
-
-                            // TODO: /list/keywords/eng/crk/
-                            var citynames = new Bloodhound({
-                              datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-                              queryTokenizer: Bloodhound.tokenizers.whitespace,
-                              // TODO: fetch all keywords from some endpoint?
-                              prefetch: {
-                                  url: '/list/keywords/{{ _from }}/{{ _to }}/',
-                                  cache: false,
-                                  transform: function(response) {
-                                    return $.map(response.keywords, function(k) {
-                                            return { name: k }; });
-                                  }
-                              }
-                            });
-                            citynames.initialize();
-
-                            $(input_field).tagsinput({
-                              allowDuplicates: false,
-                              typeaheadjs: {
-                                name: 'keywords',
-                                displayKey: 'name',
-                                valueKey: 'name',
-                                source: citynames.ttAdapter()
-                              }
-                            });
-                            $('form input').on('itemAdded', function(event) {
-                              $('form input[placeholder]').attr('placeholder', null);
-                            });
-
-                            $('.search_options .add_keyword').click( function(evt){
-                              // Target is a bit weird, sometimes <span /> sometimes <a />
-                              var kw = $(evt.target).find('span').attr('data-keyword-value') ||
-                                       $(evt.target).parents('[data-keyword-value]').attr('data-keyword-value');
-                                    ;
-                              $(input_field).tagsinput('add', kw);
-                            });
-
-                        });
-
-                    </script>
                     {# /copy-for-now #}
                     {# TODO: keyword JS stuff #}
 
                 </div>
+
                 <div class="span4 hidden-phone valign_block">
-                    {# TODO: template here? #}
                     {% if analyses %}
                         <p class="analysis_note"><em lang="{{ _from }}">{{ user_input }}</em><span lang="{{ current_locale }}">{% trans user_input=user_input %} is a possible form of ... {% endtrans %}</span></p>
                     {% endif %}
                 </div>
             </div>
-
-            {# TODO: deep link needs to go to specific lexeme when it comes from the front page #}
 
             {% if successful_entry_exists %}
                 <div class="results">
@@ -286,13 +166,6 @@
                             </div>
                         </div>
 
-                {#
-                    <div class="alert alert-error">
-                        <p>
-                            <span lang="{{ current_locale }}">{% trans input=user_input %}Word <span lang="{{ _from }}">{{ input }}</span> not found.{% endtrans %}</span>
-                        </p>
-                    </div>
-                #}
                 {% endif %}
             {% endif %}
             {% if show_info %}

@@ -1,0 +1,34 @@
+<form tagsinput id="neahttasaanit" class="form-inline" method="post"
+    action="/v/{{ _from }}/{{ _to }}/{{ current_search_variant.type }}/"> 
+    
+    <div class="input-append">
+
+        {# NB: another difference is no onscreen keyboard needed (for now) #}
+
+        <input type="text" 
+               name="lookup" 
+               lang="{{ _from }}"
+               autocorrect="off"
+               typeahead-source="/list/keywords/{{ _from }}/{{ _to }}/"
+               autofocus
+               autocapitalize="off"
+
+               {# NB: another difference here is we have a different typeahead
+               source.
+
+               TODO: possible to integrate with existing typeahead library?
+
+               #}
+
+               {% if user_input -%}value="{{ user_input }}"{% endif %}
+               placeholder="{% trans %}Enter keyword(s){% endtrans %}">
+               {# TODO: show text search only if the dictionary supports this #}
+               {# NB: difference here is no need to show korp search #}
+
+               <button type="submit" class="btn" name="search">
+                   <span lang="{{ current_locale }}">{% trans %}Search{% endtrans %}</span>
+               </button>
+
+    </div>
+</form>
+

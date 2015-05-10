@@ -1,4 +1,3 @@
-﻿
 from flask import ( current_app
                   , request
                   , session
@@ -82,6 +81,17 @@ class LanguagePairSearchVariantView(LanguagePairSearchView):
 
         return context
 
+    # @cache.memoize(50)
+    def search_args(self, variant_type, _from, _to, locale, method):
+        """ Just a wrapper on all the search functionality in order to
+        cache some of the heavy lifting
+        """
+
+        if method == 'GET':
+            return super(LanguagePairSearchVariantView, self).get(_from, _to)
+        if method == 'POST':
+            return super(LanguagePairSearchVariantView, self).post(_from, _to)
+
     def get(self, variant_type, _from, _to):
         """ The only difference here between the normal type of search
         is that there's an extra argument in the URL, to select the
@@ -89,8 +99,8 @@ class LanguagePairSearchVariantView(LanguagePairSearchView):
         included elsewhere in the search everything else is the same.
         """
         self.variant_type = variant_type
-        # TODO: need more from parent get to retrieve result of search_to_context
-        return super(LanguagePairSearchVariantView, self).get(_from, _to)
+
+        return self.search_args(variant_type, _from, _to, get_locale(), 'GET')
 
     def post(self, variant_type, _from, _to):
         """ The only difference here between the normal type of search
@@ -100,14 +110,7 @@ class LanguagePairSearchVariantView(LanguagePairSearchView):
         """
         self.variant_type = variant_type
 
-        # TODO: if there are way too many results with the query, user
-        # must be invited to narrow them down by adding another keyword.
-        # will need to have a quick function that just counts the
-        # results for a given query without sending them off to be
-        # rendered, so that things go faster.
-
-        # missing current_pair_settings
-        return super(LanguagePairSearchVariantView, self).post(_from, _to)
+        return self.search_args(variant_type, _from, _to, get_locale(), 'POST')
 
 from .reader import crossdomain
 
