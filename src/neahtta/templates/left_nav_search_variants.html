@@ -14,7 +14,7 @@
         <span class="nav-header variantnote" lang="{{ current_locale }}">{% trans %}Search type{% endtrans %}</span>
         <ul class="nav nav-collapse nav-tabs nav-stacked subnavcoloring">
             <li {% if not current_search_variant %}class="active"{% endif %}>
-                <a href="/{{ _from }}/{{ _to }}/">Word search</a>
+                <a href="/{{ _from }}/{{ _to }}/">{% trans %}Word search{% endtrans %}</a>
             </li>
 
             {% for variant in pair_options.search_variants %}

@@ -71,12 +71,39 @@
                                                 </ul>
                                             </div>
                                         </li>
-                                    {% else %}
-                                    <li>
-                                        <a href="/{{ iso_pair[0] }}/{{ iso_pair[1] }}/" class="block_title">
-                                            <span lang="{{ current_locale }}">{{ iso_pair[0]|iso_to_i18n }} &rarr; {{ iso_pair[1]|iso_to_i18n }}</span>
-                                        </a>
-                                    </li>
+                                    {% endif %}
+
+                                    {% if pair_options.search_variants %}
+                                        <li><a href="#" class="icon icon-arrow-left">{{ iso_pair[0]|iso_to_i18n }} &rarr; {{ iso_pair[1]|iso_to_i18n }}</a>
+                                            <div class="mp-level">
+                                                <h2 lang="{{ current_locale }}">{{ iso_pair[0]|iso_to_i18n }} &rarr; {{ iso_pair[1]|iso_to_i18n }}</h2>
+                                                <a class="mp-back" href="#" lang="{{ current_locale }}">{% trans %}Back{% endtrans %}</a>
+                                                <ul>
+                                                    <li>
+                                                        <span class="section-note" lang="{{ current_locale }}">{% trans %}Written variant{% endtrans %}</span>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/{{ iso_pair[0] }}/{{ iso_pair[1] }}/" class="block_title">
+                                                            <span lang="{{ current_locale }}">{% trans %}Word search{% endtrans %}</span>
+                                                        </a>
+                                                    </li>
+                                                    {% for variant in pair_options.search_variants %}
+                                                    <li>
+                                                        <a href="/v/{{ iso_pair[0] }}/{{ iso_pair[1] }}/{{ variant.type }}/">
+                                                            <span lang="{{ current_locale }}">{{ gettext(variant.description)|safe }}{% if variant.example %} {{ gettext(variant.example)|safe }}{% endif %}</span>
+                                                    </a></li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    {% endif %}
+
+                                    {% if not pair_options.input_variants and not pair_options.search_variants %}
+                                        <li>
+                                            <a href="/{{ iso_pair[0] }}/{{ iso_pair[1] }}/" class="block_title">
+                                                <span lang="{{ current_locale }}">{{ iso_pair[0]|iso_to_i18n }} &rarr; {{ iso_pair[1]|iso_to_i18n }}</span>
+                                            </a>
+                                        </li>
                                     {% endif %}
                                 {% endfor %}
                                 </ul>

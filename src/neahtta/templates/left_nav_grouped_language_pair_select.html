@@ -80,6 +80,11 @@
                     {%- endif -%}
                     </ul>
                 {%- endif -%}
+
+                {% include 'left_nav_search_variants.html' %}
+
+                {# TODO: input variants go here too #}
+
     {% endfor %}
     </ul>
 {%- endmacro -%}

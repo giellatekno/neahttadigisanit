@@ -4,40 +4,53 @@
     {% for iso_group, grouped_items in language_pairs_grouped_by_source.iteritems() %}
         <li class="display-phone hidden-tablet visible-mid hidden-desktop language-group"><span lang="{{ iso_group }}">{{ iso_group|iso_to_language_own_name }}</span></li>
 
-        {%- for iso_pair, pair_options in grouped_items -%}
-            <li class="visible-thin visible-mid hidden-desktop hidden-tablet {%- if iso_pair[0] == _from and iso_pair[1] == _to %} active{% endif -%}">
-                <a href="/{{ iso_pair[0] }}/{{ iso_pair[1] }}/" class="block_title">
-                    <span>{{ iso_pair[0]|iso_to_i18n }} &rarr; {{ iso_pair[1]|iso_to_i18n }}</span>
+        {%- for l_iso_pair, l_pair_options in grouped_items -%}
+            <li class="visible-thin visible-mid hidden-desktop hidden-tablet {%- if l_iso_pair[0] == _from and l_iso_pair[1] == _to %} active{% endif -%}">
+                <a href="/{{ l_iso_pair[0] }}/{{ l_iso_pair[1] }}/" class="block_title">
+                    <span>{{ l_iso_pair[0]|iso_to_i18n }} &rarr; {{ l_iso_pair[1]|iso_to_i18n }}</span>
                 </a>
             </li>
 
             {# TODO: display variants in a different way #}
-            {% if pair_options.input_variants %}
-                {% for variant in pair_options.input_variants %}
-                    {% if iso_pair != (variant.short_name, iso_pair[1]) %}
-                    <li class="visible-thin visible-mid hidden-desktop hidden-tablet {%- if variant.short_name == _from and iso_pair[1] == _to %} active{% endif -%}">
-                    <a href="/{{ variant.short_name }}/{{ iso_pair[1] }}/">
-                    <span>{{ variant.short_name|iso_to_i18n }} → {{ iso_pair[1]|iso_to_i18n }}</span>
+            {% if l_pair_options.input_variants %}
+                {% for l_variant in l_pair_options.input_variants %}
+                    {% if l_iso_pair != (l_variant.short_name, l_iso_pair[1]) %}
+                    <li class="visible-thin visible-mid hidden-desktop hidden-tablet {%- if l_variant.short_name == _from and l_iso_pair[1] == _to %} active{% endif -%}">
+                    <a href="/{{ l_variant.short_name }}/{{ l_iso_pair[1] }}/">
+                    <span>{{ l_variant.short_name|iso_to_i18n }} → {{ l_iso_pair[1]|iso_to_i18n }}</span>
                     </a></li>
                     {% endif %}
                 {% endfor %}
             {% endif %}
 
+            {# TODO here #}
+
         {% endfor %}
     {% endfor %}
 {% else %}
-    {% for iso_pair, pair_options in language_pairs.iteritems() %}
-        <li class="visible-thin visible-mid hidden-desktop hidden-tablet {%- if iso_pair[0] == _from and iso_pair[1] == _to %} active{% endif -%}">
-            <a href="/{{ iso_pair[0] }}/{{ iso_pair[1] }}/">
-                <span>{{ iso_pair[0]|iso_to_i18n }} → {{ iso_pair[1]|iso_to_i18n }}</span>
+    {% for l_iso_pair, l_pair_options in language_pairs.iteritems() %}
+        <li class="visible-thin visible-mid hidden-desktop hidden-tablet {%- if l_iso_pair[0] == _from and l_iso_pair[1] == _to %} active{% endif -%}">
+            <a href="/{{ l_iso_pair[0] }}/{{ l_iso_pair[1] }}/">
+                <span>{{ l_iso_pair[0]|iso_to_i18n }} {% if l_pair_options.search_variants %}({% trans %}Word search{% endtrans %}) {% endif %} → {{ l_iso_pair[1]|iso_to_i18n }}</span>
             </a></li>
-            {% if pair_options.input_variants %}
-                {% for variant in pair_options.input_variants %}
-                    {% if iso_pair != (variant.short_name, iso_pair[1]) %}
-                    <li class="visible-thin visible-mid hidden-desktop hidden-tablet {%- if variant.short_name == _from and iso_pair[1] == _to %} active{% endif -%}">
-                    <a href="/{{ variant.short_name }}/{{ iso_pair[1] }}/">
-                        <span>{{ variant.short_name|iso_to_i18n }} ({{ variant.description }}) → {{ iso_pair[1]|iso_to_i18n }}</span>
+            {% if l_pair_options.input_variants %}
+                {% for l_variant in l_pair_options.input_variants %}
+                    {% if l_iso_pair != (l_variant.short_name, l_iso_pair[1]) %}
+                    <li class="visible-thin visible-mid hidden-desktop hidden-tablet {%- if l_variant.short_name == _from and l_iso_pair[1] == _to %} active{% endif -%}">
+                    <a href="/{{ l_variant.short_name }}/{{ l_iso_pair[1] }}/">
+                        <span>{{ l_variant.short_name|iso_to_i18n }} ({{ l_variant.description }}) → {{ l_iso_pair[1]|iso_to_i18n }}</span>
                     </a></li>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
+            {% if l_pair_options.search_variants %}
+                {% for l_variant in l_pair_options.search_variants %}
+                    {% if l_iso_pair != (l_variant.short_name, l_iso_pair[1]) %}
+                    <li class="visible-thin visible-mid hidden-desktop hidden-tablet {%- if l_variant.short_name == _from and l_iso_pair[1] == _to %} active{% endif -%}">
+                    <a href="/v/{{ l_iso_pair[0]}}/{{ l_iso_pair[1] }}/{{ l_variant.type }}/">
+                        <span>{{ l_iso_pair[0]|iso_to_i18n }} ({{ gettext(l_variant.description)|safe }}) &rarr; {{ l_iso_pair[1]|iso_to_i18n }}
+                    </a></span></li>
                     {% endif %}
                 {% endfor %}
             {% endif %}
