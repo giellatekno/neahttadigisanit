@@ -1,24 +1,32 @@
 $(document).ready(function(){
+
+    var input_field = 'input[name="lookup"]'
+      , submit_button = 'button[type="submit"]'
+      , input_form = 'form'
+      ; 
+
     // Unregister the submit event that prevents null submitting
-    $('form').unbind('submit');
+    $(input_form).unbind('submit');
 
     // TODO: form submit method to convert current contents to keyword
     // if the user has clicked submit without adding a keyword
-
-    $('form').submit(function(e){
+    function test_submit (e) {
         var items = $('input[name="lookup"]').tagsinput('items');
-        // how?
-        var text_entered = true;
+        var text_entered = $('input.tt-input').val();
+        console.log(text_entered);
 
-        if (items.length == 0 && text_entered) {
+        if (items.length == 0 && text_entered.length > 0) {
             // convert text into a tag item
+            $(input_field).tagsinput('add', text_entered);
             console.log('no items');
             e.preventDefault();
         }
 
-    });
+        return true;
+    }
 
-    var input_field = 'input[name="lookup"]';
+    $(submit_button).click(test_submit);
+    $('form').submit(test_submit);
 
     var keywordnames = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
@@ -39,7 +47,7 @@ $(document).ready(function(){
     $(input_field).tagsinput({
         allowDuplicates: false,
         // ENTER, comma, space
-        confirmKeys: [13, 44],
+        confirmKeys: [13, 32, 44],
         trimValue: true,
         typeaheadjs: {
             name: 'keywords',
@@ -48,6 +56,11 @@ $(document).ready(function(){
             source: keywordnames.ttAdapter()
         }
     });
+
+    // $(input_field).on('itemAdded', function(event) {
+    //   // TODO: clear typeahead
+
+    // });
 
     // When an item is added, remove placeholder text.
     $('form input').on('itemAdded', function(event) {
@@ -67,10 +80,5 @@ $(document).ready(function(){
         }, 250);
 
     });
-
-    // TODO: remove keyword triggers search as well.
-
-    // TODO: do not immediately display autosuggest after adding a
-    // keyword
 
 });
