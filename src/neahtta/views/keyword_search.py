@@ -36,6 +36,37 @@ def fetch_keywords(_f, _t, counts=False):
     else:
         return keys
 
+@cache.memoize()
+def fetch_remaining_keywords(_f, _t, keywords, counts=False):
+    """ The same as the above, but removes any existing keywords--
+    intended for the typeahead endpoint so that users are not presented
+    with a typeahead option that will result in nothing
+    """
+    from operator import itemgetter
+
+    def get_entry_keywords(es):
+        _str_norm = 'string(normalize-space(%s))'
+        keys = []
+
+        existing_keywords = keywords.split(',')
+
+        for e in es:
+            keys.append(e.xpath(_str_norm % './mg/tg/key/text()'))
+
+        return [a for a in list(set(keys)) if a not in existing_keywords]
+
+    mlex = current_app.morpholexicon
+    morpholex_result = mlex.variant_lookup( 'keyword'
+                                          , keywords
+                                          , source_lang=_f
+                                          , target_lang=_t
+                                          )
+
+    entries = map(itemgetter(0), morpholex_result)
+    new_keys = get_entry_keywords(entries)
+
+    return new_keys
+
 class LanguagePairSearchVariantView(LanguagePairSearchView):
 
     # TODO: cache on search args and session lang
@@ -116,8 +147,13 @@ from .reader import crossdomain
 
 @crossdomain(origin='*', headers=['Content-Type'])
 def search_keyword_list(_from, _to):
+    """ This endpoint provides all keywords available in the lexicon for
+    autocomplete. If the @param `keywords` is specified (a string which
+    is a comma delimited list), then only keywords from entreis matching
+    those keywords will be returned.
+    """
+
     # TODO: this is lang specific too, but probably fine for the moment.
-    # TODO: cache query for teh whole duration of the service running
 
     import simplejson
 
@@ -125,7 +161,13 @@ def search_keyword_list(_from, _to):
        (_from, _to) not in current_app.config.variant_dictionaries:
         abort(404)
 
-    data = simplejson.dumps({ 'keywords': fetch_keywords(_from, _to) })
+    if 'keywords' in request.args:
+        in_keys = request.args.get('keywords')
+        keys = fetch_remaining_keywords(_from, _to, keywords=in_keys)
+    else:
+        keys = fetch_keywords(_from, _to)
+
+    data = simplejson.dumps({ 'keywords': keys })
 
     return Response( response=data
                    , status=200
