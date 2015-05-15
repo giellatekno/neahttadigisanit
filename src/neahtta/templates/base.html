@@ -167,7 +167,13 @@
                                 {% for iso in internationalizations %}
                                 <li class="display-phone hidden-tablet visible-mid hidden-desktop">
                                     <a href="/locale/{{ iso }}/">
-                                        <img class="i18n_flag" alt="[{{ iso|iso_to_language_own_name }} flag]" src="{{url_for('static', filename='img/flags/' + iso + '_20x15.png')}}"> {{ iso|iso_to_language_own_name }}</a>
+                                        {% if iso|iso_has_flag %}
+                                            <img class="i18n_flag" alt="[{{ iso|iso_to_language_own_name }} flag]" src="{{url_for('static', filename='img/flags/' + iso + '_20x15.png')}}"> {{ iso|iso_to_language_own_name }}
+                                        {% else %}
+                                            {# TODO: CSS #}
+                                            <div class="default_flag">{{ iso|iso_display_relabel }}</div> {{ iso|iso_to_language_own_name }}
+                                        {% endif %}
+                                    </a>
                                 </li>
                                 {% endfor %}
                             </ul>
