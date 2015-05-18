@@ -80,6 +80,8 @@ NAMES = dict([
 
     # ndstesting
     ('kca', _(u"Khanty")),
+    # ndstesting
+    ('gle', _(u"Irish")),
 
     # target languages
     ('fin', _(u"Finnish")),
@@ -148,6 +150,7 @@ LOCALISATION_NAMES_BY_LANGUAGE = dict([
 
     # ndstesting
     ('kca', u"ханты ясаӈ"),
+    ('gle', u"Gaeilge"),
 ])
 
 # Only put the exceptional ISOs here

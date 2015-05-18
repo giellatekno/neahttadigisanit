@@ -1,0 +1,42 @@
+ApplicationSettings:
+  app_name: "focail"
+  app_meta_title: "Online Irish reading dictionary"
+  short_name: "focail"
+  default_locale: "gle"
+  default_pair: ["gle", "eng"]
+  mobile_default_pair: ["gle", "eng"]
+  locales_available:
+    - en
+  meta_description: >
+      Free online, mobile friendly dictionaries for Plains Cree
+  meta_keywords: >
+      plains cree, mobile, dictionary, free
+
+Tools:
+  xfst_lookup: &LOOKUP '/usr/bin/lookup'
+  hfst_lookup: &HLOOKUP '/usr/local/bin/hfst-optimized-lookup'
+  opt: &OPT '/opt/smi/'
+
+Morphology:
+  gle:
+    tool: *LOOKUP
+    file: [*OPT, '/gle/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/gle/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options: &MORPHOLOGY_OPTS
+      # tagProcessor: "configs.language_specific_rules.gle_tags:process_gle_analysis"
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+
+Languages:
+  - iso: gle
+    minority_lang: true
+  - iso: eng
+
+Dictionaries:
+  - source: gle
+    target: eng
+    path: 'dicts/gleeng.xml'
+

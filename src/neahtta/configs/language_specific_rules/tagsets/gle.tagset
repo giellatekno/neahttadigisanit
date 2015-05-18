@@ -1,0 +1,9 @@
+pos: 
+ - "N"
+ - "Verb"
+ - "Num"
+ - "Ipc"
+transitivity:
+ - "VTI"
+stemtype:
+ - "Vow"

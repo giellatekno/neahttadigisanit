@@ -276,6 +276,58 @@ ndstesting-install: install_langs_fsts
 #####
 
 #####
+##### #focailtargets
+#####
+
+### When starting a new project, copy this whole section (down to
+### #/focailtargets), and change the following settings. Then, be sure to
+### replace all instances of FOCAIL and focail in variables and target names
+### with the PROJNAME.
+
+# These are the ISOs of the languages to compile from GTHOME/langs/
+FOCAIL_LANGS_ANALYSERS           :=   
+
+# OPTIONAL: enable miscellaneous ./configure flags
+# FOCAIL_LANGS_FLAGS             :=   --with-hfst
+
+# These are the ISOs of the languages to compile from GTHOME/startup-langs/
+FOCAIL_STARTUP_LANGS_ANALYSERS   :=   gle
+
+# Compile the lexicon from within GTHOME/langs/LANG/src/morphology/stems/*.xml
+
+FOCAIL_LANGS_LEXICA              :=   
+
+# Compile the lexicon from a directory within GTHOME/words/dicts/
+FOCAIL_WORDS_DICTS_LEXICA        :=   gleeng
+
+.PHONY: focail-lexica
+focail-lexica: LEX_COMPILE_LANGS := $(FOCAIL_LANGS_LEXICA)
+focail-lexica: LEX_COMPILE_WORDS_DICTS := $(FOCAIL_WORDS_DICTS_LEXICA)
+focail-lexica: compile_langs_lexicon \
+			  compile_words_dicts_lexicon
+
+.PHONY: focail
+focail: GT_COMPILE_LANGS := $(FOCAIL_LANGS_ANALYSERS)
+focail: GT_COMPILE_STARTUP_LANGS := $(FOCAIL_STARTUP_LANGS_ANALYSERS)
+focail: LEX_COMPILE_LANGS := $(FOCAIL_LANGS_LEXICA)
+focail: LEX_COMPILE_WORDS_DICTS := $(FOCAIL_WORDS_DICTS_LEXICA)
+focail: focail-lexica compile_langs_fsts print_complete_message
+
+rm-focail-lexica: $(foreach xx, $(FOCAIL_LANGS_LEXICA), $(xx)-all.xml) \
+				 $(foreach yy, $(FOCAIL_WORDS_DICTS_LEXICA), $(yy).xml)
+	@rm -rf $^
+
+.PHONY: focail-install
+focail-install: GT_COMPILE_LANGS := $(FOCAIL_LANGS_ANALYSERS)
+focail-install: GT_COMPILE_STARTUP_LANGS := $(FOCAIL_STARTUP_LANGS_ANALYSERS)
+focail-install: install_langs_fsts
+
+#####
+##### #/focailtargets
+#####
+
+
+#####
 ##### #saanihtargets
 #####
 
