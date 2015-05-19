@@ -136,3 +136,23 @@ table.miniparadigm .double-width {
 }
 
 /* @group */
+
+
+/* @group last_searches */
+#last_searches {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    margin-top: -1em;
+    margin-bottom: .75em;
+    margin-left: .25em;
+    width: 60%;
+}
+
+#last_searches li {
+    display: table-cell;
+    font-size: 90%;
+    padding-right: 5px;
+}
+
+/* @group */
+

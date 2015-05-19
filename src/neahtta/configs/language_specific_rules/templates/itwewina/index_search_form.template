@@ -96,6 +96,15 @@
                    {% endif %}
                 </div>
             </form>
+            {% if last_searches %}
+            <ul id="last_searches">
+                <li class="note">{% trans %}Previous:{% endtrans %}</li>
+                {% for uri, input in last_searches %}
+                <li><a href="{{ uri }}">{{ input }}</a>{% if not loop.last %},{% endif %}</li>
+                {% endfor %}
+                <li><a href="/session/clear/last_searches/">(clear)</a></li>
+            </ul>
+            {% endif %}
         </div>
     </div>
 </div>
