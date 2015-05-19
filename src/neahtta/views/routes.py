@@ -10,6 +10,8 @@ from keyword_search import ( LanguagePairSearchVariantView
                            , search_keyword_list
                            )
 
+from .main import ( session_clear
+                  )
 from paradigms import ParadigmLanguagePairSearchView
 
 blueprint.add_url_rule( '/'
@@ -39,5 +41,10 @@ blueprint.add_url_rule( '/paradigm/<_from>/<_to>/<lemma>'
 
 blueprint.add_url_rule( '/list/keywords/<_from>/<_to>/'
                       , view_func=search_keyword_list
+                      , methods=['GET']
+                      )
+
+blueprint.add_url_rule( '/session/clear/<sess_key>/'
+                      , view_func=session_clear
                       , methods=['GET']
                       )

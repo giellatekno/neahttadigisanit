@@ -170,3 +170,14 @@ def plugins():
 def escape_tv():
     del session['text_tv']
     return redirect('/')
+
+allowed_keys = [
+    'last_searches',
+]
+def session_clear(sess_key):
+    if sess_key in allowed_keys:
+        try:
+            del session[sess_key]
+        except KeyError:
+            pass
+    return redirect('/')
