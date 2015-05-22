@@ -715,7 +715,7 @@ sonad-lexica: compile_langs_lexicon \
 
 .PHONY: sonad
 sonad: GT_COMPILE_LANGS := $(SONAD_LANGS_ANALYSERS)
-sonad: GT_COMPILE_STARTUP_LANGS := $(SONAD_STARTUP_LANGS_ANALYSERS)
+#sonad: GT_COMPILE_STARTUP_LANGS := $(SONAD_STARTUP_LANGS_ANALYSERS)
 sonad: LEX_COMPILE_LANGS := $(SONAD_LANGS_LEXICA)
 sonad: LEX_COMPILE_WORDS_DICTS := $(SONAD_WORDS_DICTS_LEXICA)
 sonad: sonad-lexica compile_langs_fsts print_complete_message
@@ -726,7 +726,7 @@ rm-sonad-lexica: $(foreach xx, $(SONAD_LANGS_LEXICA), $(xx)-all.xml) \
 
 .PHONY: sonad-install
 sonad-install: GT_COMPILE_LANGS := $(SONAD_LANGS_ANALYSERS)
-sonad-install: GT_COMPILE_STARTUP_LANGS := $(SONAD_STARTUP_LANGS_ANALYSERS)
+#sonad-install: GT_COMPILE_STARTUP_LANGS := $(SONAD_STARTUP_LANGS_ANALYSERS)
 sonad-install: install_langs_fsts
 
 #####
