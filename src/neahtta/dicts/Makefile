@@ -702,8 +702,8 @@ sanat-install: install_langs_fsts
 ##### #sonadtargets
 #####
 
-SONAD_LANGS_ANALYSERS           :=   izh liv fin vep vro vot
-SONAD_STARTUP_LANGS_ANALYSERS   :=   lav
+SONAD_LANGS_ANALYSERS           :=   izh lav liv fin vep vro vot
+#SONAD_STARTUP_LANGS_ANALYSERS   :=   lav
 SONAD_LANGS_LEXICA              :=   liv izh vep vro vot
 SONAD_WORDS_DICTS_LEXICA        :=   finliv finizh lavliv
 
