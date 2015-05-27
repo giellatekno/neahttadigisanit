@@ -40,3 +40,7 @@ Dictionaries:
     target: eng
     path: 'dicts/gleeng.xml'
 
+  - source: eng
+    target: gle
+    path: 'dicts/wordnet.eng-gle.xml'
+

@@ -1,9 +1,12 @@
 pos: 
- - "N"
+ - "Noun"
  - "Verb"
  - "Num"
  - "Ipc"
 transitivity:
  - "VTI"
+noun_gender:
+ - "Masc"
+ - "Fem"
 stemtype:
  - "Vow"
