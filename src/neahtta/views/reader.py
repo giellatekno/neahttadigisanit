@@ -108,6 +108,8 @@ def lookupWord(from_language, to_language):
 
     from lexicon import SimpleJSON
 
+    current_app.limiter.check()
+
     if (from_language, to_language) not in current_app.config.dictionaries and \
        (from_language, to_language) not in current_app.config.variant_dictionaries:
         abort(404)

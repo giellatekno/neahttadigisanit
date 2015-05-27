@@ -20,6 +20,7 @@ from   config                         import Config
 from   logging                        import getLogger
 
 from   flask.ext.babel                 import Babel
+from   flask.ext.limiter               import Limiter
 
 from cache                            import cache
 
@@ -274,6 +275,10 @@ def create_app():
 
     # Prepare assets before custom templates are read
     app = prepare_assets(app)
+
+    # Register rate limiter
+    limiter = Limiter(app, global_limits=["120/minute"])
+    app.limiter = limiter
 
     # Register language specific config information
     app.register_blueprint(configs.blueprint)
