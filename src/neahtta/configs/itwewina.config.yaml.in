@@ -4,7 +4,7 @@ ApplicationSettings:
   short_name: "itwewina"
   default_locale: "crk"
   default_pair: ["crk", "eng"]
-  mobile_default_pair: ["crkM", "eng"]
+  mobile_default_pair: ["crk", "eng"]
   locales_available:
     - crk
     - crk_Macr
@@ -92,6 +92,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/c_korp"
     is_korp_default_lang: True
+
   - source: eng
     target: crk
     path: 'dicts/engcrk.xml'
