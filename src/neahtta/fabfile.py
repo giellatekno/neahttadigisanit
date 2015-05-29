@@ -65,12 +65,57 @@ from fabric.contrib.console import confirm
 
 from fabric.utils import abort
 
+def get_projects():
+    """ Find all existing projects which can be included as an env
+    argument """
+    import os
+
+    conf_suffix = ".config.yaml.in"
+
+    avail_projects = []
+    for d, ds, fs in os.walk('.'):
+        for f in fs:
+            if f.endswith(conf_suffix):
+                avail_projects.append(
+                    f.replace(conf_suffix, '')
+                )
+
+    return avail_projects
+
+def get_project():
+    avail_projects = get_projects()
+
+    proj_arg = [a for a in sys.argv if a in avail_projects]
+
+    if len(proj_arg) > 0:
+        proj_arg = proj_arg[0]
+    else:
+        proj_arg = False
+
+    return proj_arg
+
+
+@task(aliases=get_projects())
+def set_proj():
+    """ Set the project. This is aliased to whatever existing project
+    names there are. ... Assuming no project name will be 'local' or
+    'compile' """
+    proj = get_project()
+    if proj:
+        env.current_dict = proj
+    else:
+        print >> sys.stderr, "This is not a valid project name."
+        sys.exit()
+    return
+
+
 @task
 def local(*args, **kwargs):
     """ Run a command using the local environment.
     """
     from fabric.operations import local as lrun
     import os
+
 
     env.run = lrun
     env.hosts = ['localhost']
@@ -93,6 +138,7 @@ def local(*args, **kwargs):
                                         , os.path.join(env.dict_path, 'Makefile')
                                         )
     env.remote_no_fst = False
+
 
     return env
 
@@ -123,89 +169,10 @@ no_fst_install = [
 # set up environments
 # Assume local unless otherwise noted
 
-# For new dictionary projects copy this, and uncomment it, 
-# replacing instances of `sample` with your PROJNAME.
-
-### @task
-### def sample():
-###     """ Use sample """
-###     env.current_dict = "sample"
-
-@task
-def ndstesting():
-    """ Use ndstesting """
-    env.current_dict = "ndstesting"
-
-@task
-def baakoeh():
-    """ Use baakoeh """
-    env.current_dict = "baakoeh"
-
-@task
-def sanit():
-    """ Use sanit """
-    env.current_dict = "sanit"
-
-@task
-def valks():
-    """ Use valks """
-    env.current_dict = "valks"
-
-@task
-def guusaaw():
-    """ Use guusaaw """
-    env.current_dict = "guusaaw"
-
-@task
-def kyv():
-    """ Use kyv """
-    env.current_dict = "kyv"
-
-@task
-def muter():
-    """ Use muter """
-    env.current_dict = "muter"
-
 @task
 def no_svn_up():
     """ Do not SVN up """
     env.no_svn_up = True
-
-@task
-def itwewina():
-    """ Use itwewina """
-    env.current_dict = "itwewina"
-
-@task
-def dikaneisdi():
-    """ Use dikaneisdi """
-    env.current_dict = "dikaneisdi"
-
-@task
-def saan():
-    """ Use saan """
-    env.current_dict = "saan"
-
-@task
-def saanih():
-    """ Use saanih """
-    env.current_dict = "saanih"
-
-
-@task
-def sanat():
-    """ Use sanat """
-    env.current_dict = "sanat"
-
-@task
-def sonad():
-    """ Use sonad """
-    env.current_dict = "sonad"
-
-@task
-def vada():
-    """ Use vada """
-    env.current_dict = "vada"
 
 @task
 def gtweb():
