@@ -28,6 +28,7 @@ $(document).ready(function(){
     $(submit_button).click(test_submit);
     $('form').submit(test_submit);
 
+    // TODO: add keywords parameter to this search
     var keywordnames = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
