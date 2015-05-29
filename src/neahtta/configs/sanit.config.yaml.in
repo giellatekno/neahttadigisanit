@@ -96,7 +96,7 @@ Dictionaries:
     path: 'dicts/sme-nob.all.xml'
     autocomplete: false
     show_korp_search: True
-    korp_search_host: "http://gtweb.uit.no/korp"
+    korp_search_host: "http://gtweb.uit.no/korp_old"
     is_korp_default_lang: True
 
     input_variants:
@@ -121,14 +121,14 @@ Dictionaries:
     show_korp_search: True
     is_korp_default_lang: True
     korp_parallel: True
-    korp_search_host: "http://gtweb.uit.no/korp"
+    korp_search_host: "http://gtweb.uit.no/korp_old"
 
   - source: sme
     target: fin
     path: 'dicts/sme-fin.all.xml'
     autocomplete: false
     show_korp_search: True
-    korp_search_host: "http://gtweb.uit.no/korp"
+    korp_search_host: "http://gtweb.uit.no/korp_old"
     is_korp_default_lang: True
     input_variants:
       # "mobile" is important, otherwise templates and swapping won't
