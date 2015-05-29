@@ -664,7 +664,7 @@ class Lexicon(object):
 
         _lookup_func, largs = self.get_lookup_type(_dict, lemma, pos, pos_type, lemma_attrs)
 
-        if not _lookup_func:
+        if not _lookup_func and lemma is not None:
             raise Exception(
                 "Unknown lookup type for <%s> (lemma: %s, pos: %s, pos_type: %s, lemma_attrs: %s)" %
                 ( user_input

@@ -203,10 +203,10 @@ class MorphoLexicon(object):
                 }
 
                 if not analysis.lemma:
-                    _error_args = [a.tag_raw for a in list(set(analyses))]
-                    _error_str = "For some reason, a lemma was missing from this analysis: " + repr(_error_args)
-                    _error_str += "Lookup string: " + repr(wordform)
-                    current_app.logger.error(_error_str)
+                    # _error_args = [a.tag_raw for a in list(set(analyses))]
+                    # _error_str = "For some reason, a lemma was missing from this analysis: " + repr(_error_args)
+                    # _error_str += "Lookup string: " + repr(wordform)
+                    # current_app.logger.error(_error_str)
                     continue
 
                 xml_result = self.lexicon.lookup( source_lang
@@ -390,10 +390,10 @@ class MorphoLexicon(object):
                 }
 
                 if not analysis.lemma:
-                    _error_args = [a.tag_raw for a in list(set(analyses))]
-                    _error_str = "For some reason, a lemma was missing from this analysis: " + repr(_error_args)
-                    _error_str += "Lookup string: " + repr(wordform)
-                    current_app.logger.error(_error_str)
+                    # _error_args = [a.tag_raw for a in list(set(analyses))]
+                    # _error_str = "For some reason, a lemma was missing from this analysis: " + repr(_error_args)
+                    # _error_str += "Lookup string: " + repr(wordform)
+                    # current_app.logger.error(_error_str)
                     continue
 
                 xml_result = self.lexicon.variant_lookup( source_lang
