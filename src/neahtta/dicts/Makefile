@@ -115,15 +115,12 @@ install_langs_fsts: $(langs)
 		mkdir -p /opt/smi/$$ll/bin/ ; \
 		cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc.*  /opt/smi/$$ll/bin/ ; \
 		cp $(GTHOME)/langs/$$ll/src/generator-dict-gt-norm.* /opt/smi/$$ll/bin/ ; \
-		cp $(GTHOME)/langs/$$ll/src/generator-dict-gt-desc-mobile.* /opt/smi/$$ll/bin/ ; \
-		cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc-mobile.* /opt/smi/$$ll/bin/ ; \
 		cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc-mobile.*  /opt/smi/$$ll/bin/ ; \
 	done 
 	for ll in $(GT_COMPILE_STARTUP_LANGS) ; do \
 		mkdir -p /opt/smi/$$ll/bin/ ; \
 		cp $(GTHOME)/startup-langs/$$ll/src/analyser-dict-gt-desc.*  /opt/smi/$$ll/bin/ ; \
 		cp $(GTHOME)/startup-langs/$$ll/src/generator-dict-gt-norm.* /opt/smi/$$ll/bin/ ; \
-		cp $(GTHOME)/startup-langs/$$ll/src/generator-dict-gt-desc-mobile.* /opt/smi/$$ll/bin/ ; \
 		cp $(GTHOME)/startup-langs/$$ll/src/analyser-dict-gt-desc-mobile.*  /opt/smi/$$ll/bin/ ; \
 	done 
 
@@ -702,8 +699,8 @@ sanat-install: install_langs_fsts
 ##### #sonadtargets
 #####
 
-SONAD_LANGS_ANALYSERS           :=   izh lav liv fin vep vro vot
-#SONAD_STARTUP_LANGS_ANALYSERS   :=   lav
+SONAD_LANGS_ANALYSERS           :=   izh liv fin vep vro vot lav
+# SONAD_STARTUP_LANGS_ANALYSERS   :=   
 SONAD_LANGS_LEXICA              :=   liv izh vep vro vot
 SONAD_WORDS_DICTS_LEXICA        :=   finliv finizh lavliv
 
@@ -726,7 +723,6 @@ rm-sonad-lexica: $(foreach xx, $(SONAD_LANGS_LEXICA), $(xx)-all.xml) \
 
 .PHONY: sonad-install
 sonad-install: GT_COMPILE_LANGS := $(SONAD_LANGS_ANALYSERS)
-#sonad-install: GT_COMPILE_STARTUP_LANGS := $(SONAD_STARTUP_LANGS_ANALYSERS)
 sonad-install: install_langs_fsts
 
 #####
