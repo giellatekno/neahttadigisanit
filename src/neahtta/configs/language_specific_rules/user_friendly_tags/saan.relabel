@@ -23,6 +23,14 @@ Relabel:
 
       Prs: "prs."
       Prt: "prt."
+      
+      "PrfPrc": "prfprc."
+      "PrsPrc": "prsprc."
+      "NegPrc": "negprc."
+      "AgPrc": "agprc."
+      "ConNeg": "kielt."
+      "Prs": "prs."
+      "Prt": "prt."
 
       "v1": ""
       "v2": ""

@@ -5,9 +5,18 @@
  - Pr
  - Po
  - Num
+ - WORK
 number:
  - "Sg"
  - "Pl"
+case:
+ - Nom
+ - Gen
+ - Acc
+ - Ill
+ - Loc
+ - Com
+ - Abe
 nonfinite_paradigm:
  - ActEss
  - Actio
@@ -16,8 +25,9 @@ nonfinite_paradigm:
  - VAbess
  - GerTemp
  - GerInstr
+ - ConNeg
 verbs_null_number:
- - "4"
+ - Sg4
 nouns_null_number:
  - "Ess"
  - "Par"
@@ -39,3 +49,17 @@ nonfinite:
   - Imprt
 connegative:
   - ConNeg
+invisible_in_adj_paradigms:
+ - "A"
+invisible_in_noun_paradigms:
+ - "N"
+ - "Sg"
+ - "Pl"
+invisible_in_verb_nonfinite_paradigms:
+ - "V"
+ - "Ind"
+invisible_in_verb_paradigms:
+ - "V"
+ - "Prs"
+ - "Prt"
+ - "Ind"

@@ -39,31 +39,20 @@
 
     {% set prs_text      = "Prs"|tagfilter(_from, _to) %}
     {% set prt_text      = "Prt"|tagfilter(_from, _to) %}
-    {% set conneg_text   = "ConNeg"|tagfilter(_from, _to) %}
-    {% set verb_text     = "V"|tagfilter(_from, _to) %}
-    {% set verb_text_ind = "Ind"|tagfilter(_from, _to) %}
-    {% set sup_text      = "Sup"|tagfilter(_from, _to) %}
-    {% set neg_text      = "Neg"|tagfilter(_from, _to) %}
 
     {% set nonfinite_header = False %}
     {# we'll know this isn't just a normal verb with a couple negative
         forms because there are 9 #}
-    {% set is_negative = nonfinite_forms|by_tagset("negative")|length == 9 %}
 
     {% macro clean_tag(tag_input) -%}
-        {% set filtered_tag = tag_input|tagfilter(_from, _to) %}
-
-        {% if conneg_text in filtered_tag %}
-            {{ filtered_tag|replace(verb_text, "")
-                           |replace(verb_text_ind, "") }}
-        {% else %}
-            {{ filtered_tag|replace(prs_text, "")
-                           |replace(prt_text, "")
-                           |replace(verb_text, "")
-                           |replace(verb_text_ind, "") }}
-        {% endif %}
+        {{ tag_input|remove_by_tagset('invisible_in_verb_paradigms')
+                    |tagfilter(_from, _to) }}
     {%- endmacro %}
 
+    {% macro clean_nonf_tag(tag_input) -%}
+        {{ tag_input|remove_by_tagset('invisible_in_verb_nonfinite_paradigms')
+                    |tagfilter(_from, _to) }}
+    {%- endmacro %}
 {%- endif %}
 
 {%- if pos|upper == 'N' or pos|upper == 'NUM' %}
@@ -89,13 +78,18 @@
     {% endif %}
 
     {% macro clean_tag(tag_input) %}
-        {{ tag_input|tagfilter(_from, _to)
-                    |replace(pos_text, "")
-                    |replace(sg_text, "")
-                    |replace(pl_text, "") }}
+        {{ tag_input|remove_by_tagset('invisible_in_noun_paradigms')
+                    |tagfilter(_from, _to) }}
     {% endmacro %}
 
 {% endif -%}
+
+{%- if pos|upper == 'A' %}
+    {% macro clean_tag(tag_input) -%}
+        {{ tag_input|remove_by_tagset('invisible_in_adj_paradigms')
+                    |tagfilter(_from, _to) }}
+    {%- endmacro %}
+{%- endif %}
 
 {%- macro full_paradigm_link() %}
     <a class="full-paradigm-link"
@@ -148,6 +142,23 @@
                     </tr>
 
                 {%- endfor -%}
+
+                {# sg4? 
+                {%- for form in numberless_forms -%}
+                    <tr>
+                    {% if form.tag %}
+                        <th class="tag" lang="{{ _to }}">{{ clean_tag(form.tag)  }}</th>
+                    {% endif %}
+
+                    {% if form.form %}
+                        <td colspan="2" lang="{{ _from }}" class="center">{{ form.form }}</td>
+                    {% else %}
+                        <td colspan="2" lang="{{ _from }}">?</td>
+                    {% endif %}
+
+                    </tr>
+                {%- endfor -%}
+                #}
         </table>
         {% endif %}
 
@@ -159,7 +170,7 @@
             {%- for form in nonfinite_forms -%}
 
                 {% if form.tag %}
-                    <dt>{{ clean_tag(form.tag)  }}</dt>
+                    <dt>{{ clean_nonf_tag(form.tag) }}</dt>
                 {% endif %}
 
                 {% if form.form %}
@@ -228,6 +239,21 @@
 
     {% endif %}
 
+{% elif pos|upper == 'A'  %}
+    <dl class="dl-horizontal miniparadigm">
+        {%- for form in paradigm -%}
+
+            {% if form.tag %}
+                <dt>{{ clean_tag(form.tag)  }}</dt>
+            {% endif %}
+
+            {% if form.form %}
+            <dd lang="{{ _from }}">{{ form.form }}</dd>
+            {% else %}
+                <dd lang="{{ _from }}">?</dd>
+            {% endif %}
+        {%- endfor -%}
+    </dl>
 {% else %}
     <dl class="dl-horizontal miniparadigm">
         {%- for form in paradigm -%}

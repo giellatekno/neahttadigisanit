@@ -30,3 +30,11 @@
   tag_context: "V+PrfPrc"
   template: "(lij) {{ word_form }}"
 
+- entry_context: None
+  tag_context: "V+Ind+Prs+ConNeg"
+  template: "(täʹbbe jiõm) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+Ind+Prt+ConNeg"
+  template: "(jåhtta jiõm) {{ word_form }}"
+
