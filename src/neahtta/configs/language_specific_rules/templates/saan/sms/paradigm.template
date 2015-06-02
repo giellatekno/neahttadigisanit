@@ -91,6 +91,14 @@
     {%- endmacro %}
 {%- endif %}
 
+{%- if pos|upper == 'PRON' %}
+    {% macro clean_tag(tag_input) -%}
+        {{ tag_input|remove_by_tagset('invisible_in_pron_paradigms')
+                    |tagfilter(_from, _to) }}
+    {%- endmacro %}
+{%- endif %}
+
+
 {%- macro full_paradigm_link() %}
     <a class="full-paradigm-link"
        style="opacity: .8;"
@@ -254,6 +262,21 @@
             {% endif %}
         {%- endfor -%}
     </dl>
+{% elif pos|upper == 'PRON'  %}
+    <dl class="dl-horizontal miniparadigm">
+        {%- for form in paradigm -%}
+
+            {% if form.tag %}
+                <dt>{{ clean_tag(form.tag)  }}</dt>
+            {% endif %}
+
+            {% if form.form %}
+            <dd lang="{{ _from }}">{{ form.form }}</dd>
+            {% else %}
+                <dd lang="{{ _from }}">?</dd>
+            {% endif %}
+        {%- endfor -%}
+    </dl>
 {% else %}
     <dl class="dl-horizontal miniparadigm">
         {%- for form in paradigm -%}
@@ -271,7 +294,7 @@
     </dl>
 
 {% endif %}
-{% if paradigm_exists %}
+{% if paradigm_exists and pos|upper != 'PRON' %}
     {{ full_paradigm_link() }}
 {% endif %}
 {% endif -%}

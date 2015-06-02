@@ -23,6 +23,16 @@ Relabel:
 
       Prs: "prs."
       Prt: "prt."
+
+      Nom: "nom."
+      Gen: "gen."
+      Acc:  "akk."
+      Ill:  "ill."
+      Loc:  "lok."
+      Com:  "com."
+      Abe:  "abe."
+      Ess:  "ess."
+      Par:  "par."
       
       "PrfPrc": "prfprc."
       "PrsPrc": "prsprc."

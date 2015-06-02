@@ -5,7 +5,11 @@
  - Pr
  - Po
  - Num
- - WORK
+ - Pron
+pron_type:
+ - Pers
+ - Dem
+ - Refl
 number:
  - "Sg"
  - "Pl"
@@ -63,3 +67,7 @@ invisible_in_verb_paradigms:
  - "Prs"
  - "Prt"
  - "Ind"
+invisible_in_pron_paradigms:
+ - "Pron"
+ - "Pers"
+ - "Sg"

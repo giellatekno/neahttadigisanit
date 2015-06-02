@@ -1,0 +1,14 @@
+name: "personal pronouns"
+morphology:
+  pos: Pron
+  pron_type: Pers
+--
+{{ lemma }}+Pron+Pers+Sg+Nom
+{{ lemma }}+Pron+Pers+Sg+Gen
+{{ lemma }}+Pron+Pers+Sg+Acc
+{{ lemma }}+Pron+Pers+Sg+Ill
+{{ lemma }}+Pron+Pers+Sg+Loc
+{{ lemma }}+Pron+Pers+Sg+Com
+{{ lemma }}+Pron+Pers+Sg+Abe
+{{ lemma }}+Pron+Pers+Ess
+{{ lemma }}+Pron+Pers+Par
