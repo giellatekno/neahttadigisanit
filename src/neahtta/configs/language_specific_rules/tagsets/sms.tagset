@@ -13,6 +13,7 @@ pron_type:
 number:
  - "Sg"
  - "Pl"
+ - "Du"
 case:
  - Nom
  - Gen
