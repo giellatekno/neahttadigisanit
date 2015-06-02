@@ -2,13 +2,17 @@ name: "personal pronouns"
 morphology:
   pos: Pron
   pron_type: Pers
+  number: 
+    - Sg
+    - Du
+    - Pl
 --
-{{ lemma }}+Pron+Pers+Sg+Nom
-{{ lemma }}+Pron+Pers+Sg+Gen
-{{ lemma }}+Pron+Pers+Sg+Acc
-{{ lemma }}+Pron+Pers+Sg+Ill
-{{ lemma }}+Pron+Pers+Sg+Loc
-{{ lemma }}+Pron+Pers+Sg+Com
-{{ lemma }}+Pron+Pers+Sg+Abe
+{{ lemma }}+Pron+Pers+{{ number }}+Nom
+{{ lemma }}+Pron+Pers+{{ number }}+Gen
+{{ lemma }}+Pron+Pers+{{ number }}+Acc
+{{ lemma }}+Pron+Pers+{{ number }}+Ill
+{{ lemma }}+Pron+Pers+{{ number }}+Loc
+{{ lemma }}+Pron+Pers+{{ number }}+Com
+{{ lemma }}+Pron+Pers+{{ number }}+Abe
 {{ lemma }}+Pron+Pers+Ess
 {{ lemma }}+Pron+Pers+Par
