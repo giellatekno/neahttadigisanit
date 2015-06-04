@@ -32,7 +32,7 @@ Relabel:
       Cnj: "Conjunct"
       Int: "??"
       Def: "Definite"
-      Ind: "Indicative"
+      Ind: "Independent"
       Imp: "Imperative"
       Del: "Delayed"
       Imm: "Immediate"
