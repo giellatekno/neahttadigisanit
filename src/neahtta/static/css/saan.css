@@ -393,3 +393,8 @@ table.miniparadigm {
 table.miniparadigm .double-width {
     border-top: 1px dotted #CCC; 
 }
+
+.lexeme .pronunciation {
+    font-size: 80%;
+    color:  #555;
+}
