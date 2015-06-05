@@ -134,7 +134,7 @@ msgstr "Ненец"
 
 #: configs/language_names.py:63 configs/language_names.py:64
 #, fuzzy
-msgid "Skolt Sámi"
+msgid "Skolt Sami"
 msgstr "йыдвел саам йӹлмӹ"
 
 #: configs/language_names.py:67 configs/language_names.py:68

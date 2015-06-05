@@ -147,7 +147,7 @@ msgstr "Ненецэнь кель"
 
 #: configs/language_names.py:63
 #: configs/language_names.py:64
-msgid "Skolt Sámi"
+msgid "Skolt Sami"
 msgstr "Сколт саамонь кель"
 
 #: configs/language_names.py:67

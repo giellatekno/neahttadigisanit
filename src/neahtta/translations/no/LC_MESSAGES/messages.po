@@ -132,7 +132,7 @@ msgid "Nenets"
 msgstr "Nenetsisk"
 
 #: configs/language_names.py:63 configs/language_names.py:64
-msgid "Skolt Sámi"
+msgid "Skolt Sami"
 msgstr "Østsamisk"
 
 #: configs/language_names.py:67 configs/language_names.py:68
