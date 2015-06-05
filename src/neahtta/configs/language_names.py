@@ -60,8 +60,8 @@ NAMES = dict([
     ('yrk', _(u"Nenets")),
 
     # saan
-    ('sms', _(u"Skolt Sámi")),
-    ('smsM', _(u"Skolt Sámi")),
+    ('sms', _(u"Skolt Sami")),
+    ('smsM', _(u"Skolt Sami")),
 
     # itwewina 
     ('crk', _(u"Plains Cree")),
