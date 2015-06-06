@@ -7,6 +7,12 @@ to work, including passwords somehow is a baaaad idea.
 
 NB: remote compile only really works with HFST.
 
+
+TODO: finish copy
+TODO: work on cmd argument structure
+TODO: how to define local copy destination? probably have some defaults
+      options, possibility to define in separate options file
+
 """
 
 
