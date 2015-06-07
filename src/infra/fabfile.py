@@ -13,6 +13,8 @@ TODO: work on cmd argument structure
 TODO: how to define local copy destination? probably have some defaults
       options, possibility to define in separate options file
 
+TODO: tmux for builds
+
 """
 
 
@@ -22,6 +24,7 @@ import os, sys
 from fabric.decorators import roles
 
 from fabric.api import ( cd
+                       , shell_env
                        , run
                        , local
                        , env
@@ -127,16 +130,14 @@ def gtweb():
     env.run = run
     env.local = False
     # TODO: icall
+    env.user = 'neahtta'
     env.hosts = ['neahtta@gtweb.uit.no']
+    env.current_host = 'gtweb.uit.no'
     env.path_base = '/home/neahtta'
 
     env.svn_path = env.path_base + '/gtsvn'
     env.gtcore_svn_path = env.path_base + '/gtsvn/gtcore'
-    # env.path_to_lang = env.svn_path + '/' + env.compile_langs
 
-    # env.make_cmd = "make -C %s -f %s" % ( env.path_to_lang
-    #                                     , os.path.join(env.dict_path, 'Makefile')
-    #                                     )
 @task
 def gtlab():
     # TODO:
@@ -200,14 +201,39 @@ def compile_langs():
     for p in svn_langs:
         compile_fst(p)
 
+@task
+def copy_only():
+
+    svn_langs = env.compile_langs
+
+    failed = False
+
     for p in svn_langs:
         copy_result(p)
 
 def copy_result(path):
-    local('rsync -avz --include')
-    # rsync -a root@somewhere:/folder/remote/*.{hfst,hfstol} .
+    if env.local:
+        return True
 
-    # certain suffixes
+    j = os.path.join
+
+    user = env.user
+
+    source = j(
+        env.svn_path, j('langs', j(path, 'src'))
+    )
+
+    target = j(
+        os.environ.get('GTHOME'), j('langs',  j(path, 'src'))
+    )
+
+    host = env.current_host
+
+    # TODO: why doesn't rsync actually want to run?
+    rsync_cmd = """rsync -avz -e ssh --no-motd --include="*.hfst" --include="*.hfstol" """
+    rsync_cmd += "%(user)s@%(host)s:%(source)s %(target)s""" % locals()
+
+    local(rsync_cmd)
 
 @task
 def compile_fst(iso='x'):
@@ -221,13 +247,20 @@ def compile_fst(iso='x'):
 
     path_to_lang = os.path.join(env.svn_path,  'langs/' + iso)
 
+    tmux_session_id = "build-langs-%s"
+
     with cd(path_to_lang):
 
-        make_cmd = "make -C %s -f %s" % ( path_to_lang
-                                        , os.path.join(path_to_lang, 'Makefile')
-                                        )
 
-        # env.run("svn up Makefile")
+        # TODO: check if tmux is available
+        # TODO: if available, check if session exists, and attach to
+        # that if it is still running.
+
+        ## with shell_env(TMUX=''):
+        ##     test = env.run('tmux attach -t sess')
+        ##     if test.failed:
+        ##         print(red('failed'))
+
         print(cyan("** Compiling FST for <%s> **" % iso))
 
         _exists = os.path.join(path_to_lang, 'configure')
@@ -237,9 +270,7 @@ def compile_fst(iso='x'):
             skip_autogen = exists(_exists)
 
         if not skip_autogen:
-            # test for need to autogen: `configure` exists?
             autogen = env.run('cd %s && ./autogen.sh' % path_to_lang)
-
             if autogen.failed:
                 print(red("** Something went wrong while running autogen <%s> **" % iso))
                 sys.exit()
@@ -250,12 +281,27 @@ def compile_fst(iso='x'):
             print(red("** Something went wrong while running ./configure <%s> **" % iso))
             print(cyan("**   ./configure " + env.configure_opts))
 
-        make_fst = env.run(make_cmd)
-        sys.exit()
+        # TODO: add a pane with an explanation of what this is, incase
+        # anyone else is using this
 
+        make_cmd = "make -C %s -f %s" % ( path_to_lang
+                                        , os.path.join(path_to_lang, 'Makefile')
+                                        )
 
-        if make_fsts.failed:
-            print(red("** Something went wrong while compiling <%s> **" % iso))
-        else:
-            print(cyan("** FST <%s> compiled **" % iso))
+        with shell_env(TMUX=''):
+            print(cyan("Running build in a tmux session. If the ssh connection "))
+            print(cyan("is interrupted due to bad network, then build will continue"))
 
+            build_cmd = env.run('tmux new -s ' + tmux_session_id + ' "' + make_cmd + '"')
+
+            if build_cmd.failed:
+                print(red("** Something went wrong while running make, or connection was lost **" % iso))
+
+# TMUX ideation scratch
+# env.run('tmux new -s build-123 -d')
+# with prefix('tmux send-keys -t "build-123:0.0" '):
+#     env.run('echo omg')
+
+# env.run('tmux new-session -d -s build-123')
+# env.run('tmux send-keys -t build-123:0 echo zomg')
+# env.run('tmux attach -t build-123')
