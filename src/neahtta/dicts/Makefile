@@ -555,19 +555,25 @@ itwewina-install: install_langs_fsts copy-itwewina-variants
 ##### #saantargets
 #####
 
-SAAN_LANGS_ANALYSERS      :=   sms fin
+SAAN_LANGS_ANALYSERS      :=   sms # fin
 SAAN_LANGS_FLAGS          :=   --with-hfst --enable-twostep-intersect --no-recursion
 SAAN_LANGS_LEXICA         :=   sms
-SAAN_WORDS_DICTS_LEXICA   :=   sms2X
-
-.PHONY: saan-lexica
-saan-lexica: LEX_COMPILE_LANGS := sms
-saan-lexica: compile_langs_lexicon
+SAAN_WORDS_DICTS_LEXICA   :=   
 
 .PHONY: saan-lexica
 saan-lexica: LEX_COMPILE_LANGS := $(SAAN_LANGS_LEXICA)
 saan-lexica: LEX_COMPILE_WORDS_DICTS := $(SAAN_WORDS_DICTS_LEXICA)
 saan-lexica: compile_langs_lexicon compile_words_dicts_lexicon
+
+### .PHONY: saan-combined-lexica
+### saan-combined-lexica: sms2X.xml sms-all.xml 
+### 	mkdir -p smsc_tmp/
+### 	cp -R $(GTHOME)/words/dicts/scripts ../scripts
+### 	cp $^ smsc_tmp/
+### 	$(SAXON) inDir=$(pwd)/smsc_tmp/ > sms-combined.xml
+### 	@rm -rf smsc_tmp/
+### 	@rm -rf ../scripts
+### 	wc -l sms-combined.xml
 
 .PHONY: saan
 saan: GT_COMPILE_LANGS := $(SAAN_LANGS_ANALYSERS)
