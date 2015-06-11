@@ -398,3 +398,10 @@ table.miniparadigm .double-width {
     font-size: 80%;
     color:  #555;
 }
+
+.audio-links {
+    display: block;
+    margin-top: -1.75em;
+    margin-right: 2em;
+    float: right;
+}
