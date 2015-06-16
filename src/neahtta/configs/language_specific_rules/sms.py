@@ -27,6 +27,7 @@ def pregenerate_sms(form, tags, node, **kwargs):
     else:
         _pos_is_okay = False
 
+    # Return tags but no forms in order to trigger further analysis attempts
     if not _pos_is_okay:
         return form, tags, node, []
 
