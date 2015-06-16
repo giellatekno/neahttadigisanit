@@ -15,6 +15,21 @@ def pregenerate_sms(form, tags, node, **kwargs):
     _has_mini_paradigm = node.xpath('.//mini_paradigm[1]')
 
     _has_lemma_ref     = node.xpath('.//lemma_ref')
+    _pos       = node.xpath('.//l/@pos')
+
+    if len(_pos) == 0:
+        return form, [], node, []
+    if len(_pos) == 1:
+        _pos = _pos[0]
+
+    if _pos in ['Pron']:
+        _pos_is_okay = True
+    else:
+        _pos_is_okay = False
+
+    if not _pos_is_okay:
+        return form, tags, node, []
+
     if len(_has_lemma_ref) > 0:
         return form, [], node, []
     if len(_has_mini_paradigm) == 0:
