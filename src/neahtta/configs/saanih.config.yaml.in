@@ -66,16 +66,11 @@ Dictionaries:
     input_variants: &spell_relax
       - type: "standard"
         description: !gettext "Standard"
-        example: "(TODO: )"
-        # TODO:
-        # onscreen_keyboard: &SMN_KEYS
-        #   - "â"
-        #   - "ö"
-        # NB: must be same as analyser name
+    example: !gettext "(<em>âäáčđšž</em>)"
         short_name: "smn"
       - type: "mobile"
         description: !gettext "Mobile friendly"
-        example: "(TODO: )"
+        example: !gettext "(incl. <em>aaacdsz</em>)"
         short_name: "smnM"
         # onscreen_keyboard: *SMN_KEYS
 
