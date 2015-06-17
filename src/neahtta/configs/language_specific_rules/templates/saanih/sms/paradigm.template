@@ -7,7 +7,7 @@
    also add a title on the table.
 
    - These are controlled by tagsets. Including more forms for verbs can
-   	 be handled by adding more tags to the file `tagsets/sme.tagset`
+   	 be handled by adding more tags to the file `tagsets/smn.tagset`
 
  #}
 
@@ -150,7 +150,7 @@
              dat nr="Pl", type="Dem"
 
              recipr is broken
-                /detail/sme/nob/goabbat%20guoimmisteame.html
+                /detail/smn/nob/goabbat%20guoimmisteame.html
     #}
 
     {% set two_columns = False %}
@@ -182,7 +182,7 @@
 {%- macro full_paradigm_link() %}
     <a class="full-paradigm-link"
        style="opacity: .8;"
-       href="http://gtweb.uit.no/cgi-bin/smi/smi.cgi?text={{ lemma }}&pos={{ pos }}&mode=full&action=paradigm&lang=sme&plang=sme">
+       href="http://gtweb.uit.no/cgi-bin/smi/smi.cgi?text={{ lemma }}&pos={{ pos }}&mode=full&action=paradigm&lang=smn&plang=smn">
         {%- trans -%}Full paradigm{%- endtrans -%} &nbsp;&rarr;
     </a>
 {% endmacro -%}
