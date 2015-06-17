@@ -337,7 +337,7 @@ focail-install: install_langs_fsts
 SAANIH_LANGS_ANALYSERS           :=   smn
 
 # OPTIONAL: enable miscellaneous ./configure flags
-# SAANIH_LANGS_FLAGS             :=   --with-hfst
+SAANIH_LANGS_FLAGS             :=   --with-hfst
 
 # These are the ISOs of the languages to compile from GTHOME/startup-langs/
 # SAANIH_STARTUP_LANGS_ANALYSERS   :=   lav
@@ -347,7 +347,8 @@ SAANIH_LANGS_ANALYSERS           :=   smn
 # SAANIH_LANGS_LEXICA              :=   smn
 
 # Compile the lexicon from a directory within GTHOME/words/dicts/
-SAANIH_WORDS_DICTS_LEXICA        :=   smnfin # finsmn
+SAANIH_WORDS_DICTS_LEXICA        :=   smnfin 
+# finsmn
 
 .PHONY: saanih-lexica
 saanih-lexica: LEX_COMPILE_LANGS := $(SAANIH_LANGS_LEXICA)
