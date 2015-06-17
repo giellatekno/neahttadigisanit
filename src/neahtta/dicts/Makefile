@@ -337,7 +337,7 @@ focail-install: install_langs_fsts
 SAANIH_LANGS_ANALYSERS           :=   smn
 
 # OPTIONAL: enable miscellaneous ./configure flags
-SAANIH_LANGS_FLAGS             :=   --with-hfst
+# SAANIH_LANGS_FLAGS             :=   --with-hfst
 
 # These are the ISOs of the languages to compile from GTHOME/startup-langs/
 # SAANIH_STARTUP_LANGS_ANALYSERS   :=   lav
