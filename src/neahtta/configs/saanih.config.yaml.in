@@ -60,7 +60,6 @@ Dictionaries:
   - source: smn
     target: fin
     path: 'dicts/smnfin.xml'
-    autocomplete: false
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
     input_variants: &spell_relax
