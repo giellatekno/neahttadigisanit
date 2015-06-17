@@ -17,25 +17,24 @@ ApplicationSettings:
 
 Tools:
   xfst_lookup: &LOOKUP '/usr/bin/lookup'
-  hfst_lookup: &HLOOKUP '/usr/local/bin/hfst-optimized-lookup'
   opt: &OPT '/opt/smi/'
 
 Morphology:
   smn:
-    tool: *HLOOKUP
-    file: [*OPT, '/smn/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/smn/bin/generator-dict-gt-norm.hfstol']
-    format: 'hfst'
+    tool: *LOOKUP
+    file: [*OPT, '/smn/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/smn/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
   smnM:
-    tool: *HLOOKUP
-    file: [*OPT, '/smn/bin/analyser-dict-gt-desc-mobile.hfstol']
-    inverse_file: [*OPT, '/smn/bin/generator-dict-gt-norm.hfstol']
-    format: 'hfst'
+    tool: *LOOKUP
+    file: [*OPT, '/smn/bin/analyser-dict-gt-desc-mobile.xfst']
+    inverse_file: [*OPT, '/smn/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"
       derivationMarker: "+Der"
@@ -61,6 +60,9 @@ Dictionaries:
   - source: smn
     target: fin
     path: 'dicts/smnfin.xml'
+    autocomplete: false
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/korp"
     input_variants: &spell_relax
       - type: "standard"
         description: !gettext "Standard"
