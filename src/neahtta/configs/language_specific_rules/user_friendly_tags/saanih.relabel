@@ -1,7 +1,7 @@
 ﻿Relabel:
-  - source_morphology: 'sms'
+  - source_morphology: 'smn'
     target_ui_language: 'nob'
-    tags: &smstagrelabels
+    tags: &smntagrelabels
       V: "v."
       N: "s."
       A: "adj."
@@ -881,3 +881,6 @@
       "Wpn": ""
       "Wthr": ""
 
+  - source_morphology: 'smnM'
+    target_ui_language: 'fin'
+    tags: <<: *smntagrelabels
