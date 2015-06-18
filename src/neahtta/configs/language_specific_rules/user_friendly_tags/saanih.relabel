@@ -881,6 +881,7 @@
       "Wpn": ""
       "Wthr": ""
 
-#  - source_morphology: 'smnM'
-#    target_ui_language: 'fin'
-#    tags: <<: *smntagrelabels
+  - source_morphology: 'smnM'
+    target_ui_language: 'fin'
+    tags: 
+      <<: *smntagrelabels
