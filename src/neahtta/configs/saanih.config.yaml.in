@@ -1,8 +1,8 @@
 ApplicationSettings:
   # TODO: inari saami version of this word
   # TODO: group smn<->fin and smn<->sme  ?
-  app_name: "Neahttadigisánit"
-  app_meta_title: "Neahttadigisánit"
+  app_name: "Nettidigisäänih"
+  app_meta_title: "Nettidigisäänih"
   short_name: "saanih"
   default_locale: "smn"
   default_pair: ["smn", "fin"]
