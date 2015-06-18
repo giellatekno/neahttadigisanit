@@ -39,6 +39,9 @@ person:
 invisible_in_paradigms:
  - "V"
  - "TA"
+ - "TI"
+ - "AI"
+ - "II"
  - "Cnj"
  - "Ind"
  - "Prs"
