@@ -347,7 +347,7 @@ SAANIH_LANGS_ANALYSERS           :=   smn
 # SAANIH_LANGS_LEXICA              :=   smn
 
 # Compile the lexicon from a directory within GTHOME/words/dicts/
-SAANIH_WORDS_DICTS_LEXICA        :=   smnfin 
+SAANIH_WORDS_DICTS_LEXICA        :=   smnfin finsmn smnsme smesmn
 # finsmn
 
 .PHONY: saanih-lexica
