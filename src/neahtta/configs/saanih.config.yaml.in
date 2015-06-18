@@ -4,7 +4,7 @@ ApplicationSettings:
   short_name: "saanih"
   default_locale: "smn"
   default_pair: ["smn", "fin"]
-  mobile_default_pair: false
+  mobile_default_pair: ["smnM", "fin"]
   locales_available:
     - "smn"
     - "fi"
