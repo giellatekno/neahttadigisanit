@@ -50,6 +50,16 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
+  sme:
+    tool: *LOOKUP
+    file: [*OPT, '/sme/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/sme/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options: &sme_fst_options
+      compoundBoundary: "+Cmp#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
 
 Languages:
   - iso: smn
