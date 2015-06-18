@@ -1,4 +1,6 @@
 ApplicationSettings:
+  # TODO: inari saami version of this word
+  # TODO: group smn<->fin and smn<->sme  ?
   app_name: "Neahttadigisánit"
   app_meta_title: "Neahttadigisánit"
   short_name: "saanih"
@@ -9,7 +11,6 @@ ApplicationSettings:
     - "smn"
     - "fi"
     - "en"
-  # TODO: language-specific sets
   meta_description: >
       Free online, mobile friendly dictionaries for Inari Saami
   meta_keywords: >
@@ -66,8 +67,6 @@ Languages:
     minority_lang: true
   - iso: fin
   - iso: sme
-
-# SAANIH_WORDS_DICTS_LEXICA        :=   smnfin finsmn smnsme smesmn
 
 Dictionaries:
   - source: smn
