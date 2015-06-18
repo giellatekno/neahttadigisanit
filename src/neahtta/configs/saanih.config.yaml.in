@@ -55,6 +55,9 @@ Languages:
   - iso: smn
     minority_lang: true
   - iso: fin
+  - iso: sme
+
+# SAANIH_WORDS_DICTS_LEXICA        :=   smnfin finsmn smnsme smesmn
 
 Dictionaries:
   - source: smn
@@ -62,7 +65,7 @@ Dictionaries:
     path: 'dicts/smnfin.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
-    input_variants: &spell_relax
+    input_variants: &spell_relax_smn
       - type: "standard"
         description: !gettext "Standard"
         example: !gettext "(<em>âäáčđŋšž</em>)"
@@ -73,3 +76,27 @@ Dictionaries:
         short_name: "smnM"
         # onscreen_keyboard: *SMN_KEYS
 
+  - source: fin
+    target: smn
+    path: 'dicts/finsmn.xml'
+
+
+  - source: smn
+    target: sme
+    path: 'dicts/smnsme.xml'
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/korp"
+    input_variants: 
+      - type: "standard"
+        description: !gettext "Standard"
+        example: !gettext "(<em>âäáčđŋšž</em>)"
+        short_name: "smn"
+      - type: "mobile"
+        description: !gettext "Mobile friendly"
+        example: !gettext "(incl. <em>aaacdnsz</em>)"
+        short_name: "smnM"
+        # onscreen_keyboard: *SMN_KEYS
+
+  - source: sme
+    target: smn
+    path: 'dicts/smesmn.xml'
