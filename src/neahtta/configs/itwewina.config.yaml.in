@@ -27,7 +27,7 @@ Morphology:
     inverse_file: [*OPT, '/crk/bin/generator-dict-gt-norm.hfstol']
     format: 'hfst'
     options: &MORPHOLOGY_OPTS
-      # tagProcessor: "configs.language_specific_rules.crk_tags:process_crk_analysis"
+      tagProcessor: "configs.language_specific_rules.crk_tags:process_crk_analysis"
       compoundBoundary: "+Use/Circ#"
       derivationMarker: "+Der"
       tagsep: '+'
