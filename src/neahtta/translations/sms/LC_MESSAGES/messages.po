@@ -158,7 +158,7 @@ msgstr ""
 
 #: configs/language_names.py:79
 msgid "Inari Saami"
-msgstr ""
+msgstr "Anarâškielâ"
 
 #: configs/language_names.py:82
 msgid "Khanty"
