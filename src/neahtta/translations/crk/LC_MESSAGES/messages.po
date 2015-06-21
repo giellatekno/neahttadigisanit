@@ -823,7 +823,7 @@ msgstr ""
 
 #: static/js/neahttadigisanit.js:8883
 msgid "Á"
-msgstr ""
+msgstr "Ā"
 
 #: static/js/neahttadigisanit.js:8883
 msgid "Options"
