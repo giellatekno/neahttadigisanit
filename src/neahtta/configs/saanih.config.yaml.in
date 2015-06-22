@@ -1,5 +1,4 @@
 ApplicationSettings:
-  # TODO: inari saami version of this word
   # TODO: group smn<->fin and smn<->sme  ?
   app_name: "Nettidigisäänih"
   app_meta_title: "Nettidigisäänih"
