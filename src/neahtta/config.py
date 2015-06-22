@@ -492,9 +492,17 @@ class Config(Config):
             for _set in _yaml.get('Relabel'):
                 source = _set.get('source_morphology')
                 target = _set.get('target_ui_language')
+
                 tags = _set.get('tags')
+                generation = _set.get('generation_tags')
+
                 if source in self.languages.keys() and target in self.languages.keys():
-                    _yaml_sets[(source, target)] = tags
+                    if generation:
+                        _yaml_sets[(source, target)] = tags
+                        _yaml_sets[(source, target, 'generation')] = generation
+                    else:
+                        _yaml_sets[(source, target)] = tags
+                        _yaml_sets[(source, target, 'generation')] = tags
             return _yaml_sets
 
         for _p, dirs, files in os.walk(_path):

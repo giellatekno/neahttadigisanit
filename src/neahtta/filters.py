@@ -98,6 +98,12 @@ def register_filters(app):
         from morphology.utils import tagfilter
         return tagfilter(*args, **kwargs)
 
+    @app.template_filter('tagfilter_generation')
+    def tagfilter_generation(*args, **kwargs):
+        from morphology.utils import tagfilter
+        kwargs['generation'] = True
+        return tagfilter(*args, **kwargs)
+
     @app.template_filter('xml_lang')
     def xml_lang(nodes, _to):
         return [n for n in nodes if _to in n.xpath('@xml:lang')]

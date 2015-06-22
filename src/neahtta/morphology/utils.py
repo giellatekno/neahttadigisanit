@@ -38,8 +38,11 @@ def tagfilter_conf(filters, s):
 
     return ' '.join([a for a in filtered if a.strip()])
 
-def tagfilter(s, lang_iso, targ_lang):
-    filters = current_app.config.tag_filters.get((lang_iso, targ_lang), False)
+def tagfilter(s, lang_iso, targ_lang, generation=False):
+    if generation:
+        filters = current_app.config.tag_filters.get((lang_iso, targ_lang, 'generation'), False)
+    else:
+        filters = current_app.config.tag_filters.get((lang_iso, targ_lang), False)
 
     # morph = current_app.config.morphologies.get(lang_iso, False)
     # if morph:
