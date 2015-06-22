@@ -296,6 +296,22 @@ class XMLDict(object):
                          , _type=_type
                          )
 
+    def iterate_entries(self, start=0, end=20):
+        # TODO: and position() >= 10 and position() < 21
+
+        if end:
+            _xp = etree.XPath(".//e[position() >= %s and position() < %s]" % (start, end))
+        else:
+            _xp = etree.XPath(".//e")
+
+        return _xp(self.tree)
+
+    def iterate_entries_count(self):
+        _xp = etree.XPath(".//e")
+        es = len(_xp(self.tree))
+
+        return len(es)
+
     def lookupOtherLemmaAttr(self, **attrs):
         attr_conditions = []
         for k, v in attrs.iteritems():
@@ -555,6 +571,7 @@ class Lexicon(object):
         search_types = {
             'keyword': KeywordLookups,
             'regular': XMLDict,
+            'test_data': XMLDict,
         }
 
         variant_searches = dict()
@@ -630,6 +647,26 @@ class Lexicon(object):
             largs.append(pos_type)
 
         return funcs.get(args, False), largs
+
+    def browse(self, _from, _to, page=0, count=20, _format=None):
+
+        _dict = self.language_pairs.get((_from, _to), False)
+
+        if not _dict:
+            raise Exception("Undefined language pair %s %s" % (_from, _to))
+
+        start = count * page
+        end = count * (page + 1)
+
+        result = _dict.iterate_entries(start, end)
+
+        if len(result) == 0:
+            return False
+
+        if _format:
+            result = list(_format(result))
+
+        return result
 
     def lookup(self, _from, _to, lemma,
                pos=False, pos_type=False,

@@ -405,3 +405,91 @@ table.miniparadigm .double-width {
     margin-right: 2em;
     float: right;
 }
+
+/* letter list
+ */
+
+/* TODO: move the letters and pagination to a general CSS file */
+
+
+ul.letters {
+    list-style-type: none;
+    margin: 0 0 0 0;
+    width: 100%;
+    border-right: 3px double #BBB;
+}
+
+.letters li, .letters li a {
+    width: 100%;
+}
+
+.letters li a {
+    display: block;
+    font-size: 150%;
+    text-align: center;
+    height: 1em;
+    width: 1em;
+    margin: .5em auto;
+    font-weight: 300;
+}
+
+.letters .li a:hover {
+    text-decoration: none;
+}
+
+.letters li.no_entries a {
+    color: #777;
+}
+
+@media (max-width: 765px) {
+    ul.letters {
+        background-color: #FFF;
+        display: block;
+        height: 6em;
+        width: 100%;
+        margin-bottom: 1em; 
+        border-bottom: 3px double #BBB;
+        border-right: none;
+    }
+
+    ul.letters.scrolled {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        border-bottom: 1px solid #999;
+        box-shadow: 2px 2px 4px #999;
+    }
+
+    ul.letters li {
+        height: 1.5em;
+        width: 1em;
+        padding: 5px;
+        float: left;
+    }
+}
+
+/* pagination
+ */
+
+.pagination {
+    margin: 0 auto;
+    padding: 0 0 0 0;
+    height: 2em;
+    display: block;
+    position: relative;
+    width: 80%;
+}
+
+.pagination.upper {
+    width: 100%;
+    margin-bottom: 2em;
+    border-bottom: 1px solid #CCC;
+}
+
+.pagination a {
+    display: block;
+    width: 50%;
+    height: 1.5em;
+    float: left;
+    text-align: center;
+}

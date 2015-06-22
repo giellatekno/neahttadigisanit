@@ -48,3 +48,16 @@ blueprint.add_url_rule( '/session/clear/<sess_key>/'
                       , view_func=session_clear
                       , methods=['GET']
                       )
+
+browse = False
+try:
+    from .browse import *
+    browse = True
+except ImportError:
+    pass
+
+if browse:
+    blueprint.add_url_rule( '/browse/<_from>/<_to>/'
+                          , view_func=BrowseView.as_view('word_browser')
+                          )
+
