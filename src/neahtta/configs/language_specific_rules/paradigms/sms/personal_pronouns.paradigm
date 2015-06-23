@@ -1,11 +1,15 @@
 name: "personal pronouns"
 morphology:
   pos: Pron
-  pron_type: Pers
   number: 
     - Sg
     - Du
     - Pl
+lexicon:
+  XPATH:
+    pos_type: ".//l/@type"
+  pos_type: 
+    - "Pers"
 --
 {{ lemma }}+Pron+Pers+{{ number }}+Nom
 {{ lemma }}+Pron+Pers+{{ number }}+Gen
