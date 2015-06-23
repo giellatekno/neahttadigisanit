@@ -8,6 +8,8 @@
 {%- set first_l = lexicon_entry|xpath('lg/l')|first %}
 {% set lemma = first_l|text %}
 {% set pos = first_l|xpath('@pos')|first %}
+{% set pos_type = first_l|xpath('@type')|first %}
+
 {% set has_forms = paradigm and paradigm|length > 0 -%}
 {% set paradigm_exists = paradigm|length > 0 %}
 
@@ -55,7 +57,7 @@
     {%- endmacro %}
 {%- endif %}
 
-{%- if pos|upper == 'N' or pos|upper == 'NUM' %}
+{%- if pos|upper == 'N' or pos|upper == 'NUM' and pos_type != 'Prop' %}
 
     {% set sg_forms = paradigm|by_tagset_value("number", "Sg")|group_by_tag %}
     {% set pl_forms = paradigm|by_tagset_value("number", "Pl")|group_by_tag %}
@@ -82,6 +84,13 @@
                     |tagfilter(_from, _to) }}
     {% endmacro %}
 
+{% endif -%}
+
+{%- if pos|upper == 'N' and pos_type == 'Prop' %}
+    {% macro clean_tag(tag_input) %}
+        {{ tag_input|remove_by_tagset('invisible_in_noun_paradigms')
+                    |tagfilter(_from, _to) }}
+    {% endmacro %}
 {% endif -%}
 
 {%- if pos|upper == 'A' %}
@@ -192,58 +201,83 @@
 
 {% elif pos|upper == 'N' %}
 
-    {% if paradigm_exists %}
+    {% if pos_type != 'Prop' %}
 
-        <table class="tableparadigm miniparadigm">
-            <tr>
-                <th></th>
-                <th lang="{{ _to }}">{{ sg_text }}</th>
-                <th lang="{{ _to }}">{{ pl_text }}</th>
-            </tr>
+        {% if paradigm_exists %}
 
-        {%- for sgs, pls in zipped_numbers -%}
-            <tr>
+            <table class="tableparadigm miniparadigm">
+                <tr>
+                    <th></th>
+                    <th lang="{{ _to }}">{{ sg_text }}</th>
+                    <th lang="{{ _to }}">{{ pl_text }}</th>
+                </tr>
 
-            {% if sgs[0].tag %}
-                {% set tag_display = clean_tag(sgs[0].tag) %}
-            {% elif pls[0].tag %}
-                {% set tag_display = clean_tag(pls[0].tag) %}
-            {% endif %}
+            {%- for sgs, pls in zipped_numbers -%}
+                <tr>
 
-            <th class="tag" lang="{{ _to }}">{{ tag_display }}</th>
+                {% if sgs[0].tag %}
+                    {% set tag_display = clean_tag(sgs[0].tag) %}
+                {% elif pls[0].tag %}
+                    {% set tag_display = clean_tag(pls[0].tag) %}
+                {% endif %}
 
-            {% if sgs and sgs != '-' %}
-                <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form') }}</td>
-            {% else %}
-                <td lang="{{ _from }}" class="center">&mdash;</td>
-            {% endif %}
+                <th class="tag" lang="{{ _to }}">{{ tag_display }}</th>
 
-            {% if pls and pls != '-' %}
-                <td lang="{{ _from }}">{{ pls|join('<br />', attribute='form') }}</td>
-            {% else %}
-                <td lang="{{ _from }}" class="center">&mdash;</td>
-            {% endif %}
+                {% if sgs and sgs != '-' %}
+                    <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form') }}</td>
+                {% else %}
+                    <td lang="{{ _from }}" class="center">&mdash;</td>
+                {% endif %}
 
-            </tr>
+                {% if pls and pls != '-' %}
+                    <td lang="{{ _from }}">{{ pls|join('<br />', attribute='form') }}</td>
+                {% else %}
+                    <td lang="{{ _from }}" class="center">&mdash;</td>
+                {% endif %}
 
-        {%- endfor -%}
+                </tr>
+
+            {%- endfor -%}
 
 
-        {%- for form in numberless_forms -%}
-            <tr>
-            {% if form.tag %}
-                <th class="tag" lang="{{ _to }}">{{ clean_tag(form.tag)  }}</th>
-            {% endif %}
+            {%- for form in numberless_forms -%}
+                <tr>
+                {% if form.tag %}
+                    <th class="tag" lang="{{ _to }}">{{ clean_tag(form.tag)  }}</th>
+                {% endif %}
 
-            {% if form.form %}
-                <td colspan="2" lang="{{ _from }}" class="center">{{ form.form }}</td>
-            {% else %}
-                <td colspan="2" lang="{{ _from }}">?</td>
-            {% endif %}
+                {% if form.form %}
+                    <td colspan="2" lang="{{ _from }}" class="center">{{ form.form }}</td>
+                {% else %}
+                    <td colspan="2" lang="{{ _from }}">?</td>
+                {% endif %}
 
-            </tr>
-        {%- endfor -%}
-        </table>
+                </tr>
+            {%- endfor -%}
+            </table>
+
+        {% endif %}
+
+    {% elif pos_type == 'Prop' %}
+
+        {% if paradigm_exists %}
+
+            <dl class="dl-horizontal miniparadigm">
+                {%- for form in paradigm -%}
+
+                    {% if form.tag %}
+                        <dt>{{ clean_tag(form.tag)  }}</dt>
+                    {% endif %}
+
+                    {% if form.form %}
+                    <dd lang="{{ _from }}">{{ form.form }}</dd>
+                    {% else %}
+                        <dd lang="{{ _from }}">?</dd>
+                    {% endif %}
+                {%- endfor -%}
+            </dl>
+
+        {% endif %}
 
     {% endif %}
 

@@ -6,6 +6,8 @@
  - Po
  - Num
  - Pron
+noun_type:
+ - Prop
 pron_type:
  - Pers
  - Dem
@@ -14,6 +16,13 @@ number:
  - "Sg"
  - "Pl"
  - "Du"
+person_number:
+ - "Sg1"
+ - "Sg2"
+ - "Sg3"
+ - "Pl1"
+ - "Pl2"
+ - "Pl3"
 case:
  - Nom
  - Gen
@@ -60,6 +69,7 @@ invisible_in_noun_paradigms:
  - "N"
  - "Sg"
  - "Pl"
+ - "Prop"
 invisible_in_verb_nonfinite_paradigms:
  - "V"
  - "Ind"

@@ -1,0 +1,12 @@
+name: "proper nouns"
+morphology:
+  pos: N
+  noun_type: Prop
+--
+{{ lemma }}+N+Prop+Sg+Nom
+{{ lemma }}+N+Prop+Sg+Gen
+{{ lemma }}+N+Prop+Sg+Acc
+{{ lemma }}+N+Prop+Sg+Ill
+{{ lemma }}+N+Prop+Sg+Loc
+{{ lemma }}+N+Prop+Sg+Abe
+{{ lemma }}+N+Prop+Par
