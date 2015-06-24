@@ -1,4 +1,4 @@
-﻿# -*- encoding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 """ Various rules for displaying ``sms`` entries properly, and
 connecting FST to Lexicon.
 """
@@ -17,19 +17,7 @@ def pregenerate_sms(form, tags, node, **kwargs):
     _has_lemma_ref     = node.xpath('.//lemma_ref')
     _pos       = node.xpath('.//l/@pos')
 
-    if len(_pos) == 0:
-        return form, [], node, []
-    if len(_pos) == 1:
-        _pos = _pos[0]
-
-    if _pos in ['Pron']:
-        _pos_is_okay = True
-    else:
-        _pos_is_okay = False
-
     # Return tags but no forms in order to trigger further analysis attempts
-    if not _pos_is_okay:
-        return form, tags, node, []
 
     if len(_has_lemma_ref) > 0:
         return form, [], node, []
@@ -37,6 +25,10 @@ def pregenerate_sms(form, tags, node, **kwargs):
         return form, tags, node
     else:
         mp = _has_mini_paradigm[0]
+
+    exclude_nds = mp.attrib.get('exclude', '') == 'NDS'
+    if exclude_nds:
+        return form, tags, node, []
 
     def analysis_node(node):
         """ Node ->
