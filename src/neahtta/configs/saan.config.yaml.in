@@ -2,12 +2,12 @@ ApplicationSettings:
   app_name: "Neahttadigisánit"
   app_meta_title: "Neahttadigisánit"
   short_name: "saan"
-  default_locale: "sms"
+  default_locale: "fi"
   default_pair: ["sms", "fin"]
   mobile_default_pair: false
   polyglot_lookup: true
   locales_available:
-    - "sms"
+    # - "sms"
     - "fi"
     - "en"
     - "no"
@@ -25,20 +25,20 @@ Tools:
 
 Morphology:
   sms:
-    tool: *HLOOKUP
-    file: [*OPT, '/sms/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/sms/bin/generator-dict-gt-norm.hfstol']
-    format: 'hfst'
+    tool: *LOOKUP
+    file: [*OPT, '/sms/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/sms/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
   smsM:
-    tool: *HLOOKUP
-    file: [*OPT, '/sms/bin/analyser-dict-gt-desc-mobile.hfstol']
-    inverse_file: [*OPT, '/sms/bin/generator-dict-gt-norm.hfstol']
-    format: 'hfst'
+    tool: *LOOKUP
+    file: [*OPT, '/sms/bin/analyser-dict-gt-desc-mobile.xfst']
+    inverse_file: [*OPT, '/sms/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"
       derivationMarker: "+Der"
@@ -96,10 +96,14 @@ Dictionaries:
         example: "(k &rarr; k ~ ǩ)"
         short_name: "smsM"
         onscreen_keyboard: *SMS_KEYS
+        # aczdggknsz
+        # âčǯđǧǥǩŋ̌šž
+
   - source: sms
     target: eng
-    path: 'dicts/sms-all.xml'
+    path: 'dicts/test_lexica/sms.xml'
     input_variants: *spell_relax
+
   - source: sms
     target: rus
     path: 'dicts/sms-all.xml'
@@ -108,6 +112,8 @@ Dictionaries:
     target: nob
     path: 'dicts/sms-all.xml'
     input_variants: *spell_relax
+
+
 
 ReaderConfig:
   sms:
