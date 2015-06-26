@@ -315,13 +315,9 @@ def restart_service(dictionary=False):
 
     with cd(env.neahtta_path):
         print(cyan("** Restarting service for <%s> **" % dictionary))
-        stop = env.run("sudo service nds-%s stop" % dictionary)
-        if not stop.failed:
-            start = env.run("sudo service nds-%s start" % dictionary)
-            if not start.failed:
-                print(green("** <%s> Service has restarted successfully **" % dictionary))
-            else:
-                fail = True
+        restart = env.run("sudo service nds-%s restart" % dictionary)
+        if not restart.failed:
+            print(green("** <%s> Service has restarted successfully **" % dictionary))
         else:
             fail = True
 
