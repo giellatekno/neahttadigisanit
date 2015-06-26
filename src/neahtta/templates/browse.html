@@ -4,10 +4,8 @@
     {{ entry_template_header_includes|safe }}
 {% endblock %}
 
-{% block footer_js %}
-        {# TODO: conditionally display with some developer setting #}
 
-        {% include 'developer_test_palette.html' %}
+{% block footer_js %}
 {% endblock %}
 
 {% block search_li %}
@@ -16,12 +14,16 @@
 {% block search_li_form %}
 {% endblock %}
 
+{% block extra_css %}
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/browse.css')}}" />
+{% endblock %}
+
 {% block extra_nav %}
     {# Dictionaries #}
     {% include 'mobile_nav_dictionary_list.html' %}
 {% endblock %}
 
-{% block bodyclass %}main_search{% endblock %}
+{% block bodyclass %}browse_page{% endblock %}
 
 {%- set keyboard = false %}
 {% if current_variant_options %}
@@ -30,15 +32,14 @@
 
 {% block content %}
 <div class="container-fluid">
-    <div class="row-fluid">
-        {% set nav_width = "span3" %}
-        {% set letter_width = "span1" %}
-        {% set dict_width = "span8" %}
-        <div class="{{ nav_width }}  hidden-phone hidden-mid" id="left_nav">
+    <div class="row-fluid fill-rows">
+        {# TODO: hide menu when inactive #}
+        <div class="fill-row" id="left_nav" style="display:none;">
             {% include 'left_dictionary_list.html' %}
         </div>
-        <div class="{{ letter_width }}">
+        <div class="fill-row" id="letter-select">
             <ul class="letters">
+                <li id="left_nav_show"><a href="#"><i class="icon-book"></i></a></li>
                 {% for letter in letters %}
                     {% if letter.has_entries %}
                         {% set li_class = 'has_entries' %}
@@ -47,40 +48,35 @@
                         {% set li_class = 'no_entries' %}
                         {% set link = "#" %}
                     {% endif %}
-                    <li class="{{ li_class }}"><a lang="{{ ui_lang }}" href="{{ link }}">{{ letter.letter }}</a></li>
+                    <li class="{{ li_class }}"><a lang="{{ _from }}" href="{{ link }}">{{ letter.letter }}</a></li>
+                {% endfor %}
+            </ul>
+            <div class="scroll_down_arrow">
+                <span class>
+                    <i class="icon-arrow-down"></i>
+                </span>
+            </div>
+        </div>
+        <div class="fill-row" id="word-select">
+            <ul>
+                {% for w in words %}
+                    <li><a lang="{{ _from }}" href="#">{{ w }}</a></li>
                 {% endfor %}
             </ul>
         </div>
-        <div class="{{ dict_width }}">
+        <div class="fill-row" id="fixed-content-area">
+
             <h4 class="dict_title">
-                {% if current_variant_options %}
-                    <span>{% trans %}Browsing:{% endtrans %} {{ _from|iso_to_i18n }} ({{ gettext(current_variant_options.description) }}) → {{ _to|iso_to_i18n }}</span>
-                {% else %}
-                    <span>{% trans %}Browsing:{% endtrans %} {{ _from|iso_to_i18n }} → {{ _to|iso_to_i18n }}</span>
-                {% endif %}
-                {% if display_swap %}
-                <span class="swaplink" style="font-size: 80%">(<a href="/{{ swap_from }}/{{ swap_to }}/">⇄ <span lang="{{ current_locale }}">{% trans %}Swap{% endtrans %}</span></a>)</span>
-                {% endif %}
+                <span>{{ _from|iso_to_i18n }} → {{ _to|iso_to_i18n }}</span>
             </h4>
 
             {# figure out if there's a variant, and if the reverse has
             variants, because if mobile, we want to force mobile variant in
             swap #}
 
-            <div class="row-fluid form-row">
-                <div class="span8">
-                    {# index_search_form|safe #}
-                </div>
-                <div class="span4 hidden-phone valign_block">
-                    {# TODO: template here? #}
-                    {% if analyses %}
-                        <p class="analysis_note"><em lang="{{ _from }}">{{ user_input }}</em><span lang="{{ current_locale }}">{% trans user_input=user_input %} is a possible form of ... {% endtrans %}</span></p>
-                    {% endif %}
-                </div>
-            </div>
-
             {# TODO: deep link needs to go to specific lexeme when it comes from the front page #}
             {% if successful_entry_exists %}
+                {#
                 <div class="pagination upper">
                     {% if prev_page %}
                         <a class="prev" href="?page={{ prev_page }}#end">
@@ -101,6 +97,7 @@
                         </span>
                     </a>
                 </div>
+                #}
 
                 <div class="results">
                     {% for tpl in entry_templates %}
@@ -121,6 +118,9 @@
             {% if show_info %}
                 {{ search_info_template|safe }}
             {% endif %}
+        </div>
+
+        <div class="fill-row span2" id="about-browse">
             <div class="pagination">
                 {% if prev_page %}
                     <a class="prev" href="?page={{ prev_page }}">
@@ -141,10 +141,19 @@
                     </span>
                 </a>
             </div>
+
         </div>
         
     </div>
 
 </div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#left_nav_show a").click(function(){
+            $('#left_nav_show').toggle();
+            $('#left_nav').toggle();
+        });
+    });
+</script>
 
 {% endblock %}
