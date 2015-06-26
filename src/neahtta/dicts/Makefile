@@ -557,7 +557,8 @@ itwewina-install: install_langs_fsts copy-itwewina-variants
 #####
 
 SAAN_LANGS_ANALYSERS      :=   sms # fin
-SAAN_LANGS_FLAGS          :=   --with-hfst --enable-twostep-intersect --no-recursion
+# --with-hfst --enable-twostep-intersect --no-recursion
+SAAN_LANGS_FLAGS          :=   
 SAAN_LANGS_LEXICA         :=   sms
 SAAN_WORDS_DICTS_LEXICA   :=   
 
