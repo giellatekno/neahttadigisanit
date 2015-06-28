@@ -19,3 +19,7 @@ morphology:
 {{ lemma }}+N+Pl+Abe
 {{ lemma }}+N+Ess
 {{ lemma }}+N+Par
+{{ lemma }}+N+Der/Dim+N+Sg+Nom
+{{ lemma }}+N+Der/Dim+N+Sg+Ill
+{{ lemma }}+N+Der/Dim+N+Pl+Nom
+{{ lemma }}+N+Der/Dim+N+Pl+Acc
