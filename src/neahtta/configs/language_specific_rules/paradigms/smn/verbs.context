@@ -2,53 +2,53 @@
 ### Standard verb context
 ##
 
-- entry_context: "mun"
+- entry_context: None
   tag_context: "V+Ind+Prs+Sg1"
   template: "(mun) {{ word_form }}"
 
-- entry_context: "mun"
+- entry_context: None
   tag_context: "V+Ind+Prs+Sg2"
   template: "(don) {{ word_form }}"
 
-- entry_context: "mun"
+- entry_context: None
   tag_context: "V+Ind+Prs+Sg3"
   template: "(son) {{ word_form }}"
 
 
-- entry_context: "mun"
+- entry_context: None
   tag_context: "V+Ind+Prs+Du1"
   template: "(moai) {{ word_form }}"
 
-- entry_context: "mun"
+- entry_context: None
   tag_context: "V+Ind+Prs+Du2"
   template: "(doai) {{ word_form }}"
 
-- entry_context: "mun"
+- entry_context: None
   tag_context: "V+Ind+Prs+Du3"
   template: "(soai) {{ word_form }}"
 
-- entry_context: "mun"
+- entry_context: None
   tag_context: "V+Ind+Prs+Pl1"
   template: "(mii) {{ word_form }}"
 
-- entry_context: "mun"
+- entry_context: None
   tag_context: "V+Ind+Prs+Pl2"
   template: "(dii) {{ word_form }}"
 
-- entry_context: "mun"
+- entry_context: None
   tag_context: "V+Ind+Prs+Pl3"
   template: "(sii) {{ word_form }}"
 
-- entry_context: "mun"
+- entry_context: None
   tag_context: "V+Ind+Prs+ConNeg"
   template: "(odne in) {{ word_form }}"
 
-- entry_context: "mun"
+- entry_context: None
   tag_context: "V+Ind+Prt+ConNeg"
   template: "(ikte in) {{ word_form }}"
 
 
-- entry_context: "mun"
+- entry_context: None
   tag_context: "V+PrfPrc"
   template: "(lean) {{ word_form }}"
 
@@ -163,39 +163,39 @@
 
 # negation
 
-- entry_context: "mun"
+- entry_context: None
   tag_context: "IV+Neg+Ind+Sg1"
   template: "(mun) {{ word_form }}"
 
-- entry_context: "mun"
+- entry_context: None
   tag_context: "IV+Neg+Ind+Sg2"
   template: "(don) {{ word_form }}"
 
-- entry_context: "mun"
+- entry_context: None
   tag_context: "IV+Neg+Ind+Sg3"
   template: "(son) {{ word_form }}"
 
-- entry_context: "mun"
+- entry_context: None
   tag_context: "IV+Neg+Ind+Du1"
   template: "(moai) {{ word_form }}"
 
-- entry_context: "mun"
+- entry_context: None
   tag_context: "IV+Neg+Ind+Du2"
   template: "(doai) {{ word_form }}"
 
-- entry_context: "mun"
+- entry_context: None
   tag_context: "IV+Neg+Ind+Du3"
   template: "(soai) {{ word_form }}"
 
-- entry_context: "mun"
+- entry_context: None
   tag_context: "IV+Neg+Ind+Pl1"
   template: "(mii) {{ word_form }}"
 
-- entry_context: "mun"
+- entry_context: None
   tag_context: "IV+Neg+Ind+Pl2"
   template: "(dii) {{ word_form }}"
 
-- entry_context: "mun"
+- entry_context: None
   tag_context: "IV+Neg+Ind+Pl3"
   template: "(sii) {{ word_form }}"
 
