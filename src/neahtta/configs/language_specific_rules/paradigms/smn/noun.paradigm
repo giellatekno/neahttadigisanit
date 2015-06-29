@@ -9,6 +9,7 @@ morphology:
 {{ lemma }}+N+Sg+Loc
 {{ lemma }}+N+Sg+Com
 {{ lemma }}+N+Ess
+{{ lemma }}+N+Par
 {{ lemma }}+N+Pl+Nom
 {{ lemma }}+N+Pl+Acc
 {{ lemma }}+N+Pl+Gen
