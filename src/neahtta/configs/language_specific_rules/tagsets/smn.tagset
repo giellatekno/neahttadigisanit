@@ -66,6 +66,7 @@ number:
  - "Pl"
 nouns_null_number:
  - "Ess"
+ - "Par"
 case:
  - "Nom"
  - "Acc"
