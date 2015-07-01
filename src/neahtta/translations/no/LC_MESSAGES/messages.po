@@ -588,8 +588,8 @@ msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
 "Søk etter et ord, evt. en bøyd form. Etter at du har søkt: Ved å klikke "
 "på ordet får du en liste med bøyningsformer. <br /><br /> Med \"Søk i "
-"tekst\" kan du søke etter setninger med ordet, og du får med alle "
-"bøyningsformer ved å bruke linken som dukker opp i høyre marg etter at du"
+"tekst\" kan du søke etter setninger med ordet, og alle "
+"bøyningsformer er med i søket hvis du bruker linken som dukker opp i høyre marg etter at du"
 " har trykt  \"Søk\"."
 
 #: configs/language_specific_rules/templates/baakoeh/about.template:58
@@ -789,8 +789,8 @@ msgid ""
 "href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
 "<em>acdnstz</em> for <em>áčđŋšŧž</em>."
 msgstr ""
-"Hvis du ikke har samisk tastatur, bør du vurdere å bruke <a "
-"href=\"/SoMe/nob/\">sosiale media-modusen</a>, som lar deg skrive inn "
+"Hvis du ikke har samisk tastatur, kan du bruke <a "
+"href=\"/SoMe/nob/\">sosiale media-modusen</a>, og du kan skrive "
 "<em>acdnstz</em> når du mener <em>áčđŋšŧž</em>."
 
 #: configs/language_specific_rules/templates/sanit/search_info.template:12
