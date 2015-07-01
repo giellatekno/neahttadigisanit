@@ -785,7 +785,7 @@ msgid ""
 "href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
 "<em>acdnstz</em> for <em>áčđŋšŧž</em>."
 msgstr ""
-"Jus ii leat sámi boallobeavd, de sáhtát geavahit <a "
+"Jus ii leat sámi boallobeavdi, de ferte geavahit <a "
 "href=\"/SoMe/nob/\">sosiála media veršuvnna</a>, mii dohkkeha "
 "<em>acdnstz</em> danin bustávvan: <em>áčđŋšŧž</em>."
 

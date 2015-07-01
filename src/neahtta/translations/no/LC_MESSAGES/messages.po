@@ -789,7 +789,7 @@ msgid ""
 "href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
 "<em>acdnstz</em> for <em>áčđŋšŧž</em>."
 msgstr ""
-"Hvis du ikke har samisk tastatur, kan du bruke <a "
+"Hvis du ikke har samisk tastatur, må du bruke <a "
 "href=\"/SoMe/nob/\">sosiale media-modusen</a>, og du kan skrive "
 "<em>acdnstz</em> når du mener <em>áčđŋšŧž</em>."
 
