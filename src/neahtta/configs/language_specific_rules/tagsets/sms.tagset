@@ -19,6 +19,9 @@ number:
  - "Sg"
  - "Pl"
  - "Du"
+semantics:
+ - "Sem/Plc"
+ - "Sem/Obj"
 person_number:
  - "Sg1"
  - "Sg2"

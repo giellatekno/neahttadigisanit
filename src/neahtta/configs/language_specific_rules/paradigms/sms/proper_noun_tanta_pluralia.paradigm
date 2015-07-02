@@ -1,7 +1,7 @@
 name: "Proper nouns tanta pluralia"
 morphology:
   pos: "N"
-  type: "Prop"
+  noun_type: "Prop"
   number: "Pl"
   semantics:
     - "Sem/Plc"
