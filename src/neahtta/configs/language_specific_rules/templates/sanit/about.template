@@ -54,9 +54,14 @@
         </div>
         <div class="row-fluid">
             <span class="span4">
-                <h3 class="blue smaller">{% trans %}sma ↔ nob{% endtrans %}</h3>
-                <p>{% trans %}The dictionaries for South Saami and Norwegian build on material prepared by Albert Jåma and Tove Brustad in the <a class="blue" href="http://www.ruovatsijte.no/">Hemnes Saami Organization</a>, but has in addition gained words from <a class="blue" href="http://giellatekno.uit.no/">Giellatekno</a> and <a class="blue" href="http://aajege.no/">Aajege</a>'s work with the Southern Sámi <a class="blue" href="http://oahpa.no">Oahpa</a>.{% endtrans %}</p>
+                <h3 class="red smaller">{% trans %}sme ↔ nob{% endtrans %}</h3>
+                <p>{% trans %}North Saami → Norwegian builds on Nils Jernsletten's dictionary <em>Álgosátnegirji</em> (4300 words), but now contains 25000 words. Norwegian → North Saami contains about 26000 words. {% endtrans %}</p>
+                <p>{% trans %}Approximately half of the content of the dictionaries is taken by searching for parallels in a parallel corpus of administrative text. This work was financed by the Ministry of Local Government and Modernisation.{% endtrans %}</p>
             </span>
+            <span class="span4">
+                <h3 class="green smaller">{% trans %}sme ↔ fin{% endtrans %}</h3>
+                <p>{% trans %}Dictionaries for North Saami and Finnish are based on lexical material from the <a class="green" href="http://kotus.fi">Institute for the Languages of Finland</a>, and from Giellatekno's work with the North Saami  <a class="green" href="http://oahpa.no">Oahpa</a>. In addition, we have included frequent words from North Saami, but especially from Finnish.{% endtrans %}</p> 
+                <p>{% trans %}In both directions there are about 11,000 entries.{% endtrans %}</p>
             </span>
         </div>
         <div class="row-fluid">
