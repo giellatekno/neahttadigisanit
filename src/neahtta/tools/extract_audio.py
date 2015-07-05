@@ -9,15 +9,43 @@ TODO: only download updated files, storing in manifest in path/to/stored/audio/
 
 """
 
+# find . \ -type file -name "*.mp3" | xargs -I {} ffmpeg -y -i {} -ab 96
+
+# conversion type attr?
+
+# for file in *.wav
+#     do ffmpeg -i "${file}" "${file/%wav/m4a}"
+# done
 
 import os, sys
 import requests
 
 from lxml import etree
 
-def transcode(filename, target):
-    # TODO: asdf
-    return False
+def transcode_audios(audio_paths, fmt="m4a"):
+    import subprocess
+
+    def proc(*args):
+        PIPE = subprocess.PIPE
+        print >> sys.stderr, args
+        try:
+            p = subprocess.call(args, shell=True)
+        except OSError:
+            sys.exit("Problem transcoding. Is ffmpeg installed?")
+        print >> sys.stderr, p
+
+    print >> sys.stderr, audio_paths
+
+    transcoded_paths = []
+
+    for url, target in audio_paths:
+        transcoded_target = target.replace('.wav', '.m4a')
+        proc("ffmpeg", "-i", target, transcoded_target)
+        transcoded_paths.append((url, transcoded_target))
+
+
+    print >> sys.stderr, "Transcoding complete."
+    return transcoded_paths
 
 # url -> basename
 def filename_from_url(url):
@@ -135,11 +163,10 @@ def main():
     urls = files(root)
 
     stored_audio = download_audios(urls, audio_target)
-    # TODO: transcode stored audio
+    transcoded_audio = transcode_audios(stored_audio)
 
-    updated_xml = replace_audio_paths(root, stored_audio)
+    updated_xml = replace_audio_paths(root, transcoded_audio)
     write_xml(updated_xml)
-
 
 if __name__ == "__main__":
     sys.exit(main())
