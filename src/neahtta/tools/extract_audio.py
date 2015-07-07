@@ -1,50 +1,61 @@
-""" A commandline tool to extract audio files, and replace the paths in
+""" Audio export thing.
+
+A commandline tool to extract audio files, and replace the paths in
 the lexicon with the updated paths.
 
-USAGE
-    python tools/extract_audio.py source_lexicon.xml path/to/stored/audio/ > output_lexicon.xml
+Usage: tools/extract_audio.py <source_lexicon> <path_to_audio> [-hv]
 
-TODO: transcoding
-TODO: only download updated files, storing in manifest in path/to/stored/audio/
+Options:
+    -h --help       Show this screen.
+    -v --verbose    Verbose.
 
 """
 
-# find . \ -type file -name "*.mp3" | xargs -I {} ffmpeg -y -i {} -ab 96
-
-# conversion type attr?
-
-# for file in *.wav
-#     do ffmpeg -i "${file}" "${file/%wav/m4a}"
-# done
+# TODO: only download updated files, storing in manifest in path/to/stored/audio/
+from docopt import docopt
 
 import os, sys
 import requests
 
 from lxml import etree
 
-def transcode_audios(audio_paths, fmt="m4a"):
+# Path -> Boolean
+def file_exists(path):
+    try:
+        exists = open(path, 'r')
+        exists.close()
+        return True
+    except:
+        pass
+    return False
+
+# [(Url, Target)] -> [(Url, TranscodedTarget)]
+def transcode_audios(audio_paths, fmt="m4a", verbose=False):
     import subprocess
 
     def proc(*args):
         PIPE = subprocess.PIPE
-        print >> sys.stderr, args
+        if verbose:
+            print >> sys.stderr, args
         try:
-            p = subprocess.call(args, shell=True)
+            p = subprocess.call(' '.join(args), shell=True, stdout=PIPE, stderr=PIPE)
         except OSError:
             sys.exit("Problem transcoding. Is ffmpeg installed?")
-        print >> sys.stderr, p
-
-    print >> sys.stderr, audio_paths
+        if verbose:
+            print >> sys.stderr, p
+            print >> sys.stderr, p.stdout
 
     transcoded_paths = []
 
     for url, target in audio_paths:
-        transcoded_target = target.replace('.wav', '.m4a')
-        proc("ffmpeg", "-i", target, transcoded_target)
+        transcoded_target = target.replace('.wav', '.' + fmt)
+        if file_exists(transcoded_target):
+            print >> sys.stderr, " * already converted: <%s>" % transcoded_target
+        else:
+            proc("ffmpeg", "-i", target, transcoded_target)
+            print >> sys.stderr, " * converted: <%s>" % transcoded_target
         transcoded_paths.append((url, transcoded_target))
 
-
-    print >> sys.stderr, "Transcoding complete."
     return transcoded_paths
 
 # url -> basename
@@ -58,8 +69,9 @@ def filename_from_url(url):
     # filename
     return base
 
-def fetch(url, target_dir, cache=True):
-    print >> sys.stderr, " * fetching <%s> " % url
+def fetch(url, target_dir, cache=True, verbose=False):
+    if verbose:
+        print >> sys.stderr, " * fetching <%s> " % filename_from_url(url)
     filename = filename_from_url(url)
     local_target = os.path.join(target_dir, filename)
 
@@ -79,7 +91,7 @@ def fetch(url, target_dir, cache=True):
         what
 
     with open(local_target, 'w') as F:
-        print >> sys.stderr, " * writing to <%s> " % local_target
+        print >> sys.stderr, " * Downloading <%s> " % local_target
         for block in r.iter_content(1024):
             F.write(block)
         print >> sys.stderr, " * Done."
@@ -100,7 +112,7 @@ def cache_dates(downloaded_audios, audio_target):
     return False
 
 # [source,]
-def download_audios(audio_urls, audio_target):
+def download_audios(audio_urls, audio_target, verbose=False):
     # TODO: check for source_last_updated.txt
     # TODO: filter audio_urls by those that really need an update -- 
     #    remote header is newer than stored header
@@ -109,7 +121,7 @@ def download_audios(audio_urls, audio_target):
     file_updates = []
 
     for aud in audio_urls:
-        _, file_path, source_modified = fetch(aud, audio_target)
+        _, file_path, source_modified = fetch(aud, audio_target, verbose=verbose)
         downloaded_audio.append((aud, file_path))
         file_updates.append((aud, file_path, source_modified))
 
@@ -141,7 +153,7 @@ def replace_audio_paths(xml_root, stored_audio):
             oldpath = a.attrib['href']
             newpath  = stored_audios.get(oldpath, False)
             if newpath:
-                a.attrib['href'] = newpath
+                a.attrib['href'] = '/' + newpath
 
     # new xml root
     return root_duplicate
@@ -153,7 +165,12 @@ def write_xml(root):
     print >> sys.stdout, stringed.encode('utf-8')
 
 def main():
-    infile, audio_target = sys.argv[1::]
+
+    arguments = docopt(__doc__, version='asdf')
+
+    infile = arguments.get('<source_lexicon>')
+    audio_target = arguments.get('<path_to_audio>')
+    verbose = arguments.get('--verbose')
 
     root = etree.parse(infile)
 
@@ -167,6 +184,7 @@ def main():
 
     updated_xml = replace_audio_paths(root, transcoded_audio)
     write_xml(updated_xml)
+    return 0
 
 if __name__ == "__main__":
     sys.exit(main())
