@@ -164,7 +164,6 @@ msgid "Khanty"
 msgstr "Khantisk"
 
 #: configs/language_names.py:84
-#, fuzzy
 msgid "Irish"
 msgstr "Finsk"
 
@@ -190,12 +189,10 @@ msgid "Haida"
 msgstr "Haida"
 
 #: configs/saanih.config.yaml.in:80 configs/saanih.config.yaml.in:101
-#, fuzzy
 msgid "(<em>âäáčđŋšž</em>)"
 msgstr "Standard (<em>áčđŋšŧž</em>)"
 
 #: configs/saanih.config.yaml.in:84 configs/saanih.config.yaml.in:105
-#, fuzzy
 msgid "(incl. <em>aaacdnsz</em>)"
 msgstr "(forstår <em>acdnstz</em>)"
 
@@ -375,7 +372,6 @@ msgid "sme ↔ nob"
 msgstr "Nordsamisk ↔ norsk"
 
 #: configs/language_specific_rules/templates/about.template:57
-#, fuzzy
 msgid ""
 "North Sámi → Norwegian builds on Nils Jernsletten's dictionary "
 "<em>Álgosátnegirji</em> (4300 words), but now contains 25000 words. "
@@ -789,7 +785,7 @@ msgid ""
 "href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
 "<em>acdnstz</em> for <em>áčđŋšŧž</em>."
 msgstr ""
-"<bf>Hvis du ikke har samisk tastatur</bf>, må du bruke <a "
+"<b>Hvis du ikke har samisk tastatur</b>, må du bruke <a "
 "href=\"/SoMe/nob/\">sosiale media-modusen</a>, og du kan skrive "
 "<em>acdnstz</em> når du mener <em>áčđŋšŧž</em>."
 
@@ -1038,7 +1034,6 @@ msgid "Written variant"
 msgstr "Skriftspråksvariant"
 
 #: templates/left_nav_search_variants.html:14
-#, fuzzy
 msgid "Search type"
 msgstr "Søk i tekst"
 
