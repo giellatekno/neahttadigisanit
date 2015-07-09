@@ -1,4 +1,10 @@
+# -*- encoding: utf-8 -*-
 import os, sys
+
+pre_lemma_tags = [
+    'RdplW',
+    'RdplS',
+]
 
 # TODO: replace PV/ with user-defined regex or something
 def process_crk_analysis(analysis_line):
@@ -13,7 +19,10 @@ def process_crk_analysis(analysis_line):
         ('wordform', 'lemma+POS+Type+Sg1')
         >>> process_crk_analysis("wordform\tPV/asdf+PV/bbq+lemma")
         ('wordform', 'lemma+PV/asdf+PV/bbq')
-
+        >>> process_crk_analysis("ninahnipan\tRdplS+nipâw+V+AI+Ind+Prs+1Sg")
+        ('ninahnipan', 'nipâw+RdplS+V+AI+Ind+Prs+1Sg')
+        >>> process_crk_analysis("ninanahnipan\tRdplW+RdplS+nipâw+V+AI+Ind+Prs+1Sg")
+        ('ninanahnipan', 'nipâw+RdplW+RdplS+V+AI+Ind+Prs+1Sg')
     """
 
     wordform, _, analysis_string = analysis_line.partition('\t')
@@ -26,7 +35,7 @@ def process_crk_analysis(analysis_line):
     has_preverbs = False
 
     for p in parts:
-        if p.startswith('PV/'):
+        if p.startswith('PV/') or p in pre_lemma_tags:
             has_preverbs = True
         else:
             lemma = p
@@ -63,6 +72,11 @@ def main():
     print process_crk_analysis("lemma+POS+Type+Sg1")
     # ('lemma', 'lemma+POS+Type+Sg1')
     print process_crk_analysis("PV/asdf+PV/bbq+lemma")
+
+    print process_crk_analysis("ninahnipan\tRdplS+nipâw+V+AI+Ind+Prs+1Sg")
+    # ('ninahnipan', 'nipâw+RdplS+V+AI+Ind+Prs+1Sg')
+    print process_crk_analysis("ninanahnipan\tRdplW+RdplS+nipâw+V+AI+Ind+Prs+1Sg")
+    # ('ninanahnipan', 'nipâw+RdplW+RdplS+V+AI+Ind+Prs+1Sg')
 
 if __name__ == "__main__":
     sys.exit(main())
