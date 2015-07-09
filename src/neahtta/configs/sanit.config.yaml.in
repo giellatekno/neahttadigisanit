@@ -107,12 +107,22 @@ Dictionaries:
         # description: !gettext "Standárda"
         example: "(<em>áčđŋšŧž</em>)"
         short_name: "sme"
+        onscreen_keyboard: &SME_KEYS
+          - "á"
+          - "č"
+          - "đ"
+          - "ŋ"
+          - "š"
+          - "ŧ"
+          - "ž"
+        # NB: must be same as analyser name
       - type: "mobile"
         description: !gettext "Social media"
         # description: !gettext "Sosiála media"
         # example: !gettext "(maiddái <em>acdnstz</em>)"
         example: !gettext "(incl. <em>acdnstz</em>)"
         short_name: "SoMe"
+        onscreen_keyboard: *SME_KEYS
 
   - source: nob
     target: sme
@@ -136,9 +146,11 @@ Dictionaries:
       - type: "standard"
         description: !gettext "Standárda (<em>áčđŋšŧž</em>)"
         short_name: "sme"
+        onscreen_keyboard: *SME_KEYS
       - type: "mobile"
         description: !gettext "Sosiála media (maiddái <em>acdnstz</em>)"
         short_name: "SoMe"
+        onscreen_keyboard: *SME_KEYS
 
   - source: fin
     target: sme
