@@ -78,6 +78,7 @@ $(document).ready(function(){
         $('#keyboard ul').css({width:(($('#keyboard ul li').length) * 40) + "px"});
 
         (function() {
+            return false;
 
             // Do not run on desktop widths, they probably need another solution
             if ($(document).width() > 801) {
@@ -208,34 +209,40 @@ $(document).ready(function(){
 
         }
 
-        $("#keyboard .hide_keyboard").click(function(o) {
-            o.preventDefault();
-            $("#keyboard").fadeOut();
-            $('form .input-append').addClass('input-prepend');
-            $('form #display_keyboard').fadeIn();
-            if(localStorage) {
-                localStorage.setItem('nds-kbd-visible', false);
-            }
-        });
 
         if(localStorage) {
+            $('form .input-append').addClass('input-prepend');
             var display_k = localStorage.getItem('nds-kbd-visible');
             if (display_k === "false") {
                 $("#keyboard").hide();
-                $('form .input-append').addClass('input-prepend');
-                $('form #display_keyboard').show();
+                $("form").removeClass('keyboard-visible');
+            } else if (display_k === "true") {
+                $("form").addClass('keyboard-visible');
             }
         }
 
         $("#display_keyboard").click(function(o){
             o.preventDefault();
-            if(localStorage) {
-                localStorage.setItem('nds-kbd-visible', true);
+
+            var nds_kbd_visible = $('#keyboard').is(':visible');
+
+            if (!nds_kbd_visible) {
+                // $('form .input-append').removeClass('input-prepend');
+                $("#keyboard").fadeIn();
+                $("form").addClass('keyboard-visible');
+                keyboard_focus(o);
+                if(localStorage) {
+                    localStorage.setItem('nds-kbd-visible', true);
+                }
+            } else {
+                $("#keyboard").fadeOut();
+                $("form").removeClass('keyboard-visible');
+                // $('form #display_keyboard').fadeIn();
+                if(localStorage) {
+                    localStorage.setItem('nds-kbd-visible', false);
+                }
             }
-            $('form .input-append').removeClass('input-prepend');
-            $('form #display_keyboard').fadeOut();
-            $("#keyboard").fadeIn();
-            keyboard_focus(o);
+
         });
 
         $("input").focus(function(o) {
@@ -261,6 +268,7 @@ $(document).ready(function(){
             }
 
         });
+
     }
 
 });
