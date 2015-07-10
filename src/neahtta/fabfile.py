@@ -148,7 +148,6 @@ def set_proj():
         has_restriction = sum(location_restriction_notice.values(), [])
         if proj in has_restriction:
             host_rest = location_restriction_notice.get(host, False)
-            print host
             if host_rest:
                 if proj not in host_rest:
                     print >> sys.stderr, red("%s is not on the current host <%s>." % (proj, host))
