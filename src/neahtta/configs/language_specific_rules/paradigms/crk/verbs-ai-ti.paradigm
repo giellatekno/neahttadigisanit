@@ -1,4 +1,4 @@
-name: "verbs"
+name: "verbs - animate intransitive, transitive inanimate"
 morphology:
   pos: V
   animacy:
