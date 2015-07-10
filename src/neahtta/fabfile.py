@@ -65,6 +65,40 @@ from fabric.contrib.console import confirm
 
 from fabric.utils import abort
 
+import socket
+
+# Hosts that have an nds- init.d script
+running_service = [
+    'gtweb.uit.no',
+    'gtlab.uit.no',
+    'gtoahpa.uit.no'
+]
+
+no_fst_install = [
+    'gtoahpa.uit.no',
+]
+
+location_restriction_notice = {
+
+   'gtoahpa.uit.no': [ 'sanit'
+                     , 'baakoeh'
+                     ]
+
+  , 'gtweb.uit.no':  [ 'dikaneisdi'
+                     , 'erey'
+                     , 'guusaaw'
+                     , 'itwewina'
+                     , 'kyv'
+                     , 'muter'
+                     , 'saan'
+                     , 'saanih'
+                     , 'sanat'
+                     , 'sonad'
+                     , 'vada'
+                     , 'valks'
+                     ]
+}
+
 def get_projects():
     """ Find all existing projects which can be included as an env
     argument """
@@ -101,11 +135,27 @@ def set_proj():
     names there are. ... Assuming no project name will be 'local' or
     'compile' """
     proj = get_project()
+
     if proj:
         env.current_dict = proj
     else:
         print >> sys.stderr, "This is not a valid project name."
         sys.exit()
+
+    host = socket.gethostname()
+
+    if host in running_service:
+        has_restriction = sum(location_restriction_notice.values(), [])
+        if proj in has_restriction:
+            host_rest = location_restriction_notice.get(host, False)
+            print host
+            if host_rest:
+                if proj not in host_rest:
+                    print >> sys.stderr, red("%s is not on the current host <%s>." % (proj, host))
+                    cont = raw_input(red('Continue anyway? [Y/N] \n'))
+                    if cont != 'Y':
+                        sys.exit()
+
     return
 
 
@@ -152,19 +202,8 @@ if ['local', 'gtweb', 'gtoahpa'] not in sys.argv:
 
 from config import yaml
 
-import socket
 env.real_hostname = socket.gethostname()
 
-# Hosts that have an nds- init.d script
-running_service = [
-    'gtweb.uit.no',
-    'gtlab.uit.no',
-    'gtoahpa.uit.no'
-]
-
-no_fst_install = [
-    'gtoahpa.uit.no',
-]
 
 # set up environments
 # Assume local unless otherwise noted
