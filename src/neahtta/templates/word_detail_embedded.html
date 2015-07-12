@@ -1,0 +1,38 @@
+{% import 'macros.html' as macros with context %}
+
+{# block float_right %}
+    {%- if result.analyses %}
+    <div class="well">
+        <strong>{{ result.input }} {% trans %}is a possible form of ... {% endtrans %}</strong>
+        <dl class="possible_analyses">
+            {% for grouper, forms in result.analyses|groupby(0) %}
+                <dt>{{ grouper }}</dt>
+                <dd>
+                    <ul class="possible_forms">
+                        {% for lemma, pos, tag in forms %}
+                            <li>{{ tag|tagfilter(_from, _to) }}</li>
+                        {% endfor %}
+                    </ul>
+                </dd>
+            {% endfor %}
+        </dl>
+    </div>
+    {%- endif -%}
+{% endblock #}
+
+{% if current_pair_settings.asynchronous_paradigms %}
+    <div ng-app="NDS">
+{% else %}
+    <div>
+{% endif %}
+
+{% for tpl in entry_templates %}
+    {{ tpl|safe }}
+{% endfor %}
+
+{% if current_pair_settings.asynchronous_paradigms %}
+    </div>
+{% else %}
+    </div>
+{% endif %}
+

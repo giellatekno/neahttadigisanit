@@ -85,6 +85,7 @@
     left: 0;
     display: block;
     overflow: scroll;
+    min-width: 868px;
 }
 
 .browse_page #left_nav {
@@ -221,4 +222,23 @@
     z-index: 7;
 }
 
+/*
+ *  expanded detail view
+ */ 
 
+#fixed-content-area.detail-visible {
+  position: absolute;
+  overflow-y: scroll;
+  left: 24%;
+  width: 30%;
+  border-right: 3px solid #CCC;
+}
+
+div#word-detail {
+    position: absolute;
+    left: 59%;
+    width: 41%;
+    padding-top: 2em;
+    padding-left: 0px;
+    margin-left: 0px;
+}

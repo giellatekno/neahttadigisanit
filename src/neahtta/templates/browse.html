@@ -4,7 +4,6 @@
     {{ entry_template_header_includes|safe }}
 {% endblock %}
 
-
 {% block footer_js %}
 {% endblock %}
 
@@ -16,10 +15,15 @@
 
 {% block extra_css %}
 	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/browse.css')}}" />
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/detail.css')}}" />
 {% endblock %}
 
 {% block extra_nav %}
     {# Dictionaries #}
+    <li><a href="/browse/">
+            <span lang="{{ current_locale }}">{% trans %}Browse{% endtrans %}</span>
+    </a></li>
+
     {% include 'mobile_nav_dictionary_list.html' %}
 {% endblock %}
 
@@ -41,9 +45,9 @@
             <ul class="letters">
                 <li id="left_nav_show"><a href="#"><i class="icon-book"></i></a></li>
                 {% for letter in letters %}
-                    {% if letter.has_entries %}
+                    {% if letter.has_entries and letter.page %}
                         {% set li_class = 'has_entries' %}
-                        {% set link = "?letter=" + letter.letter %}
+                        {% set link = "?page=%d" % letter.page %}
                     {% else %}
                         {% set li_class = 'no_entries' %}
                         {% set link = "#" %}
@@ -76,7 +80,14 @@
 
             {# TODO: deep link needs to go to specific lexeme when it comes from the front page #}
             {% if successful_entry_exists %}
-                {#
+
+                <div class="results">
+                    {% for tpl in entry_templates %}
+                        {{ tpl|safe }}
+                    {% endfor %}
+                    <div id="end"></div>
+                </div>
+
                 <div class="pagination upper">
                     {% if prev_page %}
                         <a class="prev" href="?page={{ prev_page }}#end">
@@ -97,14 +108,6 @@
                         </span>
                     </a>
                 </div>
-                #}
-
-                <div class="results">
-                    {% for tpl in entry_templates %}
-                        {{ tpl|safe }}
-                    {% endfor %}
-                    <div id="end"></div>
-                </div>
 
             {% else %}
                 {% if no_more %}
@@ -120,7 +123,8 @@
             {% endif %}
         </div>
 
-        <div class="fill-row span2" id="about-browse">
+        <div class="fill-row span2" id="word-detail">
+            {#
             <div class="pagination">
                 {% if prev_page %}
                     <a class="prev" href="?page={{ prev_page }}">
@@ -141,6 +145,7 @@
                     </span>
                 </a>
             </div>
+            #}
 
         </div>
         
@@ -148,10 +153,42 @@
 
 </div>
 <script type="text/javascript">
+    // TODO: track scroll position of letters and words in anchor #
     $(document).ready(function(){
+
+        function expand_to_detail() {
+            $('#word-detail').removeClass('span2').addClass('span5');
+            $('#fixed-content-area').addClass('detail-visible');
+        }
+
+        function shrink_from_detail() {
+            $('#word-detail').removeClass('span5').addClass('span2');
+            $('#fixed-content-area').removeClass('detail-visible');
+        }
+
+
         $("#left_nav_show a").click(function(){
             $('#left_nav_show').toggle();
             $('#left_nav').toggle();
+        });
+
+        $('.lexeme a').click( function(){
+            var target = $(this).attr('href');
+            if (target.search('/detail/') < 0) {
+                return true;
+            }
+
+            target = target + '&embedded=true';
+
+            $.get(target, function(result) {
+                expand_to_detail();
+                $('#word-detail').html(result);
+            });
+
+            // if it's a detail URL, add the parameter &embedded=true
+            // request and display contents to #word-detail
+            // and expand the column to accomodate paradigms, etc.
+            return false;
         });
     });
 </script>

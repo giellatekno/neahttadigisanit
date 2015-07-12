@@ -963,7 +963,12 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
     }
 
     methods = ['GET']
-    template_name = 'word_detail.html'
+
+    @property
+    def template_name(self):
+        if request.args.get('embedded', False):
+            return 'word_detail_embedded.html'
+        return 'word_detail.html'
 
     def entry_filterer(self, entries, **kwargs):
         """ Runs on formatted result from DetailedFormat thing
