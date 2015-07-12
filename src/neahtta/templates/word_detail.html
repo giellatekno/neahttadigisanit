@@ -29,7 +29,12 @@
 {% block float_right %}
     {%- if result.analyses %}
     <div class="well">
-        <strong>{{ result.input }} {% trans %}is a possible form of ... {% endtrans %}</strong>
+        {% if app_short_name != 'itwewina' %}
+            <strong>{{ result.input }} {% trans %}is a possible form of ... {% endtrans %}</strong>
+        {% endif %}
+        {% if app_short_name == 'itwewina' %}
+            <p class="user_input"><em lang="{{ _from }}">{{ user_input }}</em></p>
+        {% endif %}
         <dl class="possible_analyses">
             {% for grouper, forms in result.analyses|groupby(0) %}
                 <dt>{{ grouper }}</dt>
@@ -95,7 +100,7 @@
         </form>
        </div>
        <div class="span3 offset1 hidden-phone valign_block">
-           {% if has_analyses %}
+           {% if has_analyses and app_short_name != 'itwewina'%}
                <p class="analysis_note"><em lang="{{ _from }}">{{ user_input }}</em><span lang="{{ current_locale }}">{% trans user_input=user_input %} is a possible form of ... {% endtrans %}</span></p>
            {% endif %}
        </div>
