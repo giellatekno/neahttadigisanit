@@ -19,27 +19,37 @@
 
     {% for grouper, forms in analyses|groupby('lemma') %}
 
-        {% if stem %}
-            {% set group_with_stem = "%s (%s)"|format(grouper, stem) %}
-        {% else %}
-            {% set group_with_stem = grouper %}
-        {% endif %}
+        {#
+            nikî-nitawi-kiskinwahamâkosin
+            ⟵
+            PV/nitawi + √ kiskinwahamâkosi- + Intransitive Animate Verb + Independent + Past + 1s
+            #}
 
         {% for lemmagroup, lemmafs in forms|groupby('pos') %}
             {% if current_pair_settings.show_korp_search %}
                 {% if lemmagroup and grouper %}
-                    <dt><span lang="{{ _from }}">{{ group_with_stem }}</span> {{ korp.link_lemma(grouper) }}</dt>
+                    <dt><span lang="{{ _from }}">{{ grouper }}</span> {{ korp.link_lemma(grouper) }}</dt>
                 {% else %}
-                    <dt><span lang="{{ _from }}">{{ group_with_stem }}</span></dt>
+                    <dt><span lang="{{ _from }}">{{ grouper }}</span></dt>
                 {% endif %}
             {% else %}
-                <dt><span lang="{{ _from }}">{{ group_with_stem }}</span></dt>
+                <dt><span lang="{{ _from }}">{{ grouper }}</span></dt>
             {% endif %}
             <dd>
                 <ul class="possible_forms">
                     {% set existing_tags = [] %}
                     {% for lem in lemmafs %}
-                    {% set formatted_tag = ' '.join(lem.tag)|tagfilter(_from, _to) %}
+                        {% if stem %}
+                            {% set repl = '√' + stem %}
+                        {% else %}
+                            {% set repl = 'Tpl/Lemma' %}
+                        {% endif %}
+
+                        {% set formatted_tag = ' + '.join(lem.tag)|replace('Tpl/Lemma', repl)|tagfilter(_from, _to) %}
+                        {% if formatted_tag.startswith('+ ') %}
+                            {% set formatted_tag = formatted_tag[2::] %}
+                        {% endif %}
+
                     {% if formatted_tag not in existing_tags %}
                         <li>{{ formatted_tag }}</li>
                         {% do existing_tags.append(formatted_tag) %}
@@ -51,5 +61,4 @@
     {% endfor %}
 </dl>
 
-{# vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}
-
+{# vim: set ts=4 sw=4 tw=0 wrapmargin=0 syntax=htmljinja : #}
