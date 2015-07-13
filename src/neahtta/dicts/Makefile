@@ -475,21 +475,14 @@ engcrk.xml: $(GTHOME)/art/dicts/crk/Wolvengrey/engcrk.xml
 
 # TODO: for now /scripts/ is copied to make sure that things work, and deleted at
 # the end. in the future, remove this.
-crkeng.xml: $(foreach d, $(CRKENG_DIRS), $(shell find $d -name '*crkeng.xml'))
+crkeng.xml: $(GTHOME)/art/dicts/crk/Wolvengrey/crkeng.xml
 	@echo "******************************"
 	@echo "** Building crk-eng lexicon **"
 	@echo "******************************"
 	@echo "** Backup made (.bak)       **"
 	@echo "******************************"
 	@echo ""
-	mkdir -p crkeng_tmp/
-	cp -R $(GTHOME)/words/dicts/scripts ../scripts
-	cp $^ crkeng_tmp/
-	$(SAXON) inDir=$(pwd)/crkeng_tmp/ > $@.tmp
-	@rm -rf crkeng_tmp/
-	@rm -rf ../scripts
-	cat $@.tmp | $(SED) -e 's/pos="\(.\)/pos="\U\1/' > $@
-	rm $@.tmp
+	cp $^ $@
 
 crkeng-macron.xml: crkeng.xml
 	@echo "*************************************"
@@ -520,7 +513,6 @@ engcrk-macron.xml: engcrk.xml
 					| $(SED) -e 's/î/ī/'  \
 					| $(SED) -e 's/ô/ō/'  \
 					> $@
-
 
 .PHONY: itwewina-lexica
 itwewina-lexica: LEX_COMPILE_LANGS := $(ITWEWINA_LANGS_LEXICA)
