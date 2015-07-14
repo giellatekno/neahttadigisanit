@@ -117,5 +117,43 @@ def register_template_filters(app):
         else:
             return False
 
+    @app.template_filter('generate_or_not')
+    def generate_or_not(lemma, iso, tag, entry=None):
+        from operator import itemgetter
+
+        mx = current_app.config.morphologies.get(iso)
+
+        if mx is None:
+            return lemma, ""
+
+        tagsep = mx.tool.options.get('inverse_tagsep')
+        dummy = mx.tagsets.sets.get('nds_dummy_tags', [])
+
+        # TODO: strip nds_dummy_tags
+        tag_string = []
+        for tp in tag.parts:
+            if tp in dummy:
+                continue
+            tag_string.append(tp)
+
+        try:
+            generated, raw_out, raw_errors = mx.generate(lemma, [tag_string], entry, return_raw_data=True)
+        except Exception, e:
+            generated, raw = False, ""
+
+        if generated:
+            forms = sum( map(itemgetter(2), generated), [] )
+            raw = raw_out + raw_errors
+        else:
+            return lemma, ""
+
+        return forms, raw
+
+    @app.template_filter('console_log')
+    def console_log(string):
+        return """<script type="text/javascript">
+            console.log("%s")
+        </script>""" % string.strip()
+
     return app
 
