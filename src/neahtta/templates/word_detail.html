@@ -32,9 +32,6 @@
         {% if app_short_name != 'itwewina' %}
             <strong>{{ result.input }} {% trans %}is a possible form of ... {% endtrans %}</strong>
         {% endif %}
-        {% if app_short_name == 'itwewina' %}
-            <p class="user_input"><em lang="{{ _from }}">{{ user_input }}</em></p>
-        {% endif %}
         <dl class="possible_analyses">
             {% for grouper, forms in result.analyses|groupby(0) %}
                 <dt>{{ grouper }}</dt>

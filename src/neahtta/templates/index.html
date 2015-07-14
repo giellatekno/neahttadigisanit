@@ -5,6 +5,9 @@
 {% endblock %}
 
 {% block footer_js %}
+        {# TODO: conditionally display with some developer setting #}
+
+        {# include 'developer_test_palette.html' #}
 {% endblock %}
 
 {% block search_li %}
@@ -60,7 +63,7 @@
                 </div>
                 <div class="span4 hidden-phone valign_block">
                     {# TODO: template here? #}
-                    {% if analyses %}
+                    {% if analyses and app_short_name != 'itwewina' %}
                         <p class="analysis_note"><em lang="{{ _from }}">{{ user_input }}</em><span lang="{{ current_locale }}">{% trans user_input=user_input %} is a possible form of ... {% endtrans %}</span></p>
                     {% endif %}
                 </div>
