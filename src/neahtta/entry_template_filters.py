@@ -153,7 +153,7 @@ def register_template_filters(app):
     def console_log(string):
         return """<script type="text/javascript">
             console.log("%s")
-        </script>""" % string.strip()
+        </script>""" % string.strip().encode('unicode-escape')
 
     return app
 
