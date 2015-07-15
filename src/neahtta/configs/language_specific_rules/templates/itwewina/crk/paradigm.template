@@ -38,12 +38,12 @@
     
     {% set paradigm_exists = zipped_verbs|length > 0 or nonfinite_forms|length > 0 %}
 
-    {% set ind_text      = "Ind"|tagfilter(_from, _to) %}
-    {% set cnj_text      = "Cnj"|tagfilter(_from, _to) %}
+    {% set ind_text      = "Ind"|tagfilter_generation(_from, _to) %}
+    {% set cnj_text      = "Cnj"|tagfilter_generation(_from, _to) %}
 
     {% macro clean_tag(tag_input) -%}
         {{ tag_input|remove_by_tagset('invisible_in_paradigms')
-                    |tagfilter(_from, _to) }}
+                    |tagfilter_generation(_from, _to) }}
     {%- endmacro %}
 
 {%- endif %}
@@ -106,7 +106,7 @@
         {%- for form in paradigm -%}
 
             {% if form.tag %}
-                <dt>{{ form.tag|tagfilter(_from, _to)  }}</dt>
+                <dt>{{ form.tag|tagfilter_generation(_from, _to)  }}</dt>
             {% endif %}
 
             {% if form.form %}
