@@ -45,3 +45,5 @@ invisible_in_paradigms:
  - "Cnj"
  - "Ind"
  - "Prs"
+nds_dummy_tags:
+ - "Tpl/Lemma"

@@ -23,6 +23,13 @@ def process_crk_analysis(analysis_line):
         ('ninahnipan', 'nipâw+RdplS+V+AI+Ind+Prs+1Sg')
         >>> process_crk_analysis("ninanahnipan\tRdplW+RdplS+nipâw+V+AI+Ind+Prs+1Sg")
         ('ninanahnipan', 'nipâw+RdplW+RdplS+V+AI+Ind+Prs+1Sg')
+
+    NB: For the purposes of redisplaying the stem in NDS, we add
+    +Tpl/Lemma in between any preceding tags and following tags.
+
+        >>> process_crk_analysis("ninanahnipan\tRdplW+RdplS+nipâw+V+AI+Ind+Prs+1Sg")
+        ('ninanahnipan', 'nipâw+RdplW+RdplS+Tpl/Lemma+V+AI+Ind+Prs+1Sg')
+
     """
 
     wordform, _, analysis_string = analysis_line.partition('\t')
@@ -59,6 +66,7 @@ def process_crk_analysis(analysis_line):
     if preverbs:
         reformatted_tag_parts.append(preverbs)
     if tag:
+        reformatted_tag_parts.append('Tpl/Lemma')
         reformatted_tag_parts.append(tag)
 
     reformatted_tag = tag_sep.join(reformatted_tag_parts)
