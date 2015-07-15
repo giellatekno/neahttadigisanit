@@ -15,11 +15,9 @@
 <div class="row-fluid entry_row">
     <div class="span8 lexeme">
         {% if lexicon_entry|count > 0 %}
-            {%- set stem = lexicon_entry.xpath('./lg/stem/text()')|first %}
             <p>
                 <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
                     {{- rendered_templates.entry_text -}}</a>
-                {%- if stem %}<span class="entry_stem" lang="{{ _from }}">{{ stem }}</span>{% endif -%}
             <ul class="meanings">
                 {{- rendered_templates.definition -}}
             </ul>
