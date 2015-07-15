@@ -296,15 +296,50 @@ class XMLDict(object):
                          , _type=_type
                          )
 
-    def iterate_entries(self, start=0, end=20):
-        # TODO: and position() >= 10 and position() < 21
+    def iterate_entries(self, start=0, end=20, words=False):
 
-        if end:
-            _xp = etree.XPath(".//e[position() >= %s and position() < %s]" % (start, end))
+        if words:
+            _xp = etree.XPath(".//e/lg/l/text()")
+            ws = _xp(self.tree)
+
+            if end:
+                ws = ws[start:end]
+
+            return ws
         else:
-            _xp = etree.XPath(".//e")
+            if end:
+                _xp = etree.XPath(".//e[position() >= %s and position() < %s]" % (start, end))
+            else:
+                _xp = etree.XPath(".//e")
 
         return _xp(self.tree)
+
+    def iterate_letter_pages(self, page_size=20):
+        # 1.) make list of tuples containing the first letter and the
+        # iteration number, and then the page count
+
+        # 2.) filter out only instances where the first letter is
+        # different from the second
+
+        _xp = etree.XPath(".//e/lg/l/text()")
+        ws = _xp(self.tree)
+
+        counts = []
+        page = 0
+        iteration = 0
+        last_letter = ws[0][0]
+
+        for i, w in enumerate(ws):
+            current_letter = w[0].lower()
+            if i % page_size == 0 and i > 0:
+                page += 1
+            if last_letter != current_letter:
+                counts.append(
+                    (current_letter, page)
+                )
+            last_letter = current_letter
+
+        return counts
 
     def iterate_entries_count(self):
         _xp = etree.XPath(".//e")
@@ -667,6 +702,38 @@ class Lexicon(object):
             result = list(_format(result))
 
         return result
+
+    def list_words(self, _from, _to, start=0, end=40, _format=None):
+
+        _dict = self.language_pairs.get((_from, _to), False)
+
+        if not _dict:
+            raise Exception("Undefined language pair %s %s" % (_from, _to))
+
+        result = _dict.iterate_entries(start, end, words=True)
+
+        if len(result) == 0:
+            return False
+
+        if _format:
+            result = list(_format(result))
+
+        return result
+
+    def get_letter_positions(self, _from, _to):
+
+        _dict = self.language_pairs.get((_from, _to), False)
+
+        if not _dict:
+            raise Exception("Undefined language pair %s %s" % (_from, _to))
+
+        result = _dict.iterate_letter_pages()
+
+        if len(result) == 0:
+            return False
+
+        return result
+
 
     def lookup(self, _from, _to, lemma,
                pos=False, pos_type=False,
