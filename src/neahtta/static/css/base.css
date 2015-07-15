@@ -105,7 +105,7 @@ ul.nav-stacked li.active span {
 }
 
 #wrap {
-    padding-bottom: 180px;
+    padding-bottom: 120px;
 }
 
 .content .page-header {
@@ -293,7 +293,7 @@ footer {
 .footer {
   text-align: center;
   padding: 30px 0;
-  margin-top: 70px;
+  margin-top: 20px;
 }
 .footer p {
   margin-bottom: 0;
