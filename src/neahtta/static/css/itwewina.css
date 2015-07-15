@@ -156,3 +156,12 @@ table.miniparadigm .double-width {
 
 /* @group */
 
+a.korp_search.lemma_action {
+    margin-left: 0;
+    text-align: right;
+    margin-right: 0;
+    right: 0px;
+    position: relative;
+    display: block;
+    font-size: 100%;
+}

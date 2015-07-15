@@ -572,6 +572,7 @@ button.close{padding:0;cursor:pointer;background:transparent;border:0;-webkit-ap
 .modal-footer .btn-group .btn+.btn{margin-left:-1px;}
 .modal-footer .btn-block+.btn-block{margin-left:0;}
 
+
 /* @override http://localhost:8000/jquery.neahttadigisanit.css */
 
 /*
@@ -745,3 +746,6 @@ div.well.highlight {
 ul#about-links li a {
     border: none;
 }
+
+
+/*# sourceMappingURL=app.css.map*/
