@@ -91,6 +91,66 @@ Relabel:
       Obv: "Obviative"
       Err/Sub: "??"
       Use/NG: "??"
+
+      # This is a dummy tag that is inserted within NDS to handle inserting the
+      # stem in the right place in the analysis column.
+      Tpl/Lemma: ""
+
+      # These come from the lexicon; <lc /> node and are displayed with POS.
+      "VAI-n": "VAI"
+      "VAI-v": "VAI"
+      "VII-n": "VII"
+      "VII-v": "VII"
+      "VTA-1": "VTA"
+      "VTA-2": "VTA"
+      "VTA-3": "VTA"
+      "VTA-4": "VTA"
+      "VTA-5": "VTA"
+      "VTI-1": "VTI"
+      "VTI-2": "VTI"
+      "VTI-3": "VTI"
+
+      "IPC ;; IPJ": ""
+
+      "INM": "INM"
+      "IPC": "IPC"
+      "IPH": "IPH"
+      "IPJ": "IPJ"
+      "IPN": "IPN"
+      "IPP": "IPP"
+      "IPV": "IPV"
+
+      "NA-1": "NA-1"
+      "NA-2": "NA-2"
+      "NA-3": "NA-3"
+      "NA-4": "NA-4"
+      "NA-4w": "NA-4w"
+      "NA-?": "NA-?"
+
+      "NI-1": "NI-1"
+      "NI-2": "NI-2"
+      "NI-3": "NI-3"
+      "NI-4": "NI-4"
+      "NI-5": "NI-5"
+      "NI-?": "NI-?"
+
+      "NDA-1": "NDA-1"
+      "NDA-2": "NDA-2"
+      "NDA-3": "NDA-3"
+      "NDA-4": "NDA-4"
+      "NDA-4w": "NDA-4w"
+      "NDA-x": "NDA-x"
+      "NDI-1": "NDI-1"
+      "NDI-2": "NDI-2"
+      "NDI-3": "NDI-3"
+      "NDI-4": "NDI-4"
+      "NDI-?": "NDI-?"
+      "NDI-x": "NDI-x"
+
+      "PR": "PR"
+      "PrA": "PrA"
+      "PrI": "PrI"
+
     # These are the short tags.
     generation_tags: &crk_eng_generation
       # Lexicon tags
@@ -178,7 +238,11 @@ Relabel:
       Obv: "Obviative"
       Err/Sub: "??"
       Use/NG: "??"
-  - source_morphology: 'crkM'
+
+      # This is a dummy tag that is inserted within NDS to handle inserting the
+      # stem in the right place in the analysis column.
+      Tpl/Lemma: ""
+  - source_morphology: 'crkMacr'
     target_ui_language: 'eng'
     tags: 
       <<: *crk_eng
