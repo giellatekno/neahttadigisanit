@@ -1,6 +1,6 @@
 ApplicationSettings:
-  app_name: "itwêwina"
-  app_meta_title: "Online Plains Cree dictionary"
+  app_name: !gettext "itwêwina"
+  app_meta_title: !gettext "Online Plains Cree dictionary"
   short_name: "itwewina"
   default_locale: "crk"
   default_pair: ["crk", "eng"]
@@ -39,12 +39,12 @@ Morphology:
     format: 'hfst'
     options: *MORPHOLOGY_OPTS
   # syllabics
-  ## crkS:
-  ##   tool: *LOOKUP
-  ##   file: [*OPT, '/crk/bin/analyser-gt-desc-syll.xfst']
-  ##   inverse_file: [*OPT, '/crk/bin/generator-gt-norm-syll.xfst']
-  ##   format: 'xfst'
-  ##   options: *MORPHOLOGY_OPTS
+  # crkS:
+  #   tool: *LOOKUP
+  #   file: [*OPT, '/crk/bin/analyser-gt-desc.Cans.xfst']
+  #   inverse_file: [*OPT, '/crk/bin/generator-gt-norm.Cans.xfst']
+  #   format: 'xfst'
+  #   options: *MORPHOLOGY_OPTS
 
 Languages:
   - iso: crk
@@ -52,6 +52,8 @@ Languages:
   - iso: crkM
     variant: True # this makes the fab process skip attempting `svn up` here.
   - iso: crkMacr
+    variant: True # this makes the fab process skip attempting `svn up` here.
+  - iso: crkS
     variant: True # this makes the fab process skip attempting `svn up` here.
   - iso: eng
   - iso: engM
@@ -75,6 +77,11 @@ Dictionaries:
           - "ê"
           - "î"
           - "ô"
+      # - type: "syllabics"
+      #   description: !gettext "syllabics" # " 
+      #   path: 'dicts/crkeng_syllabics.xml'
+      #   short_name: "crkS"
+
       - type: "macron"
         description: !gettext "aio āēīō" # " 
         # NB: must be same as analyser name
@@ -123,6 +130,7 @@ Dictionaries:
     #     # anything)
     #     force_locale: 
     #       crk: "crk_Macr"
+
 
 ReaderConfig:
   crk:
