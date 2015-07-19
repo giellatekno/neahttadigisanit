@@ -5,9 +5,9 @@ morphology:
 --
 {{ lemma }}+V+II+Ind+Prs+3Sg
 {{ lemma }}+V+II+Ind+Prs+3Pl
-{{ lemma }}+PV/e+V+II+Cnj+Prs+3Sg
-{{ lemma }}+PV/e+V+II+Cnj+Prs+3Pl
+PV/e+{{ lemma }}+V+II+Cnj+Prs+3Sg
+PV/e+{{ lemma }}+V+II+Cnj+Prs+3Pl
 {{ lemma }}+V+II+Ind+Prt+3Sg
 {{ lemma }}+V+II+Ind+Prt+3Pl
-{{ lemma }}+PV/e+V+II+Cnj+Prt+3Sg
-{{ lemma }}+PV/e+V+II+Cnj+Prt+3Pl
+PV/e+{{ lemma }}+V+II+Cnj+Prt+3Sg
+PV/e+{{ lemma }}+V+II+Cnj+Prt+3Pl
