@@ -625,8 +625,18 @@ class XFST(object):
             return False
 
         lookups_list = []
+        # Some templates (namely those where there are tags before
+        # the lemma), will cause problems. Thus if the lemma is
+        # already in the tag, we consider this to be a completed tag
+        # string for generation. Otherwise, prefix the lemma then
+        # send to generation.
+        # 
         for tag in tags:
-            lookups_list.append(self.formatTag([lemma] + tag, inverse=True))
+            if lemma in tag:
+                combine = tag
+            else:
+                combine = [lemma] + tag
+            lookups_list.append(self.formatTag(combine, inverse=True))
         lookup_string = '\n'.join(lookups_list)
         output, err = self._exec(lookup_string, cmd=self.icmd)
         if raw:
