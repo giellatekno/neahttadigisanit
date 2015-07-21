@@ -3,23 +3,23 @@ morphology:
   pos: 
     - N
 --
-{{ lemma }}+N+Sg+Nom
-{{ lemma }}+N+Sg+Gen
-{{ lemma }}+N+Sg+Acc
-{{ lemma }}+N+Sg+Ill
-{{ lemma }}+N+Sg+Loc
-{{ lemma }}+N+Sg+Com
-{{ lemma }}+N+Sg+Abe
-{{ lemma }}+N+Pl+Nom
-{{ lemma }}+N+Pl+Gen
-{{ lemma }}+N+Pl+Acc
-{{ lemma }}+N+Pl+Ill
-{{ lemma }}+N+Pl+Loc
-{{ lemma }}+N+Pl+Com
-{{ lemma }}+N+Pl+Abe
-{{ lemma }}+N+Ess
-{{ lemma }}+N+Par
-{{ lemma }}+N+Der/Dim+N+Sg+Nom
-{{ lemma }}+N+Der/Dim+N+Sg+Ill
-{{ lemma }}+N+Der/Dim+N+Pl+Nom
-{{ lemma }}+N+Der/Dim+N+Pl+Acc
+{{ lemma }}+N+Sg+Nom+Indef
+{{ lemma }}+N+Sg+Gen+Indef
+{{ lemma }}+N+Sg+Acc+Indef
+{{ lemma }}+N+Sg+Ill+Indef
+{{ lemma }}+N+Sg+Loc+Indef
+{{ lemma }}+N+Sg+Com+Indef
+{{ lemma }}+N+Sg+Abe+Indef
+{{ lemma }}+N+Pl+Nom+Indef
+{{ lemma }}+N+Pl+Gen+Indef
+{{ lemma }}+N+Pl+Acc+Indef
+{{ lemma }}+N+Pl+Ill+Indef
+{{ lemma }}+N+Pl+Loc+Indef
+{{ lemma }}+N+Pl+Com+Indef
+{{ lemma }}+N+Pl+Abe+Indef
+{{ lemma }}+N+Ess+Indef
+{{ lemma }}+N+Par+Indef
+{{ lemma }}+N+Der/Dim+N+Sg+Nom+Indef
+{{ lemma }}+N+Der/Dim+N+Sg+Ill+Indef
+{{ lemma }}+N+Der/Dim+N+Pl+Nom+Indef
+{{ lemma }}+N+Der/Dim+N+Pl+Acc+Indef
