@@ -42,7 +42,7 @@ Relabel:
       Imm: "Immediate"
       Sbj: "Subjunctive"
       Cond: "Conditional"
-      1Sg: “Actor: 1st person singular“ “”
+      1Sg: "Actor: 1st person singular"
       2Sg: "2s"
       3Sg: "3s"
       4Sg: "4"
