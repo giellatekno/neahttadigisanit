@@ -190,7 +190,7 @@ Relabel:
       Imm: "Immediate"
       Sbj: "Subjunctive"
       Cond: "Conditional"
-      1Sg: "Actor: 1s"
+      1Sg: "1s"
       2Sg: "2s"
       3Sg: "3s"
       4Sg: "4"
