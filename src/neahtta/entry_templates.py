@@ -55,6 +55,12 @@ class TemplateConfig(object):
 
     paradigm from dictionary entry nodes and morphological analyses. """
 
+    errorable_templates = [
+        'analyses.template',
+        'entry.template',
+        'paradigm.template',
+    ]
+
     def __init__(self, app=None, debug=False, cache=True):
         self.debug = debug
         self._app = app
@@ -178,6 +184,8 @@ class TemplateConfig(object):
 
         tpl = self.get_template(language, template)
 
+        is_still_renderable = template in self.errorable_templates
+
         # Add default values
         context = {
         }
@@ -188,12 +196,15 @@ class TemplateConfig(object):
         try:
             rendered = tpl.render(**context)
         except Exception, e:
-            rendered = self.render_individual_template(language, 'template_error.template', **{
-                'exception': e.__class__,
-                'message': repr(e),
-                'render_template_errors': self.render_template_errors,
-                'template_name': tpl.path.partition('language_specific_rules')[2],
-            })
+            if is_still_renderable:
+                rendered = self.render_individual_template(language, 'template_error.template', **{
+                    'exception': e.__class__,
+                    'message': repr(e),
+                    'render_template_errors': self.render_template_errors,
+                    'template_name': tpl.path.partition('language_specific_rules')[2],
+                })
+            else:
+                raise e
 
         return rendered
 
@@ -209,6 +220,7 @@ class TemplateConfig(object):
         """
 
         tpl = self.get_template(language, template)
+        is_still_renderable = template in self.errorable_templates
         error_tpl = self.get_template(language, 'template_error.template')
 
         # add default things
@@ -262,7 +274,11 @@ class TemplateConfig(object):
                         'template_name': t.path.partition('language_specific_rules')[2],
                         'render_template_errors': self.render_template_errors
                     }
-                    rendered[k.replace('.template', '')] = error_tpl.render(**e_context)
+
+                    if is_still_renderable:
+                        rendered[k.replace('.template', '')] = error_tpl.render(**e_context)
+                    else:
+                        raise e.__class__(msg)
 
         context['rendered_templates'] = rendered
 
