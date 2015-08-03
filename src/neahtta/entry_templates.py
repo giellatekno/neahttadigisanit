@@ -64,6 +64,7 @@ class TemplateConfig(object):
                                         , 'configs/language_specific_rules/templates/'
                                         )
         self.instance = app.config.short_name
+        self.render_template_errors = app.config.render_template_errors
         self.languages_available = app.config.languages.keys()
 
         # Use a plain jinja environment if none exists.
@@ -184,8 +185,17 @@ class TemplateConfig(object):
         context.update(**kwargs)
 
         # Return the rendered main template.
-        return tpl.render(**context)
+        try:
+            rendered = tpl.render(**context)
+        except Exception, e:
+            rendered = self.render_individual_template(language, 'template_error.template', **{
+                'exception': e.__class__,
+                'message': repr(e),
+                'render_template_errors': self.render_template_errors,
+                'template_name': tpl.path.partition('language_specific_rules')[2],
+            })
 
+        return rendered
 
     def render_template(self, language, template, **extra_kwargs):
         """ Do the actual rendering. This is run for each entry in a lookup.
@@ -199,6 +209,7 @@ class TemplateConfig(object):
         """
 
         tpl = self.get_template(language, template)
+        error_tpl = self.get_template(language, 'template_error.template')
 
         # add default things
         context = {
@@ -245,7 +256,13 @@ class TemplateConfig(object):
                 except Exception, e:
                     msg = e.message
                     msg += " in template <%s>" % t.path.partition('language_specific_rules')[2]
-                    raise e.__class__(msg)
+                    e_context = {
+                        'exception': e.__class__,
+                        'message': e.__class__(msg),
+                        'template_name': t.path.partition('language_specific_rules')[2],
+                        'render_template_errors': self.render_template_errors
+                    }
+                    rendered[k.replace('.template', '')] = error_tpl.render(**e_context)
 
         context['rendered_templates'] = rendered
 

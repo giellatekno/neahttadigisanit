@@ -230,6 +230,12 @@ class Config(Config):
                                self.filename)
 
     @property
+    def render_template_errors(self):
+        _p = self.yaml.get('ApplicationSettings', {})\
+                      .get('render_template_errors', False)
+        return _p
+
+    @property
     def app_mobile_bookmark_name(self):
         _p = self.yaml.get('ApplicationSettings', {})\
                       .get('mobile_bookmark_name', False)
