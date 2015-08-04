@@ -37,6 +37,11 @@
                 {% set first_f = lemmafs|first %}
                 {% set first_tag = first_f.tag %}
 
+				{# TODO: Problem here is that forms can't be generated since
+					tag is formatted wrong for conjunct with pv, NDS problem, not a FST problem. 
+					Working on a fix, then will put generation back in
+                #}
+
                 {% set grouper_or_generated = user_input %}
             {% endif %}
 
