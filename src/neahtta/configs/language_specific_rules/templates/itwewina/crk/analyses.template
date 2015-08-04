@@ -37,13 +37,7 @@
                 {% set first_f = lemmafs|first %}
                 {% set first_tag = first_f.tag %}
 
-                {% set generated, log_data = grouper|generate_or_not(_from, first_tag, lexicon_entry) %}
-
-                {% if generated %}
-                    {% set grouper_or_generated = generated|first %}
-                {% else %}
-                    {% set grouper_or_generated = grouper %}
-                {% endif %}
+                {% set grouper_or_generated = user_input %}
             {% endif %}
 
             <dt><span lang="{{ _from }}">{{ grouper_or_generated }}</span></dt>
