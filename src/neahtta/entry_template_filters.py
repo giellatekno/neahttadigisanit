@@ -136,16 +136,27 @@ def register_template_filters(app):
                 continue
             tag_string.append(tp)
 
+
         try:
             generated, raw_out, raw_errors = mx.generate(lemma, [tag_string], entry, return_raw_data=True)
         except Exception, e:
             generated, raw = False, ""
 
         if generated:
-            forms = sum( map(itemgetter(2), generated), [] )
+            forms = set()
+            for a in generated:
+                if len(a) == 3:
+                    gener_fs = a[2]
+                    if gener_fs:
+                        for f in gener_fs:
+                            forms.add(f)
+
+            forms = list(forms)
             raw = raw_out + raw_errors
         else:
-            return lemma, ""
+            forms = [lemma]
+            raw = ""
+
 
         return forms, raw
 
