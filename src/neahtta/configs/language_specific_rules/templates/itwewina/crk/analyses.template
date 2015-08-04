@@ -35,14 +35,20 @@
 
             {% if lemmafs|length > 0 %}
                 {% set first_f = lemmafs|first %}
+
+                {# TODO: why is this not in the order we need it? maybe use tagsets to slide thes to the front? #}
                 {% set first_tag = first_f.tag %}
 
-				{# TODO: Problem here is that forms can't be generated since
-					tag is formatted wrong for conjunct with pv, NDS problem, not a FST problem. 
-					Working on a fix, then will put generation back in
-                #}
+                {# TODO: Problem here is that forms can't be generated since
+                tag is formatted wrong, but wrong error is returned. #}
 
-                {% set grouper_or_generated = user_input %}
+                {% set generated, log_data = grouper|generate_or_not(_from, first_tag, lexicon_entry) %}
+
+                {% if generated %}
+                    {% set grouper_or_generated = generated|first %}
+                {% else %}
+                    {% set grouper_or_generated = user_input %}
+                {% endif %}
             {% endif %}
 
             <dt><span lang="{{ _from }}">{{ grouper_or_generated }}</span></dt>
@@ -50,9 +56,10 @@
             <dd>
                 <ul class="possible_forms">
                     {% set existing_tags = [] %}
+
                     {% for lem in lemmafs %}
                         {% if stem %}
-                            {% set repl = '&larr; √' + stem %}
+                            {% set repl = ' √' + stem %}
                         {% else %}
                             {% set repl = 'Tpl/Lemma' %}
                         {% endif %}
@@ -62,18 +69,20 @@
                             {% set formatted_tag = formatted_tag[2::] %}
                         {% endif %}
 
-                    {% if formatted_tag not in existing_tags %}
-                        <li>{{ formatted_tag }}</li>
-                        {% do existing_tags.append(formatted_tag) %}
-                    {% endif %}
+                        {% if formatted_tag not in existing_tags %}
+                            <li>&larr; {{ formatted_tag }}</li>
+                            {% do existing_tags.append(formatted_tag) %}
+                        {% endif %}
+
                     {% endfor %}
+
                     {% if current_pair_settings.show_korp_search %}
                         <li> {{ korp.link_lemma(grouper) }} </li>
                     {% endif %}
                 </ul>
             </dd>
 
-        {% if generated -%}{{ log_data|console_log }}{%- endif %}
+        {% if log_data -%}{{ log_data|console_log }}{%- endif %}
 
         {% endfor %}
     {% endfor %}
