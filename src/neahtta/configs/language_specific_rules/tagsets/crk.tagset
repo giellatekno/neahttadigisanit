@@ -47,5 +47,12 @@ invisible_in_paradigms:
  - "Cnj"
  - "Ind"
  - "Prs"
+# this set is used with configs.language_specific_rules.crk and
+# .crk_tags. NB, these can be regex. The order of this list determines
+# the ordering of the processed tag.
+prelemma_tags:
+ - "RdplW"
+ - "RdplS"
+ - "^PV/(.*)$"
 nds_dummy_tags:
  - "Tpl/Lemma"
