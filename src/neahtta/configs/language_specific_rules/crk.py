@@ -7,6 +7,9 @@ def adjust_tags_for_gen(lemma, tags, node=None, **kwargs):
     Change POS to be compatible with FST for when they are not.
     """
 
+    if 'template_tag' not in kwargs:
+        return lemma, tags, node
+
     from flask import current_app, g
     import re
     # get tagset for pre-lemma stuff

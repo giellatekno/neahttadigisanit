@@ -136,9 +136,12 @@ def register_template_filters(app):
                 continue
             tag_string.append(tp)
 
+        # TODO: PV/e tags cause problems because they have been shifted
+        # to the right of the lemma. maybe the tag processor function
+        # needs to fix this 
 
         try:
-            generated, raw_out, raw_errors = mx.generate(lemma, [tag_string], entry, return_raw_data=True)
+            generated, raw_out, raw_errors = mx.generate(lemma, [tag_string], entry, return_raw_data=True, template_tag=True)
         except Exception, e:
             generated, raw = False, ""
 
