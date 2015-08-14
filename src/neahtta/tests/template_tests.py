@@ -9,7 +9,7 @@ class TemplateRenderTest(unittest.TestCase):
     """
 
     def setUp(self):
-        from configs.entry_templates import TemplateConfig
+        from entry_templates import TemplateConfig
 
         _app = neahtta.app
         # Turn on debug to disable SMTP logging

@@ -1,0 +1,126 @@
+﻿## 
+## Testing the NDS paradigm selection and generation machinery
+## 
+
+
+##
+##   Here we test two main things: FST + NDS interactions, and NDS
+## rendering. Any tests that can be seen to be only for FSTs should be
+## left in the langs infrastructure.
+##
+##   NDS + FST interactions:
+##    
+##    - Generation of paradigms corresponding to specific lexical
+##      entries
+##
+##    - Analysis of wordforms resulting in entries
+##       - has entry
+##       - does not have entry
+##   
+##  NDS rendering:
+##   
+##    - Lookup pages
+##    - Regeneration of analyzed wordforms
+
+# TODO: some of these can be run through splinter?
+#   https://splinter.readthedocs.org/en/latest/
+
+# TODO: split this stuff up into separate files
+
+# IDEA: if paradigm.template exists, then we need to automatically run
+# some tests on it. maybe have a defaults file for supplying CSS
+# selectors, etc.?
+
+# FIRST - brainstorming types of tests
+# NEXT - salvage existing test stuff
+# NEXT - write machinery for pulling tests out
+
+
+# Given a uri, test that `expected_values` occur within a list generated
+# by `value_selector`. uri_args are formatted into the uri for each
+# test.
+# 
+# This could be used for writing a test to check that the basic lookup
+# page is returning canonical forms in the analysis side, checking that
+# localization renders, etc.
+#
+
+RequestTests:
+
+ # This searches the analyses on the side to confirm that all options
+ # are present
+ #
+ - uri: "/crk/eng/?lookup=%(input)s"
+   tests:
+    - uri_args:
+        input: "nipihk"
+      value_selector: ".lexeme_analyses dl dt span[lang=crk]"
+      expected_values: 
+        - "nipihk"
+        - "nipîhk"
+        - "nîpîhk"
+
+ # for a given uri pattern, run the tests
+ - uri: "/detail/crk/eng/%(input)s.html?lemma_match=true"
+   tests:
+    - uri_args:
+        input: "nipâw"
+      value_selector: ".miniparadigm tr td[lang=crk]"
+      expected_values: 
+        - "ninipân"
+        - "kinipân"
+        - "kinipânânaw"
+        # TODO: encoding of html is causing this error ? 
+        - "nêpât"
+
+    - uri_args:
+        input: "wâpamêw"
+      value_selector: ".miniparadigm tr td[lang=crk]"
+      expected_values: 
+        - "niwâpamâw"
+        - "niwâpamânân"
+        # TODO: encoding of html is causing this error ? 
+        - "ê-wâpamak"
+
+# Ensure that analysis of forms works interface
+MorpholexicalAnalysis:
+ - morpholexicon: [crk, eng]
+   tests:
+     # Fail if all of these are not present
+     - input: "ninipân"
+       expected_lemmas: ["nipâw"]
+
+     - input: "nipihk"
+       expected_lemmas: ["nipiw", "nipiy", "nîpiy"]
+
+# Ensure that generation works through the morphology, without the user
+# interface
+ParadigmGeneration:
+ - generator: crk
+   tests:
+     - input: "nipâw"
+       expect_forms: ["nipihk", "nipîhk", "nîpîhk"]
+
+# Ensure that analysis of user input results in the following
+# definitions
+Lexicon:
+ - lexicon: ["crk", "eng"]
+   # sublexicon: "keyword"
+   tests:
+     - input: "nipâw"
+       expected_definitions: ["s/he sleeps", "s/he is asleep"]
+     - input: "nipâw"
+       unexpected_definitions: ["s/he eats", "s/he is eating"]
+
+
+# Ensure that generation is able to be rendered to templates 
+# 
+# TODO: these can be assumed from `Generation` too, copy and extend?
+Rendering:
+ - analyzer: crk
+   tests:
+     - input: "nipihk"
+       expect_forms: ["nipihk", "nipîhk", "nîpîhk"]
+
+
+

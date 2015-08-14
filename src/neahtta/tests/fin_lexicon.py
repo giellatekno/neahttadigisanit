@@ -42,7 +42,7 @@ class ParadigmSelectionTest(WordLookupTests):
     """
 
     def test_misc_paradigms(self):
-        from configs.paradigms import ParadigmConfig
+        from paradigms import ParadigmConfig
 
         lookups = self.current_app.morpholexicon.lookup('mennä', source_lang='fin', target_lang='sme')
 
