@@ -106,18 +106,32 @@ Dictionaries:
   - source: fkv 
     target: nob
     path: 'dicts/fkvnob.xml'
+
+    show_korp_search: True
+    korp_search_host: &F_KORP "http://gtweb.uit.no/f_korp"
+    is_korp_default_lang: True
+
   - source: nob
     target: fkv
     path: 'dicts/nobfkv.xml'
+
+    show_korp_search: True
+    is_korp_default_lang: True
+    korp_parallel: True
+    korp_search_host: *F_KORP
 
   # vep
   - source: vep
     target: fin
     path: 'dicts/vep-all.xml'
+    show_korp_search: True
+    korp_search_host: *F_KORP
 
   - source: vep
     target: est
     path: 'dicts/vep-all.xml'
+    show_korp_search: True
+    korp_search_host: *F_KORP
 
 ReaderConfig:
   olo:

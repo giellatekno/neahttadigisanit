@@ -180,9 +180,15 @@ Dictionaries:
     target: est
     path: 'dicts/vro-all.xml'
 
+    show_korp_search: True
+    korp_search_host: &F_KORP "http://gtweb.uit.no/f_korp"
+
   - source: vro
     target: fin
     path: 'dicts/vro-all.xml'
+
+    show_korp_search: True
+    korp_search_host: *F_KORP
 
   # vot
   - source: vot
