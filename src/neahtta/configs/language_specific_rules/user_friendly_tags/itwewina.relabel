@@ -232,6 +232,7 @@ Relabel:
       N+AN+Sg+Px2Pl: "Possessive: 2nd person plural"
       N+AN+Sg+Px3Pl: "Possessive: 3rd person plural"
       N+AN+Sg+Px4Pl: "Possessive: 3rd person plural (obviative)"
+      Sg+Px1Sg: "Possessive: 1st person singular"
       Px1Sg: "Possessive: 1st person singular"
       Px2Sg: "Possessive: 2nd person singular"
       Px3Sg: "Possessive: 3rd person Singular"
