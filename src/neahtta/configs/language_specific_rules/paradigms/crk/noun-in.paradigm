@@ -1,0 +1,9 @@
+name: "Inanimate noun paradigm"
+morphology:
+  pos: N
+--
+{{ lemma }}+N+AN+Sg
+{{ lemma }}+N+AN+Pl
+{{ lemma }}+N+AN+Loc
+{{ lemma }}+N+AN+Sg+Px1Sg
+{{ lemma }}+N+AN+Sg+Px3Sg
