@@ -39,18 +39,24 @@ RequestTests:
    tests:
     - uri_args:
         input: "nipihk"
-      value_selector: ".lexeme_analyses dl dt span[lang=crk]"
+      value_selector: &CANONICAL_FORMS ".lexeme_analyses dl dt span[lang=crk]"
       expected_values: 
         - "nipihk"
         - "nipîhk"
         - "nîpîhk"
+
+    - uri_args:
+        input: "ninipân"
+      value_selector: *CANONICAL_FORMS
+      expected_values: 
+        - "ninipân"
 
  # for a given uri pattern, run the tests
  - uri: "/detail/crk/eng/%(input)s.html?lemma_match=true"
    tests:
     - uri_args:
         input: "nipâw"
-      value_selector: ".miniparadigm tr td[lang=crk]"
+      value_selector: &MINIPARADIGM ".miniparadigm tr td[lang=crk]"
       expected_values: 
         - "ninipân"
         - "kinipân"
@@ -60,7 +66,7 @@ RequestTests:
 
     - uri_args:
         input: "wâpamêw"
-      value_selector: ".miniparadigm tr td[lang=crk]"
+      value_selector: *MINIPARADIGM
       expected_values: 
         - "niwâpamâw"
         - "niwâpamânân"
@@ -74,9 +80,15 @@ MorpholexicalAnalysis:
      # Fail if all of these are not present
      - input: "ninipân"
        expected_lemmas: ["nipâw"]
+       description: "is the analyzer working?"
 
      - input: "nipihk"
        expected_lemmas: ["nipiw", "nipiy", "nîpiy"]
+       description: "can we recognize variant spellings?"
+
+     - input: "ninanahnipan"
+       expected_lemmas: ["nipâw"]
+       description: "is the lemma able to be isolated from pretags?"
 
 # Ensure that generation works through the morphology, without the user
 # interface. Analyzes the input form, and generates returned lemmas,
@@ -102,6 +114,23 @@ MorpholexicalGeneration:
          - "do"
          - "not"
          - "want"
+
+     # NA-1
+     - input: "acâhkos"
+       expected_forms:
+         - "acâhkos"
+         - "acâhkosak"
+         - "acâhkosa"
+         - "nitacâhkos"
+
+     # NI-1
+     - input: "acimomêyisimin"
+       expected_forms:
+         - "acimomêyisimin"
+         - "acimomêyisimina"
+         - "acimomêyisiminihk"
+         - "nitacimomêyisimin"
+         - "otacimomêyisimin"
 
 # Ensure that analysis of user input results in the following
 # definitions
