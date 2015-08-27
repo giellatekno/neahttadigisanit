@@ -8,6 +8,9 @@ animacy:
  - "TI"
  - "AI"
  - "II"
+noun_animacy:
+ - "IN"
+ - "AN"
 type: 
  - "Interr"
 indicative:
