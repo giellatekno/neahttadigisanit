@@ -1,6 +1,7 @@
 name: "Animate noun paradigm"
 morphology:
   pos: N
+  noun_animacy: AN
 --
 {{ lemma }}+N+AN+Sg
 {{ lemma }}+N+AN+Pl

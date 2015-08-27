@@ -1,6 +1,7 @@
 name: "Inanimate noun paradigm"
 morphology:
   pos: N
+  noun_animacy: IN
 --
 {{ lemma }}+N+IN+Sg
 {{ lemma }}+N+IN+Pl
