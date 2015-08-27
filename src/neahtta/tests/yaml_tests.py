@@ -12,12 +12,28 @@ tests_module = os.path.join( os.getcwd()
                            , 'tests/'
                            )
 
-projname = os.environ['NDS_CONFIG'].partition('configs/')[2].partition('.config.yaml')[0]
+projname = os.environ['NDS_CONFIG']\
+             .partition('configs/')[2]\
+             .partition('.config.yaml')[0]
 
 project_test_file = os.path.join( tests_module
                                 , projname + '.yaml'
                                 )
 
+class Failures(object):
+
+    def __init__(self):
+        self.failure_list = []
+
+    def add(self, test, exception, _input, expect, result, msg=""):
+        self.failure_list.append(
+            (test, exception, _input, expect, result, msg)
+        )
+
+    def summarize(self):
+        print self.failure_list
+
+failuretrack = Failures()
 
 class YamlTests(object):
 
@@ -104,6 +120,7 @@ class NDSInstance(unittest.TestCase):
         self.yamltests = YamlTests(project_test_file)
 
     def tearDown(self):
+        # failuretrack.summarize()
         pass
 
 # TODO: print useful text about process
@@ -151,6 +168,14 @@ class RequestTest(NDSInstance):
                 else:
                     print "    " + red("FAILED") + ': ' + e
                     print "     > " + yellow("Values not found in selector")
+                    failuretrack.add(
+                        "RequestTest",
+                        exc,
+                        "%s [%s]" % (uri_formatted, value_selector),
+                        ' '.join(expected),
+                        ' '.join(selected),
+                        "Values not found in selector",
+                    )
 
             print ''
 
@@ -180,10 +205,15 @@ class MorpholexicalAnalysis(NDSInstance):
             m = self.current_app.morpholexicon
             for (source, target), case in self.yamltests.morpholexicon_tests:
                 expect = case.get('expected_lemmas')
+
                 res, raw_out, raw_err = m.lookup(case.get('input'),
                                                  source_lang=source,
                                                  target_lang=target, 
                                                  **skw)
+
+                description = case.get('description', False)
+                if description:
+                    print "  " + yellow(description)
 
                 print "  input:   " + cyan(case.get('input'))
 
@@ -205,6 +235,13 @@ class MorpholexicalAnalysis(NDSInstance):
                     else:
                         print "    " + red("FAILED") + ': ' + e
                         print "     > " + yellow(msg)
+                        failuretrack.add(
+                            "MorphologicalAnalysis",
+                            exc,
+                            case.get('input'),
+                            ' '.join(expect),
+                            ' '.join(lemmas),
+                        )
 
 
                 print ''
@@ -226,7 +263,7 @@ class MorpholexicalGeneration(NDSInstance):
             'return_raw_data': True,
         }
 
-        def test_the_case(case, result):
+        def test_the_case(case, result, _input=''):
 
             expect = case.get('expected_forms', False)
             unexpect = case.get('unexpected_forms', False)
@@ -247,6 +284,11 @@ class MorpholexicalGeneration(NDSInstance):
                 print "  DONT expect: " + cyan(repr(expect))
                 print "  result:      " + magenta(' '.join(result))
 
+            if not expect and not unexpect:
+                _in = []
+                print yellow("  Not expecting any result.")
+                print "  result:      " + magenta(' '.join(result))
+
             for e in _in:
                 try:
                     test_func(e, result, msg)
@@ -255,6 +297,14 @@ class MorpholexicalGeneration(NDSInstance):
                     # TODO: something else with this
                     # print debug
                     print "     > " + yellow(msg)
+                    failuretrack.add(
+                        "MorphologicalGeneration",
+                        exc,
+                        _input,
+                        ' '.join(expect),
+                        ' '.join(result),
+                        msg,
+                    )
                 print "    " + green("PASSED") + " (" + e + ")"
 
         # TODO: print useful text
@@ -268,6 +318,10 @@ class MorpholexicalGeneration(NDSInstance):
                 expect = case.get('expected_forms', False)
                 unexpect = case.get('unexpected_forms', False)
 
+                description = case.get('description', False)
+                if description:
+                    print "  " + yellow(description)
+
                 print "  input:   " + cyan(case.get('input'))
 
                 res, raw_out, raw_err = m.lookup(case.get('input'),
@@ -280,7 +334,8 @@ class MorpholexicalGeneration(NDSInstance):
                         paradigm, debug = self.generate_paradigm(source, node, morph_analyses)
                         result = [g.form for g in paradigm]
 
-                        test_the_case(case, result)
+                        test_the_case(case, result, _input=case.get('input'))
+                        # TODO: set a success value? 
 
                 print ''
 
@@ -324,7 +379,7 @@ class MorpholexicalGeneration(NDSInstance):
 class LexiconDefinitions(NDSInstance):
     """ These are defined in the .yaml file as:
 
-            MorpholexicalGeneration:
+            LexiconDefinitions:
              - etc.
     """
 
@@ -359,15 +414,33 @@ class LexiconDefinitions(NDSInstance):
                 print "  DONT expect: " + cyan(repr(_in))
                 print "  result:      " + magenta(repr(result))
 
+            if not expect_in and not unexpect_in:
+                _in = []
+                print yellow("  Not expecting any result.")
+                print "  result:      " + magenta(repr(result))
+                print "    " + green("PASSED")
+
             for _i in _in:
+                passed = True
                 try:
                     test_func(_i, result)
-                except Exception, e:
+                except Exception, exc:
+                    passed = False
+
+                if passed:
+                    print "    " + green("PASSED")
+                else:
                     print "    " + red("FAILED") + ': ' + repr(_i)
                     if err_msg:
                         print "     > " + yellow(err_msg)
-
-                print "    " + green("PASSED")
+                    failuretrack.add(
+                        "LexiconDefinitions",
+                        exc,
+                        _i,
+                        ' '.join(_in),
+                        ' '.join(result),
+                        err_msg,
+                    )
 
         with self.context():
 
@@ -378,6 +451,10 @@ class LexiconDefinitions(NDSInstance):
             for (source, target), case in self.yamltests.lexicon_definition_tests:
                 translation_xpath = case.get('xpath', './mg/tg/t/text()')
 
+                description = case.get('description', False)
+                if description:
+                    print "  " + yellow(description)
+
                 print "  input:   " + cyan(case.get('input'))
                 print "  xpath:   " + cyan(translation_xpath)
 
@@ -387,11 +464,32 @@ class LexiconDefinitions(NDSInstance):
                                                  **skw)
 
 
+                successes = False
                 for node, morph_analyses in res:
+                    if node is None:
+                        continue
+                    else:
+                        successes = True
 
                     result_defs = node.xpath(_str_norm % translation_xpath)
 
                     test_the_case(case, result_defs)
+                    # TODO: set a success value? 
+
+                if not successes:
+                    err_msg = "No results found for input."
+
+                    print "    " + red("FAILED") + ': ' + repr(case.get('input'))
+                    print "     > " + yellow(err_msg)
+                    failuretrack.add(
+                        "LexiconDefinitions",
+                        "",
+                        case.get('input'),
+                        "",
+                        "",
+                        err_msg,
+                    )
 
                 print ''
+
 
