@@ -6,7 +6,7 @@ __all__ = [
     'tagfilter_conf',
 ]
 
-def tagfilter_conf(filters, s):
+def tagfilter_conf(filters, s, *args, **kwargs):
     """ A helper function for filters to extract app.config from the
     function for import in other modules.
 
@@ -14,31 +14,113 @@ def tagfilter_conf(filters, s):
     tag and returns it for rendering.
     """
 
+    tagsep = kwargs.get('tagsep')
+
     if not s:
         return s
 
     filtered = []
 
+    # Unfortunate type conversions
     if isinstance(s, list):
         parts = s
     elif isinstance(s, Tag):
+        string = s.tag_string
         parts = list(s)
+        s = string
     else:
-        # TODO: use morphology splitter
-        parts = s.split(' ')
+        if tagsep:
+            parts = s.split(tagsep)
+        else:
+            parts = s.split(' ')
+            tagsep = ' '
 
-    for part in parts:
-        # try part, and if it doesn't work, then try part.lower()
-        _f_part = filters.get( part
-                             , filters.get( part.lower()
-                                          , part
-                                          )
-                             )
-        filtered.append(_f_part)
+    # Find out if the tagset has any tags that count for
+    # multi-replacement
+    multi_replacements = []
+    for k, v in filters.iteritems():
+        if '+' in k:
+            multi_replacements.append((k, v))
 
-    return ' '.join([a for a in filtered if a.strip()])
+    # Sort the replacements from longest set of tags to shortest
+    multi_replacements = sorted(
+        multi_replacements,
+        key=lambda (x, y): x.count('+'),
+        reverse=True)
 
-def tagfilter(s, lang_iso, targ_lang, generation=False):
+    # return matches and their indexes in the original list
+    def subfinder(mylist, pattern):
+        matches = []
+        for i in range(len(mylist)):
+            # if this element is a match, and a sublist matching the
+            # length is a match ... 
+            if mylist[i] == pattern[0] and mylist[i:i+len(pattern)] == pattern:
+                matches.append((pattern, (i, i+len(pattern))))
+        return matches
+
+    longest_matches = []
+
+    # TODO: try a full match first, can save iterating if there is one
+
+    # then with the substring replacements, maybe just make replacement
+    # first, and then run the rest of the parts through as normal
+
+    for mr, tg in multi_replacements:
+        # TODO: split mr
+        _mr = mr.split('+')
+        matches = subfinder(parts, _mr)
+        if matches:
+            for m in matches:
+                longest_matches.append((m, tg))
+
+    if len(longest_matches) > 0:
+        longest_matches = sorted(longest_matches, key=lambda (x, _): len(x),
+                                 reverse=True)
+        longest_match = longest_matches[0]
+    else:
+        longest_match = False
+
+    completely_replaced = False
+
+    if longest_match:
+
+        ((source, indexes), replacement) = longest_match
+        (a, b) = indexes
+
+        if len(longest_match) == len(parts):
+            filtered = [replacement]
+            completely_replaced = True
+        else:
+            # iterate list to make replacement on sublist:
+            # replace once, and then continue.
+
+            subreplacement = False
+            replc = []
+            for i in range(len(parts)):
+                item = parts[i]
+                if (a <= i <= b) and not subreplacement:
+                    replc.append(replacement)
+                    subreplacement = True
+                if (a <= i <= b) and subreplacement:
+                    continue
+                else:
+                    replc.append(item)
+            parts = replc
+
+
+    if not completely_replaced:
+        for part in parts:
+            # try part, and if it doesn't work, then try part.lower()
+            _f_part = filters.get( part
+                                 , filters.get( part.lower()
+                                              , part
+                                              )
+                                 )
+            filtered.append(_f_part)
+
+    return tagsep.join([a for a in filtered if a.strip()])
+
+def tagfilter(s, lang_iso, targ_lang, generation=False, tagsep=' '):
     if generation:
         filters = current_app.config.tag_filters.get((lang_iso, targ_lang, 'generation'), False)
     else:
@@ -51,7 +133,7 @@ def tagfilter(s, lang_iso, targ_lang, generation=False):
     #     splitter = lambda x: x.split('+')
 
     if filters:
-        return tagfilter_conf(filters, s)
+        return tagfilter_conf(filters, s, tagsep=tagsep)
     else:
         if isinstance(s, Tag):
             return s.sep.join(s)
