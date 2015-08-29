@@ -12,6 +12,24 @@ def tagfilter_conf(filters, s, *args, **kwargs):
 
     Given a set of tag filters, this function replaces each piece of a
     tag and returns it for rendering.
+
+    This also handles replacements of multiple tags.
+
+    Following tests check whether or not various tag substitutions work.
+
+        >>> filt = {'Sg+Px1Sg': 'Possessive: 1s'}
+        >>> tagsep = '+'
+        >>> tagfilter_conf(filt, "N+AN+Sg+Px1Sg", tagsep='+')
+        'N+AN+Possessive: 1s'
+
+        >>> filt = {'Sg+Px1Sg': 'Possessive: 1s', 'N': 'Noun', 'AN': 'Animate'}
+        >>> tagfilter_conf(filt, "N+AN+Sg+Px1Sg", tagsep='+').replace('+', ' ')
+        'Noun Animate Possessive: 1s'
+
+        >>> filt = {'N+AN+Sg+Px1Sg': 'Animate Noun Possessive: 1s', 'N': 'Noun', 'AN': 'Animate'}
+        >>> tagfilter_conf(filt, "N+AN+Sg+Px1Sg", tagsep='+').replace('+', ' ')
+        'Animate Noun Possessive: 1s'
+
     """
 
     tagsep = kwargs.get('tagsep')
@@ -60,13 +78,10 @@ def tagfilter_conf(filters, s, *args, **kwargs):
 
     longest_matches = []
 
-    # TODO: try a full match first, can save iterating if there is one
-
     # then with the substring replacements, maybe just make replacement
     # first, and then run the rest of the parts through as normal
 
     for mr, tg in multi_replacements:
-        # TODO: split mr
         _mr = mr.split('+')
         matches = subfinder(parts, _mr)
         if matches:
@@ -107,7 +122,6 @@ def tagfilter_conf(filters, s, *args, **kwargs):
                     replc.append(item)
             parts = replc
 
-
     if not completely_replaced:
         for part in parts:
             # try part, and if it doesn't work, then try part.lower()
@@ -125,12 +139,6 @@ def tagfilter(s, lang_iso, targ_lang, generation=False, tagsep=' '):
         filters = current_app.config.tag_filters.get((lang_iso, targ_lang, 'generation'), False)
     else:
         filters = current_app.config.tag_filters.get((lang_iso, targ_lang), False)
-
-    # morph = current_app.config.morphologies.get(lang_iso, False)
-    # if morph:
-    #     splitter = morph.tool.splitAnalysis(s)
-    # else:
-    #     splitter = lambda x: x.split('+')
 
     if filters:
         return tagfilter_conf(filters, s, tagsep=tagsep)
