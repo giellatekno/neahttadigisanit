@@ -64,7 +64,11 @@
                             {% set repl = 'Tpl/Lemma' %}
                         {% endif %}
 
-                        {% set formatted_tag = ' + '.join(lem.tag)|replace('Tpl/Lemma', repl)|tagfilter(_from, _to) %}
+                        {# Replace the Lemma tag with the actual lemma, then
+                           reformat with spaces around the plus #}
+
+                        {% set _formatted_tag = '+'.join(lem.tag)|replace('Tpl/Lemma', repl)|tagfilter(_from, _to, tagsep='+') %}
+                        {% set formatted_tag = ' + '.join(_formatted_tag.split('+')) %}
                         {% if formatted_tag.startswith('+ ') %}
                             {% set formatted_tag = formatted_tag[2::] %}
                         {% endif %}
