@@ -212,6 +212,7 @@ Relabel:
       Pos: "Positive"
       Neg: "Negation"
       ConNeg: "Connegative"
+      Sg+Obv: "(Singular) Obviative"
       Sg: "Singular"
       Pl: "Plural"
       Sg+Px1Sg: "(Singular) Possessor: 1s"
