@@ -215,6 +215,7 @@ Relabel:
       Sg: "Singular"
       Pl: "Plural"
       Sg+Px1Sg: "(Singular) Possessor: 1s"
+      Sg+Px3Sg: "(Singular) Possessor: 3s"
       Px1Sg: "Possessor: 1s"
       Px2Sg: "Possessor: 2s"
       Px3Sg: "Possessor: 3s"
