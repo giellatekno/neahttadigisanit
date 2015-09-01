@@ -7,4 +7,4 @@ morphology:
 {{ lemma }}+N+AN+Pl
 {{ lemma }}+N+AN+Sg+Obv
 {{ lemma }}+N+AN+Sg+Px1Sg
-{{ lemma }}+N+AN+Sg+Px3Sg
+{{ lemma }}+N+AN+Sg+Px3Sg+Obv
