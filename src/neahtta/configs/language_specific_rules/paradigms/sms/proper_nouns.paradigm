@@ -9,3 +9,6 @@ morphology:
 {{ lemma }}+N+Prop+Sg+Ill
 {{ lemma }}+N+Prop+Sg+Loc
 {{ lemma }}+N+Prop+Sg+Abe
+{{ lemma }}+N+Prop+Der/Dim+N+Sg+Nom
+{{ lemma }}+N+Prop+Der/Dim+N+Sg+Gen
+{{ lemma }}+N+Prop+Der/Dim+N+Sg+Ill
