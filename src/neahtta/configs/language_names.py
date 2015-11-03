@@ -51,6 +51,7 @@ NAMES = dict([
     ('myv', _(u"Erzya Mordvin")),
     ('mdf', _(u"Moksha")),
     ('fra', _(u"French")),
+    ('deu', _(u"German")),
 
     # muter
     ('mrj', _(u"Western Mari")),
@@ -148,6 +149,8 @@ LOCALISATION_NAMES_BY_LANGUAGE = dict([
     ('vro', u"Võru keel"),
     ('vot', u"Vađđa ceeli "),
 
+    ('deu', u"Deutsch"),
+
     # ndstesting
     ('kca', u"ханты ясаӈ"),
     ('gle', u"Gaeilge"),
@@ -163,6 +166,7 @@ ISO_TRANSFORMS = dict([
     ('lv', 'lav'),
     ('en', 'eng'),
     ('fr', 'fra'),
+    ('de', 'deu'),
     ('kv', 'kpv'),
     ('hu', 'hun'),
 ])
