@@ -644,7 +644,7 @@ muter-install: install_langs_fsts
 
 VALKS_LANGS_ANALYSERS      :=   fin myv mdf
 VALKS_LANGS_LEXICA         :=   myv mdf
-VALKS_WORDS_DICTS_LEXICA   :=   finmyv finmdf
+VALKS_WORDS_DICTS_LEXICA   :=   finmyv finmdf myvdeu
 
 .PHONY: valks-lexica
 valks-lexica: LEX_COMPILE_LANGS := $(VALKS_LANGS_LEXICA)
