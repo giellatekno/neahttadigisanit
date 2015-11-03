@@ -115,6 +115,10 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
 
+  - source: deu
+    target: myv
+    path: 'dicts/deumyv.xml'
+
   - source: fin
     target: mdf
     path: 'dicts/finmdf.xml'
