@@ -1,6 +1,7 @@
 ApplicationSettings:
   app_name: !gettext "itwêwina"
   app_meta_title: !gettext "Online Plains Cree dictionary"
+  render_template_errors: true
   short_name: "itwewina"
   default_locale: "crk"
   default_pair: ["crk", "eng"]
@@ -9,6 +10,8 @@ ApplicationSettings:
     - crk
     - crk_Macr
     - en
+  hidden_locales:
+    - crk_Macr
   meta_description: >
       Free online, mobile friendly dictionaries for Plains Cree
   meta_keywords: >
@@ -72,6 +75,7 @@ Dictionaries:
         # anything)
         force_locale: 
           crk: "crk"
+          crk_Macr: "crk"
         onscreen_keyboard: &CRK_KEYS_CIRC
           - "â"
           - "ê"
