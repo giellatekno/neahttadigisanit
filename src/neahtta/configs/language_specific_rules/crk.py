@@ -1,22 +1,22 @@
 ﻿from morphology import generation_overrides as morphology
 from lexicon import lexicon_overrides
 
-@lexicon_overrides.postlookup_filters_for_lexicon(('crk', 'eng'))
-def sort_by_rank(lex, nodelist, *args, **kwargs):
-
-    _str_norm = 'string(normalize-space(%s))'
-
-    def get_rank(n):
-        try:
-            rank = int( n.xpath(_str_norm % './/rank/@rank') )
-        except:
-            rank = False
-        if rank:
-            return rank
-        else:
-            return n.xpath(_str_norm % './/l/text()')
-
-    return sorted(nodelist, key=get_rank)
+# @lexicon_overrides.postlookup_filters_for_lexicon(('eng', 'crk'))
+# def sort_by_rank(lex, nodelist, *args, **kwargs):
+# 
+#     _str_norm = 'string(normalize-space(%s))'
+# 
+#     def get_rank(n):
+#         try:
+#             rank = int( n.xpath(_str_norm % './/rank/@rank') )
+#         except:
+#             rank = False
+#         if rank:
+#             return rank
+#         else:
+#             return n.xpath(_str_norm % './/l/text()')
+# 
+#     return sorted(nodelist, key=get_rank)
 
 @morphology.tag_filter_for_iso('crk')
 def adjust_tags_for_gen(lemma, tags, node=None, **kwargs):
