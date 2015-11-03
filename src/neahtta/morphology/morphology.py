@@ -990,7 +990,7 @@ class Morphology(object):
         _cache_key = hashlib.md5()
         _cache_key.update('generation-%s-' % self.langcode)
         _cache_key.update(lemma.encode('utf-8'))
-        if node:
+        if node is not None:
             if len(node) > 0:
                 node_hash = node.__hash__()
                 _cache_key.update(str(node_hash))
