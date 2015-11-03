@@ -67,7 +67,12 @@ def add_languages():
     """ Add internationalization languages to global context for
     templates.
     """
-    return dict(internationalizations=current_app.config.locales_available)
+    if current_app.config.hidden_locales:
+        locales = [l for l in current_app.config.locales_available
+                   if l not in current_app.config.hidden_locales]
+    else:
+        locales = current_app.config.locales_available
+    return dict(internationalizations=locales)
 
 @blueprint.context_processor
 def define_app_name():
