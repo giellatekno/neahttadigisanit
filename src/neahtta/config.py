@@ -126,7 +126,7 @@ class Config(Config):
     @property
     def hidden_locales(self):
         _p = self.yaml.get('ApplicationSettings', {})\
-                      .get('hidden_locales', False)
+                      .get('hidden_locales', [])
         if len( list(set( map(type, _p) ))) > 1:
             err_str = "Type error in hidden_locales. If <no> is listed, make sure it is quoted."
             raise RuntimeError(err_str + 
