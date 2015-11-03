@@ -94,6 +94,26 @@ def register_template_filters(app):
         else:
             return None
 
+    @app.template_filter('sortby_xpath')
+    def sortby_xpath(node_objs, xpath_str, value_type='int'):
+        _str_norm = 'string(normalize-space(%s))'
+
+        def get_xp(n):
+            try:
+                v = n.xpath(_str_norm % xpath_str)
+            except:
+                v = False
+            if value_type == 'int':
+                try:
+                    v = int(v)
+                except:
+                    pass
+            return v
+
+        print node_objs
+        print map(get_xp, node_objs)
+        return sorted(node_objs, key=get_xp)
+
     @app.template_filter('xpath_first')
     def xpath_first(node_obj, xpath_str):
         n = node_obj.xpath(xpath_str)
