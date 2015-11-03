@@ -72,6 +72,7 @@ Languages:
   - iso: fin
   - iso: rus
   - iso: fra
+  - iso: deu
 
 Dictionaries:
   - source: myv
@@ -93,6 +94,12 @@ Dictionaries:
   - source: myv
     target: eng
     path: 'dicts/myv-all.xml'
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/u_korp"
+
+  - source: myv
+    target: deu
+    path: 'dicts/myvdeu.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
 
