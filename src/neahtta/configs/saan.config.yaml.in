@@ -67,6 +67,10 @@ Dictionaries:
   - source: sms
     target: fin
     path: 'dicts/sms-all.xml'
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/korp"
+    is_korp_default_lang: True
+
     input_variants: &spell_relax
       - type: "standard"
         description: !gettext "Standard"
