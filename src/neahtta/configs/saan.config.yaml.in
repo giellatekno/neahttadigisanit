@@ -72,7 +72,7 @@ Dictionaries:
     input_variants: &spell_relax
       - type: "standard"
         description: !gettext "Standard"
-        example: "(ǩ)"
+        example: "(âčǯđǧǥǩŋ̌šž)"
         onscreen_keyboard: &SMS_KEYS
           - "ʹ"
           - "ʼ"
@@ -95,7 +95,7 @@ Dictionaries:
         short_name: "sms"
       - type: "mobile"
         description: !gettext "Mobile friendly"
-        example: "(k &rarr; k ~ ǩ)"
+        example: "(aczdggknsz)"
         short_name: "smsM"
         onscreen_keyboard: *SMS_KEYS
         # aczdggknsz
@@ -108,10 +108,15 @@ Dictionaries:
 
   - source: sms
     target: rus
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/korp"
     path: 'dicts/sms-all.xml'
     input_variants: *spell_relax
+
   - source: sms
     target: nob
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/korp"
     path: 'dicts/sms-all.xml'
     input_variants: *spell_relax
 
