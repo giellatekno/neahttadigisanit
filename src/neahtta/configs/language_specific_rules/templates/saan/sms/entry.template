@@ -38,8 +38,6 @@
                 {% set show_pronunciation = false %}
             {% endif %}
 
-            {% set has_audio = lexicon_entry|xpath('./lg/audio')|length > 0 %}
-
             {% set has_reference = lexicon_entry.xpath('./lg/lemma_ref/text()')|first %}
             <p>
               	{%- if has_reference -%}
@@ -53,17 +51,9 @@
                     </span>
                     {% endif %}
                 {% endif %}
-            {%- if has_audio -%}
-                {%- set audio = lexicon_entry|xpath('./lg/audio/a') %}
-                <div class="audio-links">
-                    <div class="btn-group">
-                    {%- for aud in audio -%}
-                        <a class="btn btn-mini audio-link" href="{{ aud.xpath('@href')|first }}" target="blank">
-                            <i class="icon-volume-up"></i>{{ aud.xpath('@dialect')|first }}.</a>
-                    {%- endfor -%}
-                    </div>
-                </div>
-            {%- endif -%}
+
+            {{- rendered_templates.audio_links -}}
+
             <ul class="meanings">
                 {{- rendered_templates.definition -}}
             </ul>

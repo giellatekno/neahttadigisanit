@@ -1,0 +1,22 @@
+{# An audio link template for including elsewhere. Eventually this will
+   be enabled by default.
+
+#}
+
+{%- import "lexicon.macros" as macros with context -%}
+
+{% set has_audio = lexicon_entry|xpath('./lg/audio')|length > 0 %}
+
+{%- if has_audio -%}
+    {%- set audio = lexicon_entry|xpath('./lg/audio/a') %}
+    <div class="audio-links">
+        <div class="btn-group">
+        {%- for aud in audio -%}
+            <a class="btn btn-mini audio-link" href="{{ aud.xpath('@href')|first }}" target="blank">
+                <i class="icon-volume-up"></i>{{ aud.xpath('@dialect')|first }}.</a>
+        {%- endfor -%}
+        </div>
+    </div>
+{%- endif -%}
+
+{# vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}
