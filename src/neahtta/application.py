@@ -101,6 +101,33 @@ def prepare_assets(app):
 
     # TODO: how to collect additional assets called in templates?
 
+    import socket
+
+    real_hostname = socket.gethostname()
+
+    prod_hosts = [
+        'gtweb.uit.no',
+        'gtlab.uit.no',
+        'gtoahpa.uit.no'
+    ]
+
+    if real_hostname in prod_hosts:
+        dev = False
+    else:
+        dev = True
+
+    js_dev_assets = []
+    css_dev_assets = []
+
+    if dev:
+        print 'Including dev assets...'
+        js_dev_assets = [
+            'js/test_palette.js',
+        ]
+        css_dev_assets = [
+            'css/test_palette.css',
+        ]
+
     from flask.ext.assets import Environment, Bundle
 
     assets = Environment(app)
@@ -129,7 +156,7 @@ def prepare_assets(app):
         'js/index.js',
         'js/detail.js',
         # TODO: underscore? angular? async_paradigms? 
-    ]
+    ] + js_dev_assets
 
     app.assets.main_css_assets = [
         'css/bootstrap.css',
@@ -137,7 +164,7 @@ def prepare_assets(app):
         'css/base.css',
         'css/detail.css',
         'css/about.css',
-    ] + proj_css
+    ] + proj_css + css_dev_assets
 
     app.assets.t_css_assets = [
         "bootstra.386/css/bootstrap.css",
@@ -204,7 +231,6 @@ def register_assets(app):
       * css/nav-menu-compiled-PROJNAME.css
 
     """
-
     from flask.ext.assets import Environment, Bundle
 
     # TODO: register output including proj name
