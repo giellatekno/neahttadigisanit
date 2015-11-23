@@ -4,6 +4,7 @@
 // http://www.schillmania.com/projects/soundmanager2/doc/getstarted/#basic-inclusion
 
 
+// TODO: add loading and playing icons 
 $(document).ready(function(){
     soundManager.setup({
       url: '/static/vendor/SoundManager2/swf/',
@@ -18,13 +19,20 @@ $(document).ready(function(){
 
     $('a.audio-link').click( function(btn){
 
-       console.log("audio-link");
-       console.log( $(btn).prop('href'))
        btn.preventDefault();
+
+       audio = $(btn.target).attr('href');
+       console.log(audio);
+
+       function finished_event() {
+         soundManager.destroySound('dictionary-player');
+         return true;
+       }
+
        sound_obj = soundManager.createSound({
          id: "dictionary-player",
-         url: $(btn).prop('href'),
-         // onfinish: finished_event
+         url: audio,
+         onfinish: finished_event
          // onerror: error_event
          // onplay: begin_event
          // whileloading: whileload_event
