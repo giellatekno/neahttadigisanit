@@ -17,11 +17,11 @@ $(document).ready(function(){
       }
     });
 
-    $('a.audio-link').click( function(btn){
+    $('[data-audio-player]').click( function(btn){
 
        btn.preventDefault();
 
-       audio = $(btn.target).attr('href');
+       audio = $(btn.target).attr('data-audio-target');
        console.log(audio);
 
        function finished_event() {
@@ -29,15 +29,22 @@ $(document).ready(function(){
          return true;
        }
 
-       sound_obj = soundManager.createSound({
-         id: "dictionary-player",
-         url: audio,
-         onfinish: finished_event
-         // onerror: error_event
-         // onplay: begin_event
-         // whileloading: whileload_event
-       });
-       // sound_obj._a.playbackRate = opts.rate;
+       function get_player() {
+         sound_obj = soundManager.createSound({
+           id: "dictionary-player",
+           url: '',
+           onfinish: finished_event
+           // onerror: error_event
+           // onplay: begin_event
+           // whileloading: whileload_event
+         });
+         // sound_obj._a.playbackRate = opts.rate;
+         return sound_obj;
+
+       }
+
+       sound_obj = get_player();
+       sound_obj.url = audio;
 
        sound_obj.play({position:0});
         
