@@ -9,6 +9,11 @@ Options:
     -h --help       Show this screen.
     -v --verbose    Verbose.
 
+TODO: option for no fetch, incase they are stored locally: <path_to_audio> is
+the target compressed audio store for now, but could serve as local copy too
+
+python tools/extract_audio.py dicts/sms-all.xml static/aud/sms --verbose > test_aud.xml
+
 """
 
 # TODO: only download updated files, storing in manifest in path/to/stored/audio/
