@@ -13,6 +13,8 @@
 
 # Some helpful tags for jumping around
 
+VIRTUALENV := $
+
 ###         #guusaawtargets
 ###         
 ###         #itwewinatargets
@@ -485,7 +487,10 @@ crkeng.xml: $(GTHOME)/art/dicts/crk/Wolvengrey/crkeng.xml
 	@echo "** Backup made (.bak)       **"
 	@echo "******************************"
 	@echo ""
-	cp $^ $@
+	cp $^ $@.tmp
+	mkdir -p ../static/aud/crk
+	python ../tools/extract_audio.py --local-audio-source --output-file=$@ $@.tmp ../static/aud/crk
+
 
 crkeng-macron.xml: crkeng.xml
 	@echo "*************************************"
