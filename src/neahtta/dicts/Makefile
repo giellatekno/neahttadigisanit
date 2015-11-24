@@ -475,6 +475,9 @@ engcrk.xml: $(GTHOME)/art/dicts/crk/Wolvengrey/engcrk.xml
 
 # TODO: for now /scripts/ is copied to make sure that things work, and deleted at
 # the end. in the future, remove this.
+
+# TODO: include python tools/extract_audio.py --local-audio-source --output-file=OUTFILE dicts/src/INFILE static/aud/crk
+
 crkeng.xml: $(GTHOME)/art/dicts/crk/Wolvengrey/crkeng.xml
 	@echo "******************************"
 	@echo "** Building crk-eng lexicon **"

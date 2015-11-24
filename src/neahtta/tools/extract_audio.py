@@ -3,13 +3,14 @@
 A commandline tool to extract audio files, and replace the paths in
 the lexicon with the updated paths.
 
-Usage: tools/extract_audio.py [options] <source_lexicon> <path_to_audio>
+Usage: tools/extract_audio.py [options] <source_lexicon> <path_to_audio> 
 
 Options:
     -h --help                  Show this screen.
     -v --verbose               Verbose.
     -e --encoding-format       Encoding format. [default: m4a]
     -l --local-audio-source    Use local file source, do not download [default: false]
+    -o --output-file=PATH      Destination file for edited XML
 """
 
 # TODO: option for no fetch, incase they are stored locally: <path_to_audio> is
@@ -210,11 +211,16 @@ def replace_audio_paths(xml_root, stored_audio):
     # new xml root
     return root_duplicate
 
-def write_xml(root):
+def write_xml(root, output_file=False):
     # TODO: strips some headers
     stringed = etree.tostring(root, pretty_print=True, method='xml',
                               encoding='unicode')
-    print >> sys.stdout, stringed.encode('utf-8')
+
+    if output_file is not None:
+        with open(output_file, 'w') as F:
+            F.write(stringed.encode('utf-8'))
+    else:
+        print >> sys.stdout, stringed.encode('utf-8')
 
 def main():
 
@@ -242,7 +248,7 @@ def main():
     transcoded_audio = transcode_audios(stored_audio)
 
     updated_xml = replace_audio_paths(root, transcoded_audio)
-    write_xml(updated_xml)
+    write_xml(updated_xml, arguments.get('--output-file'))
     return 0
 
 if __name__ == "__main__":
