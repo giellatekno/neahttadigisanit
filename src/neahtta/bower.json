@@ -18,7 +18,6 @@
     "tests"
   ],
   "dependencies": {
-    "soundmanager2": "scottschiller/SoundManager2",
     "SoundManager2": "scottschiller/SoundManager2"
   }
 }
