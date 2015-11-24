@@ -18,9 +18,13 @@
             <p>
                 <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
                     {{- rendered_templates.entry_text -}}</a>
+
+            {{- rendered_templates.audio_links -}}
+
             <ul class="meanings">
                 {{- rendered_templates.definition -}}
             </ul>
+
         {% else %}&nbsp;{% endif %}
     </div>
     <div class="span4 hidden-phone lexeme_analyses">
