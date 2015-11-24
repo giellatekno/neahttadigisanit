@@ -3,18 +3,20 @@
 A commandline tool to extract audio files, and replace the paths in
 the lexicon with the updated paths.
 
-Usage: tools/extract_audio.py <source_lexicon> <path_to_audio> [-hv]
+Usage: tools/extract_audio.py [options] <source_lexicon> <path_to_audio>
 
 Options:
-    -h --help       Show this screen.
-    -v --verbose    Verbose.
-
-TODO: option for no fetch, incase they are stored locally: <path_to_audio> is
-the target compressed audio store for now, but could serve as local copy too
-
-python tools/extract_audio.py dicts/sms-all.xml static/aud/sms --verbose > test_aud.xml
-
+    -h --help                  Show this screen.
+    -v --verbose               Verbose.
+    -e --encoding-format       Encoding format. [default: m4a]
+    -l --local-audio-source    Use local file source, do not download [default: false]
 """
+
+# TODO: option for no fetch, incase they are stored locally: <path_to_audio> is
+# the target compressed audio store for now, but could serve as local copy too
+# 
+# python tools/extract_audio.py dicts/sms-all.xml static/aud/sms --verbose > test_aud.xml
+
 
 # TODO: only download updated files, storing in manifest in path/to/stored/audio/
 from docopt import docopt
@@ -74,6 +76,30 @@ def filename_from_url(url):
     # filename
     return base
 
+# file path -> file path; include environment variables
+def file_path_with_env(_path):
+    import os
+    return os.path.expandvars(_path)
+
+#  -> (path, local_target, modified)
+def copy_file(path, target_dir, cache=True, verbose=False):
+    import ntpath
+    from shutil import copy
+
+    if verbose:
+        print >> sys.stderr, " * copying <%s> " % filename_from_url(url)
+
+    source_path = file_path_with_env(path)
+    filename = ntpath.basename(source_path)
+
+    local_target = os.path.join(target_dir, filename)
+    target_dir = os.path.join(target_dir)
+
+    copy(source_path, target_dir)
+
+    return (path, local_target, True)
+
+
 def fetch(url, target_dir, cache=True, verbose=False):
     if verbose:
         print >> sys.stderr, " * fetching <%s> " % filename_from_url(url)
@@ -115,6 +141,27 @@ def cache_dates(downloaded_audios, audio_target):
     #   target_url\tfilename\tdate
     #   target_url\tfilename\tdate
     return False
+
+# [source,]
+def copy_audios(audio_paths, audio_target, verbose=False):
+    # TODO: check for source_last_updated.txt
+    # TODO: filter audio_urls by those that really need an update -- 
+    #    remote header is newer than stored header
+
+    copied_audios = []
+    file_updates = []
+
+    for aud in audio_paths:
+        _, file_path, source_modified = copy_file(aud, audio_target, verbose=verbose)
+        copied_audios.append((aud, file_path))
+        file_updates.append((aud, file_path, source_modified))
+
+    # TODO: cache_dates(file_updates, audio_target)
+    #  - but only the ones with a date provided.
+
+    # [(source, target), ... ]
+    return copied_audios
+
 
 # [source,]
 def download_audios(audio_urls, audio_target, verbose=False):
@@ -176,6 +223,7 @@ def main():
     infile = arguments.get('<source_lexicon>')
     audio_target = arguments.get('<path_to_audio>')
     verbose = arguments.get('--verbose')
+    encoding_format = arguments.get('--encoding-format')
 
     root = etree.parse(infile)
 
@@ -184,7 +232,13 @@ def main():
     )
     urls = files(root)
 
-    stored_audio = download_audios(urls, audio_target)
+    local = arguments.get('--local-audio-source', False)
+
+    if local:
+        stored_audio = copy_audios(urls, audio_target)
+    else:
+        stored_audio = download_audios(urls, audio_target)
+
     transcoded_audio = transcode_audios(stored_audio)
 
     updated_xml = replace_audio_paths(root, transcoded_audio)
