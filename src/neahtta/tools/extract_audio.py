@@ -229,7 +229,7 @@ def main():
     infile = arguments.get('<source_lexicon>')
     audio_target = arguments.get('<path_to_audio>')
     verbose = arguments.get('--verbose')
-    encoding_format = arguments.get('--encoding-format')
+    encoding_format = arguments.get('--encoding-format', 'm4a')
 
     root = etree.parse(infile)
 
@@ -245,7 +245,7 @@ def main():
     else:
         stored_audio = download_audios(urls, audio_target)
 
-    transcoded_audio = transcode_audios(stored_audio)
+    transcoded_audio = transcode_audios(stored_audio, fmt=encoding_format)
 
     updated_xml = replace_audio_paths(root, transcoded_audio)
     write_xml(updated_xml, arguments.get('--output-file'))
