@@ -8,7 +8,7 @@ Usage: tools/extract_audio.py [options] <source_lexicon> <path_to_audio>
 Options:
     -h --help                  Show this screen.
     -v --verbose               Verbose.
-    -e --encoding-format       Encoding format. [default: m4a]
+    -e --encoding-format=FMT   Encoding format. [default: m4a]
     -l --local-audio-source    Use local file source, do not download [default: false]
     -o --output-file=PATH      Destination file for edited XML
 """
