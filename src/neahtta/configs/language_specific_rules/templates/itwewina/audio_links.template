@@ -10,7 +10,7 @@
 {%- if has_audio -%}
     {%- set audio = lexicon_entry|xpath('./lg/audio/a') %}
     <div class="audio-links">
-        <div class="btn-group">
+        <div class="btn-group btn-group-vertical">
         {%- for aud in audio -%}
             {% set speaker = aud.xpath('@speaker')|first %}
             {% set dialect = aud.xpath('@dialect')|first %}
