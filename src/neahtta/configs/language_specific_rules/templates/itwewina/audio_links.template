@@ -12,8 +12,14 @@
     <div class="audio-links">
         <div class="btn-group">
         {%- for aud in audio -%}
+            {% set speaker = aud.xpath('@speaker')|first %}
+            {% set dialect = aud.xpath('@dialect')|first %}
             <a class="btn btn-mini audio-link" data-audio-player data-audio-target="{{ aud.xpath('@href')|first }}" target="blank" href="#">
-                <i class="icon-volume-up"></i>{{ aud.xpath('@speaker')|first }}.</a>
+            {% if dialect and speaker %}
+                <i class="icon-volume-up"></i>{{ dialect }}, {{ speaker }}</a>
+            {% else %}
+                <i class="icon-volume-up"></i>{{ dialect }}</a>
+            {% endif %}
         {%- endfor -%}
         </div>
     </div>
