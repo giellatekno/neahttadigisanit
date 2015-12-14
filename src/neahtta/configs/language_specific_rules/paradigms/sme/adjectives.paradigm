@@ -7,13 +7,3 @@ morphology:
 {{ lemma }}+A+Comp+Attr
 {{ lemma }}+A+Comp+Sg+Nom
 {{ lemma }}+A+Superl+Sg+Nom
-
----
-name: "Adjective paradigm with cases"
-- entry_paradigm: "cases"
---
-{{ lemma }}+A+Attr
-{{ lemma }}+A+Sg+Acc
-{{ lemma }}+A+Sg+Ill
-{{ lemma }}+A+Sg+Loc
-{{ lemma }}+A+Pl+Nom
