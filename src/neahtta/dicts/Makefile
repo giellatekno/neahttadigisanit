@@ -650,7 +650,7 @@ muter-install: install_langs_fsts
 ##### #valkstargets
 #####
 
-VALKS_LANGS_ANALYSERS      :=   fin myv mdf
+VALKS_LANGS_ANALYSERS      :=   fin myv mdf deu
 VALKS_LANGS_LEXICA         :=   myv mdf
 VALKS_WORDS_DICTS_LEXICA   :=   finmyv finmdf myvdeu deumyv
 
