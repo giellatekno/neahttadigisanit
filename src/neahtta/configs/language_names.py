@@ -99,6 +99,7 @@ NAMES = dict([
     ('eng', _(u"English")),
     ('hdn', _(u"Haida")),
     ('fra', _(u"French")),
+    ('deu', _(u"German")),
 ])
 
 ISO_DISPLAY_RELABELS = dict([
