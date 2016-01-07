@@ -14,11 +14,12 @@ ApplicationSettings:
     - fi
     - fr
   meta_description: >
-      Free online, mobile friendly dictionaries for Erzya Mordvin and Moksha
+      Free online, mobile friendly dictionaries for Erzya and Moksha Mordvin
   meta_keywords: >
       erzya, ersä, mokša, moksha, erzya mordvin, moksha mordvin, mobile,
-      эрзя, мокша, русский, зрзянский, мокшанский, валкс, финский,
-      sanakirjat, sanakirja, словарь, dictionary, free, erza, français,
+      эрзя, мокша, русский, эрзянский, мокшанский, валкс, финский, 
+      deutsch, ersänisch, finnisch, mokschanisch, russisch, frei,
+      sanakirjat, sanakirja, словарь, dictionary, Wörterbücher, free, erza, français,
       mokcha, finnois, эрзянь, мокшень, рузонь, финнэнь, финнонь,
       французонь, англань
   admins_to_email:
@@ -128,6 +129,10 @@ Dictionaries:
   - source: deu
     target: myv
     path: 'dicts/deumyv.xml'
+
+  - source: eng
+    target: myv
+    path: 'dicts/engmyv.xml'
 
   - source: fin
     target: mdf
