@@ -139,6 +139,10 @@ Dictionaries:
     path: 'dicts/finmdf.xml'
 
   - source: mdf
+    target: eng
+    path: 'dicts/mdfeng.xml'
+
+  - source: mdf
     target: fra
     path: 'dicts/mdf-all.xml'
     show_korp_search: True
