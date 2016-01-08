@@ -19,15 +19,15 @@ msgstr ""
 
 #: configs/dikaneisdi.config.yaml.in:3
 msgid "Dikaneisdi"
-msgstr ""
+msgstr "Диканейсди"
 
 #: configs/dikaneisdi.config.yaml.in:73
 msgid "Standard (syllabics)"
-msgstr ""
+msgstr "Стандарт (силлабикс)"
 
 #: configs/dikaneisdi.config.yaml.in:76
 msgid "Transliterated"
-msgstr ""
+msgstr "Латиницас сёрмадозь"
 
 #: configs/guusaaw.config.yaml.in:65 configs/kyv.config.yaml.in:100
 #: configs/saan.config.yaml.in:72 configs/saanih.config.yaml.in:78
@@ -38,9 +38,8 @@ msgstr "Стандарт"
 
 #: configs/guusaaw.config.yaml.in:70 configs/saan.config.yaml.in:95
 #: configs/saanih.config.yaml.in:82 configs/saanih.config.yaml.in:103
-#, fuzzy
 msgid "Mobile friendly"
-msgstr "сотовойнень шожда"
+msgstr "сотовоень туртов шожда"
 
 #: configs/itwewina.config.yaml.in:2
 msgid "itwêwina"
@@ -56,7 +55,7 @@ msgstr ""
 
 #: configs/itwewina.config.yaml.in:81
 msgid "syllabics"
-msgstr ""
+msgstr "силлабикс"
 
 #: configs/itwewina.config.yaml.in:87
 msgid "aio āēīō"
@@ -170,11 +169,11 @@ msgstr "Пелевеёнксонь Хаида"
 
 #: configs/language_names.py:79
 msgid "Inari Saami"
-msgstr ""
+msgstr "Инари саамонь кель"
 
 #: configs/language_names.py:82
 msgid "Khanty"
-msgstr "Ханти"
+msgstr "Хантинь кель"
 
 #: configs/language_names.py:84
 #, fuzzy
@@ -275,7 +274,7 @@ msgstr "Валкс, кона чарькоди мезе вешнят"
 #: configs/language_specific_rules/templates/valks/about.template:18
 #, fuzzy
 msgid "(... And is mobile-friendly!)"
-msgstr "сотовойнень шожда"
+msgstr "... Ды седе башка сотовойнень шожда"
 
 #: configs/language_specific_rules/templates/about.template:19
 #: configs/language_specific_rules/templates/baakoeh/about.template:20
@@ -289,7 +288,7 @@ msgstr "сотовойнень шожда"
 #: configs/language_specific_rules/templates/vada/about.template:22
 #: configs/language_specific_rules/templates/valks/about.template:22
 msgid "Free"
-msgstr ""
+msgstr "Весенень панжадо"
 
 #: configs/language_specific_rules/templates/about.template:20
 #: configs/language_specific_rules/templates/baakoeh/about.template:21
@@ -307,7 +306,11 @@ msgid ""
 "                    concerns minority languages should be free. Here\n"
 "                    you'll find free dictionaries, and other analytical\n"
 "                    tools."
-msgstr ""
+msgstr "Весенень (эли мертяно, малав весе), конась\n"
+"      	     	  сюлмазь вишка кельтнень марто эряволь"
+"		  улемс олякстомтозь-панжадо. Тестэ муят"
+"		  валкст ды лият кедьёнкст-мезть, конат"
+"		  весенень панжадот."
 
 #: configs/language_specific_rules/templates/about.template:26
 #: configs/language_specific_rules/templates/baakoeh/about.template:27
