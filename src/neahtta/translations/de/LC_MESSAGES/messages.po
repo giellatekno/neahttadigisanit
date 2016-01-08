@@ -40,7 +40,7 @@ msgstr ""
 #: configs/guusaaw.config.yaml.in:70 configs/saan.config.yaml.in:95
 #: configs/saanih.config.yaml.in:82 configs/saanih.config.yaml.in:103
 msgid "Mobile friendly"
-msgstr ""
+msgstr "Handy-Freundlich"
 
 #: configs/itwewina.config.yaml.in:2
 msgid "itwêwina"
@@ -56,7 +56,7 @@ msgstr ""
 
 #: configs/itwewina.config.yaml.in:81
 msgid "syllabics"
-msgstr ""
+msgstr "Silbenschrift"
 
 #: configs/itwewina.config.yaml.in:87
 msgid "aio āēīō"
@@ -69,23 +69,23 @@ msgstr ""
 #: configs/language_names.py:23 configs/language_names.py:24
 #: templates/more_dictionaries.html:28
 msgid "North Sámi"
-msgstr ""
+msgstr "Nordsamisch"
 
 #: configs/language_names.py:25
 msgid "North Sámi (#SoMe)"
-msgstr ""
+msgstr "Nordsamisch (#SoMe)"
 
 #: configs/language_names.py:26 configs/language_names.py:98
 msgid "English"
-msgstr ""
+msgstr "Englsich"
 
 #: configs/language_names.py:27
 msgid "Hungarian"
-msgstr ""
+msgstr "Ungarisch"
 
 #: configs/language_names.py:30 templates/more_dictionaries.html:29
 msgid "South Sámi"
-msgstr ""
+msgstr "Südsamisch"
 
 #: configs/language_names.py:33 configs/language_names.py:34
 msgid "Komi"
