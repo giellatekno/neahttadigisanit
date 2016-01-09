@@ -134,6 +134,10 @@ Dictionaries:
     korp_search_host: "http://gtweb.uit.no/u_korp"
 
   - source: udm
+    target: kpv
+    path: 'dicts/udmkpv.xml'
+
+  - source: udm
     target: fin
     path: 'dicts/udm-all.xml'
 
