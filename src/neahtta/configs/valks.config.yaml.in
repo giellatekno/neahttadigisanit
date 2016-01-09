@@ -141,6 +141,8 @@ Dictionaries:
   - source: mdf
     target: eng
     path: 'dicts/mdfeng.xml'
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/u_korp"
 
   - source: mdf
     target: fra
