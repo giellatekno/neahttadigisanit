@@ -92,7 +92,7 @@ msgstr "комиа"
 
 #: configs/language_names.py:35
 msgid "Udmurt"
-msgstr ""
+msgstr "удмурта"
 
 #: configs/language_names.py:38 templates/more_dictionaries.html:39
 msgid "Kven"
@@ -555,7 +555,7 @@ msgstr ""
 #: templates/index_search_form.html:50 templates/keyword_search_form.html:29
 #: templates/word_detail.html:92
 msgid "Search"
-msgstr ""
+msgstr "Корсьны"
 
 #: configs/language_specific_rules/templates/index_search_form.template:64
 #: configs/language_specific_rules/templates/index_search_form.template:87
@@ -570,7 +570,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:88
 #: templates/index_search_form.html:37 templates/index_search_form.html:61
 msgid "Search texts"
-msgstr ""
+msgstr "Корсьны гижӧдъясысь"
 
 #: configs/language_specific_rules/templates/notice.template:5
 #: configs/language_specific_rules/templates/sanit/notice.template:6
@@ -578,7 +578,7 @@ msgstr ""
 #: templates/mobile_nav_dictionary_list.html:61
 #: templates/more_dictionaries.html:21
 msgid "Other dictionaries"
-msgstr ""
+msgstr "Мукӧд кывкудъяс"
 
 #: configs/language_specific_rules/templates/search_info.template:3
 #: configs/language_specific_rules/templates/itwewina/search_info.template:3
@@ -609,7 +609,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/guusaaw/about.template:41
 #: configs/language_specific_rules/templates/itwewina/about.template:43
 msgid "s/he speaks Cree"
-msgstr ""
+msgstr "сійӧ сёрнитӧ криӧн"
 
 #: configs/language_specific_rules/templates/guusaaw/about.template:56
 #: configs/language_specific_rules/templates/itwewina/about.template:67
