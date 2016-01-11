@@ -206,13 +206,13 @@ Dictionaries:
 
   - source: udm
     target: fin
-    path: 'dicts/udm-all.xml'
+    path: 'dicts/udmfin.xml'
 
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     input_variants:
-      # "mobile" is important, otherwise templates and swapping won't                           
-      # work                                                                                    
+      # "mobile" is important, otherwise templates and swapping won't 
+      # work 
       - type: "standard"
       description: !gettext "Standard (<em>ӝӟӥӧӵ</em>)"
         short_name: "udm"
