@@ -107,12 +107,34 @@ Dictionaries:
     input_variants: &KOMI_VARIANTS
       - type: "standard"
         description: !gettext "Standard"
+        example: "(<em>іӧ</em>)"
         # NB: must be same as analyser name
         short_name: "kpv"
+        onscreen_keyboard: &KPV_KEYS
+          - "і"
+          - "ӧ"
+        # NB: must be same as analyser name
+      - type: "mobile"
+        description: !gettext "Social media"
+        example: !gettext "(incl. <em>ио</em>)"
+        short_name: "kpvM"
+        onscreen_keyboard: *KPV_KEYS
       - type: "molotsov"
         description: !gettext "Molotsov orthography"
         example: "(ԅ &rarr; зь)"
         short_name: "kpvS"
+        onscreen_keyboard: &KPVS_KEYS
+          - "ԁ"
+          - "ԃ"
+          - "ԅ"
+          - "ԇ"
+          - "ԉ"
+          - "ԋ"
+          - "ԍ"
+          - "ԏ"
+          - "ј"
+          - "і"
+          - "ӧ"
 
   - source: kpv
     target: fin
