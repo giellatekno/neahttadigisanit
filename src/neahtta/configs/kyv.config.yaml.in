@@ -126,6 +126,7 @@ Dictionaries:
         onscreen_keyboard: &KPVS_KEYS
           - "ԁ"
           - "ԃ"
+          - "җ"
           - "ԅ"
           - "ԇ"
           - "ԉ"
