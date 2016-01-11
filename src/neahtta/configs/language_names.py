@@ -33,6 +33,7 @@ NAMES = dict([
     ('kpv', _(u"Komi")),
     ('kpvS', _(u"Komi")),
     ('udm', _(u"Udmurt")),
+    ('udmM', _(u"Udmurt")),
 
     # sanat
     ('fkv', _(u"Kven")),

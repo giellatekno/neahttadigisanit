@@ -56,6 +56,16 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
+  udmM:
+    tool: *LOOKUP
+    file: [*OPT, '/udm/bin/analyser-dict-gt-desc-mobile.xfst']
+    inverse_file: [*OPT, '/udm/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
   kpvS:
     tool: *LOOKUP
     file: [*OPT, '/kpv/bin/analyser-dict-gt-desc-molotsov.xfst']
@@ -133,12 +143,43 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
 
+    input_variants:
+      # "mobile" is important, otherwise templates and swapping won't
+      # work
+      - type: "standard"
+        description: !gettext "Standard"
+        example: "(<em>ӝӟӥӧӵ</em>)"
+        short_name: "udm"
+        onscreen_keyboard: &UDM_KEYS
+          - "ӝ"
+          - "ӟ"
+          - "ӥ"
+          - "ӧ"
+          - "ӵ"
+        # NB: must be same as analyser name
+      - type: "mobile"
+        description: !gettext "Social media"
+        example: !gettext "(incl. <em>жзиоч</em>)"
+        short_name: "udmM"
+        onscreen_keyboard: *UDM_KEYS
+
   - source: udm
     target: kpv
     path: 'dicts/udmkpv.xml'
 
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
+    input_variants:
+      # "mobile" is important, otherwise templates and swapping won't
+      # work
+      - type: "standard"
+        description: !gettext "Standard (<em>ӝӟӥӧӵ</em>)"
+        short_name: "udm"
+        onscreen_keyboard: *UDM_KEYS
+      - type: "mobile"
+        description: !gettext "Social media (incl. <em>жзиоч</em>)"
+        short_name: "udmM"
+        onscreen_keyboard: *UDM_KEYS
 
   - source: udm
     target: fin
@@ -146,4 +187,15 @@ Dictionaries:
 
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
+    input_variants:
+      # "mobile" is important, otherwise templates and swapping won't                           
+      # work                                                                                    
+      - type: "standard"
+      description: !gettext "Standard (<em>ӝӟӥӧӵ</em>)"
+        short_name: "udm"
+        onscreen_keyboard: *UDM_KEYS
+      - type: "mobile"
+      description: !gettext "Social media (incl. <em>жзиоч</em>)"
+      short_name: "udmM"
+      onscreen_keyboard: *UDM_KEYS
 
