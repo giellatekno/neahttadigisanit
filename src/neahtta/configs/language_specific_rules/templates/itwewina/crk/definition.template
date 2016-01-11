@@ -39,14 +39,53 @@
                         <dd lang="{{ _to }}">{{ example|xpath('./xt')|first|text }}</dd>
                     {% endfor %}
                     </dl>
+
+                    {# example-audio #}
+                    {% for example in examples %}
+                    {% set has_audio = example|xpath('./audio')|length > 0 %}
+
+                    {%- if has_audio -%}
+                        {%- set audio = example|xpath('./audio/a') %}
+                        <div class="container-fluid">
+                            <div class="audio-links row-fluid">
+                                <div class="span12">
+                                {# TODO: group by 3 and repeat #}
+                                {# TODO: test on mobile #}
+
+                                    {%- for aud in audio -%}
+                                    <div class="audio-container">
+                                        {% set transcription = aud.xpath('@transcription')|first %}
+                                        {% set speaker = aud.xpath('@speaker')|first %}
+                                        {% set dialect = aud.xpath('@dialect')|first %}
+                                        <a class="audio-link" 
+                                           data-audio-player 
+                                           data-audio-target="{{ aud.xpath('@href')|first }}" target="blank" href="#">
+                                            <i class="icon-volume-up"></i>
+                                            <span class="audio-meta">
+                                                {% if dialect %}
+                                                    <span data-type="dialect">{{ dialect }}</span>{% if speaker or transcription %}, {% endif %}
+                                                {% endif %}
+                                                {% if speaker %}
+                                                    <span data-type="speaker">{{ speaker }}</span>{% if transcription %}, {% endif %}
+                                                {% endif %}
+                                                {% if transcription %}
+                                                    <span data-type="transcription">{{ transcription }}</span>
+                                                {% endif %}
+                                            </span>
+                                        </a>
+                                    </div>
+                                    {%- endfor -%}
+                                </div>
+                            </div>
+                        </div>
+                    {%- endif -%}
+                    {% endfor %}
+                    {# /example-audio #}
                 </blockquote>
             </div>
         {% endif %}
 
     {% endfor %}
-
-    {% set entry_source = lexicon_entry|xpath('@src')|first %}
-    {% if entry_source %}<span class="entry_source">{{ entry_source }}</span>{% endif %}</li>
 
 {% endfor %}
 

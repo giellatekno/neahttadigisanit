@@ -19,11 +19,15 @@
                 <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
                     {{- rendered_templates.entry_text -}}</a>
 
-            {{- rendered_templates.audio_links -}}
-
             <ul class="meanings">
                 {{- rendered_templates.definition -}}
             </ul>
+
+            {{- rendered_templates.audio_links -}}
+
+            {% set entry_source = lexicon_entry|xpath('@src')|first %}
+            {% if entry_source %}<span class="entry_source">{{ entry_source }}</span>{% endif %}</li>
+
 
         {% else %}&nbsp;{% endif %}
     </div>

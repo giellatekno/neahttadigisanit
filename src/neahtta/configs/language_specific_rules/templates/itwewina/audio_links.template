@@ -1,6 +1,12 @@
-﻿{# An audio link template for including elsewhere. Eventually this will
+{# An audio link template for including elsewhere. Eventually this will
    be enabled by default.
 
+
+   TODO: user feedback for play/download/etc
+   TODO: transcription
+   TODO: sentence audio links
+
+<i class="icon-volume-up"></i>
 #}
 
 {%- import "lexicon.macros" as macros with context -%}
@@ -9,18 +15,36 @@
 
 {%- if has_audio -%}
     {%- set audio = lexicon_entry|xpath('./lg/audio/a') %}
-    <div class="audio-links">
-        <div class="btn-group btn-group-vertical">
-        {%- for aud in audio -%}
-            {% set speaker = aud.xpath('@speaker')|first %}
-            {% set dialect = aud.xpath('@dialect')|first %}
-            <a class="btn btn-mini audio-link" data-audio-player data-audio-target="{{ aud.xpath('@href')|first }}" target="blank" href="#">
-            {% if dialect and speaker %}
-                <i class="icon-volume-up"></i>{{ dialect }}, {{ speaker }}</a>
-            {% else %}
-                <i class="icon-volume-up"></i>{{ dialect }}</a>
-            {% endif %}
-        {%- endfor -%}
+    <div class="container-fluid">
+        <div class="audio-links row-fluid">
+            <div class="span12">
+            {# TODO: group by 3 and repeat #}
+            {# TODO: test on mobile #}
+
+                {%- for aud in audio -%}
+                <div class="audio-container">
+                    {% set transcription = aud.xpath('@transcription')|first %}
+                    {% set speaker = aud.xpath('@speaker')|first %}
+                    {% set dialect = aud.xpath('@dialect')|first %}
+                    <a class="audio-link" 
+                       data-audio-player 
+                       data-audio-target="{{ aud.xpath('@href')|first }}" target="blank" href="#">
+                        <i class="icon-volume-up"></i>
+                        <span class="audio-meta">
+                            {% if dialect %}
+                                <span data-type="dialect">{{ dialect }}</span>{% if speaker or transcription %}, {% endif %}
+                            {% endif %}
+                            {% if speaker %}
+                                <span data-type="speaker">{{ speaker }}</span>{% if transcription %}, {% endif %}
+                            {% endif %}
+                            {% if transcription %}
+                                <span data-type="transcription">{{ transcription }}</span>
+                            {% endif %}
+                        </span>
+                    </a>
+                </div>
+                {%- endfor -%}
+            </div>
         </div>
     </div>
 {%- endif -%}
