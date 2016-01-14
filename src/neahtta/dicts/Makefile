@@ -556,11 +556,11 @@ itwewina-install: install_langs_fsts copy-itwewina-variants
 ##### #saantargets
 #####
 
-SAAN_LANGS_ANALYSERS      :=   sms # fin
+SAAN_LANGS_ANALYSERS      :=   sms  fin
 # --with-hfst --enable-twostep-intersect --no-recursion
 SAAN_LANGS_FLAGS          :=   
 SAAN_LANGS_LEXICA         :=   sms
-SAAN_WORDS_DICTS_LEXICA   :=   
+SAAN_WORDS_DICTS_LEXICA   :=   finsms
 
 .PHONY: saan-lexica
 saan-lexica: LEX_COMPILE_LANGS := $(SAAN_LANGS_LEXICA)

@@ -120,6 +120,10 @@ Dictionaries:
     path: 'dicts/sms-all.xml'
     input_variants: *spell_relax
 
+  - source: fin
+    target: sms
+    path: 'dicts/finsms.xml'
+
 
 
 ReaderConfig:
