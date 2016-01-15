@@ -77,6 +77,8 @@
         {% set pos_text = pos|upper|tagfilter(_from, _to) %}
     {% elif pos|upper == 'NUM' %}
         {% set pos_text = 'Num'|tagfilter(_from, _to) %}
+    {% elif pos|upper == 'A' %}
+        {% set pos_text = 'A'|tagfilter(_from, _to) %}
     {% endif %}
 
     {% macro clean_tag(tag_input) %}
