@@ -57,7 +57,7 @@
     {%- endmacro %}
 {%- endif %}
 
-{%- if pos|upper == 'N' or pos|upper == 'NUM' and pos_type != 'Prop' %}
+{%- if pos|upper == 'N' or pos|upper == 'NUM' or pos|upper == 'A' and pos_type != 'Prop' %}
 
     {% set sg_forms = paradigm|by_tagset_value("number", "Sg")|group_by_tag %}
     {% set pl_forms = paradigm|by_tagset_value("number", "Pl")|group_by_tag %}
