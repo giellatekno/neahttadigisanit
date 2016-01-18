@@ -30,7 +30,7 @@ Morphology:
     inverse_file: [*OPT, '/sms/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
-      compoundBoundary: "+Use/Circ+Cmp#"
+      compoundBoundary: "+Cmp#"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
@@ -40,7 +40,7 @@ Morphology:
     inverse_file: [*OPT, '/sms/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
-      compoundBoundary: "+Use/Circ+Cmp#"
+      compoundBoundary: "+Cmp#"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
