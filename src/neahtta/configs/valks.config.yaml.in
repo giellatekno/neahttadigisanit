@@ -37,7 +37,7 @@ Morphology:
     inverse_file: [*OPT, '/myv/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
-      compoundBoundary: "+Cmp-"
+      compoundBoundary: "+Cmp#"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
@@ -65,6 +65,16 @@ Morphology:
     tool: *LOOKUP
     file: [*OPT, '/deu/bin/analyser-dict-gt-desc.xfst']
     inverse_file: [*OPT, '/deu/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  rus:
+    tool: *LOOKUP
+    file: [*OPT, '/rus/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/rus/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -133,6 +143,10 @@ Dictionaries:
   - source: eng
     target: myv
     path: 'dicts/engmyv.xml'
+
+  - source: rus
+    target: myv
+    path: 'dicts/rusmyv.xml'
 
   - source: fin
     target: mdf
