@@ -519,10 +519,15 @@ class XFST(object):
         except:
             pass
 
-        lookup_proc = subprocess.Popen(cmd.split(' '),
-                                       stdin=subprocess.PIPE,
-                                       stdout=subprocess.PIPE,
-                                       stderr=subprocess.PIPE)
+        try:
+            lookup_proc = subprocess.Popen(cmd.split(' '),
+                                           stdin=subprocess.PIPE,
+                                           stdout=subprocess.PIPE,
+                                           stderr=subprocess.PIPE)
+        except OSError:
+            raise Exception("Error executing lookup command for this request, confirm that lookup utilities an danalyzer files are present.")
+        except Exception, e:
+            raise Exception("Unhandled exception <%s> in lookup request" % e)
 
         def kill_proc(proc=lookup_proc):
             try:
