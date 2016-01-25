@@ -64,6 +64,16 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
+  rus:
+    tool: *LOOKUP
+    file: [*OPT, '/rus/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/rus/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
 
 Languages:
   - iso: sms
@@ -137,6 +147,10 @@ Dictionaries:
   - source: nob
     target: sms
     path: 'dicts/nobsms.xml'
+
+  - source: rus
+    target: sms
+    path: 'dicts/russms.xml'
 
 
 
