@@ -1,5 +1,14 @@
+import datetime
+
+def get_time():
+    return datetime.datetime.now().replace(microsecond=0).isoformat()
+
+def get_ip(request):
+    return request.remote_addr or ''
+
 def logIndexLookups(user_input, results, from_language, to_language):
     from logging import getLogger
+    from flask import request
 
     # This is all just for logging
     success = False
@@ -19,17 +28,26 @@ def logIndexLookups(user_input, results, from_language, to_language):
     result_lemmas = ', '.join(list(result_lemmas))
     meanings = '; '.join(list(tx_set))
 
+    user_ip = ''
+
+    if request:
+        user_ip = get_ip(request)
+
     user_log = getLogger("user_log")
-    user_log.info('%s\t%s\t%s\t%s\t%s\t%s' % (user_input,
-                                            str(success),
-                                            result_lemmas,
-                                            meanings,
-                                            from_language,
-                                            to_language
-                                            ))
+    user_log.info('%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s' % (
+        user_input,
+        str(success),
+        result_lemmas,
+        meanings,
+        from_language,
+        to_language,
+        get_time(),
+        user_ip
+    ))
 
 def logSimpleLookups(user_input, results, from_language, to_language):
     from logging import getLogger
+    from flask import request
 
     # This is all just for logging
     success = False
@@ -49,12 +67,19 @@ def logSimpleLookups(user_input, results, from_language, to_language):
     result_lemmas = ', '.join(list(result_lemmas))
     meanings = '; '.join(list(tx_set))
 
+    user_ip = ''
+    if request:
+        user_ip = get_ip(request)
+
     user_log = getLogger("user_log")
-    user_log.info('%s\t%s\t%s\t%s\t%s\t%s' % (user_input,
-                                            str(success),
-                                            result_lemmas,
-                                            meanings,
-                                            from_language,
-                                            to_language
-                                            ))
+    user_log.info('%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s' % (
+        user_input,
+        str(success),
+        result_lemmas,
+        meanings,
+        from_language,
+        to_language,
+        get_time(),
+        user_ip
+    ))
 
