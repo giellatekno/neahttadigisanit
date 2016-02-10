@@ -206,7 +206,7 @@ msgstr ""
 
 #: configs/saanih.config.yaml.in:83 configs/saanih.config.yaml.in:104
 msgid "(incl. <em>aaacdnsz</em>)"
-msgstr ""
+msgstr "(ibbeerd meiddei <em>acdnsz</em>)"
 
 #: configs/sample.config.yaml.in:151 configs/sanit.config.yaml.in:122
 msgid "Social media"
@@ -214,7 +214,7 @@ msgstr ""
 
 #: configs/sample.config.yaml.in:153 configs/sanit.config.yaml.in:123
 msgid "(incl. <em>acdnstz</em>)"
-msgstr ""
+msgstr "(meiddei <em>acdnstz</em>)"
 
 #: configs/sanit.config.yaml.in:147
 msgid "Standárda (<em>áčđŋšŧž</em>)"
@@ -222,7 +222,7 @@ msgstr ""
 
 #: configs/sanit.config.yaml.in:151
 msgid "Sosiála media (maiddái <em>acdnstz</em>)"
-msgstr ""
+msgstr "Sosiála media (meiddei <em>acdnstz</em>)"
 
 #: configs/sonad.config.yaml.in:147
 msgid "mobile friendly"
@@ -269,7 +269,7 @@ msgstr "Sänikirje, mii ibbeerd, maid tun uusah Sanakirja, joka ymmärtää mit�
 #: configs/language_specific_rules/templates/vada/about.template:18
 #: configs/language_specific_rules/templates/valks/about.template:18
 msgid "(... And is mobile-friendly!)"
-msgstr "(já lii kietâpuhelimân ustevlâš... ja on kännykkä-ystävällinen)"
+msgstr "(já lii kietâpuhelimân ustevlâš...)"
 
 #: configs/language_specific_rules/templates/about.template:19
 #: configs/language_specific_rules/templates/baakoeh/about.template:20
@@ -528,11 +528,10 @@ msgid ""
 "Tromsø</a>."
 msgstr ""
 "<em> <a href=\"http://uit.no\">Taažâ arktisâš ollâopâttuv</a> "
-"tutkâmjuávkku<a "
-"href=\"http://giellatekno.uit.no/index.fin.html\">Giellatekno</a></em> on"
+"tutkâmjuávkku <a "
+"href=\"http://giellatekno.uit.no/index.fin.html\">Giellatekno</a></em> "
 " lii ráhtám taid sänikirjeohjelmijd rijjâ já ávus käldeekoodáin rahtum "
-"kielâohjelmijgijn vapaan ja avoimen lähdekoodin avulla laadittujen "
-"kieliohjelmien avulla.\"  2x avulla, tautonomi"
+"kielâohjelmijgijn\"."
 
 #: configs/language_specific_rules/templates/index_search_form.template:41
 #: configs/language_specific_rules/templates/baakoeh/index_search_form.template:41
@@ -597,7 +596,7 @@ msgstr "Uusâ teevstâin"
 #: templates/mobile_nav_dictionary_list.html:61
 #: templates/more_dictionaries.html:21
 msgid "Other dictionaries"
-msgstr "Eres sänikirjeh sá"
+msgstr "Eres sänikirjeh"
 
 #: configs/language_specific_rules/templates/search_info.template:3
 #: configs/language_specific_rules/templates/itwewina/search_info.template:3
@@ -623,7 +622,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanat/fkv/paradigm.template:173
 #: configs/language_specific_rules/templates/sanit/sme/paradigm.template:186
 msgid "Full paradigm"
-msgstr ""
+msgstr "Tievâslâš paradigma"
 
 #: configs/language_specific_rules/templates/guusaaw/about.template:41
 #: configs/language_specific_rules/templates/itwewina/about.template:43
@@ -1025,7 +1024,7 @@ msgstr ""
 #: templates/word_detail.html:101 templates/word_detail.html:142
 #: views/reader.py:220
 msgid " is a possible form of ... "
-msgstr ""
+msgstr " lii máhđulâš häämi säänist ..."
 
 #: templates/index.html:84 templates/index.html:106
 #: templates/variant_search.html:133 templates/variant_search.html:155
@@ -1059,7 +1058,7 @@ msgstr ""
 #: templates/mobile_nav_push_menu.html:41
 #: templates/mobile_nav_push_menu.html:44
 msgid "Dictionaries"
-msgstr ""
+msgstr "Sänikirjeh"
 
 #: templates/left_dictionary_list.html:17
 msgid "Escape Text-TV mode"
@@ -1070,7 +1069,7 @@ msgstr ""
 #: templates/mobile_nav_push_menu.html:63
 #: templates/mobile_nav_push_menu.html:83
 msgid "Written variant"
-msgstr ""
+msgstr "Čäällimkielâlâš versio"
 
 #: templates/left_nav_search_variants.html:14
 msgid "Search type"
@@ -1088,11 +1087,11 @@ msgstr ""
 
 #: templates/mobile_nav_push_menu.html:6
 msgid "Home"
-msgstr ""
+msgstr "Päikki"
 
 #: templates/mobile_nav_push_menu.html:10
 msgid "Plugins"
-msgstr ""
+msgstr "Colkkâl teevstâst"
 
 #: templates/mobile_nav_push_menu.html:18
 msgid "Sources"
