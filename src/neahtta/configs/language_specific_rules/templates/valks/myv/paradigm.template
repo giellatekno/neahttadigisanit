@@ -20,7 +20,7 @@
                                      |without_tagset("negation")
                                      |group_by_tag %}
 
-    {% set preterite_verbs = paradigm|by_tagset_value("tense", "Prt")
+    {% set preterite_verbs = paradigm|by_tagset_value("tense", "Prt1")
                                      |without_tagset("negation")
                                      |group_by_tag %}
 
@@ -40,7 +40,7 @@
     {# strip some parts of the tags that we don't need #}
 
     {% set prs_text      = "Prs"|tagfilter(_from, _to) %}
-    {% set prt_text      = "Prt"|tagfilter(_from, _to) %}
+    {% set prt1_text      = "Prt1"|tagfilter(_from, _to) %}
 
     {% set nonfinite_header = False %}
     {# we'll know this isn't just a normal verb with a couple negative
@@ -132,7 +132,7 @@
                 <tr>
                     <th></th>
                     <th lang="{{ _to }}">{{ prs_text }} <em>(течи)</em></th>
-                    <th lang="{{ _to }}">{{ prt_text }} <em>(исяк)</em></th>
+                    <th lang="{{ _to }}">{{ prt1_text }} <em>(исяк)</em></th>
                 </tr>
 
                 {%- for present_forms, preterite_forms in zipped_verbs -%}
