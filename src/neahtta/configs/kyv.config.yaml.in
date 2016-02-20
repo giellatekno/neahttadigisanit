@@ -222,3 +222,7 @@ Dictionaries:
       short_name: "udmM"
       onscreen_keyboard: *UDM_KEYS
 
+  - source: fin
+    target: udm
+    path: 'dicts/finudm.xml'
+
