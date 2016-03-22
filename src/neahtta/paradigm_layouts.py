@@ -11,8 +11,16 @@ paradigm_file: 'verbs-ai-ti.paradigm'
 | "3p" | Prs+3Sg | Prs+3Pl  |
 | "4"  | Prs+4Sg |          |
 
-
 """
+
+# Main TODOs:
+# TODO: Need to produce a config object very similar to ParadigmConfig that
+# can instead select the proper table for a paradigm, and then also
+# produce the rendered table.
+
+# TODO: if a paradigm can't be found, fall back to existing NDS
+# rendering process, and if something breaks, make sure that we can fall
+# back to this then too.
 
 
 import os, sys
@@ -20,13 +28,11 @@ import yaml
 
 class Value(object):
 
-    # TODO: Compute the value based on paradigms or something
-
     def __init__(self, v, table):
         self.header = False
         self.v = v.strip()
         self.table = table
-        self.null_value = '--'
+        self.null_value = self.table.options.get('layout', {}).get('no_form', '--')
 
         if self.v.startswith('"') and self.v.endswith('"'):
             self.header = True
@@ -55,7 +61,7 @@ class Null(Value):
         self.header = False
         self.v = False
         self.table = table
-        self.null_value = '--'
+        self.null_value = self.table.options.get('layout', {}).get('no_form', '--')
 
     def __repr__(self):
         return 'V(Null)'
@@ -64,6 +70,11 @@ class Null(Value):
         return self.null_value
 
 class Table(object):
+
+    # TODO: after evaluating tons of parsers for this exact type of
+    # thing, found that none of them seemed reasonable. If a good one
+    # exists, it should be possible to replace with some of this code
+    # here.
 
     @property
     def header_positions(self):
@@ -91,12 +102,13 @@ class Table(object):
         return self.lines[0]
 
     # TODO: paradigm
-    def __init__(self, _str, paradigm=False):
+    def __init__(self, _str, paradigm=False, options={}):
         self.raw = _str
         self.lines = [a.strip() for a in _str.splitlines() if a.strip()]
         self.paradigm = paradigm
 
-    # def data_rows(self):
+        self.options = options
+        self.for_paradigm = self.options.get('paradigm_file', None)
 
     def to_list(self):
         # TODO: possibly detect merged cells? if delimiter doesn't exist
@@ -135,8 +147,8 @@ class Table(object):
             rows.append(row)
         return rows
 
-def parse_table(table_string):
-    t = Table(table_string)
+def parse_table(table_string, options):
+    t = Table(table_string, options=options)
     return t
 
 def read_layout_file(fname):
@@ -210,7 +222,7 @@ def main():
     generated_paradigms = get_paradigm('sme', 'mannat')
     # print generated_paradigms
 
-    t = parse_table(data)
+    t = parse_table(data, options=opts)
 
     filled_table = t.fill_generation(generated_paradigms[0])
 
