@@ -1,15 +1,50 @@
 # -*- encoding: utf-8 -*-
 """
-layout:
-  type: "basic"
-paradigm_file: 'verbs-ai-ti.paradigm'
---
-|  #   |  "Sg"   |  "Pl"    |
-| "1p" | Prs+1Sg | Prs+1Pl  |
-| "2p" | Prs+2Sg | Prs+12Pl |
-|      |         | Prs+2pl  |
-| "3p" | Prs+3Sg | Prs+3Pl  |
-| "4"  | Prs+4Sg |          |
+Future documentation for wiki:
+
+!!! Paradigm Layouts
+
+You may also define a paradigm layout to go with the paradigm files. A quick example definition first:
+
+    name: "basic"
+    layout:
+      type: "basic"
+    morphology:
+      pos: V
+      animacy:
+        - AI
+        - TI
+    --
+    | "#"  |  "Sg"   |  "Pl"    |
+    | "1p" | Prs+1Sg | Prs+1Pl  |
+    | "2p" | Prs+2Sg | Prs+12Pl |
+    |      |         | Prs+2pl  |
+    | "3p" | Prs+3Sg | Prs+3Pl  |
+    | "4"  | Prs+4Sg |          |
+
+So far this is a custom table definition syntax. The YAML section should
+be familiar form paradigm definitions: it contains meta information
+about the paradigm, as well as a rule which must be satisfied for this
+paradigm to be found for a given word lookup and set of morphological
+analyses.
+
+Here we are applying this rule to Verbs that are marked as AI or TI as
+aniacy in the morphological analyses.
+
+The layout section is defined by using the pipe character to define
+columns. Quotes are used to mark header rows and columns, so that these
+will not be processed when forms are substituted.
+
+Next, the cells containing actual form values must be specified with a
+complete or partial tag-- use however much you need, but shorten it if
+it helps present it in a concise way.
+
+NOTE: the pipe characters must line up in order for the system to match
+all the column values.
+
+If a better table parsing package appears, this should also work as a
+drop-in replacement. I am still on the lookout, but evaluated a few and
+they didn't initially work out.
 
 """
 
