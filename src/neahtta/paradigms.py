@@ -39,6 +39,7 @@ TODO: allow user-defined global XPATH context.
 import os, sys
 import yaml
 from lxml import etree
+from paradigm_layouts import parse_table
 
 __all__ = ['ParadigmConfig']
 
@@ -291,6 +292,74 @@ class ParadigmConfig(object):
         self._app = app
         self.read_paradigm_directory()
 
+    def get_paradigm_layout(self, language, node, analyses, debug=False, return_template=False):
+        """ .. py:function:: get_paradigm(language, node, analyses)
+
+        Render a paradigm layout if one exists for language.
+
+        :param str language: The 3-character ISO for the language.
+        :param lxml node: The lxml element for the <e /> node selected from a lookup
+        :param list analyses: A list containing Lemma objects from a lookup.
+
+        :return Table: the table object that can be used to fill in with generations
+
+            table = paradigm_config.get_paradigm_layout(lang, node, analyses)
+            filled_table = t.fill_generation(generated_paradigms)
+
+        """
+        from operator import itemgetter
+
+        # Need to order possible matches by most extensive match, then
+        # return that one.
+
+        # TODO: there's also the chance that multiple analyses have
+        # their own matches too, not just multiple rules.
+
+        possible_matches = []
+
+        for paradigm_rule in self.paradigm_layout_rules.get(language, []):
+            condition = paradigm_rule.get('condition')
+            layout = paradigm_rule.get('template')
+            _, _, path = paradigm_rule.get('path').partition('language_specific_rules')
+
+            try:
+                truth, context = condition.evaluate(node, analyses)
+            except Exception, e:
+                print e
+                print 'Exception in compiling rule or evaluating.'
+                print '  ' + paradigm_rule.get('path')
+                print '  node:'
+                print node
+                print '  analyses:'
+                print analyses
+                raise e
+
+            # We have a match, so count how extensive it was.
+            if truth:
+                possible_matches.append(
+                    (len(context.keys()), context, layout, path)
+                )
+
+        # Sort by count, and pick the first
+        possible_matches = sorted(possible_matches, key=itemgetter(0), reverse=True)
+        if self.debug:
+            print >> sys.stderr, " - Possible matches: %d" % len(possible_matches)
+
+        if len(possible_matches) > 0:
+            count, context, layout, path = possible_matches[0]
+            if debug:
+                print >> sys.stderr, context
+
+            if return_template:
+                return layout, path
+            else:
+                return layout
+
+        if return_template:
+            return False, False
+        else:
+            return False
+
     def get_paradigm(self, language, node, analyses, debug=False, return_template=False):
         """ .. py:function:: get_paradigm(language, node, analyses)
 
@@ -310,7 +379,7 @@ class ParadigmConfig(object):
         # return that one.
 
         # TODO: there's also the chance that multiple analyses have
-        # their own matces too, not just multiple rules.
+        # their own matches too, not just multiple rules.
 
         possible_matches = []
 
@@ -401,6 +470,7 @@ class ParadigmConfig(object):
                                  if p in available_langs ]
 
         _lang_files = {}
+        _lang_layout_files = {}
 
         # get all the .paradigm files that belong to a language
         for lang in lang_directories:
@@ -408,6 +478,7 @@ class ParadigmConfig(object):
                                      , lang
                                      )
             _lang_paradigm_files = []
+            _lang_paradigm_layout_files = []
 
             for _p, dirs, files in os.walk(_lang_path):
                 for f in files:
@@ -416,9 +487,16 @@ class ParadigmConfig(object):
                             os.path.join(_p, f)
                         )
 
+                    if f.endswith('.layout'):
+                        _lang_paradigm_layout_files.append(
+                            os.path.join(_p, f)
+                        )
+
             _lang_files[lang] = _lang_paradigm_files
+            _lang_layout_files[lang] = _lang_paradigm_layout_files
 
         _lang_paradigms = defaultdict(list)
+        _lang_paradigm_layouts = defaultdict(list)
 
         _file_successes = []
 
@@ -430,15 +508,59 @@ class ParadigmConfig(object):
                     _lang_paradigms[lang].append(paradigm_rule)
                     _file_successes.append(' - %s: %s' % (lang, paradigm_rule.get('name')))
 
+        for lang, files in _lang_layout_files.iteritems():
+            for f in files:
+                paradigm_rule = self.read_paradigm_layout_file(jinja_env, f)
+
+                if paradigm_rule:
+                    _lang_paradigm_layouts[lang].append(paradigm_rule)
+                    _file_successes.append(' - %s: %s' % (lang, paradigm_rule.get('name')))
+
         self.paradigm_rules = _lang_paradigms
+        self.paradigm_layout_rules = _lang_paradigm_layouts
+
         print >> sys.stderr, '\n'.join(_file_successes)
 
-        return _lang_paradigms
+        return None
 
     def read_paradigm_file(self, jinja_env, path):
         with open(path, 'r') as F:
             _raw = F.read().decode('utf-8')
         return self.parse_paradigm_string(jinja_env, _raw, path)
+
+    def read_paradigm_layout_file(self, jinja_env, path):
+        with open(path, 'r') as F:
+            _raw = F.read().decode('utf-8')
+        return self.parse_paradigm_layout_string(_raw, path)
+
+    def parse_paradigm_layout_string(self, p_string, path):
+        condition_yaml, __, paradigm_string_txt = p_string.partition('--')
+
+        parsed_condition = False
+        if condition_yaml and paradigm_string_txt:
+            try:
+                condition_yaml = yaml.load(condition_yaml)
+            except Exception, e:
+                print >> sys.stderr, "\n** Problem reading paradigm rule condition at: "
+                print >> sys.stderr, e
+                print >> sys.stderr, " in:"
+                _, lx, path = path.partition('language_specific_rules')
+                print >> sys.stderr, "    " + lx + path
+                print >> sys.stderr, "\n** Could not start service."
+                sys.exit()
+
+            name = condition_yaml.get('name')
+            desc = condition_yaml.get('desc', '')
+
+            parsed_template = parse_table(paradigm_string_txt.strip(), options=condition_yaml)
+            parsed_condition = { 'condition': ParadigmRuleSet(condition_yaml, debug=self.debug)
+                               , 'template': parsed_template
+                               , 'name': name
+                               , 'description': desc
+                               , 'path': path
+                               }
+
+        return parsed_condition
 
     def parse_paradigm_string(self, jinja_env, p_string, path):
         condition_yaml, __, paradigm_string_txt = p_string.partition('--')
