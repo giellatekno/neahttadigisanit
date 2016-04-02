@@ -129,6 +129,7 @@ Languages:
   - iso: fin
   - iso: est
   - iso: lav
+    minority_lang: true
 
 
 # This also dictates the order of the dictionaries in the UI for now.
@@ -198,4 +199,13 @@ Dictionaries:
   - source: vot
     target: fin
     path: 'dicts/vot-all.xml'
+
+  # lav
+  - source: lav
+    target: fin
+    path: 'dicts/lavfin.xml'
+
+  - source: fin
+    target: lav
+    path: 'dicts/finlav.xml'
 
