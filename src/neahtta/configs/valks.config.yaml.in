@@ -148,6 +148,10 @@ Dictionaries:
     target: myv
     path: 'dicts/rusmyv.xml'
 
+  - source: eng
+    target: mdf
+    path: 'dicts/engmdf.xml'
+
   - source: fin
     target: mdf
     path: 'dicts/finmdf.xml'

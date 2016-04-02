@@ -652,7 +652,7 @@ muter-install: install_langs_fsts
 
 VALKS_LANGS_ANALYSERS      :=   fin myv mdf deu
 VALKS_LANGS_LEXICA         :=   myv mdf
-VALKS_WORDS_DICTS_LEXICA   :=   finmyv finmdf myvdeu deumyv engmyv mdfeng rusmyv
+VALKS_WORDS_DICTS_LEXICA   :=   finmyv finmdf myvdeu deumyv engmyv engmdf mdfeng rusmyv
 
 .PHONY: valks-lexica
 valks-lexica: LEX_COMPILE_LANGS := $(VALKS_LANGS_LEXICA)
