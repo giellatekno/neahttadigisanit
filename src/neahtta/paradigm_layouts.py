@@ -22,6 +22,9 @@ You may also define a paradigm layout to go with the paradigm files. A quick exa
     | "3p" | Prs+3Sg | Prs+3Pl  |
     | "4"  | Prs+4Sg |          |
 
+TODO: Alternatively the user should be able to specify a .paradigm file
+      to grab the morphology and lexicon rules.
+
 So far this is a custom table definition syntax. The YAML section should
 be familiar form paradigm definitions: it contains meta information
 about the paradigm, as well as a rule which must be satisfied for this
@@ -46,6 +49,14 @@ If a better table parsing package appears, this should also work as a
 drop-in replacement. I am still on the lookout, but evaluated a few and
 they didn't initially work out.
 
+--
+
+Ideas:
+
+ * replace the custom parsing / loading of YAML + Jinja with a Jinja
+   custom extension so that this processing is included with the normal
+   template load process
+
 """
 
 # Main TODOs:
@@ -65,6 +76,40 @@ import yaml
 
 class Value(object):
 
+    def __init__(self, cell, table, paradigm):
+        self.cell = cell
+        self.table = table
+        self.paradigm = paradigm
+        self.value = self.get_value()
+
+    def get_value(self):
+        if self.cell.header:
+            self.value_type = self.cell
+            return self.cell.v
+
+        # TODO: get tag splitter from morphology
+        v_tags = self.cell.v.split('+')
+
+        for l, tag, forms in self.paradigm:
+            # hackishly join things to check for sublists
+            # NB: may need to evaluate regexes here.
+            if '###'.join(v_tags) in '###'.join(tag):
+                self.value_type = list
+                return forms
+
+        self.value_type = self.cell
+        return self.cell
+
+    # TODO: implies a problem here, return type of get_value should be
+    # useful
+    def __repr__(self):
+        if type(self.value_type) in [Cell, Null]:
+            return 'Value(' + repr(self.value) + ')'
+        else:
+            return 'Value(' + repr(self.value) + ')'
+
+class Cell(object):
+
     def __init__(self, v, table):
         self.header = False
         self.v = v.strip()
@@ -75,24 +120,24 @@ class Value(object):
             self.header = True
 
     def __repr__(self):
-        return 'V(' + self.v + ')'
+        return 'Cell(' + self.v + ')'
 
-    def get_value(self, paradigm):
-        if self.header:
-            return self.v
+    # def get_value(self, paradigm):
+    #     if self.header:
+    #         return self.v
 
-        # TODO: get tag splitter from morphology
-        v_tags = self.v.split('+')
+    #     # TODO: get tag splitter from morphology
+    #     v_tags = self.v.split('+')
 
-        for l, tag, forms in paradigm:
-            # hackishly join things to check for sublists
-            # NB: may need to evaluate regexes here.
-            if '###'.join(v_tags) in '###'.join(tag):
-                return forms
+    #     for l, tag, forms in paradigm:
+    #         # hackishly join things to check for sublists
+    #         # NB: may need to evaluate regexes here.
+    #         if '###'.join(v_tags) in '###'.join(tag):
+    #             return forms
 
-        return self.null_value
+    #     return self.null_value
 
-class Null(Value):
+class Null(Cell):
 
     def __init__(self, table):
         self.header = False
@@ -105,6 +150,36 @@ class Null(Value):
 
     def get_value(self, paradigm):
         return self.null_value
+
+class ParadigmTable(object):
+    """ An instance of a Table prepared for a particular word's
+        inflectional paradigm. Avoids a Table being reused and
+        potentially filled with old values.
+    """
+
+    def __init__(self, table, paradigm):
+        self.table = table
+        self.paradigm = paradigm
+
+    def fill_generation(self):
+        """ For a set of generated forms, return a list of lists
+            containing generated forms within the parsed structure.
+
+            NB: generated data is in this structure:
+                [("lemma", ['Tag1', 'Tag2', 'Tag3'], ['fullform1', 'fullform2']), etc ...]
+        """
+
+        as_list = self.table.to_list()
+
+        rows = []
+        for r in as_list:
+            row = []
+            for c in r:
+                # cv = c.get_value(self.paradigm)
+                v = Value(c, self.table, self.paradigm)
+                row.append(v)
+            rows.append(row)
+        return rows
 
 class Table(object):
 
@@ -139,13 +214,16 @@ class Table(object):
         return self.lines[0]
 
     # TODO: paradigm
-    def __init__(self, _str, paradigm=False, options={}):
+    def __init__(self, _str, options={}):
         self.raw = _str
         self.lines = [a.strip() for a in _str.splitlines() if a.strip()]
-        self.paradigm = paradigm
+        # self.paradigm = paradigm
 
         self.options = options
-        self.for_paradigm = self.options.get('paradigm_file', None)
+        # self.for_paradigm = self.options.get('paradigm_file', None)
+
+    def for_paradigm(self, paradigm):
+        return ParadigmTable(self, paradigm)
 
     def to_list(self):
         # TODO: possibly detect merged cells? if delimiter doesn't exist
@@ -159,29 +237,10 @@ class Table(object):
             for (a, b) in cs:
                 _v = row[a+1:b-1]
                 if _v.strip():
-                    vals.append(Value(_v, table=self))
+                    vals.append(Cell(_v, table=self))
                 else:
                     vals.append(Null(table=self))
             rows.append(vals)
-        return rows
-
-    def fill_generation(self, paradigm):
-        """ For a set of generated forms, return a list of lists
-            containing generated forms within the parsed structure.
-
-            NB: generated data is in this structure:
-                [("lemma", ['Tag1', 'Tag2', 'Tag3'], ['fullform1', 'fullform2']), etc ...]
-        """
-
-        as_list = self.to_list()
-
-        rows = []
-        for r in as_list:
-            row = []
-            for c in r:
-                cv = c.get_value(paradigm)
-                row.append(cv)
-            rows.append(row)
         return rows
 
 def parse_table(table_string, options):
@@ -282,10 +341,16 @@ def main():
     # opts, data = read_layout_file(fname)
 
     generated_paradigms = get_layout('sme', 'mannat')
-    print generated_paradigms
+    # print generated_paradigms
 
     for layout, paradigm in generated_paradigms:
-        print layout.fill_generation(paradigm)
+        rows = layout.for_paradigm(paradigm).fill_generation()
+        for r in rows:
+            for value in r:
+                if value.cell.header:
+                    print '**' + value.value + '**'
+                else:
+                    print ', '.join(value.value)
 
 
     # print generated_paradigms
