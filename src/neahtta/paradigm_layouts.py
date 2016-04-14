@@ -260,56 +260,6 @@ def read_layout_file(fname):
     return (options, data)
 
 
-def get_paradigm(lang, lemma):
-    """ Function for testing
-    """
-
-    # from neahtta import app
-
-    ps = []
-
-
-    # with app.app_context():
-
-    #     parads = app.morpholexicon.paradigms
-    #     morph = app.config.morphologies.get(lang, False)
-
-    #     lookups = app.morpholexicon.lookup(lemma, source_lang=lang, target_lang='nob')
-
-    #     for node, analyses in lookups:
-    #         pp, pt = parads.get_paradigm(lang, node, analyses, return_template=True)
-    #         form_tags = [_t.split('+')[1::] for _t in pp.splitlines()]
-    #         _generated, _, _ = morph.generate(lemma, form_tags, node, return_raw_data=True)
-
-    #         ps.append(_generated)
-
-    # output from generation
-    ps = [[
-        (u'mannat', [u'V', u'Ind', u'Prs', u'Sg1'], [u'(mun) manan']),
-        (u'mannat', [u'V', u'Ind', u'Prs', u'Sg2'], [u'(don) manat']),
-        (u'mannat', [u'V', u'Ind', u'Prs', u'Sg3'], [u'(son) mann\xe1']),
-        (u'mannat', [u'V', u'Ind', u'Prs', u'Du1'], [u'(moai) manne']),
-        (u'mannat', [u'V', u'Ind', u'Prs', u'Du2'], [u'(doai) mannabeahtti']),
-        (u'mannat', [u'V', u'Ind', u'Prs', u'Du3'], [u'(soai) mannaba']),
-        (u'mannat', [u'V', u'Ind', u'Prs', u'Pl1'], [u'(mii) mannat']),
-        (u'mannat', [u'V', u'Ind', u'Prs', u'Pl2'], [u'(dii) mannabehtet']),
-        (u'mannat', [u'V', u'Ind', u'Prs', u'Pl3'], [u'(sii) mannet']),
-        (u'mannat', [u'V', u'Ind', u'Prt', u'Sg1'], [u'mannen']),
-        (u'mannat', [u'V', u'Ind', u'Prt', u'Sg2'], [u'mannet']),
-        (u'mannat', [u'V', u'Ind', u'Prt', u'Sg3'], [u'manai']),
-        (u'mannat', [u'V', u'Ind', u'Prt', u'Du1'], [u'manaime']),
-        (u'mannat', [u'V', u'Ind', u'Prt', u'Du2'], [u'manaide']),
-        (u'mannat', [u'V', u'Ind', u'Prt', u'Du3'], [u'manaiga']),
-        (u'mannat', [u'V', u'Ind', u'Prt', u'Pl1'], [u'manaimet']),
-        (u'mannat', [u'V', u'Ind', u'Prt', u'Pl2'], [u'manaidet']),
-        (u'mannat', [u'V', u'Ind', u'Prt', u'Pl3'], [u'manne']),
-        (u'mannat', [u'V', u'Ind', u'Prs', u'ConNeg'], [u'(odne in) mana']),
-        (u'mannat', [u'V', u'Ind', u'Prt', u'ConNeg'], [u'(ikte in) mannan']),
-        (u'mannat', [u'V', u'PrfPrc'], [u'(lean) mannan'])
-    ]]
-
-    return ps
-
 def get_layout(lang, lemma):
     """ A test function for developing this, return (parsed_layout, generated_paradigm)
     """
@@ -324,13 +274,14 @@ def get_layout(lang, lemma):
         lookups = app.morpholexicon.lookup(lemma, source_lang=lang, target_lang='nob')
 
         for node, analyses in lookups:
-            pp, pt = parads.get_paradigm(lang, node, analyses, return_template=True)
-            lp, lt = parads.get_paradigm_layout(lang, node, analyses, return_template=True)
+            if (node is not None) and analyses:
+                pp, pt = parads.get_paradigm(lang, node, analyses, return_template=True)
+                lp, lt = parads.get_paradigm_layout(lang, node, analyses, return_template=True)
 
-            form_tags = [_t.split('+')[1::] for _t in pp.splitlines()]
-            _generated, _, _ = morph.generate(lemma, form_tags, node, return_raw_data=True)
+                form_tags = [_t.split('+')[1::] for _t in pp.splitlines()]
+                _generated, _, _ = morph.generate(lemma, form_tags, node, return_raw_data=True)
 
-            ps.append((lp, _generated))
+                ps.append((lp, _generated))
 
     return ps
 
@@ -340,18 +291,21 @@ def main():
 
     # opts, data = read_layout_file(fname)
 
-    generated_paradigms = get_layout('sme', 'mannat')
+    generated_paradigms = get_layout('sme', 'vuovdit')
     # print generated_paradigms
 
     for layout, paradigm in generated_paradigms:
-        rows = layout.for_paradigm(paradigm).fill_generation()
-        for r in rows:
-            for value in r:
-                if value.cell.header:
-                    print '**' + value.value + '**'
-                else:
-                    print ', '.join(value.value)
+        if layout:
+            rows = layout.for_paradigm(paradigm).fill_generation()
+            for r in rows:
+                for value in r:
+                    if value.cell.header:
+                        print '**' + value.value + '**'
+                    else:
+                        print ', '.join(value.value)
 
+        else:
+            print "no layout found"
 
     # print generated_paradigms
 
