@@ -1,0 +1,18 @@
+
+{% if layout %}
+    <table class="miniparadigm user-defined-layout">
+        {%- for row in layout -%}
+            <tr>
+            {% for column in row %}
+                {% if column.cell.header %}
+                    <th>{{ column.value }}</th>
+                {% else %}
+                    <td>{{ column.value }}</td>
+                {% endif %}
+            {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+
+{# vim: set ts=4 sw=4 tw=72 syntax=jinja : #}
