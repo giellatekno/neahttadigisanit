@@ -100,6 +100,13 @@ class Config(Config):
                                'config file %s, in ApplicationSettings.' %
                                self.filename)
 
+    @property
+    def paradigm_layouts(self):
+        _p = self.yaml.get('ApplicationSettings', {})\
+                      .get('paradigm_layouts', False)
+        if _p:
+            return _p
+
     # @property
     # def onscreen_keyboard(self):
     #     _p = self.yaml.get('ApplicationSettings', {})\
@@ -150,6 +157,67 @@ class Config(Config):
     def admins(self):
         _p = self.yaml.get('ApplicationSettings', {})\
                       .get('admins_to_email', False)
+        if _p:
+            return _p
+        else:
+            return []
+
+    @property
+    def geoip_logging_enabled(self):
+        """ Return our best guess assuming someone has followed the
+        makefile otherwise allow override.
+        """
+        _p = self.yaml.get('ApplicationSettings', {})\
+                      .get('GEOIP_LOGGING_ENABLED', False)
+
+        if _p:
+            try:
+                with open(self.geoip_library_path, 'r') as F:
+                    pass
+            except IOError:
+                print >> sys.stderr, "Could not find GeoIP library, but geoip logging is enabled."
+                print >> sys.stderr, "Check that it is compiled at the following path:"
+                print >> sys.stderr, ""
+                print >> sys.stderr, "     %s" % self.geoip_library_path
+                print >> sys.stderr, ""
+                print >> sys.stderr, "  ... or supply a different path with ApplicationSettings/GEOIP_LIBRARY_PATH"
+                print >> sys.stderr, "  setting in relevant project .yaml file."
+                print >> sys.stderr, ""
+                print >> sys.stderr, "See also: geo/README.md"
+                print >> sys.stderr, ""
+                sys.exit()
+        if _p:
+            return _p
+        else:
+            return []
+
+    @property
+    def geoip_path(self):
+        """ Return our best guess assuming someone has followed the
+        makefile otherwise allow override.
+        """
+        default = os.path.join(
+            os.getcwd(),
+            'geo/data'
+        )
+        _p = self.yaml.get('ApplicationSettings', {})\
+                      .get('GEOIP_PATH', default)
+        if _p:
+            return _p
+        else:
+            return []
+
+    @property
+    def geoip_library_path(self):
+        """ Return our best guess assuming someone has followed the
+        makefile otherwise allow override.
+        """
+        default = os.path.join(
+            os.getcwd(),
+            'geoip/lib/libGeoIP.so'
+        )
+        _p = self.yaml.get('ApplicationSettings', {})\
+                      .get('GEOIP_LIBRARY_PATH', default)
         if _p:
             return _p
         else:
