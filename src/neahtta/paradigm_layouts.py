@@ -25,6 +25,23 @@ You may also define a paradigm layout to go with the paradigm files. A quick exa
 TODO: Alternatively the user should be able to specify a .paradigm file
       to grab the morphology and lexicon rules.
 
+TODO: allow definition of match shortcuts
+
+    forms:
+      1st_sg:
+        - "Prs+1Sg"
+        - "Prt+1Sg"
+      etc...
+
+    so that match string in table can then be `1st_sg`
+
+TODO: allow internationalization on header values
+
+    _"Sg"
+
+
+TODO: combined cells
+
 So far this is a custom table definition syntax. The YAML section should
 be familiar form paradigm definitions: it contains meta information
 about the paradigm, as well as a rule which must be satisfied for this
@@ -81,11 +98,15 @@ class Value(object):
         self.table = table
         self.paradigm = paradigm
         self.value = self.get_value()
+        self.null_value = self.table.options.get('layout', {}).get('no_form', '')
 
     def get_value(self):
         if self.cell.header:
             self.value_type = self.cell
             return self.cell.v
+
+        if not self.cell.v:
+            return self.cell.null_value
 
         for generated_form in self.paradigm:
             # l, tag, forms 
@@ -114,10 +135,11 @@ class Cell(object):
         self.header = False
         self.v = v.strip()
         self.table = table
-        self.null_value = self.table.options.get('layout', {}).get('no_form', '--')
+        self.null_value = self.table.options.get('layout', {}).get('no_form', '')
 
         if self.v.startswith('"') and self.v.endswith('"'):
             self.header = True
+            self.v = self.v[1:len(self.v)-1]
 
     def __repr__(self):
         return 'Cell(' + self.v + ')'
@@ -128,7 +150,7 @@ class Null(Cell):
         self.header = False
         self.v = False
         self.table = table
-        self.null_value = self.table.options.get('layout', {}).get('no_form', '--')
+        self.null_value = self.table.options.get('layout', {}).get('no_form', '')
 
     def __repr__(self):
         return 'V(Null)'
@@ -221,7 +243,7 @@ class Table(object):
             vals = []
             for (a, b) in cs:
                 _v = row[a+1:b-1]
-                if _v.strip():
+                if len(_v.strip()) > 0:
                     vals.append(Cell(_v, table=self))
                 else:
                     vals.append(Null(table=self))
