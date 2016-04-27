@@ -276,6 +276,9 @@ class SearchResult(object):
 
     @property
     def formatted_results_sorted(self):
+        """ Formatted results sorted by entry_sorter_key
+        """
+        print 'formatted_results_sorted'
         return sorted( self.formatted_results
                      , key=self.entry_sorter_key
                      )
@@ -303,6 +306,15 @@ class SearchResult(object):
         return pickle_result
 
     def generate_paradigm_from_formatted(self, formatted_results, morph_analyses):
+        """ If a paradigm is to be generated for our results, we handle
+        that here. Simply iterate through formatted_results, and add
+        another key, which will be `paradigm` and `layout` for each
+        entry.
+
+        The goal may be for this to go away, because entry formatters
+        are mostly superceded by the template system
+        """
+        print 'generate_paradigm_from_formatted'
 
         morph = current_app.config.morphologies.get(g._from, False)
         mlex = current_app.morpholexicon
@@ -331,6 +343,7 @@ class SearchResult(object):
                 raw_in = '...'
 
             r['paradigm'] = _generated
+
             generated_and_formatted.append(r)
 
         return generated_and_formatted
@@ -354,7 +367,7 @@ class SearchResult(object):
                 'template_path': paradigm_template,
             }
             form_tags = [_t.split('+')[1::] for _t in paradigm_from_file.splitlines()]
-            # TODO: bool not iterable
+
             _generated, _stdout, _stderr = morph.generate_to_objs(lemma, form_tags, node, extra_log_info=extra_log_info, return_raw_data=True)
         else:
             # For pregenerated things
@@ -368,6 +381,7 @@ class SearchResult(object):
     def formatted_results(self):
         if hasattr(self, '_formatted_results'):
             return self._formatted_results
+        print 'formatted_results'
 
         self._formatted_results = []
 
@@ -411,6 +425,7 @@ class SearchResult(object):
     def entries_and_tags_and_paradigms(self):
         if hasattr(self, '_entries_and_tags_and_paradigms'):
             return self._entries_and_tags_and_paradigms
+        print 'iterating entries_and_tags_and_paradigms'
 
         self._entries_and_tags_and_paradigms = []
 
@@ -420,23 +435,30 @@ class SearchResult(object):
 
             if result is not None:
 
-                # if self.entry_filterer:
-                #     _formatted = self.entry_filterer(_formatted)
-
                 paradigm = False
+                has_layout = False
 
                 if self.generate:
                     paradigm = self.generate_paradigm(result, morph_analyses)
                 else:
                     paradigm = []
 
+                if current_app.config.paradigm_layouts and paradigm:
+                    mlex = current_app.morpholexicon
+                    layout, _template_file = mlex.paradigms.get_paradigm_layout(g._from, result,
+                                                                                morph_analyses,
+                                                                                return_template=True)
+                    if layout:
+                        has_layout = layout.for_paradigm(paradigm).fill_generation()
+
                 self._entries_and_tags_and_paradigms.append((result,
                                                              morph_analyses,
-                                                             paradigm))
+                                                             paradigm,
+                                                             has_layout))
 
         # TODO: custom alphabetical order.
 
-        def sort_key((lex, morph, p)):
+        def sort_key((lex, morph, p, l)):
             _str_norm = 'string(normalize-space(%s))'
             lemma = lex.xpath(_str_norm % './lg/l/text()')
             return lemma
@@ -508,6 +530,8 @@ class SearcherMixin(object):
     """
 
     def do_search_to_obj(self, lookup_value, **kwargs):
+        """ Run the search, and provide a result object.
+        """
 
         successful_entry_exists = False
 
@@ -566,7 +590,6 @@ class SearcherMixin(object):
 
             return result_counts
 
-
         if current_app.config.polyglot_lookup:
             others = count_others()
         else:
@@ -604,7 +627,10 @@ class SearcherMixin(object):
             # 'analyses': search_result_obj.analyses
         }]
 
-        logIndexLookups(search_result_obj.search_term, template_results, g._from, g._to)
+        logIndexLookups(search_result_obj.search_term,
+                        template_results,
+                        g._from,
+                        g._to,)
 
         show_info = False
 
@@ -692,19 +718,21 @@ class SearcherMixin(object):
             except:
                 return False
 
-        for lz, az, paradigm in search_result_obj.entries_and_tags_and_paradigms:
+        for lz, az, paradigm, has_layout in search_result_obj.entries_and_tags_and_paradigms:
             if lz is not None:
 
                 tplkwargs = { 'lexicon_entry': lz
                             , 'analyses': az
 
                             , 'paradigm': paradigm
+                            , 'layout': has_layout
                             , 'user_input': search_result_obj.search_term
                             , 'word_searches': template_results
                             , 'errors': False
                             , 'show_info': show_info
                             , 'successful_entry_exists': search_result_obj.successful_entry_exists
                             }
+
                 tplkwargs.update(**default_context_kwargs)
 
                 # Process all the context processors
@@ -971,13 +999,13 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
         return 'word_detail.html'
 
     def entry_filterer(self, entries, **kwargs):
-        """ Runs on formatted result from DetailedFormat thing
+        """ Runs on formatted result from DetailedFormat thing.
 
-            TODO: will need to reconstruct this for new style views
-            because the formatters are going away
+            Determine the ways that entries will be filtered, and run
+            them in sequence.
         """
 
-        # Post-analysis filter arguments
+        # Post-analysis filter arguments, defined in query parameters
         pos_filter = request.args.get('pos_filter', False)
         lemma_match = request.args.get('lemma_match', False)
         e_node = request.args.get('e_node', False)
@@ -1112,6 +1140,7 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
             self.search_to_context(user_input,
                                             detailed=True,
                                             **search_kwargs)
+
         has_analyses = search_result_context.get('successful_entry_exists')
 
         # TODO: cache search result here

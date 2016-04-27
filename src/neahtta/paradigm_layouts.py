@@ -87,15 +87,15 @@ class Value(object):
             self.value_type = self.cell
             return self.cell.v
 
-        # TODO: get tag splitter from morphology
-        v_tags = self.cell.v.split('+')
-
-        for l, tag, forms in self.paradigm:
+        for generated_form in self.paradigm:
+            # l, tag, forms 
+            tag = generated_form.tag.parts
+            v_tags = generated_form.tool.splitAnalysis(self.cell.v)
             # hackishly join things to check for sublists
             # NB: may need to evaluate regexes here.
             if '###'.join(v_tags) in '###'.join(tag):
                 self.value_type = list
-                return forms
+                return generated_form.form
 
         self.value_type = self.cell
         return self.cell
@@ -121,21 +121,6 @@ class Cell(object):
 
     def __repr__(self):
         return 'Cell(' + self.v + ')'
-
-    # def get_value(self, paradigm):
-    #     if self.header:
-    #         return self.v
-
-    #     # TODO: get tag splitter from morphology
-    #     v_tags = self.v.split('+')
-
-    #     for l, tag, forms in paradigm:
-    #         # hackishly join things to check for sublists
-    #         # NB: may need to evaluate regexes here.
-    #         if '###'.join(v_tags) in '###'.join(tag):
-    #             return forms
-
-    #     return self.null_value
 
 class Null(Cell):
 
@@ -279,7 +264,7 @@ def get_layout(lang, lemma):
                 lp, lt = parads.get_paradigm_layout(lang, node, analyses, return_template=True)
 
                 form_tags = [_t.split('+')[1::] for _t in pp.splitlines()]
-                _generated, _, _ = morph.generate(lemma, form_tags, node, return_raw_data=True)
+                _generated, _, _ = morph.generate_to_objs(lemma, form_tags, node, return_raw_data=True)
 
                 ps.append((lp, _generated))
 

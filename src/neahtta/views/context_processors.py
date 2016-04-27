@@ -122,6 +122,10 @@ def define_variant_dictionaries():
     return dict(variant_dictionaries=current_app.config.variant_dictionaries)
 
 @blueprint.context_processor
+def current_app_config():
+    return dict(current_app_config=current_app.config)
+
+@blueprint.context_processor
 def detect_mobile_variables():
     # mobile test for most common browsers
     mobile = False
