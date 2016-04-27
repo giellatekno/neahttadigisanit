@@ -115,10 +115,6 @@ class LexRule(object):
 
         return truth, context
 
-# A collection for tracking compiled xpath rules, with a key of the
-# string
-xpath_cache = {}
-
 # TODO: read from user defined file elsewhere
 DEFAULT_RULES = {
     'lemma': ".//l/text()",
@@ -130,18 +126,14 @@ class LexiconRuleSet(object):
 
     def __init__(self, lex_rules={}):
         self.comps = []
+        self.lex_rules = lex_rules
         self.xpath = lex_rules.get('XPATH', {})
         self.xpath.update(DEFAULT_RULES)
         self.xpath_contexts = {}
 
         _str_norm = 'string(normalize-space(%s))'
         for k, v in self.xpath.iteritems():
-
-            if k not in xpath_cache:
-                xpath_v = _str_norm % v
-                xpath_cache[k] = etree.XPath(xpath_v)
-
-            self.xpath_contexts[k] = xpath_cache.get(k)
+            self.xpath_contexts[k] = etree.XPath(_str_norm % v)
 
         for k, v in lex_rules.iteritems():
 
@@ -216,6 +208,10 @@ class ParadigmRuleSet(object):
     paradigm file. It provides a way of turning the rule definition into
     an instance that can evaluate lexicon nodes and analyses. """
 
+    # def __repr__(self):
+    #     print self.rule_def
+    #     return super(ParadigmRuleSet, self).__repr__()
+
     def __init__(self, rule_def, debug=False):
         """ .. py:function:: __init__(self, rule_def)
 
@@ -227,6 +223,8 @@ class ParadigmRuleSet(object):
         """
 
         self.debug = debug
+
+        self.rule_def = rule_def
 
         lex = rule_def.get('lexicon', False)
         morph = rule_def.get('morphology', )
@@ -257,7 +255,7 @@ class ParadigmRuleSet(object):
             lex_rule = LexiconRuleSet()
         self.comps.append(lex_rule)
 
-    def evaluate(self, node, analyses):
+    def evaluate(self, node, analyses, debug=False):
         """ Run all the comparators, and collect the context.
             Returns a tuple (Truth, Context); Context is a dict
         """
@@ -323,7 +321,10 @@ class ParadigmConfig(object):
             _, _, path = paradigm_rule.get('path').partition('language_specific_rules')
 
             try:
-                truth, context = condition.evaluate(node, analyses)
+                truth, context = condition.evaluate(node, analyses, debug=debug)
+                if debug:
+                    print >> sys.stderr, truth
+                    print >> sys.stderr, context
             except Exception, e:
                 print e
                 print 'Exception in compiling rule or evaluating.'
@@ -342,13 +343,14 @@ class ParadigmConfig(object):
 
         # Sort by count, and pick the first
         possible_matches = sorted(possible_matches, key=itemgetter(0), reverse=True)
-        if self.debug:
+        if debug:
             print >> sys.stderr, " - Possible matches: %d" % len(possible_matches)
 
         if len(possible_matches) > 0:
             count, context, layout, path = possible_matches[0]
             if debug:
                 print >> sys.stderr, context
+                print >> sys.stderr, path
 
             if return_template:
                 return layout, path
@@ -514,7 +516,7 @@ class ParadigmConfig(object):
 
                 if paradigm_rule:
                     _lang_paradigm_layouts[lang].append(paradigm_rule)
-                    _file_successes.append(' - %s: %s' % (lang, paradigm_rule.get('name')))
+                    _file_successes.append(' - LAYOUT %s: %s' % (lang, paradigm_rule.get('name')))
 
         self.paradigm_rules = _lang_paradigms
         self.paradigm_layout_rules = _lang_paradigm_layouts
