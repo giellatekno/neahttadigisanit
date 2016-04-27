@@ -17,10 +17,14 @@
     <div class="span8 lexeme">
         {% if lexicon_entry|count > 0 %}
             <div class="pull-right hidden-phone floatingparadigm">
-                {% if current_pair_settings.asynchronous_paradigms %}
-                    {{- rendered_templates.asynchronous_paradigm -}}
+                {% if current_app_config.paradigm_layouts and layout %}
+                    {{- rendered_templates.paradigm_layouts -}}
                 {% else %}
-                    {{- rendered_templates.paradigm -}}
+                    {% if current_pair_settings.asynchronous_paradigms %}
+                        {{- rendered_templates.asynchronous_paradigm -}}
+                    {% else %}
+                        {{- rendered_templates.paradigm -}}
+                    {% endif %}
                 {% endif %}
             </div>
             <p class="lead">

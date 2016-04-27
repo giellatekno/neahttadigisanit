@@ -441,11 +441,19 @@ class SearchResult(object):
 
                 if current_app.config.paradigm_layouts and paradigm:
                     mlex = current_app.morpholexicon
-                    layout, _template_file = mlex.paradigms.get_paradigm_layout(g._from, result,
-                                                                                morph_analyses,
-                                                                                return_template=True)
-                    if layout:
-                        has_layout = layout.for_paradigm(paradigm).fill_generation()
+                    layouts = \
+                        mlex.paradigms.get_paradigm_layout(g._from, result,
+                                                           morph_analyses,
+                                                           return_template=True,
+                                                           multiple=True,
+                                                           debug=True)
+                    print 'layouts'
+                    print layouts
+                    if layouts:
+                        has_layout = [l.for_paradigm(paradigm).fill_generation() for (l, _) in layouts if l]
+                        if len(has_layout) == 0:
+                            has_layout = False
+                        print has_layout
 
                 self._entries_and_tags_and_paradigms.append((result,
                                                              morph_analyses,

@@ -22,6 +22,9 @@ You may also define a paradigm layout to go with the paradigm files. A quick exa
     | "3p" | Prs+3Sg | Prs+3Pl  |
     | "4"  | Prs+4Sg |          |
 
+
+TODO: default paradigm type in options
+
 TODO: Alternatively the user should be able to specify a .paradigm file
       to grab the morphology and lexicon rules.
 
@@ -106,6 +109,7 @@ class Value(object):
             return self.cell.v
 
         if not self.cell.v:
+            self.value_type = self.cell
             return self.cell.null_value
 
         for generated_form in self.paradigm:
@@ -158,6 +162,12 @@ class Null(Cell):
     def get_value(self, paradigm):
         return self.null_value
 
+class FilledParadigmTable(object):
+
+    def __init__(self, paradigm_table, rows):
+        self.table = paradigm_table.table
+        self.rows = rows
+
 class ParadigmTable(object):
     """ An instance of a Table prepared for a particular word's
         inflectional paradigm. Avoids a Table being reused and
@@ -186,7 +196,7 @@ class ParadigmTable(object):
                 v = Value(c, self.table, self.paradigm)
                 row.append(v)
             rows.append(row)
-        return rows
+        return FilledParadigmTable(paradigm_table=self, rows=rows)
 
 class Table(object):
 
@@ -283,7 +293,7 @@ def get_layout(lang, lemma):
         for node, analyses in lookups:
             if (node is not None) and analyses:
                 pp, pt = parads.get_paradigm(lang, node, analyses, return_template=True)
-                lp, lt = parads.get_paradigm_layout(lang, node, analyses, return_template=True)
+                lp, lt = parads.get_paradigm_layout(lang, node, analyses, debug=True, return_template=True)
 
                 form_tags = [_t.split('+')[1::] for _t in pp.splitlines()]
                 _generated, _, _ = morph.generate_to_objs(lemma, form_tags, node, return_raw_data=True)
@@ -294,11 +304,11 @@ def get_layout(lang, lemma):
 
 def main():
 
-    fname = sys.argv[1]
+    # fname = sys.argv[1]
 
     # opts, data = read_layout_file(fname)
 
-    generated_paradigms = get_layout('sme', 'vuovdit')
+    generated_paradigms = get_layout('sme', 'arvit')
     # print generated_paradigms
 
     for layout, paradigm in generated_paradigms:

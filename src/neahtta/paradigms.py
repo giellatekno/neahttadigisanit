@@ -290,7 +290,7 @@ class ParadigmConfig(object):
         self._app = app
         self.read_paradigm_directory()
 
-    def get_paradigm_layout(self, language, node, analyses, debug=False, return_template=False):
+    def get_paradigm_layout(self, language, node, analyses, debug=False, return_template=False, multiple=False):
         """ .. py:function:: get_paradigm(language, node, analyses)
 
         Render a paradigm layout if one exists for language.
@@ -347,15 +347,26 @@ class ParadigmConfig(object):
             print >> sys.stderr, " - Possible matches: %d" % len(possible_matches)
 
         if len(possible_matches) > 0:
-            count, context, layout, path = possible_matches[0]
-            if debug:
-                print >> sys.stderr, context
-                print >> sys.stderr, path
-
-            if return_template:
-                return layout, path
+            if multiple:
+                _matches = []
+                for _count, _context, _layout, _path in possible_matches:
+                    if return_template:
+                        _matches.append((_layout, _path))
+                    else:
+                        _matches.append(_layout)
+                return _matches
             else:
-                return layout
+                count, context, layout, path = possible_matches[0]
+                if debug:
+                    print >> sys.stderr, context
+                    print >> sys.stderr, path
+                if return_template:
+                    return layout, path
+                else:
+                    return layout
+
+        if multiple:
+            return False
 
         if return_template:
             return False, False
