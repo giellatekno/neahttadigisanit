@@ -278,7 +278,6 @@ class SearchResult(object):
     def formatted_results_sorted(self):
         """ Formatted results sorted by entry_sorter_key
         """
-        print 'formatted_results_sorted'
         return sorted( self.formatted_results
                      , key=self.entry_sorter_key
                      )
@@ -314,7 +313,6 @@ class SearchResult(object):
         The goal may be for this to go away, because entry formatters
         are mostly superceded by the template system
         """
-        print 'generate_paradigm_from_formatted'
 
         morph = current_app.config.morphologies.get(g._from, False)
         mlex = current_app.morpholexicon
@@ -381,7 +379,6 @@ class SearchResult(object):
     def formatted_results(self):
         if hasattr(self, '_formatted_results'):
             return self._formatted_results
-        print 'formatted_results'
 
         self._formatted_results = []
 
@@ -425,7 +422,6 @@ class SearchResult(object):
     def entries_and_tags_and_paradigms(self):
         if hasattr(self, '_entries_and_tags_and_paradigms'):
             return self._entries_and_tags_and_paradigms
-        print 'iterating entries_and_tags_and_paradigms'
 
         self._entries_and_tags_and_paradigms = []
 
