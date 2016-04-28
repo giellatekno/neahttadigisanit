@@ -326,8 +326,8 @@ class Table(TableParser):
 
         return ParadigmTable(self, paradigm)
 
-def parse_table(table_string, options):
+def parse_table(table_string, yaml_definition):
     """ Parse the ASCII table, with options, return a Table object.
     """
-    t = Table(table_string, options=options)
+    t = Table(table_string, options=yaml_definition)
     return t

@@ -354,6 +354,8 @@ class ParadigmConfig(object):
                         _matches.append((_layout, _path))
                     else:
                         _matches.append(_layout)
+                # TODO: sort so that 'basic' and 'standard' etc are
+                # first, then alphabetic order.
                 return _matches
             else:
                 count, context, layout, path = possible_matches[0]
@@ -521,15 +523,16 @@ class ParadigmConfig(object):
                     _lang_paradigms[lang].append(paradigm_rule)
                     _file_successes.append(' - %s: %s' % (lang, paradigm_rule.get('name')))
 
+        self.paradigm_rules = _lang_paradigms
+
         for lang, files in _lang_layout_files.iteritems():
             for f in files:
-                paradigm_rule = self.read_paradigm_layout_file(jinja_env, f)
+                paradigm_rule = self.read_paradigm_layout_file(jinja_env, f, lang)
 
                 if paradigm_rule:
                     _lang_paradigm_layouts[lang].append(paradigm_rule)
                     _file_successes.append(' - LAYOUT %s: %s' % (lang, paradigm_rule.get('name')))
 
-        self.paradigm_rules = _lang_paradigms
         self.paradigm_layout_rules = _lang_paradigm_layouts
 
         print >> sys.stderr, '\n'.join(_file_successes)
@@ -541,12 +544,12 @@ class ParadigmConfig(object):
             _raw = F.read().decode('utf-8')
         return self.parse_paradigm_string(jinja_env, _raw, path)
 
-    def read_paradigm_layout_file(self, jinja_env, path):
+    def read_paradigm_layout_file(self, jinja_env, path, lang):
         with open(path, 'r') as F:
             _raw = F.read().decode('utf-8')
-        return self.parse_paradigm_layout_string(_raw, path)
+        return self.parse_paradigm_layout_string(_raw, path, lang)
 
-    def parse_paradigm_layout_string(self, p_string, path):
+    def parse_paradigm_layout_string(self, p_string, path, lang):
         condition_yaml, __, paradigm_string_txt = p_string.partition('--')
 
         parsed_condition = False
@@ -565,7 +568,32 @@ class ParadigmConfig(object):
             name = condition_yaml.get('name')
             desc = condition_yaml.get('desc', '')
 
-            parsed_template = parse_table(paradigm_string_txt.strip(), options=condition_yaml)
+            # Check for 'paradigm', which is a reference to an existing
+            # paradigm defition; if one exists, copy the `lexicon` and
+            # `morphology` keys
+            if 'paradigm' in condition_yaml:
+                # morphology, lexicon keys only
+                paradigm_rule = condition_yaml.get('paradigm')
+                matching_p = [p for p in self.paradigm_rules[lang] if p['basename'] == paradigm_rule]
+                if len(matching_p) == 0:
+                    print >> sys.stderr, "\n** References a paradigm file (%s) that does not exist" % paradigm_rule
+                    print >> sys.stderr, e
+                    print >> sys.stderr, " in:"
+                    _, lx, path = path.partition('language_specific_rules')
+                    print >> sys.stderr, "    " + lx + path
+                    sys.exit()
+
+                # Copy from the parsed condition's rule definiton so
+                # that we can create a new ParadigmRuleSet
+                rule_def = matching_p[0].get('condition').rule_def
+
+                if rule_def.get('lexicon', False):
+                    condition_yaml['lexicon'] = rule_def.get('lexicon')
+                if rule_def.get('morphology', False):
+                    condition_yaml['morphology'] = rule_def.get('morphology')
+
+            parsed_template = parse_table(paradigm_string_txt.strip(), yaml_definition=condition_yaml)
+
             parsed_condition = { 'condition': ParadigmRuleSet(condition_yaml, debug=self.debug)
                                , 'template': parsed_template
                                , 'name': name
@@ -599,6 +627,7 @@ class ParadigmConfig(object):
                                , 'name': name
                                , 'description': desc
                                , 'path': path
+                               , 'basename': os.path.basename(path)
                                }
 
         return parsed_condition
