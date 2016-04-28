@@ -1,2 +1,5 @@
 <script type="text/javascript" src="{{url_for('static', filename='vendor/SoundManager2/script/soundmanager2-jsmin.js')}}"></script>
 <script type="text/javascript" src="{{url_for('static', filename='js/audio_links.js')}}"></script>
+{%- if current_app_config.paradigm_layouts %}
+    <script src="{{url_for('static', filename='js/bootstrap-tab.js')}}"></script>
+{% endif -%}

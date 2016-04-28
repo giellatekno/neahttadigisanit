@@ -3,5 +3,8 @@
     <script src="{{url_for('static', filename='js/underscore.min.js')}}"></script>
     <script src="{{url_for('static', filename='js/async_paradigms.js')}}"></script>
 {% endif %}
+{% if current_app_config.paradigm_layouts %}
+    <script src="{{url_for('static', filename='js/bootstrap-tab.js')}}"></script>
+{% endif %}
 
 {# vim: set ts=4 sw=4 tw=72 syntax=jinja : #}

@@ -1,26 +1,63 @@
+{# This manages paradigm layouts, which all have a table structure and
+   are more or less simple to render.
+#}
 
 {% if layout %}
-    {% if layout|length > 1 %}
-        {% for l in layout %}{{ l.table.options.layout.type }}, {% endfor %}
+    {% set multiple_types = layout|length > 1 %}
+
+    {# Construct the navigation menu when there are multiple paradigm
+       types generated for this entry. #}
+    {% if multiple_types %}
+        <ul class="nav nav-tabs">
+            {%- for l in layout %}
+
+                {%- if loop.first %}
+                    {%- set li_class = 'active' %}
+                {% else %}
+                    {%- set li_class = '' %}
+                {% endif -%}
+
+                {% set layout_type = l.table.options.layout.type %}
+
+                <li class="{{ li_class }}">
+                    <a href="#{{ layout_type }}" data-toggle="tab">
+                        {{- layout_type -}}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
     {% endif %}
 
+    <div class="tab-content">
     {% for l in layout %}
-        <table class="miniparadigm user-defined-layout {% if layout|length > 1 and l.table.options.layout.type == 'basic' %}hidden{% endif %}" 
-               data-type="{{ l.table.options.layout.type }}"
-               >
-            {%- for row in l.rows -%}
-                <tr>
-                {% for column in row %}
-                    {% if column.cell.header %}
-                        <th>{{ column.value }}</th>
-                    {% else %}
-                        <td>{{ column.value }}</td>
-                    {% endif %}
+        {# First tab is visible #}
+        {%- if loop.first %}
+            {%- set tab_class = 'tab-pane active' %}
+        {% else %}
+            {%- set tab_class = 'tab-pane' %}
+        {% endif -%}
+
+        {%- set layout_type = l.table.options.layout.type %}
+        <div class="{{ tab_class }}" id="{{ layout_type }}">
+
+            <table class="miniparadigm user-defined-layout" 
+                   data-type="{{ layout_type }}">
+                {%- for row in l.rows -%}
+                    <tr>
+                    {% for column in row %}
+                        {% if column.cell.header %}
+                            <th>{{ column.value }}</th>
+                        {% else %}
+                            <td>{{ column.value }}</td>
+                        {% endif %}
+                    {% endfor %}
+                    </tr>
                 {% endfor %}
-                </tr>
-            {% endfor %}
-        </table>
+            </table>
+
+        </div>
     {% endfor %}
+    </div>
 {% endif %}
 
 {# vim: set ts=4 sw=4 tw=72 syntax=jinja : #}

@@ -82,12 +82,12 @@ table.miniparadigm th, table.miniparadigm td {
     padding: 1px 6px;
 }
 
-table.miniparadigm tr:first-child th {
+table.miniparadigm tr th {
     text-transform: uppercase;
     font-size: 8pt;
 }
 
-table.miniparadigm tr:first-child th em {
+table.miniparadigm tr th em {
     text-transform: lowercase;
     font-size: 10pt;
     font-weight: 300;
@@ -168,8 +168,36 @@ a.korp_search.lemma_action {
 
 .audio-links {
     display: block;
-    margin-top: -1.75em;
-    margin-right: 2em;
-    float: right;
+    margin-bottom: .75em;
+}
+
+.audio-links .audio-container {
+    position: relative;
+    /* background-color: rgba(85, 153, 85, 0.51); */
+    /* border-radius: 4px; */
+    padding: 5px 2px;
+
+}
+
+.audio-links .audio-meta {
+    list-style-type: none;
+    margin-bottom: 0px;
+    margin-left: 1em;
+}
+
+.audio-links .audio-meta li {
+    font-size: 11pt;
+    text-decoration: none;
+    color: #272727;
+}
+
+.audio-links a:hover {
+    text-decoration: none;
+}
+
+.audio-links .audio-link i {
+    position: absolute;
+    top: .5em;
+    left: 0em;
 }
 

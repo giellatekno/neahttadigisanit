@@ -23,6 +23,11 @@ You may also define a paradigm layout to go with the paradigm files. A quick exa
     | "4"  | Prs+4Sg |          |
 
 
+TODO: settings on the row for when it has no generated values
+
+TODO: what to display when the table layout asks for a value that is not
+      present?
+
 TODO: default paradigm type in options
 
 TODO: Alternatively the user should be able to specify a .paradigm file
@@ -41,7 +46,6 @@ TODO: allow definition of match shortcuts
 TODO: allow internationalization on header values
 
     _"Sg"
-
 
 TODO: combined cells
 
@@ -95,13 +99,17 @@ import os, sys
 import yaml
 
 class Value(object):
+    """ The cell Value, which is calculated by the current paradigm and
+        Cell object.
+    """
 
     def __init__(self, cell, table, paradigm):
         self.cell = cell
         self.table = table
         self.paradigm = paradigm
-        self.value = self.get_value()
         self.null_value = self.table.options.get('layout', {}).get('no_form', '')
+
+        self.value = self.get_value()
 
     def get_value(self):
         if self.cell.header:
@@ -113,9 +121,9 @@ class Value(object):
             return self.cell.null_value
 
         for generated_form in self.paradigm:
-            # l, tag, forms 
             tag = generated_form.tag.parts
             v_tags = generated_form.tool.splitAnalysis(self.cell.v)
+
             # hackishly join things to check for sublists
             # NB: may need to evaluate regexes here.
             if '###'.join(v_tags) in '###'.join(tag):
@@ -134,6 +142,9 @@ class Value(object):
             return 'Value(' + repr(self.value) + ')'
 
 class Cell(object):
+    """ A table Cell, includes parser method for determining how a Value
+        should be looked up.
+    """
 
     def __init__(self, v, table):
         self.header = False
@@ -163,6 +174,8 @@ class Null(Cell):
         return self.null_value
 
 class FilledParadigmTable(object):
+    """ Convenience object for the template stuff.
+    """
 
     def __init__(self, paradigm_table, rows):
         self.table = paradigm_table.table
@@ -192,15 +205,18 @@ class ParadigmTable(object):
         for r in as_list:
             row = []
             for c in r:
-                # cv = c.get_value(self.paradigm)
                 v = Value(c, self.table, self.paradigm)
                 row.append(v)
             rows.append(row)
         return FilledParadigmTable(paradigm_table=self, rows=rows)
 
-class Table(object):
+class TableParser(object):
+    """ Methods for parsing the tables
+    """
 
-    # TODO: after evaluating tons of parsers for this exact type of
+    COLUMN_DELIM = '|'
+
+    # NB: after evaluating tons of parsers for this exact type of
     # thing, found that none of them seemed reasonable. If a good one
     # exists, it should be possible to replace with some of this code
     # here.
@@ -208,41 +224,68 @@ class Table(object):
     @property
     def header_positions(self):
         """ Return list of integers for header positions """
-        return list( (i for i, x in enumerate(self.header) if x == '|') )
+
+        if hasattr(self, '_header_positions'):
+            return self._header_positions
+
+        # Generator for indexes of column delimiter characters
+        heads = (i for i, c in enumerate(self.header)
+                   if c == self.COLUMN_DELIM)
+
+        self._header_positions = list(heads)
+        return self._header_positions
 
     @property
     def column_positions(self):
         """ Return a list of tuples of the column bounds """
-        pos = []
-        first = False
-        last = False
+
+        if hasattr(self, '_column_positions'):
+            return self._column_positions
+
+        _pos = []
+
+        first, last = False, False
         for a in self.header_positions:
             if not first:
                 first = True
                 last = a
                 continue
-            pos.append((last, a))
+            _pos.append((last, a))
             last = a
 
-        return pos
+        self._column_positions = _pos
+        return self._column_positions
 
     @property
     def header(self):
+        """ The header line
+        """
         return self.lines[0]
+
+    @property
+    def lines(self):
+        """ The lines of the table string.
+        """
+        if hasattr(self, '_lines'):
+            return self._lines
+
+        # Clean whitespace and split lines
+        ls = [a.strip() for a in self.raw.splitlines()]
+
+        # Remove null lines
+        self._lines = [l for l in ls if l]
+
+        return self._lines
 
     # TODO: paradigm
     def __init__(self, _str, options={}):
         self.raw = _str
-        self.lines = [a.strip() for a in _str.splitlines() if a.strip()]
-        # self.paradigm = paradigm
-
         self.options = options
-        # self.for_paradigm = self.options.get('paradigm_file', None)
-
-    def for_paradigm(self, paradigm):
-        return ParadigmTable(self, paradigm)
 
     def to_list(self):
+        """ Create a list of rows, containing Cell or Null objects.
+        """
+
         # TODO: possibly detect merged cells? if delimiter doesn't exist
         # at expected point, merge
 
@@ -260,77 +303,31 @@ class Table(object):
             rows.append(vals)
         return rows
 
+
+class Table(TableParser):
+    """ The paradigm table parser and parsed table representation,
+        including options.
+
+        >>> table = Table(table_string, options)
+
+    """
+
+    def for_paradigm(self, paradigm):
+        """ With a generated list of GeneratedForm objects (`paradigm`),
+            create a ParadigmTable instance
+
+            >>> instance = table.for_paradigm(paradigm)
+
+            Then fill in the generation from the paradigm, and return a
+            list of rows containing cells.
+
+            >>> rendered_layout = instance.fill_generation()
+        """
+
+        return ParadigmTable(self, paradigm)
+
 def parse_table(table_string, options):
+    """ Parse the ASCII table, with options, return a Table object.
+    """
     t = Table(table_string, options=options)
     return t
-
-def read_layout_file(fname):
-    import yaml
-
-    with open(fname, 'r') as F:
-        data = F.read()
-
-    opts, _, data = data.partition('--')
-
-    options = yaml.load(opts)
-
-    return (options, data)
-
-
-def get_layout(lang, lemma):
-    """ A test function for developing this, return (parsed_layout, generated_paradigm)
-    """
-    from neahtta import app
-
-    ps = []
-    with app.app_context():
-
-        parads = app.morpholexicon.paradigms
-        morph = app.config.morphologies.get(lang, False)
-
-        lookups = app.morpholexicon.lookup(lemma, source_lang=lang, target_lang='nob')
-
-        for node, analyses in lookups:
-            if (node is not None) and analyses:
-                pp, pt = parads.get_paradigm(lang, node, analyses, return_template=True)
-                lp, lt = parads.get_paradigm_layout(lang, node, analyses, debug=True, return_template=True)
-
-                form_tags = [_t.split('+')[1::] for _t in pp.splitlines()]
-                _generated, _, _ = morph.generate_to_objs(lemma, form_tags, node, return_raw_data=True)
-
-                ps.append((lp, _generated))
-
-    return ps
-
-def main():
-
-    # fname = sys.argv[1]
-
-    # opts, data = read_layout_file(fname)
-
-    generated_paradigms = get_layout('sme', 'arvit')
-    # print generated_paradigms
-
-    for layout, paradigm in generated_paradigms:
-        if layout:
-            rows = layout.for_paradigm(paradigm).fill_generation()
-            for r in rows:
-                for value in r:
-                    if value.cell.header:
-                        print '**' + value.value + '**'
-                    else:
-                        print ', '.join(value.value)
-
-        else:
-            print "no layout found"
-
-    # print generated_paradigms
-
-    # t = parse_table(data, options=opts)
-
-    # filled_table = t.fill_generation(generated_paradigms[0])
-
-
-
-if __name__ == "__main__":
-    sys.exit(main())
