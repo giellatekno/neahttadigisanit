@@ -11,11 +11,11 @@ morphology:
     - AI
     - TI
 --
-|                |  "Independent"   |  "Conjunct"   |
-| "1s"           | +Ind+Prs+1Sg     | +Cnj+Prs+1Sg  |
-| "2s"           | +Ind+Prs+2Sg     | +Cnj+Prs+2Sg  |
-| "3s"           | +Ind+Prs+3Sg     | +Cnj+Prs+3Sg  |
-| "1p exclusive" | +Ind+Prs+1Pl     | +Cnj+Prs+1Pl  |
-| "1p inclusive" | +Ind+Prs+12Pl    | +Cnj+Prs+12Pl |
-| "2p"           | +Ind+Prs+2Pl     | +Cnj+Prs+2Pl  |
-| "3p"           | +Ind+Prs+3Pl     | +Cnj+Prs+3Pl  |
+|                |  "Independent"   |
+| "1s"           | +Ind+Prs+1Sg     |
+| "2s"           | +Ind+Prs+2Sg     |
+| "3s"           | +Ind+Prs+3Sg     |
+| "1p exclusive" | +Ind+Prs+1Pl     |
+| "1p inclusive" | +Ind+Prs+12Pl    |
+| "2p"           | +Ind+Prs+2Pl     |
+| "3p"           | +Ind+Prs+3Pl     |
