@@ -103,11 +103,14 @@ class Value(object):
         Cell object.
     """
 
+    VALUE_SEPARATOR = ', '
+
     def __init__(self, cell, table, paradigm):
         self.cell = cell
         self.table = table
         self.paradigm = paradigm
         self.null_value = self.table.options.get('layout', {}).get('no_form', '')
+        self.VALUE_SEPARATOR = self.table.options.get('layout', {}).get('value_separator', '<br />')
 
         self.value = self.get_value()
 
@@ -120,6 +123,7 @@ class Value(object):
             self.value_type = self.cell
             return self.cell.null_value
 
+        values_list = []
         for generated_form in self.paradigm:
             tag = generated_form.tag.parts
             v_tags = generated_form.tool.splitAnalysis(self.cell.v)
@@ -128,7 +132,10 @@ class Value(object):
             # NB: may need to evaluate regexes here.
             if '###'.join(v_tags) in '###'.join(tag):
                 self.value_type = list
-                return generated_form.form
+                values_list.append(generated_form.form)
+
+        if len(values_list) > 0:
+            return self.VALUE_SEPARATOR.join(values_list)
 
         self.value_type = self.cell
         return self.cell
