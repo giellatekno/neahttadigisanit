@@ -45,11 +45,14 @@
                 {%- for row in l.rows -%}
                     <tr>
                     {% for column in row %}
+
                         {% if column.cell.header %}
-                            <th>{{ column.value }}</th>
+                            {% set cell_type = 'th' %}
                         {% else %}
-                            <td>{{ column.value }}</td>
+                            {% set cell_type = 'td' %}
                         {% endif %}
+
+                        <{{ cell_type }}>{{ column.value }}</{{ cell_type }}>
                     {% endfor %}
                     </tr>
                 {% endfor %}
