@@ -310,9 +310,6 @@ class ParadigmConfig(object):
         # Need to order possible matches by most extensive match, then
         # return that one.
 
-        # TODO: there's also the chance that multiple analyses have
-        # their own matches too, not just multiple rules.
-
         possible_matches = []
 
         for paradigm_rule in self.paradigm_layout_rules.get(language, []):
@@ -346,10 +343,28 @@ class ParadigmConfig(object):
         if debug:
             print >> sys.stderr, " - Possible matches: %d" % len(possible_matches)
 
+        def paradigm_ordering((_c, _context, _layout, _path)):
+            """ Sort by type if it exists, otherwise sort by
+            alphabetical order of filename """
+            _type = _layout.options.get('layout', {}).get('type', False)
+            if _type:
+                return _type
+            else:
+                return _path
+
+        # def paradigm_ordering_cmp(a, b):
+        #     print a
+        #     print b
+        #     if a in ['basic', 'simple']:
+        #         return 0
+        #     if b in ['basic', 'simple']:
+        #         return 0
+        #     return a > b
+
         if len(possible_matches) > 0:
             if multiple:
                 _matches = []
-                for _count, _context, _layout, _path in possible_matches:
+                for _count, _context, _layout, _path in sorted(possible_matches, key=paradigm_ordering):
                     if return_template:
                         _matches.append((_layout, _path))
                     else:
