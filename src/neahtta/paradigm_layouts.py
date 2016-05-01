@@ -4,7 +4,18 @@ Future documentation for wiki:
 
 !!! Paradigm Layouts
 
-You may also define a paradigm layout to go with the paradigm files. A quick example definition first:
+Paradigm layouts are defined in a similar way as paradigm generation:
+the file structure is one half YAML rules, and the second half defines
+the layout. These are split by a line containing only {{{--}}}. As in
+the YAML section, spacing is very important, so make sure your text
+editor is able to see this. Note also: only use spaces in the layout
+definition, tabs may result in errors in processing: confirm that your
+text editor will not convert spaces to tabs in any case.
+
+!! An example, and explanation:
+
+TODO: actual working example definition from itwêwina, as well as
+screenshots of the result.
 
     name: "basic"
     layout:
@@ -22,6 +33,127 @@ You may also define a paradigm layout to go with the paradigm files. A quick exa
     | "3p" | Prs+3Sg | Prs+3Pl  |
     | "4"  | Prs+4Sg |          |
 
+In the example above, the first half shows that the paradigm is applied
+when the morphological analyses for the entry match two tagsets: {{pos}}
+and {{animacy}}, where {{pos}} is exactly "V", and {{animacy}} is either
+"AI" or "TI". For this to work, these two tagsets must also be defined
+in the language project's tagset file. TODO: link to tagset definition.
+
+Some additional information about the layout is also defined, the
+{{name}}, and the layout type: layout type is relevant if multiple
+layouts are matched for the word and corresponding rule. Multiple
+layouts will be rendered in the entry with a tabbed navigation menu at
+the top.
+
+Next is the actual layout: here spacing is important, the spacing of all
+columns must match up, and columns are marked with the pipe character
+{{|}}. It is generally a good idea to leave a space between each pipe
+and whatever cell value follows. In addition, the columns for the
+beginning and end of the table must be defined, so that each row starts
+and begins with {{|}}, otherwise the table may not be parsed correctly.
+
+In order to have a cell span multiple columns, leave out one of the
+center pipe characters. (More examples follow).
+
+Cell values may either be a substring of a tag used in generation, or a
+string marked in quotes (and some other characters): when the value is
+processed, any form with a tag matching this substring will be inserted
+into the table, multiple matching values will be split with a line break.
+
+As a cell is defined by one line of text, cell values in the layout
+definition may not span multiple lines.
+
+!!! Layout options (YAML)
+
+!! Name, description
+
+Name and description are mostly used to render the startup log message
+as settings are read.
+
+!! layout settings
+
+type - (default: unset) - specify the type of the layout and thus its
+title in the tab menu if multiple layouts are matched. 
+
+**no_form** - default is for the defined value to pass through, if not
+generated, i.e., +Whatever+Tag), may specify a space " " for nothing,
+note that an empty string ("") will be parsed by YAML as False, so you need a space here.
+
+**value_separator** - default is a line break in html, <br />), other ideas: comma, etc.
+
+!! Morphology and lexicon rules
+
+TODO: paradigm link
+
+!! Referring to rules in other files
+
+Instead of defining a morphology and lexicon rule for matching, you can
+use one in another paradigm file. The path may only be relative to the
+current language.
+
+{{{
+    name: "extended paradigm"
+    layout:
+      type: "extended"
+    paradigm: "some-paradigm-file.paradigm"
+}}}
+
+
+!!! Layout features, and cell values
+
+!! Analysis matches
+
+A successful match of a generated form is represented by a whole tag, or
+a substring of the tag.
+
+For the following paradigm, for example:
+
+    foobarbaz foo+V+Prs+Sg1
+    foobar    foo+V+Prt+Sg1
+
+A table may be defined:
+
+    | "Present" | +Prs+Sg1 |
+    | "Past"    | +Prt+Sg1 |
+
+Or this way:
+
+    | "Present" | V+Prs+Sg1 |
+    | "Past"    | V+Prt+Sg1 |
+
+And the HTML table will look thus:
+
+      Present     foobarbaz
+      Past        foobar
+
+
+Alternatively, match all first person forms:
+
+    | "1st P." | +Sg1  |
+
+And the HTML table will look thus:
+
+       1st P.    foobarbaz
+                 foobar
+
+Any value that is not matched in the paradigm strings will be passed
+through.
+
+!! Cell value markings
+! Header cells
+
+{{"Text"}}
+
+! Internationalization of string values
+
+{{_"Text"}}
+
+! Cell spanning
+!! TODO: alignment
+!! TODO: value aliases
+
+
+!!! Programmer notes
 
 TODO: settings on the row for when it has no generated values
 
@@ -29,9 +161,6 @@ TODO: what to display when the table layout asks for a value that is not
       present?
 
 TODO: default paradigm type in options
-
-TODO: Alternatively the user should be able to specify a .paradigm file
-      to grab the morphology and lexicon rules.
 
 TODO: allow definition of match shortcuts
 
@@ -42,12 +171,6 @@ TODO: allow definition of match shortcuts
       etc...
 
     so that match string in table can then be `1st_sg`
-
-TODO: allow internationalization on header values
-
-    _"Sg"
-
-TODO: combined cells
 
 So far this is a custom table definition syntax. The YAML section should
 be familiar form paradigm definitions: it contains meta information
@@ -112,7 +235,7 @@ class Value(object):
         self.cell = cell
         self.table = table
         self.paradigm = paradigm
-        self.null_value = self.table.options.get('layout', {}).get('no_form', '')
+        self.null_value = self.table.options.get('layout', {}).get('no_form', False)
         self.VALUE_SEPARATOR = self.table.options.get('layout', {}).get('value_separator', '<br />')
 
         self.value = self.get_value()
@@ -139,6 +262,13 @@ class Value(object):
 
         if len(values_list) > 0:
             return self.VALUE_SEPARATOR.join(values_list)
+        else:
+            # TODO: null cell value vs. blank value in parsing
+            # definition
+            if self.null_value:
+                return self.null_value
+            else:
+                return self.cell.v
 
         self.value_type = self.cell
         return self.cell
@@ -315,7 +445,7 @@ class TableParser(object):
 
         rows = []
         cell_count = 0
-        print 'begin'
+
         for row in self.lines:
             vals = []
             merge = 0
@@ -323,7 +453,6 @@ class TableParser(object):
             extend_value = False
 
             for (a, b) in cs:
-                print cell_count
 
                 _v = row[a+1:b-1]
 
@@ -331,8 +460,6 @@ class TableParser(object):
                 begin_span = row[b] != self.COLUMN_DELIM
                 # > 2 column spans
                 continue_span = begin_span and end_span
-                print _v
-                print begin_span, continue_span, end_span
 
                 # There is no delimiter so, the cells need to be merged,
                 # which will be merge > 0, will then use this as the
@@ -370,7 +497,6 @@ class TableParser(object):
                     cell_count += 1
 
             rows.append(vals)
-        print 'end'
         return rows
 
 
