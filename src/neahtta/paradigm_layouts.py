@@ -159,7 +159,9 @@ class Cell(object):
         use that for additional style features.
     """
 
-    def __init__(self, v, table):
+    def __init__(self, v, table, index):
+        self.index = index
+        self.col_span = False
         self.header = False
         self.internationalize = False
         self.v = v.strip()
@@ -180,7 +182,8 @@ class Cell(object):
 
 class Null(Cell):
 
-    def __init__(self, table):
+    def __init__(self, table, index):
+        self.index = index
         self.header = False
         self.v = False
         self.table = table
@@ -196,9 +199,16 @@ class FilledParadigmTable(object):
     """ Convenience object for the template stuff.
     """
 
-    def __init__(self, paradigm_table, rows):
+    def __init__(self, paradigm_table, as_list):
         self.table = paradigm_table.table
-        self.rows = rows
+        self.rows = []
+
+        for r in as_list:
+            row = []
+            for c in r:
+                v = Value(c, self.table, paradigm_table.paradigm)
+                row.append(v)
+            self.rows.append(row)
 
 class ParadigmTable(object):
     """ An instance of a Table prepared for a particular word's
@@ -220,14 +230,7 @@ class ParadigmTable(object):
 
         as_list = self.table.to_list()
 
-        rows = []
-        for r in as_list:
-            row = []
-            for c in r:
-                v = Value(c, self.table, self.paradigm)
-                row.append(v)
-            rows.append(row)
-        return FilledParadigmTable(paradigm_table=self, rows=rows)
+        return FilledParadigmTable(paradigm_table=self, as_list=self.table.to_list())
 
 class TableParser(object):
     """ Methods for parsing the tables
@@ -311,15 +314,63 @@ class TableParser(object):
         cs = self.column_positions
 
         rows = []
+        cell_count = 0
+        print 'begin'
         for row in self.lines:
             vals = []
+            merge = 0
+            last_cell = None
+            extend_value = False
+
             for (a, b) in cs:
+                print cell_count
+
                 _v = row[a+1:b-1]
-                if len(_v.strip()) > 0:
-                    vals.append(Cell(_v, table=self))
+
+                end_span = row[a] != self.COLUMN_DELIM
+                begin_span = row[b] != self.COLUMN_DELIM
+                # > 2 column spans
+                continue_span = begin_span and end_span
+                print _v
+                print begin_span, continue_span, end_span
+
+                # There is no delimiter so, the cells need to be merged,
+                # which will be merge > 0, will then use this as the
+                # colspan.
+                if begin_span or continue_span or end_span:
+                    merge += 1
                 else:
-                    vals.append(Null(table=self))
+                    merge = 0
+                # mark the beginning of the value
+                if begin_span:
+                    extend_value = a+1
+
+                # If we're in the middle of a span, do nothing and
+                # continue
+                if continue_span:
+                    continue
+                # At the end of the span, update the value with where
+                # the span began, and set the colspan of the span's cell
+                # And then reset the merge values.
+                elif end_span:
+                    _v = row[extend_value:b-1]
+                    last_cell.col_span = merge
+                    last_cell.v = _v.strip()
+                    merge = 0
+                    last_cell = None
+                    extend_value = False
+                # Otherwise, no span, so do the normal thing and also
+                # set the last cell and increment
+                else:
+                    if len(_v.strip()) > 0:
+                        last_cell = Cell(_v, table=self, index=cell_count)
+                    else:
+                        last_cell = Null(table=self, index=cell_count)
+                    vals.append(last_cell)
+                    cell_count += 1
+
             rows.append(vals)
+        print 'end'
         return rows
 
 

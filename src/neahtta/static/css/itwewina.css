@@ -6,6 +6,10 @@
     white-space: pre-line;
 }
 
+.miniparadigm [colspan] {
+    text-align: center;
+}
+
 #logos img {
     padding-top: .5em;
     position: relative;
