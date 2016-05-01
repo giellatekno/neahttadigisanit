@@ -92,7 +92,10 @@ Ideas:
 # rendering process, and if something breaks, make sure that we can fall
 # back to this then too.
 
-# TODO: make this a module
+# TODO: markdown tables any better?
+# http://www.tablesgenerator.com/markdown_tables or TextTables if
+# there's a package for that, supports combined cells-- alternatively
+# mediawiki format could be used 
 
 
 import os, sys
@@ -151,13 +154,22 @@ class Value(object):
 class Cell(object):
     """ A table Cell, includes parser method for determining how a Value
         should be looked up.
+
+        TODO: does markdown on a single string slow things down? Could
+        use that for additional style features.
     """
 
     def __init__(self, v, table):
         self.header = False
+        self.internationalize = False
         self.v = v.strip()
         self.table = table
         self.null_value = self.table.options.get('layout', {}).get('no_form', '')
+
+        if self.v.startswith('~"') and self.v.endswith('"'):
+            self.header = True
+            self.v = self.v[2:len(self.v)-1]
+            self.internationalize = True
 
         if self.v.startswith('"') and self.v.endswith('"'):
             self.header = True
