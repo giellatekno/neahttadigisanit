@@ -1,15 +1,7 @@
 name: "basic paradigm"
-desc: "basic test paradigm"
 paradigm: 'verbs-ai-ti.paradigm'
 layout:
   type: "basic"
-  # value_separator: "<br />"
-# TODO: use the same rule
-morphology:
-  pos: V
-  animacy:
-    - AI
-    - TI
 --
 |                |  "Independent"   |
 | "1s"           | +Ind+Prs+1Sg     |

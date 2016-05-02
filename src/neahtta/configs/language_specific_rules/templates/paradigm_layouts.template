@@ -46,13 +46,33 @@
                     <tr>
                     {% for column in row %}
 
+                        {% if column.cell.col_span %}
+                            {% set span = ' colspan="%d"' % column.cell.col_span %}
+                        {% else %}
+                            {% set span = '' %}
+                        {% endif %}
+
                         {% if column.cell.header %}
                             {% set cell_type = 'th' %}
                         {% else %}
                             {% set cell_type = 'td' %}
                         {% endif %}
 
-                        <{{ cell_type }}>{{ column.value }}</{{ cell_type }}>
+                        {% if column.cell.text_align %}
+                            {% set _style_css = 'text-align:%s;' % column.cell.text_align %}
+                            {% set style = ' style="%s"' % _style_css %}
+                        {% else %}
+                            {% set style = '' %}
+                        {% endif %}
+
+                        {% if column.cell.internationalize %}
+                            {% set cell_value = column.value|tagfilter_generation(_from, _to) %}
+                        {% else %}
+                            {% set cell_value = column.value %}
+                        {% endif %}
+
+                        <{{ cell_type }}{{ span }}{{ style }}>{{ cell_value }}</{{ cell_type }}>
+
                     {% endfor %}
                     </tr>
                 {% endfor %}
