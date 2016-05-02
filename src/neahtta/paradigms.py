@@ -547,6 +547,8 @@ class ParadigmConfig(object):
                 if paradigm_rule:
                     _lang_paradigm_layouts[lang].append(paradigm_rule)
                     _file_successes.append(' - LAYOUT %s: %s' % (lang, paradigm_rule.get('name')))
+                else:
+                    _file_successes.append(' ERROR: - LAYOUT %s: %s' % (lang, f))
 
         self.paradigm_layout_rules = _lang_paradigm_layouts
 
@@ -607,7 +609,11 @@ class ParadigmConfig(object):
                 if rule_def.get('morphology', False):
                     condition_yaml['morphology'] = rule_def.get('morphology')
 
-            parsed_template = parse_table(paradigm_string_txt.strip(), yaml_definition=condition_yaml)
+            parsed_template, errors = parse_table(paradigm_string_txt.strip(), yaml_definition=condition_yaml, path=path)
+
+            if not parsed_template:
+                print errors
+                return False
 
             parsed_condition = { 'condition': ParadigmRuleSet(condition_yaml, debug=self.debug)
                                , 'template': parsed_template

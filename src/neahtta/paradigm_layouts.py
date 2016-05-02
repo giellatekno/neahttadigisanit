@@ -155,13 +155,6 @@ through.
 
 !!! Programmer notes
 
-TODO: settings on the row for when it has no generated values
-
-TODO: what to display when the table layout asks for a value that is not
-      present?
-
-TODO: default paradigm type in options
-
 TODO: allow definition of match shortcuts
 
     forms:
@@ -179,7 +172,7 @@ paradigm to be found for a given word lookup and set of morphological
 analyses.
 
 Here we are applying this rule to Verbs that are marked as AI or TI as
-aniacy in the morphological analyses.
+animacy in the morphological analyses.
 
 The layout section is defined by using the pipe character to define
 columns. Quotes are used to mark header rows and columns, so that these
@@ -223,6 +216,26 @@ Ideas:
 
 import os, sys
 import yaml
+
+class ParadigmException(Exception):
+
+    def __init__(self, template):
+        a, _, self.template = template.partition('language_specific_rules')
+
+    def __repr__(self):
+        return "%s (in ...%s)" % (self.message, self.template)
+
+    def __unicode__(self):
+        return "%s (in ...%s)" % (self.message, self.template)
+
+    def __str__(self):
+        return "%s (in ...%s)" % (self.message, self.template)
+
+class ParadigmParseError(ParadigmException):
+    message = "Table definition appears to be blank"
+
+class NoTableDefinition(ParadigmParseError):
+    message = "Table is missing a header"
 
 class Value(object):
     """ The cell Value, which is calculated by the current paradigm and
@@ -412,7 +425,10 @@ class TableParser(object):
     def header(self):
         """ The header line
         """
-        return self.lines[0]
+        try:
+            return self.lines[0]
+        except Exception, e:
+            raise ParadigmParseError(self.options['META'].get('path'))
 
     @property
     def lines(self):
@@ -433,6 +449,13 @@ class TableParser(object):
     def __init__(self, _str, options={}):
         self.raw = _str
         self.options = options
+
+    def validate(self):
+        try:
+            b = self.to_list()
+        except Exception, e:
+            return (False, e)
+        return (True, True)
 
     def to_list(self):
         """ Create a list of rows, containing Cell or Null objects.
@@ -522,8 +545,17 @@ class Table(TableParser):
 
         return ParadigmTable(self, paradigm)
 
-def parse_table(table_string, yaml_definition):
+def parse_table(table_string, yaml_definition, path=False):
     """ Parse the ASCII table, with options, return a Table object.
     """
+    yaml_definition['META'] = {
+        'path': path
+    }
     t = Table(table_string, options=yaml_definition)
-    return t
+
+    valid, errors = t.validate()
+
+    if valid:
+        return (t, {})
+    else:
+        return (False, errors)
