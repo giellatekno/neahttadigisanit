@@ -73,13 +73,15 @@ as settings are read.
 !! layout settings
 
 type - (default: unset) - specify the type of the layout and thus its
-title in the tab menu if multiple layouts are matched. 
+title in the tab menu if multiple layouts are matched.
 
 **no_form** - default is for the defined value to pass through, if not
 generated, i.e., +Whatever+Tag), may specify a space " " for nothing,
 note that an empty string ("") will be parsed by YAML as False, so you need a space here.
 
 **value_separator** - default is a line break in html, <br />), other ideas: comma, etc.
+
+**empty_value** - default is nothing, can supply whatever-- note that this is different from **no_form**, which is used only when a form could not be resolved. If certain cells are empty for spacing purposes, define this value here.
 
 !! Morphology and lexicon rules
 
@@ -149,9 +151,46 @@ through.
 {{_"Text"}}
 
 ! Cell spanning
-!! TODO: alignment
-!! TODO: value aliases
 
+Sell spanning is accomplished by leaving out the pipe character.
+Currently only spanning horizontally is supported, but not vertically.
+
+{{{
+
+    | "Label" | "Label"   | "Label"         |
+    | "Label" | +Some+Tag | +Some+Other+Tag |
+    | "Label" |    +Some+Tag                |
+    | "Label" | +Some+Tag | +Some+Other+Tag |
+
+}}}
+
+You may either center the text visually, or leave it in the same
+position as cells above or below.
+
+NB: this assumes that there is a clearly defined structure to the table,
+within the header-- if this is left out the system will not know which
+rows are spanning and which rows are empty values.
+
+!! alignment
+
+Aligning text or values within the cell is Value alignment is a matter
+of using the character {:} next to the cell border character {|}. Make
+sure to also leave a space between this and content inside:
+
+{{{
+
+    |: "Label" | +Tag    :| +Some+Other+Tag |
+    |: "Label" |:        +Tag              :|
+    |: "Label" | +Tag     | +Some+Other+Tag |
+
+}}}
+
+In most cases you will not need these, because the default style should
+automatically center values in spanned cells, and header cells will be
+automatically positioned, however you may use alignment to override
+this.
+
+!! TODO: value aliases
 
 !!! Programmer notes
 
@@ -199,16 +238,7 @@ Ideas:
 
 """
 
-# Main TODOs:
-# TODO: Need to produce a config object very similar to ParadigmConfig that
-# can instead select the proper table for a paradigm, and then also
-# produce the rendered table.
-
-# TODO: if a paradigm can't be found, fall back to existing NDS
-# rendering process, and if something breaks, make sure that we can fall
-# back to this then too.
-
-# TODO: markdown tables any better?
+# NB: formatting ideas here, but no parsers that can be used
 # http://www.tablesgenerator.com/markdown_tables or TextTables if
 # there's a package for that, supports combined cells-- alternatively
 # mediawiki format could be used 
@@ -314,6 +344,25 @@ class Cell(object):
         self.table = table
         self.null_value = self.table.options.get('layout', {}).get('no_form', '')
         self.empty_cell = self.table.options.get('layout', {}).get('empty_cell', '')
+        self.text_align = False
+
+        self.clean_value()
+
+    def update_value(self, new_value):
+        self.v = new_value
+        self.clean_value()
+
+    def clean_value(self):
+        # strip off alignment marks, and then continue to process
+        if self.v.startswith(':') and self.v.endswith(':'):
+            self.v = self.v[1:-1].strip()
+            self.text_align = 'center'
+        elif self.v.startswith(':'):
+            self.v = self.v[1::].strip()
+            self.text_align = 'left'
+        elif self.v.endswith(':'):
+            self.v = self.v[0:-1].strip()
+            self.text_align = 'right'
 
         if self.v.startswith('~"') and self.v.endswith('"'):
             self.header = True
@@ -465,16 +514,16 @@ class TableParser(object):
         if len(self.lines) == 0:
             errors['table'] = NoTableDefinition(self.options['META'].get('path'))
             success = False
+        else:
+            lengths = set()
+            for l in self.lines:
+                lengths.add(len(l))
 
-        lengths = set()
-        for l in self.lines:
-            lengths.add(len(l))
+            if len(lengths) != 1:
+                errors['rows'] = UnevenRowLengths(self.options['META'].get('path'))
+                success = False
 
-        if len(lengths) != 1:
-            errors['rows'] = UnevenRowLengths(self.options['META'].get('path'))
-            success = False
-
-        print >> sys.stdout, lengths
+        print self.to_list()
 
         return (success, errors)
 
@@ -498,7 +547,7 @@ class TableParser(object):
 
             for (a, b) in cs:
 
-                _v = row[a+1:b-1]
+                _v = row[a+1:b]
 
                 end_span = row[a] != self.COLUMN_DELIM
                 begin_span = row[b] != self.COLUMN_DELIM
@@ -526,7 +575,7 @@ class TableParser(object):
                 elif end_span:
                     _v = row[extend_value:b-1]
                     last_cell.col_span = merge
-                    last_cell.v = _v.strip()
+                    last_cell.update_value(_v.strip())
                     merge = 0
                     last_cell = None
                     extend_value = False
@@ -541,6 +590,7 @@ class TableParser(object):
                     cell_count += 1
 
             rows.append(vals)
+        print rows
         return rows
 
 
