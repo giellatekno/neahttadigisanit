@@ -237,6 +237,9 @@ class ParadigmParseError(ParadigmException):
 class NoTableDefinition(ParadigmParseError):
     message = "Table is missing a header"
 
+class UnevenRowLengths(ParadigmParseError):
+    message = "Row lengths are uneven, could not parse."
+
 class Value(object):
     """ The cell Value, which is calculated by the current paradigm and
         Cell object.
@@ -260,7 +263,7 @@ class Value(object):
 
         if not self.cell.v:
             self.value_type = self.cell
-            return self.cell.null_value
+            return self.cell.empty_cell
 
         values_list = []
         for generated_form in self.paradigm:
@@ -310,6 +313,7 @@ class Cell(object):
         self.v = v.strip()
         self.table = table
         self.null_value = self.table.options.get('layout', {}).get('no_form', '')
+        self.empty_cell = self.table.options.get('layout', {}).get('empty_cell', '')
 
         if self.v.startswith('~"') and self.v.endswith('"'):
             self.header = True
@@ -330,13 +334,14 @@ class Null(Cell):
         self.header = False
         self.v = False
         self.table = table
-        self.null_value = self.table.options.get('layout', {}).get('no_form', '')
+        self.no_form = self.table.options.get('layout', {}).get('no_form', '')
+        self.empty_cell = self.table.options.get('layout', {}).get('empty_cell', '')
 
     def __repr__(self):
         return 'V(Null)'
 
     def get_value(self, paradigm):
-        return self.null_value
+        return self.empty_cell
 
 class FilledParadigmTable(object):
     """ Convenience object for the template stuff.
@@ -425,10 +430,7 @@ class TableParser(object):
     def header(self):
         """ The header line
         """
-        try:
-            return self.lines[0]
-        except Exception, e:
-            raise ParadigmParseError(self.options['META'].get('path'))
+        return self.lines[0]
 
     @property
     def lines(self):
@@ -451,11 +453,30 @@ class TableParser(object):
         self.options = options
 
     def validate(self):
+        errors = {}
+        success = True
+
         try:
-            b = self.to_list()
+            b = self.header
         except Exception, e:
-            return (False, e)
-        return (True, True)
+            errors['header'] = NoTableDefinition(self.options['META'].get('path'))
+            success = False
+
+        if len(self.lines) == 0:
+            errors['table'] = NoTableDefinition(self.options['META'].get('path'))
+            success = False
+
+        lengths = set()
+        for l in self.lines:
+            lengths.add(len(l))
+
+        if len(lengths) != 1:
+            errors['rows'] = UnevenRowLengths(self.options['META'].get('path'))
+            success = False
+
+        print >> sys.stdout, lengths
+
+        return (success, errors)
 
     def to_list(self):
         """ Create a list of rows, containing Cell or Null objects.
