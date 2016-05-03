@@ -67,8 +67,29 @@ definition may not span multiple lines.
 
 !! Name, description
 
-Name and description are mostly used to render the startup log message
+Name is mostly used to render the startup log message
 as settings are read.
+
+``description`` may be set, in order to display a note to users
+underneath the table. This may either be a YAML string, which will be
+shown in all languages, or a set of translations:
+
+{{{
+description: |
+  This is the transitive conjugation, but with no object specified.
+}}}
+
+OR
+
+{{{
+description:
+  eng: |
+    This is the transitive conjugation, but with no object specified.
+  fra: |
+    C'est ne pas une pipe.
+}}}
+
+If one translation does not exist, the first language will be used.
 
 !! layout settings
 
@@ -140,6 +161,17 @@ And the HTML table will look thus:
 
 Any value that is not matched in the paradigm strings will be passed
 through.
+
+!! Constraining the value, match starts with or ends with
+
+Full regular expression matching is not available yet, but two common
+features are, the {{^}} and {{$}} characters for anchoring the search
+pattern.
+
+TODO: examples from myv
+TODO: reconsider: is substring search as a default pattern not
+predictable for new linguist users defining a layout?
+
 
 !! Cell value markings
 ! Header cells
@@ -277,16 +309,73 @@ class Value(object):
 
     VALUE_SEPARATOR = ', '
 
+    def set_options(self):
+        layout_opts = self.table.options.get('layout', {})
+
+        self.null_value = layout_opts.get('no_form', False)
+        self.VALUE_SEPARATOR = layout_opts.get('value_separator', '<br />')
+        self.search_type = layout_opts.get('form_search_type', False)
+
     def __init__(self, cell, table, paradigm):
         self.cell = cell
         self.table = table
         self.paradigm = paradigm
-        self.null_value = self.table.options.get('layout', {}).get('no_form', False)
-        self.VALUE_SEPARATOR = self.table.options.get('layout', {}).get('value_separator', '<br />')
 
+        self.set_options()
         self.value = self.get_value()
 
+    def compare_value(self, tag_list):
+        """ Returns true or false depending on whether a and b are a
+        match
+
+        TODO: enable full regex option?
+
+        for now only supporting 'fake' regex, e.g., typical startswith
+        endswith characters
+
+        TODO: multiple matches?
+
+        """
+
+        def tag_splitter(x):
+            splitted = self.paradigm[0].tool.splitAnalysis(x)
+            return [a for a in splitted if a]
+
+        search_tags = tag_splitter(self.cell.v)
+
+        search_predicate = '###'.join(search_tags)
+        current_form_tag = '###'.join(tag_list)
+
+        if self.cell.v.endswith('$') and not self.cell.v.endswith('\$'):
+            search_tags = tag_splitter(self.cell.v[0:-1])
+            search_predicate = '###'.join(search_tags)
+
+            return current_form_tag.endswith(search_predicate)
+
+        if self.cell.v.startswith('^'):
+            search_tags = tag_splitter(self.cell.v[1::])
+            search_predicate = '###'.join(search_tags)
+
+            return current_form_tag.startswith(search_predicate)
+
+        # Otherwise case is a substring match
+        return search_predicate in current_form_tag
+
+    def fill_value(self):
+
+        values_list = []
+        for generated_form in self.paradigm:
+            tag = generated_form.tag.parts
+            if self.compare_value(tag):
+                print tag
+                print generated_form.form
+                self.value_type = list
+                values_list.append(generated_form.form)
+
+        return values_list
+
     def get_value(self):
+        # Check to see if cell is any other type than a computed value
         if self.cell.header:
             self.value_type = self.cell
             return self.cell.v
@@ -295,16 +384,8 @@ class Value(object):
             self.value_type = self.cell
             return self.cell.empty_cell
 
-        values_list = []
-        for generated_form in self.paradigm:
-            tag = generated_form.tag.parts
-            v_tags = generated_form.tool.splitAnalysis(self.cell.v)
-
-            # hackishly join things to check for sublists
-            # NB: may need to evaluate regexes here.
-            if '###'.join(v_tags) in '###'.join(tag):
-                self.value_type = list
-                values_list.append(generated_form.form)
+        # Compute the value ... 
+        values_list = self.fill_value()
 
         if len(values_list) > 0:
             return self.VALUE_SEPARATOR.join(values_list)
@@ -364,7 +445,7 @@ class Cell(object):
             self.v = self.v[0:-1].strip()
             self.text_align = 'right'
 
-        if self.v.startswith('~"') and self.v.endswith('"'):
+        if self.v.startswith('_"') and self.v.endswith('"'):
             self.header = True
             self.v = self.v[2:len(self.v)-1]
             self.internationalize = True
@@ -393,7 +474,8 @@ class Null(Cell):
         return self.empty_cell
 
 class FilledParadigmTable(object):
-    """ Convenience object for the template stuff.
+    """ Convenience object for the template stuff. This is probably the
+    ``layout`` or ``l`` objects in templates.
     """
 
     def __init__(self, paradigm_table, as_list):
@@ -406,6 +488,25 @@ class FilledParadigmTable(object):
                 v = Value(c, self.table, paradigm_table.paradigm)
                 row.append(v)
             self.rows.append(row)
+
+    def get_description(self, *langs):
+
+        descs = self.table.options.get('description', False)
+        print descs
+        print langs
+
+        # User has defined multiple languages, so we pick one from the
+        # args in order, and if that doesn't exist return the first
+        if isinstance(descs, dict):
+            if len(langs) > 0:
+                for l in langs:
+                    if l in descs:
+                        return descs.get(l)
+            return descs.values()[0]
+        # It's just a string
+        else:
+            return descs
+
 
 class ParadigmTable(object):
     """ An instance of a Table prepared for a particular word's
@@ -443,6 +544,10 @@ class TableParser(object):
     @property
     def header_positions(self):
         """ Return list of integers for header positions """
+
+        # TODO: this will break if the first line has a spanned cell
+        # that does not exist in other rows: possible to check all rows
+        # and then determine which is most common split?
 
         if hasattr(self, '_header_positions'):
             return self._header_positions

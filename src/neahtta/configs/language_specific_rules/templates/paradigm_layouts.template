@@ -38,6 +38,8 @@
         {% endif -%}
 
         {%- set layout_type = l.table.options.layout.type %}
+        {%- set layout_desc = l.get_description(_to, _from) %}
+
         <div class="{{ tab_class }}" id="{{ layout_type }}">
 
             <table class="miniparadigm user-defined-layout" 
@@ -77,6 +79,10 @@
                     </tr>
                 {% endfor %}
             </table>
+
+            {% if layout_desc %}
+                <span class="note">{{ layout_desc }}</p>
+            {% endif %}
 
         </div>
     {% endfor %}
