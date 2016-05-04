@@ -22,6 +22,7 @@ ApplicationSettings:
   admins_to_email:
     - "rueter.jack@gmail.com"
     - "trond.trosterud@uit.no"
+    - "ciprian.gerstenberger@uit.no"
 
 Tools:
   xfst_lookup: &LOOKUP '/usr/bin/lookup'
