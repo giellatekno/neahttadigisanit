@@ -1,19 +1,19 @@
 # Non-linguistic settings.
 ApplicationSettings:
   # `app_name` is what is displayed in the upper-left corner on every page.
-  app_name: "Neahttadigisánit"
+  app_name: "Cuvântul"
 
   # This will be the same name as PROJNAME, which is also the file name, and
   # potentially the subdomain.
-  short_name: "sample"
+  short_name: "cuvantul"
 
   # This will be the default bookmark title suggested to the user, does
   # not have to resemble the app name, or anything, and the following is
   # just a suggestion.
-  mobile_bookmark_name: "NDS: Sánit"
-  default_locale: "se"
-  default_pair: ["sme", "nob"]
-  mobile_default_pair: ["SoMe", "nob"]
+  mobile_bookmark_name: "NDS: Cuvântul"
+  default_locale: "ro"
+  default_pair: ["ron", "nob"]
+  mobile_default_pair: ["ron", "nob"]
 
   # ## Some optional display settings. Setting these to `true` enables them.
   #
@@ -34,21 +34,21 @@ ApplicationSettings:
   # it may be useful to use aliases, e.g., my.email+alias@gmail.com in
   # order to make filtering errors more easy.
   admins_to_email:
-    - "someone.goes.here@email.com"
+    - "ciprian.gerstenberger@uit.no"
   #
   # Use three-character ISO codes only when there is no corresponding
   # two-character ISO for the language.
   locales_available:
-    - "sma"
+    - "ro"
     - "no"
-    - "fi"
+    - "en"
   # Meta description and keywords for Google search results.
   app_meta_title: >
-     Digibaakoeh gaskeviermesne 
+     Cuvântul online 
   meta_description: >
-     Free, mobile-friendly dictionaries for Olonetsian, Livonian, and Kven.
+     Free, mobile-friendly dictionaries for Romanian and Aromanian.
   meta_keywords: >
-     kven, olonets, olonetsian, livonian, livvi, liivi 
+     romanian, aromanian
 
 # For default locals, these must correspond with what exists in the
 # translations/ directory. In the case of languages with a 2-character ISO, use
