@@ -76,25 +76,25 @@ Tools:
 
 Morphology:
   # This is the default setup for sme.
-  sme:
+  ron:
     tool: *LOOKUP
-    file: [*OPT, '/sme/bin/analyser-dict-gt-desc.xfst']
-    inverse_file: [*OPT, '/sme/bin/generator-dict-gt-norm.xfst']
+    file: [*OPT, '/ron/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/ron/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
-    options: &sme_fst_options
+    options: &ron_fst_options
       compoundBoundary: "+Cmp#"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
   # This is an example of an input variant. Here we use a different analyzer,
   # but the same generator. Also, `options` are copied from above.
-  SoMe:
+  roMe:
     tool: *LOOKUP
-    file: [*OPT, '/sme/bin/analyser-dict-gt-desc-mobile.xfst']
-    inverse_file: [*OPT, '/sme/bin/generator-dict-gt-norm.xfst']
+    file: [*OPT, '/ron/bin/analyser-dict-gt-desc-mobile.xfst']
+    inverse_file: [*OPT, '/ron/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
-      <<: *sme_fst_options
+      <<: *ron_fst_options
   nob:
     tool: *LOOKUP
     file: [*OPT, '/nob/bin/analyser-dict-gt-desc.xfst']
@@ -112,18 +112,16 @@ Morphology:
 # for `nob`.
 #
 Languages:
-  - iso: sme
+  - iso: ron
     # this ensures that if there are multiple minority languages in a project,
     # that they will be sorted into groups by this status. Input variants do
     # not need this marking.
-    minority_lang: true 
+    minority_lang: false 
 
-  - iso: SoMe
+  - iso: roMe
     variant: True # this makes the fab process skip attempting `svn up` here.
 
   - iso: nob
-  - iso: fin
-  - iso: sma
 
 # Here are the actual definitions of what dictionaries are available in the
 # system. What is presented in the UI also adheres to the order that is here.
@@ -132,9 +130,9 @@ Languages:
 # and Korp integration. A minimal example follows in the next definition.
 #
 Dictionaries:
-  - source: sme
+  - source: ron
     target: nob
-    path: 'dicts/sme-nob.all.xml'
+    path: 'dicts/ron-nob.all.xml'
     input_variants:
       # "standard" and "mobile" are special values, otherwise templates and
       # swapping on mobile devices won't work
@@ -143,21 +141,21 @@ Dictionaries:
         # files. This will be displayed to users.
         description: !gettext "Standard"
         # Provide a _brief_ example to users of what this standard means
-        example: "(<em>áčđŋšŧž</em>)"
+        example: "(<em>ăâîțș</em>)"
         # This is the name for the analyzer (defined in Morphology)
-        short_name: "sme"
+        short_name: "ron"
 
       - type: "mobile"
         description: !gettext "Social media"
         example: !gettext "(incl. <em>acdnstz</em>)"
         # This is the name for the analyzer (defined in Morphology)
-        short_name: "SoMe"
+        short_name: "roMe"
 
         # "
 
     # Following are some optional settings for integration with Korp.
     # default is False
-    show_korp_search: True
+    show_korp_search: False
     # If there are any input variants, specify this. NB: 'standard' and
     # 'mobile' are special values for `type`, and used in presenting
     # mobile users the correct default pair. If a variant is anything
@@ -186,21 +184,21 @@ Dictionaries:
 
   # This is the most minimal example of what is needed.
   - source: nob
-    target: sme
-    path: 'dicts/nob-sme.all.xml'
+    target: ron
+    path: 'dicts/nob-ron.all.xml'
 
 # Everything after this point is optional. You may delete them if you do not
 # need them.
 
 # These settings are for the client-side reader bookmarklet. 
 ReaderConfig:
-  hdn:
+  ron:
     multiword_lookups: true
     multiword_list:
       # File format-- plain text, but line coments allowed:
       # Use %WORD% as a marker for any word these may co-occur with, i.e., if
       # the user clicks on a %WORD%, then search for these environments too.
-      file: "configs/language_specific_rules/reader/hdn_multiwords.txt"
+      file: "configs/language_specific_rules/reader/ron_multiwords.txt"
     # NB: this is JavaScript format, since it will be sent to the reader via
     # config. It must also be stored as a string.
     #
