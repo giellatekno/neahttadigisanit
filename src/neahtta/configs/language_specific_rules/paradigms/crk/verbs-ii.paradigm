@@ -2,6 +2,11 @@
 morphology:
   pos: V
   animacy: II
+lexicon:
+  XPATH:
+    lc: ".//lg/lc/text()"
+  lc:
+    - "VII-v"
 --
 {{ lemma }}+V+II+Ind+Prs+3Sg
 {{ lemma }}+V+II+Ind+Prs+3Pl

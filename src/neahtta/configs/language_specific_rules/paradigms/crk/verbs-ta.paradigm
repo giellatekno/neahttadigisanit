@@ -3,6 +3,15 @@ morphology:
   pos: V
   animacy:
     - TA
+lexicon:
+  XPATH:
+    lc: ".//lg/lc/text()"
+  lc:
+    - "VTA-1"
+    - "VTA-2"
+    - "VTA-3"
+    - "VTA-4"
+    - "VTA-5"
 --
 {{ lemma }}+V+TA+Ind+Prs+1Sg+3SgO
 {{ lemma }}+V+TA+Ind+Prs+2Sg+3SgO
