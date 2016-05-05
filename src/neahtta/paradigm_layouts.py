@@ -16,6 +16,12 @@ TODO: tagsets vs. internationalization files?
 
 !!! Programmer notes
 
+TODO: multiple cell values, e.g., _"Sg" _"Prs"
+      or for context, e.g., "(mun)" Ind+Prs+1Sg
+
+    will need to redo cell value parser
+
+
 TODO: value aliases?
 TODO: allow definition of match shortcuts
 
@@ -158,8 +164,6 @@ class Value(object):
         for generated_form in self.paradigm:
             tag = generated_form.tag.parts
             if self.compare_value(tag):
-                print tag
-                print generated_form.form
                 self.value_type = list
                 values_list.append(generated_form.form)
 
@@ -283,8 +287,6 @@ class FilledParadigmTable(object):
     def get_description(self, *langs):
 
         descs = self.table.options.get('description', False)
-        print descs
-        print langs
 
         # User has defined multiple languages, so we pick one from the
         # args in order, and if that doesn't exist return the first
@@ -419,8 +421,6 @@ class TableParser(object):
                 errors['rows'] = UnevenRowLengths(self.options['META'].get('path'))
                 success = False
 
-        print self.to_list()
-
         return (success, errors)
 
     def to_list(self):
@@ -486,7 +486,6 @@ class TableParser(object):
                     cell_count += 1
 
             rows.append(vals)
-        print rows
         return rows
 
 
