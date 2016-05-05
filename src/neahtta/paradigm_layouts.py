@@ -159,6 +159,7 @@ class Value(object):
         return search_predicate in current_form_tag
 
     def fill_value(self):
+        # NB: see #multi_value
 
         values_list = []
         for generated_form in self.paradigm:
@@ -229,6 +230,13 @@ class Cell(object):
         self.clean_value()
 
     def clean_value(self):
+        # TODO: if multiple values in a cell are to be allowed, e.g.
+        #  | _"1Sg" _"Prs" |, need to improve the parsing here
+        # to be an actual parser, this should return a list of tokens or
+        # something, and then see #multi_value for where this will be
+        # handled
+
+
         # strip off alignment marks, and then continue to process
         if self.v.startswith(':') and self.v.endswith(':'):
             self.v = self.v[1:-1].strip()

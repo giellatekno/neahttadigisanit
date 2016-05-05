@@ -17,6 +17,10 @@ indicative:
  - "Ind"
 conjunct:
  - "Cnj"
+tense:
+ - "Fut"
+ - "Prs"
+ - "Prt"
 person:
  - "1Sg"
  - "2Sg"

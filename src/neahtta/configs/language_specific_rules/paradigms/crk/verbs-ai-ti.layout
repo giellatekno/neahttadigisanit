@@ -1,6 +1,5 @@
 name: "basic paradigm"
 paradigm: 'verbs-ai-ti.paradigm'
-description: "TODO: gt link"
 layout:
   type: "basic"
 --

@@ -1,6 +1,5 @@
 name: "animate intransitive paradigm"
 paradigm: 'verbs-ii.paradigm'
-description: "TODO: gt link"
 layout:
   type: "basic"
 --
