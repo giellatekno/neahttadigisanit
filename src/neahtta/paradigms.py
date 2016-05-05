@@ -194,6 +194,7 @@ class TagSetRule(object):
             self.cmp = lambda x, y: (x in y, x)
 
     def compare(self, node, analyses):
+
         evals = [ self.cmp(lemma.tag[self.tagset], self.tagset_value)
                      for lemma in analyses
                 ]
@@ -260,24 +261,21 @@ class ParadigmRuleSet(object):
             Returns a tuple (Truth, Context); Context is a dict
         """
 
-        for analysis in analyses:
+        if self.debug:
+            print >> sys.stderr, analysis
 
-            if self.debug:
-                print >> sys.stderr, analysis
+        self._evals = [ comp.compare(node, analyses)
+                        for comp in self.comps
+                      ]
 
-            self._evals = [ comp.compare(node, [analysis])
-                            for comp in self.comps
-                          ]
+        truth = all([t for t, c in self._evals])
+        contexts = [c for t, c in self._evals if t]
 
-            truth = all([t for t, c in self._evals])
-            contexts = [c for t, c in self._evals if t]
+        context = dict(sum(contexts, []))
+        if self.debug and truth:
+            print >> sys.stderr, "Found matching paradigm in %s." % self.name
 
-            context = dict(sum(contexts, []))
-            if self.debug and truth:
-                print >> sys.stderr, "Found matching paradigm in %s." % self.name
-            return truth, context
-
-        return False, []
+        return truth, context
 
 class ParadigmConfig(object):
     """ A class for providing directory-based paradigm definitions.
