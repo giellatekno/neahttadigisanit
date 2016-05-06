@@ -288,6 +288,15 @@ class ParadigmConfig(object):
         self._app = app
         self.read_paradigm_directory()
 
+    def check_updates(self, language):
+        updates = []
+        for ind, paradigm_rule in enumerate(self.paradigm_layout_rules.get(language, [])):
+            if os.path.getmtime(paradigm_rule.get('path')) != paradigm_rule.get('updated'):
+                updates.append(ind)
+
+        if len(updates) > 0:
+            self.read_paradigm_directory()
+
     def get_paradigm_layout(self, language, node, analyses, debug=False, return_template=False, multiple=False):
         """ .. py:function:: get_paradigm(language, node, analyses)
 
@@ -309,6 +318,8 @@ class ParadigmConfig(object):
         # return that one.
 
         possible_matches = []
+
+        self.check_updates(language)
 
         for paradigm_rule in self.paradigm_layout_rules.get(language, []):
             condition = paradigm_rule.get('condition')
@@ -481,6 +492,8 @@ class ParadigmConfig(object):
             jinja_env = self._app.jinja_env
             available_langs = self._app.config.languages
 
+        self.jinja_env = jinja_env
+
         if hasattr(self, '_paradigm_directory'):
             return self._paradigm_directory
 
@@ -618,6 +631,7 @@ class ParadigmConfig(object):
                                , 'name': name
                                , 'description': desc
                                , 'path': path
+                               , 'updated': os.path.getmtime(path)
                                }
 
         return parsed_condition
@@ -647,6 +661,7 @@ class ParadigmConfig(object):
                                , 'description': desc
                                , 'path': path
                                , 'basename': os.path.basename(path)
+                               , 'updated': os.path.getmtime(path)
                                }
 
         return parsed_condition
