@@ -908,6 +908,149 @@ copy_molotsov: $(GTHOME)/langs/kpv/src/analyser-dict-gt-desc-molotsov.xfst
 	cp $^ /opt/smi/kpv/bin/analyser-dict-gt-desc-molotsov.xfst
 
 
+###    #####
+###    ##### #sampletargets
+###    #####
+###    
+###    ### When starting a new project, copy this whole section (down to
+###    ### #/sampletargets), and change the following settings. Then, be sure to
+###    ### replace all instances of SAMPLE and sample in variables and target names
+###    ### with the PROJNAME.
+###    
+###    # These are the ISOs of the languages to compile from GTHOME/langs/
+###    SAMPLE_LANGS_ANALYSERS           :=   izh liv fin vep vro vot
+###
+###    # OPTIONAL: enable miscellaneous ./configure flags
+###    # SAMPLE_LANGS_FLAGS             :=   --with-hfst
+###    
+###    # These are the ISOs of the languages to compile from GTHOME/startup-langs/
+###    SAMPLE_STARTUP_LANGS_ANALYSERS   :=   lav
+###    
+###    # Compile the lexicon from within GTHOME/langs/LANG/src/morphology/stems/*.xml
+###    
+###    SAMPLE_LANGS_LEXICA              :=   liv izh vep vro vot
+###    
+###    # Compile the lexicon from a directory within GTHOME/words/dicts/
+###    SAMPLE_WORDS_DICTS_LEXICA        :=   finliv finizh lavliv
+###    
+###    .PHONY: sample-lexica
+###    sample-lexica: LEX_COMPILE_LANGS := $(SAMPLE_LANGS_LEXICA)
+###    sample-lexica: LEX_COMPILE_WORDS_DICTS := $(SAMPLE_WORDS_DICTS_LEXICA)
+###    sample-lexica: compile_langs_lexicon \
+###    			  compile_words_dicts_lexicon
+###    
+###    .PHONY: sample
+###    sample: GT_COMPILE_LANGS := $(SAMPLE_LANGS_ANALYSERS)
+###    sample: GT_COMPILE_STARTUP_LANGS := $(SAMPLE_STARTUP_LANGS_ANALYSERS)
+###    sample: LEX_COMPILE_LANGS := $(SAMPLE_LANGS_LEXICA)
+###    sample: LEX_COMPILE_WORDS_DICTS := $(SAMPLE_WORDS_DICTS_LEXICA)
+###    sample: sample-lexica compile_langs_fsts print_complete_message
+###    
+###    rm-sample-lexica: $(foreach xx, $(SAMPLE_LANGS_LEXICA), $(xx)-all.xml) \
+###    				 $(foreach yy, $(SAMPLE_WORDS_DICTS_LEXICA), $(yy).xml)
+###    	@rm -rf $^
+###    
+###    .PHONY: sample-install
+###    sample-install: GT_COMPILE_LANGS := $(SAMPLE_LANGS_ANALYSERS)
+###    sample-install: GT_COMPILE_STARTUP_LANGS := $(SAMPLE_STARTUP_LANGS_ANALYSERS)
+###    sample-install: install_langs_fsts
+###    
+###    #####
+###    ##### #/sampletargets
+###    #####
+
+
+#####
+##### #ndstestingtargets
+#####
+
+# These are the ISOs of the languages to compile from GTHOME/langs/
+NDSTESTING_LANGS_ANALYSERS           :=   kca nob rus
+
+# These are the ISOs of the languages to compile from GTHOME/startup-langs/
+NDSTESTING_STARTUP_LANGS_ANALYSERS   :=   
+
+# Compile the lexicon from within GTHOME/langs/LANG/src/morphology/stems/*.xml
+
+NDSTESTING_LANGS_LEXICA              :=   kca
+
+# Compile the lexicon from a directory within GTHOME/words/dicts/
+NDSTESTING_WORDS_DICTS_LEXICA        :=   
+
+.PHONY: ndstesting-lexica
+ndstesting-lexica: LEX_COMPILE_LANGS := $(NDSTESTING_LANGS_LEXICA)
+ndstesting-lexica: LEX_COMPILE_WORDS_DICTS := $(NDSTESTING_WORDS_DICTS_LEXICA)
+ndstesting-lexica: compile_langs_lexicon \
+			  compile_words_dicts_lexicon
+
+.PHONY: ndstesting
+ndstesting: GT_COMPILE_LANGS := $(NDSTESTING_LANGS_ANALYSERS)
+ndstesting: GT_COMPILE_STARTUP_LANGS := $(NDSTESTING_STARTUP_LANGS_ANALYSERS)
+ndstesting: LEX_COMPILE_LANGS := $(NDSTESTING_LANGS_LEXICA)
+ndstesting: LEX_COMPILE_WORDS_DICTS := $(NDSTESTING_WORDS_DICTS_LEXICA)
+ndstesting: ndstesting-lexica compile_langs_fsts print_complete_message
+
+rm-ndstesting-lexica: $(foreach xx, $(NDSTESTING_LANGS_LEXICA), $(xx)-all.xml) \
+				 $(foreach yy, $(NDSTESTING_WORDS_DICTS_LEXICA), $(yy).xml)
+	@rm -rf $^
+
+.PHONY: ndstesting-install
+ndstesting-install: GT_COMPILE_LANGS := $(NDSTESTING_LANGS_ANALYSERS)
+ndstesting-install: GT_COMPILE_STARTUP_LANGS := $(NDSTESTING_STARTUP_LANGS_ANALYSERS)
+ndstesting-install: install_langs_fsts
+
+#####
+##### #/ndstestingtargets
+#####
+
+#####
+##### #focailtargets
+#####
+
+### When starting a new project, copy this whole section (down to
+### #/focailtargets), and change the following settings. Then, be sure to
+### replace all instances of FOCAIL and focail in variables and target names
+### with the PROJNAME.
+
+# These are the ISOs of the languages to compile from GTHOME/langs/
+FOCAIL_LANGS_ANALYSERS           :=   
+
+# OPTIONAL: enable miscellaneous ./configure flags
+# FOCAIL_LANGS_FLAGS             :=   --with-hfst
+
+# These are the ISOs of the languages to compile from GTHOME/startup-langs/
+FOCAIL_STARTUP_LANGS_ANALYSERS   :=   gle
+
+# Compile the lexicon from within GTHOME/langs/LANG/src/morphology/stems/*.xml
+
+FOCAIL_LANGS_LEXICA              :=   
+
+# Compile the lexicon from a directory within GTHOME/words/dicts/
+FOCAIL_WORDS_DICTS_LEXICA        :=   gleeng
+
+.PHONY: focail-lexica
+focail-lexica: LEX_COMPILE_LANGS := $(FOCAIL_LANGS_LEXICA)
+focail-lexica: LEX_COMPILE_WORDS_DICTS := $(FOCAIL_WORDS_DICTS_LEXICA)
+focail-lexica: compile_langs_lexicon \
+			  compile_words_dicts_lexicon
+
+.PHONY: focail
+focail: GT_COMPILE_LANGS := $(FOCAIL_LANGS_ANALYSERS)
+focail: GT_COMPILE_STARTUP_LANGS := $(FOCAIL_STARTUP_LANGS_ANALYSERS)
+focail: LEX_COMPILE_LANGS := $(FOCAIL_LANGS_LEXICA)
+focail: LEX_COMPILE_WORDS_DICTS := $(FOCAIL_WORDS_DICTS_LEXICA)
+focail: focail-lexica compile_langs_fsts print_complete_message
+
+rm-focail-lexica: $(foreach xx, $(FOCAIL_LANGS_LEXICA), $(xx)-all.xml) \
+				 $(foreach yy, $(FOCAIL_WORDS_DICTS_LEXICA), $(yy).xml)
+	@rm -rf $^
+
+.PHONY: focail-install
+focail-install: GT_COMPILE_LANGS := $(FOCAIL_LANGS_ANALYSERS)
+focail-install: GT_COMPILE_STARTUP_LANGS := $(FOCAIL_STARTUP_LANGS_ANALYSERS)
+focail-install: install_langs_fsts
+
+
 #####
 ##### #Globaltargets
 #####
