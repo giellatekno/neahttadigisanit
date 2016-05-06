@@ -12,12 +12,35 @@
 
 {% if layout %}
     {% set multiple_types = layout|length > 1 %}
+    {% set use_dropdown = layout|length > 3 %}
 
     {# Construct the navigation menu when there are multiple paradigm
        types generated for this entry. #}
     {# TODO: if there are tons of tabs need a different UI, dropdown? #}
 
     {% if multiple_types %}
+
+        {% if use_dropdown %}
+        <ul class="nav nav-tabs">
+            <li class="dropdown">
+                <a class="dropdown-toggle"
+                   data-toggle="dropdown"
+                   href="#">
+                   Paradigms
+                   <b class="caret"></b>
+                 </a>
+                <ul class="dropdown-menu">
+            {%- for l in layout %}
+                {% set layout_type = l.table.options.layout.type %}
+                <li class="{{ li_class }}">
+                    <a href="#paradigm-tab-{{ loop.index }}" data-toggle="tab">
+                        {{- layout_type -}}
+                    </a>
+                </li>
+            {% endfor %}
+            </ul>
+        </ul>
+        {% else %}
         <ul class="nav nav-tabs">
             {%- for l in layout %}
 
@@ -36,6 +59,8 @@
                 </li>
             {% endfor %}
         </ul>
+        {% endif %}
+
     {% endif %}
 
     <div class="tab-content">
