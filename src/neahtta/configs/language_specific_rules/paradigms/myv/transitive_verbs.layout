@@ -1,0 +1,12 @@
+name: "verbs"
+paradigm: "transitive_verbs.paradigm"
+layout:
+  type: "1. basic"
+--
+|          | _"Prs"          | _"Prt"          |
+| _"Sg1"   | Ind+Prs+ScSg1$  | Ind+Prt1+ScSg1$ |
+| _"Sg2"   | Ind+Prs+ScSg2$  | Ind+Prt1+ScSg2$ |
+| _"Sg3"   | Ind+Prs+ScSg3$  | Ind+Prt1+ScSg3$ |
+| _"Pl1"   | Ind+Prs+ScPl1$  | Ind+Prt1+ScPl1$ |
+| _"Pl2"   | Ind+Prs+ScPl2$  | Ind+Prt1+ScPl2$ |
+| _"Pl3"   | Ind+Prs+ScPl3$  | Ind+Prt1+ScPl3$ |

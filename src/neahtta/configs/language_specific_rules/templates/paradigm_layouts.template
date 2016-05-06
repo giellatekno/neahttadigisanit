@@ -15,6 +15,8 @@
 
     {# Construct the navigation menu when there are multiple paradigm
        types generated for this entry. #}
+    {# TODO: if there are tons of tabs need a different UI, dropdown? #}
+
     {% if multiple_types %}
         <ul class="nav nav-tabs">
             {%- for l in layout %}
@@ -28,7 +30,7 @@
                 {% set layout_type = l.table.options.layout.type %}
 
                 <li class="{{ li_class }}">
-                    <a href="#{{ layout_type }}" data-toggle="tab">
+                    <a href="#paradigm-tab-{{ loop.index }}" data-toggle="tab">
                         {{- layout_type -}}
                     </a>
                 </li>
@@ -48,7 +50,7 @@
         {%- set layout_type = l.table.options.layout.type %}
         {%- set layout_desc = l.get_description(_to, _from) %}
 
-        <div class="{{ tab_class }}" id="{{ layout_type }}">
+        <div class="{{ tab_class }}" id="paradigm-tab-{{ loop.index }}">
 
             <table class="miniparadigm user-defined-layout" 
                    data-type="{{ layout_type }}">
@@ -89,7 +91,7 @@
             </table>
 
             {% if layout_desc %}
-                <span class="note">{{ layout_desc }}</p>
+                <p class="note">{{ layout_desc }}</p>
             {% endif %}
 
             {{ full_paradigm_link() }}
