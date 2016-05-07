@@ -188,10 +188,23 @@ class TagSetRule(object):
             value = unicode(value)
         self.tagset_value = value
 
+        # in cmp functions
+        # x = whatever value the tagset turns up (ex. 'Inf'), y = the
+        # expected set of values that are defined in YAML
         if isinstance(value, str) or isinstance(value, unicode):
             self.cmp = lambda x, y: (x == y, x)
         elif isinstance(value, list):
             self.cmp = lambda x, y: (x in y, x)
+        elif isinstance(value, bool):
+            def _cmp(x, y):
+                # when tag contains a value from this tagset, x is true,
+                # otherwise x is None
+                if x is None:
+                    return (False, x)
+                else:
+                    return (True, x)
+                return (False, x)
+            self.cmp = _cmp
 
     def compare(self, node, analyses):
 
