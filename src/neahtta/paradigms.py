@@ -541,10 +541,11 @@ class ParadigmConfig(object):
                             os.path.join(_p, f)
                         )
 
-                    if f.endswith('.layout'):
-                        _lang_paradigm_layout_files.append(
-                            os.path.join(_p, f)
-                        )
+                    if self._app.config.paradigm_layouts:
+                        if f.endswith('.layout'):
+                            _lang_paradigm_layout_files.append(
+                                os.path.join(_p, f)
+                            )
 
             _lang_files[lang] = _lang_paradigm_files
             _lang_layout_files[lang] = _lang_paradigm_layout_files
