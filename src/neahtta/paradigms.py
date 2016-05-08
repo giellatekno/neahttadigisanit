@@ -618,7 +618,6 @@ class ParadigmConfig(object):
                 matching_p = [p for p in self.paradigm_rules[lang] if p['basename'] == paradigm_rule]
                 if len(matching_p) == 0:
                     print >> sys.stderr, "\n** References a paradigm file (%s) that does not exist" % paradigm_rule
-                    print >> sys.stderr, e
                     print >> sys.stderr, " in:"
                     _, lx, path = path.partition('language_specific_rules')
                     print >> sys.stderr, "    " + lx + path
