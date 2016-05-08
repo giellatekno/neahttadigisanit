@@ -13,6 +13,9 @@ pos:
  - "Pr"
  - "Pron"
  - "V"
+transitivity:
+ - "TV"
+ - "IV"
 noun_type:
  - "Coll"
 pron_type:
