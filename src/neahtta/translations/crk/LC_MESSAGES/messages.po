@@ -241,7 +241,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/valks/about.template:7
 #: static/js/neahttadigisanit.js:8883 templates/mobile_nav_push_menu.html:14
 msgid "About"
-msgstr ""
+msgstr "kîkwây ôma?"
 
 #: configs/language_specific_rules/templates/about.template:14
 #: configs/language_specific_rules/templates/baakoeh/about.template:15
@@ -1000,7 +1000,7 @@ msgstr ""
 
 #: templates/index.html:52 templates/variant_search.html:58
 msgid "Swap"
-msgstr ""
+msgstr "kwêskipita"
 
 #: templates/index.html:67 templates/index.html:139
 #: templates/variant_search.html:117 templates/variant_search.html:220
@@ -1067,24 +1067,24 @@ msgstr ""
 
 #: templates/macros.html:5 templates/macros.html:13
 msgid "Texts"
-msgstr ""
+msgstr "masinahikêwina"
 
 #: templates/mobile_nav_push_menu.html:6
 msgid "Home"
-msgstr ""
+msgstr "ita ka-mâcihtâhk"
 
 #: templates/mobile_nav_push_menu.html:10
 msgid "Plugins"
-msgstr ""
+msgstr "âniski-âpacihcikanis"
 
 #: templates/mobile_nav_push_menu.html:18
 msgid "Sources"
-msgstr ""
+msgstr "ita kâ-ohtinikêhk"
 
 #: templates/mobile_nav_push_menu.html:22
 #: templates/mobile_nav_push_menu.html:25
 msgid "Interface language"
-msgstr ""
+msgstr "ayamiwin"
 
 #: templates/mobile_nav_push_menu.html:26
 #: templates/mobile_nav_push_menu.html:45
