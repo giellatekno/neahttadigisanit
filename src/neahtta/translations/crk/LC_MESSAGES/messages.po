@@ -646,7 +646,7 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/itwewina/index_search_form.template:101
 msgid "Previous:"
-msgstr "mwayês"
+msgstr "mwayês:"
 
 #: configs/language_specific_rules/templates/itwewina/sources.template:6
 msgid "Sources and References"
