@@ -6,32 +6,32 @@ layout:
 | "Singular"      | =N+IN+Sg         |
 | "Plural"        | =N+IN+Pl         |
 | "Locative"      | =N+IN+Loc        |
-| "Singular"                         |
-| "Possessive 1s" | =N+IN+Sg+Px1Sg   |
-| "Possessive 2s" | =N+IN+Sg+Px2Sg   |
-| "Possessive 1p" | =N+IN+Sg+Px1Pl   |
-| "Possessive 21" | =N+IN+Sg+Px12Pl  |
-| "Possessive 2p" | =N+IN+Sg+Px2Pl   |
-| "Possessive 3s" | =N+IN+Sg+Px3Sg   |
-| "Possessive 3p" | =N+IN+Sg+Px3Pl   |
-| "Possessive 4"  | =N+IN+Sg+Px4Sg   |
-| "Plural"                           |
-| "Possessive 1s" | =N+IN+Pl+Px1Sg   |
-| "Possessive 2s" | =N+IN+Pl+Px2Sg   |
-| "Possessive 1p" | =N+IN+Pl+Px1Pl   |
-| "Possessive 21" | =N+IN+Pl+Px12Pl  |
-| "Possessive 2p" | =N+IN+Pl+Px2Pl   |
-| "Possessive 3s" | =N+IN+Pl+Px3Sg   |
-| "Possessive 3p" | =N+IN+Pl+Px3Pl   |
-| "Possessive 4"  | =N+IN+Pl+Px4Sg   |
-| "Locative"                         |
-| "Possessive 1s" | =N+IN+Px1Sg+Loc  |
-| "Possessive 2s" | =N+IN+Px2Sg+Loc  |
-| "Possessive 1p" | =N+IN+Px1Pl+Loc  |
-| "Possessive 21" | =N+IN+Px12Pl+Loc |
-| "Possessive 2p" | =N+IN+Px2Pl+Loc  |
-| "Possessive 3s" | =N+IN+Px3Sg+Loc  |
-| "Possessive 3p" | =N+IN+Px3Pl+Loc  |
-| "Possessive 4"  | =N+IN+Px4Sg+Loc  |
-| "Dimunitive"                       |
-| Der/Dim                            | 
+| "Singular Possessive"              |
+| "1s"            | =N+IN+Sg+Px1Sg   |
+| "2s"            | =N+IN+Sg+Px2Sg   |
+| "1p"            | =N+IN+Sg+Px1Pl   |
+| "21"            | =N+IN+Sg+Px12Pl  |
+| "2p"            | =N+IN+Sg+Px2Pl   |
+| "3s"            | =N+IN+Sg+Px3Sg   |
+| "3p"            | =N+IN+Sg+Px3Pl   |
+| "4"             | =N+IN+Sg+Px4Sg   |
+| "Plural Possessive"                |
+| "1s"            | =N+IN+Pl+Px1Sg   |
+| "2s"            | =N+IN+Pl+Px2Sg   |
+| "1p"            | =N+IN+Pl+Px1Pl   |
+| "21"            | =N+IN+Pl+Px12Pl  |
+| "2p"            | =N+IN+Pl+Px2Pl   |
+| "3s"            | =N+IN+Pl+Px3Sg   |
+| "3p"            | =N+IN+Pl+Px3Pl   |
+| "4"             | =N+IN+Pl+Px4Sg   |
+| "Locative Possessive"              |
+| "1s"            | =N+IN+Px1Sg+Loc  |
+| "2s"            | =N+IN+Px2Sg+Loc  |
+| "1p"            | =N+IN+Px1Pl+Loc  |
+| "21"            | =N+IN+Px12Pl+Loc |
+| "2p"            | =N+IN+Px2Pl+Loc  |
+| "3s"            | =N+IN+Px3Sg+Loc  |
+| "3p"            | =N+IN+Px3Pl+Loc  |
+| "4"             | =N+IN+Px4Sg+Loc  |
+| "Diminutive"                       |
+| Der/Dim                            |
