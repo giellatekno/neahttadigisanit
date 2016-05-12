@@ -3,7 +3,7 @@ paradigm: 'noun-in.paradigm'
 layout:
   type: "basic"
 --
-|                | "Inaminate"   |
+|                | "Inaminate"    |
 | "Singular"     | N+IN+Sg$       |
 | "Plural"       | N+IN+Pl$       |
 | "Locative"     | N+IN+Loc$      |
