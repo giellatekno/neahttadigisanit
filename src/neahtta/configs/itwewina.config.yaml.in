@@ -3,6 +3,7 @@ ApplicationSettings:
   app_meta_title: !gettext "Online Plains Cree dictionary"
   render_template_errors: true
   short_name: "itwewina"
+  paradigm_layouts: true
   default_locale: "crk"
   default_pair: ["crk", "eng"]
   mobile_default_pair: ["crk", "eng"]
