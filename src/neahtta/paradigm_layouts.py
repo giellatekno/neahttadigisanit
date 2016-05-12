@@ -544,9 +544,6 @@ def parse_table(table_string, yaml_definition, path=False):
     t = Table(table_string, options=yaml_definition)
 
     valid, errors = t.validate()
-    print 'bbq'
-    print valid
-    print errors
 
     if valid:
         return (t, {})
