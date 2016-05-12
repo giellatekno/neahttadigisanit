@@ -125,6 +125,12 @@ class Value(object):
         """ Returns true or false depending on whether a and b are a
         match
 
+        possibilities:
+            - ^Tag+Omg+Bbq
+            - Tag+Omg+Bbq$
+            - ^Tag+Omg+Bbq$
+            - =Tag+Omg+Bbq
+
         TODO: enable full regex option?
 
         for now only supporting 'fake' regex, e.g., typical startswith
@@ -143,6 +149,11 @@ class Value(object):
         search_predicate = '###'.join(search_tags)
         current_form_tag = '###'.join(tag_list)
 
+        if self.cell.v.startswith('^') and self.cell.v.endswith('$'):
+            search_tags = tag_splitter(self.cell.v[1:-1])
+            search_predicate = '###'.join(search_tags)
+            return current_form_tag == search_predicate
+
         if self.cell.v.endswith('$') and not self.cell.v.endswith('\$'):
             search_tags = tag_splitter(self.cell.v[0:-1])
             search_predicate = '###'.join(search_tags)
@@ -154,6 +165,11 @@ class Value(object):
             search_predicate = '###'.join(search_tags)
 
             return current_form_tag.startswith(search_predicate)
+
+        if self.cell.v.startswith('='):
+            search_tags = tag_splitter(self.cell.v[1::])
+            search_predicate = '###'.join(search_tags)
+            return current_form_tag == search_predicate
 
         # Otherwise case is a substring match
         return search_predicate in current_form_tag
@@ -528,6 +544,9 @@ def parse_table(table_string, yaml_definition, path=False):
     t = Table(table_string, options=yaml_definition)
 
     valid, errors = t.validate()
+    print 'bbq'
+    print valid
+    print errors
 
     if valid:
         return (t, {})
