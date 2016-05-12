@@ -8,29 +8,29 @@ layout:
 ! "Locative"      ! +N+IN+Loc          |
 ! "Singular"      |                    |
 ! "Possessive 1s" ! +N+IN+Sg+Px1Sg     |
-! "Possessive" ! +N+IN+Sg+Px2Sg        |
-! "Possessive" ! +N+IN+Sg+Px1Pl        |
-! "Possessive" ! +N+IN+Sg+Px12Pl       |
-! "Possessive" ! +N+IN+Sg+Px2Pl        |
-! "Possessive" ! +N+IN+Sg+Px3Sg        |
-! "Possessive" ! +N+IN+Sg+Px3Pl        |
-! "Possessive" ! +N+IN+Sg+Px4Sg        |
-| "Plural"     |                       |
-! "Possessive" ! +N+IN+Pl+Px1Sg        |
-! "Possessive" ! +N+IN+Pl+Px2Sg        |
-! "Possessive" ! +N+IN+Pl+Px4Sg        |
-! "Possessive" ! +N+IN+Pl+Px1Pl        |
-! "Possessive" ! +N+IN+Pl+Px12Pl       |
-! "Possessive" ! +N+IN+Pl+Px2Pl        |
-! "Possessive" ! +N+IN+Pl+Px3Sg        |
-! "Possessive" ! +N+IN+Pl+Px3Pl        |
-| "Locative"   |                       |
-! "Possessive" ! +N+IN+Px1Sg+Loc       |
-! "Possessive" ! +N+IN+Px2Sg+Loc       |
-! "Possessive" ! +N+IN+Px4Sg+Loc       |
-! "Possessive" ! +N+IN+Px1Pl+Loc       |
-! "Possessive" ! +N+IN+Px12Pl+Loc      |
-! "Possessive" ! +N+IN+Px2Pl+Loc       |
-! "Possessive" ! +N+IN+Px3Sg+Loc       |
-! "Possessive" ! +N+IN+Px3Pl+Loc       |
-! "Dimunitive" !                       |
+! "Possessive"    ! +N+IN+Sg+Px2Sg     |
+! "Possessive"    ! +N+IN+Sg+Px1Pl     |
+! "Possessive"    ! +N+IN+Sg+Px12Pl    |
+! "Possessive"    ! +N+IN+Sg+Px2Pl     |
+! "Possessive"    ! +N+IN+Sg+Px3Sg     |
+! "Possessive"    ! +N+IN+Sg+Px3Pl     |
+! "Possessive"    ! +N+IN+Sg+Px4Sg     |
+| "Plural"        |                    |
+! "Possessive"    ! +N+IN+Pl+Px1Sg     |
+! "Possessive"    ! +N+IN+Pl+Px2Sg     |
+! "Possessive"    ! +N+IN+Pl+Px4Sg     |
+! "Possessive"    ! +N+IN+Pl+Px1Pl     |
+! "Possessive"    ! +N+IN+Pl+Px12Pl    |
+! "Possessive"    ! +N+IN+Pl+Px2Pl     |
+! "Possessive"    ! +N+IN+Pl+Px3Sg     |
+! "Possessive"    ! +N+IN+Pl+Px3Pl     |
+| "Locative"      |                    |
+! "Possessive"    ! +N+IN+Px1Sg+Loc    |
+! "Possessive"    ! +N+IN+Px2Sg+Loc    |
+! "Possessive"    ! +N+IN+Px4Sg+Loc    |
+! "Possessive"    ! +N+IN+Px1Pl+Loc    |
+! "Possessive"    ! +N+IN+Px12Pl+Loc   |
+! "Possessive"    ! +N+IN+Px2Pl+Loc    |
+! "Possessive"    ! +N+IN+Px3Sg+Loc    |
+! "Possessive"    ! +N+IN+Px3Pl+Loc    |
+! "Dimunitive"    !                    |
