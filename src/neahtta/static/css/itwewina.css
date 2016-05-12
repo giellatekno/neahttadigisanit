@@ -139,3 +139,9 @@ a.korp_search.lemma_action {
     left: 0em;
 }
 
+
+table.miniparadigm tr:first-child th {
+    font-size: 9pt;
+    text-transform: capitalize !important;
+    text-align: right !important;
+}
