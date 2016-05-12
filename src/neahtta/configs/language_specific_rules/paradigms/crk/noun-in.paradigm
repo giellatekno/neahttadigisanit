@@ -30,6 +30,6 @@ morphology:
 {{ lemma }}+N+IN+Px12Pl+Loc
 {{ lemma }}+N+IN+Px2Pl+Loc
 {{ lemma }}+N+IN+Px3Pl+Loc
-{{ lemma }}++N+IN+Der/Dim+N+IN+Sg
+{{ lemma }}+N+IN+Der/Dim+N+IN+Sg
 
 
