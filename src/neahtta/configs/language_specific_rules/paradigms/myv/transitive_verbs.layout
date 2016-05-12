@@ -3,10 +3,25 @@ paradigm: "transitive_verbs.paradigm"
 layout:
   type: "1. basic"
 --
-|          | _"Prs"          | _"Prt"          |
-| _"Sg1"   | Ind+Prs+ScSg1$  | Ind+Prt1+ScSg1$ |
-| _"Sg2"   | Ind+Prs+ScSg2$  | Ind+Prt1+ScSg2$ |
-| _"Sg3"   | Ind+Prs+ScSg3$  | Ind+Prt1+ScSg3$ |
-| _"Pl1"   | Ind+Prs+ScPl1$  | Ind+Prt1+ScPl1$ |
-| _"Pl2"   | Ind+Prs+ScPl2$  | Ind+Prt1+ScPl2$ |
-| _"Pl3"   | Ind+Prs+ScPl3$  | Ind+Prt1+ScPl3$ |
+|                   | _"Prs"               | _"Prt"                |
+| _"Sg1"            | Ind+Prs+ScSg1$       | Ind+Prt1+ScSg1$       |
+| _"Sg2"            | Ind+Prs+ScSg2$       | Ind+Prt1+ScSg2$       |
+| _"Sg3"            | Ind+Prs+ScSg3$       | Ind+Prt1+ScSg3$       |
+| _"Pl1"            | Ind+Prs+ScPl1$       | Ind+Prt1+ScPl1$       |
+| _"Pl2"            | Ind+Prs+ScPl2$       | Ind+Prt1+ScPl2$       |
+| _"Pl3"            | Ind+Prs+ScPl3$       | Ind+Prt1+ScPl3$       |
+| _"ScSg1" _"OcSg2" | Ind+Prs+ScSg1+OcSg2$ | Ind+Prt1+ScSg1+OcSg2$ |
+| _"ScSg1" _"OcSg2" | Ind+Prs+ScSg1+OcSg3$ | Ind+Prt1+ScSg1+OcSg3$ |
+| _"ScSg1" _"OcSg2" | Ind+Prs+ScSg1+OcPl2$ | Ind+Prt1+ScSg1+OcPl2$ |
+| _"ScSg1" _"OcSg2" | Ind+Prs+ScSg2+OcSg1$ | Ind+Prt1+ScSg2+OcSg1$ |
+| _"ScSg1" _"OcSg2" | Ind+Prs+ScSg2+OcSg3$ | Ind+Prt1+ScSg2+OcSg3$ |
+| _"ScSg1" _"OcSg2" | Ind+Prs+ScSg2+OcPl1$ | Ind+Prt1+ScSg2+OcPl1$ |
+| _"ScSg1" _"OcSg2" | Ind+Prs+ScSg3+OcSg1$ | Ind+Prt1+ScSg3+OcSg1$ |
+| _"ScSg1" _"OcSg2" | Ind+Prs+ScSg3+OcSg2$ | Ind+Prt1+ScSg3+OcSg2$ |
+| _"ScSg1" _"OcSg2" | Ind+Prs+ScSg3+OcSg3$ | Ind+Prt1+ScSg3+OcSg3$ |
+| _"ScSg1" _"OcSg2" | Ind+Prs+ScSg3+OcPl1$ | Ind+Prt1+ScSg3+OcPl1$ |
+| _"ScSg1" _"OcSg2" | Ind+Prs+ScSg3+OcPl2$ | Ind+Prt1+ScSg3+OcPl2$ |
+| _"ScSg1" _"OcSg2" | Ind+Prs+ScSg3+OcPl3$ | Ind+Prt1+ScSg3+OcPl3$ |
+| _"ScSg1" _"OcSg2" | Ind+Prs+ScPl3+OcPl1$ | Ind+Prt1+ScPl3+OcPl1$ |
+| _"ScSg1" _"OcSg2" | Ind+Prs+ScPl3+OcPl2$ | Ind+Prt1+ScPl3+OcPl2$ |
+| _"ScSg1" _"OcSg2" | Ind+Prs+ScPl3+OcPl3$ | Ind+Prt1+ScPl3+OcPl3$ |
