@@ -12,11 +12,15 @@ predictable for new linguist users defining a layout?
 
 !!! Programmer notes
 
+TODO: key help not present on detail views
+TODO: mobile collapse button has some weird behavior, presense of tabs needs unique IDs but they're appearing twice
+
 TODO: where are preverbs going between generation? specified in
       .paradigm file, but they go missing when actually sent off to generation
 
 TODO: hover over labels for tooltip that explains them
-TODO: horizontal line / possibility to to define cell borders
+TODO: horizontal line / possibility to to define cell borders: potentially multiple levels of border thickness
+
 TODO: possible to convert a table into a plain list for mobile devices
 TODO: paradigm tabs missing from mobile view
 
