@@ -102,7 +102,7 @@
                 {% for uri, input in last_searches %}
                 <li><a href="{{ uri }}">{{ input }}</a>{% if not loop.last %},{% endif %}</li>
                 {% endfor %}
-                <li><a href="/session/clear/last_searches/">(clear)</a></li>
+                <li><a href="/session/clear/last_searches/">({% trans %}clear{% endtrans %})</a></li>
             </ul>
             {% endif %}
         </div>
