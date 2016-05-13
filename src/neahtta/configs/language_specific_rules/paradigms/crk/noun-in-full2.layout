@@ -3,9 +3,9 @@ paradigm: 'noun-in.paradigm'
 layout:
   type: "full2"
 --
-| "Singular"      | =N+IN+Sg         |                                     |
-| "Plural"        | =N+IN+Pl         |                                     |
-| "Locative"      | =N+IN+Loc        |                                     |
+| "Singular"      | =N+IN+Sg         |                  |                  |
+| "Plural"        | =N+IN+Pl         |                  |                  |
+| "Locative"      | =N+IN+Loc        |                  |                  |
 | "Possessive"    | "Singular"       | "Plural"         | "Locative"       |
 | "1s"            | =N+IN+Sg+Px1Sg   | =N+IN+Pl+Px1Sg   | =N+IN+Px1Sg+Loc  |
 | "2s"            | =N+IN+Sg+Px2Sg   | =N+IN+Pl+Px2Sg   | =N+IN+Px2Sg+Loc  |
@@ -15,5 +15,4 @@ layout:
 | "3s"            | =N+IN+Sg+Px3Sg   | =N+IN+Pl+Px3Sg   | =N+IN+Px3Sg+Loc  |
 | "3p"            | =N+IN+Sg+Px3Pl   | =N+IN+Pl+Px3Pl   | =N+IN+Px3Pl+Loc  |
 | "4"             | =N+IN+Sg+Px4Sg   | =N+IN+Pl+Px4Sg   | =N+IN+Px4Sg+Loc  |
-| "Diminutive"                       |                                     |
-| Der/Dim                            |                                     |
+| "Diminutive"    | Der/Dim          |                  |                  |
