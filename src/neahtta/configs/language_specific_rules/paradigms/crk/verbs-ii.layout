@@ -1,4 +1,4 @@
-name: "animate intransitive paradigm"
+name: "inanimate intransitive paradigm"
 paradigm: 'verbs-ii.paradigm'
 layout:
   type: "basic"
