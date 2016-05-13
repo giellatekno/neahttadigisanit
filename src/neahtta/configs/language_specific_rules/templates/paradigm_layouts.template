@@ -3,9 +3,11 @@
 #}
 
 {%- macro full_paradigm_link() %}
+    {%- set lemma_key = lexicon_entry|xpath('lg/l')|first|text %}
+    {%- set lemma_pos = lexicon_entry|xpath('lg/l/@pos')|first  %}
     <a class="full-paradigm-link"
        style="opacity: .8;"
-       href="http://gtweb.uit.no/cgi-bin/smi/smi.cgi?text={{ lemma }}&pos={{ pos }}&mode=full&action=paradigm&lang=crk&plang=crk">
+       href="http://gtweb.uit.no/cgi-bin/smi/smi.cgi?text={{ lemma_key }}&pos={{ lemma_pos }}&mode=full&action=paradigm&lang={{ _from }}&plang={{ _from }}">
         {%- trans -%}Full paradigm{%- endtrans -%} &nbsp;&rarr;
     </a>
 {% endmacro -%}
