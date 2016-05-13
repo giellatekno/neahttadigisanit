@@ -10,20 +10,24 @@ predictable for new linguist users defining a layout?
 
 {{_"Text"}}
 
-
-TODO: tagsets vs. internationalization files?
-
-
 !!! Programmer notes
 
+TODO: hover over labels for tooltip that explains them
+TODO: horizontal line / possibility to to define cell borders
+TODO: possible to convert a table into a plain list for mobile devices
+TODO: paradigm tabs missing from mobile view
+
+
+TODO: tagsets vs. internationalization files?
 TODO: multiple cell values, e.g., _"Sg" _"Prs"
       or for context, e.g., "(mun)" Ind+Prs+1Sg
 
-    will need to redo cell value parser
+      will need to redo cell value parser
 
+down the line ...
 
-TODO: value aliases?
-TODO: allow definition of match shortcuts
+todo: value aliases?
+todo: allow definition of match shortcuts
 
     forms:
       1st_sg:
