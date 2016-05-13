@@ -12,6 +12,9 @@ predictable for new linguist users defining a layout?
 
 !!! Programmer notes
 
+TODO: where are preverbs going between generation? specified in
+      .paradigm file, but they go missing when actually sent off to generation
+
 TODO: hover over labels for tooltip that explains them
 TODO: horizontal line / possibility to to define cell borders
 TODO: possible to convert a table into a plain list for mobile devices
