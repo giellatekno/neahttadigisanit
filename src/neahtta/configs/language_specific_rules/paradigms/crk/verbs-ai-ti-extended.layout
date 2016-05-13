@@ -4,11 +4,11 @@ layout:
   type: "extended"
   no_form: "–"
 --
-|                  | ~"Ind"           | ~"Conjunct"   |
-| ~"1Sg"           | +Ind+Prs+1Sg     | +Cnj+Prs+1Sg  |
-| ~"2Sg"           | +Ind+Prs+2Sg     | +Cnj+Prs+2Sg  |
-| ~"3Sg"           | +Ind+Prs+3Sg     | +Cnj+Prs+3Sg  |
-| ~"1p exclusive"  | +Ind+Prs+1Pl     | +Cnj+Prs+1Pl  |
-| ~"1p inclusive"  | +Ind+Prs+12Pl    | +Cnj+Prs+12Pl |
-| ~"2p"            | +Ind+Prs+2Pl     | +Cnj+Prs+2Pl  |
-| ~"3p"            | +Ind+Prs+3Pl     | +Cnj+Prs+3Pl  |
+|                  | _"Ind"           | _"Conjunct"   |
+| _"1Sg"           | +Ind+Prs+1Sg     | +Cnj+Prs+1Sg  |
+| _"2Sg"           | +Ind+Prs+2Sg     | +Cnj+Prs+2Sg  |
+| _"1p exclusive"  | +Ind+Prs+1Pl     | +Cnj+Prs+1Pl  |
+| _"1p inclusive"  | +Ind+Prs+12Pl    | +Cnj+Prs+12Pl |
+| _"2p"            | +Ind+Prs+2Pl     | +Cnj+Prs+2Pl  |
+| _"3s"            | +Ind+Prs+3Sg     | +Cnj+Prs+3Sg  |
+| _"3p"            | +Ind+Prs+3Pl     | +Cnj+Prs+3Pl  |
