@@ -6,7 +6,7 @@ layout:
 | "Singular"      | =N+IN+Sg         |                  |                  |
 | "Plural"        | =N+IN+Pl         |                  |                  |
 | "Locative"      | =N+IN+Loc        |                  |                  |
-| "Possessive"    | "Singular"       | "Plural"         | "Locative"       |
+| "Possessive"    |: "Singular"      |: "Plural"        |: "Locative"      |
 | "1s"            | =N+IN+Sg+Px1Sg   | =N+IN+Pl+Px1Sg   | =N+IN+Px1Sg+Loc  |
 | "2s"            | =N+IN+Sg+Px2Sg   | =N+IN+Pl+Px2Sg   | =N+IN+Px2Sg+Loc  |
 | "1p"            | =N+IN+Sg+Px1Pl   | =N+IN+Pl+Px1Pl   | =N+IN+Px1Pl+Loc  |
