@@ -385,6 +385,7 @@ saanih-install: install_langs_fsts
 
 GUUSAAW_LANGS_ANALYSERS      :=   hdn
 GUUSAAW_LANGS_LEXICA         :=   
+GUUSAAW_LANGS_FLAGS          :=   --with-hfst
 GUUSAAW_WORDS_DICTS_LEXICA   :=   hdneng
 
 
@@ -480,16 +481,22 @@ engcrk.xml: $(GTHOME)/art/dicts/crk/Wolvengrey/engcrk.xml
 
 # TODO: include python tools/extract_audio.py --local-audio-source --output-file=OUTFILE dicts/src/INFILE static/aud/crk
 
-crkeng.xml: $(GTHOME)/art/dicts/crk/Wolvengrey/crkeng.xml
+# Copy the dependencies and combine them using SAXON
+crkeng.xml: $(GTHOME)/art/dicts/crk/Wolvengrey/crkeng.xml \
+			$(GTHOME)/art/dicts/crk/Wolvengrey/bridge2FST.xml
 	@echo "******************************"
 	@echo "** Building crk-eng lexicon **"
 	@echo "******************************"
 	@echo "** Backup made (.bak)       **"
 	@echo "******************************"
 	@echo ""
-	cp $^ $@.tmp
+	mkdir -p crkeng_tmp/
+	cp $^ crkeng_tmp/
+	cp -R $(GTHOME)/words/dicts/scripts ../scripts
+	$(SAXON) inDir=$(shell pwd)/crkeng_tmp > $@.tmp
 	mkdir -p ../static/aud/crk
 	python ../tools/extract_audio.py --local-audio-source --encoding-format=mp3 --output-file=$@ $@.tmp ../static/aud/crk
+	rm -rf crkeng_tmp/
 
 
 crkeng-macron.xml: crkeng.xml
