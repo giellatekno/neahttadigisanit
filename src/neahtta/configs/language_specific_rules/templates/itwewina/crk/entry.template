@@ -12,12 +12,22 @@
 #}
 
 {%- import "lexicon.macros" as macros with context -%}
+
+{%- macro reference_link(has_reference) -%}
+    {{- rendered_templates.entry_text -}} &rarr; <a href="/detail/{{ _from }}/{{ _to }}/{{ has_reference }}.html"><span class="see_also">{{ has_reference }}</span></a>
+{%- endmacro -%}
+
 <div class="row-fluid entry_row">
     <div class="span8 lexeme">
         {% if lexicon_entry|count > 0 %}
+            {% set has_reference = lexicon_entry.xpath('./lg/lemma_ref/text()')|first %}
             <p>
-                <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
-                    {{- rendered_templates.entry_text -}}</a>
+              	{%- if has_reference -%}
+              	    {{ reference_link(has_reference) }}
+              	{%- else -%}
+                    <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
+                        {{- rendered_templates.entry_text -}}</a>
+                {% endif %}
 
             <ul class="meanings">
                 {{- rendered_templates.definition -}}
