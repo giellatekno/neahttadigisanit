@@ -16,66 +16,10 @@ from lexicon import lexicon_overrides as lexicon
 from lexicon import autocomplete_filters as autocomplete_filters
 from morpholex import morpholex_overrides as morpholex
 
-LEX_TO_FST = {
-    'a': 'A',
-    'adj': 'A',
-    'adp': 'Adp',
-    'adv': 'Adv',
-    'aktor': 'NomAg',
-    'egenn': 'Prop',
-    'interj': 'Interj',
-    'konj': 'CC',
-    'n': 'N',
-    'npl': 'N',
-    'num': 'Num',
-    'part': 'Pcle',
-    'postp': 'Po',
-    'prep': 'Pr',
-    'pron': 'Pron',
-    'prop': 'Prop',
-    'subj': 'CS',
-    'subst': 'N',
-    'v': 'V',
-    'verb': 'V',
-    '': '',
-}
-
 morph_log = getLogger('morphology')
 
 # This is called before any lookup is done, regardless of whether it
 # came from analysis or not.
-
-# TODO: til_ref / fra_ref
-#  * need to allow <lg> <l /> </lg> (blank)
-#  * need to render <mg /> with fra_ref, with links which generate a
-#  query to til_ref 
-#  * maybe include these in get parameters or something. 
-
-# NOTE: some mwe will mess things up here a bit, in that pos is
-# passed in with part of the mwe. Thus, if there is no POS, do
-# nothing.
-@lexicon.pre_lookup_tag_rewrite_for_iso(*['sme', 'SoMe'])
-def pos_to_fst(*args, **kwargs):
-    """ For synchronizing PoS between lexicon and FST. Should be less
-    necessary now.
-
-    TODO: generalize to a setting in .yaml or somewhere.
-    """
-    if 'lemma' in kwargs and 'pos' in kwargs:
-        _k = kwargs.get('pos', '')
-        if _k is not None:
-            _k = _k.replace('.', '').replace('+', '')
-            new_pos = LEX_TO_FST.get(_k, False)
-        else:
-            _k = False
-            new_pos = False
-        if new_pos:
-            kwargs['pos'] = new_pos
-        else:
-            if _k:
-                morph_log.error("sme.py: Missing LEX_TO_FST pair for %s" % _k.encode('utf-8'))
-                morph_log.error("sme.py: in morphology.morphological_definitions.sme")
-    return args, kwargs
 
 @autocomplete_filters.autocomplete_filter_for_lang(('nob', 'sme'))
 def remove_orig_entry(entries):
@@ -117,149 +61,7 @@ def pregenerate_sme(form, tags, node, **kwargs):
 
     return form, tags, node, analyses
 
-
-@morphology.tag_filter_for_iso(*['sme', 'SoMe'])
-def lexicon_pos_to_fst(form, tags, node=None, **kwargs):
-    """ **tag filter**: Lexicon -> FST changes.
-
-    Change POS to be compatible with FST for when they are not.
-    """
-
-    new_tags = []
-    for t in tags:
-        _t = []
-        for p in t:
-            _t.append(LEX_TO_FST.get(p, p))
-        new_tags.append(_t)
-
-    return form, new_tags, node
-
-
 _str_norm = 'string(normalize-space(%s))'
-
-# commented out; Bug 1719
-
-### NB: if commenting back in, argument structure for decorator function is changed.
-### @morpholex.post_morpho_lexicon_override(*['sme', 'SoMe'])
-### def remove_analyses_for_analyzed_forms_with_lemma_ref(xml, fst):
-###     """ **Post morpho-lexicon override**
-### 
-###     If there is an entry that is an analysis and the set of XML entries
-###     resulting from the lookup contains another entry with its matching
-###     lemma, then discard the analyses.
-###     """
-### 
-###     if xml is None or fst is None:
-###         return None
-### 
-###     from collections import defaultdict
-###     nodes_by_lemma = defaultdict(list)
-### 
-###     for e in xml:
-###         lemma = e.xpath(_str_norm % 'lg/l/text()')
-###         lemma_ref_lemma = e.xpath(_str_norm % 'lg/lemma_ref/text()')
-### 
-###         if lemma_ref_lemma:
-###             nodes_by_lemma[lemma_ref_lemma].append(
-###                 (e, True)
-###             )
-###         elif lemma:
-###             nodes_by_lemma[lemma].append(
-###                 (e, False)
-###             )
-### 
-###     def lg_l_matches_str(n, s):
-###         return n.xpath(_str_norm % 'lg/l/text()') == s
-### 
-###     for lemma, nodes in nodes_by_lemma.iteritems():
-###         # get the lemma_ref node
-###         lemma_ref_node = filter( lambda (n, is_lemma_ref): is_lemma_ref
-###                                , nodes
-###                                )
-### 
-###         if len(lemma_ref_node) > 0:
-###             _l_node, _is_l_ref = lemma_ref_node[0]
-###             lemma_ref_lemma = _l_node.xpath(
-###                 _str_norm % 'lg/lemma_ref/text()'
-###             )
-### 
-###             # Match nodes by lg_l vs. lemma_ref_string
-###             _match = lambda (m_n, _): \
-###                 lg_l_matches_str(m_n, lemma_ref_lemma)
-###             lemmas_matching = filter( _match, nodes )
-###             # If there is a lemma for the lemma_ref string ...
-###             if len(lemmas_matching) > 0:
-###                 def analysis_lemma_is_not(analysis):
-###                     return lemma_ref_lemma != analysis.lemma
-### 
-###                 # wipe out analyses in fst for a lemma if there is a lemma_ref
-###                 fst = filter( analysis_lemma_is_not
-###                             , fst
-###                             )
-### 
-###     return xml, fst
-
-# commented out; bug 1719
-
-### NB: if commenting back in, argument structure for decorator function is changed.
-### @morpholex.post_morpho_lexicon_override(*['sme', 'SoMe'])
-### def remove_analyses_for_specific_closed_classes(xml, fst):
-###     """ **Post morpho-lexicon override**
-### 
-###     Remove analyses from list when the XML entry contains a specific PoS
-###     type.
-### 
-###     This has to be done in two steps:
-###      * check for xml entries containing the types
-###      * filter out the matching lemma from those entries, *or*, remove
-###        analyses that have a member of the hideanalysis tagset
-### 
-###     NB: this must be registered after ``remove_analyses_for_analyzed_forms_with_lemma_ref``,
-###     because that function depends on analyses still existing to some of
-###     these types.
-###     """
-### 
-###     if xml is None or fst is None:
-###         return None
-### 
-###     restrict_xml_type = [ 'Pers'
-###                         , 'Dem'
-###                         , 'Rel'
-###                         , 'Refl'
-###                         , 'Recipr'
-###                         , 'Neg'
-###                         ]
-### 
-###     restrict_lemmas = [ 'leat'
-###                       ]
-### 
-###     for e in xml:
-###         _pos_type = e.xpath(_str_norm % 'lg/l/@type')
-###         _lemma = e.xpath(_str_norm % 'lg/l/text()')
-### 
-###         if _pos_type in restrict_xml_type:
-###             restrict_lemmas.append(_lemma)
-### 
-###     def lemma_not_in_list(lemma):
-###         _lemma = lemma.lemma not in restrict_lemmas
-###         return _lemma
-### 
-###     def hideanalysis_tagset(lemma):
-###         _hide = lemma.tag['hideanalysis']
-###         _hide_analysis = True
-###         if _hide:
-###             if len(_hide) > 0:
-###                 _hide_analysis = False
-### 
-###         return _hide_analysis
-### 
-###     fst = filter( hideanalysis_tagset
-###                 , filter( lemma_not_in_list
-###                         , fst
-###                         )
-###                 )
-### 
-###     return xml, fst
 
 SME_NOB_DICTS = [
     ('sme', 'nob'),
@@ -416,11 +218,3 @@ def format_fra_ref_links(ui_lang, e, tg):
             return "%s (%s)" % (_t_lemma, _reg)
 
     return None
-
-from common import remove_blank
-
-# Remove blank analyses
-morphology.postgeneration_filter_for_iso(
-    'sme',
-    'SoMe'
-)(remove_blank)

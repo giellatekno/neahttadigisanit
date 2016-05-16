@@ -70,16 +70,6 @@ def format_source_sma(ui_lang, e, target_lang):
 
     return None
 
-# LEX_TO_FST = {
-#     'a': 'A',
-#     'adv': 'Adv',
-#     'n': 'N',
-#     'npl': 'N',
-#     'num': 'Num',
-#     'prop': 'Prop',
-#     'v': 'V',
-# }
-
 @morphology.pregenerated_form_selector('sma')
 def pregenerate_sma(form, tags, node, **kwargs):
     _has_mini_paradigm = node.xpath('.//mini_paradigm[1]')
@@ -110,22 +100,9 @@ def pregenerate_sma(form, tags, node, **kwargs):
 
     return form, tags, node, analyses
 
-# from common import remove_blank, match_homonymy_entries, external_korp_url
-from common import remove_blank, match_homonymy_entries
-
-morphology.postgeneration_filter_for_iso(
-    'sma',
-)(remove_blank)
+from common import match_homonymy_entries
 
 morpholex.post_morpho_lexicon_override(
     'sma'
 )(match_homonymy_entries)
 
-# KORP_SEARCHES = [
-#     ('korp_wordform', 'sma', 'nob'),
-#     # ('korp_wordform', 'nob', 'sma'),
-# ]
-# 
-# lexicon.external_search(*KORP_SEARCHES)(
-#     external_korp_url
-# )
