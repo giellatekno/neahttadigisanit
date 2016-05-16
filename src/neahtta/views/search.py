@@ -304,48 +304,6 @@ class SearchResult(object):
 
         return pickle_result
 
-    def generate_paradigm_from_formatted(self, formatted_results, morph_analyses):
-        """ If a paradigm is to be generated for our results, we handle
-        that here. Simply iterate through formatted_results, and add
-        another key, which will be `paradigm` and `layout` for each
-        entry.
-
-        The goal may be for this to go away, because entry formatters
-        are mostly superceded by the template system
-        """
-
-        morph = current_app.config.morphologies.get(g._from, False)
-        mlex = current_app.morpholexicon
-
-        generated_and_formatted = []
-        for r in formatted_results:
-            lemma, pos, tag, _type = r.get('input')
-            node = r.get('node')
-
-            paradigm_from_file, paradigm_template = mlex.paradigms.get_paradigm(
-                g._from, node, morph_analyses, return_template=True
-            )
-            if paradigm_from_file:
-                form_tags = [_t.split('+')[1::] for _t in paradigm_from_file.splitlines()]
-                extra_log_info = {
-                    'template_path': paradigm_template,
-                }
-                _generated, raw_out, raw_in = morph.generate(lemma, form_tags, node, extra_log_info=extra_log_info, return_raw_data=True)
-            else:
-                extra_log_info = {
-                    'pregenerated': 'true',
-                }
-                # For pregenerated things
-                _generated = morph.generate(lemma, [], node)
-                raw_out = 'pregenerated'
-                raw_in = '...'
-
-            r['paradigm'] = _generated
-
-            generated_and_formatted.append(r)
-
-        return generated_and_formatted
-
     def generate_paradigm(self, node, morph_analyses):
         _str_norm = 'string(normalize-space(%s))'
 
@@ -364,9 +322,13 @@ class SearchResult(object):
             extra_log_info = {
                 'template_path': paradigm_template,
             }
-            form_tags = [_t.split('+')[1::] for _t in paradigm_from_file.splitlines()]
 
-            _generated, _stdout, _stderr = morph.generate_to_objs(lemma, form_tags, node, extra_log_info=extra_log_info, return_raw_data=True)
+            _generated, _stdout, _stderr = morph.generate_to_objs(lemma,
+                                                                  paradigm_from_file,
+                                                                  node,
+                                                                  extra_log_info=extra_log_info,
+                                                                  return_raw_data=True,
+                                                                  no_preprocess_paradigm=True)
         else:
             # For pregenerated things
             _generated, _stdout, _stderr = morph.generate_to_objs(lemma, [], node, return_raw_data=True)
@@ -401,9 +363,6 @@ class SearchResult(object):
 
                 if self.entry_filterer:
                     _formatted = self.entry_filterer(_formatted)
-
-                if self.generate:
-                    _formatted = self.generate_paradigm_from_formatted(_formatted, morph_analyses)
 
                 self._formatted_results.extend(_formatted)
 

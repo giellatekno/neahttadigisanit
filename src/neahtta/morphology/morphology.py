@@ -623,7 +623,7 @@ class XFST(object):
         output, err = self._exec(lookup_string, cmd=self.icmd)
         return self.clean(output)
 
-    def inverselookup(self, lemma, tags, raw=False):
+    def inverselookup(self, lemma, tags, raw=False, no_preprocess_paradigm=False):
         import sys
         if not self.icmd:
             print >> sys.stderr, " * Inverse lookups not available."
@@ -636,13 +636,17 @@ class XFST(object):
         # string for generation. Otherwise, prefix the lemma then
         # send to generation.
         # 
-        for tag in tags:
-            if lemma in tag:
-                combine = tag
-            else:
-                combine = [lemma] + tag
-            lookups_list.append(self.formatTag(combine, inverse=True))
-        lookup_string = '\n'.join(lookups_list)
+        if not no_preprocess_paradigm:
+            for tag in tags:
+                if lemma in tag:
+                    combine = tag
+                else:
+                    combine = [lemma] + tag
+                lookups_list.append(self.formatTag(combine, inverse=True))
+            lookup_string = '\n'.join(lookups_list)
+        else:
+            lookup_string = tags + '\n'
+
         output, err = self._exec(lookup_string, cmd=self.icmd)
         if raw:
             return self.clean(output), output, err
@@ -796,7 +800,13 @@ class Morphology(object):
             TODO: cache pregenerated forms, return them.
 
         """
+
         return_raw_data = kwargs.get('return_raw_data', False)
+        no_preprocess_paradigm = kwargs.get('no_preprocess_paradigm', False)
+
+        # tagsets as passed in include the lemma and do not require
+        # preprocessing to add it in
+        # if no_preprocess_paradigm:
 
         if len(node) > 0:
             key = self.generate_cache_key(lemma, tagsets, node)
@@ -826,9 +836,9 @@ class Morphology(object):
                 return pregenerated
 
         if return_raw_data:
-            res, raw_output, raw_errors = self.tool.inverselookup(lemma, tagsets, raw=True)
+            res, raw_output, raw_errors = self.tool.inverselookup(lemma, tagsets, raw=True, no_preprocess_paradigm=no_preprocess_paradigm)
         else:
-            res = self.tool.inverselookup(lemma, tagsets)
+            res = self.tool.inverselookup(lemma, tagsets, no_preprocess_paradigm=no_preprocess_paradigm)
             raw_output = ''
             raw_errors = ''
 
@@ -990,7 +1000,10 @@ class Morphology(object):
         """ key is something like generation-LANG-nodehash-TAG|TAG|TAG
         """
         import hashlib
-        _cache_tags = '|'.join(['+'.join(a) for a in generation_tags])
+        if type(generation_tags) == list:
+            _cache_tags = '|'.join(['+'.join(a) for a in generation_tags])
+        else:
+            _cache_tags = generation_tags
 
         _cache_key = hashlib.md5()
         _cache_key.update('generation-%s-' % self.langcode)
