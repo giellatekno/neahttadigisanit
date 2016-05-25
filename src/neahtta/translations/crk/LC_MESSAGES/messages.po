@@ -614,7 +614,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/guusaaw/about.template:56
 #: configs/language_specific_rules/templates/itwewina/about.template:67
 msgid ""
-"The dictionary software behind pîkiskwêwina is Neahttadigisánit, "
+"The dictionary software behind itwêwina is Neahttadigisánit, "
 "originally created for North Saami and South Saami at the University of "
 "Tromsø. New languages always present new challenges for the software, so "
 "be sure to get in touch with us if you have questions or comments."
@@ -646,7 +646,7 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/itwewina/index_search_form.template:101
 msgid "Previous:"
-msgstr "mwayês:"
+msgstr "sâsay anihi"
 
 #: configs/language_specific_rules/templates/itwewina/sources.template:6
 msgid "Sources and References"
@@ -940,7 +940,7 @@ msgstr ""
 
 #: static/js/neahttadigisanit.js:8883
 msgid "This tool was made by Giellatekno at UiT: The Arctic University of Norway."
-msgstr ""
+msgstr "This tool was made as a collaboration of ALTLab at the University of Alberta, First Nations University of Canada, and Giellatekno at UiT: The Arctic University of Norway."
 
 #: static/js/neahttadigisanit.js:8883
 msgid "Read more"
