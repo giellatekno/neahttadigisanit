@@ -944,7 +944,7 @@ msgstr "This tool was made as a collaboration of ALTLab at the University of Alb
 
 #: static/js/neahttadigisanit.js:8883
 msgid "Read more"
-msgstr "<a href=\"http://itwewina.oahpa.no/about/\"Read More\">"
+msgstr "<a href=\"http://itwewina.oahpa.no/about/\">Read More<\a>"
 
 #: static/js/neahttadigisanit.js:8883
 msgid "More tools"
