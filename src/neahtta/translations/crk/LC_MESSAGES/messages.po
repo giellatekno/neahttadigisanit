@@ -609,7 +609,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/guusaaw/about.template:41
 #: configs/language_specific_rules/templates/itwewina/about.template:43
 msgid "s/he speaks Cree"
-msgstr "you and we speak Cree"
+msgstr "«you and we speak Cree»"
 
 #: configs/language_specific_rules/templates/guusaaw/about.template:56
 #: configs/language_specific_rules/templates/itwewina/about.template:67
