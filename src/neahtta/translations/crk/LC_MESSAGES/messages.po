@@ -609,7 +609,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/guusaaw/about.template:41
 #: configs/language_specific_rules/templates/itwewina/about.template:43
 msgid "s/he speaks Cree"
-msgstr ""
+msgstr "you and we speak Cree"
 
 #: configs/language_specific_rules/templates/guusaaw/about.template:56
 #: configs/language_specific_rules/templates/itwewina/about.template:67
@@ -944,7 +944,7 @@ msgstr "This tool was made as a collaboration of ALTLab at the University of Alb
 
 #: static/js/neahttadigisanit.js:8883
 msgid "Read more"
-msgstr ""
+msgstr "http://itwewina.oahpa.no/about/"
 
 #: static/js/neahttadigisanit.js:8883
 msgid "More tools"
@@ -1079,7 +1079,7 @@ msgstr "âniski-âpacihcikanis"
 
 #: templates/mobile_nav_push_menu.html:18
 msgid "Sources"
-msgstr "ita kâ-ohtinikêhk"
+msgstr "ita kâ-ohtimikâtêki"
 
 #: templates/mobile_nav_push_menu.html:22
 #: templates/mobile_nav_push_menu.html:25
