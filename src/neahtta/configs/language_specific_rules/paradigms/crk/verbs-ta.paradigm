@@ -80,10 +80,10 @@ lexicon:
 
 {# CNJ-PRESENT-TENSE-SAP #}
 
-{{ lemma }}+V+TA+Cnj+Prs+2Sg+1SgO
-{{ lemma }}+V+TA+Cnj+Prs+2Sg+1PlO
-{{ lemma }}+V+TA+Cnj+Prs+2Pl+1PlO
-{{ lemma }}+V+TA+Cnj+Prs+2Pl+1SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+2Sg+1SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+2Sg+1PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+2Pl+1PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+2Pl+1SgO
 
 {{ lemma }}+V+TA+Cnj+Prs+1Sg+2SgO
 {{ lemma }}+V+TA+Cnj+Prs+1Pl+2SgO
