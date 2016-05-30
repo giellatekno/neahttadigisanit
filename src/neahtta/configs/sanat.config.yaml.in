@@ -111,6 +111,13 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: &F_KORP "http://gtweb.uit.no/f_korp"
     is_korp_default_lang: True
+    input_variants: &spell_relax_fkv
+      - type: "standard"
+        description: !gettext "Standard"
+        onscreen_keyboard: &FKV_KEYS
+          - "đ"
+        # NB: must be same as analyser name
+        short_name: "fkv"
 
   - source: nob
     target: fkv
