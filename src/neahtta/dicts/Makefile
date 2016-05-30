@@ -41,6 +41,8 @@ VIRTUALENV := $
 ###         
 ###         #kyvtargets
 ###         
+###         #cuvantultargets
+###         
 ###         #Globaltargets
 
 # Use GSED if available. Probably a good idea for macs.
@@ -284,45 +286,45 @@ ndstesting-install: install_langs_fsts
 ### with the PROJNAME.
 
 # These are the ISOs of the languages to compile from GTHOME/langs/
-FOCAIL_LANGS_ANALYSERS           :=   
+CUVANTUL_LANGS_ANALYSERS           :=   
 
 # OPTIONAL: enable miscellaneous ./configure flags
 # FOCAIL_LANGS_FLAGS             :=   --with-hfst
 
 # These are the ISOs of the languages to compile from GTHOME/startup-langs/
-FOCAIL_STARTUP_LANGS_ANALYSERS   :=   gle
+CUVANTUL_STARTUP_LANGS_ANALYSERS   :=   ron
 
 # Compile the lexicon from within GTHOME/langs/LANG/src/morphology/stems/*.xml
 
-FOCAIL_LANGS_LEXICA              :=   
+CUVANTUL_LANGS_LEXICA              :=   
 
 # Compile the lexicon from a directory within GTHOME/words/dicts/
-FOCAIL_WORDS_DICTS_LEXICA        :=   gleeng
+CUVANTUL_WORDS_DICTS_LEXICA        :=   sonnob
 
-.PHONY: focail-lexica
-focail-lexica: LEX_COMPILE_LANGS := $(FOCAIL_LANGS_LEXICA)
-focail-lexica: LEX_COMPILE_WORDS_DICTS := $(FOCAIL_WORDS_DICTS_LEXICA)
-focail-lexica: compile_langs_lexicon \
+.PHONY: cuvantul-lexica
+cuvantul-lexica: LEX_COMPILE_LANGS := $(CUVANTUL_LANGS_LEXICA)
+cuvantul-lexica: LEX_COMPILE_WORDS_DICTS := $(CUVANTUL_WORDS_DICTS_LEXICA)
+cuvantul-lexica: compile_langs_lexicon \
 			  compile_words_dicts_lexicon
 
-.PHONY: focail
-focail: GT_COMPILE_LANGS := $(FOCAIL_LANGS_ANALYSERS)
-focail: GT_COMPILE_STARTUP_LANGS := $(FOCAIL_STARTUP_LANGS_ANALYSERS)
-focail: LEX_COMPILE_LANGS := $(FOCAIL_LANGS_LEXICA)
-focail: LEX_COMPILE_WORDS_DICTS := $(FOCAIL_WORDS_DICTS_LEXICA)
-focail: focail-lexica compile_langs_fsts print_complete_message
+.PHONY: cuvantul
+cuvantul: GT_COMPILE_LANGS := $(CUVANTUL_LANGS_ANALYSERS)
+cuvantul: GT_COMPILE_STARTUP_LANGS := $(CUVANTUL_STARTUP_LANGS_ANALYSERS)
+cuvantul: LEX_COMPILE_LANGS := $(CUVANTUL_LANGS_LEXICA)
+cuvantul: LEX_COMPILE_WORDS_DICTS := $(CUVANTUL_WORDS_DICTS_LEXICA)
+cuvantul: cuvantul-lexica compile_langs_fsts print_complete_message
 
-rm-focail-lexica: $(foreach xx, $(FOCAIL_LANGS_LEXICA), $(xx)-all.xml) \
-				 $(foreach yy, $(FOCAIL_WORDS_DICTS_LEXICA), $(yy).xml)
+rm-cuvantul-lexica: $(foreach xx, $(CUVANTUL_LANGS_LEXICA), $(xx)-all.xml) \
+				 $(foreach yy, $(CUVANTUL_WORDS_DICTS_LEXICA), $(yy).xml)
 	@rm -rf $^
 
-.PHONY: focail-install
-focail-install: GT_COMPILE_LANGS := $(FOCAIL_LANGS_ANALYSERS)
-focail-install: GT_COMPILE_STARTUP_LANGS := $(FOCAIL_STARTUP_LANGS_ANALYSERS)
-focail-install: install_langs_fsts
+.PHONY: cuvantul-install
+cuvantul-install: GT_COMPILE_LANGS := $(CUVANTUL_LANGS_ANALYSERS)
+cuvantul-install: GT_COMPILE_STARTUP_LANGS := $(CUVANTUL_STARTUP_LANGS_ANALYSERS)
+cuvantul-install: install_langs_fsts
 
 #####
-##### #/focailtargets
+##### #/cuvantultargets
 #####
 
 
