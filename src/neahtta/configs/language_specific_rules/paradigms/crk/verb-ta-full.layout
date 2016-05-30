@@ -3,7 +3,7 @@ paradigm: 'verb-ta.paradigm'
 layout:
   type: "full"
 --
-|                             | "Present tense"             |                             |
+|                             | "PRESENT TENSE"             |                             |
 | "Speech Act Participants"   | : "Independent"             | : "Conjunct"                |
 | "2s → 1s"                   | Ind+Prs+2Sg+1SgO            | Cnj+Prs+2Sg+1SgO            |
 | "2s → 1p"                   | Ind+Prs+2Sg+1PlO            | Cnj+Prs+2Sg+1PlO            |
@@ -59,7 +59,7 @@ layout:
 | "4 → 3p"                    | Ind+Prs+4Sg/Pl+3PlO         | Cnj+Prs+4Sg/Pl+3PlO         |
 | "5 → 4"                     | Ind+Prs+5Sg/Pl+4Sg/PlO      | Cnj+Prs+5Sg/Pl+4Sg/PlO      |
 |                             |                             |                             |
-|                             | "Past tense"                |                             |
+|                             | "PAST TENSE"                |                             |
 | "Speech Act Participants"   | : "Independent"             | : "Conjunct"                |
 | "2s → 1s"                   | Ind+Prt+2Sg+1SgO            | Cnj+Prt+2Sg+1SgO            |
 | "2s → 1p"                   | Ind+Prt+2Sg+1PlO            | Cnj+Prt+2Sg+1PlO            |
@@ -115,7 +115,7 @@ layout:
 | "4 → 3p"                    | Ind+Prt+4Sg/Pl+3PlO         | Cnj+Prt+4Sg/Pl+3PlO         |
 | "5 → 4"                     | Ind+Prt+5Sg/Pl+4Sg/PlO      | Cnj+Prt+5Sg/Pl+4Sg/PlO      |
 |                             |                             |                             |
-|                             | "Future intentional tense"  |                             |
+|                             | "FUTURE INTENTIONAL TENSE"  |                             |
 | "Speech Act Participants"   | : "Independent"             | : "Conjunct"                |
 | "2s → 1s"                   | Ind+Fut+Int+2Sg+1SgO        | Cnj+Fut+Int+2Sg+1SgO        |
 | "2s → 1p"                   | Ind+Fut+Int+2Sg+1PlO        | Cnj+Fut+Int+2Sg+1PlO        |
@@ -171,7 +171,7 @@ layout:
 | "4 → 3p"                    | Ind+Fut+Int+4Sg/Pl+3PlO     | Cnj+Fut+Int+4Sg/Pl+3PlO     |
 | "5 → 4"                     | Ind+Fut+Int+5Sg/Pl+4Sg/PlO  | Cnj+Fut+Int+5Sg/Pl+4Sg/PlO  |
 |                             |                             |                             |
-|                             | "Future definite tense"     |                             |
+|                             | "FUTURE DEFINITE TENSE"     |                             |
 | "Speech Act Participants"   | : "Independent"             |                             |
 | "2s → 1s"                   | Ind+Fut+Def+2Sg+1SgO        |                             |
 | "2s → 1p"                   | Ind+Fut+Def+2Sg+1PlO        |                             |
@@ -226,7 +226,7 @@ layout:
 | "4 → 3p"                    | Ind+Fut+Def+4Sg/Pl+3PlO     |                             |
 | "5 → 4"                     | Ind+Fut+Def+5Sg/Pl+4Sg/PlO  |                             |
 |                             |                             |                             |
-|                             | "Future conditional tense"  |                             |
+|                             | "FUTURE CONDITIONAL TENSE"  |                             |
 | "Speech Act Participants"   |                             |                             |
 | "2s → 1s"                   | Fut+Cond+2Sg+1SgO           |                             |
 | "2s → 1p"                   | Fut+Cond+2Sg+1PlO           |                             |
@@ -282,7 +282,7 @@ layout:
 | "4 → 3p"                    | Fut+Cond+4Sg/Pl+3PlO        |                             |
 | "5 → 4"                     | Fut+Cond+5Sg/Pl+4Sg/PlO     |                             |
 |                             |                             |                             |
-|                             | "Imperative"                |                             |
+|                             | "IMPERATIVE"                |                             |
 | "Local"                     | : "Immediate"               | : "Delayed"                 |
 | "2s → 1s"                   | Imp+Imm+2Sg+1SgO            | Imp+Del+2Sg+1SgO            |
 | "2s → 1p"                   | Imp+Imm+2Sg+1PlO            | Imp+Del+2Sg+1PlO            |
