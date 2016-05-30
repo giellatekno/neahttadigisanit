@@ -1,7 +1,7 @@
-name: "Transitive animate verb full paradigm"		
-paradigm: 'verbs-ta.paradigm'		
-layout:		
-  type: "full"		
+name: "Transitive animate verb full paradigm"
+paradigm: 'verbs-ta.paradigm'
+layout:
+  type: "full"
 --		
 |                                          | "Present tense"                          |                                          |
 | "Speech Act Participants"                | "Independent"                            | "Conjunct"                               |
