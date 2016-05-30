@@ -264,7 +264,7 @@ lexicon:
 {{ lemma }}+V+TA+Ind+Fut+Int+1Pl+2PlO
 {{ lemma }}+V+TA+Ind+Fut+Int+1Sg+2PlO
 
-{# IND-FUTURE-INTENTIONAL-TENSE-MIXED
+{# IND-FUTURE-INTENTIONAL-TENSE-MIXED #}
 
 {{ lemma }}+V+TA+Ind+Fut+Int+1Sg+3SgO
 {{ lemma }}+V+TA+Ind+Fut+Int+1Sg+3PlO
