@@ -328,9 +328,9 @@ def update_gtsvn():
 
     # TODO: necessary to run autogen just in case? 
     print(cyan("** Compiling gtcore **"))
-    gtcore = env.svn_path + 'gtcore/'
+    gtcore = env.svn_path + '/' + 'gtcore/'
     with cd(gtcore):
-        make_file = env.svn_path + 'gtcore/Makefile'
+        make_file = env.svn_path + '/gtcore/Makefile'
         make_ = "make -C %s -f %s" % ( gtcore
                                      , make_file
                                      )
