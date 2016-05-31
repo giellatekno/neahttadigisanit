@@ -116,6 +116,8 @@ Dictionaries:
         description: !gettext "Standard"
         onscreen_keyboard: &FKV_KEYS
           - "đ"
+          - "ä"
+          - "ö"
         # NB: must be same as analyser name
         short_name: "fkv"
 
