@@ -101,6 +101,9 @@ NAMES = dict([
     ('hdn', _(u"Haida")),
     ('fra', _(u"French")),
     ('deu', _(u"German")),
+    ('ron', _(u"Romanian")),
+    ('fit', _(u"Meänkieli")),
+    ('swe', _(u"Swedish")),
 ])
 
 ISO_DISPLAY_RELABELS = dict([
@@ -152,6 +155,9 @@ LOCALISATION_NAMES_BY_LANGUAGE = dict([
     ('vot', u"Vađđa ceeli "),
 
     ('deu', u"Deutsch"),
+    ('ron', u"Română"),
+    ('fit', u"Meänkieli"),
+    ('swe', u"Svenska"),
 
     # ndstesting
     ('kca', u"ханты ясаӈ"),
@@ -171,4 +177,6 @@ ISO_TRANSFORMS = dict([
     ('de', 'deu'),
     ('kv', 'kpv'),
     ('hu', 'hun'),
+    ('ro', 'ron'),
+    ('sv', 'swe'),
 ])
