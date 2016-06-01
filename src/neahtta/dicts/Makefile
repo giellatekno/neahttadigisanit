@@ -277,39 +277,25 @@ ndstesting-install: install_langs_fsts
 #####
 
 #####
-##### #focailtargets
+##### #cuvantultargets
 #####
 
-### When starting a new project, copy this whole section (down to
-### #/focailtargets), and change the following settings. Then, be sure to
-### replace all instances of FOCAIL and focail in variables and target names
-### with the PROJNAME.
+CUVANTUL_LANGS_ANALYSERS      :=   ron
+CUVANTUL_LANGS_LEXICA         :=
+CUVANTUL_WORDS_DICTS_LEXICA   :=   ronnob
 
-# These are the ISOs of the languages to compile from GTHOME/langs/
-CUVANTUL_LANGS_ANALYSERS           :=   
-
-# OPTIONAL: enable miscellaneous ./configure flags
-# FOCAIL_LANGS_FLAGS             :=   --with-hfst
-
-# These are the ISOs of the languages to compile from GTHOME/startup-langs/
-CUVANTUL_STARTUP_LANGS_ANALYSERS   :=   ron
-
-# Compile the lexicon from within GTHOME/langs/LANG/src/morphology/stems/*.xml
-
-CUVANTUL_LANGS_LEXICA              :=   
-
-# Compile the lexicon from a directory within GTHOME/words/dicts/
-CUVANTUL_WORDS_DICTS_LEXICA        :=   sonnob
+# .PHONY: cuvantul-lexica
+# cuvantul-lexica: LEX_COMPILE_LANGS := $(CUVANTUL_LANGS_LEXICA)
+# cuvantul-lexica: LEX_COMPILE_WORDS_DICTS := $(CUVANTUL_WORDS_DICTS_LEXICA)
+# cuvantul-lexica: compile_langs_lexicon compile_words_dicts_lexicon
 
 .PHONY: cuvantul-lexica
 cuvantul-lexica: LEX_COMPILE_LANGS := $(CUVANTUL_LANGS_LEXICA)
 cuvantul-lexica: LEX_COMPILE_WORDS_DICTS := $(CUVANTUL_WORDS_DICTS_LEXICA)
-cuvantul-lexica: compile_langs_lexicon \
-			  compile_words_dicts_lexicon
+cuvantul-lexica: compile_langs_lexicon compile_words_dicts_lexicon
 
 .PHONY: cuvantul
 cuvantul: GT_COMPILE_LANGS := $(CUVANTUL_LANGS_ANALYSERS)
-cuvantul: GT_COMPILE_STARTUP_LANGS := $(CUVANTUL_STARTUP_LANGS_ANALYSERS)
 cuvantul: LEX_COMPILE_LANGS := $(CUVANTUL_LANGS_LEXICA)
 cuvantul: LEX_COMPILE_WORDS_DICTS := $(CUVANTUL_WORDS_DICTS_LEXICA)
 cuvantul: cuvantul-lexica compile_langs_fsts print_complete_message
@@ -320,8 +306,8 @@ rm-cuvantul-lexica: $(foreach xx, $(CUVANTUL_LANGS_LEXICA), $(xx)-all.xml) \
 
 .PHONY: cuvantul-install
 cuvantul-install: GT_COMPILE_LANGS := $(CUVANTUL_LANGS_ANALYSERS)
-cuvantul-install: GT_COMPILE_STARTUP_LANGS := $(CUVANTUL_STARTUP_LANGS_ANALYSERS)
 cuvantul-install: install_langs_fsts
+
 
 #####
 ##### #/cuvantultargets
@@ -1128,7 +1114,8 @@ all: vada  \
 	 sanit \
 	 baakoeh \
 	 kyv \
-	 muter
+	 muter \
+	 cuvantul
 	@echo $(TARGET_DIR)
 
 .PHONY: all-lexica
@@ -1142,6 +1129,7 @@ all-lexica: baakoeh-lexica \
 	sonad-lexica \
 	sanit-lexica \
 	vada-lexica \
+	cuvantul-lexica \
 	valks-lexica
 	@echo $(TARGET_DIR)
 
