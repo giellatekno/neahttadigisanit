@@ -525,7 +525,7 @@ class XFST(object):
                                            stdout=subprocess.PIPE,
                                            stderr=subprocess.PIPE)
         except OSError:
-            raise Exception("Error executing lookup command for this request, confirm that lookup utilities an danalyzer files are present.")
+            raise Exception("Error executing lookup command for this request, confirm that lookup utilities and analyzer files are present.")
         except Exception, e:
             raise Exception("Unhandled exception <%s> in lookup request" % e)
 
