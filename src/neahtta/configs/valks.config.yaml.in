@@ -156,6 +156,10 @@ Dictionaries:
     target: mdf
     path: 'dicts/finmdf.xml'
 
+  - source: rus
+    target: mdf
+    path: 'dicts/rusmdf.xml'
+
   - source: mdf
     target: eng
     path: 'dicts/mdfeng.xml'
