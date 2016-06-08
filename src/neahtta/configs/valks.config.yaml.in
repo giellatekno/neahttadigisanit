@@ -136,6 +136,12 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
 
+  - source: mdf
+    target: rus
+    path: 'dicts/mdfrus.xml'
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/u_korp"
+
   - source: deu
     target: myv
     path: 'dicts/deumyv.xml'
