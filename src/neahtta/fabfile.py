@@ -55,6 +55,7 @@ from fabric.api import ( cd
                        , env
                        , task
                        , settings
+                       , prompt
                        )
 
 from fabric.operations import ( sudo )
@@ -135,6 +136,8 @@ def set_proj():
     names there are. ... Assuming no project name will be 'local' or
     'compile' """
     proj = get_project()
+
+    env.clean_first = False
 
     if proj:
         env.current_dict = proj
@@ -293,6 +296,10 @@ def read_config(proj):
 
     return config
 
+# @task
+# def install_geo():
+
+
 
 @task
 def update_gtsvn():
@@ -413,7 +420,7 @@ def compile(dictionary=False,restart=False):
     update_configs()
     update_gtsvn()
 
-    with cd(env.dict_path):
+    with cd(env.dict_path) and settings(warn_only=True):
         if env.no_svn_up:
             print(yellow("** Skipping svn up of Makefile"))
         else:
@@ -426,17 +433,30 @@ def compile(dictionary=False,restart=False):
             skip_fst = True
         else:
             skip_fst = False
+
             print(cyan("** Compiling lexicon and FSTs for <%s> **" % dictionary))
+
+            if env.clean_first in ['Y', 'y']:
+                clean_result = env.run(env.make_cmd + " %s-clean" % dictionary)
+
             result = env.run(env.make_cmd + " %s" % dictionary)
 
-        if not result.failed:
-            if not skip_fst:
-                print(cyan("** Installing FSTs for <%s> **" % dictionary))
-                result = env.run(env.make_cmd + " %s-install" % dictionary)
-                if result.failed:
-                    failed = True
-        else:
+        if not result.succeeded:
+            print(red("** There was some problem building the FSTs for this dictionary."))
+            print(red("** Remove and check out individual language directories first?"))
+            print(red("** WARNING: this will run `rm -rf $GTHOME/langs/LANG for each"))
+            print(red("**          language in the current project. If you have"))
+            print(red("**          ocal changes, they will be lost."))
+            prompt('[Y/n]', key='clean_first')
             failed = True
+            if env.clean_first in ['Y', 'y']:
+                compile(dictionary, restart)
+
+        if not skip_fst:
+            print(cyan("** Installing FSTs for <%s> **" % dictionary))
+            result = env.run(env.make_cmd + " %s-install" % dictionary)
+            if result.failed:
+                failed = True
 
     if restart:
         restart_service(dictionary)
@@ -697,8 +717,42 @@ def runserver():
         print(red("** Starting failed for some reason."))
 
 @task
-def unittests():
+def doctest():
+    """ Run unit tests embedded in code
+    """
+
+    doctests = [
+        'morphology/utils.py',
+    ]
+
+    doctest_cmd = 'python -m doctest -v %s'
+
+    for _file in doctests:
+        test_cmd = env.run(doctest_cmd % _file)
+
+@task
+def test_project():
     """ Test the configuration and check language files for errors. """
+
+    yaml_path = 'configs/%s.config.yaml.in' % env.current_dict
+
+    _dict = env.current_dict
+    with cd(env.dict_path):
+
+        print(cyan("** Running tests for %s" % _dict))
+
+        cmd ="NDS_CONFIG=%s python -m unittest tests.yaml_tests" % (yaml_path)
+        test_cmd = env.run(cmd)
+
+        if test_cmd.failed:
+            print(red("** Something went wrong while testing <%s> **" % _dict))
+
+@task
+def unittests():
+    """ Test the configuration and check language files for errors.
+
+        TODO: this is going away in favor of the better new thing: `test_project`, `doctest`, and `test`
+    """
 
     yaml_path = 'configs/%s.config.yaml' % env.current_dict
 
@@ -745,3 +799,18 @@ def unittests():
 
             if test_cmd.failed:
                 print(red("** Something went wrong while testing <%s> **" % _dict))
+
+@task
+def test():
+    doctest()
+    test_project()
+
+def commit_gtweb_tag():
+    """
+
+    svn rm nds-stable-gtweb
+    svn commit nds-stable-gtweb -m "preparing for update"
+    https://gtsvn.uit.no/langtech/tags/apps/dicts/nds
+    svn copy https://gtsvn.uit.no/langtech/trunk/apps/dicts/nds nds-stable-gtweb
+    """
+

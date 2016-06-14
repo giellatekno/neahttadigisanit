@@ -40,6 +40,8 @@ VIRTUALENV := $
 ###         #baakoehtargets
 ###         
 ###         #kyvtargets
+### 
+###         #focailtargets
 ###         
 ###         #cuvantultargets
 ###         
@@ -100,12 +102,14 @@ compile_langs_fsts: $(langs)
 			cd $(GTHOME)/langs/$$ll ; ./autogen.sh ; ./configure --enable-dicts $(LANGS_FLAGS) ; \
 		fi ; \
 		cd $(GTHOME)/langs/$$ll ; make ; \
+		if [ ! $$? -eq 0 ] ; then exit 1 ; fi \
 	done 
 	for ll in $(GT_COMPILE_STARTUP_LANGS) ; do \
 		if ! test -e "$(GTHOME)/startup-langs/$$ll/src/Makefile" ; then \
 			cd $(GTHOME)/startup-langs/$$ll ; ./autogen.sh ; ./configure --enable-dicts $(LANGS_FLAGS) ; \
 		fi ; \
 		cd $(GTHOME)/startup-langs/$$ll ; make ; \
+		if [ ! $$? -eq 0 ] ; then exit 1 ; fi \
 	done 
 
 install_langs_fsts: $(foreach lang, $(GT_COMPILE_LANGS), langs/$(lang)/src/analyser-gt-desc.xfst)
@@ -128,6 +132,22 @@ install_langs_fsts: $(langs)
 		cp $(GTHOME)/startup-langs/$$ll/src/analyser-dict-gt-desc-mobile.*  /opt/smi/$$ll/bin/ ; \
 	done 
 
+.PHONY: clean_langs_fsts
+clean_langs_fsts: $(foreach lang, $(GT_COMPILE_LANGS), langs/$(lang)/src/analyser-gt-desc.xfst) 
+clean_langs_fsts: $(langs)
+	@echo $*
+	@echo "***********************"
+	@echo "** Cleaning $(GT_COMPILE_LANGS) $(GT_COMPILE_STARTUP_LANGS) FSTs **"
+	@echo "***********************"
+	@echo ""
+	for ll in $(GT_COMPILE_LANGS) ; do \
+		echo "Deleting $(GTHOME)/langs/$$ll and checking out anew. (see $(GTHOME)/langs/svn.log to troubleshoot)" ; \
+		cd $(GTHOME)/langs/ ; rm -rf $$ll ; svn up $$ll >> svn.log ; \
+	done
+	for ll in $(GT_COMPILE_STARTUP_LANGS) ; do \
+		cd $(GTHOME)/startup-langs/ ; rm -rf $$ll ; svn up $$ll >> svn.log ; \
+	done 
+	cd $(GTHOME)/gtcore/ ; svn up ; make
 
 .PHONY: compile_langs_lexicon
 compile_langs_lexicon: $(LEX_COMPILE_LANGS)
@@ -218,6 +238,10 @@ print_complete_message:
 ###    sample: LEX_COMPILE_LANGS := $(SAMPLE_LANGS_LEXICA)
 ###    sample: LEX_COMPILE_WORDS_DICTS := $(SAMPLE_WORDS_DICTS_LEXICA)
 ###    sample: sample-lexica compile_langs_fsts print_complete_message
+###    
+###    .PHONY: sample-clean
+###    sample-clean:  GT_COMPILE_LANGS :=  $(SAMPLE_LANGS_ANALYSERS)
+###    sample-clean: clean_langs_fsts
 ###    
 ###    rm-sample-lexica: $(foreach xx, $(SAMPLE_LANGS_LEXICA), $(xx)-all.xml) \
 ###    				 $(foreach yy, $(SAMPLE_WORDS_DICTS_LEXICA), $(yy).xml)
@@ -391,6 +415,10 @@ rm-guusaaw-lexica: $(foreach xx, $(GUUSAAW_LANGS_LEXICA), $(xx)-all.xml) \
 guusaaw-install: GT_COMPILE_LANGS := $(GUUSAAW_LANGS_ANALYSERS)
 guusaaw-install: install_langs_fsts
 
+.PHONY: guusaaw-clean
+guusaaw-clean:  GT_COMPILE_LANGS :=  $(GUUSAAW_LANGS_ANALYSERS)
+guusaaw-clean: clean_langs_fsts
+
 .PHONY: guusaaw
 guusaaw: GT_COMPILE_LANGS := $(GUUSAAW_LANGS_ANALYSERS)
 guusaaw: LEX_COMPILE_LANGS := $(GUUSAAW_LANGS_LEXICA)
@@ -421,6 +449,10 @@ dikaneisdi: GT_COMPILE_LANGS := $(DIKANEISDI_LANGS_ANALYSERS)
 dikaneisdi: LEX_COMPILE_LANGS := $(DIKANEISDI_LANGS_LEXICA)
 dikaneisdi: LEX_COMPILE_WORDS_DICTS := $(DIKANEISDI_WORDS_DICTS_LEXICA)
 dikaneisdi: dikaneisdi-lexica compile_langs_fsts print_complete_message
+
+.PHONY: dikaneisdi-clean
+dikaneisdi-clean:  GT_COMPILE_LANGS :=  $(DIKANEISDI_LANGS_ANALYSERS)
+dikaneisdi-clean: clean_langs_fsts
 
 rm-dikaneisdi-lexica: $(foreach xx, $(DIKANEISDI_LANGS_LEXICA), $(xx)-all.xml) \
 				 $(foreach yy, $(DIKANEISDI_WORDS_DICTS_LEXICA), $(yy).xml)
@@ -529,6 +561,10 @@ itwewina: LEX_COMPILE_WORDS_DICTS := $(ITWEWINA_WORDS_DICTS_LEXICA)
 itwewina: LANGS_FLAGS := $(ITWEWINA_LANGS_FLAGS)
 itwewina: itwewina-lexica compile_langs_fsts print_complete_message
 
+.PHONY: itwewina-clean
+itwewina-clean:  GT_COMPILE_LANGS :=  $(ITWEWINA_LANGS_ANALYSERS)
+itwewina-clean: clean_langs_fsts
+
 rm-itwewina-lexica: $(foreach xx, $(ITWEWINA_LANGS_LEXICA), $(xx)-all.xml) \
 				 $(foreach yy, $(ITWEWINA_WORDS_DICTS_LEXICA), $(yy).xml)
 	@rm -rf $^
@@ -579,6 +615,10 @@ saan: LEX_COMPILE_WORDS_DICTS := $(SAAN_WORDS_DICTS_LEXICA)
 saan: LANGS_FLAGS := $(SAAN_LANGS_FLAGS)
 saan: saan-lexica compile_langs_fsts print_complete_message
 
+.PHONY: saan-clean
+saan-clean:  GT_COMPILE_LANGS :=  $(SAAN_LANGS_ANALYSERS)
+saan-clean: clean_langs_fsts
+
 rm-saan-lexica: $(foreach xx, $(SAAN_LANGS_LEXICA), $(xx)-all.xml) \
 				 $(foreach yy, $(SAAN_WORDS_DICTS_LEXICA), $(yy).xml)
 	@rm -rf $^
@@ -605,6 +645,10 @@ vada: GT_COMPILE_LANGS := $(VADA_LANGS_ANALYSERS)
 vada: LEX_COMPILE_LANGS := $(VADA_LANGS_LEXICA)
 vada: LEX_COMPILE_WORDS_DICTS := $(VADA_WORDS_DICTS_LEXICA)
 vada: vada-lexica compile_langs_fsts print_complete_message
+
+.PHONY: vada-clean
+vada-clean:  GT_COMPILE_LANGS :=  $(VADA_LANGS_ANALYSERS)
+vada-clean: clean_langs_fsts
 
 rm-vada-lexica: $(foreach xx, $(VADA_LANGS_LEXICA), $(xx)-all.xml) \
 				 $(foreach yy, $(VADA_WORDS_DICTS_LEXICA), $(yy).xml)
@@ -633,6 +677,10 @@ muter: LEX_COMPILE_LANGS := $(MUTER_LANGS_LEXICA)
 muter: LEX_COMPILE_WORDS_DICTS := $(MUTER_WORDS_DICTS_LEXICA)
 muter: muter-lexica compile_langs_fsts print_complete_message
 
+.PHONY: muter-clean
+muter-clean:  GT_COMPILE_LANGS :=  $(MUTER_LANGS_ANALYSERS)
+muter-clean: clean_langs_fsts
+
 rm-muter-lexica: $(foreach xx, $(MUTER_LANGS_LEXICA), $(xx)-all.xml) \
 				 $(foreach yy, $(MUTER_WORDS_DICTS_LEXICA), $(yy).xml)
 	@rm -rf $^
@@ -659,6 +707,10 @@ valks: GT_COMPILE_LANGS := $(VALKS_LANGS_ANALYSERS)
 valks: LEX_COMPILE_LANGS := $(VALKS_LANGS_LEXICA)
 valks: LEX_COMPILE_WORDS_DICTS := $(VALKS_WORDS_DICTS_LEXICA)
 valks: valks-lexica compile_langs_fsts print_complete_message
+
+.PHONY: valks-clean
+valks-clean:  GT_COMPILE_LANGS :=  $(VALKS_LANGS_ANALYSERS)
+valks-clean: clean_langs_fsts
 
 rm-valks-lexica: $(foreach xx, $(VALKS_LANGS_LEXICA), $(xx)-all.xml) \
 				 $(foreach yy, $(VALKS_WORDS_DICTS_LEXICA), $(yy).xml)
@@ -690,6 +742,10 @@ sanat: LEX_COMPILE_LANGS := $(SANAT_LANGS_LEXICA)
 sanat: LEX_COMPILE_WORDS_DICTS := $(SANAT_WORDS_DICTS_LEXICA)
 sanat: sanat-lexica compile_langs_fsts print_complete_message
 
+.PHONY: sanat-clean
+sanat-clean:  GT_COMPILE_LANGS :=  $(SANAT_LANGS_ANALYSERS)
+sanat-clean: clean_langs_fsts
+
 rm-sanat-lexica: $(foreach xx, $(SANAT_LANGS_LEXICA), $(xx)-all.xml) \
 				 $(foreach yy, $(SANAT_WORDS_DICTS_LEXICA), $(yy).xml)
 	@rm -rf $^
@@ -720,6 +776,10 @@ sonad: LEX_COMPILE_LANGS := $(SONAD_LANGS_LEXICA)
 sonad: LEX_COMPILE_WORDS_DICTS := $(SONAD_WORDS_DICTS_LEXICA)
 sonad: sonad-lexica compile_langs_fsts print_complete_message
 
+.PHONY: sonad-clean
+sonad-clean:  GT_COMPILE_LANGS :=  $(SONAD_LANGS_ANALYSERS)
+sonad-clean: clean_langs_fsts
+
 rm-sonad-lexica: $(foreach xx, $(SONAD_LANGS_LEXICA), $(xx)-all.xml) \
 				 $(foreach yy, $(SONAD_WORDS_DICTS_LEXICA), $(yy).xml)
 	@rm -rf $^
@@ -735,6 +795,12 @@ sonad-install: install_langs_fsts
 ##
 ### #sanitlexica
 ##
+
+SANIT_LANGS_ANALYSERS      :=   sme fin nob
+SANIT_LANGS_FLAGS          :=   --with-hfst
+SANIT_LANGS_LEXICA         :=   
+SANIT_WORDS_DICTS_LEXICA   :=   
+
 
 # NB: these are different than the langs/ lexica
 # also, need to filter here
@@ -794,7 +860,7 @@ sanit-lexica: fin-sme.all.xml \
 ##
 
 .PHONY: sanit
-sanit: GT_COMPILE_LANGS := sme fin nob
+sanit: GT_COMPILE_LANGS := $(SANIT_LANGS_ANALYSERS)
 sanit: sanit-lexica compile_langs_fsts
 	@echo "*********************************"
 	@echo "** Built targets for sanit:    **"
@@ -808,8 +874,12 @@ sanit: sanit-lexica compile_langs_fsts
 	@echo "    sudo make sanit-install"
 
 .PHONY: sanit-install
-sanit-install: GT_COMPILE_LANGS := sme fin nob
+sanit-install: GT_COMPILE_LANGS := $(SANIT_LANGS_ANALYSERS)
 sanit-install: install_langs_fsts
+
+.PHONY: sanit-clean
+sanit-clean:  GT_COMPILE_LANGS :=  $(SANIT_LANGS_ANALYSERS)
+sanit-clean: clean_langs_fsts
 
 rm-sanit-lexica:
 	@rm -rf fin-sme.all.xml nob-sme.all.xml sme-fin.all.xml sme-nob.all.xml
@@ -826,6 +896,10 @@ sme-install: dict-sme.fst dict-isme-norm.fst some-n-sme.fst
 #####
 ##### #baakoehtargets
 #####
+
+BAAKOEH_LANGS_ANALYSERS      :=   sma nob
+BAAKOEH_LANGS_LEXICA         :=
+BAAKOEH_WORDS_DICTS_LEXICA   :=
 
 # NB: these are more similar to sme lexicon, but FST differs.
 sma-nob.all.xml: $(GTHOME)/words/dicts/smanob/src/
@@ -855,11 +929,11 @@ rm-baakoeh-lexica:
 	@rm -rf sma-nob.all.xml nob-sma.all.xml
 
 .PHONY: baakoeh-install
-baakoeh-install: GT_COMPILE_LANGS := sma nob
+baakoeh-install: GT_COMPILE_LANGS := $(BAAKOEH_LANGS_ANALYSERS)
 baakoeh-install: install_langs_fsts 
 
 .PHONY: baakoeh
-baakoeh: GT_COMPILE_LANGS := sma nob
+baakoeh: GT_COMPILE_LANGS := $(BAAKOEH_LANGS_ANALYSERS)
 baakoeh: baakoeh-lexica compile_langs_fsts
 	@echo "*********************************"
 	@echo "** Built targets for baakoeh:  **"
@@ -870,6 +944,10 @@ baakoeh: baakoeh-lexica compile_langs_fsts
 	@echo ""
 	@echo "Now install analysers in expected paths"
 	@echo "    make baakoeh-install"
+
+.PHONY: baakoeh-clean
+baakoeh-clean:  GT_COMPILE_LANGS :=  $(BAAKOEH_LANGS_ANALYSERS)
+baakoeh-clean: clean_langs_fsts
 
 #####
 ##### #kyvtargets
@@ -889,6 +967,10 @@ kyv: GT_COMPILE_LANGS := $(KYV_LANGS_ANALYSERS)
 kyv: LEX_COMPILE_LANGS := $(KYV_LANGS_LEXICA)
 kyv: LEX_COMPILE_WORDS_DICTS := $(KYV_WORDS_DICTS_LEXICA)
 kyv: kyv-lexica compile_langs_fsts print_complete_message
+
+.PHONY: kyv-clean
+kyv-clean:  GT_COMPILE_LANGS :=  $(KYV_LANGS_ANALYSERS)
+kyv-clean: clean_langs_fsts
 
 rm-kyv-lexica: $(foreach xx, $(KYV_LANGS_LEXICA), $(xx)-all.xml) \
 				 $(foreach yy, $(KYV_WORDS_DICTS_LEXICA), $(yy).xml)
@@ -994,6 +1076,10 @@ ndstesting-install: GT_COMPILE_LANGS := $(NDSTESTING_LANGS_ANALYSERS)
 ndstesting-install: GT_COMPILE_STARTUP_LANGS := $(NDSTESTING_STARTUP_LANGS_ANALYSERS)
 ndstesting-install: install_langs_fsts
 
+.PHONY: ndstesting-clean
+ndstesting-clean:  GT_COMPILE_LANGS :=  $(NDSTESTING_LANGS_ANALYSERS)
+ndstesting-clean: clean_langs_fsts
+
 #####
 ##### #/ndstestingtargets
 #####
@@ -1045,6 +1131,10 @@ focail-install: GT_COMPILE_LANGS := $(FOCAIL_LANGS_ANALYSERS)
 focail-install: GT_COMPILE_STARTUP_LANGS := $(FOCAIL_STARTUP_LANGS_ANALYSERS)
 focail-install: install_langs_fsts
 
+
+.PHONY: focail-clean
+focail-clean:  GT_COMPILE_LANGS :=  $(FOCAIL_LANGS_ANALYSERS)
+focail-clean: clean_langs_fsts
 
 #####
 ##### #Globaltargets
