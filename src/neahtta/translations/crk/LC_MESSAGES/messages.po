@@ -1079,7 +1079,7 @@ msgstr "âniski-âpacihcikanis"
 
 #: templates/mobile_nav_push_menu.html:18
 msgid "Sources"
-msgstr "ita kâ-ohtimikâtêki"
+msgstr "ita kâ-ohtinikâtêki"
 
 #: templates/mobile_nav_push_menu.html:22
 #: templates/mobile_nav_push_menu.html:25
