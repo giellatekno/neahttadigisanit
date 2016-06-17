@@ -356,7 +356,7 @@ layout:
 | "5 → 4"                                  | Fut+Cond+5Sg/Pl+4Sg/PlO                  |                                          |
 |                                          |                                          |                                          |
 |                                          |                                          |                                          |
-|                                          | ”IMPERATIVE”                             |                                          |
+|                                          | "IMPERATIVE"                             |                                          |
 | "Local"                                  | : "Immediate"                            | : "Delayed"                              |
 | "2s → 1s"                                | Imp+Imm+2Sg+1SgO                         | Imp+Del+2Sg+1SgO                         |
 | "2s → 1p"                                | Imp+Imm+2Sg+1PlO                         | Imp+Del+2Sg+1PlO                         |
