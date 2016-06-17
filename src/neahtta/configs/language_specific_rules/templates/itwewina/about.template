@@ -27,9 +27,11 @@
             <h3 class="blue">{% trans %}Open-Source{% endtrans %}</h3>
             <p>{% trans %}Everything here is based on open-source tools. Do you
                 have an idea for an app or research project that needs
-                linguistic resources? Visit <a class="blue"
-                    href="http://giellatekno.uit.no/">Giellatekno</a>'s
-                website for information on how to get access to lexicon
+                linguistic resources? Visit the <a class="blue"
+                    href="http://altlab.artsrn.ualberta.ca/">ALTLab</a> and
+                    <a class="blue"
+                    href="http://giellatekno.uit.no/">Giellatekno</a>
+                websites for information on how to get access to lexicon
                 files, and morphological and syntactic analyzers.{% endtrans %}</p>
             </span>
             <span class="span4">
@@ -64,7 +66,7 @@
             </span>
             <span class="span4">
                 <h3 class="blue smaller">Neahttadigisánit</h3>
-                <p>{% trans %}The dictionary software behind pîkiskwêwina is Neahttadigisánit, originally created for North Saami and South Saami at the University of Tromsø. New languages always present new challenges for the software, so be sure to get in touch with us if you have questions or comments.{% endtrans %}</p>
+                <p>{% trans %}The dictionary software behind itwêwina is Neahttadigisánit, originally created for North Saami and South Saami at the University of Tromsø. New languages always present new challenges for the software, so be sure to get in touch with us if you have questions or comments.{% endtrans %}</p>
             </span>
         </div>
         <div class="row-fluid">
