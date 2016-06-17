@@ -27,7 +27,7 @@ msgstr ""
 
 #: configs/dikaneisdi.config.yaml.in:76
 msgid "Transliterated"
-msgstr ""
+msgstr "Translitterert"
 
 #: configs/guusaaw.config.yaml.in:65 configs/kyv.config.yaml.in:100
 #: configs/saan.config.yaml.in:72 configs/saanih.config.yaml.in:78
@@ -169,7 +169,7 @@ msgstr "Nord-haida"
 
 #: configs/language_names.py:79
 msgid "Inari Saami"
-msgstr ""
+msgstr "Enaresamisk"
 
 #: configs/language_names.py:82
 msgid "Khanty"
@@ -683,7 +683,7 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/itwewina/index_search_form.template:101
 msgid "Previous:"
-msgstr ""
+msgstr "Tidligere:"
 
 #: configs/language_specific_rules/templates/itwewina/sources.template:6
 msgid "Sources and References"
