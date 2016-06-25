@@ -27,10 +27,17 @@ def force_hyphen(generated_forms, *input_args, **input_kwargs):
         return u'ê-' in f
 
     def form_fx((lemma, tag, forms)):
-        if 'Cnj' in tag and forms:
-            return (lemma, tag, filter(matches_hyphen, forms))
-        else:
-            return (lemma, tag, forms)
+        if forms:
+            forms = list(set(forms))
+            _hyph = [f for f in forms if '-' in f]
+            if len(_hyph) > 0:
+                unhyphs = [h.replace('-', '') for h in _hyph]
+                # throw out all forms that have a hyphenated equivalent
+                _filt = lambda x: x not in unhyphs and '%' not in x
+                fs = filter(_filt, forms)
+                return (lemma, tag, fs)
+
+        return (lemma, tag, forms)
 
     return map(form_fx, generated_forms)
 
