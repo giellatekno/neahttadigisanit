@@ -427,15 +427,15 @@ PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+5Sg/Pl+4Sg/PlO
 
 {# CNJ-FUTURE/INFINITIVE-SAP #}
 
-PV/e+{{ lemma }}+V+TA+Cnj+Prs+2Sg+1SgO
-PV/e+{{ lemma }}+V+TA+Cnj+Prs+2Sg+1PlO
-PV/e+{{ lemma }}+V+TA+Cnj+Prs+2Pl+1PlO
-PV/e+{{ lemma }}+V+TA+Cnj+Prs+2Pl+1SgO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+2Sg+1SgO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+2Sg+1PlO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+2Pl+1PlO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+2Pl+1SgO
 
-PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+1Sg+2SgO
-PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+1Pl+2SgO
-PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+1Pl+2PlO
-PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+1Sg+2PlO
+PV/ta+{{ lemma }}+V+TA+Cnj+Fut+Int+1Sg+2SgO
+PV/ta+{{ lemma }}+V+TA+Cnj+Fut+Int+1Pl+2SgO
+PV/ta+{{ lemma }}+V+TA+Cnj+Fut+Int+1Pl+2PlO
+PV/ta+{{ lemma }}+V+TA+Cnj+Fut+Int+1Sg+2PlO
 
 
 {# FUTURE-CONDITIONAL-TENSE-SAP #}
