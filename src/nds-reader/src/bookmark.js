@@ -1,7 +1,7 @@
 (function () {
     var NDS_API_HOST             = 'OMGNDS_API_HOSTBBQ' 
       , NDS_MEDIA_HOST           = 'OMGNDS_MEDIA_HOSTBBQ'
-      , NDS_BOOKMARK_VERSION     = '0.0.3'
+      , NDS_BOOKMARK_VERSION     = '0.0.4'
       ;
 
     var nds_css      = document.createElement('link') ;

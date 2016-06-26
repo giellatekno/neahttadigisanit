@@ -46,7 +46,7 @@ jQuery(document).ready ($) ->
 
   # Increment this whenever the bookmarklet code (_not this file_) has changed.
   # This way the plugin will notify users to update their bookmark.
-  EXPECT_BOOKMARKLET_VERSION = '0.0.3'
+  EXPECT_BOOKMARKLET_VERSION = '0.0.4'
 
   initSpinner = () ->
     ###
