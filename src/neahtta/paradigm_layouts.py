@@ -172,9 +172,11 @@ class Value(object):
 
         if '{{ lemma }}' in search_v:
             search_v = search_v.replace('{{ lemma }}', lemma)
+            # search_predicate = '###'.join(search_v)
 
         if 'LEMMA' in search_v:
             search_v = search_v.replace('LEMMA', lemma)
+            # search_predicate = '###'.join(search_v)
 
         if search_v.startswith('^') and search_v.endswith('$'):
             search_tags = tag_splitter(search_v[1:-1])
@@ -197,6 +199,16 @@ class Value(object):
             search_tags = tag_splitter(search_v[1::])
             search_predicate = '###'.join(search_tags)
             return current_form_tag == search_predicate
+
+        if '*' in search_v:
+            start_search, _, end_search = search_v.partition('*')
+            start_search_tags = tag_splitter(start_search)
+            end_search_tags = tag_splitter(end_search)
+            start_search_pred = '###'.join(start_search_tags)
+            end_search_pred = '###'.join(end_search_tags)
+            return current_form_tag.startswith(start_search_pred) and \
+                   current_form_tag.endswith(end_search_pred)
+
 
         # Otherwise case is a substring match
         return search_predicate in current_form_tag
