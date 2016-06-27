@@ -31,7 +31,7 @@ Morphology:
     inverse_file: [*OPT, '/crk/bin/generator-dict-gt-norm.hfstol']
     format: 'hfst'
     options: &MORPHOLOGY_OPTS
-      tagProcessor: "configs.language_specific_rules.crk_tags:process_crk_analysis"
+      # tagProcessor: "configs.language_specific_rules.crk_tags:process_crk_analysis"
       compoundBoundary: "+Use/Circ#"
       derivationMarker: "+Der"
       tagsep: '+'
@@ -43,12 +43,12 @@ Morphology:
     format: 'hfst'
     options: *MORPHOLOGY_OPTS
   # syllabics
-  # crkS:
-  #   tool: *LOOKUP
-  #   file: [*OPT, '/crk/bin/analyser-gt-desc.Cans.xfst']
-  #   inverse_file: [*OPT, '/crk/bin/generator-gt-norm.Cans.xfst']
-  #   format: 'xfst'
-  #   options: *MORPHOLOGY_OPTS
+  crkS:
+    tool: *LOOKUP
+    file: [*OPT, '/crk/bin/analyser-gt-desc.Cans.xfst']
+    inverse_file: [*OPT, '/crk/bin/generator-gt-norm.Cans.xfst']
+    format: 'xfst'
+    options: *MORPHOLOGY_OPTS
 
 Languages:
   - iso: crk
@@ -109,11 +109,11 @@ Dictionaries:
     target: crk
     path: 'dicts/engcrk.xml'
 
-    search_variants:
-     - type: "keyword"
-       path: "dicts/engcrk.xml"
-       description: "Keyword search"
-       example: "go -> go by foot, go by boat"
+    # search_variants:
+    #  - type: "keyword"
+    #    path: "dicts/engcrk.xml"
+    #    description: "Keyword search"
+    #    example: "go -> go by foot, go by boat"
 
     # TODO: there are some problems with how linking back to crk works here.
     #
@@ -138,6 +138,10 @@ Dictionaries:
 
 
 ReaderConfig:
+  # Settings:
+  #   # do not include scheme here, or things break
+  #   reader_api: "sapir.artsrn.ualberta.ca/itwewina/"
+  #   media_host: "sanit.oahpa.no"
   crk:
     multiword_lookups: false
     word_regex: |

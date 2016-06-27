@@ -26,7 +26,7 @@ def force_hyphen(generated_forms, *input_args, **input_kwargs):
     def matches_hyphen(f):
         return u'ê-' in f
 
-    def form_fx((lemma, tag, forms)):
+    def form_fx((tag, forms)):
         if forms:
             forms = list(set(forms))
             _hyph = [f for f in forms if '-' in f]
@@ -35,9 +35,9 @@ def force_hyphen(generated_forms, *input_args, **input_kwargs):
                 # throw out all forms that have a hyphenated equivalent
                 _filt = lambda x: x not in unhyphs and '%' not in x
                 fs = filter(_filt, forms)
-                return (lemma, tag, fs)
+                return (tag, fs)
 
-        return (lemma, tag, forms)
+        return (tag, forms)
 
     return map(form_fx, generated_forms)
 
@@ -94,7 +94,8 @@ def adjust_tags_for_gen(lemma, tags, node=None, **kwargs):
                         continue
                 rest.append(part)
 
-        # print before, rest
+        print 'pregen'
+        print before, rest
 
         cleaned_tag.extend(before)
         cleaned_tag.append(lemma)
