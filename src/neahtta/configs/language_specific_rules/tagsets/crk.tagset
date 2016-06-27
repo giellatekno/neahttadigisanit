@@ -61,5 +61,9 @@ prelemma_tags:
  - "RdplW"
  - "RdplS"
  - "^PV/(.*)$"
+preverbs:
+ - "PV/ka"
+ - "PV/ta"
+ - "PV/e"
 nds_dummy_tags:
  - "Tpl/Lemma"
