@@ -747,5 +747,12 @@ ul#about-links li a {
     border: none;
 }
 
+/* Some fixes for Firefox PDF viewer */
+.pdfViewer { }
+
+.pdfViewer .popover {
+    opacity: 1;
+}
+
 
 /*# sourceMappingURL=app.css.map*/
