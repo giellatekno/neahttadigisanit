@@ -48,6 +48,10 @@ class LanguageNotFound(Exception):
 parsed_template_cache = {}
 
 # TODO: read from user defined file elsewhere
+# TODO: see following, consider constructing a template loader for all
+# this stuff, will help to implement live reloading of project stuff.
+
+#   https://github.com/pallets/jinja/blob/master/jinja2/loaders.py
 
 class TemplateConfig(object):
     """ A class for providing directory-based paradigm definitions.
