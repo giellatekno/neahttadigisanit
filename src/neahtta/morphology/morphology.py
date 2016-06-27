@@ -37,6 +37,10 @@ class Tagsets(object):
     def set(self, name, tagset):
         self.sets[name] = tagset
 
+    def all_tags(self):
+        _all = list(set( sum( [v.members for k, v in self.sets.iteritems()], [] ) ))
+        return _all
+
 class Tag(object):
     """ A model for tags. Can be used as an iterator, as well.
 
@@ -152,16 +156,42 @@ class Lemma(object):
         cls = self.__class__.__name__
         return '<%s: %s, %s, %s>' % (cls, _lem, _pos, _tag)
 
-    def __init__(self, lemma, pos='',
-                 tag=[''], fulltag=[''], _input=False, tool=False, tagsets={}):
-        self.tagsets = tagsets
-        self.tool = tool
-        self.lemma = lemma
-        self.pos = pos
-        self.tag_raw = tag
-        self.tag = self.tool.tagStringToTag( fulltag
+    def prepare_tag(self, tag, tagsets):
+        """ Clean up the tag, lemma, and POS, make adjustments depending
+        on whether the langauge has tags before the lemma.
+
+        NB: if there's a problem here, make sure any possible tags
+        before the lemma are defined as some member of any tagset.
+        """
+        all_tags = tagsets.all_tags()
+        self.tag = self.tool.tagStringToTag( tag
                                            , tagsets=tagsets
                                            )
+
+        # Best guess is the first item, otherwise...
+        lemma = tag[0]
+
+        if lemma in all_tags:
+            # Separate out items that are not values in a tagset, these
+            # are probably the lemma.
+            not_tags = [t for t in tag if t not in all_tags]
+            if len(not_tags) > 0:
+                self.lemma = not_tags[0]
+            else:
+                self.lemma = fulltag[0]
+        else:
+            self.lemma = lemma
+
+        self.pos = self.tag['pos']
+        self.tag_raw = tag
+
+    def __init__(self, tag=[''], _input=False, tool=False,
+                 tagsets={}):
+        self.tagsets = tagsets
+        self.tool = tool
+
+        self.prepare_tag(tag, tagsets)
+
         if 'pos' in self.tag:
             self.pos = self.tag['pos']
         else:
@@ -224,7 +254,7 @@ def word_generation_context(generated_result, *generation_input_args, **generati
         context = None
 
     def apply_context(form):
-        lemma, tag, forms = form
+        tag, forms = form
         tag = '+'.join(tag)
 
         # Get the context, but also fall back to the None option.
@@ -249,7 +279,7 @@ def word_generation_context(generated_result, *generation_input_args, **generati
 
         tag = tag.split('+')
 
-        return (lemma, tag, formatted_forms)
+        return (tag, formatted_forms)
 
     return map(apply_context, generated_result)
 
@@ -761,18 +791,16 @@ class OBT(XFST):
 class Morphology(object):
 
     def generate_to_objs(self, *args, **kwargs):
+        # TODO: occasionally lemma is not lemma, but first part of a
+        # tag, need to fix with the tagsets 
         def make_lemma(r):
             lems = []
 
-            lemma, tag, forms = r
-            _pos      = tag[0]
-            _analysis = tag
-            _fulltag  = tag
+            tag, forms = r
             if isinstance(forms, list):
                 for f in forms:
-                    lem = GeneratedForm(lemma, _pos, _analysis, fulltag=_fulltag,
-                             _input=f, tool=self.tool,
-                             tagsets=self.tagsets)
+                    lem = GeneratedForm(tag, _input=f, tool=self.tool,
+                                        tagsets=self.tagsets)
                     lems.append(lem)
             else:
                 lems = []
@@ -854,16 +882,11 @@ class Morphology(object):
                     self.tool.logger.error(msg)
 
             if not unknown:
-                parts = self.tool.splitAnalysis(tag, inverse=True)
-                lemma = parts[0]
-                tag = parts[1::]
-                reformatted.append((lemma, tag, forms))
+                reformatted.append((self.tool.splitAnalysis(tag, inverse=True), forms))
             else:
                 parts = self.tool.splitAnalysis(tag, inverse=True)
-                lemma = parts[0]
-                tag = parts[1::]
                 forms = False
-                reformatted.append((lemma, tag, forms))
+                reformatted.append((parts, forms))
 
         # Log generation error:
         if len(reformatted) == 0:
@@ -871,7 +894,7 @@ class Morphology(object):
             logg_args = [
                 'GENERATE',
                 self.langcode,
-                lemma,
+                tag,
             ]
 
             if len(tagsets) > 0:
@@ -972,14 +995,10 @@ class Morphology(object):
                 # handle it as best as possible.
                 if len(_an_parts) == 1:
                     _lem = _an_parts[0]
-                    lem = Lemma(lemma=_lem, _input=_lem, tool=self.tool, tagsets=self.tagsets)
+                    lem = Lemma(_an_parts, _input=_lem, tool=self.tool, tagsets=self.tagsets)
                 else:
-                    _lem      = _an_parts[0]
-                    _pos      = _an_parts[1]
-                    _analysis = _an_parts[1::]
-                    _fulltag  = _an_parts[1::]
-                    lem = Lemma( _lem, _pos, _analysis
-                               , fulltag=_fulltag, _input=form
+                    lem = Lemma( _an_parts
+                               , _input=form
                                , tool=self.tool, tagsets=self.tagsets
                                )
                 lemmas.add(lem)
