@@ -132,22 +132,22 @@ bin/bookmarklet/jquery.neahttadigisanit.css: tmp/jq.css
 bookmarklet: bin/bookmarklet/jquery.neahttadigisanit.css \
 			 bin/bookmarklet/bookmarklet.js \
 			 bin/bookmarklet/bookmarklet.min.js \
-			 bin/bookmarklet/bookmark.js
+			 bin/bookmarklet/bookmark.min.js
 	@echo "   DONE:        " "bookmarklet"
 	@echo " - "
 
 bookmarklet-install: bin/bookmarklet/jquery.neahttadigisanit.css \
 					bin/bookmarklet/bookmarklet.min.js \
 					bin/bookmarklet/bookmarklet.js
-	@cp bin/bookmarklet/*.js ../neahtta/static/js/
-	@cp bin/bookmarklet/*.css ../neahtta/static/css/
+	cp bin/bookmarklet/*.js ../neahtta/static/js/
+	cp bin/bookmarklet/*.css ../neahtta/static/css/
 	@echo "    ... Installed"
 
 # TODO: actual bookmark code, need to urlencode that and copy somewhere.
 # NOTE: before or if this happens, check out the notes in neahtta/ on the
 # bookmarklet, there are some specific needs not addressed here.
 #
-bin/bookmarklet/bookmark.js: src/bookmark.js
+bin/bookmarklet/bookmark.min.js: src/bookmark.js
 	$(BOOK) $^ > $@
 #
 # need to first test output from bookmarklet.
