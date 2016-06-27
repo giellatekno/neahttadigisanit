@@ -21,6 +21,8 @@ from datetime import timedelta
 from flask import make_response, request, current_app
 from functools import update_wrapper
 
+from bookmarklet_code import generate_bookmarklet_code
+
 
 def json_response(data, *args, **kwargs):
     return Response( response=json.dumps(data)
@@ -261,23 +263,26 @@ def reader_test_page():
 
 @blueprint.route('/read/update/', methods=['GET'])
 def reader_update():
-    from bookmarklet_code import bookmarklet_escaped
-    from urllib import quote_plus
-    bkmklt = bookmarklet_escaped.replace( 'sanit.oahpa.no'
-                                        , quote_plus(request.host)
-                                        )
+
+    reader_settings = current_app.config.reader_settings
+
+    bkmklt = generate_bookmarklet_code( reader_settings
+                                      , request.host
+                                      )
+
     # Force template into json response
     has_callback = request.args.get('callback', False)
     return render_template('reader_update.html', bookmarklet=bkmklt)
 
 @blueprint.route('/read/update/json/', methods=['GET'])
 def reader_update_json():
-    from urllib import quote_plus
-    from bookmarklet_code import bookmarklet_escaped
 
-    bkmklt = bookmarklet_escaped.replace( 'sanit.oahpa.no'
-                                        , quote_plus(request.host)
-                                        )
+    # TODO: api_host and media_host from settings
+    reader_settings = current_app.config.reader_settings
+
+    bkmklt = generate_bookmarklet_code( reader_settings
+                                      , request.host
+                                      )
 
     # Force template into json response
     has_callback = request.args.get('callback', False)
@@ -382,12 +387,12 @@ def bookmarklet_configs():
 
 @blueprint.route('/read/', methods=['GET'])
 def bookmarklet():
-    from bookmarklet_code import bookmarklet_escaped
-    from urllib import quote_plus
-    bkmklt = bookmarklet_escaped
-    bkmklt = bookmarklet_escaped.replace( 'sanit.oahpa.no'
-                                        , quote_plus(request.host)
-                                        )
+
+    reader_settings = current_app.config.reader_settings
+
+    bkmklt = generate_bookmarklet_code( reader_settings
+                                      , request.host
+                                      )
 
     return render_template( 'reader.html'
                           , bookmarklet=bkmklt

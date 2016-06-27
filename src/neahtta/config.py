@@ -939,6 +939,11 @@ class Config(Config):
         if not hasattr(self, '_reader_options'):
             self._reader_options = self.yaml.get('ReaderConfig', {})
 
+            try:
+                self.reader_settings = self._reader_options.pop('Settings')
+            except KeyError:
+                self.reader_settings = {}
+
             reader_defaults = {
                 'word_regex': DEFAULT_WORD_REGEX,
                 'word_regex_opts': DEFAULT_WORD_REGEX_OPTS,

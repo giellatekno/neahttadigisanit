@@ -2,7 +2,7 @@
 # however in order for it to work as a bookmarklet, it must be URL
 # encoded.
 
-from urllib import quote
+from urllib import quote, quote_plus
 
 with open('static/js/bookmark.min.js', 'r') as F:
     bmark = F.read().replace('\n', '')
@@ -11,4 +11,13 @@ bookmarklet_quote = lambda x: quote(x, safe="()")
 bookmarklet_escaped = bookmarklet_quote(bmark)
 
 prod_host = "sanit.oahpa.no"
-demo_host = "localhost%3A5000"
+
+def generate_bookmarklet_code(reader_settings, request_host):
+    api_host = reader_settings.get('api_host', request_host)
+    media_host = reader_settings.get('media_host', request_host)
+
+    bmarklet = bmark
+    bmarklet = bmarklet.replace('OMGNDS_API_HOSTBBQ', '//' + quote_plus(api_host))\
+                       .replace('OMGNDS_MEDIA_HOSTBBQ', '//' + quote_plus(media_host))
+
+    return bmarklet
