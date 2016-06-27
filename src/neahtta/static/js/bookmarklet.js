@@ -19294,7 +19294,7 @@ jQuery(document).ready(function($) {
   API_HOST = window.NDS_API_HOST || window.API_HOST;
   window.NDS_SHORT_NAME = getHostShortname(API_HOST);
   window.nds_exports = {};
-  EXPECT_BOOKMARKLET_VERSION = '0.0.3';
+  EXPECT_BOOKMARKLET_VERSION = '0.0.4';
   initSpinner = function() {
     /*
         spinner popup in right corner; `spinner = initSpinner()` to
