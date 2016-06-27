@@ -140,7 +140,7 @@ class Value(object):
         self.set_options()
         self.value = self.get_value()
 
-    def compare_value(self, tag_list):
+    def compare_value(self, tag_list, lemma):
         """ Returns true or false depending on whether a and b are a
         match
 
@@ -168,25 +168,33 @@ class Value(object):
         search_predicate = '###'.join(search_tags)
         current_form_tag = '###'.join(tag_list)
 
-        if self.cell.v.startswith('^') and self.cell.v.endswith('$'):
-            search_tags = tag_splitter(self.cell.v[1:-1])
+        search_v = self.cell.v
+
+        if '{{ lemma }}' in search_v:
+            search_v = search_v.replace('{{ lemma }}', lemma)
+
+        if 'LEMMA' in search_v:
+            search_v = search_v.replace('LEMMA', lemma)
+
+        if search_v.startswith('^') and search_v.endswith('$'):
+            search_tags = tag_splitter(search_v[1:-1])
             search_predicate = '###'.join(search_tags)
             return current_form_tag == search_predicate
 
-        if self.cell.v.endswith('$') and not self.cell.v.endswith('\$'):
-            search_tags = tag_splitter(self.cell.v[0:-1])
+        if search_v.endswith('$') and not search_v.endswith('\$'):
+            search_tags = tag_splitter(search_v[0:-1])
             search_predicate = '###'.join(search_tags)
 
             return current_form_tag.endswith(search_predicate)
 
-        if self.cell.v.startswith('^'):
-            search_tags = tag_splitter(self.cell.v[1::])
+        if search_v.startswith('^'):
+            search_tags = tag_splitter(search_v[1::])
             search_predicate = '###'.join(search_tags)
 
             return current_form_tag.startswith(search_predicate)
 
-        if self.cell.v.startswith('='):
-            search_tags = tag_splitter(self.cell.v[1::])
+        if search_v.startswith('='):
+            search_tags = tag_splitter(search_v[1::])
             search_predicate = '###'.join(search_tags)
             return current_form_tag == search_predicate
 
@@ -199,7 +207,7 @@ class Value(object):
         values_list = []
         for generated_form in self.paradigm:
             tag = generated_form.tag.parts
-            if self.compare_value(tag):
+            if self.compare_value(tag, generated_form.lemma):
                 self.value_type = list
                 values_list.append(generated_form.form)
 
