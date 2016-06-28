@@ -268,7 +268,6 @@ def create_app():
     """ Set up the Flask app, cache, read app configuration file, and
     other things.
     """
-    import views
     import configs
 
     from morpholex import MorphoLexicon
@@ -281,13 +280,15 @@ def create_app():
     # curframe = inspect.currentframe()
     # calframe = inspect.getouterframes(curframe, 2)
     # print "caller name", calframe[1]
+    import yaml
+    with open(os.environ['NDS_CONFIG'], 'r') as F:
+        static_prefix = yaml.load(F).get('ApplicationSettings').get('fcgi_script_path', '')
 
     app = Flask(__name__,
-        static_url_path='/static',)
+        static_url_path=static_prefix+'/static',)
 
     app = jinja_options_and_filters(app)
     app.production = False
-    app.register_blueprint(views.blueprint)
 
     app.config['cache'] = cache
     app.config['jinja_env'] = app.jinja_env
@@ -299,15 +300,21 @@ def create_app():
     app.config.prepare_lexica()
     app.config.add_optional_routes()
 
+    os.environ['NDS_PATH_PREFIX'] = app.config.fcgi_script_path
+    app.static_url_path = app.config.fcgi_script_path + app.static_url_path
+
     # Prepare assets before custom templates are read
     app = prepare_assets(app)
 
     # Register rate limiter
     limiter = Limiter(app, global_limits=["120/minute"])
     app.limiter = limiter
+    app.config['APPLICATION_ROOT'] = app.config.fcgi_script_path
 
     # Register language specific config information
-    app.register_blueprint(configs.blueprint)
+    import views
+    app.register_blueprint(views.blueprint, url_prefix=app.config['APPLICATION_ROOT'])
+    app.register_blueprint(configs.blueprint, url_prefix=app.config['APPLICATION_ROOT'])
 
     # Prepare cache
     cache_path = os.path.join(os.getcwd(), 'tmp/generator_cache/%s/' % app.config.short_name)

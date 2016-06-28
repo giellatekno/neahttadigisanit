@@ -310,6 +310,12 @@ class Config(Config):
                                self.filename)
 
     @property
+    def fcgi_script_path(self):
+        _p = self.yaml.get('ApplicationSettings', {})\
+                      .get('fcgi_script_path', '')
+        return _p
+
+    @property
     def render_template_errors(self):
         _p = self.yaml.get('ApplicationSettings', {})\
                       .get('render_template_errors', False)
