@@ -56,13 +56,15 @@ else
  SED := $(shell which sed)
 endif
 
+SAXON_JAR = $(shell which saxon9.jar)
+
 COLLECT_PARTS := $(GTHOME)/words/dicts/scripts/collect-dict-parts.xsl 
-SAXON := java -Xmx2048m -cp ~/lib/saxon9.jar \
+SAXON := java -Xmx2048m -cp $(SAXON_JAR) \
 		 -Dfile.encoding=UTF8 net.sf.saxon.Transform \
 		 -it:main $(COLLECT_PARTS)
 
 COLLECT_PARTS_SME_NOB := $(GTHOME)/words/dicts/scripts/collect-dict-parts-nds-smenob.xsl
-SAXON_SME_NOB := java -Xmx2048m -cp ~/lib/saxon9.jar \
+SAXON_SME_NOB := java -Xmx2048m -cp $(SAXON_JAR) \
 		 -Dfile.encoding=UTF8 net.sf.saxon.Transform \
 		 -it:main $(COLLECT_PARTS_SME_NOB)
 
