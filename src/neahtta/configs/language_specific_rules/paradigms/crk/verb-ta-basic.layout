@@ -62,4 +62,5 @@ layout:
 | "5 → 4"                       | Ind+Prs+5Sg/Pl+4Sg/PlO        | PV/e+*+Cnj+Prs+5Sg/Pl+4Sg/PlO |
 |                               |                               |                               |
 |                               | "IMPERATIVE"                  |                               |
+|                               | "Immediate"                   | "Delayed"                     |
 | "2s → 3s"                     | Imp+Imm+2Sg+3SgO              | Imp+Del+2Sg+3SgO              |
