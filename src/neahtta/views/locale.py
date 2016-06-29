@@ -5,7 +5,6 @@ from flask import ( request
 
 from . import blueprint
 
-@blueprint.route('/locale/<iso>/', methods=['GET'])
 def set_locale(iso):
     from flask.ext.babel import refresh
 

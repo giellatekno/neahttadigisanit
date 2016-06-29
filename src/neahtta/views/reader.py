@@ -81,8 +81,6 @@ def crossdomain(origin=None, methods=None, headers=None,
         return update_wrapper(wrapped_function, f)
     return decorator
 
-@blueprint.route('/lookup/<from_language>/<to_language>/',
-           methods=['OPTIONS', 'GET', 'POST'], endpoint="lookup")
 @crossdomain(origin='*', headers=['Content-Type'])
 def lookupWord(from_language, to_language):
     """
@@ -238,11 +236,9 @@ def lookupWord(from_language, to_language):
                    , mimetype="application/json"
                    )
 
-@blueprint.route('/read/ie8_instructions/', methods=['GET'])
 def ie8_instrux():
     return render_template('reader_ie8_notice.html')
 
-@blueprint.route('/read/ie8_instructions/json/', methods=['GET'])
 def ie8_instrux_json():
     # Force template into json response
     has_callback = request.args.get('callback', False)
@@ -254,14 +250,12 @@ def ie8_instrux_json():
                    , mimetype="application/json"
                    )
 
-@blueprint.route('/read/test/', methods=['GET'])
 def reader_test_page():
     """ This is also tied to a context processer making this item
     visible in the navigational menu if the template is found. """
 
     return render_template('reader_tests.template')
 
-@blueprint.route('/read/update/', methods=['GET'])
 def reader_update():
 
     reader_settings = current_app.config.reader_settings
@@ -274,7 +268,6 @@ def reader_update():
     has_callback = request.args.get('callback', False)
     return render_template('reader_update.html', bookmarklet=bkmklt)
 
-@blueprint.route('/read/update/json/', methods=['GET'])
 def reader_update_json():
 
     # TODO: api_host and media_host from settings
@@ -310,7 +303,6 @@ def fetch_messages(locale):
     return dict( [(e.msgid, e.msgstr or False) for e in jsentries] )
 
 
-@blueprint.route('/read/config/', methods=['GET'])
 def bookmarklet_configs():
     """ Compile a JSON response containing dictionary pairs,
     and internationalization strings.
@@ -385,7 +377,6 @@ def bookmarklet_configs():
                    , mimetype="application/json"
                    )
 
-@blueprint.route('/read/', methods=['GET'])
 def bookmarklet():
 
     reader_settings = current_app.config.reader_settings

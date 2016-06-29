@@ -22,12 +22,10 @@ from flask import ( request
 
 user_log = getLogger("user_log")
 
-@blueprint.route('/more/', methods=['GET'])
 def more_dictionaries():
     return render_template('more_dictionaries.html')
 
 # For direct links, form submission.
-@blueprint.route('/extern/<_from>/<_to>/<_search_type>/', methods=['POST'])
 def externalFormSearch(_from, _to, _search_type):
     """ External searches require at least one thing, but for
     convenience, two:
@@ -72,7 +70,6 @@ def externalFormSearch(_from, _to, _search_type):
 
     return func(pair_config, user_input)
 
-@blueprint.route('/about/', methods=['GET'])
 def about():
     from jinja2 import TemplateNotFound
 
@@ -82,7 +79,6 @@ def about():
     #     'about.template')
     return render_template('about.template')
 
-@blueprint.route('/about/sources/', methods=['GET'])
 def about_sources():
     """ This is also tied to a context processer making this item
     visible in the navigational menu if the template is found. """
@@ -117,7 +113,6 @@ def gen_doc(from_language, docs_list):
         _docs.append(doc)
     return _docs
 
-@blueprint.route('/config_doc/<from_language>/', methods=['GET'])
 def config_doc(from_language):
     """ Quick overview of language-specific details.
     """
@@ -162,11 +157,9 @@ def config_doc(from_language):
                           )
 
 
-@blueprint.route('/plugins/', methods=['GET'])
 def plugins():
     return render_template('plugins.html')
 
-@blueprint.route('/escape/text-tv/', methods=['GET'])
 def escape_tv():
     del session['text_tv']
     return redirect('/')

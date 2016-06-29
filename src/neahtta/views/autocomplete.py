@@ -6,8 +6,6 @@ from flask import current_app
 
 __all__ = ["autocomplete"]
 
-@blueprint.route('/autocomplete/<from_language>/<to_language>/',
-           methods=['GET'], endpoint="autocomplete")
 def autocomplete(from_language, to_language):
 
     autocomplete_tries = current_app.config.lexicon.autocomplete_tries
