@@ -66,7 +66,7 @@
                     </li>
                 {% endfor %}
             </ul>
-            <p lang="{{ current_locale }}">{% trans %}If you are looking for other languages, please see our <a href="/more/">other dictionaries</a>.{% endtrans %}</p>
+            <p lang="{{ current_locale }}">{% trans more_dictionary_link=url_for('.more_dictionaries') %}If you are looking for other languages, please see our <a href="{{ more_dictionaries_link }}">other dictionaries</a>.{% endtrans %}</p>
         </div>
     </div>
 

@@ -19,7 +19,7 @@
           </a>
         <ul class="dropdown-menu">
             {% for iso in internationalizations %}
-                <li><a href="/locale/{{ iso }}/">
+                <li><a href="{{ url_for('.set_locale', iso=iso) }}">
                 {% if iso|iso_has_flag %}
                     <img class="i18n_flag" alt="[flag]" src="{{url_for('static', filename='img/flags/' + iso + '_20x15.png')}}">
                 {% else %}

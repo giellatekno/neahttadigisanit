@@ -2,8 +2,8 @@
 
 {% block extra_js %}
         <!-- Here's the important part... -->
-        <link href="/static/css/jquery.neahttadigisanit.css" rel="stylesheet" />
-        <script type='text/javascript' src='/static/js/neahttadigisanit.jquery.min.js'></script>
+        <link href="{{ url_for('static', filename='css/jquery.neahttadigisanit.css') }}" rel="stylesheet" />
+        <script type='text/javascript' src='{{ url_for('static', filename='js/neahttadigisanit.jquery.min.js') }}'></script>
 
         <script type='text/javascript'>
             localStorage.clear();
@@ -14,7 +14,7 @@
                 });
             });
         </script>
-        <link href="/static/css/tests.css" rel="stylesheet" />
+        <link href="{{ url_for('static', filename='css/tests.css') }}" rel="stylesheet" />
 
 {% endblock %}
 

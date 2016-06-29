@@ -20,7 +20,7 @@
 
 {% block extra_nav %}
     {# Dictionaries #}
-    <li><a href="/browse/">
+    <li><a href="{{ url_for(".browse") }}">
             <span lang="{{ current_locale }}">{% trans %}Browse{% endtrans %}</span>
     </a></li>
 

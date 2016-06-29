@@ -39,7 +39,8 @@
         {% else %}
             {% set params = "" %}
         {% endif %}
-        <a href="/{{ iso_pair[0] }}/{{ iso_pair[1] }}/{{ params }}">
+            {# URLFOR: test #}
+        <a href="{{ url_for('.canonical_root_search_pair', _from=iso_pair[0], _to=iso_pair[1]) }}{{ params }}">
         <span>{{ iso_pair[0]|iso_to_i18n }} &rarr; {{ iso_pair[1]|iso_to_i18n }}</span>
         {%- if iso_pair[1] != _to %}
         {{ check_result_count(iso_pair[0], iso_pair[1]) }}
@@ -56,7 +57,7 @@
             <ul class="nav nav-collapse nav-tabs nav-stacked subnavcoloring">
                 {% for variant in pair_options.input_variants %}
                     <li{% if _from == variant.short_name %} class="active"{% endif %}>
-                        <a href="/{{ variant.short_name }}/{{ _to }}">{{ gettext(variant.description)|safe }}{% if variant.example %} {{ gettext(variant.example)|safe }}{% endif %}</a>
+                        <a href="{{ url_for('.canonical_root_search_pair', _from=variant.short_name, _to=_to) }}">{{ gettext(variant.description)|safe }}{% if variant.example %} {{ gettext(variant.example)|safe }}{% endif %}</a>
                     </li>
                 {% endfor %}
             </ul>

@@ -9,11 +9,11 @@
 {% if project_notice %}
     {{ project_notice|safe }}
 {% else %}
-    <p><a href="/more/" class="other_link" lang="{{ current_locale }}">{% trans %}Other dictionaries{% endtrans %}</a></p>
+    <p><a href="{{ url_for('.more_dictionaries') }}" class="other_link" lang="{{ current_locale }}">{% trans %}Other dictionaries{% endtrans %}</a></p>
 {% endif %}
 
 {% if text_tv %}
-<div class="alert alert-warning"><a href="/escape/text-tv/">
+<div class="alert alert-warning"><a href="{{ url_for('.escape_tv') }}">
         <span lang="{{ current_locale }}">{% trans %}Escape Text-TV mode{% endtrans %}</span>
 </a></div>
 {% endif %}

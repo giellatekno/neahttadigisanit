@@ -53,7 +53,7 @@
        <div class="span8">
            <form id="neahttadigisanit" class="form-inline pull-left"
                method="post"
-               action="/{{ _from }}/{{ _to }}/">
+               action="{{ url_for('.canonical_root_search_pair', _from=_from, _to=_to) }}">
            <div class="input-prepend input-append">
              <div class="btn-group">
                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
@@ -130,7 +130,7 @@
 
     {% if more_detail_link %}
         <p>
-            <a href="/detail/{{ _from }}/{{ _to }}/{{ user_input }}.html">
+            <a href="{{ url_for('.detailed_language_pair_search', _from=_from, _to=_to, wordform=user_input, format='html') }}">
                 <span lang="{{ current_locale }}">{% trans %}More information about this word{% endtrans %}</span>
             </a>
         </p>

@@ -9,7 +9,7 @@
           </a>
         <ul class="dropdown-menu">
             {% for iso in internationalizations %}
-            <li><a href="/locale/{{ iso }}/" lang="{{ current_locale }}">
+            <li><a href="{{ url_for('.set_locale', iso=iso) }}" lang="{{ current_locale }}">
                 {{ iso|iso_to_language_own_name }}</a></li>
             {% endfor %}
         </ul>

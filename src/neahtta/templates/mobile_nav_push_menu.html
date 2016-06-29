@@ -2,19 +2,19 @@
     <div class="mp-level">
         <h2 class="icon icon-world">{{ app_name }}</h2>
         <ul>
-            <li><a href="/">
+            <li><a href="{{ url_for('.canonical-root') }}">
                     <span lang="{{ current_locale }}">{% trans %}Home{% endtrans %}</span>
             </a></li>
             <li>
-                <a href="/read/">
+                <a href="{{ url_for('.reader_info') }}">
                     <span lang="{{ current_locale }}">{% trans %}Plugins{% endtrans %}</span>
                 </a>
             </li>
-            <li><a href="/about/">
+            <li><a href="{{ url_for('.about') }}">
                     <span lang="{{ current_locale }}">{% trans %}About{% endtrans %}</span>
             </a></li>
             {% if sources_template_exists %}
-                <li><a href="/about/sources/">
+                <li><a href="{{ url_for('.about_sources') }}">
                         <span lang="{{ current_locale }}">{% trans %}Sources{% endtrans %}</span>
                 </a></li>
             {% endif %}
@@ -27,7 +27,7 @@
                     <ul>
                         {% for iso in internationalizations %}
                         <li class="display-phone hidden-tablet visible-mid hidden-desktop">
-                            <a href="/locale/{{ iso }}/" lang="{{ iso }}">
+                            <a href="{{ url_for('.set_locale', iso=iso) }}" lang="{{ iso }}">
                                 <img class="i18n_flag" alt="[{{ iso|iso_to_language_own_name }} flag]" src="{{url_for('static', filename='img/flags/' + iso + '_20x15.png')}}"> {{ iso|iso_to_language_own_name }}</a>
                         </li>
                         {% endfor %}
@@ -64,7 +64,7 @@
                                                     </li>
                                                     {% for variant in pair_options.input_variants %}
                                                     <li>
-                                                    <a href="/{{ variant.short_name }}/{{ iso_pair[1] }}/">
+                                                    <a href="{{ url_for('.canonical_root_search_pair', _from=variant.short_name, _to=iso_pair[1]) }}">
                                                         <span lang="{{ current_locale }}">{{ gettext(variant.description)|safe }}{% if variant.example %} {{ gettext(variant.example)|safe }}{% endif %}</span>
                                                     </a></li>
                                                     {% endfor %}
@@ -83,13 +83,13 @@
                                                         <span class="section-note" lang="{{ current_locale }}">{% trans %}Written variant{% endtrans %}</span>
                                                     </li>
                                                     <li>
-                                                        <a href="/{{ iso_pair[0] }}/{{ iso_pair[1] }}/" class="block_title">
+                                                        <a href="{{ url_for('.canonical_root_search_pair', _from=iso_pair[0], _to=iso_pair[1]) }}" class="block_title">
                                                             <span lang="{{ current_locale }}">{% trans %}Word search{% endtrans %}</span>
                                                         </a>
                                                     </li>
                                                     {% for variant in pair_options.search_variants %}
                                                     <li>
-                                                        <a href="/v/{{ iso_pair[0] }}/{{ iso_pair[1] }}/{{ variant.type }}/">
+                                                        <a href="{{ url_for('.language_pair_variant_search', _from=iso_pair[0], _to=iso_pair[1], variant_type=variant.type) }}">
                                                             <span lang="{{ current_locale }}">{{ gettext(variant.description)|safe }}{% if variant.example %} {{ gettext(variant.example)|safe }}{% endif %}</span>
                                                     </a></li>
                                                     {% endfor %}
@@ -100,7 +100,7 @@
 
                                     {% if not pair_options.input_variants and not pair_options.search_variants %}
                                         <li>
-                                            <a href="/{{ iso_pair[0] }}/{{ iso_pair[1] }}/" class="block_title">
+                                            <a href="{{ url_for('.canonical_root_search_pair', _from=iso_pair[0], _to=iso_pair[1]) }}" class="block_title">
                                                 <span lang="{{ current_locale }}">{{ iso_pair[0]|iso_to_i18n }} &rarr; {{ iso_pair[1]|iso_to_i18n }}</span>
                                             </a>
                                         </li>
