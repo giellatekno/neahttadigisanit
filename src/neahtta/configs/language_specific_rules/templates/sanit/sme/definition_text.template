@@ -81,7 +81,7 @@
             </a> &rarr;
         {%- else %}
             {# NB: swap from and to for these links since these are definitions. #}
-            <a href="{{ url_for('.detailed_language_pair_search', _from=_from, _to=_to, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
+            <a href="{{ url_for('.detailed_language_pair_search', _from=_to, _to=_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
                 {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{{ text -}}
             </a>
         {%- endif %}
