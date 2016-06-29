@@ -15,6 +15,7 @@
                data-autocomplete-text="{% trans %}Press Tab to select a word{% endtrans %}"
                data-language-from="{{ _from }}"
                data-language-to="{{ _to }}"
+               data-autocomplete-path="{{ url_for('.autocomplete', from_language=_from, to_language=_to) }}"
                {% endif %}
                {% if user_input -%}value="{{ user_input }}"{% endif %}
                placeholder="{% trans %}ohcansátni{% endtrans %}">

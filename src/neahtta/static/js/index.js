@@ -24,8 +24,9 @@ $(document).ready( function() {
             if (query.length > 1) {
                 var _from = typeahead.$element.attr('data-language-from')
                     , _to = typeahead.$element.attr('data-language-to')
-                    , url = '/autocomplete/' + _from + '/' + _to + '/'
+                    , default_autocomplete = '/autocomplete/' + _from + '/' + _to + '/'
                     ;
+                var url = $('input[name="lookup"]').attr('data-autocomplete-path') || default_autocomplete;
                 return $.get(url, { lookup: query }, function (data) {
                     return typeahead.process(data);
                 });
