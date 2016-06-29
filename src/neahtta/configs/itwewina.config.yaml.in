@@ -1,6 +1,7 @@
 ApplicationSettings:
   app_name: !gettext "itwêwina"
   app_meta_title: !gettext "Online Plains Cree dictionary"
+  fcgi_script_path: '/itwewina'
   render_template_errors: true
   short_name: "itwewina"
   paradigm_layouts: true
