@@ -871,6 +871,7 @@ class Morphology(object):
             raw_errors = ''
 
         reformatted = []
+        tag = False
         for tag, forms in res:
             unknown = False
             for f in forms:
@@ -894,7 +895,7 @@ class Morphology(object):
             logg_args = [
                 'GENERATE',
                 self.langcode,
-                tag,
+                tag or '',
             ]
 
             if len(tagsets) > 0:
