@@ -8,7 +8,7 @@
 {%- macro lemma_detail_link(entry, _from, _to) -%}
     {%- set entry_hash = entry|hash_node -%}
     {%- set params = 'no_compounds=true&lemma_match=true&e_node=' + entry_hash -%}
-    /detail/{{ _from }}/{{ _to }}/{{ lemma_text(entry) }}.html?{{ params }}
+    {{ url_for('.detailed_language_pair_search', _from=_from, _to=_to, wordform=lemma_text(entry), format='html') }}?{{ params }}
 {%- endmacro -%}
 
 {# vim: set ts=4 sw=4 tw=72 syntax=jinja : #}

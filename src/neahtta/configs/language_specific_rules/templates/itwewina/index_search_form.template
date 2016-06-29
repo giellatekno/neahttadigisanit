@@ -25,7 +25,7 @@
                 {%- if search_form_action %}
                 action="{{ search_form_action }}"
                 {%- else -%}
-                action="/{{ _from }}/{{ _to }}/" 
+                action="{{ url_for('.canonical_root_search_pair', _from=_from, _to=_to) }}" 
                 {%- endif -%}
                 >
                 
@@ -65,7 +65,7 @@
                                         <li><button 
                                                type="submit"
                                                class="btn"
-                                               formaction="/extern/{{ _from }}/{{ _to }}/korp_wordform/"
+                                               formaction="{{ url_for('.external_form_search', _from=_from, _to=_to, _search_type="korp_wordform") }}"
                                                formmethod=""
                                                lang="{{ current_locale }}"
                                                formtarget="_blank">{% trans %}Search texts{% endtrans %} (Korp)</button></li>
@@ -85,7 +85,7 @@
                           {% endif %}
                    {% if current_pair_settings.show_korp_search %}
                        <button type="submit"
-                               formaction="/extern/{{ _from }}/{{ _to }}/korp_wordform/"
+                               formaction="{{ url_for('.external_form_search', _from=_from, _to=_to, _search_type="korp_wordform") }}"
                                formmethod="post"
                                formtarget="_blank"
                                lang="{{ current_locale }}"
@@ -99,10 +99,11 @@
             {% if last_searches %}
             <ul id="last_searches">
                 <li class="note">{% trans %}Previous:{% endtrans %}</li>
+            {# URLFOR #}
                 {% for uri, input in last_searches %}
                 <li><a href="{{ uri }}">{{ input }}</a>{% if not loop.last %},{% endif %}</li>
                 {% endfor %}
-                <li><a href="/session/clear/last_searches/">({% trans %}clear{% endtrans %})</a></li>
+                <li><a href="{{ url_for('.clear_session_key', sess_key='last_searches/') }}">({% trans %}clear{% endtrans %})</a></li>
             </ul>
             {% endif %}
         </div>

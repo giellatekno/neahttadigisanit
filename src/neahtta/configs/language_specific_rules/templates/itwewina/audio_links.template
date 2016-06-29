@@ -26,6 +26,7 @@
                     {% set transcription = aud.xpath('@transcription')|first %}
                     {% set speaker = aud.xpath('@speaker')|first %}
                     {% set dialect = aud.xpath('@dialect')|first %}
+            {# URLFOR #}
                     <a class="audio-link" 
                        data-audio-player 
                        data-audio-target="{{ aud.xpath('@href')|first }}" target="blank" href="#">

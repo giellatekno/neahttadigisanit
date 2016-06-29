@@ -180,6 +180,7 @@
 {% endif -%}
 
 {%- macro full_paradigm_link() %}
+            {# URLFOR #}
     <a class="full-paradigm-link"
        style="opacity: .8;"
        href="http://gtweb.uit.no/cgi-bin/smi/smi.cgi?text={{ lemma }}&pos={{ pos }}&mode=full&action=paradigm&lang=sme&plang=sme">

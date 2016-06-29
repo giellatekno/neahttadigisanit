@@ -11,6 +11,7 @@
     {%- endif -%}
 {%- endmacro %}
 
+{# URLFOR #}
 {% macro link_lemma(lemma) -%}
     {% if not orig_from %}
         {% set orig_from = _from %}
@@ -56,6 +57,7 @@
 {%- endmacro %}
 
 {# TODO: necessary? current_pair_settings.korp_options.lemma_search_path.replace('TARGET_LANG_ISO', orig_from) #}
+{# URLFOR #}
 {% macro wordform_search_url() -%}
     {%- if current_pair_settings.korp_options.is_korp_default_lang %}
         {%- set s_path =  current_pair_settings.korp_search_host + current_pair_settings.korp_options.wordform_search_path_default_lang -%}

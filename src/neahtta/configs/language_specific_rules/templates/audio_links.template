@@ -12,6 +12,7 @@
     <div class="audio-links">
         <div class="btn-group">
         {%- for aud in audio -%}
+            {# URLFOR #}
             <a class="btn btn-mini audio-link" data-audio-player data-audio-target="{{ aud.xpath('@href')|first }}" target="blank" href="#">
                 <i class="icon-volume-up"></i>{{ aud.xpath('@dialect')|first }}.</a>
         {%- endfor -%}

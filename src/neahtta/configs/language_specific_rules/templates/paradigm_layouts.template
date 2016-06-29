@@ -13,12 +13,17 @@
 {% endmacro -%}
 
 {% if layout %}
+    {# when this appears the second time in the mobile style, the IDs are different 
+     #}
+
     {% set multiple_types = layout|length > 1 %}
     {% set use_dropdown = layout|length > 3 %}
 
     {# Construct the navigation menu when there are multiple paradigm
        types generated for this entry. #}
     {# TODO: if there are tons of tabs need a different UI, dropdown? #}
+
+    {{ mobile_layout_index }}
 
     {% if multiple_types %}
 

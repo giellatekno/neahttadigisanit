@@ -51,12 +51,12 @@
     {% endif %}
 
     {% if reference %}
-        <a href="/{{ _from }}/{{ _to }}/ref/?l_til_ref={{ reference }}">
+        <a href="{{ url_for('.search_pair_referred_search', _from=_from, _to=_to) }}?l_til_ref={{ reference }}">
             {{- text -}}
         </a> &rarr;
     {%- else %}
         {# NB: swap from and to for these links since these are definitions. #}
-        <a href="/detail/{{ _to }}/{{ _from }}/{{ text }}.html?no_compounds=true&lemma_match=true">
+        <a href="{{ url_for('.detailed_language_pair_search', _from=_from, _to=_to, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
             {{- text -}}
         </a>
     {%- endif %}
