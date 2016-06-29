@@ -63,28 +63,39 @@ layout:
 |                               |                               |                               |
 |                               | "PAST TENSE"                  |                               |
 |                               | : "Independent"               | : "Conjunct"                  |
+| "2s → 1s"                     | Ind+Prt+2Sg+1SgO              | Cnj+Prt+2Sg+1SgO              |
+| "1s → 2s"                     | Ind+Prt+1Sg+2SgO              | Cnj+Prt+1Sg+2SgO              |
 | "3s → 4"                      | Ind+Prt+3Sg+4Sg/PlO           | Cnj+Prt+3Sg+4Sg/PlO           |
 | "3p → 4"                      | Ind+Prt+3Pl+4Sg/PlO           | Cnj+Prt+3Pl+4Sg/PlO           |
 |                               |                               |                               |
 |                               | "FUTURE INTENTIONAL TENSE"    |                               |
 |                               | : "Independent"               | : "Conjunct"                  |
+| "2s → 1s"                     | Ind+Fut+Int+2Sg+1SgO          | Cnj+Fut+Int+2Sg+1SgO          |
+| "1s → 2s"                     | Ind+Fut+Int+1Sg+2SgO          | Cnj+Fut+Int+1Sg+2SgO          |
 | "3s → 4"                      | Ind+Fut+Int+3Sg+4Sg/PlO       | Cnj+Fut+Int+3Sg+4Sg/PlO       |
 | "3p → 4"                      | Ind+Fut+Int+3Pl+4Sg/PlO       | Cnj+Fut+Int+3Pl+4Sg/PlO       |
 |                               |                               |                               |
 |                               | "FUTURE DEFINITE TENSE"       |                               |
 |                               | : "Independent"               |                               |
+| "2s → 1s"                     | Ind+Fut+Def+2Sg+1SgO          |                               |
+| "1s → 2s"                     | Ind+Fut+Def+1Sg+2SgO          |                               |
 | "3s → 4"                      | Ind+Fut+Def+3Sg+4Sg/PlO       |                               |
 | "3p → 4"                      | Ind+Fut+Def+3Pl+4Sg/PlO       |                               |
 |                               |                               |                               |
 |                               | "FUTURE/INFINITIVE"           |                               |
 |                               | : "Conjunct: ka-"             | : "Conjunct: ta-"             |
+| "2s → 1s"                     | PV/ka+*+Cnj+Prs+2Sg+1SgO      | PV/ta+*+Cnj+Prs+2Sg+1SgO      |
+| "1s → 2s"                     | PV/ka+*+Cnj+Prs+1Sg+2SgO      | PV/ta+*+Cnj+Prs+1Sg+2SgO      |
 | "3s → 4"                      | PV/ka+*+Cnj+Prs+3Sg+4Sg/PlO   | PV/ta+*+Cnj+Prs+3Sg+4Sg/PlO   |
 | "3p → 4"                      | PV/ka+*+Cnj+Prs+3Pl+4Sg/PlO   | PV/ta+*+Cnj+Prs+3Pl+4Sg/PlO   |
 |                               |                               |                               |
 |                               | "FUTURE CONDITIONAL"          |                               |
+| "2s → 1s"                     | Fut+Cond+2Sg+1SgO             |                               |
+| "1s → 2s"                     | Fut+Cond+1Sg+2SgO             |                               |
 | "3s → 4"                      | Fut+Cond+3Sg+4Sg/PlO          |                               |
 | "3p → 4"                      | Fut+Cond+3Pl+4Sg/PlO          |                               |
 |                               |                               |                               |
 |                               | "IMPERATIVE"                  |                               |
-|                               | "Immediate"                   | "Delayed"                     |
+|                               | : "Immediate"                 | : "Delayed"                   |
 | "2s → 3s"                     | Imp+Imm+2Sg+3SgO              | Imp+Del+2Sg+3SgO              |
+| "2p → 3s"                     | Imp+Imm+2Pl+3SgO              | Imp+Del+2Pl+3SgO              |
