@@ -827,6 +827,7 @@ def get_status_code(host, path="/"):
         return conn.getresponse().status
     except StandardError:
         return None
+
 @task
 def test_running():
 
@@ -847,7 +848,7 @@ def test_running():
         code = get_status_code(h)
         if code != 200:
             col = red
-            msg = 'ERROR? ' + code + ' '
+            msg = 'ERROR? ' + str(code) + ' '
         else:
             col = green
             msg = ''
