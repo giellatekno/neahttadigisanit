@@ -1,0 +1,26 @@
+# This is the path to the directory that the virtualenv is in, no trailing slash
+VIRTUALENV_PATH  = '/path/to/nds/env'
+
+# This is the path to the app server-side code (e.g, wherever you 
+#  checked out main/apps/dicts/nds/neahtta to)
+APP_PATH         = '/path/to/neahtta'
+
+# What config file to use for the application, path must
+# be relative to this file
+NDS_CONFIG_FILE  = 'configs/projectname.config.yaml'
+
+import os
+import sys
+
+activate_this = os.path.join(VIRTUALENV_PATH, 'bin/activate_this.py')
+execfile(activate_this, dict(__file__=activate_this))
+
+sys.path.insert(0, APP_PATH)
+
+os.chdir(APP_PATH)
+
+os.environ['NDS_CONFIG'] = NDS_CONFIG_FILE
+from application import create_app
+
+application = create_app()
+
