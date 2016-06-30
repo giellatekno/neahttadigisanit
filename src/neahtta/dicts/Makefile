@@ -525,6 +525,7 @@ gunaha-lexica: compile_langs_lexicon compile_words_dicts_lexicon
 gunaha: GT_COMPILE_LANGS := $(GUNAHA_LANGS_ANALYSERS)
 gunaha: LEX_COMPILE_LANGS := $(GUNAHA_LANGS_LEXICA)
 gunaha: LEX_COMPILE_WORDS_DICTS := $(GUNAHA_WORDS_DICTS_LEXICA)
+gunaha: GT_COMPILE_STARTUP_LANGS := $(GUNAHA_STARTUP_LANGS_ANALYSERS)
 gunaha: LANGS_FLAGS := $(GUNAHA_LANGS_FLAGS)
 gunaha: gunaha-lexica compile_langs_fsts print_complete_message
 
