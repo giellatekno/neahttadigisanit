@@ -1,0 +1,62 @@
+ApplicationSettings:
+  app_name: !gettext "Gunáhà’"
+  app_meta_title: !gettext "Online Gunáhà’ dictionary"
+  fcgi_script_path: '/gunaha'
+  render_template_errors: true
+  short_name: "gunaha"
+  paradigm_layouts: true
+  default_locale: "srs"
+  default_pair: ["srs", "eng"]
+  mobile_default_pair: ["srs", "eng"]
+  locales_available:
+    - en
+  meta_description: >
+      Free online, mobile friendly dictionaries for Gunáhà’
+  meta_keywords: >
+      gunaha, mobile, dictionary, free
+
+Tools:
+  xfst_lookup: &LOOKUP '/usr/bin/lookup'
+  hfst_lookup: &HLOOKUP '/usr/local/bin/hfst-optimized-lookup'
+  opt: &OPT '/opt/smi/'
+
+Morphology:
+  # normative
+  srs:
+    tool: *HLOOKUP
+    file: [*OPT, '/srs/bin/analyser-dict-gt-desc.hfstol']
+    inverse_file: [*OPT, '/srs/bin/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
+    options: &MORPHOLOGY_OPTS
+      # tagProcessor: "configs.language_specific_rules.srs_tags:process_srs_analysis"
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+
+Languages:
+  - iso: srs
+    minority_lang: true
+  - iso: eng
+
+Dictionaries:
+  - source: srs
+    target: eng
+    path: 'dicts/srseng.xml'
+
+  - source: eng
+    target: srs
+    path: 'dicts/engsrs.xml'
+
+
+ReaderConfig:
+  # Settings:
+  #   # do not include scheme here, or things break
+  #   reader_api: "sapir.artsrn.ualberta.ca/itwewina/"
+  #   media_host: "sapir.artsrn.ualberta.ca/itwewina/"
+  srs:
+    multiword_lookups: false
+    word_regex: |
+      [\u00C0-\u1FFF\u2C00-\uD7FF\w\.\-']+
+    word_regex_opts: "g"
+
