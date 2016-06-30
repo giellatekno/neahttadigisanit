@@ -263,6 +263,21 @@ def register_assets(app):
 
     return app
 
+def check_dependencies():
+    import distutils
+
+    execs = [
+        'node',
+        'uglifyjs',
+    ]
+
+    for e in execs:
+        p = distutils.spawn.find_executable(e)
+        if p is None:
+            print >> sys.stderr, "* Missing dependency in $PATH: " + e
+            print >> sys.stderr, "  Install the executable, check that it is available in $PATH, "
+            print >> sys.stderr, "  and check that it's executable. "
+            sys.exit()
 
 def create_app():
     """ Set up the Flask app, cache, read app configuration file, and
@@ -283,6 +298,9 @@ def create_app():
     import yaml
     with open(os.environ['NDS_CONFIG'], 'r') as F:
         static_prefix = yaml.load(F).get('ApplicationSettings').get('fcgi_script_path', '')
+
+    os.environ['PATH'] += os.pathsep + os.path.join(os.getcwd(), 'node_modules/.bin')
+    check_dependencies()
 
     app = Flask(__name__,
         static_url_path=static_prefix+'/static',)
