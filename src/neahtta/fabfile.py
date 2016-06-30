@@ -814,3 +814,42 @@ def commit_gtweb_tag():
     svn copy https://gtsvn.uit.no/langtech/trunk/apps/dicts/nds nds-stable-gtweb
     """
 
+def get_status_code(host, path="/"):
+    """ This function retreives the status code of a website by requesting
+        HEAD data from the host. This means that it only requests the headers.
+        If the host cannot be reached or something else goes wrong, it returns
+        None instead.
+    """
+    import httplib
+    try:
+        conn = httplib.HTTPConnection(host)
+        conn.request("HEAD", path)
+        return conn.getresponse().status
+    except StandardError:
+        return None
+@task
+def test_running():
+
+    hosts = [
+        "kyv.oahpa.no",
+        "saanih.oahpa.no",
+        "valks.oahpa.no",
+        "itwewina.oahpa.no",
+        "muter.oahpa.no",
+        "saanih.oahpa.no",
+        "saan.oahpa.no",
+        "sonad.oahpa.no",
+        "guusaaw.oahpa.no",
+        "vada.oahpa.no",
+    ]
+
+    for h in hosts:
+        code = get_status_code(h)
+        if code != 200:
+            col = red
+            msg = 'ERROR? ' + code + ' '
+        else:
+            col = green
+            msg = ''
+        print(col(msg + h))
+
