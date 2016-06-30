@@ -512,7 +512,7 @@ class ParadigmConfig(object):
 
         # Path relative to working directory
         # TODO: need to grab from other configs?
-        _path = os.path.join( os.getcwd()
+        _path = os.path.join( os.path.dirname(__file__)
                             , 'configs/language_specific_rules/paradigms/'
                             )
 

@@ -299,7 +299,7 @@ def create_app():
     with open(os.environ['NDS_CONFIG'], 'r') as F:
         static_prefix = yaml.load(F).get('ApplicationSettings').get('fcgi_script_path', '')
 
-    os.environ['PATH'] += os.pathsep + os.path.join(os.getcwd(), 'node_modules/.bin')
+    os.environ['PATH'] += os.pathsep + os.path.join(os.path.dirname(__file__), 'node_modules/.bin')
     check_dependencies()
 
     app = Flask(__name__,
@@ -335,7 +335,7 @@ def create_app():
     app.register_blueprint(configs.blueprint, url_prefix=app.config['APPLICATION_ROOT'])
 
     # Prepare cache
-    cache_path = os.path.join(os.getcwd(), 'tmp/generator_cache/%s/' % app.config.short_name)
+    cache_path = os.path.join(os.path.dirname(__file__), 'tmp/generator_cache/%s/' % app.config.short_name)
     cache.init_app(app, {'CACHE_TYPE': 'filesystem', 'CACHE_DIR': cache_path})
 
     app.cache = cache

@@ -19,8 +19,7 @@ from importlib import import_module
 import os
 import sys
 
-cwd = os.getcwd()
-configs_path = cwd + '/configs/language_specific_rules/'
+configs_path = os.path.dirname(__file__)
 
 def _getlangs():
     def _popname(n):

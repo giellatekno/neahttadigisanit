@@ -197,7 +197,7 @@ class Config(Config):
         makefile otherwise allow override.
         """
         default = os.path.join(
-            os.getcwd(),
+            os.path.dirname(__file__),
             'geo/data'
         )
         _p = self.yaml.get('ApplicationSettings', {})\
@@ -213,7 +213,7 @@ class Config(Config):
         makefile otherwise allow override.
         """
         default = os.path.join(
-            os.getcwd(),
+            os.path.dirname(__file__),
             'geoip/lib/libGeoIP.so'
         )
         _p = self.yaml.get('ApplicationSettings', {})\
@@ -268,7 +268,7 @@ class Config(Config):
             project_css_path = False
             path = 'static/css/%s.css' % self.short_name
             try:
-                open(os.path.join( os.getcwd(), path), 'r')
+                open(os.path.join( os.path.dirname(__file__), path), 'r')
                 project_css_path = path
             except:
                 pass
@@ -369,7 +369,7 @@ class Config(Config):
         if hasattr(self, '_paradigm_contexts'):
             return self._paradigm_contexts
 
-        paradigm_path = os.path.join( os.getcwd()
+        paradigm_path = os.path.join( os.path.dirname(__file__)
                                     , 'configs/language_specific_rules/paradigms/'
                                     )
 
@@ -571,7 +571,7 @@ class Config(Config):
         if hasattr(self, '_tag_filters'):
             return self._tag_filters
 
-        _path = os.path.join( os.getcwd()
+        _path = os.path.join( os.path.dirname(__file__)
                             , 'configs/language_specific_rules/user_friendly_tags/'
                             )
 
@@ -626,7 +626,7 @@ class Config(Config):
         if self._tagset_definitions:
             return self._tagset_definitions
 
-        tagset_path = os.path.join( os.getcwd()
+        tagset_path = os.path.join( os.path.dirname(__file__)
                                   , 'configs/language_specific_rules/tagsets/'
                                   )
 
@@ -908,7 +908,7 @@ class Config(Config):
         """
 
         try:
-            with open(os.path.join(os.getcwd(), path), 'r') as F:
+            with open(os.path.join(os.path.dirname(__file__), path), 'r') as F:
                 lines = F.readlines()
         except Exception, e:
             print " * Unable to find multiword_list <%s>" % path
