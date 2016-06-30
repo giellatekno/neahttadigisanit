@@ -72,7 +72,10 @@ import socket
 running_service = [
     'gtweb.uit.no',
     'gtlab.uit.no',
-    'gtoahpa.uit.no'
+    'gtoahpa.uit.no',
+    'sapir.artsrn.ualberta.ca',
+    # sapir
+    'arrl-web003',
 ]
 
 no_fst_install = [
@@ -97,6 +100,11 @@ location_restriction_notice = {
                      , 'sonad'
                      , 'vada'
                      , 'valks'
+                     ]
+
+  # sapir
+  , 'arrl-web003':   [ 'gunaha'
+                     , 'kidwinan'
                      ]
 }
 
