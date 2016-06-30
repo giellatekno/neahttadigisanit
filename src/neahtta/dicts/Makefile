@@ -19,6 +19,8 @@ VIRTUALENV := $
 ###         
 ###         #itwewinatargets
 ###         
+###         #gunahatargets
+###         
 ###         #dikaneisditargets
 ###         
 ###         #saantargets
@@ -463,6 +465,80 @@ rm-dikaneisdi-lexica: $(foreach xx, $(DIKANEISDI_LANGS_LEXICA), $(xx)-all.xml) \
 .PHONY: dikaneisdi-install
 dikaneisdi-install: GT_COMPILE_LANGS := $(DIKANEISDI_LANGS_ANALYSERS)
 dikaneisdi-install: install_langs_fsts
+
+#####
+##### #kidwinantargets
+#####
+
+KIDWINAN_LANGS_ANALYSERS      :=   otw
+KIDWINAN_LANGS_FLAGS          :=   --with-hfst
+KIDWINAN_LANGS_LEXICA         :=   
+# Generalized target, but we have some exceptions here, so otweng is commented
+# out.
+# otweng
+KIDWINAN_WORDS_DICTS_LEXICA   :=   otweng
+
+.PHONY: kidwinan-lexica
+kidwinan-lexica: LEX_COMPILE_LANGS := $(KIDWINAN_LANGS_LEXICA)
+kidwinan-lexica: LEX_COMPILE_WORDS_DICTS := $(KIDWINAN_WORDS_DICTS_LEXICA)
+kidwinan-lexica: compile_langs_lexicon compile_words_dicts_lexicon
+
+.PHONY: kidwinan
+kidwinan: GT_COMPILE_LANGS := $(KIDWINAN_LANGS_ANALYSERS)
+kidwinan: LEX_COMPILE_LANGS := $(KIDWINAN_LANGS_LEXICA)
+kidwinan: LEX_COMPILE_WORDS_DICTS := $(KIDWINAN_WORDS_DICTS_LEXICA)
+kidwinan: LANGS_FLAGS := $(KIDWINAN_LANGS_FLAGS)
+kidwinan: kidwinan-lexica compile_langs_fsts print_complete_message
+
+.PHONY: kidwinan-clean
+kidwinan-clean:  GT_COMPILE_LANGS :=  $(KIDWINAN_LANGS_ANALYSERS)
+kidwinan-clean: clean_langs_fsts
+
+rm-kidwinan-lexica: $(foreach xx, $(KIDWINAN_LANGS_LEXICA), $(xx)-all.xml) \
+				 $(foreach yy, $(KIDWINAN_WORDS_DICTS_LEXICA), $(yy).xml)
+	@rm -rf $^
+
+.PHONY: kidwinan-install 
+kidwinan-install: GT_COMPILE_LANGS := $(KIDWINAN_LANGS_ANALYSERS)
+kidwinan-install: install_langs_fsts
+
+
+#####
+##### #gunahatargets
+#####
+
+GUNAHA_LANGS_ANALYSERS      := 
+GUNAHA_STARTUP_LANGS_ANALYSERS   :=   srs
+GUNAHA_LANGS_FLAGS          :=   --with-hfst
+GUNAHA_LANGS_LEXICA         :=   
+# Generalized target, but we have some exceptions here, so srseng is commented
+# out.
+# srseng
+GUNAHA_WORDS_DICTS_LEXICA   :=   srseng
+
+.PHONY: gunaha-lexica
+gunaha-lexica: LEX_COMPILE_LANGS := $(GUNAHA_LANGS_LEXICA)
+gunaha-lexica: LEX_COMPILE_WORDS_DICTS := $(GUNAHA_WORDS_DICTS_LEXICA)
+gunaha-lexica: compile_langs_lexicon compile_words_dicts_lexicon
+
+.PHONY: gunaha
+gunaha: GT_COMPILE_LANGS := $(GUNAHA_LANGS_ANALYSERS)
+gunaha: LEX_COMPILE_LANGS := $(GUNAHA_LANGS_LEXICA)
+gunaha: LEX_COMPILE_WORDS_DICTS := $(GUNAHA_WORDS_DICTS_LEXICA)
+gunaha: LANGS_FLAGS := $(GUNAHA_LANGS_FLAGS)
+gunaha: gunaha-lexica compile_langs_fsts print_complete_message
+
+.PHONY: gunaha-clean
+gunaha-clean:  GT_COMPILE_LANGS :=  $(GUNAHA_LANGS_ANALYSERS)
+gunaha-clean: clean_langs_fsts
+
+rm-gunaha-lexica: $(foreach xx, $(GUNAHA_LANGS_LEXICA), $(xx)-all.xml) \
+				 $(foreach yy, $(GUNAHA_WORDS_DICTS_LEXICA), $(yy).xml)
+	@rm -rf $^
+
+.PHONY: gunaha-install 
+gunaha-install: GT_COMPILE_LANGS := $(GUNAHA_LANGS_ANALYSERS)
+gunaha-install: install_langs_fsts
 
 
 #####
