@@ -103,6 +103,7 @@ from .main import ( session_clear
                   , plugins
                   )
 
+
 blueprint.add_url_rule( '/session/clear/<sess_key>/'
                       , view_func=session_clear
                       , methods=['GET']

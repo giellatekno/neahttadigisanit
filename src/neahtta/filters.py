@@ -11,9 +11,14 @@ def file_exists(path):
 
 def register_filters(app):
 
-    from flask import render_template
+    from flask import render_template, send_from_directory, request
     import urllib as urllib
     from markupsafe import Markup
+
+    @app.route('/robots.txt')
+    @app.route('/sitemap.xml')
+    def static_from_root():
+        return send_from_directory(app.static_folder, request.path[1:])
 
     @app.errorhandler(404)
     def page_not_found(e):

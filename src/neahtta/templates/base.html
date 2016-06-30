@@ -144,19 +144,19 @@
                         <a class="brand" href="/">{{ gettext(app_name) }}</a>
                         <div class="nav-collapse main-nav">
                             <ul class="nav">
-                                <li><a href="{{ url_for('.canonical-root') }}">
+                                <li><a href="{{ url_for('views.canonical-root') }}">
                                         <span lang="{{ current_locale }}">{% trans %}Home{% endtrans %}</span>
                                 </a></li>
                                 <li>
-                                    <a href="{{ url_for('.reader_info') }}">
+                                    <a href="{{ url_for('views.reader_info') }}">
                                         <span lang="{{ current_locale }}">{% trans %}Plugins{% endtrans %}</span>
                                     </a>
                                 </li>
-                                <li><a href="{{ url_for('.about') }}">
+                                <li><a href="{{ url_for('views.about') }}">
                                         <span lang="{{ current_locale }}">{% trans %}About{% endtrans %}</span>
                                 </a></li>
                                 {% if sources_template_exists %}
-                                    <li><a href="{{ url_for('.about_sources') }}">
+                                    <li><a href="{{ url_for('views.about_sources') }}">
                                             <span lang="{{ current_locale }}">{% trans %}Sources{% endtrans %}</span>
                                     </a></li>
                                 {% endif %}
@@ -166,7 +166,7 @@
                                 <li class="display-phone hidden-tablet visible-mid hidden-desktop"><span lang="{{ current_locale }}">{% trans %}Interface language{% endtrans %}</span></li>
                                 {% for iso in internationalizations %}
                                 <li class="display-phone hidden-tablet visible-mid hidden-desktop">
-                                    <a href="{{ url_for('.set_locale', iso=iso) }}">
+                                    <a href="{{ url_for('views.set_locale', iso=iso) }}">
                                         {% if iso|iso_has_flag %}
                                             <img class="i18n_flag" alt="[{{ iso|iso_to_language_own_name }} flag]" src="{{url_for('static', filename='img/flags/' + iso + '_20x15.png')}}"> {{ iso|iso_to_language_own_name }}
                                         {% else %}
