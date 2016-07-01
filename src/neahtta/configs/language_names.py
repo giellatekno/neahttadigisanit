@@ -69,6 +69,12 @@ NAMES = dict([
     ('crk', _(u"Plains Cree")),
     ('crkM', _(u"Plains Cree")),
 
+    # gunaha 
+    ('srs', _(u"Tsuu T'ina")),
+
+    # kidwinan
+    ('otw', _(u"Odawa")),
+
     # dikaneisdi 
     ('chr', _(u"Cherokee")),
     ('chrL', _(u"Cherokee")),
