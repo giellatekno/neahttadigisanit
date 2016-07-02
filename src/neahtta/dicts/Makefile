@@ -509,7 +509,7 @@ kidwinan-install: install_langs_fsts
 
 GUNAHA_LANGS_ANALYSERS      := 
 GUNAHA_STARTUP_LANGS_ANALYSERS   :=   srs
-GUNAHA_LANGS_FLAGS          :=   --with-hfst
+GUNAHA_LANGS_FLAGS          :=   --without-hfst --without-xfst --with-foma
 GUNAHA_LANGS_LEXICA         :=   
 # Generalized target, but we have some exceptions here, so srseng is commented
 # out.
@@ -539,8 +539,14 @@ rm-gunaha-lexica: $(foreach xx, $(GUNAHA_LANGS_LEXICA), $(xx)-all.xml) \
 
 .PHONY: gunaha-install 
 gunaha-install: GT_COMPILE_LANGS := $(GUNAHA_LANGS_ANALYSERS)
-gunaha-install: install_langs_fsts
+gunaha-install: install_langs_fsts copy-gunaha-variants
 
+# include foma
+.PHONY: copy-gunaha-variants
+copy-gunaha-variants: $(GTHOME)/langs/srs/src/analyser-dict-gt-desc-mobile.* \
+						$(GTHOME)/langs/srs/src/analyser-dict-gt-desc.* \
+						$(GTHOME)/langs/srs/src/generator-dict-gt-norm.*
+	@-cp $^ /opt/smi/srs/bin/
 
 #####
 ##### #itwewinatargets
