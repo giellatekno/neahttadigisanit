@@ -543,9 +543,7 @@ gunaha-install: install_langs_fsts copy-gunaha-variants
 
 # include foma
 .PHONY: copy-gunaha-variants
-copy-gunaha-variants: $(GTHOME)/langs/srs/src/analyser-dict-gt-desc-mobile.* \
-						$(GTHOME)/langs/srs/src/analyser-dict-gt-desc.* \
-						$(GTHOME)/langs/srs/src/generator-dict-gt-norm.*
+copy-gunaha-variants: $(GTHOME)/langs/srs/src/*.foma
 	@-cp $^ /opt/smi/srs/bin/
 
 #####
