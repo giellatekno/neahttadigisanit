@@ -543,7 +543,7 @@ gunaha-install: install_langs_fsts copy-gunaha-variants
 
 # include foma
 .PHONY: copy-gunaha-variants
-copy-gunaha-variants: $(GTHOME)/langs/srs/src/*.foma
+copy-gunaha-variants: $(GTHOME)/startup-langs/srs/src/*.foma
 	@-cp $^ /opt/smi/srs/bin/
 
 #####
