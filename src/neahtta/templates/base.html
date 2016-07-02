@@ -141,7 +141,7 @@
                                 <span class="icon-bar"></span>
                             </a>
                         {% endif %}
-                        <a class="brand" href="/">{{ gettext(app_name) }}</a>
+                        <a class="brand" href="{{ url_for('views.canonical-root') }}">{{ gettext(app_name) }}</a>
                         <div class="nav-collapse main-nav">
                             <ul class="nav">
                                 <li><a href="{{ url_for('views.canonical-root') }}">
