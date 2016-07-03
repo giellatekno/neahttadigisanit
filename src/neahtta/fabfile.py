@@ -367,6 +367,16 @@ def restart_service(dictionary=False):
     #     return
 
     with cd(env.neahtta_path):
+        _path = '%s.wsgi' % env.current_dict
+        try:
+            os.utime(_path, None)
+            touched = True
+        except Exception, e:
+            touched = False
+        if touched:
+            print(cyan("** Restarting service for <%s> **" % dictionary))
+            sys.exit()
+
         print(cyan("** Restarting service for <%s> **" % dictionary))
         restart = env.run("sudo service nds-%s restart" % dictionary)
         if not restart.failed:
