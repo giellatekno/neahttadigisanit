@@ -19428,6 +19428,10 @@ jQuery(document).ready(function($) {
       }
       window.API_HOST = NDS.options.api_host;
     }
+    if (__indexOf.call(window.API_HOST, 'http:') < 0 || __indexOf.call(window.API_HOST, 'https:') < 0) {
+      window.API_HOST = window.location.protocol + '//' + window.API_HOST;
+      NDS.options.api_host = window.API_HOST;
+    }
     window.NDS_SHORT_NAME = getHostShortname(NDS.options.api_host);
     newVersionNotify = function() {
       $.getJSON(NDS.options.api_host + '/read/update/json/' + '?callback=?', function(response) {
@@ -19544,7 +19548,8 @@ jQuery(document).ready(function($) {
     };
     fetchConfigs = function() {
       var url;
-      url = "" + opts.api_host + "/read/config/";
+      console.log("trying " + NDS.options.api_host);
+      url = "" + NDS.options.api_host + "/read/config/";
       return $.getJSON(url + '?callback=?', extendLanguageOpts);
     };
     extendLanguageOptsAndInit = function(response) {
