@@ -105,6 +105,8 @@ location_restriction_notice = {
   # sapir
   , 'arrl-web003':   [ 'gunaha'
                      , 'kidwinan'
+                     , 'guusaaw'
+                     , 'itwewina'
                      ]
 }
 
