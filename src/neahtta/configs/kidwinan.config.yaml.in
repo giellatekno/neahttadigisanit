@@ -24,11 +24,11 @@ Morphology:
   # normative
   otw:
     tool: *HLOOKUP
-    file: [*OPT, '/otw/bin/analyser-dict-gt-desc.hfstol']
+    file: [*OPT, '/otw/bin/analyser-gt-glossing.hfstol']
     inverse_file: [*OPT, '/otw/bin/generator-dict-gt-norm.hfstol']
     format: 'hfst'
     options: &MORPHOLOGY_OPTS
-      # tagProcessor: "configs.language_specific_rules.otw_tags:process_otw_analysis"
+      tagProcessor: "configs.language_specific_rules.otw_tags:process_otw_analysis"
       compoundBoundary: "+Use/Circ#"
       derivationMarker: "+Der"
       tagsep: '+'
