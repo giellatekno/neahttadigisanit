@@ -3,7 +3,7 @@ paradigm: "verbs-intransitive.paradigm"
 layout:
   type: "full"
 --
-| "Person/"  | "ASPECT"                                      |
+| "Person/"  | "ASPECT"       |              |               |
 | "Number"   | "Imperfective" | "Perfective" | "Progressive" |
 | "Singular" |                                               |
 | "1"        | Ipfv+Sg1       | Pfv+Sg1      | Prog+Sg1      |
