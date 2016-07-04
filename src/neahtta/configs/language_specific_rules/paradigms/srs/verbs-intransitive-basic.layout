@@ -1,10 +1,10 @@
 name: "Intransitive verb full paradigm"
-paradigm: "verbs-intransitive.paradigm"		"
+paradigm: "verbs-intransitive.paradigm"
 layout:
   type: "basic"
 --
 | "Person/"  | "Imperfective" |
-| "Number"   | "aspect      " |
+| "Number"   | "aspect"       |
 | "Singular" |                |
 | "1"        | Ipfv+Sg1       |
 | "2"        | Ipfv+Sg2       |
