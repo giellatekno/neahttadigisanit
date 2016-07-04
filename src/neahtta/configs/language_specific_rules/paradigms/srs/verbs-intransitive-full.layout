@@ -1,5 +1,5 @@
 name: "Intransitive verb full paradigm"
-paradigm: "verbs-intransitive.paradigm"		"
+paradigm: "verbs-intransitive.paradigm"
 layout:
   type: "full"
 --
