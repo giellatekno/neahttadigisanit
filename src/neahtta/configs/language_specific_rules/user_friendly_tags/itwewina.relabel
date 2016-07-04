@@ -1,6 +1,18 @@
 Relabel:
   # TODO: we'll need to resurrect some of the old long tags from SVN
   # here.
+  - source_morphology: 'eng'
+    target_ui_language: 'crk'
+    # TODO: either specify `tags` and `generation_tags`, or just
+    # `tags`, which will then be used for everything.
+    tags:
+      # Lexicon tags
+      n: "noun"
+      v: "verb"
+      pcle: "particle"
+    generation_tags:
+      # Lexicon tags
+      Ind: "TEST"
   - source_morphology: 'crk'
     target_ui_language: 'eng'
     # TODO: either specify `tags` and `generation_tags`, or just

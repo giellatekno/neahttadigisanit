@@ -3,3 +3,5 @@ pos:
  - "V"
  - "Num"
  - "Ipc"
+transitivity:
+ - "I"

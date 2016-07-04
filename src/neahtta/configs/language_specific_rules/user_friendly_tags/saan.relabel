@@ -5,6 +5,7 @@ Relabel:
       V: "v."
       N: "n."
       A: "adj."
+      "Sem/Plc": ""
 
   - source_morphology: 'sms'
     target_ui_language: 'fin'
@@ -87,12 +88,16 @@ Relabel:
       "Num": "num."
       "Prop": "erisnimi"
 
+      "Sem/Plc": ""
+
   - source_morphology: 'sms'
     target_ui_language: 'rus'
     tags:
       V: "гл."
       N: "сущ."
       A: "прил."
+
+      "Sem/Plc": ""
 
   - source_morphology: 'sms'
     target_ui_language: 'sms'
@@ -101,3 +106,4 @@ Relabel:
       N: "s."
       A: "adj."
 
+      "Sem/Plc": ""

@@ -94,9 +94,6 @@ def adjust_tags_for_gen(lemma, tags, node=None, **kwargs):
                         continue
                 rest.append(part)
 
-        print 'pregen'
-        print before, rest
-
         cleaned_tag.extend(before)
         cleaned_tag.append(lemma)
         cleaned_tag.extend(rest)

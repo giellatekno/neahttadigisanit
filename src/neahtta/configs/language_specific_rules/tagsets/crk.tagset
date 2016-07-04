@@ -62,6 +62,8 @@ prelemma_tags:
  - "RdplS"
  - "^PV/(.*)$"
 preverbs:
+ - "RdplW"
+ - "RdplS"
  - "PV/ka"
  - "PV/ta"
  - "PV/e"
