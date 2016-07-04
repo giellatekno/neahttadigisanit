@@ -476,12 +476,12 @@ KIDWINAN_LANGS_LEXICA         :=
 # Generalized target, but we have some exceptions here, so otweng is commented
 # out.
 # otweng
-KIDWINAN_WORDS_DICTS_LEXICA   :=   otweng
+KIDWINAN_WORDS_DICTS_LEXICA   :=   
 
 .PHONY: kidwinan-lexica
 kidwinan-lexica: LEX_COMPILE_LANGS := $(KIDWINAN_LANGS_LEXICA)
 kidwinan-lexica: LEX_COMPILE_WORDS_DICTS := $(KIDWINAN_WORDS_DICTS_LEXICA)
-kidwinan-lexica: compile_langs_lexicon compile_words_dicts_lexicon
+kidwinan-lexica: otweng.xml compile_langs_lexicon compile_words_dicts_lexicon
 
 .PHONY: kidwinan
 kidwinan: GT_COMPILE_LANGS := $(KIDWINAN_LANGS_ANALYSERS)
@@ -502,6 +502,18 @@ rm-kidwinan-lexica: $(foreach xx, $(KIDWINAN_LANGS_LEXICA), $(xx)-all.xml) \
 kidwinan-install: GT_COMPILE_LANGS := $(KIDWINAN_LANGS_ANALYSERS)
 kidwinan-install: install_langs_fsts
 
+otweng.xml: $(GTHOME)/art/dicts/otw/otweng.xml
+	@echo "******************************"
+	@echo "** Building crk-eng lexicon **"
+	@echo "******************************"
+	@echo "** Backup made (.bak)       **"
+	@echo "******************************"
+	@echo ""
+	mkdir -p otweng_tmp/
+	cp $^ otweng_tmp/
+	cp -R $(GTHOME)/words/dicts/scripts ../scripts
+	$(SAXON) inDir=$(shell pwd)/otweng_tmp > $@
+	rm -rf otweng_tmp/
 
 #####
 ##### #gunahatargets
