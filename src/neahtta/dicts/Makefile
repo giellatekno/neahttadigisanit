@@ -471,7 +471,7 @@ dikaneisdi-install: install_langs_fsts
 #####
 
 KIDWINAN_LANGS_ANALYSERS      :=   otw
-KIDWINAN_LANGS_FLAGS          :=   --with-hfst
+KIDWINAN_LANGS_FLAGS          :=   --with-hfst --without-xfst --without-foma --enable-glossers
 KIDWINAN_LANGS_LEXICA         :=   
 # Generalized target, but we have some exceptions here, so otweng is commented
 # out.
