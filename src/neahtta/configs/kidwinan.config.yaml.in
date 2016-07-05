@@ -28,7 +28,7 @@ Morphology:
     inverse_file: [*OPT, '/otw/bin/generator-dict-gt-norm.hfstol']
     format: 'hfst'
     options: &MORPHOLOGY_OPTS
-      tagProcessor: "configs.language_specific_rules.otw_tags:process_otw_analysis"
+      # tagProcessor: "configs.language_specific_rules.otw_tags:process_otw_analysis"
       compoundBoundary: "+Use/Circ#"
       derivationMarker: "+Der"
       tagsep: '+'
@@ -43,10 +43,12 @@ Dictionaries:
   - source: otw
     target: eng
     path: 'dicts/otweng.xml'
+    options:
+      pos: "lg/lc/text()"
 
-  - source: eng
-    target: otw
-    path: 'dicts/engotw.xml'
+  # - source: eng
+  #   target: otw
+  #   path: 'dicts/engotw.xml'
 
 
 ReaderConfig:

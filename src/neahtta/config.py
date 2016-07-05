@@ -8,6 +8,9 @@ from configs import *
 
 import yaml
 
+from lexicon.lexicon import DEFAULT_XPATHS
+
+
 def gettext_yaml_wrapper(loader, node):
     from flask.ext.babel import lazy_gettext as _
     return node.value
@@ -562,6 +565,24 @@ class Config(Config):
 
         self._dictionaries = language_pairs
         return language_pairs
+
+    @property
+    def dictionary_options(self):
+        from collections import defaultdict
+        if hasattr(self, '_dictionary_options'):
+            return self._dictionary_options
+
+        dicts = self.yaml.get('Dictionaries')
+        opts = defaultdict(dict)
+        for item in dicts:
+            source = item.get('source')
+            target = item.get('target')
+            lexicon_options = DEFAULT_XPATHS.copy()
+            lexicon_options.update(**item.get('options', {}))
+            opts[(source, target)] = lexicon_options
+
+        self._dictionary_options = opts
+        return opts
 
     @property
     def tag_filters(self):
