@@ -7,6 +7,10 @@
 
 import sys
 
+DEFAULT_XPATHS = {
+    'pos': 'lg/l/@pos',
+}
+
 def hash_node(node):
     return unicode(hash(etree.tostring(node)))
 
@@ -222,7 +226,10 @@ class XMLDict(object):
     which will clean them on iteration.
 
     """
-    def __init__(self, filename=False, tree=False):
+    def __init__(self, filename=False, tree=False, options={}):
+        xpaths = DEFAULT_XPATHS.copy()
+        xpaths.update(**options)
+
         if not tree:
             if filename not in PARSED_TREES:
                 print "parsing %s" % filename
@@ -248,19 +255,21 @@ class XMLDict(object):
 
         # Initialize XPath queries
 
+        _re_pos_match = """re:match(%(pos)s, $pos, "i")""" % xpaths
+
         self.lemmaStartsWith = etree.XPath(
-            './/e[starts-with(lg/l/text(), $lemma)]'
+            ".//e[starts-with(%(pos)s, $lemma)]" % xpaths
         )
 
         self.lemma = etree.XPath('.//e[lg/l/text() = $lemma]')
 
         self.lemmaPOS = etree.XPath(
-            './/e[lg/l/text() = $lemma and re:match(lg/l/@pos, $pos, "i")]',
+            './/e[lg/l/text() = $lemma and ' + _re_pos_match + ']',
             namespaces={'re': regexpNS})
 
         self.lemmaPOSAndType = etree.XPath(
             ' and '.join([ './/e[lg/l/text() = $lemma'
-                         , 're:match(lg/l/@pos, $pos, "i")'
+                         , _re_pos_match
                          , 'lg/l/@type = $_type]'
                          ])
             , namespaces={'re': regexpNS}
@@ -594,12 +603,12 @@ class Lexicon(object):
         from collections import OrderedDict
 
         language_pairs = dict(
-            [ (k, XMLDict(filename=v))
+            [ (k, XMLDict(filename=v, options=settings.dictionary_options.get(k, {})))
               for k, v in settings.dictionaries.iteritems() ]
         )
 
         alternate_dicts = dict(
-            [ (k, XMLDict(filename=v.get('path')))
+            [ (k, XMLDict(filename=v.get('path'), options=settings.dictionary_options.get(k, {})))
               for k, v in settings.variant_dictionaries.iteritems() ]
         )
 

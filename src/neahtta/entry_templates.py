@@ -223,13 +223,20 @@ class TemplateConfig(object):
 
         """
 
+        from flask import g
+
         tpl = self.get_template(language, template)
         is_still_renderable = template in self.errorable_templates
         error_tpl = self.get_template(language, 'template_error.template')
 
         # add default things
+        dict_opts = self._app.config.dictionary_options.get((g._from,
+                                                             g._to))
+
         context = {
             'lexicon_entry': False,
+            # Provide access to lexicon options, xpath statements, etc
+            'dictionary_options': dict_opts,
             'analyses': [],
 
             'user_input': False,
