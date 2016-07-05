@@ -3,9 +3,12 @@ pos:
  - "V"
  - "Num"
  - "Ipc"
+ - "NI"
 # this set is used with configs.language_specific_rules.crk and
 # .crk_tags. NB, these can be regex. The order of this list determines
 # the ordering of the processed tag.
 prelemma_tags:
  - "1"
  - "2"
+nds_dummy_tags:
+ - "Tpl/Lemma"
