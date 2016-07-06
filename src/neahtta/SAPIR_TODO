@@ -1,5 +1,11 @@
-* fix DSt cache location in JS, seems to be using itwewina for gunaha, etc.
-* gunaha spell relax (check infra)
 * gunaha [] deletion (check infra)
 * itwewina reduplication broken, but in FST?
 
+
+Done
+
+* fix DSt cache location in JS, seems to be using itwewina for gunaha, etc.
+  - not the problem, problem was updating config files
+* srs localization for Á character
+* gunaha spell relax - implemented mobile spellrelax, uncertain how to get
+  normal one included? 
