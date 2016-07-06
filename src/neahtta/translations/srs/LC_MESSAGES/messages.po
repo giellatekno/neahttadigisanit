@@ -887,7 +887,7 @@ msgstr ""
 
 #: static/js/neahttadigisanit.js:8883
 msgid "Á"
-msgstr ""
+msgstr "ʔ"
 
 #: static/js/neahttadigisanit.js:8883
 msgid "Options"
