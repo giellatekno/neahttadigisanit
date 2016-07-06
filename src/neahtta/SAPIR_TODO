@@ -1,0 +1,5 @@
+* fix DSt cache location in JS, seems to be using itwewina for gunaha, etc.
+* gunaha spell relax (check infra)
+* gunaha [] deletion (check infra)
+* itwewina reduplication broken, but in FST?
+
