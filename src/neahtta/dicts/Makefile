@@ -568,7 +568,7 @@ copy-gunaha-variants: $(GTHOME)/startup-langs/srs/src/*.foma
 #####
 
 ITWEWINA_LANGS_ANALYSERS      :=   crk
-ITWEWINA_LANGS_FLAGS          :=   --with-hfst
+ITWEWINA_LANGS_FLAGS          :=   --with-hfst --disable-syntax
 ITWEWINA_LANGS_LEXICA         :=   
 # Generalized target, but we have some exceptions here, so crkeng is commented
 # out.
