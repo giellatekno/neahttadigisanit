@@ -22,6 +22,7 @@ from flask import ( request
                   , abort
                   , redirect
                   , g
+                  , url_for
                   )
 
 from flask.ext.babel import gettext as _
@@ -208,7 +209,8 @@ class IndexSearchPage(DictionaryView, AppViewSettingsMixin):
         mobile_redirect_pair = current_app.config.mobile_redirect_pair
 
         if mobile_redirect_pair:
-            target_url = '/%s/%s/' % tuple(mobile_redirect_pair)
+            ff, tt = tuple(mobile_redirect_pair)
+            target_url = url_for('views.canonical-root', _from=ff, _to=tt)
             if request.user_agent.platform in ['iphone', 'android']:
                 mobile = True
                 # Only redirect if the user isn't coming back to the home page
