@@ -1,5 +1,4 @@
 from . import blueprint
-from flask import current_app, url_for
 
 import sys
 
@@ -19,6 +18,8 @@ from flask import ( request
                   , redirect
                   , make_response
                   , send_from_directory
+                  , current_app
+                  , url_for
                   )
 
 user_log = getLogger("user_log")

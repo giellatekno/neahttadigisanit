@@ -210,7 +210,7 @@ class IndexSearchPage(DictionaryView, AppViewSettingsMixin):
 
         if mobile_redirect_pair:
             ff, tt = tuple(mobile_redirect_pair)
-            target_url = url_for('views.canonical-root', _from=ff, _to=tt)
+            target_url = url_for('views.canonical_root_search_pair', _from=ff, _to=tt)
             if request.user_agent.platform in ['iphone', 'android']:
                 mobile = True
                 # Only redirect if the user isn't coming back to the home page
