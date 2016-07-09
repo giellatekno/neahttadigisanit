@@ -520,7 +520,7 @@ msgstr ""
 "Ти программа <em><a "
 "href=\"http://giellatekno.uit.no/index.fin.html\">Giellateknon</a></em> "
 "такешок кычылташ лимӹ дӓ цилӓлӓн виш ылшы тӹнгӓлтӹш кодеш базируялтеш, "
-"кыдым <a href=\"http://uit.no\\”>Тромсӧ университетӹштӹшӹ</a>.Giellatekno"
+"кыдым <a href=\"http://uit.no\">Тромсӧ университетӹштӹшӹ</a>.Giellatekno"
 " - йӹлмӹ технологим шӹмлӹшӹ группа ӹштен дӓ виӓнгден."
 
 #: configs/language_specific_rules/templates/index_search_form.template:41
