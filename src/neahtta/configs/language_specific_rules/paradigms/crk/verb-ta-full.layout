@@ -23,8 +23,8 @@ layout:
 | "2p → 3s"                      | Ind+Prs+2Pl+3SgO               | PV/e+*+Cnj+Prs+2Pl+3SgO        |
 |                                |                                |                                |
 | "1s → 3p"                      | Ind+Prs+1Sg+3PlO               | PV/e+*+Cnj+Prs+1Sg+3PlO        |
-| "1p → 3p"                      | Ind+Prs+1Pl+3PlO               | PV/e+*+Cnj+Prs+1Pl+3PlO        |
 | "2s → 3p"                      | Ind+Prs+2Sg+3PlO               | PV/e+*+Cnj+Prs+2Sg+3PlO        |
+| "1p → 3p"                      | Ind+Prs+1Pl+3PlO               | PV/e+*+Cnj+Prs+1Pl+3PlO        |
 | "21 → 3p"                      | Ind+Prs+12Pl+3PlO              | PV/e+*+Cnj+Prs+12Pl+3PlO       |
 | "2p → 3p"                      | Ind+Prs+2Pl+3PlO               | PV/e+*+Cnj+Prs+2Pl+3PlO        |
 |                                |                                |                                |
@@ -61,6 +61,16 @@ layout:
 | "4 → 3p"                       | Ind+Prs+4Sg/Pl+3PlO            | PV/e+*+Cnj+Prs+4Sg/Pl+3PlO     |
 | "5 → 4"                        | Ind+Prs+5Sg/Pl+4Sg/PlO         | PV/e+*+Cnj+Prs+5Sg/Pl+4Sg/PlO  |
 |                                |                                |                                |
+| "Unspecified actor"            | : "Independent"                | : "Conjunct"                   |
+| "X → 1s"                       | Ind+Prs+1Sg+X                  | PV/e+*+Cnj+Prs+1Sg+X           |
+| "X → 2s"                       | Ind+Prs+2Sg+X                  | PV/e+*+Cnj+Prs+2Sg+X           |
+| "X → 3s"                       | Ind+Prs+3Sg+X                  | PV/e+*+Cnj+Prs+3Sg+X           |
+| "X → 4"                        | Ind+Prs+4Sg/Pl+X               | PV/e+*+Cnj+Prs+4Sg/Pl+X        |
+| "X → 1p"                       | Ind+Prs+1Pl+X                  | PV/e+*+Cnj+Prs+1Pl+X           |
+| "X → 21"                       | Ind+Prs+12Pl+X                 | PV/e+*+Cnj+Prs+12Pl+X          |
+| "X → 2p"                       | Ind+Prs+2Pl+X                  | PV/e+*+Cnj+Prs+2Pl+X           |
+| "X → 3p"                       | Ind+Prs+3Pl+X                  | PV/e+*+Cnj+Prs+3Pl+X           |
+|                                |                                |                                |
 |                                | "PAST TENSE"                   |                                |
 | "Speech Act Participants"      | : "Independent"                | : "Conjunct"                   |
 | "2s → 1s"                      | Ind+Prt+2Sg+1SgO               | Cnj+Prt+2Sg+1SgO               |
@@ -81,8 +91,8 @@ layout:
 | "2p → 3s"                      | Ind+Prt+2Pl+3SgO               | Cnj+Prt+2Pl+3SgO               |
 |                                |                                |                                |
 | "1s → 3p"                      | Ind+Prt+1Sg+3PlO               | Cnj+Prt+1Sg+3PlO               |
-| "1p → 3p"                      | Ind+Prt+1Pl+3PlO               | Cnj+Prt+1Pl+3PlO               |
 | "2s → 3p"                      | Ind+Prt+2Sg+3PlO               | Cnj+Prt+2Sg+3PlO               |
+| "1p → 3p"                      | Ind+Prt+1Pl+3PlO               | Cnj+Prt+1Pl+3PlO               |
 | "21 → 3p"                      | Ind+Prt+12Pl+3PlO              | Cnj+Prt+12Pl+3PlO              |
 | "2p → 3p"                      | Ind+Prt+2Pl+3PlO               | Cnj+Prt+2Pl+3PlO               |
 |                                |                                |                                |
@@ -140,8 +150,8 @@ layout:
 | "2p → 3s"                      | Ind+Fut+Int+2Pl+3SgO           | Cnj+Fut+Int+2Pl+3SgO           |
 |                                |                                |                                |
 | "1s → 3p"                      | Ind+Fut+Int+1Sg+3PlO           | Cnj+Fut+Int+1Sg+3PlO           |
-| "1p → 3p"                      | Ind+Fut+Int+1Pl+3PlO           | Cnj+Fut+Int+1Pl+3PlO           |
 | "2s → 3p"                      | Ind+Fut+Int+2Sg+3PlO           | Cnj+Fut+Int+2Sg+3PlO           |
+| "1p → 3p"                      | Ind+Fut+Int+1Pl+3PlO           | Cnj+Fut+Int+1Pl+3PlO           |
 | "21 → 3p"                      | Ind+Fut+Int+12Pl+3PlO          | Cnj+Fut+Int+12Pl+3PlO          |
 | "2p → 3p"                      | Ind+Fut+Int+2Pl+3PlO           | Cnj+Fut+Int+2Pl+3PlO           |
 |                                |                                |                                |
@@ -199,8 +209,8 @@ layout:
 | "2p → 3s"                      | Ind+Fut+Def+2Pl+3SgO           |                                |
 |                                |                                |                                |
 | "1s → 3p"                      | Ind+Fut+Def+1Sg+3PlO           |                                |
-| "1p → 3p"                      | Ind+Fut+Def+1Pl+3PlO           |                                |
 | "2s → 3p"                      | Ind+Fut+Def+2Sg+3PlO           |                                |
+| "1p → 3p"                      | Ind+Fut+Def+1Pl+3PlO           |                                |
 | "21 → 3p"                      | Ind+Fut+Def+12Pl+3PlO          |                                |
 | "2p → 3p"                      | Ind+Fut+Def+2Pl+3PlO           |                                |
 |                                |                                |                                |
@@ -228,7 +238,7 @@ layout:
 | "4 → 21"                       | Ind+Fut+Def+4Sg/Pl+12PlO       |                                |
 | "4 → 2p"                       | Ind+Fut+Def+4Sg/Pl+2PlO        |                                |
 |                                |                                |                                |
-| "Third person participants"    | : "Independent"                |                                |
+| "Third person participants"    | : "Independent: ka-"           | : "Independent: ta-"           |
 | "3s → 4"                       | Ind+Fut+Def+3Sg+4Sg/PlO        |                                |
 | "3p → 4"                       | Ind+Fut+Def+3Pl+4Sg/PlO        |                                |
 | "4 → 5"                        | Ind+Fut+Def+4Sg/Pl+5Sg/PlO     |                                |
@@ -250,7 +260,7 @@ layout:
 | "1p → 2s"                      | PV/ka+*+Cnj+Prs+1Pl+2SgO       | PV/ta+*+Cnj+Prs+1Pl+2SgO       |
 | "1p → 2p"                      | PV/ka+*+Cnj+Prs+1Pl+2PlO       | PV/ta+*+Cnj+Prs+1Pl+2PlO       |
 |                                |                                |                                |
-| "Mixed participants"           | : "Independent"                | : "Independent"                |
+| "Mixed participants"           | : "Conjunct: ka-"              | : "Conjunct: ta-"              |
 | "1s → 3s"                      | PV/ka+*+Cnj+Prs+1Sg+3SgO       | PV/ta+*+Cnj+Prs+1Sg+3SgO       |
 | "2s → 3s"                      | PV/ka+*+Cnj+Prs+2Sg+3SgO       | PV/ta+*+Cnj+Prs+2Sg+3SgO       |
 | "1p → 3s"                      | PV/ka+*+Cnj+Prs+1Pl+3SgO       | PV/ta+*+Cnj+Prs+1Pl+3SgO       |
@@ -258,8 +268,8 @@ layout:
 | "2p → 3s"                      | PV/ka+*+Cnj+Prs+2Pl+3SgO       | PV/ta+*+Cnj+Prs+2Pl+3SgO       |
 |                                |                                |                                |
 | "1s → 3p"                      | PV/ka+*+Cnj+Prs+1Sg+3PlO       | PV/ta+*+Cnj+Prs+1Sg+3PlO       |
-| "1p → 3p"                      | PV/ka+*+Cnj+Prs+1Pl+3PlO       | PV/ta+*+Cnj+Prs+1Pl+3PlO       |
 | "2s → 3p"                      | PV/ka+*+Cnj+Prs+2Sg+3PlO       | PV/ta+*+Cnj+Prs+2Sg+3PlO       |
+| "1p → 3p"                      | PV/ka+*+Cnj+Prs+1Pl+3PlO       | PV/ta+*+Cnj+Prs+1Pl+3PlO       |
 | "21 → 3p"                      | PV/ka+*+Cnj+Prs+12Pl+3PlO      | PV/ta+*+Cnj+Prs+12Pl+3PlO      |
 | "2p → 3p"                      | PV/ka+*+Cnj+Prs+2Pl+3PlO       | PV/ta+*+Cnj+Prs+2Pl+3PlO       |
 |                                |                                |                                |
@@ -287,7 +297,7 @@ layout:
 | "4 → 21"                       | PV/ka+*+Cnj+Prs+4Sg/Pl+12PlO   | PV/ta+*+Cnj+Prs+4Sg/Pl+12PlO   |
 | "4 → 2p"                       | PV/ka+*+Cnj+Prs+4Sg/Pl+2PlO    | PV/ta+*+Cnj+Prs+4Sg/Pl+2PlO    |
 |                                |                                |                                |
-| "Third person participants"    | : "Independent"                | : "Independent"                |
+| "Third person participants"    | : "Conjunct: ka-"              | : "Conjunct: ta-"              |
 | "3s → 4"                       | PV/ka+*+Cnj+Prs+3Sg+4Sg/PlO    | PV/ta+*+Cnj+Prs+3Sg+4Sg/PlO    |
 | "3p → 4"                       | PV/ka+*+Cnj+Prs+3Pl+4Sg/PlO    | PV/ta+*+Cnj+Prs+3Pl+4Sg/PlO    |
 | "4 → 5"                        | PV/ka+*+Cnj+Prs+4Sg/Pl+5Sg/PlO | PV/ta+*+Cnj+Prs+4Sg/Pl+5Sg/PlO |
@@ -317,8 +327,8 @@ layout:
 | "2p → 3s"                      | Fut+Cond+2Pl+3SgO              |                                |
 |                                |                                |                                |
 | "1s → 3p"                      | Fut+Cond+1Sg+3PlO              |                                |
-| "1p → 3p"                      | Fut+Cond+1Pl+3PlO              |                                |
 | "2s → 3p"                      | Fut+Cond+2Sg+3PlO              |                                |
+| "1p → 3p"                      | Fut+Cond+1Pl+3PlO              |                                |
 | "21 → 3p"                      | Fut+Cond+12Pl+3PlO             |                                |
 | "2p → 3p"                      | Fut+Cond+2Pl+3PlO              |                                |
 |                                |                                |                                |
@@ -366,7 +376,9 @@ layout:
 | "Mixed"                        | : "Immediate"                  | : "Delayed"                    |
 | "2s → 3s"                      | Imp+Imm+2Sg+3SgO               | Imp+Del+2Sg+3SgO               |
 | "2s → 3p"                      | Imp+Imm+2Sg+3PlO               | Imp+Del+2Sg+3PlO               |
+| "2s → 4"                       | Imp+Imm+2Sg+4Sg/PlO            | Imp+Del+2Sg+4Sg/PlO            |
 | "21 → 3s"                      | Imp+Imm+12Pl+3SgO              | Imp+Del+12Pl+3SgO              |
 | "21 → 3p"                      | Imp+Imm+12Pl+3PlO              | Imp+Del+12Pl+3PlO              |
 | "2p → 3s"                      | Imp+Imm+2Pl+3SgO               | Imp+Del+2Pl+3SgO               |
 | "2p →3p"                       | Imp+Imm+2Pl+3PlO               | Imp+Del+2Pl+3PlO               |
+| "2p → 4"                       | Imp+Imm+2Pl+4Sg/PlO            | Imp+Del+2Pl+4Sg/PlO            |
