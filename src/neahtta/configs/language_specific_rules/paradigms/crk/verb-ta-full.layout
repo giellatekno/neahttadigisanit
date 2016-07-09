@@ -1,7 +1,7 @@
 name: "Transitive animate verb full paradigm"
 paradigm: 'verb-ta.paradigm'
 layout:
-  type: "full"
+  type: "full2"
 --
 |                                | "PRESENT TENSE"                |                                |
 | "Speech Act Participants"      | : "Independent"                | : "Conjunct"                   |
