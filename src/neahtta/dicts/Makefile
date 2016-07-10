@@ -94,6 +94,12 @@ endef
 #
 # Or just see one of the languages below and copy...
 
+# define space so that it can actually replace
+space :=
+space +=
+
+comma :=,
+
 compile_langs_fsts: $(foreach lang, $(GT_COMPILE_LANGS), langs/$(lang)/src/analyser-gt-desc.xfst) 
 compile_langs_fsts: $(langs)
 	@echo $*
@@ -101,20 +107,8 @@ compile_langs_fsts: $(langs)
 	@echo "** Building $(GT_COMPILE_LANGS) $(GT_COMPILE_STARTUP_LANGS) FSTs **"
 	@echo "***********************"
 	@echo ""
-	for ll in $(GT_COMPILE_LANGS) ; do \
-		if ! test -e "$(GTHOME)/langs/$$ll/src/Makefile" ; then \
-			cd $(GTHOME)/langs/$$ll ; ./autogen.sh ; ./configure --enable-dicts $(LANGS_FLAGS) ; \
-		fi ; \
-		cd $(GTHOME)/langs/$$ll ; make ; \
-		if [ ! $$? -eq 0 ] ; then exit 1 ; fi \
-	done 
-	for ll in $(GT_COMPILE_STARTUP_LANGS) ; do \
-		if ! test -e "$(GTHOME)/startup-langs/$$ll/src/Makefile" ; then \
-			cd $(GTHOME)/startup-langs/$$ll ; ./autogen.sh ; ./configure --enable-dicts $(LANGS_FLAGS) ; \
-		fi ; \
-		cd $(GTHOME)/startup-langs/$$ll ; make ; \
-		if [ ! $$? -eq 0 ] ; then exit 1 ; fi \
-	done 
+	sh build_langs.sh -l $(subst $(space),$(comma),$(GT_COMPILE_LANGS)) -- --enable-dicts $(LANGS_FLAGS)
+	sh build_langs.sh -s $(subst $(space),$(comma),$(GT_COMPILE_STARTUP_LANGS)) -- --enable-dicts $(LANGS_FLAGS)
 
 install_langs_fsts: $(foreach lang, $(GT_COMPILE_LANGS), langs/$(lang)/src/analyser-gt-desc.xfst)
 install_langs_fsts: $(langs)
@@ -198,8 +192,6 @@ print_complete_message:
 	@echo "** Built lexica for:            "
 	@echo "**    + $(LEX_COMPILE_LANGS)          "
 	@echo "**    + $(LEX_COMPILE_WORDS_DICTS)    "
-	@echo "** Built FSTs for:              "
-	@echo "**    + $(GT_COMPILE_LANGS)           "
 	@echo
 	@echo
 
