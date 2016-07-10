@@ -60,7 +60,8 @@ invisible_in_paradigms:
 prelemma_tags:
  - "RdplW"
  - "RdplS"
- - "^PV/(.*)$"
+ - match: "^PV"
+   regex: true
 preverbs:
  - "RdplW"
  - "RdplS"
