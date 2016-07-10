@@ -107,8 +107,8 @@ compile_langs_fsts: $(langs)
 	@echo "** Building $(GT_COMPILE_LANGS) $(GT_COMPILE_STARTUP_LANGS) FSTs **"
 	@echo "***********************"
 	@echo ""
-	sh build_langs.sh -l $(subst $(space),$(comma),$(GT_COMPILE_LANGS)) -- --enable-dicts $(LANGS_FLAGS)
-	sh build_langs.sh -s $(subst $(space),$(comma),$(GT_COMPILE_STARTUP_LANGS)) -- --enable-dicts $(LANGS_FLAGS)
+	./build_langs.sh -l $(subst $(space),$(comma),$(GT_COMPILE_LANGS)) -- --enable-dicts $(LANGS_FLAGS)
+	./build_langs.sh -s $(subst $(space),$(comma),$(GT_COMPILE_STARTUP_LANGS)) -- --enable-dicts $(LANGS_FLAGS)
 
 install_langs_fsts: $(foreach lang, $(GT_COMPILE_LANGS), langs/$(lang)/src/analyser-gt-desc.xfst)
 install_langs_fsts: $(langs)
