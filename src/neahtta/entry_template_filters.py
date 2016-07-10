@@ -1,5 +1,4 @@
-﻿from flask import current_app
-from flask import g
+﻿from flask import current_app, g
 
 def register_template_filters(app):
 
@@ -110,8 +109,6 @@ def register_template_filters(app):
                     pass
             return v
 
-        print node_objs
-        print map(get_xp, node_objs)
         return sorted(node_objs, key=get_xp)
 
     @app.template_filter('xpath_first')
