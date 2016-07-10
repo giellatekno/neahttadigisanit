@@ -1,4 +1,4 @@
-from flask import current_app, request, g, session, render_template
+from flask import current_app, request, g, session
 from . import blueprint
 
 from i18n.utils import get_locale
