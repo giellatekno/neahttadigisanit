@@ -68,7 +68,7 @@
                                </div>
                                <button type="submit" class="btn hidden-phone" 
                                        formtarget="_self"
-                                       formaction="/{{ _from }}/{{ _to }}/"
+                                       formaction="{{ url_for('.canonical_root_search_pair', _from=_from, _to=_to) }}"
                                        formmethod="post"
                                        name="search">
                                    <span lang="{{ current_locale }}">{% trans %}Search{% endtrans %}</span>

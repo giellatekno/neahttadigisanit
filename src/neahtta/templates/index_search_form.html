@@ -32,6 +32,7 @@
                             <li><button 
                                    type="submit"
                                    class="btn"
+                                   {# URLFOR #}
                                    formaction="/extern/{{ _from }}/{{ _to }}/korp_wordform/"
                                    lang="{{ current_locale }}"
                                    formmethod="post"
@@ -40,6 +41,7 @@
                    </div>
                    <button type="submit" class="btn hidden-phone" 
                            formtarget="_self"
+                           {# URLFOR #}
                            formaction="/{{ _from }}/{{ _to }}/"
                            lang="{{ current_locale }}"
                            formmethod="post"
