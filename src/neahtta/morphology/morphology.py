@@ -5,11 +5,72 @@ Morphological tools
 """
 
 from cache import cache
+import re
+
+class TagPart(object):
+    """ This is a part of a tag, which should behave mostly like a string:
+
+        >>> v = TagPart('V')
+        >>> v == 'V'
+        True
+        >>> repr(v)
+        'V'
+        >>> str(v)
+        'V'
+        >>> unicode(v)
+        u'V'
+
+    Except when some additional attribuets are defined to allow for
+    regular expression matching
+
+        >>> v = TagPart({'match': '^PV', 'regex': True})
+        >>> v == 'bbq'
+        False
+        >>> v == 'PV/e'
+        True
+
+    If the tagset fails to compile:
+
+        >>> v = TagPart({'match': '(asdf', 'regex': True})
+        >>> v == 'bbq'
+        False
+        >>> v == 'PV/e'
+        True
+
+    """
+
+    def __init__(self, _t):
+        self._t = _t
+        self.regex = False
+        if type(_t) == dict:
+            self.val = _t.get('match')
+            self.regex = _t.get('regex', False)
+        else:
+            self.val = _t
+        if self.regex:
+            try:
+                self._re = re.compile(self.val)
+            except Exception, e:
+                print self._t
+                raise e
+
+    def __unicode__(self):
+        return self.val
+
+    def __repr__(self):
+        return self.val
+
+    def __eq__(self, other):
+        if self.regex:
+            m = self._re.match(other)
+            return m is not None
+        else:
+            return self.val == other
 
 class Tagset(object):
     def __init__(self, name, members):
         self.name = name
-        self.members = members
+        self.members = map(TagPart, members)
 
     def __str__(self):
         return '<Tagset: "%s">' % self.name
@@ -44,8 +105,8 @@ class Tagsets(object):
 class Tag(object):
     """ A model for tags. Can be used as an iterator, as well.
 
-    >>> for part in Tag('N+G3+Sg+Ill', '+'):
-    >>>     print part
+    #>> for part in Tag('N+G3+Sg+Ill', '+'):
+    #>>     print part
 
     Also, indexing is the same as Tag.getTagByTagset()
 
@@ -56,6 +117,17 @@ class Tag(object):
     'G3'
     >>> _ng3illsg[_case]
     'Ill'
+    >>> _pv = Tagset('preverb', ['1', '2', {'match': '^PV', 'regex': True}])
+    >>> pv_tag = Tag('PV/e+V+Sg', '+')
+    >>> 'PV/e' in _pv
+    True
+    >>> pv_tag[_pv]
+    'PV/e'
+    >>> pv_tag = Tag('PV/omgbbq+V+Sg', '+')
+    >>> 'PV/omgbbq' in _pv
+    True
+    >>> pv_tag[_pv] != 'PV/e'
+    True
 
     TODO: maybe also contains for tag parts and tagsets
 
@@ -123,9 +195,10 @@ class Tag(object):
 
     def splitByTagset(self, tagset):
         """
-        >>> tagset = Tagset('compound', ['Cmp#'])
-        >>> tag = Tag('N+Cmp#+N+Sg+Nom')
-        >>> tag.splitByTagset(tagset)
+        #>> tagset = Tagset('compound', ['Cmp#'])
+        [Cmp#]
+        #>> tag = Tag('N+Cmp#+N+Sg+Nom')
+        #>> tag.splitByTagset(tagset)
         [<Tag: N>, <Tag: N+Sg+Nom>]
         """
         raise NotImplementedError
@@ -289,10 +362,10 @@ class GenerationOverrides(object):
     provide special handling of tags. One class instantiated in
     morphology module: `generation_overrides`.
 
-    >>> @generation_overrides.tag_filter_for_iso('sme')
-    >>> def someFunction(form, tags, xml_node):
-    >>>     ... some processing on tags, may be conditional, etc.
-    >>>     return form, tags, xml_node
+    #>> @generation_overrides.tag_filter_for_iso('sme')
+    #>> def someFunction(form, tags, xml_node):
+    #>>     ... some processing on tags, may be conditional, etc.
+    #>>     return form, tags, xml_node
 
     Each time morphology.generation is run, the args will be passed
     through all of these functions in the order that they were
