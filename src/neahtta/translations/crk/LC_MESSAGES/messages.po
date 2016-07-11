@@ -1052,7 +1052,7 @@ msgstr ""
 #: templates/mobile_nav_push_menu.html:63
 #: templates/mobile_nav_push_menu.html:83
 msgid "Written variant"
-msgstr "nawasôna tânisi kâ-isi-nêhiyawasinahikêyan"
+msgstr "nawasôna tânisi ka-isi-nêhiyawasinahikêyan"
 
 #: templates/left_nav_search_variants.html:14
 #, fuzzy
