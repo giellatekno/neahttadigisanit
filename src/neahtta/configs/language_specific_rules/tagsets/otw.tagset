@@ -11,9 +11,14 @@ pos:
  - "Num"
  - "Ipc"
  - "NI"
+ - "NA"
+ - "VII"
  - "VAI"
+ - "VTI"
+ - "VTA"
 prelemma_tags:
  - "1"
  - "2"
- - match: "^PV"
+ - "3"
+ - match: "^P[VN]"
    regex: true
