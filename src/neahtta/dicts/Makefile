@@ -58,6 +58,15 @@ else
  SED := $(shell which sed)
 endif
 
+# VERBOSE ?=
+BUILD_FLAGS := -v
+
+# ifeq ($(VERBOSE),true)
+# 	BUILD_FLAGS := -v
+# else
+# 	BUILD_FLAGS := 
+# endif
+
 SAXON_JAR = $(shell which saxon9.jar)
 
 COLLECT_PARTS := $(GTHOME)/words/dicts/scripts/collect-dict-parts.xsl 
@@ -107,8 +116,8 @@ compile_langs_fsts: $(langs)
 	@echo "** Building $(GT_COMPILE_LANGS) $(GT_COMPILE_STARTUP_LANGS) FSTs **"
 	@echo "***********************"
 	@echo ""
-	./build_langs.sh -l $(subst $(space),$(comma),$(GT_COMPILE_LANGS)) -- --enable-dicts $(LANGS_FLAGS)
-	./build_langs.sh -s $(subst $(space),$(comma),$(GT_COMPILE_STARTUP_LANGS)) -- --enable-dicts $(LANGS_FLAGS)
+	./build_langs.sh $(BUILD_FLAGS) -l $(subst $(space),$(comma),$(GT_COMPILE_LANGS)) -- --enable-dicts $(LANGS_FLAGS)
+	./build_langs.sh $(BUILD_FLAGS) -s $(subst $(space),$(comma),$(GT_COMPILE_STARTUP_LANGS)) -- --enable-dicts $(LANGS_FLAGS)
 
 install_langs_fsts: $(foreach lang, $(GT_COMPILE_LANGS), langs/$(lang)/src/analyser-gt-desc.xfst)
 install_langs_fsts: $(langs)

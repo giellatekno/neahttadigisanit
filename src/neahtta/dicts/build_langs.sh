@@ -14,11 +14,13 @@ green=$'\033[32;1m'
 yellow=$'\033[33;1m'
 colorend=$'\033[0m'
 
-while getopts "h?l:s:" opt; do
+while getopts "vh?l:s:" opt; do
     case "$opt" in
     h|\?)
         echo ""
         exit 0
+        ;;
+    v)  verbose=1
         ;;
     l)  langs=$(echo $OPTARG | tr "," " ")
         ;;
@@ -49,6 +51,11 @@ function error {
 function log_error {
     error "❗️ couldn't $1 (see build.$1.log)"
     echo $1 >> $log_path
+    lang_log="$script_base/build.$1.log"
+
+    if [ $verbose -eq 1 ] ; then
+        cat $lang_log
+    fi ;
 }
 
 function compile_lang {
