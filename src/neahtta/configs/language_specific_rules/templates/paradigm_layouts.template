@@ -90,13 +90,16 @@
                     <tr>
                     {% for column in row %}
 
+                        {% set cell_classes = false %}
+                        {% set classes = '' %}
+
                         {% if column.cell.col_span %}
                             {% set span = ' colspan="%d"' % column.cell.col_span %}
                         {% else %}
                             {% set span = '' %}
                         {% endif %}
 
-                        {% if column.cell.header %}
+                        {% if column.cell.header or column.cell.horizontal_line %}
                             {% set cell_type = 'th' %}
                         {% else %}
                             {% set cell_type = 'td' %}
@@ -105,6 +108,8 @@
                         {% if column.cell.text_align %}
                             {% set _style_css = 'text-align:%s;' % column.cell.text_align %}
                             {% set style = ' style="%s"' % _style_css %}
+                        {% elif column.cell.horizontal_line %}
+                            {% set cell_classes = 'horizontal-line' %}
                         {% else %}
                             {% set style = '' %}
                         {% endif %}
@@ -115,7 +120,11 @@
                             {% set cell_value = column.value %}
                         {% endif %}
 
-                        <{{ cell_type }}{{ span }}{{ style }}>{{ cell_value }}</{{ cell_type }}>
+                        {% if cell_classes %}
+                            {% set classes = " class='%s'" % cell_classes %}
+                        {% endif %}
+
+                        <{{ cell_type }}{{ span }}{{ style }}{{ classes }}>{{ cell_value }}</{{ cell_type }}>
 
                     {% endfor %}
                     </tr>

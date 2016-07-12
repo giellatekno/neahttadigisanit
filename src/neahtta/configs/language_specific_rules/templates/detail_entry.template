@@ -41,19 +41,23 @@
                         <button href="#" 
                                 class="btn btn-info pull-right" 
                                 data-toggle="collapse" 
-                                data-target="#paradigm-{{ lemma_key }}" 
+                                data-target="#paradigm-{{ lexicon_entry|hash_node }}" 
                                 type="button" 
                                 lang="{{ current_locale }}">
                             {% trans %}Paradigm{% endtrans %}
                         </button>
                     </div>
                     <div class="span6">
-                        <div class="paradigm-expanded collapse" id="paradigm-{{ lemma_key }}">
-                        {% if current_pair_settings.asynchronous_paradigms %}
-                            {{- rendered_templates.asynchronous_paradigm -}}
-                        {% else %}
-                            {{- rendered_templates.paradigm -}}
-                        {% endif %}
+                        <div class="paradigm-expanded collapse" id="paradigm-{{ lexicon_entry|hash_node }}">
+                            {% if current_app_config.paradigm_layouts and layout %}
+                                {{- rendered_templates.paradigm_layouts -}}
+                            {% else %}
+                                {% if current_pair_settings.asynchronous_paradigms %}
+                                    {{- rendered_templates.asynchronous_paradigm -}}
+                                {% else %}
+                                    {{- rendered_templates.paradigm -}}
+                                {% endif %}
+                            {% endif %}
                         </div>
                     </div>
                 </div>

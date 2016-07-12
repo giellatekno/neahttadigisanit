@@ -12,12 +12,6 @@ predictable for new linguist users defining a layout?
 
 !!! Programmer notes
 
-TODO: FIX - allow user to specify LEMMA so that discontinuous tag matches work
-
-TODO: DEPLOY bugfix - where are preverbs going between generation? specified in
-            .paradigm file, but they go missing when actually sent off to generation
-
-
 TODO: FEATURE - hover over labels for tooltip that explains them
     - need mobile solution too, maybe there it should be click not hover
 
@@ -26,8 +20,6 @@ TODO: FEATURE - cells need multiple tags, etc
 TODO: BUG - key help not present on detail views
 
 TODO: BUG - mobile collapse button has some weird behavior, presense of tabs needs unique IDs but they're appearing twice
-
-TODO: horizontal line / possibility to to define cell borders: potentially multiple levels of border thickness
 
 TODO: possible to convert a table into a plain list for mobile devices
 TODO: paradigm tabs missing from mobile view
@@ -312,6 +304,10 @@ class Cell(object):
             self.header = True
             self.v = self.v[1:len(self.v)-1]
 
+        if list(set(self.v)) == ['-']:
+            self.horizontal_line = True
+            self.v = ''
+
     def __repr__(self):
         return 'Cell(' + self.v + ')'
 
@@ -320,6 +316,7 @@ class Null(Cell):
     def __init__(self, table, index):
         self.index = index
         self.header = False
+        self.horizontal_line = False
         self.v = False
         self.table = table
         self.no_form = self.table.options.get('layout', {}).get('no_form', '')
