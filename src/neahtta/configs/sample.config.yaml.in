@@ -1,3 +1,14 @@
+# This is a sample configuration file, with some actual values to give a
+# sense of what should be provided.
+
+# As a general note, if any strings provided here need to be localized
+# to individual project locales, they must be marked with the !gettext
+# flag, e.g.:
+#
+#   some_setting: !gettext "String to translate"
+#
+# These will thus be extracted to the translation files.
+
 # Non-linguistic settings.
 ApplicationSettings:
   # `app_name` is what is displayed in the upper-left corner on every page.
@@ -11,8 +22,18 @@ ApplicationSettings:
   # not have to resemble the app name, or anything, and the following is
   # just a suggestion.
   mobile_bookmark_name: "NDS: Sánit"
+
+  # The default locale must be a 2-character ISO if one exists for the
+  # language, otherwise 3-character ISO codes may be used.
   default_locale: "se"
+
+  # This is the default language pair that will be displayed to the
+  # user, as a list, where the first element is the source and the
+  # second element is the target language.
   default_pair: ["sme", "nob"]
+
+  # This is the same, but will be displayed to users who navigate to the
+  # page on a mobile browser.
   mobile_default_pair: ["SoMe", "nob"]
 
   # ## Some optional display settings. Setting these to `true` enables them.
@@ -82,10 +103,11 @@ Morphology:
     inverse_file: [*OPT, '/sme/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options: &sme_fst_options
-      compoundBoundary: "+Cmp#"
-      derivationMarker: "+Der"
-      tagsep: '+'
-      inverse_tagsep: '+'
+      compoundBoundary: "+Cmp#"     # A string that separates compounds in analyses
+      derivationMarker: "+Der"      # A string that marks words as derivations
+      tagsep: '+'                   # The character that separates parts of a tag
+      inverse_tagsep: '+'           # The character that separates parts of a tag in the inverse analyser
+
   # This is an example of an input variant. Here we use a different analyzer,
   # but the same generator. Also, `options` are copied from above.
   SoMe:
@@ -194,6 +216,16 @@ Dictionaries:
 
 # These settings are for the client-side reader bookmarklet. 
 ReaderConfig:
+  Settings:
+    # This controlls the location that lookups are performed from, if
+    # they are different from the path that the project will be served
+    # out of, for example, if the API must be run from another location
+    # for reasons like providing SSL.
+    # 
+    # Each path here must not include the scheme, and have no trailing
+    # slash.
+    api_host: "localhost:5000/itwewina"
+    media_host: "localhost:5000/itwewina"
   hdn:
     multiword_lookups: true
     multiword_list:
@@ -215,3 +247,4 @@ ReaderConfig:
     word_regex: |
       [\u00C0-\u1FFF\u2C00-\uD7FF\w\.']+
     word_regex_opts: "g"
+
