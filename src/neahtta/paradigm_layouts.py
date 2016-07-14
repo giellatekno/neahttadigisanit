@@ -2,10 +2,6 @@
 """
 Future documentation for wiki:
 
-
-TODO: reconsider: is substring search as a default pattern not
-predictable for new linguist users defining a layout?
-
 ! Internationalization of string values
 
 {{_"Text"}}
@@ -19,13 +15,21 @@ TODO: FEATURE - cells need multiple tags, etc
 
 TODO: BUG - key help not present on detail views
 
-TODO: BUG - mobile collapse button has some weird behavior, presense of tabs needs unique IDs but they're appearing twice
-
 TODO: possible to convert a table into a plain list for mobile devices
-TODO: paradigm tabs missing from mobile view
-
 
 TODO: tagsets vs. internationalization files?
+    - perhaps easiest to leave all paradigm translation of strings
+    to tagsets for now, otherwise will have to develop a parser for
+    babel that can extract these, or use a yaml setting in the
+    header to provide strings for these, e.g.:
+
+        extra_translations:
+          fin:
+            "Plural": "monikko"
+        --
+        | _"Plural" | etc  |
+        | bbq       | foo  |
+
 TODO: multiple cell values, e.g., _"Sg" _"Prs"
       or for context, e.g., "(mun)" Ind+Prs+1Sg
 
@@ -118,11 +122,11 @@ class Value(object):
     VALUE_SEPARATOR = ', '
 
     def set_options(self):
-        layout_opts = self.table.options.get('layout', {})
+        layout_opts = DEFAULT_OPTIONS.copy().get('layout')
+        layout_opts.update(**self.table.options.get('layout', {}))
 
-        self.null_value = layout_opts.get('no_form', False)
-        self.VALUE_SEPARATOR = layout_opts.get('value_separator', '<br />')
-        self.search_type = layout_opts.get('form_search_type', False)
+        self.null_value = layout_opts.get('no_form')
+        self.VALUE_SEPARATOR = layout_opts.get('value_separator')
 
     def __init__(self, cell, table, paradigm):
         self.cell = cell
@@ -383,6 +387,14 @@ class ParadigmTable(object):
 
         return FilledParadigmTable(paradigm_table=self, as_list=self.table.to_list())
 
+DEFAULT_OPTIONS = {
+    'layout': {
+        'type': "basic",
+        'no_form': False,
+        'value_separator': '<br />',
+    },
+}
+
 class TableParser(object):
     """ Methods for parsing the tables
     """
@@ -455,9 +467,12 @@ class TableParser(object):
         return self._lines
 
     # TODO: paradigm
-    def __init__(self, _str, options={}):
+    def __init__(self, _str, options=False):
         self.raw = _str
-        self.options = options
+        opts = DEFAULT_OPTIONS.copy()
+        if options:
+            opts.update(**options)
+        self.options = opts
 
     def validate(self):
         errors = {}
