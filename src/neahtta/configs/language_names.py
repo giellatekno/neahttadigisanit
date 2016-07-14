@@ -70,7 +70,7 @@ NAMES = dict([
     ('crkM', _(u"Plains Cree")),
 
     # gunaha 
-    ('srs', _(u"Tsuu T'ina")),
+    ('srs', _(u"Tsuut'ina")),
 
     # kidwinan
     ('otw', _(u"Odawa")),
