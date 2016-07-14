@@ -1,5 +1,5 @@
 ApplicationSettings:
-  app_name: !gettext "Gunáhà’"
+  app_name: !gettext "Gunáhà"
   app_meta_title: !gettext "Online Gunáhà’ dictionary"
   fcgi_script_path: '/gunaha'
   render_template_errors: true
@@ -25,7 +25,7 @@ Morphology:
   # normative
   srs:
     tool: *FLOOKUP
-    file: [*OPT, '/srs/bin/analyser-gt-desc-mobile.foma']
+    file: [*OPT, '/srs/bin/analyser-dict-gt-desc-mobile.foma']
     inverse_file: [*OPT, '/srs/bin/generator-gt-norm.foma']
     format: 'hfst'
     options: &MORPHOLOGY_OPTS
