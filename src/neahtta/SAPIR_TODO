@@ -1,6 +1,28 @@
-
 programmer
+
+* sound files in itwêwina are not playing, problem appears to be URLs
+  - JS dependencies were missing on sapir, fixed now
+  - TODO: ffmpeg on sapir, audio files not being transcoded and thus not
+    found
+
+* Identify itwêwina-specific features and implement them for guusaaw,
+  kidwinan and gunaha
+
+* Lexicon result sorting for itwêwina
+
 * FSTs: capitalization: Xaní and xaní should both be recognized as lemma xaní; orthographical capitalization on first word of sentence, etc
+
+linguists
+* itwewina reduplication broken, but in FST?
+* tsídiitł'á, nàgudiitłod, ts'ázid - problem with extra i being added somewhere, linguists
+  need to look
+
+Done
+* the reader icon is coming from localizations, which is resulting in
+  the wrong symbol rendering. move it to YAML ReaderConfig settings
+
+* add UofA logos to kidwinan and gunaha
+
 * itwêwina, generalizing lemma recognition etc seems to be including the
   full lemma in the analysis view, so: 
 
@@ -10,24 +32,6 @@ programmer
 
     ← √mow- + Verb + ...
 
-* the reader icon is coming from localizations, which is resulting in
-  the wrong symbol rendering. move it to YAML ReaderConfig settings
-
-* add UofA logos to kidwinan and gunaha
-
-* sound files in itwêwina are not playing, problem appears to be URLs
-
-* Identify itwêwina-specific features and implement them for guusaaw,
-  kidwinan and gunaha
-
-* Lexicon result sorting for itwêwina
-
-linguists
-* itwewina reduplication broken, but in FST?
-* tsídiitł'á, nàgudiitłod, ts'ázid - problem with extra i being added somewhere, linguists
-  need to look
-
-Done
 * crk occasionally redirects to wrong urls /crk/eng/ after form submission, some weird cache interaction
   1. mobile layout doesn't seem to have url_for yet
     - problem was missing url_for on mobile redirect
