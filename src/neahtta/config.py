@@ -1004,7 +1004,7 @@ class Config(Config):
             reader_defaults = {
                 'word_regex': DEFAULT_WORD_REGEX,
                 'word_regex_opts': DEFAULT_WORD_REGEX_OPTS,
-                'multiword_lookups': False
+                'multiword_lookups': False,
             }
 
             for l, conf in self._reader_options.iteritems():

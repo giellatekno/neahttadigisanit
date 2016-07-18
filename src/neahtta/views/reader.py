@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from flask import ( request
                   , Response
                   , json
@@ -294,13 +295,22 @@ def fetch_messages(locale):
     try:
         _pofile = pofile('translations/%s/LC_MESSAGES/messages.po' % locale)
     except:
-        return {}
+        _pofile = False
 
-    jsentries = filter( lambda x: any(['.js' in a[0] for a in x.occurrences])
-                      , list(_pofile)
-                      )
+    if _pofile:
+        jsentries = filter( lambda x: any(['.js' in a[0] for a in x.occurrences])
+                          , list(_pofile)
+                          )
 
-    return dict( [(e.msgid, e.msgstr or False) for e in jsentries] )
+        jsentries_dict = dict( [(e.msgid, e.msgstr or False) for e in jsentries] )
+
+    else:
+        jsentries_dict = dict()
+    override_symbol = current_app.config.reader_settings.get('reader_symbol', False)
+    if override_symbol:
+        jsentries_dict[u'Á'] = override_symbol
+
+    return jsentries_dict
 
 
 def bookmarklet_configs():
@@ -317,6 +327,7 @@ def bookmarklet_configs():
     sess_lang = request.args.get('language', get_locale())
 
     translated_messages = fetch_messages(sess_lang)
+    print translated_messages
 
     dictionaries = []
 
