@@ -10,6 +10,7 @@
     text-align: center;
 }
 
+/* {{{ footer.template logos */
 #logos img {
     padding-top: .5em;
     position: relative;
@@ -66,6 +67,8 @@
     margin-bottom: 15px;
     width: 75%;
 }
+
+/* end footer.template logos }}} */
 
 .lexeme .entry_stem {
     font-style: italic;
