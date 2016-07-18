@@ -950,6 +950,9 @@ a.full-paradigm-link {
     margin-bottom: 1em;
 }
 
+table.miniparadigm .horizontal-line {
+    border-bottom: 1px solid #AAA;
+}
 
 @media (max-width: 550px) {
     a.full-paradigm-link {
