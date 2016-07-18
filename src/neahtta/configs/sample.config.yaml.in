@@ -226,6 +226,9 @@ ReaderConfig:
     # slash.
     api_host: "localhost:5000/itwewina"
     media_host: "localhost:5000/itwewina"
+    # Define the symbol that appears for the bookmarklet settings menu
+    # (default is Á)
+    reader_symbol: "ʔ"
   hdn:
     multiword_lookups: true
     multiword_list:

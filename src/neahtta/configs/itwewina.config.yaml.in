@@ -32,7 +32,7 @@ Morphology:
     inverse_file: [*OPT, '/crk/bin/generator-dict-gt-norm.hfstol']
     format: 'hfst'
     options: &MORPHOLOGY_OPTS
-      # tagProcessor: "configs.language_specific_rules.crk_tags:process_crk_analysis"
+      tagProcessor: "configs.language_specific_rules.crk_tags:process_crk_analysis"
       compoundBoundary: "+Use/Circ#"
       derivationMarker: "+Der"
       tagsep: '+'
@@ -139,13 +139,14 @@ Dictionaries:
 
 
 ReaderConfig:
-  # Settings:
-  #   # do not include scheme here, or things break
-  #   reader_api: "sapir.artsrn.ualberta.ca/itwewina/"
-  #   media_host: "sanit.oahpa.no"
+  Settings:
+    # do not include scheme here, or things break
+    api_host: "localhost:5000/itwewina"
+    media_host: "localhost:5000/itwewina"
+    reader_symbol: "Ā"
   crk:
     multiword_lookups: false
     word_regex: |
-      [\u00C0-\u1FFF\u2C00-\uD7FF\w\.\-']+
+      [\u00C0-\u1FFF\u2C00-\uD7FF\w\-']+
     word_regex_opts: "g"
 

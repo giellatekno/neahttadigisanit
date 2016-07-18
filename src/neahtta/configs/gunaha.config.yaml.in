@@ -51,7 +51,11 @@ Dictionaries:
 
 
 ReaderConfig:
-  # Settings:
+  Settings:
+    # NB: only use !gettext here if this needs to vary by locale,
+    # usually this will be tied to a project, so no need to translate it
+    # via gettext
+    reader_symbol: "ʔ"
   #   # do not include scheme here, or things break
   #   reader_api: "sapir.artsrn.ualberta.ca/gunaha/"
   #   media_host: "sapir.artsrn.ualberta.ca/gunaha/"
