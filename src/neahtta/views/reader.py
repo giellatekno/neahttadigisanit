@@ -309,7 +309,9 @@ def bookmarklet_configs():
     """
 
     from flask.ext.babel import get_locale
-    from configs.language_names import NAMES, LOCALISATION_NAMES_BY_LANGUAGE
+
+    NAMES = current_app.config.NAMES
+    LOCALISATION_NAMES_BY_LANGUAGE = current_app.config.LOCALISATION_NAMES_BY_LANGUAGE
 
     has_callback = request.args.get('callback', False)
     sess_lang = request.args.get('language', get_locale())

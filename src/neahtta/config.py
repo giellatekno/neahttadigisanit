@@ -93,6 +93,36 @@ class Config(Config):
     """
 
     @property
+    def language_configs_yaml(self):
+        if hasattr(self, '_language_configs_yaml'):
+            return self._language_configs_yaml
+        
+        language_configs_path = os.path.join( os.path.dirname(__file__)
+                                            , 'configs/language_names.yaml'
+                                            )
+        with open(language_configs_path, 'r') as F:
+            config = yaml.load(F)
+
+        self._language_configs_yaml = config
+        return self._language_configs_yaml
+
+    @property
+    def NAMES(self):
+        return self.language_configs_yaml.get('isos_to_names', {})
+
+    @property
+    def LOCALISATION_NAMES_BY_LANGUAGE(self):
+        return self.language_configs_yaml.get('isos_to_demonym', {})
+
+    @property
+    def ISO_DISPLAY_RELABELS(self):
+        return self.language_configs_yaml.get('isos_to_names', {})
+
+    @property
+    def ISO_TRANSFORMS(self):
+        return self.language_configs_yaml.get('iso_transforms', {})
+
+    @property
     def default_language_pair(self):
         _p = self.yaml.get('ApplicationSettings', {})\
                       .get('default_pair', False)
@@ -733,7 +763,7 @@ class Config(Config):
         from flask.ext.babel import get_locale
         locale = get_locale()
 
-        from configs.language_names import NAMES
+        NAMES = self.NAMES
 
         # TODO: cache list by locale
 

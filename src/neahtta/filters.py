@@ -30,14 +30,17 @@ def register_filters(app):
 
     @app.template_filter('iso_to_language_own_name')
     def iso_to_language_own_name(_iso):
-        from configs.language_names import LOCALISATION_NAMES_BY_LANGUAGE
+        from flask import current_app
         from flask import g
+
+        LOCALISATION_NAMES_BY_LANGUAGE = current_app.config.LOCALISATION_NAMES_BY_LANGUAGE
         return LOCALISATION_NAMES_BY_LANGUAGE.get(_iso, LOCALISATION_NAMES_BY_LANGUAGE.get(g.orig_from, _iso))
 
     @app.template_filter('iso_display_relabel')
     def iso_display_relabel(_iso):
-        from configs.language_names import ISO_DISPLAY_RELABELS as L
         from flask import g
+        from flask import current_app
+        L = current_app.config.ISO_DISPLAY_RELABELS
         return L.get(_iso, _iso)
 
     @app.template_filter('iso_has_flag')
@@ -73,11 +76,12 @@ def register_filters(app):
 
     @app.template_filter('iso_to_i18n')
     def append_language_names_i18n(s):
-        from flask import g
-        from configs.language_names import NAMES
+        from flask import g, current_app
+        from flask.ext.babel import lazy_gettext
+        NAMES = current_app.config.NAMES
 
         _n = NAMES.get(s, NAMES.get(g.orig_from, s))
-        return _n
+        return lazy_gettext(_n)
 
     @app.template_filter('sneak_in_link')
     def sneak_in_link(s, link_src):
