@@ -61,13 +61,14 @@
                         {% if stem %}
                             {% set repl = ' √' + stem %}
                         {% else %}
-                            {% set repl = 'Tpl/Lemma' %}
+                            {% set repl = '' %}
                         {% endif %}
 
                         {# Replace the Lemma tag with the actual lemma, then
                            reformat with spaces around the plus #}
 
-                        {% set _formatted_tag = '+'.join(lem.tag)|replace('Tpl/Lemma', repl)|tagfilter(_from, _to, tagsep='+') %}
+                        {% set _formatted_tag = '+'.join(lem.tag)|replace(first_f.lemma, repl)|tagfilter(_from, _to, tagsep='+') %}
+                        {# Add space padding at a different stage, otherwise it will mess up with find and replace above #}
                         {% set formatted_tag = ' + '.join(_formatted_tag.split('+')) %}
                         {% if formatted_tag.startswith('+ ') %}
                             {% set formatted_tag = formatted_tag[2::] %}
