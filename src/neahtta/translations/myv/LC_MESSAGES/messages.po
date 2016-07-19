@@ -181,7 +181,7 @@ msgstr "Французонь кель"
 
 #: configs/language_names.yaml:65 configs/language_names.yaml:117
 msgid "German"
-msgstr ""
+msgstr "Немецень кель"
 
 #: configs/language_names.yaml:66
 msgid "Western Mari"
@@ -209,7 +209,7 @@ msgstr ""
 
 #: configs/language_names.yaml:86
 msgid "Odawa"
-msgstr ""
+msgstr "Одавань кель"
 
 #: configs/language_names.yaml:87 configs/language_names.yaml:90
 msgid "Cherokee"
@@ -254,9 +254,8 @@ msgid "Haida"
 msgstr "Хайда"
 
 #: configs/language_names.yaml:118
-#, fuzzy
 msgid "Romanian"
-msgstr "Ливень кель"
+msgstr "Румынень кель"
 
 #: configs/language_names.yaml:119
 msgid "Meänkieli"
@@ -264,7 +263,7 @@ msgstr ""
 
 #: configs/language_names.yaml:120
 msgid "Swedish"
-msgstr ""
+msgstr "Шведэнь"
 
 #: configs/saanih.config.yaml.in:79 configs/saanih.config.yaml.in:100
 #, fuzzy
@@ -436,6 +435,8 @@ msgid ""
 "Write what you wish, and the dictionary will analyze it to break apart "
 "compound words and find base forms."
 msgstr ""
+"Сёрмадт мезе мелеть, валксось максы анализ, конаньсэ вейс сёрмадозь"
+"валтнэ явовить эрьва пельксэст пес."
 
 #: configs/language_specific_rules/templates/about.template:42
 #: configs/language_specific_rules/templates/baakoeh/about.template:43
@@ -522,7 +523,7 @@ msgstr "Эрьва валкссонть апак стакалгавто валт
 #: configs/language_specific_rules/templates/saanih/about.template:63
 #: configs/language_specific_rules/templates/sanit/about.template:69
 msgid "Find a problem?"
-msgstr "Лиссь проблема?"
+msgstr "Проблема муить?"
 
 #: configs/language_specific_rules/templates/about.template:73
 #: configs/language_specific_rules/templates/baakoeh/about.template:65
@@ -550,7 +551,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanit/about.template:75
 #: configs/language_specific_rules/templates/sanit/about.template:80
 msgid "Contact us"
-msgstr ""
+msgstr "Сёрмадт миненек"
 
 #: configs/language_specific_rules/templates/about.template:88
 #: configs/language_specific_rules/templates/baakoeh/about.template:80
@@ -594,7 +595,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/itwewina/index_search_form.template:48
 #: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:42
 msgid "Select a word, and press Tab"
-msgstr ""
+msgstr "Кочкак вал, ды лепштик «Tab»-енть"
 
 #: configs/language_specific_rules/templates/index_search_form.template:48
 #: configs/language_specific_rules/templates/baakoeh/index_search_form.template:48
@@ -661,7 +662,7 @@ msgstr "Лия валкст"
 #: configs/language_specific_rules/templates/sanit/sme/paradigm.template:187
 #: configs/language_specific_rules/templates/valks/myv/paradigm.template:117
 msgid "Full paradigm"
-msgstr ""
+msgstr "Пешксе парадигма"
 
 #: configs/language_specific_rules/templates/search_info.template:3
 #: configs/language_specific_rules/templates/itwewina/search_info.template:3
@@ -701,7 +702,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/vada/about.template:78
 #: configs/language_specific_rules/templates/valks/about.template:90
 msgid "More to come..."
-msgstr ""
+msgstr "Седе товгак ули мезе од..."
 
 #: configs/language_specific_rules/templates/itwewina/about.template:28
 msgid ""
@@ -760,7 +761,7 @@ msgstr "содамоёвкс"
 
 #: configs/language_specific_rules/templates/kyv/examples.template:80
 msgid "proverb"
-msgstr ""
+msgstr "валмеревкс"
 
 #: configs/language_specific_rules/templates/kyv/examples.template:82
 msgid "sign"
@@ -896,9 +897,8 @@ msgid "In both directions there are about 11,000 entries."
 msgstr "Эрьва валкссонть апак стакалгавто валтнэде 11.000 малава."
 
 #: configs/language_specific_rules/templates/sanit/notice.template:5
-#, fuzzy
 msgid "Other North Saami dictionaries"
-msgstr "Лия валкст"
+msgstr "Пелевеёнксонь саамонь келень лия валкст"
 
 #: configs/language_specific_rules/templates/sanit/search_info.template:5
 msgid ""
@@ -1037,7 +1037,6 @@ msgstr ""
 "ютавтовксонзо-анализэнзэ сыть."
 
 #: static/js/neahttadigisanit.js:8883
-#, fuzzy
 msgid ""
 "If you find a bug, or if the bookmark does not work on a specific page <a"
 " href=\"mailto:giellatekno@hum.uit.no\">please contact us</a>. Tell us "
@@ -1540,7 +1539,7 @@ msgstr "Амаштовикс формат. Ансяк json-т -- html-т маш�
 #~ msgstr ""
 
 #~ msgid "nextPos"
-#~ msgstr "Ненэцень кель"
+#~ msgstr ""
 
 #~ msgid "previous"
 #~ msgstr ""
@@ -1615,7 +1614,7 @@ msgstr "Амаштовикс формат. Ансяк json-т -- html-т маш�
 #~ msgstr "Седе тов лиси..."
 
 #~ msgid "s/he speaks Cree"
-#~ msgstr ""
+#~ msgstr "сон корты крикс"
 
 #~ msgid "Find a problem?"
 #~ msgstr "Проблема муить?"
@@ -1624,7 +1623,7 @@ msgstr "Амаштовикс формат. Ансяк json-т -- html-т маш�
 #~ msgstr "Сюлмавт мартонок"
 
 #~ msgid "crk ↔ eng"
-#~ msgstr "ненэцень кель ↔ финнэнь кель"
+#~ msgstr "кринь кель ↔ англань кель"
 
 #~ msgid "mennä, lähteä, kulkea"
 #~ msgstr "молемс, ютамс"
