@@ -45,6 +45,17 @@ Dictionaries:
     path: 'dicts/otweng.xml'
     options:
       pos: "lg/lc/text()"
+    # TODO: uncomment this section, add a description and keyboard
+    # symbols 
+    # input_variants:
+    #   - type: "standard"
+    #     description: "l &rarr; ł"
+    #     short_name: "srs"
+    #     onscreen_keyboard:
+    #       - "á"
+    #       - "à"
+    #       - "ł"
+    #       - "ʔ"
 
   # - source: eng
   #   target: otw
@@ -53,6 +64,7 @@ Dictionaries:
 
 ReaderConfig:
   # Settings:
+  #   reader_symbol: "Ā"
   #   # do not include scheme here, or things break
   #   reader_api: "sapir.artsrn.ualberta.ca/itwewina/"
   #   media_host: "sapir.artsrn.ualberta.ca/itwewina/"

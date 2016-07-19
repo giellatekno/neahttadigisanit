@@ -44,6 +44,17 @@ Dictionaries:
   - source: srs
     target: eng
     path: 'dicts/srseng.xml'
+    # TODO: uncomment this section, add a description and keyboard
+    # symbols 
+    # input_variants:
+    #   - type: "standard"
+    #     description: "l &rarr; ł"
+    #     short_name: "srs"
+    #     onscreen_keyboard:
+    #       - "á"
+    #       - "à"
+    #       - "ł"
+    #       - "ʔ"
 
   # - source: eng
   #   target: srs
