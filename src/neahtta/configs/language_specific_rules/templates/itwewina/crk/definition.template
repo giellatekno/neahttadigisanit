@@ -7,6 +7,7 @@
 
    overrides here: 
      - audio
+     - sorting by @rank attribute
 #}
  
 {% import 'lexicon.macros' as macros with context %}
