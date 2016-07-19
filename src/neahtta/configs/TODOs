@@ -1,0 +1,27 @@
+TODO: this directory and subdirectories shouldn't be python modules, so
+that it's possible to specify the path to config files on a
+project-to-project basis. Eventually these configs should be moved
+elsewhere, outside of the nds source directory
+
+    - __init__.py functionality of searching for config files should be
+      moved elsewhere to part of config.py, nothing for module/blueprint
+      setup within configs/
+    - all paths mentioning language_specific_rules need to be redone so
+      that the path can be set in project config .yaml optionally
+    - actual config python code needs to be modularized too, move stuff
+      to `conf/` to split things up
+
+TODO: set up an example, completely default config directory with one or
+two values here and there, and find a way to make everything run with
+completely default or unset options.
+
+rationale here is: using NDS outside of GT infrastructure should be
+possible, so that NDS source code can be packaged without reference to
+all of the projects we're running within the infra.
+
+
+--
+
+DONE: language_names.py -> language_names.yaml; localization strings now
+migrated to use these paths, values in this file are available on the config
+object
