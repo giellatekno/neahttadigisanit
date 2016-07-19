@@ -16,6 +16,10 @@ pos:
  - "VAI"
  - "VTI"
  - "VTA"
+# used in paradigm files
+noun_animacy:
+ - "NA"
+ - "NI"
 prelemma_tags:
  - "1"
  - "2"
