@@ -1,0 +1,7 @@
+Relabel:
+  - source_morphology: 'srs'
+    target_ui_language: 'eng'
+    tags: 
+      "V": "verb"
+      "3Pl": "third plural"
+
