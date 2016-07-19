@@ -4,6 +4,9 @@
    Since the goal is definitions, `lexicon_entry` is relevant. Filtering
    by target languag ehas to happen here, so be sure to use the
    `xml_lang` filter if overriding.
+
+   overrides here: 
+     - audio
 #}
  
 {% import 'lexicon.macros' as macros with context %}
