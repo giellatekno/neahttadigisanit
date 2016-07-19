@@ -7,17 +7,48 @@ programmer
 
 * Identify itwêwina-specific features and implement them for guusaaw,
   kidwinan and gunaha
+   - korp integration
+     - TODO: which langs?
+   - audio_links.template
+     - TODO: which langs?
+   - analyses contain root (maybe for odawa?)
+     - TODO: roots need to be in the lexicon for this to work, could
+       enable feature if this is the plan otherwise
+   - about.template
+     - TODO: copy for each project so that relevant examples can be
+       added
+
+   - relabel settings
+     - DONE: added basic files
+   - keyboard input
+     - DONE: add as a comment, antti can add letters
+   - entry_text.template: include PoS and inflectional type from lc
+     - DONE: kidwinan - conditional, so only displayed if not the same
+     - DONE: gunaha (in the lexicon?)
+   - paradigm CSS fixes
+     - DONE: kidwinan, gunaha, guusaaw
+   - paradigm layouts
+     - DONE: this is available for all langs now, just need to add
+       templates (for linguists to do)
+   - sources.template
+     - DONE: copied
+   - hide text "possible form of ... "
+     - DONE: added setting in template_settings.html
+
+* kidwinan/otw - glossing FSTs going away?
+
+* linguists: add sources to various project sources templates
+* linguists: add paradigms and layouts
 
 * Lexicon result sorting for itwêwina
+  - some of this is carried out in definition template, which sorts
+    meanings by @rank
 
-* FSTs: capitalization: Xaní and xaní should both be recognized as lemma xaní; orthographical capitalization on first word of sentence, etc
-
-linguists
-* itwewina reduplication broken, but in FST?
-* tsídiitł'á, nàgudiitłod, ts'ázid - problem with extra i being added somewhere, linguists
-  need to look
 
 Done
+* FSTs: capitalization: Xaní and xaní should both be recognized as lemma
+  xaní; orthographical capitalization on first word of sentence, etc
+
 * the reader icon is coming from localizations, which is resulting in
   the wrong symbol rendering. move it to YAML ReaderConfig settings
 
