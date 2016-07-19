@@ -45,6 +45,8 @@ person:
  - "PlO"
  - "4PlO"
 # These are the tag parts to hide in the paradigm tags.
+#     NB: This problem has mostly been fixed by paradigm layout files, however
+#     these will be used in the fallback paradigm file
 invisible_in_paradigms:
  - "V"
  - "TA"
