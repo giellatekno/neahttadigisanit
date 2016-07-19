@@ -13,7 +13,9 @@
 {% set lc_text = lexicon_entry|xpath('lg/lc/text()')|first|tagfilter(_from, _to) %}
 {% set pos_text = first_l|xpath('@pos')|tagfilter(_from, _to) %}
 {%- if lc_text %}
-  {% set pos_text = "%s, %s" % (pos_text, lc_text) %}
+  {%- if lc_text != pos_text %}
+    {% set pos_text = "%s, %s" % (pos_text, lc_text) %}
+  {% endif -%}
 {% endif -%}
 
 <span lang="{{ _from }}">{{ first_l|text }}</span> (<span lang="{{ _to }}">{{ pos_text }}</span>)

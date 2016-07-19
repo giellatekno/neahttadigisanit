@@ -1,10 +1,12 @@
 {# This template renders the search form on the main page.
+  
+   Changes from parent:
+     - keyword search stuff
  #}
 {%- set keyboard = false %}
 {% if current_variant_options %}
     {% set keyboard = current_variant_options.onscreen_keyboard %}
 {% endif -%}
-
 
 <div class="container-fluid">
     <div class="row-fluid">
