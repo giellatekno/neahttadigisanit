@@ -2,6 +2,7 @@
   
    Changes from parent:
      - keyword search stuff
+     - last searches
  #}
 {%- set keyboard = false %}
 {% if current_variant_options %}
@@ -100,14 +101,13 @@
                 </div>
             </form>
             {% if last_searches %}
-            <ul id="last_searches">
-                <li class="note">{% trans %}Previous:{% endtrans %}</li>
-            {# URLFOR #}
-                {% for uri, input in last_searches %}
-                <li><a href="{{ uri }}">{{ input }}</a>{% if not loop.last %},{% endif %}</li>
-                {% endfor %}
-                <li><a href="{{ url_for('.clear_session_key', sess_key='last_searches') }}">({% trans %}clear{% endtrans %})</a></li>
-            </ul>
+                <ul id="last_searches">
+                    <li class="note">{% trans %}Previous:{% endtrans %}</li>
+                        {% for uri, input in last_searches %}
+                            <li><a href="{{ uri }}">{{ input }}</a>{% if not loop.last %},{% endif %}</li>
+                        {% endfor %}
+                    <li><a href="{{ url_for('.clear_session_key', sess_key='last_searches') }}">({% trans %}clear{% endtrans %})</a></li>
+                </ul>
             {% endif %}
         </div>
     </div>

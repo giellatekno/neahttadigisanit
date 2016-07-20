@@ -44,5 +44,14 @@
               {% endif %}
     </div>
 </form>
+{% if last_searches %}
+    <ul id="last_searches">
+        <li class="note">{% trans %}Previous:{% endtrans %}</li>
+            {% for uri, input in last_searches %}
+                <li><a href="{{ uri }}">{{ input }}</a>{% if not loop.last %},{% endif %}</li>
+            {% endfor %}
+        <li><a href="{{ url_for('.clear_session_key', sess_key='last_searches') }}">({% trans %}clear{% endtrans %})</a></li>
+    </ul>
+{% endif %}
 
 {# vim: set ts=4 sw=4 tw=0 syntax=htmljinja : #}
