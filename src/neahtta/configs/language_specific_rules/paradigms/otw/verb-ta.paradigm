@@ -1,0 +1,299 @@
+name: "verbs - transitive animate"
+morphology:
+  pos: VTA
+--
+2+{{ lemma }}+VTA+Thm2
+2+{{ lemma }}+VTA+Thm1Sg
+2+{{ lemma }}+VTA+Thm1Pl
+2+{{ lemma }}+VTA+ThmDir
+2+{{ lemma }}+VTA+ThmInv
+1+{{ lemma }}+VTA+ThmDir
+1+{{ lemma }}+VTA+ThmInv
+
+2+{{ lemma }}+VTA+ThmInv+0
+1+{{ lemma }}+VTA+ThmInv+0
+3+{{ lemma }}+VTA+ThmInv+0
+
+2+{{ lemma }}+VTA+Thm2+2+Pl
+2+{{ lemma }}+VTA+Thm2+1+Pl
+2+{{ lemma }}+VTA+Thm1Sg+2+Pl
+2+{{ lemma }}+VTA+Thm1Pl+2+Pl
+2+{{ lemma }}+VTA+ThmDir+1+Pl
+2+{{ lemma }}+VTA+ThmDir+2+Pl
+2+{{ lemma }}+VTA+ThmInv+1+Pl
+2+{{ lemma }}+VTA+ThmInv+2+Pl
+1+{{ lemma }}+VTA+ThmDir+1+Pl
+1+{{ lemma }}+VTA+ThmInv+1+Pl
+
+2+{{ lemma }}+VTA+Thm2+Prt
+2+{{ lemma }}+VTA+Thm2+Dub
+2+{{ lemma }}+VTA+Thm1Sg+Prt
+2+{{ lemma }}+VTA+Thm1Sg+Dub
+2+{{ lemma }}+VTA+Thm1Pl+Prt
+2+{{ lemma }}+VTA+Thm1Pl+Dub
+2+{{ lemma }}+VTA+ThmDir+Prt
+2+{{ lemma }}+VTA+ThmDir+Dub
+2+{{ lemma }}+VTA+ThmInv+Prt
+2+{{ lemma }}+VTA+ThmInv+Dub
+1+{{ lemma }}+VTA+ThmDir+Prt
+1+{{ lemma }}+VTA+ThmDir+Dub
+1+{{ lemma }}+VTA+ThmInv+Prt
+1+{{ lemma }}+VTA+ThmInv+Dub
+
+3+{{ lemma }}+VTA+ThmDir+3+4
+3+{{ lemma }}+VTA+ThmInv+3+4
+
+2+{{ lemma }}+VTA+ThmInv+0+2+Pl
+2+{{ lemma }}+VTA+ThmInv+0+1+Pl
+1+{{ lemma }}+VTA+ThmInv+0+1+Pl
+3+{{ lemma }}+VTA+ThmInv+0+2+Pl
+
+2+{{ lemma }}+VTA+ThmInv+0+Prt
+2+{{ lemma }}+VTA+ThmInv+0+Dub
+1+{{ lemma }}+VTA+ThmInv+0+Prt
+1+{{ lemma }}+VTA+ThmInv+0+Dub
+3+{{ lemma }}+VTA+ThmInv+0+Prt
+3+{{ lemma }}+VTA+ThmInv+0+Dub
+
+2+{{ lemma }}+VTA+ThmInv+0+0+Pl
+1+{{ lemma }}+VTA+ThmInv+0+0+Pl
+3+{{ lemma }}+VTA+ThmInv+0+0+Pl
+
+2+{{ lemma }}+VTA+Thm2+2+Pl+Prt
+2+{{ lemma }}+VTA+Thm2+2+Pl+Dub
+2+{{ lemma }}+VTA+Thm2+1+Pl+Prt
+2+{{ lemma }}+VTA+Thm2+1+Pl+Dub
+2+{{ lemma }}+VTA+Thm1Sg+2+Pl+Prt
+2+{{ lemma }}+VTA+Thm1Sg+2+Pl+Dub
+2+{{ lemma }}+VTA+Thm1Pl+2+Pl+Prt
+2+{{ lemma }}+VTA+Thm1Pl+2+Pl+Dub
+2+{{ lemma }}+VTA+ThmDir+1+Pl+Prt
+2+{{ lemma }}+VTA+ThmDir+1+Pl+Dub
+2+{{ lemma }}+VTA+ThmDir+2+Pl+Prt
+2+{{ lemma }}+VTA+ThmDir+2+Pl+Dub
+2+{{ lemma }}+VTA+ThmInv+1+Pl+Prt
+2+{{ lemma }}+VTA+ThmInv+1+Pl+Dub
+2+{{ lemma }}+VTA+ThmInv+2+Pl+Prt
+2+{{ lemma }}+VTA+ThmInv+2+Pl+Dub
+1+{{ lemma }}+VTA+ThmDir+1+Pl+Prt
+1+{{ lemma }}+VTA+ThmDir+1+Pl+Dub
+1+{{ lemma }}+VTA+ThmInv+1+Pl+Prt
+1+{{ lemma }}+VTA+ThmInv+1+Pl+Dub
+
+2+{{ lemma }}+VTA+ThmDir+1+Pl+3+Pl
+2+{{ lemma }}+VTA+ThmDir+2+Pl+3+Pl
+2+{{ lemma }}+VTA+ThmInv+1+Pl+3+Pl
+2+{{ lemma }}+VTA+ThmInv+2+Pl+3+Pl
+1+{{ lemma }}+VTA+ThmDir+1+Pl+3+Pl
+1+{{ lemma }}+VTA+ThmInv+1+Pl+3+Pl
+3+{{ lemma }}+VTA+ThmDir+2+Pl+3+4
+3+{{ lemma }}+VTA+ThmInv+2+Pl+3+4
+
+2+{{ lemma }}+VTA+ThmDir+Prt+3+Pl
+2+{{ lemma }}+VTA+ThmDir+Dub+3+Pl
+2+{{ lemma }}+VTA+ThmInv+Prt+3+Pl
+2+{{ lemma }}+VTA+ThmInv+Dub+3+Pl
+1+{{ lemma }}+VTA+ThmDir+Prt+3+Pl
+1+{{ lemma }}+VTA+ThmDir+Dub+3+Pl
+1+{{ lemma }}+VTA+ThmInv+Prt+3+Pl
+1+{{ lemma }}+VTA+ThmInv+Dub+3+Pl
+3+{{ lemma }}+VTA+ThmDir+Prt+3+4
+3+{{ lemma }}+VTA+ThmDir+Dub+3+4
+3+{{ lemma }}+VTA+ThmInv+Prt+3+4
+3+{{ lemma }}+VTA+ThmInv+Dub+3+4
+
+
+2+{{ lemma }}+VTA+ThmInv+0+2+Pl+Prt
+2+{{ lemma }}+VTA+ThmInv+0+2+Pl+Dub
+2+{{ lemma }}+VTA+ThmInv+0+1+Pl+Prt
+2+{{ lemma }}+VTA+ThmInv+0+1+Pl+Dub
+1+{{ lemma }}+VTA+ThmInv+0+1+Pl+Prt
+1+{{ lemma }}+VTA+ThmInv+0+1+Pl+Dub
+3+{{ lemma }}+VTA+ThmInv+0+2+Pl+Prt
+3+{{ lemma }}+VTA+ThmInv+0+2+Pl+Dub
+
+2+{{ lemma }}+VTA+ThmInv+0+2+Pl+0+Pl
+2+{{ lemma }}+VTA+ThmInv+0+1+Pl+0+Pl
+1+{{ lemma }}+VTA+ThmInv+0+1+Pl+0+Pl
+3+{{ lemma }}+VTA+ThmInv+0+2+Pl+0+Pl
+
+2+{{ lemma }}+VTA+ThmInv+0+Prt+0+Pl
+2+{{ lemma }}+VTA+ThmInv+0+Dub+0+Pl
+1+{{ lemma }}+VTA+ThmInv+0+Prt+0+Pl
+1+{{ lemma }}+VTA+ThmInv+0+Dub+0+Pl
+3+{{ lemma }}+VTA+ThmInv+0+Prt+0+Pl
+3+{{ lemma }}+VTA+ThmInv+0+Dub+0+Pl
+
+2+{{ lemma }}+VTA+ThmDir+1+Pl+Prt+3+Pl
+2+{{ lemma }}+VTA+ThmDir+1+Pl+Dub+3+Pl
+2+{{ lemma }}+VTA+ThmDir+2+Pl+Prt+3+Pl
+2+{{ lemma }}+VTA+ThmDir+2+Pl+Dub+3+Pl
+2+{{ lemma }}+VTA+ThmInv+1+Pl+Prt+3+Pl
+2+{{ lemma }}+VTA+ThmInv+1+Pl+Dub+3+Pl
+2+{{ lemma }}+VTA+ThmInv+2+Pl+Prt+3+Pl
+2+{{ lemma }}+VTA+ThmInv+2+Pl+Dub+3+Pl
+1+{{ lemma }}+VTA+ThmDir+1+Pl+Prt+3+Pl
+1+{{ lemma }}+VTA+ThmDir+1+Pl+Dub+3+Pl
+1+{{ lemma }}+VTA+ThmInv+1+Pl+Prt+3+Pl
+1+{{ lemma }}+VTA+ThmInv+1+Pl+Dub+3+Pl
+3+{{ lemma }}+VTA+ThmDir+2+Pl+Prt+3+4
+3+{{ lemma }}+VTA+ThmDir+2+Pl+Dub+3+4
+3+{{ lemma }}+VTA+ThmInv+2+Pl+Prt+3+4
+3+{{ lemma }}+VTA+ThmInv+2+Pl+Dub+3+4
+
+2+{{ lemma }}+VTA+ThmInv+0+2+Pl+Prt+0+Pl
+2+{{ lemma }}+VTA+ThmInv+0+2+Pl+Dub+0+Pl
+2+{{ lemma }}+VTA+ThmInv+0+1+Pl+Prt+0+Pl
+2+{{ lemma }}+VTA+ThmInv+0+1+Pl+Dub+0+Pl
+1+{{ lemma }}+VTA+ThmInv+0+1+Pl+Prt+0+Pl
+1+{{ lemma }}+VTA+ThmInv+0+1+Pl+Dub+0+Pl
+3+{{ lemma }}+VTA+ThmInv+0+2+Pl+Prt+0+Pl
+3+{{ lemma }}+VTA+ThmInv+0+2+Pl+Dub+0+Pl
+
+2+{{ lemma }}+VTA+Thm2+Neg
+2+{{ lemma }}+VTA+Thm1Sg+Neg
+2+{{ lemma }}+VTA+Thm1Pl+Neg
+2+{{ lemma }}+VTA+ThmDir+Neg
+2+{{ lemma }}+VTA+ThmInv+Neg
+1+{{ lemma }}+VTA+ThmDir+Neg
+1+{{ lemma }}+VTA+ThmInv+Neg
+
+2+{{ lemma }}+VTA+ThmInv+Neg+0
+1+{{ lemma }}+VTA+ThmInv+Neg+0
+3+{{ lemma }}+VTA+ThmInv+Neg+0
+
+2+{{ lemma }}+VTA+Thm2+Neg+2+Pl
+2+{{ lemma }}+VTA+Thm2+Neg+1+Pl
+2+{{ lemma }}+VTA+Thm1Sg+Neg+2+Pl
+2+{{ lemma }}+VTA+Thm1Pl+Neg+2+Pl
+2+{{ lemma }}+VTA+ThmDir+Neg+1+Pl
+2+{{ lemma }}+VTA+ThmDir+Neg+2+Pl
+2+{{ lemma }}+VTA+ThmInv+Neg+1+Pl
+2+{{ lemma }}+VTA+ThmInv+Neg+2+Pl
+1+{{ lemma }}+VTA+ThmDir+Neg+1+Pl
+1+{{ lemma }}+VTA+ThmInv+Neg+1+Pl
+
+2+{{ lemma }}+VTA+Thm2+Neg+Prt
+2+{{ lemma }}+VTA+Thm2+Neg+Dub
+2+{{ lemma }}+VTA+Thm1Sg+Neg+Prt
+2+{{ lemma }}+VTA+Thm1Sg+Neg+Dub
+2+{{ lemma }}+VTA+Thm1Pl+Neg+Prt
+2+{{ lemma }}+VTA+Thm1Pl+Neg+Dub
+2+{{ lemma }}+VTA+ThmDir+Neg+Prt
+2+{{ lemma }}+VTA+ThmDir+Neg+Dub
+2+{{ lemma }}+VTA+ThmInv+Neg+Prt
+2+{{ lemma }}+VTA+ThmInv+Neg+Dub
+1+{{ lemma }}+VTA+ThmDir+Neg+Prt
+1+{{ lemma }}+VTA+ThmDir+Neg+Dub
+1+{{ lemma }}+VTA+ThmInv+Neg+Prt
+1+{{ lemma }}+VTA+ThmInv+Neg+Dub
+
+3+{{ lemma }}+VTA+ThmDir+Neg+3+4
+3+{{ lemma }}+VTA+ThmInv+Neg+3+4
+
+2+{{ lemma }}+VTA+ThmInv+Neg+0+2+Pl
+2+{{ lemma }}+VTA+ThmInv+Neg+0+1+Pl
+1+{{ lemma }}+VTA+ThmInv+Neg+0+1+Pl
+3+{{ lemma }}+VTA+ThmInv+Neg+0+2+Pl
+
+2+{{ lemma }}+VTA+ThmInv+Neg+0+Prt
+2+{{ lemma }}+VTA+ThmInv+Neg+0+Dub
+1+{{ lemma }}+VTA+ThmInv+Neg+0+Prt
+1+{{ lemma }}+VTA+ThmInv+Neg+0+Dub
+3+{{ lemma }}+VTA+ThmInv+Neg+0+Prt
+3+{{ lemma }}+VTA+ThmInv+Neg+0+Dub
+
+2+{{ lemma }}+VTA+ThmInv+Neg+0+0+Pl
+1+{{ lemma }}+VTA+ThmInv+Neg+0+0+Pl
+3+{{ lemma }}+VTA+ThmInv+Neg+0+0+Pl
+
+2+{{ lemma }}+VTA+Thm2+Neg+2+Pl+Prt
+2+{{ lemma }}+VTA+Thm2+Neg+2+Pl+Dub
+2+{{ lemma }}+VTA+Thm2+Neg+1+Pl+Prt
+2+{{ lemma }}+VTA+Thm2+Neg+1+Pl+Dub
+2+{{ lemma }}+VTA+Thm1Sg+Neg+2+Pl+Prt
+2+{{ lemma }}+VTA+Thm1Sg+Neg+2+Pl+Dub
+2+{{ lemma }}+VTA+Thm1Pl+Neg+2+Pl+Prt
+2+{{ lemma }}+VTA+Thm1Pl+Neg+2+Pl+Dub
+2+{{ lemma }}+VTA+ThmDir+Neg+1+Pl+Prt
+2+{{ lemma }}+VTA+ThmDir+Neg+1+Pl+Dub
+2+{{ lemma }}+VTA+ThmDir+Neg+2+Pl+Prt
+2+{{ lemma }}+VTA+ThmDir+Neg+2+Pl+Dub
+2+{{ lemma }}+VTA+ThmInv+Neg+1+Pl+Prt
+2+{{ lemma }}+VTA+ThmInv+Neg+1+Pl+Dub
+2+{{ lemma }}+VTA+ThmInv+Neg+2+Pl+Prt
+2+{{ lemma }}+VTA+ThmInv+Neg+2+Pl+Dub
+1+{{ lemma }}+VTA+ThmDir+Neg+1+Pl+Prt
+1+{{ lemma }}+VTA+ThmDir+Neg+1+Pl+Dub
+1+{{ lemma }}+VTA+ThmInv+Neg+1+Pl+Prt
+1+{{ lemma }}+VTA+ThmInv+Neg+1+Pl+Dub
+
+2+{{ lemma }}+VTA+ThmDir+Neg+1+Pl+3+Pl
+2+{{ lemma }}+VTA+ThmDir+Neg+2+Pl+3+Pl
+2+{{ lemma }}+VTA+ThmInv+Neg+1+Pl+3+Pl
+2+{{ lemma }}+VTA+ThmInv+Neg+2+Pl+3+Pl
+1+{{ lemma }}+VTA+ThmDir+Neg+1+Pl+3+Pl
+1+{{ lemma }}+VTA+ThmInv+Neg+1+Pl+3+Pl
+3+{{ lemma }}+VTA+ThmDir+Neg+2+Pl+3+4
+3+{{ lemma }}+VTA+ThmInv+Neg+2+Pl+3+4
+
+2+{{ lemma }}+VTA+ThmDir+Neg+Prt+3+Pl
+2+{{ lemma }}+VTA+ThmDir+Neg+Dub+3+Pl
+2+{{ lemma }}+VTA+ThmInv+Neg+Prt+3+Pl
+2+{{ lemma }}+VTA+ThmInv+Neg+Dub+3+Pl
+1+{{ lemma }}+VTA+ThmDir+Neg+Prt+3+Pl
+1+{{ lemma }}+VTA+ThmDir+Neg+Dub+3+Pl
+1+{{ lemma }}+VTA+ThmInv+Neg+Prt+3+Pl
+1+{{ lemma }}+VTA+ThmInv+Neg+Dub+3+Pl
+3+{{ lemma }}+VTA+ThmDir+Neg+Prt+3+4
+3+{{ lemma }}+VTA+ThmDir+Neg+Dub+3+4
+3+{{ lemma }}+VTA+ThmInv+Neg+Prt+3+4
+3+{{ lemma }}+VTA+ThmInv+Neg+Dub+3+4
+
+
+2+{{ lemma }}+VTA+ThmInv+Neg+0+2+Pl+Prt
+2+{{ lemma }}+VTA+ThmInv+Neg+0+2+Pl+Dub
+2+{{ lemma }}+VTA+ThmInv+Neg+0+1+Pl+Prt
+2+{{ lemma }}+VTA+ThmInv+Neg+0+1+Pl+Dub
+1+{{ lemma }}+VTA+ThmInv+Neg+0+1+Pl+Prt
+1+{{ lemma }}+VTA+ThmInv+Neg+0+1+Pl+Dub
+3+{{ lemma }}+VTA+ThmInv+Neg+0+2+Pl+Prt
+3+{{ lemma }}+VTA+ThmInv+Neg+0+2+Pl+Dub
+
+2+{{ lemma }}+VTA+ThmInv+Neg+0+2+Pl+0+Pl
+2+{{ lemma }}+VTA+ThmInv+Neg+0+1+Pl+0+Pl
+1+{{ lemma }}+VTA+ThmInv+Neg+0+1+Pl+0+Pl
+3+{{ lemma }}+VTA+ThmInv+Neg+0+2+Pl+0+Pl
+
+2+{{ lemma }}+VTA+ThmInv+Neg+0+Prt+0+Pl
+2+{{ lemma }}+VTA+ThmInv+Neg+0+Dub+0+Pl
+1+{{ lemma }}+VTA+ThmInv+Neg+0+Prt+0+Pl
+1+{{ lemma }}+VTA+ThmInv+Neg+0+Dub+0+Pl
+3+{{ lemma }}+VTA+ThmInv+Neg+0+Prt+0+Pl
+3+{{ lemma }}+VTA+ThmInv+Neg+0+Dub+0+Pl
+
+2+{{ lemma }}+VTA+ThmDir+Neg+1+Pl+Prt+3+Pl
+2+{{ lemma }}+VTA+ThmDir+Neg+1+Pl+Dub+3+Pl
+2+{{ lemma }}+VTA+ThmDir+Neg+2+Pl+Prt+3+Pl
+2+{{ lemma }}+VTA+ThmDir+Neg+2+Pl+Dub+3+Pl
+2+{{ lemma }}+VTA+ThmInv+Neg+1+Pl+Prt+3+Pl
+2+{{ lemma }}+VTA+ThmInv+Neg+1+Pl+Dub+3+Pl
+2+{{ lemma }}+VTA+ThmInv+Neg+2+Pl+Prt+3+Pl
+2+{{ lemma }}+VTA+ThmInv+Neg+2+Pl+Dub+3+Pl
+1+{{ lemma }}+VTA+ThmDir+Neg+1+Pl+Prt+3+Pl
+1+{{ lemma }}+VTA+ThmDir+Neg+1+Pl+Dub+3+Pl
+1+{{ lemma }}+VTA+ThmInv+Neg+1+Pl+Prt+3+Pl
+1+{{ lemma }}+VTA+ThmInv+Neg+1+Pl+Dub+3+Pl
+3+{{ lemma }}+VTA+ThmDir+Neg+2+Pl+Prt+3+4
+3+{{ lemma }}+VTA+ThmDir+Neg+2+Pl+Dub+3+4
+3+{{ lemma }}+VTA+ThmInv+Neg+2+Pl+Prt+3+4
+3+{{ lemma }}+VTA+ThmInv+Neg+2+Pl+Dub+3+4
+
+2+{{ lemma }}+VTA+ThmInv+Neg+0+2+Pl+Prt+0+Pl
+2+{{ lemma }}+VTA+ThmInv+Neg+0+2+Pl+Dub+0+Pl
+2+{{ lemma }}+VTA+ThmInv+Neg+0+1+Pl+Prt+0+Pl
+2+{{ lemma }}+VTA+ThmInv+Neg+0+1+Pl+Dub+0+Pl
+1+{{ lemma }}+VTA+ThmInv+Neg+0+1+Pl+Prt+0+Pl
+1+{{ lemma }}+VTA+ThmInv+Neg+0+1+Pl+Dub+0+Pl
+3+{{ lemma }}+VTA+ThmInv+Neg+0+2+Pl+Prt+0+Pl
+3+{{ lemma }}+VTA+ThmInv+Neg+0+2+Pl+Dub+0+Pl
