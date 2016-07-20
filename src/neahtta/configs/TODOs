@@ -19,6 +19,10 @@ rationale here is: using NDS outside of GT infrastructure should be
 possible, so that NDS source code can be packaged without reference to
 all of the projects we're running within the infra.
 
+ISO.py files still require access to common via import, so this
+directory still needs module structure to run, however for new projects
+using their own config directories without overrides this isn't yet a
+problem
 
 files to check:
 
