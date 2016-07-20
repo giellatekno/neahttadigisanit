@@ -510,7 +510,7 @@ kidwinan-install: install_langs_fsts copy-kidwinan-glossers
 
 # include foma
 .PHONY: copy-kidwinan-glossers
-copy-kidwinan-glossers: $(GTHOME)/langs/otw/src/analyser-gt-glossing.*
+copy-kidwinan-glossers: $(GTHOME)/langs/otw/src/analyser-gt-glossing.* $(GTHOME)/langs/otw/src/generator-gt-glossing.*
 	@-cp $^ /opt/smi/otw/bin/
 
 otweng.xml: $(GTHOME)/art/dicts/otw/otweng.xml
