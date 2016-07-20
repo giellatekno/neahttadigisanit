@@ -603,6 +603,16 @@ engcrk.xml: $(GTHOME)/art/dicts/crk/Wolvengrey/engcrk.xml
 # TODO: include python tools/extract_audio.py --local-audio-source --output-file=OUTFILE dicts/src/INFILE static/aud/crk
 
 # Copy the dependencies and combine them using SAXON
+# NB: audio installation process, the URLs in the xml file will be
+# rewritten to be something like:
+#     aud/crk/etc.mp3
+#
+# With the intent that 'static' can be dynamically added in jinja
+# templates with: 
+#     url_for('static', filename='aud/crk/etc.mp3')
+#
+# This seems to be the easiest way to manage the subdirectory path
+# 'itwewina/' in the URL, or any potential path
 crkeng.xml: $(GTHOME)/art/dicts/crk/Wolvengrey/crkeng.xml \
 			$(GTHOME)/art/dicts/crk/Wolvengrey/bridge2FST.xml
 	@echo "******************************"
@@ -616,7 +626,9 @@ crkeng.xml: $(GTHOME)/art/dicts/crk/Wolvengrey/crkeng.xml \
 	cp -R $(GTHOME)/words/dicts/scripts ../scripts
 	$(SAXON) inDir=$(shell pwd)/crkeng_tmp > $@.tmp
 	mkdir -p ../static/aud/crk
-	python ../tools/extract_audio.py --local-audio-source --encoding-format=mp3 --output-file=$@ $@.tmp ../static/aud/crk
+	python ../tools/extract_audio.py --local-audio-source --encoding-format=mp3 --output-file=$@.tmp.2 $@.tmp ../static/aud/crk
+	cat $@.tmp.2 | sed 's#/../static/##g' > $@ 
+	rm $@.tmp $@.tmp.2
 	rm -rf crkeng_tmp/
 
 
