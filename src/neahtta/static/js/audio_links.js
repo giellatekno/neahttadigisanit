@@ -7,7 +7,7 @@
 // TODO: add loading and playing icons 
 $(document).ready(function(){
     soundManager.setup({
-      url: '/static/vendor/SoundManager2/swf/',
+      url: '../vendor/SoundManager2/swf/',
       flashVersion: 9, // optional: shiny features (default = 8)
       // optional: ignore Flash where possible, use 100% HTML5 mode
       // preferFlash: false,
@@ -21,8 +21,8 @@ $(document).ready(function(){
 
        btn.preventDefault();
 
-       audio = $(btn.target).attr('data-audio-target');
-       console.log(audio);
+       audio = $(btn.target).attr('data-audio-target') 
+             || $(btn.target).parents('a.audio-link').attr('data-audio-target');
 
        function finished_event() {
          soundManager.destroySound('dictionary-player');
