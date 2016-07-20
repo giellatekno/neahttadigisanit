@@ -29,7 +29,7 @@
             {# URLFOR #}
                     <a class="audio-link" 
                        data-audio-player 
-                       data-audio-target="{{ aud.xpath('@href')|first }}" target="blank" href="#">
+                       data-audio-target="{{ url_for('static', filename=aud.xpath('@href')|first) }}" target="blank" href="#">
                         <i class="icon-volume-up"></i>
                         <span class="audio-meta">
                             {% if dialect %}
