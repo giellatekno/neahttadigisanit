@@ -70,9 +70,10 @@ class TemplateConfig(object):
         self._app = app
         self.cache = cache
 
-        self.template_dir = os.path.join( os.getcwd()
-                                        , 'configs/language_specific_rules/templates/'
+        self.template_dir = os.path.join( app.config.language_specific_rules_path
+                                        , 'templates/'
                                         )
+
         self.instance = app.config.short_name
         self.render_template_errors = app.config.render_template_errors
         self.languages_available = app.config.languages.keys()
@@ -158,6 +159,8 @@ class TemplateConfig(object):
         except:
             tpl = False
 
+        # TODO: partition path based on
+        # app.config.language/specific_rules
         if tpl:
             _, _, _path = tpl.path.partition('language_specific_rules')
             return self.instance in _path

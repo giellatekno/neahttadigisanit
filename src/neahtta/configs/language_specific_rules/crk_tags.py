@@ -32,6 +32,7 @@ def process_crk_analysis(analysis_line):
 
     """
 
+
     wordform, _, analysis_string = analysis_line.partition('\t')
 
     lemma = False

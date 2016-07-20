@@ -1,23 +1,33 @@
 programmer
 
-* sound files in itwêwina are not playing, problem appears to be URLs
-  - JS dependencies were missing on sapir, fixed now
-  - TODO: ffmpeg on sapir, audio files not being transcoded and thus not
-    found
-
 * Identify itwêwina-specific features and implement them for guusaaw,
   kidwinan and gunaha
+   - TODO: crk.py
    - korp integration
      - TODO: which langs?
    - audio_links.template
-     - TODO: which langs?
-   - analyses contain root (maybe for odawa?)
+     - TODO: integrate with parent templates
+   - analyses contain root
      - TODO: roots need to be in the lexicon for this to work, could
        enable feature if this is the plan otherwise
-   - about.template
-     - TODO: copy for each project so that relevant examples can be
-       added
 
+* linguists: add sources to various project sources templates
+* linguists: add paradigms and layouts
+
+* Lexicon result sorting for itwêwina
+  - some of this is carried out in definition template, which sorts
+    meanings by @rank
+* kidwinan/otw - glossing FSTs going away?
+
+
+
+__Done__
+
+* Identify itwêwina-specific features and implement them for guusaaw,
+  kidwinan and gunaha
+   - about.template
+     - DONE: copied for each project so that relevant examples can be
+       added
    - relabel settings
      - DONE: added basic files
    - keyboard input
@@ -35,17 +45,42 @@ programmer
    - hide text "possible form of ... "
      - DONE: added setting in template_settings.html
 
-* kidwinan/otw - glossing FSTs going away?
+* sound files in itwêwina are not playing, problem appears to be URLs
+  - JS dependencies were missing on sapir, fixed now
+  - DONE: ffmpeg on sapir, audio files not being transcoded and thus not
+    found
 
-* linguists: add sources to various project sources templates
-* linguists: add paradigms and layouts
+        https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
 
-* Lexicon result sorting for itwêwina
-  - some of this is carried out in definition template, which sorts
-    meanings by @rank
+                sudo apt-get install libmp3lame-dev
 
+                --enable-libmp3lame
 
-Done
+                sudo apt-get install autoconf automake build-essential libass-dev libfreetype6-dev \
+                    libtheora-dev libtool libvorbis-dev pkg-config texinfo zlib1g-dev
+
+                sudo apt-get install yasm
+
+        config options i used:
+
+            PATH="$HOME/bin:$PATH" PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./configure \
+              --prefix="$HOME/ffmpeg_build" \
+              --pkg-config-flags="--static" \
+              --extra-cflags="-I$HOME/ffmpeg_build/include" \
+              --extra-ldflags="-L$HOME/ffmpeg_build/lib" \
+              --bindir="$HOME/bin" \
+              --enable-gpl \
+              --enable-libass \
+              --enable-libfreetype \
+              --enable-libmp3lame \
+              --enable-libtheora \
+              --enable-libvorbis \
+              --enable-nonfree
+
+    - soundmanager problems: problem was that links contain <span>, and
+      click target is sometimes <span />, sometimes <a />, fixed in
+      sound_links.js
+
 * FSTs: capitalization: Xaní and xaní should both be recognized as lemma
   xaní; orthographical capitalization on first word of sentence, etc
 

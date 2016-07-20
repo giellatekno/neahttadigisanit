@@ -4,7 +4,7 @@ import sys, os
 from flask import Config
 
 # Import configs stuff to register overrides
-from configs import *
+# from conf import *
 
 import yaml
 
@@ -93,12 +93,24 @@ class Config(Config):
     """
 
     @property
+    def configs_path(self):
+        """ Path to the configs/ dir """
+        return self.get('NDS_CONFDIR')
+
+    @property
+    def language_specific_rules_path(self):
+        """ Path to the language_specific_rules/ dir """
+        return os.path.join( self.get('NDS_CONFDIR')
+                           , 'language_specific_rules/'
+                           )
+
+    @property
     def language_configs_yaml(self):
         if hasattr(self, '_language_configs_yaml'):
             return self._language_configs_yaml
-        
-        language_configs_path = os.path.join( os.path.dirname(__file__)
-                                            , 'configs/language_names.yaml'
+
+        language_configs_path = os.path.join( self.get('NDS_CONFDIR')
+                                            , 'language_names.yaml'
                                             )
         with open(language_configs_path, 'r') as F:
             config = yaml.load(F)
@@ -402,8 +414,8 @@ class Config(Config):
         if hasattr(self, '_paradigm_contexts'):
             return self._paradigm_contexts
 
-        paradigm_path = os.path.join( os.path.dirname(__file__)
-                                    , 'configs/language_specific_rules/paradigms/'
+        paradigm_path = os.path.join( self.language_specific_rules_path
+                                    , 'paradigms/'
                                     )
 
         available_langs = self.languages
@@ -622,8 +634,8 @@ class Config(Config):
         if hasattr(self, '_tag_filters'):
             return self._tag_filters
 
-        _path = os.path.join( os.path.dirname(__file__)
-                            , 'configs/language_specific_rules/user_friendly_tags/'
+        _path = os.path.join( self.language_specific_rules_path
+                            , 'user_friendly_tags/'
                             )
 
         available_langs = self.languages
@@ -677,8 +689,8 @@ class Config(Config):
         if self._tagset_definitions:
             return self._tagset_definitions
 
-        tagset_path = os.path.join( os.path.dirname(__file__)
-                                  , 'configs/language_specific_rules/tagsets/'
+        tagset_path = os.path.join( self.language_specific_rules_path
+                                  , 'tagsets/'
                                   )
 
         available_langs = self.languages

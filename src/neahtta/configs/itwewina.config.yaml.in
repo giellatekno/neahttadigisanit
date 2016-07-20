@@ -1,4 +1,6 @@
 ApplicationSettings:
+  # relative to directory containing application.py file
+  configs: "configs/language_specific_rules/"
   app_name: !gettext "itwêwina"
   app_meta_title: !gettext "Online Plains Cree dictionary"
   fcgi_script_path: '/itwewina'
@@ -32,7 +34,7 @@ Morphology:
     inverse_file: [*OPT, '/crk/bin/generator-dict-gt-norm.hfstol']
     format: 'hfst'
     options: &MORPHOLOGY_OPTS
-      tagProcessor: "configs.language_specific_rules.crk_tags:process_crk_analysis"
+      tagProcessor: "configs/language_specific_rules/crk_tags.py:process_crk_analysis"
       compoundBoundary: "+Use/Circ#"
       derivationMarker: "+Der"
       tagsep: '+'

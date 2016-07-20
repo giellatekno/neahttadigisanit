@@ -283,7 +283,7 @@ def create_app():
     """ Set up the Flask app, cache, read app configuration file, and
     other things.
     """
-    import configs
+    import conf as configs
 
     from morpholex import MorphoLexicon
 
@@ -308,7 +308,13 @@ def create_app():
     app = jinja_options_and_filters(app)
     app.production = False
 
+    DEFAULT_CONF = os.path.join( os.path.dirname(__file__)
+                               , 'configs'
+                               )
+
     app.config['cache'] = cache
+    # TODO: make sure this isn't being specified by an env variable
+    app.config['NDS_CONFDIR'] = os.environ.get('NDS_CONFDIR', DEFAULT_CONF)
     app.config['jinja_env'] = app.jinja_env
 
     app.config['jinja_env'] = app.jinja_env

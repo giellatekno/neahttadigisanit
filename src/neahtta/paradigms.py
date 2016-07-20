@@ -511,9 +511,8 @@ class ParadigmConfig(object):
             return self._paradigm_directory
 
         # Path relative to working directory
-        # TODO: need to grab from other configs?
-        _path = os.path.join( os.path.dirname(__file__)
-                            , 'configs/language_specific_rules/paradigms/'
+        _path = os.path.join( self._app.config.language_specific_rules_path
+                            , 'paradigms/'
                             )
 
         # We only want the ones that exist for this instance.

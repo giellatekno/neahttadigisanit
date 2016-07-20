@@ -93,6 +93,16 @@ Morphology:
     format: 'xfst'
     options:
       <<: *kca_fst_options
+  non:
+    tool: *LOOKUP
+    file: [*OPT, '/non/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/non/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options: &non_fst_options
+      compoundBoundary: "+Cmp#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
 
 # For now, make sure that all languages that will be available are
 # defined here.  example, if only one dictionary file is defined,
@@ -113,6 +123,9 @@ Languages:
   - iso: eng
   - iso: rus
 
+  - iso: non
+    minority_lang: true 
+
 # Here are the actual definitions of what dictionaries are available in the
 # system. What is presented in the UI also adheres to the order that is here.
 #
@@ -126,5 +139,9 @@ Dictionaries:
 
   - source: kca
     target: rus
+    path: 'dicts/kca-all.xml'
+
+  - source: non
+    target: eng
     path: 'dicts/kca-all.xml'
 

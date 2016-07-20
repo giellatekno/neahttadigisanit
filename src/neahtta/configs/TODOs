@@ -20,6 +20,36 @@ possible, so that NDS source code can be packaged without reference to
 all of the projects we're running within the infra.
 
 
+files to check:
+
+    babel.cfg
+      - TODO: tough one
+    fabfile.py
+      - TODO: tough one
+
+    conf/confdir.py
+      - TODO: this may be operating outside of the current app context?
+        before or after yaml parse?
+
+    entry_templates.py
+      - loads path correctly
+      - TODO: mentions of path in path splits for tracking file
+        names
+    paradigms.py
+      - loads path correctly
+      - TODO: mentions of path in path splits for tracking file
+        names
+
+    config.py
+      - DONE
+    paradigm_layouts.py
+      - DONE
+    lexicon/lexicon.py
+      - DONE
+    morphology/morphology.py
+      - DONE
+
+
 --
 
 DONE: language_names.py -> language_names.yaml; localization strings now
