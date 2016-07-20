@@ -7,6 +7,12 @@ Morphological tools
 from cache import cache
 import re
 
+import os
+import imp
+
+# TODO: get from global path
+configs_path = os.path.join( os.path.dirname(__file__) , '../')
+
 class TagPart(object):
     """ This is a part of a tag, which should behave mostly like a string:
 
@@ -554,7 +560,7 @@ class XFST(object):
             Morphology:
               crk:
                 options:
-                  tagProcessor: "configs.language_specific_rules.file:function_name"
+                  tagProcessor: "configs/language_specific_rules/file.py:function_name"
 
         Note the colon. It may also be a good idea to write some tests
         in the docstring for that function. If these are present they
@@ -662,6 +668,7 @@ class XFST(object):
 
     def load_tag_processor(self):
         import sys
+
         # import doctest
 
         print >> sys.stdout, "Loading the tag processor."
@@ -670,24 +677,16 @@ class XFST(object):
         module_path, _, from_list = _path.partition(':')
 
         try:
-            asdf = __import__(module_path, fromlist=[from_list])
+            mod = imp.load_source('.', os.path.join(configs_path, module_path))
         except:
-            sys.exit("Unable to import <%s>" % _path)
+            sys.exit("Unable to import <%s>" % module_path)
 
         try:
-            func = asdf.__getattribute__(from_list)
+            func = mod.__getattribute__(from_list)
         except:
             sys.exit("Unable to load <%s> from <%s>" % (from_list, module_path))
 
         self.tag_processor = func
-
-        # result = doctest.testmod(asdf)
-
-        # if result.failed > 0:
-        #     print result
-        #     sys.exit("Unable to pass all doctests for %s.%s. Fix these in order to launch the service." % (module_path, from_list))
-
-        # return True
 
     def __init__(self, lookup_tool, fst_file, ifst_file=False, options={}):
         self.cmd = "%s -flags mbTT %s" % (lookup_tool, fst_file)
