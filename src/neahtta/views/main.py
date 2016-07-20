@@ -168,6 +168,9 @@ allowed_keys = [
 ]
 def session_clear(sess_key):
     if sess_key in allowed_keys:
+        if sess_key == 'last_searches':
+            sess_key += '-' + current_app.config.short_name
+
         try:
             del session[sess_key]
         except KeyError:

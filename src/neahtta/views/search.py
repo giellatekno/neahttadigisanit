@@ -111,7 +111,7 @@ class DictionaryView(MethodView):
             '_to': _to,
             'orig_from': orig_from,
             'orig_to': orig_to,
-            'last_searches': session.get('last_searches', []),
+            'last_searches': session.get('last_searches-' + current_app.config.short_name, []),
         }
 
         shared_context.update(**kwargs)
@@ -754,7 +754,7 @@ class SearcherMixin(object):
             'analyses_without_lex': search_result_obj.analyses_without_lex,
             'user_input': search_result_obj.search_term,
 
-            'last_searches': session.get('last_searches', []),
+            'last_searches': session.get('last_searches-' + current_app.config.short_name, []),
 
             # ?
             'errors': False, # where should we expect errors?
@@ -789,13 +789,14 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
 
         uri = u'%s://%s%s?lookup=%s' % (request.scheme, request.host, request.path, user_input)
 
-        if 'last_searches' in session:
-            if (uri, user_input) not in session['last_searches']:
-                session['last_searches'].insert(0, (uri, user_input))
-                if len(session['last_searches']) > 3:
-                    session['last_searches'] = session['last_searches'][0:3]
+        last_search_key = 'last_searches-' + current_app.config.short_name
+        if last_search_key in session:
+            if (uri, user_input) not in session[last_search_key]:
+                session[last_search_key].insert(0, (uri, user_input))
+                if len(session[last_search_key]) > 3:
+                    session[last_search_key] = session[last_search_key][0:3]
         else:
-            session['last_searches'] = [(uri, user_input)]
+            session[last_search_key] = [(uri, user_input)]
 
     def get(self, _from, _to):
 
