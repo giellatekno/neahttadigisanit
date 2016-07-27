@@ -90,7 +90,7 @@
                    {% endif %}
                 </div>
             </form>
-            {% if last_searches %}
+            {# if last_searches %}
                 <ul id="last_searches">
                     <li class="note">{% trans %}Previous:{% endtrans %}</li>
                         {% for uri, input in last_searches %}
@@ -98,7 +98,7 @@
                         {% endfor %}
                     <li><a href="{{ url_for('.clear_session_key', sess_key='last_searches') }}">({% trans %}clear{% endtrans %})</a></li>
                 </ul>
-            {% endif %}
+            {% endif #}
         </div>
     </div>
 </div>
