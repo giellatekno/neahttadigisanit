@@ -154,7 +154,7 @@ clean_langs_fsts: $(langs)
 	for ll in $(GT_COMPILE_STARTUP_LANGS) ; do \
 		cd $(GTHOME)/startup-langs/ ; rm -rf $$ll ; svn up $$ll >> svn.log ; \
 	done 
-	cd $(GTHOME)/gtcore/ ; svn up ; make
+	cd $(GTHOME)/giella-core/ ; svn up ; make
 
 .PHONY: compile_langs_lexicon
 compile_langs_lexicon: $(LEX_COMPILE_LANGS)
