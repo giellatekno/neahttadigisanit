@@ -44,8 +44,8 @@ ENV LC_ALL en_US.UTF-8
 # set up gtsvn stuff
 
 RUN mkdir ~/gtsvn/
-RUN svn co https://victorio.uit.no/langtech/trunk/gtcore ~/gtsvn/gtcore
-RUN cd ~/gtsvn/gtcore/ && ./autogen.sh && ./configure --prefix=$HOME && make && make install
+RUN svn co https://victorio.uit.no/langtech/trunk/giella-core ~/gtsvn/giella-core
+RUN cd ~/gtsvn/giella-core/ && ./autogen.sh && ./configure --prefix=$HOME && make && make install
 
 RUN mkdir ~/saxon
 RUN mkdir ~/lib
