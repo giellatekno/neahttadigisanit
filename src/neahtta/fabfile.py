@@ -327,7 +327,7 @@ def update_gtsvn():
         # TODO: replace langs with specific list of langs from config
         # file
         paths = [
-            'gtcore/',
+            'giella-core/',
             'words/',
             'art/dicts/',
         ] + svn_lang_paths
@@ -344,11 +344,11 @@ def update_gtsvn():
                 )
 
     # TODO: necessary to run autogen just in case? 
-    print(cyan("** Compiling gtcore **"))
-    gtcore = env.svn_path + '/' + 'gtcore/'
-    with cd(gtcore):
-        make_file = env.svn_path + '/gtcore/Makefile'
-        make_ = "make -C %s -f %s" % ( gtcore
+    print(cyan("** Compiling giella-core **"))
+    giella-core = env.svn_path + '/' + 'giella-core/'
+    with cd(giella-core):
+        make_file = env.svn_path + '/giella-core/Makefile'
+        make_ = "make -C %s -f %s" % ( giella-core
                                      , make_file
                                      )
         result = env.run(make_)
