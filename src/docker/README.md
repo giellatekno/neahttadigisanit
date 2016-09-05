@@ -57,7 +57,7 @@ the dev environment.
 
 In this case, what we need is the `nds` image, from which we generate an
 environment for a specific project. This image contains all other
-prerequisites: `nginx`, and `gtcore` requirements (java, saxon, etc.).
+prerequisites: `nginx`, and `giella-core` requirements (java, saxon, etc.).
 Configuring a project thus, requires just checking out the dictionaries and
 `langs` directories.
 
