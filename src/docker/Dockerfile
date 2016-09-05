@@ -40,14 +40,14 @@ RUN ldconfig
 
 ##   # set up gtsvn stuff
 ##   
-##   ## automake 1.14 -- required for gtcore and langs builds
+##   ## automake 1.14 -- required for giella-core and langs builds
 ##   RUN cd ~/ && wget http://ftp.gnu.org/gnu/automake/automake-1.14.tar.gz
 ##   RUN cd ~/ && tar -zxvf automake-1.14.tar.gz
 ##   RUN cd ~/automake-1.14/ && ./configure && make && make install
 ##   
 ##   RUN mkdir ~/gtsvn/
-##   RUN cd ~/ && svn co https://victorio.uit.no/langtech/trunk/gtcore ~/gtsvn/gtcore
-##   RUN cd ~/gtsvn/gtcore/ && ./autogen.sh && ./configure && make && make install
+##   RUN cd ~/ && svn co https://victorio.uit.no/langtech/trunk/giella-core ~/gtsvn/giella-core
+##   RUN cd ~/gtsvn/giella-core/ && ./autogen.sh && ./configure && make && make install
 ##   
 ##   RUN cd ~/ && svn co https://victorio.uit.no/langtech/trunk/langs ~/gtsvn/langs
 ##   
