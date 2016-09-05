@@ -1,5 +1,5 @@
 """
-A fabfile for executing gtcore/build commands remotely, and then copying
+A fabfile for executing giella-core/build commands remotely, and then copying
 the build result locally over SSH. Must have SSH keys installed for this
 to work, including passwords somehow is a baaaad idea.
 
@@ -136,7 +136,7 @@ def gtweb():
     env.path_base = '/home/neahtta'
 
     env.svn_path = env.path_base + '/gtsvn'
-    env.gtcore_svn_path = env.path_base + '/gtsvn/gtcore'
+    env.giella-core_svn_path = env.path_base + '/gtsvn/giella-core'
 
 @task
 def gtlab():
@@ -154,7 +154,7 @@ def svn_up():
     svn_lang_paths = [ 'langs/%s' % l for l in env.compile_langs ]
 
     paths = [
-        'gtcore/',
+        'giella-core/',
     ] + svn_lang_paths
 
     print paths
@@ -175,11 +175,11 @@ def svn_up():
     sys.exit()
 
     # TODO: necessary to run autogen just in case? 
-    print(cyan("** Compiling gtcore **"))
-    gtcore = env.svn_path + 'gtcore/'
-    with cd(gtcore):
-        make_file = env.svn_path + 'gtcore/Makefile'
-        make_ = "make -C %s -f %s" % ( gtcore
+    print(cyan("** Compiling giella-core **"))
+    giella-core = env.svn_path + 'giella-core/'
+    with cd(giella-core):
+        make_file = env.svn_path + 'giella-core/Makefile'
+        make_ = "make -C %s -f %s" % ( giella-core
                                      , make_file
                                      )
         result = env.run(make_)
