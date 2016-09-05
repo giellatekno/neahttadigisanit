@@ -345,8 +345,8 @@ def update_gtsvn():
 
     # TODO: necessary to run autogen just in case? 
     print(cyan("** Compiling giella-core **"))
-    giella-core = env.svn_path + '/' + 'giella-core/'
-    with cd(giella-core):
+    giella_core = os.path.join(env.svn_path , 'giella-core')
+    with cd(giella_core):
         make_file = env.svn_path + '/giella-core/Makefile'
         make_ = "make -C %s -f %s" % ( giella-core
                                      , make_file
