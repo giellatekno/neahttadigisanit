@@ -1,8 +1,10 @@
 Neahttadigisánit
 ================
 
- * `neahtta` contains server-side process things
+ * `docker` 
+ * `infra` contains sample config files for server processes
+ * `maintenance` contains hmm an html file
  * `nds-reader` contains the CoffeeScript / JavaScript source for the web
    plugin, bookmarklet, and WordPress plugin.
- * `infra` contains sample config files for server processes
+ * `neahtta` contains server-side process things
 
