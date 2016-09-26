@@ -316,7 +316,7 @@ ndstesting-clean: clean_langs_fsts
 
 CUVANTUL_LANGS_ANALYSERS      :=   ron
 CUVANTUL_LANGS_LEXICA         :=
-CUVANTUL_WORDS_DICTS_LEXICA   :=   ronnob
+CUVANTUL_WORDS_DICTS_LEXICA   :=   ronnob nobron
 
 # .PHONY: cuvantul-lexica
 # cuvantul-lexica: LEX_COMPILE_LANGS := $(CUVANTUL_LANGS_LEXICA)
@@ -340,7 +340,7 @@ rm-cuvantul-lexica: $(foreach xx, $(CUVANTUL_LANGS_LEXICA), $(xx)-all.xml) \
 
 .PHONY: cuvantul-install
 cuvantul-install: GT_COMPILE_LANGS := $(CUVANTUL_LANGS_ANALYSERS)
-cuvantul-install: install_langs_fsts
+#cuvantul-install: install_langs_fsts
 
 
 #####

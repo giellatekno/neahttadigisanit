@@ -15,7 +15,7 @@ Flask-Limiter==0.7.9
 flup==1.0.3.dev20110405
 gunicorn==0.17.2
 itsdangerous==0.24
-jedi===0.8.1-final0
+jedi==0.8.1-final0
 Jinja2==2.7.3
 jsmin==2.1.1
 limits==1.0.6

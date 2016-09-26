@@ -64,8 +64,8 @@ ApplicationSettings:
 # 
 # Some helpful aliases for paths below.
 Tools:
-  xfst_lookup: &LOOKUP '/usr/bin/lookup'
-  opt: &OPT '/opt/smi'
+  xfst_lookup: &LOOKUP '/Users/cipriangerstenberger/local/bin/lookup'
+  opt: &OPT '/Users/cipriangerstenberger/main/langs'
 
 # Note that YAML doesn't support concatenating strings directly, 
 # so in this case I use list notation. See the examples below.
@@ -78,10 +78,10 @@ Morphology:
   # This is the default setup for sme.
   ron:
     tool: *LOOKUP
-    file: [*OPT, '/ron/bin/analyser-dict-gt-desc.xfst']
-    inverse_file: [*OPT, '/ron/bin/generator-dict-gt-norm.xfst']
+    file: [*OPT, '/ron/src/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/ron/src/generator-dict-gt-norm.xfst']
     format: 'xfst'
-    options: &ron_fst_options
+    options:
       compoundBoundary: "+Cmp#"
       derivationMarker: "+Der"
       tagsep: '+'
@@ -97,8 +97,8 @@ Morphology:
 #      <<: *ron_fst_options
   nob:
     tool: *LOOKUP
-    file: [*OPT, '/nob/bin/analyser-dict-gt-desc.xfst']
-    inverse_file: [*OPT, '/nob/bin/generator-dict-gt-norm.xfst']
+    file: [*OPT, '/nob/src/analyser-gt-desc.xfst']
+    inverse_file: [*OPT, '/nob/src/generator-gt-norm.xfst']
     format: 'xfst'
     options:
       compoundBoundary: "#+Cmp+"
@@ -132,20 +132,9 @@ Languages:
 Dictionaries:
   - source: ron
     target: nob
-    path: 'dicts/ron-nob.all.xml'
-    input_variants:
-      # "standard" and "mobile" are special values, otherwise templates and
-      # swapping on mobile devices won't work
-      - type: "standard"
-        # Marking this with gettext ensures that it will be extracted to .po
-        # files. This will be displayed to users.
-        description: !gettext "Standard"
-        # Provide a _brief_ example to users of what this standard means
-        example: "(<em>ăâîțș</em>)"
-        # This is the name for the analyzer (defined in Morphology)
-        short_name: "ron"
-
-
+    path: 'dicts/ronnob.xml'
+    reversable: True
+    
     # Following are some optional settings for integration with Korp.
     # default is False
     show_korp_search: False
@@ -178,7 +167,7 @@ Dictionaries:
   # This is the most minimal example of what is needed.
   - source: nob
     target: ron
-    path: 'dicts/nob-ron.all.xml'
+    path: 'dicts/nobron.xml'
 
 # Everything after this point is optional. You may delete them if you do not
 # need them.
