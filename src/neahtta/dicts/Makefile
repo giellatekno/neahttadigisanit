@@ -51,12 +51,7 @@ VIRTUALENV := $
 
 # Use GSED if available. Probably a good idea for macs.
 #
-GSED := $(shell which gsed)
-ifdef GSED
- SED := $(shell which gsed)
-else
- SED := $(shell which sed)
-endif
+SED := $(shell which gsed sed | head -n 1)
 
 # VERBOSE ?=
 BUILD_FLAGS := -v
