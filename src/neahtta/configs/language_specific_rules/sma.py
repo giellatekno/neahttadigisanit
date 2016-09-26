@@ -100,7 +100,7 @@ def pregenerate_sma(form, tags, node, **kwargs):
 
     return form, tags, node, analyses
 
-from common import match_homonymy_entries
+from configs.language_specific_rules.common import match_homonymy_entries
 
 morpholex.post_morpho_lexicon_override(
     'sma'
