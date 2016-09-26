@@ -348,7 +348,7 @@ def update_gtsvn():
     giella_core = os.path.join(env.svn_path , 'giella-core')
     with cd(giella_core):
         make_file = env.svn_path + '/giella-core/Makefile'
-        make_ = "make -C %s -f %s" % ( giella-core
+        make_ = "make -C %s -f %s" % ( giella_core
                                      , make_file
                                      )
         result = env.run(make_)
