@@ -432,14 +432,32 @@ jQuery(document).ready ($) ->
     #   else
     #     window.optTab.find('.well').removeClass('highlight')
 
+  $.fn.setDefaultPair = () ->
+    # If nothing is returned, then the user probably switched projects or
+    # somehow a default option wasn't set, so we pick the first in order for
+    # the rest of the lookup to work, and 
+    _default = NDS.options.dictionaries[0]
+    _default_iso = "#{_default.from.iso}-#{_default.to.iso}"
+
+    console.log "picking default: #{_default_iso}"
+    $('select[name=language_pair]').val(_default_iso)
+    optsp = NDS.$('div.option_panel')
+    optsp.show()
+    # optsp.find('a.close').toggle()
+    return _default
+
   $.fn.getOptsForDict = (_from, _to) ->
     for dict in NDS.options.dictionaries
       if dict.from.iso == _from and dict.to.iso == _to
         return dict
+    console.log "#{_from}-#{_to} pair doesn't exist in this project"
+    return $.fn.setDefaultPair()
 
   # TODO: what to do when nothing is set
   $.fn.getCurrentDictOpts = () ->
     pair = DSt.get(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair')
+    console.log "checking #{NDS_SHORT_NAME}"
+    console.log pair
     [_from, _to] = pair.split('-')
     NDS.$.fn.getOptsForDict _from, _to
 
