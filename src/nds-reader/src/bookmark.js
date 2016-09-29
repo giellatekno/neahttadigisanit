@@ -4,13 +4,17 @@
       , NDS_BOOKMARK_VERSION     = '0.0.4'
       ;
 
+    var PFX = (window.location.protocol === 'file:' ? 'http:' : '') ;
+
+    console.log(PFX);
+
     var nds_css      = document.createElement('link') ;
-        nds_css.href = NDS_MEDIA_HOST + '/static/css/jquery.neahttadigisanit.css' ;
+        nds_css.href = PFX + NDS_MEDIA_HOST + '/static/css/jquery.neahttadigisanit.css' ;
         nds_css.rel  = 'stylesheet' ;
 
     var nds_book      = document.createElement('script') ;
         nds_book.type = 'text/javascript' ;
-        nds_book.src  = NDS_MEDIA_HOST + '/static/js/bookmarklet.min.js' ;
+        nds_book.src  = PFX + NDS_MEDIA_HOST + '/static/js/bookmarklet.min.js' ;
        
     window.NDS_API_HOST = NDS_API_HOST ;
     window.NDS_BOOKMARK_VERSION = NDS_BOOKMARK_VERSION ;

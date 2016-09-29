@@ -219,7 +219,10 @@ jQuery(document).ready ($) ->
         NDS.options.api_host = NDS.options.api_host.slice(0, NDS.options.api_host.length - 1)
       window.API_HOST = NDS.options.api_host
 
-    if 'http:' not in window.API_HOST or 'https:' not in window.API_HOST
+    if 'file:' == window.location.protocol
+      window.API_HOST = 'http:' + '//' + window.API_HOST
+      NDS.options.api_host = window.API_HOST
+    else if 'http:' not in window.API_HOST or 'https:' not in window.API_HOST
       window.API_HOST = window.location.protocol + '//' + window.API_HOST
       NDS.options.api_host = window.API_HOST
 
