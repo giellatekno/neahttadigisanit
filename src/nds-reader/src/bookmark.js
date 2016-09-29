@@ -6,8 +6,6 @@
 
     var PFX = (window.location.protocol === 'file:' ? 'http:' : '') ;
 
-    console.log(PFX);
-
     var nds_css      = document.createElement('link') ;
         nds_css.href = PFX + NDS_MEDIA_HOST + '/static/css/jquery.neahttadigisanit.css' ;
         nds_css.rel  = 'stylesheet' ;
