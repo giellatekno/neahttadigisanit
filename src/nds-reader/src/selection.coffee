@@ -74,7 +74,7 @@ module.exports = class Selection
     return [before, partition, after]
 
   getPreviousWords: (n=1) ->
-    [before, _, _] = @getPartitionedSelection()
+    [before, _n, _n] = @getPartitionedSelection()
     # index of current word, slicing is inaccurate.
 
     # TODO: make sure word regex is set-- currently a bad practice to expect it to be
@@ -118,7 +118,7 @@ module.exports = class Selection
     return joined
 
   getNextWords: (n=1) ->
-    [_, _, after] = @getPartitionedSelection()
+    [_n, _n, after] = @getPartitionedSelection()
     # TODO: make sure word regex is set-- currently a bad practice to expect it to be
     #
     after = after.match(window.word_regex)
