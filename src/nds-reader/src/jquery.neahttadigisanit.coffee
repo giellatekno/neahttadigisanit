@@ -222,7 +222,7 @@ jQuery(document).ready ($) ->
     if 'file:' == window.location.protocol
       window.API_HOST = 'http:' + '//' + window.API_HOST
       NDS.options.api_host = window.API_HOST
-    else if 'http:' not in window.API_HOST or 'https:' not in window.API_HOST
+    if 'http:' not in window.API_HOST or 'https:' not in window.API_HOST
       window.API_HOST = window.location.protocol + '//' + window.API_HOST
       NDS.options.api_host = window.API_HOST
 
@@ -437,6 +437,7 @@ jQuery(document).ready ($) ->
       if dict.from.iso == _from and dict.to.iso == _to
         return dict
 
+  # TODO: what to do when nothing is set
   $.fn.getCurrentDictOpts = () ->
     pair = DSt.get(NDS_SHORT_NAME + '-' + 'digisanit-select-langpair')
     [_from, _to] = pair.split('-')
