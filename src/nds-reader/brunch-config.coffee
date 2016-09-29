@@ -2,7 +2,9 @@ exports.config =
   modules:
     wrapper: (path, data) ->
       # This function wraps compiled code. All modules are wrapped in the
-      # commonjs module registration
+      # commonjs module registration, unless otherwise noted. Some modules
+      # can't be `require`'d as easily, and need to just be included verbatim,
+      # such as underscore.
 
       path = path.replace(/.(js|coffee)$/,'')
 
@@ -11,6 +13,8 @@ exports.config =
       if path == 'lib/rangy-textrange'
         path = 'rangy-textrange'
       if path == 'src/wrapper_start' or path == 'src/wrapper_end'
+        return data
+      if path == 'lib/underscore'
         return data
       # This is the one we don't want to wrap with require, but we wrap in a
       # closure anyway to get everything out of the global namespace, with the
