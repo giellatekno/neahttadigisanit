@@ -16,7 +16,7 @@ ApplicationSettings:
   meta_keywords: >
       komi, komi-zyrian, mobile, dictionary, free, russian, коми, роч,
       кывчукӧр, словарь, русский, sanakirja, venäjä, komin kieli, udmurtti,
-      удмурт, ӟуч
+      удмурт, ӟуч, magyar
   admins_to_email:
     - "rueter.jack@gmail.com"
     - "trond.trosterud@uit.no"
@@ -161,7 +161,7 @@ Dictionaries:
 
   - source: udm
     target: hun
-    path: 'dicts/udm-all.xml'
+    path: 'dicts/udmhun.xml'
 
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
