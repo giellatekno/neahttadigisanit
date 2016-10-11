@@ -16,7 +16,7 @@ ApplicationSettings:
   meta_keywords: >
       komi, komi-zyrian, mobile, dictionary, free, russian, коми, роч,
       кывчукӧр, словарь, русский, sanakirja, venäjä, komin kieli, udmurtti,
-      удмурт, ӟуч, magyar
+      удмурт, ӟуч, magyar, szótár
   admins_to_email:
     - "rueter.jack@gmail.com"
     - "trond.trosterud@uit.no"
@@ -80,6 +80,16 @@ Morphology:
     tool: *LOOKUP
     file: [*OPT, '/fin/bin/analyser-dict-gt-desc.xfst']
     inverse_file: [*OPT, '/fin/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  hun:
+    tool: *LOOKUP
+    file: [*OPT, '/hun/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/hun/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -225,4 +235,8 @@ Dictionaries:
   - source: fin
     target: udm
     path: 'dicts/finudm.xml'
+
+  - source: hun
+    target: udm
+    path: 'dicts/hunudm.xml'
 
