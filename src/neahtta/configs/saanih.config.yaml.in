@@ -108,3 +108,11 @@ Dictionaries:
   - source: sme
     target: smn
     path: 'dicts/smesmn.xml'
+
+ReaderConfig:
+  Settings:
+    # host path without scheme (https, http) to reader lookup API, no trailing
+    # slash.
+    api_host: "sanit.oahpa.no/reader/saanih"
+    # URL to serve media from, minus scheme, and no trailing slash.
+    media_host: "sanit.oahpa.no"

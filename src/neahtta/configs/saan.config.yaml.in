@@ -2,12 +2,12 @@ ApplicationSettings:
   app_name: "Neahttadigisánit"
   app_meta_title: "Neahttadigisánit"
   short_name: "saan"
-  default_locale: "fi"
+  default_locale: "sms"
   default_pair: ["sms", "fin"]
   mobile_default_pair: false
   polyglot_lookup: true
   locales_available:
-    # - "sms"
+    - "sms"
     - "fi"
     - "en"
     - "no"
@@ -89,10 +89,10 @@ Dictionaries:
     path: 'dicts/sms-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
-    input_variants: &spell_relax
+    input_variants: &spell_relax_sms
       - type: "standard"
         description: !gettext "Standard"
-        example: "(âčǯđǧǥǩŋ̌šž)"
+        example: "(ǩ)"
         onscreen_keyboard: &SMS_KEYS
           - "ʹ"
           - "ʼ"
@@ -115,7 +115,7 @@ Dictionaries:
         short_name: "sms"
       - type: "mobile"
         description: !gettext "Mobile friendly"
-        example: "(aczdggknsz)"
+        example: "(k &rarr; k ~ ǩ)"
         short_name: "smsM"
         onscreen_keyboard: *SMS_KEYS
         # aczdggknsz
@@ -123,22 +123,24 @@ Dictionaries:
 
   - source: sms
     target: eng
-    path: 'dicts/test_lexica/sms.xml'
-    input_variants: *spell_relax
+    path: 'dicts/sms-all.xml'
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/korp"
+    input_variants: *spell_relax_sms
 
   - source: sms
     target: rus
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
     path: 'dicts/sms-all.xml'
-    input_variants: *spell_relax
+    input_variants: *spell_relax_sms
 
   - source: sms
     target: nob
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
     path: 'dicts/sms-all.xml'
-    input_variants: *spell_relax
+    input_variants: *spell_relax_sms
 
   - source: fin
     target: sms
@@ -155,6 +157,12 @@ Dictionaries:
 
 
 ReaderConfig:
+  Settings:
+    # host path without scheme (https, http) to reader lookup API, no trailing
+    # slash.
+    api_host: "sanit.oahpa.no/reader/saan"
+    # URL to serve media from, minus scheme, and no trailing slash.
+    media_host: "sanit.oahpa.no"
   sms:
     multiword_lookups: false
     # NB: this is JavaScript format, since it will be sent to the reader via

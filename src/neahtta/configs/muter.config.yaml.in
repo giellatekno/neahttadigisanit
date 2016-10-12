@@ -81,3 +81,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
 
+ReaderConfig:
+  Settings:
+    api_host: "sanit.oahpa.no/reader/muter"
+    media_host: "sanit.oahpa.no"
