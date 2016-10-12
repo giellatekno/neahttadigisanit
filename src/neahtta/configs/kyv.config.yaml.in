@@ -10,6 +10,7 @@ ApplicationSettings:
   locales_available:
     - kv
     - fi
+    - hu # TODO: flag, translations catalog 
     - en
   meta_description: >
       Free online, mobile friendly dictionaries for Komi-Zyrian
@@ -224,13 +225,13 @@ Dictionaries:
       # "mobile" is important, otherwise templates and swapping won't 
       # work 
       - type: "standard"
-      description: !gettext "Standard (<em>ӝӟӥӧӵ</em>)"
+        description: !gettext "Standard (<em>ӝӟӥӧӵ</em>)"
         short_name: "udm"
         onscreen_keyboard: *UDM_KEYS
       - type: "mobile"
-      description: !gettext "Social media (incl. <em>жзиоч</em>)"
-      short_name: "udmM"
-      onscreen_keyboard: *UDM_KEYS
+        description: !gettext "Social media (incl. <em>жзиоч</em>)"
+        short_name: "udmM"
+        onscreen_keyboard: *UDM_KEYS
 
   - source: fin
     target: udm

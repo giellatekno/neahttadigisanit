@@ -1,0 +1,1393 @@
+# Hungarian translations for PROJECT.
+# Copyright (C) 2016 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2016-07-14 15:42-0500\n"
+"PO-Revision-Date: 2016-10-12 17:29-0500\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: hu <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 1.3\n"
+
+#: configs/cuvantul.config.yaml.in:143 configs/guusaaw.config.yaml.in:67
+#: configs/kyv.config.yaml.in:109 configs/kyv.config.yaml.in:173
+#: configs/saan.config.yaml.in:94 configs/saanih.config.yaml.in:78
+#: configs/saanih.config.yaml.in:99 configs/sample.config.yaml.in:167
+#: configs/sanat.config.yaml.in:117 configs/sanit.config.yaml.in:111
+#: configs/sonad.config.yaml.in:143
+msgid "Standard"
+msgstr ""
+
+#: configs/dikaneisdi.config.yaml.in:3
+msgid "Dikaneisdi"
+msgstr ""
+
+#: configs/dikaneisdi.config.yaml.in:73
+msgid "Standard (syllabics)"
+msgstr ""
+
+#: configs/dikaneisdi.config.yaml.in:76
+msgid "Transliterated"
+msgstr ""
+
+#: configs/gunaha.config.yaml.in:2
+msgid "Gunáhà"
+msgstr ""
+
+#: configs/gunaha.config.yaml.in:3
+msgid "Online Gunáhà’ dictionary"
+msgstr ""
+
+#: configs/guusaaw.config.yaml.in:72 configs/saan.config.yaml.in:117
+#: configs/saanih.config.yaml.in:82 configs/saanih.config.yaml.in:103
+msgid "Mobile friendly"
+msgstr ""
+
+#: configs/itwewina.config.yaml.in:2
+msgid "itwêwina"
+msgstr ""
+
+#: configs/itwewina.config.yaml.in:3
+msgid "Online Plains Cree dictionary"
+msgstr ""
+
+#: configs/itwewina.config.yaml.in:74
+msgid "aio âêîô"
+msgstr ""
+
+#: configs/itwewina.config.yaml.in:93
+msgid "aio āēīō"
+msgstr ""
+
+#: configs/kidwinan.config.yaml.in:2
+msgid "Kidwinan"
+msgstr ""
+
+#: configs/kidwinan.config.yaml.in:3
+msgid "Online Odawa dictionary"
+msgstr ""
+
+#: configs/kyv.config.yaml.in:118 configs/kyv.config.yaml.in:184
+#: configs/sample.config.yaml.in:173 configs/sanit.config.yaml.in:126
+msgid "Social media"
+msgstr ""
+
+#: configs/kyv.config.yaml.in:119
+msgid "(incl. <em>ио</em>)"
+msgstr ""
+
+#: configs/kyv.config.yaml.in:123
+msgid "Molotsov orthography"
+msgstr ""
+
+#: configs/kyv.config.yaml.in:185
+msgid "(incl. <em>жзиоч</em>)"
+msgstr ""
+
+#: configs/kyv.config.yaml.in:199 configs/kyv.config.yaml.in:217
+msgid "Standard (<em>ӝӟӥӧӵ</em>)"
+msgstr ""
+
+#: configs/kyv.config.yaml.in:203 configs/kyv.config.yaml.in:221
+msgid "Social media (incl. <em>жзиоч</em>)"
+msgstr ""
+
+#: configs/language_names.yaml:31 configs/language_names.yaml:32
+#: templates/more_dictionaries.html:28
+msgid "North Sámi"
+msgstr ""
+
+#: configs/language_names.yaml:33
+msgid "North Sámi (#SoMe)"
+msgstr ""
+
+#: configs/language_names.yaml:34 configs/language_names.yaml:114
+msgid "English"
+msgstr ""
+
+#: configs/language_names.yaml:37
+msgid "Hungarian"
+msgstr ""
+
+#: configs/language_names.yaml:40 templates/more_dictionaries.html:29
+msgid "South Sámi"
+msgstr ""
+
+#: configs/language_names.yaml:41 configs/language_names.yaml:42
+msgid "Komi"
+msgstr ""
+
+#: configs/language_names.yaml:43 configs/language_names.yaml:46
+msgid "Udmurt"
+msgstr ""
+
+#: configs/language_names.yaml:47 templates/more_dictionaries.html:39
+msgid "Kven"
+msgstr ""
+
+#: configs/language_names.yaml:48
+msgid "Olonetsian"
+msgstr ""
+
+#: configs/language_names.yaml:51
+msgid "Estonian"
+msgstr ""
+
+#: configs/language_names.yaml:52 configs/language_names.yaml:53
+#: templates/more_dictionaries.html:39
+msgid "Livonian"
+msgstr ""
+
+#: configs/language_names.yaml:54 templates/more_dictionaries.html:39
+msgid "Izhorian"
+msgstr ""
+
+#: configs/language_names.yaml:55
+msgid "Veps"
+msgstr ""
+
+#: configs/language_names.yaml:56
+msgid "Võro"
+msgstr ""
+
+#: configs/language_names.yaml:59
+msgid "Votic"
+msgstr ""
+
+#: configs/language_names.yaml:60
+msgid "Erzya Mordvin"
+msgstr ""
+
+#: configs/language_names.yaml:61 templates/more_dictionaries.html:40
+msgid "Moksha"
+msgstr ""
+
+#: configs/language_names.yaml:62 configs/language_names.yaml:116
+msgid "French"
+msgstr ""
+
+#: configs/language_names.yaml:65 configs/language_names.yaml:117
+msgid "German"
+msgstr ""
+
+#: configs/language_names.yaml:66
+msgid "Western Mari"
+msgstr ""
+
+#: configs/language_names.yaml:69
+msgid "Eastern Mari"
+msgstr ""
+
+#: configs/language_names.yaml:72
+msgid "Nenets"
+msgstr ""
+
+#: configs/language_names.yaml:73 configs/language_names.yaml:76
+msgid "Skolt Sami"
+msgstr ""
+
+#: configs/language_names.yaml:77 configs/language_names.yaml:80
+msgid "Plains Cree"
+msgstr ""
+
+#: configs/language_names.yaml:83
+msgid "Tsuut'ina"
+msgstr ""
+
+#: configs/language_names.yaml:86
+msgid "Odawa"
+msgstr ""
+
+#: configs/language_names.yaml:87 configs/language_names.yaml:90
+msgid "Cherokee"
+msgstr ""
+
+#: configs/language_names.yaml:91 configs/language_names.yaml:94
+msgid "Northern Haida"
+msgstr ""
+
+#: configs/language_names.yaml:97
+msgid "Inari Saami"
+msgstr ""
+
+#: configs/language_names.yaml:99
+msgid "Khanty"
+msgstr ""
+
+#: configs/language_names.yaml:102
+msgid "Irish"
+msgstr ""
+
+#: configs/language_names.yaml:103 configs/language_names.yaml:109
+msgid "Finnish"
+msgstr ""
+
+#: configs/language_names.yaml:104 configs/language_names.yaml:110
+#: configs/language_names.yaml:111
+msgid "Norwegian"
+msgstr ""
+
+#: configs/language_names.yaml:106 configs/language_names.yaml:107
+msgid "Russian"
+msgstr ""
+
+#: configs/language_names.yaml:112 configs/language_names.yaml:113
+msgid "Latvian"
+msgstr ""
+
+#: configs/language_names.yaml:115
+msgid "Haida"
+msgstr ""
+
+#: configs/language_names.yaml:118
+msgid "Romanian"
+msgstr ""
+
+#: configs/language_names.yaml:119
+msgid "Meänkieli"
+msgstr ""
+
+#: configs/language_names.yaml:120
+msgid "Swedish"
+msgstr ""
+
+#: configs/saanih.config.yaml.in:79 configs/saanih.config.yaml.in:100
+msgid "(<em>âäáčđŋšž</em>)"
+msgstr ""
+
+#: configs/saanih.config.yaml.in:83 configs/saanih.config.yaml.in:104
+msgid "(incl. <em>aaacdnsz</em>)"
+msgstr ""
+
+#: configs/sample.config.yaml.in:175 configs/sanit.config.yaml.in:127
+msgid "(incl. <em>acdnstz</em>)"
+msgstr ""
+
+#: configs/sanit.config.yaml.in:151
+msgid "Standárda (<em>áčđŋšŧž</em>)"
+msgstr ""
+
+#: configs/sanit.config.yaml.in:155
+msgid "Sosiála media (maiddái <em>acdnstz</em>)"
+msgstr ""
+
+#: configs/sonad.config.yaml.in:148
+msgid "mobile friendly"
+msgstr ""
+
+#: configs/language_specific_rules/templates/about.template:5
+#: configs/language_specific_rules/templates/baakoeh/about.template:6
+#: configs/language_specific_rules/templates/guusaaw/about.template:6
+#: configs/language_specific_rules/templates/itwewina/about.template:6
+#: configs/language_specific_rules/templates/muter/about.template:6
+#: configs/language_specific_rules/templates/saanih/about.template:5
+#: configs/language_specific_rules/templates/sanat/about.template:6
+#: configs/language_specific_rules/templates/sanit/about.template:6
+#: configs/language_specific_rules/templates/sonad/about.template:6
+#: configs/language_specific_rules/templates/vada/about.template:7
+#: configs/language_specific_rules/templates/valks/about.template:7
+#: static/js/neahttadigisanit.js:8883 templates/mobile_nav_push_menu.html:14
+msgid "About"
+msgstr ""
+
+#: configs/language_specific_rules/templates/about.template:14
+#: configs/language_specific_rules/templates/baakoeh/about.template:15
+#: configs/language_specific_rules/templates/guusaaw/about.template:15
+#: configs/language_specific_rules/templates/itwewina/about.template:15
+#: configs/language_specific_rules/templates/muter/about.template:15
+#: configs/language_specific_rules/templates/saanih/about.template:14
+#: configs/language_specific_rules/templates/sanat/about.template:15
+#: configs/language_specific_rules/templates/sanit/about.template:15
+#: configs/language_specific_rules/templates/sonad/about.template:15
+#: configs/language_specific_rules/templates/vada/about.template:17
+#: configs/language_specific_rules/templates/valks/about.template:17
+msgid "A dictionary that understands what you're looking for."
+msgstr ""
+
+#: configs/language_specific_rules/templates/about.template:15
+#: configs/language_specific_rules/templates/baakoeh/about.template:16
+#: configs/language_specific_rules/templates/guusaaw/about.template:16
+#: configs/language_specific_rules/templates/itwewina/about.template:16
+#: configs/language_specific_rules/templates/muter/about.template:16
+#: configs/language_specific_rules/templates/saanih/about.template:15
+#: configs/language_specific_rules/templates/sanat/about.template:16
+#: configs/language_specific_rules/templates/sanit/about.template:16
+#: configs/language_specific_rules/templates/sonad/about.template:16
+#: configs/language_specific_rules/templates/vada/about.template:18
+#: configs/language_specific_rules/templates/valks/about.template:18
+msgid "(... And is mobile-friendly!)"
+msgstr ""
+
+#: configs/language_specific_rules/templates/about.template:19
+#: configs/language_specific_rules/templates/baakoeh/about.template:20
+#: configs/language_specific_rules/templates/guusaaw/about.template:20
+#: configs/language_specific_rules/templates/itwewina/about.template:20
+#: configs/language_specific_rules/templates/muter/about.template:20
+#: configs/language_specific_rules/templates/saanih/about.template:19
+#: configs/language_specific_rules/templates/sanat/about.template:20
+#: configs/language_specific_rules/templates/sanit/about.template:20
+#: configs/language_specific_rules/templates/sonad/about.template:20
+#: configs/language_specific_rules/templates/vada/about.template:22
+#: configs/language_specific_rules/templates/valks/about.template:22
+msgid "Free"
+msgstr ""
+
+#: configs/language_specific_rules/templates/about.template:20
+#: configs/language_specific_rules/templates/baakoeh/about.template:21
+#: configs/language_specific_rules/templates/guusaaw/about.template:21
+#: configs/language_specific_rules/templates/itwewina/about.template:21
+#: configs/language_specific_rules/templates/muter/about.template:21
+#: configs/language_specific_rules/templates/saanih/about.template:20
+#: configs/language_specific_rules/templates/sanat/about.template:21
+#: configs/language_specific_rules/templates/sanit/about.template:21
+#: configs/language_specific_rules/templates/sonad/about.template:21
+#: configs/language_specific_rules/templates/vada/about.template:23
+#: configs/language_specific_rules/templates/valks/about.template:23
+msgid ""
+"Everything (or, well, almost everything) that\n"
+"                    concerns minority languages should be free. Here\n"
+"                    you'll find free dictionaries, and other analytical\n"
+"                    tools."
+msgstr ""
+
+#: configs/language_specific_rules/templates/about.template:26
+#: configs/language_specific_rules/templates/baakoeh/about.template:27
+#: configs/language_specific_rules/templates/guusaaw/about.template:27
+#: configs/language_specific_rules/templates/itwewina/about.template:27
+#: configs/language_specific_rules/templates/muter/about.template:27
+#: configs/language_specific_rules/templates/saanih/about.template:26
+#: configs/language_specific_rules/templates/sanat/about.template:27
+#: configs/language_specific_rules/templates/sanit/about.template:27
+#: configs/language_specific_rules/templates/sonad/about.template:27
+#: configs/language_specific_rules/templates/vada/about.template:29
+#: configs/language_specific_rules/templates/valks/about.template:29
+msgid "Open-Source"
+msgstr ""
+
+#: configs/language_specific_rules/templates/about.template:27
+#: configs/language_specific_rules/templates/baakoeh/about.template:28
+#: configs/language_specific_rules/templates/guusaaw/about.template:28
+#: configs/language_specific_rules/templates/muter/about.template:28
+#: configs/language_specific_rules/templates/saanih/about.template:27
+#: configs/language_specific_rules/templates/sanat/about.template:28
+#: configs/language_specific_rules/templates/sanit/about.template:28
+#: configs/language_specific_rules/templates/sonad/about.template:28
+#: configs/language_specific_rules/templates/vada/about.template:30
+#: configs/language_specific_rules/templates/valks/about.template:30
+msgid ""
+"Everything here is based on open-source tools. Do you\n"
+"                have an idea for an app or research project that needs\n"
+"                linguistic resources? Visit <a class=\"blue\"\n"
+"                    href=\"http://giellatekno.uit.no/\">Giellatekno</a>'s"
+"\n"
+"                website for information on how to get access to lexicon\n"
+"                files, and morphological and syntactic analyzers."
+msgstr ""
+
+#: configs/language_specific_rules/templates/about.template:35
+#: configs/language_specific_rules/templates/baakoeh/about.template:36
+#: configs/language_specific_rules/templates/guusaaw/about.template:36
+#: configs/language_specific_rules/templates/itwewina/about.template:38
+#: configs/language_specific_rules/templates/muter/about.template:36
+#: configs/language_specific_rules/templates/saanih/about.template:35
+#: configs/language_specific_rules/templates/sanat/about.template:36
+#: configs/language_specific_rules/templates/sanit/about.template:36
+#: configs/language_specific_rules/templates/sonad/about.template:36
+#: configs/language_specific_rules/templates/vada/about.template:38
+#: configs/language_specific_rules/templates/valks/about.template:38
+msgid "Linguistic basis"
+msgstr ""
+
+#: configs/language_specific_rules/templates/about.template:36
+#: configs/language_specific_rules/templates/baakoeh/about.template:37
+#: configs/language_specific_rules/templates/guusaaw/about.template:37
+#: configs/language_specific_rules/templates/itwewina/about.template:39
+#: configs/language_specific_rules/templates/muter/about.template:37
+#: configs/language_specific_rules/templates/saanih/about.template:36
+#: configs/language_specific_rules/templates/sanat/about.template:37
+#: configs/language_specific_rules/templates/sanit/about.template:37
+#: configs/language_specific_rules/templates/sonad/about.template:37
+#: configs/language_specific_rules/templates/vada/about.template:39
+#: configs/language_specific_rules/templates/valks/about.template:39
+msgid ""
+"Write what you wish, and the dictionary will analyze it to break apart "
+"compound words and find base forms."
+msgstr ""
+
+#: configs/language_specific_rules/templates/about.template:42
+#: configs/language_specific_rules/templates/baakoeh/about.template:43
+#: configs/language_specific_rules/templates/saanih/about.template:42
+#: configs/language_specific_rules/templates/sanit/about.template:43
+msgid "gå, dra, reise"
+msgstr ""
+
+#: configs/language_specific_rules/templates/about.template:49
+#: configs/language_specific_rules/templates/baakoeh/about.template:50
+#: configs/language_specific_rules/templates/guusaaw/about.template:48
+#: configs/language_specific_rules/templates/itwewina/about.template:52
+#: configs/language_specific_rules/templates/itwewina/sources.template:12
+#: configs/language_specific_rules/templates/muter/about.template:50
+#: configs/language_specific_rules/templates/saanih/about.template:49
+#: configs/language_specific_rules/templates/sanat/about.template:50
+#: configs/language_specific_rules/templates/sanit/about.template:50
+#: configs/language_specific_rules/templates/sonad/about.template:50
+#: configs/language_specific_rules/templates/vada/about.template:52
+#: configs/language_specific_rules/templates/valks/about.template:52
+msgid "Source material"
+msgstr ""
+
+#: configs/language_specific_rules/templates/about.template:56
+#: configs/language_specific_rules/templates/saanih/about.template:56
+#: configs/language_specific_rules/templates/sanit/about.template:57
+msgid "sme ↔ nob"
+msgstr ""
+
+#: configs/language_specific_rules/templates/about.template:57
+msgid ""
+"North Sámi → Norwegian builds on Nils Jernsletten's dictionary "
+"<em>Álgosátnegirji</em> (4300 words), but now contains 25000 words. "
+"Norwegian → North Sámi contains about 26000 words. "
+msgstr ""
+
+#: configs/language_specific_rules/templates/about.template:58
+#: configs/language_specific_rules/templates/saanih/about.template:58
+msgid ""
+"Approximately half of the content of the dictionaries is taken from a "
+"parallel corpus of administrative text, financed by the Ministry of Local"
+" Government and Modernisation."
+msgstr ""
+
+#: configs/language_specific_rules/templates/about.template:61
+#: configs/language_specific_rules/templates/baakoeh/about.template:57
+msgid "sma ↔ nob"
+msgstr ""
+
+#: configs/language_specific_rules/templates/about.template:62
+msgid ""
+"The dictionaries for South Sámi and Norwegian build on material prepared "
+"by Albert Jåma and Tove Brustad in the <a class=\"blue\" "
+"href=\"http://www.ruovatsijte.no/\">Hemnes Sámi Organization</a>, but has"
+" in addition gained words from <a class=\"blue\" "
+"href=\"http://giellatekno.uit.no/\">Giellatekno</a> and <a class=\"blue\""
+" href=\"http://aajege.no/\">Aajege</a>'s work with the Southern Sámi <a "
+"class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
+msgstr ""
+
+#: configs/language_specific_rules/templates/about.template:65
+#: configs/language_specific_rules/templates/sanit/about.template:62
+msgid "sme ↔ fin"
+msgstr ""
+
+#: configs/language_specific_rules/templates/about.template:66
+msgid ""
+"Dictionaries for North Sámi and Finnish are based on lexical material "
+"from the <a class=\"green\" href=\"http://kotus.fi\">Institute for the "
+"Languages of Finland</a>, and from Giellatekno's work with the North Sámi"
+"  <a class=\"green\" href=\"http://oahpa.no\">Oahpa</a>. In addition, we "
+"have included frequent words from North Sámi, but especially from "
+"Finnish."
+msgstr ""
+
+#: configs/language_specific_rules/templates/about.template:67
+msgid "Each of the dictionaries contains about 11,000 base words."
+msgstr ""
+
+#: configs/language_specific_rules/templates/about.template:72
+#: configs/language_specific_rules/templates/baakoeh/about.template:64
+#: configs/language_specific_rules/templates/guusaaw/about.template:64
+#: configs/language_specific_rules/templates/itwewina/about.template:74
+#: configs/language_specific_rules/templates/saanih/about.template:63
+#: configs/language_specific_rules/templates/sanit/about.template:69
+msgid "Find a problem?"
+msgstr ""
+
+#: configs/language_specific_rules/templates/about.template:73
+#: configs/language_specific_rules/templates/baakoeh/about.template:65
+#: configs/language_specific_rules/templates/guusaaw/about.template:65
+#: configs/language_specific_rules/templates/itwewina/about.template:75
+#: configs/language_specific_rules/templates/saanih/about.template:64
+#: configs/language_specific_rules/templates/sanit/about.template:70
+msgid ""
+"If you find any bugs, please get in touch with us. Describe the problem,\n"
+"                and tell us what web browser or mobile phone you were "
+"using, or what word you\n"
+"                were searching for when you encountered the problem."
+msgstr ""
+
+#: configs/language_specific_rules/templates/about.template:78
+#: configs/language_specific_rules/templates/about.template:83
+#: configs/language_specific_rules/templates/baakoeh/about.template:70
+#: configs/language_specific_rules/templates/baakoeh/about.template:75
+#: configs/language_specific_rules/templates/guusaaw/about.template:70
+#: configs/language_specific_rules/templates/guusaaw/about.template:75
+#: configs/language_specific_rules/templates/itwewina/about.template:80
+#: configs/language_specific_rules/templates/itwewina/about.template:85
+#: configs/language_specific_rules/templates/saanih/about.template:69
+#: configs/language_specific_rules/templates/saanih/about.template:74
+#: configs/language_specific_rules/templates/sanit/about.template:75
+#: configs/language_specific_rules/templates/sanit/about.template:80
+msgid "Contact us"
+msgstr ""
+
+#: configs/language_specific_rules/templates/about.template:88
+#: configs/language_specific_rules/templates/baakoeh/about.template:80
+#: configs/language_specific_rules/templates/guusaaw/about.template:80
+#: configs/language_specific_rules/templates/itwewina/about.template:90
+#: configs/language_specific_rules/templates/saanih/about.template:79
+#: configs/language_specific_rules/templates/sanit/about.template:85
+msgid ""
+"Need more dictionaries? <a href=\"http://dicts.uit.no/\">Here's our full "
+"list</a>, and more\n"
+"                resources."
+msgstr ""
+
+#: configs/language_specific_rules/templates/detail_entry.template:47
+#: configs/language_specific_rules/templates/saan/sms/detail_entry.template:61
+msgid "Paradigm"
+msgstr ""
+
+#: configs/language_specific_rules/templates/footer.template:9
+#: configs/language_specific_rules/templates/guusaaw/footer.template:13
+#: configs/language_specific_rules/templates/guusaaw/footer.template:35
+#: configs/language_specific_rules/templates/itwewina/footer.template:13
+#: configs/language_specific_rules/templates/itwewina/footer.template:35
+#: templates/default_footer.html:9
+msgid ""
+"Created with free and open-source language tools from <em><a "
+"href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, a Sámi Language "
+"Technology group at the <a href=\"http://uit.no\">University of "
+"Tromsø</a>."
+msgstr ""
+
+#: configs/language_specific_rules/templates/index_search_form.template:41
+#: configs/language_specific_rules/templates/baakoeh/index_search_form.template:41
+#: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:44
+#: configs/language_specific_rules/templates/guusaaw/index_search_form.template:15
+#: configs/language_specific_rules/templates/itwewina/index_search_form.template:48
+#: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:42
+msgid "Select a word, and press Tab"
+msgstr ""
+
+#: configs/language_specific_rules/templates/index_search_form.template:48
+#: configs/language_specific_rules/templates/baakoeh/index_search_form.template:48
+#: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:51
+#: configs/language_specific_rules/templates/guusaaw/index_search_form.template:20
+#: configs/language_specific_rules/templates/itwewina/index_search_form.template:55
+#: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:49
+#: templates/index_search_form.html:21
+msgid "ohcansátni"
+msgstr ""
+
+#: configs/language_specific_rules/templates/index_search_form.template:53
+#: configs/language_specific_rules/templates/index_search_form.template:73
+#: configs/language_specific_rules/templates/index_search_form.template:77
+#: configs/language_specific_rules/templates/baakoeh/index_search_form.template:53
+#: configs/language_specific_rules/templates/baakoeh/index_search_form.template:73
+#: configs/language_specific_rules/templates/baakoeh/index_search_form.template:77
+#: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:56
+#: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:76
+#: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:80
+#: configs/language_specific_rules/templates/guusaaw/index_search_form.template:25
+#: configs/language_specific_rules/templates/guusaaw/index_search_form.template:42
+#: configs/language_specific_rules/templates/itwewina/index_search_form.template:60
+#: configs/language_specific_rules/templates/itwewina/index_search_form.template:80
+#: configs/language_specific_rules/templates/itwewina/index_search_form.template:84
+#: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:54
+#: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:74
+#: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:78
+#: templates/index_search_form.html:26 templates/index_search_form.html:49
+#: templates/index_search_form.html:53 templates/keyword_search_form.html:29
+#: templates/word_detail.html:92
+msgid "Search"
+msgstr ""
+
+#: configs/language_specific_rules/templates/index_search_form.template:65
+#: configs/language_specific_rules/templates/index_search_form.template:88
+#: configs/language_specific_rules/templates/baakoeh/index_search_form.template:65
+#: configs/language_specific_rules/templates/baakoeh/index_search_form.template:88
+#: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:68
+#: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:91
+#: configs/language_specific_rules/templates/guusaaw/index_search_form.template:37
+#: configs/language_specific_rules/templates/itwewina/index_search_form.template:72
+#: configs/language_specific_rules/templates/itwewina/index_search_form.template:95
+#: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:66
+#: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:89
+#: templates/index_search_form.html:39 templates/index_search_form.html:64
+msgid "Search texts"
+msgstr ""
+
+#: configs/language_specific_rules/templates/notice.template:5
+#: configs/language_specific_rules/templates/sanit/notice.template:6
+#: templates/left_dictionary_list.html:12
+#: templates/mobile_nav_dictionary_list.html:61
+#: templates/more_dictionaries.html:21
+msgid "Other dictionaries"
+msgstr ""
+
+#: configs/language_specific_rules/templates/paradigm_layouts.template:11
+#: configs/language_specific_rules/templates/baakoeh/sma/paradigm.template:123
+#: configs/language_specific_rules/templates/itwewina/crk/paradigm.template:56
+#: configs/language_specific_rules/templates/saan/sms/paradigm.template:117
+#: configs/language_specific_rules/templates/saanih/smn/paradigm.template:186
+#: configs/language_specific_rules/templates/sanat/fkv/paradigm.template:173
+#: configs/language_specific_rules/templates/sanit/sme/paradigm.template:187
+#: configs/language_specific_rules/templates/valks/myv/paradigm.template:117
+msgid "Full paradigm"
+msgstr ""
+
+#: configs/language_specific_rules/templates/search_info.template:3
+#: configs/language_specific_rules/templates/itwewina/search_info.template:3
+#: configs/language_specific_rules/templates/sanit/search_info.template:9
+msgid "Search for a word, or a word form for a word analysis and definition."
+msgstr ""
+
+#: configs/language_specific_rules/templates/baakoeh/about.template:58
+msgid ""
+"The dictionaries for South Saami and Norwegian build on material prepared"
+" by Albert Jåma and Tove Brustad in the <a class=\"blue\" "
+"href=\"http://www.ruovatsijte.no/\">Hemnes Saami Organization</a>, but "
+"has in addition gained words from <a class=\"blue\" "
+"href=\"http://giellatekno.uit.no/\">Giellatekno</a> and <a class=\"blue\""
+" href=\"http://aajege.no/\">Aajege</a>'s work with the Southern Sámi <a "
+"class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
+msgstr ""
+
+#: configs/language_specific_rules/templates/guusaaw/about.template:41
+#: configs/language_specific_rules/templates/itwewina/about.template:45
+msgid "s/he speaks Cree"
+msgstr ""
+
+#: configs/language_specific_rules/templates/guusaaw/about.template:56
+msgid ""
+"The dictionary software behind pîkiskwêwina is Neahttadigisánit, "
+"originally created for North Saami and South Saami at the University of "
+"Tromsø. New languages always present new challenges for the software, so "
+"be sure to get in touch with us if you have questions or comments."
+msgstr ""
+
+#: configs/language_specific_rules/templates/guusaaw/about.template:89
+#: configs/language_specific_rules/templates/itwewina/about.template:99
+#: configs/language_specific_rules/templates/muter/about.template:79
+#: configs/language_specific_rules/templates/sanat/about.template:86
+#: configs/language_specific_rules/templates/sonad/about.template:86
+#: configs/language_specific_rules/templates/vada/about.template:78
+#: configs/language_specific_rules/templates/valks/about.template:90
+msgid "More to come..."
+msgstr ""
+
+#: configs/language_specific_rules/templates/itwewina/about.template:28
+msgid ""
+"Everything here is based on open-source tools. Do you\n"
+"                have an idea for an app or research project that needs\n"
+"                linguistic resources? Visit the <a class=\"blue\"\n"
+"                    href=\"http://altlab.artsrn.ualberta.ca/\">ALTLab</a>"
+" and\n"
+"                    <a class=\"blue\"\n"
+"                    href=\"http://giellatekno.uit.no/\">Giellatekno</a>\n"
+"                websites for information on how to get access to lexicon\n"
+"                files, and morphological and syntactic analyzers."
+msgstr ""
+
+#: configs/language_specific_rules/templates/itwewina/about.template:59
+msgid "crk ↔ eng"
+msgstr ""
+
+#: configs/language_specific_rules/templates/itwewina/about.template:61
+msgid ""
+"Dictionaries for Plains Cree and English are based\n"
+"                on the lexical materials and scientific research in <a "
+"href=\"http://uofrpress.ca/publications/cree-words\"><em>nêhiyawêwin : "
+"itwêwina / Cree: Words</em></a>.\n"
+"                 Compiled by Arok Wolvengrey.  Regina: Canadian Plains "
+"Research Center, 2001."
+msgstr ""
+
+#: configs/language_specific_rules/templates/itwewina/about.template:69
+msgid ""
+"The dictionary software behind itwêwina is Neahttadigisánit, originally "
+"created for North Saami and South Saami at the University of Tromsø. New "
+"languages always present new challenges for the software, so be sure to "
+"get in touch with us if you have questions or comments."
+msgstr ""
+
+#: configs/language_specific_rules/templates/itwewina/index_search_form.template:102
+msgid "Previous:"
+msgstr ""
+
+#: configs/language_specific_rules/templates/itwewina/index_search_form.template:107
+msgid "clear"
+msgstr ""
+
+#: configs/language_specific_rules/templates/itwewina/sources.template:6
+msgid "Sources and References"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/examples.template:76
+msgid "saying"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/examples.template:78
+msgid "riddle"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/examples.template:80
+msgid "proverb"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/examples.template:82
+msgid "sign"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/examples.template:85
+msgid "play on words"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/examples.template:87
+msgid "idiom"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/examples.template:122
+msgid "answer"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/includes.template:5
+msgid "More examples"
+msgstr ""
+
+#: configs/language_specific_rules/templates/kyv/includes.template:6
+msgid "Less examples"
+msgstr ""
+
+#: configs/language_specific_rules/templates/muter/about.template:43
+#: configs/language_specific_rules/templates/vada/about.template:45
+#: configs/language_specific_rules/templates/valks/about.template:45
+msgid "mennä, lähteä, kulkea"
+msgstr ""
+
+#: configs/language_specific_rules/templates/muter/about.template:57
+msgid "mrj ↔ fin"
+msgstr ""
+
+#: configs/language_specific_rules/templates/muter/about.template:58
+msgid ""
+"Dictionaries for Hill Mari and Finnish are based\n"
+"                    on lexical material from a large array of "
+"dictionaries and\n"
+"                    written literature from the 20th and 21th centuries. "
+"A\n"
+"                    note-worthy dictionary is the Hill Mari - Russian\n"
+"                    dictionary by Anna A. Savatkova (1981). Translation "
+"work is\n"
+"                    being conducted at\n"
+"                the University of Helsinki by Julia Kuprina with funding "
+"from\n"
+"                the Kone Foundation."
+msgstr ""
+
+#: configs/language_specific_rules/templates/saanih/about.template:57
+msgid ""
+"Inari Saami → Finnish and Finnish → Inari Saami builds on xxx dictionary"
+"  (7000 words). "
+msgstr ""
+
+#: configs/language_specific_rules/templates/sanat/about.template:43
+#: configs/language_specific_rules/templates/sonad/about.template:43
+msgid "mennä, tapahtua, viedä, johtaa, edistyä"
+msgstr ""
+
+#: configs/language_specific_rules/templates/sanat/about.template:57
+#: configs/language_specific_rules/templates/sonad/about.template:57
+msgid "liv ↔ fin"
+msgstr ""
+
+#: configs/language_specific_rules/templates/sanat/about.template:58
+#: configs/language_specific_rules/templates/sonad/about.template:58
+msgid ""
+"Dictionaries for Livonian and Finnish are based\n"
+"                on the lexical materials and scientific research behind "
+"the\n"
+"                Livonian-Estonian-Latvian dictionary by Tiit-Rein Viitso "
+"and\n"
+"                Valts Ernštreits. Finnish translation work, content "
+"analysis\n"
+"                and coordination is being continued in Helsinki by Renate"
+"\n"
+"                Blumberga with funding from the Kone Foundation."
+msgstr ""
+
+#: configs/language_specific_rules/templates/sanat/about.template:67
+#: configs/language_specific_rules/templates/sonad/about.template:67
+msgid "olo ↔ fin"
+msgstr ""
+
+#: configs/language_specific_rules/templates/sanat/about.template:68
+#: configs/language_specific_rules/templates/sonad/about.template:68
+msgid ""
+"Dictionaries for Livvi Karelian (Olonets) and\n"
+"                Finnish are based on lexical material from the Livvi "
+"language\n"
+"                newspaper \"Oma mua\" and a large array of dictionaries.\n"
+"                Translation work is being conducted at the University of\n"
+"                Helsinki by Timo Rantakaulio with funding from the Kone\n"
+"                Foundation."
+msgstr ""
+
+#: configs/language_specific_rules/templates/sanat/notice.template:3
+msgid ""
+"We have moved some languages to <a "
+"href=\"http://sonad.oahpa.no/\">Sonad</a>, please update your bookmarks."
+msgstr ""
+
+#: configs/language_specific_rules/templates/sanit/about.template:58
+msgid ""
+"North Saami → Norwegian builds on Nils Jernsletten's dictionary "
+"<em>Álgosátnegirji</em> (4300 words), but now contains 25000 words. "
+"Norwegian → North Saami contains about 26000 words. "
+msgstr ""
+
+#: configs/language_specific_rules/templates/sanit/about.template:59
+msgid ""
+"Approximately half of the content of the dictionaries is taken by "
+"searching for parallels in a parallel corpus of administrative text. This"
+" work was financed by the Ministry of Local Government and Modernisation."
+msgstr ""
+
+#: configs/language_specific_rules/templates/sanit/about.template:63
+msgid ""
+"Dictionaries for North Saami and Finnish are based on lexical material "
+"from the <a class=\"green\" href=\"http://kotus.fi\">Institute for the "
+"Languages of Finland</a>, and from Giellatekno's work with the North "
+"Saami  <a class=\"green\" href=\"http://oahpa.no\">Oahpa</a>. In "
+"addition, we have included frequent words from North Saami, but "
+"especially from Finnish."
+msgstr ""
+
+#: configs/language_specific_rules/templates/sanit/about.template:64
+msgid "In both directions there are about 11,000 entries."
+msgstr ""
+
+#: configs/language_specific_rules/templates/sanit/notice.template:5
+msgid "Other North Saami dictionaries"
+msgstr ""
+
+#: configs/language_specific_rules/templates/sanit/search_info.template:5
+msgid ""
+"If you are using a device without a Sámi keyboard, consider using <a "
+"href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
+"<em>acdnstz</em> for <em>áčđŋšŧž</em>."
+msgstr ""
+
+#: configs/language_specific_rules/templates/sanit/search_info.template:13
+msgid ""
+"You selected #SoMe, the variant for social media, which means that the "
+"letters acdnstz\n"
+"            will be accepted as áčđŋšŧž in addition to their usual values."
+msgstr ""
+
+#: configs/language_specific_rules/templates/sanit/nob/definition_text.template:92
+msgid "Bruk: "
+msgstr ""
+
+#: configs/language_specific_rules/templates/vada/about.template:59
+msgid "yrk ↔ fin"
+msgstr ""
+
+#: configs/language_specific_rules/templates/vada/about.template:60
+msgid ""
+"Dictionaries for Nenets and Finnish are based on\n"
+"                the lexical materials and scientific research by Natalia "
+"M.\n"
+"                Tereschenko, Tapani Salminen and Sven-Erik Soosaar. "
+"Finnish\n"
+"                translation work is being done in Tallinn by Sven-Erik "
+"Soosaar\n"
+"                with funding from the Kone Foundation."
+msgstr ""
+
+#: configs/language_specific_rules/templates/valks/about.template:59
+msgid "myv ↔ fin"
+msgstr ""
+
+#: configs/language_specific_rules/templates/valks/about.template:60
+msgid ""
+"Dictionaries for Erzya and Finnish are based on\n"
+"                lexical material from a large array of dictionaries and "
+"written\n"
+"                literature from the 20th and 21th centuries. Initial "
+"Finnish\n"
+"                translations have been added from the content of the\n"
+"                Erzya-Finnish dictionary by Jaana Niemi and Mihail Mosin "
+"at the\n"
+"                Universities in Turku and Saransk. There are additions "
+"being\n"
+"                made on the basis of ongoing translation work at the "
+"University\n"
+"                of Helsinki."
+msgstr ""
+
+#: configs/language_specific_rules/templates/valks/about.template:70
+msgid "mdf ↔ fin"
+msgstr ""
+
+#: configs/language_specific_rules/templates/valks/about.template:71
+msgid ""
+"Dictionaries for Moksha and Finnish are based on\n"
+"                lexical material from a large array of dictionaries and "
+"written\n"
+"                literature from the 20th and 21th centuries. Initial "
+"Finnish\n"
+"                translations have been added from the content of the\n"
+"                Moksha-Finnish dictionary by Eeva Herrala and Aleksandr\n"
+"                Feoktistov at the Universities in Turku and Saransk.\n"
+"                Translation work is being continued at the University of\n"
+"                Helsinki by Merja Salo with funding from the Kone "
+"Foundation."
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8802
+msgid "Unknown word"
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8803
+msgid "You are using"
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8805
+msgid "Meaning not found"
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8883
+msgid "Á"
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8883
+msgid "Options"
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8883
+msgid "Help"
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8883
+msgid "Advanced"
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8883
+msgid "Dictionary"
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8883
+msgid "Save"
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8883
+msgid "Refresh settings"
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8883
+msgid "Update detected"
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8883
+msgid "IE8 Warning"
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8883
+msgid ""
+"In order to look up a word, hold down the <em>Alt</em> or <em>Option</em>"
+" (⌥) key, and doubleclick on a word. The service will contact the "
+"dictionary, and return a word after a short pause."
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8883
+msgid ""
+"If you find a bug, or if the bookmark does not work on a specific page <a"
+" href=\"mailto:giellatekno@hum.uit.no\">please contact us</a>. Tell us "
+"what page didn't work, or what you did when you discovered the problem."
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8883
+msgid "This tool was made by Giellatekno at UiT: The Arctic University of Norway."
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8883
+msgid "Read more"
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8883
+msgid "More tools"
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8951
+msgid "Error!"
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8951
+msgid "Could not connect to dictionary server"
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8951
+msgid "Close"
+msgstr ""
+
+#: templates/404.html:51
+msgid ""
+"Whoops! The page you requested was not found. If you think you are "
+"receiving this in error, please contact us."
+msgstr ""
+
+#: templates/404.html:51
+msgid ""
+"If you followed a link from the front page, it may be that the dictionary"
+" you were browsing is not yet bilingual."
+msgstr ""
+
+#: templates/500.html:51
+msgid "Whoops! There was some kind of error."
+msgstr ""
+
+#: templates/browse.html:24
+msgid "Browse"
+msgstr ""
+
+#: templates/browse.html:95
+msgid "prev"
+msgstr ""
+
+#: templates/browse.html:107
+msgid "next"
+msgstr ""
+
+#: templates/browse.html:116
+msgid "Congratulations! You have read the whole dictionary."
+msgstr ""
+
+#: templates/config_doc.html:4
+msgid "Neahttadigisánit"
+msgstr ""
+
+#: templates/index.html:52 templates/variant_search.html:58
+msgid "Swap"
+msgstr ""
+
+#: templates/index.html:67 templates/index.html:140
+#: templates/variant_search.html:117 templates/variant_search.html:220
+#: templates/word_detail.html:101 templates/word_detail.html:143
+#: views/reader.py:220
+msgid " is a possible form of ... "
+msgstr ""
+
+#: templates/index.html:84 templates/index.html:106
+#: templates/variant_search.html:133 templates/variant_search.html:155
+#, python-format
+msgid "Word <span lang=\"%(_from)s\">%(input)s</span> not found."
+msgstr ""
+
+#: templates/index.html:92 templates/variant_search.html:141
+#, python-format
+msgid "Other analyses for <em>%(user_input)s</em> without a translation."
+msgstr ""
+
+#: templates/index_search_form.html:15
+msgid "Press Tab to select a word"
+msgstr ""
+
+#: templates/keyword_search_form.html:24
+msgid "Enter keyword(s)"
+msgstr ""
+
+#: templates/language_select.html:7
+msgid "<span class=\"reposition_hide\">Language</span>"
+msgstr ""
+
+#: templates/language_select_noflags.html:7
+msgid "Language"
+msgstr ""
+
+#: templates/left_dictionary_list.html:1
+#: templates/mobile_nav_dictionary_list.html:1
+#: templates/mobile_nav_push_menu.html:41
+#: templates/mobile_nav_push_menu.html:44
+msgid "Dictionaries"
+msgstr ""
+
+#: templates/left_dictionary_list.html:17
+msgid "Escape Text-TV mode"
+msgstr ""
+
+#: templates/left_nav_grouped_language_pair_select.html:72
+#: templates/left_nav_language_pair_select_list.html:56
+#: templates/mobile_nav_push_menu.html:63
+#: templates/mobile_nav_push_menu.html:83
+msgid "Written variant"
+msgstr ""
+
+#: templates/left_nav_search_variants.html:14
+msgid "Search type"
+msgstr ""
+
+#: templates/left_nav_search_variants.html:17
+#: templates/mobile_nav_dictionary_list.html:34
+#: templates/mobile_nav_push_menu.html:87
+msgid "Word search"
+msgstr ""
+
+#: templates/macros.html:5 templates/macros.html:13
+msgid "Texts"
+msgstr ""
+
+#: templates/mobile_nav_push_menu.html:6
+msgid "Home"
+msgstr ""
+
+#: templates/mobile_nav_push_menu.html:10
+msgid "Plugins"
+msgstr ""
+
+#: templates/mobile_nav_push_menu.html:18
+msgid "Sources"
+msgstr ""
+
+#: templates/mobile_nav_push_menu.html:22
+#: templates/mobile_nav_push_menu.html:25
+msgid "Interface language"
+msgstr ""
+
+#: templates/mobile_nav_push_menu.html:26
+#: templates/mobile_nav_push_menu.html:45
+#: templates/mobile_nav_push_menu.html:53
+#: templates/mobile_nav_push_menu.html:60
+#: templates/mobile_nav_push_menu.html:80
+msgid "Back"
+msgstr ""
+
+#: templates/more_dictionaries.html:4
+msgid "More dictionaris"
+msgstr ""
+
+#: templates/more_dictionaries.html:24
+msgid ""
+"Neahttadigisánit is available for the following\n"
+"                language groups."
+msgstr ""
+
+#: templates/more_dictionaries.html:32
+msgid ""
+"We're currently working on some new dictionaries for\n"
+"                the following language groups. Since these may not always"
+" be\n"
+"                online, they are not linked here, but please contact us "
+"if you\n"
+"                would like to see a demo!"
+msgstr ""
+
+#: templates/more_dictionaries.html:38
+msgid "Balto-finnic languages"
+msgstr ""
+
+#: templates/more_dictionaries.html:39
+msgid "Olonets"
+msgstr ""
+
+#: templates/more_dictionaries.html:39
+msgid "and"
+msgstr ""
+
+#: templates/more_dictionaries.html:40
+msgid "Mordvinic languages"
+msgstr ""
+
+#: templates/more_dictionaries.html:40
+msgid "Erzya"
+msgstr ""
+
+#: templates/more_dictionaries.html:42
+msgid "Mari languages"
+msgstr ""
+
+#: templates/more_dictionaries.html:42
+msgid "Eastern and Western."
+msgstr ""
+
+#: templates/more_dictionaries.html:43
+msgid "Permic languages"
+msgstr ""
+
+#: templates/more_dictionaries.html:43
+msgid "Komi-Zyrian"
+msgstr ""
+
+#: templates/more_dictionaries.html:46
+msgid "Even more dictionaries..."
+msgstr ""
+
+#: templates/more_dictionaries.html:47
+msgid ""
+"<a href=\"http://giellatekno.uit.no/\">Giellatekno</a> also has\n"
+"                other languages and dictionaries that are not yet "
+"available in\n"
+"                Neahttadigisánit. For a list of all other online "
+"dictionaries\n"
+"                built with our tools, <a "
+"href=\"http://dicts.uit.no/\">see this\n"
+"                    list</a>."
+msgstr ""
+
+#: templates/reader.html:3 templates/reader.html:20
+#, python-format
+msgid "%(project_name)s Reader"
+msgstr ""
+
+#: templates/reader.html:21
+msgid "Bookmarklet"
+msgstr ""
+
+#: templates/reader.html:22
+msgid ""
+"Drag and drop the following link to your Bookmark toolbar,\n"
+"                then click it when you are on a page you wish to read. "
+"The\n"
+"                service will automatically be installed, and you will see"
+" a\n"
+"                menu icon on the left-hand side of the page."
+msgstr ""
+
+#: templates/reader.html:26 templates/reader_update.html:15
+#, python-format
+msgid "Read with %(project_name)s"
+msgstr ""
+
+#: templates/reader.html:27
+msgid ""
+"In order to look up a word, hold Alt or Option (⌥) and double\n"
+"                click the word. The service will will connect to this\n"
+"                website and return dictionary entries after a brief\n"
+"                pause."
+msgstr ""
+
+#: templates/reader.html:31
+msgid "To change the dictionary, click the menu icon."
+msgstr ""
+
+#: templates/reader.html:32
+msgid "Installing on a website"
+msgstr ""
+
+#: templates/reader.html:34
+msgid ""
+"It is also possible to install the reader plugin on a website,\n"
+"                so that users will have access to dictionaries without "
+"the\n"
+"                bookmarklet."
+msgstr ""
+
+#: templates/reader.html:39
+msgid ""
+"To do so, <a "
+"href=\"http://giellatekno.uit.no/doc/dicts/nds/AddingNDSPluginToOtherSites.html\">follow"
+" our documentation</a>."
+msgstr ""
+
+#: templates/reader.html:40
+msgid "Browser support"
+msgstr ""
+
+#: templates/reader.html:41
+msgid "The reader is supported in the following browsers:"
+msgstr ""
+
+#: templates/reader.html:43
+msgid "Chrome (version 20 and newer)"
+msgstr ""
+
+#: templates/reader.html:44
+msgid "Internet Explorer (version 9 and newer)"
+msgstr ""
+
+#: templates/reader.html:45
+msgid "Firefox (version 18 and newer)"
+msgstr ""
+
+#: templates/reader.html:46
+msgid "Opera (version 16 and newer)"
+msgstr ""
+
+#: templates/reader.html:48
+msgid "Bugs?"
+msgstr ""
+
+#: templates/reader.html:49
+msgid ""
+"If you encounter bugs, or the bookmarklet does not work on a\n"
+"                particular page, contact us with the page URL or details "
+"of\n"
+"                what you were reading when you encountered the problem."
+msgstr ""
+
+#: templates/reader.html:52
+msgid ""
+"We do not store any private data, but we do collect\n"
+"                individual dictionary lookups for statistics and to "
+"improve\n"
+"                the dictionary."
+msgstr ""
+
+#: templates/reader.html:61
+msgid "Includes"
+msgstr ""
+
+#: templates/reader.html:69
+#, python-format
+msgid ""
+"If you are looking for other languages, please see our <a "
+"href=\"%(more_dictionaries_link)s\">other dictionaries</a>."
+msgstr ""
+
+#: templates/reader_example.html:32
+msgid "Additional instructions"
+msgstr ""
+
+#: templates/reader_ie8_notice.html:1
+#, python-format
+msgid ""
+"\n"
+"Your web browser is supported, however, you will need to change some\n"
+"options for the %(app_name)s Reader to work.\n"
+msgstr ""
+
+#: templates/reader_update.html:1
+msgid ""
+"\n"
+"We have made some updates to the dictionary, which require you to\n"
+"replace your bookmark with a new version.\n"
+msgstr ""
+
+#: templates/reader_update.html:9
+msgid ""
+"Drag and drop the following link to your Bookmark toolbar,\n"
+"    then click it when you are on a page you wish to read. The\n"
+"    service will automatically be installed, and you will see a\n"
+"    menu icon on the left-hand side of the page."
+msgstr ""
+
+#: templates/word_detail.html:33
+msgid "is a possible form of ... "
+msgstr ""
+
+#: templates/word_detail.html:134
+msgid "More information about this word"
+msgstr ""
+
+#: views/search.py:1022
+msgid "Invalid format. Only json and html allowed."
+msgstr ""
+
