@@ -162,7 +162,6 @@ Dictionaries:
         example: "(<em>іӧ</em>)"
         # NB: must be same as analyser name
         short_name: "kpvP"
-        onscreen_keyboard: &KPV_KEYS
 
   - source: kpv
     target: fin
