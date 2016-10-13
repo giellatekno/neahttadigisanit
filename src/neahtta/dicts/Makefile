@@ -1091,11 +1091,15 @@ rm-kyv-lexica: $(foreach xx, $(KYV_LANGS_LEXICA), $(xx)-all.xml) \
 
 .PHONY: kyv-install
 kyv-install: GT_COMPILE_LANGS := $(KYV_LANGS_ANALYSERS)
-kyv-install: install_langs_fsts copy_molotsov
+kyv-install: install_langs_fsts copy_molotsov copy_forPermyak
 
 .PHONY: copy_molotsov
 copy_molotsov: $(GTHOME)/langs/kpv/src/analyser-dict-gt-desc-molotsov.xfst
 	cp $^ /opt/smi/kpv/bin/analyser-dict-gt-desc-molotsov.xfst
+
+.PHONY: copy_forPermyak
+copy_forPermyak: $(GTHOME)/langs/kpv/src/analyser-dict-gt-desc-permyak.xfst
+	cp $^ /opt/smi/kpv/bin/analyser-dict-gt-desc-permyak.xfst
 
 
 ###    #####
