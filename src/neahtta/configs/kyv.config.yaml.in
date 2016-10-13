@@ -77,6 +77,16 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
+  kpvP:
+    tool: *LOOKUP
+    file: [*OPT, '/kpv/bin/analyser-dict-gt-desc-permyak.xfst']
+    inverse_file: [*OPT, '/kpv/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
   fin:
     tool: *LOOKUP
     file: [*OPT, '/fin/bin/analyser-dict-gt-desc.xfst']
@@ -147,6 +157,12 @@ Dictionaries:
           - "ј"
           - "і"
           - "ӧ"
+      - type: "forPermyak"
+        description: !gettext "Zyrian for Permyak"
+        example: "(<em>іӧ</em>)"
+        # NB: must be same as analyser name
+        short_name: "kpvP"
+        onscreen_keyboard: &KPV_KEYS
 
   - source: kpv
     target: fin
