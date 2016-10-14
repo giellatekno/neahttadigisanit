@@ -112,11 +112,11 @@ msgstr ""
 
 #: configs/language_names.yaml:34 configs/language_names.yaml:114
 msgid "English"
-msgstr ""
+msgstr "Angol"
 
 #: configs/language_names.yaml:37
 msgid "Hungarian"
-msgstr ""
+msgstr "Magyar"
 
 #: configs/language_names.yaml:40 templates/more_dictionaries.html:29
 msgid "South Sámi"
@@ -124,11 +124,11 @@ msgstr ""
 
 #: configs/language_names.yaml:41 configs/language_names.yaml:42
 msgid "Komi"
-msgstr ""
+msgstr "Komi"
 
 #: configs/language_names.yaml:43 configs/language_names.yaml:46
 msgid "Udmurt"
-msgstr ""
+msgstr "Udmurt"
 
 #: configs/language_names.yaml:47 templates/more_dictionaries.html:39
 msgid "Kven"
@@ -140,7 +140,7 @@ msgstr ""
 
 #: configs/language_names.yaml:51
 msgid "Estonian"
-msgstr ""
+msgstr "Észt"
 
 #: configs/language_names.yaml:52 configs/language_names.yaml:53
 #: templates/more_dictionaries.html:39
@@ -169,7 +169,7 @@ msgstr ""
 
 #: configs/language_names.yaml:61 templates/more_dictionaries.html:40
 msgid "Moksha"
-msgstr ""
+msgstr "Moksa"
 
 #: configs/language_names.yaml:62 configs/language_names.yaml:116
 msgid "French"
@@ -177,7 +177,7 @@ msgstr ""
 
 #: configs/language_names.yaml:65 configs/language_names.yaml:117
 msgid "German"
-msgstr ""
+msgstr "Német"
 
 #: configs/language_names.yaml:66
 msgid "Western Mari"
@@ -229,7 +229,7 @@ msgstr ""
 
 #: configs/language_names.yaml:103 configs/language_names.yaml:109
 msgid "Finnish"
-msgstr ""
+msgstr "Finn"
 
 #: configs/language_names.yaml:104 configs/language_names.yaml:110
 #: configs/language_names.yaml:111
@@ -238,7 +238,7 @@ msgstr ""
 
 #: configs/language_names.yaml:106 configs/language_names.yaml:107
 msgid "Russian"
-msgstr ""
+msgstr "Orosz"
 
 #: configs/language_names.yaml:112 configs/language_names.yaml:113
 msgid "Latvian"
@@ -258,7 +258,7 @@ msgstr ""
 
 #: configs/language_names.yaml:120
 msgid "Swedish"
-msgstr ""
+msgstr "Svéd"
 
 #: configs/saanih.config.yaml.in:79 configs/saanih.config.yaml.in:100
 msgid "(<em>âäáčđŋšž</em>)"
@@ -983,7 +983,7 @@ msgstr ""
 
 #: static/js/neahttadigisanit.js:8883
 msgid "Dictionary"
-msgstr ""
+msgstr "Szótár"
 
 #: static/js/neahttadigisanit.js:8883
 msgid "Save"
