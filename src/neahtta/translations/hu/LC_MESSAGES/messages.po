@@ -1118,7 +1118,7 @@ msgstr ""
 #: templates/mobile_nav_push_menu.html:41
 #: templates/mobile_nav_push_menu.html:44
 msgid "Dictionaries"
-msgstr ""
+msgstr "Szótárok"
 
 #: templates/left_dictionary_list.html:17
 msgid "Escape Text-TV mode"
