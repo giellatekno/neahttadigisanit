@@ -108,6 +108,16 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
+  rus:
+    tool: *LOOKUP
+    file: [*OPT, '/rus/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/rus/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
 
 Languages:
   - iso: liv
@@ -127,6 +137,7 @@ Languages:
     minority_lang: true
 
   - iso: fin
+  - iso: rus
   - iso: est
   - iso: lav
     minority_lang: true
@@ -199,6 +210,15 @@ Dictionaries:
   - source: vot
     target: fin
     path: 'dicts/vot-all.xml'
+
+  - source: vot
+    target: rus
+    path: 'dicts/votrus.xml'
+
+  - source: rus
+    target: vot
+    path: 'dicts/rusvot.xml'
+
 
   # lav
   - source: lav
