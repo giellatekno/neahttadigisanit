@@ -158,15 +158,15 @@ msgstr "isuri"
 
 #: configs/language_names.yaml:55
 msgid "Veps"
-msgstr ""
+msgstr "vepsa"
 
 #: configs/language_names.yaml:56
 msgid "Võro"
-msgstr ""
+msgstr "võru"
 
 #: configs/language_names.yaml:59
 msgid "Votic"
-msgstr ""
+msgstr "vadja"
 
 #: configs/language_names.yaml:60
 msgid "Erzya Mordvin"
@@ -182,7 +182,7 @@ msgstr "prantsuse"
 
 #: configs/language_names.yaml:65 configs/language_names.yaml:117
 msgid "German"
-msgstr ""
+msgstr "saksa"
 
 #: configs/language_names.yaml:66
 msgid "Western Mari"
@@ -265,7 +265,7 @@ msgstr ""
 
 #: configs/language_names.yaml:120
 msgid "Swedish"
-msgstr ""
+msgstr "rootsi"
 
 #: configs/saanih.config.yaml.in:79 configs/saanih.config.yaml.in:100
 #, fuzzy
