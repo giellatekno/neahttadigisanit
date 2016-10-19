@@ -600,7 +600,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:49
 #: templates/index_search_form.html:21
 msgid "ohcansátni"
-msgstr ""
+msgstr "otsisõna"
 
 #: configs/language_specific_rules/templates/index_search_form.template:53
 #: configs/language_specific_rules/templates/index_search_form.template:73
@@ -623,7 +623,7 @@ msgstr ""
 #: templates/index_search_form.html:53 templates/keyword_search_form.html:29
 #: templates/word_detail.html:92
 msgid "Search"
-msgstr "otsing"
+msgstr "Otsi"
 
 #: configs/language_specific_rules/templates/index_search_form.template:65
 #: configs/language_specific_rules/templates/index_search_form.template:88
@@ -663,7 +663,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/itwewina/search_info.template:3
 #: configs/language_specific_rules/templates/sanit/search_info.template:9
 msgid "Search for a word, or a word form for a word analysis and definition."
-msgstr ""
+msgstr "Otsi sõna või sõnavormi ja leia selle analüüs ja definitsioon."
 
 #: configs/language_specific_rules/templates/baakoeh/about.template:58
 msgid ""
