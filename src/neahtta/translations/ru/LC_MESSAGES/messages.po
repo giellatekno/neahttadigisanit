@@ -163,7 +163,7 @@ msgstr ""
 
 #: configs/language_names.yaml:59
 msgid "Votic"
-msgstr ""
+msgstr "Водский"
 
 #: configs/language_names.yaml:60
 msgid "Erzya Mordvin"
