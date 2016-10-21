@@ -155,11 +155,11 @@ msgstr "Ижорский"
 
 #: configs/language_names.yaml:55
 msgid "Veps"
-msgstr ""
+msgstr "Вепсский"
 
 #: configs/language_names.yaml:56
 msgid "Võro"
-msgstr ""
+msgstr "Выруский"
 
 #: configs/language_names.yaml:59
 msgid "Votic"
