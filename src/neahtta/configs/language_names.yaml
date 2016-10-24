@@ -42,6 +42,7 @@ isos_to_names:
   "kpvS": !gettext "Komi"
   "udm": !gettext "Udmurt"
   "udmM": !gettext "Udmurt"
+  "koi": !gettext "Komi-Permyak"
 
   # sanat
   "fkv": !gettext "Kven"
@@ -142,6 +143,7 @@ isos_to_demonym:
   "kpv": "Коми кыв"
   "kv": "Коми кыв"
   "kpvS": "Коми кыв (Молодцов ортография)"
+  "koi": "Коми кыв (Перымса коми)"
   "udm": "Удмурт кыл"
   "izh": "Ižoran keel"
   "fkv": "Kveenin kieli"
