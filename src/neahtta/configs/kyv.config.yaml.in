@@ -15,7 +15,7 @@ ApplicationSettings:
   meta_description: >
       Free online, mobile friendly dictionaries for Komi-Zyrian
   meta_keywords: >
-      komi, komi-zyrian, mobile, dictionary, free, russian, коми, роч,
+      komi, komi-zyrian, komi-permyak, mobile, dictionary, free, russian, коми, роч,
       кывчукӧр, словарь, русский, sanakirja, venäjä, komin kieli, udmurtti,
       удмурт, ӟуч, magyar, szótár
   admins_to_email:
@@ -271,6 +271,7 @@ Dictionaries:
   - source: koi
     target: kpv
     path: 'dicts/koikpv.xml'
-
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
+    is_korp_default_lang: True
+
