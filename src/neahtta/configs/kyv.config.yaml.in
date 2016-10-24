@@ -67,6 +67,16 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
+  koi:
+    tool: *LOOKUP
+    file: [*OPT, '/koi/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/koi/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
   kpvS:
     tool: *LOOKUP
     file: [*OPT, '/kpv/bin/analyser-dict-gt-desc-molotsov.xfst']
@@ -110,6 +120,8 @@ Morphology:
 
 Languages:
   - iso: kpv
+    minority_lang: true
+  - iso: koi
     minority_lang: true
   - iso: eng
   - iso: fin
@@ -256,3 +268,9 @@ Dictionaries:
     target: udm
     path: 'dicts/hunudm.xml'
 
+  - source: koi
+    target: kpv
+    path: 'dicts/koikpv.xml'
+
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/u_korp"

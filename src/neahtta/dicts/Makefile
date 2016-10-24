@@ -1066,9 +1066,9 @@ baakoeh-clean: clean_langs_fsts
 ##### #kyvtargets
 #####
 
-KYV_LANGS_ANALYSERS      :=   kpv fin udm hun
+KYV_LANGS_ANALYSERS      :=   kpv fin udm hun koi
 KYV_LANGS_LEXICA         :=   udm kpv
-KYV_WORDS_DICTS_LEXICA   :=   finkpv udmkpv udmfin finudm udmhun hunudm
+KYV_WORDS_DICTS_LEXICA   :=   finkpv udmkpv udmfin finudm udmhun hunudm koikpv
 
 .PHONY: kyv-lexica
 kyv-lexica: LEX_COMPILE_LANGS := $(KYV_LANGS_LEXICA)
