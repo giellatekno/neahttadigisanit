@@ -242,6 +242,15 @@ Dictionaries:
         short_name: "udmM"
         onscreen_keyboard: *UDM_KEYS
 
+  - source: kpv
+    target: udm
+    path: 'dicts/kpvudm.xml'
+    input_variants: *KOMI_VARIANTS
+
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/u_korp"
+    is_korp_default_lang: True
+
   - source: udm
     target: fin
     path: 'dicts/udmfin.xml'
@@ -272,6 +281,15 @@ Dictionaries:
   - source: koi
     target: kpv
     path: 'dicts/koikpv.xml'
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/u_korp"
+    is_korp_default_lang: True
+
+  - source: kpv
+    target: koi
+    path: 'dicts/kpvudm.xml'
+    input_variants: *KOMI_VARIANTS
+
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     is_korp_default_lang: True
