@@ -33,7 +33,7 @@ Morphology:
     inverse_file: [*OPT, '/kpv/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
-      compoundBoundary: "+Use/Circ#"
+      compoundBoundary: "+Cmp#"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
@@ -43,7 +43,7 @@ Morphology:
     inverse_file: [*OPT, '/kpv/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
-      compoundBoundary: "+Use/Circ#"
+      compoundBoundary: "+Cmp#"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
@@ -83,7 +83,7 @@ Morphology:
     inverse_file: [*OPT, '/kpv/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
-      compoundBoundary: "+Use/Circ#"
+      compoundBoundary: "+Cmp#"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
@@ -93,7 +93,7 @@ Morphology:
     inverse_file: [*OPT, '/kpv/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
-      compoundBoundary: "+Use/Circ#"
+      compoundBoundary: "+Cmp#"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
