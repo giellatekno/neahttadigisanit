@@ -287,7 +287,7 @@ Dictionaries:
 
   - source: kpv
     target: koi
-    path: 'dicts/kpvudm.xml'
+    path: 'dicts/kpvkoi.xml'
     input_variants: *KOMI_VARIANTS
 
     show_korp_search: True
