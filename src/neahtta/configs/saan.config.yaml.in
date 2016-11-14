@@ -28,7 +28,7 @@ Morphology:
     tool: *HLOOKUP
     file: [*OPT, '/sms/bin/analyser-dict-gt-desc.hfstol']
     inverse_file: [*OPT, '/sms/bin/generator-dict-gt-norm.hfstol']
-    format: 'hfstol'
+    format: 'hfst'
     options:
       compoundBoundary: "+Cmp#"
       derivationMarker: "+Der"
@@ -38,7 +38,7 @@ Morphology:
     tool: *HLOOKUP
     file: [*OPT, '/sms/bin/analyser-dict-gt-desc-mobile.hfstol']
     inverse_file: [*OPT, '/sms/bin/generator-dict-gt-norm.hfstol']
-    format: 'hfstol'
+    format: 'hfst'
     options:
       compoundBoundary: "+Cmp#"
       derivationMarker: "+Der"
