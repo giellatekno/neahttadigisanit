@@ -79,7 +79,7 @@ Morphology:
       inverse_tagsep: '+'
   kpvS:
     tool: *LOOKUP
-    file: [*OPT, '/kpv/bin/analyser-dict-gt-desc-molotsov.xfst']
+    file: [*OPT, '/kpv/bin/analyser-dict-gt-desc-molodtsov.xfst']
     inverse_file: [*OPT, '/kpv/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
@@ -152,8 +152,8 @@ Dictionaries:
         example: !gettext "(incl. <em>ио</em>)"
         short_name: "kpvM"
         onscreen_keyboard: *KPV_KEYS
-      - type: "molotsov"
-        description: !gettext "Molotsov orthography"
+      - type: "molodtsov"
+        description: !gettext "Molodtsov orthography"
         example: "(ԅ &rarr; зь)"
         short_name: "kpvS"
         onscreen_keyboard: &KPVS_KEYS

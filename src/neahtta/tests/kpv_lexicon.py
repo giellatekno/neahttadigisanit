@@ -31,7 +31,7 @@ definition_exists_tests = [
     #  lang    pair    search    definition lemmas
     #                            
 
-    # testing that molotsov orthography works and returns lookups 
+    # testing that molodtsov orthography works and returns lookups 
     ( ('kpvS', 'fin'), u'морсјаслыԍ', u'mehu'),
     ( ('kpvS', 'fin'), u'морсъяслысь', u'mehu'),
     ( ('kpvS', 'fin'), u'мортлаԋ', u'ihminen'),
