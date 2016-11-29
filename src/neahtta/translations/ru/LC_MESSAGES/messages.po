@@ -114,7 +114,7 @@ msgstr "Северно-саамский (#SoMe)"
 
 #: configs/language_names.yaml:34 configs/language_names.yaml:114
 msgid "English"
-msgstr "Английслий"
+msgstr "Английский"
 
 #: configs/language_names.yaml:37
 msgid "Hungarian"
