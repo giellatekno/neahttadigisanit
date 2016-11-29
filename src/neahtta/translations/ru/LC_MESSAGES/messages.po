@@ -118,7 +118,7 @@ msgstr "Английский"
 
 #: configs/language_names.yaml:37
 msgid "Hungarian"
-msgstr ""
+msgstr "Венгерский"
 
 #: configs/language_names.yaml:40 templates/more_dictionaries.html:29
 msgid "South Sámi"
@@ -130,7 +130,7 @@ msgstr "Коми"
 
 #: configs/language_names.yaml:43 configs/language_names.yaml:46
 msgid "Udmurt"
-msgstr ""
+msgstr "Удмурт"
 
 #: configs/language_names.yaml:47 templates/more_dictionaries.html:39
 msgid "Kven"
@@ -171,7 +171,7 @@ msgstr "Эрзянский"
 
 #: configs/language_names.yaml:61 templates/more_dictionaries.html:40
 msgid "Moksha"
-msgstr "Мокша"
+msgstr "Мокшанский"
 
 #: configs/language_names.yaml:62 configs/language_names.yaml:116
 msgid "French"
@@ -179,7 +179,7 @@ msgstr "Французский"
 
 #: configs/language_names.yaml:65 configs/language_names.yaml:117
 msgid "German"
-msgstr ""
+msgstr "Немецкий"
 
 #: configs/language_names.yaml:66
 msgid "Western Mari"
@@ -223,12 +223,11 @@ msgstr ""
 
 #: configs/language_names.yaml:99
 msgid "Khanty"
-msgstr ""
+msgstr "Ханты"
 
 #: configs/language_names.yaml:102
-#, fuzzy
 msgid "Irish"
-msgstr "Финский"
+msgstr "Ирландский"
 
 #: configs/language_names.yaml:103 configs/language_names.yaml:109
 msgid "Finnish"
@@ -254,7 +253,7 @@ msgstr "Хайда"
 #: configs/language_names.yaml:118
 #, fuzzy
 msgid "Romanian"
-msgstr "Лив"
+msgstr ""
 
 #: configs/language_names.yaml:119
 msgid "Meänkieli"
@@ -262,7 +261,7 @@ msgstr ""
 
 #: configs/language_names.yaml:120
 msgid "Swedish"
-msgstr ""
+msgstr "Шведский"
 
 #: configs/saanih.config.yaml.in:79 configs/saanih.config.yaml.in:100
 msgid "(<em>âäáčđŋšž</em>)"
