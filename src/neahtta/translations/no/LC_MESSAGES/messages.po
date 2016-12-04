@@ -614,7 +614,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/itwewina/index_search_form.template:48
 #: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:42
 msgid "Select a word, and press Tab"
-msgstr ""
+msgstr "Velg et ord, og trykk på Tab-tasten"
 
 #: configs/language_specific_rules/templates/index_search_form.template:48
 #: configs/language_specific_rules/templates/baakoeh/index_search_form.template:48
@@ -688,11 +688,13 @@ msgstr "Flere bøyningsformer"
 #: configs/language_specific_rules/templates/sanit/search_info.template:9
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
-"Søk etter et ord, evt. en bøyd form. Etter at du har søkt: Ved å klikke "
-"på ordet får du en liste med bøyningsformer. <br /><br /> Med \"Søk i "
-"tekst\" kan du søke etter setninger med ordet, og alle bøyningsformer er "
-"med i søket hvis du bruker linken som dukker opp i høyre marg etter at du"
-" har trykt  \"Søk\"."
+"Søk etter et ord, evt. en bøyd form for å få oversettelse eller grammatisk analyse."
+
+#" Etter at du har søkt: Ved å klikke "
+#"på ordet får du en liste med bøyningsformer. <br /><br /> Med \"Søk i "
+#"tekst\" kan du søke etter setninger med ordet, og alle bøyningsformer er "
+#"med i søket hvis du bruker linken som dukker opp i høyre marg etter at du"
+#" har trykt  \"Søk\"."
 
 #: configs/language_specific_rules/templates/baakoeh/about.template:58
 msgid ""
@@ -704,6 +706,9 @@ msgid ""
 " href=\"http://aajege.no/\">Aajege</a>'s work with the Southern Sámi <a "
 "class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
 msgstr ""
+"Ordbøkene for sørsamisk og norsk bygger på materiale utarbeidet av"
+" Albert Jåma og Tove Brustad i Hemnes sameforening. I tillegg har vi"
+" lagt til ord fra Giellatekno og Aajeges arbeid med Oahpa."
 
 #: configs/language_specific_rules/templates/guusaaw/about.template:41
 #: configs/language_specific_rules/templates/itwewina/about.template:45
@@ -1697,4 +1702,3 @@ msgstr "Ugyldig format. Bare json og html er tillatt."
 
 #~ msgid "syllabics"
 #~ msgstr ""
-
