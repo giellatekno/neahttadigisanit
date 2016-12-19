@@ -1,4 +1,5 @@
-﻿morphology:
+name: "adjectives"
+morphology:
   pos: A
 --
 {{ lemma }}+A+Der/MWN+N+Sg+Nom+Indef
