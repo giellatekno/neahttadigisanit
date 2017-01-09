@@ -36,8 +36,8 @@ Morphology:
       inverse_tagsep: '+'
   mhr:
     tool: *LOOKUP
-    file: [*OPT, '/mhr/bin/analyser-dict-gt-desc.xfst']
-    inverse_file: [*OPT, '/mhr/bin/generator-dict-gt-norm.xfst']
+    file: [*OPT, '/mhr/bin/analyser-dict-gt-desc.hfstol']
+    inverse_file: [*OPT, '/mhr/bin/generator-dict-gt-norm.hfstol']
     format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"
