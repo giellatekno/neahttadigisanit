@@ -115,7 +115,7 @@ Dictionaries:
 
   - source: myv
     target: eng
-    path: 'dicts/myv-all.xml'
+    path: 'dicts/myveng.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
 
