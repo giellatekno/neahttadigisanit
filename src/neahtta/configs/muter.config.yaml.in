@@ -35,10 +35,10 @@ Morphology:
       tagsep: '+'
       inverse_tagsep: '+'
   mhr:
-    tool: *LOOKUP
+    tool: *HLOOKUP
     file: [*OPT, '/mhr/bin/analyser-dict-gt-desc.hfstol']
     inverse_file: [*OPT, '/mhr/bin/generator-dict-gt-norm.hfstol']
-    format: 'xfst'
+    format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
       derivationMarker: "+Der"
