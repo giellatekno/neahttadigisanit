@@ -104,7 +104,7 @@ Dictionaries:
     korp_search_host: "http://gtweb.uit.no/u_korp"
 
   - source: mhr
-    target: fin
+    target: eng
     path: 'dicts/mhr-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
