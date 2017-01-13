@@ -9,6 +9,7 @@ ApplicationSettings:
     - mrj
     - fi
     - en
+    - ru
   # TODO: more keywords and descriptions
   app_meta_title: "Mari dictionaries"
   meta_description: >
