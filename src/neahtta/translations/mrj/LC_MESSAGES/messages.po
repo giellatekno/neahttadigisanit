@@ -240,7 +240,7 @@ msgstr "норвежский йӹлмӹ"
 
 #: configs/language_names.yaml:106 configs/language_names.yaml:107
 msgid "Russian"
-msgstr "кечӹвӓлвел саам йӹлмӹ"
+msgstr "руш йӹлмӹ"
 
 #: configs/language_names.yaml:112 configs/language_names.yaml:113
 msgid "Latvian"

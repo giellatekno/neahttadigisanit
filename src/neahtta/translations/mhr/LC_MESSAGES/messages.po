@@ -127,7 +127,7 @@ msgstr ""
 
 #: configs/language_names.yaml:43 configs/language_names.yaml:46
 msgid "Udmurt"
-msgstr ""
+msgstr "одымарий"
 
 #: configs/language_names.yaml:47 templates/more_dictionaries.html:39
 msgid "Kven"
@@ -180,11 +180,11 @@ msgstr ""
 
 #: configs/language_names.yaml:66
 msgid "Western Mari"
-msgstr ""
+msgstr "курык марий"
 
 #: configs/language_names.yaml:69
 msgid "Eastern Mari"
-msgstr ""
+msgstr "олык марий"
 
 #: configs/language_names.yaml:72
 msgid "Nenets"
@@ -237,7 +237,7 @@ msgstr ""
 
 #: configs/language_names.yaml:106 configs/language_names.yaml:107
 msgid "Russian"
-msgstr ""
+msgstr "Руш"
 
 #: configs/language_names.yaml:112 configs/language_names.yaml:113
 msgid "Latvian"
