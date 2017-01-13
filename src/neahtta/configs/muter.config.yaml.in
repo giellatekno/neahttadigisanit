@@ -56,6 +56,17 @@ Morphology:
       tagsep: '+'
       inverse_tagsep: '+'
 
+  rus:
+    tool: *LOOKUP
+    file: [*OPT, '/rus/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/rus/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+
 Languages:
   - iso: mrj
     minority_lang: true
@@ -79,6 +90,12 @@ Dictionaries:
   - source: mhr
     target: fin
     path: 'dicts/mhr-all.xml'
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/u_korp"
+
+  - source: mhr
+    target: rus
+    path: 'dicts/mhrrus.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
 
