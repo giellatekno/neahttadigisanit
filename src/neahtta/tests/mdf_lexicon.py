@@ -13,11 +13,11 @@ from .lexicon import ( ParadigmGenerationTests
 paradigm_generation_tests = [
 
 ###  - V:
-    ('myv', 'fin', u'инжи',
+    ('mdf', 'fin', u'инжи',
             "forms not generated",
             form_contains(set([u'инжи']))),
 
-    ('myv', 'fin', u'тушендомс',
+    ('mdf', 'fin', u'тушендомс',
             "forms not generated",
             form_contains(set([u'тушендомс']))),
 ]

@@ -58,7 +58,7 @@ isos_to_names:
   "vot": !gettext "Votic"
 
   # valks
-  "myv": !gettext "Erzya Mordvin"
+  "myv": !gettext "Erzya"
   "mdf": !gettext "Moksha"
   "fra": !gettext "French"
   "deu": !gettext "German"

@@ -19,6 +19,25 @@
     </div>
 </div>
 
+<div class="row-fluid">
+    <div class="span3">
+        <h3>mhr</h3>
+    </div>
+    <div class="span9">
+        <p>Basic test</p>
+        <ul>
+            <li>палдыртыш</li>
+        </ul>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span12">
+        <h3>&nbsp;</h3>
+    </div>
+</div>
+
+
 {% endblock %}
 
 
