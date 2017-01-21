@@ -84,19 +84,23 @@ nonfinite_paradigm:
 number:
  - "Sg"
  - "Pl"
+ - "SP"
 nouns_null_number:
  - "Tra"
 case:
  - "Nom"
  - "Gen"
- - "DatCx"
+ - "Dat"
  - "Abl"
  - "Ill"
  - "Ine"
  - "Ela"
- - "Tra"
- - "CompCx"
+ - "Cmpr"
  - "Com"
+ - "Lat"
+ - "Loc"
+ - "Prl"
+ - "Tra"
 vmax:
  - "v1"
  - "v2"
