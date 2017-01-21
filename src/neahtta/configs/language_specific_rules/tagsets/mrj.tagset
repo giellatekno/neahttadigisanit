@@ -75,6 +75,8 @@ number:
  - "Pl"
  - "AssocPl"
  - "LocPl"
+nouns_null_number:
+ - "Tra"
 case:
  - "Abe"
  - "Acc"
