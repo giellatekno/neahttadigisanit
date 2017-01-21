@@ -10,7 +10,7 @@ morphology:
 {{ lemma }}+N+Sg+Dat+Def
 {{ lemma }}+N+Sg+Ine+Def
 {{ lemma }}+N+Sg+Ela+Def
-{{ lemma }}+N+Sg+Comp+Def
+{{ lemma }}+N+Sg+Cmpr+Def
 {{ lemma }}+N+Sg+Prl+Def
 {{ lemma }}+N+Sg+Abe+Def
 {{ lemma }}+N+Pl+Nom+Indef
@@ -20,9 +20,9 @@ morphology:
 {{ lemma }}+N+Pl+Dat+Def
 {{ lemma }}+N+Pl+Ine+Def
 {{ lemma }}+N+Pl+Ela+Def
-{{ lemma }}+N+Pl+Comp+Def
+{{ lemma }}+N+Pl+Cmpr+Def
 {{ lemma }}+N+Pl+Prl+Def
 {{ lemma }}+N+Pl+Abe+Def
 {{ lemma }}+N+Sg+Nom+PxSg2
 {{ lemma }}+N+SP+Ela+Indef
-{{ lemma }}+N+Der/НЕ+Dimin+N+Sg+Nom+Indef
+{{ lemma }}+N+Der/Dimin+N+Sg+Nom+Indef
