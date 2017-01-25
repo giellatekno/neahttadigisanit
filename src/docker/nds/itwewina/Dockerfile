@@ -55,7 +55,7 @@ RUN svn co https://victorio.uit.no/langtech/trunk/words/dicts/scripts /home/neah
 ### TODO: WORKDIR /home/neahtta/gtsvn/apps/dicts/nds/src/neahtta/
 ### TODO: 
 ### TODO: ENV GTHOME /home/neahtta/gtsvn/
-### TODO: ENV GTCORE /home/neahtta/gtsvn/gtcore/
+### TODO: ENV GTCORE /home/neahtta/gtsvn/giella-core/
 
 # environment variables aren't available when fab issues make
 # RUN . ~/.profile && . ../env/bin/activate && fab no_svn_up itwewina compile
