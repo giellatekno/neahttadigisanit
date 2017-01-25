@@ -10,6 +10,7 @@ ApplicationSettings:
   locales_available:
     - kv
     - fi
+    - ru
     - hu # TODO: flag, translations catalog 
     - en
   meta_description: >
@@ -117,6 +118,16 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
+  rus:
+    tool: *LOOKUP
+    file: [*OPT, '/rus/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/rus/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
 
 Languages:
   - iso: kpv
@@ -195,7 +206,11 @@ Dictionaries:
     input_variants: *KOMI_VARIANTS
 
     korp_search_host: "http://gtweb.uit.no/u_korp"
-    path: 'dicts/kpv-all.xml'
+    path: 'dicts/kpvrus.xml'
+
+  - source: rus
+    target: kpv
+    path: 'dicts/ruskpv.xml'
 
   - source: udm
     target: hun
