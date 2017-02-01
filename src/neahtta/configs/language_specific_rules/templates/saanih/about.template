@@ -39,7 +39,7 @@
                     <br />
                     → «moonnâđ» 
                     <br />
-                    → {% trans %}gå, dra, reise{% endtrans %}</p>
+                    → mennä</p>
             </span>
         </div>
         <div class="row-fluid">
@@ -53,9 +53,8 @@
         </div>
         <div class="row-fluid">
             <span class="span4">
-                <h3 class="red smaller">{% trans %}smn ↔ fin{% endtrans %}</h3>
-                <p>{% trans %}Inari Saami → Finnish and Finnish → Inari Saami builds on xxx dictionary  (7000 words). {% endtrans %}</p>
-                <p>{% trans %}Approximately half of the content of the dictionaries is taken from a parallel corpus of administrative text, financed by the Ministry of Local Government and Modernisation.{% endtrans %}</p>
+                <h3 class="red smaller">{% trans %}Inari Saami ↔ Finnish{% endtrans %}</h3>
+                <p>{% trans %}Inari Saami → Finnish and Finnish → Inari Saami builds on the Valtonen and Olthuis Inarinsaame-suomi-inarinsaame dictionary  (30000 words). {% endtrans %}</p>
             </span>
         </div>
         <div class="row-fluid">
