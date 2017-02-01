@@ -200,8 +200,8 @@
 
                 <tr>
                     <th></th>
-                    <th lang="{{ _to }}">{{ prs_text }} <em>(odne)</em></th>
-                    <th lang="{{ _to }}">{{ prt_text }} <em>(ikte)</em></th>
+                    <th lang="{{ _to }}">{{ prs_text }} <em>(onne)</em></th>
+                    <th lang="{{ _to }}">{{ prt_text }} <em>(jieht)</em></th>
                 </tr>
 
                 {%- for present_forms, preterite_forms in zipped_verbs -%}
