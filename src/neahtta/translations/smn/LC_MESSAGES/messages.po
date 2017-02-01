@@ -285,7 +285,7 @@ msgstr "Sosiála media (meiddei <em>acdnstz</em>)"
 
 #: configs/sonad.config.yaml.in:148
 msgid "mobile friendly"
-msgstr ""
+msgstr "moobiilustevlâš"
 
 #: configs/language_specific_rules/templates/about.template:5
 #: configs/language_specific_rules/templates/baakoeh/about.template:6
@@ -314,7 +314,7 @@ msgstr "Sänikirjeest"
 #: configs/language_specific_rules/templates/vada/about.template:17
 #: configs/language_specific_rules/templates/valks/about.template:17
 msgid "A dictionary that understands what you're looking for."
-msgstr "Sänikirje, mii ibbeerd, maid tun uusah Sanakirja, joka ymmärtää mitä etsit"
+msgstr "Sänikirje, mii ibbeerd, maid tun uusah"
 
 #: configs/language_specific_rules/templates/about.template:15
 #: configs/language_specific_rules/templates/baakoeh/about.template:16
@@ -361,6 +361,8 @@ msgid ""
 "                    you'll find free dictionaries, and other analytical\n"
 "                    tools."
 msgstr ""
+"Kaiken (tai melkein kaiken), mikä koskee vähemmistökieliä pitäisi olla "
+"ilmaista. Täältä löydät ilmaisia sanakirjoja ja muita analyysiohjelmia."
 
 #: configs/language_specific_rules/templates/about.template:26
 #: configs/language_specific_rules/templates/baakoeh/about.template:27
@@ -396,9 +398,8 @@ msgid ""
 "                files, and morphological and syntactic analyzers."
 msgstr ""
 "Puoh vuáđuduvá ávus käldeekoodin. Láá-uv tust jurduuh apist teikâ "
-"tutkâmprojektist, mii taarbâš kielâlâš resurssijd? Uápásmuu siijđon xxxxx"
-" Jos sinulla on idea apista tai tutkimusprojektista, joka tarvitse "
-"kielellisiä resursseja?Tutustu sivuun  <a class=\"blue\"\n"
+"tutkâmprojektist, mii taarbâš kielâlâš resurssijd? Uápásmuu siijđon "
+"   <a class=\"blue\"\n"
 " href=\"http://giellatekno.uit.no/\">Giellatekno</a>"
 
 #: configs/language_specific_rules/templates/about.template:35
@@ -454,13 +455,13 @@ msgstr ""
 #: configs/language_specific_rules/templates/vada/about.template:52
 #: configs/language_specific_rules/templates/valks/about.template:52
 msgid "Source material"
-msgstr "Käldeemateriaal Lähdemateriaalia"
+msgstr "Käldeemateriaal"
 
 #: configs/language_specific_rules/templates/about.template:56
 #: configs/language_specific_rules/templates/saanih/about.template:56
 #: configs/language_specific_rules/templates/sanit/about.template:57
 msgid "sme ↔ nob"
-msgstr ""
+msgstr "Anarâškielâ ↔ Suomakielâ"
 
 #: configs/language_specific_rules/templates/about.template:57
 msgid ""
@@ -507,6 +508,11 @@ msgid ""
 "have included frequent words from North Sámi, but especially from "
 "Finnish."
 msgstr ""
+"Pohjoissaame-suomi-sanakirjat pohjautuvat Giellateknon <a class=\"green\""
+" href=\"http://oahpa.no\">Oahpa-työhön</a> ja <a class=\"green\" "
+"href=\"http://kotus.fi\">Kotimaiste kielten keskuksen</a> \" "
+"\"sanalistoihin. Olemme myös lisäneet tavanomaisia pohjoissaamen ja "
+"erityisesti suomen kielen sanoja."
 
 #: configs/language_specific_rules/templates/about.template:67
 msgid "Each of the dictionaries contains about 11,000 base words."
@@ -519,7 +525,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/saanih/about.template:63
 #: configs/language_specific_rules/templates/sanit/about.template:69
 msgid "Find a problem?"
-msgstr "Kavnih-uv cuolmâ? Tärmäsitkö ongelmaan?"
+msgstr "Kavnih-uv cuolmâ?"
 
 #: configs/language_specific_rules/templates/about.template:73
 #: configs/language_specific_rules/templates/baakoeh/about.template:65
@@ -535,8 +541,7 @@ msgid ""
 msgstr ""
 "Jis kaavnah feeilâ, vääldi ohtâvuođâ mijjân. Muštâl vädisvuođâ já tom, "
 "mon lääđejeijee teikâ kánnyk lah kiävttám teikâ mon sääni tun uuccih ko "
-"vädisvuotâ iiđij Kuva ongelmaa ja kerro minkä selainta tai kännykkää olet"
-" käyttänyt tamitä sanaa etsit kuin törmäsit ongelmaan"
+"vädisvuotâ iiđij"
 
 #: configs/language_specific_rules/templates/about.template:78
 #: configs/language_specific_rules/templates/about.template:83
@@ -551,7 +556,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanit/about.template:75
 #: configs/language_specific_rules/templates/sanit/about.template:80
 msgid "Contact us"
-msgstr "Vääldi ohtâvuođâ Ota yhteyttä meihin"
+msgstr "Vääldi ohtâvuođâ"
 
 #: configs/language_specific_rules/templates/about.template:88
 #: configs/language_specific_rules/templates/baakoeh/about.template:80
@@ -564,9 +569,9 @@ msgid ""
 "list</a>, and more\n"
 "                resources."
 msgstr ""
-"Tarbâšah-uv lase sänikiirjijd? Tarvitsetkö lisää sanakirjoja?<a "
+"Tarbâšah-uv lase sänikiirjijd?<a "
 "href=\"http://dicts.uit.no/\">Taa lii mii listo sänikiirjijn  já eres "
-"resursseh Tässä meidän sanakirjalista, ja muita resurssaja."
+"resursseh."
 
 #: configs/language_specific_rules/templates/detail_entry.template:47
 #: configs/language_specific_rules/templates/saan/sms/detail_entry.template:61
@@ -598,7 +603,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/itwewina/index_search_form.template:48
 #: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:42
 msgid "Select a word, and press Tab"
-msgstr "Valjii sääni já colkkâl Tab Valitse sana ja paina Tab"
+msgstr "Valjii sääni já colkkâl Tab"
 
 #: configs/language_specific_rules/templates/index_search_form.template:48
 #: configs/language_specific_rules/templates/baakoeh/index_search_form.template:48
@@ -671,7 +676,7 @@ msgstr "Tievâslâš paradigma"
 #: configs/language_specific_rules/templates/itwewina/search_info.template:3
 #: configs/language_specific_rules/templates/sanit/search_info.template:9
 msgid "Search for a word, or a word form for a word analysis and definition."
-msgstr ""
+msgstr "Etsi sanaa tai sanamuotoa analysoitavaksi tai määriteltäväksi."
 
 #: configs/language_specific_rules/templates/baakoeh/about.template:58
 msgid ""
@@ -721,9 +726,8 @@ msgid ""
 "                files, and morphological and syntactic analyzers."
 msgstr ""
 "Puoh vuáđuduvá ávus käldeekoodin. Láá-uv tust jurduuh apist teikâ "
-"tutkâmprojektist, mii taarbâš kielâlâš resurssijd? Uápásmuu siijđon xxxxx"
-" Jos sinulla on idea apista tai tutkimusprojektista, joka tarvitse "
-"kielellisiä resursseja?Tutustu sivuun  <a class=\"blue\"\n"
+"tutkâmprojektist, mii taarbâš kielâlâš resurssijd? Uápásmuu siijđon "
+" <a class=\"blue\"\n"
 " href=\"http://giellatekno.uit.no/\">Giellatekno</a>"
 
 #: configs/language_specific_rules/templates/itwewina/about.template:59
@@ -827,6 +831,9 @@ msgid ""
 "Inari Saami → Finnish and Finnish → Inari Saami builds on xxx dictionary"
 "  (7000 words). "
 msgstr ""
+"Inarinsaame-suomi-inarinsaame-sanakirjan perustana on "
+" Olthuis, M-L., Valtonen, T.: "
+"Säämi-suomâ sänikirje – Suomi-inarinsaame - sanakirja, Sämitigge, Aanaar 2016"
 
 #: configs/language_specific_rules/templates/sanat/about.template:43
 #: configs/language_specific_rules/templates/sonad/about.template:43
@@ -1107,7 +1114,7 @@ msgstr ""
 
 #: templates/index.html:52 templates/variant_search.html:58
 msgid "Swap"
-msgstr ""
+msgstr "Vaihda"
 
 #: templates/index.html:67 templates/index.html:140
 #: templates/variant_search.html:117 templates/variant_search.html:220
@@ -1173,7 +1180,7 @@ msgstr ""
 
 #: templates/macros.html:5 templates/macros.html:13
 msgid "Texts"
-msgstr ""
+msgstr "Teevstah"
 
 #: templates/mobile_nav_push_menu.html:6
 msgid "Home"
@@ -1185,12 +1192,12 @@ msgstr "Colkkâl teevstâst"
 
 #: templates/mobile_nav_push_menu.html:18
 msgid "Sources"
-msgstr ""
+msgstr "Käldeeh"
 
 #: templates/mobile_nav_push_menu.html:22
 #: templates/mobile_nav_push_menu.html:25
 msgid "Interface language"
-msgstr ""
+msgstr "Käyttöliittymän kieli"
 
 #: templates/mobile_nav_push_menu.html:26
 #: templates/mobile_nav_push_menu.html:45
@@ -1450,4 +1457,3 @@ msgstr ""
 #~ "languages, please see our <a "
 #~ "href=\"/more/\">other dictionaries</a>."
 #~ msgstr ""
-
