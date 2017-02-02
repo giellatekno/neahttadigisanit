@@ -509,7 +509,7 @@ msgid ""
 "<em>Álgosátnegirji</em> (4300 words), but now contains 25000 words. "
 "Norwegian → North Sámi contains about 26000 words. "
 msgstr ""
-"Nordsamisk → norsk bygger på Nils Jernslettens ordbpk "
+"Nordsamisk → norsk bygger på Nils Jernslettens ordbok "
 "<em>Álgosátnegirji</em>, men den har etterhvert blitt mer enn doblet i "
 "omfang."
 
@@ -519,6 +519,9 @@ msgid ""
 "parallel corpus of administrative text, financed by the Ministry of Local"
 " Government and Modernisation."
 msgstr ""
+"Omtrent halvparten av innholdet er tatt fra et parallellkorpus "
+"bestående av administrative tekster. Arbeidet er finansiert av "
+"Kommunal- og regionaldepartementet."
 
 #: configs/language_specific_rules/templates/about.template:61
 #: configs/language_specific_rules/templates/baakoeh/about.template:57

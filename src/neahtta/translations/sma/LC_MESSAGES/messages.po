@@ -238,7 +238,7 @@ msgstr ""
 
 #: configs/language_names.yaml:104 configs/language_names.yaml:110
 msgid "Finnish"
-msgstr ""
+msgstr "Såevmiengïele"
 
 #: configs/language_names.yaml:105 configs/language_names.yaml:111
 #: configs/language_names.yaml:112
@@ -507,6 +507,9 @@ msgid ""
 "<em>Álgosátnegirji</em> (4300 words), but now contains 25000 words. "
 "Norwegian → North Sámi contains about 26000 words. "
 msgstr ""
+"Nordsamisk → norsk bygger på Nils Jernslettens ordbok "
+"<em>Álgosátnegirji</em>, men den har etterhvert blitt mer enn doblet i "
+"omfang."
 
 #: configs/language_specific_rules/templates/about.template:58
 msgid ""
@@ -559,7 +562,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/saanih/about.template:62
 #: configs/language_specific_rules/templates/sanit/about.template:69
 msgid "Find a problem?"
-msgstr ""
+msgstr "Fant du et problem?"
 
 #: configs/language_specific_rules/templates/about.template:73
 #: configs/language_specific_rules/templates/baakoeh/about.template:65
@@ -575,6 +578,9 @@ msgid ""
 "using, or what word you\n"
 "                were searching for when you encountered the problem."
 msgstr ""
+"Hvis du finner noen feil, vær så snill og ta kontakt med oss. Beskriv "
+"problemet og fortell oss hvilken nettleser eller mobiltelefon du brukte, "
+"eller hvilket ord du søkte etter når du støtte på problemet."
 
 #: configs/language_specific_rules/templates/about.template:78
 #: configs/language_specific_rules/templates/about.template:83
@@ -593,7 +599,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanit/about.template:75
 #: configs/language_specific_rules/templates/sanit/about.template:80
 msgid "Contact us"
-msgstr ""
+msgstr "Kontakt oss"
 
 #: configs/language_specific_rules/templates/about.template:88
 #: configs/language_specific_rules/templates/baakoeh/about.template:80
@@ -608,11 +614,13 @@ msgid ""
 "list</a>, and more\n"
 "                resources."
 msgstr ""
+"Trenger du flere ordbøker? <a href=\"http://dicts.uit.no/\">Her er den "
+"komplette lista</a>, og flere andre ressurser."
 
 #: configs/language_specific_rules/templates/detail_entry.template:47
 #: configs/language_specific_rules/templates/saan/sms/detail_entry.template:61
 msgid "Paradigm"
-msgstr ""
+msgstr "Paradigme"
 
 #: configs/language_specific_rules/templates/footer.template:9
 #: configs/language_specific_rules/templates/gunaha/footer.template:13
@@ -645,7 +653,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:42
 #: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:42
 msgid "Select a word, and press Tab"
-msgstr ""
+msgstr "Velg et ord, og trykk på Tab"
 
 #: configs/language_specific_rules/templates/index_search_form.template:48
 #: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:51
@@ -727,7 +735,7 @@ msgstr "Jeatjah baakoegærjah"
 #: configs/language_specific_rules/templates/valks/mdf/paradigm.template:117
 #: configs/language_specific_rules/templates/valks/myv/paradigm.template:117
 msgid "Full paradigm"
-msgstr ""
+msgstr "Fullt paradigme"
 
 #: configs/language_specific_rules/templates/search_info.template:3
 #: configs/language_specific_rules/templates/itwewina/search_info.template:3
@@ -982,7 +990,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanit/notice.template:5
 #, fuzzy
 msgid "Other North Saami dictionaries"
-msgstr "Jeatjah baakoegærjah"
+msgstr "Jeatjah noerhtesaemien baakoegærjah"
 
 #: configs/language_specific_rules/templates/sanit/search_info.template:5
 msgid ""
@@ -990,6 +998,9 @@ msgid ""
 "href=\"/SoMe/nob/\">tolerant mode</a>, which allows you to type "
 "<em>acdnstz</em> for <em>áčđŋšŧž</em>."
 msgstr ""
+"<b>Hvis du ikke har samisk tastatur</b>, må du bruke <a "
+"href=\"/SoMe/nob/\">tolerant modus</a>, og du kan skrive "
+"<em>acdnstz</em> når du mener <em>áčđŋšŧž</em>."
 
 #: configs/language_specific_rules/templates/sanit/search_info.template:13
 msgid ""
@@ -1201,7 +1212,7 @@ msgstr "Jeatjah baakoegærjah"
 msgid ""
 "Neahttadigisánit is available for the following\n"
 "                language groups."
-msgstr ""
+msgstr "Neahttadigisánit er tilgjengelig for følgende språkgrupper."
 
 #: templates/more_dictionaries.html:32
 msgid ""
