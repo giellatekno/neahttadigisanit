@@ -1033,7 +1033,7 @@ msgid ""
 "<em>acdnstz</em> for <em>áčđŋšŧž</em>."
 msgstr ""
 "Jus ii leat sámi boallobeavdi, de ferte geavahit <a "
-"href=\"/SoMe/nob/\">sosiála media veršuvnna</a>, mii dohkkeha "
+"href=\"/SoMe/nob/\">toleránta veršuvnna</a>, mii dohkkeha "
 "<em>acdnstz</em> danin bustávvan: <em>áčđŋšŧž</em>."
 
 #: configs/language_specific_rules/templates/sanit/search_info.template:13
