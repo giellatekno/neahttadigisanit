@@ -687,7 +687,11 @@ msgstr "Flere bøyningsformer"
 #: configs/language_specific_rules/templates/itwewina/search_info.template:3
 #: configs/language_specific_rules/templates/sanit/search_info.template:9
 msgid "Search for a word, or a word form for a word analysis and definition."
-msgstr "Søk etter et ord, evt. en bøyd form for å få oversettelse eller grammatisk analyse."
+msgstr ""
+"Søk etter et ord, evt. en bøyd form. Klikk på ordet for å få "
+"el liste over bøyde former. <br /><br /> Du kan også søke etter ordet i "
+"et tekst korpus, eller etter alle bøyde formene av ordet, ved å klikke "
+"på 'tekst'-lenka ved siden av det i søkeresultatet."
 
 #" Etter at du har søkt: Ved å klikke "
 #"på ordet får du en liste med bøyningsformer. <br /><br /> Med \"Søk i "
