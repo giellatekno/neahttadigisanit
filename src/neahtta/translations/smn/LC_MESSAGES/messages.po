@@ -911,7 +911,7 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/saanih/about.template:56
 msgid "Inari Saami ↔ Finnish"
-msgstr ""
+msgstr "Anarâškielâ  ↔ suomakielâ"
 
 #: configs/language_specific_rules/templates/saanih/about.template:57
 #, fuzzy
