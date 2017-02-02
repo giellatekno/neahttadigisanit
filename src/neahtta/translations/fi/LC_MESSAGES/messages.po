@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-01 14:22+0100\n"
+"POT-Creation-Date: 2017-02-02 10:00+0100\n"
 "PO-Revision-Date: 2014-02-15 20:48+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language-Team: fi <LL@li.org>\n"
@@ -15,30 +15,17 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 0.9.6\n"
+"Generated-By: Babel 1.3\n"
 
-#: configs/cuvantul.config.yaml:143 configs/guusaaw.config.yaml:65
-#: configs/guusaaw.config.yaml.in:67 configs/kyv.config.yaml:153
-#: configs/kyv.config.yaml:226 configs/kyv.config.yaml.in:153
-#: configs/kyv.config.yaml.in:226 configs/saan.config.yaml:94
-#: configs/saan.config.yaml.in:94 configs/saanih.config.yaml:79
-#: configs/saanih.config.yaml:100 configs/saanih.config.yaml.in:78
-#: configs/saanih.config.yaml.in:99 configs/sample.config.yaml.in:167
-#: configs/sanat.config.yaml:116 configs/sanat.config.yaml.in:116
-#: configs/sanit.config.yaml.in:107 configs/sonad.config.yaml:154
-#: configs/sonad.config.yaml.in:154
-msgid "Standard"
-msgstr "Standardi"
-
-#: configs/dikaneisdi.config.yaml:3 configs/dikaneisdi.config.yaml.in:3
+#: configs/dikaneisdi.config.yaml.in:3
 msgid "Dikaneisdi"
 msgstr "Dikaneisdi"
 
-#: configs/dikaneisdi.config.yaml:73 configs/dikaneisdi.config.yaml.in:73
+#: configs/dikaneisdi.config.yaml.in:73
 msgid "Standard (syllabics)"
 msgstr "Standardi (tavu-aakkoset)"
 
-#: configs/dikaneisdi.config.yaml:76 configs/dikaneisdi.config.yaml.in:76
+#: configs/dikaneisdi.config.yaml.in:76
 msgid "Transliterated"
 msgstr "Translitteroitu"
 
@@ -50,26 +37,33 @@ msgstr ""
 msgid "Online Gunáhà’ dictionary"
 msgstr ""
 
-#: configs/guusaaw.config.yaml:70 configs/guusaaw.config.yaml.in:77
-#: configs/saan.config.yaml:117 configs/saan.config.yaml.in:117
-#: configs/saanih.config.yaml:83 configs/saanih.config.yaml:104
+#: configs/guusaaw.config.yaml.in:67 configs/kyv.config.yaml.in:153
+#: configs/kyv.config.yaml.in:226 configs/saan.config.yaml.in:94
+#: configs/saanih.config.yaml.in:78 configs/saanih.config.yaml.in:99
+#: configs/sample.config.yaml.in:167 configs/sanat.config.yaml.in:116
+#: configs/sanit.config.yaml:108 configs/sanit.config.yaml.in:107
+#: configs/sonad.config.yaml.in:154
+msgid "Standard"
+msgstr "Standardi"
+
+#: configs/guusaaw.config.yaml.in:77 configs/saan.config.yaml.in:117
 #: configs/saanih.config.yaml.in:82 configs/saanih.config.yaml.in:103
 msgid "Mobile friendly"
 msgstr "Mobiiliystävällinen"
 
-#: configs/itwewina.config.yaml:2 configs/itwewina.config.yaml.in:4
+#: configs/itwewina.config.yaml.in:4
 msgid "itwêwina"
 msgstr ""
 
-#: configs/itwewina.config.yaml:3 configs/itwewina.config.yaml.in:5
+#: configs/itwewina.config.yaml.in:5
 msgid "Online Plains Cree dictionary"
 msgstr ""
 
-#: configs/itwewina.config.yaml:73 configs/itwewina.config.yaml.in:76
+#: configs/itwewina.config.yaml.in:76
 msgid "aio âêîô"
 msgstr ""
 
-#: configs/itwewina.config.yaml:92 configs/itwewina.config.yaml.in:95
+#: configs/itwewina.config.yaml.in:95
 msgid "aio āēīō"
 msgstr ""
 
@@ -82,38 +76,35 @@ msgstr ""
 msgid "Online Odawa dictionary"
 msgstr "Lisää sanakirjoja"
 
-#: configs/kyv.config.yaml:162 configs/kyv.config.yaml:237
 #: configs/kyv.config.yaml.in:162 configs/kyv.config.yaml.in:237
-#: configs/sample.config.yaml.in:173 configs/sanit.config.yaml.in:122
+#: configs/sample.config.yaml.in:173 configs/sanit.config.yaml:114
 msgid "Social media"
 msgstr "Sosiaalinen media"
 
-#: configs/kyv.config.yaml:163 configs/kyv.config.yaml.in:163
+#: configs/kyv.config.yaml.in:163
 #, fuzzy
 msgid "(incl. <em>ио</em>)"
 msgstr "(myös <em>acdnstz</em>)"
 
-#: configs/kyv.config.yaml:167 configs/kyv.config.yaml.in:167
+#: configs/kyv.config.yaml.in:167
 #, fuzzy
 msgid "Molodtsov orthography"
 msgstr "Molotsovin ortografia"
 
-#: configs/kyv.config.yaml:184 configs/kyv.config.yaml.in:184
+#: configs/kyv.config.yaml.in:184
 msgid "Zyrian for Permyak"
 msgstr ""
 
-#: configs/kyv.config.yaml:238 configs/kyv.config.yaml.in:238
+#: configs/kyv.config.yaml.in:238
 #, fuzzy
 msgid "(incl. <em>жзиоч</em>)"
 msgstr "(myös <em>acdnstz</em>)"
 
-#: configs/kyv.config.yaml:252 configs/kyv.config.yaml:279
 #: configs/kyv.config.yaml.in:252 configs/kyv.config.yaml.in:279
 #, fuzzy
 msgid "Standard (<em>ӝӟӥӧӵ</em>)"
 msgstr "Kirjakielen kirjaimet (<em>áčđŋšŧž</em>)"
 
-#: configs/kyv.config.yaml:256 configs/kyv.config.yaml:283
 #: configs/kyv.config.yaml.in:256 configs/kyv.config.yaml.in:283
 #, fuzzy
 msgid "Social media (incl. <em>жзиоч</em>)"
@@ -284,31 +275,44 @@ msgstr ""
 msgid "Swedish"
 msgstr ""
 
-#: configs/saanih.config.yaml:80 configs/saanih.config.yaml:101
 #: configs/saanih.config.yaml.in:79 configs/saanih.config.yaml.in:100
 #, fuzzy
 msgid "(<em>âäáčđŋšž</em>)"
 msgstr "Kirjakielen kirjaimet (<em>áčđŋšŧž</em>)"
 
-#: configs/saanih.config.yaml:84 configs/saanih.config.yaml:105
 #: configs/saanih.config.yaml.in:83 configs/saanih.config.yaml.in:104
 #, fuzzy
 msgid "(incl. <em>aaacdnsz</em>)"
 msgstr "(myös <em>acdnstz</em>)"
 
-#: configs/sample.config.yaml.in:175 configs/sanit.config.yaml.in:123
+#: configs/sample.config.yaml.in:175 configs/sanit.config.yaml:115
+#: configs/sanit.config.yaml.in:123
 msgid "(incl. <em>acdnstz</em>)"
 msgstr "(myös <em>acdnstz</em>)"
 
-#: configs/sanit.config.yaml.in:147
+#: configs/sanit.config.yaml:138
 msgid "Standárda (<em>áčđŋšŧž</em>)"
 msgstr "Kirjakielen kirjaimet (<em>áčđŋšŧž</em>)"
 
-#: configs/sanit.config.yaml.in:151
+#: configs/sanit.config.yaml:141
 msgid "Sosiála media (maiddái <em>acdnstz</em>)"
 msgstr "Sosiaalimedia (myös <em>acdnstz</em>)"
 
-#: configs/sonad.config.yaml:159 configs/sonad.config.yaml.in:159
+#: configs/sanit.config.yaml.in:122
+msgid "Tolerant"
+msgstr ""
+
+#: configs/sanit.config.yaml.in:147
+#, fuzzy
+msgid "Standard (<em>áčđŋšŧž</em>)"
+msgstr "Kirjakielen kirjaimet (<em>áčđŋšŧž</em>)"
+
+#: configs/sanit.config.yaml.in:151
+#, fuzzy
+msgid "Tolerant (also <em>acdnstz</em>)"
+msgstr "(myös <em>acdnstz</em>)"
+
+#: configs/sonad.config.yaml.in:159
 msgid "mobile friendly"
 msgstr "(... ja on kännykkä-ystävällinen!)"
 
@@ -478,7 +482,6 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/about.template:42
 #: configs/language_specific_rules/templates/baakoeh/about.template:43
-#: configs/language_specific_rules/templates/saanih/about.template:42
 #: configs/language_specific_rules/templates/sanit/about.template:43
 msgid "gå, dra, reise"
 msgstr ""
@@ -519,7 +522,6 @@ msgstr ""
 "<em>Álgosátnegirji</em>, mutta sanavarasto on kaksinsertaistettu."
 
 #: configs/language_specific_rules/templates/about.template:58
-#: configs/language_specific_rules/templates/saanih/about.template:58
 msgid ""
 "Approximately half of the content of the dictionaries is taken from a "
 "parallel corpus of administrative text, financed by the Ministry of Local"
@@ -579,7 +581,7 @@ msgstr "Molemmat sanakirjat sisältyvät noin 11 000 hakusanaa."
 #: configs/language_specific_rules/templates/guusaaw/about.template:64
 #: configs/language_specific_rules/templates/itwewina/about.template:74
 #: configs/language_specific_rules/templates/kidwinan/about.template:74
-#: configs/language_specific_rules/templates/saanih/about.template:63
+#: configs/language_specific_rules/templates/saanih/about.template:62
 #: configs/language_specific_rules/templates/sanit/about.template:69
 msgid "Find a problem?"
 msgstr "Törmäsitkö ongelmaan?"
@@ -590,7 +592,7 @@ msgstr "Törmäsitkö ongelmaan?"
 #: configs/language_specific_rules/templates/guusaaw/about.template:65
 #: configs/language_specific_rules/templates/itwewina/about.template:75
 #: configs/language_specific_rules/templates/kidwinan/about.template:75
-#: configs/language_specific_rules/templates/saanih/about.template:64
+#: configs/language_specific_rules/templates/saanih/about.template:63
 #: configs/language_specific_rules/templates/sanit/about.template:70
 msgid ""
 "If you find any bugs, please get in touch with us. Describe the problem,\n"
@@ -613,8 +615,8 @@ msgstr ""
 #: configs/language_specific_rules/templates/itwewina/about.template:85
 #: configs/language_specific_rules/templates/kidwinan/about.template:80
 #: configs/language_specific_rules/templates/kidwinan/about.template:85
-#: configs/language_specific_rules/templates/saanih/about.template:69
-#: configs/language_specific_rules/templates/saanih/about.template:74
+#: configs/language_specific_rules/templates/saanih/about.template:68
+#: configs/language_specific_rules/templates/saanih/about.template:73
 #: configs/language_specific_rules/templates/sanit/about.template:75
 #: configs/language_specific_rules/templates/sanit/about.template:80
 msgid "Contact us"
@@ -626,7 +628,7 @@ msgstr "Ota yhteyttä meihin"
 #: configs/language_specific_rules/templates/guusaaw/about.template:80
 #: configs/language_specific_rules/templates/itwewina/about.template:90
 #: configs/language_specific_rules/templates/kidwinan/about.template:90
-#: configs/language_specific_rules/templates/saanih/about.template:79
+#: configs/language_specific_rules/templates/saanih/about.template:78
 #: configs/language_specific_rules/templates/sanit/about.template:85
 msgid ""
 "Need more dictionaries? <a href=\"http://dicts.uit.no/\">Here's our full "
@@ -928,14 +930,13 @@ msgstr ""
 " pohjalta. Käännöstyön teki Julia Kuprina Koneen Säätiön tuella."
 
 #: configs/language_specific_rules/templates/saanih/about.template:56
-#, fuzzy
-msgid "smn ↔ fin"
-msgstr "Pohjoissaame ↔ suomi"
+msgid "Inari Saami ↔ Finnish"
+msgstr ""
 
 #: configs/language_specific_rules/templates/saanih/about.template:57
 msgid ""
-"Inari Saami → Finnish and Finnish → Inari Saami builds on xxx dictionary"
-"  (7000 words). "
+"Inari Saami → Finnish and Finnish → Inari Saami builds on the Valtonen "
+"and Olthuis Inarinsaame-suomi-inarinsaame dictionary  (30000 words). "
 msgstr ""
 
 #: configs/language_specific_rules/templates/sanat/about.template:43
@@ -1034,9 +1035,10 @@ msgid "Other North Saami dictionaries"
 msgstr "Muita pohjoissaamen sanakirjoja"
 
 #: configs/language_specific_rules/templates/sanit/search_info.template:5
+#, fuzzy
 msgid ""
 "If you are using a device without a Sámi keyboard, consider using <a "
-"href=\"/SoMe/nob/\">social media mode</a>, which allows you to type "
+"href=\"/SoMe/nob/\">tolerant mode</a>, which allows you to type "
 "<em>acdnstz</em> for <em>áčđŋšŧž</em>."
 msgstr ""
 "Jos käytät puhelinta ilman saamen näppäimistöä voit käyttää <a "
@@ -1045,10 +1047,11 @@ msgstr ""
 "tilalle."
 
 #: configs/language_specific_rules/templates/sanit/search_info.template:13
+#, fuzzy
 msgid ""
-"You selected #SoMe, the variant for social media, which means that the "
-"letters acdnstz\n"
-"            will be accepted as áčđŋšŧž in addition to their usual values."
+"You selected tolerant mode, the variant which accepts the letters acdnstz"
+"\n"
+" as áčđŋšŧž in addition to their usual values."
 msgstr ""
 "Valitsit #SoMe, sosiaalisen median lukemista varten. Se tarkoittaa, että "
 "myös kirjaimet acdnstz\n"
@@ -1499,4 +1502,10 @@ msgstr "Lisää tietoa tästä sanasta"
 #: views/search.py:1023
 msgid "Invalid format. Only json and html allowed."
 msgstr "Virheellinen formaatti. Vain json ja html ovat sallittuja."
+
+#~ msgid "smn ↔ fin"
+#~ msgstr "Pohjoissaame ↔ suomi"
+
+#~ msgid ""
+#~ msgstr ""
 
