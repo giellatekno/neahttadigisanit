@@ -109,7 +109,7 @@ msgstr ""
 #: configs/language_names.yaml:31 configs/language_names.yaml:32
 #: templates/more_dictionaries.html:28
 msgid "North Sámi"
-msgstr ""
+msgstr "Noerhtesaemiengïele"
 
 #: configs/language_names.yaml:33
 msgid "North Sámi (#SoMe)"
@@ -526,7 +526,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/about.template:65
 #: configs/language_specific_rules/templates/sanit/about.template:62
 msgid "sme ↔ fin"
-msgstr ""
+msgstr "Noerhtesaemiengïele ↔ såevmiengïele"
 
 #: configs/language_specific_rules/templates/about.template:66
 msgid ""
@@ -697,7 +697,7 @@ msgstr "Ohtsh"
 #: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:89
 #: templates/index_search_form.html:39 templates/index_search_form.html:64
 msgid "Search texts"
-msgstr ""
+msgstr "Ohtsh teekstem"
 
 #: configs/language_specific_rules/templates/notice.template:5
 #: configs/language_specific_rules/templates/sanit/notice.template:6
