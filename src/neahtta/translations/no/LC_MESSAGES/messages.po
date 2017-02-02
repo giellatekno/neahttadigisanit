@@ -79,7 +79,7 @@ msgstr "Andre ordbøker"
 #: configs/kyv.config.yaml.in:118 configs/kyv.config.yaml.in:184
 #: configs/sample.config.yaml.in:173 configs/sanit.config.yaml.in:126
 msgid "Social media"
-msgstr "Sosiale media"
+msgstr "acdnstz"
 
 #: configs/kyv.config.yaml.in:119
 #, fuzzy
@@ -98,7 +98,7 @@ msgstr "(forstår <em>acdnstz</em>)"
 #: configs/kyv.config.yaml.in:199 configs/kyv.config.yaml.in:217
 #, fuzzy
 msgid "Standard (<em>ӝӟӥӧӵ</em>)"
-msgstr "Standard (<em>áčđŋšŧž</em>)"
+msgstr "(<em>ӝӟӥӧӵ</em>)"
 
 #: configs/kyv.config.yaml.in:203 configs/kyv.config.yaml.in:221
 #, fuzzy
@@ -112,7 +112,7 @@ msgstr "Nordsamisk"
 
 #: configs/language_names.yaml:33
 msgid "North Sámi (#SoMe)"
-msgstr "Nordsamisk (#SoMe)"
+msgstr "Nordsamisk"
 
 #: configs/language_names.yaml:34 configs/language_names.yaml:114
 msgid "English"
@@ -267,7 +267,7 @@ msgstr ""
 
 #: configs/saanih.config.yaml.in:79 configs/saanih.config.yaml.in:100
 msgid "(<em>âäáčđŋšž</em>)"
-msgstr "Standard (<em>áčđŋšŧž</em>)"
+msgstr "(<em>âäáčđŋšž</em>)"
 
 #: configs/saanih.config.yaml.in:83 configs/saanih.config.yaml.in:104
 msgid "(incl. <em>aaacdnsz</em>)"
@@ -279,7 +279,7 @@ msgstr "(forstår <em>acdnstz</em>)"
 
 #: configs/sanit.config.yaml.in:151
 msgid "Standárda (<em>áčđŋšŧž</em>)"
-msgstr "Standard (<em>áčđŋšŧž</em>)"
+msgstr "<em>áčđŋšŧž</em>"
 
 #: configs/sanit.config.yaml.in:155
 msgid "Sosiála media (maiddái <em>acdnstz</em>)"
