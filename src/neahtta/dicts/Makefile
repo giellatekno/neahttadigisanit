@@ -909,7 +909,7 @@ sonad-install: install_langs_fsts
 ### #sanitlexica
 ##
 
-SANIT_LANGS_ANALYSERS      :=   sme fin nob
+SANIT_LANGS_ANALYSERS      :=   sme fin nob sma smj
 SANIT_LANGS_FLAGS          :=   --with-hfst
 SANIT_LANGS_LEXICA         :=   
 SANIT_WORDS_DICTS_LEXICA   :=   
@@ -962,11 +962,56 @@ nob-sme.all.xml: $(GTHOME)/words/dicts/nobsme/src/*.xml
 	rm -rf nobsme/
 	rm -rf dtd/
 
+smesma.xml: $(GTHOME)/words/dicts/smesma/src/
+	@echo "******************************"
+	@echo "** Building sme-sma lexicon **"
+	@echo "******************************"
+	@echo "** Backup made (.bak)       **"
+	@echo "******************************"
+	@echo ""
+	-@cp $@ $@.$(shell date +%s).bak
+	$(SAXON) inDir=$^ > $@
+
+smasme.xml: $(GTHOME)/words/dicts/smasme/src/
+	@echo "******************************"
+	@echo "** Building sma-sme lexicon **"
+	@echo "******************************"
+	@echo "** Backup made (.bak)       **"
+	@echo "******************************"
+	@echo ""
+	-@cp $@ $@.$(shell date +%s).bak
+	$(SAXON) inDir=$^ > $@
+
+smesmj.xml: $(GTHOME)/words/dicts/smesmj/src/
+	@echo "******************************"
+	@echo "** Building sme-smj lexicon **"
+	@echo "******************************"
+	@echo "** Backup made (.bak)       **"
+	@echo "******************************"
+	@echo ""
+	-@cp $@ $@.$(shell date +%s).bak
+	$(SAXON) inDir=$^ > $@
+
+smjsme.xml: $(GTHOME)/words/dicts/smjsme/src/
+	@echo "******************************"
+	@echo "** Building sme-sma lexicon **"
+	@echo "******************************"
+	@echo "** Backup made (.bak)       **"
+	@echo "******************************"
+	@echo ""
+	-@cp $@ $@.$(shell date +%s).bak
+	$(SAXON) inDir=$^ > $@
+
+
 .PHONY: sanit-lexica
 sanit-lexica: fin-sme.all.xml \
 			  nob-sme.all.xml \
 			  sme-fin.all.xml \
-			  sme-nob.all.xml
+			  sme-nob.all.xml \
+			  smesma.xml \
+			  smasme.xml \
+			  smesmj.xml \
+			  smjsme.xml
 
 ##
 ### #smeanalysers
@@ -979,6 +1024,8 @@ sanit: sanit-lexica compile_langs_fsts
 	@echo "** Built targets for sanit:    **"
 	@echo "**    + sanit lexica           **"
 	@echo "**    + sme analysers          **"
+	@echo "**    + sma analysers          **"
+	@echo "**    + smj analysers          **"
 	@echo "**    + fin analysers          **"
 	@echo "**    + nob analysers          **"
 	@echo "*********************************"
@@ -995,7 +1042,8 @@ sanit-clean:  GT_COMPILE_LANGS :=  $(SANIT_LANGS_ANALYSERS)
 sanit-clean: clean_langs_fsts
 
 rm-sanit-lexica:
-	@rm -rf fin-sme.all.xml nob-sme.all.xml sme-fin.all.xml sme-nob.all.xml
+	@rm -rf fin-sme.all.xml nob-sme.all.xml sme-fin.all.xml sme-nob.all.xml \
+		smesma.xml smasme.xml smesmj.xml smjsme.xml
 
 # NB: sme analyzer build is different, as well as target fst file names
 # also there is one additional analyser that comes out of this, which is
