@@ -1033,7 +1033,7 @@ msgid ""
 "<em>acdnstz</em> for <em>áčđŋšŧž</em>."
 msgstr ""
 "<b>Hvis du ikke har samisk tastatur</b>, må du bruke <a "
-"href=\"/SoMe/nob/\">sosiale media-modusen</a>, og du kan skrive "
+"href=\"/SoMe/nob/\">tolerant modus</a>, og du kan skrive "
 "<em>acdnstz</em> når du mener <em>áčđŋšŧž</em>."
 
 #: configs/language_specific_rules/templates/sanit/search_info.template:13

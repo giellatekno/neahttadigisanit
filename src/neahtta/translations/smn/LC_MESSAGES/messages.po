@@ -393,8 +393,8 @@ msgid ""
 "                    you'll find free dictionaries, and other analytical\n"
 "                    tools."
 msgstr ""
-"Kaiken (tai melkein kaiken), mikä koskee vähemmistökieliä pitäisi olla "
-"ilmaista. Täältä löydät ilmaisia sanakirjoja ja muita analyysiohjelmia."
+"Puoh (teikâ masa puoh), mii kuáská ucceeblovokieláid, kolgâččij leđe "
+"nuuvtá. Tääbbin kávnojeh nuuvtá sänikirjeh já eres analyysohjelmeh. "
 
 #: configs/language_specific_rules/templates/about.template:26
 #: configs/language_specific_rules/templates/baakoeh/about.template:27

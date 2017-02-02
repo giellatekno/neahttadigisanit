@@ -44,7 +44,7 @@ msgstr ""
 #: configs/sanit.config.yaml:108 configs/sanit.config.yaml.in:107
 #: configs/sonad.config.yaml.in:154
 msgid "Standard"
-msgstr ""
+msgstr "Sïejhme"
 
 #: configs/guusaaw.config.yaml.in:77 configs/saan.config.yaml.in:117
 #: configs/saanih.config.yaml.in:82 configs/saanih.config.yaml.in:103
@@ -80,7 +80,7 @@ msgstr "Jeatjah baakoegærjah"
 #: configs/kyv.config.yaml.in:162 configs/kyv.config.yaml.in:237
 #: configs/sample.config.yaml.in:173 configs/sanit.config.yaml:114
 msgid "Social media"
-msgstr ""
+msgstr "Sosiale media"
 
 #: configs/kyv.config.yaml.in:163
 msgid "(incl. <em>ио</em>)"
@@ -113,7 +113,7 @@ msgstr "Noerhtesaemiengïele"
 
 #: configs/language_names.yaml:33
 msgid "North Sámi (#SoMe)"
-msgstr ""
+msgstr "Noerhtesaemiengïele"
 
 #: configs/language_names.yaml:34 configs/language_names.yaml:115
 msgid "English"
@@ -280,7 +280,7 @@ msgstr ""
 #: configs/sample.config.yaml.in:175 configs/sanit.config.yaml:115
 #: configs/sanit.config.yaml.in:123
 msgid "(incl. <em>acdnstz</em>)"
-msgstr ""
+msgstr "(aaj <em>acdnstz</em>)"
 
 #: configs/sanit.config.yaml:138
 msgid "Standárda (<em>áčđŋšŧž</em>)"
@@ -300,7 +300,7 @@ msgstr ""
 
 #: configs/sanit.config.yaml.in:151
 msgid "Tolerant (also <em>acdnstz</em>)"
-msgstr ""
+msgstr "Tolerant (også <em>acdnstz</em>)"
 
 #: configs/sonad.config.yaml.in:159
 msgid "mobile friendly"
@@ -337,7 +337,7 @@ msgstr "Mijjen bïjre"
 #: configs/language_specific_rules/templates/vada/about.template:17
 #: configs/language_specific_rules/templates/valks/about.template:17
 msgid "A dictionary that understands what you're looking for."
-msgstr ""
+msgstr "Ei ordbok som forstår hva du leter etter."
 
 #: configs/language_specific_rules/templates/about.template:15
 #: configs/language_specific_rules/templates/baakoeh/about.template:16
@@ -391,6 +391,9 @@ msgid ""
 "                    you'll find free dictionaries, and other analytical\n"
 "                    tools."
 msgstr ""
+"Alt (eller i alle fall nesten alt) som har med minoritetsspråk å "
+"gjøreburde være åpent tilgjengelig. Her vil du finne åpne ordbøker og "
+"andre analyseverktøy."
 
 #: configs/language_specific_rules/templates/about.template:26
 #: configs/language_specific_rules/templates/baakoeh/about.template:27
@@ -406,7 +409,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/vada/about.template:29
 #: configs/language_specific_rules/templates/valks/about.template:29
 msgid "Open-Source"
-msgstr ""
+msgstr "Åpen kildekode"
 
 #: configs/language_specific_rules/templates/about.template:27
 #: configs/language_specific_rules/templates/baakoeh/about.template:28
@@ -427,6 +430,11 @@ msgid ""
 "                website for information on how to get access to lexicon\n"
 "                files, and morphological and syntactic analyzers."
 msgstr ""
+"Alt her er basert på åpen kildekode. Har du en ide for en app eller et "
+"forskingsprosjekt som trenger språklige ressurser? Du finner informasjon "
+"om hvordan du kan få tilgang til leksikonfiler og morfologiske og "
+"syntaktiske analyseprogram på <a class=\"blue\\ "
+"href=\"http://giellatekno.uit.no/\">Giellateknos hjemmeside</a>."
 
 #: configs/language_specific_rules/templates/about.template:35
 #: configs/language_specific_rules/templates/baakoeh/about.template:36
@@ -442,7 +450,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/vada/about.template:38
 #: configs/language_specific_rules/templates/valks/about.template:38
 msgid "Linguistic basis"
-msgstr ""
+msgstr "Lingvistisk basis"
 
 #: configs/language_specific_rules/templates/about.template:36
 #: configs/language_specific_rules/templates/baakoeh/about.template:37
@@ -486,12 +494,12 @@ msgstr ""
 #: configs/language_specific_rules/templates/vada/about.template:52
 #: configs/language_specific_rules/templates/valks/about.template:52
 msgid "Source material"
-msgstr ""
+msgstr "Kildemateriale"
 
 #: configs/language_specific_rules/templates/about.template:56
 #: configs/language_specific_rules/templates/sanit/about.template:57
 msgid "sme ↔ nob"
-msgstr ""
+msgstr "Noerhtesaemiengïele ↔ daaroengïele"
 
 #: configs/language_specific_rules/templates/about.template:57
 msgid ""
@@ -510,7 +518,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/about.template:61
 #: configs/language_specific_rules/templates/baakoeh/about.template:57
 msgid "sma ↔ nob"
-msgstr ""
+msgstr "Noerhtesaemiengïele ↔ såevmiengïele"
 
 #: configs/language_specific_rules/templates/about.template:62
 msgid ""
@@ -1310,6 +1318,8 @@ msgid ""
 "the\n"
 "                bookmarklet."
 msgstr ""
+"Det er også mulig å installere klikk-i-tekst på en internettside, slik at"
+" brukere vil kunne bruke ordboka uten bruk av bokmerke."
 
 #: templates/reader.html:39
 msgid ""
@@ -1317,14 +1327,16 @@ msgid ""
 "href=\"http://giellatekno.uit.no/doc/dicts/nds/AddingNDSPluginToOtherSites.html\">follow"
 " our documentation</a>."
 msgstr ""
+"Følg vår <a "
+"href=\"http://giellatekno.uit.no/doc/dicts/nds/AddingNDSPluginToOtherSites.html\">dokumentasjon</a>."
 
 #: templates/reader.html:40
 msgid "Browser support"
-msgstr ""
+msgstr "Nettleserstøtte"
 
 #: templates/reader.html:41
 msgid "The reader is supported in the following browsers:"
-msgstr ""
+msgstr "Klikk-i-tekst fungerer med følgende nettlesere:"
 
 #: templates/reader.html:43
 msgid "Chrome (version 20 and newer)"
