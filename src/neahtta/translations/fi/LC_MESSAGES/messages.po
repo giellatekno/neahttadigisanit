@@ -44,7 +44,7 @@ msgstr ""
 #: configs/sanit.config.yaml:108 configs/sanit.config.yaml.in:107
 #: configs/sonad.config.yaml.in:154
 msgid "Standard"
-msgstr "Standardi"
+msgstr "Tavallinen"
 
 #: configs/guusaaw.config.yaml.in:77 configs/saan.config.yaml.in:117
 #: configs/saanih.config.yaml.in:82 configs/saanih.config.yaml.in:103
@@ -300,7 +300,7 @@ msgstr "Sosiaalimedia (myös <em>acdnstz</em>)"
 
 #: configs/sanit.config.yaml.in:122
 msgid "Tolerant"
-msgstr ""
+msgstr "Suvaitsevainen"
 
 #: configs/sanit.config.yaml.in:147
 #, fuzzy
@@ -310,7 +310,7 @@ msgstr "Kirjakielen kirjaimet (<em>áčđŋšŧž</em>)"
 #: configs/sanit.config.yaml.in:151
 #, fuzzy
 msgid "Tolerant (also <em>acdnstz</em>)"
-msgstr "(myös <em>acdnstz</em>)"
+msgstr "Suvaitsevainen (myös <em>acdnstz</em>)"
 
 #: configs/sonad.config.yaml.in:159
 msgid "mobile friendly"
@@ -674,7 +674,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:42
 #: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:42
 msgid "Select a word, and press Tab"
-msgstr ""
+msgstr "Valitse sana, ja painaa Tab""
 
 #: configs/language_specific_rules/templates/index_search_form.template:48
 #: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:51
@@ -1008,6 +1008,8 @@ msgid ""
 "searching for parallels in a parallel corpus of administrative text. This"
 " work was financed by the Ministry of Local Government and Modernisation."
 msgstr ""
+"Noin puolet sanakirjan sisällöstä on lisätty hallinnolisten tekstien "
+"rinnakkaiskorpuksesta. Tämän työn on rahoittanut Norjan sisäministeriö."
 
 #: configs/language_specific_rules/templates/sanit/about.template:63
 #, fuzzy
@@ -1025,8 +1027,9 @@ msgstr ""
 "\"sanalistoihin. Olemme myös lisäneet tavanomaisia pohjoissaamen ja "
 "erityisesti suomen kielen sanoja."
 
+#'
+
 #: configs/language_specific_rules/templates/sanit/about.template:64
-#, fuzzy
 msgid "In both directions there are about 11,000 entries."
 msgstr "Molemmat sanakirjat sisältyvät noin 11 000 hakusanaa."
 
@@ -1035,7 +1038,6 @@ msgid "Other North Saami dictionaries"
 msgstr "Muita pohjoissaamen sanakirjoja"
 
 #: configs/language_specific_rules/templates/sanit/search_info.template:5
-#, fuzzy
 msgid ""
 "If you are using a device without a Sámi keyboard, consider using <a "
 "href=\"/SoMe/nob/\">tolerant mode</a>, which allows you to type "
@@ -1047,7 +1049,6 @@ msgstr ""
 "tilalle."
 
 #: configs/language_specific_rules/templates/sanit/search_info.template:13
-#, fuzzy
 msgid ""
 "You selected tolerant mode, the variant which accepts the letters acdnstz"
 "\n"
