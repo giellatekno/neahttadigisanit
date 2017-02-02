@@ -117,7 +117,7 @@ Dictionaries:
           - "ž"
         # NB: must be same as analyser name
       - type: "mobile"
-        description: !gettext "Social media"
+        description: !gettext "Tolerant"
         # description: !gettext "Sosiála media"
         # example: !gettext "(maiddái <em>acdnstz</em>)"
         example: !gettext "(incl. <em>acdnstz</em>)"
@@ -144,11 +144,11 @@ Dictionaries:
       # "mobile" is important, otherwise templates and swapping won't
       # work
       - type: "standard"
-        description: !gettext "Standárda (<em>áčđŋšŧž</em>)"
+        description: !gettext "Standard (<em>áčđŋšŧž</em>)"
         short_name: "sme"
         onscreen_keyboard: *SME_KEYS
       - type: "mobile"
-        description: !gettext "Sosiála media (maiddái <em>acdnstz</em>)"
+        description: !gettext "Tolerant (also <em>acdnstz</em>)"
         short_name: "SoMe"
         onscreen_keyboard: *SME_KEYS
 
