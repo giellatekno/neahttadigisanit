@@ -1,0 +1,20 @@
+name: "Impersonal (dat) verb paradigm"
+description: |
+  Use Sg3 for paradigm for impersonal (dat) verbs
+  ex.) rádnát
+morphology:
+  pos: V
+lexicon:
+  XPATH:
+    context: './/l/@context'
+  context:
+    - "dat"
+--
+{{ lemma }}+V+Ind+Prs+Sg3
+{{ lemma }}+V+Ind+Prs+Pl3
+{{ lemma }}+V+Ind+Prt+Sg3
+{{ lemma }}+V+Ind+Prt+Pl3
+{{ lemma }}+V+Ind+Prs+ConNeg
+{{ lemma }}+V+Ind+Prt+ConNeg
+{{ lemma }}+V+PrfPrc
+
