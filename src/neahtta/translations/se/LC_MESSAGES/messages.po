@@ -294,16 +294,16 @@ msgstr ""
 
 #: configs/sanit.config.yaml.in:122
 msgid "Tolerant"
-msgstr ""
+msgstr "Toleránta"
 
 #: configs/sanit.config.yaml.in:147
 #, fuzzy
 msgid "Standard (<em>áčđŋšŧž</em>)"
-msgstr "Dábálaš"
+msgstr "Standárda (<em>áčđŋšŧž</em>)"
 
 #: configs/sanit.config.yaml.in:151
 msgid "Tolerant (also <em>acdnstz</em>)"
-msgstr ""
+msgstr "Toleránta (dohkkeha <em>acdnstz</em>)"
 
 #: configs/sonad.config.yaml.in:159
 msgid "mobile friendly"
