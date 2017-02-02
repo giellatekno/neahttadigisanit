@@ -283,7 +283,7 @@ msgstr "(forstår <em>acdnstz</em>)"
 
 #: configs/sanit.config.yaml:138
 msgid "Standárda (<em>áčđŋšŧž</em>)"
-msgstr "<em>áčđŋšŧž</em>"
+msgstr "Standard <em>áčđŋšŧž</em>"
 
 #: configs/sanit.config.yaml:141
 msgid "Sosiála media (maiddái <em>acdnstz</em>)"
@@ -291,17 +291,17 @@ msgstr "For sosiale media (forstår <em>acdnstz</em>)"
 
 #: configs/sanit.config.yaml.in:122
 msgid "Tolerant"
-msgstr ""
+msgstr "Tolerant"
 
 #: configs/sanit.config.yaml.in:147
 #, fuzzy
 msgid "Standard (<em>áčđŋšŧž</em>)"
-msgstr "<em>áčđŋšŧž</em>"
+msgstr "Standard (<em>áčđŋšŧž</em>)"
 
 #: configs/sanit.config.yaml.in:151
 #, fuzzy
 msgid "Tolerant (also <em>acdnstz</em>)"
-msgstr "(forstår <em>acdnstz</em>)"
+msgstr "Tolerant (forstår <em>acdnstz</em>)"
 
 #: configs/sonad.config.yaml.in:159
 msgid "mobile friendly"
