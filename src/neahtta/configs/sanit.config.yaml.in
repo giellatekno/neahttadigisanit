@@ -11,6 +11,7 @@ ApplicationSettings:
   #   - "someone.goes.here@email.com"
   locales_available:
     - "se"
+    - "sma"
     - "no"
     - "fi"
     - "en"
@@ -78,12 +79,24 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
+  sma:
+    tool: *LOOKUP
+    file: [*OPT, '/sma/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/sma/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options: &sma_fst_options
+      compoundBoundary: "+Cmp#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
 
 Languages:
   - iso: sme
     minority_lang: true
   - iso: SoMe
     variant: True # this makes the fab process skip attempting `svn up` here.
+  - iso: sma
+#    minority_lang: true
   - iso: nob
   - iso: fin
   - iso: eng
@@ -156,4 +169,86 @@ Dictionaries:
     target: sme
     path: 'dicts/fin-sme.all.xml'
     autocomplete: true
+
+  - source: sme
+    target: sma
+    path: 'dicts/smesma.xml'
+    autocomplete: false
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/korp"
+    is_korp_default_lang: True
+
+    input_variants:
+      # "mobile" is important, otherwise templates and swapping won't
+      # work
+      - type: "standard"
+        description: !gettext "Standard"
+        # description: !gettext "Standárda"
+        example: "(<em>áčđŋšŧž</em>)"
+        short_name: "sme"
+        onscreen_keyboard: &SME_KEYS
+          - "á"
+          - "č"
+          - "đ"
+          - "ŋ"
+          - "š"
+          - "ŧ"
+          - "ž"
+        # NB: must be same as analyser name
+      - type: "mobile"
+        description: !gettext "Tolerant"
+        # description: !gettext "Sosiála media"
+        # example: !gettext "(maiddái <em>acdnstz</em>)"
+        example: !gettext "(incl. <em>acdnstz</em>)"
+        short_name: "SoMe"
+        onscreen_keyboard: *SME_KEYS
+
+  - source: sma
+    target: sme
+    autocomplete: false
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/korp"
+    path: 'dicts/smasme.xml'
+
+# smesmj
+
+  - source: sme
+    target: smj
+    path: 'dicts/smesmj.xml'
+    autocomplete: false
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/korp"
+    is_korp_default_lang: True
+
+    input_variants:
+      # "mobile" is important, otherwise templates and swapping won't
+      # work
+      - type: "standard"
+        description: !gettext "Standard"
+        # description: !gettext "Standárda"
+        example: "(<em>áčđŋšŧž</em>)"
+        short_name: "sme"
+        onscreen_keyboard: &SME_KEYS
+          - "á"
+          - "č"
+          - "đ"
+          - "ŋ"
+          - "š"
+          - "ŧ"
+          - "ž"
+        # NB: must be same as analyser name
+      - type: "mobile"
+        description: !gettext "Tolerant"
+        # description: !gettext "Sosiála media"
+        # example: !gettext "(maiddái <em>acdnstz</em>)"
+        example: !gettext "(incl. <em>acdnstz</em>)"
+        short_name: "SoMe"
+        onscreen_keyboard: *SME_KEYS
+
+  - source: smj
+    target: sme
+    autocomplete: false
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/korp"
+    path: 'dicts/smjsme.xml'
 
