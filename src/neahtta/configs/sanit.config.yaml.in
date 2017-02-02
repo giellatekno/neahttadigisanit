@@ -186,15 +186,7 @@ Dictionaries:
         # description: !gettext "Standárda"
         example: "(<em>áčđŋšŧž</em>)"
         short_name: "sme"
-        onscreen_keyboard: &SME_KEYS
-          - "á"
-          - "č"
-          - "đ"
-          - "ŋ"
-          - "š"
-          - "ŧ"
-          - "ž"
-        # NB: must be same as analyser name
+        onscreen_keyboard: *SME_KEYS
       - type: "mobile"
         description: !gettext "Tolerant"
         # description: !gettext "Sosiála media"
@@ -228,15 +220,7 @@ Dictionaries:
         # description: !gettext "Standárda"
         example: "(<em>áčđŋšŧž</em>)"
         short_name: "sme"
-        onscreen_keyboard: &SME_KEYS
-          - "á"
-          - "č"
-          - "đ"
-          - "ŋ"
-          - "š"
-          - "ŧ"
-          - "ž"
-        # NB: must be same as analyser name
+        onscreen_keyboard: *SME_KEYS
       - type: "mobile"
         description: !gettext "Tolerant"
         # description: !gettext "Sosiála media"
