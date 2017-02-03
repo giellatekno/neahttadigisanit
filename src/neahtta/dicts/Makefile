@@ -4,6 +4,9 @@
 ##                   ##
 #######################
 
+#$# include for sme-sma
+
+
 # TODO: when templates are updated, not everything is noticed in make
 # process for main/langs/, so it might be necessary to do a distclean,
 # and reautogen from time to time
@@ -1086,8 +1089,29 @@ nob-sma.all.xml: $(GTHOME)/words/dicts/nobsma/src/
 baakoeh-lexica: sma-nob.all.xml \
 				nob-sma.all.xml
 
+#$#smesma.xml: $(GTHOME)/words/dicts/smesma/src/
+#$#	@echo "******************************"
+#$#	@echo "** Building sme-sma lexicon **"
+#$#	@echo "******************************"
+#$#	@echo "** Backup made (.bak)       **"
+#$#	@echo "******************************"
+#$#	@echo ""
+#$#	-@cp $@ $@.$(shell date +%s).bak
+#$#	$(SAXON) inDir=$^ > $@
+#$#
+#$#smasme.xml: $(GTHOME)/words/dicts/smasme/src/
+#$#	@echo "******************************"
+#$#	@echo "** Building sma-sme lexicon **"
+#$#	@echo "******************************"
+#$#	@echo "** Backup made (.bak)       **"
+#$#	@echo "******************************"
+#$#	@echo ""
+#$#	-@cp $@ $@.$(shell date +%s).bak
+#$#	$(SAXON) inDir=$^ > $@
+
+
 rm-baakoeh-lexica: 
-	@rm -rf sma-nob.all.xml nob-sma.all.xml
+	@rm -rf sma-nob.all.xml nob-sma.all.xml #$#smesma.xml smasme.xml
 
 .PHONY: baakoeh-install
 baakoeh-install: GT_COMPILE_LANGS := $(BAAKOEH_LANGS_ANALYSERS)
@@ -1100,6 +1124,7 @@ baakoeh: baakoeh-lexica compile_langs_fsts
 	@echo "** Built targets for baakoeh:  **"
 	@echo "**    + baakoeh lexica         **"
 	@echo "**    + sma analysers          **"
+#$#	@echo "**    + sme analysers          **"
 	@echo "**    + nob analysers          **"
 	@echo "*********************************"
 	@echo ""
