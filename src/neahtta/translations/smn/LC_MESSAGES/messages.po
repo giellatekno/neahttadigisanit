@@ -290,19 +290,19 @@ msgstr "Sosiála media (meiddei <em>acdnstz</em>)"
 
 #: configs/sanit.config.yaml.in:122
 msgid "Tolerant"
-msgstr ""
+msgstr "Tolerant"
 
 #: configs/sanit.config.yaml.in:147
 msgid "Standard (<em>áčđŋšŧž</em>)"
-msgstr ""
+msgstr "Kirjekielâ puustaveh (<em>áčđŋšŧž</em>)"
 
 #: configs/sanit.config.yaml.in:151
 msgid "Tolerant (also <em>acdnstz</em>)"
-msgstr "(meiddei <em>acdnstz</em>)"
+msgstr "Tolerant (meiddei <em>acdnstz</em>)"
 
 #: configs/sonad.config.yaml.in:159
 msgid "mobile friendly"
-msgstr "moobiilustevlâš"
+msgstr "... ja lii kietâpuhelimân ustevlâš"
 
 #: configs/language_specific_rules/templates/about.template:5
 #: configs/language_specific_rules/templates/baakoeh/about.template:6
@@ -429,7 +429,7 @@ msgstr ""
 "Puoh vuáđuduvá ávus käldeekoodin. Láá-uv tust jurduuh apist teikâ "
 "tutkâmprojektist, mii taarbâš kielâlâš resurssijd? Uápásmuu siijđon    <a"
 " class=\"blue\"\n"
-" href=\"http://giellatekno.uit.no/\">Giellatekno</a>"
+" href=\"http://giellatekno.uit.no/\">Kielâtekno</a>"
 
 #: configs/language_specific_rules/templates/about.template:35
 #: configs/language_specific_rules/templates/baakoeh/about.template:36
@@ -464,9 +464,8 @@ msgid ""
 "Write what you wish, and the dictionary will analyze it to break apart "
 "compound words and find base forms."
 msgstr ""
-"Čääli mon sänihäämi peri, já sänikirje analysist tom Kirjoita mitä "
-"sanamuotoa tahansa, ja sanakirja analysoi sita ja löytää já kávná "
-"vuáđuhaamijd perusmuodot."
+"Čääli mon sänihäämi peri, já sänikirje analysist tom já kávná "
+"vuáđuhaamijd."
 
 #: configs/language_specific_rules/templates/about.template:42
 #: configs/language_specific_rules/templates/baakoeh/about.template:43
@@ -497,7 +496,7 @@ msgstr "Käldeemateriaal"
 #: configs/language_specific_rules/templates/about.template:56
 #: configs/language_specific_rules/templates/sanit/about.template:57
 msgid "sme ↔ nob"
-msgstr "Anarâškielâ ↔ Suomakielâ"
+msgstr ""
 
 #: configs/language_specific_rules/templates/about.template:57
 msgid ""
@@ -512,6 +511,7 @@ msgid ""
 "parallel corpus of administrative text, financed by the Ministry of Local"
 " Government and Modernisation."
 msgstr ""
+
 
 #: configs/language_specific_rules/templates/about.template:61
 #: configs/language_specific_rules/templates/baakoeh/about.template:57
