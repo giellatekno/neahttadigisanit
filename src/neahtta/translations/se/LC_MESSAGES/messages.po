@@ -111,15 +111,15 @@ msgstr "Davvisámegiella"
 
 #: configs/language_names.yaml:33
 msgid "North Sámi (#SoMe)"
-msgstr ""
+msgstr "Davvisámegiella"
 
 #: configs/language_names.yaml:34 configs/language_names.yaml:115
 msgid "English"
-msgstr ""
+msgstr "Eŋgelasgiella"
 
 #: configs/language_names.yaml:37
 msgid "Hungarian"
-msgstr ""
+msgstr "Ungáragiella"
 
 #: configs/language_names.yaml:40 templates/more_dictionaries.html:29
 msgid "South Sámi"
@@ -212,7 +212,7 @@ msgstr ""
 
 #: configs/language_names.yaml:87
 msgid "Odawa"
-msgstr ""
+msgstr "Odawagiella"
 
 #: configs/language_names.yaml:88 configs/language_names.yaml:91
 msgid "Cherokee"
@@ -220,11 +220,11 @@ msgstr ""
 
 #: configs/language_names.yaml:92 configs/language_names.yaml:95
 msgid "Northern Haida"
-msgstr ""
+msgstr "Davvihaida"
 
 #: configs/language_names.yaml:98
 msgid "Inari Saami"
-msgstr ""
+msgstr "Anársámegiella"
 
 #: configs/language_names.yaml:100
 msgid "Khanty"
@@ -290,11 +290,11 @@ msgstr ""
 
 #: configs/sanit.config.yaml.in:122
 msgid "Tolerant"
-msgstr "Toleránta"
+msgstr "toleránta"
 
 #: configs/sanit.config.yaml.in:147
 msgid "Standard (<em>áčđŋšŧž</em>)"
-msgstr "Standárda (<em>áčđŋšŧž</em>)"
+msgstr "(<em>áčđŋšŧž</em>)"
 
 #: configs/sanit.config.yaml.in:151
 msgid "Tolerant (also <em>acdnstz</em>)"
