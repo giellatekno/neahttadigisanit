@@ -1328,15 +1328,15 @@ msgid ""
 " a\n"
 "                menu icon on the left-hand side of the page."
 msgstr ""
-"Vedä ja pudota vihreä linkki selaintyöpalkillesi. Sen jälkeen\n"
-"                voit klikata sitä ollessasi sivulla, jota haluat lukea. \n"
-"                Silloin palvelu asennetaan automaattisesti, ja sivun \n"
-"                vasemmalle laidalle ilmestyy valikkokuvake."
+"Vedä ja pudota vihreä linkki selaintyöpalkillesi. Sen jälkeen "
+"voit klikata sitä ollessasi sivulla, jota haluat lukea. "
+"Silloin palvelu asennetaan automaattisesti, ja sivun "
+"vasemmalle laidalle ilmestyy valikkokuvake."
 
 #: templates/reader.html:26 templates/reader_update.html:15
 #, python-format
 msgid "Read with %(project_name)s"
-msgstr "Read %(project_name)s avulla"
+msgstr "Lue %(project_name)s avulla"
 
 #: templates/reader.html:27
 msgid ""
@@ -1423,7 +1423,7 @@ msgid ""
 "improve\n"
 "                the dictionary."
 msgstr ""
-"Emme säästä yksityisiä tietoja, mutta keräämme yksittäisiä sanahakuja "
+"Emme säilytä yksityisiä tietoja, mutta keräämme yksittäisiä sanahakuja "
 "tilastointa ja sanakirjan parantamista varten."
 
 #: templates/reader.html:61
