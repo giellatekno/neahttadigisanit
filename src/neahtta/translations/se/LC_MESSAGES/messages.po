@@ -224,7 +224,7 @@ msgstr "Davvihaida"
 
 #: configs/language_names.yaml:98
 msgid "Inari Saami"
-msgstr "Anársámegiella"
+msgstr "Anárašgiella"
 
 #: configs/language_names.yaml:100
 msgid "Khanty"
