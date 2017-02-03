@@ -507,8 +507,8 @@ msgid ""
 "Norwegian → North Sámi contains about 26000 words. "
 msgstr ""
 "Nordsamisk → norsk bygger på Nils Jernslettens ordbok "
-"<em>Álgosátnegirji</em>, men den har etterhvert blitt mer enn doblet i "
-"omfang."
+"<em>Álgosátnegirji</em>, (4300 ord) inneholder nå 25000 ord. "
+"Norsk  → nordsamisk inneholder omtrent 26000 ord."
 
 #: configs/language_specific_rules/templates/about.template:58
 msgid ""
@@ -991,9 +991,9 @@ msgid ""
 "<em>Álgosátnegirji</em> (4300 words), but now contains 25000 words. "
 "Norwegian → North Saami contains about 26000 words. "
 msgstr ""
-"Nordsamisk → norsk bygger på Nils Jernslettens ordbpk "
-"<em>Álgosátnegirji</em>, men den har etterhvert blitt mer enn doblet i "
-"omfang."
+"Nordsamisk → norsk bygger på Nils Jernslettens ordbok "
+"<em>Álgosátnegirji</em>, (4300 ord) inneholer nå 25000 ord. "
+"Norsk  → nordsamisk inneholder omtrent 26000 ord."
 
 #: configs/language_specific_rules/templates/sanit/about.template:59
 msgid ""
@@ -1001,6 +1001,9 @@ msgid ""
 "searching for parallels in a parallel corpus of administrative text. This"
 " work was financed by the Ministry of Local Government and Modernisation."
 msgstr ""
+"Omtrent halvparten av innholdet er tatt fra et parallellkorpus "
+"bestående av administrative tekster. Arbeidet er finansiert av "
+"Kommunal- og regionaldepartementet."
 
 #: configs/language_specific_rules/templates/sanit/about.template:63
 msgid ""
