@@ -543,11 +543,6 @@ msgid ""
 "have included frequent words from North Sámi, but especially from "
 "Finnish."
 msgstr ""
-"Pohjoissaame-suomi-sanakirjat pohjautuvat Giellateknon <a class=\"green\""
-" href=\"http://oahpa.no\">Oahpa-työhön</a> ja <a class=\"green\" "
-"href=\"http://kotus.fi\">Kotimaiste kielten keskuksen</a> \" "
-"\"sanalistoihin. Olemme myös lisäneet tavanomaisia pohjoissaamen ja "
-"erityisesti suomen kielen sanoja."
 
 #: configs/language_specific_rules/templates/about.template:67
 msgid "Each of the dictionaries contains about 11,000 base words."
@@ -1398,17 +1393,17 @@ msgid ""
 "                website and return dictionary entries after a brief\n"
 "                pause."
 msgstr ""
-"Kun haluat käännöksen, pidä Alt tai Optio (⌥)-näppäintä alhaalla, ja "
-"kaksoisklikkaa sanaa. Ohjelma yhdistyy tähän sivuun ja hakee sanakirja-"
-"artikkelin pienen tauon jälkeen."
+"Ko halijdah jurgâlus, toolâ Alt teikâ Optio (⌥)-puálu vyellin "
+"já tublecolkkâl sääni. Ohjelm ovtâstittoo taan siijđon já ocá "
+"sänikirjeartikkâl váháš ääigi keččin. "
 
 #: templates/reader.html:31
 msgid "To change the dictionary, click the menu icon."
-msgstr "Klikkaa valikon kuvaketta vaihtaaksesi sanakirjaa."
+msgstr "Colkkâl valjiittuv kováduv, vâi peesah molsođ sänikirje."
 
 #: templates/reader.html:32
 msgid "Installing on a website"
-msgstr "Asentaminen verkkosivulla"
+msgstr "Installistem viermisiijđost" 
 
 #: templates/reader.html:34
 msgid ""
@@ -1417,8 +1412,8 @@ msgid ""
 "the\n"
 "                bookmarklet."
 msgstr ""
-"On myös mahdollista asentaa selainliitönnöinen verkkosivulla, niin, että "
-"lukijat pääsevät käyttämään sanakirjaa kirjamerkkiä asentamatta."
+"Lii meiddei máhđulâš  luođiđ laađâlabdastuv (selainliitännäinen) viermisiijđost, "
+"nuuvt ete lohheeh peesih kevttiđ sänikirje kirjemeerhâ luođiihánnáá."
 
 #: templates/reader.html:39
 msgid ""
@@ -1426,37 +1421,37 @@ msgid ""
 "href=\"http://giellatekno.uit.no/doc/dicts/nds/AddingNDSPluginToOtherSites.html\">follow"
 " our documentation</a>."
 msgstr ""
-"Saat palvelun seuraamalla, <a "
+"Kaavnah palvâlus čuávumáin <a "
 "href=\"http://giellatekno.uit.no/doc/dicts/nds/AddingNDSPluginToOtherSites.html\">"
-" dokumentaatiotamme</a>."
+" mii dokumentistem</a>."
 
 #: templates/reader.html:40
 msgid "Browser support"
-msgstr "Selaintuki"
+msgstr "Laađâtoorjâ"
 
 #: templates/reader.html:41
 msgid "The reader is supported in the following browsers:"
-msgstr "Lukuohjelmaa tukevat seuraavat selaimet:"
+msgstr "Luuhâmohjelm pasteh luuhâđ čuávuvááh lađđuuh:"
 
 #: templates/reader.html:43
 msgid "Chrome (version 20 and newer)"
-msgstr "Chrome (versio 20 ja uudemmat)"
+msgstr "Chrome (versio 20 já uđđâsuboh)"
 
 #: templates/reader.html:44
 msgid "Internet Explorer (version 9 and newer)"
-msgstr "Internet Explorer (versio 9 ja uudemmat)"
+msgstr "Internet Explorer (versio 9 já uđđâsuboh)"
 
 #: templates/reader.html:45
 msgid "Firefox (version 18 and newer)"
-msgstr "Firefox (versio 18 ja uudemmat)"
+msgstr "Firefox (versio 18 já uđđâsuboh)"
 
 #: templates/reader.html:46
 msgid "Opera (version 16 and newer)"
-msgstr "Opera (versio 16 ja uudemmat)"
+msgstr "Opera (versio 16 já uđđâsuboh)"
 
 #: templates/reader.html:48
 msgid "Bugs?"
-msgstr "Virheitä?"
+msgstr "Feeilah?"
 
 #: templates/reader.html:49
 msgid ""
@@ -1465,9 +1460,9 @@ msgid ""
 "of\n"
 "                what you were reading when you encountered the problem."
 msgstr ""
-"Jos löydät virheitä, tai jos kirjanmerkki ei toimi tietyllä nettisivulla,"
-" voit otta yhteyttä meihin, ja kertoa mistä URL:stä on kyse, tak mitä "
-"teit kun ongelma ilmentyi."
+"Jis kaavnah feeilâid teikâ jis kirjemerkkâ ij tooimâ tiätu nettisiijđost, "
+"vääldi ohtâvuođâ Kielâteknon já muštâl, mon URL:st lii saahâ teikâ maid tun "
+"lijjih porgâmin eidu talle ko čuolmâ iiđij."
 
 #: templates/reader.html:52
 msgid ""
@@ -1476,12 +1471,11 @@ msgid ""
 "improve\n"
 "                the dictionary."
 msgstr ""
-"Emme säilytä yksityisiä tietoja, mutta keräämme yksittäisiä sanahakuja "
-"tilastointa ja sanakirjan parantamista varten."
+"Kielâtekno ij siäilut ovtâskâs tiäđuid pic kale norá ovtâskâs säniucâmijd "
+"statistiik já sänikirje pyeredem várás. "
 
 #: templates/reader.html:61
 msgid "Includes"
-msgstr ""
 msgstr "Sisältää"
 
 #: templates/reader.html:69
@@ -1524,10 +1518,10 @@ msgid ""
 "    service will automatically be installed, and you will see a\n"
 "    menu icon on the left-hand side of the page."
 msgstr ""
-"Vedä ja pudota seuraava linkki kirjamerkkipalkkiin ja klikkaa sitä, kun "
-"olet sivulla, jota haluat lukea sanakirjan avulla. Palvelu asennetaan "
-"automaattisesti ja tulet näkemään valikkokuvakkeen (Á) sivun vasemmalla "
-"puolella."
+"Keesi já koočât ruánáá liiŋkâ laađâpargopalkkisâd (selaintyöpalkki). "
+"Ton maŋa colkkâl tom ko lah tien siijđost, mon halijdah luuhâđ. Talle "
+"palvâlem lyeđejuvvoo automaatlávt, já siiđo čižeppiälán iiđeest "
+"valjiittâhkovástâh (Á)."
 
 #: templates/word_detail.html:35
 msgid "is a possible form of ... "
