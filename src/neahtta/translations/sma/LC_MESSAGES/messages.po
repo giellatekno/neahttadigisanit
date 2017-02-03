@@ -48,7 +48,6 @@ msgstr "Sïejhme"
 
 #: configs/guusaaw.config.yaml.in:77 configs/saan.config.yaml.in:117
 #: configs/saanih.config.yaml.in:82 configs/saanih.config.yaml.in:103
-#, fuzzy
 msgid "Mobile friendly"
 msgstr "(... og er tilpassa mobiltelefonen!)"
 
@@ -73,9 +72,8 @@ msgid "Kidwinan"
 msgstr ""
 
 #: configs/kidwinan.config.yaml.in:3
-#, fuzzy
 msgid "Online Odawa dictionary"
-msgstr "Jeatjah baakoegærjah"
+msgstr "Jeatjah odawa-baakoegærjah"
 
 #: configs/kyv.config.yaml.in:162 configs/kyv.config.yaml.in:237
 #: configs/sample.config.yaml.in:173 configs/sanit.config.yaml:114
@@ -352,7 +350,6 @@ msgstr "Ei ordbok som forstår hva du leter etter."
 #: configs/language_specific_rules/templates/sonad/about.template:16
 #: configs/language_specific_rules/templates/vada/about.template:18
 #: configs/language_specific_rules/templates/valks/about.template:18
-#, fuzzy
 msgid "(... And is mobile-friendly!)"
 msgstr "(... og er tilpassa mobiltelefonen!)"
 
@@ -991,7 +988,6 @@ msgid "In both directions there are about 11,000 entries."
 msgstr ""
 
 #: configs/language_specific_rules/templates/sanit/notice.template:5
-#, fuzzy
 msgid "Other North Saami dictionaries"
 msgstr "Jeatjah noerhtesaemien baakoegærjah"
 
@@ -1125,7 +1121,6 @@ msgstr ""
 
 #: templates/index.html:86 templates/index.html:108
 #: templates/variant_search.html:133 templates/variant_search.html:155
-#, fuzzy, python-format
 msgid "Word <span lang=\"%(_from)s\">%(input)s</span> not found."
 msgstr "Ordet %(input)s ikke funnet."
 
@@ -1399,7 +1394,6 @@ msgid "Includes"
 msgstr "Inkluderer"
 
 #: templates/reader.html:69
-#, fuzzy, python-format
 msgid ""
 "If you are looking for other languages, please see our <a "
 "href=\"%(more_dictionaries_link)s\">other dictionaries</a>."
@@ -1412,7 +1406,6 @@ msgid "Additional instructions"
 msgstr "Tilleggsinstrukser"
 
 #: templates/reader_ie8_notice.html:1
-#, fuzzy, python-format
 msgid ""
 "\n"
 "Your web browser is supported, however, you will need to change some\n"
@@ -1443,7 +1436,6 @@ msgstr ""
 "og du ser et menyikon (<em>Á</em>) på venstre side av nettsida."
 
 #: templates/word_detail.html:35
-#, fuzzy
 msgid "is a possible form of ... "
 msgstr "Dïhte sån baakoehammoe daehtie baakoste: "
 
