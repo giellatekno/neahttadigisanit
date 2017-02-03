@@ -1429,7 +1429,6 @@ msgid "Includes"
 msgstr "Dás leat:"
 
 #: templates/reader.html:69
-#, fuzzy, python-format
 msgid ""
 "If you are looking for other languages, please see our <a "
 "href=\"%(more_dictionaries_link)s\">other dictionaries</a>."
