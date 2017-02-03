@@ -72,9 +72,8 @@ msgid "Kidwinan"
 msgstr ""
 
 #: configs/kidwinan.config.yaml.in:3
-#, fuzzy
 msgid "Online Odawa dictionary"
-msgstr "Lisää sanakirjoja"
+msgstr "Lisää odawa-sanakirjoja"
 
 #: configs/kyv.config.yaml.in:162 configs/kyv.config.yaml.in:237
 #: configs/sample.config.yaml.in:173 configs/sanit.config.yaml:114
@@ -82,12 +81,10 @@ msgid "Social media"
 msgstr "Sosiaalinen media"
 
 #: configs/kyv.config.yaml.in:163
-#, fuzzy
 msgid "(incl. <em>ио</em>)"
-msgstr "(myös <em>acdnstz</em>)"
+msgstr "(myös <em>ио</em>)"
 
 #: configs/kyv.config.yaml.in:167
-#, fuzzy
 msgid "Molodtsov orthography"
 msgstr "Molotsovin ortografia"
 
@@ -96,19 +93,16 @@ msgid "Zyrian for Permyak"
 msgstr ""
 
 #: configs/kyv.config.yaml.in:238
-#, fuzzy
 msgid "(incl. <em>жзиоч</em>)"
-msgstr "(myös <em>acdnstz</em>)"
+msgstr "(myös <em>жзиоч</em>)"
 
 #: configs/kyv.config.yaml.in:252 configs/kyv.config.yaml.in:279
-#, fuzzy
 msgid "Standard (<em>ӝӟӥӧӵ</em>)"
-msgstr "Kirjakielen kirjaimet (<em>áčđŋšŧž</em>)"
+msgstr "Kirjakielen kirjaimet (<em>ӝӟӥӧӵ</em>)"
 
 #: configs/kyv.config.yaml.in:256 configs/kyv.config.yaml.in:283
-#, fuzzy
 msgid "Social media (incl. <em>жзиоч</em>)"
-msgstr "Sosiaalimedia (myös <em>acdnstz</em>)"
+msgstr "Sosiaalimedia (myös <em>жзиоч</em>)"
 
 #: configs/language_names.yaml:31 configs/language_names.yaml:32
 #: templates/more_dictionaries.html:28
@@ -237,9 +231,8 @@ msgid "Khanty"
 msgstr "Hanti"
 
 #: configs/language_names.yaml:103
-#, fuzzy
 msgid "Irish"
-msgstr "Suomi"
+msgstr "Iiri"
 
 #: configs/language_names.yaml:104 configs/language_names.yaml:110
 msgid "Finnish"
@@ -263,9 +256,8 @@ msgid "Haida"
 msgstr "Haida"
 
 #: configs/language_names.yaml:119
-#, fuzzy
 msgid "Romanian"
-msgstr "Liivi"
+msgstr "Romania"
 
 #: configs/language_names.yaml:120
 msgid "Meänkieli"
@@ -276,14 +268,12 @@ msgid "Swedish"
 msgstr ""
 
 #: configs/saanih.config.yaml.in:79 configs/saanih.config.yaml.in:100
-#, fuzzy
 msgid "(<em>âäáčđŋšž</em>)"
-msgstr "Kirjakielen kirjaimet (<em>áčđŋšŧž</em>)"
+msgstr "(<em>âäáčđŋšž</em>)"
 
 #: configs/saanih.config.yaml.in:83 configs/saanih.config.yaml.in:104
-#, fuzzy
 msgid "(incl. <em>aaacdnsz</em>)"
-msgstr "(myös <em>acdnstz</em>)"
+msgstr "(myös <em>aaacdnsz</em>)"
 
 #: configs/sample.config.yaml.in:175 configs/sanit.config.yaml:115
 #: configs/sanit.config.yaml.in:123
@@ -303,12 +293,10 @@ msgid "Tolerant"
 msgstr "Suvaitsevainen"
 
 #: configs/sanit.config.yaml.in:147
-#, fuzzy
 msgid "Standard (<em>áčđŋšŧž</em>)"
 msgstr "Kirjakielen kirjaimet (<em>áčđŋšŧž</em>)"
 
 #: configs/sanit.config.yaml.in:151
-#, fuzzy
 msgid "Tolerant (also <em>acdnstz</em>)"
 msgstr "Suvaitsevainen (myös <em>acdnstz</em>)"
 
@@ -512,7 +500,6 @@ msgid "sme ↔ nob"
 msgstr "Pohjoissaame  ↔ norja"
 
 #: configs/language_specific_rules/templates/about.template:57
-#, fuzzy
 msgid ""
 "North Sámi → Norwegian builds on Nils Jernsletten's dictionary "
 "<em>Álgosátnegirji</em> (4300 words), but now contains 25000 words. "
@@ -778,7 +765,6 @@ msgstr ""
 #: configs/language_specific_rules/templates/gunaha/about.template:28
 #: configs/language_specific_rules/templates/itwewina/about.template:28
 #: configs/language_specific_rules/templates/kidwinan/about.template:28
-#, fuzzy
 msgid ""
 "Everything here is based on open-source tools. Do you\n"
 "                have an idea for an app or research project that needs\n"
@@ -993,14 +979,14 @@ msgstr ""
 "href=\"http://sonad.oahpa.no/\">Sonad</a>, päivitä kirjamerkkiäsi."
 
 #: configs/language_specific_rules/templates/sanit/about.template:58
-#, fuzzy
 msgid ""
 "North Saami → Norwegian builds on Nils Jernsletten's dictionary "
 "<em>Álgosátnegirji</em> (4300 words), but now contains 25000 words. "
 "Norwegian → North Saami contains about 26000 words. "
 msgstr ""
 "Pohjoissaame → norja perustuu Nils Jernslettenin sanakirjaan "
-"<em>Álgosátnegirji</em>, mutta sanavarasto on kaksinsertaistettu."
+"<em>Álgosátnegirji</em> (4300 sanaa), mutta sanavarastossa on nyt n. 25000 sanaa. "
+"Norja → pohjoissaame-sanakirjassa on n. 26000 sanaa."
 
 #: configs/language_specific_rules/templates/sanit/about.template:59
 msgid ""
@@ -1012,7 +998,6 @@ msgstr ""
 "rinnakkaiskorpuksesta. Tämän työn on rahoittanut Norjan sisäministeriö."
 
 #: configs/language_specific_rules/templates/sanit/about.template:63
-#, fuzzy
 msgid ""
 "Dictionaries for North Saami and Finnish are based on lexical material "
 "from the <a class=\"green\" href=\"http://kotus.fi\">Institute for the "
@@ -1144,12 +1129,11 @@ msgstr ""
 
 #: templates/browse.html:95
 msgid "prev"
-msgstr ""
+msgstr "edellinen"
 
 #: templates/browse.html:107
-#, fuzzy
 msgid "next"
-msgstr "Tekstit"
+msgstr "seuraava"
 
 #: templates/browse.html:116
 msgid "Congratulations! You have read the whole dictionary."
@@ -1216,15 +1200,14 @@ msgid "Written variant"
 msgstr "Kirjoitettu variantti"
 
 #: templates/left_nav_search_variants.html:14
-#, fuzzy
 msgid "Search type"
-msgstr "Etsi teksteistä"
+msgstr "Etsi tyyppiä"
 
 #: templates/left_nav_search_variants.html:17
 #: templates/mobile_nav_dictionary_list.html:34
 #: templates/mobile_nav_push_menu.html:87
 msgid "Word search"
-msgstr ""
+msgstr "Sanahaku"
 
 #: templates/macros.html:5 templates/macros.html:13
 msgid "Texts"
