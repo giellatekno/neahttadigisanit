@@ -1320,7 +1320,7 @@ msgstr ""
 
 #: templates/reader.html:32
 msgid "Installing on a website"
-msgstr ""
+msgstr "Installering på ei nettside"
 
 #: templates/reader.html:34
 msgid ""
