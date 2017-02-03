@@ -1371,6 +1371,8 @@ msgid ""
 "If you are looking for other languages, please see our <a "
 "href=\"%(more_dictionaries_link)s\">other dictionaries</a>."
 msgstr ""
+"If you are looking for other languages, please see our "
+"<a href=\"/more/\">other dictionaries</a>."
 
 #: templates/reader_example.html:32
 msgid "Additional instructions"
