@@ -998,7 +998,6 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/sanit/about.template:64
 msgid "In both directions there are about 11,000 entries."
-msgstr ""
 msgstr "Hver av ordbøkene inneholder omtrent 11.000 lemmaer"
 
 #: configs/language_specific_rules/templates/sanit/notice.template:5
