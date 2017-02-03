@@ -142,14 +142,12 @@ msgid "Kven"
 msgstr "Kvenagiella"
 
 #: configs/language_names.yaml:49
-#, fuzzy
 msgid "Olonetsian"
 msgstr "Aunusgárjilgiella"
 
 #: configs/language_names.yaml:52
-#, fuzzy
 msgid "Estonian"
-msgstr "Liivigiella"
+msgstr "Esttegiella"
 
 #: configs/language_names.yaml:53 configs/language_names.yaml:54
 #: templates/more_dictionaries.html:39
@@ -197,9 +195,8 @@ msgid "Eastern Mari"
 msgstr ""
 
 #: configs/language_names.yaml:73
-#, fuzzy
 msgid "Nenets"
-msgstr "Aunusgárjilgiella"
+msgstr "Nenecagiella"
 
 #: configs/language_names.yaml:74 configs/language_names.yaml:77
 msgid "Skolt Sami"
@@ -1024,7 +1021,6 @@ msgid "Other North Saami dictionaries"
 msgstr "Eará davvisámi sátnegirjjit"
 
 #: configs/language_specific_rules/templates/sanit/search_info.template:5
-#, fuzzy
 msgid ""
 "If you are using a device without a Sámi keyboard, consider using <a "
 "href=\"/SoMe/nob/\">tolerant mode</a>, which allows you to type "
@@ -1035,13 +1031,12 @@ msgstr ""
 "<em>acdnstz</em> danin bustávvan: <em>áčđŋšŧž</em>."
 
 #: configs/language_specific_rules/templates/sanit/search_info.template:13
-#, fuzzy
 msgid ""
 "You selected tolerant mode, the variant which accepts the letters acdnstz"
 "\n"
 " as áčđŋšŧž in addition to their usual values."
 msgstr ""
-"Don válljejit #SoMe sosiála media várás, ja dat mearkkaša ahte bustávat "
+"Don válljejit toleránta veršuvnna, ja dat mearkkaša ahte bustávat "
 "acdnstz\n"
 "                                dohkkehuvvojit maiddái áčđŋšŧž:n."
 
