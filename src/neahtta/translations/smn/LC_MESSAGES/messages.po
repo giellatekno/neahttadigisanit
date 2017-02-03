@@ -81,9 +81,8 @@ msgid "Social media"
 msgstr ""
 
 #: configs/kyv.config.yaml.in:163
-#, fuzzy
 msgid "(incl. <em>ио</em>)"
-msgstr "(meiddei <em>acdnstz</em>)"
+msgstr "(meiddei <em>ио</em>)"
 
 #: configs/kyv.config.yaml.in:167
 msgid "Molodtsov orthography"
@@ -94,18 +93,16 @@ msgid "Zyrian for Permyak"
 msgstr ""
 
 #: configs/kyv.config.yaml.in:238
-#, fuzzy
 msgid "(incl. <em>жзиоч</em>)"
-msgstr "(meiddei <em>acdnstz</em>)"
+msgstr "(meiddei <em>жзиоч</em>)"
 
 #: configs/kyv.config.yaml.in:252 configs/kyv.config.yaml.in:279
 msgid "Standard (<em>ӝӟӥӧӵ</em>)"
 msgstr ""
 
 #: configs/kyv.config.yaml.in:256 configs/kyv.config.yaml.in:283
-#, fuzzy
 msgid "Social media (incl. <em>жзиоч</em>)"
-msgstr "Sosiála media (meiddei <em>acdnstz</em>)"
+msgstr "Sosiála media (meiddei <em>жзиоч</em>)"
 
 #: configs/language_names.yaml:31 configs/language_names.yaml:32
 #: templates/more_dictionaries.html:28
@@ -259,9 +256,8 @@ msgid "Haida"
 msgstr "Haida"
 
 #: configs/language_names.yaml:119
-#, fuzzy
 msgid "Romanian"
-msgstr "Eestikielâ"
+msgstr "Romaniakielâ"
 
 #: configs/language_names.yaml:120
 msgid "Meänkieli"
@@ -301,7 +297,6 @@ msgid "Standard (<em>áčđŋšŧž</em>)"
 msgstr ""
 
 #: configs/sanit.config.yaml.in:151
-#, fuzzy
 msgid "Tolerant (also <em>acdnstz</em>)"
 msgstr "(meiddei <em>acdnstz</em>)"
 
@@ -762,7 +757,6 @@ msgstr ""
 #: configs/language_specific_rules/templates/gunaha/about.template:28
 #: configs/language_specific_rules/templates/itwewina/about.template:28
 #: configs/language_specific_rules/templates/kidwinan/about.template:28
-#, fuzzy
 msgid ""
 "Everything here is based on open-source tools. Do you\n"
 "                have an idea for an app or research project that needs\n"
@@ -914,7 +908,6 @@ msgid "Inari Saami ↔ Finnish"
 msgstr "Anarâškielâ  ↔ suomakielâ"
 
 #: configs/language_specific_rules/templates/saanih/about.template:57
-#, fuzzy
 msgid ""
 "Inari Saami → Finnish and Finnish → Inari Saami builds on the Valtonen "
 "and Olthuis Inarinsaame-suomi-inarinsaame dictionary  (30000 words). "
@@ -1102,9 +1095,8 @@ msgid "prev"
 msgstr ""
 
 #: templates/browse.html:107
-#, fuzzy
 msgid "next"
-msgstr "Nenec"
+msgstr ""
 
 #: templates/browse.html:116
 msgid "Congratulations! You have read the whole dictionary."
