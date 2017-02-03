@@ -517,11 +517,14 @@ msgid ""
 "parallel corpus of administrative text, financed by the Ministry of Local"
 " Government and Modernisation."
 msgstr ""
+"Omtrent halvparten av innholdet er tatt fra et parallellkorpus "
+"bestående av administrative tekster. Arbeidet er finansiert av "
+"Kommunal- og regionaldepartementet."
 
 #: configs/language_specific_rules/templates/about.template:61
 #: configs/language_specific_rules/templates/baakoeh/about.template:57
 msgid "sma ↔ nob"
-msgstr "Noerhtesaemiengïele ↔ såevmiengïele"
+msgstr "Noerhtesaemiengïele ↔ daaroengïele"
 
 #: configs/language_specific_rules/templates/about.template:62
 msgid ""
