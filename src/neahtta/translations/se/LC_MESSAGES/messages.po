@@ -239,29 +239,28 @@ msgstr ""
 
 #: configs/language_names.yaml:104 configs/language_names.yaml:110
 msgid "Finnish"
-msgstr ""
+msgstr "Suomagiella"
 
 #: configs/language_names.yaml:105 configs/language_names.yaml:111
 #: configs/language_names.yaml:112
 msgid "Norwegian"
-msgstr ""
+msgstr "Darogiella"
 
 #: configs/language_names.yaml:107 configs/language_names.yaml:108
 msgid "Russian"
-msgstr ""
+msgstr "Ruoššagiella"
 
 #: configs/language_names.yaml:113 configs/language_names.yaml:114
 msgid "Latvian"
-msgstr ""
+msgstr "Latviagiella"
 
 #: configs/language_names.yaml:116
 msgid "Haida"
 msgstr ""
 
 #: configs/language_names.yaml:119
-#, fuzzy
 msgid "Romanian"
-msgstr "Liivigiella"
+msgstr "Romaniagiella"
 
 #: configs/language_names.yaml:120
 msgid "Meänkieli"
@@ -269,20 +268,20 @@ msgstr ""
 
 #: configs/language_names.yaml:121
 msgid "Swedish"
-msgstr ""
+msgstr "Ruoŧŧagiella"
 
 #: configs/saanih.config.yaml.in:79 configs/saanih.config.yaml.in:100
 msgid "(<em>âäáčđŋšž</em>)"
-msgstr "Dábálaš"
+msgstr ""
 
 #: configs/saanih.config.yaml.in:83 configs/saanih.config.yaml.in:104
 msgid "(incl. <em>aaacdnsz</em>)"
-msgstr ""
+msgstr "(maiddái <em>aaacdnsz</em>)"
 
 #: configs/sample.config.yaml.in:175 configs/sanit.config.yaml:115
 #: configs/sanit.config.yaml.in:123
 msgid "(incl. <em>acdnstz</em>)"
-msgstr ""
+msgstr "(maiddái <em>acdnstz</em>)"
 
 #: configs/sanit.config.yaml:138
 msgid "Standárda (<em>áčđŋšŧž</em>)"
@@ -297,7 +296,6 @@ msgid "Tolerant"
 msgstr "Toleránta"
 
 #: configs/sanit.config.yaml.in:147
-#, fuzzy
 msgid "Standard (<em>áčđŋšŧž</em>)"
 msgstr "Standárda (<em>áčđŋšŧž</em>)"
 
