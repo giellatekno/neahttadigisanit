@@ -1070,6 +1070,96 @@ msgid ""
 "Foundation."
 msgstr ""
 
+#: static/js/neahttadigisanit.js:8802
+msgid "Unknown word"
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8803
+msgid "You are using"
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8805
+msgid "Meaning not found"
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8883
+msgid "Á"
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8883
+msgid "Options"
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8883
+msgid "Help"
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8883
+msgid "Advanced"
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8883
+msgid "Dictionary"
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8883
+msgid "Save"
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8883
+msgid "Refresh settings"
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8883
+msgid "Update detected"
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8883
+msgid "IE8 Warning"
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8883
+msgid ""
+"In order to look up a word, hold down the <em>Alt</em> or <em>Option</em>"
+" (⌥) key, and doubleclick on a word. The service will contact the "
+"dictionary, and return a word after a short pause."
+msgstr ""
+"Kun haluat käännöksen, pidä Alt tai Optio (⌥)-näppäintä alhaalla, ja "
+"kaksoisklikkaa sanaa. Ohjelma yhdistyy tähän sivuun ja hakee sanakirja-"
+"artikkelin pienen tauon jälkeen."
+
+#: static/js/neahttadigisanit.js:8883
+msgid ""
+"If you find a bug, or if the bookmark does not work on a specific page <a"
+" href=\"mailto:giellatekno@hum.uit.no\">please contact us</a>. Tell us "
+"what page didn't work, or what you did when you discovered the problem."
+msgstr ""
+
+#: static/js/neahttadigisanit.js:8883
+msgid "This tool was made by Giellatekno at UiT: The Arctic University of Norway."
+msgstr "Tämän työkalun teki UiT Norjan arktisen yliopiston tutkimusryhmä Giellatekno."
+
+
+#: static/js/neahttadigisanit.js:8883
+msgid "Read more"
+msgstr "Lue lisää"
+
+#: static/js/neahttadigisanit.js:8883
+msgid "More tools"
+msgstr "Enemmän työkaluja"
+
+#: static/js/neahttadigisanit.js:8951
+msgid "Error!"
+msgstr "Virhe!"
+
+#: static/js/neahttadigisanit.js:8951
+msgid "Could not connect to dictionary server"
+msgstr "En pysty yhdistämän sanakirjapalvelimeen"
+
+#: static/js/neahttadigisanit.js:8951
+msgid "Close"
+msgstr ""
+
 #: templates/404.html:51
 msgid ""
 "Whoops! The page you requested was not found. If you think you are "
@@ -1255,7 +1345,7 @@ msgstr ""
 
 #: templates/more_dictionaries.html:46
 msgid "Even more dictionaries..."
-msgstr ""
+msgstr "Vielä enemmän sanakirjoja..."
 
 #: templates/more_dictionaries.html:47
 msgid ""
@@ -1268,6 +1358,10 @@ msgid ""
 "href=\"http://dicts.uit.no/\">see this\n"
 "                    list</a>."
 msgstr ""
+"<a href=\"http://giellatekno.uit.no/\">Giellatekno</a>lla on myösmuita "
+"kieliä ja sanakirjoja, joilla eivät vielä ole Neahttadigisánit-versiota. "
+"Löydät kokonaisen listan osoitteesta <a "
+"href=\"http://dicts.uit.no/\">dicts.uit.no</a>."
 
 #: templates/reader.html:3 templates/reader.html:20
 #, python-format
@@ -1276,7 +1370,7 @@ msgstr ""
 
 #: templates/reader.html:21
 msgid "Bookmarklet"
-msgstr ""
+msgstr "Kirjanmerkki"
 
 #: templates/reader.html:22
 msgid ""
@@ -1287,11 +1381,15 @@ msgid ""
 " a\n"
 "                menu icon on the left-hand side of the page."
 msgstr ""
+"Vedä ja pudota vihreä linkki selaintyöpalkillesi. Sen jälkeen "
+"voit klikata sitä ollessasi sivulla, jota haluat lukea. "
+"Silloin palvelu asennetaan automaattisesti, ja sivun "
+"vasemmalle laidalle ilmestyy valikkokuvake."
 
 #: templates/reader.html:26 templates/reader_update.html:15
 #, python-format
 msgid "Read with %(project_name)s"
-msgstr ""
+msgstr "Lue %(project_name)s avulla"
 
 #: templates/reader.html:27
 msgid ""
@@ -1300,14 +1398,17 @@ msgid ""
 "                website and return dictionary entries after a brief\n"
 "                pause."
 msgstr ""
+"Kun haluat käännöksen, pidä Alt tai Optio (⌥)-näppäintä alhaalla, ja "
+"kaksoisklikkaa sanaa. Ohjelma yhdistyy tähän sivuun ja hakee sanakirja-"
+"artikkelin pienen tauon jälkeen."
 
 #: templates/reader.html:31
 msgid "To change the dictionary, click the menu icon."
-msgstr ""
+msgstr "Klikkaa valikon kuvaketta vaihtaaksesi sanakirjaa."
 
 #: templates/reader.html:32
 msgid "Installing on a website"
-msgstr ""
+msgstr "Asentaminen verkkosivulla"
 
 #: templates/reader.html:34
 msgid ""
@@ -1316,6 +1417,8 @@ msgid ""
 "the\n"
 "                bookmarklet."
 msgstr ""
+"On myös mahdollista asentaa selainliitönnöinen verkkosivulla, niin, että "
+"lukijat pääsevät käyttämään sanakirjaa kirjamerkkiä asentamatta."
 
 #: templates/reader.html:39
 msgid ""
@@ -1323,34 +1426,37 @@ msgid ""
 "href=\"http://giellatekno.uit.no/doc/dicts/nds/AddingNDSPluginToOtherSites.html\">follow"
 " our documentation</a>."
 msgstr ""
+"Saat palvelun seuraamalla, <a "
+"href=\"http://giellatekno.uit.no/doc/dicts/nds/AddingNDSPluginToOtherSites.html\">"
+" dokumentaatiotamme</a>."
 
 #: templates/reader.html:40
 msgid "Browser support"
-msgstr ""
+msgstr "Selaintuki"
 
 #: templates/reader.html:41
 msgid "The reader is supported in the following browsers:"
-msgstr ""
+msgstr "Lukuohjelmaa tukevat seuraavat selaimet:"
 
 #: templates/reader.html:43
 msgid "Chrome (version 20 and newer)"
-msgstr ""
+msgstr "Chrome (versio 20 ja uudemmat)"
 
 #: templates/reader.html:44
 msgid "Internet Explorer (version 9 and newer)"
-msgstr ""
+msgstr "Internet Explorer (versio 9 ja uudemmat)"
 
 #: templates/reader.html:45
 msgid "Firefox (version 18 and newer)"
-msgstr ""
+msgstr "Firefox (versio 18 ja uudemmat)"
 
 #: templates/reader.html:46
 msgid "Opera (version 16 and newer)"
-msgstr ""
+msgstr "Opera (versio 16 ja uudemmat)"
 
 #: templates/reader.html:48
 msgid "Bugs?"
-msgstr ""
+msgstr "Virheitä?"
 
 #: templates/reader.html:49
 msgid ""
@@ -1359,6 +1465,9 @@ msgid ""
 "of\n"
 "                what you were reading when you encountered the problem."
 msgstr ""
+"Jos löydät virheitä, tai jos kirjanmerkki ei toimi tietyllä nettisivulla,"
+" voit otta yhteyttä meihin, ja kertoa mistä URL:stä on kyse, tak mitä "
+"teit kun ongelma ilmentyi."
 
 #: templates/reader.html:52
 msgid ""
@@ -1367,10 +1476,13 @@ msgid ""
 "improve\n"
 "                the dictionary."
 msgstr ""
+"Emme säilytä yksityisiä tietoja, mutta keräämme yksittäisiä sanahakuja "
+"tilastointa ja sanakirjan parantamista varten."
 
 #: templates/reader.html:61
 msgid "Includes"
 msgstr ""
+msgstr "Sisältää"
 
 #: templates/reader.html:69
 #, python-format
@@ -1378,10 +1490,12 @@ msgid ""
 "If you are looking for other languages, please see our <a "
 "href=\"%(more_dictionaries_link)s\">other dictionaries</a>."
 msgstr ""
+"Jos etsit muita kieliä, voit katsoa <a href=\"/more/\">muita "
+"sanakirjoja</a>."
 
 #: templates/reader_example.html:32
 msgid "Additional instructions"
-msgstr ""
+msgstr "Lisäohjeita"
 
 #: templates/reader_ie8_notice.html:1
 #, python-format
@@ -1390,6 +1504,8 @@ msgid ""
 "Your web browser is supported, however, you will need to change some\n"
 "options for the %(app_name)s Reader to work.\n"
 msgstr ""
+"Nettiselaintasi tuetaan, mutta sinun pitää säätää sitä saadaksesi "
+"%(app_name)s Reader toimimaan."
 
 #: templates/reader_update.html:1
 msgid ""
@@ -1397,6 +1513,9 @@ msgid ""
 "We have made some updates to the dictionary, which require you to\n"
 "replace your bookmark with a new version.\n"
 msgstr ""
+"Olemme päivittäneet sanakirjaa ja tästä syystä sinun pitää korvata "
+"kirjanmerkkisi uudella. Poista vanha ja tee uusi kirjanmerkkiä samalla "
+"tavalla."
 
 #: templates/reader_update.html:9
 msgid ""
@@ -1405,18 +1524,22 @@ msgid ""
 "    service will automatically be installed, and you will see a\n"
 "    menu icon on the left-hand side of the page."
 msgstr ""
+"Vedä ja pudota seuraava linkki kirjamerkkipalkkiin ja klikkaa sitä, kun "
+"olet sivulla, jota haluat lukea sanakirjan avulla. Palvelu asennetaan "
+"automaattisesti ja tulet näkemään valikkokuvakkeen (Á) sivun vasemmalla "
+"puolella."
 
 #: templates/word_detail.html:35
 msgid "is a possible form of ... "
-msgstr ""
+msgstr " on mahdollinen muoto sanasta ..."
 
 #: templates/word_detail.html:136
 msgid "More information about this word"
-msgstr ""
+msgstr "Lisää tietoa tästä sanasta"
 
 #: views/search.py:1023
 msgid "Invalid format. Only json and html allowed."
-msgstr ""
+msgstr "Virheellinen formaatti. Vain json ja html ovat sallittuja."
 
 #~ msgid "Molotsov orthography"
 #~ msgstr ""
