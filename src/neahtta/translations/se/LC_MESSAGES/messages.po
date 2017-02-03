@@ -244,7 +244,7 @@ msgstr "Suomagiella"
 #: configs/language_names.yaml:105 configs/language_names.yaml:111
 #: configs/language_names.yaml:112
 msgid "Norwegian"
-msgstr "Darogiella"
+msgstr "Dárogiella"
 
 #: configs/language_names.yaml:107 configs/language_names.yaml:108
 msgid "Russian"
@@ -268,7 +268,7 @@ msgstr ""
 
 #: configs/language_names.yaml:121
 msgid "Swedish"
-msgstr "Ruoŧŧagiella"
+msgstr "Ruoŧagiella"
 
 #: configs/saanih.config.yaml.in:79 configs/saanih.config.yaml.in:100
 msgid "(<em>âäáčđŋšž</em>)"
