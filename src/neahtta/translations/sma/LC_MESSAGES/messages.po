@@ -236,7 +236,7 @@ msgstr ""
 
 #: configs/language_names.yaml:104 configs/language_names.yaml:110
 msgid "Finnish"
-msgstr "Såevmengïele"
+msgstr "Soemengïele"
 
 #: configs/language_names.yaml:105 configs/language_names.yaml:111
 #: configs/language_names.yaml:112
