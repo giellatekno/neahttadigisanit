@@ -553,7 +553,7 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/about.template:67
 msgid "Each of the dictionaries contains about 11,000 base words."
-msgstr ""
+msgstr "Hver av ordbøkene inneholder omtrent 11.000 lemmaer"
 
 #: configs/language_specific_rules/templates/about.template:72
 #: configs/language_specific_rules/templates/baakoeh/about.template:64
