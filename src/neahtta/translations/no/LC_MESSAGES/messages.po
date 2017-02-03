@@ -85,7 +85,6 @@ msgid "(incl. <em>ио</em>)"
 msgstr "(forstår <em>acdnstz</em>)"
 
 #: configs/kyv.config.yaml.in:167
-#, fuzzy
 msgid "Molodtsov orthography"
 msgstr "Molotsov-ortografi"
 
@@ -294,12 +293,10 @@ msgid "Tolerant"
 msgstr "Tolerant"
 
 #: configs/sanit.config.yaml.in:147
-#, fuzzy
 msgid "Standard (<em>áčđŋšŧž</em>)"
 msgstr "Standard (<em>áčđŋšŧž</em>)"
 
 #: configs/sanit.config.yaml.in:151
-#, fuzzy
 msgid "Tolerant (also <em>acdnstz</em>)"
 msgstr "Tolerant (forstår <em>acdnstz</em>)"
 
@@ -1029,7 +1026,6 @@ msgid "Other North Saami dictionaries"
 msgstr "Andre nordsamiske ordbøker"
 
 #: configs/language_specific_rules/templates/sanit/search_info.template:5
-#, fuzzy
 msgid ""
 "If you are using a device without a Sámi keyboard, consider using <a "
 "href=\"/SoMe/nob/\">tolerant mode</a>, which allows you to type "
@@ -1040,13 +1036,12 @@ msgstr ""
 "<em>acdnstz</em> når du mener <em>áčđŋšŧž</em>."
 
 #: configs/language_specific_rules/templates/sanit/search_info.template:13
-#, fuzzy
 msgid ""
 "You selected tolerant mode, the variant which accepts the letters acdnstz"
 "\n"
 " as áčđŋšŧž in addition to their usual values."
 msgstr ""
-"Du har valgt #SoMe-varianten for sosiale media. Det innebærer at "
+"Du har valgt tolerant modus. Det innebærer at "
 "bokstavene adcnstz blir akseptert som áčđŋšŧž i tillegg til sine vanlige "
 "verdier."
 
