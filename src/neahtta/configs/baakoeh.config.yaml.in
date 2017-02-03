@@ -1,6 +1,8 @@
 # Default locale, but use ISO 2 code or whatever corresponds to what is
 # in the translations directory.
 
+#$# include for sme-sma
+
 ApplicationSettings:
   app_name: "Nedtedigibaakoeh"
   short_name: "baakoeh"
@@ -10,6 +12,7 @@ ApplicationSettings:
   locales_available:
     - sma
     - "no"
+#$#    - "sme" 
   app_meta_title: >
      Digibaakoeh gaskeviermesne 
   meta_description: >
@@ -53,12 +56,30 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
+#$#  sme:
+#$#    tool: *LOOKUP
+#$#    file: [*OPT, '/sme/bin/analyser-dict-gt-desc.xfst']
+#$#    inverse_file: [*OPT, '/sme/bin/generator-dict-gt-norm.xfst']
+#$#    format: 'xfst'
+#$#    options: &sme_fst_options
+#$#      compoundBoundary: "+Cmp#"
+#$#      derivationMarker: "+Der"
+#$#      tagsep: '+'
+#$#      inverse_tagsep: '+'
+#$#  SoMe:
+#$#    tool: *LOOKUP
+#$#    file: [*OPT, '/sme/bin/analyser-dict-gt-desc-mobile.xfst']
+#$#    inverse_file: [*OPT, '/sme/bin/generator-dict-gt-norm.xfst']
+#$#    format: 'xfst'
+#$#    options:
+#$#      <<: *sme_fst_options
 
 Languages:
   - iso: nob
   - iso: fin
   - iso: sma
     minority_lang: true
+#$#  - iso: sme
 
 
 # This also dictates the order of the dictionaries in the UI for now.
@@ -74,3 +95,36 @@ Dictionaries:
   - source: nob
     target: sma
     path: 'dicts/nob-sma.all.xml'
+
+#$#  - source: sme
+#$#    target: sma
+#$#    path: 'dicts/smesma.xml'
+#$#    autocomplete: false
+#$#    show_korp_search: True
+#$#    korp_search_host: "http://gtweb.uit.no/korp"
+#$#    is_korp_default_lang: True
+#$#
+#$#    input_variants:
+#$#      # "mobile" is important, otherwise templates and swapping won't
+#$#      # work
+#$#      - type: "standard"
+#$#        description: !gettext "Standard"
+#$#        # description: !gettext "Standárda"
+#$#        example: "(<em>áčđŋšŧž</em>)"
+#$#        short_name: "sme"
+#$#        onscreen_keyboard: *SME_KEYS
+#$#      - type: "mobile"
+#$#        description: !gettext "Tolerant"
+#$#        # description: !gettext "Sosiála media"
+#$#        # example: !gettext "(maiddái <em>acdnstz</em>)"
+#$#        example: !gettext "(incl. <em>acdnstz</em>)"
+#$#        short_name: "SoMe"
+#$#        onscreen_keyboard: *SME_KEYS
+#$#
+#$#  - source: sma
+#$#    target: sme
+#$#    autocomplete: false
+#$#    show_korp_search: True
+#$#    korp_search_host: "http://gtweb.uit.no/korp"
+#$#    path: 'dicts/smasme.xml'
+
