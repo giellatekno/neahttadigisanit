@@ -294,7 +294,7 @@ msgstr "toleránta"
 
 #: configs/sanit.config.yaml.in:147
 msgid "Standard (<em>áčđŋšŧž</em>)"
-msgstr "(<em>áčđŋšŧž</em>)"
+msgstr "<em>áčđŋšŧž</em>"
 
 #: configs/sanit.config.yaml.in:151
 msgid "Tolerant (also <em>acdnstz</em>)"
