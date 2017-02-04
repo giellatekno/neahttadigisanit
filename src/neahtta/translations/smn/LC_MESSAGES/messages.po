@@ -907,7 +907,7 @@ msgid ""
 "Inari Saami → Finnish and Finnish → Inari Saami builds on the Valtonen "
 "and Olthuis Inarinsaame-suomi-inarinsaame dictionary  (30000 words). "
 msgstr ""
-"Inarinsaame-suomi-inarinsaame-sanakirjan perustana on  Olthuis, M-L., "
+"Anarâškielâ-suomákielâ-anarâškielâ-sänikirje vuáđđun lii  Olthuis, M-L., "
 "Valtonen, T.: Säämi-suomâ sänikirje – Suomi-inarinsaame - sanakirja, "
 "Sämitigge, Aanaar 2016"
 
