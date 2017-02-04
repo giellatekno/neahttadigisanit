@@ -557,7 +557,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/saanih/about.template:62
 #: configs/language_specific_rules/templates/sanit/about.template:69
 msgid "Find a problem?"
-msgstr "Kavnih-uv cuolmâ?"
+msgstr "Kavnih-uv čuolmâ?"
 
 #: configs/language_specific_rules/templates/about.template:73
 #: configs/language_specific_rules/templates/baakoeh/about.template:65
@@ -736,7 +736,7 @@ msgstr "Tievâslâš paradigma"
 #: configs/language_specific_rules/templates/itwewina/search_info.template:3
 #: configs/language_specific_rules/templates/sanit/search_info.template:9
 msgid "Search for a word, or a word form for a word analysis and definition."
-msgstr "Etsi sanaa tai sanamuotoa analysoitavaksi tai määriteltäväksi."
+"Uusâ analysistmân já miäruštâlmân mottoom sääni teikâ sänihäämi"
 
 #: configs/language_specific_rules/templates/baakoeh/about.template:58
 msgid ""
