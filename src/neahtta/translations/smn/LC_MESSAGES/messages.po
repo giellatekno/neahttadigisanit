@@ -736,7 +736,7 @@ msgstr "Tievâslâš paradigma"
 #: configs/language_specific_rules/templates/itwewina/search_info.template:3
 #: configs/language_specific_rules/templates/sanit/search_info.template:9
 msgid "Search for a word, or a word form for a word analysis and definition."
-"Uusâ analysistmân já miäruštâlmân mottoom sääni teikâ sänihäämi"
+msgstr "Uusâ analysistmân já miäruštâlmân mottoom sääni teikâ sänihäämi"
 
 #: configs/language_specific_rules/templates/baakoeh/about.template:58
 msgid ""
