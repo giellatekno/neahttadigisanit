@@ -1365,7 +1365,7 @@ msgstr ""
 
 #: templates/reader.html:21
 msgid "Bookmarklet"
-msgstr "Kirjanmerkki"
+msgstr "Kirjemerkkâ"
 
 #: templates/reader.html:22
 msgid ""
@@ -1376,10 +1376,11 @@ msgid ""
 " a\n"
 "                menu icon on the left-hand side of the page."
 msgstr ""
-"Vedä ja pudota vihreä linkki selaintyöpalkillesi. Sen jälkeen "
-"voit klikata sitä ollessasi sivulla, jota haluat lukea. "
-"Silloin palvelu asennetaan automaattisesti, ja sivun "
-"vasemmalle laidalle ilmestyy valikkokuvake."
+"Keesi já koočât ruánáá liiŋkâ jieijâd kirjemerkkâfáálun. Špokkâl 
+"kirjemeerhâ ko lah nettisiijđost mon halijdah luuhâđ. Palvâlus "
+"installistoo automaatlávt, já čižetroobdâst itá talle fálukove (Á), "
+"mast puávtáh valjiđ kielâ."
+
 
 #: templates/reader.html:26 templates/reader_update.html:15
 #, python-format
