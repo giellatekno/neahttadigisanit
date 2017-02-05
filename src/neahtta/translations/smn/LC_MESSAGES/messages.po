@@ -1385,7 +1385,7 @@ msgstr ""
 #: templates/reader.html:26 templates/reader_update.html:15
 #, python-format
 msgid "Read with %(project_name)s"
-msgstr "Lue %(project_name)s avulla"
+msgstr "Luuvâ %(project_name)s -sänikirjijn"
 
 #: templates/reader.html:27
 msgid ""
