@@ -123,8 +123,8 @@ msgstr "Ungarsk"
 
 #: configs/language_names.yaml:40 templates/more_dictionaries.html:29
 msgid "South Sámi"
-msgstr "TEST"
-#msgstr "Sørsamisk"
+#msgstr "TEST"
+msgstr "Sørsamisk"
 
 #: configs/language_names.yaml:41 configs/language_names.yaml:42
 msgid "Komi"
