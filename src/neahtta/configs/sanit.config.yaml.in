@@ -107,7 +107,7 @@ Dictionaries:
   - source: sme
     target: nob
     path: 'dicts/sme-nob.all.xml'
-    autocomplete: false
+    autocomplete: true
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
     is_korp_default_lang: True
@@ -149,7 +149,7 @@ Dictionaries:
   - source: sme
     target: fin
     path: 'dicts/sme-fin.all.xml'
-    autocomplete: false
+    autocomplete: true
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
     is_korp_default_lang: True
