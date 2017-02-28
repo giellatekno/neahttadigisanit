@@ -87,7 +87,7 @@ Dictionaries:
 
   - source: sma
     target: nob
-    autocomplete: false
+    autocomplete: true
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
     path: 'dicts/sma-nob.all.xml'
