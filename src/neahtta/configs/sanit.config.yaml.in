@@ -145,7 +145,7 @@ Dictionaries:
     show_korp_search: True
     is_korp_default_lang: True
     korp_parallel: True
-    korp_search_host: "http://gtweb.uit.no/korp_old"
+    korp_search_host: "http://gtweb.uit.no/korp"
 
   - source: sme
     target: fin
