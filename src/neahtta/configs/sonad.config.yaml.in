@@ -25,6 +25,7 @@ ApplicationSettings:
 
 Tools:
   xfst_lookup: &LOOKUP '/usr/bin/lookup'
+  hfst_lookup: &HLOOKUP '/bin/hfst-optimized-lookup'
   opt: &OPT '/opt/smi/'
  
 Morphology:
@@ -89,12 +90,12 @@ Morphology:
       tagsep: '+'
       inverse_tagsep: '+'
   vro:
-    tool: *LOOKUP
-    file: [*OPT, '/vro/bin/analyser-dict-gt-desc.xfst']
-    inverse_file: [*OPT, '/vro/bin/generator-dict-gt-norm.xfst']
-    format: 'xfst'
+    tool: *HLOOKUP
+    file: [*OPT, '/vro/bin/analyser-dict-gt-desc.hfstol']
+    inverse_file: [*OPT, '/vro/bin/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
     options:
-      compoundBoundary: "+Use/Circ#"
+      compoundBoundary: "+Cmp#"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
