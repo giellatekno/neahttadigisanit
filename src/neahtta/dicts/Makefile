@@ -840,9 +840,9 @@ valks-install: install_langs_fsts
 ##### #sanattargets
 #####
 
-SANAT_LANGS_ANALYSERS      :=   olo fin fkv
+SANAT_LANGS_ANALYSERS      :=   olo fin fkv rus
 SANAT_LANGS_LEXICA         :=   olo izh
-SANAT_WORDS_DICTS_LEXICA   :=   nobfkv fkvnob finolo
+SANAT_WORDS_DICTS_LEXICA   :=   nobfkv fkvnob finolo rusolo
 
 # finizh
 

@@ -79,6 +79,16 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
+  rus:
+    tool: *LOOKUP
+    file: [*OPT, '/rus/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/rus/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
 
 Languages:
   - iso: olo
@@ -90,6 +100,7 @@ Languages:
 
   - iso: fin
   - iso: nob
+  - iso: rus
   - iso: lav
   - iso: est
 
@@ -102,6 +113,13 @@ Dictionaries:
   - source: fin
     target: olo
     path: 'dicts/finolo.xml'
+
+  - source: olo
+    target: rus
+    path: 'dicts/olorus.xml'
+  - source: rus
+    target: olo
+    path: 'dicts/rusolo.xml'
 
   # fkv
   - source: fkv 
