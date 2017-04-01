@@ -18,6 +18,7 @@ noun_type:
 noun_gender:
  - "Msc"
  - "Fem"
+ - "Neu"
 pron_type:
  - "Dem"
  - "Indef"
