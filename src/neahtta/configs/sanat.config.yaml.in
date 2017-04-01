@@ -18,7 +18,7 @@ ApplicationSettings:
   meta_description: >
      Free, mobile-friendly dictionaries for Olonetsian, and Kven.
   meta_keywords: >
-     kven, olonets, olonetsian, karelian
+     kven, olonets, olonetsian, karelian, russian
   admins_to_email:
     - "rueter.jack@gmail.com"
     - "trond.trosterud@uit.no"
