@@ -148,7 +148,7 @@ msgstr ""
 
 #: configs/language_names.yaml:49
 msgid "Olonetsian"
-msgstr ""
+msgstr "Olonets"
 
 #: configs/language_names.yaml:52
 msgid "Estonian"
@@ -161,7 +161,7 @@ msgstr ""
 
 #: configs/language_names.yaml:55 templates/more_dictionaries.html:39
 msgid "Izhorian"
-msgstr ""
+msgstr "Ingrian"
 
 #: configs/language_names.yaml:56
 msgid "Veps"
