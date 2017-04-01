@@ -35,6 +35,7 @@ type:
 possessive:
  - "PxSg2"
 tense:
+ - "Fut"
  - "Prs"
  - "Prt"
 # Selecting Negative and Supinum forms in paradigm files
@@ -70,8 +71,10 @@ case:
  - "Nom"
  - "Acc"
  - "Gen"
- - "Dat"
+ - "Ill"
  - "Loc"
+ - "Ess"
+ - "Com"
 vmax:
  - "v1"
  - "v2"
