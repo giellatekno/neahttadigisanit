@@ -19,21 +19,13 @@
         <div class="span5 offset1">
         <h3 lang="{{ current_locale }}">{% trans project_name=app_name %}{{ project_name }} Reader{% endtrans %}</h3>
             <h4 lang="{{ current_locale }}">{% trans %}Bookmarklet{% endtrans %}</h4>
-            <p lang="{{ current_locale }}">{% trans %}Drag and drop the following link to your Bookmark toolbar,
-                then click it when you are on a page you wish to read. The
-                service will automatically be installed, and you will see a
-                menu icon on the left-hand side of the page.{% endtrans %}</p>
+            <p lang="{{ current_locale }}">{% trans %}Drag and drop the following link to your Bookmark toolbar, then click it when you are on a page you wish to read. The service will automatically be installed, and you will see a menu icon on the left-hand side of the page.{% endtrans %}</p>
             <p lang="{{ current_locale }}" class="label" id="bookmarklet"><a href="javascript:{{- bookmarklet|safe -}}">{% trans project_name=app_name %}Read with {{ project_name }}{% endtrans %}</a></p>
-            <p lang="{{ current_locale }}">{% trans %}In order to look up a word, hold Alt or Option (⌥) and double
-                click the word. The service will will connect to this
-                website and return dictionary entries after a brief
-                pause.{% endtrans %}</p>
+            <p lang="{{ current_locale }}">{% trans %}In order to look up a word, hold Alt or Option (⌥) and double click the word. The service will will connect to this website and return dictionary entries after a brief pause.{% endtrans %}</p>
             <p lang="{{ current_locale }}">{% trans %}To change the dictionary, click the menu icon.{% endtrans %}</p>
             <h4 lang="{{ current_locale }}">{% trans %}Installing on a website{% endtrans %}</h4>
             <p lang="{{ current_locale }}">
-                {% trans %}It is also possible to install the reader plugin on a website,
-                so that users will have access to dictionaries without the
-                bookmarklet.{% endtrans %}
+                {% trans %}It is also possible to install the reader plugin on a website, so that users will have access to dictionaries without the bookmarklet.{% endtrans %}
                 
             </p>
             <p lang="{{ current_locale }}">{% trans %}To do so, <a href="http://giellatekno.uit.no/doc/dicts/nds/AddingNDSPluginToOtherSites.html">follow our documentation</a>.{% endtrans %}</p>
@@ -46,12 +38,8 @@
                 <li lang="{{ current_locale }}">{% trans %}Opera (version 16 and newer){% endtrans %}</li>
             </ul>
             <h4 lang="{{ current_locale }}">{% trans %}Bugs?{% endtrans %}</h4>
-            <p lang="{{ current_locale }}">{% trans %}If you encounter bugs, or the bookmarklet does not work on a
-                particular page, contact us with the page URL or details of
-                what you were reading when you encountered the problem.{% endtrans %}</p>
-            <p lang="{{ current_locale }}">{% trans %}We do not store any private data, but we do collect
-                individual dictionary lookups for statistics and to improve
-                the dictionary.{% endtrans %}</p>
+            <p lang="{{ current_locale }}">{% trans %}If you encounter bugs, or the bookmarklet does not work on a particular page, contact us with the page URL or details of what you were reading when you encountered the problem.{% endtrans %}</p>
+            <p lang="{{ current_locale }}">{% trans %}We do not store any private data, but we do collect individual dictionary lookups for statistics and to improve the dictionary.{% endtrans %}</p>
         </div>
         <div class="span4">
             <h3>&nbsp;</h3>
