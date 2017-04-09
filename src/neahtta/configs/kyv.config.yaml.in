@@ -98,6 +98,16 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
+  est:
+    tool: *LOOKUP
+    file: [*OPT, '/est/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/est/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
   fin:
     tool: *LOOKUP
     file: [*OPT, '/fin/bin/analyser-dict-gt-desc.xfst']
@@ -135,6 +145,7 @@ Languages:
   - iso: koi
     minority_lang: true
   - iso: eng
+  - iso: est
   - iso: fin
   - iso: rus
   - iso: udm
@@ -283,6 +294,10 @@ Dictionaries:
         description: !gettext "Social media (incl. <em>жзиоч</em>)"
         short_name: "udmM"
         onscreen_keyboard: *UDM_KEYS
+
+  - source: est
+    target: udm
+    path: 'dicts/estudm.xml'
 
   - source: fin
     target: udm
