@@ -52,6 +52,16 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
+  est:
+    tool: *LOOKUP
+    file: [*OPT, '/est/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/est/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
   fin:
     tool: *LOOKUP
     file: [*OPT, '/fin/bin/analyser-dict-gt-desc.xfst']
@@ -91,6 +101,7 @@ Languages:
     minority_lang: true
 
   - iso: eng
+  - iso: est
   - iso: fin
   - iso: rus
   - iso: fra
@@ -106,6 +117,16 @@ Dictionaries:
   - source: fin
     target: myv
     path: 'dicts/finmyv.xml'
+
+  - source: myv
+    target: est
+    path: 'dicts/myvest.xml'
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/u_korp"
+
+  - source: est
+    target: myv
+    path: 'dicts/estmyv.xml'
 
   - source: myv
     target: rus

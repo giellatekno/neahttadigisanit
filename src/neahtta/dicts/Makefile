@@ -809,9 +809,9 @@ muter-install: install_langs_fsts
 ##### #valkstargets
 #####
 
-VALKS_LANGS_ANALYSERS      :=   fin myv mdf deu rus
+VALKS_LANGS_ANALYSERS      :=   fin myv mdf deu rus est
 VALKS_LANGS_LEXICA         :=   myv mdf
-VALKS_WORDS_DICTS_LEXICA   :=   finmyv finmdf myvdeu deumyv engmyv myveng engmdf mdfeng mdfrus rusmyv rusmdf mdfmyv
+VALKS_WORDS_DICTS_LEXICA   :=   finmyv finmdf myvdeu deumyv engmyv myveng engmdf mdfeng mdfrus rusmyv rusmdf mdfmyv estmyv myvest
 
 .PHONY: valks-lexica
 valks-lexica: LEX_COMPILE_LANGS := $(VALKS_LANGS_LEXICA)
