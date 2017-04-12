@@ -97,6 +97,12 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
 
+  - source: mrj
+    target: rus
+    path: 'dicts/mrjrus.xml'
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/u_korp"
+
   - source: mhr
     target: mrj
     path: 'dicts/mhrmrj.xml'

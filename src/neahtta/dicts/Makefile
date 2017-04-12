@@ -780,7 +780,7 @@ vada-install: install_langs_fsts
 
 MUTER_LANGS_ANALYSERS      :=   mrj mhr fin rus
 MUTER_LANGS_LEXICA         :=   mhr mrj 
-MUTER_WORDS_DICTS_LEXICA   :=   finmrj mhreng mhrrus mrjmhr mhrmrj
+MUTER_WORDS_DICTS_LEXICA   :=   finmrj mhreng mhrrus mrjmhr mhrmrj mrjrus
 
 .PHONY: muter-lexica
 muter-lexica: LEX_COMPILE_LANGS := $(MUTER_LANGS_LEXICA)
