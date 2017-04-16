@@ -116,7 +116,7 @@ msgstr ""
 
 #: configs/language_names.yaml:34 configs/language_names.yaml:115
 msgid "English"
-msgstr ""
+msgstr "Англискӧй"
 
 #: configs/language_names.yaml:37
 msgid "Hungarian"
@@ -128,11 +128,11 @@ msgstr ""
 
 #: configs/language_names.yaml:41 configs/language_names.yaml:42
 msgid "Komi"
-msgstr ""
+msgstr "Коми"
 
 #: configs/language_names.yaml:43 configs/language_names.yaml:44
 msgid "Udmurt"
-msgstr ""
+msgstr "Удмурт"
 
 #: configs/language_names.yaml:47
 msgid "Komi-Permyak"
@@ -185,7 +185,7 @@ msgstr ""
 
 #: configs/language_names.yaml:66 configs/language_names.yaml:118
 msgid "German"
-msgstr ""
+msgstr "Немеч"
 
 #: configs/language_names.yaml:67
 msgid "Western Mari"
@@ -197,7 +197,7 @@ msgstr ""
 
 #: configs/language_names.yaml:73
 msgid "Nenets"
-msgstr ""
+msgstr "Яран"
 
 #: configs/language_names.yaml:74 configs/language_names.yaml:77
 msgid "Skolt Sami"
@@ -237,7 +237,7 @@ msgstr ""
 
 #: configs/language_names.yaml:104 configs/language_names.yaml:110
 msgid "Finnish"
-msgstr ""
+msgstr "Финн"
 
 #: configs/language_names.yaml:105 configs/language_names.yaml:111
 #: configs/language_names.yaml:112
@@ -246,7 +246,7 @@ msgstr ""
 
 #: configs/language_names.yaml:107 configs/language_names.yaml:108
 msgid "Russian"
-msgstr ""
+msgstr "Роч"
 
 #: configs/language_names.yaml:113 configs/language_names.yaml:114
 msgid "Latvian"
@@ -320,7 +320,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/valks/about.template:7
 #: templates/mobile_nav_push_menu.html:14
 msgid "About"
-msgstr ""
+msgstr "Миян йылысь"
 
 #: configs/language_specific_rules/templates/about.template:14
 #: configs/language_specific_rules/templates/baakoeh/about.template:15
@@ -368,7 +368,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/vada/about.template:22
 #: configs/language_specific_rules/templates/valks/about.template:22
 msgid "Free"
-msgstr ""
+msgstr "Дон босьтӧг"
 
 #: configs/language_specific_rules/templates/about.template:20
 #: configs/language_specific_rules/templates/baakoeh/about.template:21
@@ -440,7 +440,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/vada/about.template:38
 #: configs/language_specific_rules/templates/valks/about.template:38
 msgid "Linguistic basis"
-msgstr ""
+msgstr "Кыв туялан ув"
 
 #: configs/language_specific_rules/templates/about.template:36
 #: configs/language_specific_rules/templates/baakoeh/about.template:37
@@ -549,7 +549,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/saanih/about.template:62
 #: configs/language_specific_rules/templates/sanit/about.template:69
 msgid "Find a problem?"
-msgstr ""
+msgstr "Тырмытӧмтортӧ аддзин?"
 
 #: configs/language_specific_rules/templates/about.template:73
 #: configs/language_specific_rules/templates/baakoeh/about.template:65
@@ -671,7 +671,7 @@ msgstr ""
 #: templates/index_search_form.html:53 templates/keyword_search_form.html:29
 #: templates/word_detail.html:94
 msgid "Search"
-msgstr ""
+msgstr "Корсны"
 
 #: configs/language_specific_rules/templates/index_search_form.template:65
 #: configs/language_specific_rules/templates/index_search_form.template:88
@@ -690,7 +690,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:89
 #: templates/index_search_form.html:39 templates/index_search_form.html:64
 msgid "Search texts"
-msgstr ""
+msgstr "Корсны гижӧдъясысь"
 
 #: configs/language_specific_rules/templates/notice.template:5
 #: configs/language_specific_rules/templates/sanit/notice.template:6
@@ -698,7 +698,7 @@ msgstr ""
 #: templates/mobile_nav_dictionary_list.html:61
 #: templates/more_dictionaries.html:21
 msgid "Other dictionaries"
-msgstr ""
+msgstr "Мукӧд кывчукӧръяс"
 
 #: configs/language_specific_rules/templates/paradigm_layouts.template:11
 #: configs/language_specific_rules/templates/baakoeh/sma/paradigm.template:123
