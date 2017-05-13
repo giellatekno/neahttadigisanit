@@ -33,6 +33,7 @@ isos_to_names:
   "SoMe": !gettext "North Sámi (#SoMe)"
   "en": !gettext "English"
   "hun": !gettext "Hungarian"
+  "smj": !gettext "Lule Sámi"
 
   # baakoeh
   "sma": !gettext "South Sámi"
