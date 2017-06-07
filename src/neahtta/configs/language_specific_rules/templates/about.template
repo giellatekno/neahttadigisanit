@@ -54,7 +54,7 @@
         <div class="row-fluid">
             <span class="span4">
                 <h3 class="red smaller">{% trans %}sme ↔ nob{% endtrans %}</h3>
-                <p>{% trans %}North Sámi → Norwegian builds on Nils Jernsletten's dictionary <em>Álgosátnegirji</em> (4322 words), but now it contains 30,000 entries, plus 6000 place name entries. Norwegian → North Sámi  is based on the North Sámi → Norwegian dictionary, but we have adde frequent Norwegian words. It contains about Norwegian 26,000 entries. {% endtrans %}</p>
+                <p>{% trans %}North Sámi → Norwegian builds on Nils Jernsletten's dictionary <em>Álgosátnegirji</em> (4322 words), but now it contains 30,000 entries, plus 6000 place name entries. Norwegian → North Sámi  is based on the North Sámi → Norwegian dictionary, but we have adde frequent Norwegian words. It contains about 26,000 Norwegian entries. {% endtrans %}</p>
                 <p>{% trans %}Approximately half of the content of the dictionaries is taken from a parallel corpus of administrative text, financed by the Ministry of Local Government and Modernisation.{% endtrans %}</p>
             </span>
             <span class="span4">
