@@ -505,6 +505,11 @@ msgid ""
 "North Sámi → Norwegian dictionary, but we have adde frequent Norwegian "
 "words. It contains about 26,000 Norwegian entries. "
 msgstr ""
+"Davvisámi → dáru lea ráhkaduvvon Nils Jernslettena <em>Álgosátnegirji</em> "
+"vuođul (4322 vuođđosáni), muhto dál sátnegirji sisttisdoallá 30,000 ohcansáni, "
+"ja dasa lassin 6000 báikenama. Dáru → davvisámi lea vuođđuduvvon Davvisámi → dáru "
+"sátnegirjái, muhto das leat dušše 600 báikenama, muhto leat lasihan dábálaš dáru "
+"sániid. Sátnegirjjis leat oktiibuot 26,000 dáru ohcansáni. "
 
 #: configs/language_specific_rules/templates/about.template:58
 msgid ""
