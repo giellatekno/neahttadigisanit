@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-07 10:46+0200\n"
+"POT-Creation-Date: 2017-06-07 11:01+0200\n"
 "PO-Revision-Date: 2015-02-14 00:19+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language-Team: myv <LL@li.org>\n"
@@ -1722,13 +1722,4 @@ msgstr "Амаштовикс формат. Ансяк json-т -- html-т маш�
 
 #~ msgid "Sosiála media (maiddái <em>acdnstz</em>)"
 #~ msgstr "Соцмедия  (<em>acdnstz</em> букватнеяк)"
-
-#~ msgid ""
-#~ "North Sámi → Norwegian builds on "
-#~ "Nils Jernsletten's dictionary "
-#~ "<em>Álgosátnegirji</em> (4300 words), but now"
-#~ " contains 25000 words. Norwegian → "
-#~ "North Sámi contains about 26000 words."
-#~ " "
-#~ msgstr ""
 
