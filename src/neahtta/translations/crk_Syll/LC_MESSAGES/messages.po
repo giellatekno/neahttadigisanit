@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-02 10:00+0100\n"
+"POT-Creation-Date: 2017-06-07 10:46+0200\n"
 "PO-Revision-Date: 2015-03-06 16:55-0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: crk <LL@li.org>\n"
@@ -38,12 +38,12 @@ msgstr ""
 msgid "Online Gunáhà’ dictionary"
 msgstr ""
 
-#: configs/guusaaw.config.yaml.in:67 configs/kyv.config.yaml.in:153
-#: configs/kyv.config.yaml.in:226 configs/saan.config.yaml.in:94
+#: configs/guusaaw.config.yaml.in:67 configs/kyv.config.yaml.in:164
+#: configs/kyv.config.yaml.in:237 configs/saan.config.yaml.in:94
 #: configs/saanih.config.yaml.in:78 configs/saanih.config.yaml.in:99
-#: configs/sample.config.yaml.in:167 configs/sanat.config.yaml.in:116
-#: configs/sanit.config.yaml:108 configs/sanit.config.yaml.in:107
-#: configs/sonad.config.yaml.in:154
+#: configs/sample.config.yaml.in:167 configs/sanat.config.yaml.in:134
+#: configs/sanit.config.yaml:121 configs/sanit.config.yaml.in:121
+#: configs/sonad.config.yaml.in:155
 msgid "Standard"
 msgstr ""
 
@@ -76,32 +76,32 @@ msgstr ""
 msgid "Online Odawa dictionary"
 msgstr ""
 
-#: configs/kyv.config.yaml.in:162 configs/kyv.config.yaml.in:237
-#: configs/sample.config.yaml.in:173 configs/sanit.config.yaml:114
+#: configs/kyv.config.yaml.in:173 configs/kyv.config.yaml.in:248
+#: configs/sample.config.yaml.in:173
 msgid "Social media"
 msgstr ""
 
-#: configs/kyv.config.yaml.in:163
+#: configs/kyv.config.yaml.in:174
 msgid "(incl. <em>ио</em>)"
 msgstr ""
 
-#: configs/kyv.config.yaml.in:167
+#: configs/kyv.config.yaml.in:178
 msgid "Molodtsov orthography"
 msgstr ""
 
-#: configs/kyv.config.yaml.in:184
+#: configs/kyv.config.yaml.in:195
 msgid "Zyrian for Permyak"
 msgstr ""
 
-#: configs/kyv.config.yaml.in:238
+#: configs/kyv.config.yaml.in:249
 msgid "(incl. <em>жзиоч</em>)"
 msgstr ""
 
-#: configs/kyv.config.yaml.in:252 configs/kyv.config.yaml.in:279
+#: configs/kyv.config.yaml.in:263 configs/kyv.config.yaml.in:290
 msgid "Standard (<em>ӝӟӥӧӵ</em>)"
 msgstr ""
 
-#: configs/kyv.config.yaml.in:256 configs/kyv.config.yaml.in:283
+#: configs/kyv.config.yaml.in:267 configs/kyv.config.yaml.in:294
 msgid "Social media (incl. <em>жзиоч</em>)"
 msgstr ""
 
@@ -114,157 +114,161 @@ msgstr ""
 msgid "North Sámi (#SoMe)"
 msgstr ""
 
-#: configs/language_names.yaml:34 configs/language_names.yaml:115
+#: configs/language_names.yaml:34 configs/language_names.yaml:116
 msgid "English"
 msgstr ""
 
-#: configs/language_names.yaml:37
+#: configs/language_names.yaml:35
 msgid "Hungarian"
 msgstr ""
 
-#: configs/language_names.yaml:40 templates/more_dictionaries.html:29
+#: configs/language_names.yaml:38
+msgid "Lule Sámi"
+msgstr ""
+
+#: configs/language_names.yaml:41 templates/more_dictionaries.html:29
 msgid "South Sámi"
 msgstr ""
 
-#: configs/language_names.yaml:41 configs/language_names.yaml:42
+#: configs/language_names.yaml:42 configs/language_names.yaml:43
 msgid "Komi"
 msgstr ""
 
-#: configs/language_names.yaml:43 configs/language_names.yaml:44
+#: configs/language_names.yaml:44 configs/language_names.yaml:45
 msgid "Udmurt"
 msgstr ""
 
-#: configs/language_names.yaml:47
+#: configs/language_names.yaml:48
 msgid "Komi-Permyak"
 msgstr ""
 
-#: configs/language_names.yaml:48 templates/more_dictionaries.html:39
+#: configs/language_names.yaml:49 templates/more_dictionaries.html:39
 msgid "Kven"
 msgstr ""
 
-#: configs/language_names.yaml:49
+#: configs/language_names.yaml:50
 msgid "Olonetsian"
 msgstr ""
 
-#: configs/language_names.yaml:52
+#: configs/language_names.yaml:53
 msgid "Estonian"
 msgstr ""
 
-#: configs/language_names.yaml:53 configs/language_names.yaml:54
+#: configs/language_names.yaml:54 configs/language_names.yaml:55
 #: templates/more_dictionaries.html:39
 msgid "Livonian"
 msgstr ""
 
-#: configs/language_names.yaml:55 templates/more_dictionaries.html:39
+#: configs/language_names.yaml:56 templates/more_dictionaries.html:39
 msgid "Izhorian"
 msgstr ""
 
-#: configs/language_names.yaml:56
+#: configs/language_names.yaml:57
 msgid "Veps"
 msgstr ""
 
-#: configs/language_names.yaml:57
+#: configs/language_names.yaml:58
 msgid "Võro"
 msgstr ""
 
-#: configs/language_names.yaml:60
+#: configs/language_names.yaml:61
 msgid "Votic"
 msgstr ""
 
-#: configs/language_names.yaml:61 templates/more_dictionaries.html:40
+#: configs/language_names.yaml:62 templates/more_dictionaries.html:40
 msgid "Erzya"
 msgstr ""
 
-#: configs/language_names.yaml:62 templates/more_dictionaries.html:40
+#: configs/language_names.yaml:63 templates/more_dictionaries.html:40
 msgid "Moksha"
 msgstr ""
 
-#: configs/language_names.yaml:63 configs/language_names.yaml:117
+#: configs/language_names.yaml:64 configs/language_names.yaml:118
 msgid "French"
 msgstr ""
 
-#: configs/language_names.yaml:66 configs/language_names.yaml:118
+#: configs/language_names.yaml:67 configs/language_names.yaml:119
 msgid "German"
 msgstr ""
 
-#: configs/language_names.yaml:67
+#: configs/language_names.yaml:68
 msgid "Western Mari"
 msgstr ""
 
-#: configs/language_names.yaml:70
+#: configs/language_names.yaml:71
 msgid "Eastern Mari"
 msgstr ""
 
-#: configs/language_names.yaml:73
+#: configs/language_names.yaml:74
 msgid "Nenets"
 msgstr ""
 
-#: configs/language_names.yaml:74 configs/language_names.yaml:77
+#: configs/language_names.yaml:75 configs/language_names.yaml:78
 msgid "Skolt Sami"
 msgstr ""
 
-#: configs/language_names.yaml:78 configs/language_names.yaml:81
+#: configs/language_names.yaml:79 configs/language_names.yaml:82
 msgid "Plains Cree"
 msgstr ""
 
-#: configs/language_names.yaml:84
+#: configs/language_names.yaml:85
 msgid "Tsuut'ina"
 msgstr ""
 
-#: configs/language_names.yaml:87
+#: configs/language_names.yaml:88
 msgid "Odawa"
 msgstr ""
 
-#: configs/language_names.yaml:88 configs/language_names.yaml:91
+#: configs/language_names.yaml:89 configs/language_names.yaml:92
 msgid "Cherokee"
 msgstr ""
 
-#: configs/language_names.yaml:92 configs/language_names.yaml:95
+#: configs/language_names.yaml:93 configs/language_names.yaml:96
 msgid "Northern Haida"
 msgstr ""
 
-#: configs/language_names.yaml:98
+#: configs/language_names.yaml:99
 msgid "Inari Saami"
 msgstr ""
 
-#: configs/language_names.yaml:100
+#: configs/language_names.yaml:101
 msgid "Khanty"
 msgstr ""
 
-#: configs/language_names.yaml:103
+#: configs/language_names.yaml:104
 msgid "Irish"
 msgstr ""
 
-#: configs/language_names.yaml:104 configs/language_names.yaml:110
+#: configs/language_names.yaml:105 configs/language_names.yaml:111
 msgid "Finnish"
 msgstr ""
 
-#: configs/language_names.yaml:105 configs/language_names.yaml:111
-#: configs/language_names.yaml:112
+#: configs/language_names.yaml:106 configs/language_names.yaml:112
+#: configs/language_names.yaml:113
 msgid "Norwegian"
 msgstr ""
 
-#: configs/language_names.yaml:107 configs/language_names.yaml:108
+#: configs/language_names.yaml:108 configs/language_names.yaml:109
 msgid "Russian"
 msgstr ""
 
-#: configs/language_names.yaml:113 configs/language_names.yaml:114
+#: configs/language_names.yaml:114 configs/language_names.yaml:115
 msgid "Latvian"
 msgstr ""
 
-#: configs/language_names.yaml:116
+#: configs/language_names.yaml:117
 msgid "Haida"
 msgstr ""
 
-#: configs/language_names.yaml:119
+#: configs/language_names.yaml:120
 msgid "Romanian"
 msgstr ""
 
-#: configs/language_names.yaml:120
+#: configs/language_names.yaml:121
 msgid "Meänkieli"
 msgstr ""
 
-#: configs/language_names.yaml:121
+#: configs/language_names.yaml:122
 msgid "Swedish"
 msgstr ""
 
@@ -276,32 +280,24 @@ msgstr ""
 msgid "(incl. <em>aaacdnsz</em>)"
 msgstr ""
 
-#: configs/sample.config.yaml.in:175 configs/sanit.config.yaml:115
-#: configs/sanit.config.yaml.in:123
+#: configs/sample.config.yaml.in:175 configs/sanit.config.yaml:137
+#: configs/sanit.config.yaml.in:137
 msgid "(incl. <em>acdnstz</em>)"
 msgstr ""
 
-#: configs/sanit.config.yaml:138
-msgid "Standárda (<em>áčđŋšŧž</em>)"
-msgstr ""
-
-#: configs/sanit.config.yaml:141
-msgid "Sosiála media (maiddái <em>acdnstz</em>)"
-msgstr ""
-
-#: configs/sanit.config.yaml.in:122
+#: configs/sanit.config.yaml:136 configs/sanit.config.yaml.in:136
 msgid "Tolerant"
 msgstr ""
 
-#: configs/sanit.config.yaml.in:147
+#: configs/sanit.config.yaml:161 configs/sanit.config.yaml.in:161
 msgid "Standard (<em>áčđŋšŧž</em>)"
 msgstr ""
 
-#: configs/sanit.config.yaml.in:151
+#: configs/sanit.config.yaml:165 configs/sanit.config.yaml.in:165
 msgid "Tolerant (also <em>acdnstz</em>)"
 msgstr ""
 
-#: configs/sonad.config.yaml.in:159
+#: configs/sonad.config.yaml.in:160
 msgid "mobile friendly"
 msgstr ""
 
@@ -494,8 +490,10 @@ msgstr ""
 #: configs/language_specific_rules/templates/about.template:57
 msgid ""
 "North Sámi → Norwegian builds on Nils Jernsletten's dictionary "
-"<em>Álgosátnegirji</em> (4300 words), but now contains 25000 words. "
-"Norwegian → North Sámi contains about 26000 words. "
+"<em>Álgosátnegirji</em> (4322 words), but now it contains 30,000 entries,"
+" plus 6000 place name entries. Norwegian → North Sámi  is based on the "
+"North Sámi → Norwegian dictionary, but we have adde frequent Norwegian "
+"words. It contains about Norwegian 26,000 entries. "
 msgstr ""
 
 #: configs/language_specific_rules/templates/about.template:58
@@ -708,6 +706,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/saan/sms/paradigm.template:117
 #: configs/language_specific_rules/templates/saanih/smn/paradigm.template:186
 #: configs/language_specific_rules/templates/sanat/fkv/paradigm.template:173
+#: configs/language_specific_rules/templates/sanit/sma/paradigm.template:123
 #: configs/language_specific_rules/templates/sanit/sme/paradigm.template:187
 #: configs/language_specific_rules/templates/valks/mdf/paradigm.template:117
 #: configs/language_specific_rules/templates/valks/myv/paradigm.template:117
@@ -1461,5 +1460,20 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "Less examples"
+#~ msgstr ""
+
+#~ msgid "Standárda (<em>áčđŋšŧž</em>)"
+#~ msgstr ""
+
+#~ msgid "Sosiála media (maiddái <em>acdnstz</em>)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "North Sámi → Norwegian builds on "
+#~ "Nils Jernsletten's dictionary "
+#~ "<em>Álgosátnegirji</em> (4300 words), but now"
+#~ " contains 25000 words. Norwegian → "
+#~ "North Sámi contains about 26000 words."
+#~ " "
 #~ msgstr ""
 
