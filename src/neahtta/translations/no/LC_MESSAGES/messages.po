@@ -385,7 +385,7 @@ msgid ""
 "                    tools."
 msgstr ""
 "Alt (eller i alle fall nesten alt) som har med minoritetsspråk å "
-"gjøreburde være åpent tilgjengelig. Her vil du finne åpne ordbøker og "
+"brude være åpent tilgjengelig. Her vil du finne åpne ordbøker og "
 "andre analyseverktøy."
 
 #: configs/language_specific_rules/templates/about.template:26

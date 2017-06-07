@@ -517,6 +517,8 @@ msgid ""
 "parallel corpus of administrative text, financed by the Ministry of Local"
 " Government and Modernisation."
 msgstr ""
+"Sullii bealli sátnebárain leat vižžojuvvon dáru-sámi báldalas teavsttain, "
+"ja dát bargu Gielda- ja guovlodepartemeanta ruhtadii."
 
 #: configs/language_specific_rules/templates/about.template:61
 #: configs/language_specific_rules/templates/baakoeh/about.template:57
