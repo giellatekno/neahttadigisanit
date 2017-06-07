@@ -1004,6 +1004,8 @@ msgid ""
 "searching for parallels in a parallel corpus of administrative text. This"
 " work was financed by the Ministry of Local Government and Modernisation."
 msgstr ""
+"Sullii bealli sátnebárain leat vižžojuvvon dáru-sámi báldalas teavsttain, "
+"ja dát bargu Gielda- ja guovlodepartemeanta ruhtadii."
 
 #: configs/language_specific_rules/templates/sanit/about.template:63
 msgid ""
