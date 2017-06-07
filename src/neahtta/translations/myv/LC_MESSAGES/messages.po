@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-07 11:31+0200\n"
+"POT-Creation-Date: 2017-06-07 11:42+0200\n"
 "PO-Revision-Date: 2015-02-14 00:19+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language-Team: myv <LL@li.org>\n"
@@ -506,13 +506,12 @@ msgid "sme ↔ nob"
 msgstr ""
 
 #: configs/language_specific_rules/templates/about.template:57
-#: configs/language_specific_rules/templates/sanit/about.template:58
 msgid ""
 "North Sámi → Norwegian builds on Nils Jernsletten's dictionary "
 "<em>Álgosátnegirji</em> (4322 words), but now it contains 30,000 entries,"
 " plus 6000 place name entries. Norwegian → North Sámi  is based on the "
 "North Sámi → Norwegian dictionary, but we have adde frequent Norwegian "
-"words. It contains about Norwegian 26,000 entries. "
+"words. It contains about 26,000 Norwegian entries. "
 msgstr ""
 
 #: configs/language_specific_rules/templates/about.template:58
@@ -955,6 +954,15 @@ msgstr ""
 msgid ""
 "We have moved some languages to <a "
 "href=\"http://sonad.oahpa.no/\">Sonad</a>, please update your bookmarks."
+msgstr ""
+
+#: configs/language_specific_rules/templates/sanit/about.template:58
+msgid ""
+"North Sámi → Norwegian builds on Nils Jernsletten's dictionary "
+"<em>Álgosátnegirji</em> (4322 words), but now it contains 30,000 entries,"
+" plus 6000 place name entries. Norwegian → North Sámi  is based on the "
+"North Sámi → Norwegian dictionary, but we have added frequent Norwegian "
+"words. It contains about 26,000 Norwegian entries. "
 msgstr ""
 
 #: configs/language_specific_rules/templates/sanit/about.template:59
@@ -1718,11 +1726,15 @@ msgstr "Амаштовикс формат. Ансяк json-т -- html-т маш�
 #~ msgstr "Соцмедия  (<em>acdnstz</em> букватнеяк)"
 
 #~ msgid ""
-#~ "North Saami → Norwegian builds on "
+#~ "North Sámi → Norwegian builds on "
 #~ "Nils Jernsletten's dictionary "
-#~ "<em>Álgosátnegirji</em> (4300 words), but now"
-#~ " contains 25000 words. Norwegian → "
-#~ "North Saami contains about 26000 words."
-#~ " "
+#~ "<em>Álgosátnegirji</em> (4322 words), but now"
+#~ " it contains 30,000 entries, plus "
+#~ "6000 place name entries. Norwegian → "
+#~ "North Sámi  is based on the North"
+#~ " Sámi → Norwegian dictionary, but we"
+#~ " have adde frequent Norwegian words. "
+#~ "It contains about Norwegian 26,000 "
+#~ "entries. "
 #~ msgstr ""
 
