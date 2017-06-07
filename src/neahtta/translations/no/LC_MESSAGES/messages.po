@@ -995,6 +995,11 @@ msgid ""
 "North Sámi → Norwegian dictionary, but we have added frequent Norwegian "
 "words. It contains about 26,000 Norwegian entries. "
 msgstr ""
+"Nordsamisk → norsk bokmål bygger opprinnelig på Nils Jernsletten's "
+"<em>Álgosátnegirji</em> (4322 oppslagsord), but nå inneholder den 30,000 oppslagsord, "
+"pluss 6000 stedsnavn. Norsk bokmål → nordsamisk er basert på "
+"Nordsamisk → norsk bokmål, men med bare 600 stedsnavn, og vi har lagt til vanlige "
+"norske ord. Ordboka inneholder omtrent 26,000 norske oppslagsord. "
 
 #: configs/language_specific_rules/templates/sanit/about.template:59
 msgid ""
