@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-07 11:21+0200\n"
+"POT-Creation-Date: 2017-06-07 11:31+0200\n"
 "PO-Revision-Date: 2015-04-17 15:07-0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: smn <LL@li.org>\n"
@@ -495,6 +495,7 @@ msgid "sme ↔ nob"
 msgstr ""
 
 #: configs/language_specific_rules/templates/about.template:57
+#: configs/language_specific_rules/templates/sanit/about.template:58
 msgid ""
 "North Sámi → Norwegian builds on Nils Jernsletten's dictionary "
 "<em>Álgosátnegirji</em> (4322 words), but now it contains 30,000 entries,"
@@ -955,13 +956,6 @@ msgstr ""
 msgid ""
 "We have moved some languages to <a "
 "href=\"http://sonad.oahpa.no/\">Sonad</a>, please update your bookmarks."
-msgstr ""
-
-#: configs/language_specific_rules/templates/sanit/about.template:58
-msgid ""
-"North Saami → Norwegian builds on Nils Jernsletten's dictionary "
-"<em>Álgosátnegirji</em> (4300 words), but now contains 25000 words. "
-"Norwegian → North Saami contains about 26000 words. "
 msgstr ""
 
 #: configs/language_specific_rules/templates/sanit/about.template:59
@@ -1518,4 +1512,13 @@ msgstr "Virheellinen formaatti. Vain json ja html ovat sallittuja."
 
 #~ msgid "Sosiála media (maiddái <em>acdnstz</em>)"
 #~ msgstr "Sosiála media (meiddei <em>acdnstz</em>)"
+
+#~ msgid ""
+#~ "North Saami → Norwegian builds on "
+#~ "Nils Jernsletten's dictionary "
+#~ "<em>Álgosátnegirji</em> (4300 words), but now"
+#~ " contains 25000 words. Norwegian → "
+#~ "North Saami contains about 26000 words."
+#~ " "
+#~ msgstr ""
 
