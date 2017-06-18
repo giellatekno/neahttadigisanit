@@ -149,6 +149,8 @@ def register_template_filters(app):
         # TODO: strip nds_dummy_tags
         tag_string = []
         for tp in tag.parts:
+            if tp == lemma:
+                continue
             if tp in dummy:
                 continue
             tag_string.append(tp)
