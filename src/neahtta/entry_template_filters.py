@@ -165,13 +165,13 @@ def register_template_filters(app):
             generated, raw = False, ""
 
         if generated:
-            forms = set()
+            forms = list()
             for a in generated:
-                if len(a) == 3:
-                    gener_fs = a[2]
+                if len(a) == 2:
+                    gener_fs = a[1]
                     if gener_fs:
-                        for f in gener_fs:
-                            forms.add(f)
+                        for f in gener_fs[::-1]:
+                            forms.append(f)
 
             forms = list(forms)
             raw = raw_out + raw_errors
