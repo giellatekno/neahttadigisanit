@@ -2,6 +2,11 @@ name: "basic paradigm"
 paradigm: 'verbs-ai-ti.paradigm'
 layout:
   type: "basic"
+tooltips: 
+  eng:
+    "1s": "I VERB"
+    "Ind": "Testing the functionality with a tiny sentence of text."
+    "1p inclusive": "We all VERB"
 --
 |                | _"Ind"          | _"Cnj"          |
 | "1s"           | +Ind+Prs+1Sg$   | +Cnj+Prs+1Sg$   |

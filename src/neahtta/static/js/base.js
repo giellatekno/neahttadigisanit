@@ -47,6 +47,9 @@ $(document).ready(function(){
 
     });
 
+    if($('[data-toggle=tooltip]').length > 0) {
+        $('[data-toggle=tooltip]').tooltip();
+    }
     if($('#keyboard').length > 0) {
 
         var unblurable = false;

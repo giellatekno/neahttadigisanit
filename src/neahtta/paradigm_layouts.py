@@ -11,6 +11,20 @@ Future documentation for wiki:
 TODO: FEATURE - hover over labels for tooltip that explains them
     - need mobile solution too, maybe there it should be click not hover
 
+    implementation in progress, how to make it work, add the following to a layout:
+
+    name: "basic paradigm"
+    paradigm: 'verbs-ai-ti.paradigm'
+    layout:
+      type: "basic"
+    tooltips:
+      eng:
+        "1s": "I VERB"
+        "Ind": "Indicative"
+        "1p inclusive": "We all VERB"
+      fin:
+        "1s": "Minä X"
+
 TODO: FEATURE - cells need multiple tags, etc
 
 TODO: BUG - key help not present on detail views
@@ -90,6 +104,10 @@ Ideas:
 
 import os, sys
 import yaml
+
+from morphology.utils import tagfilter
+
+from flask import g
 
 class ParadigmException(Exception):
 
@@ -272,6 +290,7 @@ class Cell(object):
         self.table = table
         self.null_value = self.table.options.get('layout', {}).get('no_form', '')
         self.empty_cell = self.table.options.get('layout', {}).get('empty_cell', '')
+        self.tooltip_tagset = self.table.options.get('tooltips', {}).get(g._to, False)
         self.text_align = False
 
         self.clean_value()
@@ -303,10 +322,18 @@ class Cell(object):
             self.header = True
             self.v = self.v[2:len(self.v)-1]
             self.internationalize = True
+            if self.tooltip_tagset:
+                # filtered_str = tagfilter(self.v, g._from, g._to, tagfilter_set=self.tooltip_tagset)
+                self.tooltip = self.tooltip_tagset.get(self.v, False)
 
         if self.v.startswith('"') and self.v.endswith('"'):
+            # TODO: simple tagset
             self.header = True
             self.v = self.v[1:len(self.v)-1]
+            # TODO: only set self.tooltip if a value in the tagset exists
+            if self.tooltip_tagset:
+                # filtered_str = tagfilter(self.v, g._from, g._to, tagfilter_set=self.tooltip_tagset)
+                self.tooltip = self.tooltip_tagset.get(self.v, False)
 
         if list(set(self.v)) == ['-']:
             self.horizontal_line = True

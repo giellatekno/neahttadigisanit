@@ -150,6 +150,7 @@ def prepare_assets(app):
         'js/DSt.js',
         'js/bootstrap-collapse.js',
         'js/bootstrap-dropdown.js',
+        'js/bootstrap-tooltip.js',
         'js/standalone-app.js',
         'js/bootstrap-typeahead-fork.js',
         'js/base.js',

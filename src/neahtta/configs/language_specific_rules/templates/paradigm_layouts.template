@@ -124,7 +124,15 @@
                             {% set classes = " class='%s'" % cell_classes %}
                         {% endif %}
 
-                        <{{ cell_type }}{{ span }}{{ style }}{{ classes }}>{{ cell_value }}</{{ cell_type }}>
+                        <{{ cell_type }}{{ span }}{{ style }}{{ classes }}>
+                            {% if column.cell.tooltip %}
+                                <a href="#" data-toggle="tooltip" data-trigger="click hover" data-placement="bottom" data-title="{{ column.cell.tooltip }}">
+                                    {{ cell_value }}
+                                </span>
+                            {% else %}
+                                {{ cell_value }}
+                            {% endif %}
+                        </{{ cell_type }}>
 
                     {% endfor %}
                     </tr>
