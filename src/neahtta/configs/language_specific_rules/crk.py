@@ -24,7 +24,7 @@ def force_hyphen(generated_forms, *input_args, **input_kwargs):
     without ê- """
 
     def matches_hyphen(f):
-        return u'ê-' in f
+        return u'ê-' in f or u'ē-' in f
 
     def form_fx((tag, forms)):
         if forms:
