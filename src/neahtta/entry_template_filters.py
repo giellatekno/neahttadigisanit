@@ -170,7 +170,7 @@ def register_template_filters(app):
                 if len(a) == 2:
                     gener_fs = a[1]
                     if gener_fs:
-                        for f in gener_fs[::-1]:
+                        for f in gener_fs:
                             forms.append(f)
 
             forms = list(forms)
