@@ -18,7 +18,7 @@ from lexicon import lexicon_overrides
 # 
 #     return sorted(nodelist, key=get_rank)
 
-@morphology.postgeneration_filter_for_iso('crk')
+@morphology.postgeneration_filter_for_iso('crk', 'crkMacr')
 def force_hyphen(generated_forms, *input_args, **input_kwargs):
     """ For any +Cnj forms that are generated, filter out those
     without ê- """
@@ -28,7 +28,6 @@ def force_hyphen(generated_forms, *input_args, **input_kwargs):
 
     def form_fx((tag, forms)):
         if forms:
-            forms = list(set(forms))
             _hyph = [f for f in forms if '-' in f]
             if len(_hyph) > 0:
                 unhyphs = [h.replace('-', '') for h in _hyph]
@@ -41,7 +40,7 @@ def force_hyphen(generated_forms, *input_args, **input_kwargs):
 
     return map(form_fx, generated_forms)
 
-@morphology.tag_filter_for_iso('crk')
+@morphology.tag_filter_for_iso('crk', 'crkMacr')
 def adjust_tags_for_gen(lemma, tags, node=None, **kwargs):
     """ **tag filter**: Lexicon -> FST changes.
 
