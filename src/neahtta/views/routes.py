@@ -6,9 +6,7 @@ from search import ( IndexSearchPage
                    , ReferredLanguagePairSearchView
                    )
 
-from keyword_search import ( LanguagePairSearchVariantView
-                           , search_keyword_list
-                           )
+from variant_search import LanguagePairSearchVariantView
 
 from paradigms import ParadigmLanguagePairSearchView
 
