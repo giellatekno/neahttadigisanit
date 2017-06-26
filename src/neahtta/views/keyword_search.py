@@ -1,3 +1,32 @@
+""" At this point this is a mix of project-specific code pertaining to
+keyword searching features that were intended to be implemented for
+itwewina, AND some generalized functionality for implementing
+project-specific search variants.
+
+Generalities here are the following:
+  * use of .template and language_specific_configs/templates/ to call
+  search variant specific templates. Ex.)
+
+    yaml config ...
+      - source: eng
+        target: crk
+        path: 'dicts/engcrk.xml'
+        search_variants:
+         - type: "substring_match"
+           path: "dicts/engcrk.xml"
+           description: "substring_match"
+
+    will fetch a template:
+      search_variant_substring_match.jinja
+
+Project specific stuff that should probably be moved out elsewhere, e.g. to project-specific view files:
+  * the json endpoint for returning keywords from the autocomplete.
+
+Why? Reduce complexity of projects not using this stuff, decreased
+chances of other services dying if this is altered.
+
+"""
+
 from flask import ( current_app
                   , request
                   , session
@@ -20,6 +49,9 @@ from lexicon import FrontPageFormat
 
 @cache.memoize()
 def fetch_keywords(_f, _t, counts=False):
+    """ itwewina-specific functions for returning lexicon keywords for
+    autocomplete.
+    """
     from collections import Counter
 
     lex = current_app.config.lexicon.language_pairs.get((_f, _t))
@@ -38,7 +70,7 @@ def fetch_keywords(_f, _t, counts=False):
 
 @cache.memoize()
 def fetch_remaining_keywords(_f, _t, keywords, counts=False):
-    """ The same as the above, but removes any existing keywords--
+    """ itwewina-specific: the same as the above, but removes any existing keywords--
     intended for the typeahead endpoint so that users are not presented
     with a typeahead option that will result in nothing
     """
@@ -68,11 +100,27 @@ def fetch_remaining_keywords(_f, _t, keywords, counts=False):
     return new_keys
 
 class LanguagePairSearchVariantView(LanguagePairSearchView):
+    """ This view provides some modifications to allow for loading of
+    variant-specific templates, and links a little functionality from
+    keyword searches in.
 
-    # TODO: cache on search args and session lang
+    Keyword stuff could probably be generalized out to itwewina project
+    files somehow.
+
+    """
+
     methods = ['GET', 'POST']
-    template_name = 'variant_search.html'
     formatter = FrontPageFormat
+
+    @property
+    def template_name(self):
+        # template_name = 'variant_search_%s.html' % self.variant_type
+        # if template_name
+        v = 'variant_search_' + self.variant_type + '.template'
+        if current_app.lexicon_templates.has_template(g._from, v):
+            return v
+        else:
+            return 'variant_search.template'
 
     def get_shared_context(self, _from, _to):
         """ Return some things that are in all templates. Include the
@@ -94,21 +142,24 @@ class LanguagePairSearchVariantView(LanguagePairSearchView):
         return shared_context
 
     def post_search_context_modification(self, search_result, context):
+        """ Provide some additional context depending on the search
+        type. """
 
-        # TODO: remove keywords present in search
-        def get_entry_keywords():
-            _str_norm = 'string(normalize-space(%s))'
-            search_result.entries
-            keys = []
+        if self.variant_type == 'keyword':
+            # TODO: remove keywords present in search
+            def get_entry_keywords():
+                _str_norm = 'string(normalize-space(%s))'
+                search_result.entries
+                keys = []
 
-            existing_keywords = context['user_input'].split(',')
+                existing_keywords = context['user_input'].split(',')
 
-            for e in search_result.entries:
-                keys.append(e.xpath(_str_norm % './mg/tg/key/text()'))
+                for e in search_result.entries:
+                    keys.append(e.xpath(_str_norm % './mg/tg/key/text()'))
 
-            return [a for a in list(set(keys)) if a not in existing_keywords]
+                return [a for a in list(set(keys)) if a not in existing_keywords]
 
-        context['available_keywords'] = get_entry_keywords()
+            context['available_keywords'] = get_entry_keywords()
 
         return context
 
@@ -147,7 +198,7 @@ from .reader import crossdomain
 
 @crossdomain(origin='*', headers=['Content-Type'])
 def search_keyword_list(_from, _to):
-    """ This endpoint provides all keywords available in the lexicon for
+    """ itwewina-specific: This endpoint provides all keywords available in the lexicon for
     autocomplete. If the @param `keywords` is specified (a string which
     is a comma delimited list), then only keywords from entreis matching
     those keywords will be returned.
