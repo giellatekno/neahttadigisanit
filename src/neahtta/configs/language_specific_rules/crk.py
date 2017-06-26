@@ -2,7 +2,6 @@
 from lexicon import lexicon_overrides
 
 from lexicon import search_types, CustomLookupType
-from lexicon.lexicon import PARSED_TREES
 from lxml import etree
 
 # @lexicon_overrides.postlookup_filters_for_lexicon(('eng', 'crk'))
@@ -22,9 +21,24 @@ from lxml import etree
 # 
 #     return sorted(nodelist, key=get_rank)
 
+class CustomCrkSearch(CustomLookupType):
+    """ This is the custom lookup type class from which all custom
+    lookup types should be subclassed.
+    """
 
-# TODO: document how this custom class is constructed.
-# @search_types.add_custom_lookup_type('substring_match')
+    def __init__(self, *args, **kwargs):
+        """ Initialize the trees in the parent class and then provide
+        some overrides. """
+
+        super(CustomLookupType, self).__init__(*args, **kwargs)
+
+        self.xpath_evaluator = etree.XPathDocumentEvaluator(self.tree)
+        # Initialize XPath queries
+        self.lemma = etree.XPath('.//e[contains(lg/l/text(), $lemma)]')
+
+search_types.add_custom_lookup_type('regular')(CustomCrkSearch)
+
+
 class SubstringLookups(CustomLookupType):
     """
     NB: for the moment this is eng-crk specific.
@@ -41,6 +55,55 @@ class SubstringLookups(CustomLookupType):
 
         # Initialize XPath queries
         self.lemma = etree.XPath('.//e[contains(mg/tg/key/text(), $lemma)]')
+
+    def modifyNodes(self, nodes, lemma):
+        """ This will pop off definition nodes that do not match, by
+        operating on clones and returning the clones.
+
+        Here we select the children of the <e /> and run a test on them,
+        if they succeed, then don't pop the node. Then return the
+        trimmed elements.
+
+        This is probably the best option for compatibility with the rest
+        of NDS, but need to have a way of generalizing this, because at
+        the moment, this is lexicon-specific.
+        """
+        import copy
+
+        def duplicate_node(node):
+            # previously: etree.XML(etree.tostring(node))
+            return copy.deepcopy(node) 
+
+        def test_node(node):
+            tg_node_expr = " and ".join([
+                '(key/text() = "%s")' % l_part
+                for l_part in lemma.split(',')
+            ])
+            _xp = 'tg[%s]' % tg_node_expr
+            return len(node.xpath(_xp)) == 0
+
+        def process_node(node):
+            mgs = node.findall('mg')
+            c = len(node.findall('mg'))
+            # Remove nodes not passing the test, these shall diminish
+            # and go into the west, and remain <mg />.
+            for mg in mgs:
+                if test_node(mg):
+                    c -= 1
+                    node.remove(mg)
+            # If trimming <mg /> results in no actual translations, we
+            # don't display the node.
+            if c == 0:
+                return None
+            else:
+                return node
+
+        new_nodes = []
+        for node in map(duplicate_node, nodes):
+            new_nodes.append(process_node(node))
+
+        return [n for n in new_nodes if n != None]
+
 
     def lookupLemma(self, lemma):
 

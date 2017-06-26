@@ -14,7 +14,7 @@ class CustomLookupType(XMLDict):
 
         self.xpath_evaluator = etree.XPathDocumentEvaluator(self.tree)
         # Initialize XPath queries
-        self.lemma = etree.XPath('.//e[mg/tg/key/text() = $lemma]')
+        self.lemma = etree.XPath('.//e[lg/l/text() = $lemma]')
 
     def cleanEntry(self, e):
         """ This function provides some basic parsing of each `<e />`
@@ -32,65 +32,9 @@ class CustomLookupType(XMLDict):
 
         return {'left': ts_text, 'pos': ts_pos, 'right': right_text}
 
-    def modifyNodes(self, nodes, lemma):
-        """ Modify the nodes in some way, but by duplicating them first.
-
-        Here we select the children of the <e /> and run a test on them,
-        if they succeed, then don't pop the node. Then return the
-        trimmed elements.
-
-        This is probably the best option for compatibility with the rest
-        of NDS, but need to have a way of generalizing this, because at
-        the moment, this is lexicon-specific.
-        """
-        import copy
-
-        def duplicate_node(node):
-            # previously: etree.XML(etree.tostring(node))
-            return copy.deepcopy(node) 
-
-        def test_node(node):
-            tg_node_expr = " and ".join([
-                '(key/text() = "%s")' % l_part
-                for l_part in lemma.split(',')
-            ])
-            _xp = 'tg[%s]' % tg_node_expr
-            return len(node.xpath(_xp)) == 0
-
-        def process_node(node):
-            mgs = node.findall('mg')
-            c = len(node.findall('mg'))
-            # Remove nodes not passing the test, these shall diminish
-            # and go into the west, and remain <mg />.
-            for mg in mgs:
-                if test_node(mg):
-                    c -= 1
-                    node.remove(mg)
-            # If trimming <mg /> results in no actual translations, we
-            # don't display the node.
-            if c == 0:
-                return None
-            else:
-                return node
-
-        new_nodes = []
-        for node in map(duplicate_node, nodes):
-            new_nodes.append(process_node(node))
-
-        return [n for n in new_nodes if n != None]
-
     def lookupLemma(self, lemma):
-
-        keys = ' and '.join([
-            '(mg/tg/key/text() = "%s")' % l
-            for l in lemma.split(',')
-        ])
-
-        key_expr = './/e[%s]' % keys
-
-        xp = etree.XPath(key_expr)
-
-        nodes = self.XPath( xp, lemma=lemma)
-        return self.modifyNodes(nodes, lemma=lemma)
+        return self.XPath( self.lemma
+                         , lemma=lemma
+                         )
 
 
