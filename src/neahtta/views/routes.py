@@ -42,11 +42,13 @@ blueprint.add_url_rule( '/paradigm/<_from>/<_to>/<lemma>'
                       , endpoint="paradigm_language_pair"
                       )
 
-blueprint.add_url_rule( '/list/keywords/<_from>/<_to>/'
-                      , view_func=search_keyword_list
-                      , methods=['GET']
-                      , endpoint="search_keyword_list"
-                      )
+# TODO: commenting out until this feature comes back, prevent anything
+# from breaking in other projects if this is unmaintained.
+# blueprint.add_url_rule( '/list/keywords/<_from>/<_to>/'
+#                       , view_func=search_keyword_list
+#                       , methods=['GET']
+#                       , endpoint="search_keyword_list"
+#                       )
 
 from .reader import ( lookupWord
                     , ie8_instrux
