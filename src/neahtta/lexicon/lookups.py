@@ -22,6 +22,8 @@ app as well as in project-specific files. Ex.)
 See lexicon.custom_lookups.py for implementation notes on these custom
 classes.
 
+NB: you can also override default lookup types in this way, since they are simply registered with 'regular'.
+
 """
 
 class SearchTypes(object):
