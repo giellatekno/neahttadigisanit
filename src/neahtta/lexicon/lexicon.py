@@ -492,16 +492,7 @@ class Lexicon(object):
 
         from collections import OrderedDict
 
-        language_pairs = dict(
-            [ (k, XMLDict(filename=v, options=settings.dictionary_options.get(k, {})))
-              for k, v in settings.dictionaries.iteritems() ]
-        )
-
-        alternate_dicts = dict(
-            [ (k, XMLDict(filename=v.get('path'), options=settings.dictionary_options.get(k, {})))
-              for k, v in settings.variant_dictionaries.iteritems() ]
-        )
-
+        # Initialize variant lookup types
         lookup_types = {
             'regular': XMLDict,
             'test_data': XMLDict,
@@ -509,6 +500,19 @@ class Lexicon(object):
 
         lookup_types.update(search_types.search_types)
 
+        reg_type = lookup_types.get('regular', XMLDict)
+
+        language_pairs = dict(
+            [ (k, reg_type(filename=v, options=settings.dictionary_options.get(k, {})))
+              for k, v in settings.dictionaries.iteritems() ]
+        )
+
+        alternate_dicts = dict(
+            [ (k, reg_type(filename=v.get('path'), options=settings.dictionary_options.get(k, {})))
+              for k, v in settings.variant_dictionaries.iteritems() ]
+        )
+
+        # run through variant searches for overrides
         variant_searches = dict()
 
         for k, variants in settings.search_variants.iteritems():
