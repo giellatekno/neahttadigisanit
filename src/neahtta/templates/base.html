@@ -171,7 +171,7 @@
                                             <img class="i18n_flag" alt="[{{ iso|iso_to_language_own_name }} flag]" src="{{url_for('static', filename='img/flags/' + iso + '_20x15.png')}}"> {{ iso|iso_to_language_own_name }}
                                         {% else %}
                                             {# TODO: CSS #}
-                                            <div class="default_flag">{{ iso|iso_display_relabel }}</div> {{ iso|iso_to_language_own_name }}
+                                            <div class="default_flag">{{ iso }}</div> {{ iso|iso_to_language_own_name }}
                                         {% endif %}
                                     </a>
                                 </li>
