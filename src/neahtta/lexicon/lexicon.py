@@ -1,4 +1,8 @@
 ﻿from lxml import etree
+from .lookups import SearchTypes
+
+""" Our project-wide search_types repository. """
+search_types = SearchTypes({})
 
 ##
 ##  Lexicon
@@ -218,6 +222,7 @@ PARSED_TREES = {}
 
 regexpNS = "http://exslt.org/regular-expressions"
 
+# @search_types.add_custom_lookup_type('regular')
 class XMLDict(object):
     """ XML dictionary class. Initiate with a file path or an already parsed
     tree, exposes methods for searching in XML.
@@ -226,7 +231,12 @@ class XMLDict(object):
     which will clean them on iteration.
 
     """
+
+    PARSED_TREES = PARSED_TREES
+
+
     def __init__(self, filename=False, tree=False, options={}):
+
         xpaths = DEFAULT_XPATHS.copy()
         xpaths.update(**options)
 
@@ -612,11 +622,13 @@ class Lexicon(object):
               for k, v in settings.variant_dictionaries.iteritems() ]
         )
 
-        search_types = {
+        lookup_types = {
             'keyword': KeywordLookups,
             'regular': XMLDict,
             'test_data': XMLDict,
         }
+
+        lookup_types.update(search_types.search_types)
 
         variant_searches = dict()
 
@@ -624,7 +636,7 @@ class Lexicon(object):
             pair_variants = OrderedDict()
             for var in variants:
                 variant_type = var.get('type', 'regular')
-                cls = search_types.get(variant_type)
+                cls = lookup_types.get(variant_type)
                 variant_search = cls(filename=var.get('path'))
                 pair_variants[variant_type] = variant_search
             variant_searches[k] = pair_variants
