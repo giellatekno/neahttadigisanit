@@ -65,6 +65,12 @@ class TemplateConfig(object):
         'paradigm.template',
     ]
 
+    """ Templates in this list will not be rendered on every other page load
+    """
+    no_subview_rendering = [
+        'variant_search.template',
+    ]
+
     def __init__(self, app=None, debug=False, cache=True):
         self.debug = debug
         self._app = app
@@ -276,7 +282,7 @@ class TemplateConfig(object):
 
         rendered = {}
         for k, t in self.language_templates[language].iteritems():
-            if k != template and k.endswith('.template'):
+            if k != template and k.endswith('.template') and k not in self.no_subview_rendering:
                 try:
                     rendered[k.replace('.template', '')] = t.render(**context)
                 except Exception, e:
