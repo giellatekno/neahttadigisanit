@@ -478,126 +478,6 @@ class ReverseLookups(XMLDict):
         )
         return self.XPath(_xpath)
 
-class KeywordLookups(XMLDict):
-    """
-    NB: for the moment this is eng-crk specific.
-
-    1. search by //e/mg/tg/t/text() instead of //e/lg/l/text()
-    2. after the search, we duplicate and re-test the matched <e />
-       nodes to remove any <mg /> that do not apply to the query.
-    3. Duplicated nodes are returned to the rest of the query, and no
-       one knows the difference
-
-    TODO: how to provide an entry hash for these? Linkability to search
-      results would be great.
-
-    TODO: think about how to generalize this. Since this is code beyond
-    a sort of 'base functionality', it may need to stand somewhere other
-    than in `lexicon.lexicon`. Providing an easy API for extending
-    search types would be great, because down the line there will be
-    more search types.
-
-    """
-
-    def __init__(self, filename=False, tree=False):
-        if not tree:
-            if filename not in PARSED_TREES:
-                print "parsing %s" % filename
-                try:
-                    self.tree = etree.parse(filename)
-                    PARSED_TREES[filename] = self.tree
-                except Exception, e:
-                    print
-                    print " *** ** ** ** ** ** * ***"
-                    print " *** ERROR parsing %s" % filename
-                    print " *** ** ** ** ** ** * ***"
-                    print
-                    print " Check the compilation process... "
-                    print " Is the file empty?"
-                    print " Saxon errors?"
-                    print
-                    sys.exit(2)
-            else:
-                self.tree = PARSED_TREES[filename]
-        else:
-            self.tree = tree
-
-        self.xpath_evaluator = etree.XPathDocumentEvaluator(self.tree)
-
-        # Initialize XPath queries
-        self.lemma = etree.XPath('.//e[mg/tg/key/text() = $lemma]')
-
-    def cleanEntry(self, e):
-        ts = e.findall('mg/tg/t')
-        ts_text = [t.text for t in ts]
-        ts_pos = [t.get('pos') for t in ts]
-
-        l = e.find('lg/l')
-        right_text = [l.text]
-
-        return {'left': ts_text, 'pos': ts_pos, 'right': right_text}
-
-    def modifyNodes(self, nodes, lemma):
-        """ Modify the nodes in some way, but by duplicating them first.
-
-        Here we select the children of the <e /> and run a test on them,
-        if they succeed, then don't pop the node. Then return the
-        trimmed elements.
-
-        This is probably the best option for compatibility with the rest
-        of NDS, but need to have a way of generalizing this, because at
-        the moment, this is lexicon-specific.
-        """
-        import copy
-
-        def duplicate_node(node):
-            # previously: etree.XML(etree.tostring(node))
-            return copy.deepcopy(node) 
-
-        def test_node(node):
-            tg_node_expr = " and ".join([
-                '(key/text() = "%s")' % l_part
-                for l_part in lemma.split(',')
-            ])
-            _xp = 'tg[%s]' % tg_node_expr
-            return len(node.xpath(_xp)) == 0
-
-        def process_node(node):
-            mgs = node.findall('mg')
-            c = len(node.findall('mg'))
-            # Remove nodes not passing the test, these shall diminish
-            # and go into the west, and remain <mg />.
-            for mg in mgs:
-                if test_node(mg):
-                    c -= 1
-                    node.remove(mg)
-            # If trimming <mg /> results in no actual translations, we
-            # don't display the node.
-            if c == 0:
-                return None
-            else:
-                return node
-
-        new_nodes = []
-        for node in map(duplicate_node, nodes):
-            new_nodes.append(process_node(node))
-
-        return [n for n in new_nodes if n != None]
-
-    def lookupLemma(self, lemma):
-
-        keys = ' and '.join([
-            '(mg/tg/key/text() = "%s")' % l
-            for l in lemma.split(',')
-        ])
-
-        key_expr = './/e[%s]' % keys
-
-        xp = etree.XPath(key_expr)
-
-        nodes = self.XPath( xp, lemma=lemma)
-        return self.modifyNodes(nodes, lemma=lemma)
-
 class Lexicon(object):
 
     def __init__(self, settings):
@@ -623,7 +503,6 @@ class Lexicon(object):
         )
 
         lookup_types = {
-            'keyword': KeywordLookups,
             'regular': XMLDict,
             'test_data': XMLDict,
         }
