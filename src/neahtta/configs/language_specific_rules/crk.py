@@ -1,8 +1,68 @@
 ﻿from morphology import generation_overrides as morphology
+from morpholex import morpholex_overrides as morpholex
 from lexicon import lexicon_overrides
 
 from lexicon import search_types, CustomLookupType
 from lxml import etree
+
+from views.custom_rendering import template_rendering_overrides
+
+@template_rendering_overrides.register_custom_sort(('crk', 'eng'))
+def sort_by_analyses(search_result_obj, unsorted_entries_and_tags_and_paradigms):
+    """ This is where we sort analyses first, and then everything else.
+
+    Copying the original sorting to modify that. Original sort is:
+     * entries where lemma matches (==) the user input first
+     * otherwise alphabetical sort by lemma.
+
+    TODO:
+     * show analyses first, perhaps with absolute match first of these;
+     * then show sorted non-morphological matches below
+
+    """
+
+    def sort_key((lex, morph, p, l)):
+        _str_norm = 'string(normalize-space(%s))'
+        lemma = lex.xpath(_str_norm % './lg/l/text()')
+        return (lemma, morph)
+
+    def sort_with_user_input_first((a_lemma, a_morph), (b_lemma, b_morph)):
+        a_has_morph = len(a_morph) > 0
+        b_has_morph = len(b_morph) > 0
+
+        a_lemma_matches_input = a_lemma == search_result_obj.user_input
+        b_lemma_matches_input = b_lemma == search_result_obj.user_input
+
+        move_up = -1
+        move_down = 1
+        no_diff = 0
+
+        def sort_lemma_alpha():
+            if a_lemma < b_lemma:
+                return move_up
+            elif a_lemma > b_lemma:
+                return move_down
+            else:
+                return no_diff
+
+        # sort alphabetically within main groups split by presence of
+        # lemmas
+        if (a_has_morph and b_has_morph) or (not a_has_morph and not b_has_morph):
+            return sort_lemma_alpha()
+
+        # otherwise sort by presence of morphology
+        if a_has_morph and not b_has_morph:
+            return move_up
+
+        if not a_has_morph and b_has_morph:
+            return move_down
+
+        return no_diff
+
+    return sorted( unsorted_entries_and_tags_and_paradigms
+                 , key=sort_key
+                 , cmp=sort_with_user_input_first
+                 )
 
 # @lexicon_overrides.postlookup_filters_for_lexicon(('eng', 'crk'))
 # def sort_by_rank(lex, nodelist, *args, **kwargs):
@@ -21,24 +81,53 @@ from lxml import etree
 # 
 #     return sorted(nodelist, key=get_rank)
 
+# NB: general search type, so crk->eng, and everything else that isn't
+# eng->crk substring type
 class CustomCrkSearch(CustomLookupType):
     """ This is the custom lookup type class from which all custom
     lookup types should be subclassed.
     """
 
-    def __init__(self, *args, **kwargs):
-        """ Initialize the trees in the parent class and then provide
-        some overrides. """
+    lemma_match_query = './/e[re:test(lg/l/text(), $lemma_fuzz, \'i\')]'
 
-        super(CustomLookupType, self).__init__(*args, **kwargs)
+    # we will use this to match things less than 3 chars.
+    lemma_strict_match = './/e[lg/l/text() = $lemma]'
 
-        self.xpath_evaluator = etree.XPathDocumentEvaluator(self.tree)
-        # Initialize XPath queries
-        self.lemma = etree.XPath('.//e[contains(lg/l/text(), $lemma)]')
+    def lookupLemma(self, lemma):
+
+        if len(lemma) <= 3:
+            match_fx = self.prepare_xpath(self.lemma_strict_match)
+        else:
+            match_fx = self.lemma
+
+        # Can only have one character on the left side, because
+        # iterating through input string one character by one character
+        # to make sure replacements don't overlap.
+
+        # TODO: can we use a generalized spell relax function for this?
+        fuzzings = {
+            u'a': u'[aâ]',
+            u'â': u'[aâ]',
+            u'i': u'[iî]',
+            u'î': u'[iî]',
+            u'e': u'[eê]',
+            u'ê': u'[eê]',
+            u'u': u'[uû]',
+            u'û': u'[uû]',
+        }
+
+        lemma_fuzz = ''
+        for c in lemma:
+            lemma_fuzz += fuzzings.get(c, c)
+
+        return self.XPath( match_fx
+                         , lemma=lemma
+                         , lemma_fuzz=lemma_fuzz
+                         )
 
 search_types.add_custom_lookup_type('regular')(CustomCrkSearch)
 
-
+# NB: eng->crk only 
 class SubstringLookups(CustomLookupType):
     """
     NB: for the moment this is eng-crk specific.
@@ -48,17 +137,12 @@ class SubstringLookups(CustomLookupType):
 
     """
 
-    def __init__(self, filename=False, tree=False):
-        super(SubstringLookups, self).__init__(filename=filename, tree=tree)
-
-        self.xpath_evaluator = etree.XPathDocumentEvaluator(self.tree)
-
-        # Initialize XPath queries
-        self.lemma = etree.XPath('.//e[contains(mg/tg/key/text(), $lemma)]')
+    lemma = etree.XPath('.//e[contains(mg/tg/key/text(), $lemma)]')
 
     def modifyNodes(self, nodes, lemma):
-        """ This will pop off definition nodes that do not match, by
-        operating on clones and returning the clones.
+        """ This is our own custom modification within this search type
+        will pop off definition nodes that do not match, by operating on
+        clones and returning the clones.
 
         Here we select the children of the <e /> and run a test on them,
         if they succeed, then don't pop the node. Then return the
@@ -71,8 +155,7 @@ class SubstringLookups(CustomLookupType):
         import copy
 
         def duplicate_node(node):
-            # previously: etree.XML(etree.tostring(node))
-            return copy.deepcopy(node) 
+            return copy.deepcopy(node)
 
         def test_node(node):
             tg_node_expr = " and ".join([
@@ -85,12 +168,14 @@ class SubstringLookups(CustomLookupType):
         def process_node(node):
             mgs = node.findall('mg')
             c = len(node.findall('mg'))
+
             # Remove nodes not passing the test, these shall diminish
             # and go into the west, and remain <mg />.
             for mg in mgs:
                 if test_node(mg):
                     c -= 1
                     node.remove(mg)
+
             # If trimming <mg /> results in no actual translations, we
             # don't display the node.
             if c == 0:
@@ -103,7 +188,6 @@ class SubstringLookups(CustomLookupType):
             new_nodes.append(process_node(node))
 
         return [n for n in new_nodes if n != None]
-
 
     def lookupLemma(self, lemma):
 
@@ -185,7 +269,11 @@ class KeywordLookups(CustomLookupType):
         return {'left': ts_text, 'pos': ts_pos, 'right': right_text}
 
     def modifyNodes(self, nodes, lemma):
-        """ Modify the nodes in some way, but by duplicating them first.
+        """ 
+        # TODO: update this so it's not operating on keywords, instead
+        # definitions
+
+        Modify the nodes in some way, but by duplicating them first.
 
         Here we select the children of the <e /> and run a test on them,
         if they succeed, then don't pop the node. Then return the
@@ -244,8 +332,6 @@ class KeywordLookups(CustomLookupType):
 
         nodes = self.XPath( xp, lemma=lemma)
         return self.modifyNodes(nodes, lemma=lemma)
-
-
 
 
 @morphology.postgeneration_filter_for_iso('crk', 'crkMacr')
