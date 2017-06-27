@@ -7,6 +7,8 @@ from lxml import etree
 
 from views.custom_rendering import template_rendering_overrides
 
+from flask import current_app, g
+
 @template_rendering_overrides.register_custom_sort(('crk', 'eng'))
 def sort_by_analyses(search_result_obj, unsorted_entries_and_tags_and_paradigms):
     """ This is where we sort analyses first, and then everything else.
@@ -95,7 +97,7 @@ class CustomCrkSearch(CustomLookupType):
 
     def lookupLemma(self, lemma):
 
-        if len(lemma) <= 3:
+        if len(lemma) <= 3 or g._from == 'eng':
             match_fx = self.prepare_xpath(self.lemma_strict_match)
         else:
             match_fx = self.lemma
