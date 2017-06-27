@@ -34,6 +34,7 @@ from flask.views import View, MethodView
 from lexicon import FrontPageFormat
 
 from .reader import json_response
+from .custom_rendering import template_rendering_overrides
 
 from operator import itemgetter
 
@@ -379,6 +380,40 @@ class SearchResult(object):
 
         return self._entries
 
+    def sort_entries_and_tags_and_paradigm(self, unsorted_entries_and_tags_and_paradigms):
+        has_custom_sort = template_rendering_overrides.sort_entry_list_display.get((g._from, g._to), False)
+
+        if has_custom_sort:
+            return has_custom_sort(self, unsorted_entries_and_tags_and_paradigms)
+
+        def sort_key((lex, morph, p, l)):
+            _str_norm = 'string(normalize-space(%s))'
+            lemma = lex.xpath(_str_norm % './lg/l/text()')
+            return lemma
+
+        def sort_with_user_input_first(a_lemma, b_lemma):
+            # If one of these is the same as the user input, it goes
+            # first
+            if a_lemma == self.user_input:
+                return -1
+            elif b_lemma == self.user_input:
+                return 1
+            else:
+                # Otherwise sort as usual
+                if a_lemma < b_lemma:
+                    return -1
+                elif a_lemma > b_lemma:
+                    return 1
+                else:
+                    return 0
+
+            return 1
+
+        return sorted( unsorted_entries_and_tags_and_paradigms
+                     , key=sort_key
+                     , cmp=sort_with_user_input_first
+                     )
+
     @property
     def entries_and_tags_and_paradigms(self):
         if hasattr(self, '_entries_and_tags_and_paradigms'):
@@ -419,34 +454,8 @@ class SearchResult(object):
                                                              has_layout))
 
         # TODO: custom alphabetical order.
-
-        def sort_key((lex, morph, p, l)):
-            _str_norm = 'string(normalize-space(%s))'
-            lemma = lex.xpath(_str_norm % './lg/l/text()')
-            return lemma
-
-        def sort_with_user_input_first(a_lemma, b_lemma):
-            # If one of these is the same as the user input, it goes
-            # first
-            if a_lemma == self.user_input:
-                return -1
-            elif b_lemma == self.user_input:
-                return 1
-            else:
-                # Otherwise sort as usual
-                if a_lemma < b_lemma:
-                    return -1
-                elif a_lemma > b_lemma:
-                    return 1
-                else:
-                    return 0
-
-            return 1
-
-        return sorted( self._entries_and_tags_and_paradigms
-                     , key=sort_key
-                     , cmp=sort_with_user_input_first
-                     )
+        # TODO: sorting_problem
+        return self.sort_entries_and_tags_and_paradigm(self._entries_and_tags_and_paradigms)
 
     @property
     def analyses_without_lex(self):
@@ -680,6 +689,7 @@ class SearcherMixin(object):
             except:
                 return False
 
+        # TODO: sorting_problem
         for lz, az, paradigm, has_layout in search_result_obj.entries_and_tags_and_paradigms:
             if lz is not None:
 
