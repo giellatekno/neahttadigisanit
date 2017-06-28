@@ -1,3 +1,11 @@
+{# This is a version of the index page that will render for variant searches.
+
+   To define a specific variant, also define a
+   `variant_search_VARIANTTYPE.template` file, where VARIANTTYPE is whatever
+   type is defined in the .yaml file.
+
+#}
+
 {% extends 'base.html' %}
 
 {% block extra_js %}
