@@ -108,14 +108,14 @@ class CustomCrkSearch(CustomLookupType):
 
         # TODO: can we use a generalized spell relax function for this?
         fuzzings = {
-            u'a': u'[aâ]',
-            u'â': u'[aâ]',
-            u'i': u'[iî]',
-            u'î': u'[iî]',
-            u'e': u'[eê]',
-            u'ê': u'[eê]',
-            u'u': u'[uû]',
-            u'û': u'[uû]',
+            u'a': u'[aâā]',
+            u'â': u'[aâā]',
+            u'i': u'[iîī]',
+            u'î': u'[iîī]',
+            u'e': u'[eêē]',
+            u'ê': u'[eêē]',
+            u'u': u'[uûū]',
+            u'û': u'[uûū]',
         }
 
         lemma_fuzz = ''
