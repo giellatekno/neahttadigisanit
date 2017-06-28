@@ -148,3 +148,14 @@ def footer_template():
         **{'current_locale': get_locale()}
     )
     return {'footer_template': footer_template}
+
+@blueprint.context_processor
+def detail_page_search_form():
+    _from, _to = current_app.config.default_language_pair
+    if current_app.lexicon_templates.has_template( g.get('_from', _from),
+                                                  'detail_search_form.template',):
+        detail_page_search_template = True
+    else:
+        detail_page_search_template = False
+
+    return {'has_detail_page_search_form': detail_page_search_template}

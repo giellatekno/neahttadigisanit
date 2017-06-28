@@ -69,6 +69,7 @@ class TemplateConfig(object):
     """
     no_subview_rendering = [
         'variant_search.template',
+        'detail_search_form.template',
     ]
 
     def __init__(self, app=None, debug=False, cache=True):
