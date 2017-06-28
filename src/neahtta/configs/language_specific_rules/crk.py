@@ -130,18 +130,17 @@ class CustomCrkSearch(CustomLookupType):
 search_types.add_custom_lookup_type('regular')(CustomCrkSearch)
 
 # NB: eng->crk only 
-class SubstringLookups(CustomLookupType):
+class EngToCrkSubstringLookups(CustomLookupType):
     """
-    NB: for the moment this is eng-crk specific.
+    NB: for the moment this is eng-crk specific, this is defined in itwewina.config.yaml.in
 
     # TODO: document this
-    # TODO: sort matches
 
     """
 
     lemma = etree.XPath('.//e[contains(mg/tg/key/text(), $lemma)]')
 
-    def modifyNodes(self, nodes, lemma):
+    def filterNodes(self, nodes, lemma):
         """ This is our own custom modification within this search type
         will pop off definition nodes that do not match, by operating on
         clones and returning the clones.
@@ -203,9 +202,9 @@ class SubstringLookups(CustomLookupType):
         xp = etree.XPath(key_expr)
 
         nodes = self.XPath( xp, lemma=lemma)
-        return self.modifyNodes(nodes, lemma=lemma)
+        return self.filterNodes(nodes, lemma=lemma)
 
-search_types.add_custom_lookup_type('substring_match')(SubstringLookups)
+search_types.add_custom_lookup_type('substring_match')(EngToCrkSubstringLookups)
 
 # NB: this search type has not been registered, just copying here so it
 # will not get lost.
@@ -270,7 +269,7 @@ class KeywordLookups(CustomLookupType):
 
         return {'left': ts_text, 'pos': ts_pos, 'right': right_text}
 
-    def modifyNodes(self, nodes, lemma):
+    def filterNodes(self, nodes, lemma):
         """ 
         # TODO: update this so it's not operating on keywords, instead
         # definitions
@@ -333,7 +332,7 @@ class KeywordLookups(CustomLookupType):
         xp = etree.XPath(key_expr)
 
         nodes = self.XPath( xp, lemma=lemma)
-        return self.modifyNodes(nodes, lemma=lemma)
+        return self.filterNodes(nodes, lemma=lemma)
 
 
 @morphology.postgeneration_filter_for_iso('crk', 'crkMacr')
