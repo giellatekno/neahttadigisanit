@@ -9,6 +9,9 @@
    - If the translations that are shown to the end user are incorrect or
      inaccurate, these should be edited in `user_friendly_tags/itwewina.relabel`
 
+ * General: 
+   - remove full paradigm link
+
  #}
 
 {%- set first_l = lexicon_entry|xpath('lg/l')|first %}
@@ -47,15 +50,6 @@
     {%- endmacro %}
 
 {%- endif %}
-
-{# TODO: #}
-{%- macro full_paradigm_link() %}
-    <a class="full-paradigm-link"
-       style="opacity: .8;"
-       href="http://gtweb.uit.no/cgi-bin/smi/smi.cgi?text={{ lemma }}&pos={{ pos }}&mode=full&action=paradigm&lang=crk&plang=crk">
-        {%- trans -%}Full paradigm{%- endtrans -%} &nbsp;&rarr;
-    </a>
-{% endmacro -%}
 
 {%- if has_forms %}
 
@@ -118,9 +112,6 @@
     </dl>
 {% endif %}
 
-{% if paradigm_exists %}
-    {{ full_paradigm_link() }}
-{% endif %}
 {% endif -%}
 
 {# vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}
