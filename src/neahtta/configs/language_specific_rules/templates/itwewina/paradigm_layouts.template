@@ -1,0 +1,144 @@
+{# This manages paradigm layouts, which all have a table structure and
+   are more or less simple to render.
+
+   Overrides: 
+     - remove full paradigm link
+#}
+
+{% if layout %}
+    {# when this appears the second time in the mobile style, the IDs are different 
+     #}
+
+    {% set multiple_types = layout|length > 1 %}
+    {% set use_dropdown = layout|length > 3 %}
+
+    {# Construct the navigation menu when there are multiple paradigm
+       types generated for this entry. #}
+    {# TODO: if there are tons of tabs need a different UI, dropdown? #}
+
+    {{ mobile_layout_index }}
+
+    {% if multiple_types %}
+
+        {% if use_dropdown %}
+        <ul class="nav nav-tabs">
+            <li class="dropdown">
+                <a class="dropdown-toggle"
+                   data-toggle="dropdown"
+                   href="#">
+                   Paradigms
+                   <b class="caret"></b>
+                 </a>
+                <ul class="dropdown-menu">
+            {%- for l in layout %}
+                {% set layout_type = l.table.options.layout.type %}
+                <li class="{{ li_class }}">
+                    <a href="#paradigm-tab-{{ loop.index }}" data-toggle="tab">
+                        {{- layout_type -}}
+                    </a>
+                </li>
+            {% endfor %}
+            </ul>
+        </ul>
+        {% else %}
+        <ul class="nav nav-tabs">
+            {%- for l in layout %}
+
+                {%- if loop.first %}
+                    {%- set li_class = 'active' %}
+                {% else %}
+                    {%- set li_class = '' %}
+                {% endif -%}
+
+                {% set layout_type = l.table.options.layout.type %}
+
+                <li class="{{ li_class }}">
+                    <a href="#paradigm-tab-{{ loop.index }}" data-toggle="tab">
+                        {{- layout_type -}}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+    {% endif %}
+
+    <div class="tab-content">
+    {% for l in layout %}
+        {# First tab is visible #}
+        {%- if loop.first %}
+            {%- set tab_class = 'tab-pane active' %}
+        {% else %}
+            {%- set tab_class = 'tab-pane' %}
+        {% endif -%}
+
+        {%- set layout_type = l.table.options.layout.type %}
+        {%- set layout_desc = l.get_description(_to, _from) %}
+
+        <div class="{{ tab_class }}" id="paradigm-tab-{{ loop.index }}">
+
+            <table class="miniparadigm user-defined-layout" 
+                   data-type="{{ layout_type }}">
+                {%- for row in l.rows -%}
+                    <tr>
+                    {% for column in row %}
+
+                        {% set cell_classes = false %}
+                        {% set classes = '' %}
+
+                        {% if column.cell.col_span %}
+                            {% set span = ' colspan="%d"' % column.cell.col_span %}
+                        {% else %}
+                            {% set span = '' %}
+                        {% endif %}
+
+                        {% if column.cell.header or column.cell.horizontal_line %}
+                            {% set cell_type = 'th' %}
+                        {% else %}
+                            {% set cell_type = 'td' %}
+                        {% endif %}
+
+                        {% if column.cell.text_align %}
+                            {% set _style_css = 'text-align:%s;' % column.cell.text_align %}
+                            {% set style = ' style="%s"' % _style_css %}
+                        {% elif column.cell.horizontal_line %}
+                            {% set cell_classes = 'horizontal-line' %}
+                        {% else %}
+                            {% set style = '' %}
+                        {% endif %}
+
+                        {% if column.cell.internationalize %}
+                            {% set cell_value = column.value|tagfilter_generation(_from, _to) %}
+                        {% else %}
+                            {% set cell_value = column.value %}
+                        {% endif %}
+
+                        {% if cell_classes %}
+                            {% set classes = " class='%s'" % cell_classes %}
+                        {% endif %}
+
+                        <{{ cell_type }}{{ span }}{{ style }}{{ classes }}>
+                            {% if column.cell.tooltip %}
+                                <a href="#" data-toggle="tooltip" data-trigger="click hover" data-placement="bottom" data-title="{{ column.cell.tooltip }}">
+                                    {{ cell_value }}
+                                </span>
+                            {% else %}
+                                {{ cell_value }}
+                            {% endif %}
+                        </{{ cell_type }}>
+
+                    {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
+
+            {% if layout_desc %}
+                <p class="note">{{ layout_desc }}</p>
+            {% endif %}
+
+        </div>
+    {% endfor %}
+    </div>
+{% endif %}
+
+{# vim: set ts=4 sw=4 tw=72 syntax=jinja : #}
