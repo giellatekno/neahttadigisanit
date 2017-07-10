@@ -9,7 +9,7 @@ from views.custom_rendering import template_rendering_overrides
 
 from flask import current_app, g
 
-@template_rendering_overrides.register_custom_sort(('crk', 'eng'))
+@template_rendering_overrides.register_custom_sort(('crk', 'eng'), ('crkMacr', 'eng'))
 def sort_by_analyses(search_result_obj, unsorted_entries_and_tags_and_paradigms):
     """ This is where we sort analyses first, and then everything else.
 
