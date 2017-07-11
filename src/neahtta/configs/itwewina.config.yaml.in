@@ -75,6 +75,9 @@ Dictionaries:
         description: !gettext "aio âêîô" # " 
         # NB: must be same as analyser name
         short_name: "crk"
+        # this is what appears in place of 'crk' in some
+        # spots
+        user_friendly_short_name: "âêîô"
         # force locale: (but because english isn't specified, we don't change
         # anything)
         force_locale: 
@@ -95,6 +98,10 @@ Dictionaries:
         # NB: must be same as analyser name
         path: 'dicts/crkeng-macron.xml'
         short_name: "crkMacr"
+        #
+        # this is what appears in place of 'crkMacr' in some
+        # spots
+        user_friendly_short_name: "āēīō"
         # force locale: (but because english isn't specified, we don't change
         # anything)
         force_locale: 
@@ -111,6 +118,11 @@ Dictionaries:
   - source: eng
     target: crk
     path: 'dicts/engcrk.xml'
+    search_variants:
+     - type: "substring_match" # search_variant_substring_match.jinja
+       path: "dicts/engcrk.xml"
+       description: "substring_match"
+       example: "do -> do, undo"
 
     # search_variants:
     #  - type: "keyword"
