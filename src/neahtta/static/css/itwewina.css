@@ -2,6 +2,10 @@
     height: 550px;
 }
 
+.more-detail, .more-detail-link {
+    display: none;
+}
+
 .miniparadigm table td {
     white-space: pre-line;
 }
