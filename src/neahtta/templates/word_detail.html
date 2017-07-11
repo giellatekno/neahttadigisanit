@@ -95,8 +95,8 @@
 
 
     {% if more_detail_link %}
-        <p>
-            <a href="{{ url_for('.detailed_language_pair_search', _from=_from, _to=_to, wordform=user_input, format='html') }}">
+        <p class="more-detail">
+            <a class="more-detail-link" href="{{ url_for('.detailed_language_pair_search', _from=_from, _to=_to, wordform=user_input, format='html') }}">
                 <span lang="{{ current_locale }}">{% trans %}More information about this word{% endtrans %}</span>
             </a>
         </p>
