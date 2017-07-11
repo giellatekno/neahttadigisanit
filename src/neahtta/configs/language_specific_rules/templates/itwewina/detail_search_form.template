@@ -3,13 +3,18 @@
 #}
 
 
-<!--
-bbq
-{{ current_pair_settings.input_variants[0].onscreen_keyboard }}
--->
 {%- set keyboard = false %}
+{%- set keyboards = [] %}
 {% if current_pair_settings.input_variants|length > 0 %}
-    {% set keyboard = current_pair_settings.input_variants[0].onscreen_keyboard %}
+    {% for variant in current_pair_settings.input_variants %}
+      {% if variant.short_name == _from %}
+        {% do keyboards.append(variant.onscreen_keyboard) %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+    {% if keyboards|length > 0 %}
+        {% set keyboard = keyboards[0] %}
+      {% endif %}
 {% endif -%}
 
 {% if keyboard %}
