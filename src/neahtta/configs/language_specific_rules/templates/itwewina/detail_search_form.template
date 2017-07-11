@@ -1,20 +1,26 @@
 {# This template is modified from the default in the following ways:
  * add keyboard support
+ * include input_variants[].user_friendly_short_name in search form, crkMacr -> āēīō, etc.
 #}
 
 
 {%- set keyboard = false %}
 {%- set keyboards = [] %}
+{%- set variants = [] %}
 {% if current_pair_settings.input_variants|length > 0 %}
     {% for variant in current_pair_settings.input_variants %}
       {% if variant.short_name == _from %}
         {% do keyboards.append(variant.onscreen_keyboard) %}
+        {% do variants.append(variant) %}
         {% break %}
       {% endif %}
     {% endfor %}
     {% if keyboards|length > 0 %}
-        {% set keyboard = keyboards[0] %}
-      {% endif %}
+      {% set keyboard = keyboards[0] %}
+    {% endif %}
+    {% if variants|length > 0 %}
+      {% set current_var = variants[0] %}
+    {% endif %}
 {% endif -%}
 
 {% if keyboard %}
@@ -32,7 +38,7 @@
 <div class="input-prepend input-append">
  <div class="btn-group">
    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-       <span class="val_name">{{ _from }}→{{ _to }}</span>
+       <span class="val_name">{{ current_var.user_friendly_short_name }}→{{ _to }}</span>
      <span class="caret"></span>
    </button>
    <ul class="dropdown-menu" id="langpairs" role="menu"
@@ -41,19 +47,18 @@
     {# TODO: i18n #}
     {# TODO: dropdown select to language pair for form submit #}
     {% for iso_pair, pair_options in language_pairs.iteritems() %}
-     <li class="selected{%- if iso_pair[0] == _from and iso_pair[1] == _to %} active{% endif -%}"><a tabindex="-1" href="#"
-             data-value="{{ iso_pair[0]}}-{{ iso_pair[1] }}">
-            <span lang="{{ current_locale }}">{{ iso_pair[0]|iso_to_i18n }} ↔ {{ iso_pair[1]|iso_to_i18n }}</span>
-        </a></li>
         {% if pair_options.input_variants %}
             {% for variant in pair_options.input_variants %}
-                {% if iso_pair != (variant.short_name, iso_pair[1]) %}
-                     <li class="selected{%- if variant.short_name == _from and iso_pair[1] == _to %} active{% endif -%}"><a tabindex="-1" href="#"
-                             data-value="{{ variant.short_name}}-{{ iso_pair[1] }}">
-                            <span lang="{{ current_locale }}">{{ variant.short_name|iso_to_i18n }} ↔ {{ iso_pair[1]|iso_to_i18n }}</span>
-                        </a>
-                {% endif %}
+                 <li class="selected{%- if variant.short_name == _from and iso_pair[1] == _to %} active{% endif -%}"><a tabindex="-1" href="#"
+                         data-value="{{ variant.short_name}}-{{ iso_pair[1] }}">
+                        <span lang="{{ current_locale }}">{{ variant.short_name|iso_to_i18n }} ({{ variant.user_friendly_short_name }})↔ {{ iso_pair[1]|iso_to_i18n }}</span>
+                    </a>
             {% endfor %}
+        {% else %}
+             <li class="selected{%- if iso_pair[0] == _from and iso_pair[1] == _to %} active{% endif -%}"><a tabindex="-1" href="#"
+                     data-value="{{ iso_pair[0]}}-{{ iso_pair[1] }}">
+                    <span lang="{{ current_locale }}">{{ iso_pair[0]|iso_to_i18n }} ↔ {{ iso_pair[1]|iso_to_i18n }}</span>
+                </a></li>
         {% endif %}
     {% endfor %}
    </ul>
