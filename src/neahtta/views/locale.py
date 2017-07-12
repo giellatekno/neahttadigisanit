@@ -9,6 +9,12 @@ def set_locale(iso):
     from flask.ext.babel import refresh
 
     session['locale'] = iso
+
+    try:
+        del session['forced_locale']
+    except:
+        pass
+
     # Refresh the localization infos, and send the user back whence they
     # came.
     refresh()

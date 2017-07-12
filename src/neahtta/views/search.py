@@ -164,7 +164,7 @@ class DictionaryView(MethodView):
             layout_forces = opts.get('force_locale', {})
 
             if current_locale in layout_forces:
-                session['locale'] = layout_forces[current_locale]
+                session['force_locale'] = session['locale'] = layout_forces[current_locale]
                 # Refresh the localization infos, and send the user back whence they
                 # came.
                 refresh()
@@ -848,6 +848,7 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
     def post(self, _from, _to):
 
         self.check_pair_exists_or_abort(_from, _to)
+        self.force_locale(_from, _to)
 
         user_input = lookup_val = request.form.get('lookup', False)
 

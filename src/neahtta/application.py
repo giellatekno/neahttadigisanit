@@ -75,7 +75,11 @@ def register_babel(app):
 
         # Does the locale exist already?
         ses_lang = session.get('locale', None)
-        if ses_lang is not None:
+        forced_ses_lang = session.get('force_locale', None)
+
+        if forced_ses_lang is not None:
+            return forced_ses_lang
+        elif ses_lang is not None:
             return ses_lang
         else:
             # Is there a default locale specified in config file?
