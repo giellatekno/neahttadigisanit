@@ -47,10 +47,10 @@ Morphology:
     options: *MORPHOLOGY_OPTS
   # syllabics
   crkS:
-    tool: *LOOKUP
-    file: [*OPT, '/crk/bin/analyser-gt-desc.Cans.xfst']
-    inverse_file: [*OPT, '/crk/bin/generator-gt-norm.Cans.xfst']
-    format: 'xfst'
+    tool: *HLOOKUP
+    file: [*OPT, '/crk/bin/analyser-dict-gt-desc.Cans.hfstol']
+    inverse_file: [*OPT, '/crk/bin/generator-dict-gt-norm.Cans.xfst']
+    format: 'hfst'
     options: *MORPHOLOGY_OPTS
 
 Languages:
@@ -111,6 +111,12 @@ Dictionaries:
           - "ē"
           - "ī"
           - "ō"
+
+      - type: "syllabics"
+        description: !gettext "syllabics" 
+        path: 'dicts/crkeng.xml'
+        short_name: "crkS"
+
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/c_korp"
     is_korp_default_lang: True
