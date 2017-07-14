@@ -17,6 +17,7 @@ $(document).ready( function() {
   });
 
  $(document).find('#langpairs li a').click(function(obj) {
+   console.log(obj);
    var elem    = $(obj.target).parent('a');
    var new_val = $(obj.target).attr('data-value') ||
                  $(elem).attr('data-value') ;
@@ -27,7 +28,8 @@ $(document).ready( function() {
      , _label = "" + (_from) + " → " + (_to)
      ;
    $(document).find('#neahttadigisanit button span.val_name').html(_label);
-   $(document).find('#neahttadigisanit').attr('action', _url);
+   var url_base = $(document).find('#neahttadigisanit').attr('data-url-base') || "";
+   $(document).find('#neahttadigisanit').attr('action', url_base + _url);
  });
 
 });

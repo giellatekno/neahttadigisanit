@@ -1,26 +1,30 @@
 {# This template is modified from the default in the following ways:
  * add keyboard support
  * include input_variants[].user_friendly_short_name in search form, crkMacr -> āēīō, etc.
+ * include data-url-base in form to retarget search
 #}
 
 
 {%- set keyboard = false %}
 {%- set keyboards = [] %}
 {%- set variants = [] %}
-{% if current_pair_settings.input_variants|length > 0 %}
-    {% for variant in current_pair_settings.input_variants %}
-      {% if variant.short_name == _from %}
-        {% do keyboards.append(variant.onscreen_keyboard) %}
-        {% do variants.append(variant) %}
-        {% break %}
-      {% endif %}
-    {% endfor %}
-    {% if keyboards|length > 0 %}
-      {% set keyboard = keyboards[0] %}
-    {% endif %}
-    {% if variants|length > 0 %}
-      {% set current_var = variants[0] %}
-    {% endif %}
+{%- set current_var = false %}
+{% if current_pair_settings.input_variants %}
+    {% if current_pair_settings.input_variants|length > 0 %}
+        {% for variant in current_pair_settings.input_variants %}
+          {% if variant.short_name == _from %}
+            {% do keyboards.append(variant.onscreen_keyboard) %}
+            {% do variants.append(variant) %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+        {% if keyboards|length > 0 %}
+          {% set keyboard = keyboards[0] %}
+        {% endif %}
+        {% if variants|length > 0 %}
+          {% set current_var = variants[0] %}
+        {% endif %}
+    {% endif -%}
 {% endif -%}
 
 {% if keyboard %}
@@ -34,6 +38,7 @@
 {% endif %}
 <form id="neahttadigisanit" class="form-inline pull-left"
    method="post"
+   data-url-base="/itwewina"
    action="{{ url_for('.canonical_root_search_pair', _from=_from, _to=_to) }}">
 <div class="input-prepend input-append">
  <div class="btn-group">
