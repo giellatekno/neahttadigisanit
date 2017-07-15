@@ -648,16 +648,20 @@ class Config(Config):
                 source = _set.get('source_morphology')
                 target = _set.get('target_ui_language')
 
-                tags = _set.get('tags')
-                generation = _set.get('generation_tags')
+                _set.pop('source_morphology')
+                _set.pop('target_ui_language')
 
-                if source in self.languages.keys() and target in self.languages.keys():
-                    if generation:
-                        _yaml_sets[(source, target)] = tags
-                        _yaml_sets[(source, target, 'generation')] = generation
-                    else:
-                        _yaml_sets[(source, target)] = tags
-                        _yaml_sets[(source, target, 'generation')] = tags
+                # TODO: raise error if missing 'tags'? 
+
+                # iterate through sets and set them.
+                for set_name, set_tags in _set.iteritems():
+                    if source in self.languages.keys() and target in self.languages.keys():
+                        if set_name == 'generation_tags':
+                            _yaml_sets[(source, target, 'generation')] = set_tags
+                        elif set_name == 'tags':
+                            _yaml_sets[(source, target)] = set_tags
+                        else:
+                            _yaml_sets[(source, target, set_name)] = set_tags
             return _yaml_sets
 
         for _p, dirs, files in os.walk(_path):

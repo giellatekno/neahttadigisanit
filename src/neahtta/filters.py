@@ -113,6 +113,11 @@ def register_filters(app):
         kwargs['generation'] = True
         return tagfilter(*args, **kwargs)
 
+    @app.template_filter('tagfilter_by')
+    def tagfilter_by(tag_string, _f, _t, tagset, **kwargs):
+        from morphology.utils import tagfilter
+        return tagfilter(tag_string, _f, _t, tagset=tagset, **kwargs)
+
     @app.template_filter('xml_lang')
     def xml_lang(nodes, _to):
         return [n for n in nodes if _to in n.xpath('@xml:lang')]

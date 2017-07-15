@@ -134,8 +134,10 @@ def tagfilter_conf(filters, s, *args, **kwargs):
 
     return tagsep.join([a for a in filtered if a.strip()])
 
-def tagfilter(s, lang_iso, targ_lang, generation=False, tagsep=' '):
-    if generation:
+def tagfilter(s, lang_iso, targ_lang, generation=False, tagset=False, tagsep=' '):
+    if tagset:
+        filters = current_app.config.tag_filters.get((lang_iso, targ_lang, tagset), False)
+    elif generation:
         filters = current_app.config.tag_filters.get((lang_iso, targ_lang, 'generation'), False)
     else:
         filters = current_app.config.tag_filters.get((lang_iso, targ_lang), False)
