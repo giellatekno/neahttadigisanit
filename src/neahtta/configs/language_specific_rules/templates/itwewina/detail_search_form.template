@@ -62,7 +62,7 @@
         {% else %}
              <li class="selected{%- if iso_pair[0] == _from and iso_pair[1] == _to %} active{% endif -%}"><a tabindex="-1" href="#"
                      data-value="{{ iso_pair[0]}}-{{ iso_pair[1] }}">
-                    <span lang="{{ current_locale }}">{{ iso_pair[0]|iso_to_i18n }} ↔ {{ iso_pair[1]|iso_to_i18n }}</span>
+                    <span lang="{{ current_locale }}">{{ iso_pair[0]|iso_to_i18n }} &rarr; {{ iso_pair[1]|iso_to_i18n }}</span>
                 </a></li>
         {% endif %}
     {% endfor %}
