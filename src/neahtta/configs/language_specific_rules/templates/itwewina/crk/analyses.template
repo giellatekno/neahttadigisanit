@@ -4,11 +4,26 @@
    All that is relevant here is the `analyses` variable.
 
    - Here we also display the lexicon entry stem along with the lemma.
+   - If a tag is PV display a tooltip with the definition
 
 #}
 
 {%- import "lexicon.macros" as macros with context -%}
 {%- import "korp.macros" as korp with context -%}
+
+{%- macro render_tag_piece(tag, tooltip) -%}
+  {%- if tooltip -%}
+    <a href="#" data-toggle="tooltip" data-trigger="click hover" data-placement="bottom" data-title="{{ tooltip }}">{{ tag }}</a>
+  {%- else -%}
+    {{ tag }}
+  {%- endif -%}
+{% endmacro %}
+
+{%- macro render_tag(formatted) -%}
+  {%- for tag, tooltip in formatted -%}{%- if not tag %}{% continue -%}{% endif -%}
+    {{ render_tag_piece(tag, tooltip) }}{% if not loop.last %}&nbsp;&plus;&nbsp;{% endif %}
+  {% endfor %}
+{% endmacro %}
 
 <dl class="possible_analyses grid_analyses">
     {% if lexicon_entry %}
@@ -64,19 +79,29 @@
                             {% set repl = '' %}
                         {% endif %}
 
-                        {# Replace the Lemma tag with the actual lemma, then
-                           reformat with spaces around the plus #}
+                        {# iterate through tag pieces and make some replacements #}
+                        {% set _formatted_tags = [] %}
+                        {% for lt in lem.tag %}
+                            {% set lt_r = lt %}
+                            {# Replace the Lemma tag with the actual lemma, then
+                               reformat with spaces around the plus #}
+                            {% if lt == first_f.lemma %}
+                                {% set lt_r = repl|tagfilter(_from, _to, tagsep='+') %}
+                                {% set tooltip = false %}
+                            {% elif 'PV/' in lt %}
+                                {% set lt_r = lt|tagfilter(_from, _to, tagsep='+') %}
+                                {% set tooltip = lt|tagfilter_by(_from, _to, tagsep='+', tagset='preverb_definitions') %}
+                            {% else %}
+                                {% set lt_r = lt|tagfilter(_from, _to, tagsep='+') %}
+                                {% set tooltip = false %}
+                            {% endif %}
+                            {% do _formatted_tags.append((lt_r, tooltip)) %}
+                        {% endfor %}
 
-                        {% set _formatted_tag = '+'.join(lem.tag)|replace(first_f.lemma, repl)|tagfilter(_from, _to, tagsep='+') %}
-                        {# Add space padding at a different stage, otherwise it will mess up with find and replace above #}
-                        {% set formatted_tag = ' + '.join(_formatted_tag.split('+')) %}
-                        {% if formatted_tag.startswith('+ ') %}
-                            {% set formatted_tag = formatted_tag[2::] %}
-                        {% endif %}
-
-                        {% if formatted_tag not in existing_tags %}
-                            <li>&larr; {{ formatted_tag }}</li>
-                            {% do existing_tags.append(formatted_tag) %}
+                        {% set check_key = '+'.join(_formatted_tag) %}
+                        {% if check_key not in existing_tags %}
+                            <li>&larr; {{ render_tag(_formatted_tags) }}
+                            {% do existing_tags.append(check_key) %}
                         {% endif %}
 
                     {% endfor %}

@@ -164,6 +164,9 @@ Relabel:
       "PrA": "PrA"
       "PrI": "PrI"
 
+    preverb_definitions: 
+      "PV/kakwe": "Preverb: kakwê- 'try to, attempt to'"
+
     # These are the short tags.
     generation_tags: &crk_eng_generation
       # Lexicon tags
@@ -257,7 +260,13 @@ Relabel:
       # This is a dummy tag that is inserted within NDS to handle inserting the
       # stem in the right place in the analysis column.
       Tpl/Lemma: ""
+
   - source_morphology: 'crkMacr'
+    target_ui_language: 'eng'
+    tags: 
+      <<: *crk_eng
+
+  - source_morphology: 'crkS'
     target_ui_language: 'eng'
     tags: 
       <<: *crk_eng
