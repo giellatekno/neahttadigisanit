@@ -121,7 +121,7 @@
                             {% if column.cell.tooltip %}
                                 <a href="#" data-toggle="tooltip" data-trigger="click hover" data-placement="bottom" data-title="{{ column.cell.tooltip }}">
                                     {{ cell_value }}
-                                </span>
+                                </a>
                             {% else %}
                                 {{ cell_value }}
                             {% endif %}
