@@ -46,12 +46,15 @@ def register_filters(app):
     @app.template_filter('iso_has_flag')
     def iso_has_flag(iso):
         import os
-        if iso in FLAGS:
+        if app.config.menu_flags:
+            if iso in FLAGS:
+                return FLAGS[iso]
+            _path = os.path.join('static/img/flags/', iso + '_20x15.png')
+            exists = file_exists(_path)
+            FLAGS[iso] = exists
             return FLAGS[iso]
-        _path = os.path.join('static/img/flags/', iso + '_20x15.png')
-        exists = file_exists(_path)
-        FLAGS[iso] = exists
-        return FLAGS[iso]
+        else:
+            return False
 
     @app.template_filter('filter_pairs_by_source')
     def filter_pairs_by_source(pairs, source):

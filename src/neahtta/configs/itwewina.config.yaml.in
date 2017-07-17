@@ -5,6 +5,7 @@ ApplicationSettings:
   app_meta_title: !gettext "Online Plains Cree dictionary"
   fcgi_script_path: '/itwewina'
   render_template_errors: true
+  menu_flags: false
   short_name: "itwewina"
   paradigm_layouts: true
   default_locale: "crk"
@@ -49,7 +50,7 @@ Morphology:
   crkS:
     tool: *HLOOKUP
     file: [*OPT, '/crk/bin/analyser-dict-gt-desc.Cans.hfstol']
-    inverse_file: [*OPT, '/crk/bin/generator-dict-gt-norm.Cans.xfst']
+    inverse_file: [*OPT, '/crk/bin/generator-dict-gt-norm.Cans.hfstol']
     format: 'hfst'
     options: *MORPHOLOGY_OPTS
 
@@ -156,6 +157,10 @@ Dictionaries:
     #     # anything)
     #     force_locale: 
     #       crk: "crk_Macr"
+
+  # - source: crkS
+  #   target: eng
+  #   path: 'dicts/crkeng.xml'
 
 
 ReaderConfig:

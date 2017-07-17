@@ -361,6 +361,12 @@ class Config(Config):
         return _p
 
     @property
+    def menu_flags(self):
+        _p = self.yaml.get('ApplicationSettings', {})\
+                      .get('menu_flags', True)
+        return _p
+
+    @property
     def render_template_errors(self):
         _p = self.yaml.get('ApplicationSettings', {})\
                       .get('render_template_errors', False)
