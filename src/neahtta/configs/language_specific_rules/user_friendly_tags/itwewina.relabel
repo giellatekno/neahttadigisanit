@@ -163,9 +163,10 @@ Relabel:
       "PR": "PR"
       "PrA": "PrA"
       "PrI": "PrI"
+      "PV/kakwe": "Preverb: kakwê-"
 
     preverb_definitions:  &crk_eng_preverbs
-      "PV/kakwe": "Preverb: kakwê- 'try to, attempt to'"
+      "PV/kakwe": "'try to, attempt to'"
 
     # These are the short tags.
     generation_tags: &crk_eng_generation
