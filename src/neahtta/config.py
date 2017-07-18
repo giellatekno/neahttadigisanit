@@ -128,7 +128,7 @@ class Config(Config):
 
     @property
     def ISO_DISPLAY_RELABELS(self):
-        return self.language_configs_yaml.get('isos_to_names', {})
+        return self.language_configs_yaml.get('iso_display_relabels', {})
 
     @property
     def ISO_TRANSFORMS(self):
