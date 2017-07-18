@@ -634,6 +634,16 @@ crkeng.xml: $(GTHOME)/art/dicts/crk/Wolvengrey/crkeng.xml \
 	rm $@.tmp $@.tmp.2
 	rm -rf crkeng_tmp/
 
+crkeng-cans.xml: crkeng.xml
+	@echo "****************************************"
+	@echo "** Building crk-eng-syllabics lexicon **"
+	@echo "****************************************"
+	@echo "  1.) filter lg/l"
+	cat $^ | python ../tools/filter_xpath.py "./e" "./lg/l" "hfst_lookup" $(GTHOME)/langs/crk/src/orthography/Latn-to-Cans.lookup.hfst > $@.tmp
+	@echo "  2.) filter lg/stem"
+	cat $@.tmp | python ../tools/filter_xpath.py "./e" "./lg/stem" "hfst_lookup" $(GTHOME)/langs/crk/src/orthography/Latn-to-Cans.lookup.hfst > $@
+	rm $@.tmp
+
 
 crkeng-macron.xml: crkeng.xml
 	@echo "*************************************"
