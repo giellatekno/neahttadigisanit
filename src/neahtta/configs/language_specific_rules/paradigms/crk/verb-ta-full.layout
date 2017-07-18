@@ -310,7 +310,7 @@ tooltips:
 | "1s → 2p"                      | PV/ka+*+Cnj+Prs+1Sg+2PlO       | PV/ta+*+Cnj+Prs+1Sg+2PlO       |
 | "1p → 2s"                      | PV/ka+*+Cnj+Prs+1Pl+2SgO       | PV/ta+*+Cnj+Prs+1Pl+2SgO       |
 | "1p → 2p"                      | PV/ka+*+Cnj+Prs+1Pl+2PlO       | PV/ta+*+Cnj+Prs+1Pl+2PlO       |
-| "                              |                                |                                |
+|                                |                                |                                |
 | "Mixed participants"           | : "Conjunct: ka-"              | : "Conjunct: ta-"              |
 | "1s → 3s"                      | PV/ka+*+Cnj+Prs+1Sg+3SgO       | PV/ta+*+Cnj+Prs+1Sg+3SgO       |
 | "2s → 3s"                      | PV/ka+*+Cnj+Prs+2Sg+3SgO       | PV/ta+*+Cnj+Prs+2Sg+3SgO       |
