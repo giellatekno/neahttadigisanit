@@ -1,6 +1,6 @@
 ﻿""" Filter the results of an XPath query through a command.
 
-Usage: tools/filter_xpath.py <xpath_node> <xpath_statement> <commandline_tool>
+Usage: tools/filter_xpath.py <xpath_node> <xpath_statement> <commandline_tool> <commandline_tool_args>
 
 Options:
     -h --help                  Show this screen.
@@ -9,6 +9,10 @@ Options:
     -l --local-audio-source    Use local file source, do not download [default: false]
     -o --output-file=PATH      Destination file for edited XML
 """
+
+# TODO:  actually add commandline tool args 
+#   cat dicts/crkeng.xml| python tools/filter_xpath.py "./e" "./lg/l" "test_cmd.sh" 1> dicts/crkeng-cans.xml
+
 
 # TODO: option for no fetch, incase they are stored locally: <path_to_audio> is
 # the target compressed audio store for now, but could serve as local copy too
@@ -27,8 +31,8 @@ from lxml import etree
 command = None
 from sh import hfst_lookup
 
-def run_cmd(_in):
-    tool = hfst_lookup('/Users/pyry/gtsvn/langs/crk/src/orthography/Latn-to-Cans.lookup.hfst', _in=_in.encode('utf-8'), _bg=True)
+def run_cmd(_in, args):
+    tool = hfst_lookup(*args, _in=_in.encode('utf-8'), _bg=True)
     stsrs = []
     for l in tool.split('\n\n'):
         ll = l.split('\t')
@@ -39,7 +43,7 @@ def run_cmd(_in):
     return stsrs
 
 # lxml_root, [(source, target), ... ]
-def replace_xpath(xml_root, nodes, elems):
+def replace_xpath(xml_root, nodes, elems, tool_name=False, tool_args=False):
     import copy
     root_duplicate = copy.deepcopy(xml_root)
 
@@ -53,15 +57,19 @@ def replace_xpath(xml_root, nodes, elems):
     convert = []
     for node in all_nodes:
         strs = node.xpath(elems)
-        convert.append(strs[0].text)
+        if len(strs) > 0:
+            if strs[0].text is not None:
+                convert.append(strs[0].text)
 
     print >> sys.stderr, len(convert)
-    converted = run_cmd('\n'.join(convert))
+    converted = run_cmd('\n'.join(convert), tool_args)
     print >> sys.stderr, len(converted)
     for c, node in zip(converted, all_nodes):
         strs = node.xpath(elems)
         # print c, strs[0].text
-        strs[0].text = c.strip()
+        if len(strs) > 0:
+            if strs[0].text is not None:
+                strs[0].text = c.strip()
     # new xml root
     return root_duplicate
 
@@ -89,11 +97,12 @@ def main():
 
     xp_n = arguments.get('<xpath_node>')
     xp = arguments.get('<xpath_statement>')
-    # tool = init_tool(arguments.get('<commandline_tool>'))
+    tool_name = arguments.get('<commandline_tool>')
+    tool_args = arguments.get('<commandline_tool_args>')
 
     root = etree.parse(sys.stdin)
 
-    updated_xml = replace_xpath(root, nodes=xp_n, elems=xp)
+    updated_xml = replace_xpath(root, nodes=xp_n, elems=xp, tool_name=tool_name, tool_args=tool_args.split(' '))
     write_xml(updated_xml, arguments.get('--output-file'))
     return 0
 
