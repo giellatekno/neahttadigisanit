@@ -11,7 +11,7 @@ def set_locale(iso):
     session['locale'] = iso
 
     try:
-        del session['forced_locale']
+        del session['force_locale']
     except:
         pass
 
