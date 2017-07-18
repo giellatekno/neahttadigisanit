@@ -21,8 +21,10 @@
 # TODO: put these in individual project conf files
 # .py: ISO_DISPLAY_RELABELS
 iso_display_relabels:
-  'crk':      'âêîô'
+  'crk':      'crk'
   'crk_Macr': 'āēīō'
+  'crk_Syll': 'ᓀᐦᐃᔭᐍᐏᐣ'
+
   
 # .py: NAMES
 # these names will be used to generate localization files
@@ -151,6 +153,7 @@ isos_to_demonym:
   "fi": "Suomi"
   "crk": "nêhiyawêwin"
   "crk_Macr": "nēhiyawēwin"
+  "crk_Syll": "ᓀᐦᐃᔭᐍᐏᐣ"
   "eng": "English"
   "et": "Eesti"
   "est": "Eesti"
