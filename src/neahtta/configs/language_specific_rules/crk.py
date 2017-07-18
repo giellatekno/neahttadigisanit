@@ -9,7 +9,7 @@ from views.custom_rendering import template_rendering_overrides
 
 from flask import current_app, g
 
-@template_rendering_overrides.register_custom_sort(('crk', 'eng'), ('crkMacr', 'eng'))
+@template_rendering_overrides.register_custom_sort(('crk', 'eng'), ('crkMacr', 'eng'), ('crkS', 'eng'))
 def sort_by_analyses(search_result_obj, unsorted_entries_and_tags_and_paradigms):
     """ This is where we sort analyses first, and then everything else.
 
@@ -335,7 +335,7 @@ class KeywordLookups(CustomLookupType):
         return self.filterNodes(nodes, lemma=lemma)
 
 
-@morphology.postgeneration_filter_for_iso('crk', 'crkMacr')
+@morphology.postgeneration_filter_for_iso('crk', 'crkMacr', 'crkS')
 def force_hyphen(generated_forms, *input_args, **input_kwargs):
     """ For any +Cnj forms that are generated, filter out those
     without ê- """
@@ -357,7 +357,7 @@ def force_hyphen(generated_forms, *input_args, **input_kwargs):
 
     return map(form_fx, generated_forms)
 
-@morphology.tag_filter_for_iso('crk', 'crkMacr')
+@morphology.tag_filter_for_iso('crk', 'crkMacr', 'crkS')
 def adjust_tags_for_gen(lemma, tags, node=None, **kwargs):
     """ **tag filter**: Lexicon -> FST changes.
 
