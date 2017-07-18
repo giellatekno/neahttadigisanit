@@ -168,6 +168,11 @@ class DictionaryView(MethodView):
                 # Refresh the localization infos, and send the user back whence they
                 # came.
                 refresh()
+            else:
+                try:
+                    del session['force_locale']
+                except:
+                    pass
 
         return False
 
