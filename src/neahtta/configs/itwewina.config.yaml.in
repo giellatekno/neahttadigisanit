@@ -85,7 +85,6 @@ Dictionaries:
         force_locale: 
           crk: "crk"
           crk_Macr: "crk"
-          crk_Syll: "crk_Syll"
         onscreen_keyboard: &CRK_KEYS_CIRC
           - "â"
           - "ê"
@@ -109,7 +108,7 @@ Dictionaries:
         # anything)
         force_locale: 
           crk: "crk_Macr"
-          crk_Syll: "crk_Syll"
+          crk_Macr: "crk_Macr"
         onscreen_keyboard: &CRK_KEYS_MACR
           - "ā"
           - "ē"
@@ -121,8 +120,8 @@ Dictionaries:
         path: 'dicts/crkeng-cans.xml'
         short_name: "crkS"
         force_locale: 
-          crk: "crk_Syll"
-          crk_Syll: "crk_Syll"
+          crk: "crk"
+          crk_Macr: "crk_Macr"
 
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/c_korp"
