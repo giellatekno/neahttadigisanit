@@ -675,10 +675,20 @@ engcrk-macron.xml: engcrk.xml
 					| $(SED) -e 's/ô/ō/'  \
 					> $@
 
+engcrk-cans.xml: engcrk.xml
+	@echo "****************************************"
+	@echo "** Building crk-eng-syllabics lexicon **"
+	@echo "****************************************"
+	@echo "  1.) filter mg/tg/t"
+	cat $^ | python ../tools/filter_xpath.py "./e" "./mg/tg/t" "hfst_lookup" $(GTHOME)/langs/crk/src/orthography/Latn-to-Cans.lookup.hfst > $@
+
+
+
+
 .PHONY: itwewina-lexica
 itwewina-lexica: LEX_COMPILE_LANGS := $(ITWEWINA_LANGS_LEXICA)
 itwewina-lexica: LEX_COMPILE_WORDS_DICTS := $(ITWEWINA_WORDS_DICTS_LEXICA)
-itwewina-lexica: crkeng.xml engcrk.xml engcrk-macron.xml crkeng-macron.xml compile_langs_lexicon compile_words_dicts_lexicon
+itwewina-lexica: crkeng.xml engcrk.xml engcrk-macron.xml engcrk-cans.xml crkeng-macron.xml crkeng-cans.xml compile_langs_lexicon compile_words_dicts_lexicon
 
 .PHONY: itwewina
 itwewina: GT_COMPILE_LANGS := $(ITWEWINA_LANGS_ANALYSERS)

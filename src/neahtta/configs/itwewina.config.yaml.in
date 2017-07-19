@@ -133,8 +133,16 @@ Dictionaries:
     search_variants:
      - type: "substring_match" # search_variant_substring_match.jinja
        path: "dicts/engcrk.xml"
-       description: "substring_match"
-       example: "do -> do, undo"
+       description: !gettext "aio âêîô" # " 
+       # example: "do -> do, undo"
+     - type: "substring_match" # search_variant_substring_match.jinja
+       path: "dicts/engcrk-macron.xml"
+       description: !gettext "aio āēīō" # " 
+       # example: "do -> do, undo"
+     - type: "substring_match" # search_variant_substring_match.jinja
+       path: "dicts/engcrk-cans.xml"
+       description: !gettext "ᒐᐦᑲᓯᓇᐦᐃᑲᐣ" 
+       # example: "do -> do, undo"
 
     # search_variants:
     #  - type: "keyword"
