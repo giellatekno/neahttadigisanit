@@ -58,18 +58,21 @@ def replace_xpath(xml_root, nodes, elems, tool_name=False, tool_args=False):
     for node in all_nodes:
         strs = node.xpath(elems)
         if len(strs) > 0:
-            if strs[0].text is not None:
-                convert.append(strs[0].text)
+            for s in strs:
+                if s.text is not None:
+                    convert.append(s.text)
 
     print >> sys.stderr, len(convert)
     converted = run_cmd('\n'.join(convert), tool_args)
     print >> sys.stderr, len(converted)
-    for c, node in zip(converted, all_nodes):
+    for node in all_nodes:
         strs = node.xpath(elems)
         # print c, strs[0].text
         if len(strs) > 0:
-            if strs[0].text is not None:
-                strs[0].text = c.strip()
+            for s in strs:
+                if s.text is not None:
+                    s.text = converted[0].strip()
+                    converted.pop(0)
     # new xml root
     return root_duplicate
 
