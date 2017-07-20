@@ -7,6 +7,7 @@
 
    overrides here: 
      - sorting by @rank attribute
+     - remove target language filter of meaning groups
 
 #}
  
@@ -14,7 +15,7 @@
 
 {% for meaning_group in lexicon_entry|xpath('./mg')|sortby_xpath('./@rank') %}
 
-    {% set translation_groups = meaning_group|xpath('./tg')|xml_lang(_to) %}
+    {% set translation_groups = meaning_group|xpath('./tg') %}
 
     {% if translation_groups|count > 0 %}
         <li>
