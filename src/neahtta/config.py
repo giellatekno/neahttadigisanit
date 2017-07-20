@@ -552,11 +552,19 @@ class Config(Config):
             if variants:
                 for v in variants:
                     path = v.get('path', item.get('path'))
-                    if v.get('short_name') != source:
-                        language_pairs[(v.get('short_name'), target)] = {
-                            'orig_pair': (source, target),
-                            'path': path,
-                        }
+                    target_variant = v.get('display_variant', False)
+                    if not target_variant:
+                        if v.get('short_name') != source:
+                            language_pairs[(v.get('short_name'), target)] = {
+                                'orig_pair': (source, target),
+                                'path': path,
+                            }
+                    else:
+                        if v.get('short_name') != target:
+                            language_pairs[(source, v.get('short_name'))] = {
+                                'orig_pair': (source, target),
+                                'path': path,
+                            }
 
         self._variant_dictionaries = language_pairs
         return language_pairs
@@ -1199,11 +1207,19 @@ class Config(Config):
         variant_options = False
         if is_variant:
             orig_pair_variants = pair_settings.get('input_variants')
-            variant_opts = filter( lambda x: x.get('short_name') == _from
+            print orig_pair_variants
+            variant_opts = filter( lambda x: x.get('short_name') == _from and not x.get('display_variant', False)
                                  , orig_pair_variants
                                  )
             if len(variant_opts) > 0:
                 variant_options = variant_opts[0]
+
+            d_variant_opts = filter( lambda x: x.get('short_name') == _to and x.get('display_variant', False)
+                                   , orig_pair_variants
+                                   )
+            if len(d_variant_opts) > 0:
+                variant_options = d_variant_opts[0]
+
         else:
             if pair_settings:
                 orig_pair_variants = pair_settings.get('input_variants')

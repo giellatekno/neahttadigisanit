@@ -1,0 +1,25 @@
+
+{# Start a new nav if there are variants #}
+{% if pair_has_variant %}
+    {# Only display if the pair is the current one the user is looking at #}
+    {%- if iso_pair[0] == _from and iso_pair[1] == _to or orig_pair == iso_pair %}
+        </ul>
+        <span class="nav-header variantnote" lang="{{ current_locale }}">{% trans %}Written variant{% endtrans %}</span>
+        <ul class="nav nav-collapse nav-tabs nav-stacked subnavcoloring">
+            {% for variant in pair_options.input_variants %}
+                {% if variant.display_variant %}
+                    <!-- bbq: {{ variant }} -->
+                    <li{% if _to == variant.short_name %} class="active"{% endif %}>
+                        <a href="{{ url_for('.canonical_root_search_pair', _from=_from, _to=variant.short_name) }}">{{ gettext(variant.description)|safe }}{% if variant.example %} {{ gettext(variant.example)|safe }}{% endif %}</a>
+                    </li>
+                {% else %}
+                    <li{% if _from == variant.short_name %} class="active"{% endif %}>
+                        <a href="{{ url_for('.canonical_root_search_pair', _from=variant.short_name, _to=_to) }}">{{ gettext(variant.description)|safe }}{% if variant.example %} {{ gettext(variant.example)|safe }}{% endif %}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        <ul class="nav nav-collapse nav-tabs nav-stacked">
+    {%- endif -%}
+{%- endif -%}
+

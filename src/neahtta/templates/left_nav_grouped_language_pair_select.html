@@ -66,23 +66,9 @@
                     </a>
                 </li>
 
-                {# Start a new nav if there are variants #}
-                {% if pair_has_variant and active_pair %}
-                    </ul>
-                    <span class="nav-header variantnote" lang="{{ current_locale }}">{% trans %}Written variant{% endtrans %}</span>
-                    <ul class="nav nav-collapse nav-tabs nav-stacked subnavcoloring">
-                    {# Only display if the pair is the current one the user is looking at #}
-                    {%- if iso_pair[0] == _from and iso_pair[1] == _to or orig_pair == iso_pair %}
-                        {% for variant in pair_options.input_variants %}
-                           	<li {% if _from == variant.short_name %} class="active"{% endif %}>
-                                <a href="{{ url_for('.canonical_root_search_pair', _from=variant.short_name, _to=_to) }}"><span lang="{{ current_locale }}">{{ gettext(variant.description)|safe }}</span>{% if variant.example %} <span lang="{{ current_locale }}">{{ gettext(variant.example)|safe }}</span>{% endif %}</a>
-                            </li>
-                        {% endfor %}
-                    {%- endif -%}
-                    </ul>
-                {%- endif -%}
-
+                {% include 'left_nav_input_variants.html' %}
                 {% include 'left_nav_search_variants.html' %}
+
 
                 {# TODO: input variants go here too #}
 
