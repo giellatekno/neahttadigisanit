@@ -1,6 +1,6 @@
 ApplicationSettings:
   # relative to directory containing application.py file
-  configs: "configs/language_specific_rules/"
+  configs: "../rules/"
   app_name: !gettext "itwêwina"
   app_meta_title: !gettext "Online Plains Cree dictionary"
   fcgi_script_path: '/itwewina'
@@ -130,19 +130,39 @@ Dictionaries:
   - source: eng
     target: crk
     path: 'dicts/engcrk.xml'
-    search_variants:
-     - type: "substring_match" # search_variant_substring_match.jinja
-       path: "dicts/engcrk.xml"
-       description: !gettext "aio âêîô" # " 
-       # example: "do -> do, undo"
-     - type: "substring_match" # search_variant_substring_match.jinja
-       path: "dicts/engcrk-macron.xml"
-       description: !gettext "aio āēīō" # " 
-       # example: "do -> do, undo"
-     - type: "substring_match" # search_variant_substring_match.jinja
-       path: "dicts/engcrk-cans.xml"
-       description: !gettext "ᒐᐦᑲᓯᓇᐦᐃᑲᐣ" 
-       # example: "do -> do, undo"
+    input_variants: 
+      - type: "standard"
+        description: !gettext "aio âêîô" # " 
+        short_name: "crk"
+        path: 'dicts/engcrk.xml'
+        user_friendly_short_name: "âêîô"
+        display_variant: true
+
+      - type: "macron"
+        description: !gettext "aio āēīō" # " 
+        path: 'dicts/engcrk-macron.xml'
+        short_name: "crkMacr"
+        user_friendly_short_name: "āēīō"
+        display_variant: true
+
+      - type: "syllabics"
+        description: !gettext "ᒐᐦᑲᓯᓇᐦᐃᑲᐣ" 
+        path: 'dicts/engcrk-cans.xml'
+        short_name: "crkS"
+        display_variant: true
+
+
+    # display_variants:
+    #  - short_name: "crk"
+    #    path: "dicts/engcrk.xml"
+    #    description: !gettext "aio āēīō" # " 
+    #  - short_name: "crkMacr" # search_variant_substring_match.jinja
+    #    path: "dicts/engcrk-macron.xml"
+    #    description: !gettext "aio āēīō" # " 
+    #  - short_name: "crkS" # search_variant_substring_match.jinja
+    #    path: "dicts/engcrk-cans.xml"
+    #    description: !gettext "ᒐᐦᑲᓯᓇᐦᐃᑲᐣ" 
+
 
     # search_variants:
     #  - type: "keyword"
