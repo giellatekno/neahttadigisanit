@@ -10,7 +10,7 @@
                 {% if variant.display_variant %}
                     <!-- bbq: {{ variant }} -->
                     <li{% if _to == variant.short_name %} class="active"{% endif %}>
-                        <a href="{{ url_for('.canonical_root_search_pair', _from=_from, _to=variant.short_name) }}">{{ gettext(variant.description)|safe }}{% if variant.example %} {{ gettext(variant.example)|safe }}{% endif %}</a>
+                        <a href="{{ url_for('.canonical_root_search_pair', _from=_from, _to=variant.short_name) }}?lookup={{ user_input }}">{{ gettext(variant.description)|safe }}{% if variant.example %} {{ gettext(variant.example)|safe }}{% endif %}</a>
                     </li>
                 {% else %}
                     <li{% if _from == variant.short_name %} class="active"{% endif %}>
