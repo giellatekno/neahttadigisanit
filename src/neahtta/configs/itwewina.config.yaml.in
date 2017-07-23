@@ -1,6 +1,6 @@
 ApplicationSettings:
   # relative to directory containing application.py file
-  configs: "../rules/"
+  # configs: "../rules/"
   app_name: !gettext "itwêwina"
   app_meta_title: !gettext "Online Plains Cree dictionary"
   fcgi_script_path: '/itwewina'
@@ -22,6 +22,9 @@ ApplicationSettings:
       Free online, mobile friendly dictionaries for Plains Cree
   meta_keywords: >
       plains cree, mobile, dictionary, free
+
+UnitTests:
+  - 'tests.crk_lexicon'
 
 Tools:
   xfst_lookup: &LOOKUP '/usr/bin/lookup'
@@ -124,7 +127,7 @@ Dictionaries:
           crk_Macr: "crk_Macr"
 
     show_korp_search: True
-    korp_search_host: "http://gtweb.uit.no/c_korp"
+    korp_search_host: "altlab.ualberta.ca/korp"
     is_korp_default_lang: True
 
   - source: eng
