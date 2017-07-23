@@ -109,11 +109,16 @@ class WordLookupTests(unittest.TestCase):
         self.app = _app.test_client()
         self.current_app = _app
 
+        if self.current_app.config.fcgi_script_path:
+            self.url_base = self.current_app.config.fcgi_script_path
+        else:
+            self.url_base = ''
+
 class BasicTests(WordLookupTests):
     def test_api_null_lookup(self):
         """ Test that a null lookup to the api doesn't return a 500
         """
-        url = "/lookup/sme/nob/?callback=jQuery3094203984029384&lookup=&lemmatize=true"
+        url = self.url_base + "/lookup/sme/nob/?callback=jQuery3094203984029384&lookup=&lemmatize=true"
 
         rv = self.app.get(url)
         self.assertEqual(rv.status_code, 200)
@@ -121,7 +126,7 @@ class BasicTests(WordLookupTests):
     def test_api_lookup(self):
         """ Test that a null lookup to the api doesn't return a 500
         """
-        url = "/lookup/sme/nob/?callback=jQuery3094203984029384&lookup=mannat&lemmatize=true"
+        url = self.url_base + "/lookup/sme/nob/?callback=jQuery3094203984029384&lookup=mannat&lemmatize=true"
 
         rv = self.app.get(url)
         self.assertEqual(rv.status_code, 200)
@@ -153,7 +158,7 @@ class WordLookupAPITests(WordLookupTests):
         from urllib import urlencode
         for lang_pair, form in self.wordforms_that_shouldnt_fail[1::]:
             _from, _to = lang_pair
-            base = u'/lookup/%s/%s/?' % (_from, _to)
+            base = self.url_base + u'/lookup/%s/%s/?' % (_from, _to)
             url = base + urlencode({'lookup': form.encode('utf-8')})
             print "testing: %s " % url
             rv = self.app.get(url)
@@ -167,7 +172,7 @@ class WordLookupAPIDefinitionTests(WordLookupTests):
         from urllib import urlencode
         for lang_pair, form, expected_def in self.definition_exists_tests:
             _from, _to = lang_pair
-            base = u'/lookup/%s/%s/?' % (_from, _to)
+            base = self.url_base + u'/lookup/%s/%s/?' % (_from, _to)
             url = base + urlencode({'lookup': form.encode('utf-8')})
             print "testing: <%s> for <%s>" % (form, expected_def)
             rv = self.app.get(url)
@@ -209,7 +214,7 @@ class ParadigmGenerationTests(WordLookupTests):
 
     def test_all_words_for_no_404s(self):
         for (source, target, lemma, error_msg, test_func) in self.paradigm_generation_tests:
-            base = '/detail/%s/%s/%s.json' % (source, target, lemma, )
+            base = self.url_base + '/detail/%s/%s/%s.json' % (source, target, lemma, )
             print "testing: %s " % base
             rv = self.app.get(base)
             result = simplejson.loads(rv.data)
