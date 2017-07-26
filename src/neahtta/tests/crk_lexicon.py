@@ -9,11 +9,11 @@ from .lexicon import ( form_contains
                      , form_doesnt_contain
                      , WordLookupAPITests
                      # NB: only comment these in as needed, otherwise
-                      # they fail
+                     # they fail
                      # , BasicTests
                      # , WordLookupTests
                      # , WordLookupDetailTests
-                     # , WordLookupAPIDefinitionTests
+                     , WordLookupAPIDefinitionTests
                      # , ParadigmGenerationTests
                      # , form_contains
                      )
@@ -28,9 +28,25 @@ wordforms_that_shouldnt_fail = [
     ( ('crkS', 'eng'), u'ᓂᐚᐸᐦᑌᐣ'),
     ( ('crkS', 'eng'), u'ᐚᐸᐦᑕᒼ'),
 
-    # ᐱᐳᐣ
+]
+
+
+# test that we can analyse and get a definition
+definition_exists_tests = [
+    #  lang    pair    search    definition lemmas
+    #                            
+
+    # spaces work
+
+
+    ( ('crkS', 'eng'), u'ᐚᐸᐦᑕᒼ', u's/he learns by watching s.t., s/he looks on to learn s.t.'),
+    ( ('crk', 'eng'), u'emacinipat', "s/he sleeps, s/he is asleep"),
+    ( ('crk', 'eng'), u'e-maci-nipat', "s/he sleeps, s/he is asleep"),
+    ( ('crkS', 'eng'), u'ᐁ ᓅᐦᑌ ᐚᐸᒼᐊᐟ', "s/he sleeps, s/he is asleep"),
+    ( ('crkS', 'eng'), u'ᐁ ᓅᐦᑌ ᐚᐸᒼᐊᐟ', "s/he sleeps, s/he is asleep"),
 
 ]
+
 
 
 paradigm_generation_tests = [
@@ -43,100 +59,11 @@ paradigm_generation_tests = [
 ###  - http://localhost:5000/detail/sme/nob/iige.json
 ###  - localhost:5000/detail/sme/nob/manne.json
 
-    ('crk', 'eng', u'nipihk',
-            "Not generating from mini_paradigm",
-            form_contains(set([u'munnje', u'mus', u'munin']))),
+    # ('crk', 'eng', u'nipihk',
+    #         "Not generating from mini_paradigm",
+    #         form_contains(set([u'munnje', u'mus', u'munin']))),
 
-###  - A: 
-###     - http://localhost:5000/detail/sme/nob/ruoksat.json
-###     - test that context is found as well as paradigm
-###     - test that +Use/NGminip forms are not generated
-    ('sme', 'nob', u'heittot',
-            "Dialectical forms present",
-            form_doesnt_contain(set([u"heittohat", u"heittohut", u"heittohit"]))),
-
-###  - A + context="bivttas":  heittot
-###     - http://localhost:5000/detail/sme/nob/heittot.html
-
-    ('sme', 'nob', u'heittot',
-            "Context missing",
-            form_contains(set([u"heittogis (bivttas)"]))),
-
-###  - A + context="báddi":  guhkki
-###     - http://localhost:5000/detail/sme/nob/guhkki.html
-
-    ('sme', 'nob', u'guhkki',
-            "Context missing",
-            form_contains(set([u"guhkes (báddi)"]))),
-
-###  - Num + context="gápmagat":  guokte
-###     - http://localhost:5000/detail/sme/nob/guokte.html
-
-    ('sme', 'nob', u'guokte',
-            "Context missing",
-            form_contains(set([u"guovttit (gápmagat)"]))),
-
-###  - N + illpl="no": eahketroađđi, sihkarvuohta, skuvlaáigi
-
-    ('sme', 'nob', u'eahketroađđi',
-            "Illative plural present",
-            form_doesnt_contain(set([u'eahketrođiide']))),
-
-###  - N Prop Sg: Norga, Ruoŧŧa
-###     - http://localhost:5000/detail/sme/nob/Ruoŧŧa.html
-    ('sme', 'nob', u'Ruoŧŧa',
-            "Forms not generated",
-            form_contains(set([u'Ruoŧa bokte', u'Ruŧŧii', u'Ruoŧas']))),
-
-###  - N Prop Pl: Iččát
-###     - <l pos="N" type="Prop" nr="Pl">Iččát</l>
-
-    ('sme', 'nob', u'Iččát',
-            "Forms not generated",
-            form_contains(set([u'Iččáid bokte', u'Iččáide', u'Iččáin']))),
-
-    ('sme', 'nob', u'mannat',
-            "Forms not generated",
-            form_contains(set([u'manan']))),
-
-    ('sme', 'nob', u'deaivvadit',
-            "Overgenerating forms",
-            form_doesnt_contain(set([u'deaivvadan']))),
-
-
-    ('sme', 'nob', u'girji',
-            "Overgenerating forms. Possible tag filtration issue.",
-            form_doesnt_contain(set([u'girjje']))),
-
-###  - N 
-###    - <l pos="N" type="G3">sámeášši</l>
-
-    ('sme', 'nob', u'sámeášši',
-            "Forms not generated",
-            form_contains(set([u'sámeášši', u'sámeáššái', u'sámeáššiiguin']))),
-
-
-    #     u'Ráisa', 
-    #     u'dálkkádagat', 
-    #     u'deaivvadit' - check that Pl3 deaivvadedje and deaivvadit are
-    #     generated
-
-###  - V: boahtit
-###     - check context, and paradigm: 
-###     - http://localhost:5000/detail/sme/nob/boahtit.json
-
-# TODO: this test
-
-###  - V + context="dat", v + context="sii"
-###     - check context, and that paradigm is not generated for 1st person
-###     - http://localhost:5000/detail/sme/nob/ciellat.html
-###     - http://localhost:5000/detail/sme/nob/deaivvadit.html
-
-# TODO: this test
-
-###  - N
-
-# TODO: find most common kinds of nouns
+            # form_doesnt_contain(set([u"heittohat", u"heittohut", u"heittohit"]))),
 
 ]
 
@@ -164,9 +91,9 @@ paradigm_generation_tests = [
 class WordLookupAPITests(WordLookupAPITests):
     wordforms_that_shouldnt_fail = wordforms_that_shouldnt_fail
 
-### 
-### class ParadigmGenerationTests(ParadigmGenerationTests):
-###     paradigm_generation_tests = paradigm_generation_tests
+# class ParadigmGenerationTests(ParadigmGenerationTests):
+#     paradigm_generation_tests = paradigm_generation_tests
+
 ### 
 ### class ParadigmSelectionTest(WordLookupTests):
 ###     """ These are really only for testing specifics in the paradigm
@@ -197,3 +124,5 @@ class WordLookupAPITests(WordLookupAPITests):
 ###             print '--'
 
 
+class WordLookupAPIDefinitionTests(WordLookupAPIDefinitionTests):
+	definition_exists_tests = definition_exists_tests
