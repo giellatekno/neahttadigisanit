@@ -39,11 +39,18 @@ definition_exists_tests = [
     # spaces work
 
 
-    ( ('crkS', 'eng'), u'ᐚᐸᐦᑕᒼ', u's/he learns by watching s.t., s/he looks on to learn s.t.'),
-    ( ('crk', 'eng'), u'emacinipat', "s/he sleeps, s/he is asleep"),
-    ( ('crk', 'eng'), u'e-maci-nipat', "s/he sleeps, s/he is asleep"),
-    ( ('crkS', 'eng'), u'ᐁ ᓅᐦᑌ ᐚᐸᒼᐊᐟ', "s/he sleeps, s/he is asleep"),
-    ( ('crkS', 'eng'), u'ᐁ ᓅᐦᑌ ᐚᐸᒼᐊᐟ', "s/he sleeps, s/he is asleep"),
+#     ( ('crkS', 'eng'), u'ᐚᐸᐦᑕᒼ', u's/he learns by watching s.t., s/he looks on to learn s.t.'),
+#     ( ('crk', 'eng'), u'emacinipat', "s/he sleeps, s/he is asleep"),
+#     ( ('crk', 'eng'), u'e-maci-nipat', "s/he sleeps, s/he is asleep"),
+#     ( ('crkS', 'eng'), u'ᐁ ᓅᐦᑌ ᐚᐸᒼᐊᐟ', "s/he sleeps, s/he is asleep"),
+#     ( ('crkS', 'eng'), u'ᐁ ᓅᐦᑌ ᐚᐸᒼᐊᐟ', "s/he sleeps, s/he is asleep"),
+    # space
+    # ( ('crkS', 'eng'), u'ᐁ ᓅᐦᑌ ᐚᐸᒼᐊᐟ', "s/he sleeps, s/he is asleep"),
+    # ( ('crkS', 'eng'), u'ᐁ   ᓅᐦᑌ   ᐚᐸᒪᐟ', "s/he sleeps, s/he is asleep"),
+
+    # spaces are stripped
+    ( ('crk', 'eng'), u'emacinipat ', "s/he sleeps, s/he is asleep"),
+
 
 ]
 

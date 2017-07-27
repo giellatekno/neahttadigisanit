@@ -839,6 +839,9 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
 
         if 'lookup' in request.args:
             user_input = request.args.get('lookup')
+
+            if current_app.config.strip_spaces:
+                user_input = user_input.strip()
             # This performs lots of the work...
             search_result_context = self.search_to_context(user_input, **self.get_shared_context(_from, _to))
 
@@ -856,6 +859,9 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
         self.force_locale(_from, _to)
 
         user_input = lookup_val = request.form.get('lookup', False)
+
+        if current_app.config.strip_spaces:
+            user_input = user_input.strip()
 
         if user_input in ['teksti-tv', 'tekst tv', 'teaksta tv']:
             session['text_tv'] = True
@@ -890,6 +896,9 @@ class ReferredLanguagePairSearchView(LanguagePairSearchView):
         self.check_pair_exists_or_abort(_from, _to)
 
         user_input = lookup_val = request.form.get('lookup', False)
+
+        if current_app.config.strip_spaces:
+            user_input = user_input.strip()
 
         if not user_input:
             user_input = ''
@@ -1080,6 +1089,10 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
         self.validate_request()
 
         user_input = wordform = decodeOrFail(wordform)
+
+        if current_app.config.strip_spaces:
+            user_input = user_input.strip()
+
         self.user_input = user_input
 
         # Analyzer arguments

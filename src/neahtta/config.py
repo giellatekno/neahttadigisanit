@@ -373,6 +373,12 @@ class Config(Config):
         return _p
 
     @property
+    def strip_spaces(self):
+        _p = self.yaml.get('ApplicationSettings', {})\
+                      .get('strip_spaces', False)
+        return _p
+
+    @property
     def app_mobile_bookmark_name(self):
         _p = self.yaml.get('ApplicationSettings', {})\
                       .get('mobile_bookmark_name', False)
