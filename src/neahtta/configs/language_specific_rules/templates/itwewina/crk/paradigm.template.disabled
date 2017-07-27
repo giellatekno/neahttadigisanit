@@ -1,4 +1,7 @@
-{# This is the paradigm template for Plains Cree
+{# NB! This is disabled because itwewina is using the new paradigm
+       layout module
+
+  This is the paradigm template for Plains Cree
 
  * Verbs: Display a table with one column for indicative, and one for
    conjunct forms. 
