@@ -153,17 +153,21 @@ def config_doc(from_language):
     # TODO: filter paradigms, tag_filters
 
     paradigms = current_app.config.paradigms.get(from_language, {})
+    mparadigms = current_app.morpholexicon.paradigms.paradigm_rules.get(from_language, [])
+
     tag_transforms = current_app.config.tag_filters
     languages = []
 
     return render_template( 'config_doc.html'
 
+                          , app=current_app
                           , generation_docs=generation_docs
                           , pregen_doc=pregen_doc
                           , postanalysis_doc=postanalysis_doc
                           , postgen_doc=postgen_doc
 
                           , paradigms=paradigms
+                          , mparadigms=mparadigms
                           , tag_transforms=tag_transforms
                           , languages=languages
                           , lang_name=from_language

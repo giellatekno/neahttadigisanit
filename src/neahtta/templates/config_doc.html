@@ -26,27 +26,72 @@
             <h3>Language-specific rules for {{ lang_name }}</h3>
         </div>
     </div>
-    <div class="row-fluid">
-        <div class="span8">
-            <h3>Paradigms for {{ lang_name }}</h3>
-            <p>NB: these default paradigms may be overriden by functions below...</p>
-        </div>
-    </div>
 
-    {% for pos, tags in paradigms.iteritems() %}
-    <div class="row-fluid">
-        <div class="span2">
-            <strong>{{ pos }}</strong>
+    {% if paradigms %}
+        <div class="row-fluid">
+            <div class="span8">
+                <h3>Paradigms for {{ lang_name }}</h3>
+            </div>
         </div>
-        <div class="span10">
-            <ul>
-                {% for t in tags %}
-                <li>{{ t }}</li>
-                {% endfor %}
-            </ul>
+
+        {% for pos, tags in paradigms.iteritems() %}
+        <div class="row-fluid">
+            <div class="span2">
+                <strong>{{ pos }}</strong>
+            </div>
+            <div class="span10">
+                <ul>
+                    {% for t in tags %}
+                    <li>{{ t }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
-    </div>
-    {% endfor %}
+        {% endfor %}
+    {% endif %}
+
+    {% if mparadigms %}
+        <div class="row-fluid">
+            <div class="span8">
+                <h3>Paradigms for {{ lang_name }}</h3>
+                <p>NB: these default paradigms may be overriden by functions below...</p>
+            </div>
+        </div>
+
+        {% for paradigm in mparadigms %}
+        <div class="row-fluid">
+            <div class="span6">
+                <strong>{{ paradigm.name }}</strong>
+                <br />
+                <em>{{ paradigm.basename }}</em>
+                <br />
+                <br />
+            </div>
+            <div class="span6">
+                <strong>Rule formulation</strong>
+                <ul>
+                    {% for k, v in paradigm.condition.rule_def.iteritems() %}
+                        {% if k == 'name' %}
+                            {% continue %}
+                        {% endif %}
+                        {% if v is mapping %}
+                            <li>{{ k }}: 
+                                <ul>
+                                    {% for kk, vv in v.iteritems() %}
+                                        <li>{{ kk }}: {{ vv }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% else %}
+                        <li>{{ k }}: {{ v }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+                <code><pre>{{ paradigm.template|template_lines|truncate(300, True, "... \n(see source for more)") }}</pre></code>
+            </div>
+        </div>
+        {% endfor %}
+    {% endif %}
 
     {% for l in generation_docs %}
         <div class="row-fluid">
@@ -62,7 +107,7 @@
             </div>
             <div class="span9">
                 <pre>
-                {{ func.doc|safe }}
+                {{ func.doc|trim|safe }}
                 </pre>
             </div>
         </div>
@@ -83,7 +128,7 @@
             </div>
             <div class="span9">
                 <pre>
-                {{ func.doc|safe }}
+                {{ func.doc|trim|safe }}
                 </pre>
             </div>
         </div>
@@ -104,7 +149,7 @@
             </div>
             <div class="span9">
                 <pre>
-                {{ func.doc|safe }}
+                {{ func.doc|trim|safe }}
                 </pre>
             </div>
         </div>
@@ -131,6 +176,40 @@
         </div>
         {% endfor %}
     {% endfor %}
+
+    <div class="row-fluid">
+        <div class="span8">
+            <h3>Template Structure</h3>
+            <p>These are the templates that have been customized for this
+            project. Documentation is encouraged, as some customizations may
+            not be able to be covered by unittests.</p>
+            <p>To include documentation in a template, define it: <code>{% raw %}{% block template_doc %}Blah blah blah{% endblock %}{% endraw %}</code></p>
+
+            <h4>{{ lang_name }}-specific overrides</h4>
+            {% for lang, templates in app.lexicon_templates.language_templates.iteritems() %}
+                {% if lang != lang_name %}
+                    {% continue %}
+                {% endif %}
+                <ul>
+                    {% set proj_templates = [] %}
+                    {% for t in app.lexicon_templates.project_templates.values() %}
+                        {% do proj_templates.append(t.path) %}
+                    {% endfor %}
+                    {% for ttkey, tmpl in templates.iteritems() %}
+                        {% if tmpl.path not in proj_templates %}
+                        <li>{{ app_short_name }}/{{ lang_name }}/{{ ttkey }}
+                                {% if 'template_doc' in tmpl.blocks %}
+                                    <pre><code>{{- tmpl|render_block(tmpl.blocks['template_doc']) -}}</code></pre>
+                                {% else %}
+                                    <blockquote>Write some template documentation. </blockquote>
+                                {% endif %}
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        </div>
+    </div>
 
     <div class="row-fluid">
         <div class="span8">

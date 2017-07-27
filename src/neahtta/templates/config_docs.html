@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
- - {% trans %}Neahttadigisánit{% endtrans %} debug info
+- {% trans %}Neahttadigisánit{% endtrans %} debug info
 {% endblock %}
 
 {% block meta_title %}
@@ -12,26 +12,26 @@
 {% endblock %}
 
 {# TODO: 
-  http://getbootstrap.com/2.3.2/javascript.html#collapse
+http://getbootstrap.com/2.3.2/javascript.html#collapse
 
-  or 
+or 
 
-  http://getbootstrap.com/2.3.2/javascript.html#scrollspy
+http://getbootstrap.com/2.3.2/javascript.html#scrollspy
 #}
 
 {% block content %}
 <div class="container-fluid">
-    <div class="row-fluid">
-        <div class="span8">
-            <h3>Language-specific rules for {{ short_name }}</h3>
-        </div>
+<div class="row-fluid">
+    <div class="span8">
+        <h3>Language-specific rules for {{ short_name }}</h3>
     </div>
-    <div class="row-fluid">
-        <div class="span8">
-            <h3>Language index</h3>
-            <ul>
-                {% for language, name in config.languages.iteritems() %}
-                    <li><a href="{{ url_for('.config_doc', from_language=language) }}">{{ language }}</li>
+</div>
+<div class="row-fluid">
+    <div class="span8">
+        <h3>Language index</h3>
+        <ul>
+            {% for language, name in config.languages.iteritems() %}
+                <li><a href="{{ url_for('.config_doc', from_language=language) }}">{{ language }}</a></li>
                 {% endfor %}
             </ul>
             
@@ -41,8 +41,12 @@
     <div class="row-fluid">
         <div class="span8">
             <h3>Template Structure</h3>
-            <p>Note, to write some documentation that will appear here, define it in: <code>{% raw %}{% block template_doc %}{% endblock %}{% endraw %}</code></p>
-            <h4>Project-specific overrides</h4>
+            <p>These are the templates that have been customized for this
+            project. Documentation is encouraged, as some customizations may
+            not be able to be covered by unittests.</p>
+            <p>To include documentation in a template, define it: <code>{% raw %}{% block template_doc %}Blah blah blah{% endblock %}{% endraw %}</code></p>
+
+            <h4>Project-level template customizations</h4>
             <ul>
                 {% set default_paths = [] %}
                 {% for t in app.lexicon_templates.default_templates.values() %}
@@ -50,9 +54,9 @@
                 {% endfor %}
                 {% for tkey, template in app.lexicon_templates.project_templates.iteritems() %}
                     {% if template.path not in default_paths %}
-                        <li>itwewina/{{ tkey }}
+                        <li>{{ app_short_name }}/{{ tkey }}
                             {% if 'template_doc' in template.blocks %}
-                                <blockquote>{{ template|render_block(template.blocks['template_doc']) }}</blockquote>
+                                <pre><code>{{- template|render_block(template.blocks['template_doc']) -}}</code></pre>
                             {% else %}
                                 <blockquote>Write some template documentation. </blockquote>
                             {% endif %}
@@ -60,27 +64,6 @@
                     {% endif %}
                 {% endfor %}
             </ul>
-            <h4>Language-specific overrides</h4>
-            {% for lang, templates in app.lexicon_templates.language_templates.iteritems() %}
-                <h5>{{ lang }}</h5>
-                <ul>
-                    {% set proj_templates = [] %}
-                    {% for t in app.lexicon_templates.project_templates.values() %}
-                        {% do proj_templates.append(t.path) %}
-                    {% endfor %}
-                    {% for ttkey, tmpl in templates.iteritems() %}
-                        {% if tmpl.path not in proj_templates %}
-                            <li>{{ ttkey }}
-                                {% if 'template_doc' in tmpl.blocks %}
-                                    <blockquote>{{ tmpl|render_block(tmpl.blocks['template_doc']) }}</blockquote>
-                                {% else %}
-                                    <blockquote>Write some template documentation. </blockquote>
-                                {% endif %}
-                            </li>
-                        {% endif %}
-                    {% endfor %}
-                </ul>
-            {% endfor %}
 
         {# comment %}
         for lang, temps in self.language_templates.iteritems():

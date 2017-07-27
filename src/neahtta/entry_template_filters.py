@@ -38,6 +38,10 @@ def register_template_filters(app):
         """ Used to generate doc """
         return ''.join([line for line in block(template.new_context())])
 
+    @app.template_filter('template_lines')
+    def template_lines(template):
+        return ''.join([line for line in template.stream()])
+
     @app.template_filter('group_by_tag')
     def group_by_tag(forms):
         """ Group a list of GeneratedForms by the tag, and return a list
