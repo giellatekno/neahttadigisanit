@@ -1,12 +1,17 @@
 {# This template is also rendered with each entry (i.e., `rendered_templates`),
    and has access to all of the main entry-specific template values.
-
-   All that is relevant here is the `analyses` variable.
-
-   - Here we also display the lexicon entry stem along with the lemma.
-   - If a tag is PV display a tooltip with the definition
-
 #}
+
+{% block template_doc %}{% if TEMPLATE_DOC %}
+The following customizations have been made:
+
+- Display the lexicon entry stem along with the lemma (√root).
+  - Some customizations in `crk.py` and `crk_tags.py` relate to this.
+
+- If a tag is PV, wrap it with tooltip markup to display the definition
+  - twitter bootstrap tooltips js included
+
+{% endif %}{% endblock %}
 
 {%- import "lexicon.macros" as macros with context -%}
 {%- import "korp.macros" as korp with context -%}

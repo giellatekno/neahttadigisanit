@@ -11,6 +11,13 @@
        <div class="row-fluid entry_row" />
 #}
 
+{% block template_doc %}{% if TEMPLATE_DOC %}
+Customizations made here:
+ - include audio_links template after definition
+ - include entry source
+ - include reference links to related lexemes via `lg/lemma_ref`
+{% endif %}{% endblock %}
+
 {%- import "lexicon.macros" as macros with context -%}
 
 {%- macro reference_link(has_reference) -%}

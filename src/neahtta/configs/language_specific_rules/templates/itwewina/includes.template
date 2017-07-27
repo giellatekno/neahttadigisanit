@@ -1,12 +1,12 @@
-{% block template_doc %}Some js includes for itwewina-specific functionality
+{% block template_doc %}{% if TEMPLATE_DOC %}
+Some js includes for itwewina-specific functionality
   * soundmanager js & audio_links js, allow clickable audio
   * include bootstrap tabs for paradigms
 
 Testing:
  1.) Search for audio entry
  2.) View paradigm and click tabs
-
-{% endblock -%}
+{% endif %}{% endblock %}
 
 <script type="text/javascript" src="{{url_for('static', filename='vendor/SoundManager2/script/soundmanager2-jsmin.js')}}"></script>
 <script type="text/javascript" src="{{url_for('static', filename='js/audio_links.js')}}"></script>
