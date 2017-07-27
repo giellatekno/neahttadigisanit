@@ -112,6 +112,20 @@ def gen_doc(from_language, docs_list):
         _docs.append(doc)
     return _docs
 
+def config_docs():
+
+    config = current_app.config
+    languages = []
+
+    # TODO: gen doc for project level
+
+    return render_template( 'config_docs.html'
+
+                          , languages=languages
+                          , config=config
+                          , app=current_app
+                          )
+
 def config_doc(from_language):
     """ Quick overview of language-specific details.
     """

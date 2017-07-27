@@ -33,6 +33,11 @@ def register_template_filters(app):
         from lexicon.lexicon import hash_node
         return hash_node(node)
 
+    @app.template_filter('render_block')
+    def render_block(template, block):
+        """ Used to generate doc """
+        return ''.join([line for line in block(template.new_context())])
+
     @app.template_filter('group_by_tag')
     def group_by_tag(forms):
         """ Group a list of GeneratedForms by the tag, and return a list

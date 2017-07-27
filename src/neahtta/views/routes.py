@@ -100,6 +100,8 @@ from .main import ( session_clear
                   , about
                   , about_sources
                   , escape_tv
+                  , config_docs
+                  , config_doc
                   , plugins
                   )
 
@@ -145,6 +147,20 @@ blueprint.add_url_rule( '/escape/text-tv/'
                       , view_func=escape_tv
                       , endpoint='escape_tv'
                       )
+
+blueprint.add_url_rule( '/config_doc/'
+                      , methods=['GET']
+                      , view_func=config_docs
+                      , endpoint="config_docs"
+                      )
+
+
+blueprint.add_url_rule( '/config_doc/<from_language>/'
+                      , methods=['GET']
+                      , view_func=config_doc
+                      , endpoint="config_doc"
+                      )
+
 
 from .locale import set_locale
 
