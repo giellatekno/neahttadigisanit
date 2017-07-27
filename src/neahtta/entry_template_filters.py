@@ -36,7 +36,8 @@ def register_template_filters(app):
     @app.template_filter('render_block')
     def render_block(template, block):
         """ Used to generate doc """
-        return ''.join([line for line in block(template.new_context())])
+        c = template.new_context(vars={'TEMPLATE_DOC': True})
+        return ''.join([line for line in block(c)])
 
     @app.template_filter('template_lines')
     def template_lines(template):

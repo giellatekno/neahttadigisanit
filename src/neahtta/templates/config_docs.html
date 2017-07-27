@@ -44,7 +44,7 @@ http://getbootstrap.com/2.3.2/javascript.html#scrollspy
             <p>These are the templates that have been customized for this
             project. Documentation is encouraged, as some customizations may
             not be able to be covered by unittests.</p>
-            <p>To include documentation in a template, define it: <code>{% raw %}{% block template_doc %}Blah blah blah{% endblock %}{% endraw %}</code></p>
+            <p>To include documentation in a template, define it: <code>{% raw %}{% block template_doc %}{% if TEMPLATE_DOC %}Blah blah blah{% endif %}{% endblock %}{% endraw %}</code>. Note that without the if statement, the docs will appear in the dictionary.</p>
 
             <h4>Project-level template customizations</h4>
             <ul>
