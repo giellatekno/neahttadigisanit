@@ -1,14 +1,17 @@
-{# This template is also rendered with each entry (i.e., `rendered_templates`),
-   and has access to all of the main entry-specific template values.
+{% block template_doc %}
+ This template is also rendered with each entry (i.e., `rendered_templates`),
+ and has access to all of the main entry-specific template values.
 
-   Since the goal is definitions, `lexicon_entry` is relevant. Filtering
-   by target languag ehas to happen here, so be sure to use the
-   `xml_lang` filter if overriding.
+ Since the goal is definitions, `lexicon_entry` is relevant. Filtering
+ by target language has to happen here, so be sure to use the
+ `xml_lang` filter if overriding.
 
-   overrides here: 
-     - audio
-     - sorting by @rank attribute
-#}
+ Overrides included here: 
+   - audio links
+   - sorting by @rank attribute
+
+{% endblock %}
+
  
 {% import 'lexicon.macros' as macros with context %}
 
