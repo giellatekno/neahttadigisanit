@@ -1,11 +1,13 @@
-{# An audio link template for including elsewhere. Eventually this will
-   be enabled by default.
+{% block template_doc %}{% if TEMPLATE_DOC %}
+An audio link template for including elsewhere.
 
+TODO: user feedback for play/download/etc
+TODO: transcription
+TODO: sentence audio links
 
-   TODO: user feedback for play/download/etc
-   TODO: transcription
-   TODO: sentence audio links
+{% endif %}{% endblock %}
 
+{#
 <i class="icon-volume-up"></i>
 #}
 

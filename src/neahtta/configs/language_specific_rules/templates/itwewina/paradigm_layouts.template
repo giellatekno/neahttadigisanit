@@ -1,9 +1,11 @@
 {# This manages paradigm layouts, which all have a table structure and
    are more or less simple to render.
 
-   Overrides: 
-     - remove full paradigm link
 #}
+{% block template_doc %}{% if TEMPLATE_DOC %}
+Customizations: 
+ - remove full paradigm link
+{% endif %}{% endblock %}
 
 {% if layout %}
     {# when this appears the second time in the mobile style, the IDs are different 

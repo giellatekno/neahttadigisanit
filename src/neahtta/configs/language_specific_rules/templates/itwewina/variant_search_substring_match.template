@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
 
+{% block template_doc %}{% if TEMPLATE_DOC %}
+This is the custom template for substring_match. It is a copy of
+variant_search.template, but with keyword stuff disabled. Probably these
+templates should be the reverse, since this is 'uncustomized'. Will fix that
+when returning to keyword search functionality.
+{% endif %}{% endblock %}
+
 {%- import 'template_settings.html' as template_settings with context -%}
 
 {% block extra_js %}

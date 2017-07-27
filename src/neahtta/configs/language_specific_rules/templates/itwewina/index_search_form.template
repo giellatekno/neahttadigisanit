@@ -1,9 +1,12 @@
 {# This template renders the search form on the main page.
-  
-   Changes from parent:
-     - keyword search stuff
-     - last searches
  #}
+{% block template_doc %}{% if TEMPLATE_DOC %}
+Customizations here:
+ - last searches
+ - custom search method alterations (supplying custom search_form_actions to
+   word entry form)
+{% endif %}{% endblock %}
+
 {%- set keyboard = false %}
 {% if current_variant_options %}
     {% set keyboard = current_variant_options.onscreen_keyboard %}

@@ -1,8 +1,10 @@
-{# This template is modified from the default in the following ways:
- * add keyboard support
+
+{% block template_doc %}{% if TEMPLATE_DOC %}
+This template has the following customizations:
+ * add 'keyboard' support to display clickable characters.
  * include input_variants[].user_friendly_short_name in search form, crkMacr -> āēīō, etc.
- * include data-url-base in form to retarget search
-#}
+ * include data-url-base in form to retarget search in the JS dropdown.
+{% endif %}{% endblock %}
 
 
 {%- set keyboard = false %}

@@ -1,3 +1,7 @@
+{% block template_doc %}{% if TEMPLATE_DOC %}
+Custom template to include UofA and FNUC logos.
+{% endif %}{% endblock %}
+
 <footer class="footer">
     <div class="container-fluid hidden-phone">
         <div class="row-fluid">
