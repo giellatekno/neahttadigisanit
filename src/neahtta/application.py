@@ -30,6 +30,8 @@ useLogFile = logging.FileHandler('user_log.txt')
 user_log.addHandler(useLogFile)
 user_log.setLevel("INFO")
 
+cwd = lambda x: os.path.join(os.path.dirname(__file__), x)
+
 def jinja_options_and_filters(app):
 
     from filters import register_filters
@@ -308,7 +310,9 @@ def create_app():
     check_dependencies()
 
     app = Flask(__name__,
-        static_url_path=static_prefix+'/static',)
+        static_url_path=static_prefix+'/static',
+        template_folder=cwd('templates')
+   )
 
     app = jinja_options_and_filters(app)
     app.production = False
@@ -322,7 +326,6 @@ def create_app():
     app.config['NDS_CONFDIR'] = os.environ.get('NDS_CONFDIR', DEFAULT_CONF)
     app.config['jinja_env'] = app.jinja_env
 
-    app.config['jinja_env'] = app.jinja_env
     app.config = Config('.', defaults=app.config)
     app.config.from_envvar('NDS_CONFIG')
     app.config.overrides = configs.blueprint.load_language_overrides(app)

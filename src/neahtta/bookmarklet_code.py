@@ -3,8 +3,11 @@
 # encoded.
 
 from urllib import quote, quote_plus
+import os
 
-with open('static/js/bookmark.min.js', 'r') as F:
+cwd = lambda x: os.path.join(os.path.dirname(__file__), x)
+
+with open(cwd('static/js/bookmark.min.js'), 'r') as F:
     bmark = F.read().replace('\n', '')
 
 bookmarklet_quote = lambda x: quote(x, safe="()")

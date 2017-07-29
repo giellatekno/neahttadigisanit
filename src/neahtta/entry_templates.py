@@ -39,6 +39,8 @@ from lxml import etree
 __all__ = ['TemplateConfig', 'LanguageNotFound']
 
 
+cwd = lambda x: os.path.join(os.path.dirname(__file__), x)
+
 class LanguageNotFound(Exception):
     """ Language not found for this project. """
     pass
@@ -115,7 +117,7 @@ class TemplateConfig(object):
 
         reversed_priority = self.template_loader_dirs[::-1]
 
-        self.jinja_env.loader = ChoiceLoader([
+        self.jinja_env.loader = ChoiceLoader([FileSystemLoader(cwd('templates'))] + [
             FileSystemLoader(p) for p in reversed_priority
         ])
 
