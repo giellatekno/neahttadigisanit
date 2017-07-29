@@ -1,0 +1,3 @@
+making a python package for easier deployment without checking out SVN, and the
+potential issues that introduces with accidental development deployments
+
