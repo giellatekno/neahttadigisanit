@@ -1,5 +1,5 @@
 ﻿from lxml import etree
-from .lookups import SearchTypes
+from lookups import SearchTypes
 
 """ Our project-wide search_types repository. """
 search_types = SearchTypes({})
