@@ -12,11 +12,11 @@ ApplicationSettings:
   locales_available:
     - sma
     - "no"
-#$#    - "sme" 
+#$#    - "sme"
   app_meta_title: >
-     Digibaakoeh gaskeviermesne 
+     Digibaakoeh gaskeviermesne
   meta_description: >
-     Gratis online mobilvennlige sørsamiske ordbøker 
+     Gratis online mobilvennlige sørsamiske ordbøker
   meta_keywords: >
      samisk ordbok, på nett, mobil ordbok, ordbok app, sátnegirji,
      sátnegirjjit sørsamisk, norsk, south sámi, norwegian, sámegiella,
@@ -95,6 +95,11 @@ Dictionaries:
   - source: nob
     target: sma
     path: 'dicts/nob-sma.all.xml'
+    autocomplete: true
+    show_korp_search: True
+    is_korp_default_lang: True
+    korp_parallel: True
+    korp_search_host: "http://gtweb.uit.no/korp"
 
 #$#  - source: sme
 #$#    target: sma
@@ -127,4 +132,3 @@ Dictionaries:
 #$#    show_korp_search: True
 #$#    korp_search_host: "http://gtweb.uit.no/korp"
 #$#    path: 'dicts/smasme.xml'
-
