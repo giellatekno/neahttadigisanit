@@ -87,6 +87,11 @@ Dictionaries:
   - source: fin
     target: smn
     path: 'dicts/finsmn.xml'
+    autocomplete: true
+    show_korp_search: True
+    is_korp_default_lang: True
+    korp_parallel: True
+    korp_search_host: "http://gtweb.uit.no/korp"
 
 
   - source: smn
@@ -94,7 +99,7 @@ Dictionaries:
     path: 'dicts/smnsme.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
-    input_variants: 
+    input_variants:
       - type: "standard"
         description: !gettext "Standard"
         example: !gettext "(<em>âäáčđŋšž</em>)"
