@@ -38,6 +38,7 @@ def external_korp_url(pair_details, user_input):
 
     korp_opts = pair_details.get('korp_options')
     korp_host = pair_details.get('korp_search_host')
+    link_corpus_param = pair_details.get('link_corpus_parameter')
 
     # TODO: original pair, if current pair is variant
     if korp_opts.get('is_korp_default_lang'):
@@ -47,6 +48,8 @@ def external_korp_url(pair_details, user_input):
 
     if korp_opts.get('korp_parallel'):
         url_pattern = korp_opts.get('bilingual_wordform_search_path').replace('TARGET_LANG_ISO', g.orig_from)
+        if g.orig_from == 'fin':
+            url_pattern = url_pattern.replace('mode=parallel', 'mode=parallel_fin')
         url_pattern = url_pattern.replace(
             'SEARCH_QUERY',
             urllib.quote(
@@ -61,6 +64,9 @@ def external_korp_url(pair_details, user_input):
         user_input = delimiter_pattern.join(user_input.split(' '))
 
     url_pattern = url_pattern.replace('USER_INPUT', user_input)
+
+    if len(link_corpus_param)!=0:
+        url_pattern = url_pattern + '&corpus=' + link_corpus_param
 
     redirect_url = korp_host + url_pattern.encode('utf-8')
 
@@ -164,7 +170,7 @@ class Config(Config):
                       .get('locales_available', False)
         if len( list(set( map(type, _p) ))) > 1:
             err_str = "Type error in locales_available. If <no> is listed, make sure it is quoted."
-            raise RuntimeError(err_str + 
+            raise RuntimeError(err_str +
                                'See config file %s, in ApplicationSettings.' %
                                self.filename)
 
@@ -181,7 +187,7 @@ class Config(Config):
                       .get('hidden_locales', [])
         if len( list(set( map(type, _p) ))) > 1:
             err_str = "Type error in hidden_locales. If <no> is listed, make sure it is quoted."
-            raise RuntimeError(err_str + 
+            raise RuntimeError(err_str +
                                'See config file %s, in ApplicationSettings.' %
                                self.filename)
 
@@ -671,7 +677,7 @@ class Config(Config):
                 _set.pop('source_morphology')
                 _set.pop('target_ui_language')
 
-                # TODO: raise error if missing 'tags'? 
+                # TODO: raise error if missing 'tags'?
 
                 # iterate through sets and set them.
                 for set_name, set_tags in _set.iteritems():
@@ -778,6 +784,7 @@ class Config(Config):
                     'korp_search_host': dict_def.get('korp_search_host', False),
                     'korp_options': dict_def.get('korp_options', _default_korp),
                     'asynchronous_paradigms': dict_def.get('asynchronous_paradigms', False),
+                    'link_corpus_parameter': dict_def.get('link_corpus_parameter', ''),
                 }
                 for iso in _lang_isos:
                     _pair_options['langs'][iso] = (_from_langs[iso], _to_langs[iso])
@@ -1213,7 +1220,6 @@ class Config(Config):
         variant_options = False
         if is_variant:
             orig_pair_variants = pair_settings.get('input_variants')
-            print orig_pair_variants
             variant_opts = filter( lambda x: x.get('short_name') == _from and not x.get('display_variant', False)
                                  , orig_pair_variants
                                  )
