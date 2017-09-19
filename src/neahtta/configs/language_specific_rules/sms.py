@@ -32,7 +32,7 @@ def pregenerate_sms(form, tags, node, **kwargs):
 
     def analysis_node(node):
         """ Node ->
-            ("lemma", ["Pron", "Sg", "Tag"], ["wordform", "wordform"])
+            (["lemma", "Pron", "Sg", "Tag"], ["wordform", "wordform"])
         """
         tag = node.xpath('.//@ms')
         if len(tag) > 0:
@@ -41,8 +41,9 @@ def pregenerate_sms(form, tags, node, **kwargs):
             tag = []
 
         wfs = node.xpath('.//wordform/text()')
+        tag.insert(0,form)
 
-        return (form, tag, wfs)
+        return (tag, wfs)
 
     analyses = map(analysis_node, mp.xpath('.//analysis'))
 

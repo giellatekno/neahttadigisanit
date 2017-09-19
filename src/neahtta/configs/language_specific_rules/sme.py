@@ -45,7 +45,7 @@ def pregenerate_sme(form, tags, node, **kwargs):
 
     def analysis_node(node):
         """ Node ->
-            ("lemma", ["Pron", "Sg", "Tag"], ["wordform", "wordform"])
+            (["lemma", "Pron", "Sg", "Tag"], ["wordform", "wordform"])
         """
         tag = node.xpath('.//@ms')
         if len(tag) > 0:
@@ -55,7 +55,11 @@ def pregenerate_sme(form, tags, node, **kwargs):
 
         wfs = node.xpath('.//wordform/text()')
 
-        return (form, tag, wfs)
+        # add the form to in the front of the tags (fix of the mini_paradigm bug for 'mon',
+        # 'don', 'son', or 'lulit')
+        tag.insert(0,form)
+
+        return (tag, wfs)
 
     analyses = map(analysis_node, mp.xpath('.//analysis'))
 
