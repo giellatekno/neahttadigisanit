@@ -1140,7 +1140,7 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
         # search_result_context.detailed_entry_pickleable)
 
         # search_result_context.update(**self.get_shared_context(_from, _to))
-
+# cip's test
         search_result_context['has_analyses'] = has_analyses
         search_result_context['more_detail_link'] = want_more_detail
 
