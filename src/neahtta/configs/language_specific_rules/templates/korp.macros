@@ -42,14 +42,19 @@
         {# TODO: bilingual #}
 
         {% set query = search_path.replace(
-            'SEARCH_QUERY', 
+            'SEARCH_QUERY',
             query_path.replace(
-                'INPUT_LEMMA', 
+                'INPUT_LEMMA',
                 lemma
-            )|urlencode_quote(safe="#&/")) 
+            )|urlencode_quote(safe="#&/"))
         %}
 
         {% set s_href = l_host + query %}
+
+        {% set link_corpus_param = current_pair_settings.link_corpus_parameter %}
+        {% if link_corpus_param|length >0 %}
+              {% set s_href = s_href + '&corpus=' + link_corpus_param %}
+        {% endif %}
 
         <a class="korp_search lemma_action"
            href="{{ s_href }}">{% trans %}Texts{% endtrans %} &rarr;</a>
