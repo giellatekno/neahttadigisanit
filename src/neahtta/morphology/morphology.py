@@ -243,37 +243,37 @@ class Lemma(object):
         before the lemma are defined as some member of any tagset.
         """
         all_tags = tagsets.all_tags()
-
         self.tag = self.tool.tagStringToTag( tag
                                            , tagsets=tagsets
                                            )
-        
+
         # Best guess is the first item, otherwise...
-        self.lemma = tag[0]
-        del tag[0]
+        lemma = tag[0]
+        # Best guess is the first item, otherwise...
+        #self.lemma = tag[0]
+        #del tag[0]
         
-        
-        # if lemma in all_tags:
-        #     # Separate out items that are not values in a tagset, these
-        #     # are probably the lemma.
-        #     not_tags = [t for t in tag if t not in all_tags]
-        #     if len(not_tags) > 0:
-        #         self.lemma = not_tags[0]
-        #     else:
-        #         self.lemma = fulltag[0]
-        # else:
-        #     self.lemma = lemma
-        
+        if lemma in all_tags:
+            # Separate out items that are not values in a tagset, these
+            # are probably the lemma.
+            not_tags = [t for t in tag if t not in all_tags]
+            if len(not_tags) > 0:
+                self.lemma = not_tags[0]
+            else:
+                self.lemma = tag[0]
+        else:
+            self.lemma = lemma
+
         self.pos = self.tag['pos']
         self.tag_raw = tag
-        
+
     def __init__(self, tag=[''], _input=False, tool=False,
                  tagsets={}):
         self.tagsets = tagsets
         self.tool = tool
-        
+
         self.prepare_tag(tag, tagsets)
-        
+
         if 'pos' in self.tag:
             self.pos = self.tag['pos']
         else:
@@ -284,6 +284,7 @@ class Lemma(object):
 class GeneratedForm(Lemma):
     """ Helper class for generated forms, adds attribute `self.form`,
     alters repr format. """
+
     def __key(self):
         return ( self.lemma
                , self.pos
@@ -323,8 +324,6 @@ def word_generation_context(generated_result, *generation_input_args, **generati
     context_for_tags = current_app.config.paradigm_contexts.get(language, {})
 
     node  = generation_input_args[2]
-    #from lxml import etree
-    #print(etree.tostring(node, pretty_print=True))
 
     if len(node) == 0:
         return generated_result
@@ -337,6 +336,8 @@ def word_generation_context(generated_result, *generation_input_args, **generati
         context = None
 
     def apply_context(form):
+#        tag, forms = form
+
         
         # trigger different tuple lengths and adjust the entities
         #([u'viessat', u'V', u'Ind', u'Prt', u'Pl1'], [u'viesaimet'])
@@ -350,6 +351,7 @@ def word_generation_context(generated_result, *generation_input_args, **generati
             form = (tmp_lemma, tmp_tag, tmp_forms)
             
         lemma, tag, forms = form
+
         
         tag = '+'.join(tag)
 
@@ -601,7 +603,7 @@ class XFST(object):
 
         wordform, _, lemma_tags = analysis_line.partition('\t')
 
-        return (wordform, lemma_tags)
+        return (lemma, tag)
 
     def clean(self, _output):
         """
@@ -784,7 +786,6 @@ class XFST(object):
                 self.options.get('tagsep', '+'))
         else:
             delim = self.options.get('tagsep', '+')
-
         tag = delim.join(parts)
         return Tag(tag, delim, tagsets=tagsets)
 
