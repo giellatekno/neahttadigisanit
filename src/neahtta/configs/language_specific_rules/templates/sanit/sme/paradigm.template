@@ -38,7 +38,7 @@
        ends first #}
 
     {% set zipped_verbs = izip_longest(present_verbs, preterite_verbs, fillvalue='-')|list %}
-    
+
     {% set paradigm_exists = zipped_verbs|length > 0 or nonfinite_forms|length > 0 %}
 
     {# strip some parts of the tags that we don't need #}
@@ -139,7 +139,7 @@
     {% set pron_type_text = pron_type|tagfilter(_from, _to) %}
 
     {# If there are nomainal number markings, then we'll split these
-       into two columns. Must determine this by checking the tagsets. 
+       into two columns. Must determine this by checking the tagsets.
 
        Works for words like eará, soames, etc.
 
@@ -314,7 +314,13 @@
 {% elif pos|upper == 'A' %}
 
     <dl class="dl-horizontal miniparadigm">
-        {%- for form in paradigm -%}
+      {% set adj_forms = paradigm|group_by_tag %}
+      {% for var in adj_forms %}
+          <dt>{{ clean_tag(var[0].tag) }}</dt>
+          <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form') }}</dd>
+      {% endfor %}
+
+        {#- for form in paradigm -%}
 
             {% if form.tag %}
                 <dt>{{ clean_tag(form.tag) }}</dt>
@@ -325,7 +331,8 @@
             {% else %}
                 <dd lang="{{ _from }}">?</dd>
             {% endif %}
-        {%- endfor -%}
+
+        {%- endfor -#}
     </dl>
 
 {% elif pos|upper == 'PRON' %}
