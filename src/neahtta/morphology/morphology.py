@@ -603,7 +603,7 @@ class XFST(object):
 
         wordform, _, lemma_tags = analysis_line.partition('\t')
 
-        return (lemma, tag)
+        return (wordform, lemma_tags)
 
     def clean(self, _output):
         """
