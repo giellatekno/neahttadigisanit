@@ -239,18 +239,13 @@
                 <dt>{{ nonfinite_header }}</dt><dd>&nbsp;</dd>
             {% endif %}
 
-            {%- for form in nonfinite_forms -%}
-
-                {% if form.tag %}
-                    <dt>{{ clean_tag(form.tag)  }}</dt>
+            {% set noninf_forms = nonfinite_forms|group_by_tag %}
+            {% for var in noninf_forms %}
+                {% if var[0].tag %}
+                    <dt>{{ clean_tag(var[0].tag) }}</dt>
                 {% endif %}
-
-                {% if form.form %}
-                <dd lang="{{ _from }}">{{ form.form }}</dd>
-                {% else %}
-                    <dd lang="{{ _from }}">?</dd>
-                {% endif %}
-            {%- endfor -%}
+                <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form') }}</dd>
+            {% endfor %}
         </dl>
     {% endif %}
 
@@ -315,24 +310,13 @@
 
     <dl class="dl-horizontal miniparadigm">
       {% set adj_forms = paradigm|group_by_tag %}
+      
       {% for var in adj_forms %}
-          <dt>{{ clean_tag(var[0].tag) }}</dt>
+          {% if var[0].tag %}
+              <dt>{{ clean_tag(var[0].tag) }}</dt>
+          {% endif %}
           <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form') }}</dd>
       {% endfor %}
-
-        {#- for form in paradigm -%}
-
-            {% if form.tag %}
-                <dt>{{ clean_tag(form.tag) }}</dt>
-            {% endif %}
-
-            {% if form.form %}
-            <dd lang="{{ _from }}">{{ form.form }}</dd>
-            {% else %}
-                <dd lang="{{ _from }}">?</dd>
-            {% endif %}
-
-        {%- endfor -#}
     </dl>
 
 {% elif pos|upper == 'PRON' %}
@@ -396,35 +380,31 @@
         <dl class="dl-horizontal miniparadigm">
             <dt>{{ pron_text }} {{ pron_type_text }}</dt>
             <dd>&nbsp;</dd>
-            {%- for form in paradigm -%}
 
-                {% if form.tag %}
-                    <dt>{{ clean_tag(form.tag) }}</dt>
+            {% set pron_forms = paradigm|group_by_tag %}
+            {% for var in pron_forms %}
+                {% if var[0].tag %}
+                    <dt>{{ clean_tag(var[0].tag) }}</dt>
                 {% endif %}
-
-                {% if form.form %}
-                <dd lang="{{ _from }}">{{ form.form }}</dd>
-                {% else %}
-                    <dd lang="{{ _from }}">?</dd>
-                {% endif %}
-            {%- endfor -%}
+                <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form') }}</dd>
+            {% endfor %}
         </dl>
     {% endif %}
 
 {% else %}
     <dl class="dl-horizontal miniparadigm">
-        {%- for form in paradigm -%}
+      {%- for form in paradigm -%}
 
-            {% if form.tag %}
-                <dt>{{ form.tag|tagfilter(_from, _to)  }}</dt>
-            {% endif %}
+          {% if form.tag %}
+              <dt>{{ form.tag|tagfilter(_from, _to)  }}</dt>
+          {% endif %}
 
-            {% if form.form %}
-            <dd lang="{{ _from }}">{{ form.form }}</dd>
-            {% else %}
-                <dd lang="{{ _from }}">?</dd>
-            {% endif %}
-        {%- endfor -%}
+          {% if form.form %}
+              <dd lang="{{ _from }}">{{ form.form }}</dd>
+          {% else %}
+              <dd lang="{{ _from }}">?</dd>
+          {% endif %}
+      {%- endfor -%}
     </dl>
 
 {% endif %}
