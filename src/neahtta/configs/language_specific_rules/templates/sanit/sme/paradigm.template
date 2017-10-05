@@ -287,21 +287,16 @@
 
         {%- endfor -%}
 
-
-        {%- for form in numberless_forms -%}
+        {% set numb_forms = numberless_forms|group_by_tag %}
+        {% for var in numb_forms %}
             <tr>
-            {% if form.tag %}
-                <th class="tag" lang="{{ _to }}">{{ clean_tag(form.tag)  }}</th>
-            {% endif %}
-
-            {% if form.form %}
-                <td colspan="2" lang="{{ _from }}" class="center">{{ form.form }}</td>
-            {% else %}
-                <td colspan="2" lang="{{ _from }}">?</td>
-            {% endif %}
-
+                {% if var[0].tag %}
+                    <th class="tag" lang="{{ _to }}">{{ clean_tag(var[0].tag) }}</th>
+                {% endif %}
+                <td colspan="2" lang="{{ _from }}" class="center">{{ var|join('<br />', attribute='form') }}</td>
             </tr>
-        {%- endfor -%}
+        {% endfor %}
+
         </table>
 
     {% endif %}
@@ -310,7 +305,7 @@
 
     <dl class="dl-horizontal miniparadigm">
       {% set adj_forms = paradigm|group_by_tag %}
-      
+
       {% for var in adj_forms %}
           {% if var[0].tag %}
               <dt>{{ clean_tag(var[0].tag) }}</dt>
@@ -358,21 +353,16 @@
 
             {%- endfor -%}
 
-
-            {%- for form in numberless_forms -%}
+            {% set numb_forms = numberless_forms|group_by_tag %}
+            {% for var in numb_forms %}
                 <tr>
-                {% if form.tag %}
-                    <th class="tag" lang="{{ _to }}">{{ clean_tag(form.tag)  }}</th>
-                {% endif %}
-
-                {% if form.form %}
-                    <td colspan="2" lang="{{ _from }}" class="center">{{ form.form }}</td>
-                {% else %}
-                    <td colspan="2" lang="{{ _from }}">?</td>
-                {% endif %}
-
+                    {% if var[0].tag %}
+                        <th class="tag" lang="{{ _to }}">{{ clean_tag(var[0].tag) }}</th>
+                    {% endif %}
+                    <td colspan="2" lang="{{ _from }}" class="center">{{ var|join('<br />', attribute='form') }}</td>
                 </tr>
-            {%- endfor -%}
+            {% endfor %}
+
             </table>
 
         {% endif %}
