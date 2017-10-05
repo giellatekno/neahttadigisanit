@@ -38,7 +38,7 @@
        ends first #}
 
     {% set zipped_verbs = izip_longest(present_verbs, preterite_verbs, fillvalue='-')|list %}
-    
+
     {% set paradigm_exists = zipped_verbs|length > 0 or nonfinite_forms|length > 0 %}
 
     {# strip some parts of the tags that we don't need #}
@@ -116,6 +116,69 @@
 
 {% endif -%}
 
+{%- if pos|upper == 'A'  %}
+
+    {% set adj_text = "A"|tagfilter(_from, _to) %}
+
+    {% macro clean_tag(tag_input) %}
+        {{ tag_input|tagfilter(_from, _to)
+                    |replace(adj_text, "") }}
+    {% endmacro %}
+
+{% endif -%}
+
+{%- if pos|upper == 'PRON'  %}
+
+    {% set pron_text  = "Pron"|tagfilter(_from, _to) %}
+    {% set indef_text = "Indef"|tagfilter(_from, _to) %}
+    {% set sg_text    = "Sg"|tagfilter(_from, _to) %}
+    {% set pl_text    = "Pl"|tagfilter(_from, _to) %}
+
+
+    {% set pron_type = lexicon_entry|xpath('./lg/l/@type')|first %}
+    {% set pron_type_text = pron_type|tagfilter(_from, _to) %}
+
+    {# If there are nomainal number markings, then we'll split these
+       into two columns. Must determine this by checking the tagsets.
+
+       Works for words like eará, soames, etc.
+
+       TODO: mii +Rel
+             gii +Rel
+             makkár +Rel / +Interr
+             dat nr="Sg", type="Dem"
+             dat nr="Pl", type="Dem"
+
+             recipr is broken
+                /detail/sme/nob/goabbat%20guoimmisteame.html
+    #}
+
+    {% set two_columns = False %}
+    {% set sg_forms = paradigm|by_tagset_value("number", "Sg")|group_by_tag %}
+    {% set pl_forms = paradigm|by_tagset_value("number", "Pl")|group_by_tag %}
+
+    {% if sg_forms|length > 0 and pl_forms|length > 0 %}
+        {% set two_columns = True %}
+        {% set zipped_numbers = izip_longest(sg_forms, pl_forms, fillvalue='-')|list %}
+        {% set numberless_forms = paradigm|by_tagset("nouns_null_number") %}
+    {% endif %}
+
+    {% macro clean_tag(tag_input) %}
+        {% if two_columns %}
+            {{ tag_input|tagfilter(_from, _to)
+                        |replace(pron_text, "")
+                        |replace(sg_text, "")
+                        |replace(pl_text, "")
+                        |replace(pron_type_text, "") }}
+        {% else %}
+            {{ tag_input|tagfilter(_from, _to)
+                        |replace(pron_text, "")
+                        |replace(pron_type_text, "") }}
+        {% endif %}
+    {% endmacro %}
+
+{% endif -%}
+
 {%- macro full_paradigm_link() %}
     <a class="full-paradigm-link"
        style="opacity: .8;"
@@ -175,18 +238,13 @@
                 <dt>{{ nonfinite_header }}</dt><dd>&nbsp;</dd>
             {% endif %}
 
-            {%- for form in nonfinite_forms -%}
-
-                {% if form.tag %}
-                    <dt>{{ clean_tag(form.tag)  }}</dt>
+            {% set noninf_forms = nonfinite_forms|group_by_tag %}
+            {% for var in noninf_forms %}
+                {% if var[0].tag %}
+                    <dt>{{ clean_tag(var[0].tag) }}</dt>
                 {% endif %}
-
-                {% if form.form %}
-                <dd lang="{{ _from }}">{{ form.form }}</dd>
-                {% else %}
-                    <dd lang="{{ _from }}">?</dd>
-                {% endif %}
-            {%- endfor -%}
+                <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form') }}</dd>
+            {% endfor %}
         </dl>
     {% endif %}
 
@@ -228,23 +286,98 @@
 
         {%- endfor -%}
 
-
-        {%- for form in numberless_forms -%}
+        {% set numb_forms = numberless_forms|group_by_tag %}
+        {% for var in numb_forms %}
             <tr>
-            {% if form.tag %}
-                <th class="tag" lang="{{ _to }}">{{ clean_tag(form.tag)  }}</th>
-            {% endif %}
-
-            {% if form.form %}
-                <td colspan="2" lang="{{ _from }}" class="center">{{ form.form }}</td>
-            {% else %}
-                <td colspan="2" lang="{{ _from }}">?</td>
-            {% endif %}
-
+                {% if var[0].tag %}
+                    <th class="tag" lang="{{ _to }}">{{ clean_tag(var[0].tag) }}</th>
+                {% endif %}
+                <td colspan="2" lang="{{ _from }}" class="center">{{ var|join('<br />', attribute='form') }}</td>
             </tr>
-        {%- endfor -%}
+        {% endfor %}
+
         </table>
 
+    {% endif %}
+
+{% elif pos|upper == 'A' %}
+
+    <dl class="dl-horizontal miniparadigm">
+      {% set adj_forms = paradigm|group_by_tag %}
+
+      {% for var in adj_forms %}
+          {% if var[0].tag %}
+              <dt>{{ clean_tag(var[0].tag) }}</dt>
+          {% endif %}
+          <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form') }}</dd>
+      {% endfor %}
+    </dl>
+
+{% elif pos|upper == 'PRON' %}
+
+    {% if pron_type|upper == 'INDEF' and two_columns %}
+        {% if paradigm_exists %}
+
+            <table class="tableparadigm miniparadigm">
+                <tr>
+                    <th></th>
+                    <th lang="{{ _to }}">{{ sg_text }}</th>
+                    <th lang="{{ _to }}">{{ pl_text }}</th>
+                </tr>
+
+            {%- for sgs, pls in zipped_numbers -%}
+                <tr>
+
+                {% if sgs[0].tag %}
+                    {% set tag_display = clean_tag(sgs[0].tag) %}
+                {% elif pls[0].tag %}
+                    {% set tag_display = clean_tag(pls[0].tag) %}
+                {% endif %}
+
+                <th class="tag" lang="{{ _to }}">{{ tag_display }}</th>
+
+                {% if sgs and sgs != '-' %}
+                    <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form') }}</td>
+                {% else %}
+                    <td lang="{{ _from }}" class="center">&mdash;</td>
+                {% endif %}
+
+                {% if pls and pls != '-' %}
+                    <td lang="{{ _from }}">{{ pls|join('<br />', attribute='form') }}</td>
+                {% else %}
+                    <td lang="{{ _from }}" class="center">&mdash;</td>
+                {% endif %}
+
+                </tr>
+
+            {%- endfor -%}
+
+            {% set numb_forms = numberless_forms|group_by_tag %}
+            {% for var in numb_forms %}
+                <tr>
+                    {% if var[0].tag %}
+                        <th class="tag" lang="{{ _to }}">{{ clean_tag(var[0].tag) }}</th>
+                    {% endif %}
+                    <td colspan="2" lang="{{ _from }}" class="center">{{ var|join('<br />', attribute='form') }}</td>
+                </tr>
+            {% endfor %}
+
+            </table>
+
+        {% endif %}
+    {% else %}
+        <dl class="dl-horizontal miniparadigm">
+            <dt>{{ pron_text }} {{ pron_type_text }}</dt>
+            <dd>&nbsp;</dd>
+
+            {% set pron_forms = paradigm|group_by_tag %}
+            {% for var in pron_forms %}
+                {% if var[0].tag %}
+                    <dt>{{ clean_tag(var[0].tag) }}</dt>
+                {% endif %}
+                <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form') }}</dd>
+            {% endfor %}
+        </dl>
     {% endif %}
 
 {% else %}
