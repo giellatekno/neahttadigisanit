@@ -13,7 +13,7 @@ Relabel:
       v2: ""
       TV: "tr."
       IV: "intr."
-  
+
       v: "v."
       n: "s."
       a: "adj."
@@ -40,8 +40,8 @@ Relabel:
       iv: "IV"
       v: "V"
       vi: "VI"
-  
-  
+
+
       "v1": ""
       "v2": ""
       "v3": ""
@@ -71,7 +71,7 @@ Relabel:
       "Pcle": "part."
       "Num": "num."
       "Prop": "egennavn"
-  
+
       "Pers": "pers."
       "Dem": "demonstr."
       "Interr": "interr."
@@ -82,8 +82,8 @@ Relabel:
       "Ess": "essiv"
       "Ela": "elativ"
       "Ine": "inessiv"
-      "Sg": "entall"
-      "Pl": "flertall"
+      "Sg": "ent."
+      "Pl": "flt."
       "Nom": "nominativ"
       "Gen": "genitiv"
       "Acc": "akkusativ"
@@ -99,11 +99,11 @@ Relabel:
       "PxSg2": "poss. 2.p.ent."
       "PxSg3": "poss. 3.p.ent."
       "PxDu1": "poss. 1.p.tot."
-      "PxDu2": "poss. 2.p.totall"
-      "PxDu3": "poss. 3.p.totall"
-      "PxPl1": "poss. 1.p.flertall"
-      "PxPl2": "poss. 2.p.flertall"
-      "PxPl3": "poss. 3.p.flertall"
+      "PxDu2": "poss. 2.p.tot."
+      "PxDu3": "poss. 3.p.tot."
+      "PxPl1": "poss. 1.p.flt."
+      "PxPl2": "poss. 2.p.flt."
+      "PxPl3": "poss. 3.p.flt."
       "Comp": "komparativ"
       "Superl": "superlativ"
       "Clt": "klit."
@@ -156,4 +156,3 @@ Relabel:
     target_ui_language: 'sma'
     tags:
       <<: *smatagrelabels
-

@@ -70,15 +70,15 @@
       "Pers": "personlig"
       "Dem": "demonstr."
       "Det": "determinativ"
-      "Poss": "eiendom"      
+      "Poss": "eiendom"
       "Interr": ""
       "Refl": "refleksiv"
       "Recipr": "resiprok"
       "Rel": "relativ"
       "Indef": "ubestemt"
       "Ess": "essiv"
-      "Sg": "entall"
-      "Pl": "flertall"
+      "Sg": "ent."
+      "Pl": "flt."
       "Nom": "nominativ"
       "Gen": "genitiv"
       "Acc": "akkusativ"
@@ -337,11 +337,10 @@
 
   - source_morphology: 'SoMe'
     target_ui_language: 'nob'
-    tags: 
+    tags:
       <<: *smetagrelabels
 
   - source_morphology: 'nob'
     target_ui_language: 'sme'
-    tags: 
+    tags:
       <<: *smetagrelabels
-

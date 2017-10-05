@@ -70,15 +70,15 @@
       "Pers": "personlig"
       "Dem": "demonstr."
       "Det": "determinativ"
-      "Poss": "eiendom"      
+      "Poss": "eiendom"
       "Interr": "spørre"
       "Refl": "refleksiv"
       "Recipr": "resiprok"
       "Rel": "relativ"
       "Indef": "ubestemt"
       "Ess": "essiv"
-      "Sg": "entall"
-      "Pl": "flertall"
+      "Sg": "ent."
+      "Pl": "flt."
       "Nom": "nominativ"
       "Gen": "genitiv"
       "Acc": "akkusativ"
@@ -338,6 +338,5 @@
 
   - source_morphology: 'sma'
     target_ui_language: 'sme'
-    tags: 
+    tags:
       <<: *smetagrelabels
-

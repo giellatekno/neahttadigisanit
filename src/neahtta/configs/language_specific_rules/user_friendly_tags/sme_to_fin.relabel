@@ -32,9 +32,9 @@
       "Use/NGminip": ""
       "Allegro": ""
       "Err/Sub": ""
-  
+
       "Pref": "pref."
-  
+
       "Suff": "suff."
       "Punct": "punct."
       # number
@@ -101,7 +101,7 @@
       "InfMa": "ma.inf."
       "Der/minen": "Der/minen"
       "Der/maisilla": "Der/maisilla"
-  
+
       # participles
       "PrfPrc": "prfprc."
       "PrsPrc": "prsprc."
@@ -138,7 +138,7 @@
       "Err/Sub": "Err/Sub"
       "Use/Marg": "Use/Marg"
       "Use/Rare": "Use/Rare"
-  
+
       # dialectical
       "Dial": "dial."
       "Dial/Standard": "Dial/Standard"
@@ -209,7 +209,7 @@
 
   - source_morphology: 'sme'
     target_ui_language: 'fin'
-    tags: 
+    tags:
       V: "v."
       N: "s."
       A: "adj."
@@ -271,8 +271,8 @@
       "Rel": "relativ"
       "Indef": "ubest."
       "Ess": "essiv"
-      "Sg": "entall"
-      "Pl": "flertall"
+      "Sg": "ent."
+      "Pl": "flt."
       "Nom": "nominativ"
       "Gen": "genitiv"
       "Acc": "akkusativ"
@@ -287,11 +287,11 @@
       "PxSg2": "poss. 2.p.ent."
       "PxSg3": "poss. 3.p.ent."
       "PxDu1": "poss. 1.p.tot."
-      "PxDu2": "poss. 2.p.totall"
-      "PxDu3": "poss. 3.p.totall"
-      "PxPl1": "poss. 1.p.flertall"
-      "PxPl2": "poss. 2.p.flertall"
-      "PxPl3": "poss. 3.p.flertall"
+      "PxDu2": "poss. 2.p.tot."
+      "PxDu3": "poss. 3.p.tot."
+      "PxPl1": "poss. 1.p.flt."
+      "PxPl2": "poss. 2.p.flt."
+      "PxPl3": "poss. 3.p.flt."
       "Comp": "komparativ"
       "Superl": "superlativ"
       "Clt": "klit."
@@ -545,4 +545,3 @@
       "Veh": ""
       "Wpn": ""
       "Wthr": ""
-
