@@ -11,9 +11,9 @@
 #       "Use/NGminip": ""
 #       "Err/Sub": ""
 #       "Allegro": ""
-# 
+#
 #       Adv: "adv."
-# 
+#
 #       v: "v."
 #       n: "s."
 #       a: "adj."
@@ -36,7 +36,7 @@
 #       pr: "prep."
 #       pron: "pron."
 #       prop: "egennavn"
-# 
+#
 #       "v1": ""
 #       "v2": ""
 #       "v3": ""
@@ -47,7 +47,7 @@
 #       "v8": ""
 #       "v9": ""
 #       "v10": ""
-# 
+#
 #       # taken from tag-no.regex, these are the things that need relabeling
 #       # in generation
 #       "NomAg": "handlernomen"
@@ -66,11 +66,11 @@
 #       "Pcle": "partikkel"
 #       "Num": "tallord"
 #       "Prop": "egennavn"
-# 
+#
 #       "Pers": "personlig"
 #       "Dem": "demonstr."
 #       "Det": "determinativ"
-#       "Poss": "eiendom"      
+#       "Poss": "eiendom"
 #       "Interr": "spørre"
 #       "Refl": "refleksiv"
 #       "Recipr": "resiprok"
@@ -134,7 +134,7 @@
 #       "ABBR": "forkortning"
 #       "CLB": "setningsgrense"
 #       "PUNCT": "tegn"
-# 
+#
 #       "Der/A": "avledet adj"
 #       "Der/Dimin": "avledet diminutiv"
 #       "Der/NomAct": "avl.: handlingsnomen"
@@ -305,7 +305,7 @@
 #       "Foc/han": "fokuspartikkel -han"
 #       "Foc/naj": "fokuspartikkel -nai"
 #       "Foc/son": "fokuspartikkel -son"
-# 
+#
 #       "AttrCmp": ""
 #       "Com/Sh": ""
 #       "ComPxCPlCom": ""
@@ -324,7 +324,7 @@
 #       "ShCmp": ""
 #       "South": ""
 #       "TV": ""
-# 
+#
 #       "Sem/Ani": ""
 #       "Sem/Fem": ""
 #       "Sem/Mal": ""
@@ -367,9 +367,9 @@
       "Use/NGminip": ""
       "Allegro": ""
       "Err/Sub": ""
-  
+
       "Pref": "pref."
-  
+
       "Suff": "suff."
       "Punct": "punct."
       # number
@@ -436,7 +436,7 @@
       "InfMa": "ma.inf."
       "Der/minen": "Der/minen"
       "Der/maisilla": "Der/maisilla"
-  
+
       # participles
       "PrfPrc": "prfprc."
       "PrsPrc": "prsprc."
@@ -473,7 +473,7 @@
       "Err/Sub": "Err/Sub"
       "Use/Marg": "Use/Marg"
       "Use/Rare": "Use/Rare"
-  
+
       # dialectical
       "Dial": "dial."
       "Dial/Standard": "Dial/Standard"
@@ -544,7 +544,7 @@
 
   - source_morphology: 'smn'
     target_ui_language: 'fin'
-    tags: 
+    tags:
       V: "v."
       N: "s."
       A: "adj."
@@ -884,5 +884,10 @@
 
   - source_morphology: 'smnM'
     target_ui_language: 'fin'
-    tags: 
+    tags:
+      <<: *smntagrelabels
+
+  - source_morphology: 'fin'
+    target_ui_language: 'smn'
+    tags:
       <<: *smntagrelabels
