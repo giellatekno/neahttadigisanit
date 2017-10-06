@@ -38,7 +38,7 @@
        ends first #}
 
     {% set zipped_verbs = izip_longest(present_verbs, preterite_verbs, fillvalue='-')|list %}
-    
+
     {% set paradigm_exists = zipped_verbs|length > 0 or nonfinite_forms|length > 0 %}
 
     {# strip some parts of the tags that we don't need #}
@@ -139,7 +139,7 @@
     {% set pron_type_text = pron_type|tagfilter(_from, _to) %}
 
     {# If there are nomainal number markings, then we'll split these
-       into two columns. Must determine this by checking the tagsets. 
+       into two columns. Must determine this by checking the tagsets.
 
        Works for words like eará, soames, etc.
 
@@ -238,18 +238,13 @@
                 <dt>{{ nonfinite_header }}</dt><dd>&nbsp;</dd>
             {% endif %}
 
-            {%- for form in nonfinite_forms -%}
-
-                {% if form.tag %}
-                    <dt>{{ clean_tag(form.tag)  }}</dt>
+            {% set noninf_forms = nonfinite_forms|group_by_tag %}
+            {% for var in noninf_forms %}
+                {% if var[0].tag %}
+                    <dt>{{ clean_tag(var[0].tag) }}</dt>
                 {% endif %}
-
-                {% if form.form %}
-                <dd lang="{{ _from }}">{{ form.form }}</dd>
-                {% else %}
-                    <dd lang="{{ _from }}">?</dd>
-                {% endif %}
-            {%- endfor -%}
+                <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form') }}</dd>
+            {% endfor %}
         </dl>
     {% endif %}
 
@@ -291,21 +286,16 @@
 
         {%- endfor -%}
 
-
-        {%- for form in numberless_forms -%}
+        {% set numb_forms = numberless_forms|group_by_tag %}
+        {% for var in numb_forms %}
             <tr>
-            {% if form.tag %}
-                <th class="tag" lang="{{ _to }}">{{ clean_tag(form.tag)  }}</th>
-            {% endif %}
-
-            {% if form.form %}
-                <td colspan="2" lang="{{ _from }}" class="center">{{ form.form }}</td>
-            {% else %}
-                <td colspan="2" lang="{{ _from }}">?</td>
-            {% endif %}
-
+                {% if var[0].tag %}
+                    <th class="tag" lang="{{ _to }}">{{ clean_tag(var[0].tag) }}</th>
+                {% endif %}
+                <td colspan="2" lang="{{ _from }}" class="center">{{ var|join('<br />', attribute='form') }}</td>
             </tr>
-        {%- endfor -%}
+        {% endfor %}
+        
         </table>
 
     {% endif %}
@@ -313,18 +303,14 @@
 {% elif pos|upper == 'A' %}
 
     <dl class="dl-horizontal miniparadigm">
-        {%- for form in paradigm -%}
+        {% set adj_forms = paradigm|group_by_tag %}
 
-            {% if form.tag %}
-                <dt>{{ clean_tag(form.tag) }}</dt>
+        {% for var in adj_forms %}
+            {% if var[0].tag %}
+                <dt>{{ clean_tag(var[0].tag) }}</dt>
             {% endif %}
-
-            {% if form.form %}
-            <dd lang="{{ _from }}">{{ form.form }}</dd>
-            {% else %}
-                <dd lang="{{ _from }}">?</dd>
-            {% endif %}
-        {%- endfor -%}
+            <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form') }}</dd>
+        {% endfor %}
     </dl>
 
 {% elif pos|upper == 'PRON' %}
