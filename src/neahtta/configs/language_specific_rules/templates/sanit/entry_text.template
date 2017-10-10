@@ -8,7 +8,8 @@
 {%- set pos = first_l|xpath('@pos')|first %}
 {%- if pos == 'Pron' %}
     {% set pos_type = first_l|xpath('@type')|tagfilter(_from, _to) %}
-    {% set pos_text = pos|tagfilter(_from, _to)  + " " + pos_type %}
+    {# set pos_text = pos|tagfilter(_from, _to)  + " " + pos_type #}
+    {% set pos_text = pos|tagfilter(_from, _to) %}
 {% elif pos == 'N' and first_l.attrib.get('type') %}
     {% if first_l.attrib.get('type') == 'Prop' %}
         {% set pos_type = first_l.attrib.get('type')|tagfilter(_from, _to) %}
@@ -22,4 +23,3 @@
 <span lang="{{ _from }}">{{ first_l|text }}</span> (<span lang="{{ _to }}">{{ pos_text }}</span>)
 
 {# vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}
-
