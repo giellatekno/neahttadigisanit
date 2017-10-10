@@ -142,6 +142,10 @@ class EntryNodeIterator(object):
         else:
             text = [_tx.text for _tx in tx if _tx.text is not None]
 
+        for item in tx:
+            if item.text is None:
+                item.text = 'word_not _yet_translated'
+
         lang = tg.xpath('@xml:lang')
 
         annotations = []
@@ -275,7 +279,7 @@ class FrontPageFormat(EntryNodeIterator):
         # e node, tg node, default text for when formatter doesn't
         # exist for current iso
 
-        # Apply to each translation text separately 
+        # Apply to each translation text separately
         target_formatter = partial( lexicon_overrides.format_target
                                   , self.query_kwargs.get('source_lang')
                                   , self.query_kwargs.get('target_lang')
@@ -401,7 +405,7 @@ class FrontPageFormat(EntryNodeIterator):
             if '<a ' in _p or '</a>' in _p:
                 return _p
 
-            # TODO: will need a more lasting solution... 
+            # TODO: will need a more lasting solution...
             src_lang = self.query_kwargs.get('source_lang')
             if src_lang == 'SoMe':
                 src_lang = 'sme'
@@ -504,4 +508,3 @@ class DetailedFormat(FrontPageFormat):
 
         formatted_dict.update(self.additional_template_kwargs)
         return formatted_dict
-
