@@ -35,7 +35,7 @@ blueprint.add_url_rule( '/detail/<_from>/<_to>/<wordform>.<format>'
                       , endpoint="detailed_language_pair_search"
                       )
 
-blueprint.add_url_rule( '/paradigm/<_from>/<_to>/<lemma>'
+blueprint.add_url_rule( '/paradigm/<_from>/<_to>/<lemma>/'
                       , view_func=ParadigmLanguagePairSearchView.as_view('paradigm_generator')
                       , endpoint="paradigm_language_pair"
                       )
