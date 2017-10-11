@@ -1,4 +1,30 @@
-﻿from . import blueprint
+﻿""" A view for generating paradigms for a JSON api.
+
+Usage:
+    HTTP GET /PROJNAME/from_lang/to_lang/lemma/?params
+
+    PROJNAME - itwewina, kidwinan, etc
+    from_lang - source language to generate paradigm in
+    to_lang - language translations to display (if any)
+    lemma - word lemma
+
+    @params - a few things to constrain what paradigms are returned
+      pos - part of speech, case sensitive, V, Pron, etc.
+      e_node - the node ID for the entry to use as the canonical lemma.
+      (you may not need this, however you'll see this value pop up in
+      the HTML interface in URL parameters)
+
+History:
+ * originally developed as part of asynchronous paradigms, for when we
+   had really slow FSTs in crk.
+ * New interest in using this type of thing as a service for other north
+   american languages, combined with the reader lookup stuff.
+ * rehabilitated into use after lots of new functionality added: new
+   paradigm system needed, added pretty print option for json output
+
+"""
+
+from . import blueprint
 
 __all__ = [
     'ParadigmLanguagePairSearchView',
@@ -6,6 +32,7 @@ __all__ = [
 
 from flask import ( request
                   , current_app
+                  , json
                   , session
                   , Response
                   , render_template
@@ -19,6 +46,18 @@ from .reader import json_response
 from utils.encoding import decodeOrFail
 
 from i18n.utils import get_locale
+
+def json_response_pretty(data, *args, **kwargs):
+    data = json.dumps( data
+                     , sort_keys=True
+                     , indent=4
+                     , separators=(',', ': ')
+                     )
+
+    return Response( response=data
+                   , status=200
+                   , mimetype="application/json"
+                   )
 
 
 class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
@@ -48,6 +87,7 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
         self.check_pair_exists_or_abort(_from, _to)
 
         user_input = lemma = decodeOrFail(lemma)
+        pretty = request.args.get('pretty', False)
 
         # Generation constraints
         pos_filter = request.args.get('pos', False)
@@ -81,15 +121,15 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
                                         detailed=True,
                                         **search_kwargs)
 
-            current_app.cache.set(cache_key.encode('utf-8'), paradigms, timeout=None)
+            # current_app.cache.set(cache_key.encode('utf-8'), paradigms, timeout=None)
 
         from morphology.utils import tagfilter
 
         ui_locale = get_locale()
 
-        def filter_tag((_input, tag, forms)):
-            filtered_tag = tagfilter(tag, g._from, g._to).split(' ')
-            return (_input, filtered_tag, forms, tag)
+        def filter_tag(f):
+            filtered_tag = tagfilter(f.tag, g._from, g._to).split(' ')
+            return (f.input, filtered_tag, [f.form], f.tag.tag_string)
 
         paradigms = [map(filter_tag, _p) for _p in paradigms]
 
@@ -98,9 +138,14 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
         tagsets_serializer_ready = {}
 
         for key, ts in _tagsets.iteritems():
-            tagsets_serializer_ready[key] = ts.members
+            tagsets_serializer_ready[key] = [m.val for m in ts.members]
 
-        return json_response({
+        if pretty:
+            resp_fx = json_response_pretty
+        else:
+            resp_fx = json_response
+
+        return resp_fx({
             'paradigms': paradigms,
             'tagsets': tagsets_serializer_ready,
             'input': {
@@ -118,8 +163,8 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
 
         paradigms = []
 
-        for a in search_result_obj.formatted_results:
-            paradigms.append(a.get('paradigm'))
+        for entry, tag, paradigm, layouts in search_result_obj.entries_and_tags_and_paradigms:
+            paradigms.append(paradigm)
 
         return paradigms
 
