@@ -2,6 +2,15 @@ name: "verbs - transitive animate"
 morphology:
   pos: VTA
 --
+
+{{ lemma }}+VTA+Ind+Pos+Neu+2Sg+1SgO
+{{ lemma }}+VTA+Ind+Pos+Neu+1Sg+2SgO
+{{ lemma }}+VTA+Ind+Pos+Neu+1Pl+2SgO
+{{ lemma }}+VTA+Ind+Pos+Neu+2Sg+3SgO
+{{ lemma }}+VTA+Ind+Pos+Neu+3Sg+2SgO
+{{ lemma }}+VTA+Ind+Pos+Neu+1Sg+3SgO
+{{ lemma }}+VTA+Ind+Pos+Neu+3Sg+1SgO
+
 2+{{ lemma }}+VTA+Thm2
 2+{{ lemma }}+VTA+Thm1Sg
 2+{{ lemma }}+VTA+Thm1Pl
