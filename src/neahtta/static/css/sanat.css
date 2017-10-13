@@ -10,3 +10,7 @@ span.grammar_link_text {
 em.grammar_link {
     font-style: italic;
 }
+
+span.word_not_translated {
+    color: #D8525B;
+}
