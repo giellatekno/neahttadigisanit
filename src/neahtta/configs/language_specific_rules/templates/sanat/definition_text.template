@@ -52,7 +52,7 @@
 
     {% if reference %}
         {% if text == 'word_not_yet_translated' %}
-            <font color= "#D8525B">{{- text -}}</font>
+            <span class="word_not_translated">{{- text -}}</span>
         {% else %}
             <a href="{{ url_for('.search_pair_referred_search', _from=_from, _to=_to) }}?l_til_ref={{ reference }}">
                 {{- text -}}
@@ -61,7 +61,7 @@
     {%- else %}
         {# NB: swap from and to for these links since these are definitions. #}
         {% if text == 'word_not_yet_translated' %}
-            <font color= "#D8525B">{{- text -}}</font>
+            <span class="word_not_translated">{{- text -}}</span>
         {% else %}
             <a href="{{ url_for('.detailed_language_pair_search', _from=_to, _to=_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
                 {{- text -}}
