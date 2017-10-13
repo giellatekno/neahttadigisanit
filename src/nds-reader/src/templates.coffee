@@ -230,7 +230,7 @@ module.exports = class Templates
         <div id="help" style="display: none;" class="minipanel">
             <p>#{ _("In order to look up a word, hold down the <em>Alt</em> or <em>Option</em> (⌥) key, and doubleclick on a word. The service will contact the dictionary, and return a word after a short pause.") }</p>
             <p> </p>
-            <p>#{ _('If you find a bug, or if the bookmark does not work on a specific page <a href="mailto:giellatekno@hum.uit.no">please contact us</a>. Tell us what page didn\'t work, or what you did when you discovered the problem.') }
+            <p>#{ _('If you find a bug, or if the bookmark does not work on a specific page <a href="mailto:giellatekno@uit.no">please contact us</a>. Tell us what page didn\'t work, or what you did when you discovered the problem.') }
             </p>
         </div>
         <div id="about" style="display: none;" class="minipanel">
