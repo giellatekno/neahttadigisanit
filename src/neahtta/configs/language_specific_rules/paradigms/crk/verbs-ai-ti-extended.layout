@@ -3,6 +3,17 @@ paradigm: 'verbs-ai-ti.paradigm'
 layout:
   type: "extended"
   no_form: "–"
+tooltips: 
+  eng:
+    "Ind": "I/you/we VERB"
+    "Conjunct": "...that I/you/we VERB"
+    "1Sg": "I VERB"
+    "2Sg": "You VERB"
+    "1p inclusive": "We all VERB"
+    "1p exclusive": "We (not you) all VERB"
+    "2p": "You all VERB"
+    "3s": "s/he VERBs"
+    "3p": "They VERB"
 --
 |                  | _"Ind"           | _"Conjunct"   |
 | _"1Sg"           | +Ind+Prs+1Sg     | +Cnj+Prs+1Sg  |
