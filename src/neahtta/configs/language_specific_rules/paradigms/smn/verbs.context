@@ -8,135 +8,135 @@
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Sg2"
-  template: "(don) {{ word_form }}"
+  template: "(tun) {{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Sg3"
-  template: "(son) {{ word_form }}"
+  template: "(sun) {{ word_form }}"
 
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Du1"
-  template: "(moai) {{ word_form }}"
+  template: "(muoi) {{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Du2"
-  template: "(doai) {{ word_form }}"
+  template: "(tuoi) {{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Du3"
-  template: "(soai) {{ word_form }}"
+  template: "(suoi) {{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Pl1"
-  template: "(mii) {{ word_form }}"
+  template: "(mij) {{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Pl2"
-  template: "(dii) {{ word_form }}"
+  template: "(tij) {{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Pl3"
-  template: "(sii) {{ word_form }}"
+  template: "(sij) {{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prs+ConNeg"
-  template: "(odne in) {{ word_form }}"
+  template: "(onne jiem) {{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prt+ConNeg"
-  template: "(ikte in) {{ word_form }}"
+  template: "(jieht jiem) {{ word_form }}"
 
 
 - entry_context: None
   tag_context: "V+PrfPrc"
-  template: "(lean) {{ word_form }}"
+  template: "(lam) {{ word_form }}"
 
 # EX: ciellat
 
-- entry_context: "dat"
+- entry_context: "tot"
   tag_context: "V+Ind+Prs+Sg3"
-  template: "(dat) {{ word_form }}"
+  template: "(tot) {{ word_form }}"
 
-- entry_context: "dat"
+- entry_context: "tot"
   tag_context: "V+Ind+Prs+Pl3"
-  template: "(dat) {{ word_form }}"
+  template: "(tot) {{ word_form }}"
 
-- entry_context: "dat"
+- entry_context: "tot"
   tag_context: "V+Ind+Prs+ConNeg"
-  template: "(odne ii) {{ word_form }}"
+  template: "(onne ij) {{ word_form }}"
 
-- entry_context: "dat"
+- entry_context: "tot"
   tag_context: "V+Ind+Prt+ConNeg"
-  template: "(ikte ii) {{ word_form }}"
+  template: "(jieht ij) {{ word_form }}"
 
-- entry_context: "dat"
+- entry_context: "tot"
   tag_context: "V+PrfPrc"
-  template: "(lea) {{ word_form }}"
+  template: "(lii) {{ word_form }}"
 
 # EX: deaivvadit
 
-- entry_context: "sii"
+- entry_context: "sij"
   tag_context: "V+Ind+Prs+Du1"
-  template: "(moai) {{ word_form }}"
+  template: "(muoi) {{ word_form }}"
 
-- entry_context: "sii"
+- entry_context: "sij"
   tag_context: "V+Ind+Prt+Du1"
-  template: "(moai) {{ word_form }}"
+  template: "(muoi) {{ word_form }}"
 
-- entry_context: "sii"
+- entry_context: "sij"
   tag_context: "V+Ind+Prs+Du2"
-  template: "(doai) {{ word_form }}"
+  template: "(tuoi) {{ word_form }}"
 
-- entry_context: "sii"
+- entry_context: "sij"
   tag_context: "V+Ind+Prt+Du2"
-  template: "(doai) {{ word_form }}"
+  template: "(tuoi) {{ word_form }}"
 
-- entry_context: "sii"
+- entry_context: "sij"
   tag_context: "V+Ind+Prs+Du3"
-  template: "(soai) {{ word_form }}"
+  template: "(suoi) {{ word_form }}"
 
-- entry_context: "sii"
+- entry_context: "sij"
   tag_context: "V+Ind+Prt+Du3"
-  template: "(soai) {{ word_form }}"
+  template: "(suoi) {{ word_form }}"
 
 
 
-- entry_context: "sii"
+- entry_context: "sij"
   tag_context: "V+Ind+Prs+Pl1"
-  template: "(mii) {{ word_form }}"
+  template: "(mij) {{ word_form }}"
 
-- entry_context: "sii"
+- entry_context: "sij"
   tag_context: "V+Ind+Prt+Pl1"
-  template: "(mii) {{ word_form }}"
+  template: "(mij) {{ word_form }}"
 
-- entry_context: "sii"
+- entry_context: "sij"
   tag_context: "V+Ind+Prs+Pl2"
-  template: "(dii) {{ word_form }}"
+  template: "(tij) {{ word_form }}"
 
-- entry_context: "sii"
+- entry_context: "sij"
   tag_context: "V+Ind+Prt+Pl2"
-  template: "(dii) {{ word_form }}"
+  template: "(sij) {{ word_form }}"
 
-- entry_context: "sii"
+- entry_context: "sij"
   tag_context: "V+Ind+Prs+Pl3"
-  template: "(sii) {{ word_form }}"
+  template: "(sij) {{ word_form }}"
 
-- entry_context: "sii"
+- entry_context: "sij"
   tag_context: "V+Ind+Prt+Pl3"
-  template: "(sii) {{ word_form }}"
+  template: "(sij) {{ word_form }}"
 
-- entry_context: "sii"
+- entry_context: "sij"
   tag_context: "V+Ind+Prs+ConNeg"
-  template: "(odne eai) {{ word_form }}"
+  template: "(onne eai) {{ word_form }}"
 
-- entry_context: "sii"
+- entry_context: "sij"
   tag_context: "V+Ind+Prt+ConNeg"
-  template: "(ikte eai) {{ word_form }}"
+  template: "(jieht eai) {{ word_form }}"
 
-- entry_context: "sii"
+- entry_context: "sij"
   tag_context: "V+PrfPrc"
-  template: "(leat) {{ word_form }}"
+  template: "(láá) {{ word_form }}"
 
 # EX: bieggat
 
@@ -150,15 +150,15 @@
 
 - entry_context: "upers"
   tag_context: "V+Ind+Prs+ConNeg"
-  template: "(odne ii) {{ word_form }}"
+  template: "(onne ij) {{ word_form }}"
 
 - entry_context: "upers"
   tag_context: "V+Ind+Prt+ConNeg"
-  template: "(ikte ii) {{ word_form }}"
+  template: "(jieht ij) {{ word_form }}"
 
 - entry_context: "upers"
   tag_context: "V+PrfPrc"
-  template: "(lea) {{ word_form }}"
+  template: "(lii) {{ word_form }}"
 
 
 # negation
@@ -169,35 +169,35 @@
 
 - entry_context: None
   tag_context: "IV+Neg+Ind+Sg2"
-  template: "(don) {{ word_form }}"
+  template: "(tun) {{ word_form }}"
 
 - entry_context: None
   tag_context: "IV+Neg+Ind+Sg3"
-  template: "(son) {{ word_form }}"
+  template: "(sun) {{ word_form }}"
 
 - entry_context: None
   tag_context: "IV+Neg+Ind+Du1"
-  template: "(moai) {{ word_form }}"
+  template: "(muoi) {{ word_form }}"
 
 - entry_context: None
   tag_context: "IV+Neg+Ind+Du2"
-  template: "(doai) {{ word_form }}"
+  template: "(tuoi) {{ word_form }}"
 
 - entry_context: None
   tag_context: "IV+Neg+Ind+Du3"
-  template: "(soai) {{ word_form }}"
+  template: "(suoi) {{ word_form }}"
 
 - entry_context: None
   tag_context: "IV+Neg+Ind+Pl1"
-  template: "(mii) {{ word_form }}"
+  template: "(mij) {{ word_form }}"
 
 - entry_context: None
   tag_context: "IV+Neg+Ind+Pl2"
-  template: "(dii) {{ word_form }}"
+  template: "(tij) {{ word_form }}"
 
 - entry_context: None
   tag_context: "IV+Neg+Ind+Pl3"
-  template: "(sii) {{ word_form }}"
+  template: "(sij) {{ word_form }}"
 
 # negative supinum
 
@@ -210,32 +210,32 @@
 
 - entry_context: None
   tag_context: "IV+Neg+Sup+Sg2"
-  template: "{{ word_form }} (don)"
+  template: "{{ word_form }} (tun)"
 
 - entry_context: None
   tag_context: "IV+Neg+Sup+Sg3"
-  template: "{{ word_form }} (son)"
+  template: "{{ word_form }} (sun)"
 
 - entry_context: None
   tag_context: "IV+Neg+Sup+Du1"
-  template: "{{ word_form }} (moai)"
+  template: "{{ word_form }} (muoi)"
 
 - entry_context: None
   tag_context: "IV+Neg+Sup+Du2"
-  template: "{{ word_form }} (doai)"
+  template: "{{ word_form }} (tuoi)"
 
 - entry_context: None
   tag_context: "IV+Neg+Sup+Du3"
-  template: "{{ word_form }} (soai)"
+  template: "{{ word_form }} (suoi)"
 
 - entry_context: None
   tag_context: "IV+Neg+Sup+Pl1"
-  template: "{{ word_form }} (mii)"
+  template: "{{ word_form }} (mij)"
 
 - entry_context: None
   tag_context: "IV+Neg+Sup+Pl2"
-  template: "{{ word_form }} (dii)"
+  template: "{{ word_form }} (tij)"
 
 - entry_context: None
   tag_context: "IV+Neg+Sup+Pl3"
-  template: "{{ word_form }} (sii)"
+  template: "{{ word_form }} (sij)"
