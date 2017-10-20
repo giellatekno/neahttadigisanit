@@ -6,4 +6,4 @@
 
 - entry_context: "gápmagat"
   tag_context: "Num+Pl+Gen"
-  template: "{{ word_form }} (gápmagiid)"
+  template: "{{ word_form }}"
