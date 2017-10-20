@@ -896,3 +896,8 @@
     target_ui_language: 'sme'
     tags:
       <<: *smntagrelabels
+
+  - source_morphology: 'sme'
+    target_ui_language: 'smn'
+    tags:
+      <<: *smntagrelabels
