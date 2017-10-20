@@ -10,6 +10,11 @@ from variant_search import LanguagePairSearchVariantView
 
 from paradigms import ParadigmLanguagePairSearchView
 
+try:
+    from lemmatizer import LemmatizerView
+except:
+    pass
+
 blueprint.add_url_rule( '/'
                       , view_func=IndexSearchPage.as_view('index_search_page')
                       , endpoint="canonical-root"
@@ -39,6 +44,12 @@ blueprint.add_url_rule( '/paradigm/<_from>/<_to>/<lemma>/'
                       , view_func=ParadigmLanguagePairSearchView.as_view('paradigm_generator')
                       , endpoint="paradigm_language_pair"
                       )
+
+if LemmatizerView:
+    blueprint.add_url_rule( '/lemmas/<_from>/<wordform>/'
+                          , view_func=LemmatizerView.as_view('lemmatizer')
+                          , endpoint="lemmatizer"
+                          )
 
 # TODO: commenting out until this feature comes back, prevent anything
 # from breaking in other projects if this is unmaintained.
