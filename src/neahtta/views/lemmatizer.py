@@ -1,26 +1,19 @@
 """ A view for generating paradigms for a JSON api.
 
 Usage:
-    HTTP GET /PROJNAME/from_lang/to_lang/lemma/?params
+    HTTP GET /PROJNAME/from_lang/wordform/?params
 
     PROJNAME - itwewina, kidwinan, etc
     from_lang - source language to generate paradigm in
-    to_lang - language translations to display (if any)
-    lemma - word lemma
+    wordform - wordform
 
     @params - a few things to constrain what paradigms are returned
-      pos - part of speech, case sensitive, V, Pron, etc.
-      e_node - the node ID for the entry to use as the canonical lemma.
-      (you may not need this, however you'll see this value pop up in
-      the HTML interface in URL parameters)
+      pretty - True: returns indented output
+      tag_language - crk/eng/otw/etc, change lanaguage of user-friendly tags
 
 History:
- * originally developed as part of asynchronous paradigms, for when we
-   had really slow FSTs in crk.
- * New interest in using this type of thing as a service for other north
-   american languages, combined with the reader lookup stuff.
- * rehabilitated into use after lots of new functionality added: new
-   paradigm system needed, added pretty print option for json output
+ * created after lots of new functionality added: new lemmatizer json
+ service needed
 
 """
 
@@ -88,7 +81,7 @@ class LemmatizerView(DictionaryView, SearcherMixin):
         pretty = request.args.get('pretty', 'eng')
 
         if _from in current_app.morpholexicon.analyzers:
-            morph = current_app.morpholexicon.analyzers['crk']
+            morph = current_app.morpholexicon.analyzers[_from]
         else:
             errors.append("Morphology for <%s> does not exist" % _from)
 
