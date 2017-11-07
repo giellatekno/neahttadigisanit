@@ -227,3 +227,8 @@
     target_ui_language: 'sme'
     tags:
       <<: *smetagrelabels
+
+  - source_morphology: 'nob'
+    target_ui_language: 'SoMe'
+    tags:
+      <<: *smetagrelabels
