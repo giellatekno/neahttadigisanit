@@ -545,3 +545,13 @@
       "Veh": ""
       "Wpn": ""
       "Wthr": ""
+
+  - source_morphology: 'SoMe'
+    target_ui_language: 'fin'
+    tags:
+      <<: *fintagrelabels
+
+  - source_morphology: 'fin'
+    target_ui_language: 'SoMe'
+    tags:
+      <<: *fintagrelabels
