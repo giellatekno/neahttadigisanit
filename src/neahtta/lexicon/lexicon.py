@@ -436,7 +436,7 @@ class AutocompleteTrie(XMLDict):
             PARSED_TREES[parsed_key] = self.trie
 
         else:
-            self.trie = PARSED_TREES[filename]
+            self.trie = PARSED_TREES['auto-'+filename]
 
 class ReverseLookups(XMLDict):
     """
