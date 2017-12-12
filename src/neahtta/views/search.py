@@ -1,4 +1,4 @@
-﻿from . import blueprint
+from . import blueprint
 from flask import current_app
 
 from cache import cache
@@ -38,6 +38,7 @@ from .custom_rendering import template_rendering_overrides
 
 from operator import itemgetter
 
+
 user_log = getLogger("user_log")
 
 ######### TODO: this is a big todo, but, slowly refactor everything into mixins
@@ -66,7 +67,6 @@ class AppViewSettingsMixin(object):
         self.default_pair_settings = current_app.config.pair_definitions[( self.default_from
                                                                          , self.default_to
                                                                          )]
-
         super(AppViewSettingsMixin, self).__init__(*args, **kwargs)
 
 class DictionaryView(MethodView):
@@ -186,7 +186,7 @@ class DictionaryView(MethodView):
         _r_from, _r_to = orig_pair_opts.get('swap_from'), orig_pair_opts.get('swap_to')
         reverse_exists = current_app.config.dictionaries.get((_r_from, _r_to), False)
 
-        # check to see if the reversed pair is not a variant 
+        # check to see if the reversed pair is not a variant
         rev_orig_pair_settings, rev_orig_pair_opts = current_app.config.resolve_original_pair(_r_from, _r_to)
         _r_var_from, _r_var_to = rev_orig_pair_opts.get('swap_from'), rev_orig_pair_opts.get('swap_to')
         reverse_variant_exists = current_app.config.dictionaries.get((_r_var_from, _r_var_to), False)
@@ -340,7 +340,6 @@ class SearchResult(object):
         else:
             # For pregenerated things
             _generated, _stdout, _stderr = morph.generate_to_objs(lemma, [], node, return_raw_data=True)
-
         self.debug_text += '\n\n' + _stdout + '\n\n'
 
         return _generated
@@ -382,7 +381,6 @@ class SearchResult(object):
             return self._entries
 
         self._entries = [a for a, _ in self.entries_and_tags]
-
         return self._entries
 
     def sort_entries_and_tags_and_paradigm(self, unsorted_entries_and_tags_and_paradigms):
@@ -414,10 +412,17 @@ class SearchResult(object):
 
             return 1
 
-        return sorted( unsorted_entries_and_tags_and_paradigms
-                     , key=sort_key
-                     , cmp=sort_with_user_input_first
-                     )
+        # Uncomment rows 416-419 and 422-425 for results sorted alfabetically and comment 420-421
+        #entries_and_tags = sorted( unsorted_entries_and_tags_and_paradigms
+        #             , key=sort_key
+        #             , cmp=sort_with_user_input_first
+        #             )
+        entries_and_tags = unsorted_entries_and_tags_and_paradigms
+        return entries_and_tags
+        #return sorted( unsorted_entries_and_tags_and_paradigms
+        #             , key=sort_key
+        #             , cmp=sort_with_user_input_first
+        #             )
 
     @property
     def entries_and_tags_and_paradigms(self):
@@ -474,10 +479,11 @@ class SearchResult(object):
 
         return self._analyses_without_lex
 
-    def __init__(self, _from, _to, user_input, entries_and_tags, formatter, generate, sorter=None, filterer=None, debug_text=False, other_counts={}):
+    def __init__(self, _from, _to, user_input, entries_and_tags, entries_and_tags_r, formatter, generate, sorter=None, filterer=None, debug_text=False, other_counts={}):
         self.user_input = user_input
         self.search_term = user_input
         self.entries_and_tags = entries_and_tags
+        self.entries_and_tags_r = entries_and_tags_r
         # When to display unknowns
         self.successful_entry_exists = False
         self._from = _from
@@ -496,6 +502,9 @@ class SearchResult(object):
         self.analyses = [ (lem.input, lem.lemma, list(lem.tag))
                           for lem in entries_and_tags.analyses
                         ]
+        self.analyses_r = [ (lem_r.input, lem_r.lemma, list(lem_r.tag))
+                          for lem_r in entries_and_tags_r.analyses
+                        ]
 
         if len(self.formatted_results) > 0:
             self.successful_entry_exists = True
@@ -504,7 +513,7 @@ class SearcherMixin(object):
     """ This mixin provides common methods for performing the search,
     and returning view-ready results.
     """
-
+    entr_r = []
     def do_search_to_obj(self, lookup_value, **kwargs):
         """ Run the search, and provide a result object.
         """
@@ -535,7 +544,6 @@ class SearcherMixin(object):
                                           , target_lang=g._to
                                           , **search_kwargs
                                           )
-
         def count_others():
             """ This counts the results available in other language
             pairs with the same source to provide visual feedback to the
@@ -571,17 +579,19 @@ class SearcherMixin(object):
         else:
             others = {}
 
-        entries_and_tags, raw_output, raw_error = morpholex_result
+        entries_and_tags, raw_output, raw_error, entr_r = morpholex_result
         fst_text = raw_error + '\n--\n' + raw_output
 
         generate = kwargs.get('generate', False)
         search_result_obj = SearchResult(g._from, g._to, lookup_value,
                                          entries_and_tags,
+                                         entr_r,
                                          self.formatter,
                                          generate=generate,
                                          filterer=self.entry_filterer,
                                          debug_text=fst_text,
-                                         other_counts=others,)
+                                         other_counts=others,
+                                         )
 
         return search_result_obj
 
@@ -613,6 +623,7 @@ class SearcherMixin(object):
         if len(errors) == 0:
             errors = False
 
+        #Here analyses_right related to the same variable in morphology.py
         search_context = {
             'result': search_result_obj.formatted_results_sorted,
 
@@ -621,6 +632,7 @@ class SearcherMixin(object):
 
             'word_searches': template_results,
             'analyses': search_result_obj.analyses,
+            'analyses_right': search_result_obj.analyses_r,
             'analyses_without_lex': search_result_obj.analyses_without_lex,
             'user_input': search_result_obj.search_term,
             'current_locale': get_locale(),
@@ -695,34 +707,61 @@ class SearcherMixin(object):
                 return False
 
         # TODO: sorting_problem
+
+        k = 0
         for lz, az, paradigm, has_layout in search_result_obj.entries_and_tags_and_paradigms:
             if lz is not None:
 
-                tplkwargs = { 'lexicon_entry': lz
-                            , 'analyses': az
+                if (len(search_result_obj.entries_and_tags_r) > 1) & (k<len(search_result_obj.entries_and_tags_r)):
+                    tplkwargs = { 'lexicon_entry': lz
+                                , 'analyses': az
+                                , 'analyses_right': search_result_obj.entries_and_tags_r[k][1]
+                                , 'paradigm': paradigm
+                                , 'layout': has_layout
+                                , 'user_input': search_result_obj.search_term
+                                , 'word_searches': template_results
+                                , 'errors': False
+                                , 'show_info': show_info
+                                , 'successful_entry_exists': search_result_obj.successful_entry_exists
+                                }
 
-                            , 'paradigm': paradigm
-                            , 'layout': has_layout
-                            , 'user_input': search_result_obj.search_term
-                            , 'word_searches': template_results
-                            , 'errors': False
-                            , 'show_info': show_info
-                            , 'successful_entry_exists': search_result_obj.successful_entry_exists
-                            }
+                    tplkwargs.update(**default_context_kwargs)
 
-                tplkwargs.update(**default_context_kwargs)
+                    # Process all the context processors
+                    current_app.update_template_context(tplkwargs)
 
-                # Process all the context processors
-                current_app.update_template_context(tplkwargs)
+                    _rendered_entry_templates.append(
+                        current_app.lexicon_templates.render_template(g._from, template, **tplkwargs)
+                    )
+                else:
+                    tplkwargs = { 'lexicon_entry': lz
+                                , 'analyses': az
+                                , 'analyses_right': search_result_obj.entries_and_tags_r[0][1]
+                                , 'paradigm': paradigm
+                                , 'layout': has_layout
+                                , 'user_input': search_result_obj.search_term
+                                , 'word_searches': template_results
+                                , 'errors': False
+                                , 'show_info': show_info
+                                , 'successful_entry_exists': search_result_obj.successful_entry_exists
+                                }
 
-                _rendered_entry_templates.append(
-                    current_app.lexicon_templates.render_template(g._from, template, **tplkwargs)
-                )
+                    tplkwargs.update(**default_context_kwargs)
 
-        all_az = sum([az for _, az in sorted(search_result_obj.entries_and_tags, key=sort_entry)], [])
+                    # Process all the context processors
+                    current_app.update_template_context(tplkwargs)
+
+                    _rendered_entry_templates.append(
+                        current_app.lexicon_templates.render_template(g._from, template, **tplkwargs)
+                    )
+            k += 1
+
+        all_az = sum([az for _, az in (search_result_obj.entries_and_tags)], [])
+        #all_az = sum([az for _, az in sorted(search_result_obj.entries_and_tags, key=sort_entry)], [])
 
         indiv_template_kwargs = {
             'analyses': all_az,
+            'analyses_right': all_az,
         }
         indiv_template_kwargs.update(**default_context_kwargs)
 
@@ -739,6 +778,7 @@ class SearcherMixin(object):
         if search_result_obj.analyses_without_lex:
             leftover_tpl_kwargs = {
                 'analyses': search_result_obj.analyses_without_lex,
+                'analyses_right': search_result_obj.analyses_without_lex,
             }
             leftover_tpl_kwargs.update(**default_context_kwargs)
             # Process all the context processors
@@ -766,6 +806,7 @@ class SearcherMixin(object):
 
             'word_searches': template_results,
             'analyses': search_result_obj.analyses,
+            'analyses_right': search_result_obj.analyses_r,
             'analyses_without_lex': search_result_obj.analyses_without_lex,
             'user_input': search_result_obj.search_term,
 
@@ -827,6 +868,7 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
             'successful_entry_exists': False,
             'word_searches': False,
             'analyses': False,
+            'analyses_right': False,
             'analyses_without_lex': False,
             'user_input': False,
 
@@ -1145,4 +1187,3 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
         search_result_context['more_detail_link'] = want_more_detail
 
         return render_template(self.template_name, **search_result_context)
-
