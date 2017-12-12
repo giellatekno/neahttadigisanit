@@ -95,7 +95,7 @@ ul.nav-stacked li.active span {
 }
 
 #language_select {
-    display: none; 
+    display: none;
 }
 
 /* Example lang attribute selections */
@@ -160,7 +160,7 @@ ul.meanings {
 
 /* NOTE: make smaller */
 dl.possible_analyses dt {
-    font-weight: lighter; 
+    font-weight: lighter;
     font-style: italic;
     font-weight: 400;
 }
@@ -172,7 +172,7 @@ dl.possible_analyses dd {
     padding-left: 0;
 }
 ul.possible_forms {
-    list-style-type: none; 
+    list-style-type: none;
     margin-left: 0em;
 }
 
@@ -248,7 +248,7 @@ ul.unknown_lexemes {
 
 #bookmarklet a {
     color: #FFF;
-    font-size: 130%; 
+    font-size: 130%;
     text-shadow: none;
     font-weight: 300;
 }
@@ -284,10 +284,10 @@ footer {
 
     padding-top: 15px;
     padding-bottom: 25px;
-    
+
     position: relative;
     margin-top: -180px;
-    clear: both; 
+    clear: both;
 }
 
 .footer {
@@ -380,7 +380,7 @@ div.default_flag {
 
 .see_also, .see_also a {
     font-size: 90%;
-    font-style: italic; 
+    font-style: italic;
 }
 
 .transparent_text {
@@ -448,7 +448,7 @@ div.default_flag {
 }
 
 #language_grouped_nav .inactive-group {
-    display: none; 
+    display: none;
 }
 
 span.entry_source {
@@ -470,7 +470,7 @@ span.entry_source {
 }
 
 /* TODO: different design for desktop, closer to input, maybe use bootstrap
- * tooltip buttons  
+ * tooltip buttons
  */
 
 .fixfixed {
@@ -692,34 +692,34 @@ span.entry_source {
     #i18n_translations {
         float: left;
     }
-	
+
 	h4.dict_title {
 		font-size: 115%;
 		text-align: right;
 		margin-bottom: 0em;
 	}
-	
+
     form#neahttasaanit input {
         font-size: 20px;
     }
-    
+
     form#neahttasaanit {
         margin-top: 1.5em;
         margin-bottom: 1.5em;
     }
-    
+
     footer {
         margin-left: -20px;
         margin-right: -20px;
         padding: 0 40px;
         padding-bottom: 35px;
     }
-    
+
     p.lead {
         font-size: 120%;
         line-height: 1.3em;
     }
-    
+
     #uitlogo {
         top: 25px;
         width: 50px;
@@ -730,7 +730,7 @@ span.entry_source {
 	.main_search .examples {
 		font-size: 90%;
 	}
-	
+
 	.results ol {
 		margin-top: 1em;
 		margin-bottom: 1em;
@@ -743,7 +743,7 @@ span.entry_source {
 	.analysis_box {
 	    margin-top: 1em;
 	}
-	
+
 }
 
 @media (min-width: 551px) and (max-width: 767px) {
@@ -758,34 +758,34 @@ span.entry_source {
     #i18n_translations {
         float: left;
     }
-	
+
 	h4.dict_title {
 		font-size: 115%;
 		text-align: left;
 		margin-bottom: 0em;
 	}
-	
+
     form#neahttasaanit input {
         font-size: 20px;
     }
-    
+
     form#neahttasaanit {
         margin-top: 1.5em;
         margin-bottom: 1.5em;
     }
-    
+
     footer {
         margin-left: -20px;
         margin-right: -20px;
         padding: 0 40px;
         padding-bottom: 35px;
     }
-    
+
     p.lead {
         font-size: 120%;
         line-height: 1.3em;
     }
-    
+
     #uitlogo {
         top: 25px;
         width: 50px;
@@ -796,7 +796,7 @@ span.entry_source {
 	.main_search .examples {
 		font-size: 90%;
 	}
-	
+
 	.results ol {
 		margin-top: 1em;
 		margin-bottom: 1em;
@@ -805,7 +805,7 @@ span.entry_source {
 	.analysis_box {
 	    margin-top: 1em;
 	}
-	
+
     .entry_row .span8 {
         width:  70% !important;
         float: left;
@@ -985,8 +985,12 @@ table.miniparadigm {
 }
 
 table.miniparadigm .double-width {
-    border-top: 1px dotted #CCC; 
+    border-top: 1px dotted #CCC;
 }
 
 /* @group */
 
+/* Font color for '+' in case of Der tags */
+p.plus_der {
+  color: #0088cc;
+}
