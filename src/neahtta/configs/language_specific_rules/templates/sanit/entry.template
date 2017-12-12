@@ -1,4 +1,4 @@
-﻿{# 
+﻿{#
    Overrides contained within:
      * lemma_ref - link to a different entry ("see also")
 
@@ -20,26 +20,115 @@
 {%- endmacro -%}
 
 {%- import "lexicon.macros" as macros with context -%}
-<div class="row-fluid entry_row">
-    <div class="span8 lexeme">
-        {% if lexicon_entry|count > 0 %}
-            {% set has_reference = lexicon_entry.xpath('./lg/lemma_ref/text()')|first %}
-            <p>
-              	{%- if has_reference -%}
-              	    {{ reference_link(has_reference) }}
-              	{%- else -%}
-                    <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
-                        {{- rendered_templates.entry_text -}}</a>
-                {% endif %}
-            <ul class="meanings">
-                {{- rendered_templates.definition -}}
-            </ul>
-        {% else %}&nbsp;{% endif %}
-    </div>
-    <div class="span4 hidden-phone lexeme_analyses">
-        {{- rendered_templates.analyses -}}
-    </div>
-</div>
+{%- set first_l = lexicon_entry|xpath('lg/l')|first %}
+{%- set morph_ex = lexicon_entry|xpath('mg/tg/morph_expl') %}
 
+{% if morph_ex %}
+  {% set morph_ex_text = morph_ex[0]|text %}
+{% else %}
+    {% set morph_ex_text = 'xxxx' %}
+{% endif %}
+
+{% set cmp_list = [] %}
+{% for item in analyses[0].tag_raw if not 'true' in cmp_list %}
+  {% if 'Cmp' in item %}
+    {% do cmp_list.append('true') %}
+  {% endif %}
+{% endfor %}
+
+
+{% if 'Der/' not in first_l|text %}
+  {% if user_input in first_l|text %}
+    <div class="row-fluid entry_row">
+        <div class="span8 lexeme">
+            {% if lexicon_entry|count > 0 %}
+              {% set has_reference = lexicon_entry.xpath('./lg/lemma_ref/text()')|first %}
+              <p>
+                  {%- if has_reference -%}
+                      {{ reference_link(has_reference) }}
+                  {%- else -%}
+                      <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
+                          {{- rendered_templates.entry_text -}}</a>
+                  {% endif %}
+                  <ul class="meanings">
+                      {{- rendered_templates.definition -}}
+                  </ul>
+            {% else %}&nbsp;{% endif %}
+        </div>
+        <div class="span4 hidden-phone lexeme_analyses">
+            {{- rendered_templates.analyses -}}
+        </div>
+    </div>
+  {% else %}
+    {% if ('true' in cmp_list) and (analyses[0].tag_raw[0]|length < user_input|length) %}
+      <div class="row-fluid entry_row">
+              <div class="span8 lexeme">
+                  <div class="span2">
+                  </div>
+                  <div class="span6">
+                    {% if lexicon_entry|count > 0 %}
+                      {% set has_reference = lexicon_entry.xpath('./lg/lemma_ref/text()')|first %}
+                      <p>
+                          {%- if has_reference -%}
+                              {{ reference_link(has_reference) }}
+                          {%- else -%}
+                              <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
+                                  {{- rendered_templates.entry_text -}}</a>
+                          {% endif %}
+                          <ul class="meanings">
+                              {{- rendered_templates.definition -}}
+                          </ul>
+                    {% else %}&nbsp;{% endif %}
+                  </div>
+              </div>
+      </div>
+    {% else %}
+      <div class="row-fluid entry_row">
+          <div class="span8 lexeme">
+              {% if lexicon_entry|count > 0 %}
+                {% set has_reference = lexicon_entry.xpath('./lg/lemma_ref/text()')|first %}
+                <p>
+                    {%- if has_reference -%}
+                        {{ reference_link(has_reference) }}
+                    {%- else -%}
+                        <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
+                            {{- rendered_templates.entry_text -}}</a>
+                    {% endif %}
+                    <ul class="meanings">
+                        {{- rendered_templates.definition -}}
+                    </ul>
+              {% else %}&nbsp;{% endif %}
+          </div>
+          <div class="span4 hidden-phone lexeme_analyses">
+              {{- rendered_templates.analyses -}}
+          </div>
+      </div>
+    {% endif %}
+  {% endif %}
+{% else %}
+    <div class="row-fluid entry_row">
+            <div class="span8 lexeme">
+                <div class="span1">
+                </div>
+                <div class="span1">
+                  <p>
+                    <p class="plus_der">+</p>
+                </div>
+                <div class="span6">
+                  {% if lexicon_entry|count > 0 %}
+                    {% set has_reference = lexicon_entry.xpath('./lg/lemma_ref/text()')|first %}
+                    <p>
+                        {%- if has_reference -%}
+                            {{ reference_link(has_reference) }}
+                        {%- else -%}
+                            <p class='plus_der'>{{morph_ex_text}}</p>
+                        {% endif %}
+                        <ul class="meanings">
+                            {{- rendered_templates.definition -}}
+                        </ul>
+                  {% else %}&nbsp;{% endif %}
+                </div>
+            </div>
+    </div>
+{% endif %}
 {# vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}
-
