@@ -74,6 +74,7 @@
             {# TODO: deep link needs to go to specific lexeme when it comes from the front page #}
             {% if successful_entry_exists %}
                 <div class="results">
+                    <p class="user_input_text">{{user_input}}</p>
                     {% for tpl in entry_templates %}
                         {{ tpl|safe }}
                     {% endfor %}
@@ -132,7 +133,7 @@
                 {{ search_info_template|safe }}
             {% endif %}
         </div>
-        
+
     </div>
 
     {%- if analyses %}
