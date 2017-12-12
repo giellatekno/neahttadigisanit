@@ -10,10 +10,3 @@ span.grammar_link_text {
 em.grammar_link {
     font-style: italic;
 }
-
-/* Style for user_input text */
-p.user_input_text {
-  font-style: italic;
-  font-size: 150%;
-  color: #0c5278;
-}
