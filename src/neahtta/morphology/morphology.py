@@ -10,6 +10,9 @@ import re
 import os
 import imp
 
+from itertools import groupby
+from operator import itemgetter
+
 # TODO: get from global path
 configs_path = os.path.join( os.path.dirname(__file__) , '../')
 
@@ -252,7 +255,6 @@ class Lemma(object):
         # Best guess is the first item, otherwise...
         #self.lemma = tag[0]
         #del tag[0]
-        
         if lemma in all_tags:
             # Separate out items that are not values in a tagset, these
             # are probably the lemma.
@@ -338,21 +340,20 @@ def word_generation_context(generated_result, *generation_input_args, **generati
     def apply_context(form):
 #        tag, forms = form
 
-        
+
         # trigger different tuple lengths and adjust the entities
         #([u'viessat', u'V', u'Ind', u'Prt', u'Pl1'], [u'viesaimet'])
         # ==>  (u'viessat', [u'V', u'Ind', u'Prt', u'Pl1'], [u'viesaimet'])
-        
+
         # fix for the bug 2406
         if len(form) == 2:
             tmp_tag, tmp_forms = form
             tmp_lemma = tmp_tag[0]
             tmp_tag = tmp_tag[1:len(tmp_tag)]
             form = (tmp_lemma, tmp_tag, tmp_forms)
-            
+
         lemma, tag, forms = form
 
-        
         tag = '+'.join(tag)
 
         # Get the context, but also fall back to the None option.
@@ -566,6 +567,45 @@ class XFST(object):
         else:
             return [analysis]
 
+    def splitTagByDerivation(self, analysis):
+
+        def splitTag(item):
+            if 'Der' in item:
+                res = []
+                while 'Der' in item:
+                    fa = re.findall('Der', item)
+                    if len(fa) == 1:
+                        res.append(item[0:item.find("+Der")])
+                        res.append(item[item.find("+Der")+1:len(item)])
+                        break
+                    else:
+                        result = item[0:item.find("+Der")]
+                        result2 = item[item.find("+Der")+1:len(item)]
+                        res.append(result)
+                        item = result2
+                myres_array.append(res)
+            else:
+                myres_array.append(item)
+            return
+
+        global myres_array
+        myres_array = []
+        if isinstance(analysis, list):
+            for var in analysis:
+                splitTag(var)
+        else:
+            splitTag(analysis)
+
+        fin_res = []
+        for item in myres_array:
+            if isinstance(item, list):
+                for var in item:
+                    fin_res.append(var)
+            else:
+                fin_res.append(item)
+        return fin_res
+
+
     def tag_processor(self, analysis_line):
         """ This is a default tag processor which just returns the
         wordform separated from the tag for a given line of analysis.
@@ -629,7 +669,6 @@ class XFST(object):
             lemma = list(set(lemmas))[0]
 
             append_ = (lemma, analyses)
-
             cleaned.append(append_)
 
         return cleaned
@@ -756,7 +795,7 @@ class XFST(object):
         # already in the tag, we consider this to be a completed tag
         # string for generation. Otherwise, prefix the lemma then
         # send to generation.
-        # 
+        #
         if not no_preprocess_paradigm:
             for tag in tags:
                 if lemma in tag:
@@ -883,7 +922,7 @@ class Morphology(object):
 
     def generate_to_objs(self, *args, **kwargs):
         # TODO: occasionally lemma is not lemma, but first part of a
-        # tag, need to fix with the tagsets 
+        # tag, need to fix with the tagsets
         def make_lemma(r):
             lems = []
 
@@ -936,6 +975,7 @@ class Morphology(object):
         stderr_key = key + 'stderr'
 
         _is_cached = self.cache.get(key)
+
         if _is_cached:
             if return_raw_data:
                 cache_stdout = self.cache.get(stdout_key)
@@ -1014,7 +1054,7 @@ class Morphology(object):
             return reformatted
 
     # TODO: option, or separate function to also return discarded to
-    # find out what's been removed to hide more_info link 
+    # find out what's been removed to hide more_info link
     def lemmatize(self, form, split_compounds=False,
                   non_compound_only=False, no_derivations=False, return_raw_data=False):
         """ For a wordform, return a list of lemmas
@@ -1059,11 +1099,14 @@ class Morphology(object):
 
         if unknown:
             if return_raw_data:
-                return False, raw_output, raw_errors
+                return False, raw_output, raw_errors, False
             else:
-                return False
+                return False, False
 
-        lemmas = set()
+        #lemmas = set()
+        #Use list() instead of set() to keep original order
+        lemmas = list()
+        lemmas_r = list()
 
         for _form, analyses in lookups:
 
@@ -1078,11 +1121,183 @@ class Morphology(object):
                               , []
                               )
 
-            for analysis in analyses:
+            #Introduce the variable 'analyses_right' because in some cases when Der/ tags
+            # we want to show only specidic analyses and not all
+            analyses_right = analyses
+            analyses_der = analyses
+
+            if_der = False
+            #Check if Der/ tags in analyses
+            for item in analyses:
+                if 'Der' in item:
+                    if_der = True
+            if if_der:
+                ## ========================================================================== ##
+                # Example:
+                # analyses = [u'geavvat+V+IV+Der/h+V+TV+Inf',
+                #            u'geavvat+V+IV+Der/h+V+TV+Ind+Prs+Pl1',
+                #            u'geavvat+V+IV+Der/h+V+TV+Ind+Prs+Pl3',
+                #            u'geavvat+V+IV+Der/h+V+TV+Ind+Prt+Sg2',
+                #            u'geavahit+V+TV+Inf',
+                #            u'geavahit+V+TV+Ind+Prs+Pl1',
+                #            u'geavahit+V+TV+Ind+Prs+Pl3',
+                #            u'geavahit+V+TV+Ind+Prt+Sg2']
+                ## ========================================================================== ##
+                #Separate analysis with Der/ (tot_der) and without Der/ (tot_no_der)
+                tot_der, tot_no_der = [], []
+                for var in analyses:
+                    b, c, d, e = [], [], [], []
+                    if var.find("Der") != -1:
+                      b = (var[0:var.find("Der")-1])
+                      c = (var[var.find("Der"):len(var)])
+                    else:
+                      d = (var[0:var.find("+")])
+                      e = (var[var.find("+")+1:len(var)])
+                    if (b):
+                      tot_der.append([b,c])
+                    if (d):
+                      tot_no_der.append([d,e])
+                #Concatenate the 2 arrays
+                tot_an = tot_der + tot_no_der
+
+                #Group analysis (previously divided by Der/ tags) by lemma
+                _by_lemma = itemgetter(0)
+                an_res = []
+                sorted_grouped_an = groupby(
+                    sorted(tot_an, key=_by_lemma),
+                    _by_lemma)
+                for grouper, grouped in sorted_grouped_an:
+                    an_gr = [an for _, an in grouped if an is not None]
+                    an_res.append((grouper, an_gr))
+                ## ========================================================================== ##
+                #   an_res= [(u'geavahit', [u'V+TV+Inf', u'V+TV+Ind+Prs+Pl1', u'V+TV+Ind+Prs+Pl3', u'V+TV+Ind+Prt+Sg2']),
+                #           (u'geavvat+V+IV', [u'Der/h+V+TV+Inf', u'Der/h+V+TV+Ind+Prs+Pl1', u'Der/h+V+TV+Ind+Prs+Pl3', u'Der/h+V+TV+Ind+Prt+Sg2'])]
+                ## ========================================================================== ##
+
+                tot_res = []
+                res_der = []
+                case1, case2, case3, case4, caseif = False, False, False, False, False
+                #Choose which analysis to present according to some rules
+                for i in range(0, len(an_res)):
+                    k = 0
+                    var = an_res[i][1]
+                    if len(var) == 1:
+                        res_der.append(var[0])
+                    while k < (len(var)):
+                      for i in range(k+1, len(var)):
+                        if ('Err/Orth' not in var[k]) & ('Err/Orth' in var[i]):
+                            res_der.append(var[k])
+                            case1 = True
+                            k = len(var)
+                            break
+                        elif ('Err/Orth' in var[k]) & ('Err/Orth' not in var[i]):
+                            res_der.append(var[i])
+                            case2 = True
+                            break
+                        elif ('Err/Orth' not in var[k]) & ('Err/Orth' not in var[i]):
+                            res_der.append(var[k])
+                            case3 = True
+                            k = len(var)
+                            break
+                        elif ('Err/Orth' in var[k]) & ('Err/Orth' in var[i]):
+                            res_der.append(var[k])
+                            case4 = True
+                            k = len(var)
+                            break
+                      k += 1
+                #Now check res_der: if there are more than one analyses take the first two with less Der tags
+                ## ========================================================================== ##
+                #   res_der= [u'V+TV+Inf', u'Der/h+V+TV+Inf']
+                ## ========================================================================== ##
+                count = []
+                myres = []
+                if len(res_der)>1:
+                    for i in range(0, len(res_der)):
+                        count.append(re.findall('Der', res_der[i]))
+                    count_c = count[:]
+                    c = count.index(min(count, key=len))
+                    del count_c[c]
+                    d = count_c.index(min(count_c, key=len))
+                    if d<c:
+                      ind = d
+                      ar = [ind,c]
+                      myres = [an_res[ind][0]+'+'+res_der[ind],an_res[c][0]+'+'+res_der[c]]
+                    else:
+                      ind = d+1
+                      ar = [c,ind]
+                      myres = [an_res[c][0]+'+'+res_der[c],an_res[ind][0]+'+'+res_der[ind]]
+                      caseif = True
+                else:
+                    ind_der = 0
+                    myres = an_res[0][0]+'+'+res_der[0]
+                if isinstance(myres, list):
+                    result_analyses = myres
+                else:
+                    result_analyses = [myres]
+                ## ========================================================================== ##
+                #   result_analyses= [u'geavahit+V+TV+Inf', u'geavvat+V+IV+Der/h+V+TV+Inf']
+                ## ========================================================================== ##
+                #Check if the result has more analyses all with Der, take only the one with less Der
+                #otherwhise if one with Der and one without, keep both
+                countder = []
+                if_empty = False
+                for item in result_analyses:
+                    a = re.findall('Der', item)
+                    countder.append(a)
+                    if len(a) == 0:
+                        if_empty = True
+                if if_empty == False:
+                    myind = countder.index(min(countder, key=len))
+                    result_analyses2 = [result_analyses[myind]]
+                    analyses_right = result_analyses2
+                    analyses_der = sum( map(self.tool.splitTagByDerivation, result_analyses2)
+                                  , []
+                                  )
+                else:
+                    analyses_right = result_analyses
+                    analyses_der = sum( map(self.tool.splitTagByDerivation, result_analyses)
+                                  , []
+                                  )
+                if (case3 or case4) and not caseif:
+                    analyses_right = analyses
+
+            #Now check for Cmp/ tags
+            if_cmp = False
+            for item in analyses:
+                if 'Cmp' in item:
+                    if_cmp = True
+            if if_cmp:
+                #If the user input is lexicalized then put it as the first element in analyses
+                for i in range(0, len(analyses)):
+                  if form in analyses[i]:
+                    analyses.insert(0,analyses[i])
+                    del analyses[i+1]
+                    break
+                #If the user input is not in the base form, the previous for doesn't find the analyses
+                #      {{form not in analyses}}
+                #so find the longest analyses and put it/them in the first/s element/s
+                #in analyses if it is not one of the single parts
+                mystr = []
+                indmax = []
+                for i in range(0, len(analyses)):
+                  mystr.append(len(analyses[i][0:analyses[i].find("+")]))
+                indmax = [i for i, j in enumerate(mystr) if j == max(mystr)]
+                if not (max(mystr) < len(form)):
+                    k = 0
+                    for i in range(0, len(indmax)):
+                      analyses.insert(k, analyses.pop(indmax[i]))
+                      k += 1
+                analyses_right = analyses
+                analyses_der = analyses
+
+
+
+            for analysis in analyses_der:
                 # TODO: here's where to begin solving finding a lemma
                 # from:
                 # PV/maci+PV/pwana+nipâw+V+AI+Ind+Prs+1Sg
                 _an_parts = self.tool.splitAnalysis(analysis)
+
                 # If a word doesn't have a PoS in an analysis, we try to
                 # handle it as best as possible.
                 if len(_an_parts) == 1:
@@ -1093,12 +1308,33 @@ class Morphology(object):
                                , _input=form
                                , tool=self.tool, tagsets=self.tagsets
                                )
-                lemmas.add(lem)
+                #lemmas.add(lem)
+                lemmas.append(lem)
+
+            for analysis_r in analyses_right:
+                # TODO: here's where to begin solving finding a lemma
+                # from:
+                # PV/maci+PV/pwana+nipâw+V+AI+Ind+Prs+1Sg
+                _an_parts = self.tool.splitAnalysis(analysis_r)
+
+                # If a word doesn't have a PoS in an analysis, we try to
+                # handle it as best as possible.
+                if len(_an_parts) == 1:
+                    _lem = _an_parts[0]
+                    lem = Lemma(_an_parts, _input=_lem, tool=self.tool, tagsets=self.tagsets)
+                else:
+                    lem = Lemma( _an_parts
+                               , _input=form
+                               , tool=self.tool, tagsets=self.tagsets
+                               )
+                #lemmas.add(lem)
+                lemmas_r.append(lem)
+
 
         if return_raw_data:
-            return list(lemmas), raw_output, raw_errors
+            return list(lemmas), raw_output, raw_errors, list(lemmas_r)
         else:
-            return list(lemmas)
+            return list(lemmas), list(lemmas_r)
 
     def de_pickle_lemma(self, lem, tag):
         _tag = self.tool.splitAnalysis(tag)
