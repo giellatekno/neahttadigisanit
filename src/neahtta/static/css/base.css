@@ -834,7 +834,18 @@ span.entry_source {
         bottom: 0px !important;
         height: 1em;
     }
-
+    .lexeme .span1 {
+        width: 10% !important;
+        float: left;
+    }
+    .lexeme .span2 {
+        width: 20% !important;
+        float: left;
+    }
+    .lexeme .span6 {
+        width: 80% !important;
+        float: right;
+    }
 }
 
 
@@ -958,6 +969,18 @@ table.miniparadigm .horizontal-line {
     a.full-paradigm-link {
         float: left;
         margin-left: 2em;
+    }
+    .lexeme .span1 {
+        width: 10% !important;
+        float: left;
+    }
+    .lexeme .span2 {
+        width: 20% !important;
+        float: left;
+    }
+    .lexeme .span6 {
+        width: 80% !important;
+        float: right;
     }
 
 }
