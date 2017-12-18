@@ -164,6 +164,7 @@ def lookupWord(from_language, to_language):
     multi_lookups = []
     multi_tags = []
 
+
     for lookup in lookups:
         morpholexicon_lookup = mlex.lookup( lookup
                                       , source_lang=from_language
@@ -178,7 +179,21 @@ def lookupWord(from_language, to_language):
             joined = ' '.join(analysis.tag)
             return (analysis.lemma, joined)
 
-        analyses = morpholexicon_lookup.analyses
+        #Implementation of Der/ and Cmp/ resulted in nested array
+        # (both here and in morpholex)
+        #This is a quick fix, but TODO: maybe rethink the structure of new code?
+        analyses = []
+        entr = []
+        entr_and_analysis = morpholexicon_lookup[0]
+
+        for item in entr_and_analysis:
+            entr.append(item[0])
+            if len(item[1]) != 0:
+                analyses.append(item[1][0])
+
+        if len(analyses) != 0:
+            if isinstance(analyses[0], list):
+              analyses = analyses[0]
 
         tags = map(
             filterPOSAndTag,
@@ -190,14 +205,15 @@ def lookupWord(from_language, to_language):
         else:
             _u_in = user_input
 
+
         ui_lang = iso_filter(session.get('locale', to_language))
-        result = SimpleJSON( morpholexicon_lookup.entries
+
+        result = SimpleJSON( entr
                            , target_lang=to_language
                            , source_lang=from_language
                            , ui_lang=ui_lang
                            , user_input=_u_in
                            )
-
         result = result.sorted_by_pos()
 
         if len(result) > 0:
