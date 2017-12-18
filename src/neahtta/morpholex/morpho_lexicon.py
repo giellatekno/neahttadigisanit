@@ -28,6 +28,8 @@ class MorphoLexiconOverrides(object):
             entries_and_tags = function(wordform, **input_kwargs)
             if raw_return:
                 entries_and_tags, stdout, stderr, entr_right = entries_and_tags
+            else:
+                entries_and_tags, entr_right = entries_and_tags
 
             for f in self.override_functions[_from]:
                 new_res = f(entries_and_tags)
@@ -37,9 +39,9 @@ class MorphoLexiconOverrides(object):
                     continue
 
             if raw_return:
-                return MorphoLexiconResult(entries_and_tags), stdout, stderr, entr_right
+                return MorphoLexiconResult(entries_and_tags), stdout, stderr, MorphoLexiconResult(entr_right)
             else:
-                return MorphoLexiconResult(entries_and_tags), entr_right
+                return MorphoLexiconResult(entries_and_tags), MorphoLexiconResult(entr_right)
 
         return decorate
 
@@ -190,6 +192,7 @@ class MorphoLexicon(object):
         raw_output = ''
         raw_errors = ''
 
+
         if return_raw_data and analyses:
             analyses, raw_output, raw_errors, analyses_right = analyses
         else:
@@ -206,19 +209,33 @@ class MorphoLexicon(object):
         if analyses:
             #for analysis in list(set(analyses)):
             for analysis in list(analyses):
-                lex_kwargs = {
-                    'lemma': analysis.lemma,
-                    'pos': analysis.pos,
-                    'pos_type': False,
-                    'user_input': wordform,
-                }
+                if isinstance(analysis, list):
+                    if analysis[0].lemma:
+                        lex_kwargs = {
+                            'lemma': analysis[0].lemma,
+                            'pos': analysis[0].pos,
+                            'pos_type': False,
+                            'user_input': wordform,
+                        }
+                    else:
+                        continue
+                    #    lex_kwargs = {
+                    #        'lemma': False,
+                    #        'pos': False,
+                    #        'pos_type': False,
+                    #        'user_input': wordform,
+                    #    }
+                else:
+                    if analysis:
+                        lex_kwargs = {
+                            'lemma': analysis.lemma,
+                            'pos': analysis.pos,
+                            'pos_type': False,
+                            'user_input': wordform,
+                        }
+                    else:
+                        continue
 
-                if not analysis.lemma:
-                    # _error_args = [a.tag_raw for a in list(set(analyses))]
-                    # _error_str = "For some reason, a lemma was missing from this analysis: " + repr(_error_args)
-                    # _error_str += "Lookup string: " + repr(wordform)
-                    # current_app.logger.error(_error_str)
-                    continue
 
                 xml_result = self.lexicon.lookup( source_lang
                                                 , target_lang
@@ -234,19 +251,27 @@ class MorphoLexicon(object):
         if analyses_right:
             #for analysis in list(set(analyses)):
             for analysis_r in list(analyses_right):
-                lex_kwargs_right = {
-                    'lemma': analysis_r.lemma,
-                    'pos': analysis_r.pos,
-                    'pos_type': False,
-                    'user_input': wordform,
-                }
+                if isinstance(analysis_r, list):
+                    if analysis_r[0].lemma:
+                        lex_kwargs_right = {
+                            'lemma': analysis_r[0].lemma,
+                            'pos': analysis_r[0].pos,
+                            'pos_type': False,
+                            'user_input': wordform,
+                        }
+                    else:
+                        continue
+                else:
+                    if analysis_r:
+                        lex_kwargs_right = {
+                            'lemma': analysis_r.lemma,
+                            'pos': analysis_r.pos,
+                            'pos_type': False,
+                            'user_input': wordform,
+                        }
+                    else:
+                        continue
 
-                if not analysis_r.lemma:
-                    # _error_args = [a.tag_raw for a in list(set(analyses))]
-                    # _error_str = "For some reason, a lemma was missing from this analysis: " + repr(_error_args)
-                    # _error_str += "Lookup string: " + repr(wordform)
-                    # current_app.logger.error(_error_str)
-                    continue
 
                 xml_result_right = self.lexicon.lookup( source_lang
                                                 , target_lang
@@ -493,20 +518,28 @@ class MorphoLexicon(object):
         entries_and_tags_right = []
 
         if analyses:
-            for analysis in list(set(analyses)):
-                lex_kwargs = {
-                    'lemma': analysis.lemma,
-                    'pos': analysis.pos,
-                    'pos_type': False,
-                    'user_input': wordform,
-                }
+            for analysis in list(analyses):
+                if isinstance(analysis, list):
+                    if analysis[0].lemma:
+                        lex_kwargs = {
+                            'lemma': analysis[0].lemma,
+                            'pos': analysis[0].pos,
+                            'pos_type': False,
+                            'user_input': wordform,
+                        }
+                    else:
+                        continue
+                else:
+                    if analysis:
+                        lex_kwargs = {
+                            'lemma': analysis.lemma,
+                            'pos': analysis.pos,
+                            'pos_type': False,
+                            'user_input': wordform,
+                        }
+                    else:
+                        continue
 
-                if not analysis.lemma:
-                    # _error_args = [a.tag_raw for a in list(set(analyses))]
-                    # _error_str = "For some reason, a lemma was missing from this analysis: " + repr(_error_args)
-                    # _error_str += "Lookup string: " + repr(wordform)
-                    # current_app.logger.error(_error_str)
-                    continue
 
                 xml_result = self.lexicon.variant_lookup( source_lang
                                                         , target_lang
@@ -522,19 +555,27 @@ class MorphoLexicon(object):
         if analyses_right:
             #for analysis in list(set(analyses)):
             for analysis_r in list(analyses_right):
-                lex_kwargs_right = {
-                    'lemma': analysis_r.lemma,
-                    'pos': analysis_r.pos,
-                    'pos_type': False,
-                    'user_input': wordform,
-                }
+                if isinstance(analysis_r, list):
+                    if analysis_r[0].lemma:
+                        lex_kwargs_right = {
+                            'lemma': analysis_r[0].lemma,
+                            'pos': analysis_r[0].pos,
+                            'pos_type': False,
+                            'user_input': wordform,
+                        }
+                    else:
+                        continue
+                else:
+                    if analysis_r:
+                        lex_kwargs_right = {
+                            'lemma': analysis_r.lemma,
+                            'pos': analysis_r.pos,
+                            'pos_type': False,
+                            'user_input': wordform,
+                        }
+                    else:
+                        continue
 
-                if not analysis_r.lemma:
-                    # _error_args = [a.tag_raw for a in list(set(analyses))]
-                    # _error_str = "For some reason, a lemma was missing from this analysis: " + repr(_error_args)
-                    # _error_str += "Lookup string: " + repr(wordform)
-                    # current_app.logger.error(_error_str)
-                    continue
 
                 xml_result_right = self.lexicon.lookup( source_lang
                                                 , target_lang
