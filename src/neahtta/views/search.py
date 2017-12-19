@@ -711,6 +711,8 @@ class SearcherMixin(object):
         k = 0
         for lz, az, paradigm, has_layout in search_result_obj.entries_and_tags_and_paradigms:
             if lz is not None:
+                if len(az) == 0:
+                    az = 'az'
 
                 if (len(search_result_obj.entries_and_tags_r) > 1) & (k<len(search_result_obj.entries_and_tags_r)):
                     tplkwargs = { 'lexicon_entry': lz
