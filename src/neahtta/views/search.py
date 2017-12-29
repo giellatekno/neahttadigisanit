@@ -568,7 +568,7 @@ class SearcherMixin(object):
 
             result_counts = {}
             for source, other in other_targs:
-                looks, _, _ = look(other, lookup_value)
+                looks, _, _, _ = look(other, lookup_value)
                 definitions = sum([count_tg(rz, other) for rz, _ in looks])
                 result_counts[(source, other)] = definitions
 
