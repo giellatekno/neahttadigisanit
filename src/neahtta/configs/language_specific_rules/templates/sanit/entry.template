@@ -37,7 +37,7 @@
 {% endfor %}
 
 
-{% if 'Der/' not in first_l|text %}
+{% if 'Der/' not in first_l|text and 'VAbess' not in first_l|text %}
   {% if user_input in first_l|text %}
     <div class="row-fluid entry_row">
         <div class="span8 lexeme">
@@ -81,6 +81,10 @@
                     {% else %}&nbsp;{% endif %}
                   </div>
               </div>
+              {# Uncomment div below to show analyses of first word in cmp #}
+              {#<div class="span4 hidden-phone lexeme_analyses">
+                  {{- rendered_templates.analyses -}}
+              </div>#}
       </div>
     {% else %}
       <div class="row-fluid entry_row">
