@@ -563,24 +563,29 @@ class XFST(object):
     def splitTagByCompound(self, analysis):
         _cmp = self.options.get('compoundBoundary', False)
         if _cmp:
+            #analysis_split = analysis.split(_cmp)
+            #if 'Cmp' in analysis:
+            #    last_analysis = analysis_split[len(analysis_split)-1]
+            #    analysis_split[len(analysis_split)-1] = last_analysis+'+DCmp'
             return analysis.split(_cmp)
+            #return analysis_split
         else:
             return [analysis]
 
-    def splitTagByDerivation(self, analysis):
+    def splitTagByString(self, analysis, tag_input):
 
-        def splitTag(item):
-            if 'Der' in item:
+        def splitTag(item, tag_string):
+            if tag_string in item:
                 res = []
-                while 'Der' in item:
-                    fa = re.findall('Der', item)
+                while tag_string in item:
+                    fa = re.findall(tag_string, item)
                     if len(fa) == 1:
-                        res.append(item[0:item.find("+Der")])
-                        res.append(item[item.find("+Der")+1:len(item)])
+                        res.append(item[0:item.find("+"+tag_string)])
+                        res.append(item[item.find("+"+tag_string)+1:len(item)])
                         break
                     else:
-                        result = item[0:item.find("+Der")]
-                        result2 = item[item.find("+Der")+1:len(item)]
+                        result = item[0:item.find("+"+tag_string)]
+                        result2 = item[item.find("+"+tag_string)+1:len(item)]
                         res.append(result)
                         item = result2
                 myres_array.append(res)
@@ -592,9 +597,9 @@ class XFST(object):
         myres_array = []
         if isinstance(analysis, list):
             for var in analysis:
-                splitTag(var)
+                splitTag(var, tag_input)
         else:
-            splitTag(analysis)
+            splitTag(analysis, tag_input)
 
         fin_res = []
         for item in myres_array:
@@ -1084,6 +1089,28 @@ class Morphology(object):
             else:
                 return iterable
 
+        #If the user input is lexicalized then put it as the first element in analyses
+        def check_if_lexicalized(array):
+            for i in range(0, len(array)):
+              if form in array[i]:
+                array.insert(0,array[i])
+                del array[i+1]
+                break
+            #If the user input is not in the base form, the for above doesn't find the analyses
+            #so find the longest analyses and put it/them in the first/s element/s
+            #in analyses if it is not one of the single parts
+            mystr = []
+            indmax = []
+            for i in range(0, len(array)):
+              mystr.append(len(array[i][0:array[i].find("+")]))
+            indmax = [i for i, j in enumerate(mystr) if j == max(mystr)]
+            if not (max(mystr) < len(form)):
+                k = 0
+                for i in range(0, len(indmax)):
+                  array.insert(k, array.pop(indmax[i]))
+                  k += 1
+            return array
+
         if return_raw_data:
             lookups, raw_output, raw_errors = self.tool.lookup([form], raw=True)
         else:
@@ -1122,7 +1149,7 @@ class Morphology(object):
                               )
 
             #Introduce the variable 'analyses_right' because in some cases when Der/ tags
-            # we want to show only specidic analyses and not all
+            # we want to show only specific analyses and not all
             analyses_right = analyses
             analyses_der = analyses
 
@@ -1250,16 +1277,18 @@ class Morphology(object):
                     myind = countder.index(min(countder, key=len))
                     result_analyses2 = [result_analyses[myind]]
                     analyses_right = result_analyses2
-                    analyses_der = sum( map(self.tool.splitTagByDerivation, result_analyses2)
-                                  , []
-                                  )
+                    analyses_der = self.tool.splitTagByString(result_analyses2, 'Der')
+                    #Uncomment line below if want to show splitted analyses on the right
+                    #analyses_right = analyses_der
                 else:
                     analyses_right = result_analyses
-                    analyses_der = sum( map(self.tool.splitTagByDerivation, result_analyses)
-                                  , []
-                                  )
+                    analyses_der = self.tool.splitTagByString(result_analyses, 'Der')
+                    #Uncomment line below if want to show splitted analyses on the right
+                    #analyses_right = analyses_der
                 if (case3 or case4) and not caseif:
                     analyses_right = analyses
+                    #Uncomment line below if want to show splitted analyses on the right
+                    #analyses_right = self.tool.splitTagByString(analyses, 'Der')
 
             #Now check for Cmp/ tags
             if_cmp = False
@@ -1267,29 +1296,19 @@ class Morphology(object):
                 if 'Cmp' in item:
                     if_cmp = True
             if if_cmp:
-                #If the user input is lexicalized then put it as the first element in analyses
-                for i in range(0, len(analyses)):
-                  if form in analyses[i]:
-                    analyses.insert(0,analyses[i])
-                    del analyses[i+1]
-                    break
-                #If the user input is not in the base form, the previous for doesn't find the analyses
-                #      {{form not in analyses}}
-                #so find the longest analyses and put it/them in the first/s element/s
-                #in analyses if it is not one of the single parts
-                mystr = []
-                indmax = []
-                for i in range(0, len(analyses)):
-                  mystr.append(len(analyses[i][0:analyses[i].find("+")]))
-                indmax = [i for i, j in enumerate(mystr) if j == max(mystr)]
-                if not (max(mystr) < len(form)):
-                    k = 0
-                    for i in range(0, len(indmax)):
-                      analyses.insert(k, analyses.pop(indmax[i]))
-                      k += 1
+                analyses = check_if_lexicalized(analyses)
                 analyses_right = analyses
                 analyses_der = analyses
 
+            #Now check for VAbess/ tags
+            if_vab = False
+            for item in analyses:
+                if 'VAbess' in item:
+                    if_vab = True
+            if if_vab:
+                analyses = check_if_lexicalized(analyses)
+                analyses_der = self.tool.splitTagByString(analyses, 'VAbess')
+                analyses_right = analyses
 
 
             for analysis in analyses_der:
