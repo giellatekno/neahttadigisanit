@@ -13,11 +13,15 @@
     {% for grouper, forms in analyses_right|groupby('lemma') %}
         {% for lemmagroup, lemmafs in forms|groupby('pos') %}
             {% if current_pair_settings.show_korp_search %}
+                {% if 'Der' in grouper %}
+                  <dt><span lang="{{ _from }}">{{ grouper }}</span></dt>
+                {% else %}
                   {% if lemmagroup and grouper %}
                       <dt><span lang="{{ _from }}">{{ grouper }}</span> {{ korp.link_lemma(grouper) }}</dt>
                   {% else %}
                       <dt><span lang="{{ _from }}">{{ grouper }}</span></dt>
                   {% endif %}
+                {% endif %}
             {% else %}
                 <dt><span lang="{{ _from }}">{{ grouper }}</span></dt>
             {% endif %}
