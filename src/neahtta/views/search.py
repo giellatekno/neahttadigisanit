@@ -709,6 +709,12 @@ class SearcherMixin(object):
         # TODO: sorting_problem
 
         k = 0
+        res_par = []
+        for item in search_result_obj.entries_and_tags_r:
+            if item[0] != None:
+                res_par.append(item)
+        search_result_obj.entries_and_tags_r = res_par
+
         for lz, az, paradigm, has_layout in search_result_obj.entries_and_tags_and_paradigms:
             if lz is not None:
                 if len(az) == 0:
