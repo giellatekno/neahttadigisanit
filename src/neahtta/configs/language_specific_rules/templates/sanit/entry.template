@@ -37,7 +37,15 @@
 {% endfor %}
 
 
-{% if 'Der/' not in first_l|text and 'VAbess' not in first_l|text %}
+{% set der_list = ['Der/', 'VAbess', 'VGen', 'Ger', 'Comp', 'Superl'] %}
+{% set if_der = [] %}
+{% for item in der_list %}
+  {% if item in first_l|text %}
+    {% do if_der.append('true') %}
+  {% endif %}
+{% endfor %}
+
+{% if 'true' not in if_der %}
   {% if user_input in first_l|text %}
     <div class="row-fluid entry_row">
         <div class="span8 lexeme">
