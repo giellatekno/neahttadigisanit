@@ -1152,6 +1152,11 @@ class Morphology(object):
             # we want to show only specific analyses and not all
             analyses_right = analyses
             analyses_der = analyses
+            #In case of multiple analyses with different types of Der we need to keep them all
+            #so in each case we append the results
+            #(probably no need for all these variables, so maybe TODO: clean)
+            analyses_right_fin = []
+            analyses_der_fin = []
 
             if_der = False
             #Check if Der/ tags in analyses
@@ -1280,15 +1285,22 @@ class Morphology(object):
                     analyses_der = self.tool.splitTagByString(result_analyses2, 'Der')
                     #Uncomment line below if want to show splitted analyses on the right
                     #analyses_right = analyses_der
+                    analyses_right_fin.append(analyses_right)
+                    analyses_der_fin.append(analyses_der)
+
                 else:
                     analyses_right = result_analyses
                     analyses_der = self.tool.splitTagByString(result_analyses, 'Der')
                     #Uncomment line below if want to show splitted analyses on the right
                     #analyses_right = analyses_der
+                    analyses_right_fin.append(analyses_right)
+                    analyses_der_fin.append(analyses_der)
+
                 if (case3 or case4) and not caseif:
                     analyses_right = analyses
                     #Uncomment line below if want to show splitted analyses on the right
                     #analyses_right = self.tool.splitTagByString(analyses, 'Der')
+                    analyses_right_fin.append(analyses_right)
 
             #Now check for Cmp/ tags
             if_cmp = False
@@ -1299,6 +1311,8 @@ class Morphology(object):
                 analyses = check_if_lexicalized(analyses)
                 analyses_right = analyses
                 analyses_der = analyses
+                analyses_right_fin.append(analyses_right)
+                analyses_der_fin.append(analyses_der)
 
             #Now check for VAbess/ tags
             if_vab = False
@@ -1309,9 +1323,88 @@ class Morphology(object):
                 analyses = check_if_lexicalized(analyses)
                 analyses_der = self.tool.splitTagByString(analyses, 'VAbess')
                 analyses_right = analyses
+                analyses_der_fin.append(analyses_der)
+                analyses_right_fin.append(analyses_right)
+
+            #Now check for VGen/ tags
+            if_vgen = False
+            for item in analyses:
+                if 'VGen' in item:
+                    if_vgen = True
+            if if_vgen:
+                analyses = check_if_lexicalized(analyses)
+                analyses_der = self.tool.splitTagByString(analyses, 'VGen')
+                analyses_right = analyses
+                analyses_der_fin.append(analyses_der)
+                analyses_right_fin.append(analyses_right)
+
+            #Now check for Ger/ tags
+            if_ger = False
+            for item in analyses:
+                if 'Ger' in item:
+                    if_ger = True
+            if if_ger:
+                analyses = check_if_lexicalized(analyses)
+                analyses_der = self.tool.splitTagByString(analyses, 'Ger')
+                analyses_right = analyses
+                analyses_der_fin.append(analyses_der)
+                analyses_right_fin.append(analyses_right)
+
+            #Now check for Comp/ tags
+            if_comp = False
+            for item in analyses:
+                if 'Comp' in item:
+                    if_comp = True
+            if if_comp:
+                analyses = check_if_lexicalized(analyses)
+                analyses_der = self.tool.splitTagByString(analyses, 'Comp')
+                analyses_right = analyses
+                analyses_der_fin.append(analyses_der)
+                analyses_right_fin.append(analyses_right)
+
+            #Now check for Superl/ tags
+            if_superl = False
+            for item in analyses:
+                if 'Superl' in item:
+                    if_superl = True
+            if if_superl:
+                analyses = check_if_lexicalized(analyses)
+                analyses_der = self.tool.splitTagByString(analyses, 'Superl')
+                analyses_right = analyses
+                analyses_der_fin.append(analyses_der)
+                analyses_right_fin.append(analyses_right)
+
+            def fix_nested_array(nested_array):
+                not_nested_array = []
+                if len(nested_array) != 0:
+                    if isinstance(nested_array[0],list):
+                        for item in nested_array:
+                            if len(item)>1:
+                                for var in item:
+                                    not_nested_array.append(var)
+                            else:
+                                not_nested_array.append(item[0])
+                else:
+                    not_nested_array = analyses
+                return not_nested_array
+
+            #Fix in case analyses_der_fin and analyses_right_fin are nested arrays
+            array_not_nested = fix_nested_array(analyses_der_fin)
+            array_not_nested_r = fix_nested_array(analyses_right_fin)
+
+            def remove_duplicates(array_var):
+                newlist = []
+                for item in array_var:
+                   if item not in newlist:
+                       newlist.append(item)
+                return newlist
+
+            #Remove duplicates due to append in different der types
+            analyses_der_fin = remove_duplicates(array_not_nested)
+            analyses_right_fin = remove_duplicates(array_not_nested_r)
 
 
-            for analysis in analyses_der:
+            for analysis in analyses_der_fin:
                 # TODO: here's where to begin solving finding a lemma
                 # from:
                 # PV/maci+PV/pwana+nipâw+V+AI+Ind+Prs+1Sg
@@ -1330,7 +1423,7 @@ class Morphology(object):
                 #lemmas.add(lem)
                 lemmas.append(lem)
 
-            for analysis_r in analyses_right:
+            for analysis_r in analyses_right_fin:
                 # TODO: here's where to begin solving finding a lemma
                 # from:
                 # PV/maci+PV/pwana+nipâw+V+AI+Ind+Prs+1Sg
