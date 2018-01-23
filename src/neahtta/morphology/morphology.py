@@ -1143,11 +1143,6 @@ class Morphology(object):
             if no_derivations:
                 analyses = maybe_filter(remove_derivations, analyses)
 
-            if split_compounds:
-                analyses = sum( map(self.tool.splitTagByCompound, analyses)
-                              , []
-                              )
-
             #Introduce the variable 'analyses_right' because in some cases when Der/ tags
             # we want to show only specific analyses and not all
             analyses_right = analyses
@@ -1287,7 +1282,6 @@ class Morphology(object):
                     #analyses_right = analyses_der
                     analyses_right_fin.append(analyses_right)
                     analyses_der_fin.append(analyses_der)
-
                 else:
                     analyses_right = result_analyses
                     analyses_der = self.tool.splitTagByString(result_analyses, 'Der')
@@ -1303,6 +1297,10 @@ class Morphology(object):
                     analyses_right_fin.append(analyses_right)
 
             #Now check for Cmp/ tags
+            if split_compounds:
+                analyses = sum( map(self.tool.splitTagByCompound, analyses)
+                              , []
+                              )
             if_cmp = False
             for item in analyses:
                 if 'Cmp' in item:
