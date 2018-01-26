@@ -742,26 +742,49 @@ class SearcherMixin(object):
                         current_app.lexicon_templates.render_template(g._from, template, **tplkwargs)
                     )
                 else:
-                    tplkwargs = { 'lexicon_entry': lz
-                                , 'analyses': az
-                                , 'analyses_right': search_result_obj.entries_and_tags_r[0][1]
-                                , 'paradigm': paradigm
-                                , 'layout': has_layout
-                                , 'user_input': search_result_obj.search_term
-                                , 'word_searches': template_results
-                                , 'errors': False
-                                , 'show_info': show_info
-                                , 'successful_entry_exists': search_result_obj.successful_entry_exists
-                                }
+                    if len(search_result_obj.entries_and_tags_r)>0:
+                        tplkwargs = { 'lexicon_entry': lz
+                                    , 'analyses': az
+                                    , 'analyses_right': search_result_obj.entries_and_tags_r[0][1]
+                                    , 'paradigm': paradigm
+                                    , 'layout': has_layout
+                                    , 'user_input': search_result_obj.search_term
+                                    , 'word_searches': template_results
+                                    , 'errors': False
+                                    , 'show_info': show_info
+                                    , 'successful_entry_exists': search_result_obj.successful_entry_exists
+                                    }
 
-                    tplkwargs.update(**default_context_kwargs)
+                        tplkwargs.update(**default_context_kwargs)
 
-                    # Process all the context processors
-                    current_app.update_template_context(tplkwargs)
+                        # Process all the context processors
+                        current_app.update_template_context(tplkwargs)
 
-                    _rendered_entry_templates.append(
-                        current_app.lexicon_templates.render_template(g._from, template, **tplkwargs)
-                    )
+                        _rendered_entry_templates.append(
+                            current_app.lexicon_templates.render_template(g._from, template, **tplkwargs)
+                        )
+                    else:
+                        tplkwargs = { 'lexicon_entry': lz
+                                    , 'analyses': az
+                                    , 'analyses_right': ''
+                                    , 'paradigm': paradigm
+                                    , 'layout': has_layout
+                                    , 'user_input': search_result_obj.search_term
+                                    , 'word_searches': template_results
+                                    , 'errors': False
+                                    , 'show_info': show_info
+                                    , 'successful_entry_exists': search_result_obj.successful_entry_exists
+                                    }
+
+                        tplkwargs.update(**default_context_kwargs)
+
+                        # Process all the context processors
+                        current_app.update_template_context(tplkwargs)
+
+                        _rendered_entry_templates.append(
+                            current_app.lexicon_templates.render_template(g._from, template, **tplkwargs)
+                        )
+
             k += 1
 
         all_az = sum([az for _, az in (search_result_obj.entries_and_tags)], [])
