@@ -188,6 +188,48 @@
     </a>
 {% endmacro -%}
 
+{% macro link_lemma_paradigm(lemma_par, msd_par) -%}
+    {% if not orig_from %}
+        {% set orig_from = _from %}
+    {% endif %}
+    {%- set korp_opts = current_pair_settings.korp_options %}
+    {% if korp_opts.lemma_search_path and lemma_par -%}
+        {% set l_host = current_pair_settings.korp_search_host %}
+        {% set query_path = 'cqp|[lemma = "INPUT_LEMMA" & msd = "INPUT_MSD"]' %}
+
+        {% if korp_opts.is_korp_default_lang %}
+            {% set search_path = korp_opts.lemma_search_path_default_lang %}
+        {% else %}
+            {% set search_path = korp_opts.lemma_search_path.replace('TARGET_LANG_ISO', orig_from) %}
+        {% endif %}
+
+        {% if korp_opts.korp_parallel %}
+            {% set search_path = korp_opts.bilingual_wordform_search_path
+                        .replace('TARGET_LANG_ISO', orig_from) %}
+            {% set query_path = 'cqp|[lemma = "INPUT_LEMMA" & msd = "INPUT_MSD"]' %}
+        {% endif %}
+
+        {% set query = search_path.replace(
+            'SEARCH_QUERY',
+            query_path.replace(
+                'INPUT_LEMMA',
+                lemma_par
+            ).replace('INPUT_MSD',
+            msd_par)|urlencode_quote(safe="#/"))
+        %}
+
+        {% set s_href = l_host + query %}
+        {{ s_href }}
+
+        {% set link_corpus_param = current_pair_settings.link_corpus_parameter %}
+        {% if link_corpus_param|length >0 %}
+              {% set s_href = s_href + '&corpus=' + link_corpus_param %}
+              {{ s_href }}
+        {% endif %}
+    {%- endif %}
+{%- endmacro %}
+
+
 {%- if has_forms %}
 
 {%- if pos|upper == 'V' %}
@@ -216,14 +258,32 @@
 
                     <th class="tag" lang="{{ _to }}">{{ tag_display }}</th>
 
+                    {% set dict_prs = {'1.p.ent.': 'V.Ind.Prs.Sg1', '2.p.ent.': 'V.Ind.Prs.Sg2', '3.p.ent.': 'V.Ind.Prs.Sg3', '1.p.tot.': 'V.Ind.Prs.Du1', '2.p.tot.': 'V.Ind.Prs.Du2', '3.p.tot.': 'V.Ind.Prs.Du3', '1.p.flt.': 'V.Ind.Prs.Pl1', '2.p.flt.': 'V.Ind.Prs.Pl2', '3.p.flt.': 'V.Ind.Prs.Pl3'} %}
+                    {% set msd_var_prs = [] %}
+                    {% for key, value in dict_prs.iteritems() %}
+                      {% if key|string in tag_display|string %}
+                        {% do msd_var_prs.append(value|string) %}
+                      {% endif %}
+                    {% endfor %}
+
+                    {% set dict_prt = {'1.p.ent.': 'V.Ind.Prt.Sg1', '2.p.ent.': 'V.Ind.Prt.Sg2', '3.p.ent.': 'V.Ind.Prt.Sg3', '1.p.tot.': 'V.Ind.Prt.Du1', '2.p.tot.': 'V.Ind.Prt.Du2', '3.p.tot.': 'V.Ind.Prt.Du3', '1.p.flt.': 'V.Ind.Prt.Pl1', '2.p.flt.': 'V.Ind.Prt.Pl2', '3.p.flt.': 'V.Ind.Prt.Pl3'} %}
+                    {% set msd_var_prt = [] %}
+                    {% for key, value in dict_prt.iteritems() %}
+                      {% if key|string in tag_display|string %}
+                        {% do msd_var_prt.append(value|string) %}
+                      {% endif %}
+                    {% endfor %}
+
                     {% if present_forms and present_forms != '-' %}
-                        <td lang="{{ _from }}">{{ present_forms|join('<br />', attribute='form') }}</td>
-                    {% else %}
+                        {% set s_display = link_lemma_paradigm(lemma, msd_var_prs[0]|string) %}
+                        <td lang="{{ _from }}"><a href="{{ s_display }}">{{ present_forms|join('<br />', attribute='form') }}</a></td>
+                      {% else %}
                         <td lang="{{ _from }}">&mdash;</td>
                     {% endif %}
 
                     {% if preterite_forms and preterite_forms != '-' %}
-                        <td lang="{{ _from }}">{{ preterite_forms|join('<br />', attribute='form') }}</td>
+                        {% set s_display = link_lemma_paradigm(lemma, msd_var_prt[0]|string) %}
+                        <td lang="{{ _from }}"><a href="{{ s_display }}">{{ preterite_forms|join('<br />', attribute='form') }}</a></td>
                     {% else %}
                         <td lang="{{ _from }}">&mdash;</td>
                     {% endif %}
