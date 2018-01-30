@@ -1153,224 +1153,53 @@ class Morphology(object):
             analyses_right_fin = []
             analyses_der_fin = []
 
-            if_der = False
-            #Check if Der/ tags in analyses
+            analyses = check_if_lexicalized(analyses)
+            cnt = []
             for item in analyses:
-                if 'Der' in item:
-                    if_der = True
-            if if_der:
-                ## ========================================================================== ##
-                # Example:
-                # analyses = [u'geavvat+V+IV+Der/h+V+TV+Inf',
-                #            u'geavvat+V+IV+Der/h+V+TV+Ind+Prs+Pl1',
-                #            u'geavvat+V+IV+Der/h+V+TV+Ind+Prs+Pl3',
-                #            u'geavvat+V+IV+Der/h+V+TV+Ind+Prt+Sg2',
-                #            u'geavahit+V+TV+Inf',
-                #            u'geavahit+V+TV+Ind+Prs+Pl1',
-                #            u'geavahit+V+TV+Ind+Prs+Pl3',
-                #            u'geavahit+V+TV+Ind+Prt+Sg2']
-                ## ========================================================================== ##
-                #Separate analysis with Der/ (tot_der) and without Der/ (tot_no_der)
-                tot_der, tot_no_der = [], []
-                for var in analyses:
-                    b, c, d, e = [], [], [], []
-                    if var.find("Der") != -1:
-                      b = (var[0:var.find("Der")-1])
-                      c = (var[var.find("Der"):len(var)])
-                    else:
-                      d = (var[0:var.find("+")])
-                      e = (var[var.find("+")+1:len(var)])
-                    if (b):
-                      tot_der.append([b,c])
-                    if (d):
-                      tot_no_der.append([d,e])
-                #Concatenate the 2 arrays
-                tot_an = tot_der + tot_no_der
-
-                #Group analysis (previously divided by Der/ tags) by lemma
-                _by_lemma = itemgetter(0)
-                an_res = []
-                sorted_grouped_an = groupby(
-                    sorted(tot_an, key=_by_lemma),
-                    _by_lemma)
-                for grouper, grouped in sorted_grouped_an:
-                    an_gr = [an for _, an in grouped if an is not None]
-                    an_res.append((grouper, an_gr))
-                ## ========================================================================== ##
-                #   an_res= [(u'geavahit', [u'V+TV+Inf', u'V+TV+Ind+Prs+Pl1', u'V+TV+Ind+Prs+Pl3', u'V+TV+Ind+Prt+Sg2']),
-                #           (u'geavvat+V+IV', [u'Der/h+V+TV+Inf', u'Der/h+V+TV+Ind+Prs+Pl1', u'Der/h+V+TV+Ind+Prs+Pl3', u'Der/h+V+TV+Ind+Prt+Sg2'])]
-                ## ========================================================================== ##
-
-                tot_res = []
-                res_der = []
-                case1, case2, case3, case4, caseif = False, False, False, False, False
-                #Choose which analysis to present according to some rules
-                for i in range(0, len(an_res)):
-                    k = 0
-                    var = an_res[i][1]
-                    if len(var) == 1:
-                        res_der.append(var[0])
-                    while k < (len(var)):
-                      for i in range(k+1, len(var)):
-                        if ('Err/Orth' not in var[k]) & ('Err/Orth' in var[i]):
-                            res_der.append(var[k])
-                            case1 = True
-                            k = len(var)
-                            break
-                        elif ('Err/Orth' in var[k]) & ('Err/Orth' not in var[i]):
-                            res_der.append(var[i])
-                            case2 = True
-                            break
-                        elif ('Err/Orth' not in var[k]) & ('Err/Orth' not in var[i]):
-                            res_der.append(var[k])
-                            case3 = True
-                            k = len(var)
-                            break
-                        elif ('Err/Orth' in var[k]) & ('Err/Orth' in var[i]):
-                            res_der.append(var[k])
-                            case4 = True
-                            k = len(var)
-                            break
-                      k += 1
-                #Now check res_der: if there are more than one analyses take the first two with less Der tags
-                ## ========================================================================== ##
-                #   res_der= [u'V+TV+Inf', u'Der/h+V+TV+Inf']
-                ## ========================================================================== ##
-                count = []
-                myres = []
-                if len(res_der)>1:
-                    for i in range(0, len(res_der)):
-                        count.append(re.findall('Der', res_der[i]))
-                    count_c = count[:]
-                    c = count.index(min(count, key=len))
-                    del count_c[c]
-                    d = count_c.index(min(count_c, key=len))
-                    if d<c:
-                      ind = d
-                      ar = [ind,c]
-                      myres = [an_res[ind][0]+'+'+res_der[ind],an_res[c][0]+'+'+res_der[c]]
-                    else:
-                      ind = d+1
-                      ar = [c,ind]
-                      myres = [an_res[c][0]+'+'+res_der[c],an_res[ind][0]+'+'+res_der[ind]]
-                      caseif = True
+              cnt.append(item.count('Der'))
+            cnt_orth = []
+            for item in analyses:
+                cnt_orth.append(item.count('Err/Orth'))
+            import heapq
+            if (min(cnt_orth) == 0 and max(cnt_orth) == 1) or (min(cnt_orth) == 0 and max(cnt_orth) == 0):
+                if len(cnt)>1 and min(cnt)==0 and heapq.nsmallest(2, cnt)[-1] != 0:
+                    analyses = [analyses[cnt.index(min(cnt))],analyses[cnt.index(heapq.nsmallest(2, cnt)[-1])]]
                 else:
-                    ind_der = 0
-                    myres = an_res[0][0]+'+'+res_der[0]
-                if isinstance(myres, list):
-                    result_analyses = myres
-                else:
-                    result_analyses = [myres]
-                ## ========================================================================== ##
-                #   result_analyses= [u'geavahit+V+TV+Inf', u'geavvat+V+IV+Der/h+V+TV+Inf']
-                ## ========================================================================== ##
-                #Check if the result has more analyses all with Der, take only the one with less Der
-                #otherwhise if one with Der and one without, keep both
-                countder = []
-                if_empty = False
-                for item in result_analyses:
-                    a = re.findall('Der', item)
-                    countder.append(a)
-                    if len(a) == 0:
-                        if_empty = True
-                if if_empty == False:
-                    myind = countder.index(min(countder, key=len))
-                    result_analyses2 = [result_analyses[myind]]
-                    analyses_right = result_analyses2
-                    analyses_der = self.tool.splitTagByString(result_analyses2, 'Der')
-                    #Uncomment line below if want to show splitted analyses on the right
-                    #analyses_right = analyses_der
-                    analyses_right_fin.append(analyses_right)
-                    analyses_der_fin.append(analyses_der)
-                else:
-                    analyses_right = result_analyses
-                    analyses_der = self.tool.splitTagByString(result_analyses, 'Der')
-                    #Uncomment line below if want to show splitted analyses on the right
-                    #analyses_right = analyses_der
-                    analyses_right_fin.append(analyses_right)
-                    analyses_der_fin.append(analyses_der)
-
-                if (case3 or case4) and not caseif:
-                    analyses_right = analyses
-                    #Uncomment line below if want to show splitted analyses on the right
-                    #analyses_right = self.tool.splitTagByString(analyses, 'Der')
-                    analyses_right_fin.append(analyses_right)
-
-            #Now check for Cmp/ tags
+                    if min(cnt) != 0:
+                        analyses = [analyses[cnt.index(min(cnt))]]
+            else:
+                if (min(cnt_orth) == 1 and max(cnt_orth) == 1):
+                    analyses = analyses
             if split_compounds:
                 analyses = sum( map(self.tool.splitTagByCompound, analyses)
                               , []
                               )
-            if_cmp = False
+            tags = ('Der', 'VAbess', 'VGen', 'Ger', 'Comp', 'Superl')
+            an_split = []
             for item in analyses:
-                if 'Cmp' in item:
-                    if_cmp = True
-            if if_cmp:
-                analyses = check_if_lexicalized(analyses)
-                analyses_right = analyses
-                analyses_der = analyses
-                analyses_right_fin.append(analyses_right)
-                analyses_der_fin.append(analyses_der)
-
-            #Now check for VAbess/ tags
-            if_vab = False
-            for item in analyses:
-                if 'VAbess' in item:
-                    if_vab = True
-            if if_vab:
-                analyses = check_if_lexicalized(analyses)
-                analyses_der = self.tool.splitTagByString(analyses, 'VAbess')
-                analyses_right = analyses
-                analyses_der_fin.append(analyses_der)
-                analyses_right_fin.append(analyses_right)
-
-            #Now check for VGen/ tags
-            if_vgen = False
-            for item in analyses:
-                if 'VGen' in item:
-                    if_vgen = True
-            if if_vgen:
-                analyses = check_if_lexicalized(analyses)
-                analyses_der = self.tool.splitTagByString(analyses, 'VGen')
-                analyses_right = analyses
-                analyses_der_fin.append(analyses_der)
-                analyses_right_fin.append(analyses_right)
-
-            #Now check for Ger/ tags
-            if_ger = False
-            for item in analyses:
-                if 'Ger' in item:
-                    if_ger = True
-            if if_ger:
-                analyses = check_if_lexicalized(analyses)
-                analyses_der = self.tool.splitTagByString(analyses, 'Ger')
-                analyses_right = analyses
-                analyses_der_fin.append(analyses_der)
-                analyses_right_fin.append(analyses_right)
-
-            #Now check for Comp/ tags
-            if_comp = False
-            for item in analyses:
-                if 'Comp' in item:
-                    if_comp = True
-            if if_comp:
-                analyses = check_if_lexicalized(analyses)
-                analyses_der = self.tool.splitTagByString(analyses, 'Comp')
-                analyses_right = analyses
-                analyses_der_fin.append(analyses_der)
-                analyses_right_fin.append(analyses_right)
-
-            #Now check for Superl/ tags
-            if_superl = False
-            for item in analyses:
-                if 'Superl' in item:
-                    if_superl = True
-            if if_superl:
-                analyses = check_if_lexicalized(analyses)
-                analyses_der = self.tool.splitTagByString(analyses, 'Superl')
-                analyses_right = analyses
-                analyses_der_fin.append(analyses_der)
-                analyses_right_fin.append(analyses_right)
+                an_split.append(item.split('+'))
+            k = 0
+            for item in an_split:
+                index = []
+                if_tags = False
+                for i in range(0, len(item)):
+                  if item[i].startswith(tags):
+                    index.append(i)
+                    if_tags = True
+                s = '+'
+                b = []
+                if not if_tags:
+                    b.append(analyses[k])
+                else:
+                    for i in range(len(index)):
+                      if i == 0:
+                        b.append(s.join(item[0:index[i]]))
+                      else:
+                        b.append(s.join(item[index[i-1]:index[i]]))
+                      if i==len(index)-1:
+                        b.append(s.join(item[index[i]:len(item)]))
+                k += 1
+                analyses_der_fin.append(b)
 
             def fix_nested_array(nested_array):
                 not_nested_array = []
@@ -1388,7 +1217,6 @@ class Morphology(object):
 
             #Fix in case analyses_der_fin and analyses_right_fin are nested arrays
             array_not_nested = fix_nested_array(analyses_der_fin)
-            array_not_nested_r = fix_nested_array(analyses_right_fin)
 
             def remove_duplicates(array_var):
                 newlist = []
@@ -1399,8 +1227,7 @@ class Morphology(object):
 
             #Remove duplicates due to append in different der types
             analyses_der_fin = remove_duplicates(array_not_nested)
-            analyses_right_fin = remove_duplicates(array_not_nested_r)
-
+            analyses_right_fin = analyses_der_fin
 
             for analysis in analyses_der_fin:
                 # TODO: here's where to begin solving finding a lemma
