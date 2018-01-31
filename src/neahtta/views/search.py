@@ -710,38 +710,51 @@ class SearcherMixin(object):
 
         k = 0
         res_par = []
+        if_none = False
+        if_next_der = False
+        tags = ('Der', 'VAbess', 'VGen', 'Ger', 'Comp', 'Superl')
+        #If in the results there is a 'None' entry followed by der tag/s those are removed
+        #and are not shown in the results (e.g. "bagoheapmi")
         for item in search_result_obj.entries_and_tags_r:
-            if item[0] != None:
+            if if_none and item[1][0].lemma.startswith(tags):
+                if_next_der = True
+            if item[0] != None and not item[1][0].lemma.startswith(tags):
+                if_next_der = False
+            if item[0] != None and not if_next_der:
                 res_par.append(item)
+                if_none = False
+            else:
+                if_none = True
+
         search_result_obj.entries_and_tags_r = res_par
 
         for lz, az, paradigm, has_layout in search_result_obj.entries_and_tags_and_paradigms:
-            if search_result_obj.entries_and_tags_r[k][0] is not None:
-                if len(az) == 0:
-                    az = 'az'
+            if k<len(search_result_obj.entries_and_tags_r):
+                if search_result_obj.entries_and_tags_r[k][0] is not None:
+                    if len(az) == 0:
+                        az = 'az'
 
-                tplkwargs = { 'lexicon_entry': search_result_obj.entries_and_tags_r[k][0]
-                            , 'analyses': az
-                            , 'analyses_right': search_result_obj.entries_and_tags_r[k][1]
-                            #, 'analyses_right': az
-                            , 'paradigm': paradigm
-                            , 'layout': has_layout
-                            , 'user_input': search_result_obj.search_term
-                            , 'word_searches': template_results
-                            , 'errors': False
-                            , 'show_info': show_info
-                            , 'successful_entry_exists': search_result_obj.successful_entry_exists
-                            }
+                    tplkwargs = { 'lexicon_entry': search_result_obj.entries_and_tags_r[k][0]
+                                , 'analyses': az
+                                , 'analyses_right': search_result_obj.entries_and_tags_r[k][1]
+                                , 'paradigm': paradigm
+                                , 'layout': has_layout
+                                , 'user_input': search_result_obj.search_term
+                                , 'word_searches': template_results
+                                , 'errors': False
+                                , 'show_info': show_info
+                                , 'successful_entry_exists': search_result_obj.successful_entry_exists
+                                }
 
-                tplkwargs.update(**default_context_kwargs)
+                    tplkwargs.update(**default_context_kwargs)
 
-                # Process all the context processors
-                current_app.update_template_context(tplkwargs)
+                    # Process all the context processors
+                    current_app.update_template_context(tplkwargs)
 
-                _rendered_entry_templates.append(
-                    current_app.lexicon_templates.render_template(g._from, template, **tplkwargs)
-                )
-            k += 1
+                    _rendered_entry_templates.append(
+                        current_app.lexicon_templates.render_template(g._from, template, **tplkwargs)
+                    )
+                k += 1
 
         all_az = sum([az for _, az in (search_result_obj.entries_and_tags)], [])
         #all_az = sum([az for _, az in sorted(search_result_obj.entries_and_tags, key=sort_entry)], [])
