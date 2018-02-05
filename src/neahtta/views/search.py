@@ -716,15 +716,18 @@ class SearcherMixin(object):
         #If in the results there is a 'None' entry followed by der tag/s those are removed
         #and are not shown in the results (e.g. "bagoheapmi")
         for item in search_result_obj.entries_and_tags_r:
-            if if_none and item[1][0].lemma.startswith(tags):
-                if_next_der = True
-            if item[0] != None and not item[1][0].lemma.startswith(tags):
-                if_next_der = False
-            if item[0] != None and not if_next_der:
-                res_par.append(item)
-                if_none = False
+            if len(item[1])>0:
+                if if_none and item[1][0].lemma.startswith(tags):
+                    if_next_der = True
+                if item[0] != None and not item[1][0].lemma.startswith(tags):
+                    if_next_der = False
+                if item[0] != None and not if_next_der:
+                    res_par.append(item)
+                    if_none = False
+                else:
+                    if_none = True
             else:
-                if_none = True
+                res_par.append(item)
 
         search_result_obj.entries_and_tags_r = res_par
 
