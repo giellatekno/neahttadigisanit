@@ -767,9 +767,9 @@ saan-install: install_langs_fsts
 ##### #vadatargets
 #####
 
-VADA_LANGS_ANALYSERS      :=   yrk fin
-VADA_LANGS_LEXICA         :=   yrk
-VADA_WORDS_DICTS_LEXICA   :=   finyrk
+VADA_LANGS_ANALYSERS      :=   yrk fin mns
+VADA_LANGS_LEXICA         :=   yrk mns
+VADA_WORDS_DICTS_LEXICA   :=   finyrk mnshun
 
 .PHONY: vada-lexica
 vada-lexica: LEX_COMPILE_LANGS := $(VADA_LANGS_LEXICA)
