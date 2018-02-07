@@ -72,6 +72,7 @@ isos_to_names:
 
   # vada
   "yrk": !gettext "Nenets"
+  "mns": !gettext "Northern Mansi"
 
   # saan
   "sms": !gettext "Skolt Sami"
