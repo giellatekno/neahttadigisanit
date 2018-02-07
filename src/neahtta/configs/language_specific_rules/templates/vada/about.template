@@ -64,6 +64,11 @@
                 with funding from the Kone Foundation.{% endtrans %}</p>
             </span>
             <span class="span4">
+                <h3 class="red smaller">{% trans %}mns → hun{% endtrans %}</h3>
+                <p>{% trans %}Dictionary for Northern Mansi - Hungarian is
+		based on work in FinUgRevita.{% endtrans %}</p>
+            </span>
+            <span class="span4">
                 &nbsp;
             </span>
             <span class="span4">
