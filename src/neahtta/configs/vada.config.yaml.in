@@ -63,6 +63,7 @@ Languages:
   - iso: eng
   - iso: fin
   - iso: rus
+  - iso: hun
 
 Dictionaries:
   - source: yrk
@@ -107,7 +108,7 @@ ReaderConfig:
     # http://regexpal.com/
     #
     # apostrophes don't yet want to work on a word boundary, but also
-    # http://nvinder.ru/rubric/yalumd uses different characters. 
+    # http://nvinder.ru/rubric/yalumd uses different characters.
     word_regex: |
       [\u00C0-\u1FFF\u2C00-\uD7FF\w\"\'’’]+
     word_regex_opts: "g"
