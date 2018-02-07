@@ -7,12 +7,14 @@ ApplicationSettings:
   mobile_default_pair: false
   locales_available:
     - yrk
+    - mns
     - fi
+    - hu
     - en
   meta_description: >
-      Free online, mobile friendly dictionaries for Nenets
+      Free online, mobile friendly dictionaries for Nenets and Mansi
   meta_keywords: >
-      nenets, nenetsi, mobile, dictionary, free, russian
+      nenets, nenetsi, mobile, dictionary, free, russian, mansi
   admins_to_email:
     - "rueter.jack@gmail.com"
     - "trond.trosterud@uit.no"
@@ -26,6 +28,16 @@ Morphology:
     tool: *LOOKUP
     file: [*OPT, '/yrk/bin/analyser-dict-gt-desc.xfst']
     inverse_file: [*OPT, '/yrk/bin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  mns:
+    tool: *LOOKUP
+    file: [*OPT, '/mns/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/mns/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -46,6 +58,8 @@ Morphology:
 Languages:
   - iso: yrk
     minority_lang: true
+  - iso: mns
+    minority_lang: true
   - iso: eng
   - iso: fin
   - iso: rus
@@ -62,6 +76,10 @@ Dictionaries:
   - source: fin
     target: yrk
     path: 'dicts/finyrk.xml'
+
+  - source: mns
+    target: hun
+    path: 'dicts/mnshun.xml'
 
 ReaderConfig:
   Settings:
