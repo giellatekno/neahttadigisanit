@@ -1,0 +1,14 @@
+﻿pos: 
+ - "N"
+ - "V"
+ - "A"
+ - "Pr"
+ - "Po"
+ - "Num"
+type: 
+ - "NomAg"
+ - "G3"
+ - "aktor"
+valence:
+ - "TV"
+ - "IV"
