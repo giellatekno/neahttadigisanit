@@ -187,11 +187,20 @@ class DictionaryView(MethodView):
         reverse_exists = current_app.config.dictionaries.get((_r_from, _r_to), False)
 
         # check to see if the reversed pair is not a variant
-        rev_orig_pair_settings, rev_orig_pair_opts = current_app.config.resolve_original_pair(_r_from, _r_to)
-        _r_var_from, _r_var_to = rev_orig_pair_opts.get('swap_from'), rev_orig_pair_opts.get('swap_to')
-        reverse_variant_exists = current_app.config.dictionaries.get((_r_var_from, _r_var_to), False)
+        #What does this mean? This code swap the pair previously reverted and
+        #checks if the pair exists (which is always the case), causing the swap link to always be there
+        #and linking to err 404 if the dictionaty does not exists
+        ####                           Ex: mns-hun
+        #### _r_from = hun, _r_to = mns, reverse_exists = False (correct)
+        #### _r_var_from = mns, _r_var_to = hun, reverse_variant_exists = mnshun.xml (but this is the original pair!)
+        #commenting this seems to cause the swap link to be there only if the reverse pair exists (what we want)
+        # ---> why was it added?
+        #rev_orig_pair_settings, rev_orig_pair_opts = current_app.config.resolve_original_pair(_r_from, _r_to)
+        #_r_var_from, _r_var_to = rev_orig_pair_opts.get('swap_from'), rev_orig_pair_opts.get('swap_to')
+        #reverse_variant_exists = current_app.config.dictionaries.get((_r_var_from, _r_var_to), False)
 
-        return reverse_exists or reverse_variant_exists
+        #return reverse_exists or reverse_variant_exists
+        return reverse_exists
 
 class IndexSearchPage(DictionaryView, AppViewSettingsMixin):
     """ A simple view to handle potential mobile redirects to a default
