@@ -20,7 +20,7 @@
 {%- macro render_link(tg, t) -%}
     {# Render a link to the detailed page. One exception: if the lexicon
     annotation entry contains a @fra_ref attribute, then we make a
-    reference link, inserting this attribute's value in as a parameter. 
+    reference link, inserting this attribute's value in as a parameter.
 
          <tg xml:lang="sme">
             <re fra_ref="omtopersoner">om to personer</re>
@@ -33,12 +33,27 @@
             type="Recipr"
             orig_entry="hverandre"
             til_ref="omtopersoner">hverandre: om to personer</l>
-    
+
     #}
 
     {% set text = t.text %}
     {% set link_target = '' %}
     {% set fra_ref = tg.xpath('./re/@fra_ref') %}
+    {% set l_par = tg.xpath('./t/@l_par') %}
+    {% set r_par = tg.xpath('./t/@r_par') %}
+    {% if l_par|count > 0 %}
+      {% set l_par_text = l_par[0] %}
+      {% set if_l_par = true %}
+    {% else %}
+      {% set if_l_par = false %}
+    {% endif %}
+    {% if r_par|count > 0 %}
+      {% set r_par_text = r_par[0] %}
+      {% set if_r_par = true %}
+    {% else %}
+      {% set if_r_par = false %}
+    {% endif %}
+
 
     {% if fra_ref|count > 0 %}
         {# If this is a reference link, then there is no data in the
@@ -51,16 +66,66 @@
         {% set reference = false %}
     {% endif %}
 
-    {% if reference %}
+
+    {%- if reference %}
+      {% if if_l_par or if_r_par %}
+        {% if if_l_par and if_r_par %}
+          <span class="l-r-par">({{l_par_text}})</span>
+          <a href="{{ url_for('.search_pair_referred_search', _from=_from, _to=_to) }}?l_til_ref={{ reference }}">
+              {{- text -}}
+          </a>
+          <span class="l-r-par">({{r_par_text}})</span>
+        {% else %}
+          {% if if_l_par and not if_r_par %}
+            <span class="l-r-par">({{l_par_text}})</span>
+            <a href="{{ url_for('.search_pair_referred_search', _from=_from, _to=_to) }}?l_til_ref={{ reference }}">
+                {{- text -}}
+            </a>
+          {% else %}
+            {% if not if_l_par and if_r_par %}
+              <a href="{{ url_for('.search_pair_referred_search', _from=_from, _to=_to) }}?l_til_ref={{ reference }}">
+                  {{- text -}}
+              </a>
+              <span class="l-r-par">({{r_par_text}})</span>
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      {% else %}
         <a href="{{ url_for('.search_pair_referred_search', _from=_from, _to=_to) }}?l_til_ref={{ reference }}">
-            {{- text -}}
+              {{- text -}}
         </a> &rarr;
+      {% endif %}
     {%- else %}
         {# NB: swap from and to for these links since these are definitions. #}
-        <a href="{{ url_for('.detailed_language_pair_search', _from=_to, _to=_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
-            {{- text -}}
-        </a>
+        {% if if_l_par or if_r_par %}
+          {% if if_l_par and if_r_par %}
+            <span class="l-r-par">({{l_par_text}})</span>
+            <a href="{{ url_for('.detailed_language_pair_search', _from=_to, _to=_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
+                {{- text -}}
+            </a>
+            <span class="l-r-par">({{r_par_text}})</span>
+          {% else %}
+            {% if if_l_par and not if_r_par %}
+              <span class="l-r-par">({{l_par_text}})</span>
+              <a href="{{ url_for('.detailed_language_pair_search', _from=_to, _to=_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
+                  {{- text -}}
+              </a>
+            {% else %}
+              {% if not if_l_par and if_r_par %}
+                <a href="{{ url_for('.detailed_language_pair_search', _from=_to, _to=_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
+                    {{- text -}}
+                </a>
+                <span class="l-r-par">({{r_par_text}})</span>
+              {% endif %}
+            {% endif %}
+          {% endif %}
+        {% else %}
+          <a href="{{ url_for('.detailed_language_pair_search', _from=_to, _to=_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
+              {{- text -}}
+          </a>
+        {% endif %}
     {%- endif %}
+
 {%- endmacro -%}
 
 {%- macro render_tg(tg) -%}
