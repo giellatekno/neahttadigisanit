@@ -1023,3 +1023,9 @@ p.user_input_text {
   font-size: 150%;
   color: #0c5278;
 }
+/* Style for l_par and r_par */
+span.l-r-par {
+  font-style: italic;
+  color: #0c5278;
+  font-size: 90%;
+}
