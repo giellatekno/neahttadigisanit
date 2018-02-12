@@ -196,8 +196,7 @@ class MorphoLexicon(object):
         if return_raw_data and analyses:
             analyses, raw_output, raw_errors, analyses_right = analyses
         else:
-            analyses_right = analyses
-
+            analyses, analyses_right = analyses
         # if analyses:
         #     lookup_lemmas = [l.lemma for l in analyses]
         # else:
