@@ -1133,7 +1133,7 @@ class Morphology(object):
         #lemmas = set()
         #Use list() instead of set() to keep original order
         lemmas = list()
-        lemmas_r = list()
+        ##lemmas_r = list()
 
         for _form, analyses in lookups:
 
@@ -1145,12 +1145,12 @@ class Morphology(object):
 
             #Introduce the variable 'analyses_right' because in some cases when Der/ tags
             # we want to show only specific analyses and not all
-            analyses_right = analyses
+            ##analyses_right = analyses
             analyses_der = analyses
             #In case of multiple analyses with different types of Der we need to keep them all
             #so in each case we append the results
             #(probably no need for all these variables, so maybe TODO: clean)
-            analyses_right_fin = []
+            ##analyses_right_fin = []
             analyses_der_fin = []
 
             analyses = check_if_lexicalized(analyses)
@@ -1227,7 +1227,7 @@ class Morphology(object):
 
             #Remove duplicates due to append in different der types
             analyses_der_fin = remove_duplicates(array_not_nested)
-            analyses_right_fin = analyses_der_fin
+            ##analyses_right_fin = analyses_der_fin
 
             for analysis in analyses_der_fin:
                 # TODO: here's where to begin solving finding a lemma
@@ -1247,8 +1247,8 @@ class Morphology(object):
                                )
                 #lemmas.add(lem)
                 lemmas.append(lem)
-
-            for analysis_r in analyses_right_fin:
+            ##
+            '''for analysis_r in analyses_right_fin:
                 # TODO: here's where to begin solving finding a lemma
                 # from:
                 # PV/maci+PV/pwana+nipâw+V+AI+Ind+Prs+1Sg
@@ -1265,13 +1265,15 @@ class Morphology(object):
                                , tool=self.tool, tagsets=self.tagsets
                                )
                 #lemmas.add(lem)
-                lemmas_r.append(lem)
+                lemmas_r.append(lem)'''##
 
 
         if return_raw_data:
-            return list(lemmas), raw_output, raw_errors, list(lemmas_r)
+            ##return list(lemmas), raw_output, raw_errors, list(lemmas_r)
+            return list(lemmas), raw_output, raw_errors
         else:
-            return list(lemmas), list(lemmas_r)
+            ##return list(lemmas), list(lemmas_r)
+            return list(lemmas)
 
     def de_pickle_lemma(self, lem, tag):
         _tag = self.tool.splitAnalysis(tag)
