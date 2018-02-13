@@ -488,11 +488,12 @@ class SearchResult(object):
 
         return self._analyses_without_lex
 
-    def __init__(self, _from, _to, user_input, entries_and_tags, entries_and_tags_r, formatter, generate, sorter=None, filterer=None, debug_text=False, other_counts={}):
+    ##def __init__(self, _from, _to, user_input, entries_and_tags, entries_and_tags_r, formatter, generate, sorter=None, filterer=None, debug_text=False, other_counts={}):
+    def __init__(self, _from, _to, user_input, entries_and_tags, formatter, generate, sorter=None, filterer=None, debug_text=False, other_counts={}):
         self.user_input = user_input
         self.search_term = user_input
         self.entries_and_tags = entries_and_tags
-        self.entries_and_tags_r = entries_and_tags_r
+        ##self.entries_and_tags_r = entries_and_tags_r
         # When to display unknowns
         self.successful_entry_exists = False
         self._from = _from
@@ -511,9 +512,9 @@ class SearchResult(object):
         self.analyses = [ (lem.input, lem.lemma, list(lem.tag))
                           for lem in entries_and_tags.analyses
                         ]
-        self.analyses_r = [ (lem_r.input, lem_r.lemma, list(lem_r.tag))
-                          for lem_r in entries_and_tags_r.analyses
-                        ]
+        ##self.analyses_r = [ (lem_r.input, lem_r.lemma, list(lem_r.tag))
+        ##                  for lem_r in entries_and_tags_r.analyses
+        ##                ]
 
         if len(self.formatted_results) > 0:
             self.successful_entry_exists = True
@@ -588,13 +589,23 @@ class SearcherMixin(object):
         else:
             others = {}
 
-        entries_and_tags, raw_output, raw_error, entr_r = morpholex_result
+        ##entries_and_tags, raw_output, raw_error, entr_r = morpholex_result
+        entries_and_tags, raw_output, raw_error = morpholex_result
         fst_text = raw_error + '\n--\n' + raw_output
 
         generate = kwargs.get('generate', False)
-        search_result_obj = SearchResult(g._from, g._to, lookup_value,
+        ##
+        '''search_result_obj = SearchResult(g._from, g._to, lookup_value,
                                          entries_and_tags,
                                          entr_r,
+                                         self.formatter,
+                                         generate=generate,
+                                         filterer=self.entry_filterer,
+                                         debug_text=fst_text,
+                                         other_counts=others,
+                                         )'''##
+        search_result_obj = SearchResult(g._from, g._to, lookup_value,
+                                         entries_and_tags,
                                          self.formatter,
                                          generate=generate,
                                          filterer=self.entry_filterer,
@@ -641,7 +652,8 @@ class SearcherMixin(object):
 
             'word_searches': template_results,
             'analyses': search_result_obj.analyses,
-            'analyses_right': search_result_obj.analyses_r,
+            ##'analyses_right': search_result_obj.analyses_r,
+            'analyses_right': search_result_obj.analyses,
             'analyses_without_lex': search_result_obj.analyses_without_lex,
             'user_input': search_result_obj.search_term,
             'current_locale': get_locale(),
@@ -724,7 +736,8 @@ class SearcherMixin(object):
         tags = ('Der', 'VAbess', 'VGen', 'Ger', 'Comp', 'Superl')
         #If in the results there is a 'None' entry followed by der tag/s those are removed
         #and are not shown in the results (e.g. "bagoheapmi")
-        for item in search_result_obj.entries_and_tags_r:
+        ##for item in search_result_obj.entries_and_tags_r:
+        for item in search_result_obj.entries_and_tags:
             if len(item[1])>0:
                 if if_none and item[1][0].lemma.startswith(tags):
                     if_next_der = True
@@ -738,17 +751,21 @@ class SearcherMixin(object):
             else:
                 res_par.append(item)
 
-        search_result_obj.entries_and_tags_r = res_par
+        ##search_result_obj.entries_and_tags_r = res_par
 
         for lz, az, paradigm, has_layout in search_result_obj.entries_and_tags_and_paradigms:
-            if k<len(search_result_obj.entries_and_tags_r):
-                if search_result_obj.entries_and_tags_r[k][0] is not None:
+            ##if k<len(search_result_obj.entries_and_tags_r):
+            if k<len(res_par):
+                ##if search_result_obj.entries_and_tags_r[k][0] is not None:
+                if res_par[k][0] is not None:
                     if len(az) == 0:
                         az = 'az'
 
-                    tplkwargs = { 'lexicon_entry': search_result_obj.entries_and_tags_r[k][0]
+                    ##tplkwargs = { 'lexicon_entry': search_result_obj.entries_and_tags_r[k][0]
+                    tplkwargs = { 'lexicon_entry': res_par[k][0]
                                 , 'analyses': az
-                                , 'analyses_right': search_result_obj.entries_and_tags_r[k][1]
+                                ##, 'analyses_right': search_result_obj.entries_and_tags_r[k][1]
+                                , 'analyses_right': res_par[k][1]
                                 , 'paradigm': paradigm
                                 , 'layout': has_layout
                                 , 'user_input': search_result_obj.search_term
@@ -818,7 +835,8 @@ class SearcherMixin(object):
 
             'word_searches': template_results,
             'analyses': search_result_obj.analyses,
-            'analyses_right': search_result_obj.analyses_r,
+            ##'analyses_right': search_result_obj.analyses_r,
+            'analyses_right': search_result_obj.analyses,
             'analyses_without_lex': search_result_obj.analyses_without_lex,
             'user_input': search_result_obj.search_term,
 
