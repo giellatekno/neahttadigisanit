@@ -15,6 +15,8 @@ from lexicon.lexicon import hash_node
 from itertools import groupby
 from operator import itemgetter
 
+import time
+
 class MorphoLexiconOverrides(object):
 
     def override_results(self, function):
@@ -27,9 +29,11 @@ class MorphoLexiconOverrides(object):
 
             entries_and_tags = function(wordform, **input_kwargs)
             if raw_return:
-                entries_and_tags, stdout, stderr, entr_right = entries_and_tags
+                ##entries_and_tags, stdout, stderr, entr_right = entries_and_tags
+                entries_and_tags, stdout, stderr = entries_and_tags
             else:
-                entries_and_tags, entr_right = entries_and_tags
+                ##entries_and_tags, entr_right = entries_and_tags
+                entries_and_tags = entries_and_tags
 
             for f in self.override_functions[_from]:
                 new_res = f(entries_and_tags)
@@ -39,9 +43,11 @@ class MorphoLexiconOverrides(object):
                     continue
 
             if raw_return:
-                return MorphoLexiconResult(entries_and_tags), stdout, stderr, MorphoLexiconResult(entr_right)
+                ##return MorphoLexiconResult(entries_and_tags), stdout, stderr, MorphoLexiconResult(entr_right)
+                return MorphoLexiconResult(entries_and_tags), stdout, stderr
             else:
-                return MorphoLexiconResult(entries_and_tags), MorphoLexiconResult(entr_right)
+                ##return MorphoLexiconResult(entries_and_tags), MorphoLexiconResult(entr_right)
+                return MorphoLexiconResult(entries_and_tags)
 
         return decorate
 
@@ -185,8 +191,7 @@ class MorphoLexicon(object):
             analyses = analyzer.lemmatize(wordform, **morph_kwargs)
         except AttributeError:
             analyses = []
-            analyses_right = []
-
+            ##analyses_right = []
 
         return_raw_data = morph_kwargs.get('return_raw_data', False)
         raw_output = ''
@@ -194,16 +199,18 @@ class MorphoLexicon(object):
 
 
         if return_raw_data and analyses:
-            analyses, raw_output, raw_errors, analyses_right = analyses
+            ##analyses, raw_output, raw_errors, analyses_right = analyses
+            analyses, raw_output, raw_errors = analyses
         else:
-            analyses, analyses_right = analyses
+            ##analyses, analyses_right = analyses
+            analyses = analyses
         # if analyses:
         #     lookup_lemmas = [l.lemma for l in analyses]
         # else:
         #     analyses = []
 
         entries_and_tags = []
-        entries_and_tags_right = []
+        ##entries_and_tags_right = []
 
         if analyses:
             #for analysis in list(set(analyses)):
@@ -246,8 +253,8 @@ class MorphoLexicon(object):
                         entries_and_tags.append((e, analysis))
                 else:
                     entries_and_tags.append((None, analysis))
-
-        if analyses_right:
+        ##
+        '''if analyses_right:
             #for analysis in list(set(analyses)):
             for analysis_r in list(analyses_right):
                 if isinstance(analysis_r, list):
@@ -281,7 +288,7 @@ class MorphoLexicon(object):
                     for e in xml_result_right:
                         entries_and_tags_right.append((e, analysis_r))
                 else:
-                    entries_and_tags_right.append((None, analysis_r))
+                    entries_and_tags_right.append((None, analysis_r))'''##
 
         no_analysis_xml = self.lexicon.lookup( source_lang
                                              , target_lang
@@ -294,7 +301,7 @@ class MorphoLexicon(object):
         if no_analysis_xml:
             for e in no_analysis_xml:
                 entries_and_tags.append((e, None))
-                entries_and_tags_right.append((e, None))
+                ##entries_and_tags_right.append((e, None))
 
 
         if entry_hash_filter:
@@ -303,14 +310,14 @@ class MorphoLexicon(object):
                     return hash_node(x) == entry_hash_filter
                 return True
             entries_and_tags = filter(filt, entries_and_tags)
-            entries_and_tags_right = filter(filt, entries_and_tags_right)
+            ##entries_and_tags_right = filter(filt, entries_and_tags_right)
 
         # group by entry
 
         results = []
-        results_right = []
+        ##results_right = []
         _by_entry = itemgetter(0)
-        _by_entry_r = itemgetter(0)
+        ##_by_entry_r = itemgetter(0)
         #Entries were previously sorted alphabetically
         #sorted_grouped_entries = groupby(
         #    sorted(entries_and_tags, key=_by_entry),
@@ -352,6 +359,7 @@ class MorphoLexicon(object):
                 j += 1
             return array_sorted
 
+        start_time = time.time()
 
         entries_and_tags_sorted = collect_same_lemma(entries_and_tags)
         sorted_grouped_entries = groupby(entries_and_tags_sorted, _by_entry)
@@ -361,14 +369,14 @@ class MorphoLexicon(object):
             results.append((grouper, analyses))
         entries_and_tags = results
 
-
-        entries_and_tags_sorted_r = collect_same_lemma(entries_and_tags_right)
+        ##
+        '''entries_and_tags_sorted_r = collect_same_lemma(entries_and_tags_right)
         sorted_grouped_entries_r = groupby(entries_and_tags_sorted_r, _by_entry_r)
 
         for grouper, grouped in sorted_grouped_entries_r:
             analyses_r = [an for _, an in grouped if an is not None]
             results_right.append((grouper, analyses_r))
-        entries_and_tags_right = results_right
+        entries_and_tags_right = results_right'''##
 
 
         # TODO: may need to do the same for derivation?
@@ -388,7 +396,7 @@ class MorphoLexicon(object):
             _ret = MorphoLexiconResult(entries_and_tags)
 
 
-        ret_right = None
+        '''ret_right = None
         if (len(entries_and_tags_right) == 0) and ('non_compound_only' in kwargs):
             if kwargs['non_compound_only']:
                 new_kwargs = kwargs.copy()
@@ -399,13 +407,15 @@ class MorphoLexicon(object):
         elif (len(entries_and_tags_right) == 0) and not analyses_right:
             ret_right = MorphoLexiconResult([])
         else:
-            ret_right = MorphoLexiconResult(entries_and_tags_right)
+            ret_right = MorphoLexiconResult(entries_and_tags_right)'''
 
 
         if return_raw_data:
-            return _ret, raw_output, raw_errors, ret_right
+            ##return _ret, raw_output, raw_errors, ret_right
+            return _ret, raw_output, raw_errors
         else:
-            return _ret, ret_right
+            ##return _ret, ret_right
+            return _ret
 
     def __init__(self, config):
         self.analyzers = config.morphologies
@@ -499,6 +509,7 @@ class MorphoLexicon(object):
             analyses = []
             analyses_right = []
 
+
         return_raw_data = morph_kwargs.get('return_raw_data', False)
         raw_output = ''
         raw_errors = ''
@@ -506,7 +517,7 @@ class MorphoLexicon(object):
         if return_raw_data and analyses:
             analyses, raw_output, raw_errors, analyses_right = analyses
         else:
-            analyses_right = analyses
+            analyses, analyses_right = analyses
 
         # if analyses:
         #     lookup_lemmas = [l.lemma for l in analyses]
@@ -654,7 +665,6 @@ class MorphoLexicon(object):
                                 break
                 j += 1
             return array_sorted
-
 
         entries_and_tags_sorted = collect_same_lemma(entries_and_tags)
         sorted_grouped_entries = groupby(entries_and_tags_sorted, _by_entry)
