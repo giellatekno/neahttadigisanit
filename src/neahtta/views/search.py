@@ -557,8 +557,8 @@ class SearcherMixin(object):
                                           , target_lang=g._to
                                           , **search_kwargs
                                           )
-            #print time.clock() - start_time, "seconds for morpholex_lookup"
-            file_test.write("%s = %f\n" % ("seconds for lemmatize", time.clock() - start_time))
+            print time.clock() - start_time, "seconds for morpholex_lookup"
+            file_test.write("%s = %f, %s = %s\n" % ("seconds for morpholex_lookup", time.clock() - start_time, "for lemma", lookup_value))
             file_test.close()
 
 
