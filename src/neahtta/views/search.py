@@ -548,11 +548,15 @@ class SearcherMixin(object):
                                                   , **search_kwargs
                                                   )
         else:
+            import time
+            start_time = time.clock()
             morpholex_result = mlex.lookup( lookup_value
                                           , source_lang=g._from
                                           , target_lang=g._to
                                           , **search_kwargs
                                           )
+            print time.clock() - start_time, "seconds for morpholex_lookup"
+
         def count_others():
             """ This counts the results available in other language
             pairs with the same source to provide visual feedback to the
