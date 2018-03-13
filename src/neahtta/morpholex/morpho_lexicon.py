@@ -179,13 +179,15 @@ class MorphoLexicon(object):
         # of these would be good.  -- alternative is to run the lookup
         # twice, which might take too much time if someone's hitting
         # detail frequently.
+        file_test = open("time_test.txt","a+")
 
         analyzer = self.analyzers.get(source_lang)
         try:
             import time
             start_time_l = time.clock()
             analyses = analyzer.lemmatize(wordform, **morph_kwargs)
-            print time.clock() - start_time_l, "seconds for lemmatize"
+            #print time.clock() - start_time_l, "seconds for lemmatize"
+            file_test.write("%s = %f\n" % ("seconds for lemmatize", time.clock() - start_time_l))
         except AttributeError:
             analyses = []
             analyses_right = []
@@ -251,7 +253,8 @@ class MorphoLexicon(object):
                 else:
                     entries_and_tags.append((None, analysis))
 
-        print time.clock() - start_time_if_an, "seconds for if an"
+        #print time.clock() - start_time_if_an, "seconds for if an"
+        file_test.write("%s = %f\n" % ("seconds for if an", time.clock() - start_time_if_an))
 
         start_time_if_an_r = time.clock()
         if analyses_right:
@@ -290,7 +293,9 @@ class MorphoLexicon(object):
                 else:
                     entries_and_tags_right.append((None, analysis_r))
 
-        print time.clock() - start_time_if_an_r, "seconds for if an_r"
+        #print time.clock() - start_time_if_an_r, "seconds for if an_r"
+        file_test.write("%s = %f\n" % ("seconds for if an_r", time.clock() - start_time_if_an_r))
+
 
         no_analysis_xml = self.lexicon.lookup( source_lang
                                              , target_lang
@@ -380,7 +385,9 @@ class MorphoLexicon(object):
             results_right.append((grouper, analyses_r))
         entries_and_tags_right = results_right
 
-        print time.clock() - start_time, "seconds for collect_same_lemma"
+        #print time.clock() - start_time, "seconds for collect_same_lemma"
+        file_test.write("%s = %f\n" % ("seconds for collect_same_lemma", time.clock() - start_time))
+        file_test.close()
 
         # TODO: may need to do the same for derivation?
         # NOTE: test with things that will never return results just to
