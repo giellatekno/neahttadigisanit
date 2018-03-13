@@ -182,7 +182,10 @@ class MorphoLexicon(object):
 
         analyzer = self.analyzers.get(source_lang)
         try:
+            import time
+            start_time_l = time.clock()
             analyses = analyzer.lemmatize(wordform, **morph_kwargs)
+            print time.clock() - start_time_l, "seconds for lemmatize"
         except AttributeError:
             analyses = []
             analyses_right = []
@@ -205,6 +208,7 @@ class MorphoLexicon(object):
         entries_and_tags = []
         entries_and_tags_right = []
 
+        start_time_if_an = time.clock()
         if analyses:
             #for analysis in list(set(analyses)):
             for analysis in list(analyses):
@@ -247,6 +251,9 @@ class MorphoLexicon(object):
                 else:
                     entries_and_tags.append((None, analysis))
 
+        print time.clock() - start_time_if_an, "seconds for if an"
+
+        start_time_if_an_r = time.clock()
         if analyses_right:
             #for analysis in list(set(analyses)):
             for analysis_r in list(analyses_right):
@@ -282,6 +289,8 @@ class MorphoLexicon(object):
                         entries_and_tags_right.append((e, analysis_r))
                 else:
                     entries_and_tags_right.append((None, analysis_r))
+
+        print time.clock() - start_time_if_an_r, "seconds for if an_r"
 
         no_analysis_xml = self.lexicon.lookup( source_lang
                                              , target_lang
@@ -352,6 +361,7 @@ class MorphoLexicon(object):
                 j += 1
             return array_sorted
 
+        start_time = time.clock()
 
         entries_and_tags_sorted = collect_same_lemma(entries_and_tags)
         sorted_grouped_entries = groupby(entries_and_tags_sorted, _by_entry)
@@ -370,6 +380,7 @@ class MorphoLexicon(object):
             results_right.append((grouper, analyses_r))
         entries_and_tags_right = results_right
 
+        print time.clock() - start_time, "seconds for collect_same_lemma"
 
         # TODO: may need to do the same for derivation?
         # NOTE: test with things that will never return results just to
