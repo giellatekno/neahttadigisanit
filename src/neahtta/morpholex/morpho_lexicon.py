@@ -185,15 +185,10 @@ class MorphoLexicon(object):
         # of these would be good.  -- alternative is to run the lookup
         # twice, which might take too much time if someone's hitting
         # detail frequently.
-        file_test = open("time_test.txt","a+")
 
         analyzer = self.analyzers.get(source_lang)
         try:
-            import time
-            start_time_l = time.clock()
             analyses = analyzer.lemmatize(wordform, **morph_kwargs)
-            print time.clock() - start_time_l, "seconds for lemmatize"
-            file_test.write("%s = %f\n" % ("seconds for lemmatize", time.clock() - start_time_l))
         except AttributeError:
             analyses = []
             ##analyses_right = []
@@ -201,7 +196,6 @@ class MorphoLexicon(object):
         return_raw_data = morph_kwargs.get('return_raw_data', False)
         raw_output = ''
         raw_errors = ''
-
 
         if return_raw_data and analyses:
             ##analyses, raw_output, raw_errors, analyses_right = analyses
@@ -217,7 +211,6 @@ class MorphoLexicon(object):
         entries_and_tags = []
         ##entries_and_tags_right = []
 
-        start_time_if_an = time.clock()
         if analyses:
             #for analysis in list(set(analyses)):
             for analysis in list(analyses):
@@ -248,7 +241,6 @@ class MorphoLexicon(object):
                     else:
                         continue
 
-
                 xml_result = self.lexicon.lookup( source_lang
                                                 , target_lang
                                                 , **lex_kwargs
@@ -259,9 +251,6 @@ class MorphoLexicon(object):
                         entries_and_tags.append((e, analysis))
                 else:
                     entries_and_tags.append((None, analysis))
-
-        print time.clock() - start_time_if_an, "seconds for if an"
-        file_test.write("%s = %f\n" % ("seconds for if an", time.clock() - start_time_if_an))
 
         ##
         '''if analyses_right:
@@ -369,9 +358,6 @@ class MorphoLexicon(object):
                 j += 1
             return array_sorted
 
-        import time
-        start_time = time.clock()
-
         entries_and_tags_sorted = collect_same_lemma(entries_and_tags)
         sorted_grouped_entries = groupby(entries_and_tags_sorted, _by_entry)
 
@@ -379,10 +365,6 @@ class MorphoLexicon(object):
             analyses = [an for _, an in grouped if an is not None]
             results.append((grouper, analyses))
         entries_and_tags = results
-
-        print time.clock() - start_time, "seconds for collect_same_lemma"
-        file_test.write("%s = %f\n" % ("seconds for collect_same_lemma", time.clock() - start_time))
-        file_test.close()
 
         ##
         '''entries_and_tags_sorted_r = collect_same_lemma(entries_and_tags_right)
