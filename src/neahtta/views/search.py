@@ -549,18 +549,11 @@ class SearcherMixin(object):
                                                   , **search_kwargs
                                                   )
         else:
-            import time
-            start_time = time.clock()
-            file_test = open("time_test.txt","a+")
-
             morpholex_result = mlex.lookup( lookup_value
                                           , source_lang=g._from
                                           , target_lang=g._to
                                           , **search_kwargs
                                           )
-            print time.clock() - start_time, "seconds for morpholex_lookup"
-            file_test.write("%s = %f, %s = %s\n" % ("seconds for morpholex_lookup", time.clock() - start_time, "for lemma", lookup_value.encode('utf8')))
-            file_test.close()
 
         def count_others():
             """ This counts the results available in other language
