@@ -1126,9 +1126,9 @@ class Morphology(object):
 
         if unknown:
             if return_raw_data:
-                return False, raw_output, raw_errors, False
+                return False, raw_output, raw_errors
             else:
-                return False, False
+                return False
 
         #lemmas = set()
         #Use list() instead of set() to keep original order
