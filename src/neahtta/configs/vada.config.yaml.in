@@ -82,6 +82,10 @@ Dictionaries:
     target: hun
     path: 'dicts/mnshun.xml'
 
+  - source: mns
+    target: rus
+    path: 'dicts/mnshun.xml'
+
 ReaderConfig:
   Settings:
     # host path without scheme (https, http) to reader lookup API, no trailing
