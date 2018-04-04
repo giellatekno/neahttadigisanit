@@ -90,8 +90,6 @@ location_restriction_notice = {
 
   , 'gtweb.uit.no':  [ 'dikaneisdi'
                      , 'erey'
-                     , 'guusaaw'
-                     , 'itwewina'
                      , 'kyv'
                      , 'muter'
                      , 'saan'
@@ -855,12 +853,10 @@ def test_running():
         "kyv.oahpa.no",
         "saanih.oahpa.no",
         "valks.oahpa.no",
-        "itwewina.oahpa.no",
         "muter.oahpa.no",
         "saanih.oahpa.no",
         "saan.oahpa.no",
         "sonad.oahpa.no",
-        "guusaaw.oahpa.no",
         "vada.oahpa.no",
     ]
 
