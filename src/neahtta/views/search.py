@@ -579,14 +579,17 @@ class SearcherMixin(object):
 
             result_counts = {}
             for source, other in other_targs:
-                looks, _, _, _ = look(other, lookup_value)
+                #looks, _, _, _ = look(other, lookup_value)
+                looks, _, _ = look(other, lookup_value)
                 definitions = sum([count_tg(rz, other) for rz, _ in looks])
                 result_counts[(source, other)] = definitions
 
             return result_counts
 
         if current_app.config.polyglot_lookup:
-            others = count_others()
+            #Comment out next line because this was causing lookup for some words in saan dict time-out error
+            #others = count_others()
+            others = {}
         else:
             others = {}
 
