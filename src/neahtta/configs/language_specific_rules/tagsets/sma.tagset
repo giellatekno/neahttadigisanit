@@ -1,15 +1,16 @@
-﻿pos: 
+﻿pos:
  - "N"
  - "V"
  - "A"
  - "Pr"
  - "Po"
  - "Num"
+ - "Pron"
 type: ["NomAg", "aktor", "Prop"]
 homonyms: ["Hom1", "Hom2"]
-number: 
+number:
  - Sg
- - Pl 
+ - Pl
 tense:
  - Prs
  - Prt
