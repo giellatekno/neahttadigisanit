@@ -1,7 +1,7 @@
 # None translations for PROJECT.
-# Copyright (C) 2013 ORGANIZATION
+# Copyright (C) 2017 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
 #, fuzzy
 msgid ""
@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-07 11:42+0200\n"
-"PO-Revision-Date: 2013-03-14 16:53-0500\n"
+"PO-Revision-Date: 2018-02-08 10:01+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: yrk <LL@li.org>\n"
+"Language-Team: mns <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 1.3\n"
+"Generated-By: Babel 0.9.6\n"
 
 #: configs/dikaneisdi.config.yaml.in:3
 msgid "Dikaneisdi"
@@ -151,14 +151,13 @@ msgid "Olonetsian"
 msgstr ""
 
 #: configs/language_names.yaml:53
-#, fuzzy
 msgid "Estonian"
-msgstr "Лив"
+msgstr ""
 
 #: configs/language_names.yaml:54 configs/language_names.yaml:55
 #: templates/more_dictionaries.html:39
 msgid "Livonian"
-msgstr "Лив"
+msgstr ""
 
 #: configs/language_names.yaml:56 templates/more_dictionaries.html:39
 msgid "Izhorian"
@@ -201,9 +200,8 @@ msgid "Eastern Mari"
 msgstr ""
 
 #: configs/language_names.yaml:74
-#, fuzzy
 msgid "Nenets"
-msgstr "Ненэцяʼ вада"
+msgstr ""
 
 #: configs/language_names.yaml:75 configs/language_names.yaml:78
 msgid "Skolt Sami"
@@ -263,9 +261,8 @@ msgid "Haida"
 msgstr ""
 
 #: configs/language_names.yaml:120
-#, fuzzy
 msgid "Romanian"
-msgstr "Лив"
+msgstr ""
 
 #: configs/language_names.yaml:121
 msgid "Meänkieli"
@@ -1069,9 +1066,8 @@ msgid "prev"
 msgstr ""
 
 #: templates/browse.html:107
-#, fuzzy
 msgid "next"
-msgstr "Ненэцяʼ вада"
+msgstr ""
 
 #: templates/browse.html:116
 msgid "Congratulations! You have read the whole dictionary."
@@ -1148,9 +1144,8 @@ msgid "Word search"
 msgstr ""
 
 #: templates/macros.html:5 templates/macros.html:13
-#, fuzzy
 msgid "Texts"
-msgstr "Ненэцяʼ вада"
+msgstr ""
 
 #: templates/mobile_nav_push_menu.html:6
 msgid "Home"
@@ -1393,383 +1388,4 @@ msgstr ""
 #: views/search.py:1023
 msgid "Invalid format. Only json and html allowed."
 msgstr ""
-
-#~ msgid "Texts"
-#~ msgstr ""
-
-#~ msgid "Swap"
-#~ msgstr ""
-
-#~ msgid "Definition not found for:"
-#~ msgstr ""
-
-#~ msgid "Word %(input)s not found."
-#~ msgstr ""
-
-#~ msgid ""
-#~ msgstr ""
-
-#~ msgid "Search for a word, or a word form for a word analysis and definition."
-#~ msgstr ""
-
-#~ msgid "is a possible form of ... "
-#~ msgstr ""
-
-#~ msgid "More information about this word"
-#~ msgstr ""
-
-#~ msgid "Standard (äǟ)"
-#~ msgstr ""
-
-#~ msgid "Mobile friendly (a &rarr; ä ~ ǟ)"
-#~ msgstr ""
-
-#~ msgid "Standard (ǩ)"
-#~ msgstr ""
-
-#~ msgid "Mobile friendly (k &rarr; k ~ ǩ)"
-#~ msgstr ""
-
-#~ msgid "Molotsov orthography (ԅ &rarr; зь)"
-#~ msgstr ""
-
-#~ msgid "Standard (aâ)"
-#~ msgstr ""
-
-#~ msgid "Mobile friendly (a &rarr; a ~ â)"
-#~ msgstr ""
-
-#~ msgid "isCharacterDataNode"
-#~ msgstr ""
-
-#~ msgid "nodeIndex"
-#~ msgstr ""
-
-#~ msgid "nodeLength"
-#~ msgstr ""
-
-#~ msgid "containsPositions"
-#~ msgstr ""
-
-#~ msgid "isWhitespace"
-#~ msgstr ""
-
-#~ msgid "isCollapsedWhitespace"
-#~ msgstr ""
-
-#~ msgid "computedDisplay"
-#~ msgstr ""
-
-#~ msgid "collapsed"
-#~ msgstr ""
-
-#~ msgid "ignored"
-#~ msgstr ""
-
-#~ msgid "nextPos"
-#~ msgstr "Ненэцяʼ вада"
-
-#~ msgid "previous"
-#~ msgstr ""
-
-#~ msgid "textNodeInfo"
-#~ msgstr ""
-
-#~ msgid "hasInnerText"
-#~ msgstr ""
-
-#~ msgid "isRenderedBlock"
-#~ msgstr ""
-
-#~ msgid "trailingSpace"
-#~ msgstr ""
-
-#~ msgid "leadingSpace"
-#~ msgstr ""
-
-#~ msgid "nextVisible"
-#~ msgstr ""
-
-#~ msgid "nextUncollapsed"
-#~ msgstr ""
-
-#~ msgid "previousVisible"
-#~ msgstr ""
-
-#~ msgid "References"
-#~ msgstr ""
-
-#~ msgid "Neahttadigisánit Reader"
-#~ msgstr ""
-
-#~ msgid "Read with Neahttadigisánit"
-#~ msgstr ""
-
-#~ msgid "A dictionary that understands what you're looking for."
-#~ msgstr ""
-
-#~ msgid "(... And is mobile-friendly!)"
-#~ msgstr ""
-
-#~ msgid "Free"
-#~ msgstr ""
-
-#~ msgid "Open-Source"
-#~ msgstr ""
-
-#~ msgid "Linguistic basis"
-#~ msgstr ""
-
-#~ msgid "gå, dra, reise"
-#~ msgstr ""
-
-#~ msgid "Source material"
-#~ msgstr ""
-
-#~ msgid "sme ↔ nob"
-#~ msgstr ""
-
-#~ msgid "sma ↔ nob"
-#~ msgstr ""
-
-#~ msgid "sme ↔ fin"
-#~ msgstr ""
-
-#~ msgid "Each of the dictionaries contains about 11,000 base words."
-#~ msgstr ""
-
-#~ msgid "More to come..."
-#~ msgstr ""
-
-#~ msgid "s/he speaks Cree"
-#~ msgstr ""
-
-#~ msgid "Find a problem?"
-#~ msgstr ""
-
-#~ msgid "Contact us"
-#~ msgstr ""
-
-#~ msgid "crk ↔ eng"
-#~ msgstr ""
-
-#~ msgid "mennä, lähteä, kulkea"
-#~ msgstr ""
-
-#~ msgid "mrj ↔ fin"
-#~ msgstr ""
-
-#~ msgid "mennä, tapahtua, viedä, johtaa, edistyä"
-#~ msgstr ""
-
-#~ msgid "liv ↔ fin"
-#~ msgstr ""
-
-#~ msgid "olo ↔ fin"
-#~ msgstr ""
-
-#~ msgid "yrk ↔ fin"
-#~ msgstr ""
-
-#~ msgid "myv ↔ fin"
-#~ msgstr ""
-
-#~ msgid "mdf ↔ fin"
-#~ msgstr ""
-
-#~ msgid "Sources and References"
-#~ msgstr ""
-
-#~ msgid "Sosiála media"
-#~ msgstr ""
-
-#~ msgid "Word <span class=\"%(_from)s\">%(input)s</span> not found."
-#~ msgstr ""
-
-#~ msgid "'"
-#~ msgstr ""
-
-#~ msgid "hide"
-#~ msgstr ""
-
-#~ msgid "syllabics"
-#~ msgstr ""
-
-#~ msgid "Unknown word"
-#~ msgstr ""
-
-#~ msgid "You are using"
-#~ msgstr ""
-
-#~ msgid "Meaning not found"
-#~ msgstr ""
-
-#~ msgid "Á"
-#~ msgstr ""
-
-#~ msgid "Options"
-#~ msgstr ""
-
-#~ msgid "Help"
-#~ msgstr ""
-
-#~ msgid "Advanced"
-#~ msgstr ""
-
-#~ msgid "Dictionary"
-#~ msgstr ""
-
-#~ msgid "Save"
-#~ msgstr ""
-
-#~ msgid "Refresh settings"
-#~ msgstr ""
-
-#~ msgid "Update detected"
-#~ msgstr ""
-
-#~ msgid "IE8 Warning"
-#~ msgstr ""
-
-#~ msgid "Read more"
-#~ msgstr ""
-
-#~ msgid "More tools"
-#~ msgstr ""
-
-#~ msgid "Error!"
-#~ msgstr ""
-
-#~ msgid "Could not connect to dictionary server"
-#~ msgstr ""
-
-#~ msgid "Close"
-#~ msgstr ""
-
-#~ msgid "North Sámi (#SoMe)"
-#~ msgstr ""
-
-#~ msgid "English"
-#~ msgstr ""
-
-#~ msgid "Hungarian"
-#~ msgstr "Венгр"
-
-#~ msgid "Komi"
-#~ msgstr ""
-
-#~ msgid "Udmurt"
-#~ msgstr ""
-
-#~ msgid "Olonetsian"
-#~ msgstr ""
-
-#~ msgid "Estonian"
-#~ msgstr ""
-
-#~ msgid "Veps"
-#~ msgstr ""
-
-#~ msgid "Võro"
-#~ msgstr ""
-
-#~ msgid "Votic"
-#~ msgstr ""
-
-#~ msgid "Erzya Mordvin"
-#~ msgstr ""
-
-#~ msgid "French"
-#~ msgstr ""
-
-#~ msgid "German"
-#~ msgstr ""
-
-#~ msgid "Western Mari"
-#~ msgstr ""
-
-#~ msgid "Eastern Mari"
-#~ msgstr ""
-
-#~ msgid "Nenets"
-#~ msgstr "Ненэцяʼ вада"
-
-#~ msgid "Skolt Sami"
-#~ msgstr ""
-
-#~ msgid "Plains Cree"
-#~ msgstr ""
-
-#~ msgid "Tsuut'ina"
-#~ msgstr ""
-
-#~ msgid "Odawa"
-#~ msgstr ""
-
-#~ msgid "Cherokee"
-#~ msgstr ""
-
-#~ msgid "Northern Haida"
-#~ msgstr ""
-
-#~ msgid "Inari Saami"
-#~ msgstr ""
-
-#~ msgid "Khanty"
-#~ msgstr ""
-
-#~ msgid "Irish"
-#~ msgstr ""
-
-#~ msgid "Finnish"
-#~ msgstr ""
-
-#~ msgid "Norwegian"
-#~ msgstr ""
-
-#~ msgid "Russian"
-#~ msgstr ""
-
-#~ msgid "Latvian"
-#~ msgstr ""
-
-#~ msgid "Haida"
-#~ msgstr ""
-
-#~ msgid "Romanian"
-#~ msgstr "Лив"
-
-#~ msgid "Meänkieli"
-#~ msgstr ""
-
-#~ msgid "Swedish"
-#~ msgstr ""
-
-#~ msgid "More examples"
-#~ msgstr ""
-
-#~ msgid "Less examples"
-#~ msgstr ""
-
-#~ msgid "Molotsov orthography"
-#~ msgstr ""
-
-#~ msgid "Standárda (<em>áčđŋšŧž</em>)"
-#~ msgstr ""
-
-#~ msgid "Sosiála media (maiddái <em>acdnstz</em>)"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "North Sámi → Norwegian builds on "
-#~ "Nils Jernsletten's dictionary "
-#~ "<em>Álgosátnegirji</em> (4322 words), but now"
-#~ " it contains 30,000 entries, plus "
-#~ "6000 place name entries. Norwegian → "
-#~ "North Sámi  is based on the North"
-#~ " Sámi → Norwegian dictionary, but we"
-#~ " have adde frequent Norwegian words. "
-#~ "It contains about Norwegian 26,000 "
-#~ "entries. "
-#~ msgstr ""
 
