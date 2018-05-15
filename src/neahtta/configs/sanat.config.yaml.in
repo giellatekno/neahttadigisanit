@@ -62,7 +62,7 @@ Morphology:
   fkv:
     tool: *LOOKUP
     file: [*OPT, '/fkv/bin/analyser-dict-gt-desc.xfst']
-    inverse_file: [*OPT, '/fkv/bin/generator-dict-gt-norm.xfst']
+    inverse_file: [*OPT, '/fkv/bin/generator-gt-norm-dial_Por.xfst']
     format: 'xfst'
     options:
       compoundBoundary: "+Cmp#"
