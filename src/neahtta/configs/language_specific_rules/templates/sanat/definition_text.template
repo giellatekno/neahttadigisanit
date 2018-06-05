@@ -36,6 +36,16 @@
     #}
 
     {% set text = t.text %}
+
+    {% set pos = t.attrib.get('pos', '') %}
+    {%- if pos == 'Pron' and t.attrib.get('type') %}
+        {% set pos_type = t.attrib.get('type')|tagfilter(_from, _to) %}
+        {% set pos_text = pos|tagfilter(_from, _to)  + " " + pos_type %}
+    {% else %}
+        {% set pos_text = pos|tagfilter(_from, _to) %}
+    {%- endif %}
+    {% set pos_text = pos_text|trim %}
+
     {% set link_target = '' %}
     {% set fra_ref = tg.xpath('./re/@fra_ref') %}
 
@@ -55,7 +65,7 @@
             <span class="word_not_translated">{{- text -}}</span>
         {% else %}
             <a href="{{ url_for('.search_pair_referred_search', _from=_from, _to=_to) }}?l_til_ref={{ reference }}">
-                {{- text -}}
+                {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{{- text -}}
             </a> &rarr;
         {% endif %}
     {%- else %}
@@ -64,7 +74,7 @@
             <span class="word_not_translated">{{- text -}}</span>
         {% else %}
             <a href="{{ url_for('.detailed_language_pair_search', _from=_to, _to=_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
-                {{- text -}}
+                {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{{- text -}}
             </a>
         {% endif %}
     {%- endif %}
