@@ -36,6 +36,7 @@ def external_korp_url(pair_details, user_input):
     #    'bilingual_wordform_search_path'
     #    'bilingual_wordform_search_query'
 # Cip's test
+# Add this line for testing 
     korp_opts = pair_details.get('korp_options')
     korp_host = pair_details.get('korp_search_host')
     link_corpus_param = pair_details.get('link_corpus_parameter')
