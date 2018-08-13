@@ -36,9 +36,9 @@
                 <h3 class="green">{% trans %}Linguistic basis{% endtrans %}</h3>
                 <p>{% trans %}Write what you wish, and the dictionary will analyze it to break apart compound words and find base forms.{% endtrans %}</p>
                 <p>«manai» <br />
-                    → «manai» <span class="label label-success">V</span> <span class="label label-success">Ind</span> <span class="label label-success">Prt</span> <span class="label label-success">Sg1</span> 
+                    → «manai» <span class="label label-success">V</span> <span class="label label-success">Ind</span> <span class="label label-success">Prt</span> <span class="label label-success">Sg1</span>
                     <br />
-                    → «mannat» 
+                    → «mannat»
                     <br />
                     → {% trans %}gå, dra, reise{% endtrans %}</p>
             </span>
@@ -67,12 +67,12 @@
                 were searching for when you encountered the problem.{% endtrans %}</p>
 
                 <div class="visible-phone">
-                    <a class="btn btn-large btn-block" type="button" href="http://www.google.com/recaptcha/mailhide/d?k=01NtvuVETvE-L2ZWBNpzwQqg==&c=4PVlUJKUd7ZtoUIm2RboYONMiS4zXZq4TZfzVFYmVZY=" >{% trans %}Contact us{% endtrans %}</a>
+                    <a class="btn btn-large btn-block" type="button" href="mailto:giellatekno@uit.no" >{% trans %}Contact us{% endtrans %}</a>
                     <br />
                 </div>
                 <div class="hidden-phone">
                     <br />
-                    <a class="btn-contact-thing btn btn-large btn-primary" type="button" href="http://www.google.com/recaptcha/mailhide/d?k=01NtvuVETvE-L2ZWBNpzwQqg==&c=4PVlUJKUd7ZtoUIm2RboYONMiS4zXZq4TZfzVFYmVZY=">{% trans %}Contact us{% endtrans %}</a>
+                    <a class="btn-contact-thing btn btn-large btn-primary" type="button" href="mailto:giellatekno@uit.no">{% trans %}Contact us{% endtrans %}</a>
                     <br />
                     <br />
                 </div>
@@ -88,4 +88,3 @@
 </div>
 
 {% endblock %}
-
