@@ -94,17 +94,9 @@
     {% endif %}
 
 
-    {% if more_detail_link %}
       <div class="row-fluid">
-        <div class="span4">
-          <p class="more-detail">
-              <a class="more-detail-link" href="{{ url_for('.detailed_language_pair_search', _from=_from, _to=_to, wordform=user_input, format='html') }}">
-                  <span lang="{{ current_locale }}">{% trans %}More information about this word{% endtrans %}</span>
-              </a>
-          </p>
-        </div>
-        <div class="span5">
-          <p class="plus_der">{% trans %}Find a problem?{% endtrans %}</p>
+        <div class="span9">
+          <p style="font-weight: bold;">{% trans %}Find a problem?{% endtrans %}</p>
           <p>{% trans %}If you find any bugs, please get in touch with us. Describe the problem,
           and tell us what web browser or mobile phone you were using, or what word you
           were searching for when you encountered the problem.{% endtrans %}</p>
@@ -120,26 +112,6 @@
           </div>
         </div>
       </div>
-    {% else %}
-      <div class="row-fluid">
-        <div class="span5">
-          <p class="plus_der">{% trans %}Find a problem?{% endtrans %}</p>
-          <p>{% trans %}If you find any bugs, please get in touch with us. Describe the problem,
-          and tell us what web browser or mobile phone you were using, or what word you
-          were searching for when you encountered the problem.{% endtrans %}</p>
-          <div class="visible-phone">
-              <a class="btn btn-sm btn-block" type="button" href="mailto:giellatekno@uit.no" >{% trans %}Contact us{% endtrans %}</a>
-              <br />
-          </div>
-          <div class="hidden-phone">
-              <br />
-              <a class="btn-contact-thing btn btn-sm btn-primary" type="button" href="mailto:giellatekno@uit.no">{% trans %}Contact us{% endtrans %}</a>
-              <br />
-              <br />
-          </div>
-        </div>
-      </div>
-    {% endif %}
 
     {%- if analyses %}
     <div class="visible-phone">
