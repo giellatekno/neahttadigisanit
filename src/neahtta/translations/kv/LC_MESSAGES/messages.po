@@ -550,7 +550,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/saanih/about.template:62
 #: configs/language_specific_rules/templates/sanit/about.template:69
 msgid "Find a problem?"
-msgstr ""
+msgstr "Вы видели ошибку?"
 
 #: configs/language_specific_rules/templates/about.template:73
 #: configs/language_specific_rules/templates/baakoeh/about.template:65
@@ -565,7 +565,10 @@ msgid ""
 "                and tell us what web browser or mobile phone you were "
 "using, or what word you\n"
 "                were searching for when you encountered the problem."
-msgstr ""
+msgstr "Если Вы находите какие-либо ошибки, говорите нам о них. Если \n"
+"у Вас были технические проблемы, скажите нам, какой веб-браузер или \n"
+"мобильный телефон Вы использовали, или какое слово Вы искали, когда \n"
+"Вы встретились с проблемой."
 
 #: configs/language_specific_rules/templates/about.template:78
 #: configs/language_specific_rules/templates/about.template:83
