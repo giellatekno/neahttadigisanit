@@ -1091,25 +1091,30 @@ class Morphology(object):
 
         #If the user input is lexicalized then put it as the first element in analyses
         def check_if_lexicalized(array):
+            found = False
             for i in range(0, len(array)):
               if form in array[i]:
                 array.insert(0,array[i])
                 del array[i+1]
+                found = True
                 break
-            #If the user input is not in the base form, the for above doesn't find the analyses
-            #so find the longest analyses and put it/them in the first/s element/s
-            #in analyses if it is not one of the single parts
-            mystr = []
-            indmax = []
-            for i in range(0, len(array)):
-              mystr.append(len(array[i][0:array[i].find("+")]))
-            indmax = [i for i, j in enumerate(mystr) if j == max(mystr)]
-            if not (max(mystr) < len(form)):
-                k = 0
-                for i in range(0, len(indmax)):
-                  array.insert(k, array.pop(indmax[i]))
-                  k += 1
-            return array
+            if found:
+                return array
+            else:
+                #If the user input is not in the base form, the for above doesn't find the analyses
+                #so find the longest analyses and put it/them in the first/s element/s
+                #in analyses if it is not one of the single parts
+                mystr = []
+                indmax = []
+                for i in range(0, len(array)):
+                  mystr.append(len(array[i][0:array[i].find("+")]))
+                indmax = [i for i, j in enumerate(mystr) if j == max(mystr)]
+                if not (max(mystr) < len(form)):
+                    k = 0
+                    for i in range(0, len(indmax)):
+                      array.insert(k, array.pop(indmax[i]))
+                      k += 1
+                return array
 
         if return_raw_data:
             lookups, raw_output, raw_errors = self.tool.lookup([form], raw=True)
