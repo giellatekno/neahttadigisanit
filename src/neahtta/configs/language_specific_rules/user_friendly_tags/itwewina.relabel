@@ -127,13 +127,13 @@ Relabel:
       # QDL
       # RIGHT
       Rom: "Roman"
-      PV/apihta_kisikawi: "Preverb: apihta-kisikawi-"
+      PV/apihta_kisikawi: "Preverb: âpihtâ-kîsikâwi-"
       PV/kaa_ki: "Preverb: kâ-ki-"
-      PV/kah_kape: "Preverb: kâh-kape-"
+      PV/kah_kape: "Preverb: kâh-kapê-"
       PV/kita_ki: "Preverb: kita-kî-"
       PV/maci_manitowi: "Preverb: maci-manitowi"
       PV/ta_ki: "Preverb: ta-kî-"
-
+      
       # This is a dummy tag that is inserted within NDS to handle inserting the
       # stem in the right place in the analysis column.
       Tpl/Lemma: ""
@@ -667,6 +667,14 @@ Relabel:
       "PV/yikate": "'aside'"
       "PV/yipe": "'on a slant, on a slope, on the side, sideways'"
       "PV/yoski": "'soft, softly'"
+
+   # Added English glosses for previously missing preverbs
+   
+      "PV/apihta_kisikawi": "'at noon'"
+      "PV/kah_kape": "'all the time'"
+      "PV/kita_ki": "'can, be able to; may; ought to'"
+      "PV/maci_manitowi": "'evil, devilish; of the Devil'"
+      "PV/ta_ki": "'can, be able to; should, ought to'"
 
 
     # These are the short tags.
