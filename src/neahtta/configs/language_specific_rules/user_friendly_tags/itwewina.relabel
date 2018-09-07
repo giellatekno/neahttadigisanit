@@ -111,6 +111,29 @@ Relabel:
       Err/Orth: "(Non-standard orthography)"
       Use/NG: "??"
 
+      # Missing relabelings found with verification - need to be cross-checked against FST and organized above
+      2Sg/Pl: "Actor: 2nd person singular/plural"
+      2Sg/PlO: "Goal: 2nd person singular/plural"
+      4Pl: "Actor: 3rd person plural (obviative)"
+      5Sg/Pl: "Actor: 3rd person singular/plural (further obviative)"
+      Arab: "Arabic"
+      # CLB
+      Der/X: "Derived: unspecified actor"
+      Foc: "Focus"
+      # LEFT
+      # PUNCT
+      Px21Pl: "Possessor: 1st person inclusive plural"
+      Px4Sg/Pl: "Possessor: 3rd person singular/plural (obviative)"
+      # QDL
+      # RIGHT
+      Rom: "Roman"
+      PV/apihta_kisikawi: "Preverb: apihta-kisikawi-"
+      PV/kaa_ki: "Preverb: kâ-ki-"
+      PV/kah_kape: "Preverb: kâh-kape-"
+      PV/kita_ki: "Preverb: kita-kî-"
+      PV/maci_manitowi: "Preverb: maci-manitowi"
+      PV/ta_ki: "Preverb: ta-kî-"
+
       # This is a dummy tag that is inserted within NDS to handle inserting the
       # stem in the right place in the analysis column.
       Tpl/Lemma: ""
