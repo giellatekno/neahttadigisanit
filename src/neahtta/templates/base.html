@@ -12,9 +12,17 @@
     <!-- iOS 7 only uses the last line -->
     <meta name="viewport" content="initial-scale=1.0,width=device-width,user-scalable=no" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!--
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' gap:; script-src 'self' data: https://ssl.gstatic.com  'unsafe-inline' 'unsafe-eval'; object-src *; style-src 'self' data: 'unsafe-inline'; img-src 'self' data:; media-src 'self' data:; font-src 'self' data:; connect-src *">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://sanit.oahpa.no; object-src 'self' 'unsafe-inline' 'unsafe-eval'; object-src *; style-src 'self' data: 'unsafe-inline'; img-src 'self' data:; media-src 'self' data:; font-src 'self' data:; connect-src *">
+    <meta http-equiv="Content-Security-Policy" content="default-src gap://ready file://* *; style-src 'self' http://* https://* 'unsafe-inline'; script-src 'self' http://* https://* 'unsafe-inline' 'unsafe-eval'">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' http://127.0.0.1:5000 http://sanit.oahpa.no http://*.sanit.oahpa.no http://* https://* 'unsafe-inline' 'unsafe-eval'; style-src 'self' http://127.0.0.1:5000 http://sanit.oahpa.no http://*.sanit.oahpa.no http://* 'unsafe-inline' 'unsafe-eval'; default-src 'self' http://127.0.0.1:5000 http://sanit.oahpa.no http://*.sanit.oahpa.no http://* 'unsafe-inline' 'unsafe-eval'; img-src 'self' http://127.0.0.1:5000 http://sanit.oahpa.no http://*.sanit.oahpa.no http://* 'unsafe-inline' 'unsafe-eval'; object-src 'self' http://127.0.0.1:5000 http://sanit.oahpa.no http://*.sanit.oahpa.no http://* 'unsafe-inline' 'unsafe-eval'; frame-src 'self' http://127.0.0.1:5000 http://sanit.oahpa.no http://*.sanit.oahpa.no http://* 'unsafe-inline' 'unsafe-eval'; sandbox allow-forms allow-same-origin allow-scripts allow-popups; plugin-types application/pdf application/x-java-applet">
+    -->
 
-    <link rel="apple-touch-icon" href="/static/img/mobile_bookmark_icons/{{ app_short_name }}.png"/>  
-    <link rel="apple-touch-icon" sizes="72x72" href="/static/img/mobile_bookmark_icons/{{ app_short_name }}_72x72.png"/>  
+
+
+    <link rel="apple-touch-icon" href="/static/img/mobile_bookmark_icons/{{ app_short_name }}.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="/static/img/mobile_bookmark_icons/{{ app_short_name }}_72x72.png"/>
     <link rel="apple-touch-icon" sizes="114x114" href="/static/img/mobile_bookmark_icons/{{ app_short_name }}_114x114.png"/>
 
     {% if app_meta_title and app_meta_title != app_name %}
@@ -52,7 +60,7 @@
     {% if app_meta_keywords %}
         <meta name="keywords" content="{{ app_meta_keywords }}">
     {% else %}
-        <meta name="keywords" content="samisk ordbok, på nett, mobil ordbok, ordbok app, 
+        <meta name="keywords" content="samisk ordbok, på nett, mobil ordbok, ordbok app,
             sanakirjat, sanakirja, sátnegirjjit, sátnegirji, nordsamisk,
             sørsamisk, finsk, norsk, pohjoissaame, davvisámegiella north sámi,
             south sámi, norwegian, finnish, sámegiella, sámi language,
@@ -84,7 +92,8 @@
     {% endif %}
 
 
-    {# for some reason {% set %} tag to compile css path didn't see variables in scope. 
+
+    {# for some reason {% set %} tag to compile css path didn't see variables in scope.
     #}
 
     {% block extra_css %}
@@ -111,6 +120,16 @@
 
 <body lang="{% if session_locale %}{{ session_locale }}{% endif %}"
     class="{% block bodyclass %}{% endblock %}{% if new_mobile_nav %} flyout-nav{% endif %}">
+
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.1';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
 
       {% if new_mobile_nav %}
         <div class="nav-container">
@@ -237,7 +256,7 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
 
-    </script>    
+    </script>
     {% block footer_js %}
     {% endblock %}
 
