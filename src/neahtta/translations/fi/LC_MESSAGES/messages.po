@@ -592,6 +592,8 @@ msgid ""
 msgstr ""
 "Ota yhteyttä meihin, jos löydät ongelman. Kuvaile ongelma, ja kerro "
 "meille mitä sanaa etsit, kun löysit ongelman."
+msgid "Comment here if you have any suggestion for improvements! Remember to include which word you want us to improve."
+msgstr "Kommentoi tähän, jos sinulla on parannusehdotuksia! Muista kertoa mitä sanaa asia koskee."
 
 #: configs/language_specific_rules/templates/about.template:78
 #: configs/language_specific_rules/templates/about.template:83
@@ -1519,4 +1521,3 @@ msgstr "Virheellinen formaatti. Vain json ja html ovat sallittuja."
 #~ "It contains about Norwegian 26,000 "
 #~ "entries. "
 #~ msgstr ""
-
