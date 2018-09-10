@@ -102,7 +102,8 @@
                 were searching for when you encountered the problem.{% endtrans %}</p>
           <div class="visible-phone">
             {% if app_short_name == 'sanat' %}
-              <a class="btn btn-sm btn-block" type="button" href="mailto:post@kvenskinstitutt.no" >{% trans %}Contact us{% endtrans %}</a>
+              {#<a class="btn btn-sm btn-block" type="button" href="mailto:post@kvenskinstitutt.no" >{% trans %}Contact us{% endtrans %}</a>#}
+              <div class="fb-comments" data-href="http://sanat.oahpa.no/" data-numposts="3" data-mobile="true" data-order-by="reverse_time"></div>
             {% else %}
               <a class="btn btn-sm btn-block" type="button" href="mailto:giellatekno@uit.no" >{% trans %}Contact us{% endtrans %}</a>
             {%- endif -%}
@@ -111,7 +112,8 @@
           <div class="hidden-phone">
               <br />
               {% if app_short_name == 'sanat' %}
-                <a class="btn-contact-thing btn btn-sm btn-primary" type="button" href="mailto:post@kvenskinstitutt.no" >{% trans %}Contact us{% endtrans %}</a>
+                {#<a class="btn-contact-thing btn btn-sm btn-primary" type="button" href="mailto:post@kvenskinstitutt.no" >{% trans %}Contact us{% endtrans %}</a>#}
+                <div class="fb-comments" data-href="http://sanat.oahpa.no/" data-numposts="3" data-mobile="true" data-order-by="reverse_time"></div>
               {% else %}
                 <a class="btn-contact-thing btn btn-sm btn-primary" type="button" href="mailto:giellatekno@uit.no">{% trans %}Contact us{% endtrans %}</a>
               {%- endif -%}
