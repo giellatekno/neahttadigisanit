@@ -596,6 +596,8 @@ msgstr ""
 "Hvis du finner noen feil, vær så snill og ta kontakt med oss. Beskriv "
 "problemet og fortell oss hvilken nettleser eller mobiltelefon du brukte, "
 "eller hvilket ord du søkte etter når du støtte på problemet."
+msgid "Comment here if you have any suggestion for improvements! Remember to include which word you want us to improve."
+msgstr "Kommenter her hvis du har forbedringsforslag! Husk å si hvilke ord du vil at vi forbedrer."
 
 #: configs/language_specific_rules/templates/about.template:78
 #: configs/language_specific_rules/templates/about.template:83
@@ -1767,4 +1769,3 @@ msgstr "Ugyldig format. Bare json og html er tillatt."
 #~ "It contains about Norwegian 26,000 "
 #~ "entries. "
 #~ msgstr ""
-
