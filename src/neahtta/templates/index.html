@@ -97,6 +97,13 @@
                             </div>
                         </div>
                     {% endif %}
+                    {% if app_short_name == 'sanat' %}
+                      <br />
+                      <br />
+                      <p style="font-weight: bold;">{% trans %}Find a problem?{% endtrans %}</p>
+                      <p>{% trans %}Comment here if you have any suggestion for improvements! Remember to include which word you want us to improve.{% endtrans %}</p>
+                      <div class="fb-comments" data-href="http://sanat.oahpa.no/" data-numposts="3" data-mobile="true" data-order-by="reverse_time"></div>
+                    {%- endif -%}
                 </div>
 
             {% else %}
