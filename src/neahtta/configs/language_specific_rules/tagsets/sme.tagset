@@ -26,6 +26,7 @@ pron_type:
 type:
  - "NomAg"
  - "G3"
+ - "G7"
  - "Aktor"
  - "res."
  - "Prop"

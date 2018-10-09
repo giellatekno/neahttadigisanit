@@ -1,4 +1,4 @@
-name: "Noun+G3, Noun+NomAg paradigms"
+name: "Noun+G3, Noun+G7, Noun+NomAg paradigms"
 morphology:
   pos: N
 lexicon:
@@ -6,6 +6,7 @@ lexicon:
     nom_type: ".//l/@type"
   nom_type: 
     - "G3"
+    - "G7"
     - "NomAg"
 --
 {{ lemma }}+N+{{ nom_type }}+Sg+Nom
