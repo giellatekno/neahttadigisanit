@@ -218,3 +218,33 @@ def format_fra_ref_links(ui_lang, e, tg):
             return "%s (%s)" % (_t_lemma, _reg)
 
     return None
+
+def match_homonymy_entries(entries_and_tags):
+    """ **Post morpho-lexicon override**
+
+    This is performed after lookup has occurred, in order to filter out
+    entries and analyses, when these depend on eachother.
+
+    Here: we only want to return entries where the analysis type tag
+    matches the entry type attribute.
+    """
+    filtered_results = []
+
+    for entry, analyses in entries_and_tags:
+        if entry is not None:
+            entry_type = entry.find('lg/l').attrib.get('type', False)
+            if entry_type:
+                tag_type = [x for x in [a.tag['type'] for a in analyses]
+                            if x is not None]
+                if entry_type in tag_type:
+                    filtered_results.append((entry, analyses))
+            else:
+                filtered_results.append((entry, analyses))
+        else:
+            filtered_results.append((entry, analyses))
+    return filtered_results
+
+
+morpholex.post_morpho_lexicon_override(
+    'sme'
+)(match_homonymy_entries)
