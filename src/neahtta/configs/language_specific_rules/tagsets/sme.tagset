@@ -30,6 +30,14 @@ type:
  - "Aktor"
  - "res."
  - "Prop"
+ - "Coll"
+ - "Dem"
+ - "Indef"
+ - "Interr"
+ - "Pers"
+ - "Recipr"
+ - "Refl"
+ - "Rel"
 possessive:
  - "PxSg2"
 tense:
