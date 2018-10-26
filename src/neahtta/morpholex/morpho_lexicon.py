@@ -339,7 +339,9 @@ class MorphoLexicon(object):
                                 l.append(array[i])
                                 l0.append(array[i][0])
                     else:
-                        if (none_not_added) & (array[i][0] not in l0):
+                        if array[i][0] is not None:
+                            entry_analysis = array[i][0].find('lg/analysis')
+                        if (none_not_added) & (entry_analysis is not None):
                             array_sorted.append(array[i])
                             none_not_added = False
                 k += 1
