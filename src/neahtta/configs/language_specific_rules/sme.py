@@ -233,15 +233,24 @@ def match_homonymy_entries(entries_and_tags):
     for entry, analyses in entries_and_tags:
         if entry is not None:
             entry_type = entry.find('lg/l').attrib.get('type', False)
+            entry_analysis = entry.find('lg/analysis')
             if entry_type:
                 tag_type = [x for x in [a.tag['type'] for a in analyses]
                             if x is not None]
-                if entry_type in tag_type:
-                    filtered_results.append((entry, analyses))
+                if len(tag_type) > 0:
+                    if entry_type in tag_type:
+                        filtered_results.append((entry, analyses))
+                else:
+                    if entry_type in tag_type:
+                        filtered_results.append((entry, analyses))
+                    else:
+                        if entry_analysis is not None:
+                            filtered_results.append((entry, analyses))
             else:
                 filtered_results.append((entry, analyses))
         else:
             filtered_results.append((entry, analyses))
+
     return filtered_results
 
 
