@@ -1109,7 +1109,7 @@ class Morphology(object):
                 for i in range(0, len(array)):
                   mystr.append(len(array[i][0:array[i].find("+")]))
                 indmax = [i for i, j in enumerate(mystr) if j == max(mystr)]
-                if not (max(mystr) < len(form)):
+                if (max(mystr) < len(form)):
                     k = 0
                     for i in range(0, len(indmax)):
                       array.insert(k, array.pop(indmax[i]))
@@ -1222,16 +1222,7 @@ class Morphology(object):
 
             #Fix in case analyses_der_fin and analyses_right_fin are nested arrays
             array_not_nested = fix_nested_array(analyses_der_fin)
-
-            def remove_duplicates(array_var):
-                newlist = []
-                for item in array_var:
-                   if item not in newlist:
-                       newlist.append(item)
-                return newlist
-
-            #Remove duplicates due to append in different der types
-            analyses_der_fin = remove_duplicates(array_not_nested)
+            analyses_der_fin = array_not_nested
             ##analyses_right_fin = analyses_der_fin
 
             for analysis in analyses_der_fin:
