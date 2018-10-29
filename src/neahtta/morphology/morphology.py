@@ -1222,7 +1222,16 @@ class Morphology(object):
 
             #Fix in case analyses_der_fin and analyses_right_fin are nested arrays
             array_not_nested = fix_nested_array(analyses_der_fin)
-            analyses_der_fin = array_not_nested
+
+            def remove_duplicates(array_var):
+                newlist = []
+                for item in array_var:
+                   if item not in newlist:
+                       newlist.append(item)
+                return newlist
+
+            #Remove duplicates due to append if entry with analyses or not (in collect_same_lemma in morpho_lexicon.py)
+            analyses_der_fin = remove_duplicates(array_not_nested)
             ##analyses_right_fin = analyses_der_fin
 
             for analysis in analyses_der_fin:
