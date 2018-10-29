@@ -344,6 +344,9 @@ class MorphoLexicon(object):
                         if (none_not_added) & (entry_analysis is not None):
                             array_sorted.append(array[i])
                             none_not_added = False
+                        else:
+                            if (none_not_added) & (array[i][0] not in l0):
+                                array_sorted.append(array[i])
                 k += 1
             j = 0
             #In case there is the same entry twice (with and without analyses), remove the one without analyses
