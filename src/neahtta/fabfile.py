@@ -203,7 +203,7 @@ def local(*args, **kwargs):
     return env
 
 
-env.no_svn_up = False
+env.no_svn_up = True
 env.use_ssh_config = True
 # env.key_filename = '~/.ssh/neahtta'
 
