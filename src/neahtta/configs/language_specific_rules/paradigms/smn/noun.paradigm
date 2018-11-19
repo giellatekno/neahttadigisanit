@@ -8,6 +8,7 @@ morphology:
 {{ lemma }}+N+Sg+Ill
 {{ lemma }}+N+Sg+Loc
 {{ lemma }}+N+Sg+Com
+{{ lemma }}+N+Sg+Abe
 {{ lemma }}+N+Ess
 {{ lemma }}+N+Par
 {{ lemma }}+N+Pl+Nom
@@ -16,3 +17,4 @@ morphology:
 {{ lemma }}+N+Pl+Ill
 {{ lemma }}+N+Pl+Loc
 {{ lemma }}+N+Pl+Com
+{{ lemma }}+N+Pl+Abe
