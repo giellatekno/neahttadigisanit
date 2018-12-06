@@ -595,7 +595,7 @@ msgid ""
 msgstr ""
 "Jus fuobmát meattáhusa, de berrešit váldit oktavuođa minguin. Čilge \n"
 "čuolmma ja muital guđe neahttalohkki dahje mobiilatelefovnna don "
-"geavahit, ja maid don ledjet ohcame go fuobmájit váttisvuođa."
+"geavahit, ja maid ledjet ohcame go fuobmájit váttisvuođa."
 
 #: configs/language_specific_rules/templates/about.template:78
 #: configs/language_specific_rules/templates/about.template:83
