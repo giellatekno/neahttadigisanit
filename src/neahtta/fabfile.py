@@ -80,6 +80,7 @@ running_service = [
 
 no_fst_install = [
     'gtoahpa.uit.no',
+    'gtweb.uit.no',
 ]
 
 location_restriction_notice = {
@@ -341,7 +342,7 @@ def update_gtsvn():
                     red("  Correct this (maybe with `svn cleanup`) and rerun the command, or run with `no_svn_up`.")
                 )
 
-    # TODO: necessary to run autogen just in case? 
+    # TODO: necessary to run autogen just in case?
     print(cyan("** Compiling giella-core **"))
     giella_core = os.path.join(env.svn_path , 'giella-core')
     with cd(giella_core):
@@ -588,7 +589,7 @@ def compile_strings():
             langs = _y.get('ApplicationSettings', {}).get('locales_available')
 
         for lang in langs:
-            # run for each language 
+            # run for each language
             cmd = "pybabel compile -d translations -l %s" % lang
             compile_cmd = env.run(cmd)
             if compile_cmd.failed:
@@ -869,4 +870,3 @@ def test_running():
             col = green
             msg = ''
         print(col(msg + h))
-
