@@ -446,7 +446,7 @@ def compile(dictionary=False,restart=False):
             env.run("svn up Makefile")
 
         if env.real_hostname in no_fst_install or env.remote_no_fst:
-            print(yellow("** Skip FST compile for gtoahpa **"))
+            print(yellow("** Skip FST compile for gtoahpa and gtweb **"))
             print(cyan("** Compiling lexicon for <%s> **" % dictionary))
             result = env.run(env.make_cmd + " %s-lexica" % dictionary)
             skip_fst = True
