@@ -204,7 +204,7 @@ def local(*args, **kwargs):
     return env
 
 
-env.no_svn_up = True
+env.no_svn_up = False
 env.use_ssh_config = True
 # env.key_filename = '~/.ssh/neahtta'
 
@@ -326,7 +326,7 @@ def update_gtsvn():
         # TODO: replace langs with specific list of langs from config
         # file
         paths = [
-            'giella-core/',
+            #'giella-core/', no need to svn up giella-core since no compile giella-core
             'words/',
             'art/dicts/',
         ] + svn_lang_paths
@@ -341,8 +341,11 @@ def update_gtsvn():
                     red("\n* svn up failed in <%s>. Prehaps the tree is locked?" % _p) + '\n' + \
                     red("  Correct this (maybe with `svn cleanup`) and rerun the command, or run with `no_svn_up`.")
                 )
+    return
 
     # TODO: necessary to run autogen just in case?
+    # no need to compile giella-core
+    '''
     print(cyan("** Compiling giella-core **"))
     giella_core = os.path.join(env.svn_path , 'giella-core')
     with cd(giella_core):
@@ -351,6 +354,7 @@ def update_gtsvn():
                                      , make_file
                                      )
         result = env.run(make_)
+    '''
 
 @task
 def restart_service(dictionary=False):
