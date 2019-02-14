@@ -36,7 +36,7 @@ def external_korp_url(pair_details, user_input):
     #    'bilingual_wordform_search_path'
     #    'bilingual_wordform_search_query'
 # Cip's test
-# Add this line for testing 
+# Add this line for testing
     korp_opts = pair_details.get('korp_options')
     korp_host = pair_details.get('korp_search_host')
     link_corpus_param = pair_details.get('link_corpus_parameter')
@@ -486,16 +486,15 @@ class Config(Config):
         for language, files in _lang_files.iteritems():
             for f in files:
                 tagset_path = os.path.join(_p, f)
-
-                try:
-                    file_context_set = yaml.load(open(tagset_path, 'r').read())
-                except Exception, e:
-                    print " * YAML parsing error in <%s>\n\n" % tagset_path
-                    print e
-                    sys.exit()
-                self._paradigm_contexts[language].update(
-                    reformat_context_set(tagset_path, file_context_set)
-                )
+                if os.path.exists(tagset_path):
+                    try:
+                        file_context_set = yaml.load(open(tagset_path, 'r').read())
+                    except Exception, e:
+                        print " * YAML parsing error in <%s>\n\n" % tagset_path
+                        print e
+                        sys.exit()
+                    self._paradigm_contexts[language].update(
+                        reformat_context_set(tagset_path, file_context_set))
 
         return self._paradigm_contexts
 
