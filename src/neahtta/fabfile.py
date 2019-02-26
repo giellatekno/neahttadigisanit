@@ -73,6 +73,7 @@ running_service = [
     'gtweb.uit.no',
     'gtlab.uit.no',
     'gtoahpa.uit.no',
+    'gtdict.uit.no',
     'sapir.artsrn.ualberta.ca',
     # sapir
     'arrl-web003',
@@ -81,6 +82,7 @@ running_service = [
 no_fst_install = [
     'gtoahpa.uit.no',
     'gtweb.uit.no',
+    'gtdict.uit.no',
 ]
 
 location_restriction_notice = {
@@ -208,7 +210,7 @@ env.no_svn_up = False
 env.use_ssh_config = True
 # env.key_filename = '~/.ssh/neahtta'
 
-if ['local', 'gtweb', 'gtoahpa'] not in sys.argv:
+if ['local', 'gtweb', 'gtoahpa', 'gtdict'] not in sys.argv:
     env = local(env)
 
 from config import yaml
