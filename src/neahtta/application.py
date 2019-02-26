@@ -115,6 +115,7 @@ def prepare_assets(app):
         'gtweb.uit.no',
         'gtlab.uit.no',
         'gtoahpa.uit.no'
+        'gtdict.uit.no'
     ]
 
     if real_hostname in prod_hosts:
@@ -162,7 +163,7 @@ def prepare_assets(app):
         'js/base.js',
         'js/index.js',
         'js/detail.js',
-        # TODO: underscore? angular? async_paradigms? 
+        # TODO: underscore? angular? async_paradigms?
     ] + js_dev_assets
 
     app.assets.main_css_assets = [
@@ -393,7 +394,7 @@ def create_app():
                                    ADMINS, 'NDS error')
         mail_handler.setLevel(logging.ERROR)
         app.logger.addHandler(mail_handler)
-    
+
     from logging import FileHandler
     from logging.handlers import SMTPHandler
     from socket import gethostname
