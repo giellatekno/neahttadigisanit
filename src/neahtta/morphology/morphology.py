@@ -1089,6 +1089,86 @@ class Morphology(object):
         else:
             return reformatted
 
+    # start: morph_lemmatizer internal functions
+    def remove_compound_analyses(self, _a):
+        _cmp = self.tool.options.get('compoundBoundary', False)
+        if not _cmp:
+            return True
+        if _cmp in _a:
+            return False
+        else:
+            return True
+
+    def remove_derivations(self, _a):
+        _der = self.tool.options.get('derivationMarker', False)
+        if not _der:
+            return True
+        if _der in _a:
+            return False
+        else:
+            return True
+
+    @staticmethod
+    def maybe_filter(function, iterable):
+        result = filter(function, iterable)
+        if len(result) > 0:
+            return result
+        else:
+            return iterable
+
+    # If the user input is lexicalized then put it as the first element in analyses
+    @staticmethod
+    def check_if_lexicalized(form, array):
+        found = False
+        for i in range(0, len(array)):
+            if form in array[i]:
+                array.insert(0, array[i])
+                del array[i + 1]
+                found = True
+                break
+        if found:
+            return array
+        else:
+            # If the user input is not in the base form, the for above doesn't find the analyses
+            # so find the longest analyses and put it/them in the first/s element/s
+            # in analyses if it is not one of the single parts
+            mystr = []
+            indmax = []
+            for i in range(0, len(array)):
+                mystr.append(len(array[i][0:array[i].find("+")]))
+            indmax = [i for i, j in enumerate(mystr) if j == max(mystr)]
+            if (max(mystr) < len(form)):
+                k = 0
+                for i in range(0, len(indmax)):
+                    array.insert(k, array.pop(indmax[i]))
+                    k += 1
+            return array
+
+    @staticmethod
+    def fix_nested_array(analyses, nested_array):
+        not_nested_array = []
+        if len(nested_array) != 0:
+            if isinstance(nested_array[0], list):
+                for item in nested_array:
+                    if len(item) > 1:
+                        for var in item:
+                            not_nested_array.append(var)
+                    else:
+                        not_nested_array.append(item[0])
+        else:
+            not_nested_array = analyses
+        return not_nested_array
+
+    @staticmethod
+    def remove_duplicates(array_var):
+        newlist = []
+        for item in array_var:
+            if item not in newlist:
+                newlist.append(item)
+        return newlist
+
+    # end: morph_lemmatizer internal functions
+
     # TODO: option, or separate function to also return discarded to
     # find out what's been removed to hide more_info link
     def morph_lemmatize(self,
@@ -1099,58 +1179,7 @@ class Morphology(object):
                   return_raw_data=False):
         """ For a wordform, return a list of lemmas
         """
-
-        def remove_compound_analyses(_a):
-            _cmp = self.tool.options.get('compoundBoundary', False)
-            if not _cmp:
-                return True
-            if _cmp in _a:
-                return False
-            else:
-                return True
-
-        def remove_derivations(_a):
-            _der = self.tool.options.get('derivationMarker', False)
-            if not _der:
-                return True
-            if _der in _a:
-                return False
-            else:
-                return True
-
-        def maybe_filter(function, iterable):
-            result = filter(function, iterable)
-            if len(result) > 0:
-                return result
-            else:
-                return iterable
-
-        #If the user input is lexicalized then put it as the first element in analyses
-        def check_if_lexicalized(array):
-            found = False
-            for i in range(0, len(array)):
-                if form in array[i]:
-                    array.insert(0, array[i])
-                    del array[i + 1]
-                    found = True
-                    break
-            if found:
-                return array
-            else:
-                #If the user input is not in the base form, the for above doesn't find the analyses
-                #so find the longest analyses and put it/them in the first/s element/s
-                #in analyses if it is not one of the single parts
-                mystr = []
-                indmax = []
-                for i in range(0, len(array)):
-                    mystr.append(len(array[i][0:array[i].find("+")]))
-                indmax = [i for i, j in enumerate(mystr) if j == max(mystr)]
-                if (max(mystr) < len(form)):
-                    k = 0
-                    for i in range(0, len(indmax)):
-                        array.insert(k, array.pop(indmax[i]))
-                        k += 1
-                return array
+        print 1102, form, split_compounds, non_compound_only, no_derivations
 
         if return_raw_data:
             lookups, raw_output, raw_errors = self.tool.lookup([form],
@@ -1180,10 +1209,10 @@ class Morphology(object):
         for _form, analyses in lookups:
 
             if non_compound_only:
-                analyses = maybe_filter(remove_compound_analyses, analyses)
+                analyses = self.maybe_filter(self.remove_compound_analyses, analyses)
 
             if no_derivations:
-                analyses = maybe_filter(remove_derivations, analyses)
+                analyses = self.maybe_filter(self.remove_derivations, analyses)
 
             #Introduce the variable 'analyses_right' because in some cases when Der/ tags
             # we want to show only specific analyses and not all
@@ -1195,7 +1224,7 @@ class Morphology(object):
             ##analyses_right_fin = []
             analyses_der_fin = []
 
-            analyses = check_if_lexicalized(analyses)
+            analyses = self.check_if_lexicalized(form, analyses)
             cnt = []
             for item in analyses:
                 cnt.append(item.count('Der'))
@@ -1247,32 +1276,13 @@ class Morphology(object):
                 k += 1
                 analyses_der_fin.append(b)
 
-            def fix_nested_array(nested_array):
-                not_nested_array = []
-                if len(nested_array) != 0:
-                    if isinstance(nested_array[0], list):
-                        for item in nested_array:
-                            if len(item) > 1:
-                                for var in item:
-                                    not_nested_array.append(var)
-                            else:
-                                not_nested_array.append(item[0])
-                else:
-                    not_nested_array = analyses
-                return not_nested_array
 
             #Fix in case analyses_der_fin and analyses_right_fin are nested arrays
-            array_not_nested = fix_nested_array(analyses_der_fin)
+            array_not_nested = self.fix_nested_array(analyses, analyses_der_fin)
 
-            def remove_duplicates(array_var):
-                newlist = []
-                for item in array_var:
-                    if item not in newlist:
-                        newlist.append(item)
-                return newlist
 
             #Remove duplicates due to append if entry with analyses or not (in collect_same_lemma in morpho_lexicon.py)
-            analyses_der_fin = remove_duplicates(array_not_nested)
+            analyses_der_fin = self.remove_duplicates(array_not_nested)
             ##analyses_right_fin = analyses_der_fin
 
             for analysis in analyses_der_fin:
