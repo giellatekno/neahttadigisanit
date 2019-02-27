@@ -21,10 +21,6 @@ def fst_tool():
 class TestHFST(unittest.TestCase):
     """Test the HFST class."""
 
-    def setUp(self):
-        """Set up common variables."""
-        self.app_context = app.app_context()
-
     def test_tagprocessor(self):
         """Test the tagprocessor."""
         self.assertEqual(
@@ -46,7 +42,7 @@ guollái\tguollái+A+Sg+Nom\t0,000000'''
 
     def test_lookup(self):
         """Test the analyser."""
-        with self.app_context:
+        with app.app_context():
             got = fst_tool().lookup(
                 [u'guollái', u'viežži'])
             wanted = [(u'guollái', [u'guolli+N+Sg+Ill', u'guollái+A+Sg+Nom']),
@@ -61,7 +57,7 @@ guollái\tguollái+A+Sg+Nom\t0,000000'''
 
     def test_inverse_lookup_by_string(self):
         """Test the generator that works on strings."""
-        with self.app_context:
+        with app.app_context():
             got = fst_tool().inverselookup_by_string('guolli+N+Pl+Nom')
             wanted = [('guolli+N+Pl+Nom', ['guolit'])]
 
@@ -91,7 +87,7 @@ guollái\tguollái+A+Sg+Nom\t0,000000'''
     ])
     def test_inverse_lookup(self, name, lemma, tags, wanted):
         """Test the generator that works on lists of strings."""
-        with self.app_context:
+        with app.app_context():
             self.maxDiff = None
             self.assertEqual(
                 fst_tool().inverselookup(lemma, tags), wanted, msg=name)
