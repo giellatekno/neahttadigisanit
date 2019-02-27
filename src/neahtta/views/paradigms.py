@@ -27,13 +27,10 @@ from __future__ import print_function
 
 import inspect
 
-from flask import (Response, abort, current_app, g, json, redirect,
-                   render_template, request, session)
-from i18n.utils import get_locale
+from flask import (current_app, g, request)
 from morphology.utils import tagfilter
 from utils.encoding import decodeOrFail
 
-from . import blueprint
 from .reader import json_response
 from .search import DictionaryView, SearcherMixin
 
