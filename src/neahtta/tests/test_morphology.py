@@ -87,7 +87,7 @@ guollái\tguollái+A+Sg+Nom\t0,000000'''
         self.assertEqual(got, wanted)
 
     def test_inverse_lookup(self):
-        """Test the generator that works on list of strings."""
+        """Test the generator that works on lists of strings."""
         with self.app_context:
             got = self.hfst.inverselookup('guolli', ['guolli+N+Sg+Loc', 'guolli+N+Pl+Nom'])
             wanted = [('guolli+N+Sg+Loc', ['guolis']),
