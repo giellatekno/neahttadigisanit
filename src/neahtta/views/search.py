@@ -85,7 +85,7 @@ class DictionaryView(MethodView):
                 variant for variant in current_pair_settings.get('search_variants')
                 if variant.get('type') == variant_type
             ]
-            if len(variants) > 0:
+            if variants:
                 current_search_variant = variants[0]
 
         shared_context = {
@@ -223,11 +223,8 @@ class IndexSearchPage(DictionaryView, AppViewSettingsMixin):
             return redir
 
         reverse_exists = \
-            current_app.config.dictionaries.get( ( self.default_to
-                                                 , self.default_from
-                                                 )
-                                               , False
-                                               )
+            current_app.config.dictionaries.get(
+                (self.default_to, self.default_from), False)
 
         current_pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(
             self.default_from, self.default_to)
@@ -705,7 +702,7 @@ class SearcherMixin(object):
                 k += 1
 
         all_analyses = sum(
-            [analyses for _, analyses in (search_result_obj.entries_and_tags)],
+            [analyses for _, analyses in search_result_obj.entries_and_tags],
             [])
 
         indiv_template_kwargs = {
@@ -718,10 +715,12 @@ class SearcherMixin(object):
         current_app.update_template_context(indiv_template_kwargs)
 
         all_analysis_template = \
-            current_app.lexicon_templates.render_individual_template(g._from, 'analyses.template', **indiv_template_kwargs)
+            current_app.lexicon_templates.render_individual_template(
+                g._from, 'analyses.template', **indiv_template_kwargs)
 
         header_template = \
-            current_app.lexicon_templates.render_individual_template(g._from, 'includes.template', **indiv_template_kwargs)
+            current_app.lexicon_templates.render_individual_template(
+                g._from, 'includes.template', **indiv_template_kwargs)
 
         if search_result_obj.analyses_without_lex:
             leftover_tpl_kwargs = {
@@ -733,10 +732,8 @@ class SearcherMixin(object):
             current_app.update_template_context(leftover_tpl_kwargs)
 
             leftover_analyses_template = \
-                current_app.lexicon_templates.render_individual_template( g._from
-                                                                        , 'analyses.template'
-                                                                        , **leftover_tpl_kwargs
-                                                                        )
+                current_app.lexicon_templates.render_individual_template(
+                    g._from, 'analyses.template', **leftover_tpl_kwargs)
         else:
             leftover_analyses_template = False
 
@@ -1090,10 +1087,9 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
 
         has_analyses = False
 
-        search_result_context = \
-            self.search_to_context(user_input,
-                                            detailed=True,
-                                            **search_kwargs)
+        search_result_context = self.search_to_context(user_input,
+                                                       detailed=True,
+                                                       **search_kwargs)
 
         has_analyses = search_result_context.get('successful_entry_exists')
 
