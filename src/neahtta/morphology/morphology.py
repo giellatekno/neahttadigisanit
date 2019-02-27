@@ -811,10 +811,7 @@ class XFST(object):
 
         return self.clean(output)
 
-    def inverselookup(self,
-                      lemma,
-                      tags,
-                      raw=False,
+    def inverselookup(self, lemma, tags, raw=False,
                       no_preprocess_paradigm=False):
         """Do an inverse lookup.
 
@@ -833,7 +830,8 @@ class XFST(object):
                 lookups_list.append(self.formatTag(combine))
             lookup_string = '\n'.join(lookups_list)
         else:
-            lookup_string = tags + '\n'
+            lookup_string = tags
+
         return self.inverselookup_by_string(lookup_string, raw=raw)
 
     def tagUnknown(self, analysis):
