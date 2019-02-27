@@ -45,20 +45,30 @@ def lineno():
 
 
 class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
+    """A view to produce a json formatted paradigm."""
 
     from lexicon import DetailedFormat as formatter
 
     @staticmethod
     def clean_lemma(lemma):
-        print(lineno(), lemma.tag)
+        """Return a lemma where the tags are filtered.
+
+        Args:
+            lemma (morphology.Lemma): the lemma that should be filtered.
+        """
         filtered_tag = tagfilter(lemma.tag, g._from, g._to).split(' ')
-        print(lineno(), lemma.input, filtered_tag, [lemma.form], lemma.tag.tag_string)
         return (lemma.input, filtered_tag, [lemma.form], lemma.tag.tag_string)
 
     def get_paradigms(self, _from, lemma):
+        """Produce a json formatted cleaned lemma of the given wordform.
 
-        # Generation constraints
-        # Sjekk om ordklasse er satt
+        Args:
+            _from (str): the language the wordform is expected to be
+            lemma (str): a string given to the paradigm generator
+
+        Returns:
+            flask.Response
+        """
         pos_filter = request.args.get('pos', False)
 
         # Sjekk om e_node er satt
@@ -92,21 +102,34 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
         return [map(self.clean_lemma, paradigm) for paradigm in paradigms]
 
     def search_to_paradigm(self, lookup_value, **search_kwargs):
+        """Really generate the paradigm from a lemma.
+
+        Args:
+            lemma (str): a string given to the paradigm generator
+
+        Returns:
+            list of paradigms
+        """
         search_result_obj = self.do_search_to_obj(
             lookup_value, generate=True, **search_kwargs)
 
-        # Sjekk om generatoren eksisterer
         return [
             paradigm for _, _, paradigm, _ in search_result_obj.
             entries_and_tags_and_paradigms
         ]
 
     def get(self, _from, _to, lemma):
-        # TODO: submit and process on separate thread, optional poll
-        # argument to not submit and just check for result
-        self.check_pair_exists_or_abort(_from, _to)
+        """Make a json formatted paradigm.
 
-        # Sørg for at dette er unicode
+        Args:
+            _from (str): the language of the wordform
+            _to (str): the target language
+            lemma (str): the wordform to create the paradigm for
+
+        Returns:
+            flask.Response
+        """
+        self.check_pair_exists_or_abort(_from, _to)
         self.lemma_match = user_input = lemma = decodeOrFail(lemma)
 
         return json_response(
