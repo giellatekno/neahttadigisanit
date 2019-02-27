@@ -545,7 +545,7 @@ class SearcherMixin(object):
         # TODO: this can probably be generalized to be part of the last
         # function.
 
-        errors = []
+        errors = False
 
         search_result_obj = self.do_search_to_obj(
             lookup_value, generate=True, **search_kwargs)
@@ -566,9 +566,6 @@ class SearcherMixin(object):
         )
 
         show_info = False
-
-        if len(errors) == 0:
-            errors = False
 
         #Here analyses_right related to the same variable in morphology.py
         search_context = {
