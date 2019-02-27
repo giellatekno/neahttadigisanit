@@ -1169,8 +1169,6 @@ class Morphology(object):
 
     # end: morph_lemmatizer internal functions
 
-    # TODO: option, or separate function to also return discarded to
-    # find out what's been removed to hide more_info link
     def morph_lemmatize(self,
                   form,
                   split_compounds=False,
@@ -1187,11 +1185,7 @@ class Morphology(object):
 
         # Check for unknown
 
-        unknown = False
-        for k, v in lookups:
-            for a in v:
-                if '?' in a:
-                    unknown = True
+        unknown = self.has_unknown(lookups)
 
         if unknown:
             if return_raw_data:
@@ -1298,6 +1292,15 @@ class Morphology(object):
             return list(lemmas), raw_output, raw_errors
         else:
             return list(lemmas)
+
+    def has_unknown(self, lookups):
+        unknown = False
+        for k, v in lookups:
+            for a in v:
+                if '?' in a:
+                    unknown = True
+
+        return unknown
 
     def de_pickle_lemma(self, lem, tag):
         _tag = self.tool.splitAnalysis(tag)

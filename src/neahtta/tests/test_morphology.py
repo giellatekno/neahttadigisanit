@@ -266,6 +266,12 @@ guolli+N+Pl+Com'''
             wanted = self.make_lemmatize_answer(wordform, tags)
             self.assertListEqual(got, wanted, msg=name)
 
+    @parameterized.expand([('no unknown', [('a', ['b', 'c'])], False),
+                           ('has unknown', [('a', ['b', '?'])], True)])
+    def test_has_unknown(self, name, lookups, wanted):
+        self.assertEqual(
+            app.config.morphologies['sme'].has_unknown(lookups), wanted, msg=name)
+
 
 if __name__ == '__main__':
     unittest.main()
