@@ -1177,13 +1177,8 @@ class Morphology(object):
                   return_raw_data=False):
         """ For a wordform, return a list of lemmas
         """
-        if return_raw_data:
-            lookups, raw_output, raw_errors = self.tool.lookup([form],
-                                                               raw=True)
-        else:
-            lookups = self.tool.lookup([form])
 
-        # Check for unknown
+        lookups, raw_output, raw_errors = self.tool.lookup([form], raw=True)
 
         unknown = self.has_unknown(lookups)
 
