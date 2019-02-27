@@ -424,6 +424,22 @@ guolli+N+Pl+Com'''
         self.assertListEqual(
             app.config.morphologies['sme'].rearrange_on_count(analyses), wanted, msg=name)
 
+    @parameterized.expand([('first', [
+        'guollebiebman+N+Sg+Gen+Allegro', 'guollebiebman+N+Sg+Nom',
+        'guolli+N+Cmp/SgNom', 'biebmat+V+TV+Der/NomAct+N+Sg+Gen',
+        'guolli+N+Cmp/SgNom', 'biebmat+V+TV+Der/NomAct+N+Sg+Nom',
+        'guolli+N+Cmp/SgNom', 'biebman+N+Sg+Gen+Allegro', 'guolli+N+Cmp/SgNom',
+        'biebman+N+Sg+Nom'
+    ], [
+        'guollebiebman+N+Sg+Gen+Allegro', 'guollebiebman+N+Sg+Nom',
+        'guolli+N+Cmp/SgNom', 'biebmat+V+TV', 'Der/NomAct+N+Sg+Gen',
+        'Der/NomAct+N+Sg+Nom', 'biebman+N+Sg+Gen+Allegro', 'biebman+N+Sg+Nom'
+    ])])
+    def test_make_analyses_der_fin(self, name, analyses, wanted):
+        """Test make_analyses_def_fin."""
+        self.assertListEqual(
+            app.config.morphologies['sme'].make_analyses_der_fin(analyses), wanted, msg=name)
+
 
 if __name__ == '__main__':
     unittest.main()
