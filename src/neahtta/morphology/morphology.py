@@ -1110,25 +1110,25 @@ class Morphology(object):
     # If the user input is lexicalized then put it as the first element in analyses
     @staticmethod
     def check_if_lexicalized(form, array):
-        for i in range(0, len(array)):
-            if form in array[i]:
-                array.insert(0, array[i])
-                del array[i + 1]
+        for index in range(0, len(array)):
+            if form in array[index]:
+                array.insert(0, array[index])
+                del array[index + 1]
                 return array
         else:
             # If the user input is not in the base form, the for above doesn't find the analyses
             # so find the longest analyses and put it/them in the first/s element/s
             # in analyses if it is not one of the single parts
             mystr = [
-                len(array[i][0:array[i].find("+")])
-                for i in range(0, len(array))
+                len(array[index][0:array[index].find("+")])
+                for index in range(0, len(array))
             ]
-            indmax = [i for i, j in enumerate(mystr) if j == max(mystr)]
+            indmax = [index for index, j in enumerate(mystr) if j == max(mystr)]
             if (max(mystr) < len(form)):
-                k = 0
-                for i in range(0, len(indmax)):
-                    array.insert(k, array.pop(indmax[i]))
-                    k += 1
+                index2 = 0
+                for index in range(0, len(indmax)):
+                    array.insert(index2, array.pop(indmax[index]))
+                    index2 += 1
             return array
 
     @staticmethod
