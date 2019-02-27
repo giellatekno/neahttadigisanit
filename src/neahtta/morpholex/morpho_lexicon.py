@@ -7,17 +7,15 @@
 # Will need to operate on the output of lookup(), and this is language
 # specific, so decorator registry thing is probably good here.
 
-import time
+from collections import defaultdict
 from itertools import groupby
 from operator import itemgetter
 
-from flask import current_app
 from lexicon.lexicon import hash_node
 
 
 class MorphoLexiconOverrides(object):
     def __init__(self):
-        from collections import defaultdict
         self.override_functions = defaultdict(list)
 
     def override_results(self, function):
