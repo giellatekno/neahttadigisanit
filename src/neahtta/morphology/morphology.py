@@ -1253,23 +1253,23 @@ class Morphology(object):
 
     @staticmethod
     def rearrange_on_count(analyses):
-        cnt = [analysis.count('Der') for analysis in analyses]
-        cnt_orth = [analysis.count('Err/Orth') for analysis in analyses]
+        der_count = [analysis.count('Der') for analysis in analyses]
+        errorth_count = [analysis.count('Err/Orth') for analysis in analyses]
         import heapq
-        if (min(cnt_orth) == 0
-            and max(cnt_orth) == 1) or (min(cnt_orth) == 0
-                                        and max(cnt_orth) == 0):
-            if len(cnt) > 1 and min(cnt) == 0 and heapq.nsmallest(
-                    2, cnt)[-1] != 0:
+        if (min(errorth_count) == 0
+            and max(errorth_count) == 1) or (min(errorth_count) == 0
+                                        and max(errorth_count) == 0):
+            if len(der_count) > 1 and min(der_count) == 0 and heapq.nsmallest(
+                    2, der_count)[-1] != 0:
                 analyses = [
-                    analyses[cnt.index(min(cnt))], analyses[cnt.index(
-                        heapq.nsmallest(2, cnt)[-1])]
+                    analyses[der_count.index(min(der_count))], analyses[der_count.index(
+                        heapq.nsmallest(2, der_count)[-1])]
                 ]
             else:
-                if min(cnt) != 0:
-                    analyses = [analyses[cnt.index(min(cnt))]]
+                if min(der_count) != 0:
+                    analyses = [analyses[der_count.index(min(der_count))]]
         else:
-            if (min(cnt_orth) == 1 and max(cnt_orth) == 1):
+            if (min(errorth_count) == 1 and max(errorth_count) == 1):
                 analyses = analyses
         return analyses
 
