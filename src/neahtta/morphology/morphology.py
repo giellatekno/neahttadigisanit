@@ -1176,95 +1176,102 @@ class Morphology(object):
                                                      non_compound_only)
             analyses = self.remove_derivations(analyses, no_derivations)
 
-            analyses_der_fin = []
 
             analyses = self.check_if_lexicalized(form, analyses)
-            cnt = []
-            for item in analyses:
-                cnt.append(item.count('Der'))
-            cnt_orth = []
-            for item in analyses:
-                cnt_orth.append(item.count('Err/Orth'))
-            import heapq
-            if (min(cnt_orth) == 0
-                    and max(cnt_orth) == 1) or (min(cnt_orth) == 0
-                                                and max(cnt_orth) == 0):
-                if len(cnt) > 1 and min(cnt) == 0 and heapq.nsmallest(
-                        2, cnt)[-1] != 0:
-                    analyses = [
-                        analyses[cnt.index(min(cnt))], analyses[cnt.index(
-                            heapq.nsmallest(2, cnt)[-1])]
-                    ]
-                else:
-                    if min(cnt) != 0:
-                        analyses = [analyses[cnt.index(min(cnt))]]
-            else:
-                if (min(cnt_orth) == 1 and max(cnt_orth) == 1):
-                    analyses = analyses
-            if split_compounds:
-                analyses = sum(map(self.tool.splitTagByCompound, analyses), [])
-            tags = ('Der', 'VAbess', 'VGen', 'Ger', 'Comp', 'Superl')
-            an_split = []
-            for item in analyses:
-                an_split.append(item.split('+'))
-            k = 0
-            for item in an_split:
-                index = []
-                if_tags = False
-                for i in range(0, len(item)):
-                    if item[i].startswith(tags):
-                        index.append(i)
-                        if_tags = True
-                s = '+'
-                b = []
-                if not if_tags:
-                    b.append(analyses[k])
-                else:
-                    for i in range(len(index)):
-                        if i == 0:
-                            b.append(s.join(item[0:index[i]]))
-                        else:
-                            b.append(s.join(item[index[i - 1]:index[i]]))
-                        if i == len(index) - 1:
-                            b.append(s.join(item[index[i]:len(item)]))
-                k += 1
-                analyses_der_fin.append(b)
+            analyses = self.rearrange_on_count(analyses)
+            analyses = self.split_on_compounds(analyses, split_compounds)
 
-
-            #Fix in case analyses_der_fin and analyses_right_fin are nested arrays
-            array_not_nested = self.fix_nested_array(analyses_der_fin, analyses)
-
-
-            #Remove duplicates due to append if entry with analyses or not (in collect_same_lemma in morpho_lexicon.py)
-            analyses_der_fin = self.remove_duplicates(array_not_nested)
+            analyses_der_fin = self.make_analyses_der_fin(analyses)
 
             for analysis in analyses_der_fin:
-                # TODO: here's where to begin solving finding a lemma
-                # from:
-                # PV/maci+PV/pwana+nipâw+V+AI+Ind+Prs+1Sg
-                _an_parts = self.tool.splitAnalysis(analysis)
-
-                # If a word doesn't have a PoS in an analysis, we try to
-                # handle it as best as possible.
-                if len(_an_parts) == 1:
-                    _lem = _an_parts[0]
-                    lem = Lemma(
-                        _an_parts,
-                        _input=_lem,
-                        tool=self.tool,
-                        tagsets=self.tagsets)
-                else:
-                    lem = Lemma(
-                        _an_parts,
-                        _input=form,
-                        tool=self.tool,
-                        tagsets=self.tagsets)
-                lemmas.append(lem)
+                lemmas.append(self.analysis_to_lemma(analysis, form))
 
         if return_raw_data:
             return list(lemmas), raw_output, raw_errors
         else:
             return list(lemmas)
+
+    def analysis_to_lemma(self, analysis, form):
+        # TODO: here's where to begin solving finding a lemma
+        # from:
+        # PV/maci+PV/pwana+nipâw+V+AI+Ind+Prs+1Sg
+        _an_parts = self.tool.splitAnalysis(analysis)
+        # If a word doesn't have a PoS in an analysis, we try to
+        # handle it as best as possible.
+        if len(_an_parts) == 1:
+            _lem = _an_parts[0]
+            lem = Lemma(
+                _an_parts,
+                _input=_lem,
+                tool=self.tool,
+                tagsets=self.tagsets)
+        else:
+            lem = Lemma(
+                _an_parts,
+                _input=form,
+                tool=self.tool,
+                tagsets=self.tagsets)
+        return lem
+
+    def make_analyses_der_fin(self, analyses):
+        analyses_der_fin = []
+        tags = ('Der', 'VAbess', 'VGen', 'Ger', 'Comp', 'Superl')
+        an_split = []
+        for item in analyses:
+            an_split.append(item.split('+'))
+        k = 0
+        for item in an_split:
+            index = []
+            if_tags = False
+            for i in range(0, len(item)):
+                if item[i].startswith(tags):
+                    index.append(i)
+                    if_tags = True
+            s = '+'
+            b = []
+            if not if_tags:
+                b.append(analyses[k])
+            else:
+                for i in range(len(index)):
+                    if i == 0:
+                        b.append(s.join(item[0:index[i]]))
+                    else:
+                        b.append(s.join(item[index[i - 1]:index[i]]))
+                    if i == len(index) - 1:
+                        b.append(s.join(item[index[i]:len(item)]))
+            k += 1
+            analyses_der_fin.append(b)
+        # Fix in case analyses_der_fin and analyses_right_fin are nested arrays
+        array_not_nested = self.fix_nested_array(analyses_der_fin, analyses)
+        # Remove duplicates due to append if entry with analyses or not (in collect_same_lemma in morpho_lexicon.py)
+        return  self.remove_duplicates(array_not_nested)
+
+    def split_on_compounds(self, analyses, split_compounds):
+        if split_compounds:
+            analyses = sum(map(self.tool.splitTagByCompound, analyses), [])
+        return analyses
+
+    @staticmethod
+    def rearrange_on_count(analyses):
+        cnt = [analysis.count('Der') for analysis in analyses]
+        cnt_orth = [analysis.count('Err/Orth') for analysis in analyses]
+        import heapq
+        if (min(cnt_orth) == 0
+            and max(cnt_orth) == 1) or (min(cnt_orth) == 0
+                                        and max(cnt_orth) == 0):
+            if len(cnt) > 1 and min(cnt) == 0 and heapq.nsmallest(
+                    2, cnt)[-1] != 0:
+                analyses = [
+                    analyses[cnt.index(min(cnt))], analyses[cnt.index(
+                        heapq.nsmallest(2, cnt)[-1])]
+                ]
+            else:
+                if min(cnt) != 0:
+                    analyses = [analyses[cnt.index(min(cnt))]]
+        else:
+            if (min(cnt_orth) == 1 and max(cnt_orth) == 1):
+                analyses = analyses
+        return analyses
 
     def has_unknown(self, lookups):
         return not all(['?' not in analysis for _, analyses in lookups
