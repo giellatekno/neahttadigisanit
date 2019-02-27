@@ -103,7 +103,7 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
             lemma (str): a string given to the paradigm generator
 
         Returns:
-            list of paradigms
+            list of list of morphology.GeneratedForm
         """
         search_kwargs = {
             'split_compounds': True,
