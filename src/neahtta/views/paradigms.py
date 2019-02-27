@@ -53,26 +53,11 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
 
     def options(self, _from, _to, lemma):
         _filters = current_app.config.tag_filters.get((g._from, g._to), False)
-        _tagsets = current_app.config.morphologies.get(g._from).tagsets.sets
-
-        tagsets_serializer_ready = {}
-
-        for key, ts in _tagsets.iteritems():
-            tagsets_serializer_ready[key] = ts.members
 
         return json_response({
-            'tagsets': tagsets_serializer_ready,
+            'tagsets': self.tagsets_serializer_ready(_from),
             'filters': _filters
         })
-
-    @staticmethod
-    def get_tagsets():
-        _tagsets = current_app.config.morphologies.get(g._from).tagsets.sets
-
-        return {
-            key: [m.val for m in ts.members]
-            for key, ts in _tagsets.iteritems()
-        }
 
     def get_paradigms(self, _from, lemma):
         def filter_tag(f):
@@ -128,7 +113,7 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
         return json_response(
             {
                 'paradigms': self.get_paradigms(_from, lemma),
-                'tagsets': self.get_tagsets(),
+                'tagsets': self.tagsets_serializer_ready(_from),
                 'input': {
                     'lemma': lemma,
                     'pos': request.args.get('pos', False)
