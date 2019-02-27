@@ -16,6 +16,10 @@ from lexicon.lexicon import hash_node
 
 
 class MorphoLexiconOverrides(object):
+    def __init__(self):
+        from collections import defaultdict
+        self.override_functions = defaultdict(list)
+
     def override_results(self, function):
         """ This runs the morpholex lookup, and passes the output
         through the a set of functions to process the output.
@@ -60,10 +64,6 @@ class MorphoLexiconOverrides(object):
 
         return wrapper
 
-    def __init__(self):
-        from collections import defaultdict
-        self.override_functions = defaultdict(list)
-
 
 morpholex_overrides = MorphoLexiconOverrides()
 
@@ -103,6 +103,12 @@ class MorphoLexicon(object):
         'pos_type',
         'entry_hash',
     ]
+
+    def __init__(self, config):
+        self.analyzers = config.morphologies
+        self.lexicon = config.lexicon
+
+        self.lookup = morpholex_overrides.override_results(self.lookup)
 
     def lookup(self, wordform, **kwargs):
         """ Performs a lookup with morphology and lexicon working
@@ -324,12 +330,6 @@ class MorphoLexicon(object):
             return _ret, raw_output, raw_errors
         else:
             return _ret
-
-    def __init__(self, config):
-        self.analyzers = config.morphologies
-        self.lexicon = config.lexicon
-
-        self.lookup = morpholex_overrides.override_results(self.lookup)
 
     def variant_lookup(self, search_type, wordform, **kwargs):
         """ Performs a lookup with morphology and lexicon working
