@@ -271,6 +271,24 @@ guolli+N+Pl+Com'''
     def test_has_unknown(self, name, lookups, wanted):
         self.assertEqual(
             app.config.morphologies['sme'].has_unknown(lookups), wanted, msg=name)
+    def test_no_derivations(self):
+        """Check if derivations are removed."""
+
+        analyses_with_derivations = [
+            'guollebiebman+N+Sg+Gen+Allegro',
+            'guollebiebman+N+Sg+Nom',
+            'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
+            'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Nom',
+            'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen+Allegro',
+            'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Nom']
+        got = app.config.morphologies['sme'].maybe_filter(
+            app.config.morphologies['sme'].remove_derivations,
+            analyses_with_derivations)
+        wanted = ['guollebiebman+N+Sg+Gen+Allegro', 'guollebiebman+N+Sg+Nom',
+                  'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen+Allegro',
+                  'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Nom']
+
+        self.assertListEqual(got, wanted)
 
 
 if __name__ == '__main__':
