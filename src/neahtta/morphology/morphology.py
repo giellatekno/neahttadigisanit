@@ -813,26 +813,32 @@ class XFST(object):
 
     def inverselookup(self, lemma, tags, raw=False,
                       no_preprocess_paradigm=False):
-        """Do an inverse lookup.
+        """Do an inverse lookup."""
+        if not no_preprocess_paradigm:
+            lookup_string = self.get_inputstring(lemma, tags)
+        else:
+            lookup_string = tags
+
+        return self.inverselookup_by_string(lookup_string, raw=raw)
+
+    def get_inputstring(self, lemma, tags):
+        """Make inputstring for inverselookup_by_string.
 
         Some templates (namely those where there are tags before the lemma),
         will cause problems. Thus if the lemma is  already in the tag, we
         consider this to be a completed tag string for generation. Otherwise,
         prefix the lemma then send to generation.
         """
-        if not no_preprocess_paradigm:
-            lookups_list = []
-            for tag in tags:
-                if lemma in tag:
-                    combine = self.splitAnalysis(tag, inverse=True)
-                else:
-                    combine = [lemma] + self.splitAnalysis(tag, inverse=True)
-                lookups_list.append(self.formatTag(combine))
-            lookup_string = '\n'.join(lookups_list)
-        else:
-            lookup_string = tags
+        lookups_list = []
+        for tag in tags:
+            if lemma in tag:
+                combine = self.splitAnalysis(tag, inverse=True)
+            else:
+                combine = [lemma] + self.splitAnalysis(tag, inverse=True)
+            lookups_list.append(self.formatTag(combine))
 
-        return self.inverselookup_by_string(lookup_string, raw=raw)
+        return '\n'.join(lookups_list)
+
 
     def tagUnknown(self, analysis):
         if '+?' in analysis:
