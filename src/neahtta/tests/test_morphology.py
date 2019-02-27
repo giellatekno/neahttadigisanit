@@ -87,13 +87,18 @@ guollái\tguollái+A+Sg+Nom\t0,000000'''
 
         self.assertEqual(got, wanted)
 
-    @parameterized.expand([('lemma part of tags', 'guolli',
-                            ['guolli+N+Sg+Loc', 'guolli+N+Pl+Nom'],
-                            [('guolli+N+Sg+Loc', ['guolis']),
-                             ('guolli+N+Pl+Nom', ['guolit'])])])
+    @parameterized.expand([
+        ('lemma part of tags', 'guolli',
+         ['guolli+N+Sg+Loc', 'guolli+N+Pl+Nom'],
+         [('guolli+N+Sg+Loc', ['guolis']), ('guolli+N+Pl+Nom', ['guolit'])]),
+        ('lemma not part of tags', 'guolli',
+         ['N+Sg+Loc', 'N+Pl+Nom'],
+         [('guolli+N+Sg+Loc', ['guolis']), ('guolli+N+Pl+Nom', ['guolit'])])
+    ])
     def test_inverse_lookup(self, name, lemma, tags, wanted):
         """Test the generator that works on lists of strings."""
         with self.app_context:
+            self.maxDiff = None
             self.assertEqual(
                 self.hfst.inverselookup(lemma, tags), wanted, msg=name)
 
