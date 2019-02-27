@@ -17,8 +17,7 @@ History:
 
 """
 
-from flask import (Response, current_app, json,
-                   request)
+from flask import (Response, current_app, json, request)
 from utils.encoding import decodeOrFail
 
 from .reader import json_response
@@ -27,23 +26,6 @@ from .search import DictionaryView, SearcherMixin
 __all__ = [
     'LemmatizerView',
 ]
-
-
-
-
-
-def json_response_pretty(data):
-    """Make the json more human friendly.
-
-    Args:
-        data (dict): the data to process
-
-    Returns:
-        flask.Response
-    """
-    data = json.dumps(data, sort_keys=True, indent=4, separators=(',', ': '))
-
-    return Response(response=data, status=200, mimetype="application/json")
 
 
 class LemmatizerView(DictionaryView, SearcherMixin):
@@ -65,7 +47,6 @@ class LemmatizerView(DictionaryView, SearcherMixin):
         errors = []
 
         tag_language = request.args.get('tag_language', 'eng')
-        pretty = request.args.get('pretty', 'eng')
 
         if _from in current_app.morpholexicon.analyzers:
             morph = current_app.morpholexicon.analyzers[_from]
@@ -83,7 +64,8 @@ class LemmatizerView(DictionaryView, SearcherMixin):
                 lemma (morphology.Lemma): the lemma that should be filtered.
             """
             filtered_tag = tagfilter(lemma.tag, _from, tag_language).split(' ')
-            return (lemma.lemma, filtered_tag, [lemma.form], lemma.tag.tag_string)
+            return (lemma.lemma, filtered_tag, [lemma.form],
+                    lemma.tag.tag_string)
 
         lemmas = morph.lemmatize(wordform)
 
@@ -96,15 +78,13 @@ class LemmatizerView(DictionaryView, SearcherMixin):
         for key, tagset in _tagsets.iteritems():
             tagsets_serializer_ready[key] = [m.val for m in tagset.members]
 
-        if pretty:
-            resp_fx = json_response_pretty
-        else:
-            resp_fx = json_response
-
-        return resp_fx({
-            'cleaned_lemmas': cleaned_lemmas,
-            'tagsets': tagsets_serializer_ready,
-            'input': {
-                'wordform': wordform,
-            }
-        })
+        return json_response(
+            {
+                'cleaned_lemmas': cleaned_lemmas,
+                'tagsets': tagsets_serializer_ready,
+                'input': {
+                    'wordform': wordform
+                }
+            },
+            pretty=request.args.get('pretty', False)
+        )

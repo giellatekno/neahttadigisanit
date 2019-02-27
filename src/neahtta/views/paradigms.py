@@ -47,12 +47,6 @@ def lineno():
     return inspect.currentframe().f_back.f_lineno
 
 
-def json_response_pretty(data, *args, **kwargs):
-    data = json.dumps(data, sort_keys=True, indent=4, separators=(',', ': '))
-
-    return Response(response=data, status=200, mimetype="application/json")
-
-
 class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
 
     from lexicon import DetailedFormat as formatter
@@ -131,22 +125,17 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
         # Sørg for at dette er unicode
         self.lemma_match = user_input = lemma = decodeOrFail(lemma)
 
-        # Sjekk om pretty er blant argumentene
-        pretty = request.args.get('pretty', False)
-
-        if pretty:
-            resp_fx = json_response_pretty
-        else:
-            resp_fx = json_response
-
-        return resp_fx({
-            'paradigms': self.get_paradigms(_from, lemma),
-            'tagsets': self.get_tagsets(),
-            'input': {
-                'lemma': lemma,
-                'pos': request.args.get('pos', False),
-            }
-        })
+        return json_response(
+            {
+                'paradigms': self.get_paradigms(_from, lemma),
+                'tagsets': self.get_tagsets(),
+                'input': {
+                    'lemma': lemma,
+                    'pos': request.args.get('pos', False)
+                }
+            },
+            pretty=request.args.get('pretty', False)
+        )
 
     def search_to_paradigm(self, lookup_value, **search_kwargs):
         search_result_obj = self.do_search_to_obj(
