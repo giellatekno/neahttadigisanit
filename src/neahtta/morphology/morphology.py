@@ -1110,11 +1110,7 @@ class Morphology(object):
 
     @staticmethod
     def maybe_filter(function, iterable):
-        result = filter(function, iterable)
-        if len(result) > 0:
-            return result
-        else:
-            return iterable
+        return list(filter(function, iterable))
 
     # If the user input is lexicalized then put it as the first element in analyses
     @staticmethod
