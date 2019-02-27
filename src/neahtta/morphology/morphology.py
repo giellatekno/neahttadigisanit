@@ -834,7 +834,7 @@ class XFST(object):
                     combine = tag
                 else:
                     combine = [lemma] + tag
-                lookups_list.append(self.formatTag(combine, inverse=True))
+                lookups_list.append(self.formatTag(self.splitAnalysis(combine), inverse=True))
             lookup_string = '\n'.join(lookups_list)
         else:
             lookup_string = tags + '\n'
