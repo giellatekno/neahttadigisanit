@@ -30,8 +30,9 @@ ApplicationSettings:
     - "ciprian.gerstenberger@uit.no"
 
 UnitTests:
- - "tests.sme_lexicon"
- - "tests.fin_lexicon"
+  - "tests.test_morphology"
+  - "tests.sme_lexicon"
+  - "tests.fin_lexicon"
 
 # This option set is not used outside of providing shortcuts for
 # following settings.

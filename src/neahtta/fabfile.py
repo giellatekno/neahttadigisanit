@@ -815,28 +815,13 @@ def test_project():
 
 
 @task
-def morph_unit():
-    yaml_path = 'tests/sanit.config.yaml.for_morphology_tests'
-    test_file = 'tests.test_morphology'
-
-    print(cyan("** Running tests with setup %s" % yaml_path))
-
-    cmd = "NDS_CONFIG=%s python -m unittest %s" % (yaml_path, test_file)
-    test_cmd = env.run(cmd)
-
-    if test_cmd.failed:
-        print(
-            red("** Something went wrong while testing <%s> **" % test_file))
-
-
-@task
 def unittests():
     """ Test the configuration and check language files for errors.
 
         TODO: this is going away in favor of the better new thing: `test_project`, `doctest`, and `test`
     """
 
-    yaml_path = 'configs/%s.config.yaml' % env.current_dict
+    yaml_path = 'tests/configs/%s.config.yaml' % env.current_dict
 
     try:
         with open(yaml_path, 'r') as F:
@@ -852,8 +837,8 @@ def unittests():
                 _y = yaml.load(F)
         else:
             print(
-                red("** Production config not found, and on a production server. Exiting."
-                    ))
+                red("** Production config not found, and on a production "
+                    "server. Exiting."))
             sys.exit()
 
     # TODO: this assumes virtualenv is enabled, need to explicitly enable
