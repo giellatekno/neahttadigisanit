@@ -1170,11 +1170,20 @@ class Morphology(object):
 
         lemmas = list()
 
+        self.handle_analyses(form, lemmas, lookups, no_derivations,
+                             non_compound_only, split_compounds)
+
+        if return_raw_data:
+            return list(lemmas), raw_output, raw_errors
+        else:
+            return list(lemmas)
+
+    def handle_analyses(self, form, lemmas, lookups, no_derivations,
+                        non_compound_only, split_compounds):
         for _form, analyses in lookups:
             analyses = self.remove_compound_analyses(analyses,
                                                      non_compound_only)
             analyses = self.remove_derivations(analyses, no_derivations)
-
 
             analyses = self.check_if_lexicalized(form, analyses)
             analyses = self.rearrange_on_count(analyses)
@@ -1184,11 +1193,6 @@ class Morphology(object):
 
             for analysis in analyses_der_fin:
                 lemmas.append(self.analysis_to_lemma(analysis, form))
-
-        if return_raw_data:
-            return list(lemmas), raw_output, raw_errors
-        else:
-            return list(lemmas)
 
     def analysis_to_lemma(self, analysis, wordform):
         analysis_parts = self.tool.splitAnalysis(analysis)
