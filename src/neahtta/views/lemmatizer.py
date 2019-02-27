@@ -32,7 +32,7 @@ __all__ = [
 
 
 
-def json_response_pretty(data, *args, **kwargs):
+def json_response_pretty(data):
     data = json.dumps(data, sort_keys=True, indent=4, separators=(',', ': '))
 
     return Response(response=data, status=200, mimetype="application/json")
