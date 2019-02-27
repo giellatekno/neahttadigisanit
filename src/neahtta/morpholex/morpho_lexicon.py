@@ -107,6 +107,34 @@ class MorphoLexicon(object):
 
         self.lookup = morpholex_overrides.override_results(self.lookup)
 
+    @staticmethod
+    def make_lex_kwargs(wordform, analysis):
+        if isinstance(analysis, list):
+            if analysis[0].lemma:
+                return {
+                           'lemma': analysis[0].lemma,
+                           'pos': analysis[0].pos,
+                           'pos_type': False,
+                           'user_input': wordform,
+                       }, analysis
+        else:
+            if analysis:
+                return {
+                           'lemma': analysis.lemma,
+                           'pos': analysis.pos,
+                           'pos_type': False,
+                           'user_input': wordform,
+                       }, analysis
+
+    def make_xml_result(self, source_lang, target_lang, lex_kwargs, analysis):
+        xml_result = self.lexicon.lookup(source_lang, target_lang,
+                                         **lex_kwargs)
+        if xml_result:
+            for e in xml_result:
+                return e, analysis
+
+        return None, analysis
+
     def lookup(self, wordform, **kwargs):
         """ Performs a lookup with morphology and lexicon working
         together. Numerous keyword arguments/parameters are available
@@ -188,36 +216,12 @@ class MorphoLexicon(object):
         entries_and_tags = []
 
         if analyses:
-            for analysis in list(analyses):
-                if isinstance(analysis, list):
-                    if analysis[0].lemma:
-                        lex_kwargs = {
-                            'lemma': analysis[0].lemma,
-                            'pos': analysis[0].pos,
-                            'pos_type': False,
-                            'user_input': wordform,
-                        }
-                    else:
-                        continue
-                else:
-                    if analysis:
-                        lex_kwargs = {
-                            'lemma': analysis.lemma,
-                            'pos': analysis.pos,
-                            'pos_type': False,
-                            'user_input': wordform,
-                        }
-                    else:
-                        continue
-
-                xml_result = self.lexicon.lookup(source_lang, target_lang,
-                                                 **lex_kwargs)
-
-                if xml_result:
-                    for e in xml_result:
-                        entries_and_tags.append((e, analysis))
-                else:
-                    entries_and_tags.append((None, analysis))
+            all_lex_kwargs = (self.make_lex_kwargs(wordform, analysis) for
+                              analysis in list(analyses))
+            entries_and_tags = [
+                self.make_xml_result(source_lang, target_lang, lexc_kwargs,
+                                     analysis)
+                for lexc_kwargs, analysis in all_lex_kwargs]
 
         no_analysis_xml = self.lexicon.lookup(
             source_lang,
