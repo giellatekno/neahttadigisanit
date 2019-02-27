@@ -449,7 +449,6 @@ class SearchResult(object):
 
         return self._analyses_without_lex
 
-    ##def __init__(self, _from, _to, user_input, entries_and_tags, entries_and_tags_r, formatter, generate, sorter=None, filterer=None, debug_text=False, other_counts={}):
     def __init__(self,
                  _from,
                  _to,
@@ -1053,30 +1052,6 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
 
     # TODO: this
     def get_cache_entry(self):
-        # TODO: return response from cache
-
-        # if current_app.caching_enabled:
-        #     cached_result = current_app.cache.get(entry_cache_key)
-        # else:
-        #     cached_result = None
-
-        # cur_morph = current_app.config.morphologies.get(from_language)
-
-        # def depickle_result(_results):
-        #     pickleable = []
-        #     for j in _results:
-        #         _j = j.copy()
-        #         analyses = []
-        #         for (lemma, tag) in _j.get('analyses', []):
-        #             # TODO: tag formatter
-        #             _lem = cur_morph.de_pickle_lemma(lemma, tag)
-        #             analyses.append(_lem)
-        #         _j['analyses'] = analyses
-        #         pickleable.append(_j)
-        #     return pickleable
-
-        # json_result = cached_result
-        # detailed_result = depickle_result(cached_result)
         pass
 
     def get(self, _from, _to, wordform, format):
