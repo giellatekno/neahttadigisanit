@@ -53,10 +53,15 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
     def clean_lemma(lemma):
         """Return a lemma where the tags are filtered.
 
+        The filtered tag is effectively used to get the
+        translation of the tag to the language found in
+        g._to if the translation exists.
+
         Args:
             lemma (morphology.Lemma): the lemma that should be filtered.
         """
         filtered_tag = tagfilter(lemma.tag, g._from, g._to).split(' ')
+
         return (lemma.input, filtered_tag, [lemma.form], lemma.tag.tag_string)
 
     def get_paradigms(self, _from, lemma):
