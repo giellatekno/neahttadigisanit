@@ -178,48 +178,6 @@ class WordLookupAPITests(WordLookupTests):
             self.assertEqual(rv.status_code, 200)
 
 
-class WordLookupAPIDefinitionTests(WordLookupTests):
-    def test_words_for_definitions(self):
-        from urllib import urlencode
-        for lang_pair, form, expected_def in self.definition_exists_tests:
-            _from, _to = lang_pair
-            base = self.url_base + u'/lookup/%s/%s/?' % (_from, _to)
-            url = base + urlencode({'lookup': form.encode('utf-8')})
-            print "testing: <%s> for <%s>" % (form, expected_def)
-            rv = self.app.get(url)
-            result = simplejson.loads(rv.data)
-
-            definitions = []
-            for r in result.get('result'):
-                for l in r.get('lookups'):
-                    results = True
-                    definitions.extend(l.get('right'))
-
-            found = False
-            if len(definitions) > 0:
-                if expected_def in map(unicode, definitions):
-                    print '  FOUND'
-                else:
-                    print '  NOT FOUND: ' + repr(definitions)
-                self.assertIn(expected_def, map(unicode, definitions))
-            else:
-                if len(expected_def) == 0 or expected_def is None:
-                    if len(definitions) == 0:
-                        print '  NO DEFINITIONS -- EXPECTED NONE'
-                    else:
-                        print '  HAS DEFINITIONS -- EXPECTED NONE'
-                    self.assertIs(len(definitions), 0)
-                else:
-                    print '  NO DEFINITIONS -- EXPECTED <%s>' % expected_def
-                    raise AssertionError("No definitions.")
-
-            # if expected_def in l.get('right'):
-            #     print expected_def
-            #     print l.get('right')
-            #     found_match = True
-            print '--'
-
-
 class ParadigmGenerationTests(WordLookupTests):
     def test_all_words_for_no_404s(self):
         for (source, target, lemma, error_msg,

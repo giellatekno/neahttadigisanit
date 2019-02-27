@@ -7,7 +7,7 @@ import unittest
 import neahtta
 
 from .lexicon import (BasicTests, ParadigmGenerationTests,
-                      WordLookupAPIDefinitionTests, WordLookupAPITests,
+                      WordLookupAPITests,
                       WordLookupDetailTests, WordLookupTests, form_contains,
                       form_doesnt_contain)
 
