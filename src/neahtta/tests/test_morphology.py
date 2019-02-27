@@ -28,6 +28,7 @@ class TestHFST(unittest.TestCase):
                 'inverse_tagsep': '+',
                 'compoundBoundary': '+Cmp#'
             })
+        self.app_context = app.app_context()
 
     def test_tagprocessor(self):
         """Test the tagprocessor."""
@@ -35,6 +36,20 @@ class TestHFST(unittest.TestCase):
             self.hfst.tag_processor('guolit\tguolli+N+Sg+Nom\t0,000000'),
             ('guolit', 'guolli+N+Sg+Nom'))
 
+    def test_lookup(self):
+        """Test the analyser."""
+        with self.app_context:
+            got = self.hfst.lookup([u'guollái', u'viežži'])
+            wanted = [(u'guollái', [u'guolli+N+Sg+Ill', u'guollái+A+Sg+Nom']),
+                      (u'viežži', [
+                          u'viežžat+V+TV+Der/NomAg+N+Sg+Acc',
+                          u'viežžat+V+TV+Der/NomAg+N+Sg+Gen',
+                          u'viežžat+V+TV+Der/NomAg+N+Sg+Nom',
+                          u'viežžat+V+TV+Imprt+Du2', u'viežžat+V+TV+PrsPrc'
+                      ])]
+
+            self.maxDiff = None
+            self.assertEqual(got, wanted)
 
 if __name__ == '__main__':
     unittest.main()
