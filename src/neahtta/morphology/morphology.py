@@ -831,14 +831,13 @@ class XFST(object):
             lookups_list = []
             for tag in tags:
                 if lemma in tag:
-                    combine = tag
+                    combine = self.splitAnalysis(tag, inverse=True)
                 else:
-                    combine = [lemma] + tag
-                lookups_list.append(self.formatTag(self.splitAnalysis(combine), inverse=True))
+                    combine = [lemma] + self.splitAnalysis(tag, inverse=True)
+                lookups_list.append(self.formatTag(combine))
             lookup_string = '\n'.join(lookups_list)
         else:
             lookup_string = tags + '\n'
-
         return self.inverselookup_by_string(lookup_string, raw=raw)
 
     def tagUnknown(self, analysis):
