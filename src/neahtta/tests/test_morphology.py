@@ -387,6 +387,34 @@ guolli+N+Pl+Com'''
             wanted,
             msg=name)
 
+    @parameterized.expand(
+        [('split False', [
+            'guollebiebman+N+Sg+Nom',
+            'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
+        ], False, [
+            'guollebiebman+N+Sg+Nom',
+            'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
+        ]),
+         ('split False', [
+             'guollebiebman+N+Sg+Gen+Allegro', 'guollebiebman+N+Sg+Nom',
+             'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
+             'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Nom',
+             'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen+Allegro',
+             'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Nom'
+         ], True, [
+             'guollebiebman+N+Sg+Gen+Allegro', 'guollebiebman+N+Sg+Nom',
+             'guolli+N+Cmp/SgNom', 'biebmat+V+TV+Der/NomAct+N+Sg+Gen',
+             'guolli+N+Cmp/SgNom', 'biebmat+V+TV+Der/NomAct+N+Sg+Nom',
+             'guolli+N+Cmp/SgNom', 'biebman+N+Sg+Gen+Allegro',
+             'guolli+N+Cmp/SgNom', 'biebman+N+Sg+Nom'
+         ])])
+    def test_split_on_compound(self, name, input_list, split_compounds,
+                               wanted):
+        self.assertListEqual(
+            app.config.morphologies['sme'].split_on_compounds(input_list, split_compounds),
+            wanted,
+            msg=name)
+
 
 if __name__ == '__main__':
     unittest.main()
