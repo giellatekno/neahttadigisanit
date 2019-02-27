@@ -7,7 +7,7 @@
 # Will need to operate on the output of lookup(), and this is language
 # specific, so decorator registry thing is probably good here.
 
-from collections import defaultdict
+from collections import defaultdict, OrderedDict
 from itertools import groupby
 from operator import itemgetter
 
@@ -126,14 +126,25 @@ class MorphoLexicon(object):
                            'user_input': wordform,
                        }, analysis
 
-    def make_xml_result(self, source_lang, target_lang, lex_kwargs, analysis):
+    @staticmethod
+    def add_to_dict(entries_and_tags, entry, analysis):
+        if not entries_and_tags.get(entry):
+            entries_and_tags[entry] = list()
+        if analysis not in entries_and_tags[entry]:
+            entries_and_tags[entry].append(analysis)
+
+    def make_xml_result(self, source_lang, target_lang, lex_kwargs, analysis,
+                        entries_and_tags):
         xml_result = self.lexicon.lookup(source_lang, target_lang,
                                          **lex_kwargs)
         if xml_result:
-            for e in xml_result:
-                return e, analysis
-
-        return None, analysis
+            for entry in xml_result:
+                self.add_to_dict(entries_and_tags, entry, analysis)
+        else:
+            if not entries_and_tags.get(None):
+                entries_and_tags[None] = list()
+            if analysis not in entries_and_tags[None]:
+                entries_and_tags[None].append(analysis)
 
     def lookup(self, wordform, **kwargs):
         """ Performs a lookup with morphology and lexicon working
@@ -213,15 +224,13 @@ class MorphoLexicon(object):
         else:
             analyses = analyses
 
-        entries_and_tags = []
-
+        entries_and_tags = OrderedDict()
         if analyses:
             all_lex_kwargs = (self.make_lex_kwargs(wordform, analysis) for
                               analysis in list(analyses))
-            entries_and_tags = [
+            for lexc_kwargs, analysis in all_lex_kwargs:
                 self.make_xml_result(source_lang, target_lang, lexc_kwargs,
-                                     analysis)
-                for lexc_kwargs, analysis in all_lex_kwargs]
+                                     analysis, entries_and_tags)
 
         no_analysis_xml = self.lexicon.lookup(
             source_lang,
@@ -232,75 +241,18 @@ class MorphoLexicon(object):
 
         if no_analysis_xml:
             for e in no_analysis_xml:
-                entries_and_tags.append((e, None))
+                if not entries_and_tags.get(e):
+                    entries_and_tags[e] = list()
+                    entries_and_tags[e].append(None)
 
         if entry_hash_filter:
+            for entry in entries_and_tags.keys():
+                if entry is not None:
+                    if hash_node(entry) == entry_hash_filter:
+                        del entries_and_tags[entry]
+                else:
+                    del entries_and_tags[entry]
 
-            def filt((x, _)):
-                if x is not None:
-                    return hash_node(x) == entry_hash_filter
-                return True
-
-            entries_and_tags = filter(filt, entries_and_tags)
-
-        # group by entry
-
-        results = []
-        _by_entry = itemgetter(0)
-
-        def collect_same_lemma(entries_and_tags):
-            global array_sorted
-            array_sorted = []
-            lemmas = []
-            lemmas0 = []
-            none_not_added = True
-            for entry_and_tag1 in entries_and_tags:
-                for entry_and_tag2 in entries_and_tags:
-                    if entry_and_tag2[1] is not None and entry_and_tag1[1] is not None:
-                        if entry_and_tag2[0] == entry_and_tag1[0]:
-                            if entry_and_tag2 not in lemmas:
-                                array_sorted.append(entry_and_tag2)
-                                lemmas.append(entry_and_tag2)
-                                lemmas0.append(entry_and_tag2[0])
-                    else:
-                        if entry_and_tag2[0] is not None:
-                            entry_analysis = entry_and_tag2[0].find(
-                                'lg/analysis')
-                        if none_not_added and entry_analysis is not None:
-                            array_sorted.append(entry_and_tag2)
-                            none_not_added = False
-                        else:
-                            if none_not_added and entry_and_tag2[0] not in lemmas0:
-                                array_sorted.append(entry_and_tag2)
-
-            index3 = 0
-            # In case there is the same entry twice (with and without analyses), remove the one without analyses
-            while index3 < len(array_sorted):
-                for index2 in range(0, len(array_sorted)):
-                    if (array_sorted[index2][0] == array_sorted[index3][0]):
-                        if (array_sorted[index2][1] is
-                            not None) & (array_sorted[index3][1] is None):
-                            del array_sorted[index3]
-                            break
-                        else:
-                            if (array_sorted[index3][1] is not None) & (
-                                    array_sorted[index2][1] is None):
-                                del array_sorted[index2]
-                                break
-                index3 += 1
-            return array_sorted
-
-        entries_and_tags_sorted = collect_same_lemma(entries_and_tags)
-        sorted_grouped_entries = groupby(entries_and_tags_sorted, _by_entry)
-
-        for grouper, grouped in sorted_grouped_entries:
-            analyses = [an for _, an in grouped if an is not None]
-            results.append((grouper, analyses))
-        entries_and_tags = results
-
-        # TODO: may need to do the same for derivation?
-        # NOTE: test with things that will never return results just to
-        # make sure recursion doesn't get carried away.
         _ret = None
         if (len(entries_and_tags) == 0) and ('non_compound_only' in kwargs):
             if kwargs['non_compound_only']:
@@ -312,7 +264,8 @@ class MorphoLexicon(object):
         elif (len(entries_and_tags) == 0) and not analyses:
             _ret = MorphoLexiconResult([])
         else:
-            _ret = MorphoLexiconResult(entries_and_tags)
+            _ret = MorphoLexiconResult(
+                [(key, value) for key, value in entries_and_tags.iteritems()])
 
         if return_raw_data:
             return _ret, raw_output, raw_errors
