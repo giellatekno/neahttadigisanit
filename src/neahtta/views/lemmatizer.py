@@ -33,32 +33,34 @@ __all__ = [
 
 
 def json_response_pretty(data):
+    """Make the json more human friendly.
+
+    Args:
+        data (dict): the data to process
+
+    Returns:
+        flask.Response
+    """
     data = json.dumps(data, sort_keys=True, indent=4, separators=(',', ': '))
 
     return Response(response=data, status=200, mimetype="application/json")
 
 
 class LemmatizerView(DictionaryView, SearcherMixin):
-
+    """A view to produce a json formatted lemma."""
     from lexicon import DetailedFormat as formatter
 
-    def options(self, _from, _to, lemma):
-        # TODO: return morphologies
-        _filters = current_app.config.tag_filters.get((_from, _to), False)
-        _tagsets = current_app.config.morphologies.get(_from).tagsets.sets
+    @staticmethod
+    def get(_from, wordform):
+        """Produce a json formatted cleaned lemma of the given wordform.
 
-        tagsets_serializer_ready = {}
+        Args:
+            _from (str): the language the wordform is expected to be
+            wordform (str): a string given to the lemmatizer
 
-        for key, ts in _tagsets.iteritems():
-            tagsets_serializer_ready[key] = ts.members
-
-        return json_response({
-            'tagsets': tagsets_serializer_ready,
-            'filters': _filters
-        })
-
-    def get(self, _from, wordform):
-
+        Returns:
+            flask.Response
+        """
         # Check for cache entry here
         errors = []
 
@@ -70,21 +72,18 @@ class LemmatizerView(DictionaryView, SearcherMixin):
         else:
             errors.append("Morphology for <%s> does not exist" % _from)
 
-        user_input = wordform = decodeOrFail(wordform)
-
-        has_analyses = False
-        cache_key = '+'.join([a for a in [
-            _from,
-            wordform,
-        ] if a])
+        wordform = decodeOrFail(wordform)
 
         from morphology.utils import tagfilter
 
-        ui_locale = get_locale()
+        def filter_tag(lemma):
+            """Return a lemma where the tags are filtered.
 
-        def filter_tag(f):
-            filtered_tag = tagfilter(f.tag, _from, tag_language).split(' ')
-            return (f.lemma, filtered_tag, [f.form], f.tag.tag_string)
+            Args:
+                lemma (morphology.Lemma): the lemma that should be filtered.
+            """
+            filtered_tag = tagfilter(lemma.tag, _from, tag_language).split(' ')
+            return (lemma.lemma, filtered_tag, [lemma.form], lemma.tag.tag_string)
 
         lemmas = morph.lemmatize(wordform)
 
@@ -94,8 +93,8 @@ class LemmatizerView(DictionaryView, SearcherMixin):
 
         tagsets_serializer_ready = {}
 
-        for key, ts in _tagsets.iteritems():
-            tagsets_serializer_ready[key] = [m.val for m in ts.members]
+        for key, tagset in _tagsets.iteritems():
+            tagsets_serializer_ready[key] = [m.val for m in tagset.members]
 
         if pretty:
             resp_fx = json_response_pretty
