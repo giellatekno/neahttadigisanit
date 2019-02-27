@@ -29,7 +29,7 @@ class TagPart(object):
         >>> unicode(v)
         u'V'
 
-    Except when some additional attribuets are defined to allow for
+    Except when some additional attributes are defined to allow for
     regular expression matching
 
         >>> v = TagPart({'match': '^PV', 'regex': True})
