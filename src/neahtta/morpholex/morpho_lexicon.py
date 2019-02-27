@@ -158,8 +158,6 @@ class MorphoLexicon(object):
         entry_hash_filter = lemma_attrs.pop('entry_hash', False)
         morph_kwargs = {key: value for key, value in kwargs.iteritems()
                         if key in self.morphology_kwarg_names}
-        lex_kwargs = {key: value for key, value in kwargs.iteritems()
-                      if key in self.lexicon_kwarg_names}
 
         # TODO: if analyses dropping componuds results in lexicalized
         # form that does not exist in lexicon, then fall back to
@@ -364,8 +362,6 @@ class MorphoLexicon(object):
         entry_hash_filter = lemma_attrs.pop('entry_hash', False)
         morph_kwargs = {key: value for key, value in kwargs.iteritems()
                         if key in self.morphology_kwarg_names}
-        lex_kwargs = {key: value for key, value in kwargs.iteritems()
-                      if key in self.lexicon_kwarg_names}
 
         # TODO: if analyses dropping componuds results in lexicalized
         # form that does not exist in lexicon, then fall back to
