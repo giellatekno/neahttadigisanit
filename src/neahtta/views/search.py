@@ -1037,13 +1037,11 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
         return filter_entries_for_view(entries)
 
     def validate_request(self):
-        """ Is the format correct?
-        """
+        """Is the format correct?"""
 
-        if not format in ['json', 'html']:
+        if format not in ['json', 'html']:
             return _("Invalid format. Only json and html allowed.")
 
-        self.check_pair_exists_or_abort(g._from, g._to)
 
     def request_cache_key(self):
         return u'%s?%s?%s' % (request.path, request.query_string, g.ui_lang)
