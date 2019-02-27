@@ -5,15 +5,16 @@ A lookup server that uses threads to handle multiple clients at a time.
 Called from the ped-interface (forms.py)
 """
 
+import os
+import re
 import select
-import pexpect
 import socket
 import sys
-import re
-import os
 import threading
-from threading import Lock
 import time
+from threading import Lock
+
+import pexpect
 
 
 class Server:

@@ -18,13 +18,14 @@ Options:
 #
 # python tools/extract_audio.py dicts/sms-all.xml static/aud/sms --verbose > test_aud.xml
 
+import os
+import sys
+
+import requests
+from lxml import etree
+
 # TODO: only download updated files, storing in manifest in path/to/stored/audio/
 from docopt import docopt
-
-import os, sys
-import requests
-
-from lxml import etree
 
 
 # Path -> Boolean

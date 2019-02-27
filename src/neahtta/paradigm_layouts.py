@@ -101,12 +101,13 @@ Ideas:
 # there's a package for that, supports combined cells-- alternatively
 # mediawiki format could be used
 
-import os, sys
+import os
+import sys
+
 import yaml
 
-from morphology.utils import tagfilter
-
 from flask import g
+from morphology.utils import tagfilter
 
 
 class ParadigmException(Exception):

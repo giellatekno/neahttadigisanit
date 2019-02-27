@@ -1,12 +1,13 @@
-import os, sys
-
-import unittest
+import os
+import sys
 import tempfile
-import yaml
-import neahtta
-from flask import current_app
+import unittest
 
-from fabric.colors import red, green, cyan, yellow, magenta
+import yaml
+
+import neahtta
+from fabric.colors import cyan, green, magenta, red, yellow
+from flask import current_app
 
 tests_module = os.path.join(os.getcwd(), 'tests/')
 

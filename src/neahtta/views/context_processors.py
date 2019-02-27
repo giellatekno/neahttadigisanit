@@ -1,7 +1,7 @@
-from flask import current_app, request, g, session
-from . import blueprint
-
+from flask import current_app, g, request, session
 from i18n.utils import get_locale
+
+from . import blueprint
 
 
 @blueprint.context_processor

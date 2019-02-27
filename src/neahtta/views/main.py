@@ -1,17 +1,15 @@
-from . import blueprint
-
 import sys
+from logging import getLogger
 
 import simplejson
 
-from logging import getLogger
-
-from utils.logger import *
+from flask import (abort, current_app, redirect, render_template, request,
+                   session, url_for)
 from utils.data import *
 from utils.encoding import *
+from utils.logger import *
 
-from flask import (request, session, render_template, abort, redirect,
-                   current_app, url_for)
+from . import blueprint
 
 user_log = getLogger("user_log")
 

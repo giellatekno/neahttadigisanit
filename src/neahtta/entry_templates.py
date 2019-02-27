@@ -31,9 +31,10 @@ TODO: sme pregenerated forms don't really work without sme.py
 
 """
 
-import os, sys
-import yaml
+import os
+import sys
 
+import yaml
 from lxml import etree
 
 __all__ = ['TemplateConfig', 'LanguageNotFound']

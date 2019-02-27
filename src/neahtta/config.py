@@ -1,14 +1,16 @@
 # -*- encoding: utf-8 -*-
-import sys, os
+import os
+import sys
+
+import yaml
 
 from flask import Config
+from lexicon.lexicon import DEFAULT_XPATHS
 
 # Import configs stuff to register overrides
 # from conf import *
 
-import yaml
 
-from lexicon.lexicon import DEFAULT_XPATHS
 
 
 def gettext_yaml_wrapper(loader, node):

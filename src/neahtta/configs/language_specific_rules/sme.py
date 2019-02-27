@@ -11,10 +11,10 @@ connecting FST to Lexicon.
 
 from logging import getLogger
 
-from morphology import generation_overrides as morphology
-from lexicon import lexicon_overrides as lexicon
 from lexicon import autocomplete_filters as autocomplete_filters
+from lexicon import lexicon_overrides as lexicon
 from morpholex import morpholex_overrides as morpholex
+from morphology import generation_overrides as morphology
 
 morph_log = getLogger('morphology')
 

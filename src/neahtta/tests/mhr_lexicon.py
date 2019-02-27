@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
 
 import os
-import unittest
 import tempfile
+import unittest
 
-from .lexicon import (WordLookupDetailTests, WordLookupAPITests,
-                      WordLookupAPIDefinitionTests, ParadigmGenerationTests,
-                      form_contains, form_doesnt_contain)
+from .lexicon import (ParadigmGenerationTests, WordLookupAPIDefinitionTests,
+                      WordLookupAPITests, WordLookupDetailTests, form_contains,
+                      form_doesnt_contain)
 
 # These should not produce a 404.
 

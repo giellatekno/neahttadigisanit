@@ -17,20 +17,21 @@ History:
 
 """
 
+from flask import (Response, abort, current_app, g, json, redirect,
+                   render_template, request, session)
+from i18n.utils import get_locale
+from utils.encoding import decodeOrFail
+
 from . import blueprint
+from .reader import json_response
+from .search import DictionaryView, SearcherMixin
 
 __all__ = [
     'LemmatizerView',
 ]
 
-from flask import (request, current_app, json, session, Response,
-                   render_template, abort, redirect, g)
 
-from .search import DictionaryView, SearcherMixin
-from .reader import json_response
-from utils.encoding import decodeOrFail
 
-from i18n.utils import get_locale
 
 
 def json_response_pretty(data, *args, **kwargs):

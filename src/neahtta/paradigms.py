@@ -36,9 +36,12 @@ comparison types are needed (beyond X == Y and X is in list Y).
 TODO: allow user-defined global XPATH context.
 """
 
-import os, sys
+import os
+import sys
+
 import yaml
 from lxml import etree
+
 from paradigm_layouts import parse_table
 
 __all__ = ['ParadigmConfig']

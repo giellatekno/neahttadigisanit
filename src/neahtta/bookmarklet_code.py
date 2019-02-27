@@ -2,8 +2,8 @@
 # however in order for it to work as a bookmarklet, it must be URL
 # encoded.
 
-from urllib import quote, quote_plus
 import os
+from urllib import quote, quote_plus
 
 cwd = lambda x: os.path.join(os.path.dirname(__file__), x)
 

@@ -18,16 +18,17 @@ Options:
 #
 # python tools/extract_audio.py dicts/sms-all.xml static/aud/sms --verbose > test_aud.xml
 
-# TODO: only download updated files, storing in manifest in path/to/stored/audio/
-from docopt import docopt
+import os
+import sys
 
-import os, sys
 import requests
-
 from lxml import etree
 
-command = None
+# TODO: only download updated files, storing in manifest in path/to/stored/audio/
+from docopt import docopt
 from sh import hfst_lookup
+
+command = None
 
 
 def run_cmd(_in, args):

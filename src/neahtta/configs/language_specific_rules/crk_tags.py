@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
-import os, sys
+import os
+import sys
 
 pre_lemma_tags = [
     'RdplW',

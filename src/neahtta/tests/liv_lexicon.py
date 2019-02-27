@@ -4,13 +4,14 @@
 # vȱlda+V+Ind+Prs+Sg3
 
 import os
-import neahtta
-import unittest
 import tempfile
+import unittest
 
-from .lexicon import (BasicTests, WordLookupTests, WordLookupDetailTests,
-                      WordLookupAPITests, WordLookupAPIDefinitionTests,
-                      ParadigmGenerationTests, form_contains,
+import neahtta
+
+from .lexicon import (BasicTests, ParadigmGenerationTests,
+                      WordLookupAPIDefinitionTests, WordLookupAPITests,
+                      WordLookupDetailTests, WordLookupTests, form_contains,
                       form_doesnt_contain)
 
 paradigm_generation_tests = [

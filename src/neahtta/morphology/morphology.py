@@ -4,14 +4,13 @@
 Morphological tools
 """
 
-from cache import cache
-import re
-
-import os
 import imp
-
+import os
+import re
 from itertools import groupby
 from operator import itemgetter
+
+from cache import cache
 
 # TODO: get from global path
 configs_path = os.path.join(os.path.dirname(__file__), '../')

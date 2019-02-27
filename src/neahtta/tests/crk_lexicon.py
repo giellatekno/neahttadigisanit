@@ -1,24 +1,13 @@
 # -*- encoding: utf-8 -*-
 
 import os
-import neahtta
-import unittest
 import tempfile
+import unittest
 
-from .lexicon import (
-    form_contains,
-    form_doesnt_contain,
-    WordLookupAPITests
-    # NB: only comment these in as needed, otherwise
-    # they fail
-    # , BasicTests
-    # , WordLookupTests
-    # , WordLookupDetailTests
-    ,
-    WordLookupAPIDefinitionTests
-    # , ParadigmGenerationTests
-    # , form_contains
-)
+import neahtta
+
+from .lexicon import (WordLookupAPIDefinitionTests,  # NB: only comment these in as needed, otherwise; they fail; , BasicTests; , WordLookupTests; , WordLookupDetailTests; , ParadigmGenerationTests; , form_contains
+                      WordLookupAPITests, form_contains, form_doesnt_contain)
 
 ## These tests are for making sure that NDS infrastructure can take user input
 ## and propery resolve an analysis and lexical entries.

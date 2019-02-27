@@ -29,10 +29,11 @@ Example target string formatting function:
 # NOTE: if copying this for a new language, remember to make sure that
 # it's being imported in __init__.py
 
-from morphology import generation_overrides as morphology
-from lexicon import lexicon_overrides as lexicon
+from configs.language_specific_rules.common import match_homonymy_entries
 from flask import current_app
+from lexicon import lexicon_overrides as lexicon
 from morpholex import morpholex_overrides as morpholex
+from morphology import generation_overrides as morphology
 
 
 @lexicon.entry_source_formatter('sma')
@@ -104,6 +105,5 @@ def pregenerate_sma(form, tags, node, **kwargs):
     return form, tags, node, analyses
 
 
-from configs.language_specific_rules.common import match_homonymy_entries
 
 morpholex.post_morpho_lexicon_override('sma')(match_homonymy_entries)

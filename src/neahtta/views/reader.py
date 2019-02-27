@@ -1,22 +1,18 @@
 # -*- encoding: utf-8 -*-
-from flask import (request, Response, json, session, render_template,
-                   current_app, abort)
-
-from . import blueprint
-
-from utils.json import fmtForCallback
-from utils.logger import logSimpleLookups
-from i18n.utils import iso_filter
-
-from morphology.utils import tagfilter
-from flask.ext.babel import gettext as _
-from flask.ext.babel import lazy_gettext
-
 from datetime import timedelta
-from flask import make_response, request, current_app
 from functools import update_wrapper
 
 from bookmarklet_code import generate_bookmarklet_code
+from flask import (Response, abort, current_app, json, make_response,
+                   render_template, request, session)
+from flask.ext.babel import gettext as _
+from flask.ext.babel import lazy_gettext
+from i18n.utils import iso_filter
+from morphology.utils import tagfilter
+from utils.json import fmtForCallback
+from utils.logger import logSimpleLookups
+
+from . import blueprint
 
 
 def json_response(data, *args, **kwargs):

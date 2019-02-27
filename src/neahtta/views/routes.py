@@ -1,12 +1,17 @@
 ﻿from . import blueprint
 
-from search import (IndexSearchPage, LanguagePairSearchView,
-                    DetailedLanguagePairSearchView,
-                    ReferredLanguagePairSearchView)
-
+from paradigms import ParadigmLanguagePairSearchView
+from search import (DetailedLanguagePairSearchView, IndexSearchPage,
+                    LanguagePairSearchView, ReferredLanguagePairSearchView)
 from variant_search import LanguagePairSearchVariantView
 
-from paradigms import ParadigmLanguagePairSearchView
+from .autocomplete import autocomplete
+from .locale import set_locale
+from .main import (about, about_sources, config_doc, config_docs, escape_tv,
+                   externalFormSearch, more_dictionaries, plugins,
+                   session_clear)
+from .reader import (bookmarklet, bookmarklet_configs, ie8_instrux, lookupWord,
+                     reader_test_page, reader_update, reader_update_json)
 
 try:
     from lemmatizer import LemmatizerView
@@ -60,8 +65,6 @@ if LemmatizerView:
 #                       , endpoint="search_keyword_list"
 #                       )
 
-from .reader import (lookupWord, ie8_instrux, reader_test_page, reader_update,
-                     reader_update_json, bookmarklet_configs, bookmarklet)
 
 blueprint.add_url_rule(
     '/lookup/<from_language>/<to_language>/',
@@ -87,8 +90,6 @@ blueprint.add_url_rule(
 blueprint.add_url_rule(
     '/read/', methods=['GET'], endpoint='reader_info', view_func=bookmarklet)
 
-from .main import (session_clear, more_dictionaries, externalFormSearch, about,
-                   about_sources, escape_tv, config_docs, config_doc, plugins)
 
 blueprint.add_url_rule(
     '/session/clear/<sess_key>/',
@@ -137,7 +138,6 @@ blueprint.add_url_rule(
     view_func=config_doc,
     endpoint="config_doc")
 
-from .locale import set_locale
 
 blueprint.add_url_rule(
     '/locale/<iso>/',
@@ -145,7 +145,6 @@ blueprint.add_url_rule(
     view_func=set_locale,
     endpoint='set_locale')
 
-from .autocomplete import autocomplete
 
 blueprint.add_url_rule(
     '/autocomplete/<from_language>/<to_language>/',

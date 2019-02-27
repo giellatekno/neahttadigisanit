@@ -1,11 +1,10 @@
 # manage.py
 # -*- encoding:utf-8 -*-
 
+from fabric.colors import green, red
 from flask import Flask
 from flask.ext.actions import Manager
 from neahtta import app
-
-from fabric.colors import red, green
 
 manager = Manager(app, default_server_actions=True)
 

@@ -27,18 +27,15 @@ chances of other services dying if this is altered.
 
 """
 
-from flask import (current_app, request, session, Response, render_template,
-                   abort, redirect, g)
-
-from flask.ext.babel import gettext as _
-
-from i18n.utils import get_locale
-
 from cache import cache
-
-from .search import LanguagePairSearchView
-
+from flask import (Response, abort, current_app, g, redirect, render_template,
+                   request, session)
+from flask.ext.babel import gettext as _
+from i18n.utils import get_locale
 from lexicon import FrontPageFormat
+
+from .reader import crossdomain
+from .search import LanguagePairSearchView
 
 
 @cache.memoize()
@@ -192,7 +189,6 @@ class LanguagePairSearchVariantView(LanguagePairSearchView):
         return self.search_args(variant_type, _from, _to, get_locale(), 'POST')
 
 
-from .reader import crossdomain
 
 
 @crossdomain(origin='*', headers=['Content-Type'])

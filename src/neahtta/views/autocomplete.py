@@ -1,8 +1,7 @@
-from flask import request, Response, json
+from flask import Response, current_app, json, request
 from utils.json import fmtForCallback
 
 from . import blueprint
-from flask import current_app
 
 __all__ = ["autocomplete"]
 

@@ -1,9 +1,10 @@
 # -*- encoding: utf-8 -*-
 
 import os
-import neahtta
-import unittest
 import tempfile
+import unittest
+
+import neahtta
 
 from .lexicon import (ParadigmGenerationTests, form_contains,
                       form_doesnt_contain)

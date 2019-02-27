@@ -1,5 +1,6 @@
-from .lexicon import XMLDict, regexpNS
 from lxml import etree
+
+from .lexicon import XMLDict, regexpNS
 
 _NAMESPACES = {'re': regexpNS}
 

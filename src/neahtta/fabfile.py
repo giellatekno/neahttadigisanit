@@ -44,21 +44,17 @@ You may be asked for your SSH password.
 #        - mkdir:
 #            configs/language_specific_rules/tagsets/
 
-import os, sys
-
-from fabric.decorators import roles
-
-from fabric.api import (cd, run, local, env, task, settings, prompt)
-
-from fabric.operations import (sudo)
-
-from fabric.colors import red, green, cyan, yellow
-
-from fabric.contrib.console import confirm
-
-from fabric.utils import abort
-
+import os
 import socket
+import sys
+
+from config import yaml
+from fabric.api import cd, env, local, prompt, run, settings, task
+from fabric.colors import cyan, green, red, yellow
+from fabric.contrib.console import confirm
+from fabric.decorators import roles
+from fabric.operations import sudo
+from fabric.utils import abort
 
 # Hosts that have an nds- init.d script
 running_service = [
@@ -189,7 +185,6 @@ env.use_ssh_config = True
 if ['local', 'gtweb', 'gtoahpa', 'gtdict'] not in sys.argv:
     env = local(env)
 
-from config import yaml
 
 env.real_hostname = socket.gethostname()
 

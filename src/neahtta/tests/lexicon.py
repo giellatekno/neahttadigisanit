@@ -1,8 +1,10 @@
 ﻿import os
-import neahtta
-import unittest
 import tempfile
+import unittest
+
 import simplejson
+
+import neahtta
 
 
 class YamlTests(object):

@@ -1,8 +1,6 @@
 ﻿from . import blueprint
-from flask import current_app
+from flask import current_app, g, request, session
 from i18n.utils import iso_filter
-
-from flask import (request, session, g)
 
 
 @blueprint.before_request

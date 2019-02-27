@@ -1,6 +1,7 @@
 ﻿import os
-import neahtta
 import unittest
+
+import neahtta
 
 # TODO: run a test against all sme stuff
 

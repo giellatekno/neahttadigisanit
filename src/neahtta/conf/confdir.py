@@ -15,10 +15,10 @@ importing the following module to produce replacement functions.
 
 """
 
-from importlib import import_module
+import imp
 import os
 import sys
-import imp
+from importlib import import_module
 
 
 def _getlangs(app):

@@ -1,5 +1,8 @@
 ﻿from lxml import etree
+import sys
+
 from lookups import SearchTypes
+
 """ Our project-wide search_types repository. """
 search_types = SearchTypes({})
 
@@ -8,7 +11,6 @@ search_types = SearchTypes({})
 ##
 ##
 
-import sys
 
 DEFAULT_XPATHS = {
     'pos': 'lg/l/@pos',

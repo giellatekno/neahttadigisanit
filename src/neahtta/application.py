@@ -4,20 +4,18 @@ ADMINS = [
     'ryan.txanson+nds@gmail.com',
 ]
 
-import sys, os
 import logging
+import os
+import sys
 import urllib
-
-from flask import (Flask, request, session)
-
-# from   werkzeug.contrib.cache         import SimpleCache
-from config import Config
 from logging import getLogger
 
+from cache import cache
+# from   werkzeug.contrib.cache         import SimpleCache
+from config import Config
+from flask import Flask, request, session
 from flask.ext.babel import Babel
 from flask.ext.limiter import Limiter
-
-from cache import cache
 
 # Configure user_log
 user_log = getLogger("user_log")

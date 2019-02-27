@@ -3,11 +3,11 @@
 # gatáa.ang ñasa'áa
 
 import os
-import unittest
 import tempfile
+import unittest
 
-from .lexicon import (WordLookupDetailTests, WordLookupAPITests,
-                      WordLookupAPIDefinitionTests)
+from .lexicon import (WordLookupAPIDefinitionTests, WordLookupAPITests,
+                      WordLookupDetailTests)
 
 # These should not produce a 404.
 
