@@ -15,9 +15,22 @@ from utils.logger import logSimpleLookups
 from . import blueprint
 
 
-def json_response(data, *args, **kwargs):
-    return Response(
-        response=json.dumps(data), status=200, mimetype="application/json")
+def json_response(data, pretty=False):
+    """Turn data into json.
+
+    Args:
+        data (dict): dict to jsonify
+        pretty (bool): if True, make json slightly more human friendly
+
+    Returns:
+        flask.Response
+    """
+    if pretty:
+        data = json.dumps(data, sort_keys=True, indent=4, separators=(',', ': '))
+    else:
+        data = json.dumps(data)
+
+    return Response(response=data, status=200, mimetype="application/json")
 
 
 def crossdomain(origin=None,
