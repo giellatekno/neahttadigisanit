@@ -22,7 +22,7 @@ limits==1.0.6
 lxml==3.4.2
 MarkupSafe==0.23
 odict==1.5.1
-paramiko==1.17.0
+paramiko==1.17.6
 pexpect==2.4
 ply==3.4
 prompt-toolkit==0.20
@@ -31,7 +31,7 @@ Pygments==1.6
 python-memcached==1.53
 pytz==2014.10
 pywatch==0.4
-PyYAML==3.10
+PyYAML==3.13
 requests==1.1.0
 simplejson==3.3.1
 six==1.8.0
