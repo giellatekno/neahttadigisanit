@@ -815,6 +815,21 @@ def test_project():
 
 
 @task
+def morph_unit():
+    yaml_path = 'tests/sanit.config.yaml.for_morphology_tests'
+    test_file = 'tests/test_morphology.py'
+
+    print(cyan("** Running tests with setup %s" % yaml_path))
+
+    cmd = "NDS_CONFIG=%s python %s" % (yaml_path, test_file)
+    test_cmd = env.run(cmd)
+
+    if test_cmd.failed:
+        print(
+            red("** Something went wrong while testing <%s> **" % test_file))
+
+
+@task
 def unittests():
     """ Test the configuration and check language files for errors.
 
