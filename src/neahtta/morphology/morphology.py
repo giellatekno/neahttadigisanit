@@ -1091,7 +1091,7 @@ class Morphology(object):
 
     # TODO: option, or separate function to also return discarded to
     # find out what's been removed to hide more_info link
-    def lemmatize(self,
+    def morph_lemmatize(self,
                   form,
                   split_compounds=False,
                   non_compound_only=False,
@@ -1361,7 +1361,7 @@ class Morphology(object):
             languagecode, self.generate)
 
         self.lemmatize = generation_overrides.process_analysis_output(
-            languagecode, self.lemmatize)
+            languagecode, self.morph_lemmatize)
 
         if cache:
             self.cache = cache
