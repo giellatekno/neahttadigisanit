@@ -1,23 +1,16 @@
-import sys
 from logging import getLogger
-from operator import itemgetter
 
-import simplejson
-from flask import (Response, abort, current_app, g, redirect, render_template,
+from flask import (abort, current_app, g, redirect, render_template,
                    request, session, url_for)
 from flask.ext.babel import gettext as _
-from flask.views import MethodView, View
+from flask.views import MethodView
 
-from cache import cache
-from i18n.utils import get_locale, iso_filter
+from i18n.utils import get_locale
 from lexicon import FrontPageFormat
-from utils.data import *
-from utils.encoding import *
-from utils.logger import *
+from utils.encoding import decode_or_fail
+from utils.logger import logIndexLookups
 
-from . import blueprint
 from .custom_rendering import template_rendering_overrides
-from .reader import json_response
 
 user_log = getLogger("user_log")
 
