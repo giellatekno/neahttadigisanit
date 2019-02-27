@@ -60,8 +60,10 @@ class DictionaryView(MethodView):
         """Make the tagsets ready for serialization."""
         _tagsets = current_app.config.morphologies.get(lang).tagsets.sets
 
-        return {key: [m.val for m in tagset.members]
-                for key, tagset in _tagsets.iteritems()}
+        return {
+            key: [m.val for m in tagset.members]
+            for key, tagset in _tagsets.iteritems()
+        }
 
     def post_search_context_modification(self, search_result, context):
         """ Perform any additional alterations to the context generated
