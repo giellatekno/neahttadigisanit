@@ -64,5 +64,14 @@ guollái\tguollái+A+Sg+Nom\t0,000000'''
             self.maxDiff = None
             self.assertEqual(got, wanted)
 
+    def test_inverse_lookup_by_string(self):
+        """Test the generator that works on strings."""
+        with self.app_context:
+            got = self.hfst.inverselookup_by_string('guolli+N+Pl+Nom')
+            wanted = [('guolli+N+Pl+Nom', ['guolit'])]
+
+            self.assertEqual(got, wanted)
+
+
 if __name__ == '__main__':
     unittest.main()
