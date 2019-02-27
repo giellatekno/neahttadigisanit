@@ -1204,33 +1204,24 @@ class Morphology(object):
     def make_analyses_der_fin(self, analyses):
         analyses_der_fin = []
         tags = ('Der', 'VAbess', 'VGen', 'Ger', 'Comp', 'Superl')
-        an_split = [item.split('+') for item in analyses]
-        k = 0
-        for item in an_split:
-            index = []
-            if_tags = False
-            for i in range(0, len(item)):
-                if item[i].startswith(tags):
-                    index.append(i)
-                    if_tags = True
+        for analysis in analyses:
+            analysis_parts = analysis.split('+')
+            index = [index1 for index1, part in enumerate(analysis_parts[1:], start=1)
+                     if part.startswith(tags)]
             s = '+'
             b = []
-            if not if_tags:
-                b.append(analyses[k])
+            if index:
+                b.append(s.join(analysis_parts[:index[0]]))
+                for previous, current in zip(index, index[1:]):
+                    b.append(s.join(analysis_parts[previous:current]))
+                b.append(s.join(analysis_parts[index[-1]:len(analysis_parts)]))
             else:
-                for i in range(len(index)):
-                    if i == 0:
-                        b.append(s.join(item[0:index[i]]))
-                    else:
-                        b.append(s.join(item[index[i - 1]:index[i]]))
-                    if i == len(index) - 1:
-                        b.append(s.join(item[index[i]:len(item)]))
-            k += 1
-            analyses_der_fin.append(b)
-        # Fix in case analyses_der_fin and analyses_right_fin are nested arrays
-        array_not_nested = self.fix_nested_array(analyses_der_fin, analyses)
+                b.append(analysis)
+
+            analyses_der_fin.extend(b)
+
         # Remove duplicates due to append if entry with analyses or not (in collect_same_lemma in morpho_lexicon.py)
-        return  self.remove_duplicates(array_not_nested)
+        return  self.remove_duplicates(analyses_der_fin)
 
     def split_on_compounds(self, analyses, split_compounds):
         if split_compounds:
