@@ -8,15 +8,77 @@ import sys
 HERE = os.path.abspath(os.path.dirname(__file__))
 sys.path.insert(0, os.path.dirname(HERE))
 
+from flask import current_app
 from lxml import etree
 from parameterized import parameterized
 
 from neahtta import app
-from morphology.morphology import HFST, Lemma, Morphology, Tagsets
+from morphology.morphology import Lemma, Tagsets
+
+DEFAULT_SME_TAGSETS = {
+    'second_persons': ['Sg2', 'Du2', 'Pl2'],
+    'supinum': ['Sup'],
+    'number': ['Sg', 'Pl'],
+    'pos': [
+        'A', 'Adp', 'Adv', 'CC', 'CS', 'Interj', 'N', 'Num', 'Pcle',
+        'Po', 'Pr', 'Pron', 'V'
+    ],
+    'possessive': ['PxSg2'],
+    'third_persons': ['Sg3', 'Du3', 'Pl3'],
+    'tense': ['Prs', 'Prt'],
+    'nouns_null_number': ['Ess'],
+    'vmax': ['v1', 'v2', 'v3', 'v4', 'v5'],
+    'negation': ['ConNeg'],
+    'nonfinite_paradigm': ['ConNeg', 'PrfPrc', 'Neg'],
+    'semantics': [
+        'Sem/Act', 'Sem/Ani', 'Sem/AniProd', 'Sem/Body',
+        'Sem/Body-abstr', 'Sem/Build', 'Sem/Build-part', 'Sem/Clth',
+        'Sem/Clth-jewl', 'Sem/Clth-part', 'Sem/Ctain',
+        'Sem/Ctain-abstr', 'Sem/Ctain-clth', 'Sem/Curr', 'Sem/Edu',
+        'Sem/Event', 'Sem/Feat-phys', 'Sem/Feat-psych', 'Sem/Featg',
+        'Sem/Fem', 'Sem/Food', 'Sem/Furn', 'Sem/Group', 'Sem/Hum',
+        'Sem/Lang', 'Sem/Mal', 'Sem/Mat', 'Sem/Measr', 'Sem/Money',
+        'Sem/Obj', 'Sem/Obj-clo', 'Sem/Obj-el', 'Sem/Org', 'Sem/Partg',
+        'Sem/Perc-emo', 'Sem/Plant', 'Sem/Plc', 'Sem/Plc-elevate',
+        'Sem/Plc-line', 'Sem/Plc-water', 'Sem/Route', 'Sem/Semcon',
+        'Sem/Stateg', 'Sem/Substnc', 'Sem/Sur', 'Sem/Time', 'Sem/Tool',
+        'Sem/Tool-catch', 'Sem/Txt', 'Sem/Veh', 'Sem/Wpn', 'Sem/Wthr'
+    ],
+    'case': ['Nom', 'Acc', 'Gen', 'Ill', 'Loc', 'Ess', 'Com'],
+    'negative': ['Neg'],
+    'noun_type': ['Coll'],
+    'single_tense_display': ['Sup'],
+    'first_persons': ['Sg1', 'Du1', 'Pl1'],
+    'pron_type':
+        ['Dem', 'Indef', 'Interr', 'Pers', 'Recipr', 'Refl', 'Rel'],
+    'type': [
+        'NomAg', 'G3', 'G7', 'Aktor', 'res.', 'Prop', 'Coll', 'Dem',
+        'Indef', 'Interr', 'Pers', 'Recipr', 'Refl', 'Rel'
+    ]
+}
 
 
 def fst_tool():
     return app.config.morphologies['sme'].tool
+
+
+def make_lemmatize_answer(wordform, tags):
+    """Make a list with the same format that Morpology.morph_lemmatize does.
+
+    Args:
+        wordform: the wordform that morph_lemmatize is fed
+        tags: a list of tags that morph_lemmatize produces
+
+    Returns:
+        list of morphology.Lemma
+    """
+    return [
+        Lemma(
+            tag=tag.split('+'),
+            _input=wordform,
+            tool=fst_tool(),
+            tagsets=Tagsets(DEFAULT_SME_TAGSETS)) for tag in tags
+    ]
 
 
 class TestHFST(unittest.TestCase):
@@ -96,66 +158,6 @@ guollái\tguollái+A+Sg+Nom\t0,000000'''
 
 class TestMorphology(unittest.TestCase):
     """Test the Morphology class."""
-
-    default_sme_tagsets = {
-        'second_persons': ['Sg2', 'Du2', 'Pl2'],
-        'supinum': ['Sup'],
-        'number': ['Sg', 'Pl'],
-        'pos': [
-            'A', 'Adp', 'Adv', 'CC', 'CS', 'Interj', 'N', 'Num', 'Pcle',
-            'Po', 'Pr', 'Pron', 'V'
-        ],
-        'possessive': ['PxSg2'],
-        'third_persons': ['Sg3', 'Du3', 'Pl3'],
-        'tense': ['Prs', 'Prt'],
-        'nouns_null_number': ['Ess'],
-        'vmax': ['v1', 'v2', 'v3', 'v4', 'v5'],
-        'negation': ['ConNeg'],
-        'nonfinite_paradigm': ['ConNeg', 'PrfPrc', 'Neg'],
-        'semantics': [
-            'Sem/Act', 'Sem/Ani', 'Sem/AniProd', 'Sem/Body',
-            'Sem/Body-abstr', 'Sem/Build', 'Sem/Build-part', 'Sem/Clth',
-            'Sem/Clth-jewl', 'Sem/Clth-part', 'Sem/Ctain',
-            'Sem/Ctain-abstr', 'Sem/Ctain-clth', 'Sem/Curr', 'Sem/Edu',
-            'Sem/Event', 'Sem/Feat-phys', 'Sem/Feat-psych', 'Sem/Featg',
-            'Sem/Fem', 'Sem/Food', 'Sem/Furn', 'Sem/Group', 'Sem/Hum',
-            'Sem/Lang', 'Sem/Mal', 'Sem/Mat', 'Sem/Measr', 'Sem/Money',
-            'Sem/Obj', 'Sem/Obj-clo', 'Sem/Obj-el', 'Sem/Org', 'Sem/Partg',
-            'Sem/Perc-emo', 'Sem/Plant', 'Sem/Plc', 'Sem/Plc-elevate',
-            'Sem/Plc-line', 'Sem/Plc-water', 'Sem/Route', 'Sem/Semcon',
-            'Sem/Stateg', 'Sem/Substnc', 'Sem/Sur', 'Sem/Time', 'Sem/Tool',
-            'Sem/Tool-catch', 'Sem/Txt', 'Sem/Veh', 'Sem/Wpn', 'Sem/Wthr'
-        ],
-        'case': ['Nom', 'Acc', 'Gen', 'Ill', 'Loc', 'Ess', 'Com'],
-        'negative': ['Neg'],
-        'noun_type': ['Coll'],
-        'single_tense_display': ['Sup'],
-        'first_persons': ['Sg1', 'Du1', 'Pl1'],
-        'pron_type':
-            ['Dem', 'Indef', 'Interr', 'Pers', 'Recipr', 'Refl', 'Rel'],
-        'type': [
-            'NomAg', 'G3', 'G7', 'Aktor', 'res.', 'Prop', 'Coll', 'Dem',
-            'Indef', 'Interr', 'Pers', 'Recipr', 'Refl', 'Rel'
-        ]
-    }
-
-    def make_lemmatize_answer(self, wordform, tags):
-        """Make a list with the same format that Morpology.morph_lemmatize does.
-
-        Args:
-            wordform: the wordform that morph_lemmatize is fed
-            tags: a list of tags that morph_lemmatize produces
-
-        Returns:
-            list of morphology.Lemma
-        """
-        return [
-            Lemma(
-                tag=tag.split('+'),
-                _input=wordform,
-                tool=fst_tool(),
-                tagsets=Tagsets(self.default_sme_tagsets)) for tag in tags
-        ]
 
     def test_generate(self):
         """Test the generator."""
@@ -263,7 +265,7 @@ guolli+N+Pl+Com'''
         with app.app_context():
             got = app.config.morphologies['sme'].morph_lemmatize(wordform,
                                                                  **kwargs)
-            wanted = self.make_lemmatize_answer(wordform, tags)
+            wanted = make_lemmatize_answer(wordform, tags)
             self.assertListEqual(got, wanted, msg=name)
 
     @parameterized.expand([('no unknown', [('a', ['b', 'c'])], False),
@@ -345,22 +347,10 @@ guolli+N+Pl+Com'''
     ])
     def test_check_if_lexicalized(self, name, wordform, input_list, wanted):
         """Check if lexicalized form is moved to start of list."""
-        analyses_with_lexicalized = [
-            'guollebiebman+N+Sg+Nom',
-            'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
-            'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Nom',
-            'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen+Allegro',
-            'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Nom']
         got = app.config.morphologies['sme'].check_if_lexicalized(
-            'guollebiebman',
-            analyses_with_lexicalized)
-        wanted = ['guollebiebman+N+Sg+Nom',
-                  'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
-                  'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Nom',
-                  'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen+Allegro',
-                  'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Nom']
+            wordform, input_list)
 
-        self.assertListEqual(got, wanted)
+        self.assertListEqual(got, wanted, msg=name)
 
     @parameterized.expand([('no dupes', ['a', 'b'], ['a', 'b']),
                            ('has dupes', ['a', 'a'], ['a'])])
@@ -392,9 +382,9 @@ guolli+N+Pl+Com'''
             'guollebiebman+N+Sg+Nom',
             'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
         ], False, [
-            'guollebiebman+N+Sg+Nom',
-            'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
-        ]),
+              'guollebiebman+N+Sg+Nom',
+              'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
+          ]),
          ('split False', [
              'guollebiebman+N+Sg+Gen+Allegro', 'guollebiebman+N+Sg+Nom',
              'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
@@ -402,27 +392,30 @@ guolli+N+Pl+Com'''
              'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen+Allegro',
              'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Nom'
          ], True, [
-             'guollebiebman+N+Sg+Gen+Allegro', 'guollebiebman+N+Sg+Nom',
-             'guolli+N+Cmp/SgNom', 'biebmat+V+TV+Der/NomAct+N+Sg+Gen',
-             'guolli+N+Cmp/SgNom', 'biebmat+V+TV+Der/NomAct+N+Sg+Nom',
-             'guolli+N+Cmp/SgNom', 'biebman+N+Sg+Gen+Allegro',
-             'guolli+N+Cmp/SgNom', 'biebman+N+Sg+Nom'
-         ])])
+              'guollebiebman+N+Sg+Gen+Allegro', 'guollebiebman+N+Sg+Nom',
+              'guolli+N+Cmp/SgNom', 'biebmat+V+TV+Der/NomAct+N+Sg+Gen',
+              'guolli+N+Cmp/SgNom', 'biebmat+V+TV+Der/NomAct+N+Sg+Nom',
+              'guolli+N+Cmp/SgNom', 'biebman+N+Sg+Gen+Allegro',
+              'guolli+N+Cmp/SgNom', 'biebman+N+Sg+Nom'
+          ])])
     def test_split_on_compound(self, name, input_list, split_compounds,
                                wanted):
         self.assertListEqual(
-            app.config.morphologies['sme'].split_on_compounds(input_list, split_compounds),
+            app.config.morphologies['sme'].split_on_compounds(input_list,
+                                                              split_compounds),
             wanted,
             msg=name)
 
     @parameterized.expand([
         ('without err/orth', ['a', 'b+Der', 'c+Der'], ['a', 'b+Der']),
-        ('with err/orth', ['a+Err/Orth', 'b+Der', 'c+Der'], ['a+Err/Orth', 'b+Der']),
+        ('with err/orth', ['a+Err/Orth', 'b+Der', 'c+Der'],
+         ['a+Err/Orth', 'b+Der']),
         ('only der', ['a+Der', 'b+Der', 'c+Der'], ['a+Der'])
     ])
     def test_rearrange_on_count(self, name, analyses, wanted):
         self.assertListEqual(
-            app.config.morphologies['sme'].rearrange_on_count(analyses), wanted, msg=name)
+            app.config.morphologies['sme'].rearrange_on_count(analyses), wanted,
+            msg=name)
 
     @parameterized.expand([('first', [
         'guollebiebman+N+Sg+Gen+Allegro', 'guollebiebman+N+Sg+Nom',
@@ -431,14 +424,88 @@ guolli+N+Pl+Com'''
         'guolli+N+Cmp/SgNom', 'biebman+N+Sg+Gen+Allegro', 'guolli+N+Cmp/SgNom',
         'biebman+N+Sg+Nom'
     ], [
-        'guollebiebman+N+Sg+Gen+Allegro', 'guollebiebman+N+Sg+Nom',
-        'guolli+N+Cmp/SgNom', 'biebmat+V+TV', 'Der/NomAct+N+Sg+Gen',
-        'Der/NomAct+N+Sg+Nom', 'biebman+N+Sg+Gen+Allegro', 'biebman+N+Sg+Nom'
-    ])])
+                                'guollebiebman+N+Sg+Gen+Allegro',
+                                'guollebiebman+N+Sg+Nom',
+                                'guolli+N+Cmp/SgNom', 'biebmat+V+TV',
+                                'Der/NomAct+N+Sg+Gen',
+                                'Der/NomAct+N+Sg+Nom',
+                                'biebman+N+Sg+Gen+Allegro', 'biebman+N+Sg+Nom'
+                            ])])
     def test_make_analyses_der_fin(self, name, analyses, wanted):
         """Test make_analyses_def_fin."""
         self.assertListEqual(
-            app.config.morphologies['sme'].make_analyses_der_fin(analyses), wanted, msg=name)
+            app.config.morphologies['sme'].make_analyses_der_fin(analyses),
+            wanted, msg=name)
+
+
+def make_morpholex_result(result):
+    node, lemmas = result
+    return node.find('.//l').text, node.find('.//t').text, lemmas
+
+
+class TestMorphoLexicon(unittest.TestCase):
+    """Test the MorphoLexicon class."""
+
+    @parameterized.expand([
+        ('sammensatt', 'guollebiebman', [
+            (u'guollebiebman', u'oppdrettsvirksomhet',
+             make_lemmatize_answer('guollebiebman',
+                                   ['guollebiebman+N+Sg+Nom',
+                                    'guollebiebman+N+Sg+Gen+Allegro'])),
+            (u'guolli', u'fisk',
+             make_lemmatize_answer('guolli',
+                                   ['guolli+N+Cmp/SgNom'])),
+            (u'biebman', u'ernæring',
+             make_lemmatize_answer('biebman',
+                                   ['biebman+N+Sg+Nom',
+                                    'biebman+N+Sg+Gen+Allegro'])),
+            (u'biebmat', u'fø',
+             make_lemmatize_answer('biebmat',
+                                   ['biebmat+V+TV'])),
+            (u'Der/NomAct', u'verbhandlingen',
+             make_lemmatize_answer('Der/NomAct',
+                                   ['Der/NomAct+N+Sg+Nom',
+                                    'Der/NomAct+N+Sg+Gen']))
+        ]),
+        ('verb', 'guoddit', [
+            (u'guoddit', u'bære',
+             make_lemmatize_answer('guoddit',
+                                   ['guoddit+V+TV+Inf',
+                                    'guoddit+V+TV+Imprt+Pl2',
+                                    'guoddit+V+TV+Ind+Prs+Pl1',
+                                    'guoddit+V+TV'])),
+            (u'guoddi', u'bærer',
+             make_lemmatize_answer('guoddi',
+                                   ['guoddi+N+NomAg+Pl+Nom'])),
+            ('Der/NomAg', u'den som utfører verbet',
+             make_lemmatize_answer('Der/NomAg',
+                                   ['Der/NomAg+N+Pl+Nom']))
+        ]),
+        ('pronomen', 'mii', [
+            (u'mii', u'hva',
+             make_lemmatize_answer('mii',
+                                   ['mii+Pron+Rel+Sg+Nom',
+                                    'mii+Pron+Interr+Sg+Nom',
+                                    'mii+Pron+Indef+Sg+Nom'])),
+            (u'mun', u'jeg',
+             make_lemmatize_answer('mun',
+                                   ['mun+Pron+Pers+Pl1+Nom']))
+        ])
+    ])
+    def test_lookup(self, name, wordform, wanted):
+        with app.app_context():
+            kwargs = {
+                'source_lang': 'sme',
+                'target_lang': 'nob',
+                'split_compounds': True,
+                'non_compounds_only': False,
+                'no_derivations': False,
+            }
+            result_list = current_app.morpholexicon.lookup(wordform, **kwargs)
+            results = [make_morpholex_result(result)
+                       for result in result_list]
+
+            self.assertListEqual(results, wanted, msg=name)
 
 
 if __name__ == '__main__':
