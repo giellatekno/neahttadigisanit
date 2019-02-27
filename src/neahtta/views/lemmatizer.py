@@ -19,6 +19,7 @@ History:
 
 from flask import (Response, current_app, json, request)
 from utils.encoding import decodeOrFail
+from morphology.utils import tagfilter
 
 from .reader import json_response
 from .search import DictionaryView, SearcherMixin
@@ -31,6 +32,19 @@ __all__ = [
 class LemmatizerView(DictionaryView, SearcherMixin):
     """A view to produce a json formatted lemma."""
     from lexicon import DetailedFormat as formatter
+
+    @staticmethod
+    def filter_tag(lemma):
+        """Return a lemma where the tags are filtered.
+
+        Args:
+            lemma (morphology.Lemma): the lemma that should be filtered.
+        """
+        filtered_tag = tagfilter(lemma.tag, _from,
+                                    request.args.get('tag_language',
+                                                    'eng')).split(' ')
+        return (lemma.lemma, filtered_tag, [lemma.form],
+                lemma.tag.tag_string)
 
     @staticmethod
     def get(_from, wordform):
@@ -46,26 +60,12 @@ class LemmatizerView(DictionaryView, SearcherMixin):
         # Check for cache entry here
         errors = []
 
-        tag_language = request.args.get('tag_language', 'eng')
-
         if _from in current_app.morpholexicon.analyzers:
             morph = current_app.morpholexicon.analyzers[_from]
         else:
             errors.append("Morphology for <%s> does not exist" % _from)
 
         wordform = decodeOrFail(wordform)
-
-        from morphology.utils import tagfilter
-
-        def filter_tag(lemma):
-            """Return a lemma where the tags are filtered.
-
-            Args:
-                lemma (morphology.Lemma): the lemma that should be filtered.
-            """
-            filtered_tag = tagfilter(lemma.tag, _from, tag_language).split(' ')
-            return (lemma.lemma, filtered_tag, [lemma.form],
-                    lemma.tag.tag_string)
 
         lemmas = morph.lemmatize(wordform)
 
