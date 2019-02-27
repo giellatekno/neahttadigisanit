@@ -23,13 +23,11 @@ History:
    paradigm system needed, added pretty print option for json output
 
 """
-
+from __future__ import print_function
 from . import blueprint
+import inspect
 
-__all__ = [
-    'ParadigmLanguagePairSearchView',
-]
-
+from morphology.utils import tagfilter
 from flask import ( request
                   , current_app
                   , json
@@ -46,6 +44,16 @@ from .reader import json_response
 from utils.encoding import decodeOrFail
 
 from i18n.utils import get_locale
+
+__all__ = [
+    'ParadigmLanguagePairSearchView',
+]
+
+
+def lineno():
+    """Return the current line number in our program."""
+    return inspect.currentframe().f_back.f_lineno
+
 
 def json_response_pretty(data, *args, **kwargs):
     data = json.dumps( data
@@ -78,34 +86,30 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
             'filters': _filters
         })
 
-    def get(self, _from, _to, lemma):
-        # TODO: submit and process on separate thread, optional poll
-        # argument to not submit and just check for result
+    @staticmethod
+    def get_tagsets():
+        _tagsets = current_app.config.morphologies.get(g._from).tagsets.sets
 
-        # Check for cache entry here
-
-        self.check_pair_exists_or_abort(_from, _to)
-
-        user_input = lemma = decodeOrFail(lemma)
-        pretty = request.args.get('pretty', False)
-
-        # Generation constraints
-        pos_filter = request.args.get('pos', False)
-        e_node = request.args.get('e_node', False)
-        # This is the same
-        self.lemma_match = user_input
-
-        _split = True
-        _non_c = True
-        _non_d = False
-
-        search_kwargs = {
-            'split_compounds': _split,
-            'non_compounds_only': _non_c,
-            'no_derivations': _non_d,
+        return {
+            key: [m.val for m in ts.members]
+            for key, ts in _tagsets.iteritems()
         }
 
-        has_analyses = False
+    def get_paradigms(self, _from, lemma):
+        def filter_tag(f):
+            print(lineno(), f.tag)
+            filtered_tag = tagfilter(f.tag, g._from, g._to).split(' ')
+            print(lineno(), f.input, filtered_tag, [f.form], f.tag.tag_string)
+            return (f.input, filtered_tag, [f.form], f.tag.tag_string)
+
+        # Generation constraints
+        # Sjekk om ordklasse er satt
+        pos_filter = request.args.get('pos', False)
+
+        # Sjekk om e_node er satt
+        e_node = request.args.get('e_node', False)
+
+        # Sjekk om paradigmene er mellomlagret
         cache_key = '+'.join([a for a in [
             _from,
             lemma,
@@ -115,30 +119,35 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
 
         paradigms = current_app.cache.get(cache_key.encode('utf-8'))
 
+        # Bestem search_kwargs
+        search_kwargs = {
+            'split_compounds': True,
+            'non_compounds_only': True,
+            'no_derivations': False,
+        }
+
+        # Lag paradigmer om de ikke er mellomlagret
         if paradigms is None:
             paradigms = \
-                self.search_to_paradigm(user_input,
+                self.search_to_paradigm(lemma,
                                         detailed=True,
                                         **search_kwargs)
 
-            # current_app.cache.set(cache_key.encode('utf-8'), paradigms, timeout=None)
+        return [map(filter_tag, paradigm) for paradigm in paradigms]
 
-        from morphology.utils import tagfilter
 
-        ui_locale = get_locale()
+    def get(self, _from, _to, lemma):
+        # TODO: submit and process on separate thread, optional poll
+        # argument to not submit and just check for result
 
-        def filter_tag(f):
-            filtered_tag = tagfilter(f.tag, g._from, g._to).split(' ')
-            return (f.input, filtered_tag, [f.form], f.tag.tag_string)
+        # Sjekk om generatoren eksisterer
+        self.check_pair_exists_or_abort(_from, _to)
 
-        paradigms = [map(filter_tag, _p) for _p in paradigms]
+        # Sørg for at dette er unicode
+        self.lemma_match = user_input = lemma = decodeOrFail(lemma)
 
-        _tagsets = current_app.config.morphologies.get(g._from).tagsets.sets
-
-        tagsets_serializer_ready = {}
-
-        for key, ts in _tagsets.iteritems():
-            tagsets_serializer_ready[key] = [m.val for m in ts.members]
+        # Sjekk om pretty er blant argumentene
+        pretty = request.args.get('pretty', False)
 
         if pretty:
             resp_fx = json_response_pretty
@@ -146,14 +155,13 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
             resp_fx = json_response
 
         return resp_fx({
-            'paradigms': paradigms,
-            'tagsets': tagsets_serializer_ready,
+            'paradigms': self.get_paradigms(_from, lemma),
+            'tagsets': self.get_tagsets(),
             'input': {
                 'lemma': lemma,
-                'pos': pos_filter,
+                'pos': request.args.get('pos', False),
             }
         })
-
 
     def search_to_paradigm(self, lookup_value, **search_kwargs):
 
