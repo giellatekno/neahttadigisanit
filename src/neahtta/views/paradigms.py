@@ -85,23 +85,13 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
 
         paradigms = current_app.cache.get(cache_key.encode('utf-8'))
 
-        # Bestem search_kwargs
-        search_kwargs = {
-            'split_compounds': True,
-            'non_compounds_only': True,
-            'no_derivations': False,
-        }
-
         # Lag paradigmer om de ikke er mellomlagret
         if paradigms is None:
-            paradigms = \
-                self.search_to_paradigm(lemma,
-                                        detailed=True,
-                                        **search_kwargs)
+            paradigms = self.search_to_paradigm(lemma)
 
         return [map(self.clean_lemma, paradigm) for paradigm in paradigms]
 
-    def search_to_paradigm(self, lookup_value, **search_kwargs):
+    def search_to_paradigm(self, lookup_value):
         """Really generate the paradigm from a lemma.
 
         Args:
@@ -110,6 +100,12 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
         Returns:
             list of paradigms
         """
+        search_kwargs = {
+            'split_compounds': True,
+            'non_compounds_only': True,
+            'no_derivations': False,
+        }
+
         search_result_obj = self.do_search_to_obj(
             lookup_value, generate=True, **search_kwargs)
 
