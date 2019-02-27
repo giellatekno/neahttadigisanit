@@ -66,7 +66,6 @@ class MorphoLexiconOverrides(object):
 morpholex_overrides = MorphoLexiconOverrides()
 
 
-
 class MorphoLexiconResult(list):
     """ A subcalss of the List object meant to make sorting through
     results more readable.
@@ -154,8 +153,11 @@ class MorphoLexicon(object):
         target_lang = kwargs.get('target_lang')
         lemma_attrs = kwargs.pop('lemma_attrs', {})
         entry_hash_filter = lemma_attrs.pop('entry_hash', False)
-        morph_kwargs = {key: value for key, value in kwargs.iteritems()
-                        if key in self.morphology_kwarg_names}
+        morph_kwargs = {
+            key: value
+            for key, value in kwargs.iteritems()
+            if key in self.morphology_kwarg_names
+        }
 
         # TODO: if analyses dropping componuds results in lexicalized
         # form that does not exist in lexicon, then fall back to
@@ -259,12 +261,14 @@ class MorphoLexicon(object):
                                 lemmas0.append(array[index2][0])
                     else:
                         if array[index2][0] is not None:
-                            entry_analysis = array[index2][0].find('lg/analysis')
+                            entry_analysis = array[index2][0].find(
+                                'lg/analysis')
                         if (none_not_added) & (entry_analysis is not None):
                             array_sorted.append(array[index2])
                             none_not_added = False
                         else:
-                            if (none_not_added) & (array[index2][0] not in lemmas0):
+                            if (none_not_added) & (
+                                    array[index2][0] not in lemmas0):
                                 array_sorted.append(array[index2])
                 index += 1
             index3 = 0
@@ -277,8 +281,8 @@ class MorphoLexicon(object):
                             del array_sorted[index3]
                             break
                         else:
-                            if (array_sorted[index3][1] is
-                                    not None) & (array_sorted[index2][1] is None):
+                            if (array_sorted[index3][1] is not None) & (
+                                    array_sorted[index2][1] is None):
                                 del array_sorted[index2]
                                 break
                 index3 += 1
@@ -358,8 +362,11 @@ class MorphoLexicon(object):
         target_lang = kwargs.get('target_lang')
         lemma_attrs = kwargs.pop('lemma_attrs', {})
         entry_hash_filter = lemma_attrs.pop('entry_hash', False)
-        morph_kwargs = {key: value for key, value in kwargs.iteritems()
-                        if key in self.morphology_kwarg_names}
+        morph_kwargs = {
+            key: value
+            for key, value in kwargs.iteritems()
+            if key in self.morphology_kwarg_names
+        }
 
         # TODO: if analyses dropping componuds results in lexicalized
         # form that does not exist in lexicon, then fall back to
@@ -499,7 +506,8 @@ class MorphoLexicon(object):
                                 lemmas.append(array[index2])
                                 lemmas0.append(array[index2][0])
                     else:
-                        if (none_not_added) & (array[index2][0] not in lemmas0):
+                        if (none_not_added) & (
+                                array[index2][0] not in lemmas0):
                             array_sorted.append(array[index2])
                             none_not_added = False
                 index += 1
@@ -513,8 +521,8 @@ class MorphoLexicon(object):
                             del array_sorted[index3]
                             break
                         else:
-                            if (array_sorted[index3][1] is
-                                    not None) & (array_sorted[index2][1] is None):
+                            if (array_sorted[index3][1] is not None) & (
+                                    array_sorted[index2][1] is None):
                                 del array_sorted[index2]
                                 break
                 index3 += 1
