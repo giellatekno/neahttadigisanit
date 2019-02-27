@@ -1010,19 +1010,19 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
         lemma_match = request.args.get('lemma_match', False)
         e_node = request.args.get('e_node', False)
 
-        def _byPOS(r):
+        def by_pos(r):
             if r.get('input')[1].upper() == pos_filter.upper():
                 return True
             else:
                 return False
 
-        def _byLemma(r):
+        def by_lemma(r):
             if r.get('input')[0] == self.user_input:
                 return True
             else:
                 return False
 
-        def _byNodeHash(r):
+        def by_node_hash(r):
             node = r.get('entry_hash')
             if node == e_node:
                 return True
@@ -1035,13 +1035,13 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
         entry_filters = [default_result]
 
         if e_node:
-            entry_filters.append(_byNodeHash)
+            entry_filters.append(by_node_hash)
 
         if pos_filter:
-            entry_filters.append(_byPOS)
+            entry_filters.append(by_pos)
 
         if lemma_match:
-            entry_filters.append(_byLemma)
+            entry_filters.append(by_lemma)
 
         def filter_entries_for_view(entries):
             _entries = []
@@ -1099,7 +1099,7 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
 
         self.validate_request()
 
-        user_input = wordform = decodeOrFail(wordform)
+        user_input = wordform = decode_or_fail(wordform)
 
         if current_app.config.strip_spaces:
             user_input = user_input.strip()

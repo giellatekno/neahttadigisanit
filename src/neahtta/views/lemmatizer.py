@@ -19,7 +19,7 @@ History:
 
 from flask import current_app, json, request
 from morphology.utils import tagfilter
-from utils.encoding import decodeOrFail
+from utils.encoding import decode_or_fail
 
 from .reader import json_response
 from .search import DictionaryView, SearcherMixin
@@ -58,7 +58,7 @@ class LemmatizerView(DictionaryView, SearcherMixin):
         """
         # Check for cache entry here
         morph = current_app.morpholexicon.analyzers[_from]
-        wordform = decodeOrFail(wordform)
+        wordform = decode_or_fail(wordform)
 
         return json_response(
             {

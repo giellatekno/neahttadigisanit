@@ -29,7 +29,7 @@ import inspect
 
 from flask import (current_app, g, request)
 from morphology.utils import tagfilter
-from utils.encoding import decodeOrFail
+from utils.encoding import decode_or_fail
 
 from .reader import json_response
 from .search import DictionaryView, SearcherMixin
@@ -126,7 +126,7 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
             flask.Response
         """
         self.check_pair_exists_or_abort(_from, _to)
-        self.lemma_match = user_input = lemma = decodeOrFail(lemma)
+        lemma = decode_or_fail(lemma)
 
         return json_response(
             {

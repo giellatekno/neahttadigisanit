@@ -5,8 +5,8 @@ def encodeOrFail(S):
         return S
 
 
-def decodeOrFail(S):
+def decode_or_fail(string):
     try:
-        return S.decode('utf-8')
+        return string.decode('utf-8')
     except:
-        return S
+        return string
