@@ -252,43 +252,6 @@ class MorphoLexicon(object):
                 else:
                     entries_and_tags.append((None, analysis))
 
-        ##
-        '''if analyses_right:
-            #for analysis in list(set(analyses)):
-            for analysis_r in list(analyses_right):
-                if isinstance(analysis_r, list):
-                    if analysis_r[0].lemma:
-                        lex_kwargs_right = {
-                            'lemma': analysis_r[0].lemma,
-                            'pos': analysis_r[0].pos,
-                            'pos_type': False,
-                            'user_input': wordform,
-                        }
-                    else:
-                        continue
-                else:
-                    if analysis_r:
-                        lex_kwargs_right = {
-                            'lemma': analysis_r.lemma,
-                            'pos': analysis_r.pos,
-                            'pos_type': False,
-                            'user_input': wordform,
-                        }
-                    else:
-                        continue
-
-
-                xml_result_right = self.lexicon.lookup( source_lang
-                                                , target_lang
-                                                , **lex_kwargs_right
-                                                )
-
-                if xml_result_right:
-                    for e in xml_result_right:
-                        entries_and_tags_right.append((e, analysis_r))
-                else:
-                    entries_and_tags_right.append((None, analysis_r))'''##
-
         no_analysis_xml = self.lexicon.lookup(
             source_lang,
             target_lang,

@@ -140,7 +140,7 @@ class DictionaryView(MethodView):
 
         from flask.ext.babel import refresh
 
-        pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(
+        _, orig_pair_opts = current_app.config.resolve_original_pair(
             _from, _to)
 
         opts = orig_pair_opts.get('variant_options')
@@ -170,27 +170,13 @@ class DictionaryView(MethodView):
 
         # TODO: move this to config object.
 
-        pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(
+        _, orig_pair_opts = current_app.config.resolve_original_pair(
             _from, _to)
         _r_from, _r_to = orig_pair_opts.get('swap_from'), orig_pair_opts.get(
             'swap_to')
         reverse_exists = current_app.config.dictionaries.get((_r_from, _r_to),
                                                              False)
 
-        # check to see if the reversed pair is not a variant
-        #What does this mean? This code swap the pair previously reverted and
-        #checks if the pair exists (which is always the case), causing the swap link to always be there
-        #and linking to err 404 if the dictionaty does not exists
-        ####                           Ex: mns-hun
-        #### _r_from = hun, _r_to = mns, reverse_exists = False (correct)
-        #### _r_var_from = mns, _r_var_to = hun, reverse_variant_exists = mnshun.xml (but this is the original pair!)
-        #commenting this seems to cause the swap link to be there only if the reverse pair exists (what we want)
-        # ---> why was it added?
-        #rev_orig_pair_settings, rev_orig_pair_opts = current_app.config.resolve_original_pair(_r_from, _r_to)
-        #_r_var_from, _r_var_to = rev_orig_pair_opts.get('swap_from'), rev_orig_pair_opts.get('swap_to')
-        #reverse_variant_exists = current_app.config.dictionaries.get((_r_var_from, _r_var_to), False)
-
-        #return reverse_exists or reverse_variant_exists
         return reverse_exists
 
 
@@ -206,13 +192,6 @@ class IndexSearchPage(DictionaryView, AppViewSettingsMixin):
         None/do no action.
         """
 
-        iphone = False
-
-        if request.user_agent.platform == 'iphone':
-            iphone = True
-
-        mobile = False
-
         mobile_redirect_pair = current_app.config.mobile_redirect_pair
 
         if mobile_redirect_pair:
@@ -220,7 +199,6 @@ class IndexSearchPage(DictionaryView, AppViewSettingsMixin):
             target_url = url_for(
                 'views.canonical_root_search_pair', _from=ff, _to=tt)
             if request.user_agent.platform in ['iphone', 'android']:
-                mobile = True
                 # Only redirect if the user isn't coming back to the home page
                 # from somewhere within the app.
                 if request.referrer and request.host:
@@ -332,8 +310,6 @@ class SearchResult(object):
         morph = current_app.config.morphologies.get(g._from, False)
         mlex = current_app.morpholexicon
 
-        generated_and_formatted = []
-
         l = node.xpath('./lg/l')[0]
         lemma = l.xpath(_str_norm % './text()')
 
@@ -344,7 +320,7 @@ class SearchResult(object):
                 'template_path': paradigm_template,
             }
 
-            _generated, _stdout, _stderr = morph.generate_to_objs(
+            _generated, _stdout, _ = morph.generate_to_objs(
                 lemma,
                 paradigm_from_file,
                 node,
@@ -353,7 +329,7 @@ class SearchResult(object):
                 no_preprocess_paradigm=True)
         else:
             # For pregenerated things
-            _generated, _stdout, _stderr = morph.generate_to_objs(
+            _generated, _stdout, _ = morph.generate_to_objs(
                 lemma, [], node, return_raw_data=True)
         self.debug_text += '\n\n' + _stdout + '\n\n'
 
@@ -407,40 +383,8 @@ class SearchResult(object):
             return has_custom_sort(self,
                                    unsorted_entries_and_tags_and_paradigms)
 
-        def sort_key((lex, morph, p, l)):
-            _str_norm = 'string(normalize-space(%s))'
-            lemma = lex.xpath(_str_norm % './lg/l/text()')
-            return lemma
-
-        def sort_with_user_input_first(a_lemma, b_lemma):
-            # If one of these is the same as the user input, it goes
-            # first
-            if a_lemma == self.user_input:
-                return -1
-            elif b_lemma == self.user_input:
-                return 1
-            else:
-                # Otherwise sort as usual
-                if a_lemma < b_lemma:
-                    return -1
-                elif a_lemma > b_lemma:
-                    return 1
-                else:
-                    return 0
-
-            return 1
-
-        # Uncomment rows 416-419 and 422-425 for results sorted alfabetically and comment 420-421
-        #entries_and_tags = sorted( unsorted_entries_and_tags_and_paradigms
-        #             , key=sort_key
-        #             , cmp=sort_with_user_input_first
-        #             )
         entries_and_tags = unsorted_entries_and_tags_and_paradigms
         return entries_and_tags
-        #return sorted( unsorted_entries_and_tags_and_paradigms
-        #             , key=sort_key
-        #             , cmp=sort_with_user_input_first
-        #             )
 
     @property
     def entries_and_tags_and_paradigms(self):
@@ -514,7 +458,6 @@ class SearchResult(object):
         self.user_input = user_input
         self.search_term = user_input
         self.entries_and_tags = entries_and_tags
-        ##self.entries_and_tags_r = entries_and_tags_r
         # When to display unknowns
         self.successful_entry_exists = False
         self._from = _from
@@ -532,9 +475,6 @@ class SearchResult(object):
 
         self.analyses = [(lem.input, lem.lemma, list(lem.tag))
                          for lem in entries_and_tags.analyses]
-        ##self.analyses_r = [ (lem_r.input, lem_r.lemma, list(lem_r.tag))
-        ##                  for lem_r in entries_and_tags_r.analyses
-        ##                ]
 
         if len(self.formatted_results) > 0:
             self.successful_entry_exists = True
@@ -549,9 +489,6 @@ class SearcherMixin(object):
     def do_search_to_obj(self, lookup_value, **kwargs):
         """ Run the search, and provide a result object.
         """
-
-        successful_entry_exists = False
-
         mlex = current_app.morpholexicon
 
         search_kwargs = {
@@ -577,59 +514,10 @@ class SearcherMixin(object):
                 target_lang=g._to,
                 **search_kwargs)
 
-        def count_others():
-            """ This counts the results available in other language
-            pairs with the same source to provide visual feedback to the
-            user. """
-
-            def count_tg(e, l):
-                if e is not None:
-                    c = int(e.xpath("count(./mg/tg[@xml:lang='%s']/t)" % l))
-                else:
-                    c = 0
-                return c
-
-            look = lambda w, x: mlex.lookup(x,
-                                            source_lang=g._from,
-                                            target_lang=w,
-                                            **search_kwargs)
-
-            other_targs = []
-            for (s, t), _ in current_app.config.dictionaries.iteritems():
-                if g._from == s:
-                    other_targs.append((s, t))
-
-            result_counts = {}
-            for source, other in other_targs:
-                #looks, _, _, _ = look(other, lookup_value)
-                looks, _, _ = look(other, lookup_value)
-                definitions = sum([count_tg(rz, other) for rz, _ in looks])
-                result_counts[(source, other)] = definitions
-
-            return result_counts
-
-        if current_app.config.polyglot_lookup:
-            #Comment out next line because this was causing lookup for some words in saan dict time-out error
-            #others = count_others()
-            others = {}
-        else:
-            others = {}
-
-        ##entries_and_tags, raw_output, raw_error, entr_r = morpholex_result
         entries_and_tags, raw_output, raw_error = morpholex_result
         fst_text = raw_error + '\n--\n' + raw_output
 
         generate = kwargs.get('generate', False)
-        ##
-        '''search_result_obj = SearchResult(g._from, g._to, lookup_value,
-                                         entries_and_tags,
-                                         entr_r,
-                                         self.formatter,
-                                         generate=generate,
-                                         filterer=self.entry_filterer,
-                                         debug_text=fst_text,
-                                         other_counts=others,
-                                         )'''##
         search_result_obj = SearchResult(
             g._from,
             g._to,
@@ -639,7 +527,7 @@ class SearcherMixin(object):
             generate=generate,
             filterer=self.entry_filterer,
             debug_text=fst_text,
-            other_counts=others,
+            other_counts={},
         )
 
         return search_result_obj
@@ -686,13 +574,10 @@ class SearcherMixin(object):
             search_result_obj.successful_entry_exists,
             'word_searches': template_results,
             'analyses': search_result_obj.analyses,
-            ##'analyses_right': search_result_obj.analyses_r,
             'analyses_right': search_result_obj.analyses,
             'analyses_without_lex': search_result_obj.analyses_without_lex,
             'user_input': search_result_obj.search_term,
             'current_locale': get_locale(),
-
-            # ?
             'errors': errors,  # is this actually getting set?
             'show_info': show_info,
             'language_pairs_other_results': search_result_obj.other_results,
@@ -760,16 +645,6 @@ class SearcherMixin(object):
 
         show_info = False
 
-        def sort_entry(r):
-            if r[0] is None:
-                return False
-            if len(r[0]) > 0:
-                return False
-            try:
-                return ''.join(r[0].xpath('./lg/l/text()'))
-            except:
-                return False
-
         # TODO: sorting_problem
 
         k = 0
@@ -779,7 +654,6 @@ class SearcherMixin(object):
         tags = ('Der', 'VAbess', 'VGen', 'Ger', 'Comp', 'Superl')
         #If in the results there is a 'None' entry followed by der tag/s those are removed
         #and are not shown in the results (e.g. "bagoheapmi")
-        ##for item in search_result_obj.entries_and_tags_r:
         for item in search_result_obj.entries_and_tags:
             if len(item[1]) > 0:
                 if if_none and item[1][0].lemma.startswith(tags):
@@ -794,23 +668,17 @@ class SearcherMixin(object):
             else:
                 res_par.append(item)
 
-        ##search_result_obj.entries_and_tags_r = res_par
-
-        for lz, az, paradigm, has_layout in search_result_obj.entries_and_tags_and_paradigms:
-            ##if k<len(search_result_obj.entries_and_tags_r):
+        for _, az, paradigm, has_layout in search_result_obj.entries_and_tags_and_paradigms:
             if k < len(res_par):
-                ##if search_result_obj.entries_and_tags_r[k][0] is not None:
                 if res_par[k][0] is not None:
                     if len(az) == 0:
                         az = 'az'
 
-                    ##tplkwargs = { 'lexicon_entry': search_result_obj.entries_and_tags_r[k][0]
                     tplkwargs = {
                         'lexicon_entry':
                         res_par[k][0],
                         'analyses':
                         az
-                        ##, 'analyses_right': search_result_obj.entries_and_tags_r[k][1]
                         ,
                         'analyses_right':
                         res_par[k][1],
@@ -842,7 +710,6 @@ class SearcherMixin(object):
 
         all_az = sum([az for _, az in (search_result_obj.entries_and_tags)],
                      [])
-        #all_az = sum([az for _, az in sorted(search_result_obj.entries_and_tags, key=sort_entry)], [])
 
         indiv_template_kwargs = {
             'analyses': all_az,
@@ -895,7 +762,6 @@ class SearcherMixin(object):
             template_results,
             'analyses':
             search_result_obj.analyses,
-            ##'analyses_right': search_result_obj.analyses_r,
             'analyses_right':
             search_result_obj.analyses,
             'analyses_without_lex':
@@ -968,8 +834,6 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
             'analyses_right': False,
             'analyses_without_lex': False,
             'user_input': False,
-
-            # ?
             'errors': False,  # is this actually getting set?
 
             # Show the default info under search box
@@ -998,7 +862,7 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
         self.check_pair_exists_or_abort(_from, _to)
         self.force_locale(_from, _to)
 
-        user_input = lookup_val = request.form.get('lookup', False)
+        user_input = request.form.get('lookup', False)
 
         if current_app.config.strip_spaces:
             user_input = user_input.strip()
@@ -1008,7 +872,6 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
 
         if not user_input:
             user_input = ''
-            show_info = True
 
         self.log_in_session(user_input)
 
@@ -1035,14 +898,13 @@ class ReferredLanguagePairSearchView(LanguagePairSearchView):
 
         self.check_pair_exists_or_abort(_from, _to)
 
-        user_input = lookup_val = request.form.get('lookup', False)
+        user_input = request.form.get('lookup', False)
 
         if current_app.config.strip_spaces:
             user_input = user_input.strip()
 
         if not user_input:
             user_input = ''
-            show_info = True
             # TODO: return an error.
 
         lookup_context = self.get_shared_context(_from, _to)
@@ -1128,7 +990,7 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
             return 'word_detail_embedded.html'
         return 'word_detail.html'
 
-    def entry_filterer(self, entries, **kwargs):
+    def entry_filterer(self, entries):
         """ Runs on formatted result from DetailedFormat thing.
 
             Determine the ways that entries will be filtered, and run
@@ -1139,7 +1001,6 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
         pos_filter = request.args.get('pos_filter', False)
         lemma_match = request.args.get('lemma_match', False)
         e_node = request.args.get('e_node', False)
-        wordform = request.args.get('wordform', False)
 
         def _byPOS(r):
             if r.get('input')[1].upper() == pos_filter.upper():
@@ -1241,7 +1102,6 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
         no_compounds = request.args.get('no_compounds', False)
 
         # Determine whether to display the more detail link
-        pos_filter = request.args.get('pos_filter', False)
         lemma_match = request.args.get('lemma_match', False)
         e_node = request.args.get('e_node', False)
 
@@ -1278,11 +1138,6 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
         has_analyses = search_result_context.get('successful_entry_exists')
 
         # TODO: cache search result here
-        # current_app.cache.set(entry_cache_key,
-        # search_result_context.detailed_entry_pickleable)
-
-        # search_result_context.update(**self.get_shared_context(_from, _to))
-        # cip's test
         search_result_context['has_analyses'] = has_analyses
         search_result_context['more_detail_link'] = want_more_detail
 
