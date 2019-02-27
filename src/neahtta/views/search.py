@@ -612,13 +612,8 @@ class SearcherMixin(object):
         current_pair, _ = current_app.config.resolve_original_pair(
             g._from, g._to)
         async_paradigm = current_pair.get('asynchronous_paradigms', False)
-
         lemma_attrs = default_context_kwargs.get('lemma_attrs', {})
-
-        if detailed and not async_paradigm:
-            generate = True
-        else:
-            generate = False
+        generate = detailed and not async_paradigm
 
         if 'variant_type' in default_context_kwargs:
             variant_type = default_context_kwargs.get('variant_type')
@@ -1076,10 +1071,7 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
         lemma_match = request.args.get('lemma_match', False)
         e_node = request.args.get('e_node', False)
 
-        if no_compounds or lemma_match or e_node:
-            want_more_detail = True
-        else:
-            want_more_detail = False
+        want_more_detail = no_compounds or lemma_match or e_node
 
         # Set up morphology arguments
         if no_compounds:
