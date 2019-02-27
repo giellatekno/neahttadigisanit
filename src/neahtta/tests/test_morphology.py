@@ -1,19 +1,15 @@
 # -*- encoding: utf-8 -*-
 """Test classes from morphology/morphology.py"""
 from __future__ import absolute_import
-import unittest
-import os
-import sys
 
-HERE = os.path.abspath(os.path.dirname(__file__))
-sys.path.insert(0, os.path.dirname(HERE))
+import unittest
 
 from flask import current_app
 from lxml import etree
 from parameterized import parameterized
 
-from neahtta import app
 from morphology.morphology import Lemma, Tagsets
+from neahtta import app
 
 DEFAULT_SME_TAGSETS = {
     'second_persons': ['Sg2', 'Du2', 'Pl2'],
@@ -59,6 +55,7 @@ DEFAULT_SME_TAGSETS = {
 
 
 def fst_tool():
+    """Get the north sami fst tool."""
     return app.config.morphologies['sme'].tool
 
 
@@ -115,7 +112,6 @@ guollái\tguollái+A+Sg+Nom\t0,000000'''
                         u'viežžat+V+TV+Der/NomAg+N+Sg+Acc',
                         u'viežžat+V+TV+Der/NomAg+N+Sg+Nom'])]
 
-            self.maxDiff = None
             self.assertEqual(got, wanted)
 
     def test_inverse_lookup_by_string(self):
@@ -151,7 +147,6 @@ guollái\tguollái+A+Sg+Nom\t0,000000'''
     def test_inverse_lookup(self, name, lemma, tags, wanted):
         """Test the generator that works on lists of strings."""
         with app.app_context():
-            self.maxDiff = None
             self.assertEqual(
                 fst_tool().inverselookup(lemma, tags), wanted, msg=name)
 
@@ -182,7 +177,7 @@ guolli+N+Pl+Com'''
             got = app.config.morphologies['sme'].generate(*args, **kwargs)
             wanted = [([u'guolli', u'N', u'Sg', u'Nom'], [u'guolli']),
                       ([u'guolli', u'N', u'Sg', u'Acc'], [u'guoli']),
-                      ([u'guolli', u'N', u'Sg', u'Gen'], [u'guole', u'guoli']),
+                      ([u'guolli', u'N', u'Sg', u'Gen'], [u'guoli']),
                       ([u'guolli', u'N', u'Sg', u'Ill'], [u'guollái']),
                       ([u'guolli', u'N', u'Sg', u'Loc'], [u'guolis']),
                       ([u'guolli', u'N', u'Sg', u'Com'], [u'guliin']),
@@ -198,66 +193,66 @@ guolli+N+Pl+Com'''
 
     @parameterized.expand([
         (
-                'north sami defaults', 'guollebiebman',
-                {
-                    'split_compounds': True,
-                    'non_compound_only': False,
-                    'no_derivations': False
-                },
-                [
-                    'guollebiebman+N+Sg+Nom',
-                    'guolli+N+Cmp/SgNom', 'biebman+N+Sg+Nom',
-                    'biebman+N+Sg+Gen+Allegro', 'biebmat+V+TV',
-                    'Der/NomAct+N+Sg+Nom',
-                    'Der/NomAct+N+Sg+Gen', 'guollebiebman+N+Sg+Gen+Allegro'
-                ]
+            'north sami defaults', 'guollebiebman',
+            {
+                'split_compounds': True,
+                'non_compound_only': False,
+                'no_derivations': False
+            },
+            [
+                'guollebiebman+N+Sg+Nom',
+                'guolli+N+Cmp/SgNom', 'biebman+N+Sg+Nom',
+                'biebman+N+Sg+Gen+Allegro', 'biebmat+V+TV',
+                'Der/NomAct+N+Sg+Nom',
+                'Der/NomAct+N+Sg+Gen', 'guollebiebman+N+Sg+Gen+Allegro'
+            ]
         ),
         (
-                'non compound True', 'guollebiebman',
-                {
-                    'split_compounds': True,
-                    'non_compound_only': False,
-                    'no_derivations': True
-                },
-                [
-                    'guollebiebman+N+Sg+Nom', 'guolli+N+Cmp/SgNom',
-                    'biebman+N+Sg+Nom', 'biebman+N+Sg+Gen+Allegro',
-                    'guollebiebman+N+Sg+Gen+Allegro'
-                ]
+            'non compound True', 'guollebiebman',
+            {
+                'split_compounds': True,
+                'non_compound_only': False,
+                'no_derivations': True
+            },
+            [
+                'guollebiebman+N+Sg+Nom', 'guolli+N+Cmp/SgNom',
+                'biebman+N+Sg+Nom', 'biebman+N+Sg+Gen+Allegro',
+                'guollebiebman+N+Sg+Gen+Allegro'
+            ]
         ),
         (
-                'remove_compound', 'guollebiebman',
-                {
-                    'split_compounds': True,
-                    'non_compound_only': True,
-                    'no_derivations': False
-                },
-                ['guollebiebman+N+Sg+Nom', 'guollebiebman+N+Sg+Gen+Allegro']
+            'remove_compound', 'guollebiebman',
+            {
+                'split_compounds': True,
+                'non_compound_only': True,
+                'no_derivations': False
+            },
+            ['guollebiebman+N+Sg+Nom', 'guollebiebman+N+Sg+Gen+Allegro']
         ),
         (
-                'split on compound false', 'guollebiebman',
-                {
-                    'split_compounds': False,
-                    'non_compound_only': False,
-                    'no_derivations': False
-                },
-                [
-                    'guollebiebman+N+Sg+Nom',
-                    'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Nom',
-                    'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen+Allegro',
-                    'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV',
-                    'Der/NomAct+N+Sg+Nom', 'Der/NomAct+N+Sg+Gen',
-                    'guollebiebman+N+Sg+Gen+Allegro'
-                ]
+            'split on compound false', 'guollebiebman',
+            {
+                'split_compounds': False,
+                'non_compound_only': False,
+                'no_derivations': False
+            },
+            [
+                'guollebiebman+N+Sg+Nom',
+                'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Nom',
+                'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen+Allegro',
+                'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV',
+                'Der/NomAct+N+Sg+Nom', 'Der/NomAct+N+Sg+Gen',
+                'guollebiebman+N+Sg+Gen+Allegro'
+            ]
         ),
         (
-                'unknown input', 'asdf',
-                {
-                    'split_compounds': False,
-                    'non_compound_only': False,
-                    'no_derivations': False
-                },
-                ['asdf']
+            'unknown input', 'asdf',
+            {
+                'split_compounds': False,
+                'non_compound_only': False,
+                'no_derivations': False
+            },
+            ['asdf']
         )
     ])
     def test_lemmatize(self, name, wordform, kwargs, tags):
@@ -271,6 +266,7 @@ guolli+N+Pl+Com'''
     @parameterized.expand([('no unknown', [('a', ['b', 'c'])], False),
                            ('has unknown', [('a', ['b', '?'])], True)])
     def test_has_unknown(self, name, lookups, wanted):
+        """Test the morphology has unknown function."""
         self.assertEqual(
             app.config.morphologies['sme'].has_unknown(lookups), wanted,
             msg=name)
@@ -311,38 +307,38 @@ guolli+N+Pl+Com'''
 
     @parameterized.expand([
         (
-                'wordform exists', 'guollebiebman',
-                [
-                    'guollebiebman+N+Sg+Nom',
-                    'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
-                    'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Nom',
-                    'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen+Allegro',
-                    'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Nom'
-                ],
-                [
-                    'guollebiebman+N+Sg+Nom',
-                    'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
-                    'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Nom',
-                    'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen+Allegro',
-                    'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Nom'
-                ]
+            'wordform exists', 'guollebiebman',
+            [
+                'guollebiebman+N+Sg+Nom',
+                'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
+                'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Nom',
+                'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen+Allegro',
+                'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Nom'
+            ],
+            [
+                'guollebiebman+N+Sg+Nom',
+                'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
+                'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Nom',
+                'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen+Allegro',
+                'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Nom'
+            ]
         ),
         (
-                'wordform does not exist', 'guollebiebmama',
-                [
-                    'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen',
-                    'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Acc',
-                    'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
-                    'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Acc',
-                    'guollebiebman+N+Sg+Gen', 'guollebiebman+N+Sg+Acc'
-                ],
-                [
-                    'guollebiebman+N+Sg+Gen', 'guollebiebman+N+Sg+Acc',
-                    'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen',
-                    'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Acc',
-                    'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
-                    'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Acc'
-                ]
+            'wordform does not exist', 'guollebiebmama',
+            [
+                'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen',
+                'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Acc',
+                'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
+                'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Acc',
+                'guollebiebman+N+Sg+Gen', 'guollebiebman+N+Sg+Acc'
+            ],
+            [
+                'guollebiebman+N+Sg+Gen', 'guollebiebman+N+Sg+Acc',
+                'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen',
+                'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Acc',
+                'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
+                'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Acc'
+            ]
         )
     ])
     def test_check_if_lexicalized(self, name, wordform, input_list, wanted):
@@ -378,28 +374,41 @@ guolli+N+Pl+Com'''
             msg=name)
 
     @parameterized.expand(
-        [('split False', [
-            'guollebiebman+N+Sg+Nom',
-            'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
-        ], False, [
-              'guollebiebman+N+Sg+Nom',
-              'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
-          ]),
-         ('split True', [
-             'guollebiebman+N+Sg+Gen+Allegro', 'guollebiebman+N+Sg+Nom',
-             'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
-             'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Nom',
-             'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen+Allegro',
-             'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Nom'
-         ], True, [
-              'guollebiebman+N+Sg+Gen+Allegro', 'guollebiebman+N+Sg+Nom',
-              'guolli+N+Cmp/SgNom', 'biebmat+V+TV+Der/NomAct+N+Sg+Gen',
-              'guolli+N+Cmp/SgNom', 'biebmat+V+TV+Der/NomAct+N+Sg+Nom',
-              'guolli+N+Cmp/SgNom', 'biebman+N+Sg+Gen+Allegro',
-              'guolli+N+Cmp/SgNom', 'biebman+N+Sg+Nom'
-          ])])
+        [
+            (
+                'split False',
+                [
+                    'guollebiebman+N+Sg+Nom',
+                    'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
+                ],
+                False,
+                [
+                    'guollebiebman+N+Sg+Nom',
+                    'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
+                ]
+            ),
+            (
+                'split True',
+                [
+                    'guollebiebman+N+Sg+Gen+Allegro', 'guollebiebman+N+Sg+Nom',
+                    'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
+                    'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Nom',
+                    'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen+Allegro',
+                    'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Nom'
+                ],
+                True,
+                [
+                    'guollebiebman+N+Sg+Gen+Allegro', 'guollebiebman+N+Sg+Nom',
+                    'guolli+N+Cmp/SgNom', 'biebmat+V+TV+Der/NomAct+N+Sg+Gen',
+                    'guolli+N+Cmp/SgNom', 'biebmat+V+TV+Der/NomAct+N+Sg+Nom',
+                    'guolli+N+Cmp/SgNom', 'biebman+N+Sg+Gen+Allegro',
+                    'guolli+N+Cmp/SgNom', 'biebman+N+Sg+Nom'
+                ]
+            )
+        ])
     def test_split_on_compound(self, name, input_list, split_compounds,
                                wanted):
+        """Test the morphology split on compound function."""
         self.assertListEqual(
             app.config.morphologies['sme'].split_on_compounds(input_list,
                                                               split_compounds),
@@ -413,6 +422,7 @@ guolli+N+Pl+Com'''
         ('only der', ['a+Der', 'b+Der', 'c+Der'], ['a+Der'])
     ])
     def test_rearrange_on_count(self, name, analyses, wanted):
+        """Test the morphology rearrange on count function."""
         self.assertListEqual(
             app.config.morphologies['sme'].rearrange_on_count(analyses), wanted,
             msg=name)
@@ -420,21 +430,21 @@ guolli+N+Pl+Com'''
     @parameterized.expand([
         (
             'first',
-             [
-                 'guollebiebman+N+Sg+Gen+Allegro', 'guollebiebman+N+Sg+Nom',
-                 'guolli+N+Cmp/SgNom', 'biebmat+V+TV+Der/NomAct+N+Sg+Gen',
-                 'guolli+N+Cmp/SgNom', 'biebmat+V+TV+Der/NomAct+N+Sg+Nom',
-                 'guolli+N+Cmp/SgNom', 'biebman+N+Sg+Gen+Allegro',
-                 'guolli+N+Cmp/SgNom', 'biebman+N+Sg+Nom'
-             ],
-             [
-                 'guollebiebman+N+Sg+Gen+Allegro',
-                 'guollebiebman+N+Sg+Nom',
-                 'guolli+N+Cmp/SgNom', 'biebmat+V+TV',
-                 'Der/NomAct+N+Sg+Gen',
-                 'Der/NomAct+N+Sg+Nom',
-                 'biebman+N+Sg+Gen+Allegro', 'biebman+N+Sg+Nom'
-             ]
+            [
+                'guollebiebman+N+Sg+Gen+Allegro', 'guollebiebman+N+Sg+Nom',
+                'guolli+N+Cmp/SgNom', 'biebmat+V+TV+Der/NomAct+N+Sg+Gen',
+                'guolli+N+Cmp/SgNom', 'biebmat+V+TV+Der/NomAct+N+Sg+Nom',
+                'guolli+N+Cmp/SgNom', 'biebman+N+Sg+Gen+Allegro',
+                'guolli+N+Cmp/SgNom', 'biebman+N+Sg+Nom'
+            ],
+            [
+                'guollebiebman+N+Sg+Gen+Allegro',
+                'guollebiebman+N+Sg+Nom',
+                'guolli+N+Cmp/SgNom', 'biebmat+V+TV',
+                'Der/NomAct+N+Sg+Gen',
+                'Der/NomAct+N+Sg+Nom',
+                'biebman+N+Sg+Gen+Allegro', 'biebman+N+Sg+Nom'
+            ]
         ),
         (
             'Gerd',
@@ -497,6 +507,7 @@ guolli+N+Pl+Com'''
 
 
 def make_morpholex_result(result):
+    """Make the same format as the morpholox lookup function does."""
     node, lemmas = result
     return node.find('.//l').text, node.find('.//t').text, lemmas
 
@@ -551,6 +562,7 @@ class TestMorphoLexicon(unittest.TestCase):
         ])
     ])
     def test_lookup(self, name, wordform, wanted):
+        """Test the morpholex lookup function."""
         with app.app_context():
             kwargs = {
                 'source_lang': 'sme',
