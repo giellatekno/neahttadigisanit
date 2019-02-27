@@ -94,11 +94,19 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
 
         return [map(self.clean_lemma, paradigm) for paradigm in paradigms]
 
+    def search_to_paradigm(self, lookup_value, **search_kwargs):
+        search_result_obj = self.do_search_to_obj(
+            lookup_value, generate=True, **search_kwargs)
+
+        # Sjekk om generatoren eksisterer
+        return [
+            paradigm for _, _, paradigm, _ in search_result_obj.
+            entries_and_tags_and_paradigms
+        ]
+
     def get(self, _from, _to, lemma):
         # TODO: submit and process on separate thread, optional poll
         # argument to not submit and just check for result
-
-        # Sjekk om generatoren eksisterer
         self.check_pair_exists_or_abort(_from, _to)
 
         # Sørg for at dette er unicode
@@ -115,13 +123,3 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
             },
             pretty=request.args.get('pretty', False)
         )
-
-    def search_to_paradigm(self, lookup_value, **search_kwargs):
-        search_result_obj = self.do_search_to_obj(
-            lookup_value, generate=True, **search_kwargs)
-
-        print(lineno(), search_result_obj)
-        return [
-            paradigm for _, _, paradigm, _ in search_result_obj.
-            entries_and_tags_and_paradigms
-        ]
