@@ -475,7 +475,6 @@ class Config(Config):
         for language, files in _lang_files.iteritems():
             for f in files:
                 tagset_path = os.path.join(_p, f)
-<<<<<<< HEAD
                 if os.path.exists(tagset_path):
                     try:
                         file_context_set = yaml.load(open(tagset_path, 'r').read())
@@ -485,17 +484,6 @@ class Config(Config):
                         sys.exit()
                     self._paradigm_contexts[language].update(
                         reformat_context_set(tagset_path, file_context_set))
-=======
-
-                try:
-                    file_context_set = yaml.load(open(tagset_path, 'r').read())
-                except Exception, e:
-                    print " * YAML parsing error in <%s>\n\n" % tagset_path
-                    print e
-                    sys.exit()
-                self._paradigm_contexts[language].update(
-                    reformat_context_set(tagset_path, file_context_set))
->>>>>>> yapf -i
 
         return self._paradigm_contexts
 
