@@ -1215,9 +1215,7 @@ class Morphology(object):
     def make_analyses_der_fin(self, analyses):
         analyses_der_fin = []
         tags = ('Der', 'VAbess', 'VGen', 'Ger', 'Comp', 'Superl')
-        an_split = []
-        for item in analyses:
-            an_split.append(item.split('+'))
+        an_split = [item.split('+') for item in analyses]
         k = 0
         for item in an_split:
             index = []
