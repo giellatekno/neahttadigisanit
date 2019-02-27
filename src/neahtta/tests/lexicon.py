@@ -70,9 +70,13 @@ def form_contains(_test_set):
             ["roa\u0111\u0111i", ["N", "Pl", "Ill"], ["ro\u0111iide"]]
         ]
         """
-        forms = set(sum([fs for lemma, tag, fs in paradigm if fs], []))
-        print '   forms = ' + ', '.join(forms)
-        print '   forms & [%s]' % ', '.join(_test_set)
+        forms = set(
+            second_list[0]
+            for first_list in paradigm
+            for second_list in first_list
+        )
+        if not bool(forms & _test_set):
+            print 78, 'failed', u' '.join(forms), u' '.join(_test_set)
         return bool(forms & _test_set)
 
     return test_contains
@@ -90,9 +94,13 @@ def form_doesnt_contain(_test_set):
             ["roa\u0111\u0111i", ["N", "Pl", "Ill"], ["ro\u0111iide"]]
         ]
         """
-        forms = set(sum([fs for lemma, tag, fs in paradigm], []))
-        print '   forms = ' + ', '.join(forms)
-        print '   forms do not contain [%s]' % ', '.join(_test_set)
+        forms = set(
+            second_list[0]
+            for first_list in paradigm
+            for second_list in first_list
+        )
+        if _test_set & forms:
+            print 101, 'failed', u' '.join(forms), u' '.join(_test_set)
         return len(_test_set & forms) == 0
 
     return test_doesnt_contain
@@ -216,7 +224,7 @@ class ParadigmGenerationTests(WordLookupTests):
     def test_all_words_for_no_404s(self):
         for (source, target, lemma, error_msg,
              test_func) in self.paradigm_generation_tests:
-            base = self.url_base + '/detail/%s/%s/%s.json' % (
+            base = self.url_base + '/paradigm/%s/%s/%s/' % (
                 source,
                 target,
                 lemma,
@@ -225,15 +233,9 @@ class ParadigmGenerationTests(WordLookupTests):
             rv = self.app.get(base)
             result = simplejson.loads(rv.data)
 
-            definitions = []
-            for r in result.get('result'):
-                print '--'
-                if r.get('left') == lemma:
-                    print 'paradigm: '
-                    for a in r.get('paradigm'):
-                        print '  ' + repr(a)
-                    test_result = test_func(r.get('paradigm'))
-                    self.assertTrue(test_result,
-                                    'Generation error: ' + error_msg)
+            if result['input']['lemma'] == lemma:
+                print 'paradigm'
+                test_result = test_func(result['paradigms'])
+                self.assertTrue(test_result)
 
             # self.assertEqual(rv.status_code, 200)

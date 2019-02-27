@@ -715,17 +715,17 @@ paradigm_generation_tests = [
     ###  - A + context="bivttas":  heittot
     ###     - http://localhost:5000/detail/sme/nob/heittot.html
     ('sme', 'nob', u'heittot', "Context missing",
-     form_contains(set([u"heittogis (bivttas)"]))),
+     form_contains(set([u"heittogis"]))),
 
     ###  - A + context="báddi":  guhkki
     ###     - http://localhost:5000/detail/sme/nob/guhkki.html
     ('sme', 'nob', u'guhkki', "Context missing",
-     form_contains(set([u"guhkes (báddi)"]))),
+     form_contains(set([u"guhkes"]))),
 
     ###  - Num + context="gápmagat":  guokte
     ###     - http://localhost:5000/detail/sme/nob/guokte.html
     ('sme', 'nob', u'guokte', "Context missing",
-     form_contains(set([u"guovttit (gápmagat)"]))),
+     form_contains(set([u"guovttit"]))),
 
     ###  - N + illpl="no": eahketroađđi, sihkarvuohta, skuvlaáigi
     ('sme', 'nob', u'eahketroađđi', "Illative plural present",
