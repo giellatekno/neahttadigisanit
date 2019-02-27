@@ -34,20 +34,20 @@ class LemmatizerView(DictionaryView, SearcherMixin):
     from lexicon import DetailedFormat as formatter
 
     @staticmethod
-    def filter_tag(lemma):
+    def clean_lemma(lang, lemma):
         """Return a lemma where the tags are filtered.
 
         Args:
             lemma (morphology.Lemma): the lemma that should be filtered.
         """
-        filtered_tag = tagfilter(lemma.tag, _from,
-                                    request.args.get('tag_language',
+
+        filtered_tag = tagfilter(lemma.tag, lang,
+                                 request.args.get('tag_language',
                                                     'eng')).split(' ')
         return (lemma.lemma, filtered_tag, [lemma.form],
                 lemma.tag.tag_string)
 
-    @staticmethod
-    def get(_from, wordform):
+    def get(self, _from, wordform):
         """Produce a json formatted cleaned lemma of the given wordform.
 
         Args:
@@ -67,21 +67,11 @@ class LemmatizerView(DictionaryView, SearcherMixin):
 
         wordform = decodeOrFail(wordform)
 
-        lemmas = morph.lemmatize(wordform)
-
-        cleaned_lemmas = map(filter_tag, lemmas)
-
-        _tagsets = current_app.config.morphologies.get(_from).tagsets.sets
-
-        tagsets_serializer_ready = {}
-
-        for key, tagset in _tagsets.iteritems():
-            tagsets_serializer_ready[key] = [m.val for m in tagset.members]
-
         return json_response(
             {
-                'cleaned_lemmas': cleaned_lemmas,
-                'tagsets': tagsets_serializer_ready,
+                'cleaned_lemmas': [self.clean_lemma(_from, lemma)
+                                   for lemma in morph.lemmatize(wordform)],
+                'tagsets': self.tagsets_serializer_ready(_from),
                 'input': {
                     'wordform': wordform
                 }
