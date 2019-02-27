@@ -37,7 +37,7 @@ UnitTests:
 # following settings.
 Tools:
   xfst_lookup: &LOOKUP 'lookup'
-  opt: &OPT '/opt/smi'
+  opt: &OPT 'tests/fsts'
 
 # Morphological system definitions. Since YAML variables aren't able to
 # be used in concatenating strings, certain paths with references must
@@ -45,8 +45,8 @@ Tools:
 Morphology:
   sme:
     tool: *LOOKUP
-    file: [*OPT, '/sme/bin/analyser-dict-gt-desc.xfst']
-    inverse_file: [*OPT, '/sme/bin/generator-dict-gt-norm.xfst']
+    file: [*OPT, '/sme/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/sme/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options: &sme_fst_options
       compoundBoundary: "+Cmp#"
@@ -55,15 +55,15 @@ Morphology:
       inverse_tagsep: '+'
   SoMe:
     tool: *LOOKUP
-    file: [*OPT, '/sme/bin/analyser-dict-gt-desc-mobile.xfst']
-    inverse_file: [*OPT, '/sme/bin/generator-dict-gt-norm.xfst']
+    file: [*OPT, '/sme/analyser-dict-gt-desc-mobile.xfst']
+    inverse_file: [*OPT, '/sme/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
       <<: *sme_fst_options
   nob:
     tool: *LOOKUP
-    file: [*OPT, '/nob/bin/analyser-dict-gt-desc.xfst']
-    inverse_file: [*OPT, '/nob/bin/generator-dict-gt-norm.xfst']
+    file: [*OPT, '/nob/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/nob/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
       compoundBoundary: "#+Cmp+"
@@ -72,8 +72,8 @@ Morphology:
       inverse_tagsep: '+'
   fin:
     tool: *LOOKUP
-    file: [*OPT, '/fin/bin/analyser-dict-gt-desc.xfst']
-    inverse_file: [*OPT, '/fin/bin/generator-dict-gt-norm.xfst']
+    file: [*OPT, '/fin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/fin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
       compoundBoundary: "#"
