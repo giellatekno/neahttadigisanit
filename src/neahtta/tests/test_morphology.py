@@ -347,6 +347,28 @@ guolli+N+Pl+Com'''
 
         self.assertListEqual(got, wanted)
 
+    @parameterized.expand([('no dupes', ['a', 'b'], ['a', 'b']),
+                           ('has dupes', ['a', 'a'], ['a'])])
+    def test_remove_duplicates(self, name, input_list, result):
+        """Test remove_duplicates."""
+        self.assertListEqual(
+            app.config.morphologies['sme'].remove_duplicates(input_list), result, msg=name)
+
+    @parameterized.expand([
+        ('nested is empty', [], ['a', 'b'], ['a', 'b']),
+        ('not empty, not nested', ['c'], ['a', 'b'], []),
+        ('first element not a list', ['c', ['d']], ['a', 'b'], []),
+        ('all elements lists', [['d', 'e'], ['f', 'g']], ['a', 'b'],
+         ['d', 'e', 'f', 'g']),
+        ('first element is list', [['d', 'e'], 'f'], ['a', 'b'],
+         ['d', 'e', 'f']),
+    ])
+    def test_fix_nested_array(self, name, nested_array, analyses, wanted):
+        """Test fix_nested_array."""
+        self.assertListEqual(
+            app.config.morphologies['sme'].fix_nested_array(nested_array, analyses),
+            wanted,
+            msg=name)
 
 if __name__ == '__main__':
     unittest.main()

@@ -1145,7 +1145,7 @@ class Morphology(object):
             return array
 
     @staticmethod
-    def fix_nested_array(analyses, nested_array):
+    def fix_nested_array(nested_array, analyses):
         not_nested_array = []
         if len(nested_array) != 0:
             if isinstance(nested_array[0], list):
@@ -1252,7 +1252,7 @@ class Morphology(object):
 
 
             #Fix in case analyses_der_fin and analyses_right_fin are nested arrays
-            array_not_nested = self.fix_nested_array(analyses, analyses_der_fin)
+            array_not_nested = self.fix_nested_array(analyses_der_fin, analyses)
 
 
             #Remove duplicates due to append if entry with analyses or not (in collect_same_lemma in morpho_lexicon.py)
