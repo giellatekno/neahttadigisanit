@@ -1180,9 +1180,7 @@ class Morphology(object):
 
         lookups, raw_output, raw_errors = self.tool.lookup([form], raw=True)
 
-        unknown = self.has_unknown(lookups)
-
-        if unknown:
+        if self.has_unknown(lookups):
             if return_raw_data:
                 return False, raw_output, raw_errors
             else:
