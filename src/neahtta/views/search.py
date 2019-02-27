@@ -426,7 +426,7 @@ class SearchResult(object):
                             l.for_paradigm(paradigm).fill_generation()
                             for (l, _) in layouts if l
                         ]
-                        if len(has_layout) == 0:
+                        if not has_layout:
                             has_layout = False
 
                 self._entries_and_tags_and_paradigms.append(
@@ -481,7 +481,7 @@ class SearchResult(object):
         self.analyses = [(lem.input, lem.lemma, list(lem.tag))
                          for lem in entries_and_tags.analyses]
 
-        if len(self.formatted_results) > 0:
+        if self.formatted_results:
             self.successful_entry_exists = True
 
 
@@ -655,7 +655,7 @@ class SearcherMixin(object):
         #If in the results there is a 'None' entry followed by der tag/s those are removed
         #and are not shown in the results (e.g. "bagoheapmi")
         for item in search_result_obj.entries_and_tags:
-            if len(item[1]) > 0:
+            if item[1]:
                 if if_none and item[1][0].lemma.startswith(tags):
                     if_next_der = True
                 if item[0] != None and not item[1][0].lemma.startswith(tags):
@@ -671,7 +671,7 @@ class SearcherMixin(object):
         for _, analyses, paradigm, has_layout in search_result_obj.entries_and_tags_and_paradigms:
             if k < len(res_par):
                 if res_par[k][0] is not None:
-                    if len(analyses) == 0:
+                    if not analyses:
                         analyses = 'az'
 
                     tplkwargs = {
