@@ -13,6 +13,7 @@ from parameterized import parameterized
 from neahtta import app
 from morphology.morphology import HFST, Lemma, Morphology, Tagsets
 
+
 class TestHFST(unittest.TestCase):
     """Test the HFST class."""
 
@@ -86,14 +87,15 @@ guollái\tguollái+A+Sg+Nom\t0,000000'''
 
         self.assertEqual(got, wanted)
 
-    def test_inverse_lookup(self):
+    @parameterized.expand([('lemma part of tags', 'guolli',
+                            ['guolli+N+Sg+Loc', 'guolli+N+Pl+Nom'],
+                            [('guolli+N+Sg+Loc', ['guolis']),
+                             ('guolli+N+Pl+Nom', ['guolit'])])])
+    def test_inverse_lookup(self, name, lemma, tags, wanted):
         """Test the generator that works on lists of strings."""
         with self.app_context:
-            got = self.hfst.inverselookup('guolli', ['guolli+N+Sg+Loc', 'guolli+N+Pl+Nom'])
-            wanted = [('guolli+N+Sg+Loc', ['guolis']),
-                      ('guolli+N+Pl+Nom', ['guolit'])]
-
-            self.assertEqual(got, wanted)
+            self.assertEqual(
+                self.hfst.inverselookup(lemma, tags), wanted, msg=name)
 
 
 if __name__ == '__main__':
