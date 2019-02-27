@@ -35,8 +35,8 @@ class MorphoLexiconOverrides(object):
             else:
                 entries_and_tags = entries_and_tags
 
-            for f in self.override_functions[_from]:
-                new_res = f(entries_and_tags)
+            for override_function in self.override_functions[_from]:
+                new_res = override_function(entries_and_tags)
                 if new_res is not None:
                     entries_and_tags = new_res
                 else:
@@ -154,26 +154,12 @@ class MorphoLexicon(object):
 
         source_lang = kwargs.get('source_lang')
         target_lang = kwargs.get('target_lang')
-
-        morph_kwargs = {}
-        lex_kwargs = {}
-        lemma_attrs = {}
-
-        if 'lemma_attrs' in kwargs:
-            lemma_attrs = kwargs.pop('lemma_attrs')
-
-        if 'entry_hash' in lemma_attrs:
-            entry_hash_filter = lemma_attrs.pop('entry_hash')
-        else:
-            entry_hash_filter = False
-
-        for k, v in kwargs.iteritems():
-            if k in self.morphology_kwarg_names:
-                morph_kwargs[k] = v
-
-        for k, v in kwargs.iteritems():
-            if k in self.lexicon_kwarg_names:
-                lex_kwargs[k] = v
+        lemma_attrs = kwargs.pop('lemma_attrs', {})
+        entry_hash_filter = lemma_attrs.pop('entry_hash', False)
+        morph_kwargs = {key: value for key, value in kwargs.iteritems()
+                        if key in self.morphology_kwarg_names}
+        lex_kwargs = {key: value for key, value in kwargs.iteritems()
+                      if key in self.lexicon_kwarg_names}
 
         # TODO: if analyses dropping componuds results in lexicalized
         # form that does not exist in lexicon, then fall back to
@@ -263,43 +249,43 @@ class MorphoLexicon(object):
         def collect_same_lemma(array):
             global array_sorted
             array_sorted = []
-            k = 0
-            l = []
-            l0 = []
+            index = 0
+            lemmas = []
+            lemmas0 = []
             none_not_added = True
-            while k < len(array):
-                for i in range(0, len(array)):
-                    if (array[i][1] != None) & (array[k][1] != None):
-                        if array[i][0] == array[k][0]:
-                            if array[i] not in l:
-                                array_sorted.append(array[i])
-                                l.append(array[i])
-                                l0.append(array[i][0])
+            while index < len(array):
+                for index2 in range(0, len(array)):
+                    if (array[index2][1] != None) & (array[index][1] != None):
+                        if array[index2][0] == array[index][0]:
+                            if array[index2] not in lemmas:
+                                array_sorted.append(array[index2])
+                                lemmas.append(array[index2])
+                                lemmas0.append(array[index2][0])
                     else:
-                        if array[i][0] is not None:
-                            entry_analysis = array[i][0].find('lg/analysis')
+                        if array[index2][0] is not None:
+                            entry_analysis = array[index2][0].find('lg/analysis')
                         if (none_not_added) & (entry_analysis is not None):
-                            array_sorted.append(array[i])
+                            array_sorted.append(array[index2])
                             none_not_added = False
                         else:
-                            if (none_not_added) & (array[i][0] not in l0):
-                                array_sorted.append(array[i])
-                k += 1
-            j = 0
+                            if (none_not_added) & (array[index2][0] not in lemmas0):
+                                array_sorted.append(array[index2])
+                index += 1
+            index3 = 0
             #In case there is the same entry twice (with and without analyses), remove the one without analyses
-            while j < len(array_sorted):
-                for i in range(0, len(array_sorted)):
-                    if (array_sorted[i][0] == array_sorted[j][0]):
-                        if (array_sorted[i][1] is
-                                not None) & (array_sorted[j][1] is None):
-                            del array_sorted[j]
+            while index3 < len(array_sorted):
+                for index2 in range(0, len(array_sorted)):
+                    if (array_sorted[index2][0] == array_sorted[index3][0]):
+                        if (array_sorted[index2][1] is
+                                not None) & (array_sorted[index3][1] is None):
+                            del array_sorted[index3]
                             break
                         else:
-                            if (array_sorted[j][1] is
-                                    not None) & (array_sorted[i][1] is None):
-                                del array_sorted[i]
+                            if (array_sorted[index3][1] is
+                                    not None) & (array_sorted[index2][1] is None):
+                                del array_sorted[index2]
                                 break
-                j += 1
+                index3 += 1
             return array_sorted
 
         entries_and_tags_sorted = collect_same_lemma(entries_and_tags)
@@ -374,26 +360,12 @@ class MorphoLexicon(object):
         """
         source_lang = kwargs.get('source_lang')
         target_lang = kwargs.get('target_lang')
-
-        morph_kwargs = {}
-        lex_kwargs = {}
-        lemma_attrs = {}
-
-        if 'lemma_attrs' in kwargs:
-            lemma_attrs = kwargs.pop('lemma_attrs')
-
-        if 'entry_hash' in lemma_attrs:
-            entry_hash_filter = lemma_attrs.pop('entry_hash')
-        else:
-            entry_hash_filter = False
-
-        for k, v in kwargs.iteritems():
-            if k in self.morphology_kwarg_names:
-                morph_kwargs[k] = v
-
-        for k, v in kwargs.iteritems():
-            if k in self.lexicon_kwarg_names:
-                lex_kwargs[k] = v
+        lemma_attrs = kwargs.pop('lemma_attrs', {})
+        entry_hash_filter = lemma_attrs.pop('entry_hash', False)
+        morph_kwargs = {key: value for key, value in kwargs.iteritems()
+                        if key in self.morphology_kwarg_names}
+        lex_kwargs = {key: value for key, value in kwargs.iteritems()
+                      if key in self.lexicon_kwarg_names}
 
         # TODO: if analyses dropping componuds results in lexicalized
         # form that does not exist in lexicon, then fall back to
@@ -450,8 +422,8 @@ class MorphoLexicon(object):
                 xml_result = self.lexicon.variant_lookup(
                     source_lang, target_lang, search_type, **lex_kwargs)
                 if xml_result:
-                    for e in xml_result:
-                        entries_and_tags.append((e, analysis))
+                    for entry in xml_result:
+                        entries_and_tags.append((entry, analysis))
                 else:
                     entries_and_tags.append((None, analysis))
 
@@ -482,8 +454,8 @@ class MorphoLexicon(object):
                     source_lang, target_lang, **lex_kwargs_right)
 
                 if xml_result_right:
-                    for e in xml_result_right:
-                        entries_and_tags_right.append((e, analysis_r))
+                    for entry in xml_result_right:
+                        entries_and_tags_right.append((entry, analysis_r))
                 else:
                     entries_and_tags_right.append((None, analysis_r))
 
@@ -496,9 +468,9 @@ class MorphoLexicon(object):
             user_input=wordform)
 
         if no_analysis_xml:
-            for e in no_analysis_xml:
-                entries_and_tags.append((e, None))
-                entries_and_tags_right.append((e, None))
+            for entry in no_analysis_xml:
+                entries_and_tags.append((entry, None))
+                entries_and_tags_right.append((entry, None))
 
         if entry_hash_filter:
 
@@ -520,38 +492,38 @@ class MorphoLexicon(object):
             #Collect same lemma in original order
             global array_sorted
             array_sorted = []
-            k = 0
-            l = []
-            l0 = []
+            index = 0
+            lemmas = []
+            lemmas0 = []
             none_not_added = True
-            while k < len(array):
-                for i in range(0, len(array)):
-                    if (array[i][1] != None) & (array[k][1] != None):
-                        if array[i][0] == array[k][0]:
-                            if array[i] not in l:
-                                array_sorted.append(array[i])
-                                l.append(array[i])
-                                l0.append(array[i][0])
+            while index < len(array):
+                for index2 in range(0, len(array)):
+                    if (array[index2][1] != None) & (array[index][1] != None):
+                        if array[index2][0] == array[index][0]:
+                            if array[index2] not in lemmas:
+                                array_sorted.append(array[index2])
+                                lemmas.append(array[index2])
+                                lemmas0.append(array[index2][0])
                     else:
-                        if (none_not_added) & (array[i][0] not in l0):
-                            array_sorted.append(array[i])
+                        if (none_not_added) & (array[index2][0] not in lemmas0):
+                            array_sorted.append(array[index2])
                             none_not_added = False
-                k += 1
-            j = 0
+                index += 1
+            index3 = 0
             #In case there is the same entry twice (with and without analyses), remove the one without analyses
-            while j < len(array_sorted):
-                for i in range(0, len(array_sorted)):
-                    if (array_sorted[i][0] == array_sorted[j][0]):
-                        if (array_sorted[i][1] is
-                                not None) & (array_sorted[j][1] is None):
-                            del array_sorted[j]
+            while index3 < len(array_sorted):
+                for index2 in range(0, len(array_sorted)):
+                    if (array_sorted[index2][0] == array_sorted[index3][0]):
+                        if (array_sorted[index2][1] is
+                                not None) & (array_sorted[index3][1] is None):
+                            del array_sorted[index3]
                             break
                         else:
-                            if (array_sorted[j][1] is
-                                    not None) & (array_sorted[i][1] is None):
-                                del array_sorted[i]
+                            if (array_sorted[index3][1] is
+                                    not None) & (array_sorted[index2][1] is None):
+                                del array_sorted[index2]
                                 break
-                j += 1
+                index3 += 1
             return array_sorted
 
         entries_and_tags_sorted = collect_same_lemma(entries_and_tags)
