@@ -799,13 +799,16 @@ class XFST(object):
             return self.clean(output), output, err
         return self.clean(output)
 
-    def inverselookup_by_string(self, lookup_string):
+    def inverselookup_by_string(self, lookup_string, raw=False):
         import sys
         if not self.icmd:
             print >> sys.stderr, " * Inverse lookups not available."
             return False
 
         output, err = self._exec(lookup_string, cmd=self.icmd)
+        if raw:
+            return self.clean(output), output, err
+
         return self.clean(output)
 
     def inverselookup(self,
