@@ -53,12 +53,12 @@ class MorphoLexiconOverrides(object):
 
         def wrapper(override_function):
             for language_iso in language_isos:
-                self.override_functions[language_iso]\
+                self.override_functions[language_iso] \
                     .append(override_function)
                 print '%s morpholex overrides: registered - %s' % \
-                        ( language_iso
-                        , override_function.__name__
-                        )
+                      (language_iso
+                       , override_function.__name__
+                       )
 
         return wrapper
 
@@ -276,12 +276,12 @@ class MorphoLexicon(object):
                                 array_sorted.append(array[index2])
                 index += 1
             index3 = 0
-            #In case there is the same entry twice (with and without analyses), remove the one without analyses
+            # In case there is the same entry twice (with and without analyses), remove the one without analyses
             while index3 < len(array_sorted):
                 for index2 in range(0, len(array_sorted)):
                     if (array_sorted[index2][0] == array_sorted[index3][0]):
                         if (array_sorted[index2][1] is
-                                not None) & (array_sorted[index3][1] is None):
+                            not None) & (array_sorted[index3][1] is None):
                             del array_sorted[index3]
                             break
                         else:
@@ -494,7 +494,7 @@ class MorphoLexicon(object):
         _by_entry_r = itemgetter(0)
 
         def collect_same_lemma(array):
-            #Collect same lemma in original order
+            # Collect same lemma in original order
             global array_sorted
             array_sorted = []
             index = 0
@@ -516,12 +516,12 @@ class MorphoLexicon(object):
                             none_not_added = False
                 index += 1
             index3 = 0
-            #In case there is the same entry twice (with and without analyses), remove the one without analyses
+            # In case there is the same entry twice (with and without analyses), remove the one without analyses
             while index3 < len(array_sorted):
                 for index2 in range(0, len(array_sorted)):
                     if (array_sorted[index2][0] == array_sorted[index3][0]):
                         if (array_sorted[index2][1] is
-                                not None) & (array_sorted[index3][1] is None):
+                            not None) & (array_sorted[index3][1] is None):
                             del array_sorted[index3]
                             break
                         else:
