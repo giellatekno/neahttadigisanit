@@ -72,6 +72,20 @@ guollái\tguollái+A+Sg+Nom\t0,000000'''
 
             self.assertEqual(got, wanted)
 
+    def test_split_analysis(self):
+        """Test the analysis line splitter."""
+        got = self.hfst.splitAnalysis('guolli+N+Sg+Loc')
+        wanted = ['guolli', 'N', 'Sg', 'Loc']
+
+        self.assertEqual(got, wanted)
+
+    def test_format_tags(self):
+        """Test the tag formatter."""
+        got = self.hfst.formatTag(self.hfst.splitAnalysis('guolli+N+Sg+Loc'))
+        wanted = 'guolli+N+Sg+Loc'
+
+        self.assertEqual(got, wanted)
+
 
 if __name__ == '__main__':
     unittest.main()
