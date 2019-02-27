@@ -10,19 +10,15 @@ from utils.logger import *
 from utils.data import *
 from utils.encoding import *
 
-from flask import ( request
-                  , session
-                  , render_template
-                  , abort
-                  , redirect
-                  , current_app
-                  , url_for
-                  )
+from flask import (request, session, render_template, abort, redirect,
+                   current_app, url_for)
 
 user_log = getLogger("user_log")
 
+
 def more_dictionaries():
     return render_template('more_dictionaries.html')
+
 
 # For direct links, form submission.
 def externalFormSearch(_from, _to, _search_type):
@@ -59,7 +55,8 @@ def externalFormSearch(_from, _to, _search_type):
        (_from, _to) not in current_app.config.variant_dictionaries:
         abort(404)
 
-    func = lexicon_overrides.external_search_redirect.get((_search_type, _from, _to))
+    func = lexicon_overrides.external_search_redirect.get((_search_type, _from,
+                                                           _to))
 
     if func is None:
         abort(404)
@@ -69,6 +66,7 @@ def externalFormSearch(_from, _to, _search_type):
 
     return func(pair_config, user_input)
 
+
 def about():
     from jinja2 import TemplateNotFound
 
@@ -77,6 +75,7 @@ def about():
     #     _from,
     #     'about.template')
     return render_template('about.template')
+
 
 def about_sources():
     """ This is also tied to a context processer making this item
@@ -90,6 +89,7 @@ def about_sources():
         return render_template('sources.template')
     except:
         return render_template('about.template')
+
 
 def gen_doc(from_language, docs_list):
     _docs = []
@@ -105,12 +105,13 @@ def gen_doc(from_language, docs_list):
         # TODO: find decorated function doc
         doc = {
             'name': lx,
-            'main_doc': "TODO", #  mod.__doc__,
+            'main_doc': "TODO",  #  mod.__doc__,
             'functions': functions
         }
 
         _docs.append(doc)
     return _docs
+
 
 def config_docs():
 
@@ -119,12 +120,12 @@ def config_docs():
 
     # TODO: gen doc for project level
 
-    return render_template( 'config_docs.html'
+    return render_template(
+        'config_docs.html',
+        languages=languages,
+        config=config,
+        app=current_app)
 
-                          , languages=languages
-                          , config=config
-                          , app=current_app
-                          )
 
 def config_doc(from_language):
     """ Quick overview of language-specific details.
@@ -142,10 +143,13 @@ def config_doc(from_language):
     from lexicon import lexicon_overrides
     from morpholex import morpholex_overrides
 
-    generation_docs = gen_doc(from_language, generation_overrides.tag_filter_doc)
+    generation_docs = gen_doc(from_language,
+                              generation_overrides.tag_filter_doc)
     pregen_doc = gen_doc(from_language, generation_overrides.pregenerators_doc)
-    postanalysis_doc = gen_doc(from_language, generation_overrides.postanalyzers_doc)
-    postgen_doc = gen_doc(from_language, generation_overrides.postgeneration_processors_doc)
+    postanalysis_doc = gen_doc(from_language,
+                               generation_overrides.postanalyzers_doc)
+    postgen_doc = gen_doc(from_language,
+                          generation_overrides.postgeneration_processors_doc)
 
     # TODO: lexicon overrides
     # TODO: morpholexicon overrides
@@ -153,37 +157,40 @@ def config_doc(from_language):
     # TODO: filter paradigms, tag_filters
 
     paradigms = current_app.config.paradigms.get(from_language, {})
-    mparadigms = current_app.morpholexicon.paradigms.paradigm_rules.get(from_language, [])
+    mparadigms = current_app.morpholexicon.paradigms.paradigm_rules.get(
+        from_language, [])
 
     tag_transforms = current_app.config.tag_filters
     languages = []
 
-    return render_template( 'config_doc.html'
-
-                          , app=current_app
-                          , generation_docs=generation_docs
-                          , pregen_doc=pregen_doc
-                          , postanalysis_doc=postanalysis_doc
-                          , postgen_doc=postgen_doc
-
-                          , paradigms=paradigms
-                          , mparadigms=mparadigms
-                          , tag_transforms=tag_transforms
-                          , languages=languages
-                          , lang_name=from_language
-                          )
+    return render_template(
+        'config_doc.html',
+        app=current_app,
+        generation_docs=generation_docs,
+        pregen_doc=pregen_doc,
+        postanalysis_doc=postanalysis_doc,
+        postgen_doc=postgen_doc,
+        paradigms=paradigms,
+        mparadigms=mparadigms,
+        tag_transforms=tag_transforms,
+        languages=languages,
+        lang_name=from_language)
 
 
 def plugins():
     return render_template('plugins.html')
 
+
 def escape_tv():
     del session['text_tv']
     return redirect(url_for('views.canonical-root'))
 
+
 allowed_keys = [
     'last_searches',
 ]
+
+
 def session_clear(sess_key):
     if sess_key in allowed_keys:
         if sess_key == 'last_searches':
@@ -194,4 +201,3 @@ def session_clear(sess_key):
         except KeyError:
             pass
     return redirect(url_for('views.canonical-root'))
-

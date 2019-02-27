@@ -1,5 +1,5 @@
-
 FLAGS = {}
+
 
 def file_exists(path):
     try:
@@ -8,6 +8,7 @@ def file_exists(path):
     except:
         return False
     return False
+
 
 def register_filters(app):
 
@@ -34,7 +35,8 @@ def register_filters(app):
         from flask import g
 
         LOCALISATION_NAMES_BY_LANGUAGE = current_app.config.LOCALISATION_NAMES_BY_LANGUAGE
-        return LOCALISATION_NAMES_BY_LANGUAGE.get(_iso, LOCALISATION_NAMES_BY_LANGUAGE.get(g.orig_from, _iso))
+        return LOCALISATION_NAMES_BY_LANGUAGE.get(
+            _iso, LOCALISATION_NAMES_BY_LANGUAGE.get(g.orig_from, _iso))
 
     @app.template_filter('iso_display_relabel')
     def iso_display_relabel(_iso):
@@ -71,10 +73,12 @@ def register_filters(app):
     @app.template_filter('is_variant_of')
     def is_variant_of(s, items):
         is_variant = False
-        available_variants = sum([i.get('input_variants') for k, i in items if i.get('input_variants')]
-                                 , [])
-        is_variant = any([True for av in available_variants
-                          if av.get('short_name') == s])
+        available_variants = sum([
+            i.get('input_variants')
+            for k, i in items if i.get('input_variants')
+        ], [])
+        is_variant = any(
+            [True for av in available_variants if av.get('short_name') == s])
         return is_variant
 
     @app.template_filter('iso_to_i18n')
@@ -96,14 +100,9 @@ def register_filters(app):
         target_word, paren, rest = s.partition('(')
 
         if paren:
-            return '<a href="%s">%s</a> (%s' % ( link_src
-                                               , target_word
-                                               , rest
-                                               )
+            return '<a href="%s">%s</a> (%s' % (link_src, target_word, rest)
         else:
-            return '<a href="%s">%s</a>' % ( link_src
-                                           , target_word
-                                           )
+            return '<a href="%s">%s</a>' % (link_src, target_word)
 
     @app.template_filter('tagfilter')
     def tagfilter(*args, **kwargs):

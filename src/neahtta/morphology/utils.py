@@ -6,6 +6,7 @@ __all__ = [
     'tagfilter_conf',
 ]
 
+
 def tagfilter_conf(filters, s, *args, **kwargs):
     """ A helper function for filters to extract app.config from the
     function for import in other modules.
@@ -62,18 +63,17 @@ def tagfilter_conf(filters, s, *args, **kwargs):
 
     # Sort the replacements from longest set of tags to shortest
     multi_replacements = sorted(
-        multi_replacements,
-        key=lambda (x, y): x.count('+'),
-        reverse=True)
+        multi_replacements, key=lambda (x, y): x.count('+'), reverse=True)
 
     # return matches and their indexes in the original list
     def subfinder(mylist, pattern):
         matches = []
         for i in range(len(mylist)):
             # if this element is a match, and a sublist matching the
-            # length is a match ... 
-            if mylist[i] == pattern[0] and mylist[i:i+len(pattern)] == pattern:
-                matches.append((pattern, (i, i+len(pattern))))
+            # length is a match ...
+            if mylist[i] == pattern[0] and mylist[i:i +
+                                                  len(pattern)] == pattern:
+                matches.append((pattern, (i, i + len(pattern))))
         return matches
 
     longest_matches = []
@@ -89,8 +89,8 @@ def tagfilter_conf(filters, s, *args, **kwargs):
                 longest_matches.append((m, tg))
 
     if len(longest_matches) > 0:
-        longest_matches = sorted(longest_matches, key=lambda (x, _): len(x),
-                                 reverse=True)
+        longest_matches = sorted(
+            longest_matches, key=lambda (x, _): len(x), reverse=True)
         longest_match = longest_matches[0]
     else:
         longest_match = False
@@ -125,22 +125,27 @@ def tagfilter_conf(filters, s, *args, **kwargs):
     if not completely_replaced:
         for part in parts:
             # try part, and if it doesn't work, then try part.lower()
-            _f_part = filters.get( part
-                                 , filters.get( part.lower()
-                                              , part
-                                              )
-                                 )
+            _f_part = filters.get(part, filters.get(part.lower(), part))
             filtered.append(_f_part)
 
     return tagsep.join([a for a in filtered if a.strip()])
 
-def tagfilter(s, lang_iso, targ_lang, generation=False, tagset=False, tagsep=' '):
+
+def tagfilter(s,
+              lang_iso,
+              targ_lang,
+              generation=False,
+              tagset=False,
+              tagsep=' '):
     if tagset:
-        filters = current_app.config.tag_filters.get((lang_iso, targ_lang, tagset), False)
+        filters = current_app.config.tag_filters.get(
+            (lang_iso, targ_lang, tagset), False)
     elif generation:
-        filters = current_app.config.tag_filters.get((lang_iso, targ_lang, 'generation'), False)
+        filters = current_app.config.tag_filters.get(
+            (lang_iso, targ_lang, 'generation'), False)
     else:
-        filters = current_app.config.tag_filters.get((lang_iso, targ_lang), False)
+        filters = current_app.config.tag_filters.get((lang_iso, targ_lang),
+                                                     False)
 
     if filters:
         return tagfilter_conf(filters, s, tagsep=tagsep)

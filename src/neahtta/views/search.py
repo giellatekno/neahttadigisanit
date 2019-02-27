@@ -15,15 +15,8 @@ from utils.logger import *
 from utils.data import *
 from utils.encoding import *
 
-from flask import ( request
-                  , session
-                  , Response
-                  , render_template
-                  , abort
-                  , redirect
-                  , g
-                  , url_for
-                  )
+from flask import (request, session, Response, render_template, abort,
+                   redirect, g, url_for)
 
 from flask.ext.babel import gettext as _
 
@@ -37,7 +30,6 @@ from .reader import json_response
 from .custom_rendering import template_rendering_overrides
 
 from operator import itemgetter
-
 
 user_log = getLogger("user_log")
 
@@ -57,17 +49,17 @@ user_log = getLogger("user_log")
 ####   simplify the amount of context that is needed to be passed into
 ####   templates. SearchResult object should actually be enough.
 
-class AppViewSettingsMixin(object):
 
+class AppViewSettingsMixin(object):
     def __init__(self, *args, **kwargs):
 
         # Apply some default values for the present application
 
         self.default_from, self.default_to = current_app.config.default_language_pair
-        self.default_pair_settings = current_app.config.pair_definitions[( self.default_from
-                                                                         , self.default_to
-                                                                         )]
+        self.default_pair_settings = current_app.config.pair_definitions[(
+            self.default_from, self.default_to)]
         super(AppViewSettingsMixin, self).__init__(*args, **kwargs)
+
 
 class DictionaryView(MethodView):
 
@@ -85,7 +77,8 @@ class DictionaryView(MethodView):
         kwargs passed here will end up in the context passsed to
         templates. """
 
-        current_pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(_from, _to)
+        current_pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(
+            _from, _to)
 
         o_pair = orig_pair_opts.get('orig_pair')
         if orig_pair_opts.get('orig_pair') != ():
@@ -97,43 +90,48 @@ class DictionaryView(MethodView):
 
         if 'search_variant_type' in kwargs:
             _t = kwargs['search_variant_type']
-            variants = [v for v in current_pair_settings.get('search_variants')
-                        if v.get('type') == _t]
+            variants = [
+                v for v in current_pair_settings.get('search_variants')
+                if v.get('type') == _t
+            ]
             if len(variants) > 0:
                 current_search_variant = variants[0]
 
         shared_context = {
-            'display_swap': self.get_reverse_pair(_from, _to),
-            'current_pair_settings': current_pair_settings,
-            'current_variant_options': orig_pair_opts.get('variant_options'),
-            'current_search_variant': current_search_variant,
-            'current_locale': get_locale(),
-            '_from': _from,
-            '_to': _to,
-            'orig_from': orig_from,
-            'orig_to': orig_to,
-            'last_searches': session.get('last_searches-' + current_app.config.short_name, []),
+            'display_swap':
+            self.get_reverse_pair(_from, _to),
+            'current_pair_settings':
+            current_pair_settings,
+            'current_variant_options':
+            orig_pair_opts.get('variant_options'),
+            'current_search_variant':
+            current_search_variant,
+            'current_locale':
+            get_locale(),
+            '_from':
+            _from,
+            '_to':
+            _to,
+            'orig_from':
+            orig_from,
+            'orig_to':
+            orig_to,
+            'last_searches':
+            session.get('last_searches-' + current_app.config.short_name, []),
         }
 
         shared_context.update(**kwargs)
 
         # Render some additional templates
         search_info = current_app.lexicon_templates.render_individual_template(
-            _from,
-            'search_info.template',
-            **shared_context
-        )
+            _from, 'search_info.template', **shared_context)
         search_form = current_app.lexicon_templates.render_individual_template(
-            _from,
-            'index_search_form.template',
-            **shared_context
-        )
+            _from, 'index_search_form.template', **shared_context)
         shared_context['search_info_template'] = search_info
         shared_context['index_search_form'] = search_form
 
         shared_context.update(**orig_pair_opts)
         return shared_context
-
 
     def get_lemma_lookup_args(self):
         lemma_lookup_args = {}
@@ -154,7 +152,8 @@ class DictionaryView(MethodView):
 
         from flask.ext.babel import refresh
 
-        pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(_from, _to)
+        pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(
+            _from, _to)
 
         opts = orig_pair_opts.get('variant_options')
 
@@ -164,7 +163,8 @@ class DictionaryView(MethodView):
             layout_forces = opts.get('force_locale', {})
 
             if current_locale in layout_forces:
-                session['force_locale'] = session['locale'] = layout_forces[current_locale]
+                session['force_locale'] = session['locale'] = layout_forces[
+                    current_locale]
                 # Refresh the localization infos, and send the user back whence they
                 # came.
                 refresh()
@@ -182,9 +182,12 @@ class DictionaryView(MethodView):
 
         # TODO: move this to config object.
 
-        pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(_from, _to)
-        _r_from, _r_to = orig_pair_opts.get('swap_from'), orig_pair_opts.get('swap_to')
-        reverse_exists = current_app.config.dictionaries.get((_r_from, _r_to), False)
+        pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(
+            _from, _to)
+        _r_from, _r_to = orig_pair_opts.get('swap_from'), orig_pair_opts.get(
+            'swap_to')
+        reverse_exists = current_app.config.dictionaries.get((_r_from, _r_to),
+                                                             False)
 
         # check to see if the reversed pair is not a variant
         #What does this mean? This code swap the pair previously reverted and
@@ -201,6 +204,7 @@ class DictionaryView(MethodView):
 
         #return reverse_exists or reverse_variant_exists
         return reverse_exists
+
 
 class IndexSearchPage(DictionaryView, AppViewSettingsMixin):
     """ A simple view to handle potential mobile redirects to a default
@@ -225,7 +229,8 @@ class IndexSearchPage(DictionaryView, AppViewSettingsMixin):
 
         if mobile_redirect_pair:
             ff, tt = tuple(mobile_redirect_pair)
-            target_url = url_for('views.canonical_root_search_pair', _from=ff, _to=tt)
+            target_url = url_for(
+                'views.canonical_root_search_pair', _from=ff, _to=tt)
             if request.user_agent.platform in ['iphone', 'android']:
                 mobile = True
                 # Only redirect if the user isn't coming back to the home page
@@ -251,8 +256,10 @@ class IndexSearchPage(DictionaryView, AppViewSettingsMixin):
                                                , False
                                                )
 
-        current_pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(self.default_from, self.default_to)
-        template_context = self.get_shared_context(self.default_from, self.default_to)
+        current_pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(
+            self.default_from, self.default_to)
+        template_context = self.get_shared_context(self.default_from,
+                                                   self.default_to)
 
         o_pair = orig_pair_opts.get('orig_pair')
         if orig_pair_opts.get('orig_pair') != ():
@@ -261,20 +268,32 @@ class IndexSearchPage(DictionaryView, AppViewSettingsMixin):
             orig_from, orig_to = self.default_from, self.default_to
 
         template_context.update({
-            'display_swap': reverse_exists,
-            'swap_from': self.default_to,
-            'swap_to': self.default_from,
-            'show_info': True,
-            'current_pair_settings': current_pair_settings,
-            'current_variant_options': orig_pair_opts.get('variant_options'),
-            'current_locale': get_locale(),
-            '_from': self.default_from,
-            '_to': self.default_to,
-            'orig_from': orig_from,
-            'orig_to': orig_to,
+            'display_swap':
+            reverse_exists,
+            'swap_from':
+            self.default_to,
+            'swap_to':
+            self.default_from,
+            'show_info':
+            True,
+            'current_pair_settings':
+            current_pair_settings,
+            'current_variant_options':
+            orig_pair_opts.get('variant_options'),
+            'current_locale':
+            get_locale(),
+            '_from':
+            self.default_from,
+            '_to':
+            self.default_to,
+            'orig_from':
+            orig_from,
+            'orig_to':
+            orig_to,
         })
 
         return render_template(self.template_name, **template_context)
+
 
 class SearchResult(object):
     """ This object is the lexicon lookup search result. It mostly
@@ -295,9 +314,7 @@ class SearchResult(object):
     def formatted_results_sorted(self):
         """ Formatted results sorted by entry_sorter_key
         """
-        return sorted( self.formatted_results
-                     , key=self.entry_sorter_key
-                     )
+        return sorted(self.formatted_results, key=self.entry_sorter_key)
 
     @property
     def formatted_results_pickleable(self):
@@ -333,22 +350,23 @@ class SearchResult(object):
         lemma = l.xpath(_str_norm % './text()')
 
         paradigm_from_file, paradigm_template = mlex.paradigms.get_paradigm(
-            g._from, node, morph_analyses, return_template=True
-        )
+            g._from, node, morph_analyses, return_template=True)
         if paradigm_from_file:
             extra_log_info = {
                 'template_path': paradigm_template,
             }
 
-            _generated, _stdout, _stderr = morph.generate_to_objs(lemma,
-                                                                  paradigm_from_file,
-                                                                  node,
-                                                                  extra_log_info=extra_log_info,
-                                                                  return_raw_data=True,
-                                                                  no_preprocess_paradigm=True)
+            _generated, _stdout, _stderr = morph.generate_to_objs(
+                lemma,
+                paradigm_from_file,
+                node,
+                extra_log_info=extra_log_info,
+                return_raw_data=True,
+                no_preprocess_paradigm=True)
         else:
             # For pregenerated things
-            _generated, _stdout, _stderr = morph.generate_to_objs(lemma, [], node, return_raw_data=True)
+            _generated, _stdout, _stderr = morph.generate_to_objs(
+                lemma, [], node, return_raw_data=True)
         self.debug_text += '\n\n' + _stdout + '\n\n'
 
         return _generated
@@ -360,11 +378,12 @@ class SearchResult(object):
 
         self._formatted_results = []
 
-        fmtkwargs = { 'target_lang': self._to
-                    , 'source_lang': self._from
-                    , 'ui_lang': g.ui_lang
-                    , 'user_input': self.user_input
-                    }
+        fmtkwargs = {
+            'target_lang': self._to,
+            'source_lang': self._from,
+            'ui_lang': g.ui_lang,
+            'user_input': self.user_input
+        }
 
         # Formatting of this stuff should be moved somewhere more
         # reasonable.
@@ -374,8 +393,7 @@ class SearchResult(object):
                 _formatted = self.formatter(
                     [result],
                     additional_template_kwargs={'analyses': morph_analyses},
-                    **fmtkwargs
-                )
+                    **fmtkwargs)
 
                 if self.entry_filterer:
                     _formatted = self.entry_filterer(_formatted)
@@ -392,11 +410,14 @@ class SearchResult(object):
         self._entries = [a for a, _ in self.entries_and_tags]
         return self._entries
 
-    def sort_entries_and_tags_and_paradigm(self, unsorted_entries_and_tags_and_paradigms):
-        has_custom_sort = template_rendering_overrides.sort_entry_list_display.get((g._from, g._to), False)
+    def sort_entries_and_tags_and_paradigm(
+            self, unsorted_entries_and_tags_and_paradigms):
+        has_custom_sort = template_rendering_overrides.sort_entry_list_display.get(
+            (g._from, g._to), False)
 
         if has_custom_sort:
-            return has_custom_sort(self, unsorted_entries_and_tags_and_paradigms)
+            return has_custom_sort(self,
+                                   unsorted_entries_and_tags_and_paradigms)
 
         def sort_key((lex, morph, p, l)):
             _str_norm = 'string(normalize-space(%s))'
@@ -463,18 +484,20 @@ class SearchResult(object):
                                                            multiple=True)
 
                     if layouts:
-                        has_layout = [l.for_paradigm(paradigm).fill_generation() for (l, _) in layouts if l]
+                        has_layout = [
+                            l.for_paradigm(paradigm).fill_generation()
+                            for (l, _) in layouts if l
+                        ]
                         if len(has_layout) == 0:
                             has_layout = False
 
-                self._entries_and_tags_and_paradigms.append((result,
-                                                             morph_analyses,
-                                                             paradigm,
-                                                             has_layout))
+                self._entries_and_tags_and_paradigms.append(
+                    (result, morph_analyses, paradigm, has_layout))
 
         # TODO: custom alphabetical order.
         # TODO: sorting_problem
-        return self.sort_entries_and_tags_and_paradigm(self._entries_and_tags_and_paradigms)
+        return self.sort_entries_and_tags_and_paradigm(
+            self._entries_and_tags_and_paradigms)
 
     @property
     def analyses_without_lex(self):
@@ -489,7 +512,17 @@ class SearchResult(object):
         return self._analyses_without_lex
 
     ##def __init__(self, _from, _to, user_input, entries_and_tags, entries_and_tags_r, formatter, generate, sorter=None, filterer=None, debug_text=False, other_counts={}):
-    def __init__(self, _from, _to, user_input, entries_and_tags, formatter, generate, sorter=None, filterer=None, debug_text=False, other_counts={}):
+    def __init__(self,
+                 _from,
+                 _to,
+                 user_input,
+                 entries_and_tags,
+                 formatter,
+                 generate,
+                 sorter=None,
+                 filterer=None,
+                 debug_text=False,
+                 other_counts={}):
         self.user_input = user_input
         self.search_term = user_input
         self.entries_and_tags = entries_and_tags
@@ -509,9 +542,8 @@ class SearchResult(object):
         if filterer is not None:
             self.entry_filterer = filterer
 
-        self.analyses = [ (lem.input, lem.lemma, list(lem.tag))
-                          for lem in entries_and_tags.analyses
-                        ]
+        self.analyses = [(lem.input, lem.lemma, list(lem.tag))
+                         for lem in entries_and_tags.analyses]
         ##self.analyses_r = [ (lem_r.input, lem_r.lemma, list(lem_r.tag))
         ##                  for lem_r in entries_and_tags_r.analyses
         ##                ]
@@ -519,11 +551,13 @@ class SearchResult(object):
         if len(self.formatted_results) > 0:
             self.successful_entry_exists = True
 
+
 class SearcherMixin(object):
     """ This mixin provides common methods for performing the search,
     and returning view-ready results.
     """
     entr_r = []
+
     def do_search_to_obj(self, lookup_value, **kwargs):
         """ Run the search, and provide a result object.
         """
@@ -542,18 +576,18 @@ class SearcherMixin(object):
 
         variant_type = kwargs.get('variant_type', False)
         if variant_type:
-            morpholex_result = mlex.variant_lookup( variant_type
-                                                  , lookup_value
-                                                  , source_lang=g._from
-                                                  , target_lang=g._to
-                                                  , **search_kwargs
-                                                  )
+            morpholex_result = mlex.variant_lookup(
+                variant_type,
+                lookup_value,
+                source_lang=g._from,
+                target_lang=g._to,
+                **search_kwargs)
         else:
-            morpholex_result = mlex.lookup( lookup_value
-                                          , source_lang=g._from
-                                          , target_lang=g._to
-                                          , **search_kwargs
-                                          )
+            morpholex_result = mlex.lookup(
+                lookup_value,
+                source_lang=g._from,
+                target_lang=g._to,
+                **search_kwargs)
 
         def count_others():
             """ This counts the results available in other language
@@ -562,7 +596,7 @@ class SearcherMixin(object):
 
             def count_tg(e, l):
                 if e is not None:
-                    c = int( e.xpath("count(./mg/tg[@xml:lang='%s']/t)" % l) )
+                    c = int(e.xpath("count(./mg/tg[@xml:lang='%s']/t)" % l))
                 else:
                     c = 0
                 return c
@@ -608,14 +642,17 @@ class SearcherMixin(object):
                                          debug_text=fst_text,
                                          other_counts=others,
                                          )'''##
-        search_result_obj = SearchResult(g._from, g._to, lookup_value,
-                                         entries_and_tags,
-                                         self.formatter,
-                                         generate=generate,
-                                         filterer=self.entry_filterer,
-                                         debug_text=fst_text,
-                                         other_counts=others,
-                                         )
+        search_result_obj = SearchResult(
+            g._from,
+            g._to,
+            lookup_value,
+            entries_and_tags,
+            self.formatter,
+            generate=generate,
+            filterer=self.entry_filterer,
+            debug_text=fst_text,
+            other_counts=others,
+        )
 
         return search_result_obj
 
@@ -629,18 +666,23 @@ class SearcherMixin(object):
 
         errors = []
 
-        search_result_obj = self.do_search_to_obj(lookup_value, generate=True, **search_kwargs)
+        search_result_obj = self.do_search_to_obj(
+            lookup_value, generate=True, **search_kwargs)
 
         template_results = [{
-            'input': search_result_obj.search_term,
-            'lookups': search_result_obj.formatted_results_sorted
+            'input':
+            search_result_obj.search_term,
+            'lookups':
+            search_result_obj.formatted_results_sorted
             # 'analyses': search_result_obj.analyses
         }]
 
-        logIndexLookups(search_result_obj.search_term,
-                        template_results,
-                        g._from,
-                        g._to,)
+        logIndexLookups(
+            search_result_obj.search_term,
+            template_results,
+            g._from,
+            g._to,
+        )
 
         show_info = False
 
@@ -652,8 +694,8 @@ class SearcherMixin(object):
             'result': search_result_obj.formatted_results_sorted,
 
             # These variables can be turned into something more general
-            'successful_entry_exists': search_result_obj.successful_entry_exists,
-
+            'successful_entry_exists':
+            search_result_obj.successful_entry_exists,
             'word_searches': template_results,
             'analyses': search_result_obj.analyses,
             ##'analyses_right': search_result_obj.analyses_r,
@@ -663,7 +705,7 @@ class SearcherMixin(object):
             'current_locale': get_locale(),
 
             # ?
-            'errors': errors, # is this actually getting set?
+            'errors': errors,  # is this actually getting set?
             'show_info': show_info,
             'language_pairs_other_results': search_result_obj.other_results,
             'debug_text': search_result_obj.debug_text
@@ -672,7 +714,10 @@ class SearcherMixin(object):
         return search_context
 
     # TODO: NST removal
-    def search_to_context(self, lookup_value, detailed=False, **default_context_kwargs):
+    def search_to_context(self,
+                          lookup_value,
+                          detailed=False,
+                          **default_context_kwargs):
         """ This needs a big redo.
 
             Note however: new-style templates require similar input
@@ -686,7 +731,8 @@ class SearcherMixin(object):
               * search_context - simplify
         """
 
-        current_pair, _ = current_app.config.resolve_original_pair(g._from, g._to)
+        current_pair, _ = current_app.config.resolve_original_pair(
+            g._from, g._to)
         async_paradigm = current_pair.get('asynchronous_paradigms', False)
 
         lemma_attrs = default_context_kwargs.get('lemma_attrs', {})
@@ -698,12 +744,14 @@ class SearcherMixin(object):
 
         if 'variant_type' in default_context_kwargs:
             variant_type = default_context_kwargs.get('variant_type')
-            search_result_obj = self.do_search_to_obj(lookup_value,
-                                                      generate=generate,
-                                                      lemma_attrs=lemma_attrs,
-                                                      variant_type=variant_type)
+            search_result_obj = self.do_search_to_obj(
+                lookup_value,
+                generate=generate,
+                lemma_attrs=lemma_attrs,
+                variant_type=variant_type)
         else:
-            search_result_obj = self.do_search_to_obj(lookup_value, generate=generate, lemma_attrs=lemma_attrs)
+            search_result_obj = self.do_search_to_obj(
+                lookup_value, generate=generate, lemma_attrs=lemma_attrs)
 
         if detailed:
             template = 'detail_entry.template'
@@ -713,11 +761,14 @@ class SearcherMixin(object):
         _rendered_entry_templates = []
 
         template_results = [{
-            'input': search_result_obj.search_term,
-            'lookups': search_result_obj.formatted_results_sorted
+            'input':
+            search_result_obj.search_term,
+            'lookups':
+            search_result_obj.formatted_results_sorted
         }]
 
-        logIndexLookups(search_result_obj.search_term, template_results, g._from, g._to)
+        logIndexLookups(search_result_obj.search_term, template_results,
+                        g._from, g._to)
 
         show_info = False
 
@@ -742,7 +793,7 @@ class SearcherMixin(object):
         #and are not shown in the results (e.g. "bagoheapmi")
         ##for item in search_result_obj.entries_and_tags_r:
         for item in search_result_obj.entries_and_tags:
-            if len(item[1])>0:
+            if len(item[1]) > 0:
                 if if_none and item[1][0].lemma.startswith(tags):
                     if_next_der = True
                 if item[0] != None and not item[1][0].lemma.startswith(tags):
@@ -759,25 +810,37 @@ class SearcherMixin(object):
 
         for lz, az, paradigm, has_layout in search_result_obj.entries_and_tags_and_paradigms:
             ##if k<len(search_result_obj.entries_and_tags_r):
-            if k<len(res_par):
+            if k < len(res_par):
                 ##if search_result_obj.entries_and_tags_r[k][0] is not None:
                 if res_par[k][0] is not None:
                     if len(az) == 0:
                         az = 'az'
 
                     ##tplkwargs = { 'lexicon_entry': search_result_obj.entries_and_tags_r[k][0]
-                    tplkwargs = { 'lexicon_entry': res_par[k][0]
-                                , 'analyses': az
-                                ##, 'analyses_right': search_result_obj.entries_and_tags_r[k][1]
-                                , 'analyses_right': res_par[k][1]
-                                , 'paradigm': paradigm
-                                , 'layout': has_layout
-                                , 'user_input': search_result_obj.search_term
-                                , 'word_searches': template_results
-                                , 'errors': False
-                                , 'show_info': show_info
-                                , 'successful_entry_exists': search_result_obj.successful_entry_exists
-                                }
+                    tplkwargs = {
+                        'lexicon_entry':
+                        res_par[k][0],
+                        'analyses':
+                        az
+                        ##, 'analyses_right': search_result_obj.entries_and_tags_r[k][1]
+                        ,
+                        'analyses_right':
+                        res_par[k][1],
+                        'paradigm':
+                        paradigm,
+                        'layout':
+                        has_layout,
+                        'user_input':
+                        search_result_obj.search_term,
+                        'word_searches':
+                        template_results,
+                        'errors':
+                        False,
+                        'show_info':
+                        show_info,
+                        'successful_entry_exists':
+                        search_result_obj.successful_entry_exists
+                    }
 
                     tplkwargs.update(**default_context_kwargs)
 
@@ -785,11 +848,12 @@ class SearcherMixin(object):
                     current_app.update_template_context(tplkwargs)
 
                     _rendered_entry_templates.append(
-                        current_app.lexicon_templates.render_template(g._from, template, **tplkwargs)
-                    )
+                        current_app.lexicon_templates.render_template(
+                            g._from, template, **tplkwargs))
                 k += 1
 
-        all_az = sum([az for _, az in (search_result_obj.entries_and_tags)], [])
+        all_az = sum([az for _, az in (search_result_obj.entries_and_tags)],
+                     [])
         #all_az = sum([az for _, az in sorted(search_result_obj.entries_and_tags, key=sort_entry)], [])
 
         indiv_template_kwargs = {
@@ -806,7 +870,6 @@ class SearcherMixin(object):
 
         header_template = \
             current_app.lexicon_templates.render_individual_template(g._from, 'includes.template', **indiv_template_kwargs)
-
 
         if search_result_obj.analyses_without_lex:
             leftover_tpl_kwargs = {
@@ -828,33 +891,44 @@ class SearcherMixin(object):
         search_context = {
 
             # This is the new style stuff.
-            'entry_templates': _rendered_entry_templates,
-            'entry_template_header_includes': header_template,
-
-            'leftover_analyses_template': leftover_analyses_template,
-            'all_analysis_template': all_analysis_template,
+            'entry_templates':
+            _rendered_entry_templates,
+            'entry_template_header_includes':
+            header_template,
+            'leftover_analyses_template':
+            leftover_analyses_template,
+            'all_analysis_template':
+            all_analysis_template,
 
             # These variables can be turned into something more general
-            'successful_entry_exists': search_result_obj.successful_entry_exists,
-
-            'word_searches': template_results,
-            'analyses': search_result_obj.analyses,
+            'successful_entry_exists':
+            search_result_obj.successful_entry_exists,
+            'word_searches':
+            template_results,
+            'analyses':
+            search_result_obj.analyses,
             ##'analyses_right': search_result_obj.analyses_r,
-            'analyses_right': search_result_obj.analyses,
-            'analyses_without_lex': search_result_obj.analyses_without_lex,
-            'user_input': search_result_obj.search_term,
-
-            'last_searches': session.get('last_searches-' + current_app.config.short_name, []),
-
-            # ?
-            'errors': False, # where should we expect errors?
-            'language_pairs_other_results': search_result_obj.other_results,
-            'debug_text': search_result_obj.debug_text
+            'analyses_right':
+            search_result_obj.analyses,
+            'analyses_without_lex':
+            search_result_obj.analyses_without_lex,
+            'user_input':
+            search_result_obj.search_term,
+            'last_searches':
+            session.get('last_searches-' + current_app.config.short_name, []),
+            'errors':
+            False,  # where should we expect errors?
+            'language_pairs_other_results':
+            search_result_obj.other_results,
+            'debug_text':
+            search_result_obj.debug_text
         }
 
         search_context.update(**default_context_kwargs)
 
-        return self.post_search_context_modification(search_result_obj, search_context)
+        return self.post_search_context_modification(search_result_obj,
+                                                     search_context)
+
 
 class LanguagePairSearchView(DictionaryView, SearcherMixin):
     """ This view returns either the search form, or processes the
@@ -877,7 +951,8 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
 
     def log_in_session(self, user_input):
 
-        uri = u'%s://%s%s?lookup=%s' % (request.scheme, request.host, request.path, user_input)
+        uri = u'%s://%s%s?lookup=%s' % (request.scheme, request.host,
+                                        request.path, user_input)
 
         last_search_key = 'last_searches-' + current_app.config.short_name
         if last_search_key in session:
@@ -907,7 +982,7 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
             'user_input': False,
 
             # ?
-            'errors': False, # is this actually getting set?
+            'errors': False,  # is this actually getting set?
 
             # Show the default info under search box
             'show_info': True,
@@ -919,7 +994,8 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
             if current_app.config.strip_spaces:
                 user_input = user_input.strip()
             # This performs lots of the work...
-            search_result_context = self.search_to_context(user_input, **self.get_shared_context(_from, _to))
+            search_result_context = self.search_to_context(
+                user_input, **self.get_shared_context(_from, _to))
 
             self.log_in_session(user_input)
 
@@ -949,8 +1025,8 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
         self.log_in_session(user_input)
 
         # This performs lots of the work...
-        search_result_context = self.search_to_context(user_input, **self.get_shared_context(_from, _to))
-
+        search_result_context = self.search_to_context(
+            user_input, **self.get_shared_context(_from, _to))
 
         # missing current_pair_settings
         return render_template(self.template_name, **search_result_context)
@@ -985,10 +1061,12 @@ class ReferredLanguagePairSearchView(LanguagePairSearchView):
         lookup_context['lemma_attrs'] = self.get_lemma_lookup_args()
 
         # This performs lots of the work...
-        search_result_context = self.search_to_context(user_input, **lookup_context)
+        search_result_context = self.search_to_context(user_input,
+                                                       **lookup_context)
 
         # missing current_pair_settings
         return render_template(self.template_name, **search_result_context)
+
 
 class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
     """ The major difference between this view and the main index search
@@ -1216,7 +1294,7 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
         # search_result_context.detailed_entry_pickleable)
 
         # search_result_context.update(**self.get_shared_context(_from, _to))
-# cip's test
+        # cip's test
         search_result_context['has_analyses'] = has_analyses
         search_result_context['more_detail_link'] = want_more_detail
 

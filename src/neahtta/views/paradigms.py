@@ -24,26 +24,18 @@ History:
 
 """
 from __future__ import print_function
-from . import blueprint
+
 import inspect
 
+from flask import (Response, abort, current_app, g, json, redirect,
+                   render_template, request, session)
+from i18n.utils import get_locale
 from morphology.utils import tagfilter
-from flask import ( request
-                  , current_app
-                  , json
-                  , session
-                  , Response
-                  , render_template
-                  , abort
-                  , redirect
-                  , g
-                  )
-
-from .search import DictionaryView, SearcherMixin
-from .reader import json_response
 from utils.encoding import decodeOrFail
 
-from i18n.utils import get_locale
+from . import blueprint
+from .reader import json_response
+from .search import DictionaryView, SearcherMixin
 
 __all__ = [
     'ParadigmLanguagePairSearchView',
@@ -56,16 +48,9 @@ def lineno():
 
 
 def json_response_pretty(data, *args, **kwargs):
-    data = json.dumps( data
-                     , sort_keys=True
-                     , indent=4
-                     , separators=(',', ': ')
-                     )
+    data = json.dumps(data, sort_keys=True, indent=4, separators=(',', ': '))
 
-    return Response( response=data
-                   , status=200
-                   , mimetype="application/json"
-                   )
+    return Response(response=data, status=200, mimetype="application/json")
 
 
 class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
@@ -110,12 +95,13 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
         e_node = request.args.get('e_node', False)
 
         # Sjekk om paradigmene er mellomlagret
-        cache_key = '+'.join([a for a in [
-            _from,
-            lemma,
-            pos_filter,
-            e_node,
-        ] if a])
+        cache_key = '+'.join(
+            [a for a in [
+                _from,
+                lemma,
+                pos_filter,
+                e_node,
+            ] if a])
 
         paradigms = current_app.cache.get(cache_key.encode('utf-8'))
 
@@ -134,7 +120,6 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
                                         **search_kwargs)
 
         return [map(filter_tag, paradigm) for paradigm in paradigms]
-
 
     def get(self, _from, _to, lemma):
         # TODO: submit and process on separate thread, optional poll
@@ -164,17 +149,14 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
         })
 
     def search_to_paradigm(self, lookup_value, **search_kwargs):
+        search_result_obj = self.do_search_to_obj(
+            lookup_value, generate=True, **search_kwargs)
 
-        errors = []
-
-        search_result_obj = self.do_search_to_obj(lookup_value, generate=True, **search_kwargs)
-
-        paradigms = []
-
-        for entry, tag, paradigm, layouts in search_result_obj.entries_and_tags_and_paradigms:
-            paradigms.append(paradigm)
-
-        return paradigms
+        print(lineno(), search_result_obj)
+        return [
+            paradigm for _, _, paradigm, _ in search_result_obj.
+            entries_and_tags_and_paradigms
+        ]
 
     def entry_filterer(self, entries, **kwargs):
         """ Runs on formatted result from DetailedFormat thing

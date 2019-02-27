@@ -1,9 +1,7 @@
-from flask import ( request
-                  , redirect
-                  , session
-                  )
+from flask import (request, redirect, session)
 
 from . import blueprint
+
 
 def set_locale(iso):
     from flask.ext.babel import refresh
@@ -23,4 +21,3 @@ def set_locale(iso):
         return redirect(request.referrer)
     else:
         return redirect('/')
-

@@ -1,6 +1,5 @@
 ﻿from lxml import etree
 from lookups import SearchTypes
-
 """ Our project-wide search_types repository. """
 search_types = SearchTypes({})
 
@@ -15,8 +14,10 @@ DEFAULT_XPATHS = {
     'pos': 'lg/l/@pos',
 }
 
+
 def hash_node(node):
     return unicode(hash(etree.tostring(node)))
+
 
 class LexiconOverrides(object):
     """ Class for collecting functions marked with decorators that
@@ -58,6 +59,7 @@ class LexiconOverrides(object):
         also captures the input arguments, making them available to each
         function in the registry.
         """
+
         def decorate(*args, **kwargs):
             lang_pair = lexicon_language_pairs.get(args)
             _from = args[0]
@@ -66,17 +68,20 @@ class LexiconOverrides(object):
             for f in self.prelookup_processors[_from]:
                 newargs, newkwargs = f(*newargs, **newkwargs)
             return function(*newargs, **newkwargs)
+
         return decorate
 
     def process_postlookups(self, lexicon_language_pairs, function):
         """ Lexicon lookups are passed through all of these functions
         """
+
         def decorate(*lang_pair_args, **kwargs):
             lang_pair = lexicon_language_pairs.get(lang_pair_args)
             result_nodes = function(*lang_pair_args, **kwargs)
             for f in self.postlookup_filters[lang_pair_args]:
                 result_nodes = f(lang_pair, result_nodes, kwargs)
             return result_nodes
+
         return decorate
 
     ##
@@ -94,6 +99,7 @@ class LexiconOverrides(object):
         selects the registered function and executes it.
 
         """
+
         def wrapper(formatter_function):
             for language_iso in language_isos:
                 if language_iso in self.source_formatters:
@@ -107,11 +113,13 @@ class LexiconOverrides(object):
                           ( language_iso
                           , formatter_function.__name__
                           )
+
         return wrapper
 
     def entry_target_formatter(self, *iso_pairs):
         """ Register a function for a language ISO
         """
+
         def wrapper(formatter_function):
             for (src_iso, targ_iso) in iso_pairs:
                 if (src_iso, targ_iso) in self.target_formatters:
@@ -120,11 +128,13 @@ class LexiconOverrides(object):
                     print '   ignoring redefinition on <%s>.' % \
                         formatter_function.__name__
                 else:
-                    self.target_formatters[(src_iso, targ_iso)] = formatter_function
+                    self.target_formatters[(src_iso,
+                                            targ_iso)] = formatter_function
                     print '%s formatter: entry formatter for target - %s' %\
                           ( '%s - %s' % (src_iso, targ_iso)
                           , formatter_function.__name__
                           )
+
         return wrapper
 
     def pre_lookup_tag_rewrite_for_iso(self, *language_isos):
@@ -151,6 +161,7 @@ class LexiconOverrides(object):
         'Prop' so that it may be found in a lexical entry containing
         a 'Prop' attribute.
         """
+
         def wrapper(restrictor_function):
             for language_iso in language_isos:
                 self.prelookup_processors[language_iso]\
@@ -159,6 +170,7 @@ class LexiconOverrides(object):
                       ( language_iso
                       , restrictor_function.__name__
                       )
+
         return wrapper
 
     def postlookup_filters_for_lexicon(self, *lexica):
@@ -173,6 +185,7 @@ class LexiconOverrides(object):
         >>>     return nodelist
 
         """
+
         def wrapper(restrictor_function):
             for lexicon in lexica:
                 self.postlookup_filters[lexicon]\
@@ -181,6 +194,7 @@ class LexiconOverrides(object):
                       ( lexicon
                       , restrictor_function.__name__
                       )
+
         return wrapper
 
     def external_search(self, *lexica):
@@ -195,6 +209,7 @@ class LexiconOverrides(object):
         >>>     return nodelist
 
         """
+
         def wrapper(search_function):
             for shortcut_name, source, target in lexica:
                 self.external_search_redirect[(shortcut_name, source, target)] = \
@@ -216,11 +231,13 @@ class LexiconOverrides(object):
 
         self.external_search_redirect = defaultdict(bool)
 
+
 lexicon_overrides = LexiconOverrides()
 
 PARSED_TREES = {}
 
 regexpNS = "http://exslt.org/regular-expressions"
+
 
 # @search_types.add_custom_lookup_type('regular')
 class XMLDict(object):
@@ -233,7 +250,6 @@ class XMLDict(object):
     """
 
     PARSED_TREES = PARSED_TREES
-
 
     def __init__(self, filename=False, tree=False, options={}):
 
@@ -268,8 +284,7 @@ class XMLDict(object):
         _re_pos_match = """re:match(%(pos)s, $pos, "i")""" % xpaths
 
         self.lemmaStartsWith = etree.XPath(
-            ".//e[starts-with(%(pos)s, $lemma)]" % xpaths
-        )
+            ".//e[starts-with(%(pos)s, $lemma)]" % xpaths)
 
         self.lemma = etree.XPath('.//e[lg/l/text() = $lemma]')
 
@@ -278,42 +293,31 @@ class XMLDict(object):
             namespaces={'re': regexpNS})
 
         self.lemmaPOSAndType = etree.XPath(
-            ' and '.join([ './/e[lg/l/text() = $lemma'
-                         , _re_pos_match
-                         , 'lg/l/@type = $_type]'
-                         ])
-            , namespaces={'re': regexpNS}
-        )
+            ' and '.join([
+                './/e[lg/l/text() = $lemma', _re_pos_match,
+                'lg/l/@type = $_type]'
+            ]),
+            namespaces={'re': regexpNS})
 
     def XPath(self, xpathobj, *args, **kwargs):
         return xpathobj(self.tree, *args, **kwargs)
 
     def lookupLemmaStartsWith(self, lemma):
-        return self.XPath( self.lemmaStartsWith
-                         , lemma=lemma
-                         )
+        return self.XPath(self.lemmaStartsWith, lemma=lemma)
 
     def lookupLemma(self, lemma):
-        return self.XPath( self.lemma
-                         , lemma=lemma
-                         )
+        return self.XPath(self.lemma, lemma=lemma)
 
     def lookupLemmaPOS(self, lemma, pos):
         # Can't insert variables in EXSLT expressions within a compiled
         # xpath statement, so doing this.
         pos = "^%s$" % pos
-        return self.XPath( self.lemmaPOS
-                         , lemma=lemma
-                         , pos=pos
-                         )
+        return self.XPath(self.lemmaPOS, lemma=lemma, pos=pos)
 
     def lookupLemmaPOSAndType(self, lemma, pos, _type):
         pos = "^%s$" % pos
-        return self.XPath( self.lemmaPOSAndType
-                         , lemma=lemma
-                         , pos=pos
-                         , _type=_type
-                         )
+        return self.XPath(
+            self.lemmaPOSAndType, lemma=lemma, pos=pos, _type=_type)
 
     def iterate_entries(self, start=0, end=20, words=False):
 
@@ -327,7 +331,8 @@ class XMLDict(object):
             return ws
         else:
             if end:
-                _xp = etree.XPath(".//e[position() >= %s and position() < %s]" % (start, end))
+                _xp = etree.XPath(".//e[position() >= %s and position() < %s]"
+                                  % (start, end))
             else:
                 _xp = etree.XPath(".//e")
 
@@ -353,9 +358,7 @@ class XMLDict(object):
             if i % page_size == 0 and i > 0:
                 page += 1
             if last_letter != current_letter:
-                counts.append(
-                    (current_letter, page)
-                )
+                counts.append((current_letter, page))
             last_letter = current_letter
 
         return counts
@@ -373,11 +376,11 @@ class XMLDict(object):
         attr_conditions = ' and '.join(attr_conditions)
 
         _xpath_expr = ".//e[%s]" % attr_conditions
-        _xp = etree.XPath(_xpath_expr , namespaces={'re': regexpNS})
+        _xp = etree.XPath(_xpath_expr, namespaces={'re': regexpNS})
         return _xp(self.tree)
 
-class AutocompleteFilters(object):
 
+class AutocompleteFilters(object):
     def autocomplete_filter_for_lang(self, language_iso):
         def wrapper(filter_function):
             self._filters[language_iso].append(filter_function)
@@ -385,16 +388,18 @@ class AutocompleteFilters(object):
                   ( language_iso
                   , filter_function.__name__
                   )
+
         return wrapper
 
     def __init__(self, *args, **kwargs):
         from collections import defaultdict
         self._filters = defaultdict(list)
 
+
 autocomplete_filters = AutocompleteFilters()
 
-class AutocompleteTrie(XMLDict):
 
+class AutocompleteTrie(XMLDict):
     @property
     def allLemmas(self):
         """ Returns iterator for all lemmas.
@@ -436,7 +441,8 @@ class AutocompleteTrie(XMLDict):
             PARSED_TREES[parsed_key] = self.trie
 
         else:
-            self.trie = PARSED_TREES['auto-'+filename]
+            self.trie = PARSED_TREES['auto-' + filename]
+
 
 class ReverseLookups(XMLDict):
     """
@@ -462,24 +468,20 @@ class ReverseLookups(XMLDict):
         return self.XPath(_xpath)
 
     def lookupLemma(self, lemma):
-        _xpath = [ './/e[mg/tg/t/text() = "%s"' % lemma
-                 , 'not(@reverse)]'
-                 ]
+        _xpath = ['.//e[mg/tg/t/text() = "%s"' % lemma, 'not(@reverse)]']
         _xpath = ' and '.join(_xpath)
         nodes = self.XPath(_xpath)
         return self.modifyNodes(nodes)
 
     def lookupLemmaPOS(self, lemma, pos):
-        _xpath = ' and '.join(
-            [ './/e[mg/tg/t/text() = "%s"' % lemma
-            , 'not(@reverse)'
-            , 'mg/tg/t/@pos = "%s"]' % pos.lower()
-            ]
-        )
+        _xpath = ' and '.join([
+            './/e[mg/tg/t/text() = "%s"' % lemma, 'not(@reverse)',
+            'mg/tg/t/@pos = "%s"]' % pos.lower()
+        ])
         return self.XPath(_xpath)
 
-class Lexicon(object):
 
+class Lexicon(object):
     def __init__(self, settings):
         """ Create a lexicon based on the configuration.
 
@@ -502,15 +504,19 @@ class Lexicon(object):
 
         reg_type = lookup_types.get('regular', XMLDict)
 
-        language_pairs = dict(
-            [ (k, reg_type(filename=v, options=settings.dictionary_options.get(k, {})))
-              for k, v in settings.dictionaries.iteritems() ]
-        )
+        language_pairs = dict([(k,
+                                reg_type(
+                                    filename=v,
+                                    options=settings.dictionary_options.get(
+                                        k, {})))
+                               for k, v in settings.dictionaries.iteritems()])
 
         alternate_dicts = dict(
-            [ (k, reg_type(filename=v.get('path'), options=settings.dictionary_options.get(k, {})))
-              for k, v in settings.variant_dictionaries.iteritems() ]
-        )
+            [(k,
+              reg_type(
+                  filename=v.get('path'),
+                  options=settings.dictionary_options.get(k, {})))
+             for k, v in settings.variant_dictionaries.iteritems()])
 
         # run through variant searches for overrides
         variant_searches = dict()
@@ -532,19 +538,13 @@ class Lexicon(object):
 
         self.lookup = lexicon_overrides.process_postlookups(
             langs_and_alternates,
-            lexicon_overrides.process_prelookups(
-                langs_and_alternates,
-                self.lookup
-            )
-        )
+            lexicon_overrides.process_prelookups(langs_and_alternates,
+                                                 self.lookup))
 
         self.variant_lookup = lexicon_overrides.process_postlookups(
             variant_searches,
-            lexicon_overrides.process_prelookups(
-                variant_searches,
-                self.variant_lookup
-            )
-        )
+            lexicon_overrides.process_prelookups(variant_searches,
+                                                 self.variant_lookup))
 
         self.language_pairs = langs_and_alternates
 
@@ -554,10 +554,8 @@ class Lexicon(object):
                 has_root = language_pairs.get(k)
                 if has_root:
                     fname = settings.dictionaries.get(k)
-                    autocomplete_tries[k] = AutocompleteTrie( tree=has_root.tree
-                                                            , filename=fname
-                                                            , language_pair=k
-                                                            )
+                    autocomplete_tries[k] = AutocompleteTrie(
+                        tree=has_root.tree, filename=fname, language_pair=k)
 
         self.autocomplete_tries = autocomplete_tries
 
@@ -566,17 +564,14 @@ class Lexicon(object):
             available arguments, and return that lookup function.
         """
 
-        args = ( bool(lemma)
-               , bool(pos)
-               , bool(pos_type)
-               , bool(lem_args)
-               )
+        args = (bool(lemma), bool(pos), bool(pos_type), bool(lem_args))
 
-        funcs = { (True, False, False, False): lexicon.lookupLemma
-                , (True, True, False, False):  lexicon.lookupLemmaPOS
-                , (True, True, True, False):   lexicon.lookupLemmaPOSAndType
-                , (False, False, False, True): lexicon.lookupOtherLemmaAttr
-                }
+        funcs = {
+            (True, False, False, False): lexicon.lookupLemma,
+            (True, True, False, False): lexicon.lookupLemmaPOS,
+            (True, True, True, False): lexicon.lookupLemmaPOSAndType,
+            (False, False, False, True): lexicon.lookupOtherLemmaAttr
+        }
 
         largs = [lemma]
 
@@ -638,10 +633,15 @@ class Lexicon(object):
 
         return result
 
-
-    def lookup(self, _from, _to, lemma,
-               pos=False, pos_type=False,
-               _format=False, lemma_attrs=False, user_input=False):
+    def lookup(self,
+               _from,
+               _to,
+               lemma,
+               pos=False,
+               pos_type=False,
+               _format=False,
+               lemma_attrs=False,
+               user_input=False):
         """ Perform a lexicon lookup. Depending on the keyword
         arguments, several types of lookups may be performed.
 
@@ -670,18 +670,13 @@ class Lexicon(object):
         if not _dict:
             raise Exception("Undefined language pair %s %s" % (_from, _to))
 
-        _lookup_func, largs = self.get_lookup_type(_dict, lemma, pos, pos_type, lemma_attrs)
+        _lookup_func, largs = self.get_lookup_type(_dict, lemma, pos, pos_type,
+                                                   lemma_attrs)
 
         if not _lookup_func and lemma is not None:
             raise Exception(
-                "Unknown lookup type for <%s> (lemma: %s, pos: %s, pos_type: %s, lemma_attrs: %s)" %
-                ( user_input
-                , lemma
-                , pos
-                , pos_type
-                , repr(lemma_attrs)
-                )
-            )
+                "Unknown lookup type for <%s> (lemma: %s, pos: %s, pos_type: %s, lemma_attrs: %s)"
+                % (user_input, lemma, pos, pos_type, repr(lemma_attrs)))
 
         if lemma_attrs:
             result = _lookup_func(**lemma_attrs)
@@ -696,9 +691,16 @@ class Lexicon(object):
 
         return result
 
-    def variant_lookup(self, _from, _to, search_type, lemma,
-               pos=False, pos_type=False,
-               _format=False, lemma_attrs=False, user_input=False):
+    def variant_lookup(self,
+                       _from,
+                       _to,
+                       search_type,
+                       lemma,
+                       pos=False,
+                       pos_type=False,
+                       _format=False,
+                       lemma_attrs=False,
+                       user_input=False):
         """ Perform a lexicon lookup. Depending on the keyword
         arguments, several types of lookups may be performed.
 
@@ -724,23 +726,19 @@ class Lexicon(object):
             A dictionary of arguments may be supplied, matching attributes on the <l /> node.
         """
 
-        _dict = self.variant_searches.get((_from, _to), {}).get(search_type, False)
+        _dict = self.variant_searches.get((_from, _to), {}).get(
+            search_type, False)
 
         if not _dict:
             raise Exception("Undefined language pair %s %s" % (_from, _to))
 
-        _lookup_func, largs = self.get_lookup_type(_dict, lemma, pos, pos_type, lemma_attrs)
+        _lookup_func, largs = self.get_lookup_type(_dict, lemma, pos, pos_type,
+                                                   lemma_attrs)
 
         if not _lookup_func:
             raise Exception(
-                "Unknown lookup type for <%s> (lemma: %s, pos: %s, pos_type: %s, lemma_attrs: %s)" %
-                ( user_input
-                , lemma
-                , pos
-                , pos_type
-                , repr(lemma_attrs)
-                )
-            )
+                "Unknown lookup type for <%s> (lemma: %s, pos: %s, pos_type: %s, lemma_attrs: %s)"
+                % (user_input, lemma, pos, pos_type, repr(lemma_attrs)))
 
         if lemma_attrs:
             result = _lookup_func(**lemma_attrs)
@@ -758,16 +756,9 @@ class Lexicon(object):
     def lookups(self, _from, _to, lookups, *args, **kwargs):
         from functools import partial
 
-        _look = partial( self.lookup
-                       , _from=_from
-                       , _to=_to
-                       , *args
-                       , **kwargs
-                       )
+        _look = partial(self.lookup, _from=_from, _to=_to, *args, **kwargs)
 
-        results = zip( lookups
-                     , map(lambda x: _look(lemma=x), lookups)
-                     )
+        results = zip(lookups, map(lambda x: _look(lemma=x), lookups))
 
         success = any([res for l, res in results])
 

@@ -1,4 +1,3 @@
-
 class CustomRenderingOverrides(object):
     """ This object is for registering project- and language-specific
     functions to override various rendering features. """
@@ -28,5 +27,6 @@ class CustomRenderingOverrides(object):
                 self.sort_entry_list_display[pair] = override_function
 
         return wrapper
+
 
 template_rendering_overrides = CustomRenderingOverrides()

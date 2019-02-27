@@ -44,21 +44,13 @@ You may be asked for your SSH password.
 #        - mkdir:
 #            configs/language_specific_rules/tagsets/
 
-
 import os, sys
 
 from fabric.decorators import roles
 
-from fabric.api import ( cd
-                       , run
-                       , local
-                       , env
-                       , task
-                       , settings
-                       , prompt
-                       )
+from fabric.api import (cd, run, local, env, task, settings, prompt)
 
-from fabric.operations import ( sudo )
+from fabric.operations import (sudo)
 
 from fabric.colors import red, green, cyan, yellow
 
@@ -86,30 +78,17 @@ no_fst_install = [
 ]
 
 location_restriction_notice = {
+    'gtoahpa.uit.no': ['sanit', 'baakoeh'],
+    'gtweb.uit.no': [
+        'dikaneisdi', 'erey', 'kyv', 'muter', 'saan', 'saanih', 'sanat',
+        'sonad', 'vada', 'valks'
+    ]
 
-   'gtoahpa.uit.no': [ 'sanit'
-                     , 'baakoeh'
-                     ]
-
-  , 'gtweb.uit.no':  [ 'dikaneisdi'
-                     , 'erey'
-                     , 'kyv'
-                     , 'muter'
-                     , 'saan'
-                     , 'saanih'
-                     , 'sanat'
-                     , 'sonad'
-                     , 'vada'
-                     , 'valks'
-                     ]
-
-  # sapir
-  , 'arrl-web003':   [ 'gunaha'
-                     , 'kidwinan'
-                     , 'guusaaw'
-                     , 'itwewina'
-                     ]
+    # sapir
+    ,
+    'arrl-web003': ['gunaha', 'kidwinan', 'guusaaw', 'itwewina']
 }
+
 
 def get_projects():
     """ Find all existing projects which can be included as an env
@@ -122,11 +101,10 @@ def get_projects():
     for d, ds, fs in os.walk('.'):
         for f in fs:
             if f.endswith(conf_suffix):
-                avail_projects.append(
-                    f.replace(conf_suffix, '')
-                )
+                avail_projects.append(f.replace(conf_suffix, ''))
 
     return avail_projects
+
 
 def get_project():
     avail_projects = get_projects()
@@ -164,7 +142,8 @@ def set_proj():
             host_rest = location_restriction_notice.get(host, False)
             if host_rest:
                 if proj not in host_rest:
-                    print >> sys.stderr, red("%s is not on the current host <%s>." % (proj, host))
+                    print >> sys.stderr, red(
+                        "%s is not on the current host <%s>." % (proj, host))
                     cont = raw_input(red('Continue anyway? [Y/N] \n'))
                     if cont != 'Y':
                         sys.exit()
@@ -178,7 +157,6 @@ def local(*args, **kwargs):
     """
     from fabric.operations import local as lrun
     import os
-
 
     env.run = lrun
     env.hosts = ['localhost']
@@ -197,11 +175,9 @@ def local(*args, **kwargs):
 
     # Make command needs to include explicit path to file, because of
     # fabric.
-    env.make_cmd = "make -C %s -f %s" % ( env.dict_path
-                                        , os.path.join(env.dict_path, 'Makefile')
-                                        )
+    env.make_cmd = "make -C %s -f %s" % (
+        env.dict_path, os.path.join(env.dict_path, 'Makefile'))
     env.remote_no_fst = False
-
 
     return env
 
@@ -217,14 +193,15 @@ from config import yaml
 
 env.real_hostname = socket.gethostname()
 
-
 # set up environments
 # Assume local unless otherwise noted
+
 
 @task
 def no_svn_up():
     """ Do not SVN up """
     env.no_svn_up = True
+
 
 @task
 def gtweb():
@@ -239,10 +216,10 @@ def gtweb():
     env.neahtta_path = env.path_base + '/neahtta'
     env.i18n_path = env.path_base + '/neahtta/translations'
 
-    env.make_cmd = "make -C %s -f %s" % ( env.dict_path
-                                        , os.path.join(env.dict_path, 'Makefile')
-                                        )
+    env.make_cmd = "make -C %s -f %s" % (
+        env.dict_path, os.path.join(env.dict_path, 'Makefile'))
     env.remote_no_fst = False
+
 
 @task
 def gtoahpa():
@@ -257,10 +234,10 @@ def gtoahpa():
     env.neahtta_path = env.path_base + '/neahtta'
     env.i18n_path = env.path_base + '/neahtta/translations'
 
-    env.make_cmd = "make -C %s -f %s" % ( env.dict_path
-                                        , os.path.join(env.dict_path, 'Makefile')
-                                        )
+    env.make_cmd = "make -C %s -f %s" % (
+        env.dict_path, os.path.join(env.dict_path, 'Makefile'))
     env.remote_no_fst = True
+
 
 @task
 def update_configs():
@@ -280,6 +257,7 @@ def update_configs():
         with cd(_p):
             env.run('svn up ' + _p)
 
+
 def read_config(proj):
 
     import yaml
@@ -297,9 +275,14 @@ def read_config(proj):
     except IOError:
         if env.real_hostname not in running_service:
             _path = 'configs/%s.config.yaml.in' % proj
-            print(yellow("** Production config not found, using development (*.in)"))
+            print(
+                yellow(
+                    "** Production config not found, using development (*.in)")
+            )
         else:
-            print(red("** Production config not found, and on a production server. Exiting."))
+            print(
+                red("** Production config not found, and on a production server. Exiting."
+                    ))
             sys.exit()
 
     with open(_path, 'r') as F:
@@ -307,9 +290,9 @@ def read_config(proj):
 
     return config
 
+
 # @task
 # def install_geo():
-
 
 
 @task
@@ -322,9 +305,11 @@ def update_gtsvn():
 
     with cd(env.svn_path):
         config = read_config(env.current_dict)
-        svn_langs = [l.get('iso') for l in config.get('Languages')
-                     if not l.get('variant', False)]
-        svn_lang_paths = [ 'langs/%s' % l for l in svn_langs ]
+        svn_langs = [
+            l.get('iso') for l in config.get('Languages')
+            if not l.get('variant', False)
+        ]
+        svn_lang_paths = ['langs/%s' % l for l in svn_langs]
         # TODO: replace langs with specific list of langs from config
         # file
         paths = [
@@ -358,6 +343,7 @@ def update_gtsvn():
         result = env.run(make_)
     '''
 
+
 @task
 def restart_service(dictionary=False):
     """ Restarts the service. """
@@ -387,12 +373,17 @@ def restart_service(dictionary=False):
         print(cyan("** Restarting service for <%s> **" % dictionary))
         restart = env.run("sudo service nds-%s restart" % dictionary)
         if not restart.failed:
-            print(green("** <%s> Service has restarted successfully **" % dictionary))
+            print(
+                green("** <%s> Service has restarted successfully **" %
+                      dictionary))
         else:
             fail = True
 
     if fail:
-        print(red("** something went wrong while restarting <%s> **" % dictionary))
+        print(
+            red("** something went wrong while restarting <%s> **" %
+                dictionary))
+
 
 @task
 def compile_dictionary(dictionary=False, restart=False):
@@ -421,10 +412,13 @@ def compile_dictionary(dictionary=False, restart=False):
         restart_service(dictionary)
 
     if failed:
-        print(red("** Something went wrong while compiling <%s> **" % dictionary))
+        print(
+            red("** Something went wrong while compiling <%s> **" %
+                dictionary))
+
 
 @task
-def compile(dictionary=False,restart=False):
+def compile(dictionary=False, restart=False):
     """ Compile a dictionary, fsts and lexica, on the server.
 
         $ fab compile:DICT
@@ -459,7 +453,8 @@ def compile(dictionary=False,restart=False):
         else:
             skip_fst = False
 
-            print(cyan("** Compiling lexicon and FSTs for <%s> **" % dictionary))
+            print(
+                cyan("** Compiling lexicon and FSTs for <%s> **" % dictionary))
 
             if env.clean_first in ['Y', 'y']:
                 clean_result = env.run(env.make_cmd + " %s-clean" % dictionary)
@@ -467,10 +462,18 @@ def compile(dictionary=False,restart=False):
             result = env.run(env.make_cmd + " %s" % dictionary)
 
         if not result.succeeded:
-            print(red("** There was some problem building the FSTs for this dictionary."))
-            print(red("** Remove and check out individual language directories first?"))
-            print(red("** WARNING: this will run `rm -rf $GTHOME/langs/LANG for each"))
-            print(red("**          language in the current project. If you have"))
+            print(
+                red("** There was some problem building the FSTs for this dictionary."
+                    ))
+            print(
+                red("** Remove and check out individual language directories first?"
+                    ))
+            print(
+                red("** WARNING: this will run `rm -rf $GTHOME/langs/LANG for each"
+                    ))
+            print(
+                red("**          language in the current project. If you have")
+            )
             print(red("**          ocal changes, they will be lost."))
             prompt('[Y/n]', key='clean_first')
             failed = True
@@ -487,9 +490,15 @@ def compile(dictionary=False,restart=False):
         restart_service(dictionary)
 
     if failed:
-        print(red("** Something went wrong while compiling <%s> **" % dictionary))
+        print(
+            red("** Something went wrong while compiling <%s> **" %
+                dictionary))
     else:
-        print(cyan("** <%s> FSTs and Lexicon compiled okay, should be safe to restart. **" % dictionary))
+        print(
+            cyan(
+                "** <%s> FSTs and Lexicon compiled okay, should be safe to restart. **"
+                % dictionary))
+
 
 @task
 def compile_fst(iso='x'):
@@ -512,12 +521,14 @@ def compile_fst(iso='x'):
         clear_tmp = env.run(env.make_cmd + " rm-%s" % iso)
 
         make_fsts = env.run(env.make_cmd + " %s" % iso)
-        make_fsts = env.run(env.make_cmd + " %s-%s-install" % (dictionary, iso))
+        make_fsts = env.run(env.make_cmd +
+                            " %s-%s-install" % (dictionary, iso))
 
         if make_fsts.failed:
             print(red("** Something went wrong while compiling <%s> **" % iso))
         else:
             print(cyan("** FST <%s> compiled **" % iso))
+
 
 @task
 def test_configuration():
@@ -530,9 +541,14 @@ def test_configuration():
     except IOError:
         if env.real_hostname not in running_service:
             _path = 'configs/%s.config.yaml.in' % env.current_dict
-            print(yellow("** Production config not found, using development (*.in)"))
+            print(
+                yellow(
+                    "** Production config not found, using development (*.in)")
+            )
         else:
-            print(red("** Production config not found, and on a production server. Exiting."))
+            print(
+                red("** Production config not found, and on a production server. Exiting."
+                    ))
             sys.exit()
 
     # TODO: this assumes virtualenv is enabled, need to explicitly enable
@@ -540,12 +556,13 @@ def test_configuration():
     with cd(env.dict_path):
         print(cyan("** Checking paths and testing XML for <%s> **" % _dict))
 
-        cmd ="NDS_CONFIG=%s python manage.py chk-fst-paths" % _path
+        cmd = "NDS_CONFIG=%s python manage.py chk-fst-paths" % _path
         test_cmd = env.run(cmd)
         if test_cmd.failed:
             print(red("** Something went wrong while testing <%s> **" % _dict))
         else:
             print(cyan("** Everything seems to work **"))
+
 
 @task
 def extract_strings():
@@ -563,7 +580,9 @@ def extract_strings():
         if update_cmd.failed:
             print(red("** Update failed."))
         else:
-            print(green("** Update worked. You may now check in or translate."))
+            print(
+                green("** Update worked. You may now check in or translate."))
+
 
 @task
 def update_strings():
@@ -577,10 +596,12 @@ def update_strings():
 
     compile_strings()
 
+
 @task
 def find_babel():
     import babel
     print babel
+
 
 # TODO: handle babel.core.UnknownLocaleError: unknown locale 'hdn', with
 # cleaner error message
@@ -608,18 +629,30 @@ def compile_strings():
             compile_cmd = env.run(cmd, capture=True)
         if compile_cmd.failed:
             if 'babel.core.UnknownLocaleError' in compile_cmd.stderr:
-                error_line = [l for l in compile_cmd.stderr.splitlines() if 'babel.core.UnknownLocaleError' in l]
-                print(red("** String compilation failed, aborting:  ") + cyan(''.join(error_line)))
+                error_line = [
+                    l for l in compile_cmd.stderr.splitlines()
+                    if 'babel.core.UnknownLocaleError' in l
+                ]
+                print(
+                    red("** String compilation failed, aborting:  ") + cyan(
+                        ''.join(error_line)))
                 print("")
                 print(yellow("  Either: "))
-                print(yellow("   * rerun the command with the project name, i.e., `fab PROJNAME compile_strings`."))
-                print(yellow("   * Troubleshoot missing locale. (see Troubleshooting doc)"))
+                print(
+                    yellow(
+                        "   * rerun the command with the project name, i.e., `fab PROJNAME compile_strings`."
+                    ))
+                print(
+                    yellow(
+                        "   * Troubleshoot missing locale. (see Troubleshooting doc)"
+                    ))
             else:
                 print(compile_cmd.stderr)
                 print(red("** Compilation failed, aborting."))
         else:
             print(compile_cmd.stdout)
             print(green("** Compilation successful."))
+
 
 def where(iso):
     """ Searches Config and Config.in files for languages defined in
@@ -670,6 +703,7 @@ def where_is(iso='x'):
     for config, shortname, l in locations:
         print '%s : %s\t\t%s' % (l, shortname, config)
 
+
 def search_running():
     """ Find all running services, return tuple of shortname and pidfile path
     """
@@ -679,17 +713,19 @@ def search_running():
     for d, ds, fs in os.walk('.'):
         for f in fs:
             if f.endswith(pidfile_suffix):
-                pids.append(
-                    (f.replace(pidfile_suffix, ''), os.path.join(d,f))
-                )
+                pids.append((f.replace(pidfile_suffix, ''), os.path.join(d,
+                                                                         f)))
 
     return pids
+
 
 @task
 def find_running():
     hostname = env.real_hostname
     for shortname, pidfile in search_running():
-        print "%s running on %s (%s)" % (green(shortname), yellow(hostname), pidfile)
+        print "%s running on %s (%s)" % (green(shortname), yellow(hostname),
+                                         pidfile)
+
 
 @task
 def restart_running():
@@ -706,7 +742,9 @@ def restart_running():
             if not stop.failed:
                 start = env.run("sudo service nds-%s start" % s)
                 if not start.failed:
-                    print(green("** <%s> Service has restarted successfully **" % s))
+                    print(
+                        green("** <%s> Service has restarted successfully **" %
+                              s))
                 else:
                     failures.append((s, pid))
             else:
@@ -715,7 +753,8 @@ def restart_running():
     if len(failures) > 0:
         print(red("** something went wrong while restarting the following **"))
         for f in failures:
-            print (s, pid)
+            print(s, pid)
+
 
 @task
 def runserver():
@@ -730,16 +769,22 @@ def runserver():
     except IOError:
         if env.real_hostname not in running_service:
             _path = 'configs/%s.config.yaml.in' % env.current_dict
-            print(yellow("** Production config not found, using development (*.in)"))
+            print(
+                yellow(
+                    "** Production config not found, using development (*.in)")
+            )
         else:
-            print(red("** Production config not found, and on a production server. Exiting."))
+            print(
+                red("** Production config not found, and on a production server. Exiting."
+                    ))
             sys.exit()
 
-    cmd ="NDS_CONFIG=%s python neahtta.py dev" % _path
+    cmd = "NDS_CONFIG=%s python neahtta.py dev" % _path
     print(green("** Go."))
     run_cmd = env.run(cmd)
     if run_cmd.failed:
         print(red("** Starting failed for some reason."))
+
 
 @task
 def doctest():
@@ -755,6 +800,7 @@ def doctest():
     for _file in doctests:
         test_cmd = env.run(doctest_cmd % _file)
 
+
 @task
 def test_project():
     """ Test the configuration and check language files for errors. """
@@ -766,11 +812,12 @@ def test_project():
 
         print(cyan("** Running tests for %s" % _dict))
 
-        cmd ="NDS_CONFIG=%s python -m unittest tests.yaml_tests" % (yaml_path)
+        cmd = "NDS_CONFIG=%s python -m unittest tests.yaml_tests" % (yaml_path)
         test_cmd = env.run(cmd)
 
         if test_cmd.failed:
             print(red("** Something went wrong while testing <%s> **" % _dict))
+
 
 @task
 def unittests():
@@ -787,11 +834,16 @@ def unittests():
     except IOError:
         if env.real_hostname not in running_service:
             yaml_path = 'configs/%s.config.yaml.in' % env.current_dict
-            print(yellow("** Production config not found, using development (*.in)"))
+            print(
+                yellow(
+                    "** Production config not found, using development (*.in)")
+            )
             with open(yaml_path, 'r') as F:
                 _y = yaml.load(F)
         else:
-            print(red("** Production config not found, and on a production server. Exiting."))
+            print(
+                red("** Production config not found, and on a production server. Exiting."
+                    ))
             sys.exit()
 
     # TODO: this assumes virtualenv is enabled, need to explicitly enable
@@ -819,16 +871,20 @@ def unittests():
 
             print(cyan("** Running tests for %s" % unittest))
 
-            cmd ="NDS_CONFIG=%s python -m unittest %s" % (yaml_path, unittest)
+            cmd = "NDS_CONFIG=%s python -m unittest %s" % (yaml_path, unittest)
             test_cmd = env.run(cmd)
 
             if test_cmd.failed:
-                print(red("** Something went wrong while testing <%s> **" % _dict))
+                print(
+                    red("** Something went wrong while testing <%s> **" %
+                        _dict))
+
 
 @task
 def test():
     doctest()
     test_project()
+
 
 def commit_gtweb_tag():
     """
@@ -838,6 +894,7 @@ def commit_gtweb_tag():
     https://gtsvn.uit.no/langtech/tags/apps/dicts/nds
     svn copy https://gtsvn.uit.no/langtech/trunk/apps/dicts/nds nds-stable-gtweb
     """
+
 
 def get_status_code(host, path="/"):
     """ This function retreives the status code of a website by requesting
@@ -852,6 +909,7 @@ def get_status_code(host, path="/"):
         return conn.getresponse().status
     except StandardError:
         return None
+
 
 @task
 def test_running():

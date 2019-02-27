@@ -5,8 +5,10 @@ from flask import current_app
 
 from .lexicon import hash_node
 
+
 class FormattingError(Exception):
     pass
+
 
 class EntryNodeIterator(object):
     """ A class for iterating through the result of an LXML XPath query,
@@ -86,8 +88,8 @@ class EntryNodeIterator(object):
             from lxml import etree
             error_xml = etree.tostring(tg, pretty_print=True, encoding="utf-8")
             current_app.logger.error(
-                "Potential XML formatting problem on <xg /> node\n\n%s" % error_xml.strip()
-            )
+                "Potential XML formatting problem on <xg /> node\n\n%s" %
+                error_xml.strip())
 
         if len(_ex) == 0:
             return False
@@ -108,7 +110,6 @@ class EntryNodeIterator(object):
         if tCtn is not None:
             return self.find_translation_text(tCtn)
 
-
         def orFalse(l):
             if len(l) > 0:
                 return l[0]
@@ -124,9 +125,9 @@ class EntryNodeIterator(object):
         re_text = ''
         tf_text = ''
 
-        if te is not None:      te_text = te.text
-        if re is not None:      re_text = re.text
-        if tf is not None:      tf_text = tf.text
+        if te is not None: te_text = te.text
+        if re is not None: re_text = re.text
+        if tf is not None: tf_text = tf.text
 
         tx = tg.findall('t')
 
@@ -166,7 +167,8 @@ class EntryNodeIterator(object):
         self.additional_template_kwargs = {}
 
         if 'additional_template_kwargs' in query_kwargs:
-            self.additional_template_kwargs = query_kwargs.get('additional_template_kwargs')
+            self.additional_template_kwargs = query_kwargs.get(
+                'additional_template_kwargs')
             query_kwargs.pop('additional_template_kwargs')
 
     def __iter__(self):
@@ -178,15 +180,18 @@ class EntryNodeIterator(object):
                 import traceback
                 import sys
                 exc_type, exc_value, exc_traceback = sys.exc_info()
-                tb_str = traceback.format_exception(exc_type, exc_value, exc_traceback)
+                tb_str = traceback.format_exception(exc_type, exc_value,
+                                                    exc_traceback)
                 if node is not None:
-                    error_xml = etree.tostring(node, pretty_print=True, encoding="utf-8")
+                    error_xml = etree.tostring(
+                        node, pretty_print=True, encoding="utf-8")
                 else:
                     error_xml = 'No entry for lookup'
-                msg_args = (error_xml.strip(), ''.join(tb_str), repr(self.query_args), repr(self.query_kwargs))
+                msg_args = (error_xml.strip(), ''.join(tb_str),
+                            repr(self.query_args), repr(self.query_kwargs))
                 current_app.logger.error(
-                    "Potential XML formatting problem somewhere in... \n\n%s\n\n%s\n\n%s\n\n%s" % msg_args
-                )
+                    "Potential XML formatting problem somewhere in... \n\n%s\n\n%s\n\n%s\n\n%s"
+                    % msg_args)
                 continue
 
 
@@ -205,6 +210,7 @@ class SimpleJSON(EntryNodeIterator):
                     return t
                 t['pos'] = tagfilter(t_pos, _from, _to)
                 return t
+
             return fixTag(r)
 
         return map(filterPOS, list(self))
@@ -218,16 +224,18 @@ class SimpleJSON(EntryNodeIterator):
         right_langs = []
         translations = []
         for tg in tgs:
-            default_text, default_annotations, default_lang = self.find_translation_text(tg)
+            default_text, default_annotations, default_lang = self.find_translation_text(
+                tg)
             tf_text = lexicon_overrides.format_target(
-                self.query_kwargs.get('source_lang'), self.query_kwargs.get('target_lang'),
-                self.query_kwargs.get('ui_lang'), e, tg, False
-            )
+                self.query_kwargs.get('source_lang'),
+                self.query_kwargs.get('target_lang'),
+                self.query_kwargs.get('ui_lang'), e, tg, False)
             if tf_text:
                 default_lang.append(default_lang)
                 target_formatteds.append(tf_text)
             else:
-                translations.append((default_text, default_annotations, default_lang))
+                translations.append((default_text, default_annotations,
+                                     default_lang))
 
         if len(target_formatteds) > 0:
             right_text = target_formatteds
@@ -235,17 +243,18 @@ class SimpleJSON(EntryNodeIterator):
             right_text = flatten([a for a, b, c in translations])
             right_langs = flatten([c for a, b, c in translations])
 
-        return { 'left': lemma
-               , 'context': lemma_context
-               , 'pos': lemma_pos
-               , 'right': right_text
-               , 'lang': right_langs
-               , 'hid': lemma_hid
-               , 'input': self.query_kwargs.get('user_input', '')
-               }
+        return {
+            'left': lemma,
+            'context': lemma_context,
+            'pos': lemma_pos,
+            'right': right_text,
+            'lang': right_langs,
+            'hid': lemma_hid,
+            'input': self.query_kwargs.get('user_input', '')
+        }
+
 
 class FrontPageFormat(EntryNodeIterator):
-
     def clean_tg_node(self, e, tg):
         from functools import partial
 
@@ -280,13 +289,10 @@ class FrontPageFormat(EntryNodeIterator):
         # exist for current iso
 
         # Apply to each translation text separately
-        target_formatter = partial( lexicon_overrides.format_target
-                                  , self.query_kwargs.get('source_lang')
-                                  , self.query_kwargs.get('target_lang')
-                                  , ui_lang
-                                  , e
-                                  , tg
-                                  )
+        target_formatter = partial(lexicon_overrides.format_target,
+                                   self.query_kwargs.get('source_lang'),
+                                   self.query_kwargs.get('target_lang'),
+                                   ui_lang, e, tg)
 
         def add_link(_p):
 
@@ -301,28 +307,28 @@ class FrontPageFormat(EntryNodeIterator):
             # Does the reversed pair exist as a variant? If so we need
             # to get the original pair and re-reverse it
             if (_to_l, _from_l) in current_app.config.variant_dictionaries:
-                _var = current_app.config.variant_dictionaries.get((_to_l, _from_l))
+                _var = current_app.config.variant_dictionaries.get((_to_l,
+                                                                    _from_l))
                 (_to_l, _from_l) = _var.get('orig_pair')
 
             if (_from_l, _to_l) not in current_app.config.dictionaries and \
                (_from_l, _to_l)     in current_app.config.variant_dictionaries:
-                var = current_app.config.variant_dictionaries.get((_from_l, _to_l))
+                var = current_app.config.variant_dictionaries.get((_from_l,
+                                                                   _to_l))
                 (_from_l, _to_l) = var.get('orig_pair')
 
-            pair = ( _from_l
-                   , _to_l
-                   )
+            pair = (_from_l, _to_l)
 
             if pair not in current_app.config.dictionaries:
                 return _p
 
-            _url  = [ 'detail'
-                    , self.query_kwargs.get('target_lang')
-                    , src_lang
-                    , '%s.html?no_compounds=true&lemma_match=true' % _p
-                    ]
-            _url =  '/' + '/'.join(_url)
-            link =  "<a href='%s'>%s</a>" % (_url, _p)
+            _url = [
+                'detail',
+                self.query_kwargs.get('target_lang'), src_lang,
+                '%s.html?no_compounds=true&lemma_match=true' % _p
+            ]
+            _url = '/' + '/'.join(_url)
+            link = "<a href='%s'>%s</a>" % (_url, _p)
             return link
 
         # problem: no <t /> nodes available here for til_/fra_ref words
@@ -345,13 +351,14 @@ class FrontPageFormat(EntryNodeIterator):
         target_formatted_unlinked = target_formatted
         target_formatted = map(add_link, target_formatted)
 
-        right_node = { 'tx': ', '.join(texts)
-                     , 're': annotations
-                     , 'target_reformatted': target_reformatted
-                     , 'target_formatted_unlinked': target_formatted_unlinked
-                     , 'examples': self.examples(tg)
-                     , 'target_formatted': ', '.join(target_formatted)
-                     }
+        right_node = {
+            'tx': ', '.join(texts),
+            're': annotations,
+            'target_reformatted': target_reformatted,
+            'target_formatted_unlinked': target_formatted_unlinked,
+            'examples': self.examples(tg),
+            'target_formatted': ', '.join(target_formatted)
+        }
 
         return right_node, lang
 
@@ -361,9 +368,7 @@ class FrontPageFormat(EntryNodeIterator):
 
         ui_lang = self.query_kwargs.get('ui_lang')
 
-        _right = map( lambda tg: self.clean_tg_node(e, tg)
-                    , tgs
-                    )
+        _right = map(lambda tg: self.clean_tg_node(e, tg), tgs)
 
         right_langs = [lang for _, lang in _right]
         right_nodes = [fmt_node for fmt_node, _ in _right]
@@ -386,12 +391,8 @@ class FrontPageFormat(EntryNodeIterator):
         lemma_attrs = self.query_kwargs.get('lemma_attrs', False)
 
         if lemma and lemma_pos:
-            default_format = "%s (%s)" % ( lemma
-                                         , tagfilter( lemma_pos
-                                                    , source_lang
-                                                    , target_lang
-                                                    )
-                                         )
+            default_format = "%s (%s)" % (
+                lemma, tagfilter(lemma_pos, source_lang, target_lang))
         elif lemma and not lemma_pos:
             default_format = lemma
         elif lemma_attrs:
@@ -410,51 +411,50 @@ class FrontPageFormat(EntryNodeIterator):
             if src_lang == 'SoMe':
                 src_lang = 'sme'
 
-            _url  = [ 'detail'
-                    , src_lang
-                    , self.query_kwargs.get('target_lang')
-                    , '%s.html?e_node=%s' % (lemma, entry_hash)
-                    ]
-            _url =  '/' + '/'.join(_url)
-            link =  "<a href='%s'>%s</a>" % (_url, _p)
+            _url = [
+                'detail', src_lang,
+                self.query_kwargs.get('target_lang'),
+                '%s.html?e_node=%s' % (lemma, entry_hash)
+            ]
+            _url = '/' + '/'.join(_url)
+            link = "<a href='%s'>%s</a>" % (_url, _p)
             return link
 
         source_formatted_unlinked = lexicon_overrides.format_source(
-            source_lang, ui_lang, e, target_lang, default_format
-        )
+            source_lang, ui_lang, e, target_lang, default_format)
 
         source_formatted = add_link(source_formatted_unlinked)
 
-        formatted_dict = { 'left': lemma
-                         , 'source_formatted': source_formatted
-                         , 'source_unlinked': source_formatted_unlinked
-                         , 'context': lemma_context
-                         , 'pos': lemma_pos
-                         , 'right': right_nodes
-                         , 'lang': right_langs
-                         , 'hid': lemma_hid
-                         , 'entry_hash': entry_hash
-                         }
+        formatted_dict = {
+            'left': lemma,
+            'source_formatted': source_formatted,
+            'source_unlinked': source_formatted_unlinked,
+            'context': lemma_context,
+            'pos': lemma_pos,
+            'right': right_nodes,
+            'lang': right_langs,
+            'hid': lemma_hid,
+            'entry_hash': entry_hash
+        }
 
         formatted_dict.update(self.additional_template_kwargs)
         return formatted_dict
+
 
 # TODO: adding hverandre functionality requires some additional
 # attributes to be available, but this formatter class is annoying,
 # and a good argument for how this should all just be handled by xslt or
 # some template thing instead.
 
-class DetailedFormat(FrontPageFormat):
 
+class DetailedFormat(FrontPageFormat):
     def clean(self, e):
         lemma, lemma_pos, lemma_context, lemma_type, lemma_hid = self.l_node(e)
         tgs, ts = self.tg_nodes(e)
 
         ui_lang = self.query_kwargs.get('ui_lang')
 
-        _right = map( lambda tg: self.clean_tg_node(e, tg)
-                    , tgs
-                    )
+        _right = map(lambda tg: self.clean_tg_node(e, tg), tgs)
 
         right_langs = [lang for _, lang in _right]
         right_nodes = [fmt_node for fmt_node, _ in _right]
@@ -469,12 +469,8 @@ class DetailedFormat(FrontPageFormat):
         lemma_attrs = self.query_kwargs.get('lemma_attrs', False)
 
         if lemma and lemma_pos:
-            default_format = "%s (%s)" % ( lemma
-                                         , tagfilter( lemma_pos
-                                                    , source_lang
-                                                    , target_lang
-                                                    )
-                                         )
+            default_format = "%s (%s)" % (
+                lemma, tagfilter(lemma_pos, source_lang, target_lang))
         elif lemma and not lemma_pos:
             default_format = lemma
         elif lemma_attrs:
@@ -487,24 +483,23 @@ class DetailedFormat(FrontPageFormat):
             return _p
 
         source_formatted_unlinked = lexicon_overrides.format_source(
-            source_lang, ui_lang, e, target_lang, default_format
-        )
+            source_lang, ui_lang, e, target_lang, default_format)
 
         source_formatted = add_link(source_formatted_unlinked)
 
-        formatted_dict = { 'left': lemma
-                         , 'source_formatted': source_formatted
-                         , 'source_unlinked': source_formatted_unlinked
-                         , 'context': lemma_context
-                         , 'pos': lemma_pos
-                         , 'right': right_nodes
-                         , 'lang': right_langs
-                         , 'hid': lemma_hid
-                         , 'entry_hash': entry_hash
-
-                         , 'input': (lemma, lemma_pos, '', lemma_type)
-                         , 'node': e
-                         }
+        formatted_dict = {
+            'left': lemma,
+            'source_formatted': source_formatted,
+            'source_unlinked': source_formatted_unlinked,
+            'context': lemma_context,
+            'pos': lemma_pos,
+            'right': right_nodes,
+            'lang': right_langs,
+            'hid': lemma_hid,
+            'entry_hash': entry_hash,
+            'input': (lemma, lemma_pos, '', lemma_type),
+            'node': e
+        }
 
         formatted_dict.update(self.additional_template_kwargs)
         return formatted_dict

@@ -7,6 +7,7 @@ pre_lemma_tags = [
     '1',
 ]
 
+
 # TODO: replace PV/ with user-defined regex or something
 def process_otw_analysis(analysis_line):
     """ Take an analysis line, and return a tuple of the lemma,
@@ -74,6 +75,7 @@ def process_otw_analysis(analysis_line):
 
     return (wordform, reformatted_tag)
 
+
 def main():
     print '--'
     print process_crk_analysis("PV/asdf+PV/bbq+lemma+POS+Type+Sg1")
@@ -84,10 +86,10 @@ def main():
 
     print process_crk_analysis("ninahnipan\tRdplS+nipâw+V+AI+Ind+Prs+1Sg")
     # ('ninahnipan', 'nipâw+RdplS+V+AI+Ind+Prs+1Sg')
-    print process_crk_analysis("ninanahnipan\tRdplW+RdplS+nipâw+V+AI+Ind+Prs+1Sg")
+    print process_crk_analysis(
+        "ninanahnipan\tRdplW+RdplS+nipâw+V+AI+Ind+Prs+1Sg")
     # ('ninanahnipan', 'nipâw+RdplW+RdplS+V+AI+Ind+Prs+1Sg')
+
 
 if __name__ == "__main__":
     sys.exit(main())
-
-

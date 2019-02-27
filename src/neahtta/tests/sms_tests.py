@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 
-# TODO: spellrelax examples, säämkiõll 
+# TODO: spellrelax examples, säämkiõll
 
 # sääʹmkiõll
 # sääʹmkiõll  sääʹmǩiõll+N+Sg+Nom
@@ -10,15 +10,10 @@ import neahtta
 import unittest
 import tempfile
 
-from .lexicon import ( BasicTests
-                     , WordLookupTests
-                     , WordLookupDetailTests
-                     , WordLookupAPITests
-                     , WordLookupAPIDefinitionTests
-                     , ParadigmGenerationTests
-                     , form_contains
-                     , form_doesnt_contain
-                     )
+from .lexicon import (BasicTests, WordLookupTests, WordLookupDetailTests,
+                      WordLookupAPITests, WordLookupAPIDefinitionTests,
+                      ParadigmGenerationTests, form_contains,
+                      form_doesnt_contain)
 
 wordforms_that_shouldnt_fail = [
     # ( ('sms', 'fin'), u'mijjieh'),
@@ -26,20 +21,17 @@ wordforms_that_shouldnt_fail = [
 
     # ( ('fin', 'sms'), u'drikke'),
 
-
     # # placenames returned
     # ( ('sms', 'fin'), u'Röörovse'),
 
     # # misc inflections
     # ( ('sms', 'fin'), u'jovkedh'),
     # ( ('sms', 'fin'), u'jovkem'),
-
 ]
-
 
 definition_exists_tests = [
     #  lang    pair    search    definition lemmas
-    #                            
+    #
 
     # test hid works: guvlieh is unambiguously høre, govloeh is
     # unambiguously hørest
@@ -58,13 +50,12 @@ definition_exists_tests = [
 # TODO: for sma
 paradigm_generation_tests = [
 
-###  - V + context="upers"
-#     ('sms', 'fin', u'mutskedh',
-#             "upers not generated",
-#             form_contains(set([u'mutskie']))),
-
-
+    ###  - V + context="upers"
+    #     ('sms', 'fin', u'mutskedh',
+    #             "upers not generated",
+    #             form_contains(set([u'mutskie']))),
 ]
+
 
 class BasicTests(BasicTests):
 
@@ -77,9 +68,10 @@ class BasicTests(BasicTests):
         lang_pair, form = wordforms_that_shouldnt_fail[0]
 
         base = '/%s/%s/' % lang_pair
-        rv = self.app.post(base, data={
-            'lookup': form,
-        })
+        rv = self.app.post(
+            base, data={
+                'lookup': form,
+            })
 
         assert 'mijjieh' in rv.data
         assert u'vi' in rv.data.decode('utf-8')
@@ -89,11 +81,14 @@ class BasicTests(BasicTests):
 class WordLookupAPIDefinitionTests(WordLookupAPIDefinitionTests):
     definition_exists_tests = definition_exists_tests
 
+
 class WordLookupDetailTests(WordLookupDetailTests):
     wordforms_that_shouldnt_fail = wordforms_that_shouldnt_fail
 
+
 class WordLookupAPITests(WordLookupAPITests):
     wordforms_that_shouldnt_fail = wordforms_that_shouldnt_fail
+
 
 class ParadigmGenerationTests(ParadigmGenerationTests):
     paradigm_generation_tests = paradigm_generation_tests

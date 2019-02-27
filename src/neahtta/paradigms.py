@@ -43,6 +43,7 @@ from paradigm_layouts import parse_table
 
 __all__ = ['ParadigmConfig']
 
+
 class TagRule(object):
     """ Compares a whole tag, either checking that it is contained in a
         list of tags, or equals a tag.
@@ -71,9 +72,9 @@ class TagRule(object):
             (key, matched_value).
         """
 
-        evals = [ self.cmp(lemma.tag.tag_string, self.tag)
-                     for lemma in analyses
-                ]
+        evals = [
+            self.cmp(lemma.tag.tag_string, self.tag) for lemma in analyses
+        ]
 
         # Include what was matched.
         truth = any([t for t, c in evals])
@@ -81,8 +82,8 @@ class TagRule(object):
 
         return truth, context
 
-class LexRule(object):
 
+class LexRule(object):
     def __init__(self, lex_key, lex_value):
         self.key = lex_key
         if isinstance(lex_value, str):
@@ -115,10 +116,12 @@ class LexRule(object):
 
         return truth, context
 
+
 # TODO: read from user defined file elsewhere
 DEFAULT_RULES = {
     'lemma': ".//l/text()",
 }
+
 
 class LexiconRuleSet(object):
     """ This evaluates a context against lexicon nodes.
@@ -164,13 +167,18 @@ class LexiconRuleSet(object):
         if node is not None:
             xpath_context = self.extract_context(node)
 
-            self._evals = [comp.compare(node, analyses, xpath_context) for comp in self.comps]
+            self._evals = [
+                comp.compare(node, analyses, xpath_context)
+                for comp in self.comps
+            ]
 
             truth = all([t for t, c in self._evals])
-            contexts = [c for t, c in self._evals if t] + list(xpath_context.iteritems())
+            contexts = [c for t, c in self._evals if t] + list(
+                xpath_context.iteritems())
 
             return truth, contexts
         return (False, [])
+
 
 class NullRule(object):
     def compare(self, node, analyses):
@@ -196,6 +204,7 @@ class TagSetRule(object):
         elif isinstance(value, list):
             self.cmp = lambda x, y: (x in y, x)
         elif isinstance(value, bool):
+
             def _cmp(x, y):
                 # when tag contains a value from this tagset, x is true,
                 # otherwise x is None
@@ -204,18 +213,21 @@ class TagSetRule(object):
                 else:
                     return (True, x)
                 return (False, x)
+
             self.cmp = _cmp
 
     def compare(self, node, analyses):
 
-        evals = [ self.cmp(lemma.tag[self.tagset], self.tagset_value)
-                     for lemma in analyses
-                ]
+        evals = [
+            self.cmp(lemma.tag[self.tagset], self.tagset_value)
+            for lemma in analyses
+        ]
 
         truth = any([t for t, c in evals])
         context = [(self.tagset, c) for t, c in evals if t]
 
         return truth, context
+
 
 class ParadigmRuleSet(object):
     """ This is a rule set, which is defined by the first half of a
@@ -277,9 +289,7 @@ class ParadigmRuleSet(object):
         if self.debug:
             print >> sys.stderr, analysis
 
-        self._evals = [ comp.compare(node, analyses)
-                        for comp in self.comps
-                      ]
+        self._evals = [comp.compare(node, analyses) for comp in self.comps]
 
         truth = all([t for t, c in self._evals])
         contexts = [c for t, c in self._evals if t]
@@ -289,6 +299,7 @@ class ParadigmRuleSet(object):
             print >> sys.stderr, "Found matching paradigm in %s." % self.name
 
         return truth, context
+
 
 class ParadigmConfig(object):
     """ A class for providing directory-based paradigm definitions.
@@ -303,14 +314,22 @@ class ParadigmConfig(object):
 
     def check_updates(self, language):
         updates = []
-        for ind, paradigm_rule in enumerate(self.paradigm_layout_rules.get(language, [])):
-            if os.path.getmtime(paradigm_rule.get('path')) != paradigm_rule.get('updated'):
+        for ind, paradigm_rule in enumerate(
+                self.paradigm_layout_rules.get(language, [])):
+            if os.path.getmtime(
+                    paradigm_rule.get('path')) != paradigm_rule.get('updated'):
                 updates.append(ind)
 
         if len(updates) > 0:
             self.read_paradigm_directory()
 
-    def get_paradigm_layout(self, language, node, analyses, debug=False, return_template=False, multiple=False):
+    def get_paradigm_layout(self,
+                            language,
+                            node,
+                            analyses,
+                            debug=False,
+                            return_template=False,
+                            multiple=False):
         """ .. py:function:: get_paradigm(language, node, analyses)
 
         Render a paradigm layout if one exists for language.
@@ -337,10 +356,12 @@ class ParadigmConfig(object):
         for paradigm_rule in self.paradigm_layout_rules.get(language, []):
             condition = paradigm_rule.get('condition')
             layout = paradigm_rule.get('template')
-            _, _, path = paradigm_rule.get('path').partition('language_specific_rules')
+            _, _, path = paradigm_rule.get('path').partition(
+                'language_specific_rules')
 
             try:
-                truth, context = condition.evaluate(node, analyses, debug=debug)
+                truth, context = condition.evaluate(
+                    node, analyses, debug=debug)
                 if debug:
                     print >> sys.stderr, truth
                     print >> sys.stderr, context
@@ -356,14 +377,15 @@ class ParadigmConfig(object):
 
             # We have a match, so count how extensive it was.
             if truth:
-                possible_matches.append(
-                    (len(context.keys()), context, layout, path)
-                )
+                possible_matches.append((len(context.keys()), context, layout,
+                                         path))
 
         # Sort by count, and pick the first
-        possible_matches = sorted(possible_matches, key=itemgetter(0), reverse=True)
+        possible_matches = sorted(
+            possible_matches, key=itemgetter(0), reverse=True)
         if debug:
-            print >> sys.stderr, " - Possible matches: %d" % len(possible_matches)
+            print >> sys.stderr, " - Possible matches: %d" % len(
+                possible_matches)
 
         def paradigm_ordering((_c, _context, _layout, _path)):
             """ Sort by type if it exists, otherwise sort by
@@ -386,7 +408,8 @@ class ParadigmConfig(object):
         if len(possible_matches) > 0:
             if multiple:
                 _matches = []
-                for _count, _context, _layout, _path in sorted(possible_matches, key=paradigm_ordering):
+                for _count, _context, _layout, _path in sorted(
+                        possible_matches, key=paradigm_ordering):
                     if return_template:
                         _matches.append((_layout, _path))
                     else:
@@ -412,7 +435,12 @@ class ParadigmConfig(object):
         else:
             return False
 
-    def get_paradigm(self, language, node, analyses, debug=False, return_template=False):
+    def get_paradigm(self,
+                     language,
+                     node,
+                     analyses,
+                     debug=False,
+                     return_template=False):
         """ .. py:function:: get_paradigm(language, node, analyses)
 
         Render a paradigm if one exists for language.
@@ -438,7 +466,8 @@ class ParadigmConfig(object):
         for paradigm_rule in self.paradigm_rules.get(language, []):
             condition = paradigm_rule.get('condition')
             template = paradigm_rule.get('template')
-            _, _, path = paradigm_rule.get('path').partition('language_specific_rules')
+            _, _, path = paradigm_rule.get('path').partition(
+                'language_specific_rules')
 
             try:
                 truth, context = condition.evaluate(node, analyses)
@@ -454,14 +483,15 @@ class ParadigmConfig(object):
 
             # We have a match, so count how extensive it was.
             if truth:
-                possible_matches.append(
-                    (len(context.keys()), context, template, path)
-                )
+                possible_matches.append((len(context.keys()), context,
+                                         template, path))
 
         # Sort by count, and pick the first
-        possible_matches = sorted(possible_matches, key=itemgetter(0), reverse=True)
+        possible_matches = sorted(
+            possible_matches, key=itemgetter(0), reverse=True)
         if self.debug:
-            print >> sys.stderr, " - Possible matches: %d" % len(possible_matches)
+            print >> sys.stderr, " - Possible matches: %d" % len(
+                possible_matches)
 
         if len(possible_matches) > 0:
             count, context, template, path = possible_matches[0]
@@ -511,40 +541,35 @@ class ParadigmConfig(object):
             return self._paradigm_directory
 
         # Path relative to working directory
-        _path = os.path.join( self._app.config.language_specific_rules_path
-                            , 'paradigms/'
-                            )
+        _path = os.path.join(self._app.config.language_specific_rules_path,
+                             'paradigms/')
 
         # We only want the ones that exist for this instance.
-        lang_directories = [ p for p in os.listdir(_path) ]
+        lang_directories = [p for p in os.listdir(_path)]
 
         if available_langs:
-            lang_directories = [ p for p in lang_directories
-                                 if p in available_langs ]
+            lang_directories = [
+                p for p in lang_directories if p in available_langs
+            ]
 
         _lang_files = {}
         _lang_layout_files = {}
 
         # get all the .paradigm files that belong to a language
         for lang in lang_directories:
-            _lang_path = os.path.join( _path
-                                     , lang
-                                     )
+            _lang_path = os.path.join(_path, lang)
             _lang_paradigm_files = []
             _lang_paradigm_layout_files = []
 
             for _p, dirs, files in os.walk(_lang_path):
                 for f in files:
                     if f.endswith('.paradigm'):
-                        _lang_paradigm_files.append(
-                            os.path.join(_p, f)
-                        )
+                        _lang_paradigm_files.append(os.path.join(_p, f))
 
                     if self._app.config.paradigm_layouts:
                         if f.endswith('.layout'):
                             _lang_paradigm_layout_files.append(
-                                os.path.join(_p, f)
-                            )
+                                os.path.join(_p, f))
 
             _lang_files[lang] = _lang_paradigm_files
             _lang_layout_files[lang] = _lang_paradigm_layout_files
@@ -560,19 +585,23 @@ class ParadigmConfig(object):
 
                 if paradigm_rule:
                     _lang_paradigms[lang].append(paradigm_rule)
-                    _file_successes.append(' - %s: %s' % (lang, paradigm_rule.get('name')))
+                    _file_successes.append(
+                        ' - %s: %s' % (lang, paradigm_rule.get('name')))
 
         self.paradigm_rules = _lang_paradigms
 
         for lang, files in _lang_layout_files.iteritems():
             for f in files:
-                paradigm_rule = self.read_paradigm_layout_file(jinja_env, f, lang)
+                paradigm_rule = self.read_paradigm_layout_file(
+                    jinja_env, f, lang)
 
                 if paradigm_rule:
                     _lang_paradigm_layouts[lang].append(paradigm_rule)
-                    _file_successes.append(' - LAYOUT %s: %s' % (lang, paradigm_rule.get('name')))
+                    _file_successes.append(
+                        ' - LAYOUT %s: %s' % (lang, paradigm_rule.get('name')))
                 else:
-                    _file_successes.append(' ERROR: - LAYOUT %s: %s' % (lang, f))
+                    _file_successes.append(
+                        ' ERROR: - LAYOUT %s: %s' % (lang, f))
 
         self.paradigm_layout_rules = _lang_paradigm_layouts
 
@@ -615,7 +644,10 @@ class ParadigmConfig(object):
             if 'paradigm' in condition_yaml:
                 # morphology, lexicon keys only
                 paradigm_rule = condition_yaml.get('paradigm')
-                matching_p = [p for p in self.paradigm_rules[lang] if p['basename'] == paradigm_rule]
+                matching_p = [
+                    p for p in self.paradigm_rules[lang]
+                    if p['basename'] == paradigm_rule
+                ]
                 if len(matching_p) == 0:
                     print >> sys.stderr, "\n** References a paradigm file (%s) that does not exist" % paradigm_rule
                     print >> sys.stderr, " in:"
@@ -632,19 +664,23 @@ class ParadigmConfig(object):
                 if rule_def.get('morphology', False):
                     condition_yaml['morphology'] = rule_def.get('morphology')
 
-            parsed_template, errors = parse_table(paradigm_string_txt.strip(), yaml_definition=condition_yaml, path=path)
+            parsed_template, errors = parse_table(
+                paradigm_string_txt.strip(),
+                yaml_definition=condition_yaml,
+                path=path)
 
             if not parsed_template:
                 print errors
                 return False
 
-            parsed_condition = { 'condition': ParadigmRuleSet(condition_yaml, debug=self.debug)
-                               , 'template': parsed_template
-                               , 'name': name
-                               , 'description': desc
-                               , 'path': path
-                               , 'updated': os.path.getmtime(path)
-                               }
+            parsed_condition = {
+                'condition': ParadigmRuleSet(condition_yaml, debug=self.debug),
+                'template': parsed_template,
+                'name': name,
+                'description': desc,
+                'path': path,
+                'updated': os.path.getmtime(path)
+            }
 
         return parsed_condition
 
@@ -666,17 +702,20 @@ class ParadigmConfig(object):
 
             name = condition_yaml.get('name')
             desc = condition_yaml.get('desc', '')
-            parsed_template = jinja_env.from_string(paradigm_string_txt.strip())
-            parsed_condition = { 'condition': ParadigmRuleSet(condition_yaml, debug=self.debug)
-                               , 'template': parsed_template
-                               , 'name': name
-                               , 'description': desc
-                               , 'path': path
-                               , 'basename': os.path.basename(path)
-                               , 'updated': os.path.getmtime(path)
-                               }
+            parsed_template = jinja_env.from_string(
+                paradigm_string_txt.strip())
+            parsed_condition = {
+                'condition': ParadigmRuleSet(condition_yaml, debug=self.debug),
+                'template': parsed_template,
+                'name': name,
+                'description': desc,
+                'path': path,
+                'basename': os.path.basename(path),
+                'updated': os.path.getmtime(path)
+            }
 
         return parsed_condition
+
 
 if __name__ == "__main__":
     from neahtta import app
@@ -689,4 +728,3 @@ if __name__ == "__main__":
     for node, analyses in lookups:
         print node, analyses
         print pc.get_paradigm('sme', node, analyses)
-

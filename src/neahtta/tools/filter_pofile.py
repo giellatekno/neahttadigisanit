@@ -9,9 +9,8 @@ Options:
 
 # TODO: option for no fetch, incase they are stored locally: <path_to_audio> is
 # the target compressed audio store for now, but could serve as local copy too
-# 
+#
 # python tools/extract_audio.py dicts/sms-all.xml static/aud/sms --verbose > test_aud.xml
-
 
 # TODO: only download updated files, storing in manifest in path/to/stored/audio/
 from docopt import docopt
@@ -24,25 +23,31 @@ from lxml import etree
 command = None
 from sh import hfst_lookup
 
+
 def run_cmd(_in):
-    l = hfst_lookup('/Users/pyry/gtsvn/langs/crk/src/orthography/Latn-to-Cans.lookup.hfst', _in=_in.encode('utf-8'), _bg=True)
+    l = hfst_lookup(
+        '/Users/pyry/gtsvn/langs/crk/src/orthography/Latn-to-Cans.lookup.hfst',
+        _in=_in.encode('utf-8'),
+        _bg=True)
     stsrs = []
     ll = l.split('\t')
     if len(ll) == 3:
-        return     ll[1]
+        return ll[1]
     else:
         return False
 
+
 def write_pofile(root, output_file=False):
     # TODO: strips some headers
-    stringed = etree.tostring(root, pretty_print=True, method='xml',
-                              encoding='unicode')
+    stringed = etree.tostring(
+        root, pretty_print=True, method='xml', encoding='unicode')
 
     if output_file is not None:
         with open(output_file, 'w') as F:
             F.write(stringed.encode('utf-8'))
     else:
         print >> sys.stdout, stringed.encode('utf-8')
+
 
 def fetch_messages(path):
     from polib import pofile
@@ -78,7 +83,6 @@ def main():
     # write_xml(updated_xml, arguments.get('--output-file'))
     return 0
 
+
 if __name__ == "__main__":
     sys.exit(main())
-
-

@@ -6,6 +6,7 @@ pre_lemma_tags = [
     'RdplS',
 ]
 
+
 # TODO: replace PV/ with user-defined regex or something
 def process_crk_analysis(analysis_line):
     """ Take an analysis line, and return a tuple of the lemma,
@@ -31,7 +32,6 @@ def process_crk_analysis(analysis_line):
         ('ninanahnipan', 'nipâw+RdplW+RdplS+Tpl/Lemma+V+AI+Ind+Prs+1Sg')
 
     """
-
 
     wordform, _, analysis_string = analysis_line.partition('\t')
 
@@ -74,6 +74,7 @@ def process_crk_analysis(analysis_line):
 
     return (wordform, reformatted_tag)
 
+
 def main():
     print '--'
     print process_crk_analysis("PV/asdf+PV/bbq+lemma+POS+Type+Sg1")
@@ -84,9 +85,10 @@ def main():
 
     print process_crk_analysis("ninahnipan\tRdplS+nipâw+V+AI+Ind+Prs+1Sg")
     # ('ninahnipan', 'nipâw+RdplS+V+AI+Ind+Prs+1Sg')
-    print process_crk_analysis("ninanahnipan\tRdplW+RdplS+nipâw+V+AI+Ind+Prs+1Sg")
+    print process_crk_analysis(
+        "ninanahnipan\tRdplW+RdplS+nipâw+V+AI+Ind+Prs+1Sg")
     # ('ninanahnipan', 'nipâw+RdplW+RdplS+V+AI+Ind+Prs+1Sg')
+
 
 if __name__ == "__main__":
     sys.exit(main())
-

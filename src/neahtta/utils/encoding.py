@@ -4,6 +4,7 @@ def encodeOrFail(S):
     except:
         return S
 
+
 def decodeOrFail(S):
     try:
         return S.decode('utf-8')

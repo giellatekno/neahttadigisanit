@@ -4,6 +4,7 @@ import unittest
 import tempfile
 import simplejson
 
+
 class YamlTests(object):
 
     yaml_file = ''
@@ -22,6 +23,7 @@ class YamlTests(object):
     def wordforms_that_shouldnt_fail(self):
         def parse_item(i):
             return ((i[0], i[1]), i[2])
+
         return map(parse_item, self.parsed_yaml.get('LookupTests'))
 
     @property
@@ -48,11 +50,8 @@ class YamlTests(object):
             else:
                 return ()
 
-
         self._paradigm_generation_tests = map(
-            read_test_item,
-            self.parsed_yaml.get('ParadigmGeneration')
-        )
+            read_test_item, self.parsed_yaml.get('ParadigmGeneration'))
 
         return self._paradigm_generation_tests
 
@@ -76,6 +75,7 @@ def form_contains(_test_set):
 
     return test_contains
 
+
 def form_doesnt_contain(_test_set):
     """ A function that wraps a set, and then tests that the paradigm
     generation output partially intersects. """
@@ -97,7 +97,6 @@ def form_doesnt_contain(_test_set):
 
 
 class WordLookupTests(unittest.TestCase):
-
     def setUp(self):
         _app = neahtta.app
         # Turn on debug to disable SMTP logging
@@ -113,6 +112,7 @@ class WordLookupTests(unittest.TestCase):
             self.url_base = self.current_app.config.fcgi_script_path
         else:
             self.url_base = ''
+
 
 class BasicTests(WordLookupTests):
     def test_api_null_lookup(self):
@@ -135,14 +135,15 @@ class BasicTests(WordLookupTests):
         for lang_pair, form in self.wordforms_that_shouldnt_fail[1::]:
             print "testing: %s / %s" % (repr(lang_pair), repr(form))
             base = '/%s/%s/' % lang_pair
-            rv = self.app.post(base, data={
-                'lookup': form,
-            })
+            rv = self.app.post(
+                base, data={
+                    'lookup': form,
+                })
 
             self.assertEqual(rv.status_code, 200)
 
-class WordLookupDetailTests(WordLookupTests):
 
+class WordLookupDetailTests(WordLookupTests):
     def test_all_words_for_no_404s(self):
         for lang_pair, form in self.wordforms_that_shouldnt_fail[1::]:
             _from, _to = lang_pair
@@ -152,8 +153,8 @@ class WordLookupDetailTests(WordLookupTests):
 
             self.assertEqual(rv.status_code, 200)
 
-class WordLookupAPITests(WordLookupTests):
 
+class WordLookupAPITests(WordLookupTests):
     def test_all_words_for_no_404s(self):
         from urllib import urlencode
         for lang_pair, form in self.wordforms_that_shouldnt_fail[1::]:
@@ -166,8 +167,8 @@ class WordLookupAPITests(WordLookupTests):
 
             self.assertEqual(rv.status_code, 200)
 
-class WordLookupAPIDefinitionTests(WordLookupTests):
 
+class WordLookupAPIDefinitionTests(WordLookupTests):
     def test_words_for_definitions(self):
         from urllib import urlencode
         for lang_pair, form, expected_def in self.definition_exists_tests:
@@ -202,7 +203,6 @@ class WordLookupAPIDefinitionTests(WordLookupTests):
                     print '  NO DEFINITIONS -- EXPECTED <%s>' % expected_def
                     raise AssertionError("No definitions.")
 
-
             # if expected_def in l.get('right'):
             #     print expected_def
             #     print l.get('right')
@@ -211,10 +211,14 @@ class WordLookupAPIDefinitionTests(WordLookupTests):
 
 
 class ParadigmGenerationTests(WordLookupTests):
-
     def test_all_words_for_no_404s(self):
-        for (source, target, lemma, error_msg, test_func) in self.paradigm_generation_tests:
-            base = self.url_base + '/detail/%s/%s/%s.json' % (source, target, lemma, )
+        for (source, target, lemma, error_msg,
+             test_func) in self.paradigm_generation_tests:
+            base = self.url_base + '/detail/%s/%s/%s.json' % (
+                source,
+                target,
+                lemma,
+            )
             print "testing: %s " % base
             rv = self.app.get(base)
             result = simplejson.loads(rv.data)
@@ -227,6 +231,7 @@ class ParadigmGenerationTests(WordLookupTests):
                     for a in r.get('paradigm'):
                         print '  ' + repr(a)
                     test_result = test_func(r.get('paradigm'))
-                    self.assertTrue(test_result, 'Generation error: ' + error_msg)
+                    self.assertTrue(test_result,
+                                    'Generation error: ' + error_msg)
 
             # self.assertEqual(rv.status_code, 200)

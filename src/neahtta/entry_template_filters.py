@@ -1,9 +1,10 @@
 ﻿from flask import current_app, g
 
+
 def register_template_filters(app):
 
     # An idea, if specific forms need to be generated
-    # however, for this to be available from context files, some 
+    # however, for this to be available from context files, some
     # changes need to be made: context management should be moved from
     # config.py to TemplateConfig.
 
@@ -52,14 +53,13 @@ def register_template_filters(app):
         from operator import itemgetter
 
         # For some reason groupby with a key function did not work for
-        # this... 
+        # this...
 
         tag_by_form = [(g.tag.tag_string, g) for g in forms]
-        groups = groupby( tag_by_form, itemgetter(0))
+        groups = groupby(tag_by_form, itemgetter(0))
         forms = [map(itemgetter(1), b) for a, b in groups]
 
         return forms
-
 
     @app.template_filter('remove_by_tagset')
     def remove_by_tagset(tag_as_list, tagset_name):
@@ -69,7 +69,6 @@ def register_template_filters(app):
             return [t for t in tag_as_list if t not in filter_set]
         else:
             return tag_as_list
-
 
     @app.template_filter('by_tagset')
     def by_tagset(generated_forms, tagset_name):
@@ -167,10 +166,14 @@ def register_template_filters(app):
 
         # TODO: PV/e tags cause problems because they have been shifted
         # to the right of the lemma. maybe the tag processor function
-        # needs to fix this 
+        # needs to fix this
 
         try:
-            generated, raw_out, raw_errors = mx.generate(lemma, [tag_string], entry, return_raw_data=True, template_tag=True)
+            generated, raw_out, raw_errors = mx.generate(
+                lemma, [tag_string],
+                entry,
+                return_raw_data=True,
+                template_tag=True)
         except Exception, e:
             generated, raw = False, ""
 
@@ -189,7 +192,6 @@ def register_template_filters(app):
             forms = [lemma]
             raw = ""
 
-
         return forms, raw
 
     @app.template_filter('console_log')
@@ -199,4 +201,3 @@ def register_template_filters(app):
         </script>""" % string.strip().encode('unicode-escape')
 
     return app
-

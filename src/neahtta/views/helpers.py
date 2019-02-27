@@ -1,5 +1,6 @@
 from flask import request
 
+
 def to_xml_string(n):
     """ Return a string from an lxml node within an entry result.
     """
@@ -10,6 +11,7 @@ def to_xml_string(n):
             _str = etree.tostring(node, pretty_print=True, encoding="utf-8")
             return _str.decode('utf-8')
     return ''
+
 
 def resolve_original_pair(config, _from, _to):
     """ For a language pair alternate, return the original language pair
@@ -40,18 +42,16 @@ def resolve_original_pair(config, _from, _to):
     has_mobile_variant = False
 
     if has_variant:
-        _mobile_variants = filter( lambda x: x.get('type', '') == 'mobile'
-                                 , current_pair_variants
-                                 )
+        _mobile_variants = filter(lambda x: x.get('type', '') == 'mobile',
+                                  current_pair_variants)
         if len(_mobile_variants) > 0:
             has_mobile_variant = _mobile_variants[0]
-
 
     variant_dictionaries = config.variant_dictionaries
     is_variant, orig_pair = False, ()
 
     if variant_dictionaries:
-        variant    = variant_dictionaries.get((_from, _to), False)
+        variant = variant_dictionaries.get((_from, _to), False)
         is_variant = bool(variant)
         if is_variant:
             orig_pair = variant.get('orig_pair')
@@ -63,25 +63,20 @@ def resolve_original_pair(config, _from, _to):
 
     reverse_has_variant = False
     if is_variant:
-        _reverse_is_variant = config.variant_dictionaries.get( orig_pair
-                                                                         , False
-                                                                         )
+        _reverse_is_variant = config.variant_dictionaries.get(orig_pair, False)
         pair_settings = config.pair_definitions[orig_pair]
     else:
-        _reverse_is_variant = config.variant_dictionaries.get( (_to, _from)
-                                                                         , False
-                                                                         )
+        _reverse_is_variant = config.variant_dictionaries.get((_to, _from),
+                                                              False)
         pair_settings = config.pair_definitions[(_from, _to)]
 
     _reverse_variants = reverse_pair.get('input_variants', False)
 
     if _reverse_variants:
-        _mobile_variants = filter( lambda x: x.get('type', '') == 'mobile'
-                                 , _reverse_variants
-                                 )
-        _standard_variants = filter( lambda x: x.get('type', '') == 'standard'
-                                   , _reverse_variants
-                                   )
+        _mobile_variants = filter(lambda x: x.get('type', '') == 'mobile',
+                                  _reverse_variants)
+        _standard_variants = filter(lambda x: x.get('type', '') == 'standard',
+                                    _reverse_variants)
         if mobile and len(_mobile_variants) > 0:
             _preferred_swap = _mobile_variants[0]
             _short_name = _preferred_swap.get('short_name')
@@ -99,4 +94,3 @@ def resolve_original_pair(config, _from, _to):
         'swap_from': swap_from
     }
     return pair_settings, pair_opts
-

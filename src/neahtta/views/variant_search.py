@@ -27,15 +27,8 @@ chances of other services dying if this is altered.
 
 """
 
-from flask import ( current_app
-                  , request
-                  , session
-                  , Response
-                  , render_template
-                  , abort
-                  , redirect
-                  , g
-                  )
+from flask import (current_app, request, session, Response, render_template,
+                   abort, redirect, g)
 
 from flask.ext.babel import gettext as _
 
@@ -46,6 +39,7 @@ from cache import cache
 from .search import LanguagePairSearchView
 
 from lexicon import FrontPageFormat
+
 
 @cache.memoize()
 def fetch_keywords(_f, _t, counts=False):
@@ -68,6 +62,7 @@ def fetch_keywords(_f, _t, counts=False):
     else:
         return keys
 
+
 @cache.memoize()
 def fetch_remaining_keywords(_f, _t, keywords, counts=False):
     """ itwewina-specific: the same as the above, but removes any existing keywords--
@@ -88,16 +83,14 @@ def fetch_remaining_keywords(_f, _t, keywords, counts=False):
         return [a for a in list(set(keys)) if a not in existing_keywords]
 
     mlex = current_app.morpholexicon
-    morpholex_result = mlex.variant_lookup( 'keyword'
-                                          , keywords
-                                          , source_lang=_f
-                                          , target_lang=_t
-                                          )
+    morpholex_result = mlex.variant_lookup(
+        'keyword', keywords, source_lang=_f, target_lang=_t)
 
     entries = map(itemgetter(0), morpholex_result)
     new_keys = get_entry_keywords(entries)
 
     return new_keys
+
 
 class LanguagePairSearchVariantView(LanguagePairSearchView):
     """ This view provides some modifications to allow for loading of
@@ -126,9 +119,11 @@ class LanguagePairSearchVariantView(LanguagePairSearchView):
         """ Return some things that are in all templates. Include the
         variant type in the search request. """
         _sup = super(LanguagePairSearchVariantView, self)
-        shared_context = _sup.get_shared_context(_from, _to,
-                                                 search_form_action=request.path,
-                                                 search_variant_type=self.variant_type)
+        shared_context = _sup.get_shared_context(
+            _from,
+            _to,
+            search_form_action=request.path,
+            search_variant_type=self.variant_type)
         shared_context['variant_type'] = self.variant_type
         shared_context['search_form_action'] = request.path
 
@@ -157,7 +152,9 @@ class LanguagePairSearchVariantView(LanguagePairSearchView):
                 for e in search_result.entries:
                     keys.append(e.xpath(_str_norm % './mg/tg/key/text()'))
 
-                return [a for a in list(set(keys)) if a not in existing_keywords]
+                return [
+                    a for a in list(set(keys)) if a not in existing_keywords
+                ]
 
             context['available_keywords'] = get_entry_keywords()
 
@@ -194,7 +191,9 @@ class LanguagePairSearchVariantView(LanguagePairSearchView):
 
         return self.search_args(variant_type, _from, _to, get_locale(), 'POST')
 
+
 from .reader import crossdomain
+
 
 @crossdomain(origin='*', headers=['Content-Type'])
 def search_keyword_list(_from, _to):
@@ -218,9 +217,6 @@ def search_keyword_list(_from, _to):
     else:
         keys = fetch_keywords(_from, _to)
 
-    data = simplejson.dumps({ 'keywords': keys })
+    data = simplejson.dumps({'keywords': keys})
 
-    return Response( response=data
-                   , status=200
-                   , mimetype="application/json"
-                   )
+    return Response(response=data, status=200, mimetype="application/json")

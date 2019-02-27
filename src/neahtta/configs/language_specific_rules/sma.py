@@ -34,6 +34,7 @@ from lexicon import lexicon_overrides as lexicon
 from flask import current_app
 from morpholex import morpholex_overrides as morpholex
 
+
 @lexicon.entry_source_formatter('sma')
 def format_source_sma(ui_lang, e, target_lang):
     from morphology.utils import tagfilter_conf
@@ -47,9 +48,10 @@ def format_source_sma(ui_lang, e, target_lang):
 
     _lemma_ref = e.xpath(_str_norm % 'lg/lemma_ref/text()')
     if _lemma_ref:
-        _link_targ = u'/detail/%s/%s/%s.html' % ('sma', target_lang, _lemma_ref)
+        _link_targ = u'/detail/%s/%s/%s.html' % ('sma', target_lang,
+                                                 _lemma_ref)
         _lemma_ref_link = u'<a href="%s"/>%s</a>' % (_link_targ, _lemma_ref)
-        _lemma_ref_link = u'<span class="see_also"> → '  + _lemma_ref_link
+        _lemma_ref_link = u'<span class="see_also"> → ' + _lemma_ref_link
         _lemma_ref_link += u'</span>'
 
     else:
@@ -70,11 +72,12 @@ def format_source_sma(ui_lang, e, target_lang):
 
     return None
 
+
 @morphology.pregenerated_form_selector('sma')
 def pregenerate_sma(form, tags, node, **kwargs):
     _has_mini_paradigm = node.xpath('.//mini_paradigm[1]')
 
-    _has_lemma_ref     = node.xpath('.//lemma_ref')
+    _has_lemma_ref = node.xpath('.//lemma_ref')
     if len(_has_lemma_ref) > 0:
         return form, [], node, []
     if len(_has_mini_paradigm) == 0:
@@ -100,9 +103,7 @@ def pregenerate_sma(form, tags, node, **kwargs):
 
     return form, tags, node, analyses
 
+
 from configs.language_specific_rules.common import match_homonymy_entries
 
-morpholex.post_morpho_lexicon_override(
-    'sma'
-)(match_homonymy_entries)
-
+morpholex.post_morpho_lexicon_override('sma')(match_homonymy_entries)

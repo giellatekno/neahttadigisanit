@@ -1,5 +1,6 @@
 # Some misc test functions that need to be rewritten into actual tests
 
+
 def sme_test():
     sme_options = {
         'compoundBoundary': "  + #",
@@ -8,14 +9,16 @@ def sme_test():
         'inverse_tagsep': '+',
     }
 
-    smexfst = XFST(lookup_tool='/Users/pyry/bin/lookup',
-                   fst_file='/Users/pyry/gtsvn/gt/sme/bin/n-sme.fst',
-                   ifst_file='/Users/pyry/gtsvn/gt/sme/bin/isme.fst',
-                   options=sme_options)
+    smexfst = XFST(
+        lookup_tool='/Users/pyry/bin/lookup',
+        fst_file='/Users/pyry/gtsvn/gt/sme/bin/n-sme.fst',
+        ifst_file='/Users/pyry/gtsvn/gt/sme/bin/isme.fst',
+        options=sme_options)
 
     sme = smexfst >> Morphology('sme')
 
     return sme
+
 
 def sme_test_restrictions():
 
@@ -26,10 +29,11 @@ def sme_test_restrictions():
         'inverse_tagsep': '+',
     }
 
-    smexfst = XFST(lookup_tool='/Users/pyry/bin/lookup',
-                   fst_file='/Users/pyry/gtsvn/gt/sme/bin/n-sme.fst',
-                   ifst_file='/Users/pyry/gtsvn/gt/sme/bin/isme.fst',
-                   options=sme_options)
+    smexfst = XFST(
+        lookup_tool='/Users/pyry/bin/lookup',
+        fst_file='/Users/pyry/gtsvn/gt/sme/bin/n-sme.fst',
+        ifst_file='/Users/pyry/gtsvn/gt/sme/bin/isme.fst',
+        options=sme_options)
 
     sme = smexfst >> Morphology('sme')
 
@@ -74,23 +78,22 @@ def sme_restricted_generation():
             else:
                 print '\t' + 'NOPE'
 
+
 def sme_derivation_test():
     sme = sme_test()
 
-    test_words = [
-        u'borahuvvat',
-        u'juhkaluvvan'
-    ]
+    test_words = [u'borahuvvat', u'juhkaluvvan']
     for w in test_words:
         print "No options"
         print sme.lemmatize(w)
 
         print "/lookup/ lemmatizer"
-        print sme.lemmatize( w
-                           , split_compounds=True
-                           , non_compound_only=True
-                           , no_derivations=True
-                           )
+        print sme.lemmatize(
+            w,
+            split_compounds=True,
+            non_compound_only=True,
+            no_derivations=True)
+
 
 def sme_compound_test():
     # TODO: make UnitTests out of these.
@@ -100,39 +103,32 @@ def sme_compound_test():
     print sme.lemmatize(u'báhčinsearvi')
 
     print "Strip derivation, compounds, but also split compounds"
-    print sme.lemmatize( u'báhčinsearvi'
-                       , split_compounds=True
-                       , non_compound_only=True
-                       , no_derivations=True
-                       )
+    print sme.lemmatize(
+        u'báhčinsearvi',
+        split_compounds=True,
+        non_compound_only=True,
+        no_derivations=True)
 
     print "Strip derivation, but also split compounds"
-    print sme.lemmatize( u'báhčinsearvi'
-                       , split_compounds=True
-                       , no_derivations=True
-                       )
+    print sme.lemmatize(
+        u'báhčinsearvi', split_compounds=True, no_derivations=True)
 
     print "Strip compounds, but also split compounds"
-    print sme.lemmatize( u'báhčinsearvi'
-                       , split_compounds=True
-                       , non_compound_only=True
-                       )
+    print sme.lemmatize(
+        u'báhčinsearvi', split_compounds=True, non_compound_only=True)
 
     print "Strip compounds"
-    print sme.lemmatize( u'báhčinsearvi'
-                       , non_compound_only=True
-                       )
+    print sme.lemmatize(u'báhčinsearvi', non_compound_only=True)
 
     print "Split compounds"
-    print sme.lemmatize( u'báhčinsearvi'
-                       , split_compounds=True
-                       )
+    print sme.lemmatize(u'báhčinsearvi', split_compounds=True)
 
-    print sme.lemmatize( u'boazodoallošiehtadallanlávdegotti'
-                       , split_compounds=True
-                       , non_compound_only=True
-                       , no_derivations=True
-                       )
+    print sme.lemmatize(
+        u'boazodoallošiehtadallanlávdegotti',
+        split_compounds=True,
+        non_compound_only=True,
+        no_derivations=True)
+
 
 def examples():
     # TODO: make this into tests
@@ -157,11 +153,9 @@ def examples():
     for a in sme.lemmatize(u'mannat'):
         print '  ' + a
 
-    generate = sme.generate(u'mannat', [['V', 'Inf'],
-                                ['V', 'Ind', 'Prs', 'Sg1'],
-                                ['V', 'Ind', 'Pst', 'Sg2'],
-                                ['V', 'Ind', 'Prt', 'Sg2']]
-                                )
+    generate = sme.generate(
+        u'mannat', [['V', 'Inf'], ['V', 'Ind', 'Prs', 'Sg1'],
+                    ['V', 'Ind', 'Pst', 'Sg2'], ['V', 'Ind', 'Prt', 'Sg2']])
 
     for lem, tag, forms in generate:
         if forms:
@@ -170,7 +164,9 @@ def examples():
         else:
             print '  ' + ' '.join(tag) + ':   unknown'
 
-    generate = sme.generate(u'eaktodáhtolašš', [['A', 'Attr'], ])
+    generate = sme.generate(u'eaktodáhtolašš', [
+        ['A', 'Attr'],
+    ])
 
     for lem, tag, forms in generate:
         if forms:
@@ -191,6 +187,7 @@ def examples():
     for a in sme.lemmatize(u'juovlaspábbačiekčangilvu'):
         print '  ' + a
 
+
 def tag_examples():
     setdefs = {
         'type': ["NomAg", "G3"],
@@ -210,6 +207,7 @@ def tag_examples():
 
     for item in tag_test:
         print item
+
 
 if __name__ == "__main__":
     # examples()

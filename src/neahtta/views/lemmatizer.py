@@ -23,16 +23,8 @@ __all__ = [
     'LemmatizerView',
 ]
 
-from flask import ( request
-                  , current_app
-                  , json
-                  , session
-                  , Response
-                  , render_template
-                  , abort
-                  , redirect
-                  , g
-                  )
+from flask import (request, current_app, json, session, Response,
+                   render_template, abort, redirect, g)
 
 from .search import DictionaryView, SearcherMixin
 from .reader import json_response
@@ -40,17 +32,11 @@ from utils.encoding import decodeOrFail
 
 from i18n.utils import get_locale
 
-def json_response_pretty(data, *args, **kwargs):
-    data = json.dumps( data
-                     , sort_keys=True
-                     , indent=4
-                     , separators=(',', ': ')
-                     )
 
-    return Response( response=data
-                   , status=200
-                   , mimetype="application/json"
-                   )
+def json_response_pretty(data, *args, **kwargs):
+    data = json.dumps(data, sort_keys=True, indent=4, separators=(',', ': '))
+
+    return Response(response=data, status=200, mimetype="application/json")
 
 
 class LemmatizerView(DictionaryView, SearcherMixin):
@@ -124,4 +110,3 @@ class LemmatizerView(DictionaryView, SearcherMixin):
                 'wordform': wordform,
             }
         })
-

@@ -9,8 +9,11 @@ from views.custom_rendering import template_rendering_overrides
 
 from flask import current_app, g
 
-@template_rendering_overrides.register_custom_sort(('crk', 'eng'), ('crkMacr', 'eng'), ('crkS', 'eng'))
-def sort_by_analyses(search_result_obj, unsorted_entries_and_tags_and_paradigms):
+
+@template_rendering_overrides.register_custom_sort(
+    ('crk', 'eng'), ('crkMacr', 'eng'), ('crkS', 'eng'))
+def sort_by_analyses(search_result_obj,
+                     unsorted_entries_and_tags_and_paradigms):
     """ This is where we sort analyses first, and then everything else.
 
     Copying the original sorting to modify that. Original sort is:
@@ -49,7 +52,8 @@ def sort_by_analyses(search_result_obj, unsorted_entries_and_tags_and_paradigms)
 
         # sort alphabetically within main groups split by presence of
         # lemmas
-        if (a_has_morph and b_has_morph) or (not a_has_morph and not b_has_morph):
+        if (a_has_morph and b_has_morph) or (not a_has_morph
+                                             and not b_has_morph):
             return sort_lemma_alpha()
 
         # otherwise sort by presence of morphology
@@ -61,16 +65,17 @@ def sort_by_analyses(search_result_obj, unsorted_entries_and_tags_and_paradigms)
 
         return no_diff
 
-    return sorted( unsorted_entries_and_tags_and_paradigms
-                 , key=sort_key
-                 , cmp=sort_with_user_input_first
-                 )
+    return sorted(
+        unsorted_entries_and_tags_and_paradigms,
+        key=sort_key,
+        cmp=sort_with_user_input_first)
+
 
 # @lexicon_overrides.postlookup_filters_for_lexicon(('eng', 'crk'))
 # def sort_by_rank(lex, nodelist, *args, **kwargs):
-# 
+#
 #     _str_norm = 'string(normalize-space(%s))'
-# 
+#
 #     def get_rank(n):
 #         try:
 #             rank = int( n.xpath(_str_norm % './/rank/@rank') )
@@ -80,8 +85,9 @@ def sort_by_analyses(search_result_obj, unsorted_entries_and_tags_and_paradigms)
 #             return rank
 #         else:
 #             return n.xpath(_str_norm % './/l/text()')
-# 
+#
 #     return sorted(nodelist, key=get_rank)
+
 
 # NB: general search type, so crk->eng, and everything else that isn't
 # eng->crk substring type
@@ -122,14 +128,13 @@ class CustomCrkSearch(CustomLookupType):
         for c in lemma:
             lemma_fuzz += fuzzings.get(c, c)
 
-        return self.XPath( match_fx
-                         , lemma=lemma
-                         , lemma_fuzz=lemma_fuzz
-                         )
+        return self.XPath(match_fx, lemma=lemma, lemma_fuzz=lemma_fuzz)
+
 
 search_types.add_custom_lookup_type('regular')(CustomCrkSearch)
 
-# NB: eng->crk only 
+
+# NB: eng->crk only
 class EngToCrkSubstringLookups(CustomLookupType):
     """
     NB: for the moment this is eng-crk specific, this is defined in itwewina.config.yaml.in
@@ -160,8 +165,7 @@ class EngToCrkSubstringLookups(CustomLookupType):
 
         def test_node(node):
             tg_node_expr = " and ".join([
-                '(key/text() = "%s")' % l_part
-                for l_part in lemma.split(',')
+                '(key/text() = "%s")' % l_part for l_part in lemma.split(',')
             ])
             _xp = 'tg[%s]' % tg_node_expr
             return len(node.xpath(_xp)) == 0
@@ -192,23 +196,24 @@ class EngToCrkSubstringLookups(CustomLookupType):
 
     def lookupLemma(self, lemma):
 
-        keys = ' and '.join([
-            '(mg/tg/key/text() = "%s")' % l
-            for l in lemma.split(',')
-        ])
+        keys = ' and '.join(
+            ['(mg/tg/key/text() = "%s")' % l for l in lemma.split(',')])
 
         key_expr = './/e[%s]' % keys
 
         xp = etree.XPath(key_expr)
 
-        nodes = self.XPath( xp, lemma=lemma)
+        nodes = self.XPath(xp, lemma=lemma)
         return self.filterNodes(nodes, lemma=lemma)
 
-search_types.add_custom_lookup_type('substring_match')(EngToCrkSubstringLookups)
+
+search_types.add_custom_lookup_type('substring_match')(
+    EngToCrkSubstringLookups)
+
 
 # NB: this search type has not been registered, just copying here so it
 # will not get lost.
-# 
+#
 # search_types.add_custom_lookup_type('keyword')(SubstringLookups)
 class KeywordLookups(CustomLookupType):
     """
@@ -288,12 +293,11 @@ class KeywordLookups(CustomLookupType):
 
         def duplicate_node(node):
             # previously: etree.XML(etree.tostring(node))
-            return copy.deepcopy(node) 
+            return copy.deepcopy(node)
 
         def test_node(node):
             tg_node_expr = " and ".join([
-                '(key/text() = "%s")' % l_part
-                for l_part in lemma.split(',')
+                '(key/text() = "%s")' % l_part for l_part in lemma.split(',')
             ])
             _xp = 'tg[%s]' % tg_node_expr
             return len(node.xpath(_xp)) == 0
@@ -322,16 +326,14 @@ class KeywordLookups(CustomLookupType):
 
     def lookupLemma(self, lemma):
 
-        keys = ' and '.join([
-            '(mg/tg/key/text() = "%s")' % l
-            for l in lemma.split(',')
-        ])
+        keys = ' and '.join(
+            ['(mg/tg/key/text() = "%s")' % l for l in lemma.split(',')])
 
         key_expr = './/e[%s]' % keys
 
         xp = etree.XPath(key_expr)
 
-        nodes = self.XPath( xp, lemma=lemma)
+        nodes = self.XPath(xp, lemma=lemma)
         return self.filterNodes(nodes, lemma=lemma)
 
 
@@ -356,6 +358,7 @@ def force_hyphen(generated_forms, *input_args, **input_kwargs):
         return (tag, forms)
 
     return map(form_fx, generated_forms)
+
 
 @morphology.tag_filter_for_iso('crk', 'crkMacr', 'crkS')
 def adjust_tags_for_gen(lemma, tags, node=None, **kwargs):
@@ -418,11 +421,9 @@ def adjust_tags_for_gen(lemma, tags, node=None, **kwargs):
 
         cleaned_tags.append(cleaned_tag)
 
-
     if len(cleaned_tags) == 0 and len(tags) > 0:
         tags = cleaned_tags
 
     # print cleaned_tags
 
     return lemma, cleaned_tags, node
-

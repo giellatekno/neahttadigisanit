@@ -16,7 +16,6 @@
 
 import sys, os
 
-
 os.environ['NDS_CONFIG'] = '../configs/documentation_dummy.config.yaml.in'
 sys.path.insert(0, os.path.abspath('../'))
 sys.path.insert(0, os.path.abspath('../../'))
@@ -29,8 +28,10 @@ sys.path.insert(0, os.path.abspath('../../'))
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.coverage',
-              'sphinx.ext.viewcode', 'sphinxcontrib.httpdomain']
+extensions = [
+    'sphinx.ext.autodoc', 'sphinx.ext.coverage', 'sphinx.ext.viewcode',
+    'sphinxcontrib.httpdomain'
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -94,7 +95,6 @@ pygments_style = 'sphinx'
 
 # If true, keep warnings as "system message" paragraphs in the built documents.
 #keep_warnings = False
-
 
 # -- Options for HTML output --------------------------------------------------
 
@@ -175,25 +175,25 @@ html_static_path = ['_static']
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'Neahttadigisnitdoc'
 
-
 # -- Options for LaTeX output -------------------------------------------------
 
 latex_elements = {
-# The paper size ('letterpaper' or 'a4paper').
-#'papersize': 'letterpaper',
+    # The paper size ('letterpaper' or 'a4paper').
+    #'papersize': 'letterpaper',
 
-# The font size ('10pt', '11pt' or '12pt').
-#'pointsize': '10pt',
+    # The font size ('10pt', '11pt' or '12pt').
+    #'pointsize': '10pt',
 
-# Additional stuff for the LaTeX preamble.
-#'preamble': '',
+    # Additional stuff for the LaTeX preamble.
+    #'preamble': '',
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'Neahttadigisnit.tex', u'Neahttadigisánit Documentation',
-   u'Ryan Johnson \\textless{}ryan.txanson@gmail.com\\textgreater{}', 'manual'),
+    ('index', 'Neahttadigisnit.tex', u'Neahttadigisánit Documentation',
+     u'Ryan Johnson \\textless{}ryan.txanson@gmail.com\\textgreater{}',
+     'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -216,19 +216,15 @@ latex_documents = [
 # If false, no module index is generated.
 #latex_domain_indices = True
 
-
 # -- Options for manual page output -------------------------------------------
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [
-    ('index', 'neahttadigisnit', u'Neahttadigisánit Documentation',
-     [u'Ryan Johnson <ryan.txanson@gmail.com>'], 1)
-]
+man_pages = [('index', 'neahttadigisnit', u'Neahttadigisánit Documentation',
+              [u'Ryan Johnson <ryan.txanson@gmail.com>'], 1)]
 
 # If true, show URL addresses after external links.
 #man_show_urls = False
-
 
 # -- Options for Texinfo output -----------------------------------------------
 
@@ -236,9 +232,9 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'Neahttadigisnit', u'Neahttadigisánit Documentation',
-   u'Ryan Johnson <ryan.txanson@gmail.com>', 'Neahttadigisnit', 'One line description of project.',
-   'Miscellaneous'),
+    ('index', 'Neahttadigisnit', u'Neahttadigisánit Documentation',
+     u'Ryan Johnson <ryan.txanson@gmail.com>', 'Neahttadigisnit',
+     'One line description of project.', 'Miscellaneous'),
 ]
 
 # Documents to append as an appendix to all manuals.

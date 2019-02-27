@@ -4,6 +4,7 @@ import unittest
 
 # TODO: run a test against all sme stuff
 
+
 class TemplateRenderTest(unittest.TestCase):
     """ Test basic template rendering.
     """
@@ -25,12 +26,16 @@ class TemplateRenderTest(unittest.TestCase):
     def testRenderSme(self):
 
         with self.current_app.app_context():
-            lookup = self.current_app.morpholexicon.lookup('mannat', source_lang='sme', target_lang='nob')
+            lookup = self.current_app.morpholexicon.lookup(
+                'mannat', source_lang='sme', target_lang='nob')
             # TODO: current_app missing new style template filter
             # extension
             for lexicon, analyses in lookup:
-                rendered = self.template_renderer.render_template('sme', 'entry.template',
-                                             lexicon_entry=lexicon,
-                                             analyses=analyses, _from='sme',
-                                             _to='nob')
+                rendered = self.template_renderer.render_template(
+                    'sme',
+                    'entry.template',
+                    lexicon_entry=lexicon,
+                    analyses=analyses,
+                    _from='sme',
+                    _to='nob')
                 print rendered

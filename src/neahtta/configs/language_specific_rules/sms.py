@@ -5,6 +5,7 @@ connecting FST to Lexicon.
 
 from morphology import generation_overrides as morphology
 
+
 @morphology.pregenerated_form_selector(*['sms', 'smsM'])
 def pregenerate_sms(form, tags, node, **kwargs):
     """ **pregenerated form selector**: mini_paradigm / lemma_ref
@@ -14,8 +15,8 @@ def pregenerate_sms(form, tags, node, **kwargs):
     """
     _has_mini_paradigm = node.xpath('.//mini_paradigm[1]')
 
-    _has_lemma_ref     = node.xpath('.//lemma_ref')
-    _pos       = node.xpath('.//l/@pos')
+    _has_lemma_ref = node.xpath('.//lemma_ref')
+    _pos = node.xpath('.//l/@pos')
 
     # Return tags but no forms in order to trigger further analysis attempts
 
@@ -47,4 +48,3 @@ def pregenerate_sms(form, tags, node, **kwargs):
     analyses = map(analysis_node, mp.xpath('.//analysis'))
 
     return form, tags, node, analyses
-

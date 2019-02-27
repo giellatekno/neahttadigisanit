@@ -1,6 +1,4 @@
-__all__ = [
-    'create_app'
-]
+__all__ = ['create_app']
 
 ADMINS = [
     'ryan.txanson+nds@gmail.com',
@@ -10,19 +8,16 @@ import sys, os
 import logging
 import urllib
 
-from   flask                          import ( Flask
-                                             , request
-                                             , session
-                                             )
+from flask import (Flask, request, session)
 
 # from   werkzeug.contrib.cache         import SimpleCache
-from   config                         import Config
-from   logging                        import getLogger
+from config import Config
+from logging import getLogger
 
-from   flask.ext.babel                 import Babel
-from   flask.ext.limiter               import Limiter
+from flask.ext.babel import Babel
+from flask.ext.limiter import Limiter
 
-from cache                            import cache
+from cache import cache
 
 # Configure user_log
 user_log = getLogger("user_log")
@@ -31,6 +26,7 @@ user_log.addHandler(useLogFile)
 user_log.setLevel("INFO")
 
 cwd = lambda x: os.path.join(os.path.dirname(__file__), x)
+
 
 def jinja_options_and_filters(app):
 
@@ -43,6 +39,7 @@ def jinja_options_and_filters(app):
     app.jinja_env.add_extension('jinja2.ext.loopcontrols')
 
     return app
+
 
 def register_babel(app):
 
@@ -98,6 +95,7 @@ def register_babel(app):
 
     return app
 
+
 def prepare_assets(app):
     """ Prepare asset registries, collect and combine them into several lists.
 
@@ -150,7 +148,7 @@ def prepare_assets(app):
 
     proj_css = []
     if app.config.has_project_css:
-        proj_css.append(app.config.has_project_css.replace('static/',''))
+        proj_css.append(app.config.has_project_css.replace('static/', ''))
 
     # assets
     app.assets.main_js_assets = [
@@ -227,6 +225,7 @@ def prepare_assets(app):
 
     return app
 
+
 def register_assets(app):
     """ After all assets have been collected from parsed templates...
 
@@ -250,18 +249,36 @@ def register_assets(app):
 
     PROJ = app.config.short_name
 
-    main_js = Bundle(*app.assets.main_js_assets, filters=js_filters, output="js/app-compiled-%s.js" % PROJ)
-    main_css = Bundle(*app.assets.main_css_assets, filters=css_filters, output="css/app-compiled-%s.css" % PROJ)
+    main_js = Bundle(
+        *app.assets.main_js_assets,
+        filters=js_filters,
+        output="js/app-compiled-%s.js" % PROJ)
+    main_css = Bundle(
+        *app.assets.main_css_assets,
+        filters=css_filters,
+        output="css/app-compiled-%s.css" % PROJ)
     app.assets.register('main_js', main_js)
     app.assets.register('main_css', main_css)
 
-    main_t_js = Bundle(*app.assets.t_js_assets, filters=js_filters, output="js/app-t-compiled-%s.js" % PROJ)
-    main_t_css = Bundle(*app.assets.t_css_assets, filters=css_filters, output="css/app-t-compiled-%s.css" % PROJ)
+    main_t_js = Bundle(
+        *app.assets.t_js_assets,
+        filters=js_filters,
+        output="js/app-t-compiled-%s.js" % PROJ)
+    main_t_css = Bundle(
+        *app.assets.t_css_assets,
+        filters=css_filters,
+        output="css/app-t-compiled-%s.css" % PROJ)
     app.assets.register('main_t_js', main_t_js)
     app.assets.register('main_t_css', main_t_css)
 
-    nav_menu_js = Bundle(*app.assets.nav_menu_js, filters=js_filters, output="js/nav-menu-compiled-%s.js" % PROJ)
-    nav_menu_css = Bundle(*app.assets.nav_menu_css, filters=css_filters, output="css/nav-menu-compiled-%s.css" % PROJ)
+    nav_menu_js = Bundle(
+        *app.assets.nav_menu_js,
+        filters=js_filters,
+        output="js/nav-menu-compiled-%s.js" % PROJ)
+    nav_menu_css = Bundle(
+        *app.assets.nav_menu_css,
+        filters=css_filters,
+        output="css/nav-menu-compiled-%s.css" % PROJ)
     app.assets.register('nav_menu_js', nav_menu_js)
     app.assets.register('nav_menu_css', nav_menu_css)
 
@@ -270,6 +287,7 @@ def register_assets(app):
     app.assets.prepared = True
 
     return app
+
 
 def check_dependencies():
     import distutils
@@ -286,6 +304,7 @@ def check_dependencies():
             print >> sys.stderr, "  Install the executable, check that it is available in $PATH, "
             print >> sys.stderr, "  and check that it's executable. "
             sys.exit()
+
 
 def create_app():
     """ Set up the Flask app, cache, read app configuration file, and
@@ -305,22 +324,22 @@ def create_app():
     # print "caller name", calframe[1]
     import yaml
     with open(os.environ['NDS_CONFIG'], 'r') as F:
-        static_prefix = yaml.load(F).get('ApplicationSettings').get('fcgi_script_path', '')
+        static_prefix = yaml.load(F).get('ApplicationSettings').get(
+            'fcgi_script_path', '')
 
-    os.environ['PATH'] += os.pathsep + os.path.join(os.path.dirname(__file__), 'node_modules/.bin')
+    os.environ['PATH'] += os.pathsep + os.path.join(
+        os.path.dirname(__file__), 'node_modules/.bin')
     check_dependencies()
 
-    app = Flask(__name__,
-        static_url_path=static_prefix+'/static',
-        template_folder=cwd('templates')
-   )
+    app = Flask(
+        __name__,
+        static_url_path=static_prefix + '/static',
+        template_folder=cwd('templates'))
 
     app = jinja_options_and_filters(app)
     app.production = False
 
-    DEFAULT_CONF = os.path.join( os.path.dirname(__file__)
-                               , 'configs'
-                               )
+    DEFAULT_CONF = os.path.join(os.path.dirname(__file__), 'configs')
 
     app.config['cache'] = cache
     # TODO: make sure this isn't being specified by an env variable
@@ -346,11 +365,15 @@ def create_app():
 
     # Register language specific config information
     import views
-    app.register_blueprint(views.blueprint, url_prefix=app.config['APPLICATION_ROOT'])
-    app.register_blueprint(configs.blueprint, url_prefix=app.config['APPLICATION_ROOT'])
+    app.register_blueprint(
+        views.blueprint, url_prefix=app.config['APPLICATION_ROOT'])
+    app.register_blueprint(
+        configs.blueprint, url_prefix=app.config['APPLICATION_ROOT'])
 
     # Prepare cache
-    cache_path = os.path.join(os.path.dirname(__file__), 'tmp/generator_cache/%s/' % app.config.short_name)
+    cache_path = os.path.join(
+        os.path.dirname(__file__),
+        'tmp/generator_cache/%s/' % app.config.short_name)
     cache.init_app(app, {'CACHE_TYPE': 'filesystem', 'CACHE_DIR': cache_path})
 
     app.cache = cache
@@ -389,8 +412,7 @@ def create_app():
     if not app.debug:
         import logging
         from logging.handlers import SMTPHandler
-        mail_handler = SMTPHandler('127.0.0.1',
-                                   'server-error@gtweb.uit.no',
+        mail_handler = SMTPHandler('127.0.0.1', 'server-error@gtweb.uit.no',
                                    ADMINS, 'NDS error')
         mail_handler.setLevel(logging.ERROR)
         app.logger.addHandler(mail_handler)
@@ -404,8 +426,8 @@ def create_app():
     else:
         _admins = ADMINS + app.config.admins
         mail_handler = SMTPHandler('127.0.0.1',
-                                   "server-error@%s" % gethostname(),
-                                   ADMINS, "NDS-%s Failed" %  app.config.short_name)
+                                   "server-error@%s" % gethostname(), ADMINS,
+                                   "NDS-%s Failed" % app.config.short_name)
         app.logger.smtp_handler = mail_handler
 
     # Templates are read, register the assets

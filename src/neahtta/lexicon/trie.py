@@ -1,7 +1,7 @@
 ﻿#!/usr/bin/env python
 #
 # Copyright (c) 2011 Kyle Gorman
-# 
+#
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
 # in the Software without restriction, including without limitation the rights
@@ -19,13 +19,14 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
-# 
+#
 # trie.py
 # Python implementation of the 'trie' data structure
-# 
+#
 # Kyle Gorman <kgorman@ling.upenn.ed>
 
 from functools import partial
+
 
 class memoize(object):
     """
@@ -120,9 +121,9 @@ class Trie(object):
                 curr_node = curr_node[char]
             except KeyError:
                 return False
-        if None in curr_node: # just make sure it's a licit completion 
+        if None in curr_node:  # just make sure it's a licit completion
             return True
-        else: # an incomplete string
+        else:  # an incomplete string
             return False
 
     def add(self, word):
@@ -132,12 +133,12 @@ class Trie(object):
         curr_node = self.root
         for char in word:
             # try/except is faster than checking for key membership
-            try: 
+            try:
                 curr_node = curr_node[char]
             except KeyError:
-                curr_node[char] = {} # make it
-                curr_node = curr_node[char] # then enter it
-        curr_node[None] = word # None is then the "terminal" symbol
+                curr_node[char] = {}  # make it
+                curr_node = curr_node[char]  # then enter it
+        curr_node[None] = word  # None is then the "terminal" symbol
 
     def update(self, words):
         """ 
@@ -158,7 +159,7 @@ class Trie(object):
             if getattr(i, '__iter__', False):
                 for j in self._smash(i):
                     yield j
-            else: # base case
+            else:  # base case
                 yield i
 
     def autocomplete(self, prefix):
@@ -171,8 +172,8 @@ class Trie(object):
             # try/except is faster than checking for key membership
             try:
                 curr_node = curr_node[char]
-            except KeyError: 
-                return [] # break out
+            except KeyError:
+                return []  # break out
         # recursively follow all the other paths
         return self._smash(self._traverse(curr_node))
 
@@ -180,4 +181,3 @@ class Trie(object):
 if __name__ == '__main__':
     import doctest
     doctest.testmod()
-

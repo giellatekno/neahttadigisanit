@@ -9,7 +9,6 @@
 
 from flask import current_app
 
-
 from lexicon.lexicon import hash_node
 
 from itertools import groupby
@@ -17,12 +16,13 @@ from operator import itemgetter
 
 import time
 
-class MorphoLexiconOverrides(object):
 
+class MorphoLexiconOverrides(object):
     def override_results(self, function):
         """ This runs the morpholex lookup, and passes the output
         through the a set of functions to process the output.
         """
+
         def decorate(wordform, **input_kwargs):
             _from = input_kwargs.get('source_lang')
             raw_return = input_kwargs.get('return_raw_data', False)
@@ -54,6 +54,7 @@ class MorphoLexiconOverrides(object):
     def post_morpho_lexicon_override(self, *language_isos):
         """ Use this function to register functions as part of this
         override """
+
         def wrapper(override_function):
             for language_iso in language_isos:
                 self.override_functions[language_iso]\
@@ -62,15 +63,18 @@ class MorphoLexiconOverrides(object):
                         ( language_iso
                         , override_function.__name__
                         )
+
         return wrapper
 
     def __init__(self):
         from collections import defaultdict
         self.override_functions = defaultdict(list)
 
+
 morpholex_overrides = MorphoLexiconOverrides()
 
 from operator import itemgetter
+
 
 class MorphoLexiconResult(list):
     """ A subcalss of the List object meant to make sorting through
@@ -92,6 +96,7 @@ class MorphoLexiconResult(list):
         """
         # return [e for e, analyses in self]
         return map(itemgetter(0), self)
+
 
 class MorphoLexicon(object):
     morphology_kwarg_names = [
@@ -241,10 +246,8 @@ class MorphoLexicon(object):
                     else:
                         continue
 
-                xml_result = self.lexicon.lookup( source_lang
-                                                , target_lang
-                                                , **lex_kwargs
-                                                )
+                xml_result = self.lexicon.lookup(source_lang, target_lang,
+                                                 **lex_kwargs)
 
                 if xml_result:
                     for e in xml_result:
@@ -289,25 +292,25 @@ class MorphoLexicon(object):
                 else:
                     entries_and_tags_right.append((None, analysis_r))'''##
 
-        no_analysis_xml = self.lexicon.lookup( source_lang
-                                             , target_lang
-                                             , wordform
-                                             , lemma_attrs=lemma_attrs
-                                             , user_input=wordform
-                                             )
-
+        no_analysis_xml = self.lexicon.lookup(
+            source_lang,
+            target_lang,
+            wordform,
+            lemma_attrs=lemma_attrs,
+            user_input=wordform)
 
         if no_analysis_xml:
             for e in no_analysis_xml:
                 entries_and_tags.append((e, None))
                 ##entries_and_tags_right.append((e, None))
 
-
         if entry_hash_filter:
+
             def filt((x, _)):
                 if x is not None:
                     return hash_node(x) == entry_hash_filter
                 return True
+
             entries_and_tags = filter(filt, entries_and_tags)
             ##entries_and_tags_right = filter(filt, entries_and_tags_right)
 
@@ -316,6 +319,7 @@ class MorphoLexicon(object):
         results = []
         ##results_right = []
         _by_entry = itemgetter(0)
+
         ##_by_entry_r = itemgetter(0)
         #Entries were previously sorted alphabetically
         #sorted_grouped_entries = groupby(
@@ -353,11 +357,13 @@ class MorphoLexicon(object):
             while j < len(array_sorted):
                 for i in range(0, len(array_sorted)):
                     if (array_sorted[i][0] == array_sorted[j][0]):
-                        if (array_sorted[i][1] is not None) & (array_sorted[j][1] is None):
+                        if (array_sorted[i][1] is
+                                not None) & (array_sorted[j][1] is None):
                             del array_sorted[j]
                             break
                         else:
-                            if (array_sorted[j][1] is not None) & (array_sorted[i][1] is None):
+                            if (array_sorted[j][1] is
+                                    not None) & (array_sorted[i][1] is None):
                                 del array_sorted[i]
                                 break
                 j += 1
@@ -380,7 +386,6 @@ class MorphoLexicon(object):
             results_right.append((grouper, analyses_r))
         entries_and_tags_right = results_right'''##
 
-
         # TODO: may need to do the same for derivation?
         # NOTE: test with things that will never return results just to
         # make sure recursion doesn't get carried away.
@@ -396,8 +401,6 @@ class MorphoLexicon(object):
             _ret = MorphoLexiconResult([])
         else:
             _ret = MorphoLexiconResult(entries_and_tags)
-
-
         '''ret_right = None
         if (len(entries_and_tags_right) == 0) and ('non_compound_only' in kwargs):
             if kwargs['non_compound_only']:
@@ -411,7 +414,6 @@ class MorphoLexicon(object):
         else:
             ret_right = MorphoLexiconResult(entries_and_tags_right)'''
 
-
         if return_raw_data:
             ##return _ret, raw_output, raw_errors, ret_right
             return _ret, raw_output, raw_errors
@@ -423,10 +425,7 @@ class MorphoLexicon(object):
         self.analyzers = config.morphologies
         self.lexicon = config.lexicon
 
-        self.lookup = morpholex_overrides.override_results(
-            self.lookup
-        )
-
+        self.lookup = morpholex_overrides.override_results(self.lookup)
 
     def variant_lookup(self, search_type, wordform, **kwargs):
         """ Performs a lookup with morphology and lexicon working
@@ -511,7 +510,6 @@ class MorphoLexicon(object):
             analyses = []
             analyses_right = []
 
-
         return_raw_data = morph_kwargs.get('return_raw_data', False)
         raw_output = ''
         raw_errors = ''
@@ -552,12 +550,8 @@ class MorphoLexicon(object):
                     else:
                         continue
 
-
-                xml_result = self.lexicon.variant_lookup( source_lang
-                                                        , target_lang
-                                                        , search_type
-                                                        , **lex_kwargs
-                                                        )
+                xml_result = self.lexicon.variant_lookup(
+                    source_lang, target_lang, search_type, **lex_kwargs)
                 if xml_result:
                     for e in xml_result:
                         entries_and_tags.append((e, analysis))
@@ -588,11 +582,8 @@ class MorphoLexicon(object):
                     else:
                         continue
 
-
-                xml_result_right = self.lexicon.lookup( source_lang
-                                                , target_lang
-                                                , **lex_kwargs_right
-                                                )
+                xml_result_right = self.lexicon.lookup(
+                    source_lang, target_lang, **lex_kwargs_right)
 
                 if xml_result_right:
                     for e in xml_result_right:
@@ -600,14 +591,13 @@ class MorphoLexicon(object):
                 else:
                     entries_and_tags_right.append((None, analysis_r))
 
-
-        no_analysis_xml = self.lexicon.variant_lookup( source_lang
-                                                     , target_lang
-                                                     , search_type
-                                                     , wordform
-                                                     , lemma_attrs=lemma_attrs
-                                                     , user_input=wordform
-                                                     )
+        no_analysis_xml = self.lexicon.variant_lookup(
+            source_lang,
+            target_lang,
+            search_type,
+            wordform,
+            lemma_attrs=lemma_attrs,
+            user_input=wordform)
 
         if no_analysis_xml:
             for e in no_analysis_xml:
@@ -615,10 +605,12 @@ class MorphoLexicon(object):
                 entries_and_tags_right.append((e, None))
 
         if entry_hash_filter:
+
             def filt((x, _)):
                 if x is not None:
                     return hash_node(x) == entry_hash_filter
                 return True
+
             entries_and_tags = filter(filt, entries_and_tags)
 
         # group by entry
@@ -627,6 +619,7 @@ class MorphoLexicon(object):
         results_right = []
         _by_entry = itemgetter(0)
         _by_entry_r = itemgetter(0)
+
         #Entries were previously sorted alphabetically
         #sorted_grouped_entries = groupby(
         #    sorted(entries_and_tags, key=_by_entry),
@@ -658,11 +651,13 @@ class MorphoLexicon(object):
             while j < len(array_sorted):
                 for i in range(0, len(array_sorted)):
                     if (array_sorted[i][0] == array_sorted[j][0]):
-                        if (array_sorted[i][1] is not None) & (array_sorted[j][1] is None):
+                        if (array_sorted[i][1] is
+                                not None) & (array_sorted[j][1] is None):
                             del array_sorted[j]
                             break
                         else:
-                            if (array_sorted[j][1] is not None) & (array_sorted[i][1] is None):
+                            if (array_sorted[j][1] is
+                                    not None) & (array_sorted[i][1] is None):
                                 del array_sorted[i]
                                 break
                 j += 1
@@ -676,15 +671,14 @@ class MorphoLexicon(object):
             results.append((grouper, analyses))
         entries_and_tags = results
 
-
         entries_and_tags_sorted_r = collect_same_lemma(entries_and_tags_right)
-        sorted_grouped_entries_r = groupby(entries_and_tags_sorted_r, _by_entry_r)
+        sorted_grouped_entries_r = groupby(entries_and_tags_sorted_r,
+                                           _by_entry_r)
 
         for grouper, grouped in sorted_grouped_entries_r:
             analyses_r = [an for _, an in grouped if an is not None]
             results_right.append((grouper, analyses_r))
         entries_and_tags_right = results_right
-
 
         # TODO: may need to do the same for derivation?
         # NOTE: test with things that will never return results just to
@@ -703,7 +697,8 @@ class MorphoLexicon(object):
             _ret = MorphoLexiconResult(entries_and_tags)
 
         ret_right = None
-        if (len(entries_and_tags_right) == 0) and ('non_compound_only' in kwargs):
+        if (len(entries_and_tags_right) == 0) and (
+                'non_compound_only' in kwargs):
             if kwargs['non_compound_only']:
                 new_kwargs = kwargs.copy()
                 new_kwargs.pop('non_compound_only')
@@ -714,7 +709,6 @@ class MorphoLexicon(object):
             ret_right = MorphoLexiconResult([])
         else:
             ret_right = MorphoLexiconResult(entries_and_tags_right)
-
 
         if return_raw_data:
             return _ret, raw_output, raw_errors, ret_right

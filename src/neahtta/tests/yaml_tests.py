@@ -8,35 +8,31 @@ from flask import current_app
 
 from fabric.colors import red, green, cyan, yellow, magenta
 
-tests_module = os.path.join( os.getcwd()
-                           , 'tests/'
-                           )
+tests_module = os.path.join(os.getcwd(), 'tests/')
 
 projname = os.environ['NDS_CONFIG']\
              .partition('configs/')[2]\
              .partition('.config.yaml')[0]
 
-project_test_file = os.path.join( tests_module
-                                , projname + '.yaml'
-                                )
+project_test_file = os.path.join(tests_module, projname + '.yaml')
+
 
 class Failures(object):
-
     def __init__(self):
         self.failure_list = []
 
     def add(self, test, exception, _input, expect, result, msg=""):
-        self.failure_list.append(
-            (test, exception, _input, expect, result, msg)
-        )
+        self.failure_list.append((test, exception, _input, expect, result,
+                                  msg))
 
     def summarize(self):
         print self.failure_list
 
+
 failuretrack = Failures()
 
-class YamlTests(object):
 
+class YamlTests(object):
     def __init__(self, path):
         self.filename = path
 
@@ -101,6 +97,7 @@ class YamlTests(object):
                 cases.append(case)
         return cases
 
+
 class NDSInstance(unittest.TestCase):
     """ Setup and teardown for NDS:
     """
@@ -122,6 +119,7 @@ class NDSInstance(unittest.TestCase):
     def tearDown(self):
         # failuretrack.summarize()
         pass
+
 
 # TODO: print useful text about process
 class RequestTest(NDSInstance):
@@ -179,6 +177,7 @@ class RequestTest(NDSInstance):
 
             print ''
 
+
 # TODO: print useful text about process
 class MorpholexicalAnalysis(NDSInstance):
     """ These are defined in the .yaml file as:
@@ -206,10 +205,11 @@ class MorpholexicalAnalysis(NDSInstance):
             for (source, target), case in self.yamltests.morpholexicon_tests:
                 expect = case.get('expected_lemmas')
 
-                res, raw_out, raw_err = m.lookup(case.get('input'),
-                                                 source_lang=source,
-                                                 target_lang=target, 
-                                                 **skw)
+                res, raw_out, raw_err = m.lookup(
+                    case.get('input'),
+                    source_lang=source,
+                    target_lang=target,
+                    **skw)
 
                 description = case.get('description', False)
                 if description:
@@ -243,8 +243,8 @@ class MorpholexicalAnalysis(NDSInstance):
                             ' '.join(lemmas),
                         )
 
-
                 print ''
+
 
 # TODO: failure summary ? how best to raise errors
 class MorpholexicalGeneration(NDSInstance):
@@ -268,17 +268,16 @@ class MorpholexicalGeneration(NDSInstance):
             expect = case.get('expected_forms', False)
             unexpect = case.get('unexpected_forms', False)
 
-
             if expect:
                 test_func = self.assertIn
-                msg =  "Form not generated."
+                msg = "Form not generated."
                 _in = expect
                 print "  expect:  " + cyan(repr(expect))
                 print "  result:  " + magenta(' '.join(result))
 
             if unexpect:
                 test_func = self.assertNotIn
-                msg =  "Generated form appeared that shouldn't."
+                msg = "Generated form appeared that shouldn't."
                 _in = unexpect
 
                 print "  DONT expect: " + cyan(repr(expect))
@@ -314,7 +313,8 @@ class MorpholexicalGeneration(NDSInstance):
             print "(Expect generated forms for lemma from input forms)"
 
             m = self.current_app.morpholexicon
-            for (source, target), case in self.yamltests.morpholexical_generation_tests:
+            for (source, target
+                 ), case in self.yamltests.morpholexical_generation_tests:
                 expect = case.get('expected_forms', False)
                 unexpect = case.get('unexpected_forms', False)
 
@@ -324,33 +324,34 @@ class MorpholexicalGeneration(NDSInstance):
 
                 print "  input:   " + cyan(case.get('input'))
 
-                res, raw_out, raw_err = m.lookup(case.get('input'),
-                                                 source_lang=source,
-                                                 target_lang=target,
-                                                 **skw)
+                res, raw_out, raw_err = m.lookup(
+                    case.get('input'),
+                    source_lang=source,
+                    target_lang=target,
+                    **skw)
 
                 for node, morph_analyses in res:
                     if node is not None:
-                        paradigm, debug = self.generate_paradigm(source, node, morph_analyses)
+                        paradigm, debug = self.generate_paradigm(
+                            source, node, morph_analyses)
                         result = [g.form for g in paradigm]
 
                         test_the_case(case, result, _input=case.get('input'))
-                        # TODO: set a success value? 
+                        # TODO: set a success value?
 
                 print ''
-
 
     def generate_paradigm(self, lang, node, morph_analyses):
 
         current_app = self.current_app
 
         debug_text = ''
-        
+
         _str_norm = 'string(normalize-space(%s))'
 
         morph = current_app.config.morphologies.get(lang, False)
         mlex = current_app.morpholexicon
-        
+
         paradigm_from_file, paradigm_template = \
             mlex.paradigms.get_paradigm(lang, node, morph_analyses,
                                      return_template=True)
@@ -364,16 +365,25 @@ class MorpholexicalGeneration(NDSInstance):
             extra_log_info = {
                 'template_path': paradigm_template,
             }
-            form_tags = [_t.split('+')[1::] for _t in paradigm_from_file.splitlines()]
+            form_tags = [
+                _t.split('+')[1::] for _t in paradigm_from_file.splitlines()
+            ]
             # TODO: bool not iterable
-            _generated, _stdout, _stderr = morph.generate_to_objs(lemma, form_tags, node, extra_log_info=extra_log_info, return_raw_data=True)
+            _generated, _stdout, _stderr = morph.generate_to_objs(
+                lemma,
+                form_tags,
+                node,
+                extra_log_info=extra_log_info,
+                return_raw_data=True)
         else:
             # For pregenerated things
-            _generated, _stdout, _stderr = morph.generate_to_objs(lemma, [], node, return_raw_data=True)
+            _generated, _stdout, _stderr = morph.generate_to_objs(
+                lemma, [], node, return_raw_data=True)
 
         debug_text += '\n\n' + _stdout + '\n\n'
 
         return _generated, debug_text
+
 
 # TODO: failure summary ? how best to raise errors
 class LexiconDefinitions(NDSInstance):
@@ -448,7 +458,8 @@ class LexiconDefinitions(NDSInstance):
 
             print "Running Lexicon tests..."
 
-            for (source, target), case in self.yamltests.lexicon_definition_tests:
+            for (source,
+                 target), case in self.yamltests.lexicon_definition_tests:
                 translation_xpath = case.get('xpath', './mg/tg/t/text()')
 
                 description = case.get('description', False)
@@ -458,11 +469,11 @@ class LexiconDefinitions(NDSInstance):
                 print "  input:   " + cyan(case.get('input'))
                 print "  xpath:   " + cyan(translation_xpath)
 
-                res, raw_out, raw_err = m.lookup(case.get('input'),
-                                                 source_lang=source,
-                                                 target_lang=target,
-                                                 **skw)
-
+                res, raw_out, raw_err = m.lookup(
+                    case.get('input'),
+                    source_lang=source,
+                    target_lang=target,
+                    **skw)
 
                 successes = False
                 for node, morph_analyses in res:
@@ -474,12 +485,13 @@ class LexiconDefinitions(NDSInstance):
                     result_defs = node.xpath(_str_norm % translation_xpath)
 
                     test_the_case(case, result_defs)
-                    # TODO: set a success value? 
+                    # TODO: set a success value?
 
                 if not successes:
                     err_msg = "No results found for input."
 
-                    print "    " + red("FAILED") + ': ' + repr(case.get('input'))
+                    print "    " + red("FAILED") + ': ' + repr(
+                        case.get('input'))
                     print "     > " + yellow(err_msg)
                     failuretrack.add(
                         "LexiconDefinitions",
@@ -491,5 +503,3 @@ class LexiconDefinitions(NDSInstance):
                     )
 
                 print ''
-
-

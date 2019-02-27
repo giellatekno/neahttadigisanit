@@ -14,7 +14,8 @@ from itertools import groupby
 from operator import itemgetter
 
 # TODO: get from global path
-configs_path = os.path.join( os.path.dirname(__file__) , '../')
+configs_path = os.path.join(os.path.dirname(__file__), '../')
+
 
 class TagPart(object):
     """ This is a part of a tag, which should behave mostly like a string:
@@ -76,6 +77,7 @@ class TagPart(object):
         else:
             return self.val == other
 
+
 class Tagset(object):
     def __init__(self, name, members):
         self.name = name
@@ -86,6 +88,7 @@ class Tagset(object):
 
     def __contains__(self, item):
         return item in self.members
+
 
 class Tagsets(object):
     def __init__(self, set_definitions):
@@ -108,8 +111,10 @@ class Tagsets(object):
         self.sets[name] = tagset
 
     def all_tags(self):
-        _all = list(set( sum( [v.members for k, v in self.sets.iteritems()], [] ) ))
+        _all = list(
+            set(sum([v.members for k, v in self.sets.iteritems()], [])))
         return _all
+
 
 class Tag(object):
     """ A model for tags. Can be used as an iterator, as well.
@@ -149,6 +154,7 @@ class Tag(object):
     Also, will need some sort of lexicon lookup definition in configs,
     to describe how to bring these items together.
     """
+
     def __init__(self, string, sep, tagsets={}):
         self.tag_string = string
         self.sep = sep
@@ -175,7 +181,8 @@ class Tag(object):
             b = self.sets.get(b, False)
             if not b:
                 _s = ', '.join(self.sets.keys())
-                raise IndexError("Invalid tagset <%s>. Choose one of: %s" % (_input, _s))
+                raise IndexError(
+                    "Invalid tagset <%s>. Choose one of: %s" % (_input, _s))
         elif isinstance(b, Tagset):
             pass
         return self.getTagByTagset(b)
@@ -212,14 +219,13 @@ class Tag(object):
         """
         raise NotImplementedError
 
+
 class Lemma(object):
     """ Lemma class that is bound to the morphology
     """
+
     def __key(self):
-        return ( self.lemma
-               , self.pos
-               , self.tool.formatTag(self.tag_raw)
-               )
+        return (self.lemma, self.pos, self.tool.formatTag(self.tag_raw))
 
     def __eq__(x, y):
         return x.__key() == y.__key()
@@ -246,9 +252,7 @@ class Lemma(object):
         before the lemma are defined as some member of any tagset.
         """
         all_tags = tagsets.all_tags()
-        self.tag = self.tool.tagStringToTag( tag
-                                           , tagsets=tagsets
-                                           )
+        self.tag = self.tool.tagStringToTag(tag, tagsets=tagsets)
 
         # Best guess is the first item, otherwise...
         lemma = tag[0]
@@ -269,8 +273,7 @@ class Lemma(object):
         self.pos = self.tag['pos']
         self.tag_raw = tag
 
-    def __init__(self, tag=[''], _input=False, tool=False,
-                 tagsets={}):
+    def __init__(self, tag=[''], _input=False, tool=False, tagsets={}):
         self.tagsets = tagsets
         self.tool = tool
 
@@ -283,15 +286,13 @@ class Lemma(object):
         self.input = _input
         self.form = _input
 
+
 class GeneratedForm(Lemma):
     """ Helper class for generated forms, adds attribute `self.form`,
     alters repr format. """
 
     def __key(self):
-        return ( self.lemma
-               , self.pos
-               , self.tool.formatTag(self.tag_raw)
-               )
+        return (self.lemma, self.pos, self.tool.formatTag(self.tag_raw))
 
     def __repr__(self):
         _lem, _pos, _tag = self.__key()
@@ -302,13 +303,14 @@ class GeneratedForm(Lemma):
         cls = self.__class__.__name__
         return '<%s: %s, %s, %s, %s>' % (cls, f, _lem, _pos, _tag)
 
-    def __init__(self, *args, **kwargs
-                 ):
+    def __init__(self, *args, **kwargs):
 
         super(GeneratedForm, self).__init__(*args, **kwargs)
         self.form = self.input
 
-def word_generation_context(generated_result, *generation_input_args, **generation_kwargs):
+
+def word_generation_context(generated_result, *generation_input_args,
+                            **generation_kwargs):
     """ **Post-generation filter***
 
     Include context for verbs in the text displayed in paradigm
@@ -325,7 +327,7 @@ def word_generation_context(generated_result, *generation_input_args, **generati
 
     context_for_tags = current_app.config.paradigm_contexts.get(language, {})
 
-    node  = generation_input_args[2]
+    node = generation_input_args[2]
 
     if len(node) == 0:
         return generated_result
@@ -338,8 +340,7 @@ def word_generation_context(generated_result, *generation_input_args, **generati
         context = None
 
     def apply_context(form):
-#        tag, forms = form
-
+        #        tag, forms = form
 
         # trigger different tuple lengths and adjust the entities
         #([u'viessat', u'V', u'Ind', u'Prt', u'Pl1'], [u'viesaimet'])
@@ -358,8 +359,8 @@ def word_generation_context(generated_result, *generation_input_args, **generati
 
         # Get the context, but also fall back to the None option.
         context_formatter = context_for_tags.get(
-            (context, tag), context_for_tags.get( (None, tag), False ),
-
+            (context, tag),
+            context_for_tags.get((None, tag), False),
         )
 
         if context_formatter:
@@ -410,12 +411,14 @@ class GenerationOverrides(object):
         registry, and applies it to the input arguments of the decorated
         function.
         """
+
         def decorate(*args, **kwargs):
             newargs = args
             newkwargs = kwargs
             for f in self.registry[lang_code]:
                 newargs = f(*newargs, **newkwargs)
             return function(*newargs, **newkwargs)
+
         return decorate
 
     def process_generation_output(self, lang_code, function):
@@ -425,22 +428,27 @@ class GenerationOverrides(object):
         also captures the input arguments, making them available to each
         function in the registry.
         """
+
         def decorate(*input_args, **input_kwargs):
             raw = input_kwargs.get('return_raw_data', False)
             if raw:
-                generated_forms, stdout, stderr = function(*input_args, **input_kwargs)
+                generated_forms, stdout, stderr = function(
+                    *input_args, **input_kwargs)
             else:
                 generated_forms = function(*input_args, **input_kwargs)
             for f in self.postgeneration_processors[lang_code]:
-                generated_forms = f(generated_forms, *input_args, **input_kwargs)
+                generated_forms = f(generated_forms, *input_args,
+                                    **input_kwargs)
             for f in self.postgeneration_processors['all']:
                 input_kwargs['language'] = lang_code
                 if f not in self.postgeneration_processors[lang_code]:
-                    generated_forms = f(generated_forms, *input_args, **input_kwargs)
+                    generated_forms = f(generated_forms, *input_args,
+                                        **input_kwargs)
             if raw:
                 return generated_forms, stdout, stderr
             else:
                 return generated_forms
+
         return decorate
 
     def process_analysis_output(self, lang_code, function):
@@ -450,14 +458,14 @@ class GenerationOverrides(object):
         also captures the input arguments, making them available to each
         function in the registry.
         """
+
         def decorate(*input_args, **input_kwargs):
             generated_forms = function(*input_args, **input_kwargs)
             for f in self.postanalyzers[lang_code]:
-                generated_forms = f( generated_forms
-                                   , *input_args
-                                   , **input_kwargs
-                                   )
+                generated_forms = f(generated_forms, *input_args,
+                                    **input_kwargs)
             return generated_forms
+
         return decorate
 
     def apply_pregenerated_forms(self, lang_code, function):
@@ -468,6 +476,7 @@ class GenerationOverrides(object):
             if f:
                 newargs = f(*newargs, **newkwargs)
             return function(*newargs, **newkwargs)
+
         return decorate
 
     ##
@@ -478,15 +487,18 @@ class GenerationOverrides(object):
         """ For language specific processing after analysis is completed,
         for example, stripping tags before presentation to users.
         """
+
         def wrapper(postanalysis_function):
             for language_iso in language_isos:
                 self.postanalyzers[language_iso].append(postanalysis_function)
-                self.postanalyzers_doc[language_iso].append((postanalysis_function.__name__,
-                                                             postanalysis_function.__doc__))
+                self.postanalyzers_doc[language_iso].append(
+                    (postanalysis_function.__name__,
+                     postanalysis_function.__doc__))
                 print '%s overrides: registered post-analysis processor - %s' % \
                       ( language_iso
                       , postanalysis_function.__name__
                       )
+
         return wrapper
 
     def pregenerated_form_selector(self, *language_isos):
@@ -495,37 +507,43 @@ class GenerationOverrides(object):
 
         Only one may be defined.
         """
+
         def wrapper(pregenerated_selector_function):
             for language_iso in language_isos:
-                self.pregenerators[language_iso] = pregenerated_selector_function
-                self.pregenerators_doc[language_iso] = [(pregenerated_selector_function.__name__,
-                                                         pregenerated_selector_function.__doc__)]
+                self.pregenerators[
+                    language_iso] = pregenerated_selector_function
+                self.pregenerators_doc[language_iso] = [
+                    (pregenerated_selector_function.__name__,
+                     pregenerated_selector_function.__doc__)
+                ]
                 print '%s overrides: registered static paradigm selector - %s' % \
                       ( language_iso
                       , pregenerated_selector_function.__name__
                       )
+
         return wrapper
 
     def tag_filter_for_iso(self, *language_isos):
         """ Register a function for a language ISO
         """
+
         def wrapper(restrictor_function):
             for language_iso in language_isos:
                 self.registry[language_iso].append(restrictor_function)
                 self.tag_filter_doc[language_iso].append(
-                    ( restrictor_function.__name__
-                    , restrictor_function.__doc__
-                    )
-                )
+                    (restrictor_function.__name__,
+                     restrictor_function.__doc__))
                 print '%s overrides: registered pregeneration tag filterer - %s' %\
                       ( language_iso
                       , restrictor_function.__name__
                       )
+
         return wrapper
 
     def postgeneration_filter_for_iso(self, *language_isos):
         """ Register a function for a language ISO
         """
+
         def wrapper(restrictor_function):
             for language_iso in language_isos:
                 self.postgeneration_processors[language_iso]\
@@ -537,29 +555,29 @@ class GenerationOverrides(object):
                       ( language_iso
                       , restrictor_function.__name__
                       )
+
         return wrapper
 
     def __init__(self):
         from collections import defaultdict
 
-        self.registry      = defaultdict(list)
-        self.tag_filter_doc  = defaultdict(list)
+        self.registry = defaultdict(list)
+        self.tag_filter_doc = defaultdict(list)
         self.pregenerators = defaultdict(list)
         self.pregenerators_doc = defaultdict(list)
         self.postanalyzers = defaultdict(list)
         self.postanalyzers_doc = defaultdict(list)
 
         self.postgeneration_processors = defaultdict(list)
-        self.postgeneration_processors['all'] = [
-            word_generation_context
-        ]
+        self.postgeneration_processors['all'] = [word_generation_context]
 
         self.postgeneration_processors_doc = defaultdict(list)
 
+
 generation_overrides = GenerationOverrides()
 
-class XFST(object):
 
+class XFST(object):
     def splitTagByCompound(self, analysis):
         _cmp = self.options.get('compoundBoundary', False)
         if _cmp:
@@ -573,19 +591,20 @@ class XFST(object):
             return [analysis]
 
     def splitTagByString(self, analysis, tag_input):
-
         def splitTag(item, tag_string):
             if tag_string in item:
                 res = []
                 while tag_string in item:
                     fa = re.findall(tag_string, item)
                     if len(fa) == 1:
-                        res.append(item[0:item.find("+"+tag_string)])
-                        res.append(item[item.find("+"+tag_string)+1:len(item)])
+                        res.append(item[0:item.find("+" + tag_string)])
+                        res.append(
+                            item[item.find("+" + tag_string) + 1:len(item)])
                         break
                     else:
-                        result = item[0:item.find("+"+tag_string)]
-                        result2 = item[item.find("+"+tag_string)+1:len(item)]
+                        result = item[0:item.find("+" + tag_string)]
+                        result2 = item[item.find("+" + tag_string) +
+                                       1:len(item)]
                         res.append(result)
                         item = result2
                 myres_array.append(res)
@@ -609,7 +628,6 @@ class XFST(object):
             else:
                 fin_res.append(item)
         return fin_res
-
 
     def tag_processor(self, analysis_line):
         """ This is a default tag processor which just returns the
@@ -692,12 +710,15 @@ class XFST(object):
             pass
 
         try:
-            lookup_proc = subprocess.Popen(cmd.split(' '),
-                                           stdin=subprocess.PIPE,
-                                           stdout=subprocess.PIPE,
-                                           stderr=subprocess.PIPE)
+            lookup_proc = subprocess.Popen(
+                cmd.split(' '),
+                stdin=subprocess.PIPE,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE)
         except OSError:
-            raise Exception("Error executing lookup command for this request, confirm that lookup utilities and analyzer files are present.")
+            raise Exception(
+                "Error executing lookup command for this request, confirm that lookup utilities and analyzer files are present."
+            )
         except Exception, e:
             raise Exception("Unhandled exception <%s> in lookup request" % e)
 
@@ -747,7 +768,8 @@ class XFST(object):
         try:
             func = mod.__getattribute__(from_list)
         except:
-            sys.exit("Unable to load <%s> from <%s>" % (from_list, module_path))
+            sys.exit(
+                "Unable to load <%s> from <%s>" % (from_list, module_path))
 
         self.tag_processor = func
 
@@ -788,7 +810,11 @@ class XFST(object):
         output, err = self._exec(lookup_string, cmd=self.icmd)
         return self.clean(output)
 
-    def inverselookup(self, lemma, tags, raw=False, no_preprocess_paradigm=False):
+    def inverselookup(self,
+                      lemma,
+                      tags,
+                      raw=False,
+                      no_preprocess_paradigm=False):
         import sys
         if not self.icmd:
             print >> sys.stderr, " * Inverse lookups not available."
@@ -827,7 +853,7 @@ class XFST(object):
     def tagStringToTag(self, parts, tagsets={}, inverse=False):
         if inverse:
             delim = self.options.get('inverse_tagsep',
-                self.options.get('tagsep', '+'))
+                                     self.options.get('tagsep', '+'))
         else:
             delim = self.options.get('tagsep', '+')
         tag = delim.join(parts)
@@ -836,7 +862,7 @@ class XFST(object):
     def formatTag(self, parts, inverse=False):
         if inverse:
             delim = self.options.get('inverse_tagsep',
-                self.options.get('tagsep', '+'))
+                                     self.options.get('tagsep', '+'))
         else:
             delim = self.options.get('tagsep', '+')
         return delim.join(parts)
@@ -845,14 +871,14 @@ class XFST(object):
         """ u'lemma+Tag+Tag+Tag' -> [u'lemma', u'Tag', u'Tag', u'Tag'] """
         if inverse:
             delim = self.options.get('inverse_tagsep',
-                self.options.get('tagsep', '+'))
+                                     self.options.get('tagsep', '+'))
         else:
             delim = self.options.get('tagsep', '+')
 
         return analysis.split(delim)
 
-class HFST(XFST):
 
+class HFST(XFST):
     def __init__(self, lookup_tool, fst_file, ifst_file=False, options={}):
         self.cmd = "%s %s" % (lookup_tool, fst_file)
         self.options = options
@@ -923,8 +949,8 @@ class OBT(XFST):
         self.cmd = lookup_tool
         self.options = options
 
-class Morphology(object):
 
+class Morphology(object):
     def generate_to_objs(self, *args, **kwargs):
         # TODO: occasionally lemma is not lemma, but first part of a
         # tag, need to fix with the tagsets
@@ -934,8 +960,8 @@ class Morphology(object):
             tag, forms = r
             if isinstance(forms, list):
                 for f in forms:
-                    lem = GeneratedForm(tag, _input=f, tool=self.tool,
-                                        tagsets=self.tagsets)
+                    lem = GeneratedForm(
+                        tag, _input=f, tool=self.tool, tagsets=self.tagsets)
                     lems.append(lem)
             else:
                 lems = []
@@ -1000,9 +1026,14 @@ class Morphology(object):
                 return pregenerated
 
         if return_raw_data:
-            res, raw_output, raw_errors = self.tool.inverselookup(lemma, tagsets, raw=True, no_preprocess_paradigm=no_preprocess_paradigm)
+            res, raw_output, raw_errors = self.tool.inverselookup(
+                lemma,
+                tagsets,
+                raw=True,
+                no_preprocess_paradigm=no_preprocess_paradigm)
         else:
-            res = self.tool.inverselookup(lemma, tagsets, no_preprocess_paradigm=no_preprocess_paradigm)
+            res = self.tool.inverselookup(
+                lemma, tagsets, no_preprocess_paradigm=no_preprocess_paradigm)
             raw_output = ''
             raw_errors = ''
 
@@ -1019,7 +1050,8 @@ class Morphology(object):
                     self.tool.logger.error(msg)
 
             if not unknown:
-                reformatted.append((self.tool.splitAnalysis(tag, inverse=True), forms))
+                reformatted.append((self.tool.splitAnalysis(tag, inverse=True),
+                                    forms))
             else:
                 parts = self.tool.splitAnalysis(tag, inverse=True)
                 forms = False
@@ -1042,7 +1074,10 @@ class Morphology(object):
 
             if 'extra_log_info' in kwargs:
                 _extra_log_info = kwargs.pop('extra_log_info')
-                extra_log_info = ', '.join(["%s: %s" % (k, v) for (k, v) in _extra_log_info.iteritems()])
+                extra_log_info = ', '.join([
+                    "%s: %s" % (k, v)
+                    for (k, v) in _extra_log_info.iteritems()
+                ])
                 extra_log_info = extra_log_info.encode('utf-8')
                 logg_args.append(extra_log_info)
 
@@ -1060,10 +1095,15 @@ class Morphology(object):
 
     # TODO: option, or separate function to also return discarded to
     # find out what's been removed to hide more_info link
-    def lemmatize(self, form, split_compounds=False,
-                  non_compound_only=False, no_derivations=False, return_raw_data=False):
+    def lemmatize(self,
+                  form,
+                  split_compounds=False,
+                  non_compound_only=False,
+                  no_derivations=False,
+                  return_raw_data=False):
         """ For a wordform, return a list of lemmas
         """
+
         def remove_compound_analyses(_a):
             _cmp = self.tool.options.get('compoundBoundary', False)
             if not _cmp:
@@ -1093,11 +1133,11 @@ class Morphology(object):
         def check_if_lexicalized(array):
             found = False
             for i in range(0, len(array)):
-              if form in array[i]:
-                array.insert(0,array[i])
-                del array[i+1]
-                found = True
-                break
+                if form in array[i]:
+                    array.insert(0, array[i])
+                    del array[i + 1]
+                    found = True
+                    break
             if found:
                 return array
             else:
@@ -1107,17 +1147,18 @@ class Morphology(object):
                 mystr = []
                 indmax = []
                 for i in range(0, len(array)):
-                  mystr.append(len(array[i][0:array[i].find("+")]))
+                    mystr.append(len(array[i][0:array[i].find("+")]))
                 indmax = [i for i, j in enumerate(mystr) if j == max(mystr)]
                 if (max(mystr) < len(form)):
                     k = 0
                     for i in range(0, len(indmax)):
-                      array.insert(k, array.pop(indmax[i]))
-                      k += 1
+                        array.insert(k, array.pop(indmax[i]))
+                        k += 1
                 return array
 
         if return_raw_data:
-            lookups, raw_output, raw_errors = self.tool.lookup([form], raw=True)
+            lookups, raw_output, raw_errors = self.tool.lookup([form],
+                                                               raw=True)
         else:
             lookups = self.tool.lookup([form])
 
@@ -1161,14 +1202,20 @@ class Morphology(object):
             analyses = check_if_lexicalized(analyses)
             cnt = []
             for item in analyses:
-              cnt.append(item.count('Der'))
+                cnt.append(item.count('Der'))
             cnt_orth = []
             for item in analyses:
                 cnt_orth.append(item.count('Err/Orth'))
             import heapq
-            if (min(cnt_orth) == 0 and max(cnt_orth) == 1) or (min(cnt_orth) == 0 and max(cnt_orth) == 0):
-                if len(cnt)>1 and min(cnt)==0 and heapq.nsmallest(2, cnt)[-1] != 0:
-                    analyses = [analyses[cnt.index(min(cnt))],analyses[cnt.index(heapq.nsmallest(2, cnt)[-1])]]
+            if (min(cnt_orth) == 0
+                    and max(cnt_orth) == 1) or (min(cnt_orth) == 0
+                                                and max(cnt_orth) == 0):
+                if len(cnt) > 1 and min(cnt) == 0 and heapq.nsmallest(
+                        2, cnt)[-1] != 0:
+                    analyses = [
+                        analyses[cnt.index(min(cnt))], analyses[cnt.index(
+                            heapq.nsmallest(2, cnt)[-1])]
+                    ]
                 else:
                     if min(cnt) != 0:
                         analyses = [analyses[cnt.index(min(cnt))]]
@@ -1176,9 +1223,7 @@ class Morphology(object):
                 if (min(cnt_orth) == 1 and max(cnt_orth) == 1):
                     analyses = analyses
             if split_compounds:
-                analyses = sum( map(self.tool.splitTagByCompound, analyses)
-                              , []
-                              )
+                analyses = sum(map(self.tool.splitTagByCompound, analyses), [])
             tags = ('Der', 'VAbess', 'VGen', 'Ger', 'Comp', 'Superl')
             an_split = []
             for item in analyses:
@@ -1188,30 +1233,30 @@ class Morphology(object):
                 index = []
                 if_tags = False
                 for i in range(0, len(item)):
-                  if item[i].startswith(tags):
-                    index.append(i)
-                    if_tags = True
+                    if item[i].startswith(tags):
+                        index.append(i)
+                        if_tags = True
                 s = '+'
                 b = []
                 if not if_tags:
                     b.append(analyses[k])
                 else:
                     for i in range(len(index)):
-                      if i == 0:
-                        b.append(s.join(item[0:index[i]]))
-                      else:
-                        b.append(s.join(item[index[i-1]:index[i]]))
-                      if i==len(index)-1:
-                        b.append(s.join(item[index[i]:len(item)]))
+                        if i == 0:
+                            b.append(s.join(item[0:index[i]]))
+                        else:
+                            b.append(s.join(item[index[i - 1]:index[i]]))
+                        if i == len(index) - 1:
+                            b.append(s.join(item[index[i]:len(item)]))
                 k += 1
                 analyses_der_fin.append(b)
 
             def fix_nested_array(nested_array):
                 not_nested_array = []
                 if len(nested_array) != 0:
-                    if isinstance(nested_array[0],list):
+                    if isinstance(nested_array[0], list):
                         for item in nested_array:
-                            if len(item)>1:
+                            if len(item) > 1:
                                 for var in item:
                                     not_nested_array.append(var)
                             else:
@@ -1226,8 +1271,8 @@ class Morphology(object):
             def remove_duplicates(array_var):
                 newlist = []
                 for item in array_var:
-                   if item not in newlist:
-                       newlist.append(item)
+                    if item not in newlist:
+                        newlist.append(item)
                 return newlist
 
             #Remove duplicates due to append if entry with analyses or not (in collect_same_lemma in morpho_lexicon.py)
@@ -1244,12 +1289,17 @@ class Morphology(object):
                 # handle it as best as possible.
                 if len(_an_parts) == 1:
                     _lem = _an_parts[0]
-                    lem = Lemma(_an_parts, _input=_lem, tool=self.tool, tagsets=self.tagsets)
+                    lem = Lemma(
+                        _an_parts,
+                        _input=_lem,
+                        tool=self.tool,
+                        tagsets=self.tagsets)
                 else:
-                    lem = Lemma( _an_parts
-                               , _input=form
-                               , tool=self.tool, tagsets=self.tagsets
-                               )
+                    lem = Lemma(
+                        _an_parts,
+                        _input=form,
+                        tool=self.tool,
+                        tagsets=self.tagsets)
                 #lemmas.add(lem)
                 lemmas.append(lem)
             ##
@@ -1272,7 +1322,6 @@ class Morphology(object):
                 #lemmas.add(lem)
                 lemmas_r.append(lem)'''##
 
-
         if return_raw_data:
             ##return list(lemmas), raw_output, raw_errors, list(lemmas_r)
             return list(lemmas), raw_output, raw_errors
@@ -1282,9 +1331,8 @@ class Morphology(object):
 
     def de_pickle_lemma(self, lem, tag):
         _tag = self.tool.splitAnalysis(tag)
-        lem = Lemma( lem, '', _tag, fulltag=_tag
-                   , tool=self.tool, tagsets=self.tagsets
-                   )
+        lem = Lemma(
+            lem, '', _tag, fulltag=_tag, tool=self.tool, tagsets=self.tagsets)
         return lem
 
     def generate_cache_key(self, lemma, generation_tags, node=False):
@@ -1310,18 +1358,14 @@ class Morphology(object):
         self.langcode = languagecode
 
         self.generate = generation_overrides.apply_pregenerated_forms(
-            languagecode, self.generate
-        )
+            languagecode, self.generate)
         self.generate = generation_overrides.restrict_tagsets(
-            languagecode, self.generate
-        )
+            languagecode, self.generate)
         self.generate = generation_overrides.process_generation_output(
-            languagecode, self.generate
-        )
+            languagecode, self.generate)
 
         self.lemmatize = generation_overrides.process_analysis_output(
-            languagecode, self.lemmatize
-        )
+            languagecode, self.lemmatize)
 
         if cache:
             self.cache = cache

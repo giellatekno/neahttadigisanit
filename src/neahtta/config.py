@@ -15,6 +15,7 @@ def gettext_yaml_wrapper(loader, node):
     from flask.ext.babel import lazy_gettext as _
     return node.value
 
+
 yaml.add_constructor('!gettext', gettext_yaml_wrapper)
 
 # This should match most language words, with few surprises, however it
@@ -24,19 +25,19 @@ yaml.add_constructor('!gettext', gettext_yaml_wrapper)
 DEFAULT_WORD_REGEX = '[\u00C0-\u1FFF\u2C00-\uD7FF\w\-]+'
 DEFAULT_WORD_REGEX_OPTS = 'g'
 
+
 def external_korp_url(pair_details, user_input):
     import urllib
 
     from flask import redirect
     from flask import g
 
-
     #    'korp_parallel'
 
     #    'bilingual_wordform_search_path'
     #    'bilingual_wordform_search_query'
-# Cip's test
-# Add this line for testing
+    # Cip's test
+    # Add this line for testing
     korp_opts = pair_details.get('korp_options')
     korp_host = pair_details.get('korp_search_host')
     link_corpus_param = pair_details.get('link_corpus_parameter')
@@ -45,19 +46,19 @@ def external_korp_url(pair_details, user_input):
     if korp_opts.get('is_korp_default_lang'):
         url_pattern = korp_opts.get('wordform_search_path_default_lang')
     else:
-        url_pattern = korp_opts.get('wordform_search_path').replace('TARGET_LANG_ISO', g.orig_from)
+        url_pattern = korp_opts.get('wordform_search_path').replace(
+            'TARGET_LANG_ISO', g.orig_from)
 
     if korp_opts.get('korp_parallel'):
-        url_pattern = korp_opts.get('bilingual_wordform_search_path').replace('TARGET_LANG_ISO', g.orig_from)
+        url_pattern = korp_opts.get('bilingual_wordform_search_path').replace(
+            'TARGET_LANG_ISO', g.orig_from)
         if g.orig_from == 'fin':
-            url_pattern = url_pattern.replace('mode=parallel', 'mode=parallel_fin')
+            url_pattern = url_pattern.replace('mode=parallel',
+                                              'mode=parallel_fin')
         url_pattern = url_pattern.replace(
             'SEARCH_QUERY',
             urllib.quote(
-                korp_opts.get('bilingual_wordform_search_query'),
-                safe="#&/"
-            )
-        )
+                korp_opts.get('bilingual_wordform_search_query'), safe="#&/"))
 
     delimiter_pattern = korp_opts.get('lemma_multiword_delimeter')
 
@@ -66,7 +67,7 @@ def external_korp_url(pair_details, user_input):
 
     url_pattern = url_pattern.replace('USER_INPUT', user_input)
 
-    if len(link_corpus_param)!=0:
+    if len(link_corpus_param) != 0:
         url_pattern = url_pattern + '&corpus=' + link_corpus_param
 
     redirect_url = korp_host + url_pattern.encode('utf-8')
@@ -77,22 +78,20 @@ def external_korp_url(pair_details, user_input):
 def validate_variants(variants, lexicon):
     if not variants:
         return variants
-    obligatory_keys = set([
-        'type', 'description', 'short_name'
-    ])
-    optional_keys = set([
-        'example', 'onscreen_keyboard'
-    ])
+    obligatory_keys = set(['type', 'description', 'short_name'])
+    optional_keys = set(['example', 'onscreen_keyboard'])
     variant_count = 1
     for v in variants:
         missing_keys = obligatory_keys - set(v.keys())
         if len(missing_keys) > 0:
-            print >> sys.stderr, "Missing settings in `input_variants`:%d for lexicon <%s>" % (variant_count, repr(lexicon))
+            print >> sys.stderr, "Missing settings in `input_variants`:%d for lexicon <%s>" % (
+                variant_count, repr(lexicon))
             print >> sys.stderr, "    " + ','.join(missing_keys)
             sys.exit()
         variant_count += 1
 
     return variants
+
 
 class Config(Config):
     """ An object for exposing the settings in app.config.yaml in a nice
@@ -107,18 +106,16 @@ class Config(Config):
     @property
     def language_specific_rules_path(self):
         """ Path to the language_specific_rules/ dir """
-        return os.path.join( self.get('NDS_CONFDIR')
-                           , 'language_specific_rules/'
-                           )
+        return os.path.join(
+            self.get('NDS_CONFDIR'), 'language_specific_rules/')
 
     @property
     def language_configs_yaml(self):
         if hasattr(self, '_language_configs_yaml'):
             return self._language_configs_yaml
 
-        language_configs_path = os.path.join( self.get('NDS_CONFDIR')
-                                            , 'language_names.yaml'
-                                            )
+        language_configs_path = os.path.join(
+            self.get('NDS_CONFDIR'), 'language_names.yaml')
         with open(language_configs_path, 'r') as F:
             config = yaml.load(F)
 
@@ -148,9 +145,9 @@ class Config(Config):
         if _p:
             return _p
         else:
-            raise RuntimeError('Default language pair not specified in '
-                               'config file %s, in ApplicationSettings.' %
-                               self.filename)
+            raise RuntimeError(
+                'Default language pair not specified in '
+                'config file %s, in ApplicationSettings.' % self.filename)
 
     @property
     def paradigm_layouts(self):
@@ -169,28 +166,28 @@ class Config(Config):
     def locales_available(self):
         _p = self.yaml.get('ApplicationSettings', {})\
                       .get('locales_available', False)
-        if len( list(set( map(type, _p) ))) > 1:
+        if len(list(set(map(type, _p)))) > 1:
             err_str = "Type error in locales_available. If <no> is listed, make sure it is quoted."
-            raise RuntimeError(err_str +
-                               'See config file %s, in ApplicationSettings.' %
-                               self.filename)
+            raise RuntimeError(
+                err_str +
+                'See config file %s, in ApplicationSettings.' % self.filename)
 
         if _p:
             return _p
         else:
-            raise RuntimeError('locales_available not specified in '
-                               'config file %s, in ApplicationSettings.' %
-                               self.filename)
+            raise RuntimeError(
+                'locales_available not specified in '
+                'config file %s, in ApplicationSettings.' % self.filename)
 
     @property
     def hidden_locales(self):
         _p = self.yaml.get('ApplicationSettings', {})\
                       .get('hidden_locales', [])
-        if len( list(set( map(type, _p) ))) > 1:
+        if len(list(set(map(type, _p)))) > 1:
             err_str = "Type error in hidden_locales. If <no> is listed, make sure it is quoted."
-            raise RuntimeError(err_str +
-                               'See config file %s, in ApplicationSettings.' %
-                               self.filename)
+            raise RuntimeError(
+                err_str +
+                'See config file %s, in ApplicationSettings.' % self.filename)
 
         return _p
 
@@ -201,9 +198,9 @@ class Config(Config):
         if _p:
             return _p
         else:
-            raise RuntimeError('app_name not specified in '
-                               'config file %s, in ApplicationSettings.' %
-                               self.filename)
+            raise RuntimeError(
+                'app_name not specified in '
+                'config file %s, in ApplicationSettings.' % self.filename)
 
     @property
     def admins(self):
@@ -248,10 +245,7 @@ class Config(Config):
         """ Return our best guess assuming someone has followed the
         makefile otherwise allow override.
         """
-        default = os.path.join(
-            os.path.dirname(__file__),
-            'geo/data'
-        )
+        default = os.path.join(os.path.dirname(__file__), 'geo/data')
         _p = self.yaml.get('ApplicationSettings', {})\
                       .get('GEOIP_PATH', default)
         if _p:
@@ -265,9 +259,7 @@ class Config(Config):
         makefile otherwise allow override.
         """
         default = os.path.join(
-            os.path.dirname(__file__),
-            'geoip/lib/libGeoIP.so'
-        )
+            os.path.dirname(__file__), 'geoip/lib/libGeoIP.so')
         _p = self.yaml.get('ApplicationSettings', {})\
                       .get('GEOIP_LIBRARY_PATH', default)
         if _p:
@@ -288,9 +280,9 @@ class Config(Config):
         if _p:
             return _p
         else:
-            raise RuntimeError('short_name not specified in '
-                               'config file %s, in ApplicationSettings.' %
-                               self.filename)
+            raise RuntimeError(
+                'short_name not specified in '
+                'config file %s, in ApplicationSettings.' % self.filename)
 
     @property
     def default_locale(self):
@@ -299,9 +291,9 @@ class Config(Config):
         if _p:
             return _p
         else:
-            raise RuntimeError('default_locale not specified in '
-                               'config file %s, in ApplicationSettings.' %
-                               self.filename)
+            raise RuntimeError(
+                'default_locale not specified in '
+                'config file %s, in ApplicationSettings.' % self.filename)
 
     @property
     def meta_keywords(self):
@@ -310,9 +302,9 @@ class Config(Config):
         if _p:
             return _p
         else:
-            raise RuntimeError('meta_keywords not specified in '
-                               'config file %s, in ApplicationSettings.' %
-                               self.filename)
+            raise RuntimeError(
+                'meta_keywords not specified in '
+                'config file %s, in ApplicationSettings.' % self.filename)
 
     @property
     def has_project_css(self):
@@ -320,7 +312,7 @@ class Config(Config):
             project_css_path = False
             path = 'static/css/%s.css' % self.short_name
             try:
-                open(os.path.join( os.path.dirname(__file__), path), 'r')
+                open(os.path.join(os.path.dirname(__file__), path), 'r')
                 project_css_path = path
             except:
                 pass
@@ -334,9 +326,9 @@ class Config(Config):
         if _p:
             return _p
         else:
-            raise RuntimeError('meta_description not specified in '
-                               'config file %s, in ApplicationSettings.' %
-                               self.filename)
+            raise RuntimeError(
+                'meta_description not specified in '
+                'config file %s, in ApplicationSettings.' % self.filename)
 
     @property
     def grouped_nav(self):
@@ -357,9 +349,9 @@ class Config(Config):
         if _p:
             return _p
         else:
-            raise RuntimeError('app_meta_title not specified in '
-                               'config file %s, in ApplicationSettings.' %
-                               self.filename)
+            raise RuntimeError(
+                'app_meta_title not specified in '
+                'config file %s, in ApplicationSettings.' % self.filename)
 
     @property
     def fcgi_script_path(self):
@@ -409,9 +401,7 @@ class Config(Config):
         else:
             raise RuntimeError('Mobile redirect pair not specified in '
                                'config file %s, in ApplicationSettings.'
-                               ' If none, specify with false.' %
-                               self.filename)
-
+                               ' If none, specify with false.' % self.filename)
 
     @property
     def paradigms(self):
@@ -433,34 +423,31 @@ class Config(Config):
         if hasattr(self, '_paradigm_contexts'):
             return self._paradigm_contexts
 
-        paradigm_path = os.path.join( self.language_specific_rules_path
-                                    , 'paradigms/'
-                                    )
+        paradigm_path = os.path.join(self.language_specific_rules_path,
+                                     'paradigms/')
 
         available_langs = self.languages
 
-        lang_directories = [ p for p in os.listdir(paradigm_path)
-                             if p in available_langs ]
+        lang_directories = [
+            p for p in os.listdir(paradigm_path) if p in available_langs
+        ]
 
         self._paradigm_contexts = defaultdict(dict)
 
         _lang_files = {}
         for lang in lang_directories:
-            _lang_path = os.path.join( paradigm_path
-                                     , lang
-                                     )
+            _lang_path = os.path.join(paradigm_path, lang)
             _lang_paradigm_files = []
 
             for _p, dirs, files in os.walk(_lang_path):
                 for f in files:
                     if f.endswith('.context'):
-                        _lang_paradigm_files.append(
-                            os.path.join(_p, f)
-                        )
+                        _lang_paradigm_files.append(os.path.join(_p, f))
 
             _lang_files[lang] = _lang_paradigm_files
 
         jinja_env = self.get('jinja_env')
+
         def reformat_context_set(filepath, _sets):
             parsed_sets = {}
             if _sets is None:
@@ -486,6 +473,7 @@ class Config(Config):
         for language, files in _lang_files.iteritems():
             for f in files:
                 tagset_path = os.path.join(_p, f)
+<<<<<<< HEAD
                 if os.path.exists(tagset_path):
                     try:
                         file_context_set = yaml.load(open(tagset_path, 'r').read())
@@ -495,6 +483,17 @@ class Config(Config):
                         sys.exit()
                     self._paradigm_contexts[language].update(
                         reformat_context_set(tagset_path, file_context_set))
+=======
+
+                try:
+                    file_context_set = yaml.load(open(tagset_path, 'r').read())
+                except Exception, e:
+                    print " * YAML parsing error in <%s>\n\n" % tagset_path
+                    print e
+                    sys.exit()
+                self._paradigm_contexts[language].update(
+                    reformat_context_set(tagset_path, file_context_set))
+>>>>>>> yapf -i
 
         return self._paradigm_contexts
 
@@ -537,7 +536,8 @@ class Config(Config):
             self._minority_languages = {}
             for lang in self.yaml.get('Languages'):
                 if lang.get('minority_lang', False):
-                    self._minority_languages[lang.get('iso')] = lang.get('name', {})
+                    self._minority_languages[lang.get('iso')] = lang.get(
+                        'name', {})
         return self._minority_languages
 
     @property
@@ -660,9 +660,8 @@ class Config(Config):
         if hasattr(self, '_tag_filters'):
             return self._tag_filters
 
-        _path = os.path.join( self.language_specific_rules_path
-                            , 'user_friendly_tags/'
-                            )
+        _path = os.path.join(self.language_specific_rules_path,
+                             'user_friendly_tags/')
 
         available_langs = self.languages
 
@@ -681,9 +680,11 @@ class Config(Config):
 
                 # iterate through sets and set them.
                 for set_name, set_tags in _set.iteritems():
-                    if source in self.languages.keys() and target in self.languages.keys():
+                    if source in self.languages.keys(
+                    ) and target in self.languages.keys():
                         if set_name == 'generation_tags':
-                            _yaml_sets[(source, target, 'generation')] = set_tags
+                            _yaml_sets[(source, target,
+                                        'generation')] = set_tags
                         elif set_name == 'tags':
                             _yaml_sets[(source, target)] = set_tags
                         else:
@@ -697,16 +698,14 @@ class Config(Config):
                     relabel_path = os.path.join(_p, f)
                     try:
                         relabel_yaml = format_yaml(
-                            yaml.load(open(relabel_path, 'r').read())
-                        )
+                            yaml.load(open(relabel_path, 'r').read()))
                     except Exception, e:
                         print " * YAML parsing error in <%s>\n\n" % relabel_path
                         print e
                         sys.exit()
                     filter_sets.update(relabel_yaml)
                     print "   - found: " + ', '.join(
-                        [k[0] + ' -> ' + k[1] for k in relabel_yaml.keys()]
-                    )
+                        [k[0] + ' -> ' + k[1] for k in relabel_yaml.keys()])
 
         self._tag_filters = filter_sets
         return self._tag_filters
@@ -719,9 +718,8 @@ class Config(Config):
         if self._tagset_definitions:
             return self._tagset_definitions
 
-        tagset_path = os.path.join( self.language_specific_rules_path
-                                  , 'tagsets/'
-                                  )
+        tagset_path = os.path.join(self.language_specific_rules_path,
+                                   'tagsets/')
 
         available_langs = self.languages
 
@@ -765,32 +763,51 @@ class Config(Config):
                     sys.exit()
 
                 _default_korp = {
-                    'lemma_search_path': '/?mode=TARGET_LANG_ISO#page=0&search-tab=2&search=SEARCH_QUERY',
-                    'lemma_search_path_default_lang': '/#page=0&search-tab=2&search=SEARCH_QUERY',
-                    'lemma_search_query': 'cqp|[lemma = "INPUT_LEMMA"]',
-                    'wordform_search_path': '/?mode=TARGET_LANG_ISO#search=word|USER_INPUT&page=0',
-                    'wordform_search_path_default_lang': '/#search=word|USER_INPUT&page=0',
-                    'bilingual_wordform_search_path': '/?mode=parallel#parallel_corpora=TARGET_LANG_ISO&page=0&search=SEARCH_QUERY',
-                    'bilingual_wordform_search_query': 'cqp|[(word = "USER_INPUT")]',
-                    'lemma_search_delimiter': '] [lemma = ',
-                    'is_korp_default_lang': dict_def.get('is_korp_default_lang', False),
-                    'korp_parallel': dict_def.get('korp_parallel', False),
+                    'lemma_search_path':
+                    '/?mode=TARGET_LANG_ISO#page=0&search-tab=2&search=SEARCH_QUERY',
+                    'lemma_search_path_default_lang':
+                    '/#page=0&search-tab=2&search=SEARCH_QUERY',
+                    'lemma_search_query':
+                    'cqp|[lemma = "INPUT_LEMMA"]',
+                    'wordform_search_path':
+                    '/?mode=TARGET_LANG_ISO#search=word|USER_INPUT&page=0',
+                    'wordform_search_path_default_lang':
+                    '/#search=word|USER_INPUT&page=0',
+                    'bilingual_wordform_search_path':
+                    '/?mode=parallel#parallel_corpora=TARGET_LANG_ISO&page=0&search=SEARCH_QUERY',
+                    'bilingual_wordform_search_query':
+                    'cqp|[(word = "USER_INPUT")]',
+                    'lemma_search_delimiter':
+                    '] [lemma = ',
+                    'is_korp_default_lang':
+                    dict_def.get('is_korp_default_lang', False),
+                    'korp_parallel':
+                    dict_def.get('korp_parallel', False),
                 }
 
                 _pair_options = {
                     'langs': {},
-                    'autocomplete': dict_def.get('autocomplete', True),
-                    'show_korp_search': dict_def.get('show_korp_search', False),
-                    'korp_search_host': dict_def.get('korp_search_host', False),
-                    'korp_options': dict_def.get('korp_options', _default_korp),
-                    'asynchronous_paradigms': dict_def.get('asynchronous_paradigms', False),
-                    'link_corpus_parameter': dict_def.get('link_corpus_parameter', ''),
+                    'autocomplete':
+                    dict_def.get('autocomplete', True),
+                    'show_korp_search':
+                    dict_def.get('show_korp_search', False),
+                    'korp_search_host':
+                    dict_def.get('korp_search_host', False),
+                    'korp_options':
+                    dict_def.get('korp_options', _default_korp),
+                    'asynchronous_paradigms':
+                    dict_def.get('asynchronous_paradigms', False),
+                    'link_corpus_parameter':
+                    dict_def.get('link_corpus_parameter', ''),
                 }
                 for iso in _lang_isos:
-                    _pair_options['langs'][iso] = (_from_langs[iso], _to_langs[iso])
+                    _pair_options['langs'][iso] = (_from_langs[iso],
+                                                   _to_langs[iso])
 
-                _pair_options['input_variants'] = validate_variants(self.input_variants.get(key, False), key)
-                _pair_options['search_variants'] = self.search_variants.get(key, False)
+                _pair_options['input_variants'] = validate_variants(
+                    self.input_variants.get(key, False), key)
+                _pair_options['search_variants'] = self.search_variants.get(
+                    key, False)
 
                 _par_defs[key] = _pair_options
 
@@ -815,8 +832,8 @@ class Config(Config):
             """
             return (source, target)
 
-        def minority_langs_first((a_source_iso, a_target_iso),
-                                 (b_source_iso, b_target_iso)):
+        def minority_langs_first((a_source_iso, a_target_iso), (b_source_iso,
+                                                                b_target_iso)):
             """ This is the cmp function, which accepts two ISO pairs
             and returns -1, 0, or 1 to sort the values depending on a few criteria:
 
@@ -834,7 +851,6 @@ class Config(Config):
 
             # TODO: compare on UI display name instead of ISOs.
 
-
             a_min = a_source_iso in self.minority_languages
             b_min = b_source_iso in self.minority_languages
 
@@ -849,14 +865,14 @@ class Config(Config):
             b_target_name = NAMES.get(b_target_iso)
 
             def gt_return(a, b):
-                if a > b:     return -2
-                elif a < b:   return 2
-                else:         return 0
+                if a > b: return -2
+                elif a < b: return 2
+                else: return 0
 
             def gt_return_reverse(a, b):
-                if a > b:     return 2
-                elif a < b:   return -2
-                else:         return 0
+                if a > b: return 2
+                elif a < b: return -2
+                else: return 0
 
             if reverse_pairs:
                 return 0
@@ -876,9 +892,10 @@ class Config(Config):
 
         if not hasattr(self, '_pair_definitions_grouped_source'):
 
-            pairs = sorted(self.pair_definitions.iteritems(),
-                           key=group_by_source_first,
-                           cmp=minority_langs_first)
+            pairs = sorted(
+                self.pair_definitions.iteritems(),
+                key=group_by_source_first,
+                cmp=minority_langs_first)
 
             grouped_pairs = defaultdict(list)
             for p in pairs:
@@ -993,8 +1010,7 @@ class Config(Config):
             raise RuntimeError('The environment variable %r is not set '
                                'and as such configuration could not be '
                                'loaded. Set this variable and make it '
-                               'point to a configuration file' %
-                               variable_name)
+                               'point to a configuration file' % variable_name)
         return self.from_yamlfile(rv, silent=silent)
 
     def read_multiword_list(self, path):
@@ -1026,11 +1042,8 @@ class Config(Config):
         multiword_list = [l.strip() for l in lines if l.strip()]
 
         # Couldn't help myself.
-        return map ( strip_line_end_comment
-          , filter ( drop_line_comment
-          ,    map ( clean_line
-                   , multiword_list
-                   )))
+        return map(strip_line_end_comment,
+                   filter(drop_line_comment, map(clean_line, multiword_list)))
 
     @property
     def reader_options(self):
@@ -1056,11 +1069,13 @@ class Config(Config):
                 if wr:
                     self._reader_options[l]['word_regex'] = wr.strip()
                 else:
-                    self._reader_options[l]['word_regex_opts'] = DEFAULT_WORD_REGEX
+                    self._reader_options[l][
+                        'word_regex_opts'] = DEFAULT_WORD_REGEX
                 if wro:
                     self._reader_options[l]['word_regex_opts'] = wro.strip()
                 else:
-                    self._reader_options[l]['word_regex_opts'] = DEFAULT_WORD_REGEX_OPTS
+                    self._reader_options[l][
+                        'word_regex_opts'] = DEFAULT_WORD_REGEX_OPTS
                 mwe = conf.get('multiword_lookups', False)
                 mwe_range = conf.get('multiword_range', False)
                 if mwe_range:
@@ -1076,7 +1091,8 @@ class Config(Config):
                         _max = False
 
                     if _min and _max:
-                        self._reader_options[l]['multiword_range'] = (_min, _max)
+                        self._reader_options[l]['multiword_range'] = (_min,
+                                                                      _max)
                     else:
                         print " * Multiword range must specify min _and_ max. If there is no min or max, specify 0"
                         print "   got: " + mwe_range
@@ -1092,8 +1108,12 @@ class Config(Config):
                 #     if is_file:
                 #         self._reader_options[l]['multiwords'] = self.read_multiword_list(is_file)
 
-            all_isos = list(set(self.languages.keys() + self.yaml.get('Morphology').keys()))
-            missing_isos = [a for a in all_isos if a not in self._reader_options.keys()]
+            all_isos = list(
+                set(self.languages.keys() +
+                    self.yaml.get('Morphology').keys()))
+            missing_isos = [
+                a for a in all_isos if a not in self._reader_options.keys()
+            ]
 
             for l in missing_isos:
                 self._reader_options[l] = reader_defaults
@@ -1101,15 +1121,15 @@ class Config(Config):
         return self._reader_options
 
     def from_yamlfile(self, filename, silent=False):
-        self._languages               = False
-        self._pair_definitions        = False
-        self._dictionaries            = False
-        self._input_variants          = False
-        self._tagset_definitions      = False
+        self._languages = False
+        self._pair_definitions = False
+        self._dictionaries = False
+        self._input_variants = False
+        self._tagset_definitions = False
         self._reversable_dictionaries = False
-        self._paradigms               = False
-        self._baseforms               = False
-        self._morphologies            = False
+        self._paradigms = False
+        self._baseforms = False
+        self._morphologies = False
 
         with open(filename, 'r') as F:
             config = yaml.load(F)
@@ -1124,8 +1144,10 @@ class Config(Config):
         from lexicon import lexicon_overrides as lexicon
 
         # add korp_routes
-        korp_pairs = [pair for pair, conf in self.pair_definitions.iteritems()
-                      if conf.get('show_korp_search', False) ]
+        korp_pairs = [
+            pair for pair, conf in self.pair_definitions.iteritems()
+            if conf.get('show_korp_search', False)
+        ]
 
         searches = [tuple(['korp_wordform'] + list(p)) for p in korp_pairs]
 
@@ -1164,18 +1186,16 @@ class Config(Config):
         has_mobile_variant = False
 
         if has_variant:
-            _mobile_variants = filter( lambda x: x.get('type', '') == 'mobile'
-                                     , current_pair_variants
-                                     )
+            _mobile_variants = filter(lambda x: x.get('type', '') == 'mobile',
+                                      current_pair_variants)
             if len(_mobile_variants) > 0:
                 has_mobile_variant = _mobile_variants[0]
-
 
         variant_dictionaries = self.variant_dictionaries
         is_variant, orig_pair = False, ()
 
         if variant_dictionaries:
-            variant    = variant_dictionaries.get((_from, _to), False)
+            variant = variant_dictionaries.get((_from, _to), False)
             is_variant = bool(variant)
             if is_variant:
                 orig_pair = variant.get('orig_pair')
@@ -1187,25 +1207,21 @@ class Config(Config):
 
         reverse_has_variant = False
         if is_variant:
-            _reverse_is_variant = self.variant_dictionaries.get( orig_pair
-                                                               , False
-                                                               )
+            _reverse_is_variant = self.variant_dictionaries.get(
+                orig_pair, False)
             pair_settings = self.pair_definitions[orig_pair]
         else:
-            _reverse_is_variant = self.variant_dictionaries.get( (_to, _from)
-                                                               , False
-                                                               )
+            _reverse_is_variant = self.variant_dictionaries.get((_to, _from),
+                                                                False)
             pair_settings = self.pair_definitions.get((_from, _to), False)
 
         _reverse_variants = reverse_pair.get('input_variants', False)
 
         if _reverse_variants:
-            _mobile_variants = filter( lambda x: x.get('type', '') == 'mobile'
-                                     , _reverse_variants
-                                     )
-            _standard_variants = filter( lambda x: x.get('type', '') == 'standard'
-                                       , _reverse_variants
-                                       )
+            _mobile_variants = filter(lambda x: x.get('type', '') == 'mobile',
+                                      _reverse_variants)
+            _standard_variants = filter(
+                lambda x: x.get('type', '') == 'standard', _reverse_variants)
             if mobile and len(_mobile_variants) > 0:
                 _preferred_swap = _mobile_variants[0]
                 _short_name = _preferred_swap.get('short_name')
@@ -1236,9 +1252,9 @@ class Config(Config):
             if pair_settings:
                 orig_pair_variants = pair_settings.get('input_variants')
                 if orig_pair_variants:
-                    variant_opts = filter( lambda x: x.get('short_name') == _from
-                                         , orig_pair_variants
-                                         )
+                    variant_opts = filter(
+                        lambda x: x.get('short_name') == _from,
+                        orig_pair_variants)
                     if len(variant_opts) > 0:
                         variant_options = variant_opts[0]
 

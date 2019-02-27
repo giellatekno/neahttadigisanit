@@ -21,10 +21,12 @@ morph_log = getLogger('morphology')
 # This is called before any lookup is done, regardless of whether it
 # came from analysis or not.
 
+
 @autocomplete_filters.autocomplete_filter_for_lang(('nob', 'sme'))
 def remove_orig_entry(entries):
     _entries = [e for e in entries if 'orig_entry' not in e.attrib]
     return _entries
+
 
 @morphology.pregenerated_form_selector(*['sme', 'SoMe'])
 def pregenerate_sme(form, tags, node, **kwargs):
@@ -35,7 +37,7 @@ def pregenerate_sme(form, tags, node, **kwargs):
     """
     _has_mini_paradigm = node.xpath('.//mini_paradigm[1]')
 
-    _has_lemma_ref     = node.xpath('.//lemma_ref')
+    _has_lemma_ref = node.xpath('.//lemma_ref')
     if len(_has_lemma_ref) > 0:
         return form, [], node, []
     if len(_has_mini_paradigm) == 0:
@@ -61,6 +63,7 @@ def pregenerate_sme(form, tags, node, **kwargs):
 
     return form, tags, node, analyses
 
+
 _str_norm = 'string(normalize-space(%s))'
 
 SME_NOB_DICTS = [
@@ -71,6 +74,7 @@ SME_NOB_DICTS = [
 NOB_SME = [
     ('nob', 'sme'),
 ]
+
 
 @lexicon.entry_source_formatter(*['sme', 'SoMe'])
 def format_source_sme(ui_lang, e, target_lang):
@@ -98,9 +102,10 @@ def format_source_sme(ui_lang, e, target_lang):
     _til_ref = e.xpath(_str_norm % 'lg/l/@til_ref')
 
     if _lemma_ref:
-        _link_targ = u'/detail/%s/%s/%s.html' % ('sme', target_lang, _lemma_ref)
+        _link_targ = u'/detail/%s/%s/%s.html' % ('sme', target_lang,
+                                                 _lemma_ref)
         _lemma_ref_link = u'<a href="%s"/>%s</a>' % (_link_targ, _lemma_ref)
-        _lemma_ref_link = u'<span class="see_also"> &rarr; '  + _lemma_ref_link
+        _lemma_ref_link = u'<span class="see_also"> &rarr; ' + _lemma_ref_link
         _lemma_ref_link += u'</span>'
     else:
         _lemma_ref_link = ''
@@ -122,6 +127,7 @@ def format_source_sme(ui_lang, e, target_lang):
         return _lemma
 
     return None
+
 
 @lexicon.entry_source_formatter('nob')
 def format_source_nob(ui_lang, e, target_lang):
@@ -153,17 +159,15 @@ def format_source_nob(ui_lang, e, target_lang):
     if _til_ref and _orig_entry:
         _link_return = "/nob/sme/ref/?l_til_ref=%s" % _orig_entry
         _link = "<a href='%s'>%s</a>" % (_link_return, _orig_entry)
-        _lemma_ref_link = u'<span class="see_also"> &rarr; '  + _link
+        _lemma_ref_link = u'<span class="see_also"> &rarr; ' + _link
         _lemma_ref_link += u'</span>'
         _transl_pos = "(%s)" % tag_filter.get(_pos)
-        _new_str = [ _lemma
-                   , _transl_pos
-                   , _lemma_ref_link
-                   ]
+        _new_str = [_lemma, _transl_pos, _lemma_ref_link]
         _new_str = ' '.join(_new_str)
         return _new_str
 
     return None
+
 
 @lexicon.entry_target_formatter(('sme', 'nob'), ('SoMe', 'nob'))
 def format_target_sme(ui_lang, e, tg):
@@ -187,6 +191,7 @@ def format_target_sme(ui_lang, e, tg):
 
     return None
 
+
 @lexicon.entry_target_formatter(('nob', 'sme'))
 def format_fra_ref_links(ui_lang, e, tg):
     """**Entry target translation formatter**
@@ -206,7 +211,8 @@ def format_fra_ref_links(ui_lang, e, tg):
 
     if _fra_ref is not None:
         if len(_fra_ref) > 0:
-            return "<a href='/nob/sme/ref/?l_til_ref=%s'>%s</a> &rarr;" % (_fra_ref, _fra_text)
+            return "<a href='/nob/sme/ref/?l_til_ref=%s'>%s</a> &rarr;" % (
+                _fra_ref, _fra_text)
 
     _type = e.xpath(_str_norm % 'lg/l/@type')
     _pos = e.xpath(_str_norm % 'lg/l/@pos')
@@ -218,6 +224,7 @@ def format_fra_ref_links(ui_lang, e, tg):
             return "%s (%s)" % (_t_lemma, _reg)
 
     return None
+
 
 def match_homonymy_entries(entries_and_tags):
     """ **Post morpho-lexicon override**
@@ -235,8 +242,10 @@ def match_homonymy_entries(entries_and_tags):
             entry_type = entry.find('lg/l').attrib.get('type', False)
             entry_analysis = entry.find('lg/analysis')
             if entry_type:
-                tag_type = [x for x in [a.tag['type'] for a in analyses]
-                            if x is not None]
+                tag_type = [
+                    x for x in [a.tag['type'] for a in analyses]
+                    if x is not None
+                ]
                 if len(tag_type) > 0:
                     if entry_type in tag_type:
                         filtered_results.append((entry, analyses))
@@ -254,6 +263,4 @@ def match_homonymy_entries(entries_and_tags):
     return filtered_results
 
 
-morpholex.post_morpho_lexicon_override(
-    'sme'
-)(match_homonymy_entries)
+morpholex.post_morpho_lexicon_override('sme')(match_homonymy_entries)

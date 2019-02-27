@@ -15,6 +15,7 @@ bookmarklet_escaped = bookmarklet_quote(bmark)
 
 prod_host = "sanit.oahpa.no"
 
+
 def generate_bookmarklet_code(reader_settings, request_host):
     api_host = reader_settings.get('api_host', request_host)
     media_host = reader_settings.get('media_host', request_host)

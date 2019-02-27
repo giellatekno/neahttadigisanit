@@ -1,5 +1,6 @@
 ﻿from paradigm_layouts import *
 
+
 def read_layout_file(fname):
     import yaml
 
@@ -12,6 +13,7 @@ def read_layout_file(fname):
 
     return (options, data)
 
+
 def get_layout(lang, lemma):
     """ A test function for developing this, return (parsed_layout, generated_paradigm)
     """
@@ -23,19 +25,24 @@ def get_layout(lang, lemma):
         parads = app.morpholexicon.paradigms
         morph = app.config.morphologies.get(lang, False)
 
-        lookups = app.morpholexicon.lookup(lemma, source_lang=lang, target_lang='nob')
+        lookups = app.morpholexicon.lookup(
+            lemma, source_lang=lang, target_lang='nob')
 
         for node, analyses in lookups:
             if (node is not None) and analyses:
-                pp, pt = parads.get_paradigm(lang, node, analyses, return_template=True)
-                lp, lt = parads.get_paradigm_layout(lang, node, analyses, debug=True, return_template=True)
+                pp, pt = parads.get_paradigm(
+                    lang, node, analyses, return_template=True)
+                lp, lt = parads.get_paradigm_layout(
+                    lang, node, analyses, debug=True, return_template=True)
 
                 form_tags = [_t.split('+')[1::] for _t in pp.splitlines()]
-                _generated, _, _ = morph.generate_to_objs(lemma, form_tags, node, return_raw_data=True)
+                _generated, _, _ = morph.generate_to_objs(
+                    lemma, form_tags, node, return_raw_data=True)
 
                 ps.append((lp, _generated))
 
     return ps
+
 
 def main():
 
@@ -66,7 +73,5 @@ def main():
     # filled_table = t.fill_generation(generated_paradigms[0])
 
 
-
 if __name__ == "__main__":
     sys.exit(main())
-

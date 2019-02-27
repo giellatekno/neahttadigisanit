@@ -1,12 +1,6 @@
 # -*- encoding: utf-8 -*-
-from flask import ( request
-                  , Response
-                  , json
-                  , session
-                  , render_template
-                  , current_app
-                  , abort
-                  )
+from flask import (request, Response, json, session, render_template,
+                   current_app, abort)
 
 from . import blueprint
 
@@ -26,14 +20,15 @@ from bookmarklet_code import generate_bookmarklet_code
 
 
 def json_response(data, *args, **kwargs):
-    return Response( response=json.dumps(data)
-                   , status=200
-                   , mimetype="application/json"
-                   )
+    return Response(
+        response=json.dumps(data), status=200, mimetype="application/json")
 
 
-def crossdomain(origin=None, methods=None, headers=None,
-                max_age=21600, attach_to_all=True,
+def crossdomain(origin=None,
+                methods=None,
+                headers=None,
+                max_age=21600,
+                attach_to_all=True,
                 automatic_options=True):
     """ Cross-domain decorator from Flask documentation with some
     modifications. This provides an OPTIONS response containing
@@ -80,7 +75,9 @@ def crossdomain(origin=None, methods=None, headers=None,
 
         f.provide_automatic_options = False
         return update_wrapper(wrapped_function, f)
+
     return decorator
+
 
 @crossdomain(origin='*', headers=['Content-Type'])
 def lookupWord(from_language, to_language):
@@ -120,19 +117,20 @@ def lookupWord(from_language, to_language):
     if request.method == 'GET':
         # URL parameters
         lookup_key = user_input = request.args.get('lookup', False)
-        has_callback            = request.args.get('callback', False)
-        pretty                  = request.args.get('pretty', False)
+        has_callback = request.args.get('callback', False)
+        pretty = request.args.get('pretty', False)
 
-        multiword   = request.args.get('multiword', False)
+        multiword = request.args.get('multiword', False)
 
     elif request.method == 'POST':
         input_json = simplejson.loads(request.data)
 
         lookup_key = user_input = input_json.get('lookup', False)
-        has_callback            = request.args.get('callback', False) or input_json.get('callback', False)
-        pretty                  = input_json.get('pretty', False)
+        has_callback = request.args.get('callback', False) or input_json.get(
+            'callback', False)
+        pretty = input_json.get('pretty', False)
 
-        multiword   = input_json.get('multiword', False)
+        multiword = input_json.get('multiword', False)
     elif request.method == 'OPTIONS':
         return json_response({})
 
@@ -149,12 +147,7 @@ def lookupWord(from_language, to_language):
     # key is set but set to nothing, as such we need to return a
     # response when this happens, but the response is nothing.
 
-    response_data = {
-        'result'  : [],
-        'tags'    : [],
-        'tag_msg' : "",
-        'success' : False
-    }
+    response_data = {'result': [], 'tags': [], 'tag_msg': "", 'success': False}
 
     if lookup_key is False or not lookup_key.strip():
         return json_response(response_data)
@@ -164,15 +157,15 @@ def lookupWord(from_language, to_language):
     multi_lookups = []
     multi_tags = []
 
-
     for lookup in lookups:
-        morpholexicon_lookup = mlex.lookup( lookup
-                                      , source_lang=from_language
-                                      , target_lang=to_language
-                                      , split_compounds=True
-                                      # , non_compound_only=True
-                                      # , no_derivations=True
-                                      )
+        morpholexicon_lookup = mlex.lookup(
+            lookup,
+            source_lang=from_language,
+            target_lang=to_language,
+            split_compounds=True
+            # , non_compound_only=True
+            # , no_derivations=True
+        )
 
         def filterPOSAndTag(analysis):
             filtered_pos = tagfilter(analysis.pos, from_language, to_language)
@@ -197,25 +190,22 @@ def lookupWord(from_language, to_language):
             if isinstance(analyses[0], list):
               analyses = analyses[0]
 '''
-        tags = map(
-            filterPOSAndTag,
-            analyses
-        )
+        tags = map(filterPOSAndTag, analyses)
 
         if multiword:
             _u_in = lookup
         else:
             _u_in = user_input
 
-
         ui_lang = iso_filter(session.get('locale', to_language))
-        result = SimpleJSON( morpholexicon_lookup.entries
-        ##result = SimpleJSON( entr
-                           , target_lang=to_language
-                           , source_lang=from_language
-                           , ui_lang=ui_lang
-                           , user_input=_u_in
-                           )
+        result = SimpleJSON(
+            morpholexicon_lookup.entries
+            ##result = SimpleJSON( entr
+            ,
+            target_lang=to_language,
+            source_lang=from_language,
+            ui_lang=ui_lang,
+            user_input=_u_in)
         result = result.sorted_by_pos()
 
         if len(result) > 0:
@@ -223,40 +213,33 @@ def lookupWord(from_language, to_language):
 
         result_with_input = [{'input': lookup, 'lookups': result}]
 
-        logSimpleLookups( lookup
-                        , result_with_input
-                        , from_language
-                        , to_language
-                        )
+        logSimpleLookups(lookup, result_with_input, from_language, to_language)
 
         multi_lookups.extend(result)
         multi_tags.extend(tags)
 
     results_with_input = [{'input': lookup_key, 'lookups': multi_lookups}]
 
-    data = json.dumps({ 'result': results_with_input
-                      , 'tags': tags
-                      , 'tag_msg': _(" is a possible form of ... ")
-                      , 'success': success
-                      })
+    data = json.dumps({
+        'result': results_with_input,
+        'tags': tags,
+        'tag_msg': _(" is a possible form of ... "),
+        'success': success
+    })
 
     if pretty:
-        data = json.dumps( json.loads(data)
-                         , sort_keys=True
-                         , indent=4
-                         , separators=(',', ': ')
-                         )
+        data = json.dumps(
+            json.loads(data), sort_keys=True, indent=4, separators=(',', ': '))
 
     if has_callback:
         data = '%s(%s)' % (has_callback, data)
 
-    return Response( response=data
-                   , status=200
-                   , mimetype="application/json"
-                   )
+    return Response(response=data, status=200, mimetype="application/json")
+
 
 def ie8_instrux():
     return render_template('reader_ie8_notice.html')
+
 
 def ie8_instrux_json():
     # Force template into json response
@@ -264,10 +247,9 @@ def ie8_instrux_json():
     r = render_template('reader_ie8_notice.html')
 
     formatted = fmtForCallback(json.dumps(r), has_callback)
-    return Response( response=formatted
-                   , status=200
-                   , mimetype="application/json"
-                   )
+    return Response(
+        response=formatted, status=200, mimetype="application/json")
+
 
 def reader_test_page():
     """ This is also tied to a context processer making this item
@@ -275,26 +257,24 @@ def reader_test_page():
 
     return render_template('reader_tests.template')
 
+
 def reader_update():
 
     reader_settings = current_app.config.reader_settings
 
-    bkmklt = generate_bookmarklet_code( reader_settings
-                                      , request.host
-                                      )
+    bkmklt = generate_bookmarklet_code(reader_settings, request.host)
 
     # Force template into json response
     has_callback = request.args.get('callback', False)
     return render_template('reader_update.html', bookmarklet=bkmklt)
+
 
 def reader_update_json():
 
     # TODO: api_host and media_host from settings
     reader_settings = current_app.config.reader_settings
 
-    bkmklt = generate_bookmarklet_code( reader_settings
-                                      , request.host
-                                      )
+    bkmklt = generate_bookmarklet_code(reader_settings, request.host)
 
     # Force template into json response
     has_callback = request.args.get('callback', False)
@@ -302,10 +282,9 @@ def reader_update_json():
 
     formatted = fmtForCallback(json.dumps(r), has_callback)
 
-    return Response( response=formatted
-                   , status=200
-                   , mimetype="application/json"
-                   )
+    return Response(
+        response=formatted, status=200, mimetype="application/json")
+
 
 def fetch_messages(locale):
     from i18n.polib import pofile
@@ -316,15 +295,17 @@ def fetch_messages(locale):
         _pofile = False
 
     if _pofile:
-        jsentries = filter( lambda x: any(['.js' in a[0] for a in x.occurrences])
-                          , list(_pofile)
-                          )
+        jsentries = filter(
+            lambda x: any(['.js' in a[0] for a in x.occurrences]),
+            list(_pofile))
 
-        jsentries_dict = dict( [(e.msgid, e.msgstr or False) for e in jsentries] )
+        jsentries_dict = dict(
+            [(e.msgid, e.msgstr or False) for e in jsentries])
 
     else:
         jsentries_dict = dict()
-    override_symbol = current_app.config.reader_settings.get('reader_symbol', False)
+    override_symbol = current_app.config.reader_settings.get(
+        'reader_symbol', False)
     if override_symbol:
         jsentries_dict[u'Á'] = override_symbol
 
@@ -361,23 +342,32 @@ def bookmarklet_configs():
             reader_dict_opts = current_app.config.reader_options.get(_from, {})
 
             if grouper != new_group:
-                group = { 'iso': grouper
-                        , 'locale_name': unicode(NAMES.get(grouper))
-                        , 'self_name': unicode(LOCALISATION_NAMES_BY_LANGUAGE.get(grouper))
-                        }
+                group = {
+                    'iso':
+                    grouper,
+                    'locale_name':
+                    unicode(NAMES.get(grouper)),
+                    'self_name':
+                    unicode(LOCALISATION_NAMES_BY_LANGUAGE.get(grouper))
+                }
             else:
                 group = False
 
             new_group = grouper
 
-            dictionaries.append(
-                { 'from': {'iso': _from, 'name': unicode(NAMES.get(_from))}
-                , 'to':   {'iso': _to,   'name': unicode(NAMES.get(_to))}
-                , 'uri': "/lookup/%s/%s/" % (_from, _to)
-                , 'settings': reader_dict_opts
-                , 'group': group
-                }
-            )
+            dictionaries.append({
+                'from': {
+                    'iso': _from,
+                    'name': unicode(NAMES.get(_from))
+                },
+                'to': {
+                    'iso': _to,
+                    'name': unicode(NAMES.get(_to))
+                },
+                'uri': "/lookup/%s/%s/" % (_from, _to),
+                'settings': reader_dict_opts,
+                'group': group
+            })
 
             _has_variant = current_app.config.pair_definitions.get((_from, _to), {}) \
                                              .get('input_variants', False)
@@ -385,38 +375,47 @@ def bookmarklet_configs():
             if _has_variant:
                 for variant in _has_variant:
                     v_from = variant.get('short_name')
-                    variant_dict_opts = current_app.config.reader_options.get(v_from, {})
+                    variant_dict_opts = current_app.config.reader_options.get(
+                        v_from, {})
                     if not (v_from, _to) in prepared:
-                        dictionaries.append(
-                            { 'from': {'iso': v_from, 'name': "%s (%s)" % (unicode(NAMES.get(_from, _from)), _(variant.get('description', '')))}
-                            , 'to':   {'iso': _to,    'name': "%s" % unicode(NAMES.get(_to))}
-                            , 'uri': "/lookup/%s/%s/" % (v_from, _to)
-                            , 'settings': variant_dict_opts
-                            }
-                        )
+                        dictionaries.append({
+                            'from': {
+                                'iso':
+                                v_from,
+                                'name':
+                                "%s (%s)" % (unicode(NAMES.get(_from, _from)),
+                                             _(variant.get('description', '')))
+                            },
+                            'to': {
+                                'iso': _to,
+                                'name': "%s" % unicode(NAMES.get(_to))
+                            },
+                            'uri':
+                            "/lookup/%s/%s/" % (v_from, _to),
+                            'settings':
+                            variant_dict_opts
+                        })
                         prepared.append((v_from, _to))
 
-    data = { 'dictionaries': dictionaries
-           , 'localization': translated_messages
-           , 'default_language_pair': current_app.config.default_language_pair
-           }
+    data = {
+        'dictionaries': dictionaries,
+        'localization': translated_messages,
+        'default_language_pair': current_app.config.default_language_pair
+    }
 
     formatted = fmtForCallback(json.dumps(data), has_callback)
 
-    return Response( response=formatted
-                   , status=200
-                   , mimetype="application/json"
-                   )
+    return Response(
+        response=formatted, status=200, mimetype="application/json")
+
 
 def bookmarklet():
 
     reader_settings = current_app.config.reader_settings
 
-    bkmklt = generate_bookmarklet_code( reader_settings
-                                      , request.host
-                                      )
+    bkmklt = generate_bookmarklet_code(reader_settings, request.host)
 
-    return render_template( 'reader.html'
-                          , bookmarklet=bkmklt
-                          , language_pairs=current_app.config.pair_definitions
-                          )
+    return render_template(
+        'reader.html',
+        bookmarklet=bkmklt,
+        language_pairs=current_app.config.pair_definitions)

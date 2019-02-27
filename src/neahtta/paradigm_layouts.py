@@ -99,8 +99,7 @@ Ideas:
 # NB: formatting ideas here, but no parsers that can be used
 # http://www.tablesgenerator.com/markdown_tables or TextTables if
 # there's a package for that, supports combined cells-- alternatively
-# mediawiki format could be used 
-
+# mediawiki format could be used
 
 import os, sys
 import yaml
@@ -109,8 +108,8 @@ from morphology.utils import tagfilter
 
 from flask import g
 
-class ParadigmException(Exception):
 
+class ParadigmException(Exception):
     def __init__(self, template):
         a, _, self.template = template.partition('language_specific_rules')
 
@@ -123,14 +122,18 @@ class ParadigmException(Exception):
     def __str__(self):
         return "%s (in ...%s)" % (self.message, self.template)
 
+
 class ParadigmParseError(ParadigmException):
     message = "Table definition appears to be blank"
+
 
 class NoTableDefinition(ParadigmParseError):
     message = "Table is missing a header"
 
+
 class UnevenRowLengths(ParadigmParseError):
     message = "Row lengths are uneven, could not parse."
+
 
 class Value(object):
     """ The cell Value, which is calculated by the current paradigm and
@@ -223,7 +226,6 @@ class Value(object):
             return current_form_tag.startswith(start_search_pred) and \
                    current_form_tag.endswith(end_search_pred)
 
-
         # Otherwise case is a substring match
         return search_predicate in current_form_tag
 
@@ -249,7 +251,7 @@ class Value(object):
             self.value_type = self.cell
             return self.cell.empty_cell
 
-        # Compute the value ... 
+        # Compute the value ...
         values_list = self.fill_value()
 
         if len(values_list) > 0:
@@ -273,6 +275,7 @@ class Value(object):
         else:
             return 'Value(' + repr(self.value) + ')'
 
+
 class Cell(object):
     """ A table Cell, includes parser method for determining how a Value
         should be looked up.
@@ -288,9 +291,12 @@ class Cell(object):
         self.internationalize = False
         self.v = v.strip()
         self.table = table
-        self.null_value = self.table.options.get('layout', {}).get('no_form', '')
-        self.empty_cell = self.table.options.get('layout', {}).get('empty_cell', '')
-        self.tooltip_tagset = self.table.options.get('tooltips', {}).get(g._to, False)
+        self.null_value = self.table.options.get('layout', {}).get(
+            'no_form', '')
+        self.empty_cell = self.table.options.get('layout', {}).get(
+            'empty_cell', '')
+        self.tooltip_tagset = self.table.options.get('tooltips', {}).get(
+            g._to, False)
         self.text_align = False
 
         self.clean_value()
@@ -306,7 +312,6 @@ class Cell(object):
         # something, and then see #multi_value for where this will be
         # handled
 
-
         # strip off alignment marks, and then continue to process
         if self.v.startswith(':') and self.v.endswith(':'):
             self.v = self.v[1:-1].strip()
@@ -320,7 +325,7 @@ class Cell(object):
 
         if self.v.startswith('_"') and self.v.endswith('"'):
             self.header = True
-            self.v = self.v[2:len(self.v)-1]
+            self.v = self.v[2:len(self.v) - 1]
             self.internationalize = True
             if self.tooltip_tagset:
                 # filtered_str = tagfilter(self.v, g._from, g._to, tagfilter_set=self.tooltip_tagset)
@@ -329,7 +334,7 @@ class Cell(object):
         if self.v.startswith('"') and self.v.endswith('"'):
             # TODO: simple tagset
             self.header = True
-            self.v = self.v[1:len(self.v)-1]
+            self.v = self.v[1:len(self.v) - 1]
             # TODO: only set self.tooltip if a value in the tagset exists
             if self.tooltip_tagset:
                 # filtered_str = tagfilter(self.v, g._from, g._to, tagfilter_set=self.tooltip_tagset)
@@ -342,8 +347,8 @@ class Cell(object):
     def __repr__(self):
         return 'Cell(' + self.v + ')'
 
-class Null(Cell):
 
+class Null(Cell):
     def __init__(self, table, index):
         self.index = index
         self.header = False
@@ -351,13 +356,15 @@ class Null(Cell):
         self.v = False
         self.table = table
         self.no_form = self.table.options.get('layout', {}).get('no_form', '')
-        self.empty_cell = self.table.options.get('layout', {}).get('empty_cell', '')
+        self.empty_cell = self.table.options.get('layout', {}).get(
+            'empty_cell', '')
 
     def __repr__(self):
         return 'V(Null)'
 
     def get_value(self, paradigm):
         return self.empty_cell
+
 
 class FilledParadigmTable(object):
     """ Convenience object for the template stuff. This is probably the
@@ -412,7 +419,9 @@ class ParadigmTable(object):
 
         as_list = self.table.to_list()
 
-        return FilledParadigmTable(paradigm_table=self, as_list=self.table.to_list())
+        return FilledParadigmTable(
+            paradigm_table=self, as_list=self.table.to_list())
+
 
 DEFAULT_OPTIONS = {
     'layout': {
@@ -421,6 +430,7 @@ DEFAULT_OPTIONS = {
         'value_separator': '<br />',
     },
 }
+
 
 class TableParser(object):
     """ Methods for parsing the tables
@@ -446,7 +456,7 @@ class TableParser(object):
 
         # Generator for indexes of column delimiter characters
         heads = (i for i, c in enumerate(self.header)
-                   if c == self.COLUMN_DELIM)
+                 if c == self.COLUMN_DELIM)
 
         self._header_positions = list(heads)
         return self._header_positions
@@ -508,11 +518,13 @@ class TableParser(object):
         try:
             b = self.header
         except Exception, e:
-            errors['header'] = NoTableDefinition(self.options['META'].get('path'))
+            errors['header'] = NoTableDefinition(
+                self.options['META'].get('path'))
             success = False
 
         if len(self.lines) == 0:
-            errors['table'] = NoTableDefinition(self.options['META'].get('path'))
+            errors['table'] = NoTableDefinition(
+                self.options['META'].get('path'))
             success = False
         else:
             lengths = set()
@@ -520,7 +532,8 @@ class TableParser(object):
                 lengths.add(len(l))
 
             if len(lengths) != 1:
-                errors['rows'] = UnevenRowLengths(self.options['META'].get('path'))
+                errors['rows'] = UnevenRowLengths(
+                    self.options['META'].get('path'))
                 success = False
 
         return (success, errors)
@@ -545,7 +558,7 @@ class TableParser(object):
 
             for (a, b) in cs:
 
-                _v = row[a+1:b]
+                _v = row[a + 1:b]
 
                 end_span = row[a] != self.COLUMN_DELIM
                 begin_span = row[b] != self.COLUMN_DELIM
@@ -561,7 +574,7 @@ class TableParser(object):
                     merge = 0
                 # mark the beginning of the value
                 if begin_span:
-                    extend_value = a+1
+                    extend_value = a + 1
 
                 # If we're in the middle of a span, do nothing and
                 # continue
@@ -571,7 +584,7 @@ class TableParser(object):
                 # the span began, and set the colspan of the span's cell
                 # And then reset the merge values.
                 elif end_span:
-                    _v = row[extend_value:b-1]
+                    _v = row[extend_value:b - 1]
                     last_cell.col_span = merge
                     last_cell.update_value(_v.strip())
                     merge = 0
@@ -613,12 +626,11 @@ class Table(TableParser):
 
         return ParadigmTable(self, paradigm)
 
+
 def parse_table(table_string, yaml_definition, path=False):
     """ Parse the ASCII table, with options, return a Table object.
     """
-    yaml_definition['META'] = {
-        'path': path
-    }
+    yaml_definition['META'] = {'path': path}
     t = Table(table_string, options=yaml_definition)
 
     valid, errors = t.validate()
