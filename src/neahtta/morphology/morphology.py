@@ -816,10 +816,6 @@ class XFST(object):
                       tags,
                       raw=False,
                       no_preprocess_paradigm=False):
-        import sys
-        if not self.icmd:
-            print >> sys.stderr, " * Inverse lookups not available."
-            return False
 
         # Some templates (namely those where there are tags before
         # the lemma), will cause problems. Thus if the lemma is
