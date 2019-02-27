@@ -795,6 +795,10 @@ class WordLookupTests(WordLookupTests):
         self.assertEqual(rv.status_code, 200)
 
 
+class BasicTests(BasicTests):
+    wordforms_that_shouldnt_fail = wordforms_that_shouldnt_fail
+
+
 class WordLookupDetailTests(WordLookupDetailTests):
     wordforms_that_shouldnt_fail = wordforms_that_shouldnt_fail
 
