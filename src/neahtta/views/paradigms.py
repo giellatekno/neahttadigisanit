@@ -51,14 +51,6 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
 
     from lexicon import DetailedFormat as formatter
 
-    def options(self, _from, _to, lemma):
-        _filters = current_app.config.tag_filters.get((g._from, g._to), False)
-
-        return json_response({
-            'tagsets': self.tagsets_serializer_ready(_from),
-            'filters': _filters
-        })
-
     def get_paradigms(self, _from, lemma):
         def filter_tag(f):
             print(lineno(), f.tag)
@@ -131,45 +123,3 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
             paradigm for _, _, paradigm, _ in search_result_obj.
             entries_and_tags_and_paradigms
         ]
-
-    def entry_filterer(self, entries, **kwargs):
-        """ Runs on formatted result from DetailedFormat thing
-
-            TODO: will need to reconstruct this for new style views
-            because the formatters are going away
-        """
-
-        # Post-analysis filter arguments
-        pos_filter = request.args.get('pos', False)
-        e_node = request.args.get('e_node', False)
-        lemma_match = self.lemma_match
-
-        def _byPOS(r):
-            return r.get('input')[1].upper() == pos_filter.upper()
-
-        def _byLemma(r):
-            return r.get('input')[0] == lemma_match
-
-        def _byNodeHash(r):
-            node = r.get('entry_hash')
-            return node == e_node
-
-        def default_result(r):
-            return r
-
-        entry_filters = [default_result]
-
-        if lemma_match:
-            entry_filters.append(_byLemma)
-
-        if e_node:
-            entry_filters.append(_byNodeHash)
-
-        if pos_filter:
-            entry_filters.append(_byPOS)
-
-        def filter_entries_for_view(entries):
-            return [filter(entry_filter, entries)
-                    for entry_filter in entry_filters]
-
-        return filter_entries_for_view(entries)
