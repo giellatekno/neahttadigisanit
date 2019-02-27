@@ -385,7 +385,7 @@ guolli+N+Pl+Com'''
               'guollebiebman+N+Sg+Nom',
               'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
           ]),
-         ('split False', [
+         ('split True', [
              'guollebiebman+N+Sg+Gen+Allegro', 'guollebiebman+N+Sg+Nom',
              'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
              'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Nom',
@@ -417,20 +417,37 @@ guolli+N+Pl+Com'''
             app.config.morphologies['sme'].rearrange_on_count(analyses), wanted,
             msg=name)
 
-    @parameterized.expand([('first', [
-        'guollebiebman+N+Sg+Gen+Allegro', 'guollebiebman+N+Sg+Nom',
-        'guolli+N+Cmp/SgNom', 'biebmat+V+TV+Der/NomAct+N+Sg+Gen',
-        'guolli+N+Cmp/SgNom', 'biebmat+V+TV+Der/NomAct+N+Sg+Nom',
-        'guolli+N+Cmp/SgNom', 'biebman+N+Sg+Gen+Allegro', 'guolli+N+Cmp/SgNom',
-        'biebman+N+Sg+Nom'
-    ], [
-                                'guollebiebman+N+Sg+Gen+Allegro',
-                                'guollebiebman+N+Sg+Nom',
-                                'guolli+N+Cmp/SgNom', 'biebmat+V+TV',
-                                'Der/NomAct+N+Sg+Gen',
-                                'Der/NomAct+N+Sg+Nom',
-                                'biebman+N+Sg+Gen+Allegro', 'biebman+N+Sg+Nom'
-                            ])])
+    @parameterized.expand([
+        (
+            'first',
+             [
+                 'guollebiebman+N+Sg+Gen+Allegro', 'guollebiebman+N+Sg+Nom',
+                 'guolli+N+Cmp/SgNom', 'biebmat+V+TV+Der/NomAct+N+Sg+Gen',
+                 'guolli+N+Cmp/SgNom', 'biebmat+V+TV+Der/NomAct+N+Sg+Nom',
+                 'guolli+N+Cmp/SgNom', 'biebman+N+Sg+Gen+Allegro',
+                 'guolli+N+Cmp/SgNom', 'biebman+N+Sg+Nom'
+             ],
+             [
+                 'guollebiebman+N+Sg+Gen+Allegro',
+                 'guollebiebman+N+Sg+Nom',
+                 'guolli+N+Cmp/SgNom', 'biebmat+V+TV',
+                 'Der/NomAct+N+Sg+Gen',
+                 'Der/NomAct+N+Sg+Nom',
+                 'biebman+N+Sg+Gen+Allegro', 'biebman+N+Sg+Nom'
+             ]
+        ),
+        (
+            'Gerd',
+            [
+                u'Gerd+N+Prop+Sem/Fem+Attr', u'Gerd+N+Prop+Sem/Fem+Sg+Gen',
+                u'Gerd+N+Prop+Sem/Fem+Sg+Acc', u'Gerd+N+Prop+Sem/Fem+Sg+Nom'
+            ],
+            [
+                u'Gerd+N+Prop+Sem/Fem+Attr', u'Gerd+N+Prop+Sem/Fem+Sg+Gen',
+                u'Gerd+N+Prop+Sem/Fem+Sg+Acc', u'Gerd+N+Prop+Sem/Fem+Sg+Nom'
+            ]
+        )
+    ])
     def test_make_analyses_der_fin(self, name, analyses, wanted):
         """Test make_analyses_def_fin."""
         self.assertListEqual(
