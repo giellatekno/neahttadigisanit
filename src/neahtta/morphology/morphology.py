@@ -1090,23 +1090,19 @@ class Morphology(object):
             return reformatted
 
     # start: morph_lemmatizer internal functions
-    def remove_compound_analyses(self, _a):
-        _cmp = self.tool.options.get('compoundBoundary', False)
-        if not _cmp:
-            return True
-        if _cmp in _a:
-            return False
-        else:
-            return True
+    def remove_compound_analyses(self, analyses, non_compound_only):
+        cmp = self.tool.options.get('compoundBoundary', False)
+        if non_compound_only and cmp:
+            return [analysis for analysis in analyses if cmp not in analysis]
 
-    def remove_derivations(self, _a):
-        _der = self.tool.options.get('derivationMarker', False)
-        if not _der:
-            return True
-        if _der in _a:
-            return False
-        else:
-            return True
+        return analyses
+
+    def remove_derivations(self, analyses, no_derivations):
+        der = self.tool.options.get('derivationMarker', False)
+        if no_derivations and der:
+            return [analysis for analysis in analyses if der not in analysis]
+
+        return analyses
 
     @staticmethod
     def maybe_filter(function, iterable):
@@ -1176,12 +1172,9 @@ class Morphology(object):
         lemmas = list()
 
         for _form, analyses in lookups:
-
-            if non_compound_only:
-                analyses = self.maybe_filter(self.remove_compound_analyses, analyses)
-
-            if no_derivations:
-                analyses = self.maybe_filter(self.remove_derivations, analyses)
+            analyses = self.remove_compound_analyses(analyses,
+                                                     non_compound_only)
+            analyses = self.remove_derivations(analyses, no_derivations)
 
             analyses_der_fin = []
 

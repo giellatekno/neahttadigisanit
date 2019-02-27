@@ -273,6 +273,22 @@ guolli+N+Pl+Com'''
             app.config.morphologies['sme'].has_unknown(lookups), wanted,
             msg=name)
 
+    def test_remove_compound_analyses(self):
+        """Check if compounds are removed."""
+        analyses_with_compounds = [
+            'guollebiebman+N+Sg+Nom',
+            'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
+            'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Nom',
+            'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen+Allegro',
+            'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Nom'
+        ]
+        got = app.config.morphologies['sme'].remove_compound_analyses(
+            analyses_with_compounds,
+            True)
+        wanted = ['guollebiebman+N+Sg+Nom']
+
+        self.assertListEqual(got, wanted)
+
     def test_no_derivations(self):
         """Check if derivations are removed."""
 
@@ -283,9 +299,8 @@ guolli+N+Pl+Com'''
             'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Nom',
             'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen+Allegro',
             'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Nom']
-        got = app.config.morphologies['sme'].maybe_filter(
-            app.config.morphologies['sme'].remove_derivations,
-            analyses_with_derivations)
+        got = app.config.morphologies['sme'].remove_derivations(
+            analyses_with_derivations, True)
         wanted = ['guollebiebman+N+Sg+Gen+Allegro', 'guollebiebman+N+Sg+Nom',
                   'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen+Allegro',
                   'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Nom']
@@ -294,38 +309,38 @@ guolli+N+Pl+Com'''
 
     @parameterized.expand([
         (
-            'wordform exists', 'guollebiebman',
-            [
-                'guollebiebman+N+Sg+Nom',
-                'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
-                'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Nom',
-                'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen+Allegro',
-                'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Nom'
-            ],
-            [
-                'guollebiebman+N+Sg+Nom',
-                'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
-                'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Nom',
-                'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen+Allegro',
-                'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Nom'
-            ]
+                'wordform exists', 'guollebiebman',
+                [
+                    'guollebiebman+N+Sg+Nom',
+                    'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
+                    'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Nom',
+                    'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen+Allegro',
+                    'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Nom'
+                ],
+                [
+                    'guollebiebman+N+Sg+Nom',
+                    'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
+                    'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Nom',
+                    'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen+Allegro',
+                    'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Nom'
+                ]
         ),
         (
-            'wordform does not exist', 'guollebiebmama',
-            [
-                'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen',
-                'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Acc',
-                'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
-                'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Acc',
-                'guollebiebman+N+Sg+Gen', 'guollebiebman+N+Sg+Acc'
-            ],
-            [
-                'guollebiebman+N+Sg+Gen', 'guollebiebman+N+Sg+Acc',
-                'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen',
-                'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Acc',
-                'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
-                'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Acc'
-            ]
+                'wordform does not exist', 'guollebiebmama',
+                [
+                    'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen',
+                    'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Acc',
+                    'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
+                    'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Acc',
+                    'guollebiebman+N+Sg+Gen', 'guollebiebman+N+Sg+Acc'
+                ],
+                [
+                    'guollebiebman+N+Sg+Gen', 'guollebiebman+N+Sg+Acc',
+                    'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen',
+                    'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Acc',
+                    'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
+                    'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Acc'
+                ]
         )
     ])
     def test_check_if_lexicalized(self, name, wordform, input_list, wanted):
@@ -352,7 +367,8 @@ guolli+N+Pl+Com'''
     def test_remove_duplicates(self, name, input_list, result):
         """Test remove_duplicates."""
         self.assertListEqual(
-            app.config.morphologies['sme'].remove_duplicates(input_list), result, msg=name)
+            app.config.morphologies['sme'].remove_duplicates(input_list),
+            result, msg=name)
 
     @parameterized.expand([
         ('nested is empty', [], ['a', 'b'], ['a', 'b']),
@@ -366,9 +382,11 @@ guolli+N+Pl+Com'''
     def test_fix_nested_array(self, name, nested_array, analyses, wanted):
         """Test fix_nested_array."""
         self.assertListEqual(
-            app.config.morphologies['sme'].fix_nested_array(nested_array, analyses),
+            app.config.morphologies['sme'].fix_nested_array(nested_array,
+                                                            analyses),
             wanted,
             msg=name)
+
 
 if __name__ == '__main__':
     unittest.main()
