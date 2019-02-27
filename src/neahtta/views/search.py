@@ -85,10 +85,10 @@ class DictionaryView(MethodView):
         current_search_variant = False
 
         if 'search_variant_type' in kwargs:
-            _t = kwargs['search_variant_type']
+            variant_type = kwargs['search_variant_type']
             variants = [
-                v for v in current_pair_settings.get('search_variants')
-                if v.get('type') == _t
+                variant for variant in current_pair_settings.get('search_variants')
+                if variant.get('type') == variant_type
             ]
             if len(variants) > 0:
                 current_search_variant = variants[0]
@@ -131,9 +131,9 @@ class DictionaryView(MethodView):
 
     def get_lemma_lookup_args(self):
         lemma_lookup_args = {}
-        for k, v in request.args.iteritems():
-            if k in self.accepted_lemma_args:
-                lemma_lookup_args[self.accepted_lemma_args.get(k)] = v
+        for key, value in request.args.iteritems():
+            if key in self.accepted_lemma_args:
+                lemma_lookup_args[self.accepted_lemma_args.get(key)] = value
         return lemma_lookup_args
 
     def check_pair_exists_or_abort(self, _from, _to):
@@ -203,9 +203,9 @@ class IndexSearchPage(DictionaryView, AppViewSettingsMixin):
         mobile_redirect_pair = current_app.config.mobile_redirect_pair
 
         if mobile_redirect_pair:
-            ff, tt = tuple(mobile_redirect_pair)
+            from_lang, to_lang = tuple(mobile_redirect_pair)
             target_url = url_for(
-                'views.canonical_root_search_pair', _from=ff, _to=tt)
+                'views.canonical_root_search_pair', _from=from_lang, _to=to_lang)
             if request.user_agent.platform in ['iphone', 'android']:
                 # Only redirect if the user isn't coming back to the home page
                 # from somewhere within the app.
@@ -281,8 +281,8 @@ class SearchResult(object):
 
     """
 
-    def entry_sorter_key(self, r):
-        return r.get('left')
+    def entry_sorter_key(self, req):
+        return req.get('left')
 
     @property
     def formatted_results_sorted(self):
@@ -293,19 +293,18 @@ class SearchResult(object):
     @property
     def formatted_results_pickleable(self):
         # TODO: implement
-        def pickleable_result(_results):
+        def pickleable_result(results):
             """ Pop the various keys that need to be removed.
             """
             pickleable = []
-            for j in _results:
-                _j = j.copy()
-                _j.pop('node')
+            for result in [result.copy() for result in results]:
+                result.pop('node')
                 analyses = []
-                for a in _j.get('analyses', []):
+                for ana in result.get('analyses', []):
                     # TODO: tag formatter
-                    analyses.append((a.lemma, a.tag.tag_string))
-                _j['analyses'] = analyses
-                pickleable.append(_j)
+                    analyses.append((ana.lemma, ana.tag.tag_string))
+                result['analyses'] = analyses
+                pickleable.append(result)
             return pickleable
 
         pickle_result = pickleable_result(self.formatted_results_sorted)
@@ -318,8 +317,8 @@ class SearchResult(object):
         morph = current_app.config.morphologies.get(g._from, False)
         mlex = current_app.morpholexicon
 
-        l = node.xpath('./lg/l')[0]
-        lemma = l.xpath(_str_norm % './text()')
+        lemma_elt = node.xpath('./lg/l')[0]
+        lemma = lemma_elt.xpath(_str_norm % './text()')
 
         paradigm_from_file, paradigm_template = mlex.paradigms.get_paradigm(
             g._from, node, morph_analyses, return_template=True)
@@ -328,7 +327,7 @@ class SearchResult(object):
                 'template_path': paradigm_template,
             }
 
-            _generated, _stdout, _ = morph.generate_to_objs(
+            generated, stdout, _ = morph.generate_to_objs(
                 lemma,
                 paradigm_from_file,
                 node,
@@ -337,11 +336,11 @@ class SearchResult(object):
                 no_preprocess_paradigm=True)
         else:
             # For pregenerated things
-            _generated, _stdout, _ = morph.generate_to_objs(
+            generated, stdout, _ = morph.generate_to_objs(
                 lemma, [], node, return_raw_data=True)
-        self.debug_text += '\n\n' + _stdout + '\n\n'
+        self.debug_text += '\n\n' + stdout + '\n\n'
 
-        return _generated
+        return generated
 
     @property
     def formatted_results(self):
@@ -676,18 +675,17 @@ class SearcherMixin(object):
             else:
                 res_par.append(item)
 
-        for _, az, paradigm, has_layout in search_result_obj.entries_and_tags_and_paradigms:
+        for _, analyses, paradigm, has_layout in search_result_obj.entries_and_tags_and_paradigms:
             if k < len(res_par):
                 if res_par[k][0] is not None:
-                    if len(az) == 0:
-                        az = 'az'
+                    if len(analyses) == 0:
+                        analyses = 'az'
 
                     tplkwargs = {
                         'lexicon_entry':
                         res_par[k][0],
                         'analyses':
-                        az
-                        ,
+                        analyses,
                         'analyses_right':
                         res_par[k][1],
                         'paradigm':
@@ -716,12 +714,13 @@ class SearcherMixin(object):
                             g._from, template, **tplkwargs))
                 k += 1
 
-        all_az = sum([az for _, az in (search_result_obj.entries_and_tags)],
-                     [])
+        all_analyses = sum(
+            [analyses for _, analyses in (search_result_obj.entries_and_tags)],
+            [])
 
         indiv_template_kwargs = {
-            'analyses': all_az,
-            'analyses_right': all_az,
+            'analyses': all_analyses,
+            'analyses_right': all_analyses,
         }
         indiv_template_kwargs.update(**default_context_kwargs)
 
@@ -1010,27 +1009,18 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
         lemma_match = request.args.get('lemma_match', False)
         e_node = request.args.get('e_node', False)
 
-        def by_pos(r):
-            if r.get('input')[1].upper() == pos_filter.upper():
-                return True
-            else:
-                return False
+        def by_pos(req):
+            return req.get('input')[1].upper() == pos_filter.upper()
 
-        def by_lemma(r):
-            if r.get('input')[0] == self.user_input:
-                return True
-            else:
-                return False
+        def by_lemma(req):
+            return req.get('input')[0] == self.user_input
 
-        def by_node_hash(r):
-            node = r.get('entry_hash')
-            if node == e_node:
-                return True
-            else:
-                return False
+        def by_node_hash(req):
+            node = req.get('entry_hash')
+            return node == e_node
 
-        def default_result(r):
-            return r
+        def default_result(req):
+            return req
 
         entry_filters = [default_result]
 
@@ -1045,8 +1035,8 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
 
         def filter_entries_for_view(entries):
             _entries = []
-            for f in entry_filters:
-                _entries = filter(f, entries)
+            for entry_filter in entry_filters:
+                _entries = filter(entry_filter, entries)
             return _entries
 
         return filter_entries_for_view(entries)
