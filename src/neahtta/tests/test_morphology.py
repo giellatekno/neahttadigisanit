@@ -446,6 +446,47 @@ guolli+N+Pl+Com'''
                 u'Gerd+N+Prop+Sem/Fem+Attr', u'Gerd+N+Prop+Sem/Fem+Sg+Gen',
                 u'Gerd+N+Prop+Sem/Fem+Sg+Acc', u'Gerd+N+Prop+Sem/Fem+Sg+Nom'
             ]
+        ),
+        (
+            'buoremus',
+            [
+                u'buorre+A+Superl+Attr', u'buorre+A+Superl+Sg+Nom'
+            ],
+            [
+                u'buorre+A', u'Superl+Attr', u'Superl+Sg+Nom'
+            ]
+        ),
+        (
+            'vuojedettiin',
+            [
+                'vuodjit+V+TV+Ger'
+            ],
+            [
+                'vuodjit+V+TV', 'Ger'
+            ]
+        ),
+        (
+            'biepmadettiin',
+            [
+                'biebmat+V+TV+Ger',
+                'biebmat+V+TV+Der/d+V+Ger',
+                'biepmadit+V+TV+Ger'
+            ],
+            [
+                'biebmat+V+TV',
+                'Ger',
+                'Der/d+V',
+                'biepmadit+V+TV'
+            ]
+        ),
+        (
+            'wordform',
+            [
+                'lemma1+A+Der+B+VAbess+C+Comp+D+Superl+E'
+            ],
+            [
+                'lemma1+A', 'Der+B', 'VAbess+C', 'Comp+D', 'Superl+E'
+            ]
         )
     ])
     def test_make_analyses_der_fin(self, name, analyses, wanted):
