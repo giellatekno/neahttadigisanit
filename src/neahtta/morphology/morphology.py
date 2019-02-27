@@ -1190,27 +1190,11 @@ class Morphology(object):
         else:
             return list(lemmas)
 
-    def analysis_to_lemma(self, analysis, form):
-        # TODO: here's where to begin solving finding a lemma
-        # from:
-        # PV/maci+PV/pwana+nipâw+V+AI+Ind+Prs+1Sg
-        _an_parts = self.tool.splitAnalysis(analysis)
-        # If a word doesn't have a PoS in an analysis, we try to
-        # handle it as best as possible.
-        if len(_an_parts) == 1:
-            _lem = _an_parts[0]
-            lem = Lemma(
-                _an_parts,
-                _input=_lem,
-                tool=self.tool,
-                tagsets=self.tagsets)
-        else:
-            lem = Lemma(
-                _an_parts,
-                _input=form,
-                tool=self.tool,
-                tagsets=self.tagsets)
-        return lem
+    def analysis_to_lemma(self, analysis, wordform):
+        analysis_parts = self.tool.splitAnalysis(analysis)
+        lemma = analysis_parts[0] if len(analysis_parts) == 1 else wordform
+        return Lemma(
+            analysis_parts, _input=lemma, tool=self.tool, tagsets=self.tagsets)
 
     def make_analyses_der_fin(self, analyses):
         analyses_der_fin = []
