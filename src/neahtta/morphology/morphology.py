@@ -821,7 +821,6 @@ class XFST(object):
             print >> sys.stderr, " * Inverse lookups not available."
             return False
 
-        lookups_list = []
         # Some templates (namely those where there are tags before
         # the lemma), will cause problems. Thus if the lemma is
         # already in the tag, we consider this to be a completed tag
@@ -829,6 +828,7 @@ class XFST(object):
         # send to generation.
         #
         if not no_preprocess_paradigm:
+            lookups_list = []
             for tag in tags:
                 if lemma in tag:
                     combine = tag
