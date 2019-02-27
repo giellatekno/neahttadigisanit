@@ -131,7 +131,8 @@ class DictionaryView(MethodView):
                 lemma_lookup_args[self.accepted_lemma_args.get(key)] = value
         return lemma_lookup_args
 
-    def check_pair_exists_or_abort(self, _from, _to):
+    @staticmethod
+    def check_pair_exists_or_abort(_from, _to):
 
         if (_from, _to) not in current_app.config.dictionaries and \
            (_from, _to) not in current_app.config.variant_dictionaries:
@@ -139,7 +140,8 @@ class DictionaryView(MethodView):
 
         return False
 
-    def force_locale(self, _from, _to):
+    @staticmethod
+    def force_locale(_from, _to):
 
         from flask.ext.babel import refresh
 
@@ -167,7 +169,8 @@ class DictionaryView(MethodView):
 
         return False
 
-    def get_reverse_pair(self, _from, _to):
+    @staticmethod
+    def get_reverse_pair(_from, _to):
         """ If the reverse pair for (_from, _to) exists, return the
         pair's settings, otherwise False. """
 
@@ -190,7 +193,8 @@ class IndexSearchPage(DictionaryView, AppViewSettingsMixin):
 
     template_name = 'index.html'
 
-    def maybe_do_mobile_redirect(self):
+    @staticmethod
+    def maybe_do_mobile_redirect():
         """ If this is a mobile platform, redirect; otherwise return
         None/do no action.
         """
@@ -805,7 +809,8 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
 
     formatter = FrontPageFormat
 
-    def log_in_session(self, user_input):
+    @staticmethod
+    def log_in_session(user_input):
 
         uri = u'%s://%s%s?lookup=%s' % (request.scheme, request.host,
                                         request.path, user_input)
@@ -1042,8 +1047,8 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
         if format not in ['json', 'html']:
             return _("Invalid format. Only json and html allowed.")
 
-
-    def request_cache_key(self):
+    @staticmethod
+    def request_cache_key():
         return u'%s?%s?%s' % (request.path, request.query_string, g.ui_lang)
 
     # TODO: this
