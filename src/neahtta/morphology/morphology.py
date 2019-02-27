@@ -839,11 +839,7 @@ class XFST(object):
         else:
             lookup_string = tags + '\n'
 
-        output, err = self._exec(lookup_string, cmd=self.icmd)
-        if raw:
-            return self.clean(output), output, err
-        else:
-            return self.clean(output)
+        return self.inverselookup_by_string(lookup_string, raw=raw)
 
     def tagUnknown(self, analysis):
         if '+?' in analysis:
