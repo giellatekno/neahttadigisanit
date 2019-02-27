@@ -17,9 +17,9 @@ History:
 
 """
 
-from flask import (Response, current_app, json, request)
-from utils.encoding import decodeOrFail
+from flask import current_app, json, request
 from morphology.utils import tagfilter
+from utils.encoding import decodeOrFail
 
 from .reader import json_response
 from .search import DictionaryView, SearcherMixin
@@ -43,9 +43,8 @@ class LemmatizerView(DictionaryView, SearcherMixin):
 
         filtered_tag = tagfilter(lemma.tag, lang,
                                  request.args.get('tag_language',
-                                                    'eng')).split(' ')
-        return (lemma.lemma, filtered_tag, [lemma.form],
-                lemma.tag.tag_string)
+                                                  'eng')).split(' ')
+        return (lemma.lemma, filtered_tag, [lemma.form], lemma.tag.tag_string)
 
     def get(self, _from, wordform):
         """Produce a json formatted cleaned lemma of the given wordform.
@@ -58,13 +57,7 @@ class LemmatizerView(DictionaryView, SearcherMixin):
             flask.Response
         """
         # Check for cache entry here
-        errors = []
-
-        if _from in current_app.morpholexicon.analyzers:
-            morph = current_app.morpholexicon.analyzers[_from]
-        else:
-            errors.append("Morphology for <%s> does not exist" % _from)
-
+        morph = current_app.morpholexicon.analyzers[_from]
         wordform = decodeOrFail(wordform)
 
         return json_response(
