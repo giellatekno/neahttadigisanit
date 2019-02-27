@@ -51,12 +51,14 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
 
     from lexicon import DetailedFormat as formatter
 
+    @staticmethod
+    def clean_lemma(lemma):
+        print(lineno(), lemma.tag)
+        filtered_tag = tagfilter(lemma.tag, g._from, g._to).split(' ')
+        print(lineno(), lemma.input, filtered_tag, [lemma.form], lemma.tag.tag_string)
+        return (lemma.input, filtered_tag, [lemma.form], lemma.tag.tag_string)
+
     def get_paradigms(self, _from, lemma):
-        def filter_tag(f):
-            print(lineno(), f.tag)
-            filtered_tag = tagfilter(f.tag, g._from, g._to).split(' ')
-            print(lineno(), f.input, filtered_tag, [f.form], f.tag.tag_string)
-            return (f.input, filtered_tag, [f.form], f.tag.tag_string)
 
         # Generation constraints
         # Sjekk om ordklasse er satt
@@ -90,7 +92,7 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
                                         detailed=True,
                                         **search_kwargs)
 
-        return [map(filter_tag, paradigm) for paradigm in paradigms]
+        return [map(self.clean_lemma, paradigm) for paradigm in paradigms]
 
     def get(self, _from, _to, lemma):
         # TODO: submit and process on separate thread, optional poll
