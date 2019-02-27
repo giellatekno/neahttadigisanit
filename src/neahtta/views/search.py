@@ -3,12 +3,12 @@ from logging import getLogger
 from operator import itemgetter
 
 import simplejson
-
-from cache import cache
 from flask import (Response, abort, current_app, g, redirect, render_template,
                    request, session, url_for)
 from flask.ext.babel import gettext as _
 from flask.views import MethodView, View
+
+from cache import cache
 from i18n.utils import get_locale, iso_filter
 from lexicon import FrontPageFormat
 from utils.data import *
