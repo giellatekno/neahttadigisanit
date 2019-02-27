@@ -3,11 +3,10 @@
 """
 Morphological tools
 """
+import heapq
 import imp
 import os
 import re
-from itertools import groupby
-from operator import itemgetter
 
 from cache import cache
 
@@ -1254,7 +1253,7 @@ class Morphology(object):
     @staticmethod
     def rearrange_on_count(analyses):
         errorth_count = [analysis.count('Err/Orth') for analysis in analyses]
-        import heapq
+
         if (min(errorth_count) == 0
             and max(errorth_count) == 1) or (min(errorth_count) == 0
                                         and max(errorth_count) == 0):
