@@ -1179,8 +1179,6 @@ class Morphology(object):
                   return_raw_data=False):
         """ For a wordform, return a list of lemmas
         """
-        print 1102, form, split_compounds, non_compound_only, no_derivations
-
         if return_raw_data:
             lookups, raw_output, raw_errors = self.tool.lookup([form],
                                                                raw=True)
@@ -1201,10 +1199,7 @@ class Morphology(object):
             else:
                 return False
 
-        #lemmas = set()
-        #Use list() instead of set() to keep original order
         lemmas = list()
-        ##lemmas_r = list()
 
         for _form, analyses in lookups:
 
@@ -1214,14 +1209,6 @@ class Morphology(object):
             if no_derivations:
                 analyses = self.maybe_filter(self.remove_derivations, analyses)
 
-            #Introduce the variable 'analyses_right' because in some cases when Der/ tags
-            # we want to show only specific analyses and not all
-            ##analyses_right = analyses
-            analyses_der = analyses
-            #In case of multiple analyses with different types of Der we need to keep them all
-            #so in each case we append the results
-            #(probably no need for all these variables, so maybe TODO: clean)
-            ##analyses_right_fin = []
             analyses_der_fin = []
 
             analyses = self.check_if_lexicalized(form, analyses)
@@ -1283,7 +1270,6 @@ class Morphology(object):
 
             #Remove duplicates due to append if entry with analyses or not (in collect_same_lemma in morpho_lexicon.py)
             analyses_der_fin = self.remove_duplicates(array_not_nested)
-            ##analyses_right_fin = analyses_der_fin
 
             for analysis in analyses_der_fin:
                 # TODO: here's where to begin solving finding a lemma
@@ -1306,33 +1292,11 @@ class Morphology(object):
                         _input=form,
                         tool=self.tool,
                         tagsets=self.tagsets)
-                #lemmas.add(lem)
                 lemmas.append(lem)
-            ##
-            '''for analysis_r in analyses_right_fin:
-                # TODO: here's where to begin solving finding a lemma
-                # from:
-                # PV/maci+PV/pwana+nipâw+V+AI+Ind+Prs+1Sg
-                _an_parts = self.tool.splitAnalysis(analysis_r)
-
-                # If a word doesn't have a PoS in an analysis, we try to
-                # handle it as best as possible.
-                if len(_an_parts) == 1:
-                    _lem = _an_parts[0]
-                    lem = Lemma(_an_parts, _input=_lem, tool=self.tool, tagsets=self.tagsets)
-                else:
-                    lem = Lemma( _an_parts
-                               , _input=form
-                               , tool=self.tool, tagsets=self.tagsets
-                               )
-                #lemmas.add(lem)
-                lemmas_r.append(lem)'''##
 
         if return_raw_data:
-            ##return list(lemmas), raw_output, raw_errors, list(lemmas_r)
             return list(lemmas), raw_output, raw_errors
         else:
-            ##return list(lemmas), list(lemmas_r)
             return list(lemmas)
 
     def de_pickle_lemma(self, lem, tag):
