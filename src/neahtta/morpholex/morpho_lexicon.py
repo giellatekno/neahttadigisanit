@@ -240,10 +240,9 @@ class MorphoLexicon(object):
             user_input=wordform)
 
         if no_analysis_xml:
-            for e in no_analysis_xml:
-                if not entries_and_tags.get(e):
-                    entries_and_tags[e] = list()
-                    entries_and_tags[e].append(None)
+            for entry in no_analysis_xml:
+                if not entries_and_tags.get(entry):
+                    entries_and_tags[entry] = []
 
         if entry_hash_filter:
             for entry in entries_and_tags.keys():
