@@ -1253,12 +1253,12 @@ class Morphology(object):
 
     @staticmethod
     def rearrange_on_count(analyses):
-        der_count = [analysis.count('Der') for analysis in analyses]
         errorth_count = [analysis.count('Err/Orth') for analysis in analyses]
         import heapq
         if (min(errorth_count) == 0
             and max(errorth_count) == 1) or (min(errorth_count) == 0
                                         and max(errorth_count) == 0):
+            der_count = [analysis.count('Der') for analysis in analyses]
             if len(der_count) > 1 and min(der_count) == 0 and heapq.nsmallest(
                     2, der_count)[-1] != 0:
                 analyses = [
