@@ -145,23 +145,14 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
         lemma_match = self.lemma_match
 
         def _byPOS(r):
-            if r.get('input')[1].upper() == pos_filter.upper():
-                return True
-            else:
-                return False
+            return r.get('input')[1].upper() == pos_filter.upper()
 
         def _byLemma(r):
-            if r.get('input')[0] == lemma_match:
-                return True
-            else:
-                return False
+            return r.get('input')[0] == lemma_match
 
         def _byNodeHash(r):
             node = r.get('entry_hash')
-            if node == e_node:
-                return True
-            else:
-                return False
+            return node == e_node
 
         def default_result(r):
             return r
@@ -178,9 +169,7 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
             entry_filters.append(_byPOS)
 
         def filter_entries_for_view(entries):
-            _entries = []
-            for f in entry_filters:
-                _entries = filter(f, entries)
-            return _entries
+            return [filter(entry_filter, entries)
+                    for entry_filter in entry_filters]
 
         return filter_entries_for_view(entries)
