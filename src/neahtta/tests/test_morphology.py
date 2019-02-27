@@ -415,6 +415,15 @@ guolli+N+Pl+Com'''
             wanted,
             msg=name)
 
+    @parameterized.expand([
+        ('without err/orth', ['a', 'b+Der', 'c+Der'], ['a', 'b+Der']),
+        ('with err/orth', ['a+Err/Orth', 'b+Der', 'c+Der'], ['a+Err/Orth', 'b+Der']),
+        ('only der', ['a+Der', 'b+Der', 'c+Der'], ['a+Der'])
+    ])
+    def test_rearrange_on_count(self, name, analyses, wanted):
+        self.assertListEqual(
+            app.config.morphologies['sme'].rearrange_on_count(analyses), wanted, msg=name)
+
 
 if __name__ == '__main__':
     unittest.main()
