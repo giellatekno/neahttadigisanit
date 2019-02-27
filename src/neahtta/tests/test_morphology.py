@@ -270,7 +270,9 @@ guolli+N+Pl+Com'''
                            ('has unknown', [('a', ['b', '?'])], True)])
     def test_has_unknown(self, name, lookups, wanted):
         self.assertEqual(
-            app.config.morphologies['sme'].has_unknown(lookups), wanted, msg=name)
+            app.config.morphologies['sme'].has_unknown(lookups), wanted,
+            msg=name)
+
     def test_no_derivations(self):
         """Check if derivations are removed."""
 
@@ -285,6 +287,61 @@ guolli+N+Pl+Com'''
             app.config.morphologies['sme'].remove_derivations,
             analyses_with_derivations)
         wanted = ['guollebiebman+N+Sg+Gen+Allegro', 'guollebiebman+N+Sg+Nom',
+                  'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen+Allegro',
+                  'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Nom']
+
+        self.assertListEqual(got, wanted)
+
+    @parameterized.expand([
+        (
+            'wordform exists', 'guollebiebman',
+            [
+                'guollebiebman+N+Sg+Nom',
+                'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
+                'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Nom',
+                'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen+Allegro',
+                'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Nom'
+            ],
+            [
+                'guollebiebman+N+Sg+Nom',
+                'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
+                'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Nom',
+                'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen+Allegro',
+                'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Nom'
+            ]
+        ),
+        (
+            'wordform does not exist', 'guollebiebmama',
+            [
+                'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen',
+                'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Acc',
+                'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
+                'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Acc',
+                'guollebiebman+N+Sg+Gen', 'guollebiebman+N+Sg+Acc'
+            ],
+            [
+                'guollebiebman+N+Sg+Gen', 'guollebiebman+N+Sg+Acc',
+                'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen',
+                'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Acc',
+                'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
+                'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Acc'
+            ]
+        )
+    ])
+    def test_check_if_lexicalized(self, name, wordform, input_list, wanted):
+        """Check if lexicalized form is moved to start of list."""
+        analyses_with_lexicalized = [
+            'guollebiebman+N+Sg+Nom',
+            'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
+            'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Nom',
+            'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen+Allegro',
+            'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Nom']
+        got = app.config.morphologies['sme'].check_if_lexicalized(
+            'guollebiebman',
+            analyses_with_lexicalized)
+        wanted = ['guollebiebman+N+Sg+Nom',
+                  'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Gen',
+                  'guolli+N+Cmp/SgNom+Cmp#biebmat+V+TV+Der/NomAct+N+Sg+Nom',
                   'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Gen+Allegro',
                   'guolli+N+Cmp/SgNom+Cmp#biebman+N+Sg+Nom']
 
