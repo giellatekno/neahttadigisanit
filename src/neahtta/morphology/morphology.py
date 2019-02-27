@@ -1115,23 +1115,19 @@ class Morphology(object):
     # If the user input is lexicalized then put it as the first element in analyses
     @staticmethod
     def check_if_lexicalized(form, array):
-        found = False
         for i in range(0, len(array)):
             if form in array[i]:
                 array.insert(0, array[i])
                 del array[i + 1]
-                found = True
-                break
-        if found:
-            return array
+                return array
         else:
             # If the user input is not in the base form, the for above doesn't find the analyses
             # so find the longest analyses and put it/them in the first/s element/s
             # in analyses if it is not one of the single parts
-            mystr = []
-            indmax = []
-            for i in range(0, len(array)):
-                mystr.append(len(array[i][0:array[i].find("+")]))
+            mystr = [
+                len(array[i][0:array[i].find("+")])
+                for i in range(0, len(array))
+            ]
             indmax = [i for i, j in enumerate(mystr) if j == max(mystr)]
             if (max(mystr) < len(form)):
                 k = 0
@@ -1142,18 +1138,13 @@ class Morphology(object):
 
     @staticmethod
     def fix_nested_array(nested_array, analyses):
-        not_nested_array = []
-        if len(nested_array) != 0:
-            if isinstance(nested_array[0], list):
-                for item in nested_array:
-                    if len(item) > 1:
-                        for var in item:
-                            not_nested_array.append(var)
-                    else:
-                        not_nested_array.append(item[0])
-        else:
-            not_nested_array = analyses
-        return not_nested_array
+        if not nested_array:
+            return analyses
+
+        if isinstance(nested_array[0], list):
+            return [var for item in nested_array for var in item]
+
+        return []
 
     @staticmethod
     def remove_duplicates(array_var):
@@ -1283,13 +1274,8 @@ class Morphology(object):
             return list(lemmas)
 
     def has_unknown(self, lookups):
-        unknown = False
-        for k, v in lookups:
-            for a in v:
-                if '?' in a:
-                    unknown = True
-
-        return unknown
+        return not all(['?' not in analysis for _, analyses in lookups
+                       for analysis in analyses])
 
     def de_pickle_lemma(self, lem, tag):
         _tag = self.tool.splitAnalysis(tag)
