@@ -18,7 +18,7 @@ ApplicationSettings:
   app_meta_title: >
      Nordsamiske ordbøker
   meta_description: >
-     Gratis online mobilvennlige nordsamiske ordbøker
+     Gratis online mobilvennlige nordsamiske ordbøker 
   meta_keywords: >
      samisk ordbok, på nett, mobil ordbok, ordbok app, sanakirjat,
      sanakirja, sátnegirjjit, sátnegirji, nordsamisk, finsk, norsk,
@@ -36,7 +36,7 @@ UnitTests:
 # This option set is not used outside of providing shortcuts for
 # following settings.
 Tools:
-  xfst_lookup: &LOOKUP '/home/boerre/bin/lookup'
+  xfst_lookup: &LOOKUP 'lookup'
   opt: &OPT '/opt/smi'
 
 # Morphological system definitions. Since YAML variables aren't able to
@@ -45,8 +45,8 @@ Tools:
 Morphology:
   sme:
     tool: *LOOKUP
-    file: [*OPT, '/sme/bin/analyser-gt-desc.xfst']
-    inverse_file: [*OPT, '/sme/bin/generator-gt-norm.xfst']
+    file: [*OPT, '/sme/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/sme/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options: &sme_fst_options
       compoundBoundary: "+Cmp#"
@@ -55,15 +55,15 @@ Morphology:
       inverse_tagsep: '+'
   SoMe:
     tool: *LOOKUP
-    file: [*OPT, '/sme/bin/analyser-gt-desc-mobile.xfst']
-    inverse_file: [*OPT, '/sme/bin/generator-gt-norm.xfst']
+    file: [*OPT, '/sme/bin/analyser-dict-gt-desc-mobile.xfst']
+    inverse_file: [*OPT, '/sme/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
       <<: *sme_fst_options
   nob:
     tool: *LOOKUP
-    file: [*OPT, '/nob/bin/analyser-gt-desc.xfst']
-    inverse_file: [*OPT, '/nob/bin/generator-gt-norm.xfst']
+    file: [*OPT, '/nob/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/nob/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
       compoundBoundary: "#+Cmp+"
@@ -72,8 +72,8 @@ Morphology:
       inverse_tagsep: '+'
   fin:
     tool: *LOOKUP
-    file: [*OPT, '/fin/bin/analyser-gt-desc.xfst']
-    inverse_file: [*OPT, '/fin/bin/generator-gt-norm.xfst']
+    file: [*OPT, '/fin/bin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/fin/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
       compoundBoundary: "#"
@@ -82,10 +82,10 @@ Morphology:
       inverse_tagsep: '+'
 #$#  sma:
 #$#    tool: *LOOKUP
-#$#    file: [*OPT, '/sma/bin/analyser-gt-desc.xfst']
-#$#    inverse_file: [*OPT, '/sma/bin/generator-gt-norm.xfst']
+#$#    file: [*OPT, '/sma/bin/analyser-dict-gt-desc.xfst']
+#$#    inverse_file: [*OPT, '/sma/bin/generator-dict-gt-norm.xfst']
 #$#    format: 'xfst'
-#$#    options:
+#$#    options: 
 #$#      compoundBoundary: "+Cmp#"
 #$#      derivationMarker: "+Der"
 #$#      tagsep: '+'
@@ -146,6 +146,17 @@ Dictionaries:
     is_korp_default_lang: True
     korp_parallel: True
     korp_search_host: "http://gtweb.uit.no/korp"
+    link_corpus_parameter: "fad_corpus_sme"
+
+  - source: nob
+    target: SoMe
+    path: 'dicts/nob-sme.all.xml'
+    autocomplete: true
+    show_korp_search: True
+    is_korp_default_lang: True
+    korp_parallel: True
+    korp_search_host: "http://gtweb.uit.no/korp"
+    link_corpus_parameter: "fad_corpus_sme"
 
   - source: sme
     target: fin
@@ -168,6 +179,11 @@ Dictionaries:
 
   - source: fin
     target: sme
+    path: 'dicts/fin-sme.all.xml'
+    autocomplete: true
+
+  - source: fin
+    target: SoMe
     path: 'dicts/fin-sme.all.xml'
     autocomplete: true
 
