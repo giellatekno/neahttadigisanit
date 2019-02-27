@@ -3,7 +3,6 @@
 """
 Morphological tools
 """
-
 import imp
 import os
 import re
@@ -663,7 +662,7 @@ class XFST(object):
 
         """
 
-        wordform, _, lemma_tags = analysis_line.partition('\t')
+        wordform, lemma_tags = analysis_line.split('\t')[:2]
 
         return (wordform, lemma_tags)
 
