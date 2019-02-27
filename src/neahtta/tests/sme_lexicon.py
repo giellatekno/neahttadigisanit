@@ -828,22 +828,21 @@ class ParadigmSelectionTest(WordLookupTests):
     """
 
     def test_misc_paradigms(self):
-        from configs.paradigms import ParadigmConfig
 
-        lookups = self.current_app.morpholexicon.lookup('mannat', source_lang='sme', target_lang='nob') \
-                + self.current_app.morpholexicon.lookup(u'Ráisa', source_lang='sme', target_lang='nob') \
-                + self.current_app.morpholexicon.lookup(u'dálkkádagat', source_lang='sme', target_lang='nob') \
-                + self.current_app.morpholexicon.lookup(u'álgoálbmotášši', source_lang='sme', target_lang='nob') \
-                + self.current_app.morpholexicon.lookup(u'Dálmmát', source_lang='sme', target_lang='nob') \
-                + self.current_app.morpholexicon.lookup(u'Gállábártnit', source_lang='sme', target_lang='nob') \
-                + self.current_app.morpholexicon.lookup(u'Iččát', source_lang='sme', target_lang='nob')
+        with self.current_app.app_context():
+            from paradigms import ParadigmConfig
+            lookups = self.current_app.morpholexicon.lookup('mannat', source_lang='sme', target_lang='nob') \
+                      + self.current_app.morpholexicon.lookup(u'Ráisa', source_lang='sme', target_lang='nob') \
+                      + self.current_app.morpholexicon.lookup(u'dálkkádagat', source_lang='sme', target_lang='nob') \
+                      + self.current_app.morpholexicon.lookup(u'álgoálbmotášši', source_lang='sme', target_lang='nob') \
+                      + self.current_app.morpholexicon.lookup(u'Dálmmát', source_lang='sme', target_lang='nob') \
+                      + self.current_app.morpholexicon.lookup(u'Gállábártnit', source_lang='sme', target_lang='nob') \
+                      + self.current_app.morpholexicon.lookup(u'Iččát', source_lang='sme', target_lang='nob')
 
-        pc = self.current_app.morpholexicon.paradigms
-        # print self.current_app
-        pc = ParadigmConfig(app=None, debug=True)
-        for node, analyses in lookups:
-            print "Testing: ", node, analyses
-            # for a in analyses:
-            #     print " - " + repr(a.tag.matching_tagsets())
-            print pc.get_paradigm('sme', node, analyses, debug=True)
-            print '--'
+            pc = self.current_app.morpholexicon.paradigms
+            for node, analyses in lookups:
+                print "Testing: ", node, analyses
+                # for a in analyses:
+                #     print " - " + repr(a.tag.matching_tagsets())
+                print pc.get_paradigm('sme', node, analyses, debug=True)
+                print '--'
