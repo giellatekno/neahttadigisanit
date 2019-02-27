@@ -36,6 +36,19 @@ class TestHFST(unittest.TestCase):
             self.hfst.tag_processor('guolit\tguolli+N+Sg+Nom\t0,000000'),
             ('guolit', 'guolli+N+Sg+Nom'))
 
+    def test_clean(self):
+        """Test the cleaner."""
+        got = '''guollái\tguolli+N+Sg+Ill\t0,000000
+guollái\tguolli+N+Sg+Ill\t0,000000
+guollái\tguolli+N+Sg+Ill\t0,000000
+guollái\tguollái+A+Sg+Nom\t0,000000'''
+        wanted = [('guollái', [
+            'guolli+N+Sg+Ill', 'guolli+N+Sg+Ill', 'guolli+N+Sg+Ill',
+            'guollái+A+Sg+Nom'
+        ])]
+
+        self.assertEqual(self.hfst.clean(got), wanted)
+
     def test_lookup(self):
         """Test the analyser."""
         with self.app_context:
