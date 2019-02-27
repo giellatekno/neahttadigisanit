@@ -846,7 +846,5 @@ class ParadigmSelectionTest(WordLookupTests):
             pc = self.current_app.morpholexicon.paradigms
             for node, analyses in lookups:
                 print "Testing: ", node, analyses
-                # for a in analyses:
-                #     print " - " + repr(a.tag.matching_tagsets())
                 print pc.get_paradigm('sme', node, analyses, debug=True)
                 print '--'
