@@ -248,33 +248,31 @@ class MorphoLexicon(object):
         results = []
         _by_entry = itemgetter(0)
 
-        def collect_same_lemma(array):
+        def collect_same_lemma(entries_and_tags):
             global array_sorted
             array_sorted = []
-            index = 0
             lemmas = []
             lemmas0 = []
             none_not_added = True
-            while index < len(array):
-                for index2 in range(0, len(array)):
-                    if (array[index2][1] != None) & (array[index][1] != None):
-                        if array[index2][0] == array[index][0]:
-                            if array[index2] not in lemmas:
-                                array_sorted.append(array[index2])
-                                lemmas.append(array[index2])
-                                lemmas0.append(array[index2][0])
+            for entry_and_tag1 in entries_and_tags:
+                for entry_and_tag2 in entries_and_tags:
+                    if entry_and_tag2[1] is not None and entry_and_tag1[1] is not None:
+                        if entry_and_tag2[0] == entry_and_tag1[0]:
+                            if entry_and_tag2 not in lemmas:
+                                array_sorted.append(entry_and_tag2)
+                                lemmas.append(entry_and_tag2)
+                                lemmas0.append(entry_and_tag2[0])
                     else:
-                        if array[index2][0] is not None:
-                            entry_analysis = array[index2][0].find(
+                        if entry_and_tag2[0] is not None:
+                            entry_analysis = entry_and_tag2[0].find(
                                 'lg/analysis')
-                        if (none_not_added) & (entry_analysis is not None):
-                            array_sorted.append(array[index2])
+                        if none_not_added and entry_analysis is not None:
+                            array_sorted.append(entry_and_tag2)
                             none_not_added = False
                         else:
-                            if (none_not_added) & (
-                                    array[index2][0] not in lemmas0):
-                                array_sorted.append(array[index2])
-                index += 1
+                            if none_not_added and entry_and_tag2[0] not in lemmas0:
+                                array_sorted.append(entry_and_tag2)
+
             index3 = 0
             # In case there is the same entry twice (with and without analyses), remove the one without analyses
             while index3 < len(array_sorted):
