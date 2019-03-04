@@ -257,7 +257,7 @@ def reader_update():
 
     reader_settings = current_app.config.reader_settings
 
-    bkmklt = generate_bookmarklet_code(reader_settings, request.host)
+    bkmklt = generate_bookmarklet_code(reader_settings, reader_settings['api_host'])
 
     # Force template into json response
     has_callback = request.args.get('callback', False)
@@ -266,10 +266,9 @@ def reader_update():
 
 def reader_update_json():
 
-    # TODO: api_host and media_host from settings
     reader_settings = current_app.config.reader_settings
 
-    bkmklt = generate_bookmarklet_code(reader_settings, request.host)
+    bkmklt = generate_bookmarklet_code(reader_settings, reader_settings['api_host'])
 
     # Force template into json response
     has_callback = request.args.get('callback', False)
@@ -408,7 +407,7 @@ def bookmarklet():
 
     reader_settings = current_app.config.reader_settings
 
-    bkmklt = generate_bookmarklet_code(reader_settings, request.host)
+    bkmklt = generate_bookmarklet_code(reader_settings, reader_settings['api_host'])
 
     return render_template(
         'reader.html',

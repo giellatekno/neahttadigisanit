@@ -19,42 +19,43 @@
 VIRTUALENV := $
 
 ###         #guusaawtargets
-###         
+###
 ###         #itwewinatargets
-###         
+###
 ###         #gunahatargets
-###         
+###
 ###         #dikaneisditargets
-###         
+###
 ###         #saantargets
-###         
+###
 ###         #vadatargets
-###         
+###
 ###         #valkstargets
-###         
+###
 ###         #mutertargets
-###         
+###
 ###         #sanattargets
-###         
+###
 ###         #sonadtargets
-###         
+###
 ###         #sanittargets
 ###          #smeanalysers
 ###          #sanitlexica
-###         
+###
 ###         #baakoehtargets
-###         
+###
 ###         #kyvtargets
-### 
+###
 ###         #focailtargets
-###         
+###
 ###         #cuvantultargets
-###         
+###
 ###         #Globaltargets
 
 # Use GSED if available. Probably a good idea for macs.
 #
-SED := $(shell which gsed sed | head -n 1)
+#SED := $(shell which gsed sed | head -n 1)
+SED := $(shell which sed | head -n 1)
 
 # VERBOSE ?=
 BUILD_FLAGS := -v
@@ -62,12 +63,13 @@ BUILD_FLAGS := -v
 # ifeq ($(VERBOSE),true)
 # 	BUILD_FLAGS := -v
 # else
-# 	BUILD_FLAGS := 
+# 	BUILD_FLAGS :=
 # endif
 
-SAXON_JAR = $(shell which saxon9.jar)
+#SAXON_JAR = $(shell which saxon9.jar)
+SAXON_JAR = $(HOME)/bin/saxon9.jar
 
-COLLECT_PARTS := $(GTHOME)/words/dicts/scripts/collect-dict-parts.xsl 
+COLLECT_PARTS := $(GTHOME)/words/dicts/scripts/collect-dict-parts.xsl
 SAXON := java -Xmx2048m -cp $(SAXON_JAR) \
 		 -Dfile.encoding=UTF8 net.sf.saxon.Transform \
 		 -it:main $(COLLECT_PARTS)
@@ -97,7 +99,7 @@ endef
 # .PHONY: dict_project_name
 # dict_project_name: GT_COMPILE_LANGS := iso1 iso2
 # dict_project_name: dict_project_name-lexica compile_langs_fsts
-#	@echo "Usual target stuff goes here..." 
+#	@echo "Usual target stuff goes here..."
 #
 # Or just see one of the languages below and copy...
 
@@ -107,7 +109,7 @@ space +=
 
 comma :=,
 
-compile_langs_fsts: $(foreach lang, $(GT_COMPILE_LANGS), langs/$(lang)/src/analyser-gt-desc.xfst) 
+compile_langs_fsts: $(foreach lang, $(GT_COMPILE_LANGS), langs/$(lang)/src/analyser-gt-desc.xfst)
 compile_langs_fsts: $(langs)
 	@echo $*
 	@echo "***********************"
@@ -129,16 +131,16 @@ install_langs_fsts: $(langs)
 		cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc.*  /opt/smi/$$ll/bin/ ; \
 		cp $(GTHOME)/langs/$$ll/src/generator-dict-gt-norm.* /opt/smi/$$ll/bin/ ; \
 		cp $(GTHOME)/langs/$$ll/src/analyser-dict-gt-desc-mobile.*  /opt/smi/$$ll/bin/ ; \
-	done 
+	done
 	for ll in $(GT_COMPILE_STARTUP_LANGS) ; do \
 		mkdir -p /opt/smi/$$ll/bin/ ; \
 		cp $(GTHOME)/startup-langs/$$ll/src/analyser-dict-gt-desc.*  /opt/smi/$$ll/bin/ ; \
 		cp $(GTHOME)/startup-langs/$$ll/src/generator-dict-gt-norm.* /opt/smi/$$ll/bin/ ; \
 		cp $(GTHOME)/startup-langs/$$ll/src/analyser-dict-gt-desc-mobile.*  /opt/smi/$$ll/bin/ ; \
-	done 
+	done
 
 .PHONY: clean_langs_fsts
-clean_langs_fsts: $(foreach lang, $(GT_COMPILE_LANGS), langs/$(lang)/src/analyser-gt-desc.xfst) 
+clean_langs_fsts: $(foreach lang, $(GT_COMPILE_LANGS), langs/$(lang)/src/analyser-gt-desc.xfst)
 clean_langs_fsts: $(langs)
 	@echo $*
 	@echo "***********************"
@@ -151,7 +153,7 @@ clean_langs_fsts: $(langs)
 	done
 	for ll in $(GT_COMPILE_STARTUP_LANGS) ; do \
 		cd $(GTHOME)/startup-langs/ ; rm -rf $$ll ; svn up $$ll >> svn.log ; \
-	done 
+	done
 	cd $(GTHOME)/giella-core/ ; svn up ; make
 
 .PHONY: compile_langs_lexicon
@@ -194,8 +196,8 @@ compile_words_dicts_lexicon:
 .PHONY: print_complete_message
 print_complete_message:
 print_complete_message:
-	@echo 
-	@echo 
+	@echo
+	@echo
 	@echo "** Built lexica for:            "
 	@echo "**    + $(LEX_COMPILE_LANGS)          "
 	@echo "**    + $(LEX_COMPILE_WORDS_DICTS)    "
@@ -207,54 +209,54 @@ print_complete_message:
 ###    #####
 ###    ##### #sampletargets
 ###    #####
-###    
+###
 ###    ### When starting a new project, copy this whole section (down to
 ###    ### #/sampletargets), and change the following settings. Then, be sure to
 ###    ### replace all instances of SAMPLE and sample in variables and target names
 ###    ### with the PROJNAME.
-###    
+###
 ###    # These are the ISOs of the languages to compile from GTHOME/langs/
 ###    SAMPLE_LANGS_ANALYSERS           :=   izh liv fin vep vro vot
 ###
 ###    # OPTIONAL: enable miscellaneous ./configure flags
 ###    # SAMPLE_LANGS_FLAGS             :=   --with-hfst
-###    
+###
 ###    # These are the ISOs of the languages to compile from GTHOME/startup-langs/
 ###    SAMPLE_STARTUP_LANGS_ANALYSERS   :=   lav
-###    
+###
 ###    # Compile the lexicon from within GTHOME/langs/LANG/src/morphology/stems/*.xml
-###    
+###
 ###    SAMPLE_LANGS_LEXICA              :=   liv izh vep vro vot
-###    
+###
 ###    # Compile the lexicon from a directory within GTHOME/words/dicts/
 ###    SAMPLE_WORDS_DICTS_LEXICA        :=   finliv finizh lavliv
-###    
+###
 ###    .PHONY: sample-lexica
 ###    sample-lexica: LEX_COMPILE_LANGS := $(SAMPLE_LANGS_LEXICA)
 ###    sample-lexica: LEX_COMPILE_WORDS_DICTS := $(SAMPLE_WORDS_DICTS_LEXICA)
 ###    sample-lexica: compile_langs_lexicon \
 ###    			  compile_words_dicts_lexicon
-###    
+###
 ###    .PHONY: sample
 ###    sample: GT_COMPILE_LANGS := $(SAMPLE_LANGS_ANALYSERS)
 ###    sample: GT_COMPILE_STARTUP_LANGS := $(SAMPLE_STARTUP_LANGS_ANALYSERS)
 ###    sample: LEX_COMPILE_LANGS := $(SAMPLE_LANGS_LEXICA)
 ###    sample: LEX_COMPILE_WORDS_DICTS := $(SAMPLE_WORDS_DICTS_LEXICA)
 ###    sample: sample-lexica compile_langs_fsts print_complete_message
-###    
+###
 ###    .PHONY: sample-clean
 ###    sample-clean:  GT_COMPILE_LANGS :=  $(SAMPLE_LANGS_ANALYSERS)
 ###    sample-clean: clean_langs_fsts
-###    
+###
 ###    rm-sample-lexica: $(foreach xx, $(SAMPLE_LANGS_LEXICA), $(xx)-all.xml) \
 ###    				 $(foreach yy, $(SAMPLE_WORDS_DICTS_LEXICA), $(yy).xml)
 ###    	@rm -rf $^
-###    
+###
 ###    .PHONY: sample-install
 ###    sample-install: GT_COMPILE_LANGS := $(SAMPLE_LANGS_ANALYSERS)
 ###    sample-install: GT_COMPILE_STARTUP_LANGS := $(SAMPLE_STARTUP_LANGS_ANALYSERS)
 ###    sample-install: install_langs_fsts
-###    
+###
 ###    #####
 ###    ##### #/sampletargets
 ###    #####
@@ -268,14 +270,14 @@ print_complete_message:
 NDSTESTING_LANGS_ANALYSERS           :=   kca nob rus
 
 # These are the ISOs of the languages to compile from GTHOME/startup-langs/
-NDSTESTING_STARTUP_LANGS_ANALYSERS   :=   
+NDSTESTING_STARTUP_LANGS_ANALYSERS   :=
 
 # Compile the lexicon from within GTHOME/langs/LANG/src/morphology/stems/*.xml
 
 NDSTESTING_LANGS_LEXICA              :=   kca
 
 # Compile the lexicon from a directory within GTHOME/words/dicts/
-NDSTESTING_WORDS_DICTS_LEXICA        :=   
+NDSTESTING_WORDS_DICTS_LEXICA        :=
 
 .PHONY: ndstesting-lexica
 ndstesting-lexica: LEX_COMPILE_LANGS := $(NDSTESTING_LANGS_LEXICA)
@@ -404,7 +406,7 @@ saanih-install: install_langs_fsts
 #####
 
 GUUSAAW_LANGS_ANALYSERS      :=   hdn
-GUUSAAW_LANGS_LEXICA         :=   
+GUUSAAW_LANGS_LEXICA         :=
 GUUSAAW_LANGS_FLAGS          :=   --with-hfst
 GUUSAAW_WORDS_DICTS_LEXICA   :=   hdneng
 
@@ -476,11 +478,11 @@ dikaneisdi-install: install_langs_fsts
 
 KIDWINAN_LANGS_ANALYSERS      :=   otw
 KIDWINAN_LANGS_FLAGS          :=   --with-hfst --without-xfst --without-foma --enable-glossers
-KIDWINAN_LANGS_LEXICA         :=   
+KIDWINAN_LANGS_LEXICA         :=
 # Generalized target, but we have some exceptions here, so otweng is commented
 # out.
 # otweng
-KIDWINAN_WORDS_DICTS_LEXICA   :=   
+KIDWINAN_WORDS_DICTS_LEXICA   :=
 
 .PHONY: kidwinan-lexica
 kidwinan-lexica: LEX_COMPILE_LANGS := $(KIDWINAN_LANGS_LEXICA)
@@ -502,7 +504,7 @@ rm-kidwinan-lexica: $(foreach xx, $(KIDWINAN_LANGS_LEXICA), $(xx)-all.xml) \
 				 $(foreach yy, $(KIDWINAN_WORDS_DICTS_LEXICA), $(yy).xml)
 	@rm -rf $^
 
-.PHONY: kidwinan-install 
+.PHONY: kidwinan-install
 kidwinan-install: GT_COMPILE_LANGS := $(KIDWINAN_LANGS_ANALYSERS)
 kidwinan-install: install_langs_fsts copy-kidwinan-glossers
 
@@ -528,10 +530,10 @@ otweng.xml: $(GTHOME)/art/dicts/otw/otweng.xml
 ##### #gunahatargets
 #####
 
-GUNAHA_LANGS_ANALYSERS      := 
+GUNAHA_LANGS_ANALYSERS      :=
 GUNAHA_STARTUP_LANGS_ANALYSERS   :=   srs
 GUNAHA_LANGS_FLAGS          :=   --without-hfst --without-xfst --with-foma
-GUNAHA_LANGS_LEXICA         :=   
+GUNAHA_LANGS_LEXICA         :=
 # Generalized target, but we have some exceptions here, so srseng is commented
 # out.
 # srseng
@@ -558,7 +560,7 @@ rm-gunaha-lexica: $(foreach xx, $(GUNAHA_LANGS_LEXICA), $(xx)-all.xml) \
 				 $(foreach yy, $(GUNAHA_WORDS_DICTS_LEXICA), $(yy).xml)
 	@rm -rf $^
 
-.PHONY: gunaha-install 
+.PHONY: gunaha-install
 gunaha-install: GT_COMPILE_LANGS := $(GUNAHA_LANGS_ANALYSERS)
 gunaha-install: install_langs_fsts copy-gunaha-variants
 
@@ -573,11 +575,11 @@ copy-gunaha-variants: $(GTHOME)/startup-langs/srs/src/*.foma
 
 ITWEWINA_LANGS_ANALYSERS      :=   crk
 ITWEWINA_LANGS_FLAGS          :=   --with-hfst --disable-syntax --without-xfst
-ITWEWINA_LANGS_LEXICA         :=   
+ITWEWINA_LANGS_LEXICA         :=
 # Generalized target, but we have some exceptions here, so crkeng is commented
 # out.
 # crkeng
-ITWEWINA_WORDS_DICTS_LEXICA   :=   
+ITWEWINA_WORDS_DICTS_LEXICA   :=
 
 # NB: if things are in priv, use $(GTPRIV)
 #
@@ -611,7 +613,7 @@ engcrk.xml: $(GTHOME)/art/dicts/crk/Wolvengrey/engcrk.xml
 #     aud/crk/etc.mp3
 #
 # With the intent that 'static' can be dynamically added in jinja
-# templates with: 
+# templates with:
 #     url_for('static', filename='aud/crk/etc.mp3')
 #
 # This seems to be the easiest way to manage the subdirectory path
@@ -630,7 +632,7 @@ crkeng.xml: $(GTHOME)/art/dicts/crk/Wolvengrey/crkeng.xml \
 	$(SAXON) inDir=$(shell pwd)/crkeng_tmp > $@.tmp
 	mkdir -p ../static/aud/crk
 	python ../tools/extract_audio.py --local-audio-source --encoding-format=mp3 --output-file=$@.tmp.2 $@.tmp ../static/aud/crk
-	cat $@.tmp.2 | sed 's#/../static/##g' > $@ 
+	cat $@.tmp.2 | sed 's#/../static/##g' > $@
 	rm $@.tmp $@.tmp.2
 	rm -rf crkeng_tmp/
 
@@ -712,7 +714,7 @@ copy-itwewina-variants: $(GTHOME)/langs/crk/src/analyser-dict-gt-desc-mobile.* \
 	@-cp $^ /opt/smi/crk/bin/
 
 
-.PHONY: itwewina-install 
+.PHONY: itwewina-install
 itwewina-install: GT_COMPILE_LANGS := $(ITWEWINA_LANGS_ANALYSERS)
 itwewina-install: install_langs_fsts copy-itwewina-variants
 
@@ -725,7 +727,7 @@ itwewina-install: install_langs_fsts copy-itwewina-variants
 
 SAAN_LANGS_ANALYSERS      :=   sms  fin
 # --with-hfst --enable-twostep-intersect --no-recursion
-SAAN_LANGS_FLAGS          :=   
+SAAN_LANGS_FLAGS          :=
 SAAN_LANGS_LEXICA         :=   sms
 SAAN_WORDS_DICTS_LEXICA   :=   finsms nobsms russms
 
@@ -735,7 +737,7 @@ saan-lexica: LEX_COMPILE_WORDS_DICTS := $(SAAN_WORDS_DICTS_LEXICA)
 saan-lexica: compile_langs_lexicon compile_words_dicts_lexicon
 
 ### .PHONY: saan-combined-lexica
-### saan-combined-lexica: sms2X.xml sms-all.xml 
+### saan-combined-lexica: sms2X.xml sms-all.xml
 ### 	mkdir -p smsc_tmp/
 ### 	cp -R $(GTHOME)/words/dicts/scripts ../scripts
 ### 	cp $^ smsc_tmp/
@@ -799,7 +801,7 @@ vada-install: install_langs_fsts
 #####
 
 MUTER_LANGS_ANALYSERS      :=   mrj mhr fin rus
-MUTER_LANGS_LEXICA         :=   mhr mrj 
+MUTER_LANGS_LEXICA         :=   mhr mrj
 MUTER_WORDS_DICTS_LEXICA   :=   finmrj mhreng mhrrus mrjmhr mhrmrj mrjrus
 
 .PHONY: muter-lexica
@@ -895,7 +897,7 @@ sanat-install: install_langs_fsts
 #####
 
 SONAD_LANGS_ANALYSERS           :=   izh liv fin vep vro vot lav
-# SONAD_STARTUP_LANGS_ANALYSERS   :=   
+# SONAD_STARTUP_LANGS_ANALYSERS   :=
 SONAD_LANGS_LEXICA              :=   liv izh vep vro vot
 SONAD_WORDS_DICTS_LEXICA        :=   finliv finizh lavliv finlav lavfin rusvot votrus
 
@@ -934,8 +936,8 @@ sonad-install: install_langs_fsts
 
 SANIT_LANGS_ANALYSERS      :=   sme fin nob sma smj
 SANIT_LANGS_FLAGS          :=   --with-hfst
-SANIT_LANGS_LEXICA         :=   
-SANIT_WORDS_DICTS_LEXICA   :=   
+SANIT_LANGS_LEXICA         :=
+SANIT_WORDS_DICTS_LEXICA   :=
 
 
 # NB: these are different than the langs/ lexica
@@ -1130,12 +1132,12 @@ smasme.xml: $(GTHOME)/words/dicts/smasme/src/
 	$(SAXON) inDir=$^ > $@
 
 
-rm-baakoeh-lexica: 
+rm-baakoeh-lexica:
 	@rm -rf sma-nob.all.xml nob-sma.all.xml smesma.xml smasme.xml
 
 .PHONY: baakoeh-install
 baakoeh-install: GT_COMPILE_LANGS := $(BAAKOEH_LANGS_ANALYSERS)
-baakoeh-install: install_langs_fsts 
+baakoeh-install: install_langs_fsts
 
 .PHONY: baakoeh
 baakoeh: GT_COMPILE_LANGS := $(BAAKOEH_LANGS_ANALYSERS)
@@ -1198,50 +1200,50 @@ copy_forPermyak: $(GTHOME)/langs/kpv/src/analyser-dict-gt-desc-permyak.xfst
 ###    #####
 ###    ##### #sampletargets
 ###    #####
-###    
+###
 ###    ### When starting a new project, copy this whole section (down to
 ###    ### #/sampletargets), and change the following settings. Then, be sure to
 ###    ### replace all instances of SAMPLE and sample in variables and target names
 ###    ### with the PROJNAME.
-###    
+###
 ###    # These are the ISOs of the languages to compile from GTHOME/langs/
 ###    SAMPLE_LANGS_ANALYSERS           :=   izh liv fin vep vro vot
 ###
 ###    # OPTIONAL: enable miscellaneous ./configure flags
 ###    # SAMPLE_LANGS_FLAGS             :=   --with-hfst
-###    
+###
 ###    # These are the ISOs of the languages to compile from GTHOME/startup-langs/
 ###    SAMPLE_STARTUP_LANGS_ANALYSERS   :=   lav
-###    
+###
 ###    # Compile the lexicon from within GTHOME/langs/LANG/src/morphology/stems/*.xml
-###    
+###
 ###    SAMPLE_LANGS_LEXICA              :=   liv izh vep vro vot
-###    
+###
 ###    # Compile the lexicon from a directory within GTHOME/words/dicts/
 ###    SAMPLE_WORDS_DICTS_LEXICA        :=   finliv finizh lavliv
-###    
+###
 ###    .PHONY: sample-lexica
 ###    sample-lexica: LEX_COMPILE_LANGS := $(SAMPLE_LANGS_LEXICA)
 ###    sample-lexica: LEX_COMPILE_WORDS_DICTS := $(SAMPLE_WORDS_DICTS_LEXICA)
 ###    sample-lexica: compile_langs_lexicon \
 ###    			  compile_words_dicts_lexicon
-###    
+###
 ###    .PHONY: sample
 ###    sample: GT_COMPILE_LANGS := $(SAMPLE_LANGS_ANALYSERS)
 ###    sample: GT_COMPILE_STARTUP_LANGS := $(SAMPLE_STARTUP_LANGS_ANALYSERS)
 ###    sample: LEX_COMPILE_LANGS := $(SAMPLE_LANGS_LEXICA)
 ###    sample: LEX_COMPILE_WORDS_DICTS := $(SAMPLE_WORDS_DICTS_LEXICA)
 ###    sample: sample-lexica compile_langs_fsts print_complete_message
-###    
+###
 ###    rm-sample-lexica: $(foreach xx, $(SAMPLE_LANGS_LEXICA), $(xx)-all.xml) \
 ###    				 $(foreach yy, $(SAMPLE_WORDS_DICTS_LEXICA), $(yy).xml)
 ###    	@rm -rf $^
-###    
+###
 ###    .PHONY: sample-install
 ###    sample-install: GT_COMPILE_LANGS := $(SAMPLE_LANGS_ANALYSERS)
 ###    sample-install: GT_COMPILE_STARTUP_LANGS := $(SAMPLE_STARTUP_LANGS_ANALYSERS)
 ###    sample-install: install_langs_fsts
-###    
+###
 ###    #####
 ###    ##### #/sampletargets
 ###    #####
@@ -1257,7 +1259,7 @@ copy_forPermyak: $(GTHOME)/langs/kpv/src/analyser-dict-gt-desc-permyak.xfst
 ### with the PROJNAME.
 
 # These are the ISOs of the languages to compile from GTHOME/langs/
-FOCAIL_LANGS_ANALYSERS           :=   
+FOCAIL_LANGS_ANALYSERS           :=
 
 # OPTIONAL: enable miscellaneous ./configure flags
 # FOCAIL_LANGS_FLAGS             :=   --with-hfst
@@ -1267,7 +1269,7 @@ FOCAIL_STARTUP_LANGS_ANALYSERS   :=   gle
 
 # Compile the lexicon from within GTHOME/langs/LANG/src/morphology/stems/*.xml
 
-FOCAIL_LANGS_LEXICA              :=   
+FOCAIL_LANGS_LEXICA              :=
 
 # Compile the lexicon from a directory within GTHOME/words/dicts/
 FOCAIL_WORDS_DICTS_LEXICA        :=   gleeng
@@ -1339,11 +1341,11 @@ help:
 # This will store all old dictionaries with a particular suffix and
 # *.xml.bak in an archive. Each archive will be expanded and
 # recompressed if new files are found. We need backups, but they take up
-# a lot of space in some cases 
+# a lot of space in some cases
 #
 .PHONY: collect-backups
 collect-backups: BACKS := $(shell ls -c1 *.xml.*.bak | sed "s/\.xml.[0-9]*\.bak//" | sort | uniq)
-collect-backups: 
+collect-backups:
 	@echo $(BACKS)
 	@echo "******************************"
 	@echo "** (re-)compressing backups **"
@@ -1357,7 +1359,7 @@ collect-backups:
 		ls -c1 $$b.xml.*.bak ; \
 		BZIP=--best tar -jcf $$b.backups.tar.bz2 $$b.xml.*.bak ; \
 		rm $$b.xml.*.bak ; \
-	done 
+	done
 
 .PHONY: all
 all: vada  \
@@ -1385,4 +1387,3 @@ all-lexica: baakoeh-lexica \
 	cuvantul-lexica \
 	valks-lexica
 	@echo $(TARGET_DIR)
-
