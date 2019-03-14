@@ -248,7 +248,8 @@ class MorphoLexicon(object):
             for entry in entries_and_tags.keys():
                 if entry is not None:
                     if hash_node(entry) == entry_hash_filter:
-                        del entries_and_tags[entry]
+                        continue
+                        #del entries_and_tags[entry]
                 else:
                     del entries_and_tags[entry]
 
