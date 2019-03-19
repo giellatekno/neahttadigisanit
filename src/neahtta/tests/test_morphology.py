@@ -81,11 +81,17 @@ def make_lemmatize_answer(wordform, tags):
 class TestHFST(unittest.TestCase):
     """Test the HFST class."""
 
-    def test_tagprocessor(self):
+    @parameterized.expand([
+        ('known analysis', 'guolit\tguolli+N+Sg+Nom\t0,000000',
+         ('guolit', 'guolli+N+Sg+Nom')),
+        ('unknown analysis',
+         u'geahppánit+V+Ind+Prs+Sg1\tgeahppánit+V+Ind+Prs+Sg1+?\tinf',
+         (u'geahppánit+V+Ind+Prs+Sg1', u'geahppánit+V+Ind+Prs+Sg1+?\t+?'))
+    ])
+    def test_tagprocessor(self, name, analysis_line, result):
         """Test the tagprocessor."""
         self.assertEqual(
-            fst_tool().tag_processor('guolit\tguolli+N+Sg+Nom\t0,000000'),
-            ('guolit', 'guolli+N+Sg+Nom'))
+            fst_tool().tag_processor(analysis_line), result, msg=name)
 
     def test_clean(self):
         """Test the cleaner."""
