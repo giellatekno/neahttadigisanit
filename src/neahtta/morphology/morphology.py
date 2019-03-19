@@ -663,6 +663,9 @@ class XFST(object):
 
         wordform, lemma_tags = analysis_line.split('\t')[:2]
 
+        if '?' in analysis_line:
+            lemma_tags += '\t+?'
+
         return (wordform, lemma_tags)
 
     def clean(self, _output):
