@@ -69,6 +69,9 @@ def make_lemmatize_answer(wordform, tags):
     Returns:
         list of morphology.Lemma
     """
+    if False in tags:
+        return False
+
     return [
         Lemma(
             tag=tag.split('+'),
@@ -258,7 +261,7 @@ guolli+N+Pl+Com'''
                 'non_compound_only': False,
                 'no_derivations': False
             },
-            ['asdf']
+            [False]
         )
     ])
     def test_lemmatize(self, name, wordform, kwargs, tags):
@@ -267,7 +270,7 @@ guolli+N+Pl+Com'''
             got = app.config.morphologies['sme'].morph_lemmatize(wordform,
                                                                  **kwargs)
             wanted = make_lemmatize_answer(wordform, tags)
-            self.assertListEqual(got, wanted, msg=name)
+            self.assertEqual(got, wanted, msg=name)
 
     @parameterized.expand([('no unknown', [('a', ['b', 'c'])], False),
                            ('has unknown', [('a', ['b', '?'])], True)])
