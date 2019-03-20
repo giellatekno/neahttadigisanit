@@ -245,13 +245,9 @@ class MorphoLexicon(object):
                     entries_and_tags[entry] = []
 
         if entry_hash_filter:
-            for entry in entries_and_tags.keys():
-                if entry is not None:
-                    if hash_node(entry) == entry_hash_filter:
-                        continue
-                        #del entries_and_tags[entry]
-                else:
-                    del entries_and_tags[entry]
+            for node in entries_and_tags.keys():
+                if node is None or hash_node(node) != entry_hash_filter:
+                    del entries_and_tags[node]
 
         _ret = None
         if (len(entries_and_tags) == 0) and ('non_compound_only' in kwargs):
