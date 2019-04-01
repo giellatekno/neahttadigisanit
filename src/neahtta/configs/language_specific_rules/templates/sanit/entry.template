@@ -141,6 +141,9 @@
                   {% else %}&nbsp;{% endif %}
                 </div>
             </div>
+            <div class="span4 hidden-phone lexeme_analyses">
+                {{- rendered_templates.analyses -}}
+            </div>
     </div>
 {% endif %}
 {# vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}
