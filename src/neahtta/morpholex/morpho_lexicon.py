@@ -141,10 +141,7 @@ class MorphoLexicon(object):
             for entry in xml_result:
                 self.add_to_dict(entries_and_tags, entry, analysis)
         else:
-            if not entries_and_tags.get(None):
-                entries_and_tags[None] = list()
-            if analysis not in entries_and_tags[None]:
-                entries_and_tags[None].append(analysis)
+            self.add_to_dict(entries_and_tags, None, analysis)
 
     def lookup(self, wordform, **kwargs):
         """ Performs a lookup with morphology and lexicon working
