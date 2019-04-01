@@ -24,9 +24,9 @@
 {% if pos == 'V' %}
   {% if _from == 'sma' %}
     {% if class|length %}
-      <span lang="{{ _from }}">{{ first_l|text }}</span> (<span lang="{{ _to }}">{{ pos_text }} klasse {{class}}</span>)
+      <span lang="{{ _from }}">{{ first_l|text }}</span> (<span lang="{{ _to }}">{{ pos_text }}, klasse {{class}}</span>)
     {% else %}
-      <span lang="{{ _from }}">{{ first_l|text }}</span> (<span lang="{{ _to }}">{{ pos_text }} ulikestavelses</span>)
+      <span lang="{{ _from }}">{{ first_l|text }}</span> (<span lang="{{ _to }}">{{ pos_text }}, ulikestavelses</span>)
     {%- endif %}
   {% else %}
     <span lang="{{ _from }}">{{ first_l|text }}</span> (<span lang="{{ _to }}">{{ pos_text }}</span>)
