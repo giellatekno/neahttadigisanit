@@ -965,7 +965,39 @@ table.miniparadigm .horizontal-line {
     border-bottom: 1px solid #AAA;
 }
 
-@media (max-width: 550px) {
+table.miniparadigm th.tag {
+    font-size: 9pt;
+    text-transform: lowercase;
+    text-align: right;
+    padding-right: 8px;
+}
+
+@media (max-width: 500px) {
+    a.full-paradigm-link {
+        float: left;
+        margin-left: 2em;
+    }
+    .lexeme .span1 {
+        width: 10% !important;
+        float: left;
+    }
+    .lexeme .span2 {
+        width: 20% !important;
+        float: left;
+    }
+    .lexeme .span6 {
+        width: 100% !important;
+        float: right;
+    }
+    table.miniparadigm th.tag {
+    font-size: 8.1pt;
+    text-transform: lowercase;
+    text-align: right;
+    padding-right: 8px;
+}
+}
+
+@media (max-width: 550px) and (min-width: 501px) {
     a.full-paradigm-link {
         float: left;
         margin-left: 2em;
@@ -982,14 +1014,8 @@ table.miniparadigm .horizontal-line {
         width: 80% !important;
         float: right;
     }
-
 }
 
-table.miniparadigm th.tag {
-    font-size: 9pt;
-    text-transform: lowercase;
-    text-align: right;
-    padding-right: 8px;
 }
 
 table.miniparadigm .center {
