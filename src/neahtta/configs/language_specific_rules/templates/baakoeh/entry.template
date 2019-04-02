@@ -45,7 +45,7 @@
   {% endif %}
 {% endfor %}
 
-{% if 'true' not in if_der and 'DCmp' not in first_l|text %}
+{% if 'true' not in if_der %}
   {% if user_input in first_l|text %}
     <div class="row-fluid entry_row">
         <div class="span8 lexeme">
@@ -90,9 +90,9 @@
                   </div>
               </div>
               {# Uncomment div below to show analyses of first word in cmp #}
-              <div class="span4 hidden-phone lexeme_analyses">
+              {#<div class="span4 hidden-phone lexeme_analyses">
                   {{- rendered_templates.analyses -}}
-              </div>
+              </div>#}
       </div>
     {% else %}
       <div class="row-fluid entry_row">
@@ -140,6 +140,9 @@
                         </ul>
                   {% else %}&nbsp;{% endif %}
                 </div>
+            </div>
+            <div class="span4 hidden-phone lexeme_analyses">
+                {{- rendered_templates.analyses -}}
             </div>
     </div>
 {% endif %}
