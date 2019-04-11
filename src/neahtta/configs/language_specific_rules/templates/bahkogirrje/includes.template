@@ -1,0 +1,2 @@
+<script type="text/javascript" src="{{url_for('static', filename='vendor/SoundManager2/script/soundmanager2-jsmin.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/audio_links.js')}}"></script>
