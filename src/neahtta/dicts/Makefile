@@ -1196,6 +1196,39 @@ copy_molodtsov: $(GTHOME)/langs/kpv/src/analyser-dict-gt-desc-molodtsov.xfst
 copy_forPermyak: $(GTHOME)/langs/kpv/src/analyser-dict-gt-desc-permyak.xfst
 	cp $^ /opt/smi/kpv/bin/analyser-dict-gt-desc-permyak.xfst
 
+#####
+##### #bahkogirrjetargets
+#####
+
+BAHKOGIRRJE_LANGS_ANALYSERS      :=   sje  nob
+# --with-hfst --enable-twostep-intersect --no-recursion
+BAHKOGIRRJE_LANGS_FLAGS          :=
+BAHKOGIRRJE_LANGS_LEXICA         :=   sje
+BAHKOGIRRJE_WORDS_DICTS_LEXICA   :=   sje2X
+
+.PHONY: bahkogirrje-lexica
+bahkogirrje-lexica: LEX_COMPILE_LANGS := $(BAHKOGIRRJE_LANGS_LEXICA)
+bahkogirrje-lexica: LEX_COMPILE_WORDS_DICTS := $(BAHKOGIRRJE_WORDS_DICTS_LEXICA)
+bahkogirrje-lexica: compile_langs_lexicon compile_words_dicts_lexicon
+
+.PHONY: bahkogirrje
+bahkogirrje: GT_COMPILE_LANGS := $(BAHKOGIRRJE_LANGS_ANALYSERS)
+bahkogirrje: LEX_COMPILE_LANGS := $(BAHKOGIRRJE_LANGS_LEXICA)
+bahkogirrje: LEX_COMPILE_WORDS_DICTS := $(BAHKOGIRRJE_WORDS_DICTS_LEXICA)
+bahkogirrje: LANGS_FLAGS := $(BAHKOGIRRJE_LANGS_FLAGS)
+bahkogirrje: bahkogirrje-lexica compile_langs_fsts print_complete_message
+
+.PHONY: bahkogirrje-clean
+bahkogirrje-clean:  GT_COMPILE_LANGS :=  $(BAHKOGIRRJE_LANGS_ANALYSERS)
+bahkogirrje-clean: clean_langs_fsts
+
+rm-bahkogirrje-lexica: $(foreach xx, $(BAHKOGIRRJE_LANGS_LEXICA), $(xx)-all.xml) \
+				 $(foreach yy, $(BAHKOGIRRJE_WORDS_DICTS_LEXICA), $(yy).xml)
+	@rm -rf $^
+
+.PHONY: bahkogirrje-install
+bahkogirrje-install: GT_COMPILE_LANGS := $(BAHKOGIRRJE_LANGS_ANALYSERS)
+bahkogirrje-install: install_langs_fsts
 
 ###    #####
 ###    ##### #sampletargets
@@ -1370,7 +1403,8 @@ all: vada  \
 	 baakoeh \
 	 kyv \
 	 muter \
-	 cuvantul
+	 cuvantul \
+	 bahkogirrje
 	@echo $(TARGET_DIR)
 
 .PHONY: all-lexica
@@ -1385,5 +1419,6 @@ all-lexica: baakoeh-lexica \
 	sanit-lexica \
 	vada-lexica \
 	cuvantul-lexica \
-	valks-lexica
+	valks-lexica \
+	bahkogirrje-lexica
 	@echo $(TARGET_DIR)
