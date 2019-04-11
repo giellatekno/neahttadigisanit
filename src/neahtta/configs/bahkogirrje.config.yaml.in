@@ -1,0 +1,79 @@
+# Default locale, but use ISO 2 code or whatever corresponds to what is
+# in the translations directory.
+
+ApplicationSettings:
+  app_name: "Neahttadigibáhko"
+  short_name: "bahkogirrje"
+  default_locale: "no"
+  default_pair: ["sje", "swe"]
+  mobile_default_pair: false
+  # admins_to_email:
+  #   - "someone.goes.here@email.com"
+  locales_available:
+    - "no"
+    - "sv"
+    - "eng"
+  app_meta_title: >
+     Pitesamisk ordbøk
+  meta_description: >
+     Gratis online mobilvennlige pitesamiske ordbøker
+  meta_keywords: >
+     pite ordbok, på nett, mobil ordbok, ordbok app,
+     báhkogirdje, pitesamisk, norsk,
+     davvisámegiella pite sámi, norwegian,
+     sámi language, mobil ordbok
+  admins_to_email:
+    - "trond.trosterud@uit.no"
+    - "lene.antonsen@uit.no"
+    - "chiara.argese@uit.no"
+
+
+# This option set is not used outside of providing shortcuts for
+# following settings.
+Tools:
+  hfst_lookup: &LOOKUP '/usr/local/bin/hfst-lookup'
+  opt: &OPT '/Users/car010/main/langs/'
+
+# Morphological system definitions. Since YAML variables aren't able to
+# be used in concatenating strings, certain paths with references must
+# be lists. These are concatenated automatically.
+Morphology:
+  sje:
+    tool: *LOOKUP
+    file: [*OPT, '/sje/src/analyser-gt-desc.hfst']
+    inverse_file: [*OPT, '/sje/src/generator-gt-norm.hfst']
+    format: 'hfst'
+
+Languages:
+  - iso: sje
+    minority_lang: true
+  - iso: nob
+  - iso: swe
+  - iso: eng
+
+# This also dictates the order of the dictionaries in the UI for now.
+Dictionaries:
+
+
+  - source: sje
+    target: nob
+    path: 'dicts/sje2X.xml'
+    autocomplete: true
+    show_korp_search: False
+
+  - source: sje
+    target: swe
+    path: 'dicts/sje2X.xml'
+    autocomplete: true
+    show_korp_search: False
+
+  - source: sje
+    target: eng
+    path: 'dicts/sje2X.xml'
+    autocomplete: true
+    show_korp_search: False
+
+
+ReaderConfig:
+  Settings:
+        api_host: "127.0.0.1:5000"
