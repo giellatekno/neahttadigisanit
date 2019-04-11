@@ -5,14 +5,14 @@
 # adding new languages for dictionaries, their names will need to appear
 # here; and when adding new languages as internationalisation languages,
 # their names will need to be here too.
-# 
+#
 # 1. `isos_to_names` - Pairs of ISOs and language names marked for translation, such
 #    that a line appears in each *.po file, where the names will be
 #    translated
-# 
+#
 # 2. `isos_to_demonym` - Pairs of ISOs and language names in
 #    the language itself. These names will be used in the localisations menu on the site.
-# 
+#
 # 3. `iso_transforms` - sometimes ISOs need to be transformed between
 #    2-character format and 3-character format, so if a language has a
 #    2-character version, we need the other as well.
@@ -25,7 +25,7 @@ iso_display_relabels:
   'crk_Macr': 'āēīō'
   'crk_Syll': 'ᓀᐦᐃᔭᐍᐏᐣ'
 
-  
+
 # .py: NAMES
 # these names will be used to generate localization files
 isos_to_names:
@@ -78,17 +78,17 @@ isos_to_names:
   "sms": !gettext "Skolt Sami"
   "smsM": !gettext "Skolt Sami"
 
-  # itwewina 
+  # itwewina
   "crk": !gettext "Plains Cree"
   "crkM": !gettext "Plains Cree"
 
-  # gunaha 
+  # gunaha
   "srs": !gettext "Tsuut'ina"
 
   # kidwinan
   "otw": !gettext "Odawa"
 
-  # dikaneisdi 
+  # dikaneisdi
   "chr": !gettext "Cherokee"
   "chrL": !gettext "Cherokee"
 
@@ -98,6 +98,9 @@ isos_to_names:
 
   # saanih
   "smn": !gettext "Inari Saami"
+
+  # bahkogirrje
+  "sje": !gettext "Pite Saami"
 
   # ndstesting
   "kca": !gettext "Khanty"
@@ -123,6 +126,7 @@ isos_to_names:
   "ron": !gettext "Romanian"
   "fit": !gettext "Meänkieli"
   "swe": !gettext "Swedish"
+  "sv": !gettext "Swedish"
 
 
 # These will show up in the localization menu, or wherever the
@@ -167,6 +171,7 @@ isos_to_demonym:
   "hun": "Magyar"
   "hu": "Magyar"
   "chr": "ᏣᎳᎩ ᎦᏬᏂᎯᏍᏗ"
+  "sje": "Pite"
 
   "vep": "Vepsän kel’"
   "vro": "Võro kiilʼ"
@@ -175,6 +180,7 @@ isos_to_demonym:
   "deu": "Deutsch"
   "ron": "Română"
   "fit": "Meänkieli"
+  "sv": "Svenska"
   "swe": "Svenska"
 
   # ndstesting
@@ -198,4 +204,3 @@ iso_transforms:
   "hu": "hun"
   "ro": "ron"
   "sv": "swe"
-
