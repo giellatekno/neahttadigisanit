@@ -2,7 +2,7 @@
 # in the translations directory.
 
 ApplicationSettings:
-  app_name: "Neahttadigibáhko"
+  app_name: "Nähttadigibáhko"
   short_name: "bahkogirrje"
   default_locale: "no"
   default_pair: ["sje", "swe"]
@@ -40,8 +40,8 @@ Tools:
 Morphology:
   sje:
     tool: *LOOKUP
-    file: [*OPT, '/sje/src/analyser-gt-desc.hfst']
-    inverse_file: [*OPT, '/sje/src/generator-gt-norm.hfst']
+    file: [*OPT, '/sje/src/analyser-dict-gt-desc.hfst']
+    inverse_file: [*OPT, '/sje/src/generator-dict-gt-norm.hfst']
     format: 'hfst'
 
 Languages:
