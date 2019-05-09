@@ -54,13 +54,13 @@
         <!--a href="{{ url_for('.search_pair_referred_search', _from=_from, _to=_to) }}?l_til_ref={{ reference }}">
             {{- text -}}
         </a-->
-        <span style="color:0c5278;">{{- text -}}</span> &rarr;
+        <span id="span_t">{{- text -}}</span> &rarr;
     {%- else %}
         {# NB: swap from and to for these links since these are definitions. #}
         <!--a href="{{ url_for('.detailed_language_pair_search', _from=_to, _to=_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
             {{- text -}}
         </a-->
-        <span style="color:#0c5278;">{{- text -}}</span>
+        <span id="span_t">{{- text -}}</span>
     {%- endif %}
 {%- endmacro -%}
 
