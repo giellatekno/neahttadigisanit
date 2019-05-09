@@ -1,4 +1,4 @@
-﻿{# Here we render only what should appear as the entry text, but try to
+{# Here we render only what should appear as the entry text, but try to
    avoid any additional HTML formatting.
 
    NB: you probably need tag filters `text`.
