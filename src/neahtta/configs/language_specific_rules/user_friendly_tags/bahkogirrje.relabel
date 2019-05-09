@@ -1,7 +1,7 @@
 Relabel:
   - source_morphology: 'sje'
     target_ui_language: 'nob'
-    tags: &sjetagrelabels
+    tags: &sje_to_nob
       V: "v."
       N: "s."
       A: "adj."
@@ -200,11 +200,11 @@ Relabel:
   - source_morphology: 'sje'
     target_ui_language: 'swe'
     tags:
-      <<: *sjetagrelabels
+      <<: *sje_to_nob
 
   - source_morphology: 'sje'
     target_ui_language: 'eng'
-    tags: &sjetagrelabels
+    tags: &sje_to_eng
       V: "v."
       N: "n."
       A: "adj."
