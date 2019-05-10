@@ -34,7 +34,7 @@
        ends first #}
 
     {% set zipped_verbs = izip_longest(present_verbs, preterite_verbs, fillvalue='-')|list %}
-    
+
     {% set paradigm_exists = zipped_verbs|length > 0 or nonfinite_forms|length > 0 %}
 
     {# strip some parts of the tags that we don't need #}
@@ -113,7 +113,7 @@
 {%- macro full_paradigm_link() %}
     <a class="full-paradigm-link"
        style="opacity: .8;"
-       href="http://gtweb.uit.no/cgi-bin/smi/smi.cgi?text={{ lemma }}&pos={{ pos }}&mode=full&action=paradigm&lang=sms&plang=sms">
+       href="http://gtweb.uit.no/cgi-bin/smi/smi.cgi?text={{ lemma }}&pos={{ pos }}&mode=full&action=paradigm&lang=sje&plang=sje">
         {%- trans -%}Full paradigm{%- endtrans -%} &nbsp;&rarr;
     </a>
 {% endmacro -%}
@@ -162,7 +162,7 @@
 
                 {%- endfor -%}
 
-                {# sg4? 
+                {# sg4?
                 {%- for form in numberless_forms -%}
                     <tr>
                     {% if form.tag %}
@@ -337,4 +337,3 @@
 
 
 {# vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}
-
