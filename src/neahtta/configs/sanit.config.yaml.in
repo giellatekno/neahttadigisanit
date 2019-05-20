@@ -27,7 +27,7 @@ ApplicationSettings:
   admins_to_email:
     - "trond.trosterud@uit.no"
     - "lene.antonsen@uit.no"
-    - "ciprian.gerstenberger@uit.no"
+    - "chiara.argese@uit.no"
 
 UnitTests:
  - "tests.sme_lexicon"
