@@ -5,7 +5,7 @@ This is programmer-directed information, for development. If curious about
 linguist-oriented and maintainer documentation, see
 [neahttadigisanit][nds_doc].
 
-  [nds_doc]: http://giellatekno.uit.no/doc/dicts/neahttadigisanit.html
+  [nds_doc]: https://giellalt.uit.no/dicts/neahttadigisanit.html
 
 ## Overview
 
@@ -74,7 +74,7 @@ individual Python files. A short overview follows:
 
 ### XML format
 
-See http://giellatekno.uit.no/doc/dicts/dictionarywork.html
+See https://giellalt.uit.no/dicts/dictionarywork.html
 
 
 
