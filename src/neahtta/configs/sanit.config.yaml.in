@@ -18,7 +18,7 @@ ApplicationSettings:
   app_meta_title: >
      Nordsamiske ordbøker
   meta_description: >
-     Gratis online mobilvennlige nordsamiske ordbøker 
+     Gratis online mobilvennlige nordsamiske ordbøker
   meta_keywords: >
      samisk ordbok, på nett, mobil ordbok, ordbok app, sanakirjat,
      sanakirja, sátnegirjjit, sátnegirji, nordsamisk, finsk, norsk,
@@ -85,7 +85,7 @@ Morphology:
 #$#    file: [*OPT, '/sma/bin/analyser-dict-gt-desc.xfst']
 #$#    inverse_file: [*OPT, '/sma/bin/generator-dict-gt-norm.xfst']
 #$#    format: 'xfst'
-#$#    options: 
+#$#    options:
 #$#      compoundBoundary: "+Cmp#"
 #$#      derivationMarker: "+Der"
 #$#      tagsep: '+'
@@ -138,6 +138,14 @@ Dictionaries:
         short_name: "SoMe"
         onscreen_keyboard: *SME_KEYS
 
+  - source: SoMe
+    target: nob
+    path: 'dicts/sme-nob.all.xml'
+    autocomplete: true
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/korp"
+    is_korp_default_lang: True
+
   - source: nob
     target: sme
     path: 'dicts/nob-sme.all.xml'
@@ -165,6 +173,14 @@ Dictionaries:
         description: !gettext "Tolerant (also <em>acdnstz</em>)"
         short_name: "SoMe"
         onscreen_keyboard: *SME_KEYS
+
+  - source: SoMe
+    target: fin
+    path: 'dicts/sme-fin.all.xml'
+    autocomplete: True
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/korp"
+    is_korp_default_lang: True
 
   - source: fin
     target: sme
@@ -236,4 +252,3 @@ Dictionaries:
 #$#    show_korp_search: True
 #$#    korp_search_host: "http://gtweb.uit.no/korp"
 #$#    path: 'dicts/smjsme.xml'
-
