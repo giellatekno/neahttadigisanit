@@ -9,7 +9,7 @@
 {%- macro render_region(translation_group) -%}
     {%- set reg_nodes = translation_group|xpath('./t/@reg') -%}
     {%- if reg_nodes|count > 0 -%}
-        ({{ reg_nodes|first }}) 
+        ({{ reg_nodes|first }})
     {%- endif -%}
 {%- endmacro -%}
 
@@ -26,7 +26,7 @@
 {%- macro render_link(tg, t) -%}
     {# Render a link to the detailed page. One exception: if the lexicon
     annotation entry contains a @fra_ref attribute, then we make a
-    reference link, inserting this attribute's value in as a parameter. 
+    reference link, inserting this attribute's value in as a parameter.
 
          <tg xml:lang="sme">
             <re fra_ref="omtopersoner">om to personer</re>
@@ -39,7 +39,7 @@
             type="Recipr"
             orig_entry="hverandre"
             til_ref="omtopersoner">hverandre: om to personer</l>
-    
+
     #}
 
     {% set text = t.text %}
@@ -51,6 +51,10 @@
         {% set pos_text = pos|tagfilter(_from, _to)  + " " + pos_type %}
     {% else %}
         {% set pos_text = pos|tagfilter(_from, _to) %}
+    {%- endif %}
+
+    {%- if pos == 'Phrase' %}
+        {% set pos_is_phrase = True %}
     {%- endif %}
 
     {% set pos_text = pos_text|trim %}
@@ -71,19 +75,23 @@
     {% else %}
         {% set reference = false %}
     {% endif %}
-
+    
     {% if explanation_exists and explanation == 'expl' %}
         {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{{ text -}}
     {% else %}
-        {% if reference %}
-            <a href="{{ url_for('.search_pair_referred_search', _from=_from, _to=_to) }}?l_til_ref={{ reference }}">
-                {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{{ text -}}
-            </a> &rarr;
-        {%- else %}
-            {# NB: swap from and to for these links since these are definitions. #}
-            <a href="{{ url_for('.detailed_language_pair_search', _from=_to, _to=_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
-                {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{{ text -}}
-            </a>
+        {% if pos_is_phrase %}
+            {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{{ text -}}
+        {% else %}
+            {% if reference %}
+                <a href="{{ url_for('.search_pair_referred_search', _from=_from, _to=_to) }}?l_til_ref={{ reference }}">
+                    {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{{ text -}}
+                </a> &rarr;
+            {%- else %}
+                {# NB: swap from and to for these links since these are definitions. #}
+                <a href="{{ url_for('.detailed_language_pair_search', _from=_to, _to=_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
+                    {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{{ text -}}
+                </a>
+            {%- endif %}
         {%- endif %}
     {%- endif %}
 {%- endmacro -%}
