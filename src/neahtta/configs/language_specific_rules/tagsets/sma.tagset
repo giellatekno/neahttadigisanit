@@ -6,7 +6,7 @@
  - "Po"
  - "Num"
  - "Pron"
-type: ["NomAg", "aktor", "Prop"]
+type: ["NomAg", "aktor", "Prop", "Ord"]
 homonyms: ["Hom1", "Hom2"]
 number:
  - Sg
