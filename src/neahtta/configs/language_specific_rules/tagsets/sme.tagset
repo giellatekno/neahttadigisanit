@@ -38,6 +38,7 @@ type:
  - "Recipr"
  - "Refl"
  - "Rel"
+ - "Ord"
 possessive:
  - "PxSg2"
 tense:
