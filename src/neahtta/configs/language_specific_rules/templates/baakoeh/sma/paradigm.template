@@ -119,10 +119,12 @@
 {%- if pos|upper == 'A'  %}
 
     {% set adj_text = "A"|tagfilter(_from, _to) %}
+    {% set ord_text = "Ord"|tagfilter(_from, _to) %}
 
     {% macro clean_tag(tag_input) %}
         {{ tag_input|tagfilter(_from, _to)
-                    |replace(adj_text, "") }}
+                    |replace(adj_text, "")
+                    |replace(ord_text, "") }}
     {% endmacro %}
 
 {% endif -%}
