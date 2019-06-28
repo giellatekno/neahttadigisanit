@@ -363,6 +363,15 @@
 
 {% elif pos|upper == 'A' %}
 
+    {% set pos_text = "A"|tagfilter(_from, _to) %}
+    {% set ord_text = "Ord"|tagfilter(_from, _to) %}
+
+    {% macro clean_tag(tag_input) %}
+        {{ tag_input|tagfilter(_from, _to)
+                    |replace(pos_text, "")
+                    |replace(ord_text, "") }}
+    {% endmacro %}
+
     <dl class="dl-horizontal miniparadigm">
       {% set adj_forms = paradigm|group_by_tag %}
 
