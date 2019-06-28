@@ -53,7 +53,7 @@
         {% set pos_text = pos|tagfilter(_from, _to) %}
     {%- endif %}
 
-    {%- if pos == 'phrase' %}
+    {%- if pos == 'Phrase' %}
         {% set pos_is_phrase = True %}
     {%- endif %}
 
