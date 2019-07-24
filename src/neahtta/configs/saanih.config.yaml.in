@@ -92,7 +92,7 @@ Dictionaries:
     is_korp_default_lang: True
     korp_parallel: True
     korp_search_host: "http://gtweb.uit.no/korp"
-
+    link_corpus_parameter: 'fin2smn_20170828-fin%2Cfin2smn_20170828-smn'
 
   - source: smn
     target: sme

@@ -773,6 +773,10 @@ class Config(Config):
                     dict_def.get('is_korp_default_lang', False),
                     'korp_parallel':
                     dict_def.get('korp_parallel', False),
+                    'corpora':
+                    dict_def.get('corpora', False),
+                    'start_query':
+                    dict_def.get('start_query', False),
                 }
 
                 _pair_options = {
@@ -798,6 +802,10 @@ class Config(Config):
                     self.input_variants.get(key, False), key)
                 _pair_options['search_variants'] = self.search_variants.get(
                     key, False)
+
+                if _from == 'fin':
+                    korp_opts = _pair_options.get('korp_options')
+                    korp_opts['bilingual_wordform_search_path'] = korp_opts.get('bilingual_wordform_search_path').replace('mode=parallel', 'mode=parallel_fin').replace('parallel_corpora', 'parallel_fin_corpora')
 
                 _par_defs[key] = _pair_options
 
