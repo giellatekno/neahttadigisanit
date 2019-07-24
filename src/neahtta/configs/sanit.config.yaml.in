@@ -256,4 +256,4 @@ Dictionaries:
 
 ReaderConfig:
   Settings:
-  api_host: "sanit.oahpa.no"
+    api_host: "sanit.oahpa.no"
