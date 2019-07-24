@@ -253,3 +253,7 @@ Dictionaries:
 #$#    show_korp_search: True
 #$#    korp_search_host: "http://gtweb.uit.no/korp"
 #$#    path: 'dicts/smjsme.xml'
+
+ReaderConfig:
+  Settings:
+  api_host: "sanit.oahpa.no"
