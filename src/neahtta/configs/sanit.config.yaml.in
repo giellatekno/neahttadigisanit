@@ -36,7 +36,7 @@ UnitTests:
 # This option set is not used outside of providing shortcuts for
 # following settings.
 Tools:
-  xfst_lookup: &LOOKUP '/usr/bin/lookup'
+  xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
   opt: &OPT '/opt/smi'
 
 # Morphological system definitions. Since YAML variables aren't able to
@@ -148,16 +148,6 @@ Dictionaries:
 
   - source: nob
     target: sme
-    path: 'dicts/nob-sme.all.xml'
-    autocomplete: true
-    show_korp_search: True
-    is_korp_default_lang: True
-    korp_parallel: True
-    korp_search_host: "http://gtweb.uit.no/korp"
-    link_corpus_parameter: "nob2sme_20131127-nob%2Cnob2sme_20131127-sme"
-
-  - source: nob
-    target: SoMe
     path: 'dicts/nob-sme.all.xml'
     autocomplete: true
     show_korp_search: True

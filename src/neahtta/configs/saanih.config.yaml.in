@@ -16,7 +16,7 @@ ApplicationSettings:
       inari saami, inarisaame, enare samisk, mobile, dictionary, free
 
 Tools:
-  xfst_lookup: &LOOKUP '/usr/bin/lookup'
+  xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
   opt: &OPT '/opt/smi/'
 
 Morphology:
