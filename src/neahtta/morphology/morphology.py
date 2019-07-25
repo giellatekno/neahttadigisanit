@@ -267,7 +267,12 @@ class Lemma(object):
         else:
             self.lemma = lemma
 
-        self.pos = self.tag['pos']
+        try:
+            self.pos = self.tag['pos']
+        except:
+            self.tag.encode('utf-8')
+            self.pos = self.tag['pos']
+
         self.tag_raw = tag
 
     def __init__(self, tag=[''], _input=False, tool=False, tagsets={}):
