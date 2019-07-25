@@ -19,7 +19,7 @@ ApplicationSettings:
       skolt saami, koltansaame, mobile, dictionary, free, russian
 
 Tools:
-  xfst_lookup: &LOOKUP '/usr/bin/lookup'
+  xfst_lookup: &LOOKUP '/usr/bin/local/lookup'
   hfst_lookup: &HLOOKUP '/bin/hfst-optimized-lookup'
   opt: &OPT '/opt/smi/'
 
@@ -89,6 +89,8 @@ Dictionaries:
     path: 'dicts/sms-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
+    corpora: 'SMS_ADMIN_20181106,SMS_FACTA_20181106,SMS_FICTI_20181106,SMS_LAWS_20181106,SMS_LITERATURE_20171108,SMS_SCIENCE_20181106'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
     input_variants: &spell_relax_sms
       - type: "standard"
         description: !gettext "Standard"
@@ -126,20 +128,26 @@ Dictionaries:
     path: 'dicts/sms-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
+    corpora: 'SMS_ADMIN_20181106,SMS_FACTA_20181106,SMS_FICTI_20181106,SMS_LAWS_20181106,SMS_LITERATURE_20171108,SMS_SCIENCE_20181106'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
     input_variants: *spell_relax_sms
 
   - source: sms
     target: rus
+    path: 'dicts/sms-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
-    path: 'dicts/sms-all.xml'
+    corpora: 'SMS_ADMIN_20181106,SMS_FACTA_20181106,SMS_FICTI_20181106,SMS_LAWS_20181106,SMS_LITERATURE_20171108,SMS_SCIENCE_20181106'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
     input_variants: *spell_relax_sms
 
   - source: sms
     target: nob
+    path: 'dicts/sms-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
-    path: 'dicts/sms-all.xml'
+    corpora: 'SMS_ADMIN_20181106,SMS_FACTA_20181106,SMS_FICTI_20181106,SMS_LAWS_20181106,SMS_LITERATURE_20171108,SMS_SCIENCE_20181106'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
     input_variants: *spell_relax_sms
 
   - source: fin
@@ -174,4 +182,3 @@ ReaderConfig:
     word_regex: |
       [\u00C0-\u1FFF\u2C00-\uD7FF\w´]+
     word_regex_opts: "g"
-

@@ -73,6 +73,8 @@ Dictionaries:
     path: 'dicts/smnfin.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
+    corpora: 'SMN_ADMIN_20181106,SMN_BIBLE_20181106,SMN_FACTA_20181106,SMN_NEWS_20181106,SMN_SCIENCE_20181106'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
     input_variants: &spell_relax_smn
       - type: "standard"
         description: !gettext "Standard"
@@ -93,12 +95,16 @@ Dictionaries:
     korp_parallel: True
     korp_search_host: "http://gtweb.uit.no/korp"
     link_corpus_parameter: 'fin2smn_20170828-fin%2Cfin2smn_20170828-smn'
+    corpora: 'FIN2SMN_20170828-FIN,FIN2SMN_20170828-SMN'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
 
   - source: smn
     target: sme
     path: 'dicts/smnsme.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
+    corpora: 'SMN_ADMIN_20181106,SMN_BIBLE_20181106,SMN_FACTA_20181106,SMN_NEWS_20181106,SMN_SCIENCE_20181106'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
     input_variants:
       - type: "standard"
         description: !gettext "Standard"

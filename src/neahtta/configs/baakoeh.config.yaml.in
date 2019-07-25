@@ -12,7 +12,6 @@ ApplicationSettings:
   locales_available:
     - sma
     - "no"
-#$#    - "sme"
   app_meta_title: >
      Digibaakoeh gaskeviermesne
   meta_description: >
@@ -28,7 +27,7 @@ ApplicationSettings:
 # This option set is not used outside of providing shortcuts for
 # following settings.
 Tools:
-  xfst_lookup: &LOOKUP '/usr/bin/lookup'
+  xfst_lookup: &LOOKUP '/usr/bin/local/lookup'
   gthome: &GTHOME '/home/neahtta/gtsvn'
   opt: &OPT '/opt/smi'
 
@@ -56,30 +55,12 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
-#$#  sme:
-#$#    tool: *LOOKUP
-#$#    file: [*OPT, '/sme/bin/analyser-dict-gt-desc.xfst']
-#$#    inverse_file: [*OPT, '/sme/bin/generator-dict-gt-norm.xfst']
-#$#    format: 'xfst'
-#$#    options: &sme_fst_options
-#$#      compoundBoundary: "+Cmp#"
-#$#      derivationMarker: "+Der"
-#$#      tagsep: '+'
-#$#      inverse_tagsep: '+'
-#$#  SoMe:
-#$#    tool: *LOOKUP
-#$#    file: [*OPT, '/sme/bin/analyser-dict-gt-desc-mobile.xfst']
-#$#    inverse_file: [*OPT, '/sme/bin/generator-dict-gt-norm.xfst']
-#$#    format: 'xfst'
-#$#    options:
-#$#      <<: *sme_fst_options
 
 Languages:
   - iso: nob
   - iso: fin
   - iso: sma
     minority_lang: true
-#$#  - iso: sme
 
 
 # This also dictates the order of the dictionaries in the UI for now.
@@ -91,6 +72,8 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
     path: 'dicts/sma-nob.all.xml'
+    corpora: 'SMA_ADMIN_20181106,SMA_BIBLE_20181106,SMA_FACTA_20181106,SMA_FICTI_20181106,SMA_LAWS_20181106,SMA_NEWS_20181106,SMA_SCIENCE_20181106'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
 
   - source: nob
     target: sma
@@ -100,35 +83,5 @@ Dictionaries:
     is_korp_default_lang: True
     korp_parallel: True
     korp_search_host: "http://gtweb.uit.no/korp"
-
-#$#  - source: sme
-#$#    target: sma
-#$#    path: 'dicts/smesma.xml'
-#$#    autocomplete: false
-#$#    show_korp_search: True
-#$#    korp_search_host: "http://gtweb.uit.no/korp"
-#$#    is_korp_default_lang: True
-#$#
-#$#    input_variants:
-#$#      # "mobile" is important, otherwise templates and swapping won't
-#$#      # work
-#$#      - type: "standard"
-#$#        description: !gettext "Standard"
-#$#        # description: !gettext "Standárda"
-#$#        example: "(<em>áčđŋšŧž</em>)"
-#$#        short_name: "sme"
-#$#        onscreen_keyboard: *SME_KEYS
-#$#      - type: "mobile"
-#$#        description: !gettext "Tolerant"
-#$#        # description: !gettext "Sosiála media"
-#$#        # example: !gettext "(maiddái <em>acdnstz</em>)"
-#$#        example: !gettext "(incl. <em>acdnstz</em>)"
-#$#        short_name: "SoMe"
-#$#        onscreen_keyboard: *SME_KEYS
-#$#
-#$#  - source: sma
-#$#    target: sme
-#$#    autocomplete: false
-#$#    show_korp_search: True
-#$#    korp_search_host: "http://gtweb.uit.no/korp"
-#$#    path: 'dicts/smasme.xml'
+    corpora: 'NOB2SMA_20170828-NOB,NOB2SMA_20170828-SMA'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='

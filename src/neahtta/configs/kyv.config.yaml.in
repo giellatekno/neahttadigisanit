@@ -11,7 +11,7 @@ ApplicationSettings:
     - kv
     - fi
     - ru
-    - hu # TODO: flag, translations catalog 
+    - hu # TODO: flag, translations catalog
     - en
   meta_description: >
       Free online, mobile friendly dictionaries for Komi-Zyrian
@@ -24,7 +24,7 @@ ApplicationSettings:
     - "trond.trosterud@uit.no"
 
 Tools:
-  xfst_lookup: &LOOKUP '/usr/bin/lookup'
+  xfst_lookup: &LOOKUP '/usr/bin/local/lookup'
   opt: &OPT '/opt/smi/'
 
 Morphology:
@@ -159,6 +159,8 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     is_korp_default_lang: True
+    corpora: 'KOM_WIKI_20150123'
+    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
     input_variants: &KOMI_VARIANTS
       - type: "standard"
         description: !gettext "Standard"
@@ -201,10 +203,11 @@ Dictionaries:
     target: fin
     path: 'dicts/kpv-all.xml'
     input_variants: *KOMI_VARIANTS
-
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     is_korp_default_lang: True
+    corpora: 'KOM_WIKI_20150123'
+    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
 
   - source: fin
     target: kpv
@@ -212,12 +215,13 @@ Dictionaries:
 
   - source: kpv
     target: rus
+    path: 'dicts/kpvrus.xml'
     show_korp_search: True
     is_korp_default_lang: True
     input_variants: *KOMI_VARIANTS
-
     korp_search_host: "http://gtweb.uit.no/u_korp"
-    path: 'dicts/kpvrus.xml'
+    corpora: 'KOM_WIKI_20150123'
+    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
 
   - source: rus
     target: kpv
@@ -226,10 +230,10 @@ Dictionaries:
   - source: udm
     target: hun
     path: 'dicts/udmhun.xml'
-
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
-
+    corpora: 'UDM_WIKI_20141225'
+    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
     input_variants:
       # "mobile" is important, otherwise templates and swapping won't
       # work
@@ -253,9 +257,10 @@ Dictionaries:
   - source: udm
     target: kpv
     path: 'dicts/udmkpv.xml'
-
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
+    corpora: 'UDM_WIKI_20141225'
+    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
     input_variants:
       # "mobile" is important, otherwise templates and swapping won't
       # work
@@ -272,20 +277,22 @@ Dictionaries:
     target: udm
     path: 'dicts/kpvudm.xml'
     input_variants: *KOMI_VARIANTS
-
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     is_korp_default_lang: True
+    corpora: 'KOM_WIKI_20150123'
+    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
 
   - source: udm
     target: fin
     path: 'dicts/udmfin.xml'
-
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
+    corpora: 'UDM_WIKI_20141225'
+    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
     input_variants:
-      # "mobile" is important, otherwise templates and swapping won't 
-      # work 
+      # "mobile" is important, otherwise templates and swapping won't
+      # work
       - type: "standard"
         description: !gettext "Standard (<em>ӝӟӥӧӵ</em>)"
         short_name: "udm"
@@ -314,13 +321,15 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     is_korp_default_lang: True
+    corpora: 'KOI_WIKI_20160918'
+    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
 
   - source: kpv
     target: koi
     path: 'dicts/kpvkoi.xml'
     input_variants: *KOMI_VARIANTS
-
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     is_korp_default_lang: True
-
+    corpora: 'KOM_WIKI_20150123'
+    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='

@@ -24,10 +24,10 @@ ApplicationSettings:
     - "trond.trosterud@uit.no"
 
 Tools:
-  xfst_lookup: &LOOKUP '/usr/bin/lookup'
+  xfst_lookup: &LOOKUP '/usr/bin/local/lookup'
   hfst_lookup: &HLOOKUP '/bin/hfst-optimized-lookup'
   opt: &OPT '/opt/smi/'
- 
+
 Morphology:
   fin:
     tool: *LOOKUP
@@ -192,16 +192,18 @@ Dictionaries:
   - source: vro
     target: est
     path: 'dicts/vro-all.xml'
-
     show_korp_search: True
     korp_search_host: &F_KORP "http://gtweb.uit.no/f_korp"
+    corpora: 'VRO_WIKI_20141222'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
 
   - source: vro
     target: fin
     path: 'dicts/vro-all.xml'
-
     show_korp_search: True
     korp_search_host: *F_KORP
+    corpora: 'VRO_WIKI_20141222'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
 
   # vot
   - source: vot

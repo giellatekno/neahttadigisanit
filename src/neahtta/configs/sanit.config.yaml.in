@@ -7,11 +7,8 @@ ApplicationSettings:
   default_locale: "se"
   default_pair: ["sme", "nob"]
   mobile_default_pair: ["SoMe", "nob"]
-  # admins_to_email:
-  #   - "someone.goes.here@email.com"
   locales_available:
     - "se"
-#$#    - "sma"
     - "no"
     - "fi"
     - "en"
@@ -80,24 +77,12 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
-#$#  sma:
-#$#    tool: *LOOKUP
-#$#    file: [*OPT, '/sma/bin/analyser-dict-gt-desc.xfst']
-#$#    inverse_file: [*OPT, '/sma/bin/generator-dict-gt-norm.xfst']
-#$#    format: 'xfst'
-#$#    options:
-#$#      compoundBoundary: "+Cmp#"
-#$#      derivationMarker: "+Der"
-#$#      tagsep: '+'
-#$#      inverse_tagsep: '+'
 
 Languages:
   - iso: sme
     minority_lang: true
   - iso: SoMe
     variant: True # this makes the fab process skip attempting `svn up` here.
-#$#  - iso: sma
-#    minority_lang: true
   - iso: nob
   - iso: fin
   - iso: eng
@@ -112,7 +97,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
     is_korp_default_lang: True
-    corpora: 'SME_ADMIN_20181106%2CSME_ASSU_20181106%2CSME_AVVIR_20181106%2CSME_BIBLE_20181106%2CSME_BLOGS_20181106%2CSME_FACTA_20181106%2CSME_FICTI_20181106%2CSME_LAWS_20181106%2CSME_MINAIGI_20181106%2CSME_MUITALUS_20170319%2CSME_NRK_20181106%2CSME_SCIENCE_20181106'
+    corpora: 'SME_ADMIN_20181106,SME_ASSU_20181106,SME_AVVIR_20181106,SME_BIBLE_20181106,SME_BLOGS_20181106,SME_FACTA_20181106,SME_FICTI_20181106,SME_LAWS_20181106,SME_MINAIGI_20181106,SME_MUITALUS_20170319,SME_NRK_20181106,SME_SCIENCE_20181106'
     start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
 
     input_variants:
@@ -147,7 +132,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
     is_korp_default_lang: True
-    corpora: 'SME_ADMIN_20181106%2CSME_ASSU_20181106%2CSME_AVVIR_20181106%2CSME_BIBLE_20181106%2CSME_BLOGS_20181106%2CSME_FACTA_20181106%2CSME_FICTI_20181106%2CSME_LAWS_20181106%2CSME_MINAIGI_20181106%2CSME_MUITALUS_20170319%2CSME_NRK_20181106%2CSME_SCIENCE_20181106'
+    corpora: 'SME_ADMIN_20181106,SME_ASSU_20181106,SME_AVVIR_20181106,SME_BIBLE_20181106,SME_BLOGS_20181106,SME_FACTA_20181106,SME_FICTI_20181106,SME_LAWS_20181106,SME_MINAIGI_20181106,SME_MUITALUS_20170319,SME_NRK_20181106,SME_SCIENCE_20181106'
     start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
 
   - source: nob
@@ -158,7 +143,7 @@ Dictionaries:
     is_korp_default_lang: True
     korp_parallel: True
     korp_search_host: "http://gtweb.uit.no/korp"
-    link_corpus_parameter: "nob2sme_20131127-nob%2Cnob2sme_20131127-sme"
+    link_corpus_parameter: "nob2sme_20131127-nob,nob2sme_20131127-sme"
 
   - source: sme
     target: fin
@@ -167,7 +152,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
     is_korp_default_lang: True
-    corpora: 'SME_ADMIN_20181106%2CSME_ASSU_20181106%2CSME_AVVIR_20181106%2CSME_BIBLE_20181106%2CSME_BLOGS_20181106%2CSME_FACTA_20181106%2CSME_FICTI_20181106%2CSME_LAWS_20181106%2CSME_MINAIGI_20181106%2CSME_MUITALUS_20170319%2CSME_NRK_20181106%2CSME_SCIENCE_20181106'
+    corpora: 'SME_ADMIN_20181106,SME_ASSU_20181106,SME_AVVIR_20181106,SME_BIBLE_20181106,SME_BLOGS_20181106,SME_FACTA_20181106,SME_FICTI_20181106,SME_LAWS_20181106,SME_MINAIGI_20181106,SME_MUITALUS_20170319,SME_NRK_20181106,SME_SCIENCE_20181106'
     start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
     input_variants:
       # "mobile" is important, otherwise templates and swapping won't
@@ -188,79 +173,13 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
     is_korp_default_lang: True
-    corpora: 'SME_ADMIN_20181106%2CSME_ASSU_20181106%2CSME_AVVIR_20181106%2CSME_BIBLE_20181106%2CSME_BLOGS_20181106%2CSME_FACTA_20181106%2CSME_FICTI_20181106%2CSME_LAWS_20181106%2CSME_MINAIGI_20181106%2CSME_MUITALUS_20170319%2CSME_NRK_20181106%2CSME_SCIENCE_20181106'
+    corpora: 'SME_ADMIN_20181106,SME_ASSU_20181106,SME_AVVIR_20181106,SME_BIBLE_20181106,SME_BLOGS_20181106,SME_FACTA_20181106,SME_FICTI_20181106,SME_LAWS_20181106,SME_MINAIGI_20181106,SME_MUITALUS_20170319,SME_NRK_20181106,SME_SCIENCE_20181106'
     start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
 
   - source: fin
     target: sme
     path: 'dicts/fin-sme.all.xml'
     autocomplete: true
-
-#$#  - source: sme
-#$#    target: sma
-#$#    path: 'dicts/smesma.xml'
-#$#    autocomplete: false
-#$#    show_korp_search: True
-#$#    korp_search_host: "http://gtweb.uit.no/korp"
-#$#    is_korp_default_lang: True
-#$#
-#$#    input_variants:
-#$#      # "mobile" is important, otherwise templates and swapping won't
-#$#      # work
-#$#      - type: "standard"
-#$#        description: !gettext "Standard"
-#$#        # description: !gettext "Standárda"
-#$#        example: "(<em>áčđŋšŧž</em>)"
-#$#        short_name: "sme"
-#$#        onscreen_keyboard: *SME_KEYS
-#$#      - type: "mobile"
-#$#        description: !gettext "Tolerant"
-#$#        # description: !gettext "Sosiála media"
-#$#        # example: !gettext "(maiddái <em>acdnstz</em>)"
-#$#        example: !gettext "(incl. <em>acdnstz</em>)"
-#$#        short_name: "SoMe"
-#$#        onscreen_keyboard: *SME_KEYS
-#$#
-#$#  - source: sma
-#$#    target: sme
-#$#    autocomplete: false
-#$#    show_korp_search: True
-#$#    korp_search_host: "http://gtweb.uit.no/korp"
-#$#    path: 'dicts/smasme.xml'
-#$#
-#$## smesmj
-#$#
-#$#  - source: sme
-#$#    target: smj
-#$#    path: 'dicts/smesmj.xml'
-#$#    autocomplete: false
-#$#    show_korp_search: True
-#$#    korp_search_host: "http://gtweb.uit.no/korp"
-#$#    is_korp_default_lang: True
-#$#
-#$#    input_variants:
-#$#      # "mobile" is important, otherwise templates and swapping won't
-#$#      # work
-#$#      - type: "standard"
-#$#        description: !gettext "Standard"
-#$#        # description: !gettext "Standárda"
-#$#        example: "(<em>áčđŋšŧž</em>)"
-#$#        short_name: "sme"
-#$#        onscreen_keyboard: *SME_KEYS
-#$#      - type: "mobile"
-#$#        description: !gettext "Tolerant"
-#$#        # description: !gettext "Sosiála media"
-#$#        # example: !gettext "(maiddái <em>acdnstz</em>)"
-#$#        example: !gettext "(incl. <em>acdnstz</em>)"
-#$#        short_name: "SoMe"
-#$#        onscreen_keyboard: *SME_KEYS
-#$#
-#$#  - source: smj
-#$#    target: sme
-#$#    autocomplete: false
-#$#    show_korp_search: True
-#$#    korp_search_host: "http://gtweb.uit.no/korp"
-#$#    path: 'dicts/smjsme.xml'
 
 ReaderConfig:
   Settings:

@@ -20,7 +20,7 @@ ApplicationSettings:
     - "trond.trosterud@uit.no"
 
 Tools:
-  xfst_lookup: &LOOKUP '/usr/bin/lookup'
+  xfst_lookup: &LOOKUP '/usr/bin/local/lookup'
   opt: &OPT '/opt/smi/'
 
 Morphology:

@@ -25,9 +25,9 @@ ApplicationSettings:
     - "chiara.argese@uit.no"
 
 Tools:
-  xfst_lookup: &LOOKUP '/usr/bin/lookup'
+  xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
   opt: &OPT '/opt/smi/'
- 
+
 Morphology:
   olo:
     tool: *LOOKUP
@@ -122,13 +122,14 @@ Dictionaries:
     path: 'dicts/rusolo.xml'
 
   # fkv
-  - source: fkv 
+  - source: fkv
     target: nob
     path: 'dicts/fkvnob.xml'
-
     show_korp_search: True
     korp_search_host: &F_KORP "http://gtweb.uit.no/f_korp"
     is_korp_default_lang: True
+    corpora: 'FKV_ADMIN_20181106,FKV_BIBLE_20181106,FKV_FACTA_20181106,FKV_FICTI_20181106,FKV_NEWS_20181106,FKV_RUIJAN_KAIKU_20140418'
+    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
     input_variants: &spell_relax_fkv
       - type: "standard"
         description: !gettext "Standard"
@@ -142,11 +143,12 @@ Dictionaries:
   - source: nob
     target: fkv
     path: 'dicts/nobfkv.xml'
-
     show_korp_search: True
     is_korp_default_lang: True
     korp_parallel: True
     korp_search_host: *F_KORP
+    corpora: 'NOB_RUIJAN_KAIKU_20140418'
+    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
 
   # vep
   - source: vep
@@ -154,12 +156,16 @@ Dictionaries:
     path: 'dicts/vep-all.xml'
     show_korp_search: True
     korp_search_host: *F_KORP
+    corpora: 'VEP_WIKI_20150101'
+    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
 
   - source: vep
     target: est
     path: 'dicts/vep-all.xml'
     show_korp_search: True
     korp_search_host: *F_KORP
+    corpora: 'VEP_WIKI_20150101'
+    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
 
 ReaderConfig:
   Settings:

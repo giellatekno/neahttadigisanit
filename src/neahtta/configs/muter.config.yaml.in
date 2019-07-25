@@ -24,7 +24,7 @@ ApplicationSettings:
     - "trond.trosterud@uit.no"
 
 Tools:
-  xfst_lookup: &LOOKUP '/usr/bin/lookup'
+  xfst_lookup: &LOOKUP '/usr/bin/local/lookup'
   hfst_lookup: &HLOOKUP '/bin/hfst-optimized-lookup'
   opt: &OPT '/opt/smi/'
 
@@ -90,42 +90,56 @@ Dictionaries:
     path: 'dicts/mrj-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
+    corpora: 'MRJ_WIKI_20141217'
+    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
 
   - source: mrj
     target: mhr
     path: 'dicts/mrjmhr.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
+    corpora: 'MRJ_WIKI_20141217'
+    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
 
   - source: mrj
     target: rus
     path: 'dicts/mrjrus.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
+    corpora: 'MRJ_WIKI_20141217'
+    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
 
   - source: mhr
     target: mrj
     path: 'dicts/mhrmrj.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
+    corpora: 'MHR_ONCHYKO_20170815,MHR_WIKIPEDIA_20170815'
+    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
 
   - source: mhr
     target: fin
     path: 'dicts/mhr-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
+    corpora: 'MHR_ONCHYKO_20170815,MHR_WIKIPEDIA_20170815'
+    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
 
   - source: mhr
     target: rus
     path: 'dicts/mhrrus.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
+    corpora: 'MHR_ONCHYKO_20170815,MHR_WIKIPEDIA_20170815'
+    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
 
   - source: mhr
     target: eng
     path: 'dicts/mhr-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
+    corpora: 'MHR_ONCHYKO_20170815,MHR_WIKIPEDIA_20170815'
+    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
 
 ReaderConfig:
   Settings:
