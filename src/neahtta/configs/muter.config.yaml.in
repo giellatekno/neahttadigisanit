@@ -24,7 +24,7 @@ ApplicationSettings:
     - "trond.trosterud@uit.no"
 
 Tools:
-  xfst_lookup: &LOOKUP '/usr/bin/local/lookup'
+  xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
   hfst_lookup: &HLOOKUP '/bin/hfst-optimized-lookup'
   opt: &OPT '/opt/smi/'
 
