@@ -83,5 +83,10 @@ Dictionaries:
     is_korp_default_lang: True
     korp_parallel: True
     korp_search_host: "http://gtweb.uit.no/korp"
+    link_corpus_parameter: "nob2sma_20170828-nob,nob2sma_20170828-sma"
     corpora: 'NOB2SMA_20170828-NOB,NOB2SMA_20170828-SMA'
     start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+
+ReaderConfig:
+  Settings:
+    api_host: "baakoeh.oahpa.no"

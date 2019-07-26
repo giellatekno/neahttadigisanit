@@ -143,5 +143,6 @@ Dictionaries:
 
 ReaderConfig:
   Settings:
-    api_host: "sanit.oahpa.no/reader/muter"
-    media_host: "sanit.oahpa.no"
+    api_host: "muter.oahpa.no"
+    media_host: "muter.oahpa.no"
+    reader_symbol: "&#128214;"

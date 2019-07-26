@@ -171,9 +171,9 @@ ReaderConfig:
   Settings:
     # host path without scheme (https, http) to reader lookup API, no trailing
     # slash.
-    api_host: "sanit.oahpa.no/reader/sanat"
+    api_host: "sanat.oahpa.no"
     # URL to serve media from, minus scheme, and no trailing slash.
-    media_host: "sanit.oahpa.no"
+    media_host: "sanat.oahpa.no"
   olo:
     multiword_lookups: false
     word_regex: |

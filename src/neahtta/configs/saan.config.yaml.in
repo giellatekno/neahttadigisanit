@@ -168,9 +168,9 @@ ReaderConfig:
   Settings:
     # host path without scheme (https, http) to reader lookup API, no trailing
     # slash.
-    api_host: "sanit.oahpa.no/reader/saan"
+    api_host: "saan.oahpa.no"
     # URL to serve media from, minus scheme, and no trailing slash.
-    media_host: "sanit.oahpa.no"
+    media_host: "saan.oahpa.no"
   sms:
     multiword_lookups: false
     # NB: this is JavaScript format, since it will be sent to the reader via

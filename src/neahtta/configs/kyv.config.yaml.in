@@ -333,3 +333,8 @@ Dictionaries:
     is_korp_default_lang: True
     corpora: 'KOM_WIKI_20150123'
     start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
+
+ReaderConfig:
+  Settings:
+    api_host: "kyv.oahpa.no"
+    media_host: "kyv.oahpa.no"

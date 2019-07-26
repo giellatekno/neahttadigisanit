@@ -238,6 +238,6 @@ ReaderConfig:
   Settings:
     # host path without scheme (https, http) to reader lookup API, no trailing
     # slash.
-    api_host: "sanit.oahpa.no/reader/sonad"
+    api_host: "sonad.oahpa.no"
     # URL to serve media from, minus scheme, and no trailing slash.
-    media_host: "sanit.oahpa.no"
+    media_host: "sonad.oahpa.no"
