@@ -1122,7 +1122,6 @@ class Morphology(object):
             if form in array[index]:
                 array.insert(0, array[index])
                 del array[index + 1]
-                return array
         else:
             # If the user input is not in the base form, the for above doesn't find the analyses
             # so find the longest analyses and put it/them in the first/s element/s
@@ -1191,13 +1190,13 @@ class Morphology(object):
                          non_compound_only, split_compounds):
         for _, analyses in lookups:
             analyses = self.remove_compound_analyses(analyses,
-                                                     non_compound_only)
+                                               non_compound_only)
             analyses = self.remove_derivations(analyses, no_derivations)
 
             analyses = self.check_if_lexicalized(form, analyses)
             analyses = self.rearrange_on_count(analyses)
             analyses = self.split_on_compounds(analyses, split_compounds)
-
+            
             analyses_der_fin = self.make_analyses_der_fin(analyses)
 
             for analysis in analyses_der_fin:
