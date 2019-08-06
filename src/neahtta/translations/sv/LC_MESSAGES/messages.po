@@ -648,15 +648,16 @@ msgid ""
 "Need more dictionaries? <a href=\"http://dicts.uit.no/\">Here's our full "
 "list</a>, and more\n"
 "                resources."
-msgstr ""
+msgstr "Behöver du fler ordböcker? <a href=\"http://dicts.uit.no/\">Här är "
+"listan över alla våra ordböcker</a>."
 
 #: configs/language_specific_rules/templates/analyses.template:23
 msgid " (Not found in our corpus)"
-msgstr ""
+msgstr "(Finns inte i vår korpus)"
 
 #: configs/language_specific_rules/templates/analyses.template:30
 msgid " (No corpus available for this language)"
-msgstr ""
+msgstr "(Det finns ingen textkorpus för det här språket)"
 
 #: configs/language_specific_rules/templates/detail_entry.template:47
 #: configs/language_specific_rules/templates/bahkogirrje/sje/detail_entry.template:61
@@ -694,7 +695,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:42
 #: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:42
 msgid "Select a word, and press Tab"
-msgstr ""
+msgstr "Välj ett ord, och tryck Tab"
 
 #: configs/language_specific_rules/templates/index_search_form.template:48
 #: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:51
@@ -777,7 +778,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/valks/mdf/paradigm.template:117
 #: configs/language_specific_rules/templates/valks/myv/paradigm.template:117
 msgid "Full paradigm"
-msgstr ""
+msgstr "Fullt paradigm"
 
 #: configs/language_specific_rules/templates/search_info.template:3
 #: configs/language_specific_rules/templates/sanit/search_info.template:9
