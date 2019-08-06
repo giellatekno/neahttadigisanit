@@ -1055,3 +1055,8 @@ span.l-r-par {
   color: #0c5278;
   font-size: 90%;
 }
+/* Style for 'not found' and 'no corpus available' texts */
+span.not_found {
+  font-size:small;
+  color:#d22907;
+}

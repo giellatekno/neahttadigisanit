@@ -662,11 +662,38 @@ class SearcherMixin(object):
             else:
                 res_par.append(item)
 
+        import json, urllib
+        def korp_query(lemma):
+            current_pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(g._from, g._to)
+            o_pair = orig_pair_opts.get('orig_pair')
+            if orig_pair_opts.get('orig_pair') != ():
+                orig_from, orig_to = o_pair
+            else:
+                orig_from, orig_to = g._from, g._to
+
+            korp_opts = current_pair_settings.get('korp_options')
+            start_query = korp_opts.get('start_query')
+            corpora = korp_opts.get('corpora')
+            k_query = ''
+
+            if (korp_opts.get('lemma_search_path') and lemma and start_query and corpora):
+                k_query = start_query + corpora + '&cqp=%5Blemma+%3D+%22' + lemma + '%22%5D&start=0&end=99'
+            return k_query
+
         for _, analyses, paradigm, has_layout in search_result_obj.entries_and_tags_and_paradigms:
             if k < len(res_par):
                 if res_par[k][0] is not None:
                     if not analyses:
                         analyses = 'az'
+
+                    korp_hits = 0
+                    if res_par[k][1]:
+                        url_json = korp_query(res_par[k][1][0].lemma)
+                        url_json = url_json.encode('utf8')
+                        if url_json:
+                            response = urllib.urlopen(url_json)
+                            data = json.loads(response.read())
+                            korp_hits = data["hits"]
 
                     tplkwargs = {
                         'lexicon_entry':
@@ -675,6 +702,8 @@ class SearcherMixin(object):
                         analyses,
                         'analyses_right':
                         res_par[k][1],
+                        'korp_hits':
+                        korp_hits,
                         'paradigm':
                         paradigm,
                         'layout':

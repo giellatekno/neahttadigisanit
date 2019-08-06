@@ -17,13 +17,17 @@
                   <dt><span lang="{{ _from }}">{{ grouper }}</span></dt>
                 {% else %}
                   {% if lemmagroup and grouper %}
+                    {% if korp_hits > 0 %}
                       <dt><span lang="{{ _from }}">{{ grouper }}</span> {{ korp.link_lemma(grouper) }}</dt>
+                    {% else %}
+                      <dt><span lang="{{ _from }}">{{ grouper }}</span><span class="not_found">{% trans %} (Not found in our corpus){% endtrans %}</span></dt>
+                    {% endif %}
                   {% else %}
                       <dt><span lang="{{ _from }}">{{ grouper }}</span></dt>
                   {% endif %}
                 {% endif %}
             {% else %}
-                <dt><span lang="{{ _from }}">{{ grouper }}</span></dt>
+                <dt><span lang="{{ _from }}">{{ grouper }}</span><span class="not_found">{% trans %} (No corpus available for this language){% endtrans %}</span></dt>
             {% endif %}
             <dd>
                 <ul class="possible_forms">
