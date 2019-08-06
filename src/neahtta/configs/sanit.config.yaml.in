@@ -144,6 +144,8 @@ Dictionaries:
     korp_parallel: True
     korp_search_host: "http://gtweb.uit.no/korp"
     link_corpus_parameter: "nob2sme_20131127-nob,nob2sme_20131127-sme"
+    corpora: 'NOB2SME_20131127-NOB,NOB2SME_20131127-SME'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
 
   - source: sme
     target: fin
