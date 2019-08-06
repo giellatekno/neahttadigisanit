@@ -674,17 +674,17 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/analyses.template:23
 msgid " (Not found in our corpus)"
-msgstr ""
+msgstr " (Ii gávdno min teakstakorpusis)"
 
 #: configs/language_specific_rules/templates/analyses.template:30
 msgid " (No corpus available for this language)"
-msgstr ""
+msgstr " (Ii gávdno teakstakorpus dán gillii)"
 
 #: configs/language_specific_rules/templates/detail_entry.template:47
 #: configs/language_specific_rules/templates/bahkogirrje/sje/detail_entry.template:61
 #: configs/language_specific_rules/templates/saan/sms/detail_entry.template:61
 msgid "Paradigm"
-msgstr ""
+msgstr "Sojahanhámit"
 
 #: configs/language_specific_rules/templates/footer.template:9
 #: configs/language_specific_rules/templates/gunaha/footer.template:13
@@ -806,7 +806,7 @@ msgstr "Eanet sojahanhámit"
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
 "Oza sáni, vej. sojahuvvon hámi. Maŋŋel go leat ohcan: Jus deaddilasttát "
-"sáni guktii, de oainnát mo sátni sojahuvvo. <br /><br /> \"Oza "
+"sáni, de oainnát mo sátni sojahuvvo. <br /><br /> \"Oza "
 "teavsttain\"-boaluin ozat sáni cealkagiin, ja oaččut mielde buot "
 "sojahanhámiid jus geavahat liŋkka mii dihtto olgeš ravddas go leat "
 "deaddilan \"Oza\""
