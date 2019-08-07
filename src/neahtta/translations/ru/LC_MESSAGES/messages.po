@@ -646,11 +646,11 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/analyses.template:23
 msgid " (Not found in our corpus)"
-msgstr "(Не найден в нашем корпусе)"
+msgstr " (Не найден в нашем корпусе)"
 
 #: configs/language_specific_rules/templates/analyses.template:30
 msgid " (No corpus available for this language)"
-msgstr "(Нет корпус для этого языка)"
+msgstr " (Нет корпус для этого языка)"
 
 #: configs/language_specific_rules/templates/detail_entry.template:47
 #: configs/language_specific_rules/templates/bahkogirrje/sje/detail_entry.template:61
@@ -1858,4 +1858,3 @@ msgstr "Недопустимый формат. Только json и html доп�
 
 #~ msgid "More information about this word"
 #~ msgstr ""
-

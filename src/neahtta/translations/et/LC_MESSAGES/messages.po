@@ -652,11 +652,11 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/analyses.template:23
 msgid " (Not found in our corpus)"
-msgstr "(Ei leitud meie korpusest)"
+msgstr " (Ei leitud meie korpusest)"
 
 #: configs/language_specific_rules/templates/analyses.template:30
 msgid " (No corpus available for this language)"
-msgstr "(Selle keele jaoks pole tekstikogu)"
+msgstr " (Selle keele jaoks pole tekstikogu)"
 
 #: configs/language_specific_rules/templates/detail_entry.template:47
 #: configs/language_specific_rules/templates/bahkogirrje/sje/detail_entry.template:61
@@ -1766,4 +1766,3 @@ msgstr "Vigane formaat. Ainult json ja html on lubatud."
 
 #~ msgid "Komi-Zyrian"
 #~ msgstr "sürjakomi"
-

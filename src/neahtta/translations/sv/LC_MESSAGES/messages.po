@@ -653,11 +653,11 @@ msgstr "Behöver du fler ordböcker? <a href=\"http://dicts.uit.no/\">Här är "
 
 #: configs/language_specific_rules/templates/analyses.template:23
 msgid " (Not found in our corpus)"
-msgstr "(Finns inte i vår korpus)"
+msgstr " (Finns inte i vår korpus)"
 
 #: configs/language_specific_rules/templates/analyses.template:30
 msgid " (No corpus available for this language)"
-msgstr "(Det finns ingen textkorpus för det här språket)"
+msgstr " (Det finns ingen textkorpus för det här språket)"
 
 #: configs/language_specific_rules/templates/detail_entry.template:47
 #: configs/language_specific_rules/templates/bahkogirrje/sje/detail_entry.template:61
@@ -1764,4 +1764,3 @@ msgstr "Ogiltigt format. Bara json och html tillåtit"
 
 #~ msgid "More information about this word"
 #~ msgstr "Mera information om det här ordet"
-
