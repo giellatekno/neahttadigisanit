@@ -1060,3 +1060,9 @@ span.not_found {
   font-size:small;
   color:#d22907;
 }
+/* Style for l_ref */
+.l_ref {
+  color: #666;
+  font-weight: 400;
+  font-size: 90% !important;
+}
