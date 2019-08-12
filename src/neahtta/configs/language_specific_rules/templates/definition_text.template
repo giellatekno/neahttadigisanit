@@ -37,6 +37,23 @@
     #}
 
     {% set text = t.text %}
+
+    {% set pos = t.attrib.get('pos', '') %}
+
+    {%- if pos == 'Pron' and t.attrib.get('type') %}
+        {% set pos_type = t.attrib.get('type')|tagfilter(_from, _to) %}
+        {% set pos_text = pos|tagfilter(_from, _to)  + " " + pos_type %}
+    {% else %}
+        {% set pos_text = pos|tagfilter(_from, _to) %}
+    {%- endif %}
+
+    {%- if pos == 'Phrase' %}
+        {% set pos_is_phrase = True %}
+    {%- endif %}
+
+    {% set pos_text = pos_text|trim %}
+
+
     {% set link_target = '' %}
     {% set fra_ref = tg.xpath('./re/@fra_ref') %}
     {% set l_par = tg.xpath('./t/@l_par') %}
@@ -54,7 +71,6 @@
       {% set if_r_par = false %}
     {% endif %}
 
-
     {% if fra_ref|count > 0 %}
         {# If this is a reference link, then there is no data in the
            <t /> node, so the <re /> becomes the link text.  #}
@@ -66,12 +82,13 @@
         {% set reference = false %}
     {% endif %}
 
-
     {%- if reference %}
       {% if if_l_par or if_r_par %}
         {% if if_l_par and if_r_par %}
           <span class="l-r-par">({{l_par_text}})</span>
           <a href="{{ url_for('.search_pair_referred_search', _from=_from, _to=_to) }}?l_til_ref={{ reference }}">
+            {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}
+            {% if pos_is_phrase %}{% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{% endif %}
               {{- text -}}
           </a>
           <span class="l-r-par">({{r_par_text}})</span>
@@ -79,11 +96,15 @@
           {% if if_l_par and not if_r_par %}
             <span class="l-r-par">({{l_par_text}})</span>
             <a href="{{ url_for('.search_pair_referred_search', _from=_from, _to=_to) }}?l_til_ref={{ reference }}">
+              {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}
+              {% if pos_is_phrase %}{% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{% endif %}
                 {{- text -}}
             </a>
           {% else %}
             {% if not if_l_par and if_r_par %}
               <a href="{{ url_for('.search_pair_referred_search', _from=_from, _to=_to) }}?l_til_ref={{ reference }}">
+                {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}
+                {% if pos_is_phrase %}{% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{% endif %}
                   {{- text -}}
               </a>
               <span class="l-r-par">({{r_par_text}})</span>
@@ -92,6 +113,8 @@
         {% endif %}
       {% else %}
         <a href="{{ url_for('.search_pair_referred_search', _from=_from, _to=_to) }}?l_til_ref={{ reference }}">
+          {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}
+          {% if pos_is_phrase %}{% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{% endif %}
               {{- text -}}
         </a> &rarr;
       {% endif %}
@@ -101,6 +124,8 @@
           {% if if_l_par and if_r_par %}
             <span class="l-r-par">({{l_par_text}})</span>
             <a href="{{ url_for('.detailed_language_pair_search', _from=_to, _to=_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
+              {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}
+              {% if pos_is_phrase %}{% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{% endif %}
                 {{- text -}}
             </a>
             <span class="l-r-par">({{r_par_text}})</span>
@@ -108,11 +133,15 @@
             {% if if_l_par and not if_r_par %}
               <span class="l-r-par">({{l_par_text}})</span>
               <a href="{{ url_for('.detailed_language_pair_search', _from=_to, _to=_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
+                {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}
+                {% if pos_is_phrase %}{% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{% endif %}
                   {{- text -}}
               </a>
             {% else %}
               {% if not if_l_par and if_r_par %}
                 <a href="{{ url_for('.detailed_language_pair_search', _from=_to, _to=_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
+                  {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}
+                  {% if pos_is_phrase %}{% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{% endif %}
                     {{- text -}}
                 </a>
                 <span class="l-r-par">({{r_par_text}})</span>
@@ -121,6 +150,8 @@
           {% endif %}
         {% else %}
           <a href="{{ url_for('.detailed_language_pair_search', _from=_to, _to=_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
+            {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}
+            {% if pos_is_phrase %}{% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{% endif %}
               {{- text -}}
           </a>
         {% endif %}
