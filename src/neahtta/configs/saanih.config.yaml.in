@@ -124,6 +124,6 @@ ReaderConfig:
   Settings:
     # host path without scheme (https, http) to reader lookup API, no trailing
     # slash.
-    api_host: "sanit.oahpa.no/reader/saanih"
+    api_host: "saanih.oahpa.no"
     # URL to serve media from, minus scheme, and no trailing slash.
-    media_host: "sanit.oahpa.no"
+    media_host: "saanih.oahpa.no"
