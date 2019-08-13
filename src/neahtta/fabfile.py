@@ -929,3 +929,41 @@ def test_running():
             col = green
             msg = ''
         print(col(msg + h))
+
+@task
+def add_stem2dict():
+    """ This function makes a backup of sme-nob dict.
+        Runs the script add_stemtype2xml.py to add stem type in sme-nob dict.
+        Overwrite the current xml with the new one with stem type.
+
+        To make sure changes are made on the latest version of the dictionary, you have to run first
+        fab sanit compile
+    """
+
+    cmd = 'cp dicts/sme-nob.all.xml dicts/sme-nob.all.xml.bak-before-stem'
+    cp_cmd = env.run(cmd)
+
+    if cp_cmd.failed:
+        print(red("** Backup xml failed, aborting."))
+        return
+    else:
+        print(cyan("** Backing up xml" ))
+
+    cmd = 'python $GTHOME/words/dicts/scripts/add_stemtype2xml.py $GTHOME/langs/sme/src/morphology/stems/nouns.lexc $GTHOME/words/dicts/smenob/scripts/nouns_stemtypes.txt dicts/sme-nob.all.xml'
+
+    add_cmd = env.run(cmd)
+
+    if add_cmd.failed:
+        print(red("** Add stem type to xml failed, aborting."))
+        return
+    else:
+        print(cyan("** Added stem type to xml" ))
+
+    cmd = 'cp dicts/sme-nob.all.xml.stem.xml dicts/sme-nob.all.xml'
+    overwrite_cmd = env.run(cmd)
+
+    if overwrite_cmd.failed:
+        print(red("** Overwrite xml failed, aborting."))
+        return
+    else:
+        print(cyan("** Overwriting xml" ))
