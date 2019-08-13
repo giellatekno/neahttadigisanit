@@ -23,6 +23,7 @@
 {%- set first_l = lexicon_entry|xpath('lg/l')|first %}
 {%- set morph_ex = lexicon_entry|xpath('mg/tg/morph_expl') %}
 {%- set l_ref = lexicon_entry|xpath('mg/l_ref') %}
+{%- set stem = first_l.xpath('./@stem')|first %}
 
 {% if morph_ex %}
   {% set morph_ex_text = morph_ex[0]|text %}
@@ -51,6 +52,17 @@
   {%- set l_ref_text = l_ref_first|text %}
 {% endif %}
 
+{% if stem %}
+  {% if '2syll' in stem %}
+    {% set stem_desc = 'likest.' %}
+  {% elif '3syll' in stem %}
+    {% set stem_desc = 'ulikest.' %}
+  {% else %}
+    {% set stem_desc = 'kontrakt' %}
+  {% endif %}
+{% endif %}
+
+
 {% if 'true' not in if_der %}
   {% if user_input in first_l|text %}
     <div class="row-fluid entry_row">
@@ -64,8 +76,11 @@
                       <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
                           {{- rendered_templates.entry_text -}}</a>
                   {% endif %}
+                  {% if stem %}
+                    <p class="p_stem">(stamme: {{stem_desc}})</p>
+                  {% endif %}
                   {% if l_ref_text %}
-                    <p class="l_ref">{% trans %}se også {% endtrans %}<a href="./?lookup={{l_ref_text.split("_")[0]}}">
+                    <p class="l_ref"><span class="se_også">se også </span><a href="./?lookup={{l_ref_text.split("_")[0]}}">
                         {{ l_ref_text.split("_")[0]}}</a></p>
                   {% endif %}
                   <ul class="meanings">
@@ -93,8 +108,11 @@
                               <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
                                   {{- rendered_templates.entry_text -}}</a>
                           {% endif %}
+                          {% if stem %}
+                            <p class="p_stem">(stamme: {{stem_desc}})</p>
+                          {% endif %}
                           {% if l_ref_text %}
-                          <p class="l_ref">{% trans %}se også {% endtrans %}<a href="./?lookup={{l_ref_text.split("_")[0]}}">
+                          <p class="l_ref">se også <a href="./?lookup={{l_ref_text.split("_")[0]}}">
                               {{ l_ref_text.split("_")[0]}}</a></p>
                           {% endif %}
                           <ul class="meanings">
@@ -120,8 +138,11 @@
                         <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
                             {{- rendered_templates.entry_text -}}</a>
                     {% endif %}
+                    {% if stem %}
+                      <p class="p_stem">(stamme: {{stem_desc}})</p>
+                    {% endif %}
                     {% if l_ref_text %}
-                      <p class="l_ref">{% trans %}se også {% endtrans %}<a href="./?lookup={{l_ref_text.split("_")[0]}}">
+                      <p class="l_ref">se også <a href="./?lookup={{l_ref_text.split("_")[0]}}">
                           {{ l_ref_text.split("_")[0]}}</a></p>
                     {% endif %}
                     <ul class="meanings">
@@ -152,6 +173,9 @@
                             {{ reference_link(has_reference) }}
                         {%- else -%}
                             <p class='plus_der'>{{morph_ex_text}}</p>
+                        {% endif %}
+                        {% if stem %}
+                          <p class="p_stem">(stamme: {{stem_desc}})</p>
                         {% endif %}
                         <ul class="meanings">
                             {{- rendered_templates.definition -}}
