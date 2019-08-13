@@ -1053,7 +1053,7 @@ p.user_input_text {
 span.l-r-par {
   font-style: italic;
   color: #0c5278;
-  font-size: 90%;
+  font-size: 90% !important;
 }
 /* Style for 'not found' and 'no corpus available' texts */
 span.not_found {
@@ -1062,7 +1062,11 @@ span.not_found {
 }
 /* Style for l_ref */
 .l_ref {
-  color: #666;
   font-weight: 400;
+  font-size: 95% !important;
+}
+.se_også, .p_stem {
+  color: #666;
+  font-style: italic !important;
   font-size: 90% !important;
 }
