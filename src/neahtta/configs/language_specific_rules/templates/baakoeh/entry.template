@@ -65,7 +65,8 @@
                           {{- rendered_templates.entry_text -}}</a>
                   {% endif %}
                   {% if l_ref_text %}
-                    <p class="l_ref">{% trans %}se også {% endtrans %}<a href="./?lookup={{l_ref_text.split("_")[0]}}">
+                    <p class="l_ref"><span class="se_også">se også </span><a href="./?lookup={{l_ref_text.split("_")[0]}}">
+    {{ l_ref_text.split("_")[0]}}</a></p>
                   {% endif %}
                   <ul class="meanings">
                       {{- rendered_templates.definition -}}
@@ -93,7 +94,8 @@
                                   {{- rendered_templates.entry_text -}}</a>
                           {% endif %}
                           {% if l_ref_text %}
-                            <p class="l_ref">{% trans %}se også {% endtrans %}<a href="./?lookup={{l_ref_text.split("_")[0]}}">
+                            <p class="l_ref"><span class="se_også">se også </span><a href="./?lookup={{l_ref_text.split("_")[0]}}">
+    {{ l_ref_text.split("_")[0]}}</a></p>
                           {% endif %}
                           <ul class="meanings">
                               {{- rendered_templates.definition -}}
@@ -119,7 +121,8 @@
                             {{- rendered_templates.entry_text -}}</a>
                     {% endif %}
                     {% if l_ref_text %}
-                      <p class="l_ref">{% trans %}se også {% endtrans %}<a href="./?lookup={{l_ref_text.split("_")[0]}}">
+                      <p class="l_ref"><span class="se_også">se også </span><a href="./?lookup={{l_ref_text.split("_")[0]}}">
+    {{ l_ref_text.split("_")[0]}}</a></p>
                     {% endif %}
                     <ul class="meanings">
                         {{- rendered_templates.definition -}}
