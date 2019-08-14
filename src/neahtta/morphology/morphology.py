@@ -1196,7 +1196,7 @@ class Morphology(object):
             analyses = self.check_if_lexicalized(form, analyses)
             analyses = self.rearrange_on_count(analyses)
             analyses = self.split_on_compounds(analyses, split_compounds)
-            
+
             analyses_der_fin = self.make_analyses_der_fin(analyses)
 
             for analysis in analyses_der_fin:
@@ -1250,7 +1250,10 @@ class Morphology(object):
                         heapq.nsmallest(2, der_count)[-1])]
                 ]
             else:
-                if min(der_count) != 0:
+                if (min(errorth_count) == 0
+                    and max(errorth_count) == 0 and not max(der_count) > 1):
+                    analyses = analyses
+                elif min(der_count) != 0:
                     analyses = [analyses[der_count.index(min(der_count))]]
         else:
             if (min(errorth_count) == 1 and max(errorth_count) == 1):
