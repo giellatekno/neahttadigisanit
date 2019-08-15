@@ -751,10 +751,19 @@ class SearcherMixin(object):
             current_app.lexicon_templates.render_individual_template(
                 g._from, 'includes.template', **indiv_template_kwargs)
 
+        lemma = all_analyses[0].lemma
+        url_json = korp_query(lemma)
+        url_json = url_json.encode('utf8')
+        if url_json:
+            response = urllib.urlopen(url_json)
+            data = json.loads(response.read())
+            korp_hits = data["hits"]
+
         if search_result_obj.analyses_without_lex:
             leftover_tpl_kwargs = {
                 'analyses': search_result_obj.analyses_without_lex,
                 'analyses_right': search_result_obj.analyses_without_lex,
+                'korp_hits': korp_hits,
             }
             leftover_tpl_kwargs.update(**default_context_kwargs)
             # Process all the context processors
