@@ -735,7 +735,6 @@ class SearcherMixin(object):
             [])
 
         if all_analyses:
-            print 'all_analyses=', all_analyses
             lemma = all_analyses[0].lemma
             url_json = korp_query(lemma)
             url_json = url_json.encode('utf8')
