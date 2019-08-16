@@ -21,8 +21,8 @@
             {% endif %}
             <form id="neahttasaanit" class="form-inline"
                 method="post"
-                action="{{ url_for('.canonical_root_search_pair', _from=_from, _to=_to) }}"> 
-                
+                action="{{ url_for('.canonical_root_search_pair', _from=_from, _to=_to) }}">
+
                 {%- if keyboard %}
                     <div class="input-append input-prepend">
                         <button class="btn" type="button" id="display_keyboard">
@@ -31,15 +31,15 @@
                 {% else -%}
                     <div class="input-append">
                 {% endif -%}
-                    <input type="text" 
-                           name="lookup" 
+                    <input type="text"
+                           name="lookup"
                            lang="{{ _from }}"
                            autocorrect="off"
                            autofocus
                            autocapitalize="off"
                            {% if current_pair_settings.autocomplete %}
                            autocomplete="off"
-                           data-autocomplete-text="{% trans %}Select a word, and press Tab{% endtrans %}"
+                           data-autocomplete-text="{% trans %}Press TAB (&#8677;) or touch screen to select{% endtrans %}"
                            data-autocomplete-path="{{ url_for('.autocomplete', from_language=_from, to_language=_to) }}"
                            data-language-from="{{ _from }}"
                            data-language-to="{{ _to }}"
@@ -57,7 +57,7 @@
                                       <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><button 
+                                        <li><button
                                                type="submit"
                                                class="btn"
                                                formaction="{{ url_for('.external_form_search', _from=_from, _to=_to, _search_type="korp_wordform") }}"
@@ -66,7 +66,7 @@
                                                formtarget="_blank">{% trans %}Search texts{% endtrans %} (Korp)</button></li>
                                     </ul>
                                </div>
-                               <button type="submit" class="btn hidden-phone" 
+                               <button type="submit" class="btn hidden-phone"
                                        formtarget="_self"
                                        formaction="{{ url_for('.canonical_root_search_pair', _from=_from, _to=_to) }}"
                                        formmethod="post"
@@ -84,7 +84,7 @@
                                formmethod="post"
                                formtarget="_blank"
                                lang="{{ current_locale }}"
-                               class="btn hidden-phone display-tablet korp_search" 
+                               class="btn hidden-phone display-tablet korp_search"
                                name="korp_search">
                            {% trans %}Search texts{% endtrans %}
                        </button>

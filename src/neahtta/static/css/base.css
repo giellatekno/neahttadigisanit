@@ -28,7 +28,7 @@ html, body {
 }
 
 .search_note {
-    border-top: 1px solid #CCC ;
+    border-bottom: 1px solid #CCC ;
     padding-top: 2px;
     padding-bottom: 2px;
     margin-bottom: 0;
@@ -42,8 +42,8 @@ html, body {
 
 .search_note a span {
     font-size: 90%;
-    font-style: italic;
     line-height: 1.1em;
+    color: #3A3;
 }
 
 #uitlogo {

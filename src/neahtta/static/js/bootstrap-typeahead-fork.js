@@ -161,11 +161,10 @@
         return i[0]
       })
 
-      items.first().addClass('active')
       this.$menu.html(items)
       if (auto_complete_text_note) {
           var _span = '<li class="search_note"><a href="#"><span>' + auto_complete_text_note + '</span></a></li>'
-          $(this.$menu).append(_span)
+          $(this.$menu).prepend(_span)
       }
       return this
     }
@@ -240,7 +239,6 @@
 
       switch(e.keyCode) {
         case 9: // tab
-        case 13: // enter
         case 27: // escape
           e.preventDefault()
           break
