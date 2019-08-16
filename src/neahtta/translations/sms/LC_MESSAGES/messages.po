@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-06 14:31+0200\n"
+"POT-Creation-Date: 2019-08-16 15:14+0200\n"
 "PO-Revision-Date: 2013-08-26 23:23+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: sms <LL@li.org>\n"
@@ -40,15 +40,15 @@ msgstr ""
 
 #: configs/guusaaw.config.yaml.in:67 configs/kyv.config.yaml.in:166
 #: configs/kyv.config.yaml.in:241 configs/saan.config.yaml.in:107
-#: configs/saanih.config.yaml.in:80 configs/saanih.config.yaml.in:110
-#: configs/sample.config.yaml.in:167 configs/sanat.config.yaml.in:135
+#: configs/saanih.config.yaml.in:82 configs/saanih.config.yaml.in:113
+#: configs/sample.config.yaml.in:167 configs/sanat.config.yaml.in:137
 #: configs/sanit.config.yaml.in:131 configs/sonad.config.yaml.in:155
 #: tests/configs/sanit.config.yaml:122
 msgid "Standard"
 msgstr ""
 
 #: configs/guusaaw.config.yaml.in:77 configs/saan.config.yaml.in:130
-#: configs/saanih.config.yaml.in:84 configs/saanih.config.yaml.in:114
+#: configs/saanih.config.yaml.in:86 configs/saanih.config.yaml.in:117
 msgid "Mobile friendly"
 msgstr ""
 
@@ -283,11 +283,11 @@ msgstr ""
 msgid "Swedish"
 msgstr ""
 
-#: configs/saanih.config.yaml.in:81 configs/saanih.config.yaml.in:111
+#: configs/saanih.config.yaml.in:83 configs/saanih.config.yaml.in:114
 msgid "(<em>âäáčđŋšž</em>)"
 msgstr ""
 
-#: configs/saanih.config.yaml.in:85 configs/saanih.config.yaml.in:115
+#: configs/saanih.config.yaml.in:87 configs/saanih.config.yaml.in:118
 msgid "(incl. <em>aaacdnsz</em>)"
 msgstr ""
 
@@ -325,7 +325,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sonad/about.template:6
 #: configs/language_specific_rules/templates/vada/about.template:7
 #: configs/language_specific_rules/templates/valks/about.template:7
-#: templates/base.html:175 templates/mobile_nav_push_menu.html:14
+#: templates/base.html:177 templates/mobile_nav_push_menu.html:14
 msgid "About"
 msgstr ""
 
@@ -649,6 +649,10 @@ msgstr " (Tälle kielelle ei ole tekstikokoelma)"
 msgid "Paradigm"
 msgstr ""
 
+#: configs/language_specific_rules/templates/entry.template:29
+msgid "see also"
+msgstr ""
+
 #: configs/language_specific_rules/templates/footer.template:9
 #: configs/language_specific_rules/templates/gunaha/footer.template:13
 #: configs/language_specific_rules/templates/gunaha/footer.template:35
@@ -668,13 +672,9 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/index_search_form.template:41
 #: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:44
-#: configs/language_specific_rules/templates/gunaha/index_search_form.template:51
-#: configs/language_specific_rules/templates/guusaaw/index_search_form.template:15
-#: configs/language_specific_rules/templates/itwewina/index_search_form.template:54
-#: configs/language_specific_rules/templates/kidwinan/index_search_form.template:51
 #: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:42
 #: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:42
-msgid "Select a word, and press Tab"
+msgid "Press TAB (&#8677;) or touch screen to select"
 msgstr ""
 
 #: configs/language_specific_rules/templates/index_search_form.template:48
@@ -840,6 +840,13 @@ msgstr ""
 #: configs/language_specific_rules/templates/vada/about.template:105
 #: configs/language_specific_rules/templates/valks/about.template:112
 msgid "More to come..."
+msgstr ""
+
+#: configs/language_specific_rules/templates/gunaha/index_search_form.template:51
+#: configs/language_specific_rules/templates/guusaaw/index_search_form.template:15
+#: configs/language_specific_rules/templates/itwewina/index_search_form.template:54
+#: configs/language_specific_rules/templates/kidwinan/index_search_form.template:51
+msgid "Select a word, and press Tab"
 msgstr ""
 
 #: configs/language_specific_rules/templates/gunaha/index_search_form.template:105
@@ -1139,19 +1146,19 @@ msgstr ""
 msgid "Whoops! There was some kind of error."
 msgstr ""
 
-#: templates/base.html:167 templates/mobile_nav_push_menu.html:6
+#: templates/base.html:169 templates/mobile_nav_push_menu.html:6
 msgid "Home"
 msgstr ""
 
-#: templates/base.html:171 templates/mobile_nav_push_menu.html:10
+#: templates/base.html:173 templates/mobile_nav_push_menu.html:10
 msgid "Plugins"
 msgstr ""
 
-#: templates/base.html:179 templates/mobile_nav_push_menu.html:18
+#: templates/base.html:181 templates/mobile_nav_push_menu.html:18
 msgid "Sources"
 msgstr ""
 
-#: templates/base.html:185 templates/mobile_nav_push_menu.html:22
+#: templates/base.html:187 templates/mobile_nav_push_menu.html:22
 #: templates/mobile_nav_push_menu.html:25
 msgid "Interface language"
 msgstr ""
@@ -1437,7 +1444,7 @@ msgstr ""
 msgid "is a possible form of ... "
 msgstr ""
 
-#: views/search.py:1065 views/search_22-02.py:1178 views/search_korp.py:1153
+#: views/search.py:1079 views/search_22-02.py:1178 views/search_korp.py:1153
 #: views/search_noDer.py:1048
 msgid "Invalid format. Only json and html allowed."
 msgstr ""
@@ -1735,3 +1742,4 @@ msgstr ""
 
 #~ msgid "Komi-Zyrian"
 #~ msgstr ""
+
