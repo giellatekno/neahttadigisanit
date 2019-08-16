@@ -957,7 +957,7 @@ def add_stem2dict():
         print(red("** Add stem type to xml failed, aborting."))
         return
     else:
-        print(cyan("** Added stem type to xml" ))
+        print(green("** Successfully added stem type to xml" ))
 
     cmd = 'cp dicts/sme-nob.all.xml.stem.xml dicts/sme-nob.all.xml'
     overwrite_cmd = env.run(cmd)
