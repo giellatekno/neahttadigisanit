@@ -716,7 +716,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:42
 #: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:42
 msgid "Press TAB (&#8677;) or touch screen to select"
-msgstr ""
+msgstr "Deaddil TAB (&#8677;) dahje guoskka šearpma válljet sáni"
 
 #: configs/language_specific_rules/templates/index_search_form.template:48
 #: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:51
@@ -1266,7 +1266,7 @@ msgstr ""
 
 #: templates/index_search_form.html:15
 msgid "Press Tab to select a word"
-msgstr ""
+msgstr "Deaddi Tab go válljet sáni"
 
 #: templates/keyword_search_form.html:24
 msgid "Enter keyword(s)"
