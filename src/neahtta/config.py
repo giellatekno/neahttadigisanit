@@ -67,12 +67,27 @@ def external_korp_url(pair_details, user_input):
     if ' ' in user_input and delimiter_pattern:
         user_input = delimiter_pattern.join(user_input.split(' '))
 
+    try:
+        user_input = user_input.encode("utf-8")
+    except UnicodeError, e:
+        print 'Error in user_input:', e
+
+    try:
+        url_pattern = url_pattern.encode("utf-8")
+    except UnicodeError, e:
+        print 'Error in url_pattern:', e
+
     url_pattern = url_pattern.replace('USER_INPUT', user_input)
+
+    try:
+        url_pattern = url_pattern.decode("utf-8")
+    except UnicodeError, e:
+        print 'Error in url_pattern:', e
 
     if len(link_corpus_param) != 0:
         url_pattern = url_pattern + '&corpus=' + link_corpus_param
 
-    redirect_url = korp_host + url_pattern.encode('utf-8')
+    redirect_url = korp_host + url_pattern
 
     return redirect(redirect_url)
 
