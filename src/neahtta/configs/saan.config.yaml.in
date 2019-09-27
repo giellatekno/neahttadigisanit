@@ -60,7 +60,7 @@ Morphology:
     inverse_file: [*OPT, '/nob/bin/generator-dict-gt-norm.xfst']
     format: 'xfst'
     options:
-      compoundBoundary: "+Use/Circ#"
+      compoundBoundary: ["#+Cmp+", "#+CmpS+", "+Use/Circ#"]
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'

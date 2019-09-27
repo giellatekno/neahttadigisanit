@@ -587,8 +587,17 @@ class XFST(object):
             #if 'Cmp' in analysis:
             #    last_analysis = analysis_split[len(analysis_split)-1]
             #    analysis_split[len(analysis_split)-1] = last_analysis+'+DCmp'
-            return analysis.split(_cmp)
-            #return analysis_split
+            if isinstance(_cmp, list):
+                for item in _cmp:
+                    if item in analysis:
+                        analysis = analysis.split(item)
+                if isinstance(analysis, list):
+                    return analysis
+                else:
+                    return [analysis]
+            else:
+                return analysis.split(_cmp)
+                #return analysis_split
         else:
             return [analysis]
 
