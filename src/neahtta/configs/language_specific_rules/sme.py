@@ -238,12 +238,12 @@ def match_homonymy_entries(entries_and_tags):
     filtered_results = []
 
     for entry, analyses in entries_and_tags:
+        analyses_to_append = []
         if entry is not None:
             entry_type = entry.find('lg/l').attrib.get('type', False)
             entry_analysis = entry.find('lg/analysis')
             tag_type = [
                 x for x in [a.tag['type'] for a in analyses]
-                if x is not None
             ]
             if entry_type:
                 if len(tag_type) > 0:
@@ -258,13 +258,17 @@ def match_homonymy_entries(entries_and_tags):
             else:
                 part_in_tag_type = False
                 if len(tag_type)>0:
-                    for part in analyses[0].tag.parts:
-                        if part in tag_type:
-                            part_in_tag_type = True
-                    if not part_in_tag_type:
-                        filtered_results.append((entry, analyses))
-                else:
-                    filtered_results.append((entry, analyses))
+                    i = 0
+                    for analysis in analyses:
+                        for part in analysis.tag.parts:
+                            if part in tag_type:
+                                part_in_tag_type = True
+                        if not part_in_tag_type:
+                            analyses_to_append.append(analysis)
+                        if not entry_type and tag_type[i]==None:
+                            analyses_to_append.append(analyses[i])
+                        i += 1
+                    filtered_results.append((entry, analyses_to_append))
         else:
             filtered_results.append((entry, analyses))
 
