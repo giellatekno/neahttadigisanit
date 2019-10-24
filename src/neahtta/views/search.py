@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from logging import getLogger
 
 from flask import (abort, current_app, g, redirect, render_template,
@@ -680,13 +681,13 @@ class SearcherMixin(object):
                 k_query = start_query + corpora + '&cqp=%5Blemma+%3D+%22' + lemma + '%22%5D&start=0&end=99'
             return k_query
 
+        korp_hits = 0
         for _, analyses, paradigm, has_layout in search_result_obj.entries_and_tags_and_paradigms:
             if k < len(res_par):
                 if res_par[k][0] is not None:
                     if not analyses:
                         analyses = 'az'
 
-                    korp_hits = 0
                     if res_par[k][1]:
                         url_json = korp_query(res_par[k][1][0].lemma)
                         url_json = url_json.encode('utf8')
