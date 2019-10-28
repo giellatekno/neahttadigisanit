@@ -9,7 +9,6 @@
 {% set lemma = first_l|text %}
 {% set pos = first_l|xpath('@pos')|first %}
 {% set pos_type = first_l|xpath('@type')|first %}
-
 {% set has_forms = paradigm and paradigm|length > 0 -%}
 {% set paradigm_exists = paradigm|length > 0 %}
 
@@ -41,19 +40,24 @@
 
     {% set prs_text      = "Prs"|tagfilter(_from, _to) %}
     {% set prt_text      = "Prt"|tagfilter(_from, _to) %}
+    {% set neg_text      = "Neg"|tagfilter(_from, _to) %}
+
 
     {% set nonfinite_header = False %}
+    {% if neg_text %}
+        {% set nonfinite_header = neg_text %}
+    {% endif %}
     {# we'll know this isn't just a normal verb with a couple negative
         forms because there are 9 #}
 
     {% macro clean_tag(tag_input) -%}
         {{ tag_input|remove_by_tagset('invisible_in_verb_paradigms')
-                    |tagfilter(_from, _to) }}
+                    |tagfilter(_from, _to)|replace(neg_text, "") }}
     {%- endmacro %}
 
     {% macro clean_nonf_tag(tag_input) -%}
         {{ tag_input|remove_by_tagset('invisible_in_verb_nonfinite_paradigms')
-                    |tagfilter(_from, _to) }}
+                    |tagfilter(_from, _to)|replace(neg_text, "") }}
     {%- endmacro %}
 {%- endif %}
 
@@ -186,23 +190,17 @@
                 <dt>{{ nonfinite_header }}</dt><dd>&nbsp;</dd>
             {% endif %}
 
-            {%- for form in nonfinite_forms -%}
-
-                {% if form.tag %}
-                    <dt>{{ clean_nonf_tag(form.tag) }}</dt>
+            {% set noninf_forms = nonfinite_forms|group_by_tag %}
+            {% for var in noninf_forms %}
+                {% if var[0].tag %}
+                    <dt>{{ clean_tag(var[0].tag) }}</dt>
                 {% endif %}
-
-                {% if form.form %}
-                <dd lang="{{ _from }}">{{ form.form }}</dd>
-                {% else %}
-                    <dd lang="{{ _from }}">?</dd>
-                {% endif %}
-            {%- endfor -%}
+                <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form') }}</dd>
+            {% endfor %}
         </dl>
     {% endif %}
 
 {% elif pos|upper == 'N' %}
-
     {% if pos_type != 'Prop' %}
 
         {% if paradigm_exists %}
