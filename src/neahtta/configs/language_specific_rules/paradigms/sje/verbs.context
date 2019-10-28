@@ -294,3 +294,40 @@
   tag_context: "V+VGen"
   template: "{{ word_form }}"
 
+# negation
+
+- entry_context: "manne"
+  tag_context: "Neg+Prs+Sg1"
+  template: "(manne) {{ word_form }}"
+
+- entry_context: "manne"
+  tag_context: "Neg+Prs+Sg2"
+  template: "(datne) {{ word_form }}"
+
+- entry_context: "manne"
+  tag_context: "Neg+Prs+Sg3"
+  template: "(dïhte) {{ word_form }}"
+
+- entry_context: "manne"
+  tag_context: "Neg+Prs+Du1"
+  template: "(månnoeh) {{ word_form }}"
+
+- entry_context: "manne"
+  tag_context: "Neg+Prs+Du2"
+  template: "(dåtnoeh) {{ word_form }}"
+
+- entry_context: "manne"
+  tag_context: "Neg+Prs+Du3"
+  template: "(dah guaktah) {{ word_form }}"
+
+- entry_context: "manne"
+  tag_context: "Neg+Prs+Pl1"
+  template: "(mijjieh) {{ word_form }}"
+
+- entry_context: "manne"
+  tag_context: "Neg+Prs+Pl2"
+  template: "(dijjieh) {{ word_form }}"
+
+- entry_context: "manne"
+  tag_context: "Neg+Prs+Pl3"
+  template: "(dah) {{ word_form }}"
