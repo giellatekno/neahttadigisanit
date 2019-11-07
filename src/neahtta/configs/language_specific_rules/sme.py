@@ -269,8 +269,46 @@ def match_homonymy_entries(entries_and_tags):
                             analyses_to_append.append(analyses[i])
                         i += 1
                     filtered_results.append((entry, analyses_to_append))
+                else:
+                    filtered_results.append((entry, []))
         else:
             filtered_results.append((entry, analyses))
+
+    '''Check in filtered_results if there are entries with same lemma but one has static paradigm
+    (and matches the search).
+    If yes, display only entry with static paradigm.
+    (Maybe too many arrays, should make it more elegant!).'''
+    entries_lemmaID_pos = []
+    lemma_pos_array = []
+    for entry, analyses in filtered_results:
+        if entry:
+            has_lemma_ref = entry.find('lg/lemma_ref')
+        else:
+            has_lemma_ref = None
+        lemmaID = False
+        pos = False
+        lemma_pos_pair = []
+        if has_lemma_ref is not None:
+            entry_lemmaID = entry.find('lg/lemma_ref').attrib.get('lemmaID', False)
+            lemmaID = entry_lemmaID.split('_')[0]
+            pos = entry_lemmaID.split('_')[1].upper()
+        for item in analyses:
+            try:
+                if [str(item.lemma), str(item.pos)] not in lemma_pos_pair:
+                    lemma_pos_pair.append([str(item.lemma), str(item.pos)])
+            except:
+                if [item.lemma, item.pos] not in lemma_pos_pair:
+                    lemma_pos_pair.append([item.lemma, item.pos])
+        if len(lemma_pos_pair) == 1:
+            lemma_pos_pair = lemma_pos_pair[0]
+        entries_lemmaID_pos.append([entry, lemma_pos_pair, [lemmaID, pos]])
+        lemma_pos_array.append([lemma_pos_pair, [lemmaID, pos]])
+
+    final_results = []
+    for var in lemma_pos_array:
+        if var in lemma_pos_array and [[], var[0]] in lemma_pos_array:
+            entries_lemmaID_pos.pop(lemma_pos_array.index(var))
+            filtered_results.pop(lemma_pos_array.index(var))
 
     return filtered_results
 
