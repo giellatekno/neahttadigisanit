@@ -6,39 +6,39 @@
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Sg1"
-  template: "(manne) {{ word_form }}"
+  template: "(mån) {{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Sg2"
-  template: "(datne) {{ word_form }}"
+  template: "(dån) {{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Sg3"
-  template: "(dïhte) {{ word_form }}"
+  template: "(dat) {{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Du1"
-  template: "(månnoeh) {{ word_form }}"
+  template: "(måj) {{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Du2"
-  template: "(dåtnoeh) {{ word_form }}"
+  template: "(dåj) {{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Du3"
-  template: "(dah guaktah) {{ word_form }}"
+  template: "(såj) {{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Pl1"
-  template: "(mijjieh) {{ word_form }}"
+  template: "(mija) {{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Pl2"
-  template: "(dijjieh) {{ word_form }}"
+  template: "(dija) {{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Pl3"
-  template: "(dah) {{ word_form }}"
+  template: "(da) {{ word_form }}"
 
 
 - entry_context: None
@@ -47,15 +47,11 @@
 
 - entry_context: None
   tag_context: "V+PrfPrc"
-  template: "(lea) {{ word_form }}"
+  template: "(lä) {{ word_form }}"
 
-- entry_context: None
-  tag_context: "V+Ger"
-  template: "(lea) {{ word_form }}"
-
-- entry_context: None
-  tag_context: "V+VGen"
-  template: "{{ word_form }}"
+#- entry_context: None
+#  tag_context: "V+Ger"
+#  template: "(lä) {{ word_form }}"
 
 ##
 ### None Hom2
@@ -63,39 +59,39 @@
 
 - entry_context: None
   tag_context: "Hom2+V+Ind+Prs+Sg1"
-  template: "(manne) {{ word_form }}"
+  template: "(mån) {{ word_form }}"
 
 - entry_context: None
   tag_context: "Hom2+V+Ind+Prs+Sg2"
-  template: "(datne) {{ word_form }}"
+  template: "(dån) {{ word_form }}"
 
 - entry_context: None
   tag_context: "Hom2+V+Ind+Prs+Sg3"
-  template: "(dïhte) {{ word_form }}"
+  template: "(dat) {{ word_form }}"
 
 - entry_context: None
   tag_context: "Hom2+V+Ind+Prs+Du1"
-  template: "(månnoeh) {{ word_form }}"
+  template: "(måj) {{ word_form }}"
 
 - entry_context: None
   tag_context: "Hom2+V+Ind+Prs+Du2"
-  template: "(dåtnoeh) {{ word_form }}"
+  template: "(dåj) {{ word_form }}"
 
 - entry_context: None
   tag_context: "Hom2+V+Ind+Prs+Du3"
-  template: "(dah guaktah) {{ word_form }}"
+  template: "(såj) {{ word_form }}"
 
 - entry_context: None
   tag_context: "Hom2+V+Ind+Prs+Pl1"
-  template: "(mijjieh) {{ word_form }}"
+  template: "(mija) {{ word_form }}"
 
 - entry_context: None
   tag_context: "Hom2+V+Ind+Prs+Pl2"
-  template: "(dijjieh) {{ word_form }}"
+  template: "(dija) {{ word_form }}"
 
 - entry_context: None
   tag_context: "Hom2+V+Ind+Prs+Pl3"
-  template: "(dah) {{ word_form }}"
+  template: "(da) {{ word_form }}"
 
 
 - entry_context: None
@@ -104,15 +100,11 @@
 
 - entry_context: None
   tag_context: "Hom2+V+PrfPrc"
-  template: "(lea) {{ word_form }}"
+  template: "(lä) {{ word_form }}"
 
-- entry_context: None
-  tag_context: "Hom2+V+Ger"
-  template: "(lea) {{ word_form }}"
-
-- entry_context: None
-  tag_context: "Hom2+V+VGen"
-  template: "{{ word_form }}"
+#- entry_context: None
+#  tag_context: "Hom2+V+Ger"
+#  template: "(lä) {{ word_form }}"
 
 ##
 ### None Hom1
@@ -120,39 +112,39 @@
 
 - entry_context: None
   tag_context: "Hom1+V+Ind+Prs+Sg1"
-  template: "(manne) {{ word_form }}"
+  template: "(mån) {{ word_form }}"
 
 - entry_context: None
   tag_context: "Hom1+V+Ind+Prs+Sg2"
-  template: "(datne) {{ word_form }}"
+  template: "(dån) {{ word_form }}"
 
 - entry_context: None
   tag_context: "Hom1+V+Ind+Prs+Sg3"
-  template: "(dïhte) {{ word_form }}"
+  template: "(dat) {{ word_form }}"
 
 - entry_context: None
   tag_context: "Hom1+V+Ind+Prs+Du1"
-  template: "(månnoeh) {{ word_form }}"
+  template: "(måj) {{ word_form }}"
 
 - entry_context: None
   tag_context: "Hom1+V+Ind+Prs+Du2"
-  template: "(dåtnoeh) {{ word_form }}"
+  template: "(dåj) {{ word_form }}"
 
 - entry_context: None
   tag_context: "Hom1+V+Ind+Prs+Du3"
-  template: "(dah guaktah) {{ word_form }}"
+  template: "(såj) {{ word_form }}"
 
 - entry_context: None
   tag_context: "Hom1+V+Ind+Prs+Pl1"
-  template: "(mijjieh) {{ word_form }}"
+  template: "(mija) {{ word_form }}"
 
 - entry_context: None
   tag_context: "Hom1+V+Ind+Prs+Pl2"
-  template: "(dijjieh) {{ word_form }}"
+  template: "(dija) {{ word_form }}"
 
 - entry_context: None
   tag_context: "Hom1+V+Ind+Prs+Pl3"
-  template: "(dah) {{ word_form }}"
+  template: "(da) {{ word_form }}"
 
 
 - entry_context: None
@@ -161,30 +153,26 @@
 
 - entry_context: None
   tag_context: "Hom1+V+PrfPrc"
-  template: "(lea) {{ word_form }}"
+  template: "(lä) {{ word_form }}"
 
-- entry_context: None
-  tag_context: "Hom1+V+Ger"
-  template: "(lea) {{ word_form }}"
-
-- entry_context: None
-  tag_context: "Hom1+V+VGen"
-  template: "{{ word_form }}"
+#- entry_context: None
+#  tag_context: "Hom1+V+Ger"
+#  template: "(lä) {{ word_form }}"
 
 
 ## 3pers
 
 - entry_context: "3pers"
   tag_context: "V+Ind+Prs+Sg3"
-  template: "(dïhte) {{ word_form }}"
+  template: "(dat) {{ word_form }}"
 
 - entry_context: "3pers"
   tag_context: "V+Ind+Prs+Du3"
-  template: "(dah guaktah) {{ word_form }}"
+  template: "(såj) {{ word_form }}"
 
 - entry_context: "3pers"
   tag_context: "V+Ind+Prs+Pl3"
-  template: "(dah) {{ word_form }}"
+  template: "(da) {{ word_form }}"
 
 
 - entry_context: "3pers"
@@ -193,15 +181,11 @@
 
 - entry_context: "3pers"
   tag_context: "V+PrfPrc"
-  template: "(lea) {{ word_form }}"
+  template: "(lä) {{ word_form }}"
 
-- entry_context: "3pers"
-  tag_context: "V+Ger"
-  template: "(lea) {{ word_form }}"
-
-- entry_context: "3pers"
-  tag_context: "V+VGen"
-  template: "{{ word_form }}"
+#- entry_context: "3pers"
+#  tag_context: "V+Ger"
+#  template: "(lä) {{ word_form }}"
 
 
 ## 3pers Hom1
@@ -209,15 +193,15 @@
 
 - entry_context: "3pers"
   tag_context: "Hom1+V+Ind+Prs+Sg3"
-  template: "(dïhte) {{ word_form }}"
+  template: "(dat) {{ word_form }}"
 
 - entry_context: "3pers"
   tag_context: "Hom1+V+Ind+Prs+Du3"
-  template: "(dah guaktah) {{ word_form }}"
+  template: "(såj) {{ word_form }}"
 
 - entry_context: "3pers"
   tag_context: "Hom1+V+Ind+Prs+Pl3"
-  template: "(dah) {{ word_form }}"
+  template: "(da) {{ word_form }}"
 
 
 - entry_context: "3pers"
@@ -226,15 +210,11 @@
 
 - entry_context: "3pers"
   tag_context: "Hom1+V+PrfPrc"
-  template: "(lea) {{ word_form }}"
+  template: "(lä) {{ word_form }}"
 
-- entry_context: "3pers"
-  tag_context: "Hom1+V+Ger"
-  template: "(lea) {{ word_form }}"
-
-- entry_context: "3pers"
-  tag_context: "Hom1+V+VGen"
-  template: "{{ word_form }}"
+#- entry_context: "3pers"
+#  tag_context: "Hom1+V+Ger"
+#  template: "(lä) {{ word_form }}"
 
 
 ## 3pers Hom2
@@ -242,15 +222,15 @@
 
 - entry_context: "3pers"
   tag_context: "Hom2+V+Ind+Prs+Sg3"
-  template: "(dïhte) {{ word_form }}"
+  template: "(dat) {{ word_form }}"
 
 - entry_context: "3pers"
   tag_context: "Hom2+V+Ind+Prs+Du3"
-  template: "(dah guaktah) {{ word_form }}"
+  template: "(såj) {{ word_form }}"
 
 - entry_context: "3pers"
   tag_context: "Hom2+V+Ind+Prs+Pl3"
-  template: "(dah) {{ word_form }}"
+  template: "(da) {{ word_form }}"
 
 
 - entry_context: "3pers"
@@ -259,16 +239,11 @@
 
 - entry_context: "3pers"
   tag_context: "Hom2+V+PrfPrc"
-  template: "(lea) {{ word_form }}"
+  template: "(lä) {{ word_form }}"
 
-- entry_context: "3pers"
-  tag_context: "Hom2+V+Ger"
-  template: "(lea) {{ word_form }}"
-
-- entry_context: "3pers"
-  tag_context: "Hom2+V+VGen"
-  template: "{{ word_form }}"
-
+#- entry_context: "3pers"
+#  tag_context: "Hom2+V+Ger"
+#  template: "(lä) {{ word_form }}"
 
 
 ## upers
@@ -284,50 +259,47 @@
 
 - entry_context: "3pers"
   tag_context: "V+PrfPrc"
-  template: "(lea) {{ word_form }}"
+  template: "(lä) {{ word_form }}"
 
-- entry_context: "3pers"
-  tag_context: "V+Ger"
-  template: "(lea) {{ word_form }}"
+#- entry_context: "3pers"
+#  tag_context: "V+Ger"
+#  template: "(lä) {{ word_form }}"
 
-- entry_context: "3pers"
-  tag_context: "V+VGen"
-  template: "{{ word_form }}"
 
 # negation
 
 - entry_context: "manne"
   tag_context: "Neg+Prs+Sg1"
-  template: "(manne) {{ word_form }}"
+  template: "(mån) {{ word_form }}"
 
 - entry_context: "manne"
   tag_context: "Neg+Prs+Sg2"
-  template: "(datne) {{ word_form }}"
+  template: "(dån) {{ word_form }}"
 
 - entry_context: "manne"
   tag_context: "Neg+Prs+Sg3"
-  template: "(dïhte) {{ word_form }}"
+  template: "(dat) {{ word_form }}"
 
 - entry_context: "manne"
   tag_context: "Neg+Prs+Du1"
-  template: "(månnoeh) {{ word_form }}"
+  template: "(måj) {{ word_form }}"
 
 - entry_context: "manne"
   tag_context: "Neg+Prs+Du2"
-  template: "(dåtnoeh) {{ word_form }}"
+  template: "(dåj) {{ word_form }}"
 
 - entry_context: "manne"
   tag_context: "Neg+Prs+Du3"
-  template: "(dah guaktah) {{ word_form }}"
+  template: "(såj) {{ word_form }}"
 
 - entry_context: "manne"
   tag_context: "Neg+Prs+Pl1"
-  template: "(mijjieh) {{ word_form }}"
+  template: "(mija) {{ word_form }}"
 
 - entry_context: "manne"
   tag_context: "Neg+Prs+Pl2"
-  template: "(dijjieh) {{ word_form }}"
+  template: "(dija) {{ word_form }}"
 
 - entry_context: "manne"
   tag_context: "Neg+Prs+Pl3"
-  template: "(dah) {{ word_form }}"
+  template: "(da) {{ word_form }}"
