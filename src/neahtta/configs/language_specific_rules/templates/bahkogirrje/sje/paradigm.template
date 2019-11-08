@@ -135,8 +135,8 @@
 
                 <tr>
                     <th></th>
-                    <th lang="{{ _to }}">{{ prs_text }} <em>(täʹbbe)</em></th>
-                    <th lang="{{ _to }}">{{ prt_text }} <em>(jåhtta)</em></th>
+                    <th lang="{{ _to }}">{{ prs_text }} <em>(dálatj)</em></th>
+                    <th lang="{{ _to }}">{{ prt_text }} <em>(dulutj)</em></th>
                 </tr>
 
                 {%- for present_forms, preterite_forms in zipped_verbs -%}
