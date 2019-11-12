@@ -57,7 +57,7 @@ Relabel:
       Sbj: "Subjunctive"
       Cond: "Conditional"
       1Sg: "Actor: 1st Person Singular"
-      2Sg: "Actor: 2st Person Singular"
+      2Sg: "Actor: 2nd Person Singular"
       3Sg: "Actor: 3rd Person Singular"
       4Sg: "Actor: 3rd Person Singular (Obviative)"
       X: "Actor: Unspecified"
