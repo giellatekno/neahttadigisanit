@@ -94,7 +94,7 @@ Dictionaries:
     is_korp_default_lang: True
     korp_parallel: True
     korp_search_host: "http://gtweb.uit.no/korp"
-    link_corpus_parameter: 'fin2smn_20170828-fin%2Cfin2smn_20170828-smn'
+    link_corpus_parameter: 'fin2smn_20170828-fin%,fin2smn_20170828-smn'
     corpora: 'FIN2SMN_20170828-FIN,FIN2SMN_20170828-SMN'
     start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
 
@@ -118,6 +118,7 @@ Dictionaries:
 
   - source: sme
     target: smn
+    korp_search_host: "http://gtweb.uit.no/korp"
     path: 'dicts/smesmn.xml'
 
 ReaderConfig:
