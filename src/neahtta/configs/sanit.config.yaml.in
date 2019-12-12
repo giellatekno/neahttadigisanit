@@ -143,8 +143,8 @@ Dictionaries:
     is_korp_default_lang: True
     korp_parallel: True
     korp_search_host: "http://gtweb.uit.no/korp"
-    link_corpus_parameter: "nob2sme_20131127-nob,nob2sme_20131127-sme"
-    corpora: 'NOB2SME_20131127-NOB,NOB2SME_20131127-SME'
+    link_corpus_parameter: "nob2sme_admin_20191210-nob,nob2sme_bible_20191210-nob,nob2sme_facta_20191210-nob,nob2sme_science_20191210-nob,nob2sme_laws_20191210-nob,nob2sme_mixed_20191210-nob,nob2sme_admin_20191210-sme,nob2sme_bible_20191210-sme,nob2sme_facta_20191210-sme,nob2sme_science_20191210-sme,nob2sme_laws_20191210-sme,nob2sme_mixed_20191210-sme"
+    corpora: 'NOB2SME_ADMIN_20191210-NOB,NOB2SME_BIBLE_20191210-NOB,NOB2SME_FACTA_20191210-NOB,NOB2SME_SCIENCE_20191210-NOB,NOB2SME_LAWS_20191210-NOB,NOB2SME_MIXED_20191210-NOB,NOB2SME_ADMIN_20191210-SME,NOB2SME_BIBLE_20191210-SME,NOB2SME_FACTA_20191210-SME,NOB2SME_SCIENCE_20191210-SME,NOB2SME_LAWS_20191210-SME,NOB2SME_MIXED_20191210-SME'
     start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
 
   - source: sme
