@@ -33,13 +33,13 @@
             </span>
             <span class="span4">
                 <h3 class="green">{% trans %}Linguistic basis{% endtrans %}</h3>
-                <p>{% trans %}Write what you wish, and the dictionary will analyze it to break apart compound words and find base forms.{% endtrans %}</p>
-                <p>«manai» <br />
-                    → «manai» <span class="label label-success">V</span> <span class="label label-success">Ind</span> <span class="label label-success">Prt</span> <span class="label label-success">Sg1</span>
+                <p>{% trans %}Write whatever you want in Pite Saami, and the dictionary will analyze it to break apart compound words and find base forms.{% endtrans %}</p>
+                <p>«manaj» <br />
+                    → «manaj» <span class="label label-success">V</span> <span class="label label-success">Ind</span> <span class="label label-success">Prt</span> <span class="label label-success">Sg3</span>
                     <br />
                     → «mannat»
                     <br />
-                    → {% trans %}gå, dra, reise{% endtrans %}</p>
+                    → {% trans %}fara, gå{% endtrans %}</p>
             </span>
         </div>
         <div class="row-fluid">
