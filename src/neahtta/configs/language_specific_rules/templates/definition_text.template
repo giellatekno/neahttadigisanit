@@ -13,7 +13,9 @@
     {% set fra_ref = tg.xpath('./re/@fra_ref')|count > 0 %}
 
     {% if annotations|count > 0 and not fra_ref %}
+      {% if annotations[0].text is not none %}
         ({{ annotations[0].text }})
+      {% endif -%}
     {% endif -%}
 {%- endmacro -%}
 
