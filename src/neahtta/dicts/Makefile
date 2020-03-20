@@ -113,17 +113,17 @@ compile_langs_fsts: $(foreach lang, $(GT_COMPILE_LANGS), langs/$(lang)/src/analy
 compile_langs_fsts: $(langs)
 	@echo $*
 	@echo "***********************"
-	@echo "** Building $(GT_COMPILE_LANGS) $(GT_COMPILE_STARTUP_LANGS) FSTs **"
+	@echo "** Building $(GT_COMPILE_LANGS) $(GT_COMPILE_STARTUP_LANGS) $(GT_COMPILE_EXTERNAL_LANGS) FSTs **"
 	@echo "***********************"
 	@echo ""
 	./build_langs.sh $(BUILD_FLAGS) -l $(subst $(space),$(comma),$(GT_COMPILE_LANGS)) -- --enable-dicts $(LANGS_FLAGS)
-	./build_langs.sh $(BUILD_FLAGS) -s $(subst $(space),$(comma),$(GT_COMPILE_STARTUP_LANGS)) -- --enable-dicts $(LANGS_FLAGS)
+	./build_langs.sh $(BUILD_FLAGS) -s $(subst $(space),$(comma),$(GT_COMPILE_STARTUP_LANGS),$(GT_COMPILE_EXTERNAL_LANGS)) -- --enable-dicts $(LANGS_FLAGS)
 
 install_langs_fsts: $(foreach lang, $(GT_COMPILE_LANGS), langs/$(lang)/src/analyser-gt-desc.xfst)
 install_langs_fsts: $(langs)
 	@echo $*
 	@echo "***********************"
-	@echo "** Copying to target for: $(GT_COMPILE_LANGS) $(GT_COMPILE_STARTUP_LANGS) **"
+	@echo "** Copying to target for: $(GT_COMPILE_LANGS) $(GT_COMPILE_STARTUP_LANGS) $(GT_COMPILE_EXTERNAL_LANGS) **"
 	@echo "***********************"
 	@echo ""
 	for ll in $(GT_COMPILE_LANGS) ; do \
@@ -137,6 +137,12 @@ install_langs_fsts: $(langs)
 		cp $(GTHOME)/startup-langs/$$ll/src/analyser-dict-gt-desc.*  /opt/smi/$$ll/bin/ ; \
 		cp $(GTHOME)/startup-langs/$$ll/src/generator-dict-gt-norm.* /opt/smi/$$ll/bin/ ; \
 		cp $(GTHOME)/startup-langs/$$ll/src/analyser-dict-gt-desc-mobile.*  /opt/smi/$$ll/bin/ ; \
+	done
+	for ll in $(GT_COMPILE_EXTERNAL_LANGS) ; do \
+		mkdir -p ./smi/$$ll/bin/ ; \
+		cp $(GTHOME)/external-langs/$$ll/src/analyser-dict-gt-desc.*  ./smi/$$ll/bin/ ; \
+		cp $(GTHOME)/external-langs/$$ll/src/generator-dict-gt-norm.* ./smi/$$ll/bin/ ; \
+		cp $(GTHOME)/external-langs/$$ll/src/analyser-dict-gt-desc-mobile.*  ./smi/$$ll/bin/ ; \
 	done
 
 .PHONY: clean_langs_fsts
@@ -935,6 +941,7 @@ sonad-install: install_langs_fsts
 ##
 
 SANIT_LANGS_ANALYSERS      :=   sme fin nob sma smj
+SANIT_EXTERNAL_LANGS_ANALYSERS      :=   spa
 SANIT_LANGS_FLAGS          :=   --with-hfst
 SANIT_LANGS_LEXICA         :=
 SANIT_WORDS_DICTS_LEXICA   :=
@@ -1027,6 +1034,15 @@ smjsme.xml: $(GTHOME)/words/dicts/smjsme/src/
 	-@cp $@ $@.$(shell date +%s).bak
 	$(SAXON) inDir=$^ > $@
 
+spasme.xml: $(GTHOME)/words/dicts/spasme/src/
+	@echo "******************************"
+	@echo "** Building spa-sme lexicon **"
+	@echo "******************************"
+	@echo "** Backup made (.bak)       **"
+	@echo "******************************"
+	@echo ""
+	-@cp $@ $@.$(shell date +%s).bak
+	$(SAXON) inDir=$^ > $@
 
 .PHONY: sanit-lexica
 sanit-lexica: fin-sme.all.xml \
@@ -1036,7 +1052,8 @@ sanit-lexica: fin-sme.all.xml \
 			  smesma.xml \
 			  smasme.xml \
 			  smesmj.xml \
-			  smjsme.xml
+			  smjsme.xml \
+				spasme.xml
 
 ##
 ### #smeanalysers
@@ -1057,9 +1074,21 @@ sanit: sanit-lexica compile_langs_fsts
 	@echo ""
 	@echo "Now install analysers in expected paths."
 	@echo "    sudo make sanit-install"
+sanit: GT_COMPILE_EXTERNAL_LANGS := $(SANIT_EXTERNAL_LANGS_ANALYSERS)
+sanit: sanit-lexica compile_external_langs_fsts
+	@echo "******************************************"
+	@echo "** Built external targets for sanit:    **"
+	@echo "**    + sanit external lexica           **"
+	@echo "**    + spa analysers          				 **"
+	@echo "******************************************"
+	@echo ""
+	@echo "Now install analysers in expected paths."
+	@echo "    sudo make sanit-install"
 
 .PHONY: sanit-install
 sanit-install: GT_COMPILE_LANGS := $(SANIT_LANGS_ANALYSERS)
+sanit-install: install_langs_fsts
+sanit-install: GT_COMPILE_EXTERNAL_LANGS := $(SANIT_EXTERNAL_LANGS_ANALYSERS)
 sanit-install: install_langs_fsts
 
 .PHONY: sanit-clean
@@ -1068,7 +1097,7 @@ sanit-clean: clean_langs_fsts
 
 rm-sanit-lexica:
 	@rm -rf fin-sme.all.xml nob-sme.all.xml sme-fin.all.xml sme-nob.all.xml \
-		smesma.xml smasme.xml smesmj.xml smjsme.xml
+		smesma.xml smasme.xml smesmj.xml smjsme.xml spasme.xml
 
 # NB: sme analyzer build is different, as well as target fst file names
 # also there is one additional analyser that comes out of this, which is
