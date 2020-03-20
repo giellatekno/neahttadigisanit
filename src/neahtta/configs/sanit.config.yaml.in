@@ -34,6 +34,7 @@ UnitTests:
 # following settings.
 Tools:
   xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
+  hfst_lookup: &HFST-LOOKUP '/usr/local/bin/hfst-optimized-lookup'
   opt: &OPT '/opt/smi'
 
 # Morphological system definitions. Since YAML variables aren't able to
@@ -77,6 +78,16 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
+  spa:
+    tool: *HFST-LOOKUP
+    file: [*OPT, '/spa/bin/analyser-dict-gt-desc.hfstol']
+    inverse_file: [*OPT, '/spa/bin/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
+    options:
+      compoundBoundary: "#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
 
 Languages:
   - iso: sme
@@ -86,6 +97,7 @@ Languages:
   - iso: nob
   - iso: fin
   - iso: eng
+  - iso: spa
 
 # This also dictates the order of the dictionaries in the UI for now.
 Dictionaries:
@@ -181,6 +193,11 @@ Dictionaries:
   - source: fin
     target: sme
     path: 'dicts/fin-sme.all.xml'
+    autocomplete: true
+
+  - source: spa
+    target: sme
+    path: 'dicts/spasme.xml'
     autocomplete: true
 
 ReaderConfig:

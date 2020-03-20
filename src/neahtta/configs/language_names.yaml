@@ -36,6 +36,7 @@ isos_to_names:
   "en": !gettext "English"
   "hun": !gettext "Hungarian"
   "smj": !gettext "Lule Sámi"
+  "spa": !gettext "Spanish"
 
   # baakoeh
   "sma": !gettext "South Sámi"
