@@ -89,8 +89,14 @@
 
 {%- endmacro -%}
 
+{% set pos = translation_group.xpath('./t/@pos') %}
+{% set phrase = '' %}
+{%- if 'Pfs' in pos %}
+    {% set phrase = '(Phrase) ' %}
+{%- endif %}
+
 {%- if translation_group -%}
-    <span lang="{{ _to }}">{{ render_tg(translation_group) }}</span>
+  <span lang="{{ _to }}">{{phrase}}{{ render_tg(translation_group) }}</span>
 {%- endif -%}
 
 {#  vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}
