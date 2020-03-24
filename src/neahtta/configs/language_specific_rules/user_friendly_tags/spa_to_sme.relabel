@@ -1,0 +1,4 @@
+Relabel:
+  - source_morphology: 'spa'
+    target_ui_language: 'sme'
+    tags: &spatagrelabels
