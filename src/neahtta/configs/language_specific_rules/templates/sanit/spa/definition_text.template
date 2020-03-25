@@ -89,13 +89,12 @@
 
 {%- endmacro -%}
 
-{% set pos = translation_group.xpath('./t/@pos') %}
-{% set phrase = '' %}
-{%- if 'Pfs' in pos %}
-    {% set phrase = '(Phrase) ' %}
-{%- endif %}
-
 {%- if translation_group -%}
+  {% set pos = translation_group.xpath('./t/@pos') %}
+  {% set phrase = '' %}
+  {%- if 'Pfs' in pos %}
+      {% set phrase = '(Phrase) ' %}
+  {%- endif %}
   <span lang="{{ _to }}">{{phrase}}{{ render_tg(translation_group) }}</span>
 {%- endif -%}
 
