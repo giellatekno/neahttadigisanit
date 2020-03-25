@@ -1128,7 +1128,7 @@ class Morphology(object):
     @staticmethod
     def check_if_lexicalized(form, array):
         for index in range(0, len(array)):
-            if form in array[index]:
+            if form == array[index].split("+")[0]:
                 array.insert(0, array[index])
                 del array[index + 1]
         else:
