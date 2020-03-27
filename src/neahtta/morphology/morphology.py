@@ -1140,7 +1140,7 @@ class Morphology(object):
                 for index in range(0, len(array))
             ]
             indmax = [index for index, j in enumerate(mystr) if j == max(mystr)]
-            if (max(mystr) < len(form)):
+            if (max(mystr) <= len(form)):
                 index2 = 0
                 for index in range(0, len(indmax)):
                     array.insert(index2, array.pop(indmax[index]))
