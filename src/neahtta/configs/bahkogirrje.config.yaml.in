@@ -31,8 +31,7 @@ ApplicationSettings:
 # This option set is not used outside of providing shortcuts for
 # following settings.
 Tools:
-  #hfst_lookup: &LOOKUP '/usr/bin/hfst-lookup'
-  lookup: &LOOKUP '/usr/local/bin/lookup'
+  hfst_lookup: &LOOKUP '/usr/bin/hfst-optimised-lookup'
   opt: &OPT '/opt/smi'
 
 # Morphological system definitions. Since YAML variables aren't able to
@@ -41,12 +40,9 @@ Tools:
 Morphology:
   sje:
     tool: *LOOKUP
-    #file: [*OPT, '/sje/src/analyser-dict-gt-desc.hfst']
-    file: [*OPT, '/sje/src/analyser-dict-gt-desc.xfst']
-    #inverse_file: [*OPT, '/sje/src/generator-dict-gt-norm.hfst']
-    inverse_file: [*OPT, '/sje/src/generator-dict-gt-norm.cfst']
-    #format: 'hfst'
-    format: 'xfst'
+    file: [*OPT, '/sje/src/analyser-dict-gt-desc.hfstol']
+    inverse_file: [*OPT, '/sje/src/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
 
 Languages:
   - iso: sje
