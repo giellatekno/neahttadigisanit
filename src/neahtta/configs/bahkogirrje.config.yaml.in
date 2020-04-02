@@ -4,7 +4,7 @@
 ApplicationSettings:
   app_name: "Nähttadigibáhko"
   short_name: "bahkogirrje"
-  default_locale: "no"
+  default_locale: "sv"
   default_pair: ["sje", "swe"]
   mobile_default_pair: false
   # admins_to_email:
