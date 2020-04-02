@@ -40,8 +40,8 @@ Tools:
 Morphology:
   sje:
     tool: *LOOKUP
-    file: [*OPT, '/sje/src/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/sje/src/generator-dict-gt-norm.hfstol']
+    file: [*OPT, '/sje/bin/analyser-dict-gt-desc.hfstol']
+    inverse_file: [*OPT, '/sje/bin/generator-dict-gt-norm.hfstol']
     format: 'hfst'
 
 Languages:
