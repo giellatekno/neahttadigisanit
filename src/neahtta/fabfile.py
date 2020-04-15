@@ -25,7 +25,7 @@ So, to compile the lexicon locally for baakoeh, you would run:
 
 To do the same remotely, and restart the service, you would run:
 
-    $ fab gtweb sanat compile_dictionary restart_service
+    $ fab gtdict sanat compile_dictionary restart_service
 
 With the latter, Fabric will connect via SSH and run commands remotely.
 You may be asked for your SSH password.
@@ -58,9 +58,6 @@ from fabric.utils import abort
 
 # Hosts that have an nds- init.d script
 running_service = [
-    'gtweb.uit.no',
-    'gtlab.uit.no',
-    'gtoahpa.uit.no',
     'gtdict.uit.no',
     'sapir.artsrn.ualberta.ca',
     # sapir
@@ -68,16 +65,13 @@ running_service = [
 ]
 
 no_fst_install = [
-    'gtoahpa.uit.no',
-    'gtweb.uit.no',
     'gtdict.uit.no',
 ]
 
 location_restriction_notice = {
-    'gtoahpa.uit.no': ['sanit', 'baakoeh'],
-    'gtweb.uit.no': [
-        'dikaneisdi', 'erey', 'kyv', 'muter', 'saan', 'saanih', 'sanat',
-        'sonad', 'vada', 'valks'
+    'gtdict.uit.no': [
+        'sanit', 'baakoeh', 'kyv', 'muter', 'saan', 'saanih', 'sanat',
+        'sonad', 'vada', 'valks', 'bahkogirrje'
     ]
 
     # sapir
@@ -182,7 +176,7 @@ env.no_svn_up = False
 env.use_ssh_config = True
 # env.key_filename = '~/.ssh/neahtta'
 
-if ['local', 'gtweb', 'gtoahpa', 'gtdict'] not in sys.argv:
+if ['local', 'gtdict'] not in sys.argv:
     env = local(env)
 
 
@@ -197,31 +191,12 @@ def no_svn_up():
     """ Do not SVN up """
     env.no_svn_up = True
 
-
 @task
-def gtweb():
-    """ Run a command remotely on gtweb
+def gtdict():
+    """ Run a command remotely on gtdict
     """
     env.run = run
-    env.hosts = ['neahtta@gtweb.uit.no']
-    env.path_base = '/home/neahtta'
-
-    env.svn_path = env.path_base + '/gtsvn'
-    env.dict_path = env.path_base + '/neahtta/dicts'
-    env.neahtta_path = env.path_base + '/neahtta'
-    env.i18n_path = env.path_base + '/neahtta/translations'
-
-    env.make_cmd = "make -C %s -f %s" % (
-        env.dict_path, os.path.join(env.dict_path, 'Makefile'))
-    env.remote_no_fst = False
-
-
-@task
-def gtoahpa():
-    """ Run a command remotely on gtoahpa
-    """
-    env.run = run
-    env.hosts = ['neahtta@gtoahpa.uit.no']
+    env.hosts = ['neahtta@gtdict.uit.no']
     env.path_base = '/home/neahtta'
 
     env.svn_path = env.path_base + '/gtsvn'
@@ -359,7 +334,7 @@ def restart_service(dictionary=False):
         try:
             os.utime(_path, None)
             touched = True
-        except Exception, e:
+        except Exception as e:
             touched = False
         if touched:
             print(cyan("** Restarting service for <%s> **" % dictionary))
@@ -418,7 +393,7 @@ def compile(dictionary=False, restart=False):
 
         $ fab compile:DICT
 
-        NB: if the hostname is gtoahpa.uit.no (set in no_fst_install
+        NB: if the hostname is gtdict.uit.no (set in no_fst_install
         list above), only the lexicon will be compiled, FSTs will not be
         compiled or installed.
     """
@@ -441,7 +416,7 @@ def compile(dictionary=False, restart=False):
             env.run("svn up Makefile")
 
         if env.real_hostname in no_fst_install or env.remote_no_fst:
-            print(yellow("** Skip FST compile for gtoahpa and gtweb **"))
+            print(yellow("** Skip FST compile for gtdict **"))
             print(cyan("** Compiling lexicon for <%s> **" % dictionary))
             result = env.run(env.make_cmd + " %s-lexica" % dictionary)
             skip_fst = True
@@ -595,7 +570,7 @@ def update_strings():
 @task
 def find_babel():
     import babel
-    print babel
+    print (babel)
 
 
 # TODO: handle babel.core.UnknownLocaleError: unknown locale 'hdn', with
@@ -696,7 +671,7 @@ def where_is(iso='x'):
     locations = where(iso)
 
     for config, shortname, l in locations:
-        print '%s : %s\t\t%s' % (l, shortname, config)
+        print ('%s : %s\t\t%s' % (l, shortname, config))
 
 
 def search_running():
@@ -718,8 +693,8 @@ def search_running():
 def find_running():
     hostname = env.real_hostname
     for shortname, pidfile in search_running():
-        print "%s running on %s (%s)" % (green(shortname), yellow(hostname),
-                                         pidfile)
+        print ("%s running on %s (%s)" % (green(shortname), yellow(hostname),
+                                         pidfile))
 
 
 @task
@@ -910,6 +885,8 @@ def get_status_code(host, path="/"):
 def test_running():
 
     hosts = [
+        "sanit.oahpa.no",
+        "baakoeh.oahpa.no",
         "kyv.oahpa.no",
         "saanih.oahpa.no",
         "valks.oahpa.no",
@@ -918,6 +895,7 @@ def test_running():
         "saan.oahpa.no",
         "sonad.oahpa.no",
         "vada.oahpa.no",
+        "bahkogirrje.oahpa.no",
     ]
 
     for h in hosts:
