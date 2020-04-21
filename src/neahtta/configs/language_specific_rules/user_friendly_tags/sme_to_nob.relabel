@@ -504,6 +504,9 @@
       "Sem/Sur": ""
       "Sem/Time": ""
 
+      "ⓒ": ""
+      "ⓓ": ""
+      "ⓛ": ""
 
   - source_morphology: 'SoMe'
     target_ui_language: 'nob'

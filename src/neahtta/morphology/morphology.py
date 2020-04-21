@@ -582,22 +582,45 @@ generation_overrides = GenerationOverrides()
 class XFST(object):
     def splitTagByCompound(self, analysis):
         _cmp = self.options.get('compoundBoundary', False)
+        is_cmp = False
         if _cmp:
-            #analysis_split = analysis.split(_cmp)
-            #if 'Cmp' in analysis:
-            #    last_analysis = analysis_split[len(analysis_split)-1]
-            #    analysis_split[len(analysis_split)-1] = last_analysis+'+DCmp'
+            # in order to obtain a better display for compounds a "dummy" tag is needed for the last part of the analysis
+            # Check if "Cmp" tag and if yes, split analysis and add u'\u24D2'(= ⓒ ) to last part
+            # If the last part of the analysis contains "Der" tag, split it and add u'\u24D3'(= ⓓ ) to the first part and
+            # u'\u24DB' (= ⓛ ) to the last part
+            # Ex_1: miessemánnofeasta
+            #   analysis_1 u'miessem\xe1nnu+N+Cmp/SgNom+Cmp#feasta+N+Sg+Nom'
+            #   becomes: u'miessem\xe1nnu+N+Cmp/SgNom', u'feasta+N+Sg+Nom+\u24d2'
+            # Ex_2: musihkkaalmmuheapmi
+            #   analysis_1 = u'musihkka+N+Cmp/SgNom+Cmp#almmuheapmi+N+Sg+Nom'
+            #   becomes = u'musihkka+N+Cmp/SgNom', u'almmuheapmi+N+Sg+Nom+\u24d2'
+            #   analysis_2 = u'musihkka+N+Cmp/SgNom+Cmp#almmuhit+V+TV+Der/NomAct+N+Sg+Nom'
+            #   becomes = u'musihkka+N+Cmp/SgNom', u'almmuhit+V+TV+\u24d3+Der/NomAct+N+Sg+Nom+\u24db'
+            if 'Cmp' in analysis:
+                is_cmp = True
             if isinstance(_cmp, list):
                 for item in _cmp:
                     if item in analysis:
                         analysis = analysis.split(item)
+                        if is_cmp:
+                            last_analysis = analysis[len(analysis)-1]
+                            analysis[len(analysis)-1] = last_analysis + '+' + u'\u24D2'
+                            if 'Der' in last_analysis:
+                                ind_der = last_analysis.find('Der')
+                                analysis[len(analysis)-1] = last_analysis[0:ind_der] + u'\u24D3' + '+' + last_analysis[ind_der:] + '+' + u'\u24DB'
                 if isinstance(analysis, list):
                     return analysis
                 else:
                     return [analysis]
             else:
-                return analysis.split(_cmp)
-                #return analysis_split
+                analysis = analysis.split(_cmp)
+                if is_cmp:
+                    last_analysis = analysis[len(analysis)-1]
+                    analysis[len(analysis)-1] = last_analysis + '+' + u'\u24D2'
+                    if 'Der' in last_analysis:
+                        ind_der = last_analysis.find('Der')
+                        analysis[len(analysis)-1] = last_analysis[0:ind_der] + u'\u24D3' + '+' + last_analysis[ind_der:] + '+' + u'\u24DB'
+                return analysis
         else:
             return [analysis]
 
