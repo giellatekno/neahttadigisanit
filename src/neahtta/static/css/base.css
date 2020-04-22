@@ -1070,3 +1070,8 @@ span.not_found {
   font-style: italic !important;
   font-size: 90% !important;
 }
+/* Style for etymology */
+.etymology {
+  font-size: 85%;
+  margin-left: 4em;
+}
