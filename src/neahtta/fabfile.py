@@ -927,7 +927,7 @@ def add_stem2dict():
     else:
         print(cyan("** Backing up xml" ))
 
-    cmd = 'python $GTHOME/words/dicts/scripts/add_stemtype2xml.py $GTHOME/langs/sme/src/morphology/stems/nouns.lexc $GTHOME/words/dicts/smenob/scripts/nouns_stemtypes.txt dicts/sme-nob.all.xml'
+    cmd = 'python $GTHOME/words/dicts/scripts/add_stemtype2xml.py $GTHOME/langs/sme/src/fst/stems/nouns.lexc $GTHOME/words/dicts/smenob/scripts/nouns_stemtypes.txt dicts/sme-nob.all.xml'
 
     add_cmd = env.run(cmd)
 
