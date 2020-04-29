@@ -176,7 +176,7 @@ compile_langs_lexicon:
 			echo " * Backing up to $$ll-all.xml.$(shell date +%s).bak"  ; \
 			cp -R $$ll-all.xml $$ll-all.xml.$(shell date +%s).bak ; \
 		fi ; \
-		$(SAXON) inDir=$(GTHOME)/langs/$$ll/src/morphology/stems/ > $$ll-all.xml ; \
+		$(SAXON) inDir=$(GTHOME)/langs/$$ll/src/fst/stems/ > $$ll-all.xml ; \
 		echo " * Compiling resulted in: " ; \
 		wc -l $$ll-all.xml ; \
 	done
@@ -230,7 +230,7 @@ print_complete_message:
 ###    # These are the ISOs of the languages to compile from GTHOME/startup-langs/
 ###    SAMPLE_STARTUP_LANGS_ANALYSERS   :=   lav
 ###
-###    # Compile the lexicon from within GTHOME/langs/LANG/src/morphology/stems/*.xml
+###    # Compile the lexicon from within GTHOME/langs/LANG/src/fst/stems/*.xml
 ###
 ###    SAMPLE_LANGS_LEXICA              :=   liv izh vep vro vot
 ###
@@ -278,7 +278,7 @@ NDSTESTING_LANGS_ANALYSERS           :=   kca nob rus
 # These are the ISOs of the languages to compile from GTHOME/startup-langs/
 NDSTESTING_STARTUP_LANGS_ANALYSERS   :=
 
-# Compile the lexicon from within GTHOME/langs/LANG/src/morphology/stems/*.xml
+# Compile the lexicon from within GTHOME/langs/LANG/src/fst/stems/*.xml
 
 NDSTESTING_LANGS_LEXICA              :=   kca
 
@@ -372,7 +372,7 @@ SAANIH_LANGS_ANALYSERS           :=   smn
 # These are the ISOs of the languages to compile from GTHOME/startup-langs/
 # SAANIH_STARTUP_LANGS_ANALYSERS   :=   lav
 
-# Compile the lexicon from within GTHOME/langs/LANG/src/morphology/stems/*.xml
+# Compile the lexicon from within GTHOME/langs/LANG/src/fst/stems/*.xml
 
 # SAANIH_LANGS_LEXICA              :=   smn
 
@@ -1277,7 +1277,7 @@ bahkogirrje-install: install_langs_fsts
 ###    # These are the ISOs of the languages to compile from GTHOME/startup-langs/
 ###    SAMPLE_STARTUP_LANGS_ANALYSERS   :=   lav
 ###
-###    # Compile the lexicon from within GTHOME/langs/LANG/src/morphology/stems/*.xml
+###    # Compile the lexicon from within GTHOME/langs/LANG/src/fst/stems/*.xml
 ###
 ###    SAMPLE_LANGS_LEXICA              :=   liv izh vep vro vot
 ###
@@ -1329,7 +1329,7 @@ FOCAIL_LANGS_ANALYSERS           :=
 # These are the ISOs of the languages to compile from GTHOME/startup-langs/
 FOCAIL_STARTUP_LANGS_ANALYSERS   :=   gle
 
-# Compile the lexicon from within GTHOME/langs/LANG/src/morphology/stems/*.xml
+# Compile the lexicon from within GTHOME/langs/LANG/src/fst/stems/*.xml
 
 FOCAIL_LANGS_LEXICA              :=
 
