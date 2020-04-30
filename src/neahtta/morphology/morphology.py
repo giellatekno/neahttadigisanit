@@ -1154,6 +1154,7 @@ class Morphology(object):
             if form == array[index].split("+")[0]:
                 array.insert(0, array[index])
                 del array[index + 1]
+                return array
         else:
             # If the user input is not in the base form, the for above doesn't find the analyses
             # so find the longest analyses and put it/them in the first/s element/s
