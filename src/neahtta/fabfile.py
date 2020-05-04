@@ -927,15 +927,36 @@ def add_stem2dict():
     else:
         print(cyan("** Backing up xml" ))
 
-    cmd = 'python $GTHOME/words/dicts/scripts/add_stemtype2xml.py $GTHOME/langs/sme/src/fst/stems/nouns.lexc $GTHOME/words/dicts/smenob/scripts/nouns_stemtypes.txt dicts/sme-nob.all.xml'
+    # Nouns
+    nouns_cmd = 'python $GTHOME/words/dicts/scripts/add_stemtype2xml.py $GTHOME/langs/sme/src/fst/stems/nouns.lexc $GTHOME/words/dicts/smenob/scripts/nouns_stemtypes.txt dicts/sme-nob.all.xml'
 
-    add_cmd = env.run(cmd)
+    add_cmd = env.run(nouns_cmd)
 
     if add_cmd.failed:
-        print(red("** Add stem type to xml failed, aborting."))
+        print(red("** Add stem type for nouns to xml failed, aborting."))
         return
     else:
-        print(green("** Successfully added stem type to xml" ))
+        print(green("** Successfully added stem type for nouns to xml" ))
+
+    cmd = 'cp dicts/sme-nob.all.xml.stem.xml dicts/sme-nob.all.xml'
+    overwrite_cmd = env.run(cmd)
+
+    if overwrite_cmd.failed:
+        print(red("** Overwrite xml failed, aborting."))
+        return
+    else:
+        print(cyan("** Overwriting xml" ))
+
+    # Adjectives
+    adj_cmd = 'python $GTHOME/words/dicts/scripts/add_stemtype2xml.py $GTHOME/langs/sme/src/fst/stems/adjectives.lexc $GTHOME/words/dicts/smenob/scripts/adjectives_stemtypes.txt dicts/sme-nob.all.xml'
+
+    add_cmd = env.run(adj_cmd)
+
+    if add_cmd.failed:
+        print(red("** Add stem type for adjectives to xml failed, aborting."))
+        return
+    else:
+        print(green("** Successfully added stem type for adjectives to xml" ))
 
     cmd = 'cp dicts/sme-nob.all.xml.stem.xml dicts/sme-nob.all.xml'
     overwrite_cmd = env.run(cmd)
