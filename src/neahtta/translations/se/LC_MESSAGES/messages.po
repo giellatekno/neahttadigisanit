@@ -1266,7 +1266,7 @@ msgstr ""
 
 #: templates/index_search_form.html:15
 msgid "Press Tab to select a word"
-msgstr "Deaddi Tab go válljet sáni"
+msgstr "Deaddil Tab go válljet sáni"
 
 #: templates/keyword_search_form.html:24
 msgid "Enter keyword(s)"
