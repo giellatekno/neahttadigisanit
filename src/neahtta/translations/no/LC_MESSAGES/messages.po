@@ -343,7 +343,7 @@ msgstr "Om ordboka"
 #: configs/language_specific_rules/templates/vada/about.template:17
 #: configs/language_specific_rules/templates/valks/about.template:17
 msgid "A dictionary that understands what you're looking for."
-msgstr ""
+msgstr "Ei ordbok som forstår hva du leter etter."
 
 #: configs/language_specific_rules/templates/about.template:15
 #: configs/language_specific_rules/templates/baakoeh/about.template:16
@@ -414,7 +414,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/vada/about.template:29
 #: configs/language_specific_rules/templates/valks/about.template:29
 msgid "Open-Source"
-msgstr ""
+msgstr "Åpen kildekode"
 
 #: configs/language_specific_rules/templates/about.template:27
 #: configs/language_specific_rules/templates/baakoeh/about.template:28
@@ -474,6 +474,8 @@ msgid ""
 "Write what you wish, and the dictionary will analyze it to break apart "
 "compound words and find base forms."
 msgstr ""
+"Skriv hva du vil, og ordboka analyserer det for å finne sammensetninger "
+"og grunnformer."
 
 #: configs/language_specific_rules/templates/about.template:42
 #: configs/language_specific_rules/templates/baakoeh/about.template:43
@@ -499,7 +501,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/vada/about.template:52
 #: configs/language_specific_rules/templates/valks/about.template:52
 msgid "Source material"
-msgstr ""
+msgstr "Kildemateriale"
 
 #: configs/language_specific_rules/templates/about.template:56
 #: configs/language_specific_rules/templates/sanit/about.template:57
@@ -575,7 +577,7 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/about.template:67
 msgid "Each of the dictionaries contains about 11,000 base words."
-msgstr ""
+msgstr "Hver av ordbøkene inneholder omtrent 11.000 lemmaer"
 
 #: configs/language_specific_rules/templates/about.template:72
 #: configs/language_specific_rules/templates/baakoeh/about.template:64
@@ -616,7 +618,7 @@ msgid ""
 "                were searching for when you encountered the problem."
 msgstr ""
 "Hvis du finner noe galt, ta kontakt med oss. Bekriv problemet,\n"
-"                og fortell hvilket internettprogram eller or mobiltelefon du "
+"                og fortell hvilket internettprogram eller mobiltelefon du "
 "brukte, og hvilket ord du\n"
 "                letet etter da problemet oppsto."
 
@@ -724,7 +726,7 @@ msgstr "Trykk TAB (&#8677;) eller berør skjermen for å velge ord"
 #: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:49
 #: templates/index_search_form.html:21
 msgid "ohcansátni"
-msgstr "ord"
+msgstr "søkeord"
 
 #: configs/language_specific_rules/templates/index_search_form.template:53
 #: configs/language_specific_rules/templates/index_search_form.template:73
@@ -795,7 +797,7 @@ msgstr "Andre ordbøker"
 #: configs/language_specific_rules/templates/valks/mdf/paradigm.template:117
 #: configs/language_specific_rules/templates/valks/myv/paradigm.template:117
 msgid "Full paradigm"
-msgstr "Fullt paradigme"
+msgstr "Flere bøyningsformer"
 
 #: configs/language_specific_rules/templates/search_info.template:3
 #: configs/language_specific_rules/templates/sanit/search_info.template:9
@@ -893,7 +895,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/itwewina/index_search_form.template:108
 #: configs/language_specific_rules/templates/kidwinan/index_search_form.template:105
 msgid "Previous:"
-msgstr ""
+msgstr "Tidligere:"
 
 #: configs/language_specific_rules/templates/gunaha/index_search_form.template:109
 #: configs/language_specific_rules/templates/guusaaw/index_search_form.template:53
@@ -907,7 +909,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/itwewina/sources.template:11
 #: configs/language_specific_rules/templates/kidwinan/sources.template:6
 msgid "Sources and References"
-msgstr ""
+msgstr "Kilder og referanser"
 
 #: configs/language_specific_rules/templates/guusaaw/about.template:56
 msgid ""
@@ -945,31 +947,31 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/kyv/examples.template:76
 msgid "saying"
-msgstr ""
+msgstr "uttrykk"
 
 #: configs/language_specific_rules/templates/kyv/examples.template:78
 msgid "riddle"
-msgstr ""
+msgstr "gåte"
 
 #: configs/language_specific_rules/templates/kyv/examples.template:80
 msgid "proverb"
-msgstr ""
+msgstr "ordtak"
 
 #: configs/language_specific_rules/templates/kyv/examples.template:82
 msgid "sign"
-msgstr ""
+msgstr "tegn"
 
 #: configs/language_specific_rules/templates/kyv/examples.template:85
 msgid "play on words"
-msgstr ""
+msgstr "ordspill"
 
 #: configs/language_specific_rules/templates/kyv/examples.template:87
 msgid "idiom"
-msgstr ""
+msgstr "idiomatisk uttrykk"
 
 #: configs/language_specific_rules/templates/kyv/examples.template:122
 msgid "answer"
-msgstr ""
+msgstr "svar"
 
 #: configs/language_specific_rules/templates/muter/about.template:43
 #: configs/language_specific_rules/templates/vada/about.template:45
@@ -1015,7 +1017,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanat/about.template:57
 #: configs/language_specific_rules/templates/sonad/about.template:57
 msgid "liv ↔ fin"
-msgstr ""
+msgstr "Livisk ↔ finsk"
 
 #: configs/language_specific_rules/templates/sanat/about.template:58
 #: configs/language_specific_rules/templates/sonad/about.template:58
@@ -1091,7 +1093,7 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/sanit/about.template:64
 msgid "In both directions there are about 11,000 entries."
-msgstr ""
+msgstr "Hver av ordbøkene inneholder omtrent 11.000 søkeord"
 
 #: configs/language_specific_rules/templates/sanit/notice.template:5
 msgid "Other North Saami dictionaries"
