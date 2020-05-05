@@ -1269,7 +1269,7 @@ msgstr ""
 #: templates/mobile_nav_push_menu.html:63
 #: templates/mobile_nav_push_menu.html:83
 msgid "Written variant"
-msgstr ""
+msgstr "Skrivemåte"
 
 #: templates/left_nav_search_variants.html:14
 msgid "Search type"
@@ -1283,7 +1283,7 @@ msgstr ""
 
 #: templates/macros.html:5 templates/macros.html:13
 msgid "Texts"
-msgstr ""
+msgstr "Tekster"
 
 #: templates/mobile_nav_push_menu.html:26
 #: templates/mobile_nav_push_menu.html:45
@@ -1291,11 +1291,11 @@ msgstr ""
 #: templates/mobile_nav_push_menu.html:60
 #: templates/mobile_nav_push_menu.html:80
 msgid "Back"
-msgstr ""
+msgstr "Tilbake"
 
 #: templates/more_dictionaries.html:4
 msgid "More dictionaris"
-msgstr ""
+msgstr "Flere ordbøker"
 
 #: templates/more_dictionaries.html:24
 msgid ""
@@ -1305,11 +1305,11 @@ msgstr ""
 
 #: templates/more_dictionaries.html:28
 msgid "North Saami"
-msgstr ""
+msgstr "Nordsamisk"
 
 #: templates/more_dictionaries.html:29
 msgid "South Saami"
-msgstr ""
+msgstr "Sørsamisk"
 
 #: templates/more_dictionaries.html:30
 msgid "Cherokee "
@@ -1325,7 +1325,7 @@ msgstr ""
 
 #: templates/more_dictionaries.html:33
 msgid "Skolt Saami"
-msgstr ""
+msgstr "Østsamisk"
 
 #: templates/more_dictionaries.html:35
 msgid "Finnish, Kven, Karelian, Veps"
@@ -1366,7 +1366,7 @@ msgstr ""
 
 #: templates/reader.html:21
 msgid "Bookmarklet"
-msgstr ""
+msgstr "Bokmerke"
 
 #: templates/reader.html:22
 msgid ""
