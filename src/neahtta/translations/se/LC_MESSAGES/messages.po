@@ -1256,7 +1256,7 @@ msgstr ""
 
 #: templates/config_doc.html:4 templates/config_docs.html:4
 msgid "Neahttadigisánit"
-msgstr "Neahttadigisániid deaddilastte-teavsttas"
+msgstr "Neahttadigisánit"
 
 #: templates/index.html:105 templates/index.html:112
 msgid ""
