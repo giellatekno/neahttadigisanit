@@ -802,8 +802,8 @@ msgstr "Flere bøyningsformer"
 #: configs/language_specific_rules/templates/search_info.template:3
 #: configs/language_specific_rules/templates/sanit/search_info.template:9
 msgid "Search for a word, or a word form for a word analysis and definition."
-msgstr "Søk et ord, evt. et bøyd ord. Når du har søkt: Hvis du klikker på ordet, " 
-"ser du hvordan ordet bøyes." 
+msgstr "Søk et ord, evt. et bøyd ord. Når du har søkt: Hvis du klikker på ordet, "
+"ser du hvordan ordet bøyes."
 ""
 "Med "Søk i tekst"-knappen søker du ordet i setninger, og du får med alle bøyde "
 "former hvis du bruker linken som dukker opp i høyre marg når du har valgt "Søk""
@@ -1435,8 +1435,8 @@ msgid ""
 " our documentation</a>."
 msgstr ""
 "Følg vår <a "
-"href=\"http://giellatekno.uit.no/doc/dicts/nds/AddingNDSPluginToOtherSites.html\">dokumen
-tasjon</a>."
+"href=\"http://giellatekno.uit.no/doc/dicts/nds/AddingNDSPluginToOtherSites.html\">dokumen"
+"tasjon</a>."
 
 #: templates/reader.html:32
 msgid "Browser support"
@@ -1539,4 +1539,3 @@ msgstr " er en mulig form av ... "
 #: views/search_noDer.py:1048
 msgid "Invalid format. Only json and html allowed."
 msgstr "Ugyldig format. Bare json og html er tillatt."
-
