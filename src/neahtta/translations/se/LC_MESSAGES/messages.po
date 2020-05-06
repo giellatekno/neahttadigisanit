@@ -207,7 +207,7 @@ msgstr "Nenecagiella"
 
 #: configs/language_names.yaml:77
 msgid "Northern Mansi"
-msgstr "Davvihaida"
+msgstr "Davvimansi"
 
 #: configs/language_names.yaml:78 configs/language_names.yaml:81
 msgid "Skolt Sami"
@@ -1366,7 +1366,7 @@ msgstr "Mordvagielat"
 
 #: templates/more_dictionaries.html:41
 msgid "We're also working on new language pairs."
-msgstr ""
+msgstr "Mii bargat eanet giellapáraiguin."
 
 #: templates/more_dictionaries.html:44
 msgid "Even more dictionaries..."
