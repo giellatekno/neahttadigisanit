@@ -129,6 +129,10 @@ msgstr "Ungáragiella"
 msgid "Lule Sámi"
 msgstr ""
 
+#: configs/language_names.yaml:41
+msgid "Spanish"
+msgstr "Espánnjagiella"
+
 #: configs/language_names.yaml:43
 msgid "South Sámi"
 msgstr "Lullisámegiella"

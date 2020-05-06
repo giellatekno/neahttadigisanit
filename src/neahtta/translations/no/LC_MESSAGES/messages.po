@@ -130,6 +130,10 @@ msgstr "Ungarsk"
 msgid "Lule Sámi"
 msgstr "Lulesamisk"
 
+#: configs/language_names.yaml:41
+msgid "Spanish"
+msgstr "Spansk"
+
 #: configs/language_names.yaml:43
 msgid "South Sámi"
 msgstr "Sørsamisk"
