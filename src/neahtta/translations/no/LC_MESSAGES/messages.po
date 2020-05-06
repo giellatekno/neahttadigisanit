@@ -808,6 +808,8 @@ msgstr "Søk et ord, evt. et bøyd ord. Når du har søkt: Hvis du klikker på o
 "Med "Søk i tekst"-knappen søker du ordet i setninger, og du får med alle bøyde "
 "former hvis du bruker linken som dukker opp i høyre marg når du har valgt "Søk""
 
+
+
 #: configs/language_specific_rules/templates/baakoeh/about.template:58
 msgid ""
 "The dictionaries for South Saami and Norwegian build on material prepared"
@@ -945,7 +947,7 @@ msgstr ""
 #: templates/index.html:95
 #, python-format
 msgid "Other analyses for <em>%(user_input)s</em> without a translation."
-msgstr ""
+msgstr "Andre analyser for <em>%(user_input)s</em> uten oversetting."
 
 #: configs/language_specific_rules/templates/kyv/examples.template:76
 msgid "saying"
@@ -1066,8 +1068,7 @@ msgid ""
 " plus 6000 place name entries. Norwegian → North Sámi is based on the "
 "North Sámi → Norwegian dictionary, but we have added frequent Norwegian "
 "words. It contains about 26,000 Norwegian entries. "
-msgstr ""
-"Nordsamisk → Norsk ordbok bygger på Nils Jernsletten's ordbok "
+msgstr "Nordsamisk → Norsk ordbok bygger på Nils Jernsletten's ordbok "
 "<em>Álgosátnegirji</em> (4322 ord), men nå inneholder ordboka 31.000 oppslagsord, "
 "pluss 6000 stedsnavn. Norsk → Nordsamisk bygger på "
 "Nordsamisk → Norsk ordbok, men vi har i tillegg lagt til vanlige norske "
@@ -1376,7 +1377,7 @@ msgstr ""
 #: templates/reader.html:3 templates/reader.html:20
 #, python-format
 msgid "%(project_name)s Reader"
-msgstr ""
+msgid "%(project_name)s Klikk-i-tekst"
 
 #: templates/reader.html:21
 msgid "Bookmarklet"
@@ -1418,15 +1419,15 @@ msgstr ""
 
 #: templates/reader.html:26
 msgid "Installing on a website"
-msgstr ""
-"Det er også mulig å installere klikk-i-tekst på en internettside, slik at"
-" brukere vil kunne bruke ordboka uten bruk av bokmerke."
+msgstr "Installering på en internettside"
 
 #: templates/reader.html:28
 msgid ""
 "It is also possible to install the reader plugin on a website, so that "
 "users will have access to dictionaries without the bookmarklet."
 msgstr ""
+"Det er også mulig å installere klikk-i-tekst på en internettside, slik at"
+" brukere vil kunne bruke ordboka uten bruk av bokmerke."
 
 #: templates/reader.html:31
 msgid ""
