@@ -1330,17 +1330,14 @@ msgid ""
 msgstr "Neahttadigisánit on saatavana seuraaville kieliryhmille."
 
 #: templates/more_dictionaries.html:28
-#, fuzzy
 msgid "North Saami"
 msgstr "Pohjoissaame"
 
 #: templates/more_dictionaries.html:29
-#, fuzzy
 msgid "South Saami"
 msgstr "Eteläsaame"
 
 #: templates/more_dictionaries.html:30
-#, fuzzy
 msgid "Cherokee "
 msgstr "Cherokee"
 
@@ -1353,7 +1350,6 @@ msgid "Mari"
 msgstr ""
 
 #: templates/more_dictionaries.html:33
-#, fuzzy
 msgid "Skolt Saami"
 msgstr "Koltansaame"
 
@@ -1366,7 +1362,6 @@ msgid "Livonian, Estonian, Vot"
 msgstr ""
 
 #: templates/more_dictionaries.html:38
-#, fuzzy
 msgid "Mordvinian"
 msgstr "Mordvalaiskielet"
 
@@ -1404,7 +1399,6 @@ msgid "Bookmarklet"
 msgstr "Kirjanmerkki"
 
 #: templates/reader.html:22
-#, fuzzy
 msgid ""
 "Drag and drop the following link to your Bookmark toolbar, then click it "
 "when you are on a page you wish to read. The service will automatically "
@@ -1422,7 +1416,6 @@ msgid "Read with %(project_name)s"
 msgstr "Lue %(project_name)s avulla"
 
 #: templates/reader.html:24
-#, fuzzy
 msgid ""
 "In order to look up a word, hold Alt or Option (⌥) and double click the "
 "word. The service will will connect to this website and return dictionary"
@@ -1441,7 +1434,6 @@ msgid "Installing on a website"
 msgstr "Asentaminen verkkosivulla"
 
 #: templates/reader.html:28
-#, fuzzy
 msgid ""
 "It is also possible to install the reader plugin on a website, so that "
 "users will have access to dictionaries without the bookmarklet."
@@ -1488,7 +1480,6 @@ msgid "Bugs?"
 msgstr "Virheitä?"
 
 #: templates/reader.html:41
-#, fuzzy
 msgid ""
 "If you encounter bugs, or the bookmarklet does not work on a particular "
 "page, contact us with the page URL or details of what you were reading "
@@ -1499,7 +1490,6 @@ msgstr ""
 "teit kun ongelma ilmentyi."
 
 #: templates/reader.html:42
-#, fuzzy
 msgid ""
 "We do not store any private data, but we do collect individual dictionary"
 " lookups for statistics and to improve the dictionary."
