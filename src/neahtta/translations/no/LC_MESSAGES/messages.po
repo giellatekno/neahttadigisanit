@@ -668,7 +668,7 @@ msgid ""
 "list</a>, and more\n"
 "                resources."
 msgstr "Trenger du flere ordbøker? <a href=\"http://dicts.uit.no/\">Her er vår fulle "
-"liste</a>, and more\n"
+"liste</a>"
 
 #: configs/language_specific_rules/templates/analyses.template:23
 msgid " (Not found in our corpus)"
