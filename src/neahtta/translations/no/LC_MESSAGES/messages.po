@@ -375,7 +375,7 @@ msgstr "(... og er tilpassa mobiltelefonen!)"
 #: configs/language_specific_rules/templates/vada/about.template:22
 #: configs/language_specific_rules/templates/valks/about.template:22
 msgid "Free"
-msgstr ""
+msgstr "Åpen"
 
 #: configs/language_specific_rules/templates/about.template:20
 #: configs/language_specific_rules/templates/baakoeh/about.template:21
