@@ -803,11 +803,9 @@ msgstr "Flere bøyningsformer"
 #: configs/language_specific_rules/templates/sanit/search_info.template:9
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr "Søk et ord, evt. et bøyd ord. Når du har søkt: Hvis du klikker på ordet, "
-"ser du hvordan ordet bøyes."
-""
+"ser du hvordan ordet bøyes. <br /><br /> "
 "Med "Søk i tekst"-knappen søker du ordet i setninger, og du får med alle bøyde "
 "former hvis du bruker linken som dukker opp i høyre marg når du har valgt "Søk""
-
 
 
 #: configs/language_specific_rules/templates/baakoeh/about.template:58
