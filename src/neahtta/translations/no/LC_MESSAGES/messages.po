@@ -1068,7 +1068,8 @@ msgid ""
 " plus 6000 place name entries. Norwegian → North Sámi is based on the "
 "North Sámi → Norwegian dictionary, but we have added frequent Norwegian "
 "words. It contains about 26,000 Norwegian entries. "
-msgstr "Nordsamisk → Norsk ordbok bygger på Nils Jernsletten's ordbok "
+msgstr ""
+"Nordsamisk → Norsk ordbok bygger på Nils Jernsletten's ordbok "
 "<em>Álgosátnegirji</em> (4322 ord), men nå inneholder ordboka 31.000 oppslagsord, "
 "pluss 6000 stedsnavn. Norsk → Nordsamisk bygger på "
 "Nordsamisk → Norsk ordbok, men vi har i tillegg lagt til vanlige norske "
@@ -1311,7 +1312,7 @@ msgstr "Flere ordbøker"
 msgid ""
 "Neahttadigisánit is available for the following\n"
 "                language groups."
-msgstr ""
+msgstr "Neahttadigisánit er tilgjengelig for følgende språkgrupper."
 
 #: templates/more_dictionaries.html:28
 msgid "North Saami"
@@ -1377,7 +1378,7 @@ msgstr ""
 #: templates/reader.html:3 templates/reader.html:20
 #, python-format
 msgid "%(project_name)s Reader"
-msgid "%(project_name)s Klikk-i-tekst"
+msgstr "%(project_name)s Klikk-i-tekst"
 
 #: templates/reader.html:21
 msgid "Bookmarklet"
