@@ -1415,11 +1415,11 @@ msgstr ""
 #: templates/reader.html:31
 msgid ""
 "To do so, <a "
-"href=\"http://giellatekno.uit.no/doc/dicts/nds/AddingNDSPluginToOtherSites.html\">follow"
+"href=\"https://giellalt.uit.no/dicts/nds/AddingNDSPluginToOtherSites.html\">follow"
 " our documentation</a>."
 msgstr ""
 "Følg vår <a "
-"href=\"http://giellatekno.uit.no/doc/dicts/nds/AddingNDSPluginToOtherSites.html\">dokumen"
+"href=\"https://giellalt.uit.no/dicts/nds/AddingNDSPluginToOtherSites.html\">dokumen"
 "tasjon</a>."
 
 #: templates/reader.html:32
