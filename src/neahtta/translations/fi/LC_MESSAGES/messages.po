@@ -666,6 +666,10 @@ msgstr ""
 "Tarvitsetkö lisää sanakirjoja? <a href=\"http://dicts.uit.no/\">Tässä on "
 "kaikki meidän sanakirjat.</a>."
 
+#: configs/language_specific_rules/templates/analyses.template:63
+msgid "Word history"
+msgstr "Sanahistoria"
+
 #: configs/language_specific_rules/templates/analyses.template:23
 msgid " (Not found in our corpus)"
 msgstr " (ei löydy meidän tekstikokoelmasta)"
@@ -1444,11 +1448,11 @@ msgstr ""
 #: templates/reader.html:31
 msgid ""
 "To do so, <a "
-"href=\"http://giellatekno.uit.no/doc/dicts/nds/AddingNDSPluginToOtherSites.html\">follow"
+"href=\"https://giellalt.uit.no/dicts/nds/AddingNDSPluginToOtherSites.html\">follow"
 " our documentation</a>."
 msgstr ""
 "Saat palvelun seuraamalla, <a "
-"href=\"http://giellatekno.uit.no/doc/dicts/nds/AddingNDSPluginToOtherSites.html\">"
+"href=\"https://giellalt.uit.no/dicts/nds/AddingNDSPluginToOtherSites.html\">"
 " dokumentaatiotamme</a>."
 
 #: templates/reader.html:32
@@ -1590,4 +1594,3 @@ msgstr "Virheellinen formaatti. Vain json ja html ovat sallittuja."
 
 #~ msgid "More information about this word"
 #~ msgstr "Lisää tietoa tästä sanasta"
-
