@@ -802,9 +802,11 @@ msgstr "Flere bøyningsformer"
 #: configs/language_specific_rules/templates/search_info.template:3
 #: configs/language_specific_rules/templates/sanit/search_info.template:9
 msgid "Search for a word, or a word form for a word analysis and definition."
-msgstr "Søk et ord, evt. et bøyd ord. Når du har søkt: Hvis du klikker på ordet, ser du hvordan ordet bøyes. 
-
-Med "Søk i tekst"-knappen søker du ordet i setninger, og du får med alle bøyde former hvis du bruker linken som dukker opp i høyre marg når du har valgt "Søk""
+msgstr "Søk et ord, evt. et bøyd ord. Når du har søkt: Hvis du klikker på ordet, " 
+"ser du hvordan ordet bøyes." 
+""
+"Med "Søk i tekst"-knappen søker du ordet i setninger, og du får med alle bøyde "
+"former hvis du bruker linken som dukker opp i høyre marg når du har valgt "Søk""
 
 #: configs/language_specific_rules/templates/baakoeh/about.template:58
 msgid ""
@@ -1347,7 +1349,7 @@ msgstr ""
 
 #: templates/more_dictionaries.html:44
 msgid "Even more dictionaries..."
-msgstr ""
+msgstr "Og enda flere ordbøker..."
 
 #: templates/more_dictionaries.html:45
 msgid ""
@@ -1360,6 +1362,11 @@ msgid ""
 "href=\"http://dicts.uit.no/\">see this\n"
 "                    list</a>."
 msgstr ""
+"<a href=\"http://giellatekno.uit.no/index.nob.html\">Giellatekno</a> har "
+"også andre språk og ordbøker som fremdeles ikke er tilgjengelige i "
+"Neahttadigisánit. Ei liste over alle andre nettordbøker som har blitt "
+"bygd med våre verktøy finner du <a "
+"href=\"http://dicts.uit.no/index.nob.html\">her</a>."
 
 #: templates/reader.html:3 templates/reader.html:20
 #, python-format
@@ -1377,11 +1384,15 @@ msgid ""
 "be installed, and you will see a menu icon on the left-hand side of the "
 "page."
 msgstr ""
+"Dra og dropp den grønne lenka til bokmerke-/favoritter-linja di,\n"
+"deretter klikker du på den hver gang du har funnet ei side\n"
+"du gjerne vil lese. Tjenesten vil bli installert automatisk,\n"
+"og du ser et menyikon (<em>Á</em>) på venstre side av nettsida."
 
 #: templates/reader.html:23 templates/reader_update.html:15
 #, python-format
 msgid "Read with %(project_name)s"
-msgstr ""
+msgstr "Les med %(project_name)s"
 
 #: templates/reader.html:24
 msgid ""
@@ -1389,14 +1400,22 @@ msgid ""
 "word. The service will will connect to this website and return dictionary"
 " entries after a brief pause."
 msgstr ""
+"For å slå opp et ord holder du <em>Alt</em> eller <em>Option</em> (⌥) "
+"nede\n"
+"og dobbelklikker på ordet. Tjenesten vil kontakte denne nettsida\n"
+"og returnere ordboksoppslag etter en kort pause."
 
 #: templates/reader.html:25
 msgid "To change the dictionary, click the menu icon."
 msgstr ""
+"Du kan skifte språk i ordboka ved å klikke på \"\n"
+"\"menyikonet (<em>Á</em>)."
 
 #: templates/reader.html:26
 msgid "Installing on a website"
 msgstr ""
+"Det er også mulig å installere klikk-i-tekst på en internettside, slik at"
+" brukere vil kunne bruke ordboka uten bruk av bokmerke."
 
 #: templates/reader.html:28
 msgid ""
@@ -1410,34 +1429,37 @@ msgid ""
 "href=\"http://giellatekno.uit.no/doc/dicts/nds/AddingNDSPluginToOtherSites.html\">follow"
 " our documentation</a>."
 msgstr ""
+"Følg vår <a "
+"href=\"http://giellatekno.uit.no/doc/dicts/nds/AddingNDSPluginToOtherSites.html\">dokumen
+tasjon</a>."
 
 #: templates/reader.html:32
 msgid "Browser support"
-msgstr ""
+msgstr "Nettleserstøtte"
 
 #: templates/reader.html:33
 msgid "The reader is supported in the following browsers:"
-msgstr ""
+msgstr "Klikk-i-tekst fungerer med følgende nettlesere:"
 
 #: templates/reader.html:35
 msgid "Chrome (version 20 and newer)"
-msgstr ""
+msgstr "Chrome (versjon 20 eller nyere)"
 
 #: templates/reader.html:36
 msgid "Internet Explorer (version 9 and newer)"
-msgstr ""
+msgstr "Internet Explorer (versjon 9 eller nyere)"
 
 #: templates/reader.html:37
 msgid "Firefox (version 18 and newer)"
-msgstr ""
+msgstr "Firefox (versjon 18 eller nyere)"
 
 #: templates/reader.html:38
 msgid "Opera (version 16 and newer)"
-msgstr ""
+msgstr "Opera (versjon 16 eller nyere)"
 
 #: templates/reader.html:40
 msgid "Bugs?"
-msgstr ""
+msgstr "Feil?"
 
 #: templates/reader.html:41
 msgid ""
@@ -1445,16 +1467,22 @@ msgid ""
 "page, contact us with the page URL or details of what you were reading "
 "when you encountered the problem."
 msgstr ""
+"Hvis du finner feil, eller hvis bokmerket ikke fungerer for\n"
+"ei viss side må du gjerne kontakte oss. Si i tilfelle fra hvilken\n"
+"side det gjaldt eller hva som var problemet."
 
 #: templates/reader.html:42
 msgid ""
 "We do not store any private data, but we do collect individual dictionary"
 " lookups for statistics and to improve the dictionary."
 msgstr ""
+"Vi lagrer ingen private data eller individuelle brukerdata, men\n"
+"vi samler statistikk over hvilke ordboksoppslag som blir gjort,\n"
+"for å rette mangler og forbedre ordboka."
 
 #: templates/reader.html:49
 msgid "Includes"
-msgstr ""
+msgstr "Inkluderer"
 
 #: templates/reader.html:57
 #, python-format
@@ -1462,10 +1490,12 @@ msgid ""
 "If you are looking for other languages, please see our <a "
 "href=\"%(more_dictionaries_link)s\">other dictionaries</a>."
 msgstr ""
+"Hvis du leter etter andre språk kan du se våre  <a href=\"/more/\">andre "
+"ordbøker</a>."
 
 #: templates/reader_example.html:32
 msgid "Additional instructions"
-msgstr ""
+msgstr "Tilleggsinstruksjon"
 
 #: templates/reader_ie8_notice.html:1
 #, python-format
@@ -1474,6 +1504,8 @@ msgid ""
 "Your web browser is supported, however, you will need to change some\n"
 "options for the %(app_name)s Reader to work.\n"
 msgstr ""
+"Nettleseren din er støttet, men du må endre noen\n"
+"innstillnger for å få  %(app_name)s leseren til å fungere.\n"
 
 #: templates/reader_update.html:1
 msgid ""
@@ -1489,13 +1521,17 @@ msgid ""
 "    service will automatically be installed, and you will see a\n"
 "    menu icon on the left-hand side of the page."
 msgstr ""
+"Dra og dropp den røde lenka til bokmerke-/favoritter-linja di,\n"
+"deretter klikker du på den hver gang du har funnet ei side\n"
+"du gjerne vil lese. Tjenesten vil bli installert automatisk,\n"
+"og du ser et menyikon (<em>Á</em>) på venstre side av nettsida."
 
 #: templates/word_detail.html:35
 msgid "is a possible form of ... "
-msgstr ""
+msgstr " er en mulig form av ... "
 
 #: views/search.py:1079 views/search_22-02.py:1178 views/search_korp.py:1153
 #: views/search_noDer.py:1048
 msgid "Invalid format. Only json and html allowed."
-msgstr ""
+msgstr "Ugyldig format. Bare json og html er tillatt."
 
