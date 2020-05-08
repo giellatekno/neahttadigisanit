@@ -927,42 +927,24 @@ def add_stem2dict():
     else:
         print(cyan("** Backing up xml" ))
 
-    # Nouns
-    nouns_cmd = 'python $GTHOME/words/dicts/scripts/add_stemtype2xml.py $GTHOME/langs/sme/src/fst/stems/nouns.lexc $GTHOME/words/dicts/smenob/scripts/nouns_stemtypes.txt dicts/sme-nob.all.xml'
+    lexc_list = ['nouns', 'adjectives', 'verbs']
 
-    add_cmd = env.run(nouns_cmd)
+    for lexc in lexc_list:
+        lexc_cmd = 'python $GTHOME/words/dicts/scripts/add_stemtype2xml.py $GTHOME/langs/sme/src/fst/stems/' + lexc + '.lexc $GTHOME/words/dicts/smenob/scripts/' + lexc + '_stemtypes.txt dicts/sme-nob.all.xml'
 
-    if add_cmd.failed:
-        print(red("** Add stem type for nouns to xml failed, aborting."))
-        return
-    else:
-        print(green("** Successfully added stem type for nouns to xml" ))
+        add_cmd = env.run(lexc_cmd)
 
-    cmd = 'cp dicts/sme-nob.all.xml.stem.xml dicts/sme-nob.all.xml'
-    overwrite_cmd = env.run(cmd)
+        if add_cmd.failed:
+            print(red("** Add stem type for %s to xml failed, aborting." %lexc))
+            return
+        else:
+            print(green("** Successfully added stem type for %s to xml"  %lexc))
 
-    if overwrite_cmd.failed:
-        print(red("** Overwrite xml failed, aborting."))
-        return
-    else:
-        print(cyan("** Overwriting xml" ))
+        cmd = 'cp dicts/sme-nob.all.xml.stem.xml dicts/sme-nob.all.xml'
+        overwrite_cmd = env.run(cmd)
 
-    # Adjectives
-    adj_cmd = 'python $GTHOME/words/dicts/scripts/add_stemtype2xml.py $GTHOME/langs/sme/src/fst/stems/adjectives.lexc $GTHOME/words/dicts/smenob/scripts/adjectives_stemtypes.txt dicts/sme-nob.all.xml'
-
-    add_cmd = env.run(adj_cmd)
-
-    if add_cmd.failed:
-        print(red("** Add stem type for adjectives to xml failed, aborting."))
-        return
-    else:
-        print(green("** Successfully added stem type for adjectives to xml" ))
-
-    cmd = 'cp dicts/sme-nob.all.xml.stem.xml dicts/sme-nob.all.xml'
-    overwrite_cmd = env.run(cmd)
-
-    if overwrite_cmd.failed:
-        print(red("** Overwrite xml failed, aborting."))
-        return
-    else:
-        print(cyan("** Overwriting xml" ))
+        if overwrite_cmd.failed:
+            print(red("** Overwrite xml failed, aborting."))
+            return
+        else:
+            print(cyan("** Overwriting xml" ))
