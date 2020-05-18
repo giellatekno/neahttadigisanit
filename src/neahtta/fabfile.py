@@ -279,7 +279,7 @@ def update_gtsvn():
             l.get('iso') for l in config.get('Languages')
             if not l.get('variant', False)
         ]
-        svn_lang_paths = ['langs/%s' % l for l in svn_langs]
+        svn_lang_paths = ['giellalt/lang-%s' % l for l in svn_langs]
         # TODO: replace langs with specific list of langs from config
         # file
         paths = [
@@ -439,7 +439,7 @@ def compile(dictionary=False, restart=False):
                 red("** Remove and check out individual language directories first?"
                     ))
             print(
-                red("** WARNING: this will run `rm -rf $GTHOME/langs/LANG for each"
+                red("** WARNING: this will run `rm -rf $GTHOME/giellalt/LANG-XXX for each"
                     ))
             print(
                 red("**          language in the current project. If you have")
@@ -930,7 +930,7 @@ def add_stem2dict():
     lexc_list = ['nouns', 'adjectives', 'verbs']
 
     for lexc in lexc_list:
-        lexc_cmd = 'python $GTHOME/words/dicts/scripts/add_stemtype2xml.py $GTHOME/langs/sme/src/fst/stems/' + lexc + '.lexc $GTHOME/words/dicts/smenob/scripts/' + lexc + '_stemtypes.txt dicts/sme-nob.all.xml'
+        lexc_cmd = 'python $GTHOME/words/dicts/scripts/add_stemtype2xml.py $GTHOME/giellalt/lang-sme/src/fst/stems/' + lexc + '.lexc $GTHOME/words/dicts/smenob/scripts/' + lexc + '_stemtypes.txt dicts/sme-nob.all.xml'
 
         add_cmd = env.run(lexc_cmd)
 
