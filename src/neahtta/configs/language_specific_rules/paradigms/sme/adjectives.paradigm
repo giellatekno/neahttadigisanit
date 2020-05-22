@@ -5,6 +5,6 @@ morphology:
 {{ lemma }}+A+Attr
 {{ lemma }}+A+Sg+Nom
 {{ lemma }}+A+Pl+Nom
-{{ lemma }}+A+Comp+Attr
-{{ lemma }}+A+Comp+Sg+Nom
-{{ lemma }}+A+Superl+Sg+Nom
+{{ lemma }}+A+Der/Comp+A+Attr
+{{ lemma }}+A+Der/Comp+A+Sg+Nom
+{{ lemma }}+A+Der/Superl+A+Sg+Nom

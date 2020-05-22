@@ -17,11 +17,11 @@
   template: "(vel) {{ word_form }} {% if context|string() == 'None' %} {% else %} ({{ context }}) {% endif %}"
 
 - entry_context: None
-  tag_context: "A+Comp+Sg+Nom"
+  tag_context: "A+Der/Comp+A+Sg+Nom"
   template: "(vel) {{ word_form }}"
 
 - entry_context: None
-  tag_context: "A+Superl+Sg+Nom"
+  tag_context: "A+Der/Superl+A+Sg+Nom"
   template: "(buot) {{ word_form }}"
 
 # attr. boares (olmmoš)
