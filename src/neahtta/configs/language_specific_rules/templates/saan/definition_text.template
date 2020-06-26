@@ -19,7 +19,7 @@
 {%- macro render_link(tg, t) -%}
     {# Render a link to the detailed page. One exception: if the lexicon
     annotation entry contains a @fra_ref attribute, then we make a
-    reference link, inserting this attribute's value in as a parameter. 
+    reference link, inserting this attribute's value in as a parameter.
 
          <tg xml:lang="sme">
             <re fra_ref="omtopersoner">om to personer</re>
@@ -32,7 +32,7 @@
             type="Recipr"
             orig_entry="hverandre"
             til_ref="omtopersoner">hverandre: om to personer</l>
-    
+
     #}
 
     {% set text = t.text %}
@@ -84,7 +84,8 @@
             {% endfor %}
         {% endfor %}
     {% endif %}
-    
+    {{- render_annotation(tg) -}}
+
 {%- endmacro -%}
 
 {%- if translation_group -%}
