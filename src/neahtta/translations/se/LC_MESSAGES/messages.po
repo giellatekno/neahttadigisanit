@@ -131,7 +131,7 @@ msgstr ""
 
 #: configs/language_names.yaml:41
 msgid "Spanish"
-msgstr "Espánnjagiella"
+msgstr "Spánskagiella"
 
 #: configs/language_names.yaml:43
 msgid "South Sámi"
