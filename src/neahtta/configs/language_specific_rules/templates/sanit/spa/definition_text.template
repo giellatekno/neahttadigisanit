@@ -96,6 +96,15 @@
       {% set phrase = '(Phrase) ' %}
   {%- endif %}
   <span lang="{{ _to }}">{{phrase}}{{ render_tg(translation_group) }}</span>
+
+  {% set re = translation_group.xpath('./re') %}
+  {% if re %}
+    <span class="re">
+    {%- for elem in re %}
+      ({{elem|text}}{{", " if not loop.last}})
+    {% endfor %}
+    </span>
+  {%- endif %}
 {%- endif -%}
 
 {#  vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}
