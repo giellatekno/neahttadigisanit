@@ -931,9 +931,9 @@ def add_stem2dict():
 
     for lexc in lexc_list:
         if not lexc == 'prop':
-            lexc_cmd = 'python $GTHOME/words/dicts/scripts/add_stemtype2xml.py $GTHOME/words/dicts/smenob/scripts/' + lexc + '_stemtypes.txt dicts/sme-nob.all.xml $HOME/all-gut/giellalt/lang-sme/src/fst/stems/' + lexc + '.lexc'
+            lexc_cmd = 'python $GTHOME/words/dicts/scripts/add_stemtype2xml.py $GTHOME/words/dicts/smenob/scripts/' + lexc + '_stemtypes.txt dicts/sme-nob.all.xml $HOME/giellalt/lang-sme/src/fst/stems/' + lexc + '.lexc'
         else:
-            lexc_cmd = 'python $GTHOME/words/dicts/scripts/add_stemtype2xml.py $GTHOME/words/dicts/smenob/scripts/' + lexc + '_stemtypes.txt dicts/sme-nob.all.xml $HOME/all-gut/giellalt/lang-sme/src/fst/stems/sme-propernouns.lexc $HOME/all-gut/giellalt/giella-shared/smi/src/fst/stems/smi-propernouns.lexc'
+            lexc_cmd = 'python $GTHOME/words/dicts/scripts/add_stemtype2xml.py $GTHOME/words/dicts/smenob/scripts/' + lexc + '_stemtypes.txt dicts/sme-nob.all.xml $HOME/giellalt/lang-sme/src/fst/stems/sme-propernouns.lexc $HOME/giellalt/giella-shared/smi/src/fst/stems/smi-propernouns.lexc'
 
 
         add_cmd = env.run(lexc_cmd)
