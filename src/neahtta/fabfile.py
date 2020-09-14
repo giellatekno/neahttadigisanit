@@ -927,10 +927,14 @@ def add_stem2dict():
     else:
         print(cyan("** Backing up xml" ))
 
-    lexc_list = ['nouns', 'adjectives', 'verbs']
+    lexc_list = ['nouns', 'adjectives', 'verbs', 'prop']
 
     for lexc in lexc_list:
-        lexc_cmd = 'python $GTHOME/words/dicts/scripts/add_stemtype2xml.py $GTHOME/giellalt/lang-sme/src/fst/stems/' + lexc + '.lexc $GTHOME/words/dicts/smenob/scripts/' + lexc + '_stemtypes.txt dicts/sme-nob.all.xml'
+        if not lexc == 'prop':
+            lexc_cmd = 'python $GTHOME/words/dicts/scripts/add_stemtype2xml.py $GTHOME/words/dicts/smenob/scripts/' + lexc + '_stemtypes.txt dicts/sme-nob.all.xml $HOME/all-gut/giellalt/lang-sme/src/fst/stems/' + lexc + '.lexc'
+        else:
+            lexc_cmd = 'python $GTHOME/words/dicts/scripts/add_stemtype2xml.py $GTHOME/words/dicts/smenob/scripts/' + lexc + '_stemtypes.txt dicts/sme-nob.all.xml $HOME/all-gut/giellalt/lang-sme/src/fst/stems/sme-propernouns.lexc $HOME/all-gut/giellalt/giella-shared/smi/src/fst/stems/smi-propernouns.lexc'
+
 
         add_cmd = env.run(lexc_cmd)
 
