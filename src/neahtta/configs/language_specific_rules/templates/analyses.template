@@ -21,6 +21,12 @@
   {% if _from == 'sms' %}
     {% set lang_code = 47 %}
   {% endif %}
+  {% if _from == 'smn' %}
+    {% set lang_code = 46 %}
+  {% endif %}
+  {% if _from == 'sje' %}
+    {% set lang_code = 43 %}
+  {% endif %}
   {% if _from == 'izh' %}
     {% set lang_code = 30 %}
   {% endif %}
