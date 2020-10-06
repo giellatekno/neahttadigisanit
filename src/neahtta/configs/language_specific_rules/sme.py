@@ -236,18 +236,21 @@ def match_homonymy_entries(entries_and_tags):
     matches the entry type attribute.
     """
     filtered_results = []
+    is_analysis = False
 
     for entry, analyses in entries_and_tags:
         analyses_to_append = []
         if entry is not None:
             entry_type = entry.find('lg/l').attrib.get('type', False)
             entry_analysis = entry.find('lg/analysis')
+            if entry_analysis is not None:
+                is_analysis = True
             tag_type = [
                 x for x in [a.tag['type'] for a in analyses]
             ]
             if entry_type:
                 if len(tag_type) > 0:
-                    if entry_type in tag_type:
+                    if entry_type in tag_type or is_analysis:
                         filtered_results.append((entry, analyses))
                 else:
                     if entry_type in tag_type:
@@ -272,6 +275,7 @@ def match_homonymy_entries(entries_and_tags):
                 else:
                     filtered_results.append((entry, []))
         else:
+            print('no entry')
             filtered_results.append((entry, analyses))
 
     '''Check in filtered_results if there are entries with same lemma but one has static paradigm
@@ -281,8 +285,13 @@ def match_homonymy_entries(entries_and_tags):
     entries_lemmaID_pos = []
     lemma_pos_array = []
     for entry, analyses in filtered_results:
-        if entry:
+        is_analysis = False
+        if entry is not None:
             has_lemma_ref = entry.find('lg/lemma_ref')
+            entry_analysis = entry.find('lg/analysis')
+            entry_type = entry.find('lg/l').attrib.get('type', False)
+            if entry_analysis is not None:
+                is_analysis = True
         else:
             has_lemma_ref = None
         lemmaID = False
