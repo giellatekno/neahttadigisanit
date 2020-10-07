@@ -2,3 +2,16 @@ Relabel:
   - source_morphology: 'spa'
     target_ui_language: 'sme'
     tags: &spatagrelabels
+      "N": "subst."
+      "A": "adj."
+      "Adv": "adv."
+      "V": "verb"
+      "Pron": "pron."
+      "CS": "subjunc."
+      "CC": "conj."
+      "Po": "postposition"
+      "Pr": "preposition"
+      "Interj": "interj."
+      "Pcle": "particle"
+      "Num": "numeral"
+      "Prop": "proper noun"
