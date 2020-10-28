@@ -7,6 +7,7 @@ lexicon:
   ord_type:
     - "Ord"
 --
+{{ lemma }}+A+{{ ord_type }}+Attr
 {{ lemma }}+A+{{ ord_type }}+Sg+Nom
 {{ lemma }}+A+{{ ord_type }}+Sg+Acc
 {{ lemma }}+A+{{ ord_type }}+Sg+Gen
