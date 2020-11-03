@@ -911,11 +911,15 @@ class Config(Config):
                 cmp=minority_langs_first)
 
             grouped_pairs = defaultdict(list)
+            appended = False
             for p in pairs:
                 if p[0][0] in self.minority_languages:
                     grouped_pairs[p[0][0]].append(p)
                 if p[0][1] in self.minority_languages:
                     grouped_pairs[p[0][1]].append(p)
+                if (p[0][0] not in self.minority_languages) and (p[0][1] not in self.minority_languages) and not appended:
+                    grouped_pairs[p[0][0]].append(p)
+                    appended = True
             # sort by alphabetical order of language name
 
             def lang_name(n):

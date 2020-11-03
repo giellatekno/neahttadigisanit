@@ -167,6 +167,16 @@ Dictionaries:
     corpora: 'VEP_WIKI_20150101'
     start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
 
+  - source: nob
+    target: fin
+    path: 'dicts/nobfin.xml'
+    show_korp_search: False
+
+  - source: fin
+    target: nob
+    path: 'dicts/finnob.xml'
+    show_korp_search: False
+
 ReaderConfig:
   Settings:
     # host path without scheme (https, http) to reader lookup API, no trailing
