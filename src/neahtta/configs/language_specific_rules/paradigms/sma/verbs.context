@@ -171,6 +171,80 @@
   tag_context: "Hom1+V+VGen"
   template: "{{ word_form }}"
 
+## negation
+
+- entry_context: None
+  tag_context: "IV+Neg+Ind+Prs+Sg1"
+  template: "(manne) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "IV+Neg+Ind+Prs+Sg2"
+  template: "(datne) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "IV+Neg+Ind+Prs+Sg3"
+  template: "(dïhte) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "IV+Neg+Ind+Prs+Du1"
+  template: "(månnoeh) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "IV+Neg+Ind+Prs+Du2"
+  template: "(dåtnoeh) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "IV+Neg+Ind+Prs+Du3"
+  template: "(dah guaktah) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "IV+Neg+Ind+Prs+Pl1"
+  template: "(mijjieh) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "IV+Neg+Ind+Prs+Pl2"
+  template: "(dijjieh) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "IV+Neg+Ind+Prs+Pl3"
+  template: "(dah) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "IV+Neg+Ind+Prt+Sg1"
+  template: "(manne) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "IV+Neg+Ind+Prt+Sg2"
+  template: "(datne) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "IV+Neg+Ind+Prt+Sg3"
+  template: "(dïhte) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "IV+Neg+Ind+Prt+Du1"
+  template: "(månnoeh) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "IV+Neg+Ind+Prt+Du2"
+  template: "(dåtnoeh) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "IV+Neg+Ind+Prt+Du3"
+  template: "(dah guaktah) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "IV+Neg+Ind+Prt+Pl1"
+  template: "(mijjieh) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "IV+Neg+Ind+Prt+Pl2"
+  template: "(dijjieh) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "IV+Neg+Ind+Prt+Pl3"
+  template: "(dah) {{ word_form }}"
+
 
 ## 3pers
 
