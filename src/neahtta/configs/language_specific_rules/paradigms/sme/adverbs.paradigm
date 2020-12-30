@@ -1,0 +1,7 @@
+name: "General adverb paradigm, lemma is the adj. from which the adverb i derived"
+morphology:
+  pos: Adv
+--
+{{ lemma }}+A+Der/AAdv+Adv
+{{ lemma }}+A+Der/Comp+A+Der/AAdv+Adv
+{{ lemma }}+A+Der/Superl+A+Der/AAdv+Adv
