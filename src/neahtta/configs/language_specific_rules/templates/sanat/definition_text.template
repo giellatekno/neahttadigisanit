@@ -93,6 +93,7 @@
     {% for t in bare_t %}
         {{ render_link(tg, t) -}}{% if not loop.last or tCtns|length > 0 %}, {% endif %}
     {% endfor -%}
+    {{- render_annotation(tg) -}}
 
     {% if tCtns %}
         {% for tCtn in tCtns %}
