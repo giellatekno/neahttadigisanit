@@ -14,7 +14,6 @@
   tag_context: "V+Ind+Prs+Sg3"
   template: "{{ word_form }}"
 
-
 - entry_context: None
   tag_context: "V+Ind+Prs+Du1"
   template: "{{ word_form }}"
@@ -47,10 +46,126 @@
   tag_context: "V+Ind+Prt+ConNeg"
   template: "{{ word_form }}"
 
-
 - entry_context: None
   tag_context: "V+PrfPrc"
   template: "{{ word_form }}"
+
+
+
+##
+### None Hom2
+##
+
+
+
+
+
+- entry_context: None
+  tag_context: "Hom2+V+Ind+Prs+Sg1"
+  template: "{{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom2+V+Ind+Prs+Sg2"
+  template: "{{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom2+V+Ind+Prs+Sg3"
+  template: "{{ word_form }}"
+
+
+- entry_context: None
+  tag_context: "Hom2+V+Ind+Prs+Du1"
+  template: "{{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom2+V+Ind+Prs+Du2"
+  template: "{{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom2+V+Ind+Prs+Du3"
+  template: "{{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom2+V+Ind+Prs+Pl1"
+  template: "{{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom2+V+Ind+Prs+Pl2"
+  template: "{{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom2+V+Ind+Prs+Pl3"
+  template: "{{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom2+V+Ind+Prs+ConNeg"
+  template: "{{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom2+V+Ind+Prt+ConNeg"
+  template: "{{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom2+V+PrfPrc"
+  template: "{{ word_form }}"
+
+
+##
+### None Hom1
+##
+
+
+- entry_context: None
+  tag_context: "Hom1+V+Ind+Prs+Sg1"
+  template: "{{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom1+V+Ind+Prs+Sg2"
+  template: "{{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom1+V+Ind+Prs+Sg3"
+  template: "{{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom1+V+Ind+Prs+Du1"
+  template: "{{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom1+V+Ind+Prs+Du2"
+  template: "{{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom1+V+Ind+Prs+Du3"
+  template: "{{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom1+V+Ind+Prs+Pl1"
+  template: "{{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom1+V+Ind+Prs+Pl2"
+  template: "{{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom1+V+Ind+Prs+Pl3"
+  template: "{{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom1+V+Ind+Prs+ConNeg"
+  template: "{{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom1+V+Ind+Prt+ConNeg"
+  template: "{{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom1+V+PrfPrc"
+  template: "{{ word_form }}"
+
+
+
+
 
 # EX: ciellat
 
