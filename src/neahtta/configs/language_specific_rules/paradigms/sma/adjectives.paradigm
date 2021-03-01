@@ -4,5 +4,5 @@ morphology:
 --
 {{ lemma }}+A+Attr
 {{ lemma }}+A+Sg+Nom
-{{ lemma }}+A+Comp+Sg+Nom
-{{ lemma }}+A+Superl+Sg+Nom
+{{ lemma }}+A+Der/Comp+A+Sg+Nom
+{{ lemma }}+A+Der/Superl+A+Sg+Nom
