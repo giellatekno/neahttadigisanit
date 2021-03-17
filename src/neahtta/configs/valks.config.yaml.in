@@ -113,8 +113,8 @@ Dictionaries:
     path: 'dicts/myv-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
-    corpora: 'MYV_ERME_20160725,MYV_WIKI_20141221'
-    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
+    corpora: 'MYV_WIKIPEDIA_20201209,MYV_FICTI_20201209,MYV_NEWS_20201209'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
 
   - source: fin
     target: myv
@@ -125,8 +125,8 @@ Dictionaries:
     path: 'dicts/myvest.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
-    corpora: 'MYV_ERME_20160725,MYV_WIKI_20141221'
-    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
+    corpora: 'MYV_WIKIPEDIA_20201209,MYV_FICTI_20201209,MYV_NEWS_20201209'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
 
   - source: est
     target: myv
@@ -137,56 +137,56 @@ Dictionaries:
     path: 'dicts/myv-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
-    corpora: 'MYV_ERME_20160725,MYV_WIKI_20141221'
-    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
+    corpora: 'MYV_WIKIPEDIA_20201209,MYV_FICTI_20201209,MYV_NEWS_20201209'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
 
   - source: myv
     target: eng
     path: 'dicts/myveng.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
-    corpora: 'MYV_ERME_20160725,MYV_WIKI_20141221'
-    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
+    corpora: 'MYV_WIKIPEDIA_20201209,MYV_FICTI_20201209,MYV_NEWS_20201209'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
 
   - source: myv
     target: deu
     path: 'dicts/myvdeu.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
-    corpora: 'MYV_ERME_20160725,MYV_WIKI_20141221'
-    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
+    corpora: 'MYV_WIKIPEDIA_20201209,MYV_FICTI_20201209,MYV_NEWS_20201209'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
 
   - source: myv
     target: fra
     path: 'dicts/myv-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
-    corpora: 'MYV_ERME_20160725,MYV_WIKI_20141221'
-    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
+    corpora: 'MYV_WIKIPEDIA_20201209,MYV_FICTI_20201209,MYV_NEWS_20201209'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
 
   - source: mdf
     target: fin
     path: 'dicts/mdf-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
-    corpora: 'MDF_ERME_20160725,MDF_WIKI_20150105'
-    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
+    corpora: 'MDF_WIKIPEDIA_20201209,MDF_NEWS_20201209'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
 
   - source: mdf
     target: rus
     path: 'dicts/mdfrus.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
-    corpora: 'MDF_ERME_20160725,MDF_WIKI_20150105'
-    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
+    corpora: 'MDF_WIKIPEDIA_20201209,MDF_NEWS_20201209'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
 
   - source: mdf
     target: myv
     path: 'dicts/mdfmyv.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
-    corpora: 'MDF_ERME_20160725,MDF_WIKI_20150105'
-    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
+    corpora: 'MDF_WIKIPEDIA_20201209,MDF_NEWS_20201209'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
 
   - source: deu
     target: myv
@@ -217,16 +217,16 @@ Dictionaries:
     path: 'dicts/mdfeng.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
-    corpora: 'MDF_ERME_20160725,MDF_WIKI_20150105'
-    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
+    corpora: 'MDF_WIKIPEDIA_20201209,MDF_NEWS_20201209'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
 
   - source: mdf
     target: fra
     path: 'dicts/mdf-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
-    corpora: 'MDF_ERME_20160725,MDF_WIKI_20150105'
-    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
+    corpora: 'MDF_WIKIPEDIA_20201209,MDF_NEWS_20201209'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
 
 ReaderConfig:
   Settings:
