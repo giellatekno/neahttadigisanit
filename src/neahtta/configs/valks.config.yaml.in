@@ -28,7 +28,7 @@ ApplicationSettings:
 
 Tools:
   xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
-  hfst_lookup: &HLOOKUP '/usr/local/bin/hfst-optimized-lookup'
+  hfst_lookup: &HLOOKUP '/bin/hfst-optimized-lookup'
   opt: &OPT '/opt/smi/'
 
 Morphology:
@@ -44,8 +44,8 @@ Morphology:
       inverse_tagsep: '+'
   mdf:
     tool: *HLOOKUP
-    file: [*OPT, '/mdf/bin/analyser-dict-gt-desc.hfst']
-    inverse_file: [*OPT, '/mdf/bin/generator-dict-gt-norm.hfst']
+    file: [*OPT, '/mdf/bin/analyser-dict-gt-desc.hfstol']
+    inverse_file: [*OPT, '/mdf/bin/generator-dict-gt-norm.hfstol']
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
