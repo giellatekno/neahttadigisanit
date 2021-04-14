@@ -36,20 +36,28 @@ Tools:
 # be lists. These are concatenated automatically.
 Morphology:
   sma:
-    tool: *LOOKUP
-    file: [*OPT, '/sma/bin/analyser-dict-gt-desc.xfst']
-    inverse_file: [*OPT, '/sma/bin/generator-dict-gt-norm.xfst']
-    format: 'xfst'
+    #tool: *LOOKUP
+    tool: *HFST-LOOKUP
+    #file: [*OPT, '/sma/bin/analyser-dict-gt-desc.xfst']
+    file: [*OPT, '/sma/bin/analyser-dict-gt-desc.hfstol']
+    #inverse_file: [*OPT, '/sma/bin/generator-dict-gt-norm.xfst']
+    inverse_file: [*OPT, '/sma/bin/generator-dict-gt-norm.hfstol']
+    #format: 'xfst'
+    format: 'hfst'
     options:
       compoundBoundary: "+Cmp#"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
   nob:
-    tool: *LOOKUP
-    file: [*OPT, '/nob/bin/analyser-dict-gt-desc.xfst']
-    inverse_file: [*OPT, '/nob/bin/generator-dict-gt-norm.xfst']
-    format: 'xfst'
+    #tool: *LOOKUP
+    tool: *HFST-LOOKUP
+    #file: [*OPT, '/nob/bin/analyser-dict-gt-desc.xfst']
+    file: [*OPT, '/nob/bin/analyser-dict-gt-desc.hfstol']
+    #inverse_file: [*OPT, '/nob/bin/generator-dict-gt-norm.xfst']
+    inverse_file: [*OPT, '/nob/bin/generator-dict-gt-norm.hfstol']
+    #format: 'xfst'
+    format: 'hfst'
     options:
       compoundBoundary: ["#+Cmp+", "#+CmpS+"]
       derivationMarker: "+Der"
