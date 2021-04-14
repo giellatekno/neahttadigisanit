@@ -698,12 +698,19 @@ class XFST(object):
 
         """
 
-        wordform, lemma_tags = analysis_line.split('\t')[:2]
+        weight = []
+        try:
+            wordform, lemma_tags, weight = analysis_line.split('\t')[:3]
+        except:
+            wordform, lemma_tags = analysis_line.split('\t')[:2]
 
         if '?' in analysis_line:
             lemma_tags += '\t+?'
 
-        return (wordform, lemma_tags)
+        if weight:
+            return (wordform, lemma_tags, weight)
+        else:
+            return (wordform, lemma_tags)
 
     def clean(self, _output):
         """
@@ -720,15 +727,24 @@ class XFST(object):
         for chunk in analysis_chunks:
             lemmas = []
             analyses = []
+            weights = []
+            updated_lemmas = []
 
             for part in chunk.split('\n'):
-                (lemma, analysis) = self.tag_processor(part)
+                try:
+                    (lemma, analysis, weight) = self.tag_processor(part)
+                except:
+                    (lemma, analysis) = self.tag_processor(part)
                 lemmas.append(lemma)
                 analyses.append(analysis)
+                try:
+                    weights.append(weight)
+                except:
+                    print("not using weights")
 
             lemma = list(set(lemmas))[0]
 
-            append_ = (lemma, analyses)
+            append_ = (lemma, analyses, weights)
             cleaned.append(append_)
 
         return cleaned
@@ -1074,7 +1090,18 @@ class Morphology(object):
 
         reformatted = []
         tag = False
-        for tag, forms in res:
+
+        idxs = []
+        for tag, forms, weights in res:
+            indexes = []
+            indexes = [i for i, x in enumerate(weights) if x == min(weights)]
+            idxs.append(indexes)
+        updated_res = []
+        for i in range(0, len(idxs)):
+            new_res = (res[i][0], [res[i][1][idxs[i][0]]])
+            updated_res.append(new_res)
+
+        for tag, forms in updated_res:
             unknown = False
             for f in forms:
                 # TODO: how does OBT handle unknown?
@@ -1221,7 +1248,7 @@ class Morphology(object):
 
     def lookups_to_lemma(self, form, lookups, no_derivations,
                          non_compound_only, split_compounds):
-        for _, analyses in lookups:
+        for _, analyses, _ in lookups:
             analyses = self.remove_compound_analyses(analyses,
                                                non_compound_only)
             analyses = self.remove_derivations(analyses, no_derivations)
@@ -1294,7 +1321,7 @@ class Morphology(object):
         return analyses
 
     def has_unknown(self, lookups):
-        return not all(['?' not in analysis for _, analyses in lookups
+        return not all(['?' not in analysis for _, analyses,_ in lookups
                        for analysis in analyses])
 
     def de_pickle_lemma(self, lem, tag):
