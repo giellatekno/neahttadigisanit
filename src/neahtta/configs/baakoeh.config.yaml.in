@@ -28,7 +28,7 @@ ApplicationSettings:
 # following settings.
 Tools:
   xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
-  hfst_lookup: &HFST-LOOKUP '/usr/local/bin/hfst-lookup'
+  hfst_lookup: &HFST-LOOKUP '/bin/hfst-lookup'
   gthome: &GTHOME '/home/neahtta/gtsvn'
   opt: &OPT '/opt/smi'
 
