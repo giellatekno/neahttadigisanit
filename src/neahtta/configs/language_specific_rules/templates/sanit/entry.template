@@ -39,7 +39,7 @@
 {% endfor %}
 
 
-{% set der_list = ['Der/', 'VAbess', 'VGen', 'Ger', 'Comp', 'Superl'] %}
+{% set der_list = ['Der/', 'VAbess', 'VGen', 'Ger', 'Superl', 'Actio+'] %}
 {% set if_der = [] %}
 {% for item in der_list %}
   {% if item in first_l|text %}

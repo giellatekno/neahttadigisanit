@@ -256,24 +256,33 @@ class Lemma(object):
         # Best guess is the first item, otherwise...
         #self.lemma = tag[0]
         #del tag[0]
-        if lemma in all_tags:
-            # Separate out items that are not values in a tagset, these
-            # are probably the lemma.
-            not_tags = [t for t in tag if t not in all_tags]
-            if len(not_tags) > 0:
-                self.lemma = not_tags[0]
-            else:
-                self.lemma = tag[0]
-        else:
+        actio = False
+        if "Actio+" in tag:
+            lemma = tag
             self.lemma = lemma
+            actio = True
+            self.pos = ""
+            self.tag_raw = [tag]
+        else:
+            if lemma in all_tags:
+                # Separate out items that are not values in a tagset, these
+                # are probably the lemma.
+                not_tags = [t for t in tag if t not in all_tags]
+                if len(not_tags) > 0:
+                    self.lemma = not_tags[0]
+                else:
+                    self.lemma = tag[0]
+            else:
+                self.lemma = lemma
 
-        try:
-            self.pos = self.tag['pos']
-        except:
-            self.tag.encode('utf-8')
-            self.pos = self.tag['pos']
+        if not actio:
+            try:
+                self.pos = self.tag['pos']
+            except:
+                    self.tag.encode('utf-8')
+                    self.pos = self.tag['pos']
 
-        self.tag_raw = tag
+            self.tag_raw = tag
 
     def __init__(self, tag=[''], _input=False, tool=False, tagsets={}):
         self.tagsets = tagsets
@@ -907,8 +916,12 @@ class XFST(object):
                                      self.options.get('tagsep', '+'))
         else:
             delim = self.options.get('tagsep', '+')
-        tag = delim.join(parts)
-        return Tag(tag, delim, tagsets=tagsets)
+        if "Actio+" in parts:
+            tag = parts
+            return Tag(tag, delim, tagsets=tagsets)
+        else:
+            tag = delim.join(parts)
+            return Tag(tag, delim, tagsets=tagsets)
 
     def formatTag(self, parts, inverse=False):
         if inverse:
@@ -1264,14 +1277,22 @@ class Morphology(object):
 
     def analysis_to_lemma(self, analysis, wordform):
         analysis_parts = self.tool.splitAnalysis(analysis)
-        lemma = analysis_parts[0] if len(analysis_parts) == 1 else wordform
+        lemma = ""
+        if len(analysis_parts) == 1:
+            if "Actio" in analysis_parts[0]:
+                analysis_parts = ["Actio+"+analysis_parts[0].split("Actio")[1]]
+                lemma = analysis_parts
+        else:
+            lemma = analysis_parts[0] if len(analysis_parts) == 1 else wordform
         return Lemma(
             analysis_parts, _input=lemma, tool=self.tool, tagsets=self.tagsets)
 
     def make_analyses_der_fin(self, analyses):
         analyses_der_fin = []
-        tags = ('Der', 'VAbess', 'VGen', 'Ger', 'Comp', 'Superl')
+        tags = ('Der', 'VAbess', 'VGen', 'Ger', 'Comp', 'Superl', 'Actio')
         for analysis in analyses:
+            if "Actio" in analysis:
+                analysis = analysis.split("Actio")[0]+"Actio"+analysis.split("Actio+")[1]
             analysis_parts = analysis.split('+')
             index = [index1 for index1, part in enumerate(analysis_parts[1:], start=1)
                      if part.startswith(tags)]
