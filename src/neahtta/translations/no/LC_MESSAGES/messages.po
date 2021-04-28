@@ -671,8 +671,8 @@ msgid " (Not found in our corpus)"
 msgstr " (Fins ikke i korpuset vårt)"
 
 #: configs/language_specific_rules/templates/analyses.template:30
-msgid " (No corpus available for this language)"
-msgstr " (Det er ikke noe korpus tilgjengelig for dette språket)"
+msgid " (No corpus available)"
+msgstr " (Korpus ikke tilgjengelig)"
 
 #: configs/language_specific_rules/templates/detail_entry.template:47
 #: configs/language_specific_rules/templates/bahkogirrje/sje/detail_entry.template:61

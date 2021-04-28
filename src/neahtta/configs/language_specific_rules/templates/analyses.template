@@ -94,7 +94,7 @@
             {% else %}
                 <dt><span lang="{{ _from }}">{{ grouper }}</span>
                   <span class="etymology">{{render_etymologi_link(grouper)}}</span>
-                  <span class="not_found">{% trans %} (No corpus available for this language){% endtrans %}</span></dt>
+                  <span class="not_found">{% trans %} (No corpus available){% endtrans %}</span></dt>
             {% endif %}
             <dd>
                 <ul class="possible_forms">
