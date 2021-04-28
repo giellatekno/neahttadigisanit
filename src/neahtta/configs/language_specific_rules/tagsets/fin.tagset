@@ -1,2 +1,4 @@
-pos: [ "N",  "V", "A" ] 
+pos: [ "N",  "V", "A" ]
 number: ["Sg", "Pl"]
+nouns_null_number:
+ - 'Asdf'
