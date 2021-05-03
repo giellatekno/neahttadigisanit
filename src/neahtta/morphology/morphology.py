@@ -1112,10 +1112,10 @@ class Morphology(object):
         updated_res = []
         for i in range(0, len(idxs)):
             #if not using weights idxs is an array of empty arrays
-            try:
-                new_res = (res[i][0], [res[i][1][idxs[i][0]]])
-            except:
-                new_res = (res[i][0], res[i][1])
+            forms = []
+            for idx in idxs[i]:
+                forms.append(res[i][1][idx])
+                new_res = (res[i][0], forms)
             updated_res.append(new_res)
 
         for tag, forms in updated_res:
