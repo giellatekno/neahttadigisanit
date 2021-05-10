@@ -694,7 +694,8 @@ class SearcherMixin(object):
                         if url_json:
                             response = urllib.urlopen(url_json)
                             data = json.loads(response.read())
-                            korp_hits = data["hits"]
+                            #korp_hits = data["hits"]
+                            korp_hits = 0
 
                     tplkwargs = {
                         'lexicon_entry':
@@ -742,7 +743,8 @@ class SearcherMixin(object):
             if url_json:
                 response = urllib.urlopen(url_json)
                 data = json.loads(response.read())
-                korp_hits = data["hits"]
+                #korp_hits = data["hits"]
+                korp_hits = ''
         else:
             korp_hits = ''
 
