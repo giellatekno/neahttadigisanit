@@ -2,9 +2,10 @@ name: "verbs"
 morphology:
   pos: V
 --
-{{ lemma }}+V+Ind+Prs+ScSg1
-{{ lemma }}+V+Ind+Prs+ScSg3
-{{ lemma }}+V+Ind+Prs+ScPl3
-{{ lemma }}+V+Ind+Prt+ScSg1
-{{ lemma }}+V+Ind+Prt+ScPl3
-{{ lemma }}+V+Der/mA+Inf+Ill
+{{ lemma }}+V+Act+Ind+Prs+Sg1
+{{ lemma }}+V+Act+Ind+Prs+Sg3
+{{ lemma }}+V+Act+Ind+Prs+Pl3
+{{ lemma }}+V+Act+Ind+Prt+Sg1
+{{ lemma }}+V+Act+Ind+Prts+Sg3
+{{ lemma }}+V+Act+Ind+Prt+Pl3
+{{ lemma }}+V+Act+Inf3+Ill
