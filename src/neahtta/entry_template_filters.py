@@ -95,6 +95,11 @@ def register_template_filters(app):
                 fs.append(g)
         return fs
 
+    @app.template_filter('insert_value')
+    def insert_value(generated_forms, position, value):
+        generated_forms.insert(position, value)
+        return generated_forms
+
     @app.template_filter('xpath')
     def xpath(node_obj, xpath_str):
         if node_obj is not None:
