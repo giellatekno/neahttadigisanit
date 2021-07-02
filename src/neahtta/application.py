@@ -289,6 +289,7 @@ def register_assets(app):
 
 def check_dependencies():
     import distutils
+    from distutils import spawn 
 
     execs = [
         'node',
@@ -296,7 +297,7 @@ def check_dependencies():
     ]
 
     for e in execs:
-        p = distutils.spawn.find_executable(e)
+        p = spawn.find_executable(e)
         if p is None:
             print >> sys.stderr, "* Missing dependency in $PATH: " + e
             print >> sys.stderr, "  Install the executable, check that it is available in $PATH, "

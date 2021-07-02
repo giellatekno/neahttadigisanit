@@ -1044,6 +1044,16 @@ spasme.xml: $(GTHOME)/words/dicts/spasme/src/
 	-@cp $@ $@.$(shell date +%s).bak
 	$(SAXON) inDir=$^ > $@
 
+smespa.xml: $(GTHOME)/words/dicts/smespa/src/
+	@echo "******************************"
+	@echo "** Building sme-spa lexicon **"
+	@echo "******************************"
+	@echo "** Backup made (.bak)       **"
+	@echo "******************************"
+	@echo ""
+	-@cp $@ $@.$(shell date +%s).bak
+	$(SAXON) inDir=$^ > $@
+
 .PHONY: sanit-lexica
 sanit-lexica: fin-sme.all.xml \
 			  nob-sme.all.xml \
@@ -1053,7 +1063,8 @@ sanit-lexica: fin-sme.all.xml \
 			  smasme.xml \
 			  smesmj.xml \
 			  smjsme.xml \
-				spasme.xml
+			  spasme.xml \
+			  smespa.xml
 
 ##
 ### #smeanalysers
@@ -1097,7 +1108,7 @@ sanit-clean: clean_langs_fsts
 
 rm-sanit-lexica:
 	@rm -rf fin-sme.all.xml nob-sme.all.xml sme-fin.all.xml sme-nob.all.xml \
-		smesma.xml smasme.xml smesmj.xml smjsme.xml spasme.xml
+		smesma.xml smasme.xml smesmj.xml smjsme.xml spasme.xml smespa.xml
 
 # NB: sme analyzer build is different, as well as target fst file names
 # also there is one additional analyser that comes out of this, which is
