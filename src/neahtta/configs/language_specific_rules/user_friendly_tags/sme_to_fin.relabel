@@ -108,8 +108,9 @@
       "NegPrc": "negatiivinen partisiippi" # "neg.pts."
       "AgPrc": "agenttipartisiippi" # "agprc."
       # adj
-      "Comp": "komp."
-      "Sup": "sup."
+      "Posit": "positiivi"
+      "Comp": "komparatiivi"
+      "Superl": "superlatiivi"
       # foc
       "Foc/han": "Liitep. -han"
       "Foc/kaan": "Liitep. -kaan"

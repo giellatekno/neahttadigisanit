@@ -1,4 +1,4 @@
-{# This is the paradigm template for North Sámi.
+{# This is the paradigm template for Finnish (adapted from North Sámi)
 
  * Nouns: Display everything in the paradigm in a definition list
  * Verbs: Display a table with one column for present tense, and one for
@@ -7,7 +7,7 @@
    also add a title on the table.
 
    - These are controlled by tagsets. Including more forms for verbs can
-   	 be handled by adding more tags to the file `tagsets/sme.tagset`
+   	 be handled by adding more tags to the file `tagsets/fin.tagset`
 
  #}
 
@@ -96,8 +96,6 @@
     {% set zipped_numbers = izip_longest(sg_forms, pl_forms, fillvalue='-')|list %}
     {% set paradigm_exists = zipped_numbers|length > 0 %}
 
-    {% set numberless_forms = paradigm|by_tagset("nouns_null_number") %}
-
     {% set sg_text = "Sg"|tagfilter(_from, _to) %}
     {% set pl_text = "Pl"|tagfilter(_from, _to) %}
 
@@ -118,12 +116,48 @@
 
 {%- if pos|upper == 'A'  %}
 
-    {% set adj_text = "A"|tagfilter(_from, _to) %}
+    {% set sg_forms_pos = paradigm|by_tagset_value("number", "Sg")
+                              |without_tagset("comparative")
+                              |without_tagset("superlative")
+                              |group_by_tag %}
+    {% set pl_forms_pos = paradigm|by_tagset_value("number", "Pl")
+                              |without_tagset("comparative")
+                              |without_tagset("superlative")
+                              |group_by_tag %}
+    {% set sg_forms_comp = paradigm|by_tagset_value("number", "Sg")
+                              |by_tagset("comparative")
+                              |group_by_tag %}
+    {% set pl_forms_comp = paradigm|by_tagset_value("number", "Pl")
+                              |by_tagset("comparative")
+                              |group_by_tag %}
+    {% set sg_forms_superl = paradigm|by_tagset_value("number", "Sg")
+                              |by_tagset("superlative")
+                              |group_by_tag %}
+    {% set pl_forms_superl = paradigm|by_tagset_value("number", "Pl")
+                              |by_tagset("superlative")
+                              |group_by_tag %}                                                            
 
+    {% set zipped_adjectives_positive = izip_longest(sg_forms_pos, pl_forms_pos, fillvalue='-')|list %}
+    {% set zipped_adjectives_comparative = izip_longest(sg_forms_comp, pl_forms_comp, fillvalue='-')|list %}
+    {% set zipped_adjectives_superlative = izip_longest(sg_forms_superl, pl_forms_superl, fillvalue='-')|list %}
+    {% set paradigm_exists = zipped_adjectives_positive|length > 0 %}
+
+    {% set adj_text = "A"|tagfilter(_from, _to) %}
+    {% set ord_text = "Ord"|tagfilter(_from, _to) %}
+    {% set sg_text = "Sg"|tagfilter(_from, _to) %}
+    {% set pl_text = "Pl"|tagfilter(_from, _to) %}
+    {% set posit_text = "Posit"|tagfilter(_from, _to) %}
+    {% set comp_text = "Comp"|tagfilter(_from, _to) %}
+    {% set superl_text = "Superl"|tagfilter(_from, _to) %}
 
     {% macro clean_tag(tag_input) %}
         {{ tag_input|tagfilter(_from, _to)
-                    |replace(adj_text, "") }}
+                    |replace(adj_text, "")
+                    |replace(ord_text, "")
+                    |replace(sg_text, "")
+                    |replace(pl_text, "")
+                    |replace(comp_text, "")
+                    |replace(superl_text, "") }}
     {% endmacro %}
 
 {% endif -%}
@@ -160,7 +194,6 @@
     {% if sg_forms|length > 0 and pl_forms|length > 0 %}
         {% set two_columns = True %}
         {% set zipped_numbers = izip_longest(sg_forms, pl_forms, fillvalue='-')|list %}
-        {% set numberless_forms = paradigm|by_tagset("nouns_null_number") %}
     {% endif %}
 
     {% macro clean_tag(tag_input) %}
@@ -218,11 +251,15 @@
             msd_par)|urlencode_quote(safe="#/"))
         %}
 
-        {% set s_href = l_host + query %}
+        {% if l_host %}
+            {% set s_href = l_host + query %}
+            {{ s_href }}
+        {% endif %}
 
         {% set link_corpus_param = current_pair_settings.link_corpus_parameter %}
         {% if link_corpus_param|length >0 %}
               {% set s_href = s_href + '&corpus=' + link_corpus_param %}
+              {{ s_href }}
         {% endif %}
     {%- endif %}
 {%- endmacro %}
@@ -345,41 +382,124 @@
 
         {%- endfor -%}
 
-        {% set numb_forms = numberless_forms|group_by_tag %}
-        {% for var in numb_forms %}
-            <tr>
-                {% if var[0].tag %}
-                    <th class="tag" lang="{{ _to }}">{{ clean_tag(var[0].tag) }}</th>
-                {% endif %}
-                <td colspan="2" lang="{{ _from }}" class="center">{{ var|join('<br />', attribute='form') }}</td>
-            </tr>
-        {% endfor %}
-
         </table>
 
     {% endif %}
 
 {% elif pos|upper == 'A' %}
 
-    {% set pos_text = "A"|tagfilter(_from, _to) %}
-    {% set ord_text = "Ord"|tagfilter(_from, _to) %}
+    {% if paradigm_exists %}
+        {# Positive forms #}
+        <table class="tableparadigm miniparadigm">
+        <tbody>
+            <tr>
+                <th lang="{{ _to }}">{{ posit_text }}</th>
+                <th lang="{{ _to }}">{{ sg_text }}</th>
+                <th lang="{{ _to }}">{{ pl_text }}</th>
+            </tr>
 
-    {% macro clean_tag(tag_input) %}
-        {{ tag_input|tagfilter(_from, _to)
-                    |replace(pos_text, "")
-                    |replace(ord_text, "") }}
-    {% endmacro %}
+        {%- for sgs, pls in zipped_adjectives_positive -%}
+            <tr>
 
-    <dl class="dl-horizontal miniparadigm">
-      {% set adj_forms = paradigm|group_by_tag %}
+            {% if sgs[0].tag %}
+                {% set tag_display = clean_tag(sgs[0].tag) %}
+            {% elif pls[0].tag %}
+                {% set tag_display = clean_tag(pls[0].tag) %}
+            {% endif %}
 
-      {% for var in adj_forms %}
-          {% if var[0].tag %}
-              <dt>{{ clean_tag(var[0].tag) }}</dt>
-          {% endif %}
-          <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form') }}</dd>
-      {% endfor %}
-    </dl>
+                <th class="tag" lang="{{ _to }}">{{ tag_display }}</th>
+
+            {% if sgs and sgs != '-' %}
+                <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form') }}</td>
+            {% else %}
+                <td lang="{{ _from }}" class="center">&mdash;</td>
+            {% endif %}
+
+            {% if pls and pls != '-' %}
+                <td lang="{{ _from }}">{{ pls|join('<br />', attribute='form') }}</td>
+            {% else %}
+                <td lang="{{ _from }}" class="center">&mdash;</td>
+            {% endif %}
+
+            </tr>
+
+        {%- endfor -%}
+        <tr><td></td></tr>
+        </tbody>
+        {# Comparative forms #}
+        <tbody>
+            <tr>
+                <th lang="{{ _to }}">{{ comp_text }}</th>
+                <th lang="{{ _to }}">{{ sg_text }}</th>
+                <th lang="{{ _to }}">{{ pl_text }}</th>
+            </tr>
+
+        {%- for sgs, pls in zipped_adjectives_comparative -%}
+            <tr>
+
+            {% if sgs[0].tag %}
+                {% set tag_display = clean_tag(sgs[0].tag) %}
+            {% elif pls[0].tag %}
+                {% set tag_display = clean_tag(pls[0].tag) %}
+            {% endif %}
+
+                <th class="tag" lang="{{ _to }}">{{ tag_display }}</th>
+
+            {% if sgs and sgs != '-' %}
+                <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form') }}</td>
+            {% else %}
+                <td lang="{{ _from }}" class="center">&mdash;</td>
+            {% endif %}
+
+            {% if pls and pls != '-' %}
+                <td lang="{{ _from }}">{{ pls|join('<br />', attribute='form') }}</td>
+            {% else %}
+                <td lang="{{ _from }}" class="center">&mdash;</td>
+            {% endif %}
+
+            </tr>
+
+        {%- endfor -%}
+        <tr><td></td></tr>
+        </tbody>
+        {# Superlative forms #}
+        <tbody>
+            <tr>
+                <th lang="{{ _to }}">{{ superl_text }}</th>
+                <th lang="{{ _to }}">{{ sg_text }}</th>
+                <th lang="{{ _to }}">{{ pl_text }}</th>
+            </tr>
+
+        {%- for sgs, pls in zipped_adjectives_superlative -%}
+            <tr>
+
+            {% if sgs[0].tag %}
+                {% set tag_display = clean_tag(sgs[0].tag) %}
+            {% elif pls[0].tag %}
+                {% set tag_display = clean_tag(pls[0].tag) %}
+            {% endif %}
+
+                <th class="tag" lang="{{ _to }}">{{ tag_display }}</th>
+
+            {% if sgs and sgs != '-' %}
+                <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form') }}</td>
+            {% else %}
+                <td lang="{{ _from }}" class="center">&mdash;</td>
+            {% endif %}
+
+            {% if pls and pls != '-' %}
+                <td lang="{{ _from }}">{{ pls|join('<br />', attribute='form') }}</td>
+            {% else %}
+                <td lang="{{ _from }}" class="center">&mdash;</td>
+            {% endif %}
+
+            </tr>
+
+        {%- endfor -%}
+        </tbody>
+        </table>
+    {% endif %}
+
 
 {% elif pos|upper == 'PRON' %}
 
@@ -449,6 +569,7 @@
     {% endif %}
 
 {% else %}
+
     <dl class="dl-horizontal miniparadigm">
       {%- for form in paradigm -%}
 

@@ -1,14 +1,93 @@
-pos: 
- - 'N'
- - 'V'
- - 'A'
-number: 
- - 'Sg'
- - 'Pl'
-nouns_null_number:
- - 'Asdf'
+# These need to only be "raw" tags (before user-friendly relabels)
+# This tagset is modified from sme-tagset, and should probably be rewritten by someone
+# who knows Finnish
+pos:
+ - "A"
+ - "Adp"
+ - "Adv"
+ - "CC"
+ - "CS"
+ - "Interj"
+ - "N"
+ - "Num"
+ - "Pcle"
+ - "Po"
+ - "Pr"
+ - "Pron"
+ - "V"
+noun_type:
+ - "Coll"
+pron_type:
+ - "Dem"
+ - "Indef"
+ - "Interr"
+ - "Pers"
+ - "Recipr"
+ - "Refl"
+ - "Rel"
+type:
+ - "NomAg"
+ - "G3"
+ - "G7"
+ - "Aktor"
+ - "res."
+ - "Prop"
+ - "Coll"
+ - "Dem"
+ - "Indef"
+ - "Interr"
+ - "Pers"
+ - "Recipr"
+ - "Refl"
+ - "Rel"
+ - "Ord"
+possessive:
+ - "PxSg2"
 tense:
- - 'Prs'
- - 'Prt'
+ - "Prs"
+ - "Prt"
+# Selecting Negative and Supinum forms in paradigm files
+supinum:
+ - "Sup"
+negative:
+ - "Neg"
 negation:
  - "ConNeg"
+# Tags for displaying only one tense, e.g. in negative and supinum forms
+single_tense_display:
+ - "Sup"
+first_persons:
+ - "Sg1"
+ - "Pl1"
+second_persons:
+ - "Sg2"
+ - "Pl2"
+third_persons:
+ - "Sg3"
+ - "Pl3"
+# Tags for display after the tensed paradigm
+nonfinite_paradigm:
+ - "ConNeg"
+ - "PrfPrc"
+ - "Neg"
+number:
+ - "Sg"
+ - "Pl"
+case:
+ - "Nom"
+ - "Gen"
+ - "Par"
+ - "Ine"
+ - "Ill"
+ - "Ela"
+ - "Ade"
+ - "Abe"
+ - "All"
+ - "Abl"
+ - "Ess"
+ - "Tra"
+ - "Ins"
+comparative:
+ - "Comp"
+superlative:
+ - "Superl"
