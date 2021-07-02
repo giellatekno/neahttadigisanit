@@ -218,8 +218,10 @@
             msd_par)|urlencode_quote(safe="#/"))
         %}
 
-        {% set s_href = l_host + query %}
-        {{ s_href }}
+        {% if l_host %}
+            {% set s_href = l_host + query %}
+            {{ s_href }}
+        {% endif %}
 
         {% set link_corpus_param = current_pair_settings.link_corpus_parameter %}
         {% if link_corpus_param|length >0 %}

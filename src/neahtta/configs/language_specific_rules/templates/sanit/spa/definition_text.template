@@ -51,24 +51,22 @@
     {% endif %}
 
     {% if reference %}
-        <!--a href="{{ url_for('.search_pair_referred_search', _from=_from, _to=_to) }}?l_til_ref={{ reference }}">
-            {{- text -}}
-        </a-->
-        {% if text.startswith("Usar:") or text.startswith("Geahča") or text.startswith("No se traduce") %}
-          <span id="span_t"><i>{{- text -}}</i></span> &rarr;
-        {% else %}
-          <span id="span_t">{{- text -}}</span> &rarr;
-        {% endif %}
+        <a href="{{ url_for('.search_pair_referred_search', _from=_from, _to=_to) }}?l_til_ref={{ reference }}">
+          {% if text.startswith("Usar:") or text.startswith("Geahča") or text.startswith("No se traduce") %}
+            <span id="span_t"><i>{{- text -}}</i></span> &rarr;
+          {% else %}
+            <span id="span_t">{{- text -}}</span> &rarr;
+          {% endif %}
+        </a>
     {%- else %}
         {# NB: swap from and to for these links since these are definitions. #}
-        <!--a href="{{ url_for('.detailed_language_pair_search', _from=_to, _to=_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
-            {{- text -}}
-        </a-->
-        {% if text.startswith("Usar:") or text.startswith("Geahča") or text.startswith("No se traduce") %}
-          <span id="span_t"><i>{{- text -}}</i></span>
-        {% else %}
-          <span id="span_t">{{- text -}}</span>
-        {% endif %}
+        <a href="{{ url_for('.detailed_language_pair_search', _from=_to, _to=_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
+          {% if text.startswith("Usar:") or text.startswith("Geahča") or text.startswith("No se traduce") %}
+            <span id="span_t"><i>{{- text -}}</i></span>
+          {% else %}
+            <span id="span_t">{{- text -}}</span>
+          {% endif %}
+        </a>
     {%- endif %}
 {%- endmacro -%}
 
@@ -109,6 +107,14 @@
   {% if re %}
     <span class="re">
     {%- for elem in re %}
+      ({{elem|text}}{{", " if not loop.last}})
+    {% endfor %}
+    </span>
+  {%- endif %}
+  {% set expl = translation_group.xpath('./expl') %}
+  {% if expl %}
+    <span class="expl">
+    {%- for elem in expl %}
       ({{elem|text}}{{", " if not loop.last}})
     {% endfor %}
     </span>

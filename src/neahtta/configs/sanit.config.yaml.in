@@ -34,7 +34,7 @@ UnitTests:
 # following settings.
 Tools:
   xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
-  hfst_lookup: &HFST-LOOKUP '/bin/hfst-lookup'
+  hfst_lookup: &HFST-LOOKUP '/usr/bin/hfst-lookup'
   opt: &OPT '/opt/smi'
 
 # Morphological system definitions. Since YAML variables aren't able to
@@ -215,6 +215,11 @@ Dictionaries:
     target: sme
     path: 'dicts/spasme.xml'
     autocomplete: true
+
+  - source: sme
+    target: spa
+    path: 'dicts/smespa.xml'
+    autocomplete: false
 
 ReaderConfig:
   Settings:

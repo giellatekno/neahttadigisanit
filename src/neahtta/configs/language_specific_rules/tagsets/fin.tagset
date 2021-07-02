@@ -1,4 +1,14 @@
-pos: [ "N",  "V", "A" ]
-number: ["Sg", "Pl"]
+pos: 
+ - 'N'
+ - 'V'
+ - 'A'
+number: 
+ - 'Sg'
+ - 'Pl'
 nouns_null_number:
  - 'Asdf'
+tense:
+ - 'Prs'
+ - 'Prt'
+negation:
+ - "ConNeg"

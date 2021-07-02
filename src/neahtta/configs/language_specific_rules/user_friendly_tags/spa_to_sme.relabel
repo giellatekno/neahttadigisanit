@@ -2,10 +2,10 @@ Relabel:
   - source_morphology: 'spa'
     target_ui_language: 'sme'
     tags: &spatagrelabels
-      "N": "subst."
+      "N": "noun"
       "A": "adj."
       "Adv": "adv."
-      "V": "verb"
+      "V": "verbo"
       "Pron": "pron."
       "CS": "subjunc."
       "CC": "conj."
@@ -15,3 +15,24 @@ Relabel:
       "Pcle": "particle"
       "Num": "numeral"
       "Prop": "proper noun"
+
+      "Ind": "indicativo"
+      "Imp": "imperativo"
+      "Sbj": "subjuntivo"
+      "PrtIndef": "pretérito"
+      "Prs": "presente"
+      "Ger": "gerundio"
+      "PrfPrc": "participio"
+
+      "P1": "primera persona"
+      "P2": "segunda persona"
+      "P3": "tercera persona"
+
+      "sg": "singular"
+      "pl": "plural"
+
+      "Msc": "masculino"
+      "Fem": "femenino"
+      "MF": "masculino/femenino"
+
+      "Superl": "superlativo"
