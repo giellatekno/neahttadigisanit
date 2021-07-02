@@ -1,5 +1,5 @@
 {# This template renders the search form on the main page.
-    - Differences: autocomplete result number
+    - Differences: autocomplete result number, do not show smespa dict
  #}
 {%- set keyboard = false %}
 {% if current_variant_options %}

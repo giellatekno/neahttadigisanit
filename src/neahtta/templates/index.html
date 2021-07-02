@@ -51,7 +51,9 @@
                     <span>{{ _from|iso_to_i18n }} → {{ _to|iso_to_i18n }}</span>
                 {% endif %}
                 {% if display_swap %}
-                <span class="swaplink" style="font-size: 80%">(<a href="{{ url_for('.canonical_root_search_pair', _from=swap_from, _to=swap_to) }}">⇄ <span lang="{{ current_locale }}">{% trans %}Swap{% endtrans %}</span></a>)</span>
+                    {% if not (_from == "spa" and _to == "sme") or (_from == "sme" and _to == "spa") %} {# do not show smespa before it is finished #}
+                        <span class="swaplink" style="font-size: 80%">(<a href="{{ url_for('.canonical_root_search_pair', _from=swap_from, _to=swap_to) }}">⇄ <span lang="{{ current_locale }}">{% trans %}Swap{% endtrans %}</span></a>)</span>
+                    {% endif %} {# smespa #}
                 {% endif %}
             </h4>
 
