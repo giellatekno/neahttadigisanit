@@ -134,7 +134,6 @@
     {% set sg_text    = "Sg"|tagfilter(_from, _to) %}
     {% set pl_text    = "Pl"|tagfilter(_from, _to) %}
 
-
     {% set pron_type = lexicon_entry|xpath('./lg/l/@type')|first %}
     {% set pron_type_text = pron_type|tagfilter(_from, _to) %}
 
