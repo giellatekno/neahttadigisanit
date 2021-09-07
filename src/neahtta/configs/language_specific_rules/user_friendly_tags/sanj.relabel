@@ -1,0 +1,43 @@
+Relabel:
+
+  - source_morphology: 'sjd'
+    target_ui_language: 'rus'
+    tags:
+      V: "гл."
+      N: "сущ."
+      A: "прил."
+      Adv: ""
+      Num: ""
+      Pron: ""
+      Pr: ""
+      Po: ""
+      Ger: ""
+      Interj: ""
+      Ptc: ""
+      CC: ""
+      Pcle: ""
+
+      "Sg": ""
+      "Pl": ""
+      "Nom": ""
+      "Gen": ""
+      "Acc": ""
+      "Ill": ""
+      "Loc": ""
+      "Com": ""
+      "Abe": ""
+      "Par": ""
+
+      "Ind": ""
+      "Prs": ""
+      "Prt": ""
+      "Imprt": ""
+      "PrfPrc": ""
+      "Sg1": ""
+      "Sg2": ""
+      "Sg3": ""
+      "Sg4": ""
+      "Pl1": ""
+      "Pl2": ""
+      "Pl3": ""
+      "ConNeg": ""
