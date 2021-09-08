@@ -1,7 +1,7 @@
 Relabel:
 
   - source_morphology: 'sjd'
-    target_ui_language: 'rus'
+    target_ui_language: 'ru'
     tags:
       V: "гл."
       N: "сущ."
