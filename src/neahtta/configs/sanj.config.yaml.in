@@ -1,0 +1,78 @@
+# Default locale, but use ISO 2 code or whatever corresponds to what is
+# in the translations directory.
+
+#$# include for sjd-ru
+
+ApplicationSettings:
+  app_name: "Neahttadigisánit "
+  short_name: "sanj"
+  default_locale: "ru"
+  default_pair: ["sjd", "ru"]
+  mobile_default_pair: false
+  locales_available:
+    - sjd
+    - ru
+    #- eng
+  app_meta_title: >
+     TODO Digibaakoeh gaskeviermesne
+  meta_description: >
+     TODO Gratis online mobilvennlige sørsamiske ordbøker
+  meta_keywords: >
+     TODO samisk ordbok, på nett, mobil ordbok, ordbok app, sátnegirji,
+     sátnegirjjit sørsamisk, norsk, south sámi, norwegian, sámegiella,
+     sámi language, lullisámegiella, sørsamisk, mobil ordbok
+  admins_to_email:
+    - "trond.trosterud@uit.no"
+    - "lene.antonsen@uit.no"
+
+# This option set is not used outside of providing shortcuts for
+# following settings.
+Tools:
+  xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
+  hfst_lookup: &HFST-LOOKUP '/bin/hfst-lookup'
+  opt: &OPT '/opt/smi'
+
+# Morphological system definitions. Since YAML variables aren't able to
+# be used in concatenating strings, certain paths with references must
+# be lists. These are concatenated automatically.
+Morphology:
+  sjd:
+    tool: *HFST-LOOKUP
+    file: [*OPT, '/sjd/bin/analyser-dict-gt-desc.hfstol']
+
+    inverse_file: [*OPT, '/sjd/bin/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
+    options:
+      compoundBoundary: "+Cmp#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  ru:
+    tool: *HFST-LOOKUP
+    file: [*OPT, '/rus/bin/analyser-dict-gt-desc.hfstol']
+    inverse_file: [*OPT, '/rus/bin/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
+    options:
+      compoundBoundary: ["#+Cmp+", "#+CmpS+"]
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+
+Languages:
+  - iso: ru
+  - iso: sjd
+    minority_lang: true
+
+
+# This also dictates the order of the dictionaries in the UI for now.
+Dictionaries:
+
+  - source: sjd
+    target: ru
+    autocomplete: true
+    show_korp_search: False
+    path: 'dicts/sjd-rus.xml'
+
+ReaderConfig:
+  Settings:
+    api_host: "sanj.oahpa.no"
