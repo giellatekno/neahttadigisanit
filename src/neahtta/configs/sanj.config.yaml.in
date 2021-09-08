@@ -10,7 +10,6 @@ ApplicationSettings:
   default_pair: ["sjd", "ru"]
   mobile_default_pair: false
   locales_available:
-    - sjd
     - ru
     #- eng
   app_meta_title: >
