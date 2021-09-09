@@ -23,6 +23,8 @@ number:
   - "Pl1"
   - "Pl2"
   - "Pl3"
+  - "Sg"
+  - "Pl"
 nouns_null_number:
   - "Ess"
   - "Par"
@@ -30,8 +32,8 @@ nonfinite_paradigm:
   - "ConNeg"
   - "PrfPrc"
 negation:
-  - Neg
-  - ConNeg
+  - "Neg"
+  - "ConNeg"
 negative:
   - "Neg"
 supinum:
