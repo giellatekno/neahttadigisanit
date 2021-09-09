@@ -2,41 +2,41 @@
 ### Standard verb context
 ##
 
-- entry_context: "мунн"
+- entry_context: None
   tag_context: "V+Ind+Prs+Sg1"
-  template: "{{ word_form }}"
+  template: "(мунн) {{ word_form }}"
 
-- entry_context: "то̄нн"
+- entry_context: None
   tag_context: "V+Ind+Prs+Sg2"
-  template: "{{ word_form }}"
+  template: "(то̄нн) {{ word_form }}"
 
-- entry_context: "со̄нн"
+- entry_context: None
   tag_context: "V+Ind+Prs+Sg3"
-  template: "{{ word_form }}"
+  template: "(со̄нн) {{ word_form }}"
 
-- entry_context: "мыйй"
+- entry_context: None
   tag_context: "V+Ind+Prs+Pl1"
-  template: "{{ word_form }}"
+  template: "(мыйй) {{ word_form }}"
 
-- entry_context: "тыйй"
+- entry_context: None
   tag_context: "V+Ind+Prs+Pl2"
-  template: "{{ word_form }}"
+  template: "(тыйй) {{ word_form }}"
 
-- entry_context: "сыйй"
+- entry_context: None
   tag_context: "V+Ind+Prs+Pl3"
-  template: "{{ word_form }}"
+  template: "(сыйй) {{ word_form }}"
 
-- entry_context: "мунн"
+- entry_context: None
   tag_context: "V+Ind+Prs+ConNeg"
-  template: "{{ word_form }}"
+  template: "(мунн) {{ word_form }}"
 
-- entry_context: "мунн"
+- entry_context: None
   tag_context: "V+Ind+Prt+ConNeg"
-  template: "{{ word_form }}"
+  template: "(мунн) {{ word_form }}"
 
-- entry_context: "мунн"
+- entry_context: None
   tag_context: "V+PrfPrc"
-  template: "{{ word_form }}"
+  template: "(мунн) {{ word_form }}"
 
 
 
@@ -145,85 +145,85 @@
 
 # EX: ciellat
 
-- entry_context: "та̄дт"
+- entry_context: None
   tag_context: "V+Ind+Prs+Sg3"
-  template: "{{ word_form }}"
+  template: "(та̄дт) {{ word_form }}"
 
-- entry_context: "тэгк"
+- entry_context: None
   tag_context: "V+Ind+Prs+Pl3"
-  template: "{{ word_form }}"
+  template: "(тэгк) {{ word_form }}"
 
-- entry_context: "та̄дт"
+- entry_context: None
   tag_context: "V+Ind+Prs+ConNeg"
-  template: "{{ word_form }}"
+  template: "(та̄дт) {{ word_form }}"
 
-- entry_context: "та̄дт"
+- entry_context: None
   tag_context: "V+Ind+Prt+ConNeg"
-  template: "{{ word_form }}"
+  template: "(та̄дт) {{ word_form }}"
 
-- entry_context: "та̄дт"
+- entry_context: None
   tag_context: "V+PrfPrc"
-  template: "{{ word_form }}"
+  template: "(та̄дт) {{ word_form }}"
 
 # EX: deaivvadit
 
-- entry_context: "мыйй"
+- entry_context: None
   tag_context: "V+Ind+Prs+Pl1"
-  template: "{{ word_form }}"
+  template: "(мыйй) {{ word_form }}"
 
-- entry_context: "мыйй"
+- entry_context: None
   tag_context: "V+Ind+Prt+Pl1"
-  template: "{{ word_form }}"
+  template: "(мыйй) {{ word_form }}"
 
-- entry_context: "тыйй"
+- entry_context: None
   tag_context: "V+Ind+Prs+Pl2"
-  template: "{{ word_form }}"
+  template: "(тыйй) {{ word_form }}"
 
-- entry_context: "тыйй"
+- entry_context: None
   tag_context: "V+Ind+Prt+Pl2"
-  template: "{{ word_form }}"
+  template: "(тыйй) {{ word_form }}"
 
-- entry_context: "сыйй"
+- entry_context: None
   tag_context: "V+Ind+Prs+Pl3"
-  template: "{{ word_form }}"
+  template: "(сыйй) {{ word_form }}"
 
-- entry_context: "сыйй"
+- entry_context: None
   tag_context: "V+Ind+Prt+Pl3"
-  template: "{{ word_form }}"
+  template: "(сыйй) {{ word_form }}"
 
-- entry_context: "мунн"
+- entry_context: None
   tag_context: "V+Ind+Prs+ConNeg"
-  template: "{{ word_form }}"
+  template: "(мунн) {{ word_form }}"
 
-- entry_context: "мунн"
+- entry_context: None
   tag_context: "V+Ind+Prt+ConNeg"
-  template: "{{ word_form }}"
+  template: "(мунн) {{ word_form }}"
 
-- entry_context: "мунн"
+- entry_context: None
   tag_context: "V+PrfPrc"
-  template: "{{ word_form }}"
+  template: "(мунн) {{ word_form }}"
 
 # EX: bieggat
 
 - entry_context: "безлич."
   tag_context: "V+Ind+Prs+Sg3"
-  template: "{{ word_form }}"
+  template: "(безлич) {{ word_form }}"
 
 - entry_context: "безлич."
   tag_context: "V+Ind+Prt+Sg3"
-  template: "{{ word_form }}"
+  template: "(безлич) {{ word_form }}"
 
 - entry_context: "безлич."
   tag_context: "V+Ind+Prs+ConNeg"
-  template: "{{ word_form }}"
+  template: "(безлич) {{ word_form }}"
 
 - entry_context: "безлич."
   tag_context: "V+Ind+Prt+ConNeg"
-  template: "{{ word_form }}"
+  template: "(безлич) {{ word_form }}"
 
 - entry_context: "безлич."
   tag_context: "V+PrfPrc"
-  template: "{{ word_form }}"
+  template: "(безлич) {{ word_form }}"
 
 
 # negation
