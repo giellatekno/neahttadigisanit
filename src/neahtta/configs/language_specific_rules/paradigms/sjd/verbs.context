@@ -16,7 +16,7 @@
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Sg4"
-  template: "{{(со̄нн) word_form }}"
+  template: "(безлич) {{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Pl1"
@@ -45,7 +45,7 @@
 
 - entry_context: None
   tag_context: "V+Ind+Prt+Sg4"
-  template: "{{(со̄нн) word_form }}"
+  template: "(безлич) {{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prt+Pl1"
@@ -230,23 +230,23 @@
 
 # EX: bieggat
 
-- entry_context: "безлич."
+- entry_context: None
   tag_context: "V+Ind+Prs+Sg3"
   template: "(безлич) {{ word_form }}"
 
-- entry_context: "безлич."
+- entry_context: None
   tag_context: "V+Ind+Prt+Sg3"
   template: "(безлич) {{ word_form }}"
 
-- entry_context: "безлич."
+- entry_context: None
   tag_context: "V+Ind+Prs+ConNeg"
   template: "(безлич) {{ word_form }}"
 
-- entry_context: "безлич."
+- entry_context: None
   tag_context: "V+Ind+Prt+ConNeg"
   template: "(безлич) {{ word_form }}"
 
-- entry_context: "безлич."
+- entry_context: None
   tag_context: "V+PrfPrc"
   template: "(безлич) {{ word_form }}"
 
