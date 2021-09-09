@@ -72,6 +72,12 @@ Dictionaries:
     show_korp_search: False
     path: 'dicts/sjd-rus.xml'
 
+  - source: ru
+    target: sjd
+    autocomplete: true
+    show_korp_search: False
+    path: 'dicts/rus-sjd.xml'
+
 ReaderConfig:
   Settings:
     api_host: "sanj.oahpa.no"
