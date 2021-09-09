@@ -15,6 +15,10 @@
   template: "(со̄нн) {{ word_form }}"
 
 - entry_context: None
+  tag_context: "V+Ind+Prs+Sg4"
+  template: "{{(со̄нн) word_form }}"
+
+- entry_context: None
   tag_context: "V+Ind+Prs+Pl1"
   template: "(мыйй) {{ word_form }}"
 
@@ -25,6 +29,36 @@
 - entry_context: None
   tag_context: "V+Ind+Prs+Pl3"
   template: "(сыйй) {{ word_form }}"
+
+
+- entry_context: None
+  tag_context: "V+Ind+Prt+Sg1"
+  template: "(мунн) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+Ind+Prt+Sg2"
+  template: "(то̄нн) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+Ind+Prt+Sg3"
+  template: "(со̄нн) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+Ind+Prt+Sg4"
+  template: "{{(со̄нн) word_form }}"
+
+- entry_context: None
+  tag_context: "V+Ind+Prt+Pl1"
+  template: "(мыйй) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+Ind+Prt+Pl2"
+  template: "(тыйй) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+Ind+Prt+Pl3"
+  template: "(сыйй) {{ word_form }}"
+
 
 - entry_context: None
   tag_context: "V+Ind+Prs+ConNeg"
@@ -60,17 +94,8 @@
   tag_context: "Hom2+V+Ind+Prs+Sg3"
   template: "{{ word_form }}"
 
-
 - entry_context: None
-  tag_context: "Hom2+V+Ind+Prs+Du1"
-  template: "{{ word_form }}"
-
-- entry_context: None
-  tag_context: "Hom2+V+Ind+Prs+Du2"
-  template: "{{ word_form }}"
-
-- entry_context: None
-  tag_context: "Hom2+V+Ind+Prs+Du3"
+  tag_context: "Hom2+V+Ind+Prs+Sg4"
   template: "{{ word_form }}"
 
 - entry_context: None
