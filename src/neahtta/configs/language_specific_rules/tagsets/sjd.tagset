@@ -26,5 +26,15 @@ number:
 nouns_null_number:
   - "Ess"
   - "Par"
+nonfinite_paradigm:
+  - "ConNeg"
+  - "PrfPrc"
+negation:
+  - Neg
+  - ConNeg
+negative:
+  - "Neg"
+supinum:
+  - "Sup"
 mode:
   - "Ind"
