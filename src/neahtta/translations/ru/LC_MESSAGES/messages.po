@@ -570,7 +570,7 @@ msgstr ""
 #: templates/index.html:104 templates/index.html:111
 #: templates/word_detail.html:99
 msgid "Find a problem?"
-msgstr "Вы находили ошибку?"
+msgstr "Вы нашли ошибку?"
 
 #: configs/language_specific_rules/templates/about.template:73
 #: configs/language_specific_rules/templates/baakoeh/about.template:65
@@ -592,10 +592,10 @@ msgid ""
 "using, or what word you\n"
 "                were searching for when you encountered the problem."
 msgstr ""
-"Если Вы находите какие-либо ошибки, говорите нам о них. Если \n"
-"у Вас были технические проблемы, скажите нам, какой веб-браузер или \n"
-"мобильный телефон Вы использовали, или какое слово Вы искали, когда \n"
-"Вы встретились с проблемой."
+"Если Вы найдёте какие-либо ошибки или неладности, сообщите нам об этом. \n"
+"Опишите проблему и напишите нам, какой браузер или мобильный телефон \n"
+"Вы использовали, и какое слово Вы искали, когда возникла проблема."
+ 
 
 #: configs/language_specific_rules/templates/about.template:78
 #: configs/language_specific_rules/templates/about.template:83
@@ -678,10 +678,12 @@ msgid ""
 "Technology group at the <a href=\"http://uit.no\">University of "
 "Tromsø</a>."
 msgstr ""
-"Создано с бесплатным и с открытым исходным кодом языков из <em> <a "
-"href=\"http://giellatekno.uit.no\"> Giellatekno </a> </em>, технологии "
-"группы языков саами в <a href=\"http://uit.no\"> университете Тромса "
-"</a>."
+"Разработано на базе бесплатного и открытого исходного кода <em> <a "
+"href=\"http://giellatekno.uit.no\"> Giellatekno </a> </em>, Центра "
+"саамской языковой технологии при <a href=\"http://uit.no\"> Университете Тромсё "
+" – Арктическом университете Норвегии. </a>."
+
+ 
 
 #: configs/language_specific_rules/templates/index_search_form.template:41
 #: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:44
@@ -777,6 +779,8 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanit/search_info.template:9
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
+"Здесь можно искать слово или словоформу. Когда вы сделали поиск, "
+"вы можете кликнуть на слово и увидеть, как оно склоняется."
 
 #: configs/language_specific_rules/templates/baakoeh/about.template:58
 msgid ""
@@ -1164,11 +1168,11 @@ msgstr "Возгласы! Была некоторая ошибка."
 
 #: templates/base.html:169 templates/mobile_nav_push_menu.html:6
 msgid "Home"
-msgstr "Домашняя страница"
+msgstr "Главная"
 
 #: templates/base.html:173 templates/mobile_nav_push_menu.html:10
 msgid "Plugins"
-msgstr "Плагин"
+msgstr "кликни-в-тексте"
 
 #: templates/base.html:181 templates/mobile_nav_push_menu.html:18
 msgid "Sources"
@@ -1227,7 +1231,7 @@ msgstr "Язык"
 #: templates/mobile_nav_push_menu.html:41
 #: templates/mobile_nav_push_menu.html:44
 msgid "Dictionaries"
-msgstr "Словарей"
+msgstr "Словари"
 
 #: templates/left_dictionary_list.html:17
 msgid "Escape Text-TV mode"
