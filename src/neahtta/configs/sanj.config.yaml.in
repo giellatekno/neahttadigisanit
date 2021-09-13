@@ -48,8 +48,8 @@ Morphology:
       inverse_tagsep: '+'
   ru:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/rus/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/rus/bin/generator-dict-gt-norm.hfstol']
+    file: [*OPT, '/rus/bin/analyser-gt-desc.hfstol']
+    inverse_file: [*OPT, '/rus/bin/generator-gt-norm.hfstol']
     format: 'hfst'
     options:
       compoundBoundary: ["#+Cmp+", "#+CmpS+"]
