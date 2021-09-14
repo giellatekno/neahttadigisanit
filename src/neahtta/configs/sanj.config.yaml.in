@@ -46,6 +46,16 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
+  sjdM:
+    tool: *HFST-LOOKUP
+    file: [*OPT, '/sjd/bin/analyser-dict-gt-desc-mobile.hfstol']
+    inverse_file: [*OPT, '/sjd/bin/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
+    options:
+      compoundBoundary: "+Cmp#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
   ru:
     tool: *HFST-LOOKUP
     file: [*OPT, '/rus/bin/analyser-gt-desc.hfstol']
