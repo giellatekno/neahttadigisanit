@@ -8,7 +8,7 @@ ApplicationSettings:
   short_name: "sanj"
   default_locale: "ru"
   default_pair: ["sjd", "ru"]
-  mobile_default_pair: false
+  mobile_default_pair: ["sjdM", "ru"]
   locales_available:
     - ru
     #- eng
@@ -81,6 +81,16 @@ Dictionaries:
     autocomplete: true
     show_korp_search: False
     path: 'dicts/sjd-rus.xml'
+    input_variants: &spell_relax_sjd
+      - type: "standard"
+        description: !gettext "Standard"
+        example: !gettext "(<em>а̄е̄ӣо̄ӯӎӊӈҏ</em>)"
+        short_name: "sjd"
+      - type: "mobile"
+        description: !gettext "Mobile friendly"
+        example: !gettext "(incl. <em>аеиоумннр</em>)"
+        short_name: "sjdM"
+        # onscreen_keyboard: *SJD_KEYS
 
   - source: ru
     target: sjd
