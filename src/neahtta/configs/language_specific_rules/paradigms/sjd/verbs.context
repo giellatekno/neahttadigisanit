@@ -232,23 +232,23 @@
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Sg3"
-  template: "(безлич) {{ word_form }}"
+  template: "(со̄нн) {{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prt+Sg3"
-  template: "(безлич) {{ word_form }}"
+  template: "(со̄нн) {{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prs+ConNeg"
-  template: "(безлич) {{ word_form }}"
+  template: "(мунн эмм) {{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prt+ConNeg"
-  template: "(безлич) {{ word_form }}"
+  template: "(мунн эмм) {{ word_form }}"
 
 - entry_context: None
   tag_context: "V+PrfPrc"
-  template: "(безлич) {{ word_form }}"
+  template: "(мунн ля̄) {{ word_form }}"
 
 
 # negation
