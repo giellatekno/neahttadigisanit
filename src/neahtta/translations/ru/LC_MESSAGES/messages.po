@@ -362,7 +362,6 @@ msgstr ""
 #: configs/language_specific_rules/templates/sonad/about.template:16
 #: configs/language_specific_rules/templates/vada/about.template:18
 #: configs/language_specific_rules/templates/valks/about.template:18
-#, fuzzy
 msgid "(... And is mobile-friendly!)"
 msgstr "(... И для мобильных устройств!)"
 
@@ -759,7 +758,7 @@ msgstr ""
 #: templates/mobile_nav_dictionary_list.html:61
 #: templates/more_dictionaries.html:21
 msgid "Other dictionaries"
-msgstr "Другие словарей"
+msgstr "Другие словари"
 
 #: configs/language_specific_rules/templates/paradigm_layouts.template:11
 #: configs/language_specific_rules/templates/baakoeh/sma/paradigm.template:188
@@ -1425,27 +1424,24 @@ msgid "Bugs?"
 msgstr "Ошибки?"
 
 #: templates/reader.html:41
-#, fuzzy
 msgid ""
 "If you encounter bugs, or the bookmarklet does not work on a particular "
 "page, contact us with the page URL or details of what you were reading "
 "when you encountered the problem."
 msgstr ""
 "Если вы обнаружите ошибки или закладка не работает на \n"
-"                 определенной странице, свяжитесь с нами и дайте URL "
-"страницы или деталей \n"
-"                 того, что вы читали, когда вы столкнулись с проблемой."
+"определенной странице, свяжитесь с нами и дайте URL \n"
+"страницы или деталейтого, что вы читали, \n"
+"когда вы столкнулись с проблемой."
 
 #: templates/reader.html:42
-#, fuzzy
 msgid ""
 "We do not store any private data, but we do collect individual dictionary"
 " lookups for statistics and to improve the dictionary."
 msgstr ""
 "Мы не храним никаких личных данных, но мы собираем \n"
-"                 индивидуальный поиск слов для статистики и для улучшения"
-" \n"
-"                словаря."
+"индивидуальный поиск слов для статистики и для улучшения \n"
+"словаря."
 
 #: templates/reader.html:49
 msgid "Includes"
