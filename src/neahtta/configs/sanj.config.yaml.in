@@ -13,13 +13,12 @@ ApplicationSettings:
     - ru
     #- eng
   app_meta_title: >
-     TODO Digibaakoeh gaskeviermesne
+     саамский словарь
   meta_description: >
-     TODO Gratis online mobilvennlige sørsamiske ordbøker
+     TODO Gratis online mobilvennlige kildinsamiske ordbøker
   meta_keywords: >
-     TODO samisk ordbok, på nett, mobil ordbok, ordbok app, sátnegirji,
-     sátnegirjjit sørsamisk, norsk, south sámi, norwegian, sámegiella,
-     sámi language, lullisámegiella, sørsamisk, mobil ordbok
+     саамский словарь, кильдинский саамский язык, кильдин-саамский язык,
+     са̄мь кӣлл, кӣлтса̄мь кӣлл, са̄мь са̄ннҍнэххьк, са̄ннҍнэххьк, русский
   admins_to_email:
     - "trond.trosterud@uit.no"
     - "lene.antonsen@uit.no"
@@ -38,7 +37,6 @@ Morphology:
   sjd:
     tool: *HFST-LOOKUP
     file: [*OPT, '/sjd/bin/analyser-dict-gt-desc.hfstol']
-
     inverse_file: [*OPT, '/sjd/bin/generator-dict-gt-norm.hfstol']
     format: 'hfst'
     options:
