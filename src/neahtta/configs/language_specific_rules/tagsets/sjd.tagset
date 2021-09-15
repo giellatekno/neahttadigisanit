@@ -40,3 +40,11 @@ supinum:
   - "Sup"
 mode:
   - "Ind"
+pron_type:
+ - "Dem"
+ - "Indef"
+ - "Interr"
+ - "Pers"
+ - "Recipr"
+ - "Refl"
+ - "Rel"
