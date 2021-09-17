@@ -24,11 +24,14 @@ to which a new language pair is being added.
 
 #### FSTs
 
-Assuming that the language uses the `langs/` infrastructure, adding
-another to a dictionary set's build process is easy. Find the targets
-for the dictionary set, for example, `kyv` and `kyv-install`, and add
-the language ISO to the variable `GT_COMPILE_LANGS` for these
-targets.
+
+
+All languages are in github, and use the `$GTLANGS/lang-LANG`
+infrastructure.  (where LANG is the ISO code, note that eventual
+references to a catalogue `*langs/` are obsolete).  Adding another to
+a dictionary set's build process is easy. Find the targets for the
+dictionary set, for example, `kyv` and `kyv-install`, and add the
+language ISO to the variable `GT_COMPILE_LANGS` for these targets.
 
     .PHONY: baakoeh-install
     baakoeh-install: GT_COMPILE_LANGS := sma nob
@@ -40,7 +43,7 @@ targets.
     [... snip ...]
 
 The dependencies for these will then automatically build, using as much
-of the `langs/` build infrastructure as possible.
+of the `$GTLANGS/lang-` build infrastructure as possible.
 
 These targets will build analysers as usual, but the `*-install` targets
 are there as a convenience for when overwriting the analysers in
@@ -52,9 +55,9 @@ In any case, the targets that these will write to are
 dictionary-specific, and will not overwrite analysers for other
 projects.
 
-    /opt/smi/LANG/bin/dict-LANG.fst
-    /opt/smi/LANG/bin/dict-iLANG-norm.fst
-    /opt/smi/LANG/bin/some-LANG.fst
+    /opt/smi/LANG/bin/analyser-dict-gt-desc.hfstol
+    /opt/smi/LANG/bin/generator-dict-gt-norm.hfstol
+    /opt/smi/LANG/bin/analyser-dict-gt-desc-mobile.hfstol
 
 ##### Troubleshooting
 
