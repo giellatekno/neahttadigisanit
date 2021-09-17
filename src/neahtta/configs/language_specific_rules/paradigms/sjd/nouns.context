@@ -1,0 +1,43 @@
+##
+### Standard verb context
+##
+
+- entry_context: None
+  tag_context: "N+Sg+Nom"
+  template: "(Кто? Что?) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "N+Sg+Gen"
+  template: "(Чей?) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "N+Sg+Acc"
+  template: "(Кого? Чего?) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "N+Sg+Ill"
+  template: "(Кому? Чему?) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "N+Sg+Loc"
+  template: "(У кого? У чего? В чём? От кого? От чего?) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "N+Sg+Com"
+  template: "(С кем? С чем?) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "N+Sg+Abe"
+  template: "(Без кого? Без чего?) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "N+Ess"
+  template: "(В кого? В чего?) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "N+Par"
+  template: "(Много, мало) {{ word_form }}"
+
+
+
+
