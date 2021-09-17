@@ -4,60 +4,60 @@
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Sg1"
-  template: "(мунн) {{ word_form }}"
+  template: "{{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Sg2"
-  template: "(то̄нн) {{ word_form }}"
+  template: "{{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Sg3"
-  template: "(со̄нн) {{ word_form }}"
+  template: "{{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Sg4"
-  template: "(безлич) {{ word_form }}"
+  template: "{{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Pl1"
-  template: "(мыйй) {{ word_form }}"
+  template: "{{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Pl2"
-  template: "(тыйй) {{ word_form }}"
+  template: "{{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Pl3"
-  template: "(сыйй) {{ word_form }}"
+  template: "{{ word_form }}"
 
 
 - entry_context: None
   tag_context: "V+Ind+Prt+Sg1"
-  template: "(мунн) {{ word_form }}"
+  template: "{{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prt+Sg2"
-  template: "(то̄нн) {{ word_form }}"
+  template: "{{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prt+Sg3"
-  template: "(со̄нн) {{ word_form }}"
+  template: "{{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prt+Sg4"
-  template: "(безлич) {{ word_form }}"
+  template: "{{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prt+Pl1"
-  template: "(мыйй) {{ word_form }}"
+  template: "{{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prt+Pl2"
-  template: "(тыйй) {{ word_form }}"
+  template: "{{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prt+Pl3"
-  template: "(сыйй) {{ word_form }}"
+  template: "{{ word_form }}"
 
 
 - entry_context: None
@@ -194,27 +194,27 @@
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Pl1"
-  template: "(мыйй) {{ word_form }}"
+  template: "{{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prt+Pl1"
-  template: "(мыйй) {{ word_form }}"
+  template: "{{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Pl2"
-  template: "(тыйй) {{ word_form }}"
+  template: "{{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prt+Pl2"
-  template: "(тыйй) {{ word_form }}"
+  template: "{{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Pl3"
-  template: "(сыйй) {{ word_form }}"
+  template: "{{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prt+Pl3"
-  template: "(сыйй) {{ word_form }}"
+  template: "{{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prs+ConNeg"
@@ -232,11 +232,11 @@
 
 - entry_context: None
   tag_context: "V+Ind+Prs+Sg3"
-  template: "(со̄нн) {{ word_form }}"
+  template: "{{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prt+Sg3"
-  template: "(со̄нн) {{ word_form }}"
+  template: "{{ word_form }}"
 
 - entry_context: None
   tag_context: "V+Ind+Prs+ConNeg"
