@@ -28,6 +28,16 @@ number:
 nouns_null_number:
   - "Ess"
   - "Par"
+case:
+ - "Nom"
+ - "Acc"
+ - "Gen"
+ - "Ill"
+ - "Loc"
+ - "Abe"
+ - "Com"
+ - "Ess"
+ - "Par"
 nonfinite_paradigm:
   - "ConNeg"
   - "PrfPrc"
