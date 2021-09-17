@@ -79,6 +79,10 @@ isos_to_names:
   "sms": !gettext "Skolt Sami"
   "smsM": !gettext "Skolt Sami"
 
+  # sanj
+  "sjd": !gettext "Kildin Sami"
+  "sjdM": !gettext "Kildin Sami"
+
   # itwewina
   "crk": !gettext "Plains Cree"
   "crkM": !gettext "Plains Cree"
