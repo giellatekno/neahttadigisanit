@@ -195,6 +195,8 @@
         {% if zipped_verbs %}
 
         <table class="tableparadigm miniparadigm">
+          {% set contexts = ["мунн", "то̄нн", "со̄нн", "безлич", "мыйй", "тыйй", "сыйй"] %}
+          {% set i=0 %}
 
             {# This is the two-column tense paradigm #}
 
@@ -207,13 +209,8 @@
                 {%- for present_forms, preterite_forms in zipped_verbs -%}
                     <tr>
 
-                    {% if present_forms[0].tag %}
-                        {% set tag_display = clean_tag(present_forms[0].tag) %}
-                    {% elif preterite_forms[0].tag %}
-                        {% set tag_display = clean_tag(preterite_forms[0].tag) %}
-                    {% endif %}
-
-                    <th class="tag" lang="{{ _to }}">{{ tag_display }}</th>
+                    <th class="tag" lang="{{ _to }}">{{ contexts[i] }}</th>
+                    {% set i = i+1 %}
 
                     {% if present_forms and present_forms != '-' %}
                         <td lang="{{ _from }}">{{ present_forms|join('<br />', attribute='form') }}</td>
@@ -253,6 +250,9 @@
     {% if paradigm_exists %}
 
         <table class="tableparadigm miniparadigm">
+          {% set contexts = ["Кто? Что?", "Чей?", "Кого? Чего?", "Кому? Чему?", "У кого? У чего? В чём? От кого? От чего?", "С кем? С чем?", "Без кого? Без чего?", "В кого? В чего?", "Много, мало"] %}
+          {% set i=0 %}
+
             <tr>
                 <th></th>
                 <th lang="{{ _to }}">{{ sg_text }}</th>
@@ -262,13 +262,8 @@
         {%- for sgs, pls in zipped_numbers -%}
             <tr>
 
-            {% if sgs[0].tag %}
-                {% set tag_display = clean_tag(sgs[0].tag) %}
-            {% elif pls[0].tag %}
-                {% set tag_display = clean_tag(pls[0].tag) %}
-            {% endif %}
-
-            <th class="tag" lang="{{ _to }}">{{ tag_display }}</th>
+            <th class="tag" lang="{{ _to }}">{{ contexts[i] }}</th>
+            {% set i = i+1 %}
 
             {% if sgs and sgs != '-' %}
                 <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form') }}</td>
@@ -295,7 +290,7 @@
                 <td colspan="2" lang="{{ _from }}" class="center">{{ var|join('<br />', attribute='form') }}</td>
             </tr>
         {% endfor %}
-        
+
         </table>
 
     {% endif %}
