@@ -51,7 +51,7 @@ msgstr "Стандарт"
 #: configs/saanih.config.yaml.in:85 configs/saanih.config.yaml.in:115
 #: configs/sanj.config.yaml.in:88
 msgid "Mobile friendly"
-msgstr "для мобильных устройств"
+msgstr "Для мобильных устройств"
 
 #: configs/itwewina.config.yaml.in:4
 msgid "itwêwina"
@@ -78,9 +78,8 @@ msgid "Kidwinan"
 msgstr ""
 
 #: configs/kidwinan.config.yaml.in:3
-#, fuzzy
 msgid "Online Odawa dictionary"
-msgstr "Больше словарей"
+msgstr ""
 
 #: configs/kyv.config.yaml.in:175 configs/kyv.config.yaml.in:252
 #: configs/sample.config.yaml.in:173
@@ -210,7 +209,7 @@ msgstr "Лугово-марийский"
 
 #: configs/language_names.yaml:75 templates/more_dictionaries.html:37
 msgid "Nenets"
-msgstr "Ненецкий"
+msgstr "Ненецкий язык"
 
 #: configs/language_names.yaml:78
 msgid "Northern Mansi"
@@ -241,21 +240,20 @@ msgid "Cherokee"
 msgstr ""
 
 #: configs/language_names.yaml:101 configs/language_names.yaml:104
-#, fuzzy
 msgid "Northern Haida"
 msgstr "Северная хайда"
 
 #: configs/language_names.yaml:107 templates/more_dictionaries.html:34
 msgid "Inari Saami"
-msgstr ""
+msgstr "Инари-саамский язык"
 
 #: configs/language_names.yaml:110
 msgid "Pite Saami"
-msgstr ""
+msgstr "Пите-саамский язык"
 
 #: configs/language_names.yaml:112
 msgid "Khanty"
-msgstr "Ханты"
+msgstr "Хантыйский язык"
 
 #: configs/language_names.yaml:115
 msgid "Irish"
@@ -283,17 +281,16 @@ msgid "Haida"
 msgstr "Хайда"
 
 #: configs/language_names.yaml:132
-#, fuzzy
 msgid "Romanian"
 msgstr ""
 
 #: configs/language_names.yaml:133
 msgid "Meänkieli"
-msgstr ""
+msgstr "Меянкиели"
 
 #: configs/language_names.yaml:134 configs/language_names.yaml:135
 msgid "Swedish"
-msgstr "Шведский"
+msgstr "Шведский язык"
 
 #: configs/saanih.config.yaml.in:82 configs/saanih.config.yaml.in:112
 msgid "(<em>âäáčđŋšž</em>)"
@@ -702,6 +699,8 @@ msgid ""
 "list</a>, and more\n"
 "                resources."
 msgstr ""
+"Вам нужно больше словарей? Вот <a href=\"http://dicts.uit.no/\">наш "
+"полный список</a> и другие ресурсы."
 
 #: configs/language_specific_rules/templates/analyses.template:69
 msgid "Word history"
@@ -723,7 +722,7 @@ msgstr "Парадигма"
 
 #: configs/language_specific_rules/templates/entry.template:29
 msgid "see also"
-msgstr ""
+msgstr "смотрите также"
 
 #: configs/language_specific_rules/templates/footer.template:9
 #: configs/language_specific_rules/templates/gunaha/footer.template:13
@@ -1527,53 +1526,50 @@ msgid ""
 "Neahttadigisánit is available for the following\n"
 "                language groups."
 msgstr ""
+"Neahttadigisánit доступен для следующих языковых групп." 
 
 #: templates/more_dictionaries.html:28
-#, fuzzy
 msgid "North Saami"
-msgstr "Северно-саамский"
+msgstr "Северно-саамский язык"
 
 #: templates/more_dictionaries.html:29
-#, fuzzy
 msgid "South Saami"
-msgstr "Южно-саамский"
+msgstr "Южно-саамский язык"
 
 #: templates/more_dictionaries.html:30
 msgid "Cherokee "
-msgstr ""
+msgstr "Чероки"
 
 #: templates/more_dictionaries.html:31
 msgid "Komi and Udmurt"
-msgstr ""
+msgstr "Коми зырянский и удмуртский язык"
 
 #: templates/more_dictionaries.html:32
 msgid "Mari"
-msgstr ""
+msgstr "Марийские языки"
 
 #: templates/more_dictionaries.html:33
-#, fuzzy
 msgid "Skolt Saami"
-msgstr "Сколт-саамский"
+msgstr "Сколт-саамский язык"
 
 #: templates/more_dictionaries.html:35
 msgid "Finnish, Kven, Karelian, Veps"
-msgstr ""
+msgstr "Финский, квенский, карельский и вепсский язык"
 
 #: templates/more_dictionaries.html:36
 msgid "Livonian, Estonian, Vot"
-msgstr ""
+msgstr "Ливонский, эстонский, водский язык"
 
 #: templates/more_dictionaries.html:38
-#, fuzzy
 msgid "Mordvinian"
 msgstr "Мордовские языки"
 
 #: templates/more_dictionaries.html:41
 msgid "We're also working on new language pairs."
-msgstr ""
+msgstr "Мы также работаем над новыми языковыми парами."
 
 #: templates/more_dictionaries.html:44
-msgid "Even more dictionaries..."
+msgid "Even more dictionaries ..."
 msgstr "Еще больше словарей"
 
 #: templates/more_dictionaries.html:45
@@ -1587,6 +1583,11 @@ msgid ""
 "href=\"http://dicts.uit.no/\">see this\n"
 "                    list</a>."
 msgstr ""
+"В <a href=\"http://giellatekno.uit.no/\">Giellatekno</a> также есть "
+"другие языки и словари, которых пока нет в Neahttadigisánit. "
+"Список всех других онлайн-словарей, созданных с помощью наших "
+"инструментов, см. <a "
+"href=\"http://dicts.uit.no/\">в этом списке</a>." 
 
 #: templates/reader.html:3 templates/reader.html:20
 #, python-format
@@ -1631,13 +1632,15 @@ msgstr "Чтобы поменять словарь, щелкните значо�
 
 #: templates/reader.html:26
 msgid "Installing on a website"
-msgstr ""
+msgstr "Установка на сайт"
 
 #: templates/reader.html:28
 msgid ""
 "It is also possible to install the reader plugin on a website, so that "
 "users will have access to dictionaries without the bookmarklet."
 msgstr ""
+"Также можно установить плагин для словаря на веб-сайте, "
+"чтобы пользователи имели доступ к словарям без букмарклета."
 
 #: templates/reader.html:31
 msgid ""
@@ -1645,14 +1648,17 @@ msgid ""
 "href=\"https://giellalt.uit.no/dicts/nds/AddingNDSPluginToOtherSites.html\">follow"
 " our documentation</a>."
 msgstr ""
+"Для этого <a "
+"href=\"https://giellalt.uit.no/dicts/nds/AddingNDSPluginToOtherSites.html\">следуйте"
+" нашей документации</a>."
 
 #: templates/reader.html:32
 msgid "Browser support"
-msgstr ""
+msgstr "Поддержка браузера"
 
 #: templates/reader.html:33
 msgid "The reader is supported in the following browsers:"
-msgstr ""
+msgstr "Словарь поддерживается в следующих браузерах:"
 
 #: templates/reader.html:35
 msgid "Chrome (version 20 and newer)"
@@ -1696,7 +1702,7 @@ msgstr ""
 
 #: templates/reader.html:49
 msgid "Includes"
-msgstr ""
+msgstr "Словари"
 
 #: templates/reader.html:57
 #, python-format
@@ -1704,6 +1710,8 @@ msgid ""
 "If you are looking for other languages, please see our <a "
 "href=\"%(more_dictionaries_link)s\">other dictionaries</a>."
 msgstr ""
+"Если вы ищете другие языки, посмотрите <a "
+"href=\"/more/\">другие наши словари.</a>."
 
 #: templates/reader_example.html:32
 msgid "Additional instructions"
@@ -2000,13 +2008,13 @@ msgstr "Недопустимый формат. Только json и html доп�
 #~ msgstr "Эстонский"
 
 #~ msgid "Veps"
-#~ msgstr ""
+#~ msgstr "Веппский"
 
 #~ msgid "Võro"
-#~ msgstr ""
+#~ msgstr "выруский язык"
 
 #~ msgid "Votic"
-#~ msgstr ""
+#~ msgstr "водский язык"
 
 #~ msgid "Erzya Mordvin"
 #~ msgstr "Эрзянский"
@@ -2024,7 +2032,7 @@ msgstr "Недопустимый формат. Только json и html доп�
 #~ msgstr "Лугово-марийский"
 
 #~ msgid "Nenets"
-#~ msgstr "Ненецкий"
+#~ msgstr "Ненецкий "
 
 #~ msgid "Skolt Sami"
 #~ msgstr "Сколт-саамский"
@@ -2039,16 +2047,16 @@ msgstr "Недопустимый формат. Только json и html доп�
 #~ msgstr ""
 
 #~ msgid "Cherokee"
-#~ msgstr ""
+#~ msgstr "Чероки"
 
 #~ msgid "Northern Haida"
 #~ msgstr "Северная хайда"
 
 #~ msgid "Inari Saami"
-#~ msgstr ""
+#~ msgstr "инари-саамский язык"
 
 #~ msgid "Khanty"
-#~ msgstr ""
+#~ msgstr "Хантыйский язык"
 
 #~ msgid "Irish"
 #~ msgstr "Финский"
@@ -2072,7 +2080,7 @@ msgstr "Недопустимый формат. Только json и html доп�
 #~ msgstr "Лив"
 
 #~ msgid "Meänkieli"
-#~ msgstr ""
+#~ msgstr "Меянкиели"
 
 #~ msgid "Swedish"
 #~ msgstr ""
