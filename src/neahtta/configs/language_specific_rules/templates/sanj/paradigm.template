@@ -282,10 +282,12 @@
         {%- endfor -%}
 
         {% set numb_forms = numberless_forms|group_by_tag %}
+        {% set i=7 %}
         {% for var in numb_forms %}
             <tr>
                 {% if var[0].tag %}
-                    <th class="tag" lang="{{ _to }}">{{ clean_tag(var[0].tag) }}</th>
+                    <th class="tag" lang="{{ _to }}">{{ contexts[i] }}</th>
+                    {% set i = i+1 %}
                 {% endif %}
                 <td colspan="2" lang="{{ _from }}" class="center">{{ var|join('<br />', attribute='form') }}</td>
             </tr>
