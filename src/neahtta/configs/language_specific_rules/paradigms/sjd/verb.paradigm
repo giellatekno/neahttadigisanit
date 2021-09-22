@@ -3,7 +3,8 @@ morphology:
   pos: V
 --
 {{ lemma }}+V+Ind+Prs+Sg1
-{{ lemma }}+V+Ind+Prs+Sg2
+{{ lemma }}+V+Ind+Prs+Sg2+Ant
+{{ lemma }}+V+Ind+Prs+Sg2+Af
 {{ lemma }}+V+Ind+Prs+Sg3
 {{ lemma }}+V+Ind+Prs+Pl1
 {{ lemma }}+V+Ind+Prs+Pl2
