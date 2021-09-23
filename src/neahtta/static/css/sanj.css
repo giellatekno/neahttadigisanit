@@ -1,0 +1,6 @@
+/* Style for user_input text */
+p.user_input_text {
+  font-style: italic;
+  font-size: 110%;
+  color: #5c96b5;
+}
