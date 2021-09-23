@@ -79,8 +79,10 @@
                     {% set existing_tags = [] %}
                     {% for lem in lemmafs %}
                     {% set formatted_tag = ' '.join(lem.tag)|tagfilter(_from, _to) %}
+                    {% set splitted = formatted_tag.split(' ') %}
+                    {% set no_lemma = splitted[1:]|tagfilter(_from, _to) %}
                     {% if formatted_tag not in existing_tags %}
-                        <li>{{ formatted_tag }}</li>
+                        <li>{{user_input}} = {{ no_lemma }} формы {{lem}}</li>
                         {% do existing_tags.append(formatted_tag) %}
                     {% endif %}
                     {% endfor %}
