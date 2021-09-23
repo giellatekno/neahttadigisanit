@@ -7,7 +7,11 @@
   template: "{{ word_form }}"
 
 - entry_context: None
-  tag_context: "V+Ind+Prs+Sg2"
+  tag_context: "V+Ind+Prs+Sg2+Ant"
+  template: "{{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+Ind+Prs+Sg2+Af"
   template: "{{ word_form }}"
 
 - entry_context: None
@@ -36,7 +40,11 @@
   template: "{{ word_form }}"
 
 - entry_context: None
-  tag_context: "V+Ind+Prt+Sg2"
+  tag_context: "V+Ind+Prt+Sg2+Ant"
+  template: "{{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+Ind+Prt+Sg2+Af"
   template: "{{ word_form }}"
 
 - entry_context: None
@@ -87,7 +95,11 @@
   template: "{{ word_form }}"
 
 - entry_context: None
-  tag_context: "Hom2+V+Ind+Prs+Sg2"
+  tag_context: "Hom2+V+Ind+Prs+Sg2+Ant"
+  template: "{{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom2+V+Ind+Prs+Sg2+Af"
   template: "{{ word_form }}"
 
 - entry_context: None
@@ -133,7 +145,11 @@
   template: "{{ word_form }}"
 
 - entry_context: None
-  tag_context: "Hom1+V+Ind+Prs+Sg2"
+  tag_context: "Hom1+V+Ind+Prs+Sg2+Ant"
+  template: "{{ word_form }}"
+
+- entry_context: None
+  tag_context: "Hom1+V+Ind+Prs+Sg2+Af"
   template: "{{ word_form }}"
 
 - entry_context: None

@@ -195,7 +195,7 @@
         {% if zipped_verbs %}
 
         <table class="tableparadigm miniparadigm">
-          {% set contexts = ["мунн", "то̄нн", "со̄нн", "мыйй", "тыйй", "сыйй", "безлич"] %}
+          {% set contexts = ["мунн", "то̄нн", "", "со̄нн", "мыйй", "тыйй", "сыйй", "безлич"] %}
           {% set i=0 %}
 
             {# This is the two-column tense paradigm #}
