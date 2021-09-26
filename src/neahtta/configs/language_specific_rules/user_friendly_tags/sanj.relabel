@@ -2,7 +2,7 @@ Relabel:
 
   - source_morphology: 'sjd'
     target_ui_language: 'ru'
-    tags:
+    tags: &sjdtagrelabels
       V: "гл."
       N: "сущ."
       A: "прил."
@@ -42,3 +42,8 @@ Relabel:
       "Pl2": "2 л. мн. ч."
       "Pl3": "3 л. мн. ч."
       "ConNeg": "отр."
+
+  - source_morphology: 'sjdM'
+    target_ui_language: 'ru'
+    tags:
+      <<: *sjdtagrelabels
