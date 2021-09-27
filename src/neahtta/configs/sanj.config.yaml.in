@@ -27,7 +27,7 @@ ApplicationSettings:
 # following settings.
 Tools:
   xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
-  hfst_lookup: &HFST-LOOKUP '/bin/hfst-lookup'
+  hfst_lookup: &HFST-LOOKUP '/usr/local/bin/hfst-lookup'
   opt: &OPT '/opt/smi'
 
 # Morphological system definitions. Since YAML variables aren't able to
@@ -56,7 +56,7 @@ Morphology:
       inverse_tagsep: '+'
   ru:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/rus/bin/analyser-gt-desc.hfstol']
+    file: [*OPT, '/rus/bin/analyser-dict-gt-desc-mobile.hfstol']
     inverse_file: [*OPT, '/rus/bin/generator-gt-norm.hfstol']
     format: 'hfst'
     options:
