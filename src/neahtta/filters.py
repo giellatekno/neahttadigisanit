@@ -147,9 +147,21 @@ def register_filters(app):
     @app.template_filter('unique')
     def unique_filter(s):
         """
-        Returns a list of unique elements
+        Returns a list of GeneratedForm objects with unique forms
         """
-        return list(set(s))
+        from morphology.morphology import GeneratedForm
+        if isinstance(s[0], GeneratedForm):
+            forms_list = []
+            return_list = []
+            for form_obj in s:
+                if form_obj.form in forms_list:
+                    continue
+                else:
+                    forms_list.append(form_obj.form)
+                    return_list.append(form_obj)
+            return(return_list)
+        else:
+            return(s)
 
 
     return app
