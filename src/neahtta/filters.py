@@ -144,4 +144,12 @@ def register_filters(app):
         s = urllib.quote(s, safe=safe)
         return Markup(s)
 
+    @app.template_filter('unique')
+    def unique_filter(s):
+        """
+        Returns a list of unique elements
+        """
+        return list(set(s))
+
+
     return app
