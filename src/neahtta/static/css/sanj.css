@@ -8,3 +8,8 @@ p.user_input_text {
   font-size: 110%;
   color: #5c96b5;
 }
+
+span.expl {
+  font-style: italic;
+  font-size: 90%;
+}
