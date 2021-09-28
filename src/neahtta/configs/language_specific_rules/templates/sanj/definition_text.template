@@ -58,6 +58,8 @@
 
     {% set explanation = t.attrib.get('expl', '') %}
 
+    {% set aspect = t.attrib.get('aspect', '') %}
+
     {%- if pos == 'Pron' and t.attrib.get('type') %}
         {% set pos_type = t.attrib.get('type')|tagfilter(_from, _to) %}
         {% set pos_text = pos|tagfilter(_from, _to)  + " " + pos_type %}
@@ -94,7 +96,9 @@
         </a> &rarr;
     {%- else %}
         {% if text != 'word_not _yet_translated' %}
-          {% if explanation %} <span class=expl>{{ explanation }}</span> {% endif %}
+        {# Show aspect and explanation information if present (sjd-specific) #}
+          {% if aspect %}<span class=aspect>{{ aspect }}: </span>{% endif %}
+          {% if explanation %}<span class=expl>{{ explanation }}</span>{% endif %}
           <a href="{{ url_for('.detailed_language_pair_search', _from=_to, _to=_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">            
               {{- text -}}
           </a>
@@ -110,8 +114,9 @@
     {{ render_preface(tg) }}
 
     {% for t in tg.xpath('./t') %}
-        {{ render_link(tg, t) -}}{% if not loop.last %}, {% endif %}
+        {{ render_link(tg, t) -}}{% if not loop.last %},{% endif %}
     {% endfor %}
+
 
     {{- render_annotation(tg) -}}
 {%- endmacro -%}
