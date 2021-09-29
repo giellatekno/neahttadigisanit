@@ -740,10 +740,10 @@ msgid ""
 "Technology group at the <a href=\"http://uit.no\">University of "
 "Tromsø</a>."
 msgstr ""
-"Разработано на базе бесплатного и открытого исходного кода <em> <a "
-"href=\"http://giellatekno.uit.no\"> Giellatekno </a> </em>, Центра "
-"саамской языковой технологии при <a href=\"http://uit.no\"> Университете "
-"Тромсё  – Арктическом университете Норвегии. </a>."
+"Разработано на базе бесплатного и открытого исходного кода <em><a "
+"href=\"http://giellatekno.uit.no\">Giellatekno</a></em>, Центра "
+"саамской языковой технологии при <a href=\"http://uit.no\">Университете "
+"Тромсё  – Арктическом университете Норвегии</a>."
 
 #: configs/language_specific_rules/templates/index_search_form.template:41
 #: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:44
