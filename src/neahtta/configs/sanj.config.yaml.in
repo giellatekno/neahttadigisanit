@@ -7,8 +7,8 @@ ApplicationSettings:
   app_name: "Neahttadigisánit "
   short_name: "sanj"
   default_locale: "ru"
-  default_pair: ["sjd", "ru"]
-  mobile_default_pair: ["sjdM", "ru"]
+  default_pair: ["sjd", "rus"]
+  mobile_default_pair: ["sjdM", "rus"]
   locales_available:
     - ru
     #- eng
@@ -21,13 +21,13 @@ ApplicationSettings:
      са̄мь кӣлл, кӣлтса̄мь кӣлл, са̄мь са̄ннҍнэххьк, са̄ннҍнэххьк, русский
   admins_to_email:
     - "trond.trosterud@uit.no"
-    - "lene.antonsen@uit.no"
+    - "tty001@uit.no"
 
 # This option set is not used outside of providing shortcuts for
 # following settings.
 Tools:
   xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
-  hfst_lookup: &HFST-LOOKUP '/usr/local/bin/hfst-lookup'
+  hfst_lookup: &HFST-LOOKUP '/bin/hfst-lookup'
   opt: &OPT '/opt/smi'
 
 # Morphological system definitions. Since YAML variables aren't able to
@@ -54,19 +54,19 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
-  ru:
+  rus:
     tool: *HFST-LOOKUP
     file: [*OPT, '/rus/bin/analyser-dict-gt-desc-mobile.hfstol']
     inverse_file: [*OPT, '/rus/bin/generator-gt-norm.hfstol']
     format: 'hfst'
     options:
-      compoundBoundary: ["#+Cmp+", "#+CmpS+"]
+      compoundBoundary: "+Use/Circ#"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
 
 Languages:
-  - iso: ru
+  - iso: rus
   - iso: sjd
     minority_lang: true
 
@@ -75,7 +75,7 @@ Languages:
 Dictionaries:
 
   - source: sjd
-    target: ru
+    target: rus
     autocomplete: true
     show_korp_search: False
     path: 'dicts/sjd-rus.xml'
@@ -90,7 +90,7 @@ Dictionaries:
         short_name: "sjdM"
         # onscreen_keyboard: *SJD_KEYS
 
-  - source: ru
+  - source: rus
     target: sjd
     autocomplete: true
     show_korp_search: False
