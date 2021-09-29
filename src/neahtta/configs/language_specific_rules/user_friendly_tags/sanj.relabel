@@ -1,7 +1,7 @@
 Relabel:
 
   - source_morphology: 'sjd'
-    target_ui_language: 'ru'
+    target_ui_language: 'rus'
     tags: &sjdtagrelabels
       V: "гл."
       N: "сущ."
@@ -45,6 +45,11 @@ Relabel:
       "ConNeg": "отр."
 
   - source_morphology: 'sjdM'
-    target_ui_language: 'ru'
+    target_ui_language: 'rus'
+    tags:
+      <<: *sjdtagrelabels
+
+  - source_morphology: 'rus'
+    target_ui_language: 'sjd'
     tags:
       <<: *sjdtagrelabels
