@@ -33,6 +33,7 @@ TODO: sme pregenerated forms don't really work without sme.py
 
 import os
 import sys
+from jinja2 import TemplateSyntaxError
 
 import yaml
 from lxml import etree
@@ -487,10 +488,13 @@ class TemplateConfig(object):
         else:
             return parsed_template_cache.get(path)
 
-    def _template_parse_error_msg(self, exception, path):
+    def _template_parse_error_msg(self, exception, path, lineno=None):
         print
         print '--'
-        print >> sys.stderr, "Error parsing template at <%s>" % path
+        if lineno:
+            print >> sys.stderr, "Error parsing template at <%s> (line %d)" % (path, exception.lineno)
+        else:
+            print >> sys.stderr, "Error parsing template at <%s>" % path
         print >> sys.stderr, exception
         print '--'
         print
@@ -501,6 +505,9 @@ class TemplateConfig(object):
         try:
             parsed_template = self.jinja_env.from_string(template_string)
             parsed_template.path = path
+        except TemplateSyntaxError, e:
+            self._template_parse_error_msg(e, path, e.lineno)
+            sys.exit()
         except Exception, e:
             self._template_parse_error_msg(e, path)
             sys.exit()
