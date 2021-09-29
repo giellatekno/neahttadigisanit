@@ -70,8 +70,8 @@ negation:
   - "ConNeg"
 negative:
   - "Neg"
-supinum:
-  - "Sup"
+perfect_prc:
+  - "PrfPrc"
 mode:
   - "Ind"
 pron_type:

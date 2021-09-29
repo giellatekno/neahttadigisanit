@@ -48,21 +48,21 @@
     {% set conneg_text   = "ConNeg"|tagfilter(_from, _to) %}
     {% set verb_text     = "V"|tagfilter(_from, _to) %}
     {% set verb_text_ind = "Ind"|tagfilter(_from, _to) %}
-    {% set sup_text      = "Sup"|tagfilter(_from, _to) %}
+    {% set prfprc_text   = "PrfPrc"|tagfilter(_from, _to) %}
     {% set neg_text      = "Neg"|tagfilter(_from, _to) %}
 
     {% set nonfinite_header = False %}
-    {% set is_supinum = nonfinite_forms|by_tagset("supinum")|length > 0 %}
+    {% set is_perfect = nonfinite_forms|by_tagset("perfect_prc")|length > 0 %}
     {# we'll know this isn't just a normal verb with a couple negative
         forms because there are 9 #}
     {% set is_negative = nonfinite_forms|by_tagset("negative")|length == 9 %}
 
-    {% if is_supinum and is_negative %}
-        {% set nonfinite_header = sup_text + " " + neg_text %}
+    {% if is_negative %}
+        {% set nonfinite_header = neg_text %}
     {% endif %}
 
-    {% if is_negative and not is_supinum %}
-        {% set nonfinite_header = neg_text %}
+    {% if is_perfect %}
+        {% set nonfinite_header = prfprc_text %}
     {% endif %}
 
     {% macro clean_tag(tag_input) -%}
@@ -238,7 +238,7 @@
             {% set noninf_forms = nonfinite_forms|group_by_tag %}
             {% for var in noninf_forms %}
                 {% if var[0].tag %}
-                    <dt>{{ clean_tag(var[0].tag) }}</dt>
+                    <dt>{{ "мунн ля̄" }}</dt>
                 {% endif %}
                 <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form') }}</dd>
             {% endfor %}

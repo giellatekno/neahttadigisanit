@@ -264,7 +264,7 @@
 
 - entry_context: None
   tag_context: "V+PrfPrc"
-  template: "(мунн ля̄) {{ word_form }}"
+  template: "{{ word_form }}"
 
 
 # negation
