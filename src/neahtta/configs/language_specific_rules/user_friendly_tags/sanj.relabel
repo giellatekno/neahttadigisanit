@@ -43,6 +43,10 @@ Relabel:
       "Pl2": "2 л. мн. ч."
       "Pl3": "3 л. мн. ч."
       "ConNeg": "отр."
+      "TV": ""
+      "IV": ""
+      "Impf": ""
+      "Perf": ""
 
   - source_morphology: 'sjdM'
     target_ui_language: 'rus'
