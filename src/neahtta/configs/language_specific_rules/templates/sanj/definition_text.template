@@ -116,9 +116,9 @@
     {% set firstTime = true %}
     {% for t in tg.xpath('./t') %}
         {% set aspect = t.attrib.get('aspect', '') %}
-        {% if firstTime and (aspect == "б" or aspect == "в") %}({% set firstTime = false %}{% endif %}
-            {{ render_link(tg, t) }}{% if not loop.last %},{% endif %}
-        {% if loop.last and (aspect == "б" or aspect == "в") %}){% endif %}
+        {%- if firstTime and (aspect == "б" or aspect == "в") -%}({%- set firstTime = false %}{%- endif -%}
+            {{ render_link(tg, t) }}{%- if not loop.last -%},{%- endif -%}
+        {%- if loop.last and (aspect == "б" or aspect == "в") -%}){%- endif -%}
     {% endfor %}
 
 {%- endmacro -%}
