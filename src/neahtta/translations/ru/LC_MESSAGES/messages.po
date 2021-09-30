@@ -996,7 +996,7 @@ msgstr ""
 #: templates/index.html:97
 #, python-format
 msgid "Other analyses for <em>%(user_input)s</em> without a translation."
-msgstr ""
+msgstr "Прочие анализы по слову  <em>%(user_input)s</em> без перевода."
 
 #: configs/language_specific_rules/templates/kyv/examples.template:76
 msgid "saying"
