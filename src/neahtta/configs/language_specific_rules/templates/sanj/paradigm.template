@@ -28,6 +28,16 @@
                                      |without_tagset("negation")
                                      |group_by_tag %}
 
+    {# This variable is used to insert an extra empty entry in the preterite 
+       list when there are two prs pl2 forms (which are generated from different strings) #}
+    {% set prs_pl2 = paradigm|by_tagset_value("tense", "Prs")
+                             |by_tagset_value("number", "Pl2")
+                             |without_tagset("negation")|count %}
+
+    {% if prs_pl2 == 2 %}
+        {{ preterite_verbs.insert(6, "") }}
+    {% endif %}
+
     {% set nonfinite_forms = paradigm|by_tagset("nonfinite_paradigm") %}
 
     {# As long as the paradigm files are in order, this will zip
@@ -196,6 +206,7 @@
 
         <table class="tableparadigm miniparadigm">
           {% set contexts = ["мунн", "то̄нн", "", "со̄нн", "мыйй", "тыйй", "сыйй", "безлич"] %}
+          {% if prs_pl2 == 2 %} {{ contexts.insert(6, "") }}{% endif %}
           {% set i=0 %}
 
             {# This is the two-column tense paradigm #}
@@ -236,8 +247,10 @@
             {% endif %}
 
             {% set noninf_forms = nonfinite_forms|group_by_tag %}
+            {% set textshown = 0 %} {# to only show "мунн ля̄" once #}
             {% for var in noninf_forms %}
-                {% if var[0].tag %}
+                {% if var[0].tag and textshown == 0 %}
+                    {% set textshown = 1 %}
                     <dt>{{ "мунн ля̄" }}</dt>
                 {% endif %}
                 <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form') }}</dd>
