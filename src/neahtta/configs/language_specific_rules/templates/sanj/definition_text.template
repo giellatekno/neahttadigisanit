@@ -105,8 +105,10 @@
 {%- endmacro -%}
 
 {%- macro render_tg(tg) -%}
-    {# Render all the texts as individual links, followed by a potential
-    annotation. #}
+    {# Render all the texts as individual links, prefaced by a potential
+    annotation and potential other preface. #}
+
+    {{- render_annotation(tg) -}}
 
     {{ render_preface(tg) }}
 
@@ -115,13 +117,10 @@
     {% for t in tg.xpath('./t') %}
         {% set aspect = t.attrib.get('aspect', '') %}
         {% if firstTime and (aspect == "б" or aspect == "в") %}({% set firstTime = false %}{% endif %}
-            {{ render_link(tg, t) -}}{% if not loop.last %},{% endif %}
+            {{ render_link(tg, t) }}{% if not loop.last %},{% endif %}
         {% if loop.last and (aspect == "б" or aspect == "в") %}){% endif %}
     {% endfor %}
 
-    
-    
-    {{- render_annotation(tg) -}}
 {%- endmacro -%}
 
 {%- if translation_group -%}
