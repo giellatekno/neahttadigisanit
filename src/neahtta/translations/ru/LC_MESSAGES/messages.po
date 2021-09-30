@@ -750,7 +750,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:42
 #: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:43
 msgid "Press TAB (&#8677;) or touch screen to select"
-msgstr "Нажмите TAB (&#8677;) или сенсорный экран, чтобы выбрать"
+msgstr "Нажмите на TAB (&#8677;) или на сенсорный экран, чтобы сделать выбор"
 
 #: configs/language_specific_rules/templates/index_search_form.template:48
 #: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:51
