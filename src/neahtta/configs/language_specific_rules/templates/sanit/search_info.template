@@ -16,9 +16,5 @@
     </p>
 </div>
 
-<div class="alert alert-danger">
-  <p>We will undergo server maintanance 30.09.2021 at 15.00, and the dictionary might be offline for some time.</p>
-  <p>It will be back online as soon as possible. Thanks for your patience!</p>
-</div>
 
 {# vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}
