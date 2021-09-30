@@ -35,7 +35,7 @@
                              |without_tagset("negation")|count %}
 
     {% if prs_pl2 == 2 %}
-        {{ preterite_verbs.insert(6, "") }}
+        {% set _ = preterite_verbs.insert(6, "") %}
     {% endif %}
 
     {% set nonfinite_forms = paradigm|by_tagset("nonfinite_paradigm") %}
@@ -206,7 +206,7 @@
 
         <table class="tableparadigm miniparadigm">
           {% set contexts = ["мунн", "то̄нн", "", "со̄нн", "мыйй", "тыйй", "сыйй", "безлич"] %}
-          {% if prs_pl2 == 2 %} {{ contexts.insert(6, "") }}{% endif %}
+          {% if prs_pl2 == 2 %} {% set _ = contexts.insert(6, "") %}{% endif %}
           {% set i=0 %}
 
             {# This is the two-column tense paradigm #}
