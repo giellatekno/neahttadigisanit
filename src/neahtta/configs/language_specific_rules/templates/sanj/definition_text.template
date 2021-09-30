@@ -86,21 +86,21 @@
         {% set reference = false %}
     {% endif %}
 
-    {%- if reference %}
+    {%- if reference -%}
         <a href="{{ url_for('.search_pair_referred_search', _from=_from, _to=_to) }}?l_til_ref={{ reference }}">
           {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}
           {% if pos_is_phrase %}{% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{% endif %}
               {{- text -}}
         </a> &rarr;
     {%- else %}
-        {% if text != 'word_not _yet_translated' %}
+        {%- if text != 'word_not _yet_translated' -%}
         {# Show explanation information if present (sjd-specific) #}
-            {% if explanation %}<span class=expl>{{ explanation }}</span>{% endif %}
-            <a href="{{ url_for('.detailed_language_pair_search', _from=_to, _to=_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">            
+            {%- if explanation -%}<span class=expl>{{ explanation }}</span>{%- endif -%}
+            <a href="{{ url_for('.detailed_language_pair_search', _from=_to, _to=_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
                 {{- text -}}
             </a>
-        {% endif %}
-    {%- endif %}
+        {%- endif -%}
+    {%- endif -%}
 
 {%- endmacro -%}
 
