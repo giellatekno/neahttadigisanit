@@ -53,8 +53,8 @@
         </div>
         <div class="row-fluid">
             <span class="span4">
-                <h3 class="red smaller">{% trans %}Inari Saami ↔ Finnish{% endtrans %}</h3>
-                <p>{% trans %}Inari Saami → Finnish and Finnish → Inari Saami builds on the Valtonen and Olthuis Inarinsaame-suomi-inarinsaame dictionary  (30000 words). {% endtrans %}</p>
+                <h3 class="red smaller">{% trans %}Саамский ↔ Русский{% endtrans %}</h3>
+                <p>{% trans %}Антонова А.А., Э. Шеллер.  Тромсё 2021 (около 16 000 слов){% endtrans %}</p>
             </span>
         </div>
         <div class="row-fluid">
