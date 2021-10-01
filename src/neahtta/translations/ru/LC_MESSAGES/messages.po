@@ -764,7 +764,7 @@ msgstr "Нажмите на TAB (&#8677;) или на сенсорный экр�
 #: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:50
 #: templates/index_search_form.html:21
 msgid "ohcansátni"
-msgstr "Слово искании"
+msgstr "Напишите слово"
 
 #: configs/language_specific_rules/templates/index_search_form.template:53
 #: configs/language_specific_rules/templates/index_search_form.template:73
