@@ -366,7 +366,7 @@ msgstr "Про нас"
 #: configs/language_specific_rules/templates/vada/about.template:17
 #: configs/language_specific_rules/templates/valks/about.template:17
 msgid "A dictionary that understands what you're looking for."
-msgstr ""
+msgstr "Словарь, который понимает, что вы ищете."
 
 #: configs/language_specific_rules/templates/about.template:15
 #: configs/language_specific_rules/templates/baakoeh/about.template:16
@@ -404,7 +404,7 @@ msgstr "(... И для мобильных устройств!)"
 #: configs/language_specific_rules/templates/vada/about.template:22
 #: configs/language_specific_rules/templates/valks/about.template:22
 msgid "Free"
-msgstr ""
+msgstr "Свободный"
 
 #: configs/language_specific_rules/templates/about.template:20
 #: configs/language_specific_rules/templates/baakoeh/about.template:21
@@ -488,7 +488,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/vada/about.template:38
 #: configs/language_specific_rules/templates/valks/about.template:38
 msgid "Linguistic basis"
-msgstr ""
+msgstr "Лингвистическая основа"
 
 #: configs/language_specific_rules/templates/about.template:36
 #: configs/language_specific_rules/templates/baakoeh/about.template:37
@@ -509,6 +509,8 @@ msgid ""
 "Write what you wish, and the dictionary will analyze it to break apart "
 "compound words and find base forms."
 msgstr ""
+"Напишите то, что вы хотите, и словарь проанализирует это, "
+"чтобы разбить сложные слова и найти базовые формы." 
 
 #: configs/language_specific_rules/templates/about.template:42
 #: configs/language_specific_rules/templates/baakoeh/about.template:43
@@ -538,7 +540,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/vada/about.template:52
 #: configs/language_specific_rules/templates/valks/about.template:52
 msgid "Source material"
-msgstr ""
+msgstr "Исходный материал"
 
 #: configs/language_specific_rules/templates/about.template:56
 #: configs/language_specific_rules/templates/sanit/about.template:57
@@ -990,7 +992,7 @@ msgstr " возможная форма слова ..."
 #: templates/index.html:89 templates/index.html:128
 #, python-format
 msgid "Word <span lang=\"%(_from)s\">%(input)s</span> not found."
-msgstr ""
+msgstr "Слово <span lang=\"%(_from)s\">%(input)s</span> не найдено "
 
 #: configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:101
 #: templates/index.html:97
@@ -1429,12 +1431,12 @@ msgstr "кликни-в-тексте"
 
 #: templates/base.html:179 templates/mobile_nav_push_menu.html:18
 msgid "Sources"
-msgstr ""
+msgstr "Источники"
 
 #: templates/base.html:185 templates/mobile_nav_push_menu.html:22
 #: templates/mobile_nav_push_menu.html:25
 msgid "Interface language"
-msgstr "язык интерфейса"
+msgstr "Язык интерфейса"
 
 #: templates/browse.html:24
 msgid "Browse"
@@ -1442,7 +1444,7 @@ msgstr ""
 
 #: templates/browse.html:95
 msgid "prev"
-msgstr ""
+msgstr "предыдущий"
 
 #: templates/browse.html:107
 msgid "next"
