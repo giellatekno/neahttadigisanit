@@ -18,18 +18,12 @@
             <span class="span4">
                 <h3 class="red">{# NOTE: Free as in gratis #}{% trans %}Free{% endtrans %}</h3>
                 <p>{% trans %}Everything (or, well, almost everything) that
-                    concerns minority languages should be free. Here
-                    you'll find free dictionaries, and other analytical
-                    tools.{% endtrans %}</p>
+                    concerns minority languages should be free.{% endtrans %}</p>
             </span>
             <span class="span4">
             <h3 class="blue">{% trans %}Open-Source{% endtrans %}</h3>
-            <p>{% trans %}Everything here is based on open-source tools. Do you
-                have an idea for an app or research project that needs
-                linguistic resources? Visit <a class="blue"
-                    href="http://giellatekno.uit.no/">Giellatekno</a>'s
-                website for information on how to get access to lexicon
-                files, and morphological and syntactic analyzers.{% endtrans %}</p>
+            <p>{% trans %}The dictionary framwork is based on open-source tools.
+	    The Sami-Russian dictionary is still not finished, and thus not yet available as open source..{% endtrans %}</p>
             </span>
             <span class="span4">
                 <h3 class="green">{% trans %}Linguistic basis{% endtrans %}</h3>
