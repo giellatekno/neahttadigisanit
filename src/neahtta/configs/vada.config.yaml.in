@@ -8,6 +8,7 @@ ApplicationSettings:
   locales_available:
     - yrk
     - mns
+    - ru
     - fi
     - hu
     - en
