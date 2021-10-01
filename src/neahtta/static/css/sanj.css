@@ -13,3 +13,8 @@ span.expl {
   font-style: italic;
   font-size: 90%;
 }
+
+span.pos_text {
+  font-style: italic;
+  font-size: 80%;
+}
