@@ -42,16 +42,23 @@ msgstr ""
 #: configs/kyv.config.yaml.in:241 configs/saan.config.yaml.in:96
 #: configs/saanih.config.yaml.in:81 configs/saanih.config.yaml.in:111
 #: configs/sample.config.yaml.in:167 configs/sanat.config.yaml.in:135
-#: configs/sanit.config.yaml.in:136 configs/sanj.config.yaml.in:84
+#: configs/sanit.config.yaml.in:136
 #: configs/sonad.config.yaml.in:155 tests/configs/sanit.config.yaml:122
 msgid "Standard"
 msgstr "Стандарт"
 
+#: configs/sanj.config.yaml.in:84
+msgid "Standard"
+msgstr "Стандартный"
+
 #: configs/guusaaw.config.yaml.in:77 configs/saan.config.yaml.in:119
 #: configs/saanih.config.yaml.in:85 configs/saanih.config.yaml.in:115
-#: configs/sanj.config.yaml.in:88
 msgid "Mobile friendly"
 msgstr "Для мобильных устройств"
+
+#: configs/sanj.config.yaml.in:88
+msgid "Mobile friendly"
+msgstr "Упрощённый"
 
 #: configs/itwewina.config.yaml.in:4
 msgid "itwêwina"
@@ -724,7 +731,7 @@ msgstr "Парадигма"
 
 #: configs/language_specific_rules/templates/entry.template:29
 msgid "see also"
-msgstr "смотрите также"
+msgstr "см."
 
 #: configs/language_specific_rules/templates/footer.template:9
 #: configs/language_specific_rules/templates/gunaha/footer.template:13
