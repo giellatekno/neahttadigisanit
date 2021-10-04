@@ -1404,7 +1404,7 @@ msgid ""
 " (appr. 16000 words).</i> Tromsø."
 msgstr ""
 "Антонова, А. А., Э. Шеллер 2021. <i>Саамскo-русский словарь"
-" (около 16000 слов).</i>"
+" (ок. 16000 слов).</i>"
 
 #: configs/language_specific_rules/templates/sanj/index_search_form.template:11
 msgid ""
@@ -1412,7 +1412,7 @@ msgid ""
 " (appr. 16000 words).</i> Tromsø."
 msgstr ""
 "Антонова, А. А., Э. Шеллер 2021. <i>Русскo-саамский словарь"
-" (около 16000 слов).</i>"
+" (ок. 16000 слов).</i>"
 
 #: configs/language_specific_rules/templates/vada/about.template:59
 msgid "yrk ↔ fin"
