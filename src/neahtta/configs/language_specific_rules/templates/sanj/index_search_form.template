@@ -5,7 +5,12 @@
     {% set keyboard = current_variant_options.onscreen_keyboard %}
 {% endif -%}
 
-<p>{% trans %}Antonova A.A., E. Scheller. Tromsø 2021 (appr. 16000 words){% endtrans %}</p>
+{% if _from == "sjd" %}
+  <p><small>{% trans %}Antonova A. A., E. Scheller 2021. <i>Kildin Saami – Russian dictionary (appr. 16000 words).</i> Tromsø.{% endtrans %}</small></p>
+{% else %}
+  <p><small>{% trans %}Antonova A. A., E. Scheller 2021. <i>Russian – Kildin Saami dictionary (appr. 16000 words).</i> Tromsø.{% endtrans %}</small></p>
+{% endif -%}
+
 
 <div class="container-fluid">
     <div class="row-fluid">
