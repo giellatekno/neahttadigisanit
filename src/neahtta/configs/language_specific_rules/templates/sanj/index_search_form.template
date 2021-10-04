@@ -6,9 +6,9 @@
 {% endif -%}
 
 {% if _from == "sjd" %}
-  <p><small>{% trans %}Antonova A. A., E. Scheller 2021. <i>Kildin Saami – Russian dictionary (appr. 16000 words).</i> Tromsø.{% endtrans %}</small></p>
+  <p><small>{% trans %}Antonova A. A., E. Scheller 2021.<br><i>Kildin Saami – Russian dictionary (appr. 16000 words).</i> Tromsø.{% endtrans %}</small></p>
 {% else %}
-  <p><small>{% trans %}Antonova A. A., E. Scheller 2021. <i>Russian – Kildin Saami dictionary (appr. 16000 words).</i> Tromsø.{% endtrans %}</small></p>
+  <p><small>{% trans %}Antonova A. A., E. Scheller 2021.<br><i>Russian – Kildin Saami dictionary (appr. 16000 words).</i> Tromsø.{% endtrans %}</small></p>
 {% endif -%}
 
 
