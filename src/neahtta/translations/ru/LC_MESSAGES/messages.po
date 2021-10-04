@@ -1403,7 +1403,7 @@ msgid ""
 "Antonova A. A., E. Scheller 2021.<br><i>Kildin Saami – Russian dictionary"
 " (appr. 16000 words).</i> Tromsø."
 msgstr ""
-"AАнтонова, А. А., Э. Шеллер 2021.<br><i>Саамскo-русский словарь"
+"Антонова, А. А., Э. Шеллер 2021.<br><i>Саамскo-русский словарь"
 " (около 16000 слов).</i> Тромсё."
 
 #: configs/language_specific_rules/templates/sanj/index_search_form.template:11
@@ -2201,4 +2201,3 @@ msgstr "Недопустимый формат. Только json и html доп�
 
 #~ msgid "More information about this word"
 #~ msgstr ""
-
