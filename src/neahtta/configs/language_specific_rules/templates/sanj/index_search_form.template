@@ -5,7 +5,7 @@
     {% set keyboard = current_variant_options.onscreen_keyboard %}
 {% endif -%}
 
-<p>{% trans %}Antonova A.A., E. Scheller. Tromsø 2021 (appr. 16000 words){% trans %}</p>
+<p>{% trans %}Antonova A.A., E. Scheller. Tromsø 2021 (appr. 16000 words){% endtrans %}</p>
 
 <div class="container-fluid">
     <div class="row-fluid">
