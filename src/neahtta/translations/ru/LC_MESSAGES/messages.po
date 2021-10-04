@@ -354,7 +354,7 @@ msgstr "(... И для мобильных устройств!)"
 #: configs/language_specific_rules/templates/valks/about.template:7
 #: templates/base.html:175 templates/mobile_nav_push_menu.html:14
 msgid "About"
-msgstr "Про нас"
+msgstr "О словаре"
 
 #: configs/language_specific_rules/templates/about.template:14
 #: configs/language_specific_rules/templates/baakoeh/about.template:15
