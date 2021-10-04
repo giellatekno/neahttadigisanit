@@ -55,7 +55,7 @@ msgstr ""
 #: configs/bak_2607/sanit.config.yaml:121
 #: configs/bak_2607/sonad.config.yaml:155 tests/configs/sanit.config.yaml:122
 msgid "Standard"
-msgstr "Стандарт"
+msgstr "Стандартный"
 
 #: configs/guusaaw.config.yaml.in:77 configs/saan.config.yaml:119
 #: configs/saan.config.yaml.in:119 configs/saanih.config.yaml:84
@@ -65,7 +65,7 @@ msgstr "Стандарт"
 #: configs/bak_2607/saanih.config.yaml:82
 #: configs/bak_2607/saanih.config.yaml:108
 msgid "Mobile friendly"
-msgstr "Для мобильных устройств"
+msgstr "Упрощённый"
 
 #: configs/itwewina.config.yaml.in:4
 msgid "itwêwina"
@@ -1403,16 +1403,16 @@ msgid ""
 "Antonova A. A., E. Scheller 2021.<br><i>Kildin Saami – Russian dictionary"
 " (appr. 16000 words).</i> Tromsø."
 msgstr ""
-"Антонова, А. А., Э. Шеллер 2021.<br><i>Саамскo-русский словарь"
-" (около 16000 слов).</i> Тромсё."
+"Антонова, А. А., Э. Шеллер 2021. <i>Саамскo-русский словарь"
+" (около 16000 слов).</i>"
 
 #: configs/language_specific_rules/templates/sanj/index_search_form.template:11
 msgid ""
 "Antonova A. A., E. Scheller 2021.<br><i>Russian – Kildin Saami dictionary"
 " (appr. 16000 words).</i> Tromsø."
 msgstr ""
-"Антонова, А. А., Э. Шеллер 2021.<br><i>Русскo-саамский словарь"
-" (около 16000 слов).</i> Тромсё."
+"Антонова, А. А., Э. Шеллер 2021. <i>Русскo-саамский словарь"
+" (около 16000 слов).</i>"
 
 #: configs/language_specific_rules/templates/vada/about.template:59
 msgid "yrk ↔ fin"
@@ -1572,7 +1572,7 @@ msgstr ""
 #: templates/mobile_nav_push_menu.html:63
 #: templates/mobile_nav_push_menu.html:83
 msgid "Written variant"
-msgstr "Писменный вариант"
+msgstr "Метод поиска"
 
 #: templates/left_nav_search_variants.html:14
 msgid "Search type"
