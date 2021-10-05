@@ -382,7 +382,8 @@ msgstr "(... И для мобильных устройств!)"
 #: configs/language_specific_rules/templates/valks/about.template:7
 #: templates/base.html:175 templates/mobile_nav_push_menu.html:14
 msgid "About"
-msgstr "О словаре"
+msgstr "Как цитировать электронный словарь"
+#  "О словаре"
 
 #: configs/language_specific_rules/templates/about.template:14
 #: configs/language_specific_rules/templates/baakoeh/about.template:15
@@ -480,7 +481,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/vada/about.template:29
 #: configs/language_specific_rules/templates/valks/about.template:29
 msgid "Open-Source"
-msgstr ""
+msgstr " "
 
 #: configs/language_specific_rules/templates/about.template:27
 #: configs/language_specific_rules/templates/baakoeh/about.template:28
@@ -502,7 +503,7 @@ msgid ""
 "\n"
 "                website for information on how to get access to lexicon\n"
 "                files, and morphological and syntactic analyzers."
-msgstr ""
+msgstr " "
 
 #: configs/language_specific_rules/templates/about.template:35
 #: configs/language_specific_rules/templates/baakoeh/about.template:36
@@ -1381,7 +1382,7 @@ msgstr ""
 msgid ""
 "Everything (or, well, almost everything) that\n"
 "                    concerns minority languages should be free."
-msgstr ""
+msgstr " "
 
 #: configs/language_specific_rules/templates/sanj/about.template:25
 msgid ""
@@ -1389,14 +1390,16 @@ msgid ""
 "\t    The Sami-Russian dictionary is still not finished, and thus not yet"
 " available as open source.."
 msgstr ""
+"Саамско-русский словарь еще не закончен и, следовательно, "
+"еще не доступен в виде открытого исходного кода."
 
 #: configs/language_specific_rules/templates/sanj/about.template:50
 msgid "Саамский ↔ Русский"
-msgstr ""
+msgstr "Как цитировать этот словарь:"
 
 #: configs/language_specific_rules/templates/sanj/about.template:51
 msgid "Антонова А.А., Э. Шеллер.  Тромсё 2021 (около 16 000 слов)"
-msgstr ""
+msgstr "Антонова А. А., Э. Шеллер 2021: Саамско-русский и Русско-саамский словарь (около 16000 слов). Тромсё"
 
 #: configs/language_specific_rules/templates/sanj/index_search_form.template:9
 msgid ""
