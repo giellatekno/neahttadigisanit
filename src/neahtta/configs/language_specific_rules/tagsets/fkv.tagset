@@ -8,6 +8,8 @@ nonfinite_paradigm:
 negation:
  - Neg
  - ConNeg
+negative:
+ - Neg
 number:
  - Sg
  - Pl
@@ -21,5 +23,6 @@ invisible_in_paradigms:
  - Indef
  - Sg
  - Pl
+ - Nom
  - Act
 # vim: set ts=4 sw=4 tw=72 syntax=yaml :
