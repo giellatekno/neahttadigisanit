@@ -17,6 +17,9 @@
 
 {%- set pos = first_l|xpath('@pos')|first %}
 
+{%- set dialect = first_l|xpath('@dialect')|first %}
+{% set dialect_text = dialect|tagfilter(_from, _to) %}
+
 {% if first_l|xpath('@type') %}
   {% set pos_type = first_l|xpath('@type')|tagfilter(_from, _to) %}
 {%- endif %}
@@ -45,6 +48,7 @@
                 <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
                     {{- rendered_templates.entry_text -}}</a>
                     {%- if pos_text -%}<span class=pos_text>{{ pos_text }}</span>{% endif %}
+                    {%- if dialect_text -%}<span class=dial_text> {{ dialect_text}}</span>{% endif %}
                 {% if l_ref_text %}
                 <p class="l_ref"><span class="se_også">{% trans %}see also{% endtrans %} </span><a href="./?lookup={{l_ref_text.split("_")[0]}}">
                     {{ l_ref_text.split("_")[0]}}</a></p>
