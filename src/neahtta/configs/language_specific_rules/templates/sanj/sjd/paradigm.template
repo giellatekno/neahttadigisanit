@@ -37,11 +37,7 @@
                              |without_tagset("negation")|count %}
 
     {% if prs_pl2 == 2 %}
-        {% if lemma != "лӣннче" %}
-            {% set _ = preterite_verbs.insert(6, "") %}
-        {% else %}
-            {% set prs_pl2 = 1 %}
-        {% endif %}
+        {% set _ = preterite_verbs.insert(6, "") %}
     {% endif %}
 
     {% set nonfinite_forms = paradigm|by_tagset("nonfinite_paradigm") %}
@@ -254,8 +250,8 @@
                         </tr>
 
                     {%- endfor -%}
-                {% else %} {# if lemma == лӣннче, only show preterite forms #}
-                    {% for forms in preterite_verbs %}
+                {% else %} {# if lemma == лӣннче, only show present forms #}
+                    {% for forms in present_verbs %}
                     <tr>
 
                     <th class="tag" lang="{{ _to }}">{{ contexts[i] }}</th>
