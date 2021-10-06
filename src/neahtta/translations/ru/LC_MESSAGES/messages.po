@@ -1406,16 +1406,14 @@ msgid ""
 "Antonova A. A., E. Scheller 2021.<br><i>Kildin Saami – Russian dictionary"
 " (appr. 16000 words).</i> Tromsø."
 msgstr ""
-"Антонова, А. А., Э. Шеллер 2021. <i>Саамскo-русский словарь"
-" (ок. 16000 слов).</i>"
+"Антонова, А. А., Э. Шеллер 2021 <i>(ок. 16000 слов)</i>."
 
 #: configs/language_specific_rules/templates/sanj/index_search_form.template:11
 msgid ""
 "Antonova A. A., E. Scheller 2021.<br><i>Russian – Kildin Saami dictionary"
 " (appr. 16000 words).</i> Tromsø."
 msgstr ""
-"Антонова, А. А., Э. Шеллер 2021. <i>Русскo-саамский словарь"
-" (ок. 16000 слов).</i>"
+"Антонова, А. А., Э. Шеллер 2021 <i>(ок. 16000 слов)</i>."
 
 #: configs/language_specific_rules/templates/vada/about.template:59
 msgid "yrk ↔ fin"
