@@ -36,7 +36,7 @@
                              |by_tagset_value("number", "Pl2")
                              |without_tagset("negation")|count %}
 
-    {% if prs_pl2 == 2 %}
+    {% if prs_pl2 >= 2 %}
         {% set _ = preterite_verbs.insert(6, "") %}
     {% endif %}
 
@@ -209,7 +209,7 @@
 
         <table class="tableparadigm miniparadigm">
           {% set contexts = ["мунн", "то̄нн", "", "со̄нн", "мыйй", "тыйй", "сыйй", "безлич"] %}
-          {% if prs_pl2 == 2 %} {% set _ = contexts.insert(6, "") %}{% endif %}
+          {% if prs_pl2 >= 2 %} {% set _ = contexts.insert(6, "") %}{% endif %}
           {% set i=0 %}
 
             {# This is the two-column tense paradigm #}
@@ -277,7 +277,7 @@
                         {% set textshown = 1 %}
                         <dt>{{ "мунн ля̄" }}</dt>
                     {% endif %}
-                    <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form') }}</dd>
+                    <dd lang="{{ _from }}">{{ var|unique|join('<br />', attribute='form') }}</dd>
                 {% endfor %}
             </dl>
         {% endif %}
