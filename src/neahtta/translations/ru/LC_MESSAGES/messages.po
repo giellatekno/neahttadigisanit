@@ -1399,7 +1399,7 @@ msgstr "Как цитировать этот словарь:"
 
 #: configs/language_specific_rules/templates/sanj/about.template:51
 msgid "Антонова А.А., Э. Шеллер.  Тромсё 2021 (около 16 000 слов)"
-msgstr "Антонова А. А., Э. Шеллер 2021: Саамско-русский и Русско-саамский словарь (около 16000 слов). Тромсё"
+msgstr "Антонова А. А., Э. Шеллер 2021: Саамско-русский и Русско-саамский словарь (около 16000 слов). Тромсё."
 
 #: configs/language_specific_rules/templates/sanj/index_search_form.template:9
 msgid ""
