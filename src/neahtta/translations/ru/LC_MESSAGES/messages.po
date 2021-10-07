@@ -362,7 +362,7 @@ msgstr "(<em>аеиоумннр</em>)"
 #: configs/sonad.config.yaml:160 configs/sonad.config.yaml.in:160
 #: configs/bak_2607/sonad.config.yaml:160
 msgid "mobile friendly"
-msgstr "(... И для мобильных устройств!)"
+msgstr "(... и который приспособлен к мобильным устройствам!)"
 
 #: configs/language_specific_rules/templates/about.template:5
 #: configs/language_specific_rules/templates/baakoeh/about.template:6
@@ -421,7 +421,7 @@ msgstr "Словарь, который понимает, что вы ищете.
 #: configs/language_specific_rules/templates/vada/about.template:18
 #: configs/language_specific_rules/templates/valks/about.template:18
 msgid "(... And is mobile-friendly!)"
-msgstr "(... И для мобильных устройств!)"
+msgstr "(... и который приспособлен к мобильным устройствам!)"
 
 #: configs/language_specific_rules/templates/about.template:19
 #: configs/language_specific_rules/templates/baakoeh/about.template:20
@@ -1838,7 +1838,7 @@ msgstr "Недопустимый формат. Только json и html доп�
 #~ msgstr ""
 
 #~ msgid "Mobile friendly (k &rarr; k ~ ǩ)"
-#~ msgstr "(... И для мобильных устройств!)"
+#~ msgstr "(... и который приспособлен к мобильным устройствам!)"
 
 #~ msgid "Molotsov orthography (ԅ &rarr; зь)"
 #~ msgstr ""
@@ -1847,7 +1847,7 @@ msgstr "Недопустимый формат. Только json и html доп�
 #~ msgstr ""
 
 #~ msgid "Mobile friendly (a &rarr; a ~ â)"
-#~ msgstr "(... И для мобильных устройств!)"
+#~ msgstr "(... и который приспособлен к мобильным устройствам!)"
 
 #~ msgid "isCharacterDataNode"
 #~ msgstr ""
@@ -1925,7 +1925,7 @@ msgstr "Недопустимый формат. Только json и html доп�
 #~ msgstr "Словарь, который понимает, что ищешь."
 
 #~ msgid "(... And is mobile-friendly!)"
-#~ msgstr "(... И для мобильных устройств!)"
+#~ msgstr "(... и который приспособлен к мобильным устройствам!)"
 
 #~ msgid "Free"
 #~ msgstr "Бесплатный"
