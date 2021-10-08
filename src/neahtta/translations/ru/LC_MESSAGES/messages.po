@@ -1395,7 +1395,7 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/sanj/about.template:50
 msgid "Саамский ↔ Русский"
-msgstr "Как цитировать этот словарь:"
+msgstr "Как цитировать словарь:"
 
 #: configs/language_specific_rules/templates/sanj/about.template:51
 msgid "Антонова А.А., Э. Шеллер.  Тромсё 2021 (около 16 000 слов)"
