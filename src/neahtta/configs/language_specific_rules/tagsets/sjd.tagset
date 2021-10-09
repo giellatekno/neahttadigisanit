@@ -82,3 +82,6 @@ pron_type:
  - "Recipr"
  - "Refl"
  - "Rel"
+homonyms:
+ - "Hom1"
+ - "Hom2"
