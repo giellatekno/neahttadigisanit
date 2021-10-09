@@ -69,7 +69,7 @@
     <a href="http://kaino.kotus.fi/algu/index.php?t=haku&o=hae&l=1&valinta=1&valintaryhma=1&kieli={{lang_code}}&hakusana={{grouper}}&kkieli={{locale_code}}">{% trans %}Word history{% endtrans %} &rarr;</a>
   {% endif %}
 {% endmacro %}
-
+{#
 <dl class="possible_analyses grid_analyses">
     {% for grouper, forms in analyses_right|groupby('lemma') %}
         {% for lemmagroup, lemmafs in forms|groupby('pos') %}
@@ -91,5 +91,6 @@
         {% endfor %}
     {% endfor %}
 </dl>
+#}
 
 {# vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}
