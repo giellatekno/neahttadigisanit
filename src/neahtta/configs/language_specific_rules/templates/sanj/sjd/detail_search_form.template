@@ -6,9 +6,9 @@
   <div class="btn-group">
     <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
         {% if _from == "rus" %}
-          <span class="val_name">{{ "rus"|iso_to_i18n }}→{{ "sjd"|iso_to_i18n }}</span>
+          <span class="val_name"> {% trans %}rus{% endtrans %}→{% trans %}sjd{% endtrans %}</span>
         {% else %}
-          <span class="val_name">{{ "sjd"|iso_to_i18n }}→{{ "rus"|iso_to_i18n }}</span>
+          <span class="val_name">{% trans %}sjd{% endtrans %}→{% trans %}rus{% endtrans %}</span>
         {% endif %}
       <span class="caret"></span>
     </button>
