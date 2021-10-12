@@ -1360,6 +1360,20 @@ msgid ""
 " (appr. 16000 words).</i> Tromsø."
 msgstr "Антонова, А. А., Э. Шеллер 2021 <i>(ок. 16000 слов)</i>."
 
+#: configs/language_specific_rules/templates/sanj/rus/detail_search_form.template:9
+#: configs/language_specific_rules/templates/sanj/rus/detail_search_form.template:11
+#: configs/language_specific_rules/templates/sanj/sjd/detail_search_form.template:9
+#: configs/language_specific_rules/templates/sanj/sjd/detail_search_form.template:11
+msgid "rus"
+msgstr "рус"
+
+#: configs/language_specific_rules/templates/sanj/rus/detail_search_form.template:9
+#: configs/language_specific_rules/templates/sanj/rus/detail_search_form.template:11
+#: configs/language_specific_rules/templates/sanj/sjd/detail_search_form.template:9
+#: configs/language_specific_rules/templates/sanj/sjd/detail_search_form.template:11
+msgid "sjd"
+msgstr "саам"
+
 #: configs/language_specific_rules/templates/vada/about.template:59
 msgid "yrk ↔ fin"
 msgstr ""
@@ -2162,4 +2176,3 @@ msgstr "Недопустимый формат. Только json и html доп�
 #~ "Саамско-русский словарь еще не закончен "
 #~ "и, следовательно, еще не доступен в "
 #~ "виде открытого исходного кода."
-
