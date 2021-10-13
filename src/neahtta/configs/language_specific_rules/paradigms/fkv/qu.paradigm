@@ -1,0 +1,28 @@
+name: "Pronoun Qu paradigm"
+morphology:
+  pos: Pron
+  pron_type: Qu
+--
+{{ lemma }}+Pron+Qu+Sg+Nom
+{{ lemma }}+Pron+Qu+Sg+Gen
+{{ lemma }}+Pron+Qu+Sg+Par
+{{ lemma }}+Pron+Qu+Sg+Ine
+{{ lemma }}+Pron+Qu+Sg+Ill
+{{ lemma }}+Pron+Qu+Sg+Ela
+{{ lemma }}+Pron+Qu+Sg+Ade
+{{ lemma }}+Pron+Qu+Sg+All
+{{ lemma }}+Pron+Qu+Sg+Abl
+{{ lemma }}+Pron+Qu+Sg+Ess
+{{ lemma }}+Pron+Qu+Sg+Tra
+
+{{ lemma }}+Pron+Qu+Pl+Nom
+{{ lemma }}+Pron+Qu+Pl+Gen
+{{ lemma }}+Pron+Qu+Pl+Par
+{{ lemma }}+Pron+Qu+Pl+Ine
+{{ lemma }}+Pron+Qu+Pl+Ill
+{{ lemma }}+Pron+Qu+Pl+Ela
+{{ lemma }}+Pron+Qu+Pl+Ade
+{{ lemma }}+Pron+Qu+Pl+All
+{{ lemma }}+Pron+Qu+Pl+Abl
+{{ lemma }}+Pron+Qu+Pl+Ess
+{{ lemma }}+Pron+Qu+Pl+Tra
