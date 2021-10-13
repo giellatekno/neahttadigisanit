@@ -1,4 +1,4 @@
-﻿pos: ["N", "V", "A", "Pr", "Po", "Num"]
+﻿pos: ["N", "V", "A", "Pr", "Po", "Num", "Pron"]
 tense:
  - Prt
  - Prs
