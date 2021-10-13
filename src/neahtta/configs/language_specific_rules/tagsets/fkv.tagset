@@ -24,4 +24,11 @@ invisible_in_paradigms:
  - Sg
  - Pl
  - Act
+pron_type:
+ - Dem
+ - Indef
+ - Interr
+ - Pers
+ - Rel
+ - Qu
 # vim: set ts=4 sw=4 tw=72 syntax=yaml :
