@@ -1,0 +1,77 @@
+name: "Pronoun pers paradigm"
+morphology:
+  pos: Pron
+  pron_type: Pers
+--
+{{ lemma }}+Pron+Pers+Sg1+Nom
+{{ lemma }}+Pron+Pers+Sg1+Gen
+{{ lemma }}+Pron+Pers+Sg1+Par
+{{ lemma }}+Pron+Pers+Sg1+Ine
+{{ lemma }}+Pron+Pers+Sg1+Ill
+{{ lemma }}+Pron+Pers+Sg1+Ela
+{{ lemma }}+Pron+Pers+Sg1+Ade
+{{ lemma }}+Pron+Pers+Sg1+All
+{{ lemma }}+Pron+Pers+Sg1+Abl
+{{ lemma }}+Pron+Pers+Sg1+Ess
+{{ lemma }}+Pron+Pers+Sg1+Tra
+
+{{ lemma }}+Pron+Pers+Pl1+Nom
+{{ lemma }}+Pron+Pers+Pl1+Gen
+{{ lemma }}+Pron+Pers+Pl1+Par
+{{ lemma }}+Pron+Pers+Pl1+Ine
+{{ lemma }}+Pron+Pers+Pl1+Ill
+{{ lemma }}+Pron+Pers+Pl1+Ela
+{{ lemma }}+Pron+Pers+Pl1+Ade
+{{ lemma }}+Pron+Pers+Pl1+All
+{{ lemma }}+Pron+Pers+Pl1+Abl
+{{ lemma }}+Pron+Pers+Pl1+Ess
+{{ lemma }}+Pron+Pers+Pl1+Tra
+
+{{ lemma }}+Pron+Pers+Sg2+Nom
+{{ lemma }}+Pron+Pers+Sg2+Gen
+{{ lemma }}+Pron+Pers+Sg2+Par
+{{ lemma }}+Pron+Pers+Sg2+Ine
+{{ lemma }}+Pron+Pers+Sg2+Ill
+{{ lemma }}+Pron+Pers+Sg2+Ela
+{{ lemma }}+Pron+Pers+Sg2+Ade
+{{ lemma }}+Pron+Pers+Sg2+All
+{{ lemma }}+Pron+Pers+Sg2+Abl
+{{ lemma }}+Pron+Pers+Sg2+Ess
+{{ lemma }}+Pron+Pers+Sg2+Tra
+
+{{ lemma }}+Pron+Pers+Pl2+Nom
+{{ lemma }}+Pron+Pers+Pl2+Gen
+{{ lemma }}+Pron+Pers+Pl2+Par
+{{ lemma }}+Pron+Pers+Pl2+Ine
+{{ lemma }}+Pron+Pers+Pl2+Ill
+{{ lemma }}+Pron+Pers+Pl2+Ela
+{{ lemma }}+Pron+Pers+Pl2+Ade
+{{ lemma }}+Pron+Pers+Pl2+All
+{{ lemma }}+Pron+Pers+Pl2+Abl
+{{ lemma }}+Pron+Pers+Pl2+Ess
+{{ lemma }}+Pron+Pers+Pl2+Tra
+
+{{ lemma }}+Pron+Pers+Sg3+Nom
+{{ lemma }}+Pron+Pers+Sg3+Gen
+{{ lemma }}+Pron+Pers+Sg3+Par
+{{ lemma }}+Pron+Pers+Sg3+Ine
+{{ lemma }}+Pron+Pers+Sg3+Ill
+{{ lemma }}+Pron+Pers+Sg3+Ela
+{{ lemma }}+Pron+Pers+Sg3+Ade
+{{ lemma }}+Pron+Pers+Sg3+All
+{{ lemma }}+Pron+Pers+Sg3+Abl
+{{ lemma }}+Pron+Pers+Sg3+Ess
+{{ lemma }}+Pron+Pers+Sg3+Tra
+
+{{ lemma }}+Pron+Pers+Pl3+Nom
+{{ lemma }}+Pron+Pers+Pl3+Gen
+{{ lemma }}+Pron+Pers+Pl3+Par
+{{ lemma }}+Pron+Pers+Pl3+Ine
+{{ lemma }}+Pron+Pers+Pl3+Ill
+{{ lemma }}+Pron+Pers+Pl3+Ela
+{{ lemma }}+Pron+Pers+Pl3+Ade
+{{ lemma }}+Pron+Pers+Pl3+All
+{{ lemma }}+Pron+Pers+Pl3+Abl
+{{ lemma }}+Pron+Pers+Pl3+Ess
+{{ lemma }}+Pron+Pers+Pl3+Tra
+
