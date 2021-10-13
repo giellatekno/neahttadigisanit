@@ -1,7 +1,6 @@
 name: "Pronoun dem paradigm"
 morphology:
-  pos: Pron
-  pron_type: Dem
+  pos: Num
 --
 {{ lemma }}+Num+Sg+Nom
 {{ lemma }}+Num+Sg+Gen
