@@ -1,0 +1,28 @@
+name: "Pronoun dem paradigm"
+morphology:
+  pos: Pron
+  pron_type: Dem
+--
+{{ lemma }}+Num+Sg+Nom
+{{ lemma }}+Num+Sg+Gen
+{{ lemma }}+Num+Sg+Par
+{{ lemma }}+Num+Sg+Ine
+{{ lemma }}+Num+Sg+Ill
+{{ lemma }}+Num+Sg+Ela
+{{ lemma }}+Num+Sg+Ade
+{{ lemma }}+Num+Sg+All
+{{ lemma }}+Num+Sg+Abl
+{{ lemma }}+Num+Sg+Ess
+{{ lemma }}+Num+Sg+Tra
+
+{{ lemma }}+Num+Pl+Nom
+{{ lemma }}+Num+Pl+Gen
+{{ lemma }}+Num+Pl+Par
+{{ lemma }}+Num+Pl+Ine
+{{ lemma }}+Num+Pl+Ill
+{{ lemma }}+Num+Pl+Ela
+{{ lemma }}+Num+Pl+Ade
+{{ lemma }}+Num+Pl+All
+{{ lemma }}+Num+Pl+Abl
+{{ lemma }}+Num+Pl+Ess
+{{ lemma }}+Num+Pl+Tra
