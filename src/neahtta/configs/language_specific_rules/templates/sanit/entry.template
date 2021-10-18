@@ -70,6 +70,11 @@
   {% endif %}
 {% endif %}
 
+{%- set pos = first_l|xpath('@pos')|first %}
+{%- if pos == 'Phrase' %}
+    {% set pos_is_phrase = True %}
+{%- endif %}
+
 {# Display #}
 
 <div class="row-fluid entry_row">
@@ -83,8 +88,12 @@
             {%- if has_reference -%}
                 {{ reference_link(has_reference) }}
             {%- else -%}
+              {% if pos_is_phrase %}
+                  {{- rendered_templates.entry_text -}}
+              {% else %}
                 <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
                     {{- rendered_templates.entry_text -}}</a>
+              {% endif %}
             {% endif %}
             {% if stem %}
               <p class="p_stem">(stamme: {{stem_desc}})</p>
