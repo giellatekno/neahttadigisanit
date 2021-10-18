@@ -96,15 +96,9 @@
                     {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{{ text -}}
                 </a> &rarr;
             {% elif grammar_link %}
-                {% if explanation == 'grammarexpl' %}
                   <a href="{{ grammar_link }}" target="_blank">
-                      <em class="grammar_link"></em><span class="grammar_link_text">{{ text -}}</span>
+                      <span class="grammar_link_text">{{ text -}}</span>
                   </a>
-                {% else %}
-                  <a href="{{ grammar_link }}" target="_blank">
-                      <em class="grammar_link">{% trans %}Bruk: {% endtrans %}</em><span class="grammar_link_text">{{ text -}}</span>
-                  </a>
-                {%- endif %}
             {%- else %}
                 {# NB: swap from and to for these links since these are definitions. #}
                 <a href="{{ url_for('.detailed_language_pair_search', _from=_to, _to=_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
