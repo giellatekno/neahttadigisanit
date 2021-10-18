@@ -51,6 +51,11 @@
   {%- set l_ref_text = l_ref_first|text %}
 {% endif %}
 
+{%- set pos = first_l|xpath('@pos')|first %}
+{%- if pos == 'Phrase' %}
+    {% set pos_is_phrase = True %}
+{%- endif %}
+
 {% if 'true' not in if_der %}
   {% if user_input in first_l|text %}
     <div class="row-fluid entry_row">
@@ -61,8 +66,12 @@
                   {%- if has_reference -%}
                       {{ reference_link(has_reference) }}
                   {%- else -%}
+                    {% if pos_is_phrase %}
+                        {{- rendered_templates.entry_text -}}
+                    {% else %}
                       <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
                           {{- rendered_templates.entry_text -}}</a>
+                    {% endif %}
                   {% endif %}
                   {% if l_ref_text %}
                     <p class="l_ref"><span class="se_også">se også </span><a href="./?lookup={{l_ref_text.split("_")[0]}}">
