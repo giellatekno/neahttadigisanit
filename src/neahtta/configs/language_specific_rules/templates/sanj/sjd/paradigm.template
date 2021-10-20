@@ -106,9 +106,6 @@
     {# Use izip_longest to fill in the extra blanks spaces when one list
        ends first #}
 
-    {# пугк lacks accusative and genitive singular #}
-    {%- if lemma == "пугк" %}{% set _ = sg_forms.insert(1, "") %}{% set _ = sg_forms.insert(1, "")%}{% endif %}
-
     {% set zipped_numbers = izip_longest(sg_forms, pl_forms, fillvalue='-')|list %}
     {% set paradigm_exists = zipped_numbers|length > 0 %}
 
