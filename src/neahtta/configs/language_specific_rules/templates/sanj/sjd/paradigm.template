@@ -30,7 +30,7 @@
                                      |without_tagset("negation")
                                      |group_by_tag %}
 
-    {# This variable is used to insert an extra empty entry in the preterite 
+    {# This variable is used to insert an extra empty entry in the preterite
        list when there are two prs pl2 forms (which are generated from different strings) #}
     {% set prs_pl2 = paradigm|by_tagset_value("tense", "Prs")
                              |by_tagset_value("number", "Pl2")
@@ -167,8 +167,14 @@
     #}
 
     {% set two_columns = False %}
-    {% set sg_forms = paradigm|by_tagset_value("number", "Sg")|group_by_tag %}
-    {% set pl_forms = paradigm|by_tagset_value("number", "Pl")|group_by_tag %}
+    {% set sg1_forms = paradigm|by_tagset_value("number", "Sg1")|group_by_tag %}
+    {% set sg2_forms = paradigm|by_tagset_value("number", "Sg2")|group_by_tag %}
+    {% set sg3_forms = paradigm|by_tagset_value("number", "Sg3")|group_by_tag %}
+    {% set sg_forms = sg1_forms + sg2_forms + sg3_forms %}
+    {% set pl1_forms = paradigm|by_tagset_value("number", "Pl1")|group_by_tag %}
+    {% set pl2_forms = paradigm|by_tagset_value("number", "Pl2")|group_by_tag %}
+    {% set pl3_forms = paradigm|by_tagset_value("number", "Pl3")|group_by_tag %}
+    {% set pl_forms = pl1_forms + pl2_forms + pl3_forms %}
 
     {% if sg_forms|length > 0 and pl_forms|length > 0 %}
         {% set two_columns = True %}
@@ -213,7 +219,7 @@
           {% set i=0 %}
 
             {# This is the two-column tense paradigm #}
-                
+
                 {% if lemma == "лӣннче" %}
                 <tr>
                     <th></th>
@@ -288,7 +294,7 @@
     {% if paradigm_exists %}
 
         <table class="tableparadigm miniparadigm">
-          {% set contexts = ["Кто? Что?", "Чей?", "Кого? Чего?", "Кому? Чему?", "У (от) кого? У (от) чего?", "С кем? С чем?", "Без кого? Без чего?", "В кого? В чего?", "Много, мало"] %}
+          {% set contexts = ["Кто? Что?", "Чей?", "Кого? Чего?", "кому? чему? куда?", "У (от) кого? У (от) чего?", "С кем? С чем?", "Без кого? Без чего?", "В кого? В чего?", "много, мало, при сравн."] %}
           {% set i=0 %}
 
             <tr>
@@ -349,8 +355,11 @@
     </dl>
 
 {% elif pos|upper == 'PRON' %}
+    {% set contexts = ["Кто? Что?", "Чей?", "Кого? Чего?", "кому? чему? куда?", "У (от) кого? У (от) чего?", "С кем? С чем?", "Без кого? Без чего?", "В кого? В чего?", "много, мало, при сравн."] %}
+    {% set i=0 %}
 
-    {% if pron_type|upper == 'INDEF' and two_columns %}
+    {% if two_columns %}
+
         {% if paradigm_exists %}
 
             <table class="tableparadigm miniparadigm">
@@ -362,14 +371,8 @@
 
             {%- for sgs, pls in zipped_numbers -%}
                 <tr>
-
-                {% if sgs[0].tag %}
-                    {% set tag_display = clean_tag(sgs[0].tag) %}
-                {% elif pls[0].tag %}
-                    {% set tag_display = clean_tag(pls[0].tag) %}
-                {% endif %}
-
-                <th class="tag" lang="{{ _to }}">{{ tag_display }}</th>
+                <th class="tag" lang="{{ _to }}">{{ contexts[i] }}</th>
+                {% set i = i+1 %}
 
                 {% if sgs and sgs != '-' %}
                     <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form') }}</td>
@@ -387,21 +390,6 @@
 
             {%- endfor -%}
 
-
-            {%- for form in numberless_forms -%}
-                <tr>
-                {% if form.tag %}
-                    <th class="tag" lang="{{ _to }}">{{ clean_tag(form.tag)  }}</th>
-                {% endif %}
-
-                {% if form.form %}
-                    <td colspan="2" lang="{{ _from }}" class="center">{{ form.form }}</td>
-                {% else %}
-                    <td colspan="2" lang="{{ _from }}">?</td>
-                {% endif %}
-
-                </tr>
-            {%- endfor -%}
             </table>
 
         {% endif %}
