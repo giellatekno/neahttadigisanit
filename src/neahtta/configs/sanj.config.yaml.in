@@ -56,8 +56,8 @@ Morphology:
       inverse_tagsep: '+'
   rus:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/rus/bin/analyser-dict-gt-desc-mobile.hfstol']
-    inverse_file: [*OPT, '/rus/bin/generator-gt-norm.hfstol']
+    file: [*OPT, '/rus/dummy/analyser-dict-gt-desc-mobile.hfstol']
+    inverse_file: [*OPT, '/rus/dummy/generator-gt-norm.hfstol']
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
