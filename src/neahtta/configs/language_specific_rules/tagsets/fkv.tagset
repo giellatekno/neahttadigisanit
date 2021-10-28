@@ -5,6 +5,7 @@ tense:
 nonfinite_paradigm:
  - ConNeg
  - PrfPrc
+ - Cond
 negation:
  - Neg
  - ConNeg
