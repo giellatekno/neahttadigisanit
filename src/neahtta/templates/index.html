@@ -99,23 +99,6 @@
                             </div>
                         </div>
                     {% endif %}
-                    {% if app_short_name == 'sanat' %}
-                      {% if (_from =='nob') and (_to =='fkv') %}
-                        <br />
-                        <br />
-                        <p style="font-weight: bold;">{% trans %}Find a problem?{% endtrans %}</p>
-                        <p>{% trans %}Comment here if you have any suggestion for improvements! Remember to include which word you want us to improve.{% endtrans %}</p>
-                        <div class="fb-comments" data-href="http://sanat.oahpa.no/nob/fkv" data-numposts="3" data-mobile="true" data-order-by="reverse_time"></div>
-                      {% else %}
-                        {% if (_from =='fkv') and (_to =='nob') %}
-                          <br />
-                          <br />
-                          <p style="font-weight: bold;">{% trans %}Find a problem?{% endtrans %}</p>
-                          <p>{% trans %}Comment here if you have any suggestion for improvements! Remember to include which word you want us to improve.{% endtrans %}</p>
-                          <div class="fb-comments" data-href="http://sanat.oahpa.no/fkv/nob" data-numposts="3" data-mobile="true" data-order-by="reverse_time"></div>
-                        {%- endif -%}
-                      {%- endif -%}
-                    {%- endif -%}
                 </div>
 
             {% else %}
