@@ -101,34 +101,12 @@
                 and tell us what web browser or mobile phone you were using, or what word you
                 were searching for when you encountered the problem.{% endtrans %}</p>
           <div class="visible-phone">
-            {% if app_short_name == 'sanat'%}
-              {#<a class="btn btn-sm btn-block" type="button" href="mailto:post@kvenskinstitutt.no" >{% trans %}Contact us{% endtrans %}</a>#}
-              {% if (_from =='nob') and (_to =='fkv') %}
-                <div class="fb-comments" data-href="http://sanat.oahpa.no/nob/fkv" data-numposts="3" data-mobile="true" data-order-by="reverse_time"></div>
-              {% else %}
-                {% if (_from =='fkv') and (_to =='nob') %}
-                  <div class="fb-comments" data-href="http://sanat.oahpa.no/fkv/nob" data-numposts="3" data-mobile="true" data-order-by="reverse_time"></div>
-                {%- endif -%}
-              {%- endif -%}
-            {% else %}
               <a class="btn btn-sm btn-block" type="button" href="mailto:giellatekno@uit.no" >{% trans %}Contact us{% endtrans %}</a>
-            {%- endif -%}
               <br />
           </div>
           <div class="hidden-phone">
               <br />
-              {% if app_short_name == 'sanat' %}
-                {#<a class="btn-contact-thing btn btn-sm btn-primary" type="button" href="mailto:post@kvenskinstitutt.no" >{% trans %}Contact us{% endtrans %}</a>#}
-                {% if (_from =='nob') and (_to =='fkv')%}
-                  <div class="fb-comments" data-href="http://sanat.oahpa.no/nob/fkv" data-numposts="3" data-mobile="true" data-order-by="reverse_time"></div>
-                {% else %}
-                  {% if (_from =='fkv' or _from =='nob') %}
-                    <div class="fb-comments" data-href="http://sanat.oahpa.no/fkv/nob" data-numposts="5" data-mobile="true" data-order-by="reverse_time"></div>
-                  {%- endif -%}
-                {%- endif -%}
-              {% else %}
                 <a class="btn-contact-thing btn btn-sm btn-primary" type="button" href="mailto:giellatekno@uit.no">{% trans %}Contact us{% endtrans %}</a>
-              {%- endif -%}
               <br />
               <br />
           </div>
