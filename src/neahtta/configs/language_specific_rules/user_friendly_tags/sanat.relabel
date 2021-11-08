@@ -198,6 +198,24 @@ Relabel:
       V: "v."
       N: "s."
       A: "adj."
+      "Prs": "presens"
+      "ConNeg": "nektingsform"
+      "Prt": "preteritum"
+      "PrsPrc": "pres.partisipp"
+      "PrfPrc": "perf.partisipp"
+      "Cond": "cond."
+      "Sg1": "1.p.ent."
+      "Sg2": "2.p.ent."
+      "Sg3": "3.p.ent."
+      "Du1": "1.p.tot."
+      "Du2": "2.p.tot."
+      "Du3": "3.p.tot."
+      "Pl1": "1.p.flt."
+      "Pl2": "2.p.flt."
+      "Pl3": "3.p.flt."
+
+
+
 
   - source_morphology: 'izh'
     target_ui_language: 'fin'
