@@ -783,6 +783,10 @@ class SearcherMixin(object):
         else:
             leftover_analyses_template = False
 
+        find_problem = \
+            current_app.lexicon_templates.render_individual_template(
+                g._from, 'find_problem.template', **indiv_template_kwargs)
+
         search_context = {
 
             # This is the new style stuff.
@@ -794,6 +798,8 @@ class SearcherMixin(object):
             leftover_analyses_template,
             'all_analysis_template':
             all_analysis_template,
+            'find_problem':
+            find_problem,
 
             # These variables can be turned into something more general
             'successful_entry_exists':
