@@ -67,6 +67,7 @@ Languages:
     minority_lang: true
   - iso: fin
   - iso: sme
+  - iso: smnM
 
 Dictionaries:
   - source: smn
@@ -121,6 +122,14 @@ Dictionaries:
     target: smn
     korp_search_host: "http://gtweb.uit.no/korp"
     path: 'dicts/smesmn.xml'
+
+  - source: smnM
+    target: sme
+    path: 'dicts/smnsme.xml'
+
+  - source: smnM
+    target: fin
+    path: 'dicts/smnfin.xml'
 
 ReaderConfig:
   Settings:
