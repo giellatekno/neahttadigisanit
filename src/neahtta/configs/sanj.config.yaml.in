@@ -68,6 +68,7 @@ Morphology:
 Languages:
   - iso: rus
   - iso: sjd
+  - iso: sjdM
     minority_lang: true
 
 
