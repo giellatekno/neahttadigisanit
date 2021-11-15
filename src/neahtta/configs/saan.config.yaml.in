@@ -82,6 +82,7 @@ Languages:
   - iso: fin
   - iso: rus
   - iso: nob
+  - iso: smsM
 
 Dictionaries:
   - source: sms
@@ -162,7 +163,17 @@ Dictionaries:
     target: sms
     path: 'dicts/russms.xml'
 
+  - source: smsM
+    target: fin
+    path: 'dicts/sms-all.xml'
 
+  - source: smsM
+    target: nob
+    path: 'dicts/sms-all.xml'
+
+  - source: smsM
+    target: rus
+    path: 'dicts/sms-all.xml'
 
 ReaderConfig:
   Settings:
