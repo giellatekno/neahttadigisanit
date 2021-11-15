@@ -151,6 +151,9 @@ Languages:
   - iso: udm
     minority_lang: true
   - iso: hun
+  - iso: kpvM
+  - iso: koiM
+  - iso: udmM
 
 Dictionaries:
   - source: kpv
@@ -333,6 +336,38 @@ Dictionaries:
     is_korp_default_lang: True
     corpora: 'KPV_FICTI_20201209,KPV_LAWS_20201209,KPV_WIKIPEDIA_20201209,KPV_FACTA_20201209'
     start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+
+  - source: kpvM
+    target: fin
+    path: 'dicts/kpv-all.xml'
+
+  - source: kpvM
+    target: rus
+    path: 'dicts/kpvrus.xml'
+
+  - source: udmM
+    target: hun
+    path: 'dicts/udmhun.xml'
+
+  - source: kpvM
+    target: udm
+    path: 'dicts/kpvudm.xml'
+
+  - source: udmM
+    target: kpv
+    path: 'dicts/udmkpv.xml'
+
+  - source: udmM
+    target: fin
+    path: 'dicts/udmfin.xml'
+
+  - source: kpvM
+    target: koi
+    path: 'dicts/kpvkoi.xml'
+
+  - source: koiM
+    target: kpv
+    path: 'dicts/koikpv.xml'
 
 ReaderConfig:
   Settings:
