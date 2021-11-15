@@ -38,7 +38,7 @@
                     {% if l_iso_pair != (l_variant.short_name, l_iso_pair[1]) %}
                     <li class="visible-thin visible-mid hidden-desktop hidden-tablet {%- if l_variant.short_name == _from and l_iso_pair[1] == _to %} active{% endif -%}">
                     <a href="{{ url_for('.canonical_root_search_pair', _from=l_variant.short_name, _to=l_iso_pair[1]) }}">
-                        <span>{{ l_variant.short_name|iso_to_i18n }} ({{ l_variant.description }}) → {{ l_iso_pair[1]|iso_to_i18n }}</span>
+                        <span>{{ l_variant.short_name|iso_to_i18n }} ({{ gettext(l_variant.description) }}) → {{ l_iso_pair[1]|iso_to_i18n }}</span>
                     </a></li>
                     {% endif %}
                 {% endfor %}
