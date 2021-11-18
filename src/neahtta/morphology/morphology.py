@@ -1344,6 +1344,10 @@ class Morphology(object):
                     analyses = analyses
                 elif min(der_count) != 0:
                     analyses = [analyses[der_count.index(min(der_count))]]
+                elif (min(errorth_count) == 0
+                    and max(errorth_count) > 0):
+                    idx = [i for i, x in enumerate(errorth_count) if x == 0]
+                    analyses = [analyses[item] for item in idx]
         else:
             if (min(errorth_count) == 1 and max(errorth_count) == 1):
                 analyses = analyses
