@@ -30,6 +30,3 @@ morphology:
 {{ lemma }}+A+Pl+Tra
 {{ lemma }}+A+Pl+Ins
 {{ lemma }}+A+Pl+Com
-{{ lemma }}+A+Sg+Compar+Nom
-{{ lemma }}+A+Sg+Superl+Nom
-
