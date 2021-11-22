@@ -213,6 +213,9 @@ Relabel:
       "Pl1": "1.p.flt."
       "Pl2": "2.p.flt."
       "Pl3": "3.p.flt."
+      "Compar": "komparativ"
+      "Superl": "superlativ"
+      "Sg": "ent."
 
 
 
