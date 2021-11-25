@@ -48,6 +48,9 @@ Relabel:
       "IV": ""
       "Impf": ""
       "Perf": ""
+      "Interr": ""
+      "Dem": ""
+      "Indef": ""
 
   - source_morphology: 'sjdM'
     target_ui_language: 'rus'
