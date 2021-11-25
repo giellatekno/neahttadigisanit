@@ -7,7 +7,6 @@ ApplicationSettings:
   mobile_default_pair: false
   polyglot_lookup: true
   locales_available:
-    - "sms"
     - "fi"
     - "en"
     - "no"
