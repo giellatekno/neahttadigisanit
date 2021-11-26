@@ -5,12 +5,7 @@
     {% set keyboard = current_variant_options.onscreen_keyboard %}
 {% endif -%}
 
-{% if _from == "sjd" %}
-  <a href="https://sanj.oahpa.no/about/"><p><small>{% trans %}Antonova A. A., E. Scheller 2021.<br><i>Kildin Saami – Russian dictionary (appr. 16000 words).</i> Tromsø.{% endtrans %}</small></p></a>
-{% else %}
-  <a href="https://sanj.oahpa.no/about/"><p><small>{% trans %}Antonova A. A., E. Scheller 2021.<br><i>Russian – Kildin Saami dictionary (appr. 16000 words).</i> Tromsø.{% endtrans %}</small></p></a>
-{% endif -%}
-
+  <a href="https://sanj.oahpa.no/about/"><p><small>{% trans %}Antonova A. A. & E. Scheller 2021 <i>(appr. 16000 words)</i>.{% endtrans %}</small></p></a>
 
 <div class="container-fluid">
     <div class="row-fluid">
