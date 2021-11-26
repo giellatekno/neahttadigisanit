@@ -163,19 +163,17 @@
     {% set sg1_forms = paradigm|by_tagset_value("number", "Sg1")|group_by_tag %}
     {% set sg2_forms = paradigm|by_tagset_value("number", "Sg2")|group_by_tag %}
     {% set sg3_forms = paradigm|by_tagset_value("number", "Sg3")|group_by_tag %}
-    {% if sg1_forms|length > 0 %}
+    {% set sg_forms = paradigm|by_tagset_value("number", "Sg")|group_by_tag %}
+    {% if sg_forms|length == 0 %}
         {% set sg_forms = sg1_forms + sg2_forms + sg3_forms %}
-    {% else %}
-        {% set sg_forms = paradigm|by_tagset_value("number", "Sg")|group_by_tag %}
     {% endif %}
 
     {% set pl1_forms = paradigm|by_tagset_value("number", "Pl1")|group_by_tag %}
     {% set pl2_forms = paradigm|by_tagset_value("number", "Pl2")|group_by_tag %}
     {% set pl3_forms = paradigm|by_tagset_value("number", "Pl3")|group_by_tag %}
-    {% if pl1_forms|length > 0 %}
+    {% set pl_forms = paradigm|by_tagset_value("number", "Pl")|group_by_tag %}
+    {% if pl_forms|length == 0 %}
         {% set pl_forms = pl1_forms + pl2_forms + pl3_forms %}
-    {% else %}
-        {% set pl_forms = paradigm|by_tagset_value("number", "Pl")|group_by_tag %}
     {% endif %}
 
     {% if sg_forms|length > 0 and pl_forms|length > 0 %}
