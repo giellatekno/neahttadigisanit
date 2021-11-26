@@ -6,12 +6,13 @@
 ApplicationSettings:
   app_name: "Neahttadigisánit "
   short_name: "sanj"
-  default_locale: "ru"
+  default_locale: "sjd"
   default_pair: ["sjd", "rus"]
   mobile_default_pair: ["sjdM", "rus"]
   locales_available:
+    - sjd
     - ru
-    #- eng
+    - en
   app_meta_title: >
      саамский словарь
   meta_description: >
