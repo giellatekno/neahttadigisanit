@@ -22,8 +22,59 @@
         </div>
         <div class="row-fluid">
             <span class="span4">
-                <h3 class="smaller">{% trans %}Саамский ↔ Русский{% endtrans %}</h3>
-                <p>{% trans %}Антонова А.А., Э. Шеллер.  Тромсё 2021 (около 16 000 слов){% endtrans %}</p>
+                <h3><b>{% trans %}How to quote the dictionary{% endtrans %}</b></h3>
+                <p>{% trans %}Antonova Aleksandra Andreevna & Scheller Elisabeth 2021. <i>Saamsko-russkij i Russko-saamskij slovar' (okolo 16 000 slov)</i>. UiT The Arctic University of Norway, Tromsø.{% endtrans %}</p>
+                </br></br>
+                <h3><b>{% trans %}About the dictionary{% endtrans %}</b></h3>
+                <p>{% trans %}The vocabulary of the electronic dictionary belongs to the Kildin Sámi language. The dictionary consists of three parts:{% endtrans %}</p>
+                <h4>{% trans %}1. Kildin Sámi-Russian dictionary{% endtrans %}</h4>
+                <p>{% trans %}This dictionary is an adapted, corrected and completed version of <a href="https://en.wikipedia.org/wiki/Aleksandra_Andreevna_Antonova">Aleksandra Andreevna Antonova's</a> (1932-2014) <i>Kildin Sámi-Russian dictionary</i> from 2014. The <i>Kildin Sámi-Russian dictionary</i> also contains vocabulary from A. A. Anonova's and E. Scheller's <i>Russian-Kildin Sámi dictionary</i> from 2021.{% endtrans %}</p>
+                <h4>{% trans %}2. Russian-Kildin Sámi dictionary{% endtrans %}</h4>
+                <p>{% trans %}This dictionary is based on Aleksandra Antonova's scripts, word lists and collected lexicographic materials. The dictionary also includes vocabulary from A. A. Antonova's <i>Kildin Sámi-Russian dictionary</i> from 2014, and is completed with vocabulary from various Kildin Sámi literary and other texts.The <i>Russian-Kildin Sámi dictionary</i> is under development. Currently about 1500 main entries are presented with example sentences. A part of the examples are abbreviated and modified phrases from the book <i>Tār'enč Kukes'suchchk</i> (Lindgren 2013) and other literary texts.{% endtrans %}</p>
+                <h4>{% trans %}3. Tables with paradigms and other grammatical information in the dictionary{% endtrans %}</h4>
+                <p>{% trans %}These are based on the grammatical research work of <a href="https://en.wikipedia.org/wiki/Aleksandra_Andreevna_Antonova">Aleksandra Andreevna Antonova</a> and <a href="https://uit.no/ansatte/elisabeth.scheller">Elisabeth Scheller</a>.</br></br><b>Digitalization of the lexicographical and grammatical materials</b></br>The digitalization is carried out by the programmers and computational linguists at <i>Giellatekno</i> and <i>Divvun</i> – <i>Sámi language technology at University of Tromsø – The Arctic University of Norway</i>: <a href="https://uit.no/ansatte/person?p_document_id=739788">Trond Tynnøl</a>, <a href="https://uit.no/ansatte/person?p_document_id=367087&p_dimension_id=210121">Chiara Argese</a>, <a href="https://et.wikipedia.org/wiki/Tiina_Puolakainen">Tiina Puolakainen</a>, <a href="https://uit.no/ansatte/person?p_document_id=41545">Trond Trosterud</a>, <a href="https://uit.no/ansatte/person?p_document_id=248638">Sjur Nørstebø Moshagen</a> and <a href="https://uit.no/ansatte/person?p_document_id=67155">Børre Gaup</a></br></br><b>The grammatical automaton</b></br>The grammatical automaton for Kildin Sámi has been built by Trond Tynnøl in collaboration with Trond Trosterud and Elisabeth Scheller.{% endtrans %}</p>
+            </span>
+            <span class="span4">
+              <h3><b>{% trans %}Lexicographic resources{% endtrans %}</b></h3>
+              <ul>{% trans %}
+                <li>Антонова Александра Андреевна (ред.: Агеева А. М., Хомюк Д. М., Галкин С. Н., Шеллер Э.) 2014. <i>Са̄мь-рӯшш са̄ннҍнэххьк, 7500 ве̄ррьт са̄мь са̄ннӭ я 10600 са̄ррнмушшэ. = Саамско-русский словарь, около 7500 саамских слов и 10600 словосочетаний</i>. Мурманск.</li>
+                <li>Антонова А. А., Афанасьева Н. Е., Куруч Р. Д., Мечкина Е. И., Яковлев Л. Д., Глухов Б. А. (под ред. Р. Д. Куруч) 1985. <i>Са̄мь-рӯшш соагкнэһкь. =  Саамско-русский словарь</i>. Москва «Русский язык».</li>
+                <li>Глинка И. Б., Лейн К., Лепинг А. А., Лепинг Е. И., Липшиц О. Д., Страхова Н. П., Эккерт Р. 1998. <i>Русско-немецкий словарь (под. ред. К. Лейна, издание репринтное)</i>. Издательство «Русский язык» 1991, Фирма «НИК», 1998 г; оформление.</li>
+                <li>Керт Г. М. 1986. <i>Саамско-русский и русско-саамский словарь</i>. Ленинград «Просвещение».</li>
+                <li>Шаршина Н. С., Шеллер Э.  (при сотрудничестве А. А. Антоновой) 2008. Са̄мькилсыййт (о̄ххпнуввэмтуй). 2 Лексика. Луяввьр.</li>
+                <li>Birgegård Ulla, Marklund Sharapova Elisabeth, Bönnemark Maria 2006. <i>Norstedts ryska ordbok: rysk-svensk, svensk-rysk = Русский словарь издательства “Norstedts”: русско-шведский, шведско-русский</i>. Norstedts Akademiska Förlag.</li>
+                <li>Sammallahti Pekka & Хворостухина Анастасия 1991. <i>Unna/удць sámi-са̄мь са̄мь-sámi sátnegirjjáš/соагкнэгка</i>. Ohcejohka: Girjegiisá.</li>
+                <li>Svonni Mikael 2013. <i>Sátnegirji: davvisámegiela-ruoŧagiela, ruoŧagiela-davvisámegiela = Ordbok: nordsamisk-svensk, svensk-nordsamisk</i>. Karasjok: Čálliid Lágádus.</li>{% endtrans %}
+              </ul></br>
+              <h3><b>{% trans %}Internet resources{% endtrans %}</b></h3>
+              <ul>{% trans %}
+                <li>Викисловарь – <a href="https://ru.wiktionary.org">https://ru.wiktionary.org</a></li>
+                <li>ГРАМОТА.РУ – Справочно-информационный портал ГРАМОТА.РУ – русский язык для всех  – <a href="http://gramota.ru">http://gramota.ru</a></li>
+                <li>КАРТАСЛОВ.РУ – Карта слов и выражений русского языка – <a href="https://kartaslov.ru">https://kartaslov.ru</a></li>
+                <li>Национальный корпус русского языка – <a href="https://ruscorpora.ru">https://ruscorpora.ru</a></li>
+                <li>ABBY Lingvo Live: Русско-немецкий словарь – <a href="https://www.lingvolive.com/ru-ru">https://www.lingvolive.com/ru-ru</a></li>
+                <li>Neahttadigisánit Giellatekno, UiT Norgga árktalaš universitehta – <a href="https://sanit.oahpa.no">https://sanit.oahpa.no</a></li>{% endtrans %}
+              </ul>
+            </span>
+            <span class="span4">
+              <h3><b>{% trans %}Grammatical resources{% endtrans %}</b></h3>
+              <ul>{% trans %}
+                <li>Керт Г. М. 1971. <i>Саамкий язык (кильдинский диалект) Фонетика, Морфология, Синтаксис</i>. Ленинград «Наука».</li>
+                <li>Куруч, Р. Д. 1985. Краткий грамматический очерк саамского языка. – Антонова А. А., Афанасьева Н. Е., Куруч Р. Д., Мечкина Е. И., Яковлев Л. Д., Глухов Б. А. (под ред. Р. Д. Куруч) 1985. <i>Са̄мь-рӯшш соагкнэһкь. =  Саамско-русский словарь</i>. Москва «Русский язык», с. 529-567.</li>
+                <li>Шаршина Н. С., Шеллер Э.  (при сотрудничестве А. А. Антоновой) 2008. <i>Са̄мькилсыййт (о̄ххпнуввэмтуй). 1 Грамматика</i>. Луяввьр.</li>
+                <li>Эндюковский А. Г. 1937. <i>Саамский (лопарский) язык. – Языки и письменность народов Севера. 1. Языки и письменность самоедских и финно-угорских народов</i>. Ред. Георгий Н. Прокофьев. Ленинград: Учпедгиз, с. 125–162.</li>
+                <li>Nickel Klaus Peter, Sammallahti Pekka 2011. <i>Nordsamisk grammatikk</i>. Davvi girji. Karasjok.</li>
+                <li>Svonni Mikael 2018. <i>Modern nordsamisk grammatik</i>. Ravda Lágádus.</li>{% endtrans %}
+              </ul></br>
+              <h3><b>{% trans %}Text resources{% endtrans %}</b></h3>
+              <ul>{% trans %}
+                <li>Балакина Дарья С., Большакова Надежда П., Агеева Анфиса, Антонова (Юрьева) Антонина, Галкина Эльвира, Заборщикова Светлана, Коркина Екатерина, Лукин Геннадий, Матрёхин Иван, Медведева Мария, Медведева (Данилова) Полина, Перепелица Ольга, Сапельникова Анна, Хомюк Домна, Юрьева Марина, Юрьев Павел, Фенина Надя, Миронова Нина, Воронова Октябрина, Антонова Александра, Бажанов Аскольд, Якимович Софья, Виноградова Ираида, Яковлев Лазарь Д., Чернышихин Михаил, Fredriksen Lill Tove, Buljo Karen Anne, Westerås Lene E., Paltto Kirsi-Máret, Risvik Inga Marie 2019: <i>Aльманах саамской литературы</i>. Издательский дом «Живая классика». Москва.</li>
+                <li>Линдгрен Астрид, са̄мь кӣлле пые Са̄нндрэ Антонова (ред. Э. Шеллер) 2013. <i>Та̄рьенч Кукесьсуххк</i>. Мурманск «Рекорд».</li>
+                <li><i>Ма̄ххьтвесьт Пассь Евангеле кӣллт кӣлл</i>. Са̄мь кӣлле пые Са̄нндрэ Антонова, (ред. Э. Шеллер). <i>{% endtrans %}{% trans %}In preparation for print{% endtrans %}</i>.</li>{%trans %}
+                <li>Юрьевы Павел Поликарпович и Марина Поликарповна 2017. <i>Богатырь Ляйнэ – Тоавас олма Ля̄йнэ. Книга на русском и саамском языках</i>. Мурманск.</li>
+                <li>Яковлева Е. С. 2021. <i>Кэ̄жьнэг па̄ррнэ гуэйкэ / Вопросы для детей</i>. ООО «Чемпион», Воронеж.</li>
+                <li>Я̄ххк О̄ленк Сымман нӣййт 2018. <i>Мӯрман е̄ммьне «Куэлнэгк Соа̄ме Эхтнэг» шурьмуз Я̄ххк О̄ленк Сымман нӣйт соа̄гк эхтнэг лыгк баяс кӯххт тоа̄фант  не̄лльемплоагант ыгесьт кӯххт тоа̄фант ка̄ххцэмплоагант ыгке</i>.</li>{% endtrans %}
+              </ul>
             </span>
         </div>
         <div class="row-fluid">
