@@ -1376,7 +1376,6 @@ msgid "How to quote the dictionary"
 msgstr "Как цитировать словарь"
 
 #: configs/language_specific_rules/templates/sanj/about.template:26
-#, fuzzy
 msgid ""
 "Antonova Aleksandra Andreevna & Scheller Elisabeth 2021. <i>Saamsko-"
 "russkij i Russko-saamskij slovar' (okolo 16 000 slov)</i>. UiT The Arctic"
