@@ -176,10 +176,14 @@
         {% set pl_forms = pl1_forms + pl2_forms + pl3_forms %}
     {% endif %}
 
+    {% set numberless_forms = paradigm|by_tagset("nouns_null_number")|without_tagset("number") %}
+    {% if numberless_forms|length > 0 %}
+        {% set numberless_forms = numberless_forms|unique|group_by_tag %}
+    {% endif %}
+
     {% if sg_forms|length > 0 and pl_forms|length > 0 %}
         {% set two_columns = True %}
         {% set zipped_numbers = izip_longest(sg_forms, pl_forms, fillvalue='-')|list %}
-        {% set numberless_forms = paradigm|by_tagset("nouns_null_number") %}
     {% endif %}
 
     {% macro clean_tag(tag_input) %}
@@ -387,10 +391,20 @@
                 {% endif %}
 
                 </tr>
-
-            {%- endfor -%}
-
+            {%- endfor -%}  
+            {%- if numberless_forms|length > 0 -%}
+                {%- for form in numberless_forms -%}
+                    {% set i = 7 %}
+                    <tr>
+                        <th class="tag" lang="{{ _to }}">{{ contexts[i] }}</th>
+                        <td lang="{{ _to }}">{{ form|join('<br />', attribute='form') }}</td>
+                        <td></td>
+                    </tr>
+                    {% set i = i+1 %}
+                {%- endfor -%}
+            {%- endif -%}
             </table>
+
 
         {% endif %}
     {% else %}
@@ -411,6 +425,7 @@
             {%- endfor -%}
         </dl>
     {% endif %}
+
 
 {% else %}
     <dl class="dl-horizontal miniparadigm">

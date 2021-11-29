@@ -10,8 +10,7 @@ morphology:
 {{ lemma }}+Pron+Interr+Sg+Loc
 {{ lemma }}+Pron+Interr+Sg+Com
 {{ lemma }}+Pron+Interr+Sg+Abe
-{{ lemma }}+Pron+Interr+Sg+Ess
-{{ lemma }}+Pron+Interr+Sg+Par
+{{ lemma }}+Pron+Interr+Ess
 
 
 {{ lemma }}+Pron+Interr+Pl+Nom
@@ -21,7 +20,6 @@ morphology:
 {{ lemma }}+Pron+Interr+Pl+Loc
 {{ lemma }}+Pron+Interr+Pl+Com
 {{ lemma }}+Pron+Interr+Pl+Abe
-{{ lemma }}+Pron+Interr+Pl+Ess
-{{ lemma }}+Pron+Interr+Pl+Par
+{{ lemma }}+Pron+Interr+Ess
 
 
