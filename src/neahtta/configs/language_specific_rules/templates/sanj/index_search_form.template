@@ -5,7 +5,7 @@
     {% set keyboard = current_variant_options.onscreen_keyboard %}
 {% endif -%}
 
-  <a href="https://sanj.oahpa.no/about/"><p><small>{% trans %}Antonova A. A. & E. Scheller 2021 <i>(appr. 16000 words)</i>.{% endtrans %}</small></p></a>
+  <a href="https://sanj.oahpa.no/about/"><p><small>{% trans %}Antonova A. A. & Scheller E. 2021 <i>(appr. 16000 words)</i>.{% endtrans %}</small></p></a>
 
 <div class="container-fluid">
     <div class="row-fluid">
