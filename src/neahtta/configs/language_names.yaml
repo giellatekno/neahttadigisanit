@@ -80,8 +80,8 @@ isos_to_names:
   "smsM": !gettext "Skolt Sami"
 
   # sanj
-  "sjd": !gettext "Kildin Sami"
-  "sjdM": !gettext "Kildin Sami"
+  "sjd": !gettext "Kildin Saami"
+  "sjdM": !gettext "Kildin Saami"
 
   # itwewina
   "crk": !gettext "Plains Cree"
