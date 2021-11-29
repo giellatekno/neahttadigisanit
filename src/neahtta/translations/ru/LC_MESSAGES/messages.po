@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-29 10:30+0100\n"
+"POT-Creation-Date: 2021-11-29 10:35+0100\n"
 "PO-Revision-Date: 2013-11-07 11:33+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language-Team: ru <LL@li.org>\n"
@@ -220,7 +220,7 @@ msgid "Skolt Sami"
 msgstr "Сколт-саамский"
 
 #: configs/language_names.yaml:83 configs/language_names.yaml:86
-msgid "Kildin Sami"
+msgid "Kildin Saami"
 msgstr "Саамский"
 
 #: configs/language_names.yaml:87 configs/language_names.yaml:90
@@ -2441,3 +2441,4 @@ msgstr "Недопустимый формат. Только json и html доп�
 
 #~ msgid "Антонова А.А., Э. Шеллер.  Тромсё 2021 (около 16 000 слов)"
 #~ msgstr ""
+

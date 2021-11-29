@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-29 10:30+0100\n"
+"POT-Creation-Date: 2021-11-29 10:35+0100\n"
 "PO-Revision-Date: 2021-11-25 14:44+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: sjd <LL@li.org>\n"
@@ -219,7 +219,7 @@ msgid "Skolt Sami"
 msgstr ""
 
 #: configs/language_names.yaml:83 configs/language_names.yaml:86
-msgid "Kildin Sami"
+msgid "Kildin Saami"
 msgstr "Са̄мь"
 
 #: configs/language_names.yaml:87 configs/language_names.yaml:90
@@ -2024,3 +2024,4 @@ msgstr ""
 
 #~ msgid ""
 #~ msgstr ""
+
