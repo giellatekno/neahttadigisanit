@@ -699,7 +699,7 @@ msgid ""
 "                resources."
 msgstr ""
 "Вам нужны и другие словари? Здесь Вы найдёте <a "
-"href=\"http://dicts.uit.no/\">полный список</a> и другие ресурсы."
+"href=\"http://dicts.uit.no/index.rus.html\">полный список</a> и другие ресурсы."
 
 #: configs/language_specific_rules/templates/analyses.template:69
 #: configs/language_specific_rules/templates/sanit/nob/analyses.template:69
@@ -1896,7 +1896,7 @@ msgstr ""
 "В <a href=\"http://giellatekno.uit.no/\">Giellatekno</a> также есть "
 "другие языки и словари, которых пока нет в Neahttadigisánit. Список всех "
 "других онлайн-словарей, созданных с помощью наших инструментов, см. <a "
-"href=\"http://dicts.uit.no/\">в этом списке</a>."
+"href=\"http://dicts.uit.no/index.rus.html\">в этом списке</a>."
 
 #: templates/reader.html:3 templates/reader.html:20
 #, python-format

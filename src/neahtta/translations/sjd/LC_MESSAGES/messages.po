@@ -696,7 +696,7 @@ msgid ""
 "list</a>, and more\n"
 "                resources."
 msgstr ""
-"Быдт е̄на са̄ннҍнэххькэ? Тала лӣ <a href=\"http://dicts.uit.no/\">о̄ммп "
+"Быдт е̄на са̄ннҍнэххькэ? Тала лӣ <a href=\"http://dicts.uit.no/index.rus.html\">о̄ммп "
 "кырьенч</a>, я е̄на лыххкэм ка̄ввьнэ."
 
 #: configs/language_specific_rules/templates/analyses.template:69
