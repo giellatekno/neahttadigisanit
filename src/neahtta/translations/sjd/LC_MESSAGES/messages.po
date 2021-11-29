@@ -719,7 +719,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/saan/sms/detail_entry.template:61
 #: configs/language_specific_rules/templates/sanit/bak/detail_entry.template:61
 msgid "Paradigm"
-msgstr ""
+msgstr "Соа̄нӭтҍ сойхтэм таблица"
 
 #: configs/language_specific_rules/templates/entry.template:29
 #: configs/language_specific_rules/templates/sanj/rus/entry.template:48
