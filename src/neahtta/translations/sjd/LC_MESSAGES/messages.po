@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-26 11:10+0100\n"
+"POT-Creation-Date: 2021-11-29 10:30+0100\n"
 "PO-Revision-Date: 2021-11-25 14:44+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: sjd <LL@li.org>\n"
@@ -41,14 +41,14 @@ msgstr ""
 #: configs/kyv.config.yaml.in:244 configs/saan.config.yaml.in:96
 #: configs/saanih.config.yaml.in:82 configs/saanih.config.yaml.in:112
 #: configs/sample.config.yaml.in:167 configs/sanat.config.yaml.in:146
-#: configs/sanit.config.yaml.in:137 configs/sanj.config.yaml.in:93
+#: configs/sanit.config.yaml.in:137 configs/sanj.config.yaml.in:86
 #: configs/sonad.config.yaml.in:155 tests/configs/sanit.config.yaml:122
 msgid "Standard"
 msgstr "са̄мь тӣтэгуэйм"
 
 #: configs/guusaaw.config.yaml.in:77 configs/saan.config.yaml.in:119
 #: configs/saanih.config.yaml.in:86 configs/saanih.config.yaml.in:116
-#: configs/sanj.config.yaml.in:97
+#: configs/sanj.config.yaml.in:90
 msgid "Mobile friendly"
 msgstr "са̄мь тӣтэха"
 
@@ -316,11 +316,11 @@ msgstr ""
 msgid "Tolerant (also <em>acdnstz</em>)"
 msgstr ""
 
-#: configs/sanj.config.yaml.in:94
+#: configs/sanj.config.yaml.in:87
 msgid "(<em>а̄е̄ӣо̄ӯӎӊӈҏ</em>)"
 msgstr ""
 
-#: configs/sanj.config.yaml.in:98
+#: configs/sanj.config.yaml.in:91
 msgid "(incl. <em>аеиоумннр</em>)"
 msgstr "(<em>аеиоумннр</em>)"
 
@@ -861,7 +861,7 @@ msgstr "Мудта са̄ннҍнэгкь"
 #: configs/language_specific_rules/templates/sanit/sme/paradigm.template:186
 #: configs/language_specific_rules/templates/sanit/spa/paradigm.template:164
 #: configs/language_specific_rules/templates/sanj/rus/paradigm.template:196
-#: configs/language_specific_rules/templates/sanj/sjd/paradigm.template:207
+#: configs/language_specific_rules/templates/sanj/sjd/paradigm.template:205
 #: configs/language_specific_rules/templates/valks/mdf/paradigm.template:117
 #: configs/language_specific_rules/templates/valks/myv/paradigm.template:117
 msgid "Full paradigm"
@@ -1624,7 +1624,7 @@ msgid ""
 msgstr ""
 
 #: configs/language_specific_rules/templates/sanj/index_search_form.template:8
-msgid "Antonova A. A. & E. Scheller 2021 <i>(appr. 16000 words)</i>."
+msgid "Antonova A. A. & Scheller E. 2021 <i>(appr. 16000 words)</i>."
 msgstr "Антонова С. & Шеллер Э. 2021 <i>(16000 ве̄ррьт са̄ннӭ)</i>."
 
 #: configs/language_specific_rules/templates/sanj/rus/detail_search_form.template:9
