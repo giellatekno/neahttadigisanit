@@ -1625,7 +1625,7 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/sanj/index_search_form.template:8
 msgid "Antonova A. A. & E. Scheller 2021 <i>(appr. 16000 words)</i>."
-msgstr "Антонова С. & Шеллер Э. 2021 <i>(16000 ве̄ррьт са̄ннӭ).</i>."
+msgstr "Антонова С. & Шеллер Э. 2021 <i>(16000 ве̄ррьт са̄ннӭ)</i>."
 
 #: configs/language_specific_rules/templates/sanj/rus/detail_search_form.template:9
 #: configs/language_specific_rules/templates/sanj/rus/detail_search_form.template:11
