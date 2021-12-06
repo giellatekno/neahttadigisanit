@@ -727,7 +727,7 @@ msgstr "Таблица формообразования"
 #: configs/language_specific_rules/templates/sanj/rus/entry.template:48
 #: configs/language_specific_rules/templates/sanj/sjd/entry.template:53
 msgid "see also"
-msgstr "см."
+msgstr "тж. см."
 
 #: configs/language_specific_rules/templates/find_problem.template:4
 #: configs/language_specific_rules/templates/sanat/find_problem.template:4
