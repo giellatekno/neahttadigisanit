@@ -768,7 +768,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:43
 #: configs/language_specific_rules/templates/sanj/index_search_form.template:42
 msgid "Press TAB (&#8677;) or touch screen to select"
-msgstr ""
+msgstr "Те̄ннҍтэль TAB (&#8677;) вай кӯсскэль экран воа̄лшэм гуэйкэ са̄нҍ."
 
 #: configs/language_specific_rules/templates/index_search_form.template:48
 #: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:51
@@ -1009,7 +1009,7 @@ msgstr ""
 #: templates/index.html:92 templates/index.html:119
 #, python-format
 msgid "Word <span lang=\"%(_from)s\">%(input)s</span> not found."
-msgstr ""
+msgstr "Са̄ннҍ <span lang=\"%(_from)s\">%(input)s</span> эйй коа̄внхувва."
 
 #: configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:101
 #: templates/index.html:100
