@@ -65,7 +65,7 @@
     {% set link_target = '' %}
     {% set fra_ref = tg.xpath('./re/@fra_ref') %}
 
-    {% set explanation = t.attrib.get('type', False) %}
+    {% set explanation = t.attrib.get('t_type', False) %}
     {% set explanation_exists = explanation and True %}
 
     {% if fra_ref|count > 0 %}
