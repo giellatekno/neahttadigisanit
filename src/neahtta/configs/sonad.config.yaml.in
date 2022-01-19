@@ -25,72 +25,72 @@ ApplicationSettings:
 
 Tools:
   xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
-  hfst_lookup: &HLOOKUP '/bin/hfst-optimized-lookup'
+  hfst_lookup: &HFST-LOOKUP '/bin/hfst-optimized-lookup'
   opt: &OPT '/opt/smi/'
 
 Morphology:
   fin:
-    tool: *LOOKUP
-    file: [*OPT, '/fin/bin/analyser-dict-gt-desc.xfst']
-    inverse_file: [*OPT, '/fin/bin/generator-dict-gt-norm.xfst']
-    format: 'xfst'
+    tool: *HFST-LOOKUP
+    file: [*OPT, '/fin/bin/analyser-dict-gt-desc.hfstol']
+    inverse_file: [*OPT, '/fin/bin/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
     options:
       compoundBoundary: "#"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
   est:
-    tool: *LOOKUP
-    file: [*OPT, '/est/bin/analyser-dict-gt-desc.xfst']
-    inverse_file: [*OPT, '/est/bin/generator-dict-gt-norm.xfst']
-    format: 'xfst'
+    tool: *HFST-LOOKUP
+    file: [*OPT, '/est/bin/analyser-dict-gt-desc.hfstol']
+    inverse_file: [*OPT, '/est/bin/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
     options:
       compoundBoundary: "#"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
   liv:
-    tool: *LOOKUP
-    file: [*OPT, '/liv/bin/analyser-dict-gt-desc.xfst']
-    inverse_file: [*OPT, '/liv/bin/generator-dict-gt-norm.xfst']
-    format: 'xfst'
+    tool: *HFST-LOOKUP
+    file: [*OPT, '/liv/bin/analyser-dict-gt-desc.hfstol']
+    inverse_file: [*OPT, '/liv/bin/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
   lav:
-    tool: *LOOKUP
-    file: [*OPT, '/lav/bin/analyser-dict-gt-desc.xfst']
-    inverse_file: [*OPT, '/lav/bin/generator-dict-gt-norm.xfst']
-    format: 'xfst'
+    tool: *HFST-LOOKUP
+    file: [*OPT, '/lav/bin/analyser-dict-gt-desc.hfstol']
+    inverse_file: [*OPT, '/lav/bin/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
   livM:
-    tool: *LOOKUP
-    file: [*OPT, '/liv/bin/analyser-dict-gt-desc-mobile.xfst']
-    inverse_file: [*OPT, '/liv/bin/generator-dict-gt-norm.xfst']
-    format: 'xfst'
+    tool: *HFST-LOOKUP
+    file: [*OPT, '/liv/bin/analyser-dict-gt-desc-mobile.hfstol']
+    inverse_file: [*OPT, '/liv/bin/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
   izh:
-    tool: *LOOKUP
-    file: [*OPT, '/izh/bin/analyser-dict-gt-desc.xfst']
-    inverse_file: [*OPT, '/izh/bin/generator-dict-gt-norm.xfst']
-    format: 'xfst'
+    tool: *HFST-LOOKUP
+    file: [*OPT, '/izh/bin/analyser-dict-gt-desc.hfstol']
+    inverse_file: [*OPT, '/izh/bin/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
   vro:
-    tool: *HLOOKUP
+    tool: *HFST-LOOKUP
     file: [*OPT, '/vro/bin/analyser-dict-gt-desc.hfstol']
     inverse_file: [*OPT, '/vro/bin/generator-dict-gt-norm.hfstol']
     format: 'hfst'
@@ -100,20 +100,20 @@ Morphology:
       tagsep: '+'
       inverse_tagsep: '+'
   vot:
-    tool: *LOOKUP
-    file: [*OPT, '/vot/bin/analyser-dict-gt-desc.xfst']
-    inverse_file: [*OPT, '/vot/bin/generator-dict-gt-norm.xfst']
-    format: 'xfst'
+    tool: *HFST-LOOKUP
+    file: [*OPT, '/vot/bin/analyser-dict-gt-desc.hfstol']
+    inverse_file: [*OPT, '/vot/bin/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
   rus:
-    tool: *LOOKUP
-    file: [*OPT, '/rus/bin/analyser-dict-gt-desc.xfst']
-    inverse_file: [*OPT, '/rus/bin/generator-dict-gt-norm.xfst']
-    format: 'xfst'
+    tool: *HFST-LOOKUP
+    file: [*OPT, '/rus/bin/analyser-dict-gt-desc.hfstol']
+    inverse_file: [*OPT, '/rus/bin/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
       derivationMarker: "+Der"
