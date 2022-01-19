@@ -22,34 +22,35 @@ ApplicationSettings:
 
 Tools:
   xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
+  hfst_lookup: &HFST-LOOKUP '/bin/hfst-lookup'
   opt: &OPT '/opt/smi/'
 
 Morphology:
   yrk:
-    tool: *LOOKUP
-    file: [*OPT, '/yrk/bin/analyser-dict-gt-desc.xfst']
-    inverse_file: [*OPT, '/yrk/bin/generator-dict-gt-norm.xfst']
-    format: 'xfst'
+    tool: *HFST-LOOKUP
+    file: [*OPT, '/yrk/bin/analyser-dict-gt-desc.hfstol']
+    inverse_file: [*OPT, '/yrk/bin/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
   mns:
-    tool: *LOOKUP
-    file: [*OPT, '/mns/bin/analyser-dict-gt-desc.xfst']
-    inverse_file: [*OPT, '/mns/bin/generator-dict-gt-norm.xfst']
-    format: 'xfst'
+    tool: *HFST-LOOKUP
+    file: [*OPT, '/mns/bin/analyser-dict-gt-desc.hfstol']
+    inverse_file: [*OPT, '/mns/bin/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
   fin:
-    tool: *LOOKUP
-    file: [*OPT, '/fin/bin/analyser-dict-gt-desc.xfst']
-    inverse_file: [*OPT, '/fin/bin/generator-dict-gt-norm.xfst']
-    format: 'xfst'
+    tool: *HFST-LOOKUP
+    file: [*OPT, '/fin/bin/analyser-dict-gt-desc.hfstol']
+    inverse_file: [*OPT, '/fin/bin/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
       derivationMarker: "+Der"
