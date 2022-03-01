@@ -6,6 +6,7 @@ morphology:
 {{ lemma }}+N+Sg+Gen
 {{ lemma }}+N+Sg+Acc
 {{ lemma }}+N+Sg+Ill
+{{ lemma }}+N+Sg+Ill+Var/SecondaryIll
 {{ lemma }}+N+Sg+Loc
 {{ lemma }}+N+Sg+Com
 {{ lemma }}+N+Sg+Abe

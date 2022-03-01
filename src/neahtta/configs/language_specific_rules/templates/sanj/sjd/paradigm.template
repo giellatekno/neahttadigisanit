@@ -173,6 +173,52 @@
                     |replace(pl_text, "") }}
     {% endmacro %}
 
+    {% set nom_sg   = paradigm|by_tagset_value("number", "Sg")
+                              |by_tagset_value("case", "Nom") %}
+
+    {% set gen_sg   = paradigm|by_tagset_value("number", "Sg")
+                              |by_tagset_value("case", "Gen") %}
+
+    {% set acc_sg   = paradigm|by_tagset_value("number", "Sg")
+                              |by_tagset_value("case", "Acc") %}
+
+    {% set ill_sg   = paradigm|by_tagset_value("number", "Sg")
+                              |by_tagset_value("case", "Ill") %}
+
+    {% set loc_sg   = paradigm|by_tagset_value("number", "Sg")
+                              |by_tagset_value("case", "Loc") %}
+
+    {% set com_sg   = paradigm|by_tagset_value("number", "Sg")
+                              |by_tagset_value("case", "Com") %}
+
+    {% set abe_sg   = paradigm|by_tagset_value("number", "Sg")
+                              |by_tagset_value("case", "Abe") %}
+
+    {% set ess      = paradigm|by_tagset_value("case", "Ess") %}
+
+    {% set par      = paradigm|by_tagset_value("case", "Par") %}
+
+    {% set nom_pl   = paradigm|by_tagset_value("number", "Pl")
+                              |by_tagset_value("case", "Nom") %}
+
+    {% set gen_pl   = paradigm|by_tagset_value("number", "Pl")
+                              |by_tagset_value("case", "Gen") %}
+
+    {% set acc_pl   = paradigm|by_tagset_value("number", "Pl")
+                              |by_tagset_value("case", "Acc") %}
+
+    {% set ill_pl   = paradigm|by_tagset_value("number", "Pl")
+                              |by_tagset_value("case", "Ill") %}
+
+    {% set loc_pl   = paradigm|by_tagset_value("number", "Pl")
+                              |by_tagset_value("case", "Loc") %}
+
+    {% set com_pl   = paradigm|by_tagset_value("number", "Pl")
+                              |by_tagset_value("case", "Com") %}
+
+    {% set abe_pl   = paradigm|by_tagset_value("number", "Pl")
+                              |by_tagset_value("case", "Abe") %}
+
 {% endif -%}
 
 {%- if pos|upper == 'A'  %}
@@ -372,8 +418,6 @@
     {% if paradigm_exists %}
 
         <table class="tableparadigm miniparadigm">
-        {% set contexts = ["Кто? Что?", "Чей?", "Кого? Чего?", "кому? чему? куда?", "У (от) кого? У (от) чего?", "С кем? С чем?", "Без кого? Без чего?", "В кого? Во что?", "много, мало, при сравн."] %}
-        {% set i=0 %}
 
             <tr>
                 <th></th>
@@ -381,39 +425,55 @@
                 <th lang="{{ _to }}">{{ pl_text }}</th>
             </tr>
 
-        {%- for sgs, pls in zipped_numbers -%}
             <tr>
-
-            <th class="tag" lang="{{ _to }}">{{ contexts[i] }}</th>
-            {% set i = i+1 %}
-
-            {% if sgs and sgs != '-' %}
-                <td lang="{{ _from }}">{{ sgs|unique|join('<br />', attribute='form') }}</td>
-            {% else %}
-                <td lang="{{ _from }}" class="center">&mdash;</td>
-            {% endif %}
-
-            {% if pls and pls != '-' %}
-                <td lang="{{ _from }}">{{ pls|unique|join('<br />', attribute='form') }}</td>
-            {% else %}
-                <td lang="{{ _from }}" class="center">&mdash;</td>
-            {% endif %}
-
+                <th lang="{{ _to }}">{% if nom_sg|length > 0 %}{{ clean_tag(nom_sg[0].tag) }}{% endif %}</th>
+                <td lang="{{ _from }}">{% if nom_sg|length > 0 %}{{ nom_sg|unique|join("<br />", attribute="form") }}{% else %}&mdash;{% endif %}</td>
+                <td lang="{{ _from }}">{% if nom_pl|length > 0 %}{{ nom_pl|unique|join("<br />", attribute="form") }}{% else %}&mdash;{% endif %}</td>
             </tr>
-
-        {%- endfor -%}
-
-        {% set numb_forms = numberless_forms|group_by_tag %}
-        {% set i=7 %}
-        {% for var in numb_forms %}
             <tr>
-                {% if var[0].tag %}
-                    <th class="tag" lang="{{ _to }}">{{ contexts[i] }}</th>
-                    {% set i = i+1 %}
-                {% endif %}
-                <td colspan="2" lang="{{ _from }}" class="center">{{ var|join('<br />', attribute='form') }}</td>
+                <th lang="{{ _to }}">{% if gen_sg|length > 0 %}{{ clean_tag(gen_sg[0].tag) }}{% endif %}</th>
+                <td lang="{{ _from }}">{% if gen_sg|length > 0 %}{{ gen_sg|unique|join("<br />", attribute="form") }}{% else %}&mdash;{% endif %}</td>
+                <td lang="{{ _from }}">{% if gen_pl|length > 0 %}{{ gen_pl|unique|join("<br />", attribute="form") }}{% else %}&mdash;{% endif %}</td>
             </tr>
-        {% endfor %}
+            <tr>
+                <th lang="{{ _to }}">{% if acc_sg|length > 0 %}{{ clean_tag(acc_sg[0].tag) }}{% endif %}</th>
+                <td lang="{{ _from }}">{% if acc_sg|length > 0 %}{{ acc_sg|unique|join("<br />", attribute="form") }}{% else %}&mdash;{% endif %}</td>
+                <td lang="{{ _from }}">{% if acc_pl|length > 0 %}{{ acc_pl|unique|join("<br />", attribute="form") }}{% else %}&mdash;{% endif %}</td>
+            </tr>
+            <tr>
+                <th lang="{{ _to }}">{% if ill_sg|length > 0 %}{{ clean_tag(ill_sg[0].tag) }}{% endif %}</th>
+                <td lang="{{ _from }}">{% if ill_sg|length > 0 %}{{ ill_sg|unique|join("<br />", attribute="form") }}{% else %}&mdash;{% endif %}</td>
+                <td lang="{{ _from }}">{% if ill_pl|length > 0 %}{{ ill_pl|unique|join("<br />", attribute="form") }}{% else %}&mdash;{% endif %}</td>
+            </tr>
+            <tr>
+                <th lang="{{ _to }}">{% if loc_sg|length > 0 %}{{ clean_tag(loc_sg[0].tag) }}{% endif %}</th>
+                <td lang="{{ _from }}">{% if loc_sg|length > 0 %}{{ loc_sg|unique|join("<br />", attribute="form") }}{% else %}&mdash;{% endif %}</td>
+                <td lang="{{ _from }}">{% if loc_pl|length > 0 %}{{ loc_pl|unique|join("<br />", attribute="form") }}{% else %}&mdash;{% endif %}</td>
+            </tr>
+            <tr>
+                <th lang="{{ _to }}">{% if com_sg|length > 0 %}{{ clean_tag(com_sg[0].tag) }}{% endif %}</th>
+                <td lang="{{ _from }}">{% if com_sg|length > 0 %}{{ com_sg|unique|join("<br />", attribute="form") }}{% else %}&mdash;{% endif %}</td>
+                <td lang="{{ _from }}">{% if com_pl|length > 0 %}{{ com_pl|unique|join("<br />", attribute="form") }}{% else %}&mdash;{% endif %}</td>
+            </tr>
+            <tr>
+                <th lang="{{ _to }}">{% if abe_sg|length > 0 %}{{ clean_tag(abe_sg[0].tag) }}{% endif %}</th>
+                <td lang="{{ _from }}">{% if abe_sg|length > 0 %}{{ abe_sg|unique|join("<br />", attribute="form") }}{% else %}&mdash;{% endif %}</td>
+                <td lang="{{ _from }}">{% if abe_pl|length > 0 %}{{ abe_pl|unique|join("<br />", attribute="form") }}{% else %}&mdash;{% endif %}</td>
+            </tr>
+            {% if ess|length > 0 %}
+            <tr>
+                <th lang="{{ _to }}">{{ clean_tag(ess[0].tag) }}</th>
+                <td lang="{{ _from }}">{{ ess|unique|join("<br />", attribute="form") }}</td>
+                <td></td>
+            </tr>
+            {% endif %}
+            {% if par|length > 0 %}
+            <tr>
+                <th lang="{{ _to }}">{{ clean_tag(par[0].tag) }}</th>
+                <td lang="{{ _from }}">{{ par|unique|join("<br />", attribute="form") }}</td>
+                <td></td>
+            </tr>
+            {% endif %}
 
         </table>
 
