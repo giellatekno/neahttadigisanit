@@ -76,7 +76,7 @@ Morphology:
     inverse_file: [*OPT, '/nob/bin/generator-dict-gt-norm.hfstol']
     format: 'hfst'
     options:
-      compoundBoundary: ["#+Cmp+", "#+CmpS+"]
+      compoundBoundary: ["#+Cmp+", "#+CmpS+", "+Cmp"]
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
