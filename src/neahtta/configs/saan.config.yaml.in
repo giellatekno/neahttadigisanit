@@ -49,7 +49,7 @@ Morphology:
     inverse_file: [*OPT, '/fin/bin/generator-dict-gt-norm.hfstol']
     format: 'hfst'
     options:
-      compoundBoundary: "+Use/Circ#"
+      compoundBoundary: "#"
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
@@ -59,7 +59,7 @@ Morphology:
     inverse_file: [*OPT, '/nob/bin/generator-dict-gt-norm.hfstol']
     format: 'hfst'
     options:
-      compoundBoundary: ["#+Cmp+", "#+CmpS+", "+Use/Circ#"]
+      compoundBoundary: ["#", "#+Cmp+", "#+CmpS+", "+Use/Circ#"]
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'

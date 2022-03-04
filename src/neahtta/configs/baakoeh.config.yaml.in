@@ -60,7 +60,7 @@ Morphology:
     #format: 'xfst'
     format: 'hfst'
     options:
-      compoundBoundary: ["#+Cmp+", "#+CmpS+"]
+      compoundBoundary: ["#", "#+Cmp+", "#+CmpS+"]
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'

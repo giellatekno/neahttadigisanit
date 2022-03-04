@@ -31,7 +31,7 @@ ApplicationSettings:
 # This option set is not used outside of providing shortcuts for
 # following settings.
 Tools:
-  hfst_lookup: &LOOKUP '/usr/bin/hfst-optimised-lookup'
+  hfst_lookup: &LOOKUP '/usr/local/bin/hfst-optimised-lookup'
   opt: &OPT '/opt/smi'
 
 # Morphological system definitions. Since YAML variables aren't able to
