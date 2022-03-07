@@ -163,5 +163,19 @@ def register_filters(app):
         else:
             return(s)
 
+    @app.template_filter('first_form')
+    def first_form_filter(s):
+        """Returns the form of a GeneratedForm object"""
+        from morphology.morphology import GeneratedForm
+        if isinstance(s[0], GeneratedForm):
+            return(s[0].form)
+        else:
+            return(s)
+
+    @app.template_filter('regex_remove')
+    def regex_remove(string, pattern):
+        """Remove a pattern matching the string"""
+        import re
+        return re.sub(pattern, "", string)
 
     return app
