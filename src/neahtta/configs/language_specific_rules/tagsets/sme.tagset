@@ -143,3 +143,6 @@ semantics:
  - "Sem/Veh"
  - "Sem/Wpn"
  - "Sem/Wthr"
+derivations:
+ - "Der/Comp"
+ - "Der/Superl"

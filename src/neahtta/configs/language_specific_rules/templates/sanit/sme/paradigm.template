@@ -187,6 +187,15 @@
     </a>
 {% endmacro -%}
 
+{# For use in derivations and other links which are not from the original lemma #}
+{%- macro full_paradigm_link_deriv(deriv_lemma, link_text) %}
+            {# URLFOR #}
+    <a style="opacity: .8;"
+       href="http://gtweb.uit.no/cgi-bin/smi/smi.cgi?text={{ deriv_lemma }}&pos={{ pos }}&mode=standard&action=paradigm&lang=sme&plang=sme">
+        {{ link_text }} &nbsp;&rarr;
+    </a>
+{% endmacro -%}
+
 {% macro link_lemma_paradigm(lemma_par, msd_par) -%}
     {% if not orig_from %}
         {% set orig_from = _from %}
@@ -373,16 +382,23 @@
                     |replace(ord_text, "") }}
     {% endmacro %}
 
-    <dl class="dl-horizontal miniparadigm">
+    <table class="tableparadigm miniparadigm">
       {% set adj_forms = paradigm|group_by_tag %}
-
+      <tr></tr>
       {% for var in adj_forms %}
+        <tr>
           {% if var[0].tag %}
-              <dt>{{ clean_tag(var[0].tag) }}</dt>
+            <th>{{ clean_tag(var[0].tag) }}</th>
           {% endif %}
-          <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form') }}</dd>
+          {# Link comparative and superlative lemmas to their paradigms #}
+          {% if var|by_tagset("derivations")|by_tagset_value("case", "Nom")|length > 0 %}
+            <td lang="{{ _from }}">{{ full_paradigm_link_deriv(var|first_form|regex_remove("\([^)]*\) "), var|join('<br />', attribute='form')) }}</td>
+          {% else %}
+            <td lang="{{ _from }}">{{ var|join('<br />', attribute='form') }}</td>
+          {% endif %}
+        </tr>  
       {% endfor %}
-    </dl>
+    </table>
 
 {% elif pos|upper == 'PRON' %}
 
