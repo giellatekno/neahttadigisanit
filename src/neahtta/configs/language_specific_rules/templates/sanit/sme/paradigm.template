@@ -188,10 +188,19 @@
 {% endmacro -%}
 
 {# For use in derivations and other links which are not from the original lemma #}
-{%- macro full_paradigm_link_deriv(deriv_lemma, link_text) %}
+{%- macro standard_paradigm_link_deriv(deriv_lemma, link_text) %}
             {# URLFOR #}
     <a style="opacity: .8;"
        href="http://gtweb.uit.no/cgi-bin/smi/smi.cgi?text={{ deriv_lemma }}&pos={{ pos }}&mode=standard&action=paradigm&lang=sme&plang=sme">
+        {{ link_text }} &nbsp;&rarr;
+    </a>
+{% endmacro -%}
+
+{# For use in e.g. adjective positive forms #}
+{%- macro mini_paradigm_link_deriv(deriv_lemma, link_text) %}
+            {# URLFOR #}
+    <a style="opacity: .8;"
+       href="http://gtweb.uit.no/cgi-bin/smi/smi.cgi?text={{ deriv_lemma }}&pos={{ pos }}&mode=minimal&action=paradigm&lang=sme&plang=sme">
         {{ link_text }} &nbsp;&rarr;
     </a>
 {% endmacro -%}
@@ -392,7 +401,9 @@
           {% endif %}
           {# Link comparative and superlative lemmas to their paradigms #}
           {% if var|by_tagset("derivations")|by_tagset_value("case", "Nom")|length > 0 %}
-            <td lang="{{ _from }}">{{ full_paradigm_link_deriv(var|first_form|regex_remove("\([^)]*\) "), var|join('<br />', attribute='form')) }}</td>
+            <td lang="{{ _from }}">{{ standard_paradigm_link_deriv(var|first_form|regex_remove("\([^)]*\) "), var|join('<br />', attribute='form')) }}</td>
+          {% elif var|without_tagset("derivations")|by_tagset_value("case", "Nom")|by_tagset_value("number", "Sg")|length > 0 %}
+            <td lang="{{ _from }}">{{ mini_paradigm_link_deriv(var|first_form, var|join('<br />', attribute='form')) }}</td>
           {% else %}
             <td lang="{{ _from }}">{{ var|join('<br />', attribute='form') }}</td>
           {% endif %}
