@@ -9,6 +9,8 @@
 {%- import "korp.macros" as korp with context -%}
 
 {% macro render_etymologi_link(grouper) %}
+  {% set sanue_id = lexicon_entry|xpath('lg/algu/@sanue_id')|first %}
+
   {% if _from == 'sme' or _from == 'SoMe'%}
     {% set lang_code = 45 %}
   {% elif _from == 'fin' %}
@@ -50,7 +52,16 @@
   {% endif %}
 
   {% if lang_code %}
-    <a href="http://kaino.kotus.fi/algu/index.php?t=haku&o=hae&l=1&valinta=1&valintaryhma=1&kieli={{lang_code}}&hakusana={{grouper}}&kkieli={{locale_code}}">{% trans %}Word history{% endtrans %} &rarr;</a>
+    {#
+    If the sanue_id is known, i.e. contained in an algu node under the lg, use it
+    and link directly to the entry in Algu. If sanue_id is not known, search for the 
+    entry in Algu instead.
+    #}
+    {% if sanue_id %}
+      <a href="http://kaino.kotus.fi/algu/index.php?t=sanue&sanue_id={{sanue_id}}&kkieli={{locale_code}}">{% trans %}Word history{% endtrans %} &rarr;</a>
+    {% else %}
+      <a href="http://kaino.kotus.fi/algu/index.php?t=haku&o=hae&l=1&valinta=1&valintaryhma=1&kieli={{lang_code}}&hakusana={{grouper}}&kkieli={{locale_code}}">{% trans %}Word history{% endtrans %} &rarr;</a>
+    {% endif %}
   {% endif %}
 {% endmacro %}
 
