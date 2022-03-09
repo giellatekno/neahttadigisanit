@@ -11,57 +11,41 @@
 {% macro render_etymologi_link(grouper) %}
   {% if _from == 'sme' or _from == 'SoMe'%}
     {% set lang_code = 45 %}
-  {% endif %}
-  {% if _from == 'fin' %}
+  {% elif _from == 'fin' %}
     {% set lang_code = 29 %}
-  {% endif %}
-  {% if _from == 'sma' %}
+  {% elif _from == 'sma' %}
     {% set lang_code = 41 %}
-  {% endif %}
-  {% if _from == 'sms' %}
+  {% elif _from == 'sms' %}
     {% set lang_code = 47 %}
-  {% endif %}
-  {% if _from == 'smn' %}
+  {% elif _from == 'smn' %}
     {% set lang_code = 46 %}
-  {% endif %}
-  {% if _from == 'sje' %}
+  {% elif _from == 'sje' %}
     {% set lang_code = 43 %}
-  {% endif %}
-  {% if _from == 'izh' %}
+  {% elif _from == 'izh' %}
     {% set lang_code = 30 %}
-  {% endif %}
-  {% if _from == 'liv' %}
+  {% elif _from == 'liv' %}
     {% set lang_code = 36 %}
-  {% endif %}
-  {% if _from == 'myv' %}
+  {% elif _from == 'myv' %}
     {% set lang_code = 60 %}
-  {% endif %}
-  {% if _from == 'mjd' %}
+  {% elif _from == 'mjd' %}
     {% set lang_code = 61 %}
-  {% endif %}
-  {% if _from == 'mhr' %}
+  {% elif _from == 'mhr' %}
     {% set lang_code = 62 %}
-  {% endif %}
-  {% if _from == 'mrj' %}
+  {% elif _from == 'mrj' %}
     {% set lang_code = 63 %}
-  {% endif %}
-  {% if _from == 'kom' %}
+  {% elif _from == 'kom' %}
     {% set lang_code = 20 %}
-  {% endif %}
-  {% if _from == 'udm' %}
+  {% elif _from == 'udm' %}
     {% set lang_code = 21 %}
-  {% endif %}
-  {% if _from == 'yrk' %}
+  {% elif _from == 'yrk' %}
     {% set lang_code = 3 %}
   {% endif %}
 
   {% if current_locale == 'sme' or current_locale == 'SoMe' or current_locale == 'smn' %}
     {% set locale_code = 'sa' %}
-  {% endif %}
-  {% if current_locale == 'nob' or  current_locale == 'eng' or current_locale == 'rus' %}
+  {% elif current_locale == 'nob' or  current_locale == 'eng' or current_locale == 'rus' or current_locale == 'sma' %}
     {% set locale_code = 'en' %}
-  {% endif %}
-  {% if current_locale == 'fin' or current_locale == 'sms' %}
+  {% elif current_locale == 'fin' or current_locale == 'sms' %}
     {% set locale_code = 'fi' %}
   {% endif %}
 
