@@ -17,7 +17,7 @@
         </div>
         <div class="row-fluid">
             <span class="span4">
-                <h3 class="red">{# NOTE: Free as in gratis #}{% trans %}Free{% endtrans %}</h3>
+                <h3 class="red">{% trans %}How to quote the dictionaries{% endtrans %}</h3>
                 <p>{% trans %}Everything (or, well, almost everything) that
                     concerns minority languages should be free. Here
                     you'll find free dictionaries, and other analytical
@@ -25,9 +25,7 @@
             </span>
             <span class="span4">
             <h3 class="blue">{% trans %}Open-Source{% endtrans %}</h3>
-            <p>{% trans %}Everything here is based on open-source tools. Do you
-                have an idea for an app or research project that needs
-                linguistic resources? Visit <a class="blue"
+            <p>{% trans %}Everything here is based on open-source tools and free to use. Visit <a class="blue"
                     href="http://giellatekno.uit.no/">Giellatekno</a>'s
                 website for information on how to get access to lexicon
                 files, and morphological and syntactic analyzers.{% endtrans %}</p>
