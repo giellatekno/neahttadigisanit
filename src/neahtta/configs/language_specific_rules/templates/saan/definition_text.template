@@ -63,7 +63,7 @@
 {%- endmacro -%}
 
 {%- macro render_tg(tg) -%}
-    {# Render all the texts as individual links, followed by a potential
+    {# Render all the texts as individual links, preceded by a potential
     annotation. #}
 
     {% set tCtns = tg.xpath("./tCtn") %}
@@ -71,6 +71,8 @@
 
     {# Entries may both have <t /> nodes grouped by tCtns, and
     free-standing <t /> nodes, so we need to do both. #}
+
+    {{- render_annotation(tg) -}}
 
     {% for t in bare_t %}
         {{ render_link(tg, t) -}}{% if not loop.last or tCtns|length > 0 %}, {% endif %}
@@ -80,11 +82,10 @@
         {% for tCtn in tCtns %}
             {% set tCtn_ts = tCtn.xpath('./t | ./tf') %}
             {% for t in tCtn_ts %}
-                {{ render_link(tCtn, t) }}{{- render_annotation(tCtn) -}}{% if not loop.last %}, {% endif %}
+                {{- render_annotation(tCtn) -}}{{ render_link(tCtn, t) }}{% if not loop.last %}, {% endif %}
             {% endfor %}
         {% endfor %}
     {% endif %}
-    {{- render_annotation(tg) -}}
 
 {%- endmacro -%}
 
