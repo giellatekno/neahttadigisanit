@@ -15,3 +15,9 @@ node_modules/
 .env/
 dicts/
 static/
+secret_key.do.not.check.in
+morph_log.txt
+user_log.txt
+package-lock.json
+# Compiled translations (.mo)
+*.mo
