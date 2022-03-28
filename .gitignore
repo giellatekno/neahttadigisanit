@@ -21,3 +21,6 @@ user_log.txt
 package-lock.json
 # Compiled translations (.mo)
 *.mo
+# Production server files
+configs/*.config.yaml
+*.pid
