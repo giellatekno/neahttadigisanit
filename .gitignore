@@ -22,5 +22,5 @@ package-lock.json
 # Compiled translations (.mo)
 *.mo
 # Production server files
-configs/*.config.yaml
+src/neahtta/configs/*.config.yaml
 *.pid
