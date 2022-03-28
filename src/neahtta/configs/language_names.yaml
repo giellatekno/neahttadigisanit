@@ -106,6 +106,7 @@ isos_to_names:
 
   # bahkogirrje
   "sje": !gettext "Pite Saami"
+  "en": !gettext "English"
 
   # ndstesting
   "kca": !gettext "Khanty"
