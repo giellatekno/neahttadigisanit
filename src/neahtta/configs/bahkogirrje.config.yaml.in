@@ -25,7 +25,6 @@ ApplicationSettings:
   admins_to_email:
     - "trond.trosterud@uit.no"
     - "lene.antonsen@uit.no"
-    - "chiara.argese@uit.no"
 
 
 # This option set is not used outside of providing shortcuts for
