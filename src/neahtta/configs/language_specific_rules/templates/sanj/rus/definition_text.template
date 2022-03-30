@@ -86,8 +86,23 @@
         {% set reference = false %}
     {% endif %}
 
+    {# Dicts do not always correspond to _from and _to e.g. SoMe. Take that into account when linking.
+      This mapping should probably be moved into a config file #}
+
+    {% if _from == 'sjdM' %}
+        {% set dict_from = 'sjd' %}
+    {% else %}
+        {% set dict_from = _from %}
+    {% endif %}
+
+    {% if _to == 'sjdM' %}
+        {% set dict_to = 'sjd' %}
+    {% else %}
+        {% set dict_to = _to %}
+    {% endif %}
+
     {%- if reference -%}
-        <a href="{{ url_for('.search_pair_referred_search', _from=_from, _to=_to) }}?l_til_ref={{ reference }}">
+        <a href="{{ url_for('.search_pair_referred_search', _from=dict_from, _to=dict_to) }}?l_til_ref={{ reference }}">
           {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}
           {% if pos_is_phrase %}{% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{% endif %}
               {{- text -}}
@@ -96,7 +111,7 @@
         {%- if text != 'word_not _yet_translated' -%}
         {# Show explanation information if present (sjd-specific) #}
             {% if explanation %}<span class=expl>{{ explanation }}</span>{% endif %}
-            <a href="{{ url_for('.detailed_language_pair_search', _from=_to, _to=_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
+            <a href="{{ url_for('.detailed_language_pair_search', _from=dict_to, _to=_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
                 {{- text -}}
             </a>
         {%- endif -%}

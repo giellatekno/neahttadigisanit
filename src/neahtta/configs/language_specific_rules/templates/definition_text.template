@@ -84,11 +84,46 @@
         {% set reference = false %}
     {% endif %}
 
+    {# Dicts do not always correspond to _from and _to e.g. SoMe. Take that into account when linking.
+      This mapping should probably be moved into a config file #}
+
+    {% if _from == 'smnM' %}
+        {% set dict_from = 'smn' %}
+    {% elif _from == 'udmM' %}
+        {% set dict_from = 'udm' %}
+    {% elif _from == 'koiM' %}
+        {% set dict_from = 'koi' %}
+    {% elif _from == 'kpvM' %}
+        {% set dict_from = 'kpv' %}
+    {% elif _from == 'kpvS' %}
+        {% set dict_from = 'kpv' %}
+    {% elif _from == 'kpvP' %}
+        {% set dict_from = 'kpv' %}
+    {% else %}
+        {% set dict_from = _from %}
+    {% endif %}
+
+    {% if _to == 'smnM' %}
+        {% set dict_to = 'smn' %}
+    {% elif _to == 'udmM' %}
+        {% set dict_to = 'udm' %}
+    {% elif _to == 'koiM' %}
+        {% set dict_to = 'koi' %}
+    {% elif _to == 'kpvM' %}
+        {% set dict_to = 'kpv' %}
+    {% elif _to == 'kpvS' %}
+        {% set dict_to = 'kpv' %}
+    {% elif _to == 'kpvP' %}
+        {% set dict_to = 'kpv' %}
+    {% else %}
+        {% set dict_to = _to %}
+    {% endif %}
+
     {%- if reference %}
       {% if if_l_par or if_r_par %}
         {% if if_l_par and if_r_par %}
           <span class="l-r-par">({{l_par_text}})</span>
-          <a href="{{ url_for('.search_pair_referred_search', _from=_from, _to=_to) }}?l_til_ref={{ reference }}">
+          <a href="{{ url_for('.search_pair_referred_search', _from=dict_from, _to=dict_to) }}?l_til_ref={{ reference }}">
             {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}
             {% if pos_is_phrase %}{% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{% endif %}
               {{- text -}}
@@ -97,14 +132,14 @@
         {% else %}
           {% if if_l_par and not if_r_par %}
             <span class="l-r-par">({{l_par_text}})</span>
-            <a href="{{ url_for('.search_pair_referred_search', _from=_from, _to=_to) }}?l_til_ref={{ reference }}">
+            <a href="{{ url_for('.search_pair_referred_search', _from=dict_from, _to=dict_to) }}?l_til_ref={{ reference }}">
               {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}
               {% if pos_is_phrase %}{% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{% endif %}
                 {{- text -}}
             </a>
           {% else %}
             {% if not if_l_par and if_r_par %}
-              <a href="{{ url_for('.search_pair_referred_search', _from=_from, _to=_to) }}?l_til_ref={{ reference }}">
+              <a href="{{ url_for('.search_pair_referred_search', _from=dict_from, _to=dict_to) }}?l_til_ref={{ reference }}">
                 {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}
                 {% if pos_is_phrase %}{% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{% endif %}
                   {{- text -}}
@@ -114,7 +149,7 @@
           {% endif %}
         {% endif %}
       {% else %}
-        <a href="{{ url_for('.search_pair_referred_search', _from=_from, _to=_to) }}?l_til_ref={{ reference }}">
+        <a href="{{ url_for('.search_pair_referred_search', _from=dict_from, _to=dict_to) }}?l_til_ref={{ reference }}">
           {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}
           {% if pos_is_phrase %}{% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{% endif %}
               {{- text -}}
@@ -125,7 +160,7 @@
         {% if if_l_par or if_r_par %}
           {% if if_l_par and if_r_par %}
             <span class="l-r-par">({{l_par_text}})</span>
-            <a href="{{ url_for('.detailed_language_pair_search', _from=_to, _to=_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
+            <a href="{{ url_for('.detailed_language_pair_search', _from=dict_to, _to=dict_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
               {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}
               {% if pos_is_phrase %}{% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{% endif %}
                 {{- text -}}
@@ -134,14 +169,14 @@
           {% else %}
             {% if if_l_par and not if_r_par %}
               <span class="l-r-par">({{l_par_text}})</span>
-              <a href="{{ url_for('.detailed_language_pair_search', _from=_to, _to=_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
+              <a href="{{ url_for('.detailed_language_pair_search', _from=dict_to, _to=dict_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
                 {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}
                 {% if pos_is_phrase %}{% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{% endif %}
                   {{- text -}}
               </a>
             {% else %}
               {% if not if_l_par and if_r_par %}
-                <a href="{{ url_for('.detailed_language_pair_search', _from=_to, _to=_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
+                <a href="{{ url_for('.detailed_language_pair_search', _from=dict_to, _to=dict_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
                   {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}
                   {% if pos_is_phrase %}{% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{% endif %}
                     {{- text -}}
@@ -151,7 +186,7 @@
             {% endif %}
           {% endif %}
         {% else %}
-          <a href="{{ url_for('.detailed_language_pair_search', _from=_to, _to=_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
+          <a href="{{ url_for('.detailed_language_pair_search', _from=dict_to, _to=dict_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
             {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}
             {% if pos_is_phrase %}{% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{% endif %}
               {{- text -}}

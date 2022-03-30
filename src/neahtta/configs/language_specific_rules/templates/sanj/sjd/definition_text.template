@@ -52,6 +52,20 @@
 
     {% set pos_text = pos_text|trim %}
 
+    {# Dicts do not always correspond to _from and _to e.g. SoMe. Take that into account when linking.
+      This mapping should probably be moved into a config file #}
+
+    {% if _from == 'sjdM' %}
+        {% set dict_from = 'sjd' %}
+    {% else %}
+        {% set dict_from = _from %}
+    {% endif %}
+
+    {% if _to == 'sjdM' %}
+        {% set dict_to = 'sjd' %}
+    {% else %}
+        {% set dict_to = _to %}
+    {% endif %}
 
     <span>{{ text }}</span>
 

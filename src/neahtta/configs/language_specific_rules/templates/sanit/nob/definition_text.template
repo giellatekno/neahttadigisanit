@@ -81,6 +81,12 @@
 
    {% set grammar_link = t.attrib.get('href', false) %}
 
+   {# Dicts do not always correspond to _from and _to e.g. SoMe. Take that into account when linking.
+      This mapping should probably be moved into a config file #}
+
+    {% set dict_to = _to %}
+    {% set dict_from = _from %}
+
     {# NB: link to grammar should go in somewhere around here. Probably
     want to do this with a &rarr; similar to the munnje -> mun stuff #}
 
@@ -91,7 +97,7 @@
             {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{{ text -}}
         {% else %}
             {% if reference %}
-                <a href="{{ url_for('.search_pair_referred_search', _from=_from, _to=_to) }}?l_til_ref={{ reference }}">
+                <a href="{{ url_for('.search_pair_referred_search', _from=dict_from, _to=dict_to) }}?l_til_ref={{ reference }}">
                     {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{{ text -}}
                 </a> &rarr;
             {% elif grammar_link %}
@@ -100,7 +106,7 @@
                 </a>
             {%- else %}
                 {# NB: swap from and to for these links since these are definitions. #}
-                <a href="{{ url_for('.detailed_language_pair_search', _from=_to, _to=_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
+                <a href="{{ url_for('.detailed_language_pair_search', _from=dict_to, _to=dict_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
                     {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{{ text -}}
                 </a>
             {%- endif %}
