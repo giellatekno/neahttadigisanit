@@ -52,11 +52,13 @@
                     <span>{{ _from|iso_to_i18n }} → {{ _to|iso_to_i18n }}</span>
                 {% endif %}
               {% elif display_swap %}
-                  {% if not (_from == "spa" and _to == "sme") or (_from == "sme" and _to == "spa") %} {# do not show smespa before it is finished #}
+                  {% if not (_from == "spa" and _to == "sme") or (_from == "sme" and _to == "spa") %} {# do not show smespa before it is finished (exists to show paradigms) #}
                       <span>{{ _from|iso_to_i18n }} </span>
                       <span class="swaplink" style="font-size: 80%">(<a href="{{ url_for('.canonical_root_search_pair', _from=swap_from, _to=swap_to) }}">⇄</a>)</span>
                       <span> {{ _to|iso_to_i18n }}</span>
-                  {% endif %} {# smespa #}
+                  {% else %} {# spasme #}
+                      <span>{{ _from|iso_to_i18n }} → {{ _to|iso_to_i18n }}</span>
+                  {% endif %} 
               {% endif %}
             </h4>
 
