@@ -211,21 +211,14 @@ def gtdict():
 
 @task
 def update_configs():
-    """ SVN up the config files """
+    """ Pull repository to update the config files """
     if env.no_svn_up:
-        print(yellow("** skipping svn up **"))
+        print(yellow("** skipping git pull **"))
         return
 
     with cd(env.neahtta_path):
-        paths = [
-            'configs/',
-            'translations/',
-        ]
-        print(cyan("** svn up **"))
-    for p in paths:
-        _p = os.path.join(env.neahtta_path, p)
-        with cd(_p):
-            env.run('svn up ' + _p)
+        print(cyan("** git pull **"))
+        env.run('git pull')
 
 
 def read_config(proj):
@@ -556,13 +549,14 @@ def extract_strings():
 
 @task
 def update_strings():
+    """Must pull entire repo as we have moved to git"""
     if env.no_svn_up:
-        print(yellow("** skipping svn up **"))
+        print(yellow("** skipping git pull **"))
         compile_strings()
         return
 
     with cd(env.i18n_path):
-        env.run("svn up")
+        env.run("git pull")
 
     compile_strings()
 
