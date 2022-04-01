@@ -160,7 +160,7 @@ msgstr ""
 
 #: configs/language_names.yaml:44
 msgid "South Sámi"
-msgstr ""
+msgstr "Åarjelsaemiengïele"
 
 #: configs/language_names.yaml:45 configs/language_names.yaml:46
 msgid "Komi"
@@ -289,7 +289,7 @@ msgstr ""
 #: configs/language_names.yaml:118 configs/language_names.yaml:124
 #: configs/language_names.yaml:125
 msgid "Norwegian"
-msgstr ""
+msgstr "Daaroengïele"
 
 #: configs/language_names.yaml:120 configs/language_names.yaml:121
 msgid "Russian"
@@ -1789,7 +1789,7 @@ msgstr ""
 
 #: templates/more_dictionaries.html:29
 msgid "South Saami"
-msgstr ""
+msgstr "Åarjelsaemiengïele"
 
 #: templates/more_dictionaries.html:30
 msgid "Cherokee "
