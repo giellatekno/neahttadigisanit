@@ -13,7 +13,10 @@ __pycache__/
 *.DS_Store
 node_modules/
 .env/
-dicts/
+src/neahtta/dicts/*.xml
+src/neahtta/dicts/*.xml.bak
+src/neahtta/dicts/*.log
+src/neahtta/dicts/test_lexica
 static/
 secret_key.do.not.check.in
 morph_log.txt
