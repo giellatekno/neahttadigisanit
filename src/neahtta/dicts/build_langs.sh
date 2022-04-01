@@ -60,14 +60,14 @@ function log_error {
 
 function compile_lang {
     lang_log="$script_base/build.$1.log"
-    if ! test -e "$GTHOME/langs/$1/src/Makefile" ; then
+    if ! test -e "$GTLANGS/lang-$1/src/Makefile" ; then
         info "autogen"
-        cd $GTHOME/langs/$1 ; ./autogen.sh &>$lang_log && success "autogen" || log_error $1
+        cd $GTLANGS/lang-$1 ; ./autogen.sh &>$lang_log && success "autogen" || log_error $1
         info "configure"
-        cd $GTHOME/langs/$1 ; ./configure $langs_flags &>$lang_log && success "configure" || log_error $1
+        $GTLANGS/lang-$1 ; ./configure $langs_flags &>$lang_log && success "configure" || log_error $1
     fi ;
     info "Building $1"
-    cd $GTHOME/langs/$1 ; make &>$lang_log && success "built $1" || log_error $1
+    cd $GTLANGS/lang-$1 ; make &>$lang_log && success "built $1" || log_error $1
 }
 
 
@@ -83,14 +83,14 @@ function info {
 
 function compile_startup_lang {
     lang_log="$script_base/build.$1.log"
-    if ! test -e "$GTHOME/langs/$1/src/Makefile" ; then
+    if ! test -e "$GTLANGS/lang-$1/src/Makefile" ; then
         info "autogen"
-        cd $GTHOME/startup-langs/$1 ; ./autogen.sh &>$lang_log && success "autogen" || log_error $1
+        cd $GTLANGS/lang-$1 ; ./autogen.sh &>$lang_log && success "autogen" || log_error $1
         info "configure"
-        cd $GTHOME/startup-langs/$1 ; ./configure $langs_flags &>$lang_log && success "configure" || log_error $1
+        cd $GTLANGS/lang-$1 ; ./configure $langs_flags &>$lang_log && success "configure" || log_error $1
     fi ;
     info "Building $1"
-    cd $GTHOME/startup-langs/$1 ; make &>$lang_log && success "built $1" || log_error $1
+    cd $GTLANGS/lang-$1 ; make &>$lang_log && success "built $1" || log_error $1
 }
 
 rm $log_path

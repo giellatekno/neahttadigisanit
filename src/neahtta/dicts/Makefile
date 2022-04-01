@@ -113,36 +113,23 @@ compile_langs_fsts: $(foreach lang, $(GT_COMPILE_LANGS), giellalt/lang-$(lang)/s
 compile_langs_fsts: $(langs)
 	@echo $*
 	@echo "***********************"
-	@echo "** Building $(GT_COMPILE_LANGS) $(GT_COMPILE_STARTUP_LANGS) $(GT_COMPILE_EXTERNAL_LANGS) FSTs **"
+	@echo "** Building $(GT_COMPILE_LANGS) FSTs **"
 	@echo "***********************"
 	@echo ""
 	./build_langs.sh $(BUILD_FLAGS) -l $(subst $(space),$(comma),$(GT_COMPILE_LANGS)) -- --enable-dicts $(LANGS_FLAGS)
-	./build_langs.sh $(BUILD_FLAGS) -s $(subst $(space),$(comma),$(GT_COMPILE_STARTUP_LANGS),$(GT_COMPILE_EXTERNAL_LANGS)) -- --enable-dicts $(LANGS_FLAGS)
 
 install_langs_fsts: $(foreach lang, $(GT_COMPILE_LANGS), giellalt/lang-$(lang)/src/analyser-gt-desc.xfst)
 install_langs_fsts: $(langs)
 	@echo $*
 	@echo "***********************"
-	@echo "** Copying to target for: $(GT_COMPILE_LANGS) $(GT_COMPILE_STARTUP_LANGS) $(GT_COMPILE_EXTERNAL_LANGS) **"
+	@echo "** Copying to target for: $(GT_COMPILE_LANGS) **"
 	@echo "***********************"
 	@echo ""
 	for ll in $(GT_COMPILE_LANGS) ; do \
 		mkdir -p /opt/smi/$$ll/bin/ ; \
-		cp $(GTHOME)/giellalt/lang-$$ll/src/analyser-dict-gt-desc.*  /opt/smi/$$ll/bin/ ; \
-		cp $(GTHOME)/giellalt/lang-$$ll/src/generator-dict-gt-norm.* /opt/smi/$$ll/bin/ ; \
-		cp $(GTHOME)/giellalt/lang-$$ll/src/analyser-dict-gt-desc-mobile.*  /opt/smi/$$ll/bin/ ; \
-	done
-	for ll in $(GT_COMPILE_STARTUP_LANGS) ; do \
-		mkdir -p /opt/smi/$$ll/bin/ ; \
-		cp $(GTHOME)/startup-langs/$$ll/src/analyser-dict-gt-desc.*  /opt/smi/$$ll/bin/ ; \
-		cp $(GTHOME)/startup-langs/$$ll/src/generator-dict-gt-norm.* /opt/smi/$$ll/bin/ ; \
-		cp $(GTHOME)/startup-langs/$$ll/src/analyser-dict-gt-desc-mobile.*  /opt/smi/$$ll/bin/ ; \
-	done
-	for ll in $(GT_COMPILE_EXTERNAL_LANGS) ; do \
-		mkdir -p ./smi/$$ll/bin/ ; \
-		cp $(GTHOME)/external-langs/$$ll/src/analyser-dict-gt-desc.*  ./smi/$$ll/bin/ ; \
-		cp $(GTHOME)/external-langs/$$ll/src/generator-dict-gt-norm.* ./smi/$$ll/bin/ ; \
-		cp $(GTHOME)/external-langs/$$ll/src/analyser-dict-gt-desc-mobile.*  ./smi/$$ll/bin/ ; \
+		cp $(GTLANGS)/lang-$$ll/src/analyser-dict-gt-desc.*  /opt/smi/$$ll/bin/ ; \
+		cp $(GTLANGS)/lang-$$ll/src/generator-dict-gt-norm.* /opt/smi/$$ll/bin/ ; \
+		cp $(GTLANGS)/lang-$$ll/src/analyser-dict-gt-desc-mobile.*  /opt/smi/$$ll/bin/ ; \
 	done
 
 .PHONY: clean_langs_fsts
@@ -150,17 +137,14 @@ clean_langs_fsts: $(foreach lang, $(GT_COMPILE_LANGS), giellalt/lang-$(lang)/src
 clean_langs_fsts: $(langs)
 	@echo $*
 	@echo "***********************"
-	@echo "** Cleaning $(GT_COMPILE_LANGS) $(GT_COMPILE_STARTUP_LANGS) FSTs **"
+	@echo "** Cleaning $(GT_COMPILE_LANGS) FSTs **"
 	@echo "***********************"
 	@echo ""
 	for ll in $(GT_COMPILE_LANGS) ; do \
-		echo "Deleting $(GTHOME)/giellalt/lang-$$ll and checking out anew. (see $(GTHOME)/giellalt/svn.log to troubleshoot)" ; \
-		cd $(GTHOME)/giellalt/ ; rm -rf lang-$$ll ; svn up lang-$$ll >> svn.log ; \
+		echo "Make clean in $(GTLANGS)/lang-$$ll" ; \
+		cd $(GTLANGS)/lang-$$ll ; make clean ; cd .. \
 	done
-	for ll in $(GT_COMPILE_STARTUP_LANGS) ; do \
-		cd $(GTHOME)/startup-langs/ ; rm -rf $$ll ; svn up lang-$$ll >> svn.log ; \
-	done
-	cd $(GTHOME)/giella-core/ ; svn up ; make
+	cd $(GTLANGS)/giella-core/ ; git pull ; make
 
 .PHONY: compile_langs_lexicon
 compile_langs_lexicon: $(LEX_COMPILE_LANGS)
@@ -176,7 +160,7 @@ compile_langs_lexicon:
 			echo " * Backing up to $$ll-all.xml.$(shell date +%s).bak"  ; \
 			cp -R $$ll-all.xml $$ll-all.xml.$(shell date +%s).bak ; \
 		fi ; \
-		$(SAXON) inDir=$(GTHOME)/giellalt/lang-$$ll/src/fst/stems/ > $$ll-all.xml ; \
+		$(SAXON) inDir=$(GTLANGS)/lang-$$ll/src/fst/stems/ > $$ll-all.xml ; \
 		echo " * Compiling resulted in: " ; \
 		wc -l $$ll-all.xml ; \
 	done
@@ -221,16 +205,13 @@ print_complete_message:
 ###    ### replace all instances of SAMPLE and sample in variables and target names
 ###    ### with the PROJNAME.
 ###
-###    # These are the ISOs of the languages to compile from GTHOME/giellalt/lang-xxx/
+###    # These are the ISOs of the languages to compile from GTLANGS/lang-xxx/
 ###    SAMPLE_LANGS_ANALYSERS           :=   izh liv fin vep vro vot
 ###
 ###    # OPTIONAL: enable miscellaneous ./configure flags
 ###    # SAMPLE_LANGS_FLAGS             :=   --with-hfst
 ###
-###    # These are the ISOs of the languages to compile from GTHOME/startup-langs/
-###    SAMPLE_STARTUP_LANGS_ANALYSERS   :=   lav
-###
-###    # Compile the lexicon from within GTHOME/giellalt/lang-xxx/src/fst/stems/*.xml
+###    # Compile the lexicon from within GTLANGS/lang-xxx/src/fst/stems/*.xml
 ###
 ###    SAMPLE_LANGS_LEXICA              :=   liv izh vep vro vot
 ###
@@ -245,7 +226,6 @@ print_complete_message:
 ###
 ###    .PHONY: sample
 ###    sample: GT_COMPILE_LANGS := $(SAMPLE_LANGS_ANALYSERS)
-###    sample: GT_COMPILE_STARTUP_LANGS := $(SAMPLE_STARTUP_LANGS_ANALYSERS)
 ###    sample: LEX_COMPILE_LANGS := $(SAMPLE_LANGS_LEXICA)
 ###    sample: LEX_COMPILE_WORDS_DICTS := $(SAMPLE_WORDS_DICTS_LEXICA)
 ###    sample: sample-lexica compile_langs_fsts print_complete_message
@@ -260,7 +240,6 @@ print_complete_message:
 ###
 ###    .PHONY: sample-install
 ###    sample-install: GT_COMPILE_LANGS := $(SAMPLE_LANGS_ANALYSERS)
-###    sample-install: GT_COMPILE_STARTUP_LANGS := $(SAMPLE_STARTUP_LANGS_ANALYSERS)
 ###    sample-install: install_langs_fsts
 ###
 ###    #####
@@ -272,13 +251,10 @@ print_complete_message:
 ##### #ndstestingtargets
 #####
 
-# These are the ISOs of the languages to compile from GTHOME/giellalt/lang-xxx/
+# These are the ISOs of the languages to compile from GTLANGS/lang-xxx/
 NDSTESTING_LANGS_ANALYSERS           :=   kca nob rus
 
-# These are the ISOs of the languages to compile from GTHOME/startup-langs/
-NDSTESTING_STARTUP_LANGS_ANALYSERS   :=
-
-# Compile the lexicon from within GTHOME/giellalt/lang-xxx/src/fst/stems/*.xml
+# Compile the lexicon from within GTLANGS/lang-xxx/src/fst/stems/*.xml
 
 NDSTESTING_LANGS_LEXICA              :=   kca
 
@@ -293,7 +269,6 @@ ndstesting-lexica: compile_langs_lexicon \
 
 .PHONY: ndstesting
 ndstesting: GT_COMPILE_LANGS := $(NDSTESTING_LANGS_ANALYSERS)
-ndstesting: GT_COMPILE_STARTUP_LANGS := $(NDSTESTING_STARTUP_LANGS_ANALYSERS)
 ndstesting: LEX_COMPILE_LANGS := $(NDSTESTING_LANGS_LEXICA)
 ndstesting: LEX_COMPILE_WORDS_DICTS := $(NDSTESTING_WORDS_DICTS_LEXICA)
 ndstesting: ndstesting-lexica compile_langs_fsts print_complete_message
@@ -304,7 +279,6 @@ rm-ndstesting-lexica: $(foreach xx, $(NDSTESTING_LANGS_LEXICA), $(xx)-all.xml) \
 
 .PHONY: ndstesting-install
 ndstesting-install: GT_COMPILE_LANGS := $(NDSTESTING_LANGS_ANALYSERS)
-ndstesting-install: GT_COMPILE_STARTUP_LANGS := $(NDSTESTING_STARTUP_LANGS_ANALYSERS)
 ndstesting-install: install_langs_fsts
 
 .PHONY: ndstesting-clean
@@ -363,16 +337,13 @@ cuvantul-install: GT_COMPILE_LANGS := $(CUVANTUL_LANGS_ANALYSERS)
 ### replace all instances of SAANIH and saanih in variables and target names
 ### with the PROJNAME.
 
-# These are the ISOs of the languages to compile from GTHOME/giellalt/lang-xxx/
-SAANIH_LANGS_ANALYSERS           :=   smn
+# These are the ISOs of the languages to compile from GTLANGS/lang-xxx/
+SAANIH_LANGS_ANALYSERS           :=   smn fin sme
 
 # OPTIONAL: enable miscellaneous ./configure flags
 # SAANIH_LANGS_FLAGS             :=   --with-hfst
 
-# These are the ISOs of the languages to compile from GTHOME/startup-langs/
-# SAANIH_STARTUP_LANGS_ANALYSERS   :=   lav
-
-# Compile the lexicon from within GTHOME/giellalt/lang-xxx/src/fst/stems/*.xml
+# Compile the lexicon from within GTLANGS/lang-xxx/src/fst/stems/*.xml
 
 # SAANIH_LANGS_LEXICA              :=   smn
 
@@ -388,7 +359,6 @@ saanih-lexica: compile_langs_lexicon \
 
 .PHONY: saanih
 saanih: GT_COMPILE_LANGS := $(SAANIH_LANGS_ANALYSERS)
-saanih: GT_COMPILE_STARTUP_LANGS := $(SAANIH_STARTUP_LANGS_ANALYSERS)
 saanih: LEX_COMPILE_LANGS := $(SAANIH_LANGS_LEXICA)
 saanih: LEX_COMPILE_WORDS_DICTS := $(SAANIH_WORDS_DICTS_LEXICA)
 saanih: saanih-lexica compile_langs_fsts print_complete_message
@@ -399,7 +369,6 @@ rm-saanih-lexica: $(foreach xx, $(SAANIH_LANGS_LEXICA), $(xx)-all.xml) \
 
 .PHONY: saanih-install
 saanih-install: GT_COMPILE_LANGS := $(SAANIH_LANGS_ANALYSERS)
-saanih-install: GT_COMPILE_STARTUP_LANGS := $(SAANIH_STARTUP_LANGS_ANALYSERS)
 saanih-install: install_langs_fsts
 
 #####
@@ -516,7 +485,7 @@ kidwinan-install: install_langs_fsts copy-kidwinan-glossers
 
 # include foma
 .PHONY: copy-kidwinan-glossers
-copy-kidwinan-glossers: $(GTHOME)/giellalt/lang-otw/src/analyser-gt-glossing.* $(GTHOME)/giellalt/lang-otw/src/generator-gt-glossing.*
+copy-kidwinan-glossers: $(GTLANGS)/lang-otw/src/analyser-gt-glossing.* $(GTLANGS)/lang-otw/src/generator-gt-glossing.*
 	@-cp $^ /opt/smi/otw/bin/
 
 otweng.xml: $(GTHOME)/art/dicts/otw/otweng.xml
@@ -536,8 +505,7 @@ otweng.xml: $(GTHOME)/art/dicts/otw/otweng.xml
 ##### #gunahatargets
 #####
 
-GUNAHA_LANGS_ANALYSERS      :=
-GUNAHA_STARTUP_LANGS_ANALYSERS   :=   srs
+GUNAHA_LANGS_ANALYSERS      := srs
 GUNAHA_LANGS_FLAGS          :=   --without-hfst --without-xfst --with-foma
 GUNAHA_LANGS_LEXICA         :=
 # Generalized target, but we have some exceptions here, so srseng is commented
@@ -554,7 +522,6 @@ gunaha-lexica: compile_langs_lexicon compile_words_dicts_lexicon
 gunaha: GT_COMPILE_LANGS := $(GUNAHA_LANGS_ANALYSERS)
 gunaha: LEX_COMPILE_LANGS := $(GUNAHA_LANGS_LEXICA)
 gunaha: LEX_COMPILE_WORDS_DICTS := $(GUNAHA_WORDS_DICTS_LEXICA)
-gunaha: GT_COMPILE_STARTUP_LANGS := $(GUNAHA_STARTUP_LANGS_ANALYSERS)
 gunaha: LANGS_FLAGS := $(GUNAHA_LANGS_FLAGS)
 gunaha: gunaha-lexica compile_langs_fsts print_complete_message
 
@@ -572,7 +539,7 @@ gunaha-install: install_langs_fsts copy-gunaha-variants
 
 # include foma
 .PHONY: copy-gunaha-variants
-copy-gunaha-variants: $(GTHOME)/startup-langs/srs/src/*.foma
+copy-gunaha-variants: $(GTLANGS)/lang-srs/src/*.foma
 	@-cp $^ /opt/smi/srs/bin/
 
 #####
@@ -647,9 +614,9 @@ crkeng-cans.xml: crkeng.xml
 	@echo "** Building crk-eng-syllabics lexicon **"
 	@echo "****************************************"
 	@echo "  1.) filter lg/l"
-	cat $^ | python ../tools/filter_xpath.py "./e" "./lg/l" "hfst_lookup" $(GTHOME)/giellalt/lang-crk/src/orthography/Latn-to-Cans.lookup.hfst > $@.tmp
+	cat $^ | python ../tools/filter_xpath.py "./e" "./lg/l" "hfst_lookup" $(GTLANGS)/lang-crk/src/orthography/Latn-to-Cans.lookup.hfst > $@.tmp
 	@echo "  2.) filter lg/stem"
-	cat $@.tmp | python ../tools/filter_xpath.py "./e" "./lg/stem" "hfst_lookup" $(GTHOME)/giellalt/lang-crk/src/orthography/Latn-to-Cans.lookup.hfst > $@
+	cat $@.tmp | python ../tools/filter_xpath.py "./e" "./lg/stem" "hfst_lookup" $(GTLANGS)/lang-crk/src/orthography/Latn-to-Cans.lookup.hfst > $@
 	rm $@.tmp
 
 
@@ -688,7 +655,7 @@ engcrk-cans.xml: engcrk.xml
 	@echo "** Building crk-eng-syllabics lexicon **"
 	@echo "****************************************"
 	@echo "  1.) filter mg/tg/t"
-	cat $^ | python ../tools/filter_xpath.py "./e" "./mg/tg/t" "hfst_lookup" $(GTHOME)/giellalt/lang-crk/src/orthography/Latn-to-Cans.lookup.hfst > $@
+	cat $^ | python ../tools/filter_xpath.py "./e" "./mg/tg/t" "hfst_lookup" $(GTLANGS)/lang-crk/src/orthography/Latn-to-Cans.lookup.hfst > $@
 
 
 
@@ -714,9 +681,9 @@ rm-itwewina-lexica: $(foreach xx, $(ITWEWINA_LANGS_LEXICA), $(xx)-all.xml) \
 	@rm -rf $^
 
 .PHONY: copy-itwewina-variants
-copy-itwewina-variants: $(GTHOME)/giellalt/lang-crk/src/analyser-dict-gt-desc-mobile.* \
-						$(GTHOME)/giellalt/lang-crk/src/analyser-dict-gt-desc.* \
-						$(GTHOME)/giellalt/lang-crk/src/generator-dict-gt-norm.*
+copy-itwewina-variants: $(GTLANGS)/lang-crk/src/analyser-dict-gt-desc-mobile.* \
+						$(GTLANGS)/lang-crk/src/analyser-dict-gt-desc.* \
+						$(GTLANGS)/lang-crk/src/generator-dict-gt-norm.*
 	@-cp $^ /opt/smi/crk/bin/
 
 
@@ -903,7 +870,6 @@ sanat-install: install_langs_fsts
 #####
 
 SONAD_LANGS_ANALYSERS           :=   izh liv fin vep vro vot lav
-# SONAD_STARTUP_LANGS_ANALYSERS   :=
 SONAD_LANGS_LEXICA              :=   liv izh vep vro vot
 SONAD_WORDS_DICTS_LEXICA        :=   finliv finizh lavliv finlav lavfin rusvot votrus
 
@@ -915,7 +881,6 @@ sonad-lexica: compile_langs_lexicon \
 
 .PHONY: sonad
 sonad: GT_COMPILE_LANGS := $(SONAD_LANGS_ANALYSERS)
-#sonad: GT_COMPILE_STARTUP_LANGS := $(SONAD_STARTUP_LANGS_ANALYSERS)
 sonad: LEX_COMPILE_LANGS := $(SONAD_LANGS_LEXICA)
 sonad: LEX_COMPILE_WORDS_DICTS := $(SONAD_WORDS_DICTS_LEXICA)
 sonad: sonad-lexica compile_langs_fsts print_complete_message
@@ -940,8 +905,7 @@ sonad-install: install_langs_fsts
 ### #sanitlexica
 ##
 
-SANIT_LANGS_ANALYSERS      :=   sme fin nob sma smj
-SANIT_EXTERNAL_LANGS_ANALYSERS      :=   spa
+SANIT_LANGS_ANALYSERS      :=   sme fin nob sma smj spa-x-apertium
 SANIT_LANGS_FLAGS          :=   --with-hfst
 SANIT_LANGS_LEXICA         :=
 SANIT_WORDS_DICTS_LEXICA   :=
@@ -1081,25 +1045,14 @@ sanit: sanit-lexica compile_langs_fsts
 	@echo "**    + smj analysers          **"
 	@echo "**    + fin analysers          **"
 	@echo "**    + nob analysers          **"
+	@echo "**    + spa analysers          **"	
 	@echo "*********************************"
-	@echo ""
-	@echo "Now install analysers in expected paths."
-	@echo "    sudo make sanit-install"
-sanit: GT_COMPILE_EXTERNAL_LANGS := $(SANIT_EXTERNAL_LANGS_ANALYSERS)
-sanit: sanit-lexica compile_external_langs_fsts
-	@echo "******************************************"
-	@echo "** Built external targets for sanit:    **"
-	@echo "**    + sanit external lexica           **"
-	@echo "**    + spa analysers          				 **"
-	@echo "******************************************"
 	@echo ""
 	@echo "Now install analysers in expected paths."
 	@echo "    sudo make sanit-install"
 
 .PHONY: sanit-install
 sanit-install: GT_COMPILE_LANGS := $(SANIT_LANGS_ANALYSERS)
-sanit-install: install_langs_fsts
-sanit-install: GT_COMPILE_EXTERNAL_LANGS := $(SANIT_EXTERNAL_LANGS_ANALYSERS)
 sanit-install: install_langs_fsts
 
 .PHONY: sanit-clean
@@ -1229,11 +1182,11 @@ kyv-install: GT_COMPILE_LANGS := $(KYV_LANGS_ANALYSERS)
 kyv-install: install_langs_fsts copy_molodtsov copy_forPermyak
 
 .PHONY: copy_molodtsov
-copy_molodtsov: $(GTHOME)/giellalt/lang-kpv/src/analyser-dict-gt-desc-molodtsov.xfst
+copy_molodtsov: $(GTLANGS)/lang-kpv/src/analyser-dict-gt-desc-molodtsov.xfst
 	cp $^ /opt/smi/kpv/bin/analyser-dict-gt-desc-molodtsov.xfst
 
 .PHONY: copy_forPermyak
-copy_forPermyak: $(GTHOME)/giellalt/lang-kpv/src/analyser-dict-gt-desc-permyak.xfst
+copy_forPermyak: $(GTLANGS)/lang-kpv/src/analyser-dict-gt-desc-permyak.xfst
 	cp $^ /opt/smi/kpv/bin/analyser-dict-gt-desc-permyak.xfst
 
 #####
@@ -1270,57 +1223,6 @@ rm-bahkogirrje-lexica: $(foreach xx, $(BAHKOGIRRJE_LANGS_LEXICA), $(xx)-all.xml)
 bahkogirrje-install: GT_COMPILE_LANGS := $(BAHKOGIRRJE_LANGS_ANALYSERS)
 bahkogirrje-install: install_langs_fsts
 
-###    #####
-###    ##### #sampletargets
-###    #####
-###
-###    ### When starting a new project, copy this whole section (down to
-###    ### #/sampletargets), and change the following settings. Then, be sure to
-###    ### replace all instances of SAMPLE and sample in variables and target names
-###    ### with the PROJNAME.
-###
-###    # These are the ISOs of the languages to compile from GTHOME/giellalt/lang-xxx/
-###    SAMPLE_LANGS_ANALYSERS           :=   izh liv fin vep vro vot
-###
-###    # OPTIONAL: enable miscellaneous ./configure flags
-###    # SAMPLE_LANGS_FLAGS             :=   --with-hfst
-###
-###    # These are the ISOs of the languages to compile from GTHOME/startup-langs/
-###    SAMPLE_STARTUP_LANGS_ANALYSERS   :=   lav
-###
-###    # Compile the lexicon from within GTHOME/giellalt/lang-xxx/src/fst/stems/*.xml
-###
-###    SAMPLE_LANGS_LEXICA              :=   liv izh vep vro vot
-###
-###    # Compile the lexicon from a directory within GTHOME/words/dicts/
-###    SAMPLE_WORDS_DICTS_LEXICA        :=   finliv finizh lavliv
-###
-###    .PHONY: sample-lexica
-###    sample-lexica: LEX_COMPILE_LANGS := $(SAMPLE_LANGS_LEXICA)
-###    sample-lexica: LEX_COMPILE_WORDS_DICTS := $(SAMPLE_WORDS_DICTS_LEXICA)
-###    sample-lexica: compile_langs_lexicon \
-###    			  compile_words_dicts_lexicon
-###
-###    .PHONY: sample
-###    sample: GT_COMPILE_LANGS := $(SAMPLE_LANGS_ANALYSERS)
-###    sample: GT_COMPILE_STARTUP_LANGS := $(SAMPLE_STARTUP_LANGS_ANALYSERS)
-###    sample: LEX_COMPILE_LANGS := $(SAMPLE_LANGS_LEXICA)
-###    sample: LEX_COMPILE_WORDS_DICTS := $(SAMPLE_WORDS_DICTS_LEXICA)
-###    sample: sample-lexica compile_langs_fsts print_complete_message
-###
-###    rm-sample-lexica: $(foreach xx, $(SAMPLE_LANGS_LEXICA), $(xx)-all.xml) \
-###    				 $(foreach yy, $(SAMPLE_WORDS_DICTS_LEXICA), $(yy).xml)
-###    	@rm -rf $^
-###
-###    .PHONY: sample-install
-###    sample-install: GT_COMPILE_LANGS := $(SAMPLE_LANGS_ANALYSERS)
-###    sample-install: GT_COMPILE_STARTUP_LANGS := $(SAMPLE_STARTUP_LANGS_ANALYSERS)
-###    sample-install: install_langs_fsts
-###
-###    #####
-###    ##### #/sampletargets
-###    #####
-
 
 #####
 ##### #focailtargets
@@ -1331,16 +1233,13 @@ bahkogirrje-install: install_langs_fsts
 ### replace all instances of FOCAIL and focail in variables and target names
 ### with the PROJNAME.
 
-# These are the ISOs of the languages to compile from GTHOME/giellalt/lang-xxx/
-FOCAIL_LANGS_ANALYSERS           :=
+# These are the ISOs of the languages to compile from GTLANGS/lang-xxx/
+FOCAIL_LANGS_ANALYSERS           := gle
 
 # OPTIONAL: enable miscellaneous ./configure flags
 # FOCAIL_LANGS_FLAGS             :=   --with-hfst
 
-# These are the ISOs of the languages to compile from GTHOME/startup-langs/
-FOCAIL_STARTUP_LANGS_ANALYSERS   :=   gle
-
-# Compile the lexicon from within GTHOME/giellalt/lang-xxx/LANG/src/fst/stems/*.xml
+# Compile the lexicon from within GTLANGS/src/fst/stems/*.xml
 
 FOCAIL_LANGS_LEXICA              :=
 
@@ -1355,7 +1254,6 @@ focail-lexica: compile_langs_lexicon \
 
 .PHONY: focail
 focail: GT_COMPILE_LANGS := $(FOCAIL_LANGS_ANALYSERS)
-focail: GT_COMPILE_STARTUP_LANGS := $(FOCAIL_STARTUP_LANGS_ANALYSERS)
 focail: LEX_COMPILE_LANGS := $(FOCAIL_LANGS_LEXICA)
 focail: LEX_COMPILE_WORDS_DICTS := $(FOCAIL_WORDS_DICTS_LEXICA)
 focail: focail-lexica compile_langs_fsts print_complete_message
@@ -1366,7 +1264,6 @@ rm-focail-lexica: $(foreach xx, $(FOCAIL_LANGS_LEXICA), $(xx)-all.xml) \
 
 .PHONY: focail-install
 focail-install: GT_COMPILE_LANGS := $(FOCAIL_LANGS_ANALYSERS)
-focail-install: GT_COMPILE_STARTUP_LANGS := $(FOCAIL_STARTUP_LANGS_ANALYSERS)
 focail-install: install_langs_fsts
 
 
