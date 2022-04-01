@@ -739,7 +739,6 @@ msgid " (Not found in our corpus)"
 msgstr " (Fins ikke i korpuset vårt)"
 
 #: configs/language_specific_rules/templates/analyses.template:97
-#, fuzzy
 msgid " (No corpus available)"
 msgstr " (Det er ikke noe korpus tilgjengelig for dette språket)"
 
