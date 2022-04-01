@@ -321,7 +321,6 @@ msgid "(<em>а̄е̄ӣо̄ӯӎӊӈҏ</em>)"
 msgstr ""
 
 #: configs/sanj.config.yaml.in:89
-#, fuzzy
 msgid "(incl. <em>аеиоумннр</em>)"
 msgstr "(forstår <em>acdnstz</em>)"
 
@@ -556,7 +555,6 @@ msgid "sme ↔ nob"
 msgstr "Nordsamisk ↔ norsk"
 
 #: configs/language_specific_rules/templates/about.template:57
-#, fuzzy
 msgid ""
 "North Sámi → Norwegian builds on Nils Jernsletten's dictionary "
 "<em>Álgosátnegirji</em> (4322 words), but now it contains 30,000 entries,"
@@ -900,12 +898,11 @@ msgid "Bruk: "
 msgstr ""
 
 #: configs/language_specific_rules/templates/bahkogirrje/about.template:36
-#, fuzzy
 msgid ""
 "Write whatever you want in Pite Saami, and the dictionary will analyze it"
 " to break apart compound words and find base forms."
 msgstr ""
-"Skriv hva du vil, og ordboka analyserer det for å finne sammensetninger "
+"Skriv hva du vil på pitesamisk, og ordboka analyserer det for å finne sammensetninger "
 "og grunnformer."
 
 #: configs/language_specific_rules/templates/bahkogirrje/about.template:42
@@ -1151,9 +1148,8 @@ msgid ""
 msgstr ""
 
 #: configs/language_specific_rules/templates/saan/about.template:67
-#, fuzzy
 msgid "sms ↔ fin"
-msgstr "Nordsamisk ↔ finsk"
+msgstr "Skoltesamisk ↔ finsk"
 
 #: configs/language_specific_rules/templates/saan/about.template:68
 msgid ""
@@ -1166,9 +1162,8 @@ msgid "Satu & Jouni Moshnikoff sanasto"
 msgstr ""
 
 #: configs/language_specific_rules/templates/saan/about.template:70
-#, fuzzy
 msgid "Dictionaries:"
-msgstr "Ordbøker"
+msgstr "Ordbøker:"
 
 #: configs/language_specific_rules/templates/saan/about.template:71
 msgid ""
