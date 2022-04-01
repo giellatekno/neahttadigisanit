@@ -1104,26 +1104,6 @@ nob-sma.all.xml: $(GTHOME)/words/dicts/nobsma/src/
 baakoeh-lexica: sma-nob.all.xml \
 				nob-sma.all.xml
 
-smesma.xml: $(GTHOME)/words/dicts/smesma/src/
-	@echo "******************************"
-	@echo "** Building sme-sma lexicon **"
-	@echo "******************************"
-	@echo "** Backup made (.bak)       **"
-	@echo "******************************"
-	@echo ""
-	-@cp $@ $@.$(shell date +%s).bak
-	$(SAXON) inDir=$^ > $@
-
-smasme.xml: $(GTHOME)/words/dicts/smasme/src/
-	@echo "******************************"
-	@echo "** Building sma-sme lexicon **"
-	@echo "******************************"
-	@echo "** Backup made (.bak)       **"
-	@echo "******************************"
-	@echo ""
-	-@cp $@ $@.$(shell date +%s).bak
-	$(SAXON) inDir=$^ > $@
-
 
 rm-baakoeh-lexica:
 	@rm -rf sma-nob.all.xml nob-sma.all.xml smesma.xml smasme.xml
