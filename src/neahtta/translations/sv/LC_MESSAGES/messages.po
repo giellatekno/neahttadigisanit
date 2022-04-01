@@ -78,9 +78,8 @@ msgid "Kidwinan"
 msgstr ""
 
 #: configs/kidwinan.config.yaml.in:3
-#, fuzzy
 msgid "Online Odawa dictionary"
-msgstr "Flera ordböcker"
+msgstr ""
 
 #: configs/kyv.config.yaml.in:175 configs/kyv.config.yaml.in:252
 #: configs/sample.config.yaml.in:173
@@ -88,33 +87,28 @@ msgid "Social media"
 msgstr ""
 
 #: configs/kyv.config.yaml.in:176
-#, fuzzy
 msgid "(incl. <em>ио</em>)"
-msgstr "Sociala media (också <em>acdnstz</em>)"
+msgstr "(också <em>ио</em>)"
 
 #: configs/kyv.config.yaml.in:180
-#, fuzzy
 msgid "Molodtsov orthography"
-msgstr "Molotsov-ortografi"
+msgstr "Molodtsov-ortografi"
 
 #: configs/kyv.config.yaml.in:197
 msgid "Zyrian for Permyak"
 msgstr ""
 
 #: configs/kyv.config.yaml.in:253
-#, fuzzy
 msgid "(incl. <em>жзиоч</em>)"
-msgstr "Sociala media (också <em>acdnstz</em>)"
+msgstr "(också <em>жзиоч</em>)"
 
 #: configs/kyv.config.yaml.in:268 configs/kyv.config.yaml.in:297
-#, fuzzy
 msgid "Standard (<em>ӝӟӥӧӵ</em>)"
-msgstr "Standard (<em>áčđŋšŧž</em>)"
+msgstr "Standard (<em>ӝӟӥӧӵ</em>)"
 
 #: configs/kyv.config.yaml.in:272 configs/kyv.config.yaml.in:301
-#, fuzzy
 msgid "Social media (incl. <em>жзиоч</em>)"
-msgstr "Sociala media (också <em>acdnstz</em>)"
+msgstr "Sociala media (också <em>жзиоч</em>)"
 
 #: configs/language_names.yaml:33 configs/language_names.yaml:34
 msgid "North Sámi"
@@ -218,9 +212,8 @@ msgid "Nenets"
 msgstr "Nenetsiska"
 
 #: configs/language_names.yaml:78
-#, fuzzy
 msgid "Northern Mansi"
-msgstr "Nord-haida"
+msgstr "Nord-mansiska"
 
 #: configs/language_names.yaml:79 configs/language_names.yaml:82
 msgid "Skolt Sami"
@@ -263,9 +256,8 @@ msgid "Khanty"
 msgstr ""
 
 #: configs/language_names.yaml:115
-#, fuzzy
 msgid "Irish"
-msgstr "Finska"
+msgstr "Iriska"
 
 #: configs/language_names.yaml:116 configs/language_names.yaml:122
 msgid "Finnish"
@@ -289,56 +281,49 @@ msgid "Haida"
 msgstr "Haida"
 
 #: configs/language_names.yaml:132
-#, fuzzy
 msgid "Romanian"
-msgstr "Liviska"
+msgstr "Rumänska"
 
 #: configs/language_names.yaml:133
 msgid "Meänkieli"
-msgstr ""
+msgstr "Meänkieli"
 
 #: configs/language_names.yaml:134 configs/language_names.yaml:135
 msgid "Swedish"
-msgstr ""
+msgstr "Svenska"
 
 #: configs/saanih.config.yaml.in:82 configs/saanih.config.yaml.in:112
-#, fuzzy
 msgid "(<em>âäáčđŋšž</em>)"
-msgstr "Standard (<em>áčđŋšŧž</em>)"
+msgstr "(<em>âäáčđŋšž</em>)"
 
 #: configs/saanih.config.yaml.in:86 configs/saanih.config.yaml.in:116
-#, fuzzy
 msgid "(incl. <em>aaacdnsz</em>)"
-msgstr "Sociala media (också <em>acdnstz</em>)"
+msgstr "(också <em>aaacdnsz</em>)"
 
 #: configs/sample.config.yaml.in:175 configs/sanit.config.yaml.in:152
 #: tests/configs/sanit.config.yaml:138
-#, fuzzy
 msgid "(incl. <em>acdnstz</em>)"
-msgstr "Sociala media (också <em>acdnstz</em>)"
+msgstr "(också <em>acdnstz</em>)"
 
 #: configs/sanit.config.yaml.in:151 tests/configs/sanit.config.yaml:137
 msgid "Tolerant"
 msgstr ""
 
 #: configs/sanit.config.yaml.in:191 tests/configs/sanit.config.yaml:173
-#, fuzzy
 msgid "Standard (<em>áčđŋšŧž</em>)"
 msgstr "Standard (<em>áčđŋšŧž</em>)"
 
 #: configs/sanit.config.yaml.in:195 tests/configs/sanit.config.yaml:177
-#, fuzzy
 msgid "Tolerant (also <em>acdnstz</em>)"
-msgstr "Sociala media (också <em>acdnstz</em>)"
+msgstr "Tolerant (också <em>acdnstz</em>)"
 
 #: configs/sanj.config.yaml.in:85
 msgid "(<em>а̄е̄ӣо̄ӯӎӊӈҏ</em>)"
 msgstr ""
 
 #: configs/sanj.config.yaml.in:89
-#, fuzzy
 msgid "(incl. <em>аеиоумннр</em>)"
-msgstr "Sociala media (också <em>acdnstz</em>)"
+msgstr "(också <em>аеиоумннр</em>)"
 
 #: configs/sonad.config.yaml.in:160
 msgid "mobile friendly"
@@ -399,7 +384,6 @@ msgstr ""
 #: configs/language_specific_rules/templates/sonad/about.template:16
 #: configs/language_specific_rules/templates/vada/about.template:18
 #: configs/language_specific_rules/templates/valks/about.template:18
-#, fuzzy
 msgid "(... And is mobile-friendly!)"
 msgstr "(... Och är mobiltelefon-vänlig!)"
 
@@ -1140,9 +1124,8 @@ msgid "Satu & Jouni Moshnikoff sanasto"
 msgstr ""
 
 #: configs/language_specific_rules/templates/saan/about.template:70
-#, fuzzy
 msgid "Dictionaries:"
-msgstr "Ordböcker"
+msgstr "Ordböcker:"
 
 #: configs/language_specific_rules/templates/saan/about.template:71
 msgid ""
@@ -1331,9 +1314,8 @@ msgid "In both directions there are about 11,000 entries."
 msgstr ""
 
 #: configs/language_specific_rules/templates/sanit/notice.template:5
-#, fuzzy
 msgid "Other North Saami dictionaries"
-msgstr "Även flera ordböcker"
+msgstr "Även flera nordsamiska ordböcker"
 
 #: configs/language_specific_rules/templates/sanit/search_info.template:5
 msgid ""
@@ -1459,9 +1441,8 @@ msgid "prev"
 msgstr ""
 
 #: templates/browse.html:107
-#, fuzzy
 msgid "next"
-msgstr "Nenetsiska"
+msgstr "nästa"
 
 #: templates/browse.html:116
 msgid "Congratulations! You have read the whole dictionary."
@@ -1522,9 +1503,8 @@ msgid "Word search"
 msgstr ""
 
 #: templates/macros.html:5 templates/macros.html:13
-#, fuzzy
 msgid "Texts"
-msgstr "Nenetsiska"
+msgstr "Texter"
 
 #: templates/mobile_nav_push_menu.html:26
 #: templates/mobile_nav_push_menu.html:45
@@ -1545,12 +1525,10 @@ msgid ""
 msgstr ""
 
 #: templates/more_dictionaries.html:28
-#, fuzzy
 msgid "North Saami"
 msgstr "Nordsamiska"
 
 #: templates/more_dictionaries.html:29
-#, fuzzy
 msgid "South Saami"
 msgstr "Sydsamiska"
 
@@ -1567,7 +1545,6 @@ msgid "Mari"
 msgstr ""
 
 #: templates/more_dictionaries.html:33
-#, fuzzy
 msgid "Skolt Saami"
 msgstr "Skoltsamiska"
 
