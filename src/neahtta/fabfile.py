@@ -278,8 +278,8 @@ def update_gtsvn():
         paths = [
             #'giella-core/', no need to svn up giella-core since no compile giella-core
             'words/',
-            'art/dicts/',
-        ] + svn_lang_paths
+            #'art/dicts/', does not exist
+        ] # + svn_lang_paths not in svn anymore
         print(cyan("** svn up **"))
     for p in paths:
         _p = os.path.join(env.svn_path, p)
@@ -364,7 +364,7 @@ def compile_dictionary(dictionary=False, restart=False):
     update_gtsvn()
 
     with cd(env.dict_path):
-        env.run("svn up Makefile")
+        env.run("git pull")
 
         result = env.run(env.make_cmd + " %s-lexica" % dictionary)
 
@@ -404,9 +404,9 @@ def compile(dictionary=False, restart=False):
 
     with cd(env.dict_path) and settings(warn_only=True):
         if env.no_svn_up:
-            print(yellow("** Skipping svn up of Makefile"))
+            print(yellow("** Skipping git pull of Makefile"))
         else:
-            env.run("svn up Makefile")
+            env.run("git pull")
 
         if env.real_hostname in no_fst_install or env.remote_no_fst:
             print(yellow("** Skip FST compile for gtdict **"))
@@ -925,9 +925,9 @@ def add_stem2dict():
 
     for lexc in lexc_list:
         if not lexc == 'prop':
-            lexc_cmd = 'python $GTHOME/words/dicts/scripts/add_stemtype2xml.py ' + lexc + ' $GTHOME/words/dicts/smenob/scripts/' + lexc + '_stemtypes.txt dicts/sme-nob.all.xml $GTHOME/giellalt/lang-sme/src/fst/stems/' + lexc + '.lexc'
+            lexc_cmd = 'python $GTHOME/words/dicts/scripts/add_stemtype2xml.py ' + lexc + ' $GTHOME/words/dicts/smenob/scripts/' + lexc + '_stemtypes.txt dicts/sme-nob.all.xml $GTLANGS/lang-sme/src/fst/stems/' + lexc + '.lexc'
         else:
-            lexc_cmd = 'python $GTHOME/words/dicts/scripts/add_stemtype2xml.py prop $GTHOME/words/dicts/smenob/scripts/' + lexc + '_stemtypes.txt dicts/sme-nob.all.xml $GTHOME/giellalt/lang-sme/src/fst/stems/sme-propernouns.lexc $GTHOME/giellalt/giella-shared/smi/src/fst/stems/smi-propernouns.lexc'
+            lexc_cmd = 'python $GTHOME/words/dicts/scripts/add_stemtype2xml.py prop $GTHOME/words/dicts/smenob/scripts/' + lexc + '_stemtypes.txt dicts/sme-nob.all.xml $GTLANGS/lang-sme/src/fst/stems/sme-propernouns.lexc $GTLANGS/giella-shared/smi/src/fst/stems/smi-propernouns.lexc'
 
 
         add_cmd = env.run(lexc_cmd)
