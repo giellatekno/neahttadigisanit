@@ -19,7 +19,7 @@ jedi==0.8.1
 Jinja2==2.7.3
 jsmin==2.1.1
 limits==1.0.6
-lxml==3.4.2
+lxml==4.8.0
 MarkupSafe==0.23
 odict==1.5.1
 paramiko>=1.10
