@@ -140,7 +140,7 @@
 
  * bookmarklet unload on additional click
    
- * word test-list - https://giellalt.uit.no/dicts/checklist.html
+ * word test-list - https://giellalt.github.io/dicts/checklist.html
 
  * dropdown events on mobile are a bit funny for the menu on the
    detailed view, and it is impossible to select a new language pair

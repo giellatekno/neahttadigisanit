@@ -7,7 +7,7 @@ connecting FST to Lexicon.
 # it's being imported in __init__.py
 
 # * paradigm documentation here:
-#   https://giellalt.uit.no/dicts/dictionarywork.html
+#   https://giellalt.github.io/dicts/dictionarywork.html
 
 from logging import getLogger
 

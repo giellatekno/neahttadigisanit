@@ -1706,11 +1706,11 @@ msgstr ""
 #: templates/reader.html:31
 msgid ""
 "To do so, <a "
-"href=\"https://giellalt.uit.no/dicts/nds/AddingNDSPluginToOtherSites.html\">follow"
+"href=\"https://giellalt.github.io/dicts/nds/AddingNDSPluginToOtherSites.html\">follow"
 " our documentation</a>."
 msgstr ""
 "Čuovo <a "
-"href=\"https://giellalt.uit.no/dicts/nds/AddingNDSPluginToOtherSites.html\">bagadeami</a>."
+"href=\"https://giellalt.github.io/dicts/nds/AddingNDSPluginToOtherSites.html\">bagadeami</a>."
 
 #: templates/reader.html:32
 msgid "Browser support"
