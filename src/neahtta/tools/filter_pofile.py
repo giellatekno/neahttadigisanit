@@ -15,7 +15,6 @@ Options:
 import os
 import sys
 
-import requests
 from lxml import etree
 
 # TODO: only download updated files, storing in manifest in path/to/stored/audio/
