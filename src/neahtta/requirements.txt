@@ -33,7 +33,7 @@ python-memcached==1.53
 pytz==2014.10
 pywatch==0.4
 PyYAML==3.10
-requests==1.1.0
+requests==2.27.0
 simplejson==3.3.1
 six==1.8.0
 slimit==0.7.4
