@@ -28,7 +28,9 @@ ApplicationSettings:
 # following settings.
 Tools:
   xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
-  hfst_lookup: &HFST-LOOKUP '/bin/hfst-lookup'
+  hfst_lookup: &HFST-LOOKUP '/bin/hfst-lookup --beam=0' 
+  # --beam=0 makes sure forms only the lowest weighted forms are generated 
+  # This prevents forms with hyphens like åssjalommes+N+Sg+Acc > åssja-lommesem
   gthome: &GTHOME '/home/neahtta/gtsvn'
   opt: &OPT '/opt/smi'
 
