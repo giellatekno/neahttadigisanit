@@ -30,7 +30,8 @@ Tools:
   xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
   hfst_lookup: &HFST-LOOKUP '/bin/hfst-lookup --beam=0' 
   # --beam=0 makes sure forms only the lowest weighted forms are generated 
-  # This prevents forms with hyphens like åssjalommes+N+Sg+Acc > åssja-lommesem
+  # This prevents forms with hyphens like åssjalommes+N+Sg+Acc åssja-lommesem
+  # Make sure the generator is compiled with a backend supporting weights (openfst-tropical)
   gthome: &GTHOME '/home/neahtta/gtsvn'
   opt: &OPT '/opt/smi'
 
@@ -39,13 +40,9 @@ Tools:
 # be lists. These are concatenated automatically.
 Morphology:
   sma:
-    #tool: *LOOKUP
     tool: *HFST-LOOKUP
-    #file: [*OPT, '/sma/bin/analyser-dict-gt-desc.xfst']
     file: [*OPT, '/sma/bin/analyser-dict-gt-desc.hfstol']
-    #inverse_file: [*OPT, '/sma/bin/generator-dict-gt-norm.xfst']
     inverse_file: [*OPT, '/sma/bin/generator-dict-gt-norm.hfstol']
-    #format: 'xfst'
     format: 'hfst'
     options:
       compoundBoundary: "+Cmp#"
@@ -53,13 +50,9 @@ Morphology:
       tagsep: '+'
       inverse_tagsep: '+'
   nob:
-    #tool: *LOOKUP
     tool: *HFST-LOOKUP
-    #file: [*OPT, '/nob/bin/analyser-dict-gt-desc.xfst']
     file: [*OPT, '/nob/bin/analyser-dict-gt-desc.hfstol']
-    #inverse_file: [*OPT, '/nob/bin/generator-dict-gt-norm.xfst']
     inverse_file: [*OPT, '/nob/bin/generator-dict-gt-norm.hfstol']
-    #format: 'xfst'
     format: 'hfst'
     options:
       compoundBoundary: ["#", "#+Cmp+", "#+CmpS+"]
