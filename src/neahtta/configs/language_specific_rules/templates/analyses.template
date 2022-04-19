@@ -9,7 +9,9 @@
 {%- import "korp.macros" as korp with context -%}
 
 {% macro render_etymologi_link(grouper) %}
-  {% set sanue_id = lexicon_entry|xpath('lg/algu/@sanue_id')|first %}
+  {% if lexicon_entry|length > 0 %}
+    {% set sanue_id = lexicon_entry|xpath('lg/algu/@sanue_id')|first %}
+  {% endif %}
 
   {% if _from == 'sme' or _from == 'SoMe'%}
     {% set lang_code = 45 %}
