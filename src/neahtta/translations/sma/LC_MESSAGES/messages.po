@@ -798,7 +798,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanj/index_search_form.template:49
 #: templates/index_search_form.html:21
 msgid "ohcansátni"
-msgstr ""
+msgstr "ohtsemebaakoe"
 
 #: configs/language_specific_rules/templates/index_search_form.template:53
 #: configs/language_specific_rules/templates/index_search_form.template:73
