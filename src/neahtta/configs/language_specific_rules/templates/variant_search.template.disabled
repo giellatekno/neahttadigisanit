@@ -128,7 +128,7 @@
             </div>
 
             {% if successful_entry_exists %}
-                <div class="results">
+                <div class="results" translate="no">
                     {% for tpl in entry_templates %}
                         {{ tpl|safe }}
                     {% endfor %}
