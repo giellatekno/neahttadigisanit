@@ -5,7 +5,7 @@ cssmin==0.1.4
 docopt==0.6.2
 docutils==0.16
 ecdsa==0.17.0
-Fabric==1.11.1
+Fabric==1.15.0
 Flask==0.10.1
 Flask-Actions==0.6.6
 Flask-Assets==0.10
@@ -21,7 +21,7 @@ limits==1.0.6
 lxml==4.8.0
 MarkupSafe==0.23
 odict==1.5.1
-paramiko==1.17.0
+paramiko==1.18.5
 pexpect==2.4
 ply==3.4
 prompt-toolkit==0.20
@@ -33,7 +33,7 @@ pywatch==0.4
 PyYAML==3.10
 requests==2.27.0
 simplejson==3.3.1
-six==1.8.0
+six==1.16.0
 sh==1.12.14
 slimit==0.7.4
 speaklater==1.3
