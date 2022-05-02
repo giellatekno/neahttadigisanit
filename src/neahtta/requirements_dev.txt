@@ -14,7 +14,7 @@ Flask-Cache==0.13.1
 Flask-Limiter==0.7.9
 gunicorn==19.9.0
 itsdangerous==0.24
-jedi==0.8.1-final0
+jedi==0.17.2
 Jinja2==2.7.3
 jsmin==2.1.1
 limits==1.0.6
