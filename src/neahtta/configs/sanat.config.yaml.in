@@ -9,7 +9,7 @@ ApplicationSettings:
   new_mobile_nav: true
   locales_available:
     - "fi"
-    - "no"
+    - "nb"
     - "lv"
     - "ru"
     - "et"

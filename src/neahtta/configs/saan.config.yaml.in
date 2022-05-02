@@ -9,7 +9,7 @@ ApplicationSettings:
   locales_available:
     - "fi"
     - "en"
-    - "no"
+    - "nb"
     - "ru"
   # TODO: language-specific sets
   meta_description: >

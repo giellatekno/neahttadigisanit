@@ -37,7 +37,7 @@ ApplicationSettings:
   locales_available:
     - "en"
     - "ru"
-    - "no"
+    - "nb"
   # Meta description and keywords for Google search results.
   app_meta_title: >
      NDS Testing instance

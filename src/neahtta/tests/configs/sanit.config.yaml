@@ -12,7 +12,7 @@ ApplicationSettings:
   locales_available:
     - "se"
 #$#    - "sma"
-    - "no"
+    - "nb"
     - "fi"
     - "en"
   app_meta_title: >

@@ -10,7 +10,7 @@ ApplicationSettings:
   # admins_to_email:
   #   - "someone.goes.here@email.com"
   locales_available:
-    - "no"
+    - "nb"
     - "sv"
     - "en"
   app_meta_title: >

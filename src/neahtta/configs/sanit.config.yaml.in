@@ -9,7 +9,7 @@ ApplicationSettings:
   mobile_default_pair: ["SoMe", "nob"]
   locales_available:
     - "se"
-    - "no"
+    - "nb"
     - "fi"
     - "en"
   app_meta_title: >

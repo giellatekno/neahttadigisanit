@@ -61,7 +61,7 @@ ApplicationSettings:
   # two-character ISO for the language.
   locales_available:
     - "sma"
-    - "no"
+    - "nb"
     - "fi"
   # Meta description and keywords for Google search results.
   app_meta_title: >

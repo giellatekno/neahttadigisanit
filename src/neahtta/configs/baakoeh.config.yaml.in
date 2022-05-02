@@ -10,8 +10,8 @@ ApplicationSettings:
   default_pair: ["sma", "nob"]
   mobile_default_pair: false # TODO: spellrelax for sma ["SoMe", "nob"]
   locales_available:
-    - sma
-    - "no"
+    - "sma"
+    - "nb"
   app_meta_title: >
      Digibaakoeh gaskeviermesne
   meta_description: >
