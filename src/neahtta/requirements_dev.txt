@@ -1,3 +1,4 @@
+# Not updated
 Babel==2.9.1
 #-e git+https://bitbucket.org/rtxanson/babel_yaml.git@b28ab9e4b98136b76091a4a6d02d65ddb3612f21#egg=babel_yaml-master
 caveman==1.0
@@ -16,14 +17,14 @@ gunicorn==19.9.0
 itsdangerous==0.24
 jedi==0.17.2
 Jinja2==2.8.1
-jsmin==2.1.1
-limits==1.0.6
+jsmin==2.2.2
+limits==1.6
 lxml==4.8.0
-MarkupSafe==0.23
-odict==1.5.1
+MarkupSafe==1.1.1
+odict==1.8.1
 paramiko==1.18.5
-pexpect==2.4
-ply==3.4
+pexpect==4.8.0
+ply==3.11
 prompt-toolkit==0.20
 pycrypto==2.6.1
 Pygments==1.6
