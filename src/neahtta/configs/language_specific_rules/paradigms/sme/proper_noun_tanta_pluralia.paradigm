@@ -17,9 +17,9 @@ lexicon:
     - "pl"
 --
 {% if sem_type %}
-{{ lemma }}+N+Prop+{{ sem_type }}+Pl+Gen
-{{ lemma }}+N+Prop+{{ sem_type }}+Pl+Loc
-{{ lemma }}+N+Prop+{{ sem_type }}+Pl+Ill
+{{ lemma }}+N+Prop+Sem/{{ sem_type }}+Pl+Gen
+{{ lemma }}+N+Prop+Sem/{{ sem_type }}+Pl+Loc
+{{ lemma }}+N+Prop+Sem/{{ sem_type }}+Pl+Ill
 {% elif semantics %}
 {{ lemma }}+N+Prop+{{ semantics }}+Pl+Gen
 {{ lemma }}+N+Prop+{{ semantics }}+Pl+Loc
