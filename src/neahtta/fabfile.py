@@ -51,15 +51,11 @@ import sys
 from config import yaml
 from fabric.api import cd, env, local, prompt, run, settings, task
 from termcolor import colored
-from fabric.contrib.console import confirm ## > not used? use invocations.console.confirm
-from fabric.decorators import roles ## > not used? use fabric.group.Group
-from fabric.operations import sudo
 from fabric.utils import abort
 
 # Fabric 2
 # from fabric import task
 # from invoke import Exit
-# from invocations.console import confirm
 # Note: underscores in task names are converted to hyphens for commandline invokation, e.g. "fab sanit restart-service"
 
 # Hosts that have an nds- init.d script
