@@ -21,11 +21,11 @@ few things.
 
 So, to compile the lexicon locally for baakoeh, you would run:
 
-    $ fab local baakoeh compile_dictionary
+    $ fab local baakoeh compile-dictionary
 
 To do the same remotely, and restart the service, you would run:
 
-    $ fab gtdict sanat compile_dictionary restart_service
+    $ fab gtdict sanat compile-dictionary restart-service
 
 With the latter, Fabric will connect via SSH and run commands remotely.
 You may be asked for your SSH password.
@@ -50,11 +50,17 @@ import sys
 
 from config import yaml
 from fabric.api import cd, env, local, prompt, run, settings, task
-from termcolor import colored 
-from fabric.contrib.console import confirm
-from fabric.decorators import roles
+from termcolor import colored
+from fabric.contrib.console import confirm ## > not used? use invocations.console.confirm
+from fabric.decorators import roles ## > not used? use fabric.group.Group
 from fabric.operations import sudo
 from fabric.utils import abort
+
+# Fabric 2
+# from fabric import task
+# from invoke import Exit
+# from invocations.console import confirm
+# Note: underscores in task names are converted to hyphens for commandline invokation, e.g. "fab sanit restart-service"
 
 # Hosts that have an nds- init.d script
 running_service = [
@@ -149,7 +155,7 @@ def local(*args, **kwargs):
     import os
 
     env.run = lrun
-    env.hosts = ['localhost']
+    env.hosts = ['localhost'] ## > "hosts" removed, configure fabric.connection.Connection objects instead
 
     gthome = os.environ.get('GTHOME')
 
@@ -173,8 +179,8 @@ def local(*args, **kwargs):
 
 
 env.no_svn_up = False
-env.use_ssh_config = True
-# env.key_filename = '~/.ssh/neahtta'
+env.use_ssh_config = True ## > Config: load_ssh_configs
+# env.key_filename = '~/.ssh/neahtta' ## > Config: connect_kwargs.key_filename
 
 if ['local', 'gtdict'] not in sys.argv:
     env = local(env)
@@ -196,7 +202,7 @@ def gtdict():
     """ Run a command remotely on gtdict
     """
     env.run = run
-    env.hosts = ['neahtta@gtdict.uit.no']
+    env.hosts = ['neahtta@gtdict.uit.no'] ## > "hosts" removed, configure fabric.connection.Connection objects instead
     env.path_base = '/home/neahtta'
 
     env.svn_path = env.path_base + '/gtsvn'
@@ -402,7 +408,7 @@ def compile(dictionary=False, restart=False):
     update_configs()
     update_gtsvn()
 
-    with cd(env.dict_path) and settings(warn_only=True):
+    with cd(env.dict_path) and settings(warn_only=True): ## > no more warn_only, use warn
         if env.no_svn_up:
             print(colored("** Skipping git pull of Makefile", "yellow"))
         else:
@@ -438,7 +444,7 @@ def compile(dictionary=False, restart=False):
                 colored("**          language in the current project. If you have", "red")
             )
             print(colored("**          ocal changes, they will be lost.", "red"))
-            prompt('[Y/n]', key='clean_first') ## > key is no longer supported
+            prompt('[Y/n]', key='clean_first') ## > key is no longer supported; prompt is removed
             failed = True
             if env.clean_first in ['Y', 'y']:
                 compile(dictionary, restart)
@@ -589,8 +595,8 @@ def compile_strings():
                 print(colored("** Compilation successful.", "green"))
     else:
         cmd = "pybabel compile -d translations"
-        with settings(warn_only=True):
-            compile_cmd = env.run(cmd, capture=True)
+        with settings(warn_only=True):  ## > no more warn_only, use warn
+            compile_cmd = env.run(cmd, capture=True) # capture should no longer be needed
         if compile_cmd.failed:
             if 'babel.core.UnknownLocaleError' in compile_cmd.stderr:
                 error_line = [
@@ -892,6 +898,8 @@ def test_running():
         "sonad.oahpa.no",
         "vada.oahpa.no",
         "bahkogirrje.oahpa.no",
+        "sanj.oahpa.no",
+        "sanat.oahpa.no"
     ]
 
     for h in hosts:
