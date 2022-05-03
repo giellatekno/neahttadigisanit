@@ -54,8 +54,10 @@ from termcolor import colored
 from fabric.utils import abort
 
 # Fabric 2
-# from fabric import task
-# from invoke import Exit
+from fabric import task
+from fabric.config import Config
+from fabric.connection import Connection
+from invoke import Exit
 # Note: underscores in task names are converted to hyphens for commandline invokation, e.g. "fab sanit restart-service"
 
 # Hosts that have an nds- init.d script
@@ -73,6 +75,20 @@ location_restriction_notice = {
         'sonad', 'vada', 'valks', 'bahkogirrje'
     ]
 }
+
+config = Config.__init__()
+
+config.no_svn_up = False
+config.load_ssh_configs = True
+# env.key_filename = '~/.ssh/neahtta' ## > Config: connect_kwargs.key_filename
+
+if ['local', 'gtdict'] not in sys.argv:
+    pass 
+    # Not sure is this is needed in Fabric 2
+    # env = local(env)
+
+
+config.real_hostname = socket.gethostname()
 
 
 def get_projects():
@@ -111,10 +127,10 @@ def set_proj():
     'compile' """
     proj = get_project()
 
-    env.clean_first = False
+    config.clean_first = False
 
     if proj:
-        env.current_dict = proj
+        config.current_dict = proj
     else:
         print >> sys.stderr, "This is not a valid project name."
         sys.exit()
@@ -140,42 +156,31 @@ def set_proj():
 def local(*args, **kwargs):
     """ Run a command using the local environment.
     """
-    from fabric.operations import local as lrun
     import os
 
-    env.run = lrun
-    env.hosts = ['localhost'] ## > "hosts" removed, configure fabric.connection.Connection objects instead
+    config.host = "localhost"
+    config.user = None
 
     gthome = os.environ.get('GTHOME')
 
     if gthome is None:
         sys.exit("GTHOME environment variable is not set.")
 
-    env.path_base = os.getcwd()
+    config.path_base = os.getcwd()
 
-    env.svn_path = gthome
-    env.dict_path = os.path.join(env.path_base, 'dicts')
-    env.neahtta_path = env.path_base
-    env.i18n_path = os.path.join(env.path_base, 'translations')
+    config.svn_path = gthome
+    config.dict_path = os.path.join(env.path_base, 'dicts')
+    config.neahtta_path = env.path_base
+    config.i18n_path = os.path.join(env.path_base, 'translations')
 
     # Make command needs to include explicit path to file, because of
     # fabric.
-    env.make_cmd = "make -C %s -f %s" % (
-        env.dict_path, os.path.join(env.dict_path, 'Makefile'))
-    env.remote_no_fst = False
+    config.make_cmd = "make -C %s -f %s" % (
+        config.dict_path, os.path.join(env.dict_path, 'Makefile'))
+    config.remote_no_fst = False
 
-    return env
+    # "return env" removed, check that is was not needed
 
-
-env.no_svn_up = False
-env.use_ssh_config = True ## > Config: load_ssh_configs
-# env.key_filename = '~/.ssh/neahtta' ## > Config: connect_kwargs.key_filename
-
-if ['local', 'gtdict'] not in sys.argv:
-    env = local(env)
-
-
-env.real_hostname = socket.gethostname()
 
 # set up environments
 # Assume local unless otherwise noted
@@ -184,36 +189,36 @@ env.real_hostname = socket.gethostname()
 @task
 def no_svn_up():
     """ Do not SVN up """
-    env.no_svn_up = True
+    config.no_svn_up = True
 
 @task
 def gtdict():
     """ Run a command remotely on gtdict
     """
-    env.run = run
-    env.hosts = ['neahtta@gtdict.uit.no'] ## > "hosts" removed, configure fabric.connection.Connection objects instead
-    env.path_base = '/home/neahtta'
+    config.host = "gtdict.uit.no"
+    config.user = "neahtta"
+    config.path_base = '/home/neahtta'
 
-    env.svn_path = env.path_base + '/gtsvn'
-    env.dict_path = env.path_base + '/neahtta/dicts'
-    env.neahtta_path = env.path_base + '/neahtta'
-    env.i18n_path = env.path_base + '/neahtta/translations'
+    config.svn_path = config.path_base + '/gtsvn'
+    config.dict_path = config.path_base + '/neahtta/dicts'
+    config.neahtta_path = config.path_base + '/neahtta'
+    config.i18n_path = config.path_base + '/neahtta/translations'
 
-    env.make_cmd = "make -C %s -f %s" % (
-        env.dict_path, os.path.join(env.dict_path, 'Makefile'))
-    env.remote_no_fst = True
+    config.make_cmd = "make -C %s -f %s" % (
+        config.dict_path, os.path.join(config.dict_path, 'Makefile'))
+    config.remote_no_fst = True
 
 
 @task
 def update_configs():
     """ Pull repository to update the config files """
-    if env.no_svn_up:
+    if config.no_svn_up:
         print(colored("** skipping git pull **", "yellow"))
         return
 
-    with cd(env.neahtta_path):
+    with Connection(host=config.host, user=config.user) as c:
         print(colored("** git pull **", "cyan"))
-        env.run('git pull')
+        c.run("cd {} && git pull".format(config.neahtta_path))
 
 
 def read_config(proj):
@@ -231,7 +236,7 @@ def read_config(proj):
     try:
         open(_path, 'r').read()
     except IOError:
-        if env.real_hostname not in running_service:
+        if config.real_hostname not in running_service:
             _path = 'configs/%s.config.yaml.in' % proj
             print(
                 colored(
@@ -244,27 +249,24 @@ def read_config(proj):
             sys.exit()
 
     with open(_path, 'r') as F:
-        config = yaml.load(F)
+        config_file = yaml.load(F)
 
-    return config
-
-
-# @task
-# def install_geo():
+    return config_file
 
 
 @task
 def update_gtsvn():
     """ SVN up the various ~/gtsvn/ directories """
 
-    if env.no_svn_up:
+    if config.no_svn_up:
         print(colored("** skipping svn up **", "yellow"))
         return
 
-    with cd(env.svn_path):
-        config = read_config(env.current_dict)
+    with Connection(host=config.host, user=config.user) as c:
+        c.run("cd {}".format(config.svn_path))
+        config_file = read_config(config.current_dict)
         svn_langs = [
-            l.get('iso') for l in config.get('Languages')
+            l.get('iso') for l in config_file.get('Languages')
             if not l.get('variant', False)
         ]
         svn_lang_paths = ['giellalt/lang-%s' % l for l in svn_langs]
@@ -280,7 +282,7 @@ def update_gtsvn():
         _p = os.path.join(env.svn_path, p)
         with cd(_p):
             try:
-                svn_up_cmd = env.run('svn up ' + _p)
+                svn_up_cmd = Connection(host=config.host, user=config.user).run('svn up ' + _p)
             except:
                 abort(
                     colored("\n* svn up failed in <%s>. Prehaps the tree is locked?" % _p, "red") + '\n' + \
@@ -307,7 +309,7 @@ def restart_service(dictionary=False):
     """ Restarts the service. """
 
     if not dictionary:
-        dictionary = env.current_dict
+        dictionary = config.current_dict
 
     fail = False
 
@@ -317,7 +319,8 @@ def restart_service(dictionary=False):
     #     print(colored("** No need to restart, nds-<%s> not available on this host. **" % dictionary, "green"))
     #     return
 
-    with cd(env.neahtta_path):
+    with Connection(host=config.host, user=config.user) as c:
+        c.run("cd {}".format(config.neahtta_path))
         _path = '%s.wsgi' % env.current_dict
         try:
             os.utime(_path, None)
@@ -329,7 +332,7 @@ def restart_service(dictionary=False):
             sys.exit()
 
         print(colored("** Restarting service for <%s> **" % dictionary, "cyan"))
-        restart = env.run("sudo service nds-%s restart" % dictionary)
+        restart = c.run("sudo service nds-%s restart" % dictionary)
         if not restart.failed:
             print(
                 colored("** <%s> Service has restarted successfully **" %
@@ -348,20 +351,20 @@ def compile_dictionary(dictionary=False, restart=False):
     """ Compile a dictionary project on the server, and restart the
     corresponding service.
 
-        $ fab compile_dictionary:DICT
+        $ fab compile-dictionary:DICT
     """
 
     failed = False
 
     if not dictionary:
-        dictionary = env.current_dict
+        dictionary = config.current_dict
 
     update_gtsvn()
 
-    with cd(env.dict_path):
-        env.run("git pull")
+    with Connection(host=config.host, user=config.user) as c:
+        c.run("cd {} && git pull".format(config.dict_path))
 
-        result = env.run(env.make_cmd + " %s-lexica" % dictionary)
+        result = c.run(config.make_cmd + " %s-lexica" % dictionary)
 
         if result.failed:
             failed = True
@@ -389,24 +392,25 @@ def compile(dictionary=False, restart=False):
     hup = False
     failed = False
 
-    print(colored("Executing on <%s>" % env.real_hostname, "cyan"))
+    print(colored("Executing on <%s>" % config.real_hostname, "cyan"))
 
     if not dictionary:
-        dictionary = env.current_dict
+        dictionary = config.current_dict
 
     update_configs()
     update_gtsvn()
 
-    with cd(env.dict_path) and settings(warn_only=True): ## > no more warn_only, use warn
-        if env.no_svn_up:
+    with Connection(host=config.host, user=config.user) as c:
+        c.run("cd {}".format(env.dict_path))
+        if config.no_svn_up:
             print(colored("** Skipping git pull of Makefile", "yellow"))
         else:
-            env.run("git pull")
+            c.run("git pull")
 
-        if env.real_hostname in no_fst_install or env.remote_no_fst:
+        if config.real_hostname in no_fst_install or config.remote_no_fst:
             print(colored("** Skip FST compile for gtdict **", "yellow"))
             print(colored("** Compiling lexicon for <%s> **" % dictionary, "cyan"))
-            result = env.run(env.make_cmd + " %s-lexica" % dictionary)
+            result = c.run(config.make_cmd + " %s-lexica" % dictionary)
             skip_fst = True
         else:
             skip_fst = False
@@ -414,10 +418,10 @@ def compile(dictionary=False, restart=False):
             print(
                 colored("** Compiling lexicon and FSTs for <%s> **" % dictionary, "cyan"))
 
-            if env.clean_first in ['Y', 'y']:
-                clean_result = env.run(env.make_cmd + " %s-clean" % dictionary)
+            if config.clean_first in ['Y', 'y']:
+                clean_result = c.run(config.make_cmd + " %s-clean" % dictionary)
 
-            result = env.run(env.make_cmd + " %s" % dictionary)
+            result = c.run(config.make_cmd + " %s" % dictionary)
 
         if not result.succeeded:
             print(
@@ -435,12 +439,12 @@ def compile(dictionary=False, restart=False):
             print(colored("**          ocal changes, they will be lost.", "red"))
             prompt('[Y/n]', key='clean_first') ## > key is no longer supported; prompt is removed
             failed = True
-            if env.clean_first in ['Y', 'y']:
+            if config.clean_first in ['Y', 'y']:
                 compile(dictionary, restart)
 
         if not skip_fst:
             print(colored("** Installing FSTs for <%s> **" % dictionary, "cyan"))
-            result = env.run(env.make_cmd + " %s-install" % dictionary)
+            result = c.run(config.make_cmd + " %s-install" % dictionary)
             if result.failed:
                 failed = True
 
@@ -467,19 +471,20 @@ def compile_fst(iso='x'):
 
     hup = False
 
-    dictionary = env.current_dict
+    dictionary = config.current_dict
 
     update_gtsvn()
 
     # TODO: need a make path to clean existing dictionary
-    with cd(env.dict_path):
-        # env.run("svn up Makefile")
+    with Connection(host=config.host, user=config.user) as c:
+        c.run("cd {}".format(config.dict_path))
+        # c.run("svn up Makefile")
         print(colored("** Compiling FST for <%s> **" % iso, "cyan"))
 
-        clear_tmp = env.run(env.make_cmd + " rm-%s" % iso)
+        clear_tmp = c.run(config.make_cmd + " rm-%s" % iso)
 
-        make_fsts = env.run(env.make_cmd + " %s" % iso)
-        make_fsts = env.run(env.make_cmd +
+        make_fsts = c.run(config.make_cmd + " %s" % iso)
+        make_fsts = c.run(config.make_cmd +
                             " %s-%s-install" % (dictionary, iso))
 
         if make_fsts.failed:
@@ -492,13 +497,13 @@ def compile_fst(iso='x'):
 def test_configuration():
     """ Test the configuration and check language files for errors. """
 
-    _path = 'configs/%s.config.yaml' % env.current_dict
+    _path = 'configs/%s.config.yaml' % config.current_dict
 
     try:
         open(_path, 'r').read()
     except IOError:
-        if env.real_hostname not in running_service:
-            _path = 'configs/%s.config.yaml.in' % env.current_dict
+        if config.real_hostname not in running_service:
+            _path = 'configs/%s.config.yaml.in' % config.current_dict
             print(
                 colored(
                     "** Production config not found, using development (*.in)", "yellow")
@@ -510,12 +515,13 @@ def test_configuration():
             sys.exit()
 
     # TODO: this assumes virtualenv is enabled, need to explicitly enable
-    _dict = env.current_dict
-    with cd(env.dict_path):
+    _dict = config.current_dict
+    with Connection(host=config.host, user=config.user) as c:
+        c.run("cd {}".format(config.dict_path))
         print(colored("** Checking paths and testing XML for <%s> **" % _dict, "cyan"))
 
         cmd = "NDS_CONFIG=%s python manage.py chk-fst-paths" % _path
-        test_cmd = env.run(cmd)
+        test_cmd = c.run(cmd)
         if test_cmd.failed:
             print(colored("** Something went wrong while testing <%s> **" % _dict, "red"))
         else:
@@ -528,30 +534,31 @@ def extract_strings():
 
     print(colored("** Extracting strings", "cyan"))
     cmd = "pybabel extract -F babel.cfg -k gettext -o translations/messages.pot ."
-    extract_cmd = env.run(cmd)
-    if extract_cmd.failed:
-        print(colored("** Extraction failed, aborting.", "red"))
-    else:
-        print(colored("** Extraction worked, updating files.", "cyan"))
-        cmd = "pybabel update -i translations/messages.pot -d translations"
-        update_cmd = env.run(cmd)
-        if update_cmd.failed:
-            print(colored("** Update failed.", "red"))
+    with Connection(host=config.host, user=config.user) as c:
+        extract_cmd = c.run(cmd)
+        if extract_cmd.failed:
+            print(colored("** Extraction failed, aborting.", "red"))
         else:
-            print(
-                colored("** Update worked. You may now check in or translate.", "green"))
+            print(colored("** Extraction worked, updating files.", "cyan"))
+            cmd = "pybabel update -i translations/messages.pot -d translations"
+            update_cmd = c.run(cmd)
+            if update_cmd.failed:
+                print(colored("** Update failed.", "red"))
+            else:
+                print(
+                    colored("** Update worked. You may now check in or translate.", "green"))
 
 
 @task
 def update_strings():
     """Must pull entire repo as we have moved to git"""
-    if env.no_svn_up:
+    if config.no_svn_up:
         print(colored("** skipping git pull **", "yellow"))
         compile_strings()
         return
 
-    with cd(env.i18n_path):
-        env.run("git pull")
+    with Connection(host=config.host, user=config.user) as c:
+        c.run("cd {} && git pull".format(config.i18n_path))
 
     compile_strings()
 
@@ -568,51 +575,51 @@ def find_babel():
 def compile_strings():
     """ Compile .po strings to .mo strings for use in the live server. """
 
-    if hasattr(env, 'current_dict'):
-        config = 'configs/%s.config.yaml.in' % env.current_dict
-        with open(config, 'r') as F:
-            _y = yaml.load(F.read())
-            langs = _y.get('ApplicationSettings', {}).get('locales_available')
+    with Connection(host=config.host, user=config.user) as c:
+        if hasattr(config, 'current_dict'):
+            config_file = 'configs/%s.config.yaml.in' % config.current_dict
+            with open(config_file, 'r') as F:
+                _y = yaml.load(F.read())
+                langs = _y.get('ApplicationSettings', {}).get('locales_available')
 
-        for lang in langs:
-            # run for each language
-            cmd = "pybabel compile -d translations -l %s" % lang
-            compile_cmd = env.run(cmd)
-            if compile_cmd.failed:
-                print(colored("** Compilation failed, aborting.", "red"))
-            else:
-                print(colored("** Compilation successful.", "green"))
-    else:
-        cmd = "pybabel compile -d translations"
-        with settings(warn_only=True):  ## > no more warn_only, use warn
-            compile_cmd = env.run(cmd, capture=True) # capture should no longer be needed
-        if compile_cmd.failed:
-            if 'babel.core.UnknownLocaleError' in compile_cmd.stderr:
-                error_line = [
-                    l for l in compile_cmd.stderr.splitlines()
-                    if 'babel.core.UnknownLocaleError' in l
-                ]
-                print(
-                    colored("** String compilation failed, aborting:  ", "red") + colored(
-                        ''.join(error_line), "cyan"))
-                print("")
-                print(colored("  Either: ", "yellow"))
-                print(
-                    colored(
-                        "   * rerun the command with the project name, i.e., `fab PROJNAME compile_strings`.",
-                        "yellow"
-                    ))
-                print(
-                    colored(
-                        "   * Troubleshoot missing locale. (see Troubleshooting doc)",
-                        "yellow"
-                    ))
-            else:
-                print(compile_cmd.stderr)
-                print(colored("** Compilation failed, aborting.", "red"))
+            for lang in langs:
+                # run for each language
+                cmd = "pybabel compile -d translations -l %s" % lang
+                compile_cmd = c.run(cmd)
+                if compile_cmd.failed:
+                    print(colored("** Compilation failed, aborting.", "red"))
+                else:
+                    print(colored("** Compilation successful.", "green"))
         else:
-            print(compile_cmd.stdout)
-            print(colored("** Compilation successful.", "green"))
+            cmd = "pybabel compile -d translations"
+            compile_cmd = c.run(cmd) # previously warn only and capture, probably not needed now
+            if compile_cmd.failed:
+                if 'babel.core.UnknownLocaleError' in compile_cmd.stderr:
+                    error_line = [
+                        l for l in compile_cmd.stderr.splitlines()
+                        if 'babel.core.UnknownLocaleError' in l
+                    ]
+                    print(
+                        colored("** String compilation failed, aborting:  ", "red") + colored(
+                            ''.join(error_line), "cyan"))
+                    print("")
+                    print(colored("  Either: ", "yellow"))
+                    print(
+                        colored(
+                            "   * rerun the command with the project name, i.e., `fab PROJNAME compile_strings`.",
+                            "yellow"
+                        ))
+                    print(
+                        colored(
+                            "   * Troubleshoot missing locale. (see Troubleshooting doc)",
+                            "yellow"
+                        ))
+                else:
+                    print(compile_cmd.stderr)
+                    print(colored("** Compilation failed, aborting.", "red"))
+            else:
+                print(compile_cmd.stdout)
+                print(colored("** Compilation successful.", "green"))
 
 
 def where(iso):
@@ -639,14 +646,14 @@ def where(iso):
         return False
 
     locations = []
-    for config in configs:
-        with open(config, 'r') as F:
+    for config_file in configs:
+        with open(config_file, 'r') as F:
             _y = yaml.load(F.read())
             short_name = _y.get('ApplicationSettings', {}).get('short_name')
             langs = filter(test_lang, _y.get('Languages'))
 
             for l in langs:
-                locations.append((config, short_name, l.get('iso')))
+                locations.append((config_file, short_name, l.get('iso')))
 
     return locations
 
@@ -661,8 +668,8 @@ def where_is(iso='x'):
 
     locations = where(iso)
 
-    for config, shortname, l in locations:
-        print ('%s : %s\t\t%s' % (l, shortname, config))
+    for config_file, shortname, l in locations:
+        print ('%s : %s\t\t%s' % (l, shortname, config_file))
 
 
 def search_running():
@@ -682,7 +689,7 @@ def search_running():
 
 @task
 def find_running():
-    hostname = env.real_hostname
+    hostname = config.real_hostname
     for shortname, pidfile in search_running():
         print ("%s running on %s (%s)" % (colored(shortname, "green"), colored(hostname, "yellow"),
                                          pidfile))
@@ -690,18 +697,19 @@ def find_running():
 
 @task
 def restart_running():
-    hostname = env.real_hostname
+    hostname = config.real_hostname
     find_running()
 
-    with cd(env.neahtta_path):
+    with Connection(host=config.host, user=config.user) as c:
+        c.run("cd {}".format(config.neahtta_path))
         running_services = search_running()
         failures = []
 
         for s, pid in running_services:
             print(colored("** Restarting service for <%s> **" % s, "cyan"))
-            stop = env.run("sudo service nds-%s stop" % s)
+            stop = c.run("sudo service nds-%s stop" % s)
             if not stop.failed:
-                start = env.run("sudo service nds-%s start" % s)
+                start = c.run("sudo service nds-%s start" % s)
                 if not start.failed:
                     print(
                         colored("** <%s> Service has restarted successfully **" %
@@ -723,13 +731,13 @@ def runserver():
 
     cmd = "pybabel compile -d translations"
 
-    _path = 'configs/%s.config.yaml' % env.current_dict
+    _path = 'configs/%s.config.yaml' % config.current_dict
 
     try:
         open(_path, 'r').read()
     except IOError:
-        if env.real_hostname not in running_service:
-            _path = 'configs/%s.config.yaml.in' % env.current_dict
+        if config.real_hostname not in running_service:
+            _path = 'configs/%s.config.yaml.in' % config.current_dict
             print(
                 colored(
                     "** Production config not found, using development (*.in)", "yellow")
@@ -742,7 +750,7 @@ def runserver():
 
     cmd = "NDS_CONFIG=%s python neahtta.py dev" % _path
     print(colored("** Go.", "green"))
-    run_cmd = env.run(cmd)
+    run_cmd = Connection(host=config.host, user=config.user).run(cmd)
     if run_cmd.failed:
         print(colored("** Starting failed for some reason.", "red"))
 
@@ -758,23 +766,25 @@ def doctest():
 
     doctest_cmd = 'python -m doctest -v %s'
 
-    for _file in doctests:
-        test_cmd = env.run(doctest_cmd % _file)
+    with Connection(host=config.host, user=config.user) as c:
+        for _file in doctests:
+            test_cmd = c.run(doctest_cmd % _file)
 
 
 @task
 def test_project():
     """ Test the configuration and check language files for errors. """
 
-    yaml_path = 'configs/%s.config.yaml.in' % env.current_dict
+    yaml_path = 'configs/%s.config.yaml.in' % config.current_dict
 
-    _dict = env.current_dict
-    with cd(env.dict_path):
+    _dict = config.current_dict
+    with Connection(host=config.host, user=config.user) as c:
+        c.run("cd {}".format(config.dict_path))
 
         print(colored("** Running tests for %s" % _dict, "cyan"))
 
         cmd = "NDS_CONFIG=%s python -m unittest tests.yaml_tests" % (yaml_path)
-        test_cmd = env.run(cmd)
+        test_cmd = c.run(cmd)
 
         if test_cmd.failed:
             print(colored("** Something went wrong while testing <%s> **" % _dict, "red"))
@@ -787,14 +797,14 @@ def unittests():
         TODO: this is going away in favor of the better new thing: `test_project`, `doctest`, and `test`
     """
 
-    yaml_path = 'tests/configs/%s.config.yaml' % env.current_dict
+    yaml_path = 'tests/configs/%s.config.yaml' % config.current_dict
 
     try:
         with open(yaml_path, 'r') as F:
             _y = yaml.load(F)
     except IOError:
-        if env.real_hostname not in running_service:
-            yaml_path = 'configs/%s.config.yaml.in' % env.current_dict
+        if config.real_hostname not in running_service:
+            yaml_path = 'configs/%s.config.yaml.in' % config.current_dict
             print(
                 colored(
                     "** Production config not found, using development (*.in)", "yellow")
@@ -808,8 +818,9 @@ def unittests():
             sys.exit()
 
     # TODO: this assumes virtualenv is enabled, need to explicitly enable
-    _dict = env.current_dict
-    with cd(env.dict_path):
+    _dict = config.current_dict
+    with Connection(host=config.host, user=config.user) as c:
+        c.run("cd {}".format(config.dict_path))
 
         unittest_modules = _y.get('UnitTests', False)
         if not unittest_modules:
@@ -833,7 +844,7 @@ def unittests():
             print(colored("** Running tests for %s" % unittest, "cyan"))
 
             cmd = "NDS_CONFIG=%s python -m unittest %s" % (yaml_path, unittest)
-            test_cmd = env.run(cmd)
+            test_cmd = c.run(cmd)
 
             if test_cmd.failed:
                 print(
@@ -910,38 +921,38 @@ def add_stem2dict():
         To make sure changes are made on the latest version of the dictionary, you have to run first
         fab sanit compile
     """
+    with Connection(host=config.host, user=config.user) as c:
+        cmd = 'cp dicts/sme-nob.all.xml dicts/sme-nob.all.xml.bak-before-stem'
+        cp_cmd = c.run(cmd)
 
-    cmd = 'cp dicts/sme-nob.all.xml dicts/sme-nob.all.xml.bak-before-stem'
-    cp_cmd = env.run(cmd)
-
-    if cp_cmd.failed:
-        print(colored("** Backup xml failed, aborting.", "red"))
-        return
-    else:
-        print(colored("** Backing up xml" , "cyan"))
-
-    lexc_list = ['nouns', 'adjectives', 'verbs', 'prop']
-
-    for lexc in lexc_list:
-        if not lexc == 'prop':
-            lexc_cmd = 'python $GTHOME/words/dicts/scripts/add_stemtype2xml.py ' + lexc + ' $GTHOME/words/dicts/smenob/scripts/' + lexc + '_stemtypes.txt dicts/sme-nob.all.xml $GTLANGS/lang-sme/src/fst/stems/' + lexc + '.lexc'
-        else:
-            lexc_cmd = 'python $GTHOME/words/dicts/scripts/add_stemtype2xml.py prop $GTHOME/words/dicts/smenob/scripts/' + lexc + '_stemtypes.txt dicts/sme-nob.all.xml $GTLANGS/lang-sme/src/fst/stems/sme-propernouns.lexc $GTLANGS/giella-shared/smi/src/fst/stems/smi-propernouns.lexc'
-
-
-        add_cmd = env.run(lexc_cmd)
-
-        if add_cmd.failed:
-            print(colored("** Add stem type for %s to xml failed, aborting." %lexc, "red"))
+        if cp_cmd.failed:
+            print(colored("** Backup xml failed, aborting.", "red"))
             return
         else:
-            print(colored("** Successfully added stem type for %s to xml"  %lexc, "green"))
+            print(colored("** Backing up xml" , "cyan"))
 
-        cmd = 'cp dicts/sme-nob.all.xml.stem.xml dicts/sme-nob.all.xml'
-        overwrite_cmd = env.run(cmd)
+        lexc_list = ['nouns', 'adjectives', 'verbs', 'prop']
 
-        if overwrite_cmd.failed:
-            print(colored("** Overwrite xml failed, aborting.", "red"))
-            return
-        else:
-            print(colored("** Overwriting xml" , "cyan"))
+        for lexc in lexc_list:
+            if not lexc == 'prop':
+                lexc_cmd = 'python $GTHOME/words/dicts/scripts/add_stemtype2xml.py ' + lexc + ' $GTHOME/words/dicts/smenob/scripts/' + lexc + '_stemtypes.txt dicts/sme-nob.all.xml $GTLANGS/lang-sme/src/fst/stems/' + lexc + '.lexc'
+            else:
+                lexc_cmd = 'python $GTHOME/words/dicts/scripts/add_stemtype2xml.py prop $GTHOME/words/dicts/smenob/scripts/' + lexc + '_stemtypes.txt dicts/sme-nob.all.xml $GTLANGS/lang-sme/src/fst/stems/sme-propernouns.lexc $GTLANGS/giella-shared/smi/src/fst/stems/smi-propernouns.lexc'
+
+
+            add_cmd = c.run(lexc_cmd)
+
+            if add_cmd.failed:
+                print(colored("** Add stem type for %s to xml failed, aborting." %lexc, "red"))
+                return
+            else:
+                print(colored("** Successfully added stem type for %s to xml"  %lexc, "green"))
+
+            cmd = 'cp dicts/sme-nob.all.xml.stem.xml dicts/sme-nob.all.xml'
+            overwrite_cmd = c.run(cmd)
+
+            if overwrite_cmd.failed:
+                print(colored("** Overwrite xml failed, aborting.", "red"))
+                return
+            else:
+                print(colored("** Overwriting xml" , "cyan"))
