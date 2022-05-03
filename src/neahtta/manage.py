@@ -1,7 +1,7 @@
 # manage.py
 # -*- encoding:utf-8 -*-
 
-from fabric.colors import green, red
+from termcolor import colored
 from flask import Flask
 from flask.ext.actions import Manager
 from neahtta import app
@@ -49,19 +49,19 @@ def chk_fst_paths(app):
         for k, v in fsts:
             file_path = ''.join(v.get('file'))
             i_file_path = ''.join(v.get('inverse_file'))
-            file_exists = red('MISSING: ')
-            i_file_exists = red('MISSING: ')
+            file_exists = colored('MISSING: ', 'red')
+            i_file_exists = colored('MISSING: ', 'red')
             dates = 'UPDATED: ?'
             i_dates = 'UPDATED: ?'
             try:
                 with open(file_path):
-                    file_exists = green('FOUND:   ')
+                    file_exists = colored('FOUND:   ', 'green')
                     dates = 'UPDATED: %s' % get_dates(file_path)
             except IOError:
                 missing_fst = True
             try:
                 with open(i_file_path):
-                    i_file_exists = green('FOUND:   ')
+                    i_file_exists = colored('FOUND:   ', 'green')
                     i_dates = 'UPDATED: %s' % get_dates(i_file_path)
             except IOError:
                 missing_fst = True
@@ -76,7 +76,7 @@ def chk_fst_paths(app):
             print ''
 
         if missing_fst:
-            print red("Some FSTs were not found. See above.")
+            print colored("Some FSTs were not found. See above.", "red")
         return False
 
     return action

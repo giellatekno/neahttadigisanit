@@ -6,7 +6,7 @@ import unittest
 import yaml
 
 import neahtta
-from fabric.colors import cyan, green, magenta, red, yellow
+from termcolor import colored
 from flask import current_app
 
 tests_module = os.path.join(os.getcwd(), 'tests/')
@@ -142,9 +142,9 @@ class RequestTest(NDSInstance):
             expected = case.get('expected_values')
             value_selector = case.get('value_selector')
 
-            print "  uri:   " + cyan(uri_formatted)
-            print "  select:  " + cyan(value_selector)
-            print "  expect:  " + cyan(' '.join(expected))
+            print "  uri:   " + colored(uri_formatted, "cyan")
+            print "  select:  " + colored(value_selector, "cyan")
+            print "  expect:  " + colored(' '.join(expected), "cyan")
 
             # Run the mock request
             response = self.app.get(uri_formatted)
@@ -153,7 +153,7 @@ class RequestTest(NDSInstance):
             tree = fromstring(response.data)
             expr = GenericTranslator().css_to_xpath(value_selector)
             selected = [a.text for a in tree.xpath(expr)]
-            print "  result:  " + magenta(' '.join(selected))
+            print "  result:  " + colored(' '.join(selected), "magenta")
 
             for e in expected:
                 passed = True
@@ -163,10 +163,10 @@ class RequestTest(NDSInstance):
                     passed = False
 
                 if passed:
-                    print "    " + green("PASSED") + ' (' + e + ')'
+                    print "    " + colored("PASSED", "green") + ' (' + e + ')'
                 else:
-                    print "    " + red("FAILED") + ': ' + e
-                    print "     > " + yellow("Values not found in selector")
+                    print "    " + colored("FAILED", "red") + ': ' + e
+                    print "     > " + colored("Values not found in selector", "yellow")
                     failuretrack.add(
                         "RequestTest",
                         exc,
@@ -214,14 +214,14 @@ class MorpholexicalAnalysis(NDSInstance):
 
                 description = case.get('description', False)
                 if description:
-                    print "  " + yellow(description)
+                    print "  " + colored(description, "yellow")
 
-                print "  input:   " + cyan(case.get('input'))
+                print "  input:   " + colored(case.get('input'), "cyan")
 
                 lemmas = [r.lemma for r in res.analyses]
 
-                print "  expect:  " + cyan(' '.join(expect))
-                print "  result:  " + magenta(' '.join(lemmas))
+                print "  expect:  " + colored(' '.join(expect), "cyan")
+                print "  result:  " + colored(' '.join(lemmas), "magenta")
 
                 for e in expect:
                     passed = True
@@ -232,10 +232,10 @@ class MorpholexicalAnalysis(NDSInstance):
                         passed = False
 
                     if passed:
-                        print "    " + green("PASSED") + " (" + e + ")"
+                        print "    " + colored("PASSED", "green") + " (" + e + ")"
                     else:
-                        print "    " + red("FAILED") + ': ' + e
-                        print "     > " + yellow(msg)
+                        print "    " + colored("FAILED", "red") + ': ' + e
+                        print "     > " + colored(msg, "yellow")
                         failuretrack.add(
                             "MorphologicalAnalysis",
                             exc,
@@ -273,30 +273,30 @@ class MorpholexicalGeneration(NDSInstance):
                 test_func = self.assertIn
                 msg = "Form not generated."
                 _in = expect
-                print "  expect:  " + cyan(repr(expect))
-                print "  result:  " + magenta(' '.join(result))
+                print "  expect:  " + colored(repr(expect), "cyan")
+                print "  result:  " + colored(' '.join(result), "magenta")
 
             if unexpect:
                 test_func = self.assertNotIn
                 msg = "Generated form appeared that shouldn't."
                 _in = unexpect
 
-                print "  DONT expect: " + cyan(repr(expect))
-                print "  result:      " + magenta(' '.join(result))
+                print "  DONT expect: " + colored(repr(expect), "cyan")
+                print "  result:      " + colored(' '.join(result), "magenta")
 
             if not expect and not unexpect:
                 _in = []
-                print yellow("  Not expecting any result.")
-                print "  result:      " + magenta(' '.join(result))
+                print colored("  Not expecting any result.", "yellow")
+                print "  result:      " + colored(' '.join(result), "magenta")
 
             for e in _in:
                 try:
                     test_func(e, result, msg)
                 except Exception, exc:
-                    print "    " + red("FAILED") + ': ' + e
+                    print "    " + colored("FAILED", "red") + ': ' + e
                     # TODO: something else with this
                     # print debug
-                    print "     > " + yellow(msg)
+                    print "     > " + colored(msg, "yellow")
                     failuretrack.add(
                         "MorphologicalGeneration",
                         exc,
@@ -305,7 +305,7 @@ class MorpholexicalGeneration(NDSInstance):
                         ' '.join(result),
                         msg,
                     )
-                print "    " + green("PASSED") + " (" + e + ")"
+                print "    " + colored("PASSED", "green") + " (" + e + ")"
 
         # TODO: print useful text
         with self.context():
@@ -321,9 +321,9 @@ class MorpholexicalGeneration(NDSInstance):
 
                 description = case.get('description', False)
                 if description:
-                    print "  " + yellow(description)
+                    print "  " + colored(description, "yellow")
 
-                print "  input:   " + cyan(case.get('input'))
+                print "  input:   " + colored(case.get('input'), "cyan")
 
                 res, raw_out, raw_err = m.lookup(
                     case.get('input'),
@@ -415,21 +415,21 @@ class LexiconDefinitions(NDSInstance):
                 test_func = self.assertIn
                 err_msg = "Could not find definition."
                 _in = expect_in
-                print "  expect:  " + cyan(repr(_in))
-                print "  result:  " + magenta(repr(result))
+                print "  expect:  " + colored(repr(_in), "cyan")
+                print "  result:  " + colored(repr(result), "magenta")
 
             if unexpect_in:
                 test_func = self.assertNotIn
                 err_msg = "Unexpected definition."
                 _in = unexpect_in
-                print "  DONT expect: " + cyan(repr(_in))
-                print "  result:      " + magenta(repr(result))
+                print "  DONT expect: " + colored(repr(_in), "cyan")
+                print "  result:      " + colored(repr(result), "magenta")
 
             if not expect_in and not unexpect_in:
                 _in = []
-                print yellow("  Not expecting any result.")
-                print "  result:      " + magenta(repr(result))
-                print "    " + green("PASSED")
+                print colored("  Not expecting any result.", "yellow")
+                print "  result:      " + colored(repr(result), "magenta")
+                print "    " + colored("PASSED", "green")
 
             for _i in _in:
                 passed = True
@@ -439,11 +439,11 @@ class LexiconDefinitions(NDSInstance):
                     passed = False
 
                 if passed:
-                    print "    " + green("PASSED")
+                    print "    " + colored("PASSED", "green")
                 else:
-                    print "    " + red("FAILED") + ': ' + repr(_i)
+                    print "    " + colored("FAILED", "red") + ': ' + repr(_i)
                     if err_msg:
-                        print "     > " + yellow(err_msg)
+                        print "     > " + colored(err_msg, "yellow")
                     failuretrack.add(
                         "LexiconDefinitions",
                         exc,
@@ -465,10 +465,10 @@ class LexiconDefinitions(NDSInstance):
 
                 description = case.get('description', False)
                 if description:
-                    print "  " + yellow(description)
+                    print "  " + colored(description, "yellow")
 
-                print "  input:   " + cyan(case.get('input'))
-                print "  xpath:   " + cyan(translation_xpath)
+                print "  input:   " + colored(case.get('input'), "cyan")
+                print "  xpath:   " + colored(translation_xpath, "cyan")
 
                 res, raw_out, raw_err = m.lookup(
                     case.get('input'),
@@ -491,9 +491,9 @@ class LexiconDefinitions(NDSInstance):
                 if not successes:
                     err_msg = "No results found for input."
 
-                    print "    " + red("FAILED") + ': ' + repr(
+                    print "    " + colored("FAILED", "red") + ': ' + repr(
                         case.get('input'))
-                    print "     > " + yellow(err_msg)
+                    print "     > " + colored(err_msg, "yellow")
                     failuretrack.add(
                         "LexiconDefinitions",
                         "",
