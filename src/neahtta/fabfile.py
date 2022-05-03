@@ -64,10 +64,7 @@ from fabric.utils import abort
 
 # Hosts that have an nds- init.d script
 running_service = [
-    'gtdict.uit.no',
-    'sapir.artsrn.ualberta.ca',
-    # sapir
-    'arrl-web003',
+    'gtdict.uit.no'
 ]
 
 no_fst_install = [
@@ -79,10 +76,6 @@ location_restriction_notice = {
         'sanit', 'baakoeh', 'kyv', 'muter', 'saan', 'saanih', 'sanat',
         'sonad', 'vada', 'valks', 'bahkogirrje'
     ]
-
-    # sapir
-    ,
-    'arrl-web003': ['gunaha', 'kidwinan', 'guusaaw', 'itwewina']
 }
 
 
