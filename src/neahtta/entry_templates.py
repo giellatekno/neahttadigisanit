@@ -30,7 +30,7 @@ TODO: generated context accessible with new templates? is the way it's
 TODO: sme pregenerated forms don't really work without sme.py
 
 """
-
+from __future__ import print_function
 import os
 import sys
 from jinja2 import TemplateSyntaxError
