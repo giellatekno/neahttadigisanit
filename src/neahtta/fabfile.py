@@ -49,9 +49,8 @@ import socket
 import sys
 
 from config import yaml
-from fabric.api import cd, env, local, prompt, run, settings, task
+from invocations.console import confirm
 from termcolor import colored
-from fabric.utils import abort
 
 # Fabric 2
 from fabric import task
@@ -80,7 +79,7 @@ config = Config.__init__()
 
 config.no_svn_up = False
 config.load_ssh_configs = True
-# env.key_filename = '~/.ssh/neahtta' ## > Config: connect_kwargs.key_filename
+# config.connect_kwargs.key_filename = '~/.ssh/neahtta'
 
 if ['local', 'gtdict'] not in sys.argv:
     pass 
@@ -169,14 +168,14 @@ def local(*args, **kwargs):
     config.path_base = os.getcwd()
 
     config.svn_path = gthome
-    config.dict_path = os.path.join(env.path_base, 'dicts')
-    config.neahtta_path = env.path_base
-    config.i18n_path = os.path.join(env.path_base, 'translations')
+    config.dict_path = os.path.join(config.path_base, 'dicts')
+    config.neahtta_path = config.path_base
+    config.i18n_path = os.path.join(config.path_base, 'translations')
 
     # Make command needs to include explicit path to file, because of
     # fabric.
     config.make_cmd = "make -C %s -f %s" % (
-        config.dict_path, os.path.join(env.dict_path, 'Makefile'))
+        config.dict_path, os.path.join(config.dict_path, 'Makefile'))
     config.remote_no_fst = False
 
     # "return env" removed, check that is was not needed
@@ -279,28 +278,27 @@ def update_gtsvn():
         ] # + svn_lang_paths not in svn anymore
         print(colored("** svn up **", "cyan"))
     for p in paths:
-        _p = os.path.join(env.svn_path, p)
-        with cd(_p):
-            try:
-                svn_up_cmd = Connection(host=config.host, user=config.user).run('svn up ' + _p)
-            except:
-                abort(
-                    colored("\n* svn up failed in <%s>. Prehaps the tree is locked?" % _p, "red") + '\n' + \
-                    colored("  Correct this (maybe with `svn cleanup`) and rerun the command, or run with `no_svn_up`.", "red")
-                )
+        _p = os.path.join(config.svn_path, p)
+        try:
+            svn_up_cmd = Connection(host=config.host, user=config.user).run('cd {} && svn up {}'.format(_p, _p))
+        except:
+            raise Exit(
+                colored("\n* svn up failed in <%s>. Prehaps the tree is locked?" % _p, "red") + '\n' + \
+                colored("  Correct this (maybe with `svn cleanup`) and rerun the command, or run with `no_svn_up`.", "red")
+            )
     return
 
     # TODO: necessary to run autogen just in case?
     # no need to compile giella-core
     '''
     print(colored("** Compiling giella-core **", "cyan"))
-    giella_core = os.path.join(env.svn_path , 'giella-core')
+    giella_core = os.path.join(config.svn_path , 'giella-core')
     with cd(giella_core):
-        make_file = env.svn_path + '/giella-core/Makefile'
+        make_file = config.svn_path + '/giella-core/Makefile'
         make_ = "make -C %s -f %s" % ( giella_core
                                      , make_file
                                      )
-        result = env.run(make_)
+        result = config.run(make_)
     '''
 
 
@@ -314,14 +312,14 @@ def restart_service(dictionary=False):
     fail = False
 
     # Not a big issue, but figure this out for local development.
-    # if env.real_hostname not in running_service:
-    #     print env.real_hostname
+    # if config.real_hostname not in running_service:
+    #     print config.real_hostname
     #     print(colored("** No need to restart, nds-<%s> not available on this host. **" % dictionary, "green"))
     #     return
 
     with Connection(host=config.host, user=config.user) as c:
         c.run("cd {}".format(config.neahtta_path))
-        _path = '%s.wsgi' % env.current_dict
+        _path = '%s.wsgi' % config.current_dict
         try:
             os.utime(_path, None)
             touched = True
@@ -401,7 +399,7 @@ def compile(dictionary=False, restart=False):
     update_gtsvn()
 
     with Connection(host=config.host, user=config.user) as c:
-        c.run("cd {}".format(env.dict_path))
+        c.run("cd {}".format(config.dict_path))
         if config.no_svn_up:
             print(colored("** Skipping git pull of Makefile", "yellow"))
         else:
@@ -436,11 +434,11 @@ def compile(dictionary=False, restart=False):
             print(
                 colored("**          language in the current project. If you have", "red")
             )
-            print(colored("**          ocal changes, they will be lost.", "red"))
-            prompt('[Y/n]', key='clean_first') ## > key is no longer supported; prompt is removed
-            failed = True
-            if config.clean_first in ['Y', 'y']:
+            print(colored("**          local changes, they will be lost.", "red"))
+            if confirm('Do you want to continue?'):
                 compile(dictionary, restart)
+            failed = True
+                
 
         if not skip_fst:
             print(colored("** Installing FSTs for <%s> **" % dictionary, "cyan"))
@@ -836,7 +834,7 @@ def unittests():
 
             # unittest_file = unittest.replace('/', '.') + '.py'
             # try:
-            #     open(os.path.join(env.path_base, unittest_file.replace('/', '.') + '.py'), 'r').read()
+            #     open(os.path.join(config.path_base, unittest_file.replace('/', '.') + '.py'), 'r').read()
             # except:
             #     print(colored("** File does not exist for %s" % unittest_file, "yellow"))
             #     continue
