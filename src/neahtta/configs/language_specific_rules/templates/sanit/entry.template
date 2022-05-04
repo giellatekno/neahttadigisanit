@@ -18,7 +18,7 @@
 {# Macros and definitions #}
 
 {%- macro reference_link(has_reference) -%}
-    {{- rendered_templates.entry_text -}} &rarr; <a href="{{ url_for('.detailed_language_pair_search', _from=_from, _to=_to, wordform=has_reference, format='html') }}"><span class="see_also">{{ has_reference }}</span></a>
+    {{- rendered_templates.entry_text|safe -}} &rarr; <a href="{{ url_for('.detailed_language_pair_search', _from=_from, _to=_to, wordform=has_reference, format='html') }}"><span class="see_also">{{ has_reference }}</span></a>
 {%- endmacro -%}
 
 {%- import "lexicon.macros" as macros with context -%}
@@ -89,10 +89,10 @@
                 {{ reference_link(has_reference) }}
             {%- else -%}
               {% if pos_is_phrase %}
-                  {{- rendered_templates.entry_text -}}
+                  {{- rendered_templates.entry_text|safe -}}
               {% else %}
                 <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
-                    {{- rendered_templates.entry_text -}}</a>
+                    {{- rendered_templates.entry_text|safe -}}</a>
               {% endif %}
             {% endif %}
             {% if stem %}
@@ -106,7 +106,7 @@
               <p class="l_sci"><span class="se_også">({{ l_sci_text.split("_")[0]}})</span></p>
             {% endif %}
             <ul class="meanings">
-                {{- rendered_templates.definition -}}
+                {{- rendered_templates.definition|safe -}}
             </ul>
       {% else %}&nbsp;{% endif %}
     {% else %}
@@ -121,7 +121,7 @@
                     {{ reference_link(has_reference) }}
                 {%- else -%}
                     <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
-                        {{- rendered_templates.entry_text -}}</a>
+                        {{- rendered_templates.entry_text|safe -}}</a>
                 {% endif %}
                 {% if stem %}
                   <p class="p_stem">(stamme: {{stem_desc}})</p>
@@ -134,7 +134,7 @@
                   <p class="l_sci"><span class="se_også">({{ l_sci_text.split("_")[0]}})</span></p>
                 {% endif %}
                 <ul class="meanings">
-                    {{- rendered_templates.definition -}}
+                    {{- rendered_templates.definition|safe -}}
                 </ul>
           {% else %}&nbsp;{% endif %}
           {% if 'ⓒ' in analyses[0].tag_raw|last %}
@@ -149,7 +149,7 @@
                   {{ reference_link(has_reference) }}
               {%- else -%}
                   <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
-                      {{- rendered_templates.entry_text -}}</a>
+                      {{- rendered_templates.entry_text|safe -}}</a>
               {% endif %}
               {% if stem %}
                 <p class="p_stem">(stamme: {{stem_desc}})</p>
@@ -162,7 +162,7 @@
                 <p class="l_sci"><span class="se_også">({{ l_sci_text.split("_")[0]}})</span></p>
               {% endif %}
               <ul class="meanings">
-                  {{- rendered_templates.definition -}}
+                  {{- rendered_templates.definition|safe -}}
               </ul>
         {% else %}&nbsp;{% endif %}
       {% endif %}
@@ -185,7 +185,7 @@
                   <p class='plus_der'>{{morph_ex_text}}</p>
               {% endif %}
               <ul class="meanings">
-                  {{- rendered_templates.definition -}}
+                  {{- rendered_templates.definition|safe -}}
               </ul>
         {% else %}&nbsp;{% endif %}
       </div>
@@ -209,7 +209,7 @@
                 <p class="p_stem">(stamme: {{stem_desc}})</p>
               {% endif %}
               <ul class="meanings">
-                  {{- rendered_templates.definition -}}
+                  {{- rendered_templates.definition|safe -}}
               </ul>
         {% else %}&nbsp;{% endif %}
       </div>
@@ -217,7 +217,7 @@
   {% endif %}
   </div>
   <div class="span4 hidden-phone lexeme_analyses">
-      {{- rendered_templates.analyses -}}
+      {{- rendered_templates.analyses|safe -}}
   </div>
 </div>
 

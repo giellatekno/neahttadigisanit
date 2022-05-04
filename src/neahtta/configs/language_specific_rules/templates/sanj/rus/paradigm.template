@@ -224,13 +224,13 @@
                     {% set i = i+1 %}
 
                     {% if present_forms and present_forms != '-' %}
-                        <td lang="{{ _from }}">{{ present_forms|uniq|join('<br />', attribute='form') }}</td>
+                        <td lang="{{ _from }}">{{ present_forms|uniq|join('<br />', attribute='form')|safe }}</td>
                     {% else %}
                         <td lang="{{ _from }}">&mdash;</td>
                     {% endif %}
 
                     {% if preterite_forms and preterite_forms != '-' %}
-                        <td lang="{{ _from }}">{{ preterite_forms|uniq|join('<br />', attribute='form') }}</td>
+                        <td lang="{{ _from }}">{{ preterite_forms|uniq|join('<br />', attribute='form')|safe }}</td>
                     {% else %}
                         <td lang="{{ _from }}">&mdash;</td>
                     {% endif %}
@@ -253,7 +253,7 @@
                     {% set textshown = 1 %}
                     <dt>{{ "мунн ля̄" }}</dt>
                 {% endif %}
-                <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form') }}</dd>
+                <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form')|safe }}</dd>
             {% endfor %}
         </dl>
     {% endif %}
@@ -279,13 +279,13 @@
             {% set i = i+1 %}
 
             {% if sgs and sgs != '-' %}
-                <td lang="{{ _from }}">{{ sgs|uniq|join('<br />', attribute='form') }}</td>
+                <td lang="{{ _from }}">{{ sgs|uniq|join('<br />', attribute='form')|safe }}</td>
             {% else %}
                 <td lang="{{ _from }}" class="center">&mdash;</td>
             {% endif %}
 
             {% if pls and pls != '-' %}
-                <td lang="{{ _from }}">{{ pls|uniq|join('<br />', attribute='form') }}</td>
+                <td lang="{{ _from }}">{{ pls|uniq|join('<br />', attribute='form')|safe }}</td>
             {% else %}
                 <td lang="{{ _from }}" class="center">&mdash;</td>
             {% endif %}
@@ -302,7 +302,7 @@
                     <th class="tag" lang="{{ _to }}">{{ contexts[i] }}</th>
                     {% set i = i+1 %}
                 {% endif %}
-                <td colspan="2" lang="{{ _from }}" class="center">{{ var|join('<br />', attribute='form') }}</td>
+                <td colspan="2" lang="{{ _from }}" class="center">{{ var|join('<br />', attribute='form')|safe }}</td>
             </tr>
         {% endfor %}
 
@@ -319,7 +319,7 @@
             {% if var[0].tag %}
                 <dt>{{ clean_tag(var[0].tag) }}</dt>
             {% endif %}
-            <dd lang="{{ _from }}">{{ var|uniq|join('<br />', attribute='form') }}</dd>
+            <dd lang="{{ _from }}">{{ var|uniq|join('<br />', attribute='form')|safe }}</dd>
         {% endfor %}
     </dl>
 
@@ -347,13 +347,13 @@
                 <th class="tag" lang="{{ _to }}">{{ tag_display }}</th>
 
                 {% if sgs and sgs != '-' %}
-                    <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form') }}</td>
+                    <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form')|safe }}</td>
                 {% else %}
                     <td lang="{{ _from }}" class="center">&mdash;</td>
                 {% endif %}
 
                 {% if pls and pls != '-' %}
-                    <td lang="{{ _from }}">{{ pls|join('<br />', attribute='form') }}</td>
+                    <td lang="{{ _from }}">{{ pls|join('<br />', attribute='form')|safe }}</td>
                 {% else %}
                     <td lang="{{ _from }}" class="center">&mdash;</td>
                 {% endif %}

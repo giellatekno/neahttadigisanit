@@ -77,7 +77,7 @@
                   {% if lemmagroup and grouper %}
                     {% if korp_hits > 0 %}
                       <dt><span lang="{{ _from }}">{{ grouper }}</span>
-                        <span class="etymology">{{render_etymologi_link(grouper)}}</span> {{ korp.link_lemma(grouper) }}</dt>
+                        <span class="etymology">{{render_etymologi_link(grouper)}}</span> {{ korp.link_lemma(grouper)|safe }}</dt>
                     {% else %}
                       <dt><span lang="{{ _from }}">{{ grouper }}</span>
                         <span class="etymology">{{render_etymologi_link(grouper)}}</span>

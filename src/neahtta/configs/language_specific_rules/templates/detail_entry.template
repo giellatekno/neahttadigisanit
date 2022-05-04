@@ -18,20 +18,20 @@
         {% if lexicon_entry|count > 0 %}
             <div class="pull-right hidden-phone floatingparadigm">
                 {% if current_app_config.paradigm_layouts and layout %}
-                    {{- rendered_templates.paradigm_layouts -}}
+                    {{- rendered_templates.paradigm_layouts|safe -}}
                 {% else %}
                     {% if current_pair_settings.asynchronous_paradigms %}
-                        {{- rendered_templates.asynchronous_paradigm -}}
+                        {{- rendered_templates.asynchronous_paradigm|safe -}}
                     {% else %}
-                        {{- rendered_templates.paradigm -}}
+                        {{- rendered_templates.paradigm|safe -}}
                     {% endif %}
                 {% endif %}
             </div>
             <p class="lead">
-                {{- rendered_templates.entry_text -}}
+                {{- rendered_templates.entry_text|safe -}}
             </p>
             <ul class="meanings">
-                {{- rendered_templates.definition -}}
+                {{- rendered_templates.definition|safe -}}
             </ul>
             <div class="span3 visible-phone hidden-tablet hidden-desktop floatingparadigm">
                 <div class="row-fluid">
@@ -50,12 +50,12 @@
                     <div class="span6">
                         <div class="paradigm-expanded collapse" id="paradigm-{{ lexicon_entry|hash_node }}">
                             {% if current_app_config.paradigm_layouts and layout %}
-                                {{- rendered_templates.paradigm_layouts -}}
+                                {{- rendered_templates.paradigm_layouts|safe -}}
                             {% else %}
                                 {% if current_pair_settings.asynchronous_paradigms %}
-                                    {{- rendered_templates.asynchronous_paradigm -}}
+                                    {{- rendered_templates.asynchronous_paradigm|safe -}}
                                 {% else %}
-                                    {{- rendered_templates.paradigm -}}
+                                    {{- rendered_templates.paradigm|safe -}}
                                 {% endif %}
                             {% endif %}
                         </div>
@@ -65,7 +65,7 @@
         {% else %}&nbsp;{% endif %}
     </div>
     <div class="span3 hidden-phone">
-        {{- rendered_templates.analyses -}}
+        {{- rendered_templates.analyses|safe -}}
     </div>
 </div>
 

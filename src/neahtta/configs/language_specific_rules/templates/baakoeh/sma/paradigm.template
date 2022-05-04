@@ -218,13 +218,13 @@
                     <th class="tag" lang="{{ _to }}">{{ tag_display }}</th>
 
                     {% if present_forms and present_forms != '-' %}
-                        <td lang="{{ _from }}">{{ present_forms|join('<br />', attribute='form') }}</td>
+                        <td lang="{{ _from }}">{{ present_forms|join('<br />', attribute='form')|safe }}</td>
                     {% else %}
                         <td lang="{{ _from }}">&mdash;</td>
                     {% endif %}
 
                     {% if preterite_forms and preterite_forms != '-' %}
-                        <td lang="{{ _from }}">{{ preterite_forms|join('<br />', attribute='form') }}</td>
+                        <td lang="{{ _from }}">{{ preterite_forms|join('<br />', attribute='form')|safe }}</td>
                     {% else %}
                         <td lang="{{ _from }}">&mdash;</td>
                     {% endif %}
@@ -245,7 +245,7 @@
                 {% if var[0].tag %}
                     <dt>{{ clean_tag(var[0].tag) }}</dt>
                 {% endif %}
-                <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form') }}</dd>
+                <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form')|safe }}</dd>
             {% endfor %}
         </dl>
     {% endif %}
@@ -273,13 +273,13 @@
             <th class="tag" lang="{{ _to }}">{{ tag_display }}</th>
 
             {% if sgs and sgs != '-' %}
-                <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form') }}</td>
+                <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form')|safe }}</td>
             {% else %}
                 <td lang="{{ _from }}" class="center">&mdash;</td>
             {% endif %}
 
             {% if pls and pls != '-' %}
-                <td lang="{{ _from }}">{{ pls|join('<br />', attribute='form') }}</td>
+                <td lang="{{ _from }}">{{ pls|join('<br />', attribute='form')|safe }}</td>
             {% else %}
                 <td lang="{{ _from }}" class="center">&mdash;</td>
             {% endif %}
@@ -294,7 +294,7 @@
                 {% if var[0].tag %}
                     <th class="tag" lang="{{ _to }}">{{ clean_tag(var[0].tag) }}</th>
                 {% endif %}
-                <td colspan="2" lang="{{ _from }}" class="center">{{ var|join('<br />', attribute='form') }}</td>
+                <td colspan="2" lang="{{ _from }}" class="center">{{ var|join('<br />', attribute='form')|safe }}</td>
             </tr>
         {% endfor %}
 
@@ -311,7 +311,7 @@
           {% if var[0].tag %}
               <dt>{{ clean_tag(var[0].tag) }}</dt>
           {% endif %}
-          <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form') }}</dd>
+          <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form')|safe }}</dd>
       {% endfor %}
     </dl>
 
@@ -339,13 +339,13 @@
                 <th class="tag" lang="{{ _to }}">{{ tag_display }}</th>
 
                 {% if sgs and sgs != '-' %}
-                    <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form') }}</td>
+                    <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form')|safe }}</td>
                 {% else %}
                     <td lang="{{ _from }}" class="center">&mdash;</td>
                 {% endif %}
 
                 {% if pls and pls != '-' %}
-                    <td lang="{{ _from }}">{{ pls|join('<br />', attribute='form') }}</td>
+                    <td lang="{{ _from }}">{{ pls|join('<br />', attribute='form')|safe }}</td>
                 {% else %}
                     <td lang="{{ _from }}" class="center">&mdash;</td>
                 {% endif %}
@@ -360,7 +360,7 @@
                     {% if var[0].tag %}
                         <th class="tag" lang="{{ _to }}">{{ clean_tag(var[0].tag) }}</th>
                     {% endif %}
-                    <td colspan="2" lang="{{ _from }}" class="center">{{ var|join('<br />', attribute='form') }}</td>
+                    <td colspan="2" lang="{{ _from }}" class="center">{{ var|join('<br />', attribute='form')|safe }}</td>
                 </tr>
             {% endfor %}
 
@@ -377,7 +377,7 @@
                 {% if var[0].tag %}
                     <dt>{{ clean_tag(var[0].tag) }}</dt>
                 {% endif %}
-                <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form') }}</dd>
+                <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form')|safe }}</dd>
             {% endfor %}
         </dl>
     {% endif %}

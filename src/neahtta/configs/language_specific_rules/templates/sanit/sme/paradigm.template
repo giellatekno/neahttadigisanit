@@ -295,14 +295,14 @@
 
                     {% if present_forms and present_forms != '-' %}
                         {% set s_display = link_lemma_paradigm(lemma, msd_var_prs[0]|string) %}
-                        <td lang="{{ _from }}">{{ present_forms|join('<br />', attribute='form') }}</td>
+                        <td lang="{{ _from }}">{{ present_forms|join('<br />', attribute='form')|safe }}</td>
                       {% else %}
                         <td lang="{{ _from }}">&mdash;</td>
                     {% endif %}
 
                     {% if preterite_forms and preterite_forms != '-' %}
                         {% set s_display = link_lemma_paradigm(lemma, msd_var_prt[0]|string) %}
-                        <td lang="{{ _from }}">{{ preterite_forms|join('<br />', attribute='form') }}</td>
+                        <td lang="{{ _from }}">{{ preterite_forms|join('<br />', attribute='form')|safe }}</td>
                     {% else %}
                         <td lang="{{ _from }}">&mdash;</td>
                     {% endif %}
@@ -323,7 +323,7 @@
                 {% if var[0].tag %}
                     <dt>{{ clean_tag(var[0].tag) }}</dt>
                 {% endif %}
-                <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form') }}</dd>
+                <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form')|safe }}</dd>
             {% endfor %}
         </dl>
     {% endif %}
@@ -351,13 +351,13 @@
             <th class="tag" lang="{{ _to }}">{{ tag_display }}</th>
 
             {% if sgs and sgs != '-' %}
-                <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form') }}</td>
+                <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form')|safe }}</td>
             {% else %}
                 <td lang="{{ _from }}" class="center">&mdash;</td>
             {% endif %}
 
             {% if pls and pls != '-' %}
-                <td lang="{{ _from }}">{{ pls|join('<br />', attribute='form') }}</td>
+                <td lang="{{ _from }}">{{ pls|join('<br />', attribute='form')|safe }}</td>
             {% else %}
                 <td lang="{{ _from }}" class="center">&mdash;</td>
             {% endif %}
@@ -372,7 +372,7 @@
                 {% if var[0].tag %}
                     <th class="tag" lang="{{ _to }}">{{ clean_tag(var[0].tag) }}</th>
                 {% endif %}
-                <td colspan="2" lang="{{ _from }}" class="center">{{ var|join('<br />', attribute='form') }}</td>
+                <td colspan="2" lang="{{ _from }}" class="center">{{ var|join('<br />', attribute='form')|safe }}</td>
             </tr>
         {% endfor %}
 
@@ -401,11 +401,11 @@
           {% endif %}
           {# Link comparative and superlative lemmas to their paradigms #}
           {% if var|by_tagset("derivations")|by_tagset_value("case", "Nom")|length > 0 %}
-            <td lang="{{ _from }}">{{ standard_paradigm_link_deriv(var|first_form|regex_remove("\([^)]*\) "), var|join('<br />', attribute='form')) }}</td>
+            <td lang="{{ _from }}">{{ standard_paradigm_link_deriv(var|first_form|regex_remove("\([^)]*\) "), var|join('<br />', attribute='form')|safe) }}</td>
           {% elif var|without_tagset("derivations")|by_tagset_value("case", "Nom")|by_tagset_value("number", "Sg")|length > 0 %}
-            <td lang="{{ _from }}">{{ mini_paradigm_link_deriv(var|first_form, var|join('<br />', attribute='form')) }}</td>
+            <td lang="{{ _from }}">{{ mini_paradigm_link_deriv(var|first_form, var|join('<br />', attribute='form')|safe) }}</td>
           {% else %}
-            <td lang="{{ _from }}">{{ var|join('<br />', attribute='form') }}</td>
+            <td lang="{{ _from }}">{{ var|join('<br />', attribute='form')|safe }}</td>
           {% endif %}
         </tr>  
       {% endfor %}
@@ -435,13 +435,13 @@
                 <th class="tag" lang="{{ _to }}">{{ tag_display }}</th>
 
                 {% if sgs and sgs != '-' %}
-                    <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form') }}</td>
+                    <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form')|safe }}</td>
                 {% else %}
                     <td lang="{{ _from }}" class="center">&mdash;</td>
                 {% endif %}
 
                 {% if pls and pls != '-' %}
-                    <td lang="{{ _from }}">{{ pls|join('<br />', attribute='form') }}</td>
+                    <td lang="{{ _from }}">{{ pls|join('<br />', attribute='form')|safe }}</td>
                 {% else %}
                     <td lang="{{ _from }}" class="center">&mdash;</td>
                 {% endif %}
@@ -456,7 +456,7 @@
                     {% if var[0].tag %}
                         <th class="tag" lang="{{ _to }}">{{ clean_tag(var[0].tag) }}</th>
                     {% endif %}
-                    <td colspan="2" lang="{{ _from }}" class="center">{{ var|join('<br />', attribute='form') }}</td>
+                    <td colspan="2" lang="{{ _from }}" class="center">{{ var|join('<br />', attribute='form')|safe }}</td>
                 </tr>
             {% endfor %}
 
@@ -473,7 +473,7 @@
                 {% if var[0].tag %}
                     <dt>{{ clean_tag(var[0].tag) }}</dt>
                 {% endif %}
-                <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form') }}</dd>
+                <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form')|safe }}</dd>
             {% endfor %}
         </dl>
     {% endif %}

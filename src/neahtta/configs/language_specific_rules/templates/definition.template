@@ -20,7 +20,7 @@
 
     {% for translation_group in translation_groups %}
         {# TODO: is it possible to avoid having to pass the global context variables in here? #}
-        {{ templates.definition_text.render(translation_group=translation_group, _from=_from, _to=_to) }}
+        {{ templates.definition_text.render(translation_group=translation_group, _from=_from, _to=_to)|safe }}
 
         {# TODO: examples should move to definition notes template,
            which will need to be rendered for each tg #}

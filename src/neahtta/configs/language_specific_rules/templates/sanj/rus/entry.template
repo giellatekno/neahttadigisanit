@@ -42,20 +42,20 @@
         {% if lexicon_entry|count > 0 %}
             <p>
                 <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
-                    {{- rendered_templates.entry_text -}}</a>
+                    {{- rendered_templates.entry_text|safe -}}</a>
                     {%- if pos_text -%}<span class=pos_text>{{ pos_text }}</span>{% endif %}
                 {% if l_ref_text %}
                 <p class="l_ref"><span class="se_også">{% trans %}see also{% endtrans %} </span><a href="./?lookup={{l_ref_text.split("_")[0]}}">
-                    {{ l_ref_text.split("_")[0]}}</a></p>
+                    {{ l_ref_text.split("_")[0]|safe}}</a></p>
                 {% endif %}
             <ol class="meanings">
-                {{- rendered_templates.definition -}}
+                {{- rendered_templates.definition|safe -}}
             </ol>
         {% else %}&nbsp;{% endif %}
     </div>
     {#
     <div class="span4 hidden-phone lexeme_analyses">
-        {{- rendered_templates.analyses -}}
+        {{- rendered_templates.analyses|safe -}}
     </div>
     #}
 </div>

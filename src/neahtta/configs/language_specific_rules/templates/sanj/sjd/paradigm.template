@@ -407,7 +407,7 @@
                         {% set textshown = 1 %}
                         <dt lang="{{ _from }}">мунн ля̄</dt>
                     {% endif %}
-                    <dd lang="{{ _from }}">{{ var|uniq|join('<br />', attribute='form') }}</dd>
+                    <dd lang="{{ _from }}">{{ var|uniq|join('<br />', attribute='form')|safe }}</dd>
                 {% endfor %}
             </dl>
         {% endif %}
@@ -488,7 +488,7 @@
             {% if var[0].tag %}
                 <dt>{{ clean_tag(var[0].tag) }}</dt>
             {% endif %}
-            <dd lang="{{ _from }}">{{ var|uniq|join('<br />', attribute='form') }}</dd>
+            <dd lang="{{ _from }}">{{ var|uniq|join('<br />', attribute='form')|safe }}</dd>
         {% endfor %}
     </dl>
 
@@ -513,13 +513,13 @@
                 {% set i = i+1 %}
 
                 {% if sgs and sgs != '-' %}
-                    <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form') }}</td>
+                    <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form')|safe }}</td>
                 {% else %}
                     <td lang="{{ _from }}" class="center">&mdash;</td>
                 {% endif %}
 
                 {% if pls and pls != '-' %}
-                    <td lang="{{ _from }}">{{ pls|join('<br />', attribute='form') }}</td>
+                    <td lang="{{ _from }}">{{ pls|join('<br />', attribute='form')|safe }}</td>
                 {% else %}
                     <td lang="{{ _from }}" class="center">&mdash;</td>
                 {% endif %}
@@ -531,7 +531,7 @@
                     {% set i = 7 %}
                     <tr>
                         <th class="tag" lang="{{ _to }}">{{ contexts[i] }}</th>
-                        <td lang="{{ _to }}">{{ form|join('<br />', attribute='form') }}</td>
+                        <td lang="{{ _to }}">{{ form|join('<br />', attribute='form')|safe }}</td>
                         <td></td>
                     </tr>
                     {% set i = i+1 %}
