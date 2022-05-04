@@ -71,7 +71,7 @@ no_fst_install = [
 location_restriction_notice = {
     'gtdict.uit.no': [
         'sanit', 'baakoeh', 'kyv', 'muter', 'saan', 'saanih', 'sanat',
-        'sonad', 'vada', 'valks', 'bahkogirrje'
+        'sonad', 'vada', 'valks', 'bahkogirrje', 'sanj'
     ]
 }
 
