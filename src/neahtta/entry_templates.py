@@ -334,7 +334,7 @@ class TemplateConfig(object):
         from functools import partial
 
         if self.debug:
-            print >> sys.stderr, "* Reading template directory."
+            print("* Reading template directory.", file=sys.stderr)
 
         # Path relative to working directory
         _path = self.template_dir
@@ -448,37 +448,45 @@ class TemplateConfig(object):
     def print_debug_tree(self):
         """ Here we print the handy tree of overridden things
         """
-        print
-        print 'templates/ '
+        print()
+        print('templates/ ')
         for t in self.default_templates.keys():
-            print '   + ' + t
+            print('   + ' + t)
 
-        print
-        print '  %s/ ' % self.instance
+        print()
+        print('  %s/ ' % self.instance)
+        sys.stdout.flush()
 
         for k, f in self.project_templates.iteritems():
             if f.path not in [p.path for p in self.default_templates.values()]:
-                print u'    + ' + k
+                print(u'    + ' + k)
+                sys.stdout.flush()
             else:
-                print u'      ' + k
-        print
+                print(u'      ' + k)
+                sys.stdout.flush()
+        print()
+        sys.stdout.flush()
 
         for lang, temps in self.language_templates.iteritems():
-            print u'      %s/' % lang
+            print(u'      %s/' % lang)
 
             for k, f in temps.iteritems():
                 if f.path not in [
                         p.path for p in self.project_templates.values()
                 ]:
-                    print u'      + ' + k
+                    print(u'      + ' + k)
+                    sys.stdout.flush()
                 else:
-                    print u'        ' + k
+                    print(u'        ' + k)
+                    sys.stdout.flush()
 
-            print
+            print()
+            sys.stdout.flush()
 
-        print ' + - overridden here.'
-        print
-        print
+        print(' + - overridden here.')
+        sys.stdout.flush()
+        print()
+        print()
 
     def read_template_file(self, path):
         if path not in parsed_template_cache:
@@ -489,15 +497,15 @@ class TemplateConfig(object):
             return parsed_template_cache.get(path)
 
     def _template_parse_error_msg(self, exception, path, lineno=None):
-        print
-        print '--'
+        print()
+        print('--')
         if lineno:
-            print >> sys.stderr, "Error parsing template at <%s> (line %d)" % (path, exception.lineno)
+            print("Error parsing template at <%s> (line %d)" % (path, exception.lineno), file=sys.stderr)
         else:
-            print >> sys.stderr, "Error parsing template at <%s>" % path
-        print >> sys.stderr, exception
-        print '--'
-        print
+            print("Error parsing template at <%s>" % path, file=sys.stderr)
+        print(exception, file=sys.stderr)
+        print('--')
+        print()
 
     def parse_template_string(self, template_string, path):
         parsed_condition = False
