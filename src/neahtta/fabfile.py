@@ -21,7 +21,7 @@ few things.
 
 So, to compile the lexicon locally for baakoeh, you would run:
 
-    $ fab local baakoeh compile-dictionary
+    $ fab (local) baakoeh compile-dictionary
 
 To do the same remotely, and restart the service, you would run:
 
@@ -29,6 +29,9 @@ To do the same remotely, and restart the service, you would run:
 
 With the latter, Fabric will connect via SSH and run commands remotely.
 You may be asked for your SSH password.
+
+After updating to Fabric 2, not all remote commands have been debugged well.
+Local Invoke execution should work.
 
 """
 
@@ -55,7 +58,6 @@ from termcolor import colored
 # Fabric 2
 from fabric import task
 from fabric.config import Config
-from fabric.connection import Connection
 from invoke import Exit
 # Note: underscores in task names are converted to hyphens for commandline invokation, e.g. "fab sanit restart-service"
 
@@ -652,7 +654,7 @@ def where(iso):
 @task
 def where_is(ctx, iso='x'):
     """ Search *.in files for language ISOs to return projects that the
-    language is present in. """
+    language is present in. Use parameter --iso=<iso code>"""
 
     if '+' in iso:
         iso = iso.split('+')
