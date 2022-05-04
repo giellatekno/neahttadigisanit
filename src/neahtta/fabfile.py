@@ -83,11 +83,6 @@ config.no_svn_up = False
 config.load_ssh_configs = True
 # config.connect_kwargs.key_filename = '~/.ssh/neahtta'
 
-if ['local', 'gtdict'] not in sys.argv:
-    pass 
-    # Not sure is this is needed in Fabric 2
-    # env = local(env)
-
 
 config.real_hostname = socket.gethostname()
 
@@ -154,7 +149,10 @@ def set_proj(ctx):
 
 
 @task
-def local(ctx, *args, **kwargs):
+def local(ctx):
+    config_local()
+
+def config_local(*args, **kwargs):
     """ Run a command using the local environment.
     """
     import os
@@ -180,8 +178,8 @@ def local(ctx, *args, **kwargs):
         config.dict_path, os.path.join(config.dict_path, 'Makefile'))
     config.remote_no_fst = False
 
-    # "return env" removed, check that is was not needed
-
+if ['local', 'gtdict'] not in sys.argv:
+    config_local()
 
 # set up environments
 # Assume local unless otherwise noted
