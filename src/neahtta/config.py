@@ -5,7 +5,7 @@ import sys
 import yaml
 
 from flask import Config
-from lexicon.lexicon import DEFAULT_XPATHS
+from nds_lexicon.lexicon import DEFAULT_XPATHS
 
 # Import configs stuff to register overrides
 # from conf import *
@@ -1158,7 +1158,7 @@ class Config(Config):
         return True
 
     def add_optional_routes(self):
-        from lexicon import lexicon_overrides as lexicon
+        from nds_lexicon import lexicon_overrides as lexicon
 
         # add korp_routes
         korp_pairs = [
@@ -1171,7 +1171,7 @@ class Config(Config):
         lexicon.external_search(*searches)(external_korp_url)
 
     def prepare_lexica(self):
-        from lexicon import Lexicon
+        from nds_lexicon import Lexicon
         self.lexicon = Lexicon(self)
         self.tag_filters
 

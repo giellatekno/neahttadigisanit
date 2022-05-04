@@ -47,7 +47,7 @@ def externalFormSearch(_from, _to, _search_type):
 
     """
 
-    from lexicon import lexicon_overrides
+    from nds_lexicon import lexicon_overrides
 
     if (_from, _to) not in current_app.config.dictionaries and \
        (_from, _to) not in current_app.config.variant_dictionaries:
@@ -138,7 +138,7 @@ def config_doc(from_language):
     override_mods = current_app.config.overrides
 
     from morphology import generation_overrides
-    from lexicon import lexicon_overrides
+    from nds_lexicon import lexicon_overrides
     from morpholex import morpholex_overrides
 
     generation_docs = gen_doc(from_language,

@@ -7,7 +7,7 @@ from flask.ext.babel import gettext as _
 from flask.views import MethodView
 
 from i18n.utils import get_locale
-from lexicon import FrontPageFormat
+from nds_lexicon import FrontPageFormat
 from utils.encoding import decode_or_fail
 from utils.logger import logIndexLookups
 
@@ -1023,7 +1023,7 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
             in `html` using the template `word_detail.html`
 
     """
-    from lexicon import DetailedFormat as formatter
+    from nds_lexicon import DetailedFormat as formatter
 
     accepted_lemma_args = {
         'e_node': 'entry_hash',

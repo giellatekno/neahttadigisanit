@@ -31,7 +31,7 @@ Example target string formatting function:
 
 from configs.language_specific_rules.common import match_homonymy_entries
 from flask import current_app
-from lexicon import lexicon_overrides as lexicon
+from nds_lexicon import lexicon_overrides as lexicon
 from morpholex import morpholex_overrides as morpholex
 from morphology import generation_overrides as morphology
 

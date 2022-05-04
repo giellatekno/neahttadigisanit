@@ -31,7 +31,7 @@ __all__ = [
 
 class LemmatizerView(DictionaryView, SearcherMixin):
     """A view to produce a json formatted lemma."""
-    from lexicon import DetailedFormat as formatter
+    from nds_lexicon import DetailedFormat as formatter
 
     @staticmethod
     def clean_lemma(lang, lemma):

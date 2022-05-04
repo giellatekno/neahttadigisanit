@@ -1,5 +1,5 @@
 from flask import current_app
-from lexicon import lexicon_overrides
+from .lexicon import lexicon_overrides
 from morphology.utils import tagfilter
 from utils.data import flatten
 

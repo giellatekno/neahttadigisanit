@@ -1,4 +1,4 @@
-from lexicon import Lexicon, lexicon_overrides, LexiconOverrides, autocomplete_filters, search_types, XMLDict
+from .lexicon import Lexicon, lexicon_overrides, LexiconOverrides, autocomplete_filters, search_types, XMLDict
 
 from lookups import SearchTypes
 from custom_lookups import CustomLookupType

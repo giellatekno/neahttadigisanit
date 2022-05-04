@@ -113,7 +113,7 @@ def lookupWord(from_language, to_language):
     """
     import simplejson
 
-    from lexicon import SimpleJSON
+    from nds_lexicon import SimpleJSON
 
     current_app.limiter.check()
 

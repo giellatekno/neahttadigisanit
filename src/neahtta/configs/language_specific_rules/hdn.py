@@ -3,7 +3,7 @@
 connecting FST to Lexicon.
 """
 
-# from lexicon import lexicon_overrides as lexicon
+# from nds_lexicon import lexicon_overrides as lexicon
 #
 # from common import remove_blank, external_korp_url
 #

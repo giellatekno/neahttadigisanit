@@ -31,7 +31,7 @@ def register_template_filters(app):
 
     @app.template_filter('hash_node')
     def hash_node(node):
-        from lexicon.lexicon import hash_node
+        from nds_lexicon.lexicon import hash_node
         return hash_node(node)
 
     @app.template_filter('render_block')

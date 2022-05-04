@@ -11,7 +11,7 @@ from collections import defaultdict, OrderedDict
 from itertools import groupby
 from operator import itemgetter
 
-from lexicon.lexicon import hash_node
+from nds_lexicon.lexicon import hash_node
 
 
 class MorphoLexiconOverrides(object):

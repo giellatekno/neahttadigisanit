@@ -32,7 +32,7 @@ from flask import (Response, abort, current_app, g, redirect, render_template,
                    request, session)
 from flask.ext.babel import gettext as _
 from i18n.utils import get_locale
-from lexicon import FrontPageFormat
+from nds_lexicon import FrontPageFormat
 
 from .reader import crossdomain
 from .search import LanguagePairSearchView

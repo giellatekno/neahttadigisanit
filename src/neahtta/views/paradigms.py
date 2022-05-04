@@ -47,7 +47,7 @@ def lineno():
 class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
     """A view to produce a json formatted paradigm."""
 
-    from lexicon import DetailedFormat as formatter
+    from nds_lexicon import DetailedFormat as formatter
 
     @staticmethod
     def clean_lemma(lemma):

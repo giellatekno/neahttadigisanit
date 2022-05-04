@@ -2,7 +2,7 @@
 from lxml import etree
 
 from flask import current_app, g
-from lexicon import CustomLookupType, lexicon_overrides, search_types
+from nds_lexicon import CustomLookupType, lexicon_overrides, search_types
 from morpholex import morpholex_overrides as morpholex
 from views.custom_rendering import template_rendering_overrides
 
