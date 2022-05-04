@@ -5,8 +5,8 @@ from functools import update_wrapper
 from bookmarklet_code import generate_bookmarklet_code
 from flask import (Response, abort, current_app, json, make_response,
                    render_template, request, session)
-from flask.ext.babel import gettext as _
-from flask.ext.babel import lazy_gettext
+from flask_babel import gettext as _
+from flask_babel import lazy_gettext
 from i18n.utils import iso_filter
 from morphology.utils import tagfilter
 from utils.json import fmtForCallback
@@ -311,7 +311,7 @@ def bookmarklet_configs():
     and internationalization strings.
     """
 
-    from flask.ext.babel import get_locale
+    from flask_babel import get_locale
 
     NAMES = current_app.config.NAMES
     LOCALISATION_NAMES_BY_LANGUAGE = current_app.config.LOCALISATION_NAMES_BY_LANGUAGE

@@ -84,7 +84,7 @@ def register_filters(app):
     @app.template_filter('iso_to_i18n')
     def append_language_names_i18n(s):
         from flask import g, current_app
-        from flask.ext.babel import lazy_gettext
+        from flask_babel import lazy_gettext
         NAMES = current_app.config.NAMES
 
         _n = NAMES.get(s, NAMES.get(g.orig_from, s))

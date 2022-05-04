@@ -14,7 +14,7 @@ from nds_lexicon.lexicon import DEFAULT_XPATHS
 
 
 def gettext_yaml_wrapper(loader, node):
-    from flask.ext.babel import lazy_gettext as _
+    from flask_babel import lazy_gettext as _
     return node.value
 
 
@@ -833,7 +833,7 @@ class Config(Config):
         from itertools import groupby
         from collections import defaultdict, OrderedDict
 
-        from flask.ext.babel import get_locale
+        from flask_babel import get_locale
         locale = get_locale()
 
         NAMES = self.NAMES

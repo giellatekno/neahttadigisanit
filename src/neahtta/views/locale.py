@@ -4,7 +4,7 @@ from . import blueprint
 
 
 def set_locale(iso):
-    from flask.ext.babel import refresh
+    from flask_babel import refresh
 
     session['locale'] = iso
 

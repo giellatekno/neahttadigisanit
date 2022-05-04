@@ -3,7 +3,7 @@
 
 from termcolor import colored
 from flask import Flask
-from flask.ext.actions import Manager
+from flaskext.actions import Manager
 from neahtta import app
 
 manager = Manager(app, default_server_actions=True)

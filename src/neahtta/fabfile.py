@@ -225,7 +225,7 @@ def read_config(proj):
     import yaml
 
     def gettext_yaml_wrapper(loader, node):
-        from flask.ext.babel import lazy_gettext as _
+        from flask_babel import lazy_gettext as _
         return node.value
 
     yaml.add_constructor('!gettext', gettext_yaml_wrapper)

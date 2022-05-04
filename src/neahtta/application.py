@@ -14,8 +14,8 @@ from cache import cache
 # from   werkzeug.contrib.cache         import SimpleCache
 from config import Config
 from flask import Flask, request, session
-from flask.ext.babel import Babel
-from flask.ext.limiter import Limiter
+from flask_babel import Babel
+from flask_limiter import Limiter
 
 # Configure user_log
 user_log = getLogger("user_log")
@@ -131,7 +131,7 @@ def prepare_assets(app):
             'css/test_palette.css',
         ]
 
-    from flask.ext.assets import Environment, Bundle
+    from flask_assets import Environment, Bundle
 
     assets = Environment(app)
     app.assets = assets
@@ -236,7 +236,7 @@ def register_assets(app):
       * css/nav-menu-compiled-PROJNAME.css
 
     """
-    from flask.ext.assets import Environment, Bundle
+    from flask_assets import Environment, Bundle
 
     # TODO: register output including proj name
 

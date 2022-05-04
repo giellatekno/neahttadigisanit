@@ -3,7 +3,7 @@ from logging import getLogger
 
 from flask import (abort, current_app, g, redirect, render_template,
                    request, session, url_for)
-from flask.ext.babel import gettext as _
+from flask_babel import gettext as _
 from flask.views import MethodView
 
 from i18n.utils import get_locale
@@ -144,7 +144,7 @@ class DictionaryView(MethodView):
     @staticmethod
     def force_locale(_from, _to):
 
-        from flask.ext.babel import refresh
+        from flask_babel import refresh
 
         _, orig_pair_opts = current_app.config.resolve_original_pair(
             _from, _to)
