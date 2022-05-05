@@ -101,6 +101,7 @@ Ideas:
 # there's a package for that, supports combined cells-- alternatively
 # mediawiki format could be used
 
+from __future__ import absolute_import
 import os
 import sys
 
@@ -518,7 +519,7 @@ class TableParser(object):
 
         try:
             b = self.header
-        except Exception, e:
+        except Exception as e:
             errors['header'] = NoTableDefinition(
                 self.options['META'].get('path'))
             success = False

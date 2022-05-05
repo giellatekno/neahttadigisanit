@@ -47,6 +47,8 @@ Local Invoke execution should work.
 #        - mkdir:
 #            configs/language_specific_rules/tagsets/
 
+from __future__ import absolute_import
+from __future__ import print_function
 import os
 import socket
 import sys
@@ -128,7 +130,7 @@ def set_proj(ctx):
     if proj:
         config.current_dict = proj
     else:
-        print >> sys.stderr, "This is not a valid project name."
+        print("This is not a valid project name.", file=sys.stderr)
         sys.exit()
 
     host = socket.gethostname()
@@ -139,8 +141,8 @@ def set_proj(ctx):
             host_rest = location_restriction_notice.get(host, False)
             if host_rest:
                 if proj not in host_rest:
-                    print >> sys.stderr, colored(
-                        "%s is not on the current host <%s>." % (proj, host), "red")
+                    print(colored(
+                        "%s is not on the current host <%s>." % (proj, host), "red"), file=sys.stderr)
                     cont = raw_input(colored('Continue anyway? [Y/N] \n', "red"))
                     if cont != 'Y':
                         sys.exit()
@@ -212,11 +214,11 @@ def gtdict(ctx):
 def update_configs(ctx):
     """ Pull repository to update the config files """
     if config.no_svn_up:
-        print(colored("** skipping git pull **", "yellow"))
+        print((colored("** skipping git pull **", "yellow")))
         return
 
     with ctx.cd(config.neahtta_path):
-        print(colored("** git pull **", "cyan"))
+        print((colored("** git pull **", "cyan")))
         ctx.run("git pull")
 
 
@@ -237,14 +239,14 @@ def read_config(proj):
     except IOError:
         if config.real_hostname not in running_service:
             _path = 'configs/%s.config.yaml.in' % proj
-            print(
+            print((
                 colored(
                     "** Production config not found, using development (*.in)", "yellow")
-            )
+            ))
         else:
-            print(
+            print((
                 colored("** Production config not found, and on a production server. Exiting.", "red"
-                    ))
+                    )))
             sys.exit()
 
     with open(_path, 'r') as F:
@@ -258,7 +260,7 @@ def update_gtsvn(ctx):
     """ SVN up the various ~/gtsvn/ directories """
 
     if config.no_svn_up:
-        print(colored("** skipping svn up **", "yellow"))
+        print((colored("** skipping svn up **", "yellow")))
         return
 
     with ctx.cd(config.svn_path):
@@ -275,7 +277,7 @@ def update_gtsvn(ctx):
             'words/',
             #'art/dicts/', does not exist
         ] # + svn_lang_paths not in svn anymore
-        print(colored("** svn up **", "cyan"))
+        print((colored("** svn up **", "cyan")))
         for p in paths:
             _p = os.path.join(config.svn_path, p)
             try:
@@ -324,22 +326,22 @@ def restart_service(ctx, dictionary=False):
         except Exception as e:
             touched = False
         if touched:
-            print(colored("** Restarting service for <%s> **" % dictionary, "cyan"))
+            print((colored("** Restarting service for <%s> **" % dictionary, "cyan")))
             sys.exit()
 
-        print(colored("** Restarting service for <%s> **" % dictionary, "cyan"))
+        print((colored("** Restarting service for <%s> **" % dictionary, "cyan")))
         restart = ctx.run("sudo service nds-%s restart" % dictionary)
         if not restart.failed:
-            print(
+            print((
                 colored("** <%s> Service has restarted successfully **" %
-                      dictionary), "green")
+                      dictionary), "green"))
         else:
             fail = True
 
     if fail:
-        print(
+        print((
             colored("** something went wrong while restarting <%s> **" %
-                dictionary), "red")
+                dictionary), "red"))
 
 
 @task
@@ -369,9 +371,9 @@ def compile_dictionary(ctx, dictionary=False, restart=False):
         restart_service(ctx, dictionary)
 
     if failed:
-        print(
+        print((
             colored("** Something went wrong while compiling <%s> **" %
-                dictionary), "red")
+                dictionary), "red"))
 
 
 @task
@@ -388,7 +390,7 @@ def compile(ctx, dictionary=False, restart=False):
     hup = False
     failed = False
 
-    print(colored("Executing on <%s>" % config.real_hostname, "cyan"))
+    print((colored("Executing on <%s>" % config.real_hostname, "cyan")))
 
     if not dictionary:
         dictionary = config.current_dict
@@ -398,20 +400,20 @@ def compile(ctx, dictionary=False, restart=False):
 
     with ctx.cd(config.dict_path):
         if config.no_svn_up:
-            print(colored("** Skipping git pull of Makefile", "yellow"))
+            print((colored("** Skipping git pull of Makefile", "yellow")))
         else:
             ctx.run("git pull")
 
         if config.real_hostname in no_fst_install or config.remote_no_fst:
-            print(colored("** Skip FST compile for gtdict **", "yellow"))
-            print(colored("** Compiling lexicon for <%s> **" % dictionary, "cyan"))
+            print((colored("** Skip FST compile for gtdict **", "yellow")))
+            print((colored("** Compiling lexicon for <%s> **" % dictionary, "cyan")))
             result = ctx.run(config.make_cmd + " %s-lexica" % dictionary)
             skip_fst = True
         else:
             skip_fst = False
 
-            print(
-                colored("** Compiling lexicon and FSTs for <%s> **" % dictionary, "cyan"))
+            print((
+                colored("** Compiling lexicon and FSTs for <%s> **" % dictionary, "cyan")))
 
             if config.clean_first in ['Y', 'y']:
                 clean_result = ctx.run(config.make_cmd + " %s-clean" % dictionary)
@@ -419,26 +421,26 @@ def compile(ctx, dictionary=False, restart=False):
             result = ctx.run(config.make_cmd + " %s" % dictionary)
 
         if not result.succeeded:
-            print(
+            print((
                 colored("** There was some problem building the FSTs for this dictionary.",
-                    "red"))
-            print(
+                    "red")))
+            print((
                 colored("** Remove and check out individual language directories first?",
-                    "red"))
-            print(
+                    "red")))
+            print((
                 colored("** WARNING: this will run `rm -rf $GTHOME/giellalt/LANG-XXX for each",
-                    "red"))
-            print(
+                    "red")))
+            print((
                 colored("**          language in the current project. If you have", "red")
-            )
-            print(colored("**          local changes, they will be lost.", "red"))
+            ))
+            print((colored("**          local changes, they will be lost.", "red")))
             if confirm('Do you want to continue?'):
                 compile(ctx, dictionary, restart)
             failed = True
                 
 
         if not skip_fst:
-            print(colored("** Installing FSTs for <%s> **" % dictionary, "cyan"))
+            print((colored("** Installing FSTs for <%s> **" % dictionary, "cyan")))
             result = ctx.run(config.make_cmd + " %s-install" % dictionary)
             if result.failed:
                 failed = True
@@ -447,14 +449,14 @@ def compile(ctx, dictionary=False, restart=False):
         restart_service(ctx, dictionary)
 
     if failed:
-        print(
+        print((
             colored("** Something went wrong while compiling <%s> **" %
-                dictionary, "red"))
+                dictionary, "red")))
     else:
-        print(
+        print((
             colored(
                 "** <%s> FSTs and Lexicon compiled okay, should be safe to restart. **"
-                % dictionary, "cyan"))
+                % dictionary, "cyan")))
 
 
 @task
@@ -473,7 +475,7 @@ def compile_fst(ctx, iso='x'):
     # TODO: need a make path to clean existing dictionary
     with ctx.cd(config.dict_path):
         # ctx.run("svn up Makefile")
-        print(colored("** Compiling FST for <%s> **" % iso, "cyan"))
+        print((colored("** Compiling FST for <%s> **" % iso, "cyan")))
 
         clear_tmp = ctx.run(config.make_cmd + " rm-%s" % iso)
 
@@ -482,9 +484,9 @@ def compile_fst(ctx, iso='x'):
                             " %s-%s-install" % (dictionary, iso))
 
         if make_fsts.failed:
-            print(colored("** Something went wrong while compiling <%s> **" % iso, "red"))
+            print((colored("** Something went wrong while compiling <%s> **" % iso, "red")))
         else:
-            print(colored("** FST <%s> compiled **" % iso, "cyan"))
+            print((colored("** FST <%s> compiled **" % iso, "cyan")))
 
 
 @task
@@ -498,54 +500,54 @@ def test_configuration(ctx):
     except IOError:
         if config.real_hostname not in running_service:
             _path = 'configs/%s.config.yaml.in' % config.current_dict
-            print(
+            print((
                 colored(
                     "** Production config not found, using development (*.in)", "yellow")
-            )
+            ))
         else:
-            print(
+            print((
                 colored("** Production config not found, and on a production server. Exiting.",
-                    "yellow"))
+                    "yellow")))
             sys.exit()
 
     # TODO: this assumes virtualenv is enabled, need to explicitly enable
     _dict = config.current_dict
     with ctx.cd(config.dict_path):
-        print(colored("** Checking paths and testing XML for <%s> **" % _dict, "cyan"))
+        print((colored("** Checking paths and testing XML for <%s> **" % _dict, "cyan")))
 
         cmd = "NDS_CONFIG=%s python manage.py chk-fst-paths" % _path
         test_cmd = ctx.run(cmd)
         if test_cmd.failed:
-            print(colored("** Something went wrong while testing <%s> **" % _dict, "red"))
+            print((colored("** Something went wrong while testing <%s> **" % _dict, "red")))
         else:
-            print(colored("** Everything seems to work **", "cyan"))
+            print((colored("** Everything seems to work **", "cyan")))
 
 
 @task
 def extract_strings(ctx):
     """ Extract all the translation strings to the template and *.po files. """
 
-    print(colored("** Extracting strings", "cyan"))
+    print((colored("** Extracting strings", "cyan")))
     cmd = "pybabel extract -F babel.cfg -k gettext -o translations/messages.pot ."
     extract_cmd = ctx.run(cmd)
     if extract_cmd.failed:
-        print(colored("** Extraction failed, aborting.", "red"))
+        print((colored("** Extraction failed, aborting.", "red")))
     else:
-        print(colored("** Extraction worked, updating files.", "cyan"))
+        print((colored("** Extraction worked, updating files.", "cyan")))
         cmd = "pybabel update -i translations/messages.pot -d translations"
         update_cmd = ctx.run(cmd)
         if update_cmd.failed:
-            print(colored("** Update failed.", "red"))
+            print((colored("** Update failed.", "red")))
         else:
-            print(
-                colored("** Update worked. You may now check in or translate.", "green"))
+            print((
+                colored("** Update worked. You may now check in or translate.", "green")))
 
 
 @task
 def update_strings(ctx):
     """Must pull entire repo as we have moved to git"""
     if config.no_svn_up:
-        print(colored("** skipping git pull **", "yellow"))
+        print((colored("** skipping git pull **", "yellow")))
         compile_strings(ctx)
         return
 
@@ -578,9 +580,9 @@ def compile_strings(ctx):
             cmd = "pybabel compile -d translations -l %s" % lang
             compile_cmd = ctx.run(cmd)
             if compile_cmd.failed:
-                print(colored("** Compilation failed, aborting.", "red"))
+                print((colored("** Compilation failed, aborting.", "red")))
             else:
-                print(colored("** Compilation successful.", "green"))
+                print((colored("** Compilation successful.", "green")))
     else:
         cmd = "pybabel compile -d translations"
         compile_cmd = ctx.run(cmd) # previously warn only and capture, probably not needed now
@@ -590,27 +592,27 @@ def compile_strings(ctx):
                     l for l in compile_cmd.stderr.splitlines()
                     if 'babel.core.UnknownLocaleError' in l
                 ]
-                print(
+                print((
                     colored("** String compilation failed, aborting:  ", "red") + colored(
-                        ''.join(error_line), "cyan"))
+                        ''.join(error_line), "cyan")))
                 print("")
-                print(colored("  Either: ", "yellow"))
-                print(
+                print((colored("  Either: ", "yellow")))
+                print((
                     colored(
                         "   * rerun the command with the project name, i.e., `fab PROJNAME compile_strings`.",
                         "yellow"
-                    ))
-                print(
+                    )))
+                print((
                     colored(
                         "   * Troubleshoot missing locale. (see Troubleshooting doc)",
                         "yellow"
-                    ))
+                    )))
             else:
-                print(compile_cmd.stderr)
-                print(colored("** Compilation failed, aborting.", "red"))
+                print((compile_cmd.stderr))
+                print((colored("** Compilation failed, aborting.", "red")))
         else:
-            print(compile_cmd.stdout)
-            print(colored("** Compilation successful.", "green"))
+            print((compile_cmd.stdout))
+            print((colored("** Compilation successful.", "green")))
 
 
 def where(iso):
@@ -660,7 +662,7 @@ def where_is(ctx, iso='x'):
     locations = where(iso)
 
     for config_file, shortname, l in locations:
-        print ('%s : %s\t\t%s' % (l, shortname, config_file))
+        print(('%s : %s\t\t%s' % (l, shortname, config_file)))
 
 
 def search_running():
@@ -682,8 +684,8 @@ def search_running():
 def find_running(ctx):
     hostname = config.real_hostname
     for shortname, pidfile in search_running():
-        print ("%s running on %s (%s)" % (colored(shortname, "green"), colored(hostname, "yellow"),
-                                         pidfile))
+        print(("%s running on %s (%s)" % (colored(shortname, "green"), colored(hostname, "yellow"),
+                                         pidfile)))
 
 
 @task
@@ -696,23 +698,23 @@ def restart_running(ctx):
         failures = []
 
         for s, pid in running_services:
-            print(colored("** Restarting service for <%s> **" % s, "cyan"))
+            print((colored("** Restarting service for <%s> **" % s, "cyan")))
             stop = ctx.run("sudo service nds-%s stop" % s)
             if not stop.failed:
                 start = ctx.run("sudo service nds-%s start" % s)
                 if not start.failed:
-                    print(
+                    print((
                         colored("** <%s> Service has restarted successfully **" %
-                              s, "green"))
+                              s, "green")))
                 else:
                     failures.append((s, pid))
             else:
                 failures.append((s, pid))
 
     if len(failures) > 0:
-        print(colored("** something went wrong while restarting the following **", "red"))
+        print((colored("** something went wrong while restarting the following **", "red")))
         for f in failures:
-            print(s, pid)
+            print((s, pid))
 
 
 @task
@@ -728,21 +730,21 @@ def runserver(ctx):
     except IOError:
         if config.real_hostname not in running_service:
             _path = 'configs/%s.config.yaml.in' % config.current_dict
-            print(
+            print((
                 colored(
                     "** Production config not found, using development (*.in)", "yellow")
-            )
+            ))
         else:
-            print(
+            print((
                 colored("** Production config not found, and on a production server. Exiting.",
-                    "red"))
+                    "red")))
             sys.exit()
 
     cmd = "NDS_CONFIG=%s python neahtta.py dev" % _path
-    print(colored("** Go.", "green"))
+    print((colored("** Go.", "green")))
     run_cmd = ctx.run(cmd)
     if run_cmd.failed:
-        print(colored("** Starting failed for some reason.", "red"))
+        print((colored("** Starting failed for some reason.", "red")))
 
 
 @task
@@ -768,13 +770,13 @@ def test_project(ctx):
 
     _dict = config.current_dict
     with ctx.cd(config.dict_path):
-        print(colored("** Running tests for %s" % _dict, "cyan"))
+        print((colored("** Running tests for %s" % _dict, "cyan")))
 
         cmd = "NDS_CONFIG=%s python -m unittest tests.yaml_tests" % (yaml_path)
         test_cmd = ctx.run(cmd)
 
         if test_cmd.failed:
-            print(colored("** Something went wrong while testing <%s> **" % _dict, "red"))
+            print((colored("** Something went wrong while testing <%s> **" % _dict, "red")))
 
 
 @task
@@ -792,16 +794,16 @@ def unittests(ctx):
     except IOError:
         if config.real_hostname not in running_service:
             yaml_path = 'configs/%s.config.yaml.in' % config.current_dict
-            print(
+            print((
                 colored(
                     "** Production config not found, using development (*.in)", "yellow")
-            )
+            ))
             with open(yaml_path, 'r') as F:
                 _y = yaml.load(F)
         else:
-            print(
+            print((
                 colored("** Production config not found, and on a production "
-                    "server. Exiting.", "red"))
+                    "server. Exiting.", "red")))
             sys.exit()
 
     # TODO: this assumes virtualenv is enabled, need to explicitly enable
@@ -809,12 +811,12 @@ def unittests(ctx):
     with ctx.cd(config.dict_path):
         unittest_modules = _y.get('UnitTests', False)
         if not unittest_modules:
-            print(colored("** `UnitTests` not found in %s. Example:" % yaml_path, "red"))
-            print >> sys.stderr, ""
-            print >> sys.stderr, "    UnitTests:"
-            print >> sys.stderr, '     - "tests.LANG1_lexicon"'
-            print >> sys.stderr, '     - "tests.LANG2_lexicon"'
-            print >> sys.stderr, ""
+            print((colored("** `UnitTests` not found in %s. Example:" % yaml_path, "red")))
+            print("", file=sys.stderr)
+            print("    UnitTests:", file=sys.stderr)
+            print('     - "tests.LANG1_lexicon"', file=sys.stderr)
+            print('     - "tests.LANG2_lexicon"', file=sys.stderr)
+            print("", file=sys.stderr)
             sys.exit()
 
         for unittest in unittest_modules:
@@ -826,15 +828,15 @@ def unittests(ctx):
             #     print(colored("** File does not exist for %s" % unittest_file, "yellow"))
             #     continue
 
-            print(colored("** Running tests for %s" % unittest, "cyan"))
+            print((colored("** Running tests for %s" % unittest, "cyan")))
 
             cmd = "NDS_CONFIG=%s python -m unittest %s" % (yaml_path, unittest)
             test_cmd = ctx.run(cmd)
 
             if test_cmd.failed:
-                print(
+                print((
                     colored("** Something went wrong while testing <%s> **" %
-                        _dict, "red"))
+                        _dict, "red")))
 
 
 @task
@@ -864,7 +866,7 @@ def get_status_code(host, path="/"):
         conn = httplib.HTTPConnection(host)
         conn.request("HEAD", path)
         return conn.getresponse().status
-    except StandardError:
+    except Exception:
         return None
 
 
@@ -895,7 +897,7 @@ def test_running(ctx):
         else:
             col = "green"
             msg = ''
-        print(colored(msg + h, col))
+        print((colored(msg + h, col)))
 
 @task
 def add_stem2dict(ctx):
@@ -910,10 +912,10 @@ def add_stem2dict(ctx):
     cp_cmd = ctx.run(cmd)
 
     if cp_cmd.failed:
-        print(colored("** Backup xml failed, aborting.", "red"))
+        print((colored("** Backup xml failed, aborting.", "red")))
         return
     else:
-        print(colored("** Backing up xml" , "cyan"))
+        print((colored("** Backing up xml" , "cyan")))
 
     lexc_list = ['nouns', 'adjectives', 'verbs', 'prop']
 
@@ -927,16 +929,16 @@ def add_stem2dict(ctx):
         add_cmd = ctx.run(lexc_cmd)
 
         if add_cmd.failed:
-            print(colored("** Add stem type for %s to xml failed, aborting." %lexc, "red"))
+            print((colored("** Add stem type for %s to xml failed, aborting." %lexc, "red")))
             return
         else:
-            print(colored("** Successfully added stem type for %s to xml"  %lexc, "green"))
+            print((colored("** Successfully added stem type for %s to xml"  %lexc, "green")))
 
         cmd = 'cp dicts/sme-nob.all.xml.stem.xml dicts/sme-nob.all.xml'
         overwrite_cmd = ctx.run(cmd)
 
         if overwrite_cmd.failed:
-            print(colored("** Overwrite xml failed, aborting.", "red"))
+            print((colored("** Overwrite xml failed, aborting.", "red")))
             return
         else:
-            print(colored("** Overwriting xml" , "cyan"))
+            print((colored("** Overwriting xml" , "cyan")))

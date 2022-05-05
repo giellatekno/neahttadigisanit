@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+from __future__ import absolute_import
+from __future__ import print_function
 from datetime import timedelta
 from functools import update_wrapper
 
@@ -320,7 +322,7 @@ def bookmarklet_configs():
     sess_lang = request.args.get('language', get_locale())
 
     translated_messages = fetch_messages(sess_lang)
-    print translated_messages
+    print(translated_messages)
 
     dictionaries = []
 

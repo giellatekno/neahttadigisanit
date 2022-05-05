@@ -1,4 +1,5 @@
-﻿from flask import current_app
+﻿from __future__ import absolute_import
+from flask import current_app
 
 
 def iso_filter(_iso):

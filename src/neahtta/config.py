@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+from __future__ import absolute_import
+from __future__ import print_function
 import os
 import sys
 
@@ -69,20 +71,20 @@ def external_korp_url(pair_details, user_input):
 
     try:
         user_input = user_input.encode("utf-8")
-    except UnicodeError, e:
-        print 'Error in user_input:', e
+    except UnicodeError as e:
+        print('Error in user_input:', e)
 
     try:
         url_pattern = url_pattern.encode("utf-8")
-    except UnicodeError, e:
-        print 'Error in url_pattern:', e
+    except UnicodeError as e:
+        print('Error in url_pattern:', e)
 
     url_pattern = url_pattern.replace('USER_INPUT', user_input)
 
     try:
         url_pattern = url_pattern.decode("utf-8")
-    except UnicodeError, e:
-        print 'Error in url_pattern:', e
+    except UnicodeError as e:
+        print('Error in url_pattern:', e)
 
     if len(link_corpus_param) != 0:
         url_pattern = url_pattern + '&corpus=' + link_corpus_param
@@ -101,9 +103,9 @@ def validate_variants(variants, lexicon):
     for v in variants:
         missing_keys = obligatory_keys - set(v.keys())
         if len(missing_keys) > 0:
-            print >> sys.stderr, "Missing settings in `input_variants`:%d for lexicon <%s>" % (
-                variant_count, repr(lexicon))
-            print >> sys.stderr, "    " + ','.join(missing_keys)
+            print("Missing settings in `input_variants`:%d for lexicon <%s>" % (
+                variant_count, repr(lexicon)), file=sys.stderr)
+            print("    " + ','.join(missing_keys), file=sys.stderr)
             sys.exit()
         variant_count += 1
 
@@ -241,16 +243,16 @@ class Config(Config):
                 with open(self.geoip_library_path, 'r') as F:
                     pass
             except IOError:
-                print >> sys.stderr, "Could not find GeoIP library, but geoip logging is enabled."
-                print >> sys.stderr, "Check that it is compiled at the following path:"
-                print >> sys.stderr, ""
-                print >> sys.stderr, "     %s" % self.geoip_library_path
-                print >> sys.stderr, ""
-                print >> sys.stderr, "  ... or supply a different path with ApplicationSettings/GEOIP_LIBRARY_PATH"
-                print >> sys.stderr, "  setting in relevant project .yaml file."
-                print >> sys.stderr, ""
-                print >> sys.stderr, "See also: geo/README.md"
-                print >> sys.stderr, ""
+                print("Could not find GeoIP library, but geoip logging is enabled.", file=sys.stderr)
+                print("Check that it is compiled at the following path:", file=sys.stderr)
+                print("", file=sys.stderr)
+                print("     %s" % self.geoip_library_path, file=sys.stderr)
+                print("", file=sys.stderr)
+                print("  ... or supply a different path with ApplicationSettings/GEOIP_LIBRARY_PATH", file=sys.stderr)
+                print("  setting in relevant project .yaml file.", file=sys.stderr)
+                print("", file=sys.stderr)
+                print("See also: geo/README.md", file=sys.stderr)
+                print("", file=sys.stderr)
                 sys.exit()
         if _p:
             return _p
@@ -482,7 +484,7 @@ class Config(Config):
                 template = s.get('template')
 
                 if tag_c is None:
-                    print >> sys.stderr, "Missing tag context in <%s>" % filepath
+                    print("Missing tag context in <%s>" % filepath, file=sys.stderr)
 
                 parsed_sets[(entry_c, tag_c)] = jinja_env.from_string(template)
             return parsed_sets
@@ -493,9 +495,9 @@ class Config(Config):
                 if os.path.exists(tagset_path):
                     try:
                         file_context_set = yaml.load(open(tagset_path, 'r').read())
-                    except Exception, e:
-                        print " * YAML parsing error in <%s>\n\n" % tagset_path
-                        print e
+                    except Exception as e:
+                        print(" * YAML parsing error in <%s>\n\n" % tagset_path)
+                        print(e)
                         sys.exit()
                     self._paradigm_contexts[language].update(
                         reformat_context_set(tagset_path, file_context_set))
@@ -699,18 +701,18 @@ class Config(Config):
         for _p, dirs, files in os.walk(_path):
             for f in files:
                 if f.endswith('.relabel'):
-                    print " * Reading tagset in <%s> " % f
+                    print(" * Reading tagset in <%s> " % f)
                     relabel_path = os.path.join(_p, f)
                     try:
                         relabel_yaml = format_yaml(
                             yaml.load(open(relabel_path, 'r').read()))
-                    except Exception, e:
-                        print " * YAML parsing error in <%s>\n\n" % relabel_path
-                        print e
+                    except Exception as e:
+                        print(" * YAML parsing error in <%s>\n\n" % relabel_path)
+                        print(e)
                         sys.exit()
                     filter_sets.update(relabel_yaml)
-                    print "   - found: " + ', '.join(
-                        [k[0] + ' -> ' + k[1] for k in relabel_yaml.keys()])
+                    print("   - found: " + ', '.join(
+                        [k[0] + ' -> ' + k[1] for k in relabel_yaml.keys()]))
 
         self._tag_filters = filter_sets
         return self._tag_filters
@@ -737,9 +739,9 @@ class Config(Config):
                     tagset_path = os.path.join(_p, f)
                     try:
                         tagset_yaml = yaml.load(open(tagset_path, 'r').read())
-                    except Exception, e:
-                        print " * YAML parsing error in <%s>\n\n" % tagset_path
-                        print e
+                    except Exception as e:
+                        print(" * YAML parsing error in <%s>\n\n" % tagset_path)
+                        print(e)
                         sys.exit()
                     sets[language] = tagset_yaml
 
@@ -762,9 +764,9 @@ class Config(Config):
 
                 _missing = set(_from_langs.keys()) ^ set(_to_langs.keys())
                 if _missing:
-                    print >> sys.stderr, "Missing some name translations for"
-                    print >> sys.stderr, ', '.join(list(_missing))
-                    print >> sys.stderr, "Check Languages in app.config.yaml"
+                    print("Missing some name translations for", file=sys.stderr)
+                    print(', '.join(list(_missing)), file=sys.stderr)
+                    print("Check Languages in app.config.yaml", file=sys.stderr)
                     sys.exit()
 
                 _default_korp = {
@@ -840,13 +842,13 @@ class Config(Config):
 
         # TODO: cache list by locale
 
-        def group_by_source_first(((source, target), pair_options)):
+        def group_by_source_first(xxx_todo_changeme):
             """ Return the source and target.
             """
+            ((source, target), pair_options) = xxx_todo_changeme
             return (source, target)
 
-        def minority_langs_first((a_source_iso, a_target_iso), (b_source_iso,
-                                                                b_target_iso)):
+        def minority_langs_first(xxx_todo_changeme1, xxx_todo_changeme2):
             """ This is the cmp function, which accepts two ISO pairs
             and returns -1, 0, or 1 to sort the values depending on a few criteria:
 
@@ -861,9 +863,9 @@ class Config(Config):
 
             Then... Also sort by the target languages, so each grouping
             is still alphabetical. """
-
-            # TODO: compare on UI display name instead of ISOs.
-
+            (a_source_iso, a_target_iso) = xxx_todo_changeme1
+            (b_source_iso,
+                                                                b_target_iso) = xxx_todo_changeme2
             a_min = a_source_iso in self.minority_languages
             b_min = b_source_iso in self.minority_languages
 
@@ -954,12 +956,12 @@ class Config(Config):
             kwargs = {}
 
             if not conf_format:
-                print "No format specified"
+                print("No format specified")
                 sys.exit()
 
             m_format = formats.get(conf_format, False)
             if not m_format:
-                print "Undefined format"
+                print("Undefined format")
                 sys.exit()
 
             if 'tool' in _kwargs_in:
@@ -969,7 +971,7 @@ class Config(Config):
                     _kwt = _kwargs_in['tool']
                 kwargs['lookup_tool'] = _kwt
             else:
-                print "Lookup tool missing"
+                print("Lookup tool missing")
                 sys.exit()
 
             if 'file' in _kwargs_in:
@@ -1006,8 +1008,8 @@ class Config(Config):
                 if silent:
                     self.__getattribute__(item)
                 else:
-                    print item
-                    print self.__getattribute__(item)
+                    print(item)
+                    print(self.__getattribute__(item))
 
     def from_envvar(self, variable_name, silent=False):
         """Loads a configuration from an environment variable pointing to
@@ -1037,9 +1039,9 @@ class Config(Config):
         try:
             with open(os.path.join(os.path.dirname(__file__), path), 'r') as F:
                 lines = F.readlines()
-        except Exception, e:
-            print " * Unable to find multiword_list <%s>" % path
-            print e
+        except Exception as e:
+            print(" * Unable to find multiword_list <%s>" % path)
+            print(e)
             sys.exit()
 
         def drop_line_comment(l):
@@ -1099,25 +1101,25 @@ class Config(Config):
                     _min, _, _max = mwe_range.partition(',')
                     try:
                         _min = int(_min.strip().replace('-', ''))
-                    except Exception, e:
+                    except Exception as e:
                         _min = False
 
                     try:
                         _max = int(_max.strip().replace('+', ''))
-                    except Exception, e:
+                    except Exception as e:
                         _max = False
 
                     if _min and _max:
                         self._reader_options[l]['multiword_range'] = (_min,
                                                                       _max)
                     else:
-                        print " * Multiword range must specify min _and_ max. If there is no min or max, specify 0"
-                        print "   got: " + mwe_range
-                        print "   expecting:"
-                        print '    multiword_range: "-2,+2"'
-                        print '  or '
-                        print '    multiword_range: "0,+2"'
-                        print e
+                        print(" * Multiword range must specify min _and_ max. If there is no min or max, specify 0")
+                        print("   got: " + mwe_range)
+                        print("   expecting:")
+                        print('    multiword_range: "-2,+2"')
+                        print('  or ')
+                        print('    multiword_range: "0,+2"')
+                        print(e)
                         sys.exit()
                 # mwe_l = conf.get('multiword_list', False)
                 # if mwe and mwe_l:

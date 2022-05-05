@@ -1,4 +1,5 @@
-﻿from morphology import Tag
+﻿from __future__ import absolute_import
+from .morphology import Tag
 from flask import current_app
 
 __all__ = [
@@ -63,7 +64,7 @@ def tagfilter_conf(filters, s, *args, **kwargs):
 
     # Sort the replacements from longest set of tags to shortest
     multi_replacements = sorted(
-        multi_replacements, key=lambda (x, y): x.count('+'), reverse=True)
+        multi_replacements, key=lambda x_y: x_y[0].count('+'), reverse=True)
 
     # return matches and their indexes in the original list
     def subfinder(mylist, pattern):
@@ -90,7 +91,7 @@ def tagfilter_conf(filters, s, *args, **kwargs):
 
     if len(longest_matches) > 0:
         longest_matches = sorted(
-            longest_matches, key=lambda (x, _): len(x), reverse=True)
+            longest_matches, key=lambda x__: len(x__[0]), reverse=True)
         longest_match = longest_matches[0]
     else:
         longest_match = False

@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from __future__ import absolute_import
 from logging import getLogger
 
 from flask import (abort, current_app, g, redirect, render_template,

@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+from __future__ import absolute_import
+from __future__ import print_function
 import os
 import sys
 
@@ -77,17 +79,17 @@ def process_crk_analysis(analysis_line):
 
 
 def main():
-    print '--'
-    print process_crk_analysis("PV/asdf+PV/bbq+lemma+POS+Type+Sg1")
+    print('--')
+    print(process_crk_analysis("PV/asdf+PV/bbq+lemma+POS+Type+Sg1"))
     # ('lemma', 'PV/asdf+PV/bbq+POS+Type+Sg1')
-    print process_crk_analysis("lemma+POS+Type+Sg1")
+    print(process_crk_analysis("lemma+POS+Type+Sg1"))
     # ('lemma', 'lemma+POS+Type+Sg1')
-    print process_crk_analysis("PV/asdf+PV/bbq+lemma")
+    print(process_crk_analysis("PV/asdf+PV/bbq+lemma"))
 
-    print process_crk_analysis("ninahnipan\tRdplS+nipâw+V+AI+Ind+Prs+1Sg")
+    print(process_crk_analysis("ninahnipan\tRdplS+nipâw+V+AI+Ind+Prs+1Sg"))
     # ('ninahnipan', 'nipâw+RdplS+V+AI+Ind+Prs+1Sg')
-    print process_crk_analysis(
-        "ninanahnipan\tRdplW+RdplS+nipâw+V+AI+Ind+Prs+1Sg")
+    print(process_crk_analysis(
+        "ninanahnipan\tRdplW+RdplS+nipâw+V+AI+Ind+Prs+1Sg"))
     # ('ninanahnipan', 'nipâw+RdplW+RdplS+V+AI+Ind+Prs+1Sg')
 
 

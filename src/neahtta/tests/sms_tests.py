@@ -5,6 +5,7 @@
 # sääʹmkiõll
 # sääʹmkiõll  sääʹmǩiõll+N+Sg+Nom
 
+from __future__ import absolute_import
 import os
 import tempfile
 import unittest

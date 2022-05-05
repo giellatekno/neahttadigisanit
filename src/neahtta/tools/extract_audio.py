@@ -18,6 +18,8 @@ Options:
 #
 # python tools/extract_audio.py dicts/sms-all.xml static/aud/sms --verbose > test_aud.xml
 
+from __future__ import absolute_import
+from __future__ import print_function
 import os
 import sys
 
@@ -46,25 +48,25 @@ def transcode_audios(audio_paths, fmt="m4a", verbose=False):
     def proc(*args):
         PIPE = subprocess.PIPE
         if verbose:
-            print >> sys.stderr, args
+            print(args, file=sys.stderr)
         try:
             p = subprocess.call(
                 ' '.join(args), shell=True, stdout=PIPE, stderr=PIPE)
         except OSError:
             sys.exit("Problem transcoding. Is ffmpeg installed?")
         if verbose:
-            print >> sys.stderr, p
-            print >> sys.stderr, p.stdout
+            print(p, file=sys.stderr)
+            print(p.stdout, file=sys.stderr)
 
     transcoded_paths = []
 
     for url, target in audio_paths:
         transcoded_target = target.replace('.wav', '.' + fmt)
         if file_exists(transcoded_target):
-            print >> sys.stderr, " * already converted: <%s>" % transcoded_target
+            print(" * already converted: <%s>" % transcoded_target, file=sys.stderr)
         else:
             proc("ffmpeg", "-i", target, transcoded_target)
-            print >> sys.stderr, " * converted: <%s>" % transcoded_target
+            print(" * converted: <%s>" % transcoded_target, file=sys.stderr)
         transcoded_paths.append((url, transcoded_target))
 
     return transcoded_paths
@@ -94,7 +96,7 @@ def copy_file(path, target_dir, cache=True, verbose=False):
     from shutil import copy
 
     if verbose:
-        print >> sys.stderr, " * copying <%s> " % filename_from_url(url)
+        print(" * copying <%s> " % filename_from_url(url), file=sys.stderr)
 
     source_path = file_path_with_env(path)
     filename = ntpath.basename(source_path)
@@ -109,7 +111,7 @@ def copy_file(path, target_dir, cache=True, verbose=False):
 
 def fetch(url, target_dir, cache=True, verbose=False):
     if verbose:
-        print >> sys.stderr, " * fetching <%s> " % filename_from_url(url)
+        print(" * fetching <%s> " % filename_from_url(url), file=sys.stderr)
     filename = filename_from_url(url)
     local_target = os.path.join(target_dir, filename)
 
@@ -118,7 +120,7 @@ def fetch(url, target_dir, cache=True, verbose=False):
         try:
             exists = open(local_target, 'r')
             exists.close()
-            print >> sys.stderr, " * already stored <%s>" % local_target
+            print(" * already stored <%s>" % local_target, file=sys.stderr)
             # TODO: modified?
             return (url, local_target, False)
         except:
@@ -129,10 +131,10 @@ def fetch(url, target_dir, cache=True, verbose=False):
         what
 
     with open(local_target, 'w') as F:
-        print >> sys.stderr, " * Downloading <%s> " % local_target
+        print(" * Downloading <%s> " % local_target, file=sys.stderr)
         for block in r.iter_content(1024):
             F.write(block)
-        print >> sys.stderr, " * Done."
+        print(" * Done.", file=sys.stderr)
 
     modified = r.headers.get('last-modified', False)
     return (url, local_target, modified)
@@ -231,7 +233,7 @@ def write_xml(root, output_file=False):
         with open(output_file, 'w') as F:
             F.write(stringed.encode('utf-8'))
     else:
-        print >> sys.stdout, stringed.encode('utf-8')
+        print(stringed.encode('utf-8'), file=sys.stdout)
 
 
 def main():

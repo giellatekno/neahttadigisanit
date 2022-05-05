@@ -1,4 +1,6 @@
-﻿from paradigm_layouts import *
+﻿from __future__ import absolute_import
+from __future__ import print_function
+from paradigm_layouts import *
 
 
 def read_layout_file(fname):
@@ -59,12 +61,12 @@ def main():
             for r in rows:
                 for value in r:
                     if value.cell.header:
-                        print '**' + value.value + '**'
+                        print('**' + value.value + '**')
                     else:
-                        print ', '.join(value.value)
+                        print(', '.join(value.value))
 
         else:
-            print "no layout found"
+            print("no layout found")
 
     # print generated_paradigms
 

@@ -29,6 +29,7 @@ Example target string formatting function:
 # NOTE: if copying this for a new language, remember to make sure that
 # it's being imported in __init__.py
 
+from __future__ import absolute_import
 from configs.language_specific_rules.common import match_homonymy_entries
 from flask import current_app
 from nds_lexicon import lexicon_overrides as lexicon

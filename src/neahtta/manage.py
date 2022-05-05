@@ -1,6 +1,8 @@
 # manage.py
 # -*- encoding:utf-8 -*-
 
+from __future__ import absolute_import
+from __future__ import print_function
 from termcolor import colored
 from flask import Flask
 from flaskext.actions import Manager
@@ -15,9 +17,9 @@ def compilemessages(app):
     """
 
     def action():
-        print """ You might be looking for this ...
+        print(""" You might be looking for this ...
             - pybabel compile -d translations
-        """
+        """)
         return False
 
     return action
@@ -43,8 +45,8 @@ def chk_fst_paths(app):
 
     def action():
         fsts = app.config.yaml.get('Morphology').iteritems()
-        print ''
-        print 'Checking config files and whether they exist...'
+        print('')
+        print('Checking config files and whether they exist...')
         missing_fst = False
         for k, v in fsts:
             file_path = ''.join(v.get('file'))
@@ -66,17 +68,17 @@ def chk_fst_paths(app):
             except IOError:
                 missing_fst = True
 
-            print "%s:" % k
-            print "  " + file_exists + file_path
-            print "  " + dates
-            print ''
-            print "  " + i_file_exists + i_file_path
-            print "  " + i_dates
-            print ''
-            print ''
+            print("%s:" % k)
+            print("  " + file_exists + file_path)
+            print("  " + dates)
+            print('')
+            print("  " + i_file_exists + i_file_path)
+            print("  " + i_dates)
+            print('')
+            print('')
 
         if missing_fst:
-            print colored("Some FSTs were not found. See above.", "red")
+            print(colored("Some FSTs were not found. See above.", "red"))
         return False
 
     return action

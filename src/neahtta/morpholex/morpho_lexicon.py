@@ -7,6 +7,8 @@
 # Will need to operate on the output of lookup(), and this is language
 # specific, so decorator registry thing is probably good here.
 
+from __future__ import absolute_import
+from __future__ import print_function
 from collections import defaultdict, OrderedDict
 from itertools import groupby
 from operator import itemgetter
@@ -55,10 +57,10 @@ class MorphoLexiconOverrides(object):
             for language_iso in language_isos:
                 self.override_functions[language_iso] \
                     .append(override_function)
-                print '%s morpholex overrides: registered - %s' % \
+                print('%s morpholex overrides: registered - %s' % \
                       (language_iso
                        , override_function.__name__
-                       )
+                       ))
 
         return wrapper
 
@@ -423,7 +425,8 @@ class MorphoLexicon(object):
 
         if entry_hash_filter:
 
-            def filt((x, _)):
+            def filt(xxx_todo_changeme):
+                (x, _) = xxx_todo_changeme
                 if x is not None:
                     return hash_node(x) == entry_hash_filter
                 return True

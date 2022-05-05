@@ -1,4 +1,6 @@
-﻿import os
+﻿from __future__ import absolute_import
+from __future__ import print_function
+import os
 import unittest
 
 import neahtta
@@ -39,4 +41,4 @@ class TemplateRenderTest(unittest.TestCase):
                     analyses=analyses,
                     _from='sme',
                     _to='nob')
-                print rendered
+                print(rendered)

@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from flask import current_app
 from .lexicon import lexicon_overrides
 from morphology.utils import tagfilter
@@ -176,7 +177,7 @@ class EntryNodeIterator(object):
         for node in self.nodes:
             try:
                 yield self.clean(node)
-            except Exception, e:
+            except Exception as e:
                 import traceback
                 import sys
                 exc_type, exc_value, exc_traceback = sys.exc_info()

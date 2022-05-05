@@ -5,6 +5,8 @@ A lookup server that uses threads to handle multiple clients at a time.
 Called from the ped-interface (forms.py)
 """
 
+from __future__ import absolute_import
+from __future__ import print_function
 import os
 import re
 import select
@@ -38,10 +40,11 @@ class Server:
             self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.server.bind((self.host, self.port))
             self.server.listen(5)
-        except socket.error, (value, message):
+        except socket.error as xxx_todo_changeme1:
+            (value, message) = xxx_todo_changeme1.args
             if self.server:
                 self.server.close()
-                print "Could not open socket: " + message
+                print("Could not open socket: " + message)
                 sys.exit(1)
 
     def run(self):
@@ -65,7 +68,8 @@ class Server:
 
 
 class Client(threading.Thread):
-    def __init__(self, (client, address), look, lock):
+    def __init__(self, xxx_todo_changeme, look, lock):
+        (client, address) = xxx_todo_changeme
         threading.Thread.__init__(self)
         self.client = client
         self.address = address

@@ -1,4 +1,5 @@
-﻿from flask import current_app, g
+﻿from __future__ import absolute_import
+from flask import current_app, g
 
 
 def register_template_filters(app):
@@ -179,7 +180,7 @@ def register_template_filters(app):
                 entry,
                 return_raw_data=True,
                 template_tag=True)
-        except Exception, e:
+        except Exception as e:
             generated, raw = False, ""
 
         if generated:

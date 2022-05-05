@@ -1,5 +1,7 @@
 # -*- encoding: utf-8 -*-
 
+from __future__ import absolute_import
+from __future__ import print_function
 import os
 import tempfile
 import unittest
@@ -45,8 +47,8 @@ class ParadigmSelectionTest(WordLookupTests):
         # print self.current_app
         pc = ParadigmConfig(app=None, debug=True)
         for node, analyses in lookups:
-            print "Testing: ", node, analyses
+            print("Testing: ", node, analyses)
             # for a in analyses:
             #     print " - " + repr(a.tag.matching_tagsets())
-            print pc.get_paradigm('fin', node, analyses, debug=True)
-            print '--'
+            print(pc.get_paradigm('fin', node, analyses, debug=True))
+            print('--')

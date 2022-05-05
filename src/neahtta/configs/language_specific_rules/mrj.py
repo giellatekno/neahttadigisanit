@@ -4,6 +4,7 @@ mrj-specific overrides.
 
 """
 
+from __future__ import absolute_import
 from configs.language_specific_rules.common import (match_homonymy_entries,
                                                     remove_blank)
 from morpholex import morpholex_overrides as morpholex

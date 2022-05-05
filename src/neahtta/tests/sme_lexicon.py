@@ -1,5 +1,7 @@
 # -*- encoding: utf-8 -*-
 
+from __future__ import absolute_import
+from __future__ import print_function
 import os
 import tempfile
 import unittest
@@ -845,6 +847,6 @@ class ParadigmSelectionTest(WordLookupTests):
 
             pc = self.current_app.morpholexicon.paradigms
             for node, analyses in lookups:
-                print "Testing: ", node, analyses
-                print pc.get_paradigm('sme', node, analyses, debug=True)
-                print '--'
+                print("Testing: ", node, analyses)
+                print(pc.get_paradigm('sme', node, analyses, debug=True))
+                print('--')

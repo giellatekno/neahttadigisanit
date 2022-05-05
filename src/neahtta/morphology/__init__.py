@@ -1,7 +1,8 @@
 """ Morphology module.
 """
 
-from morphology import (Tagsets, Tagset, Tag, HFST, XFST, OBT, Morphology,
+from __future__ import absolute_import
+from .morphology import (Tagsets, Tagset, Tag, HFST, XFST, OBT, Morphology,
                         generation_overrides)
 
 __all__ = [

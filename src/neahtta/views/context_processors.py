@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from flask import current_app, g, request, session
 from i18n.utils import get_locale
 

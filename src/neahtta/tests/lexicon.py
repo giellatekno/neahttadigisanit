@@ -1,4 +1,6 @@
-﻿import os
+﻿from __future__ import absolute_import
+from __future__ import print_function
+import os
 import tempfile
 import unittest
 
@@ -76,7 +78,7 @@ def form_contains(_test_set):
             for second_list in first_list
         )
         if not bool(forms & _test_set):
-            print 78, 'failed', u' '.join(forms), u' '.join(_test_set)
+            print(78, 'failed', u' '.join(forms), u' '.join(_test_set))
         return bool(forms & _test_set)
 
     return test_contains
@@ -100,7 +102,7 @@ def form_doesnt_contain(_test_set):
             for second_list in first_list
         )
         if _test_set & forms:
-            print 101, 'failed', u' '.join(forms), u' '.join(_test_set)
+            print(101, 'failed', u' '.join(forms), u' '.join(_test_set))
         return len(_test_set & forms) == 0
 
     return test_doesnt_contain
@@ -143,7 +145,7 @@ class BasicTests(WordLookupTests):
 
     def test_all_words_for_no_404s(self):
         for lang_pair, form in self.wordforms_that_shouldnt_fail[1::]:
-            print "testing: %s / %s" % (repr(lang_pair), repr(form))
+            print("testing: %s / %s" % (repr(lang_pair), repr(form)))
             base = '/%s/%s/' % lang_pair
             rv = self.app.post(
                 base, data={
@@ -158,7 +160,7 @@ class WordLookupDetailTests(WordLookupTests):
         for lang_pair, form in self.wordforms_that_shouldnt_fail[1::]:
             _from, _to = lang_pair
             base = '/detail/%s/%s/%s.html' % (_from, _to, form)
-            print "testing: %s " % base
+            print("testing: %s " % base)
             rv = self.app.get(base)
 
             self.assertEqual(rv.status_code, 200)
@@ -171,9 +173,9 @@ class WordLookupAPITests(WordLookupTests):
             _from, _to = lang_pair
             base = self.url_base + u'/lookup/%s/%s/?' % (_from, _to)
             url = base + urlencode({'lookup': form.encode('utf-8')})
-            print "testing: %s " % url
+            print("testing: %s " % url)
             rv = self.app.get(url)
-            print "  got: %d bytes" % len(rv.data)
+            print("  got: %d bytes" % len(rv.data))
 
             self.assertEqual(rv.status_code, 200)
 
@@ -187,12 +189,12 @@ class ParadigmGenerationTests(WordLookupTests):
                 target,
                 lemma,
             )
-            print "testing: %s " % base
+            print("testing: %s " % base)
             rv = self.app.get(base)
             result = simplejson.loads(rv.data)
 
             if result['input']['lemma'] == lemma:
-                print 'paradigm'
+                print('paradigm')
                 test_result = test_func(result['paradigms'])
                 self.assertTrue(test_result)
 

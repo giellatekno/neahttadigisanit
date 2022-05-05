@@ -1,4 +1,6 @@
-﻿from morphology import generation_overrides as morphology
+﻿from __future__ import absolute_import
+from __future__ import print_function
+from morphology import generation_overrides as morphology
 from lxml import etree
 
 from flask import current_app, g
@@ -23,12 +25,15 @@ def sort_by_analyses(search_result_obj,
 
     """
 
-    def sort_key((lex, morph, p, l)):
+    def sort_key(xxx_todo_changeme):
+        (lex, morph, p, l) = xxx_todo_changeme
         _str_norm = 'string(normalize-space(%s))'
         lemma = lex.xpath(_str_norm % './lg/l/text()')
         return (lemma, morph)
 
-    def sort_with_user_input_first((a_lemma, a_morph), (b_lemma, b_morph)):
+    def sort_with_user_input_first(xxx_todo_changeme1, xxx_todo_changeme2):
+        (a_lemma, a_morph) = xxx_todo_changeme1
+        (b_lemma, b_morph) = xxx_todo_changeme2
         a_has_morph = len(a_morph) > 0
         b_has_morph = len(b_morph) > 0
 
@@ -236,20 +241,20 @@ class KeywordLookups(CustomLookupType):
     def __init__(self, filename=False, tree=False):
         if not tree:
             if filename not in PARSED_TREES:
-                print "parsing %s" % filename
+                print("parsing %s" % filename)
                 try:
                     self.tree = etree.parse(filename)
                     PARSED_TREES[filename] = self.tree
-                except Exception, e:
-                    print
-                    print " *** ** ** ** ** ** * ***"
-                    print " *** ERROR parsing %s" % filename
-                    print " *** ** ** ** ** ** * ***"
-                    print
-                    print " Check the compilation process... "
-                    print " Is the file empty?"
-                    print " Saxon errors?"
-                    print
+                except Exception as e:
+                    print()
+                    print(" *** ** ** ** ** ** * ***")
+                    print(" *** ERROR parsing %s" % filename)
+                    print(" *** ** ** ** ** ** * ***")
+                    print()
+                    print(" Check the compilation process... ")
+                    print(" Is the file empty?")
+                    print(" Saxon errors?")
+                    print()
                     sys.exit(2)
             else:
                 self.tree = PARSED_TREES[filename]
@@ -342,7 +347,8 @@ def force_hyphen(generated_forms, *input_args, **input_kwargs):
     def matches_hyphen(f):
         return u'ê-' in f or u'ē-' in f
 
-    def form_fx((tag, forms)):
+    def form_fx(xxx_todo_changeme3):
+        (tag, forms) = xxx_todo_changeme3
         if forms:
             _hyph = [f for f in forms if '-' in f]
             if len(_hyph) > 0:
@@ -396,7 +402,7 @@ def adjust_tags_for_gen(lemma, tags, node=None, **kwargs):
 
             try:
                 _pl = re.compile(pl)
-            except Exception, e:
+            except Exception as e:
                 _pl = False
 
             for part in t:

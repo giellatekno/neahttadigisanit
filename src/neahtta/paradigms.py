@@ -36,6 +36,8 @@ comparison types are needed (beyond X == Y and X is in list Y).
 TODO: allow user-defined global XPATH context.
 """
 
+from __future__ import absolute_import
+from __future__ import print_function
 import os
 import sys
 
@@ -263,7 +265,7 @@ class ParadigmRuleSet(object):
         self.comps = []
 
         if not lex and not morph:
-            print >> sys.stderr, "Missing morphology or lexicon rule context in <%s>" % self.name
+            print("Missing morphology or lexicon rule context in <%s>" % self.name, file=sys.stderr)
             self.comps = [NullRule()]
             lex = {}
             morph = {}
@@ -290,7 +292,7 @@ class ParadigmRuleSet(object):
         """
 
         if self.debug:
-            print >> sys.stderr, analysis
+            print(analysis, file=sys.stderr)
 
         self._evals = [comp.compare(node, analyses) for comp in self.comps]
 
@@ -299,7 +301,7 @@ class ParadigmRuleSet(object):
 
         context = dict(sum(contexts, []))
         if self.debug and truth:
-            print >> sys.stderr, "Found matching paradigm in %s." % self.name
+            print("Found matching paradigm in %s." % self.name, file=sys.stderr)
 
         return truth, context
 
@@ -366,16 +368,16 @@ class ParadigmConfig(object):
                 truth, context = condition.evaluate(
                     node, analyses, debug=debug)
                 if debug:
-                    print >> sys.stderr, truth
-                    print >> sys.stderr, context
-            except Exception, e:
-                print e
-                print 'Exception in compiling rule or evaluating.'
-                print '  ' + paradigm_rule.get('path')
-                print '  node:'
-                print node
-                print '  analyses:'
-                print analyses
+                    print(truth, file=sys.stderr)
+                    print(context, file=sys.stderr)
+            except Exception as e:
+                print(e)
+                print('Exception in compiling rule or evaluating.')
+                print('  ' + paradigm_rule.get('path'))
+                print('  node:')
+                print(node)
+                print('  analyses:')
+                print(analyses)
                 raise e
 
             # We have a match, so count how extensive it was.
@@ -387,12 +389,13 @@ class ParadigmConfig(object):
         possible_matches = sorted(
             possible_matches, key=itemgetter(0), reverse=True)
         if debug:
-            print >> sys.stderr, " - Possible matches: %d" % len(
-                possible_matches)
+            print(" - Possible matches: %d" % len(
+                possible_matches), file=sys.stderr)
 
-        def paradigm_ordering((_c, _context, _layout, _path)):
+        def paradigm_ordering(xxx_todo_changeme):
             """ Sort by type if it exists, otherwise sort by
             alphabetical order of filename """
+            (_c, _context, _layout, _path) = xxx_todo_changeme
             _type = _layout.options.get('layout', {}).get('type', False)
             if _type:
                 return _type
@@ -423,8 +426,8 @@ class ParadigmConfig(object):
             else:
                 count, context, layout, path = possible_matches[0]
                 if debug:
-                    print >> sys.stderr, context
-                    print >> sys.stderr, path
+                    print(context, file=sys.stderr)
+                    print(path, file=sys.stderr)
                 if return_template:
                     return layout, path
                 else:
@@ -474,14 +477,14 @@ class ParadigmConfig(object):
 
             try:
                 truth, context = condition.evaluate(node, analyses)
-            except Exception, e:
-                print e
-                print 'Exception in compiling rule or evaluating.'
-                print '  ' + paradigm_rule.get('path')
-                print '  node:'
-                print node
-                print '  analyses:'
-                print analyses
+            except Exception as e:
+                print(e)
+                print('Exception in compiling rule or evaluating.')
+                print('  ' + paradigm_rule.get('path'))
+                print('  node:')
+                print(node)
+                print('  analyses:')
+                print(analyses)
                 raise e
 
             # We have a match, so count how extensive it was.
@@ -493,13 +496,13 @@ class ParadigmConfig(object):
         possible_matches = sorted(
             possible_matches, key=itemgetter(0), reverse=True)
         if self.debug:
-            print >> sys.stderr, " - Possible matches: %d" % len(
-                possible_matches)
+            print(" - Possible matches: %d" % len(
+                possible_matches), file=sys.stderr)
 
         if len(possible_matches) > 0:
             count, context, template, path = possible_matches[0]
             if debug:
-                print >> sys.stderr, context
+                print(context, file=sys.stderr)
 
             template_context = {}
             template_context.update(context)
@@ -527,7 +530,7 @@ class ParadigmConfig(object):
 
         """
         from collections import defaultdict
-        print >> sys.stderr, "* Reading paradigm directory."
+        print("* Reading paradigm directory.", file=sys.stderr)
 
         # Use a plain jinja environment if none exists.
         if self._app is None:
@@ -608,7 +611,7 @@ class ParadigmConfig(object):
 
         self.paradigm_layout_rules = _lang_paradigm_layouts
 
-        print >> sys.stderr, '\n'.join(_file_successes)
+        print('\n'.join(_file_successes), file=sys.stderr)
 
         return None
 
@@ -629,13 +632,13 @@ class ParadigmConfig(object):
         if condition_yaml and paradigm_string_txt:
             try:
                 condition_yaml = yaml.load(condition_yaml)
-            except Exception, e:
-                print >> sys.stderr, "\n** Problem reading paradigm rule condition at: "
-                print >> sys.stderr, e
-                print >> sys.stderr, " in:"
+            except Exception as e:
+                print("\n** Problem reading paradigm rule condition at: ", file=sys.stderr)
+                print(e, file=sys.stderr)
+                print(" in:", file=sys.stderr)
                 _, lx, path = path.partition('language_specific_rules')
-                print >> sys.stderr, "    " + lx + path
-                print >> sys.stderr, "\n** Could not start service."
+                print("    " + lx + path, file=sys.stderr)
+                print("\n** Could not start service.", file=sys.stderr)
                 sys.exit()
 
             name = condition_yaml.get('name')
@@ -652,10 +655,10 @@ class ParadigmConfig(object):
                     if p['basename'] == paradigm_rule
                 ]
                 if len(matching_p) == 0:
-                    print >> sys.stderr, "\n** References a paradigm file (%s) that does not exist" % paradigm_rule
-                    print >> sys.stderr, " in:"
+                    print("\n** References a paradigm file (%s) that does not exist" % paradigm_rule, file=sys.stderr)
+                    print(" in:", file=sys.stderr)
                     _, lx, path = path.partition('language_specific_rules')
-                    print >> sys.stderr, "    " + lx + path
+                    print("    " + lx + path, file=sys.stderr)
                     sys.exit()
 
                 # Copy from the parsed condition's rule definiton so
@@ -673,7 +676,7 @@ class ParadigmConfig(object):
                 path=path)
 
             if not parsed_template:
-                print errors
+                print(errors)
                 return False
 
             parsed_condition = {
@@ -694,13 +697,13 @@ class ParadigmConfig(object):
         if condition_yaml and paradigm_string_txt:
             try:
                 condition_yaml = yaml.load(condition_yaml)
-            except Exception, e:
-                print >> sys.stderr, "\n** Problem reading paradigm rule condition at: "
-                print >> sys.stderr, e
-                print >> sys.stderr, " in:"
+            except Exception as e:
+                print("\n** Problem reading paradigm rule condition at: ", file=sys.stderr)
+                print(e, file=sys.stderr)
+                print(" in:", file=sys.stderr)
                 _, lx, path = path.partition('language_specific_rules')
-                print >> sys.stderr, "    " + lx + path
-                print >> sys.stderr, "\n** Could not start service."
+                print("    " + lx + path, file=sys.stderr)
+                print("\n** Could not start service.", file=sys.stderr)
                 sys.exit()
 
             name = condition_yaml.get('name')
@@ -729,5 +732,5 @@ if __name__ == "__main__":
             + app.morpholexicon.lookup(u'Ráisa', source_lang='sme', target_lang='nob')
 
     for node, analyses in lookups:
-        print node, analyses
-        print pc.get_paradigm('sme', node, analyses)
+        print(node, analyses)
+        print(pc.get_paradigm('sme', node, analyses))

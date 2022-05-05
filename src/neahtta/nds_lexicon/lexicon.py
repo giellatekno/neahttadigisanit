@@ -1,7 +1,9 @@
-﻿from lxml import etree
+﻿from __future__ import absolute_import
+from __future__ import print_function
+from lxml import etree
 import sys
 
-from lookups import SearchTypes
+from .lookups import SearchTypes
 
 """ Our project-wide search_types repository. """
 search_types = SearchTypes({})
@@ -105,16 +107,16 @@ class LexiconOverrides(object):
         def wrapper(formatter_function):
             for language_iso in language_isos:
                 if language_iso in self.source_formatters:
-                    print ' * OBS! Source formatter already registered for %s.' % \
-                        language_iso
-                    print '   ignoring redefinition on <%s>.' % \
-                        restrictor_function.__name__
+                    print(' * OBS! Source formatter already registered for %s.' % \
+                        language_iso)
+                    print('   ignoring redefinition on <%s>.' % \
+                        restrictor_function.__name__)
                 else:
                     self.source_formatters[language_iso] = formatter_function
-                    print '%s formatter: entry formatter for source - %s' %\
+                    print('%s formatter: entry formatter for source - %s' %\
                           ( language_iso
                           , formatter_function.__name__
-                          )
+                          ))
 
         return wrapper
 
@@ -125,17 +127,17 @@ class LexiconOverrides(object):
         def wrapper(formatter_function):
             for (src_iso, targ_iso) in iso_pairs:
                 if (src_iso, targ_iso) in self.target_formatters:
-                    print ' * OBS! Target formatter already registered for %s.' % \
-                        repr((src_iso, targ_iso))
-                    print '   ignoring redefinition on <%s>.' % \
-                        formatter_function.__name__
+                    print(' * OBS! Target formatter already registered for %s.' % \
+                        repr((src_iso, targ_iso)))
+                    print('   ignoring redefinition on <%s>.' % \
+                        formatter_function.__name__)
                 else:
                     self.target_formatters[(src_iso,
                                             targ_iso)] = formatter_function
-                    print '%s formatter: entry formatter for target - %s' %\
+                    print('%s formatter: entry formatter for target - %s' %\
                           ( '%s - %s' % (src_iso, targ_iso)
                           , formatter_function.__name__
-                          )
+                          ))
 
         return wrapper
 
@@ -168,10 +170,10 @@ class LexiconOverrides(object):
             for language_iso in language_isos:
                 self.prelookup_processors[language_iso]\
                     .append(restrictor_function)
-                print '%s overrides: lexicon pre-lookup arg rewriter - %s' %\
+                print('%s overrides: lexicon pre-lookup arg rewriter - %s' %\
                       ( language_iso
                       , restrictor_function.__name__
-                      )
+                      ))
 
         return wrapper
 
@@ -192,10 +194,10 @@ class LexiconOverrides(object):
             for lexicon in lexica:
                 self.postlookup_filters[lexicon]\
                     .append(restrictor_function)
-                print '%s overrides: lexicon lookup filter - %s' %\
+                print('%s overrides: lexicon lookup filter - %s' %\
                       ( lexicon
                       , restrictor_function.__name__
-                      )
+                      ))
 
         return wrapper
 
@@ -216,10 +218,10 @@ class LexiconOverrides(object):
             for shortcut_name, source, target in lexica:
                 self.external_search_redirect[(shortcut_name, source, target)] = \
                     search_function
-                print '%s->%s overrides: lexicon lookup filter - %s' %\
+                print('%s->%s overrides: lexicon lookup filter - %s' %\
                       ( source, target
                       , shortcut_name
-                      )
+                      ))
 
         return wrapper
 
@@ -260,20 +262,20 @@ class XMLDict(object):
 
         if not tree:
             if filename not in PARSED_TREES:
-                print "parsing %s" % filename
+                print("parsing %s" % filename)
                 try:
                     self.tree = etree.parse(filename)
                     PARSED_TREES[filename] = self.tree
-                except Exception, e:
-                    print
-                    print " *** ** ** ** ** ** * ***"
-                    print " *** ERROR parsing %s" % filename
-                    print " *** ** ** ** ** ** * ***"
-                    print
-                    print " Check the compilation process... "
-                    print " Is the file empty?"
-                    print " Saxon errors?"
-                    print
+                except Exception as e:
+                    print()
+                    print(" *** ** ** ** ** ** * ***")
+                    print(" *** ERROR parsing %s" % filename)
+                    print(" *** ** ** ** ** ** * ***")
+                    print()
+                    print(" Check the compilation process... ")
+                    print(" Is the file empty?")
+                    print(" Saxon errors?")
+                    print()
                     sys.exit(2)
             else:
                 self.tree = PARSED_TREES[filename]
@@ -386,10 +388,10 @@ class AutocompleteFilters(object):
     def autocomplete_filter_for_lang(self, language_iso):
         def wrapper(filter_function):
             self._filters[language_iso].append(filter_function)
-            print '%s filter: autocomplete entry filter for language - %s' % \
+            print('%s filter: autocomplete entry filter for language - %s' % \
                   ( language_iso
                   , filter_function.__name__
-                  )
+                  ))
 
         return wrapper
 
@@ -426,9 +428,9 @@ class AutocompleteTrie(XMLDict):
 
         super(AutocompleteTrie, self).__init__(*args, **kwargs)
 
-        from trie import Trie
+        from .trie import Trie
 
-        print "* Preparing autocomplete trie..."
+        print("* Preparing autocomplete trie...")
         filename = kwargs.get('filename')
 
         parsed_key = 'auto-' + filename
@@ -437,8 +439,8 @@ class AutocompleteTrie(XMLDict):
             try:
                 self.trie.update(self.allLemmas)
             except:
-                print "Trie processing error"
-                print list(self.allLemmas)
+                print("Trie processing error")
+                print(list(self.allLemmas))
                 self.trie = False
             PARSED_TREES[parsed_key] = self.trie
 

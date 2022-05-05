@@ -1,9 +1,10 @@
-﻿from . import blueprint
+﻿from __future__ import absolute_import
+from . import blueprint
 
-from paradigms import ParadigmLanguagePairSearchView
-from search import (DetailedLanguagePairSearchView, IndexSearchPage,
+from .paradigms import ParadigmLanguagePairSearchView
+from .search import (DetailedLanguagePairSearchView, IndexSearchPage,
                     LanguagePairSearchView, ReferredLanguagePairSearchView)
-from variant_search import LanguagePairSearchVariantView
+from .variant_search import LanguagePairSearchVariantView
 
 from .autocomplete import autocomplete
 from .locale import set_locale
@@ -14,7 +15,7 @@ from .reader import (bookmarklet, bookmarklet_configs, ie8_instrux, lookupWord,
                      reader_test_page, reader_update, reader_update_json)
 
 try:
-    from lemmatizer import LemmatizerView
+    from .lemmatizer import LemmatizerView
 except:
     pass
 

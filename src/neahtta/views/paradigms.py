@@ -25,6 +25,7 @@ History:
 """
 from __future__ import print_function
 
+from __future__ import absolute_import
 import inspect
 
 from flask import (current_app, g, request)

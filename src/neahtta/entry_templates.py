@@ -31,6 +31,7 @@ TODO: sme pregenerated forms don't really work without sme.py
 
 """
 from __future__ import print_function
+from __future__ import absolute_import
 import os
 import sys
 from jinja2 import TemplateSyntaxError
@@ -212,7 +213,7 @@ class TemplateConfig(object):
         # Return the rendered main template.
         try:
             rendered = tpl.render(**context)
-        except Exception, e:
+        except Exception as e:
             if is_still_renderable:
                 rendered = self.render_individual_template(
                     language, 'template_error.template', **{
@@ -292,7 +293,7 @@ class TemplateConfig(object):
                     '.template') and k not in self.no_subview_rendering:
                 try:
                     rendered[k.replace('.template', '')] = t.render(**context)
-                except Exception, e:
+                except Exception as e:
                     msg = e.message
                     msg += " in template <%s>" % t.path.partition(
                         'language_specific_rules')[2]
@@ -513,10 +514,10 @@ class TemplateConfig(object):
         try:
             parsed_template = self.jinja_env.from_string(template_string)
             parsed_template.path = path
-        except TemplateSyntaxError, e:
+        except TemplateSyntaxError as e:
             self._template_parse_error_msg(e, path, e.lineno)
             sys.exit()
-        except Exception, e:
+        except Exception as e:
             self._template_parse_error_msg(e, path)
             sys.exit()
 

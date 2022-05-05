@@ -15,6 +15,8 @@ importing the following module to produce replacement functions.
 
 """
 
+from __future__ import absolute_import
+from __future__ import print_function
 import imp
 import os
 import sys
@@ -61,8 +63,8 @@ def load_overrides(app):
             " \n"
             "   Languages in config file: %s\n"
             "   Overrides available for: %s\n")
-        print >> sys.stderr, _msg % (', '.join(config_languages),
-                                     ', '.join(languages_in_dir))
+        print(_msg % (', '.join(config_languages),
+                                     ', '.join(languages_in_dir)), file=sys.stderr)
 
     language_overrides = []
     for m in languages_to_override:

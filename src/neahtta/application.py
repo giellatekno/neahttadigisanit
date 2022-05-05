@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+from __future__ import print_function
 __all__ = ['create_app']
 
 ADMINS = [
@@ -54,13 +56,16 @@ def register_babel(app):
 
         from i18n.utils import iso_filter
         from socket import gethostname
-        from itertools import izip_longest
+        if sys.version[0] == "2":
+            from itertools import izip_longest as zip_longest
+        else:
+            from itertools import zip_longest
 
         loc = get_locale()
 
         app.jinja_env.globals['session_locale'] = loc
         app.jinja_env.globals['zip'] = zip
-        app.jinja_env.globals['izip_longest'] = izip_longest
+        app.jinja_env.globals['izip_longest'] = zip_longest
         app.jinja_env.globals['session_locale_long_iso'] = iso_filter(loc)
 
     @app.babel.localeselector
@@ -123,7 +128,7 @@ def prepare_assets(app):
     css_dev_assets = []
 
     if dev:
-        print 'Including dev assets...'
+        print('Including dev assets...')
         js_dev_assets = [
             'js/test_palette.js',
         ]
@@ -138,7 +143,7 @@ def prepare_assets(app):
 
     # assumes you've npm install uglify
     if not os.path.exists('./node_modules/uglify-js/bin/uglifyjs'):
-        print >> sys.stderr, "Couldn't find uglify js: `npm install uglify-js`"
+        print("Couldn't find uglify js: `npm install uglify-js`", file=sys.stderr)
         sys.exit()
 
     app.assets.config['UGLIFYJS_BIN'] = './node_modules/uglify-js/bin/uglifyjs'
@@ -299,9 +304,9 @@ def check_dependencies():
     for e in execs:
         p = spawn.find_executable(e)
         if p is None:
-            print >> sys.stderr, "* Missing dependency in $PATH: " + e
-            print >> sys.stderr, "  Install the executable, check that it is available in $PATH, "
-            print >> sys.stderr, "  and check that it's executable. "
+            print("* Missing dependency in $PATH: " + e, file=sys.stderr)
+            print("  Install the executable, check that it is available in $PATH, ", file=sys.stderr)
+            print("  and check that it's executable. ", file=sys.stderr)
             sys.exit()
 
 
@@ -402,9 +407,9 @@ def create_app():
             key = F.readlines()[0].strip()
         app.config['SECRET_KEY'] = key
     except IOError:
-        print >> sys.stderr, """
+        print("""
         You need to generate a secret key, and store it in a file with the
-        following name: secret_key.do.not.check.in """
+        following name: secret_key.do.not.check.in """, file=sys.stderr)
         sys.exit()
 
     app = register_babel(app)

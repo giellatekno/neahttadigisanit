@@ -3,6 +3,7 @@
 connecting FST to Lexicon.
 """
 
+from __future__ import absolute_import
 from morphology import generation_overrides as morphology
 
 

@@ -27,6 +27,7 @@ NB: you can also override default lookup types in this way, since they are simpl
 """
 
 
+from __future__ import print_function
 class SearchTypes(object):
     """ An object for collecting search types. Initialize with:
 
@@ -55,10 +56,10 @@ class SearchTypes(object):
         def wrapper(lookup_cls):
             self.search_types[lookup_type] = \
                 lookup_cls
-            print '%s overrides: custom lookup type - %s' %\
+            print('%s overrides: custom lookup type - %s' %\
                   ( lookup_type
                   , lookup_cls.__name__
-                  )
+                  ))
 
         return wrapper
 

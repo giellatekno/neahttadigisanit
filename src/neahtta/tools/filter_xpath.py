@@ -18,6 +18,8 @@ Options:
 #
 # python tools/extract_audio.py dicts/sms-all.xml static/aud/sms --verbose > test_aud.xml
 
+from __future__ import absolute_import
+from __future__ import print_function
 import os
 import sys
 
@@ -50,7 +52,7 @@ def replace_xpath(xml_root, nodes, elems, tool_name=False, tool_args=False):
     all_nodes = etree.XPath(nodes, )(root_duplicate)
 
     # nodes with audios get replaced with the new URL.
-    print >> sys.stderr, len(all_nodes)
+    print(len(all_nodes), file=sys.stderr)
     n = 0
     convert = []
     for node in all_nodes:
@@ -60,9 +62,9 @@ def replace_xpath(xml_root, nodes, elems, tool_name=False, tool_args=False):
                 if s.text is not None:
                     convert.append(s.text)
 
-    print >> sys.stderr, len(convert)
+    print(len(convert), file=sys.stderr)
     converted = run_cmd('\n'.join(convert), tool_args)
-    print >> sys.stderr, len(converted)
+    print(len(converted), file=sys.stderr)
     for node in all_nodes:
         strs = node.xpath(elems)
         # print c, strs[0].text
@@ -84,7 +86,7 @@ def write_xml(root, output_file=False):
         with open(output_file, 'w') as F:
             F.write(stringed.encode('utf-8'))
     else:
-        print >> sys.stdout, stringed.encode('utf-8')
+        print(stringed.encode('utf-8'), file=sys.stdout)
 
 
 # def init_tool(path):

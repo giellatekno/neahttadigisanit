@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from flask import Response, current_app, json, request
 from utils.json import fmtForCallback
 

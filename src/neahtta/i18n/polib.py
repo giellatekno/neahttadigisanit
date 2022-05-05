@@ -11,6 +11,7 @@ modify entries, comments or metadata, etc. or create new po files from scratch.
 :func:`~polib.mofile` convenience functions.
 """
 
+from __future__ import absolute_import
 __author__ = 'David Jean Louis <izimobil@gmail.com>'
 __version__ = '1.0.3'
 __all__ = [

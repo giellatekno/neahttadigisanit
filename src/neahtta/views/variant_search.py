@@ -27,6 +27,7 @@ chances of other services dying if this is altered.
 
 """
 
+from __future__ import absolute_import
 from cache import cache
 from flask import (Response, abort, current_app, g, redirect, render_template,
                    request, session)

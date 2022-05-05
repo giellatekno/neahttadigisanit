@@ -12,6 +12,8 @@ Options:
 #
 # python tools/extract_audio.py dicts/sms-all.xml static/aud/sms --verbose > test_aud.xml
 
+from __future__ import absolute_import
+from __future__ import print_function
 import os
 import sys
 
@@ -46,7 +48,7 @@ def write_pofile(root, output_file=False):
         with open(output_file, 'w') as F:
             F.write(stringed.encode('utf-8'))
     else:
-        print >> sys.stdout, stringed.encode('utf-8')
+        print(stringed.encode('utf-8'), file=sys.stdout)
 
 
 def fetch_messages(path):
@@ -58,7 +60,7 @@ def fetch_messages(path):
         if e.msgstr:
             x = run_cmd(e.msgstr)
             if e.msgstr != x:
-                print e.msgstr, x
+                print(e.msgstr, x)
                 e.msgstr = x
     # TODO: rewrite
 
@@ -71,11 +73,11 @@ def main():
 
     # Usage: tools/filter_xpath.py <xpath_node> <xpath_statement> <commandline_tool>
 
-    print arguments
+    print(arguments)
     in_f = arguments.get('<in_path>')
     out_f = arguments.get('<out_path>')
 
-    print in_f
+    print(in_f)
     ms = fetch_messages(in_f)
     ms.save(fpath=out_f)
 
