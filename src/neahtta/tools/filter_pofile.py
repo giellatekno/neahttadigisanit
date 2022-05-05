@@ -23,6 +23,11 @@ from lxml import etree
 from docopt import docopt
 from sh import hfst_lookup
 
+try:
+    unicode
+except NameError:
+    unicode = str
+
 command = None
 
 

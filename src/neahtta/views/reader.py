@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
-from __future__ import absolute_import
+from __future__ import absolute_import, unicode_literals
 from __future__ import print_function
 from datetime import timedelta
 from functools import update_wrapper
+from tokenize import Name
 
 from bookmarklet_code import generate_bookmarklet_code
 from flask import (Response, abort, current_app, json, make_response,
@@ -16,7 +17,16 @@ from utils.logger import logSimpleLookups
 
 from . import blueprint
 
-
+try:
+  basestring
+except NameError:
+  basestring = str
+try:
+    unicode
+except NameError:
+    unicode = str
+    
+    
 def json_response(data, pretty=False):
     """Turn data into json.
 

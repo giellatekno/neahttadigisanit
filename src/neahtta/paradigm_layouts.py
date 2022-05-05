@@ -110,6 +110,11 @@ import yaml
 from flask import g
 from morphology.utils import tagfilter
 
+try:
+    unicode
+except NameError:
+    unicode = str
+
 
 class ParadigmException(Exception):
     def __init__(self, template):

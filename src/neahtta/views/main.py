@@ -12,6 +12,11 @@ from utils.logger import *
 
 from . import blueprint
 
+try:
+    unicode
+except NameError:
+    unicode = str
+
 user_log = getLogger("user_log")
 
 

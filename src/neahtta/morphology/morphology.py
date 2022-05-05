@@ -12,6 +12,11 @@ import re
 
 from cache import cache
 
+try:
+    unicode
+except NameError:
+    unicode = str
+
 # TODO: get from global path
 configs_path = os.path.join(os.path.dirname(__file__), '../')
 

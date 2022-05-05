@@ -6,6 +6,10 @@ from utils.data import flatten
 
 from .lexicon import hash_node
 
+try:
+    unicode
+except NameError:
+    unicode = str
 
 class FormattingError(Exception):
     pass

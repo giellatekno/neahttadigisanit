@@ -1,6 +1,10 @@
 ﻿from __future__ import absolute_import
 from flask import current_app
 
+try:
+    unicode
+except NameError:
+    unicode = str
 
 def iso_filter(_iso):
     """ These things are sort of a temporary fix for some of the

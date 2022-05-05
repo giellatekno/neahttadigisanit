@@ -13,6 +13,10 @@ search_types = SearchTypes({})
 ##
 ##
 
+try:
+    unicode
+except NameError:
+    unicode = str
 
 DEFAULT_XPATHS = {
     'pos': 'lg/l/@pos',

@@ -294,7 +294,7 @@ def register_assets(app):
 
 def check_dependencies():
     import distutils
-    from distutils import spawn 
+    from distutils import spawn
 
     execs = [
         'node',

@@ -35,6 +35,11 @@ import struct
 import sys
 import textwrap
 
+try:
+    unicode
+except NameError:
+    unicode = str
+
 # the default encoding to use when encoding cannot be detected
 default_encoding = 'utf-8'
 

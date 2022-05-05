@@ -29,6 +29,10 @@ from lxml import etree
 # TODO: only download updated files, storing in manifest in path/to/stored/audio/
 from docopt import docopt
 
+try:
+    unicode
+except NameError:
+    unicode = str
 
 # Path -> Boolean
 def file_exists(path):

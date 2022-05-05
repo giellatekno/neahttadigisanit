@@ -46,6 +46,11 @@ from lxml import etree
 
 from paradigm_layouts import parse_table
 
+try:
+    unicode
+except NameError:
+    unicode = str
+
 __all__ = ['ParadigmConfig']
 
 
