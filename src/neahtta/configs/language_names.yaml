@@ -116,6 +116,7 @@ isos_to_names:
   # target languages
   "fin": !gettext "Finnish"
   "nob": !gettext "Norwegian"
+  "nb": !gettext "Norwegian"
 
   "ru": !gettext "Russian"
   "rus": !gettext "Russian"
@@ -149,6 +150,7 @@ isos_to_demonym:
   "ru": "Русский"
   "olo": "Livvin kieli"
   "no": "Norsk"
+  "nb": "Norsk"
   "nob": "Suomi <-> norja"
   "myv": "Эрзянь кель"
   "mdf": "Мокшень кяль"
