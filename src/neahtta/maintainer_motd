@@ -8,21 +8,21 @@
     
     Updating just the lexicon
     
-        $ fab PROJECT compile_dictionary
+        $ fab PROJECT compile-dictionary
     
     Updating translation strings
     
-        $ fab PROJECT compile_strings
+        $ fab PROJECT compile-strings
     
     Testing configuration (run before restart, always)
 
-        $ fab PROJECT test_configuration
+        $ fab PROJECT test-configuration
     
     Restarting services
     
-        $ fab PROJECT restart_service
+        $ fab PROJECT restart-service
     
     Find a language
     
-        $ fab where_is:ISO
+        $ fab where-is --iso:ISO
 
