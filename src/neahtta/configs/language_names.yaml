@@ -204,6 +204,7 @@ isos_to_demonym:
 iso_transforms:
   "se": "sme"
   "no": "nob"
+  "nb": "nob"
   "fi": "fin"
   "en": "eng"
   "et": "est"
