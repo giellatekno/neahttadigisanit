@@ -9,6 +9,7 @@ endpoint functionality.
 
 """
 from application import create_app
+import sys
 
 app = create_app()
 config = app.config
@@ -18,9 +19,11 @@ if __name__ == "__main__":
     if 'development' or 'dev' in sys.argv:
         app.production = False
         print "!! Running in development mode"
+        sys.stdout.flush()
     else:
         app.production = True
         print "!! Running in production mode"
+        sys.stdout.flush()
 
     app.run(debug=True, use_reloader=False)
 
