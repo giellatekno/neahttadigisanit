@@ -512,7 +512,7 @@ def test_configuration(ctx):
 
     # TODO: this assumes virtualenv is enabled, need to explicitly enable
     _dict = config.current_dict
-    with ctx.cd(config.dict_path):
+    with ctx.cd(config.neahtta_path):
         print((colored("** Checking paths and testing XML for <%s> **" % _dict, "cyan")))
 
         cmd = "NDS_CONFIG=%s python manage.py chk-fst-paths" % _path
