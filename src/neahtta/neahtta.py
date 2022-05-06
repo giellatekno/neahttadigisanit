@@ -18,7 +18,7 @@ config = app.config
 
 if __name__ == "__main__":
     app.caching_enabled = True
-    if 'development' or 'dev' in sys.argv:
+    if 'development' in sys.argv or 'dev' in sys.argv:
         app.production = False
         print("!! Running in development mode")
         sys.stdout.flush()
