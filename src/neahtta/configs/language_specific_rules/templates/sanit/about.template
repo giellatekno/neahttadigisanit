@@ -18,10 +18,10 @@
         <div class="row-fluid">
             <span class="span4">
                 <h3 class="red">{% trans %}How to quote the dictionaries{% endtrans %}</h3>
-                <p>{% trans %}
+                <p>
 		<ul><li>Antonsen, Lene, Trond Trosterud and Berit Merete Nystad Eskonsipo 2013-2022: <em>Neahttadigisánit Davvisámi-dáru-davvisámi sátnegirji</em>. Tromsø: UiT. URL: http://sanit.oahpa.no</li>
 <li>Trosterud, Trond  2013-2022: <em>Neahttadigisánit Davvisámi-suoma-davvisámi sátnegirji</em>. Tromsø: UiT. URL: http://sanit.oahpa.no</li>
-<li>Brun, Angel Diaz de Rada and Kjell Kemi 2022: <em>Neahttadigisánit Spánska-davvisámi sátnegirji</em>. Tromsø: UiT. URL: http://sanit.oahpa.no</li></ul>.{% endtrans %}</p>
+<li>Brun, Angel Diaz de Rada and Kjell Kemi 2022: <em>Neahttadigisánit Spánska-davvisámi sátnegirji</em>. Tromsø: UiT. URL: http://sanit.oahpa.no</li></ul>.</p>
             </span>
             <span class="span4">
             <h3 class="blue">{% trans %}Open-Source{% endtrans %}</h3>

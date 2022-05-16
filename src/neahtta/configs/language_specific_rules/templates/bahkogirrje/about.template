@@ -16,6 +16,7 @@
         </div>
         <div class="row-fluid">
             <span class="span4">
+                <h3 class="red">{% trans %}How to quote the dictionary{% endtrans %}</h3>
 <p><ul>
 <li>Wilbur, Joshua 2013-2022: <em>Nähttadigibáhko Pite Saami-English dictionary</em>. Tromsø: UiT. URL: http://bahkogirrje.oahpa.no</li>
 <li>Wilbur, Joshua 2013-2022: <em>Nähttadigibáhko Pitesamisk-norsk</em>. Tromsø: UiT. URL: http://bahkogirrje.oahpa.no</li>

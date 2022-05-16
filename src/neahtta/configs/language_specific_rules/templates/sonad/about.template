@@ -16,14 +16,24 @@
           <p style="font-size: 80%; margin-top: .5em;"><em>{% trans %}(... And is mobile-friendly!){% endtrans %}</em></p>
         </div>
         <div class="row-fluid">
+<!--
             <span class="span4">
-                <h3 class="red">{# NOTE: Free as in gratis #}{% trans %}Free{% endtrans %}</h3>
-                <p>{% trans %}Everything (or, well, almost everything) that
-                    concerns minority languages should be free. Here
-                    you'll find free dictionaries, and other analytical
-                    tools.{% endtrans %}</p>
+                <h3 class="red">{% trans %}How to quote the dictionaries{% endtrans %}</h3>
+                <p><ul>
+<li>NN 2013-2022: <em>Netidigisõnad Inkeroinen-suomi-inkeroinen sanakirja</em>. Tromsø: UiT. URL: http://sonad.oahpa.no</li>
+<li>NN  2013-2022: <em>Netidigisõnad Liivi-latvia-liivi sanakirja</em>. Tromsø: UiT. URL: http://sonad.oahpa.no</li>
+<li>NN 2022: <em>Netidigisõnad Latvia-suomi-latvia sanakirja</em>. Tromsø: UiT. URL: http://sonad.oahpa.no</li>
+<li>NN 2022: <em>Netidigisõnad Liivi-viro sanakirja</em>. Tromsø: UiT. URL: http://sonad.oahpa.no</li>
+<li>NN 2022: <em>Netidigisõnad Liivi-suomi-liivi sanakirja</em>. Tromsø: UiT. URL: http://sonad.oahpa.no</li>
+<li>NN 2022: <em>Netidigisõnad Liivi-latvia-liivi sanakirja</em>. Tromsø: UiT. URL: http://sonad.oahpa.no</li>
+<li>NN 2022: <em>Netidigisõnad Vatja-viro sanakirja</em>. Tromsø: UiT. URL: http://sonad.oahpa.no</li>
+<li>NN 2022: <em>Netidigisõnad Vatja-suomi sanakirja</em>. Tromsø: UiT. URL: http://sonad.oahpa.no</li>
+<li>NN 2022: <em>Netidigisõnad Vatja-venäjä-vatja sanakirja</em>. Tromsø: UiT. URL: http://sonad.oahpa.no</li>
+<li>NN 2022: <em>Netidigisõnad Võro-viro sanakirja</em>. Tromsø: UiT. URL: http://sonad.oahpa.no</li>
+<li>NN 2022: <em>Netidigisõnad Vöro-suomi sanakirja</em>. Tromsø: UiT. URL: http://sonad.oahpa.no</li>
+</ul>.</p>
             </span>
-            <span class="span4">
+            <span class="span4"> -->
             <h3 class="blue">{% trans %}Open-Source{% endtrans %}</h3>
             <p>{% trans %}Everything here is based on open-source tools. Do you
                 have an idea for an app or research project that needs
