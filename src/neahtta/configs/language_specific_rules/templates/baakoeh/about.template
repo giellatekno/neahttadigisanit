@@ -18,7 +18,7 @@
         <div class="row-fluid">
             <span class="span4">
                 <h3 class="red">{% trans %}How to quote the dictionary{% endtrans %}</h3>
-                <p>{% trans %}<ul><li>Antonsen, Lene, Trond Trosterud, Maja Kappfjell, Sissel Jåma, Toini Bergström and Marit Fjellheim 2009-2022: <em>Nedtedigibaakoeh. Åarjelsaemien-daaroen-åarjelsaemien baakoegærja.</em> Tromsø, UiT. URL: http://baakoeh.oahpa.no</li></ul>.{% endtrans %}</p>
+                <p><ul><li>Antonsen, Lene, Trond Trosterud, Maja Kappfjell, Sissel Jåma, Toini Bergström and Marit Fjellheim 2009-2022: <em>Nedtedigibaakoeh. Åarjelsaemien-daaroen-åarjelsaemien baakoegærja.</em> Tromsø, UiT. URL: http://baakoeh.oahpa.no</li></ul>.</p>
             </span>
             <span class="span4">
             <h3 class="blue">{% trans %}Open-Source{% endtrans %}</h3>

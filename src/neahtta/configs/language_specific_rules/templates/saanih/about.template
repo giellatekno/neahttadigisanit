@@ -17,9 +17,9 @@
         <div class="row-fluid">
             <span class="span4">
                 <h3 class="red">{% trans %}How to quote the dictionaries{% endtrans %}</h3>
-                <p>{% trans %}<ul><li>Olthuis, Marja-Liisa, Taarna Valtonen, Miina Seurujärvi and Trond Trosterud 2015-2022: <em>Nettidigisäänih Anarâškiela-suomakielâ-anarâškielâ sänikirje.</em> Tromsø, UiT. URL: http://saanih.oahpa.no</li>
+                <p><ul><li>Olthuis, Marja-Liisa, Taarna Valtonen, Miina Seurujärvi and Trond Trosterud 2015-2022: <em>Nettidigisäänih Anarâškiela-suomakielâ-anarâškielâ sänikirje.</em> Tromsø, UiT. URL: http://saanih.oahpa.no</li>
 <li>Trosterud, Trond, Marja-Liisa Olthuis, Lene Antonsen and Erika Sarivaara 2015-2022: <em>Nettidigisäänih Anarâškiela-orjâlâškielâ-anarâškielâ sänikirje.</em> Tromsø, UiT. URL: http://saanih.oahpa.no</li></ul>
-.{% endtrans %}</p>
+.</p>
             </span>
             <span class="span4">
             <h3 class="blue">{% trans %}Open-Source{% endtrans %}</h3>
