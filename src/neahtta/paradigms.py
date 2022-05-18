@@ -398,10 +398,10 @@ class ParadigmConfig(object):
             print(" - Possible matches: %d" % len(
                 possible_matches), file=sys.stderr)
 
-        def paradigm_ordering(xxx_todo_changeme):
+        def paradigm_ordering(match):
             """ Sort by type if it exists, otherwise sort by
             alphabetical order of filename """
-            (_c, _context, _layout, _path) = xxx_todo_changeme
+            (_c, _context, _layout, _path) = match
             _type = _layout.options.get('layout', {}).get('type', False)
             if _type:
                 return _type

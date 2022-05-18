@@ -843,13 +843,13 @@ class Config(Config):
 
         # TODO: cache list by locale
 
-        def group_by_source_first(xxx_todo_changeme):
+        def group_by_source_first(dict):
             """ Return the source and target.
             """
-            ((source, target), pair_options) = xxx_todo_changeme
+            ((source, target), pair_options) = dict
             return (source, target)
 
-        def minority_langs_first(xxx_todo_changeme1, xxx_todo_changeme2):
+        def minority_langs_first(dict_a, dict_b):
             """ This is the cmp function, which accepts two ISO pairs
             and returns -1, 0, or 1 to sort the values depending on a few criteria:
 
@@ -864,9 +864,8 @@ class Config(Config):
 
             Then... Also sort by the target languages, so each grouping
             is still alphabetical. """
-            (a_source_iso, a_target_iso) = xxx_todo_changeme1
-            (b_source_iso,
-                                                                b_target_iso) = xxx_todo_changeme2
+            ((a_source_iso, a_target_iso), pair_options) = dict_a
+            ((b_source_iso, b_target_iso), pair_options) = dict_b
             a_min = a_source_iso in self.minority_languages
             b_min = b_source_iso in self.minority_languages
 
@@ -909,7 +908,7 @@ class Config(Config):
         if not hasattr(self, '_pair_definitions_grouped_source'):
 
             pairs = sorted(
-                iteritems(self.pair_definitions),
+                self.pair_definitions.items(),
                 key=group_by_source_first)
             pairs = sorted(
                 pairs,

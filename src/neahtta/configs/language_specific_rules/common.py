@@ -5,8 +5,8 @@ def remove_blank(generated_result, *generation_input_args, **kwargs):
     of analyser errors with new language sets.
     """
 
-    def _strip(xxx_todo_changeme):
-        (lemma, tag_list, analyses) = xxx_todo_changeme
+    def _strip(tuple_to_unpack):
+        (lemma, tag_list, analyses) = tuple_to_unpack
         if not analyses:
             return False
         return True

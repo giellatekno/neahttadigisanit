@@ -426,8 +426,8 @@ class MorphoLexicon(object):
 
         if entry_hash_filter:
 
-            def filt(xxx_todo_changeme):
-                (x, _) = xxx_todo_changeme
+            def filt(tuple_to_unpack):
+                (x, _) = tuple_to_unpack
                 if x is not None:
                     return hash_node(x) == entry_hash_filter
                 return True

@@ -40,8 +40,8 @@ class Server:
             self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.server.bind((self.host, self.port))
             self.server.listen(5)
-        except socket.error as xxx_todo_changeme1:
-            (value, message) = xxx_todo_changeme1.args
+        except socket.error as err:
+            (value, message) = err.args
             if self.server:
                 self.server.close()
                 print("Could not open socket: " + message)
@@ -68,8 +68,8 @@ class Server:
 
 
 class Client(threading.Thread):
-    def __init__(self, xxx_todo_changeme, look, lock):
-        (client, address) = xxx_todo_changeme
+    def __init__(self, client_address, look, lock):
+        (client, address) = client_address
         threading.Thread.__init__(self)
         self.client = client
         self.address = address
