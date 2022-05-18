@@ -54,6 +54,7 @@ import socket
 import sys
 
 from config import yaml
+from configtesters import chk_fst_paths
 from invocations.console import confirm
 from termcolor import colored
 
@@ -488,7 +489,6 @@ def compile_fst(ctx, iso='x'):
         else:
             print((colored("** FST <%s> compiled **" % iso, "cyan")))
 
-
 @task
 def test_configuration(ctx):
     """ Test the configuration and check language files for errors. """
@@ -515,12 +515,8 @@ def test_configuration(ctx):
     with ctx.cd(config.neahtta_path):
         print((colored("** Checking paths and testing XML for <%s> **" % _dict, "cyan")))
 
-        cmd = "NDS_CONFIG=%s python manage.py chk-fst-paths" % _path
-        test_cmd = ctx.run(cmd)
-        if test_cmd.failed:
-            print((colored("** Something went wrong while testing <%s> **" % _dict, "red")))
-        else:
-            print((colored("** Everything seems to work **", "cyan")))
+        os.environ['NDS_CONFIG'] = _path
+        chk_fst_paths()
 
 
 @task
