@@ -34,6 +34,7 @@ from flask import (Response, abort, current_app, g, redirect, render_template,
 from flask_babel import gettext as _
 from i18n.utils import get_locale
 from nds_lexicon import FrontPageFormat
+from six import iteritems
 
 from .reader import crossdomain
 from .search import LanguagePairSearchView
@@ -129,7 +130,7 @@ class LanguagePairSearchVariantView(LanguagePairSearchView):
 
         if request.method == 'GET':
             keys, key_counts = fetch_keywords(_from, _to, counts=True)
-            # shared_context['initial_keywords'] = sorted(key_counts.iteritems(), key=itemgetter(1), reverse=True)
+            # shared_context['initial_keywords'] = sorted(iteritems(key_counts), key=itemgetter(1), reverse=True)
 
         # TODO: send additional keywords in the current search.
         return shared_context

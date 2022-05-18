@@ -9,6 +9,7 @@ import heapq
 import imp
 import os
 import re
+from six import iteritems
 
 from cache import cache
 
@@ -101,7 +102,7 @@ class Tagsets(object):
         self.createTagSets()
 
     def createTagSets(self):
-        for name, tags in self.set_definitions.iteritems():
+        for name, tags in iteritems(self.set_definitions):
             tagset = Tagset(name, tags)
             self.set(name, tagset)
 
@@ -116,7 +117,7 @@ class Tagsets(object):
 
     def all_tags(self):
         _all = list(
-            set(sum([v.members for k, v in self.sets.iteritems()], [])))
+            set(sum([v.members for k, v in iteritems(self.sets)], [])))
         return _all
 
 
@@ -1166,7 +1167,7 @@ class Morphology(object):
                 _extra_log_info = kwargs.pop('extra_log_info')
                 extra_log_info = ', '.join([
                     "%s: %s" % (k, v)
-                    for (k, v) in _extra_log_info.iteritems()
+                    for (k, v) in iteritems(_extra_log_info)
                 ])
                 extra_log_info = extra_log_info.encode('utf-8')
                 logg_args.append(extra_log_info)

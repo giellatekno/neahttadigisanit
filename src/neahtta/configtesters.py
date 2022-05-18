@@ -6,6 +6,7 @@ from __future__ import print_function
 from termcolor import colored
 from application import create_app
 import os.path, time
+from six import iteritems
 
 
 def _get_dates(_file):
@@ -13,7 +14,7 @@ def _get_dates(_file):
 
 def chk_fst_paths():
     app = create_app()
-    fsts = app.config.yaml.get('Morphology').iteritems()
+    fsts = iteritems(app.config.yaml.get('Morphology'))
     print('')
     print('Checking config files and whether they exist...')
     missing_fst = False

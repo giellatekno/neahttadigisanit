@@ -11,6 +11,7 @@ from i18n.utils import get_locale
 from nds_lexicon import FrontPageFormat
 from utils.encoding import decode_or_fail
 from utils.logger import logIndexLookups
+from six import iteritems
 
 from .custom_rendering import template_rendering_overrides
 
@@ -57,7 +58,7 @@ class DictionaryView(MethodView):
 
         return {
             key: [m.val for m in tagset.members]
-            for key, tagset in _tagsets.iteritems()
+            for key, tagset in iteritems(_tagsets)
         }
 
     def post_search_context_modification(self, search_result, context):
@@ -128,7 +129,7 @@ class DictionaryView(MethodView):
 
     def get_lemma_lookup_args(self):
         lemma_lookup_args = {}
-        for key, value in request.args.iteritems():
+        for key, value in iteritems(request.args):
             if key in self.accepted_lemma_args:
                 lemma_lookup_args[self.accepted_lemma_args.get(key)] = value
         return lemma_lookup_args

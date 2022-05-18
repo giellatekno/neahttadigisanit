@@ -5,7 +5,7 @@ import os
 import sys
 
 import yaml
-
+from six import iteritems
 from flask import Config
 from nds_lexicon.lexicon import DEFAULT_XPATHS
 
@@ -489,7 +489,7 @@ class Config(Config):
                 parsed_sets[(entry_c, tag_c)] = jinja_env.from_string(template)
             return parsed_sets
 
-        for language, files in _lang_files.iteritems():
+        for language, files in iteritems(_lang_files):
             for f in files:
                 tagset_path = os.path.join(_p, f)
                 if os.path.exists(tagset_path):
@@ -686,7 +686,7 @@ class Config(Config):
                 # TODO: raise error if missing 'tags'?
 
                 # iterate through sets and set them.
-                for set_name, set_tags in _set.iteritems():
+                for set_name, set_tags in iteritems(_set):
                     if source in self.languages.keys(
                     ) and target in self.languages.keys():
                         if set_name == 'generation_tags':
@@ -826,7 +826,7 @@ class Config(Config):
 
                 _par_defs[key] = _pair_options
 
-            for k, v in self.dictionaries.iteritems():
+            for k, v in iteritems(self.dictionaries):
                 self._pair_definitions[k] = _par_defs[k]
 
         return self._pair_definitions
@@ -908,7 +908,7 @@ class Config(Config):
         if not hasattr(self, '_pair_definitions_grouped_source'):
 
             pairs = sorted(
-                self.pair_definitions.iteritems(),
+                iteritems(self.pair_definitions),
                 key=group_by_source_first,
                 cmp=minority_langs_first)
 
@@ -951,7 +951,7 @@ class Config(Config):
             'obt': OBT,
         }
 
-        for iso, _kwargs_in in self.yaml.get('Morphology').iteritems():
+        for iso, _kwargs_in in iteritems(self.yaml.get('Morphology')):
             conf_format = _kwargs_in.get('format', False)
             kwargs = {}
 
@@ -1082,7 +1082,7 @@ class Config(Config):
                 'multiword_lookups': False,
             }
 
-            for l, conf in self._reader_options.iteritems():
+            for l, conf in iteritems(self._reader_options):
                 wr = conf.get('word_regex', False)
                 wro = conf.get('word_regex_opts', False)
                 if wr:
@@ -1128,8 +1128,8 @@ class Config(Config):
                 #         self._reader_options[l]['multiwords'] = self.read_multiword_list(is_file)
 
             all_isos = list(
-                set(self.languages.keys() +
-                    self.yaml.get('Morphology').keys()))
+                set(list(self.languages.keys()) +
+                    list(self.yaml.get('Morphology').keys())))
             missing_isos = [
                 a for a in all_isos if a not in self._reader_options.keys()
             ]
@@ -1164,7 +1164,7 @@ class Config(Config):
 
         # add korp_routes
         korp_pairs = [
-            pair for pair, conf in self.pair_definitions.iteritems()
+            pair for pair, conf in iteritems(self.pair_definitions)
             if conf.get('show_korp_search', False)
         ]
 

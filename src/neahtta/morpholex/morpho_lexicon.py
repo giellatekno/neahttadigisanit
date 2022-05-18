@@ -12,6 +12,7 @@ from __future__ import print_function
 from collections import defaultdict, OrderedDict
 from itertools import groupby
 from operator import itemgetter
+from six import iteritems
 
 from nds_lexicon.lexicon import hash_node
 
@@ -193,7 +194,7 @@ class MorphoLexicon(object):
         entry_hash_filter = lemma_attrs.pop('entry_hash', False)
         morph_kwargs = {
             key: value
-            for key, value in kwargs.iteritems()
+            for key, value in iteritems(kwargs)
             if key in self.morphology_kwarg_names
         }
 
@@ -260,7 +261,7 @@ class MorphoLexicon(object):
             _ret = MorphoLexiconResult([])
         else:
             _ret = MorphoLexiconResult(
-                [(key, value) for key, value in entries_and_tags.iteritems()])
+                [(key, value) for key, value in iteritems(entries_and_tags)])
 
         if return_raw_data:
             return _ret, raw_output, raw_errors
@@ -314,7 +315,7 @@ class MorphoLexicon(object):
         entry_hash_filter = lemma_attrs.pop('entry_hash', False)
         morph_kwargs = {
             key: value
-            for key, value in kwargs.iteritems()
+            for key, value in iteritems(kwargs)
             if key in self.morphology_kwarg_names
         }
 

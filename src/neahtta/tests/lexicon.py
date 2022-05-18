@@ -5,6 +5,7 @@ import tempfile
 import unittest
 
 import simplejson
+from six import iteritems
 
 import neahtta
 
@@ -43,7 +44,7 @@ class YamlTests(object):
             _thrd = i.get('search')
             _frth = i.get('fail_message')
 
-            for t, vs in i.get('test').iteritems():
+            for t, vs in iteritems(i.get('test')):
                 if t == 'form_doesnt_contain':
                     test_func = form_doesnt_contain
                 if t == 'form_contains':

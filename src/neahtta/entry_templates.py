@@ -35,6 +35,7 @@ from __future__ import absolute_import
 import os
 import sys
 from jinja2 import TemplateSyntaxError
+from six import iteritems
 
 import yaml
 from lxml import etree
@@ -126,7 +127,7 @@ class TemplateConfig(object):
 
         def process_template_set(ts):
             _ts = {}
-            for k, path in ts.iteritems():
+            for k, path in iteritems(ts):
                 _ts[k] = self.read_template_file(path)
             return _ts
 
@@ -139,7 +140,7 @@ class TemplateConfig(object):
         # Process self.language_templates
         _l_ts = self.language_templates.copy()
 
-        for l, temps in _l_ts.iteritems():
+        for l, temps in iteritems(_l_ts):
             _l_ts[l] = process_template_set(temps)
 
         self.language_templates = _l_ts
@@ -269,7 +270,7 @@ class TemplateConfig(object):
         # Add templates to the context
         context['templates'] = dict(
             (k.replace('.template', ''), v)
-            for k, v in self.language_templates[language].iteritems()
+            for k, v in iteritems(self.language_templates[language])
             if k.endswith('.template'))
 
         context['rendered_templates'] = {}
@@ -288,7 +289,7 @@ class TemplateConfig(object):
         # exception.
 
         rendered = {}
-        for k, t in self.language_templates[language].iteritems():
+        for k, t in iteritems(self.language_templates[language]):
             if k != template and k.endswith(
                     '.template') and k not in self.no_subview_rendering:
                 try:
@@ -458,7 +459,7 @@ class TemplateConfig(object):
         print('  %s/ ' % self.instance)
         sys.stdout.flush()
 
-        for k, f in self.project_templates.iteritems():
+        for k, f in iteritems(self.project_templates):
             if f.path not in [p.path for p in self.default_templates.values()]:
                 print(u'    + ' + k)
                 sys.stdout.flush()
@@ -468,10 +469,10 @@ class TemplateConfig(object):
         print()
         sys.stdout.flush()
 
-        for lang, temps in self.language_templates.iteritems():
+        for lang, temps in iteritems(self.language_templates):
             print(u'      %s/' % lang)
 
-            for k, f in temps.iteritems():
+            for k, f in iteritems(temps):
                 if f.path not in [
                         p.path for p in self.project_templates.values()
                 ]:

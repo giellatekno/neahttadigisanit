@@ -14,6 +14,7 @@ from i18n.utils import iso_filter
 from morphology.utils import tagfilter
 from utils.json import fmtForCallback
 from utils.logger import logSimpleLookups
+from six import iteritems
 
 from . import blueprint
 
@@ -341,7 +342,7 @@ def bookmarklet_configs():
     pair_groups = current_app.config.pair_definitions_grouped_source_locale()
 
     new_group = False
-    for grouper, group in pair_groups.iteritems():
+    for grouper, group in iteritems(pair_groups):
         for (_from, _to), pair_options in group:
             prepared.append((_from, _to))
 

@@ -1,6 +1,7 @@
 ﻿from __future__ import absolute_import
 from .morphology import Tag
 from flask import current_app
+from six import iteritems
 
 __all__ = [
     'tagfilter',
@@ -58,7 +59,7 @@ def tagfilter_conf(filters, s, *args, **kwargs):
     # Find out if the tagset has any tags that count for
     # multi-replacement
     multi_replacements = []
-    for k, v in filters.iteritems():
+    for k, v in iteritems(filters):
         if '+' in k:
             multi_replacements.append((k, v))
 

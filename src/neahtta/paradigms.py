@@ -45,6 +45,7 @@ import yaml
 from lxml import etree
 
 from paradigm_layouts import parse_table
+from six import iteritems
 
 try:
     unicode
@@ -145,10 +146,10 @@ class LexiconRuleSet(object):
         self.xpath_contexts = {}
 
         _str_norm = 'string(normalize-space(%s))'
-        for k, v in self.xpath.iteritems():
+        for k, v in iteritems(self.xpath):
             self.xpath_contexts[k] = etree.XPath(_str_norm % v)
 
-        for k, v in lex_rules.iteritems():
+        for k, v in iteritems(lex_rules):
 
             if k == 'XPATH':
                 continue
@@ -160,7 +161,7 @@ class LexiconRuleSet(object):
         extracted_context = {}
 
         if node is not None:
-            for k, v in self.xpath_contexts.iteritems():
+            for k, v in iteritems(self.xpath_contexts):
                 _v = v(node)
                 if not _v:
                     _v = False
@@ -184,7 +185,7 @@ class LexiconRuleSet(object):
 
             truth = all([t for t, c in self._evals])
             contexts = [c for t, c in self._evals if t] + list(
-                xpath_context.iteritems())
+                iteritems(xpath_context))
 
             return truth, contexts
         return (False, [])
@@ -282,7 +283,7 @@ class ParadigmRuleSet(object):
             morph.pop('tag')
 
         if morph:
-            for k, v in morph.iteritems():
+            for k, v in iteritems(morph):
                 self.comps.append(TagSetRule(k, v))
 
         if lex:
@@ -590,7 +591,7 @@ class ParadigmConfig(object):
 
         _file_successes = []
 
-        for lang, files in _lang_files.iteritems():
+        for lang, files in iteritems(_lang_files):
             for f in files:
                 paradigm_rule = self.read_paradigm_file(jinja_env, f)
 
@@ -601,7 +602,7 @@ class ParadigmConfig(object):
 
         self.paradigm_rules = _lang_paradigms
 
-        for lang, files in _lang_layout_files.iteritems():
+        for lang, files in iteritems(_lang_layout_files):
             for f in files:
                 paradigm_rule = self.read_paradigm_layout_file(
                     jinja_env, f, lang)

@@ -9,6 +9,7 @@ from flask import (abort, current_app, redirect, render_template, request,
 from utils.data import *
 from utils.encoding import *
 from utils.logger import *
+from six import iteritems
 
 from . import blueprint
 
@@ -97,7 +98,7 @@ def about_sources():
 
 def gen_doc(from_language, docs_list):
     _docs = []
-    for lx, fxs in docs_list.iteritems():
+    for lx, fxs in iteritems(docs_list):
         if lx != from_language:
             continue
 

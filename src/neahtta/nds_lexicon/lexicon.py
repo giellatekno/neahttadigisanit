@@ -3,6 +3,8 @@ from __future__ import print_function
 from lxml import etree
 import sys
 
+from six import iteritems
+
 from .lookups import SearchTypes
 
 """ Our project-wide search_types repository. """
@@ -379,7 +381,7 @@ class XMLDict(object):
 
     def lookupOtherLemmaAttr(self, **attrs):
         attr_conditions = []
-        for k, v in attrs.iteritems():
+        for k, v in iteritems(attrs):
             attr_conditions.append("lg/l/@%s = '%s'" % (k, v))
         attr_conditions = ' and '.join(attr_conditions)
 
@@ -517,19 +519,19 @@ class Lexicon(object):
                                     filename=v,
                                     options=settings.dictionary_options.get(
                                         k, {})))
-                               for k, v in settings.dictionaries.iteritems()])
+                               for k, v in iteritems(settings.dictionaries)])
 
         alternate_dicts = dict(
             [(k,
               reg_type(
                   filename=v.get('path'),
                   options=settings.dictionary_options.get(k, {})))
-             for k, v in settings.variant_dictionaries.iteritems()])
+             for k, v in iteritems(settings.variant_dictionaries)])
 
         # run through variant searches for overrides
         variant_searches = dict()
 
-        for k, variants in settings.search_variants.iteritems():
+        for k, variants in iteritems(settings.search_variants):
             pair_variants = OrderedDict()
             for var in variants:
                 variant_type = var.get('type', 'regular')
@@ -557,7 +559,7 @@ class Lexicon(object):
         self.language_pairs = langs_and_alternates
 
         autocomplete_tries = {}
-        for k, v in language_pairs.iteritems():
+        for k, v in iteritems(language_pairs):
             if settings.pair_definitions.get(k).get('autocomplete'):
                 has_root = language_pairs.get(k)
                 if has_root:
