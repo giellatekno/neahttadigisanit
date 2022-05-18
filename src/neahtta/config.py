@@ -8,6 +8,7 @@ import yaml
 from six import iteritems
 from flask import Config
 from nds_lexicon.lexicon import DEFAULT_XPATHS
+from functools import cmp_to_key
 
 # Import configs stuff to register overrides
 # from conf import *
@@ -909,8 +910,10 @@ class Config(Config):
 
             pairs = sorted(
                 iteritems(self.pair_definitions),
-                key=group_by_source_first,
-                cmp=minority_langs_first)
+                key=group_by_source_first)
+            pairs = sorted(
+                pairs,
+                key=cmp_to_key(minority_langs_first))
 
             grouped_pairs = defaultdict(list)
             for p in pairs:
