@@ -179,4 +179,10 @@ def register_filters(app):
         import re
         return re.sub(pattern, "", string)
 
+    @app.template_filter('print')
+    def myprint(string):
+        """Print the input and return it unchanged"""
+        print(string)
+        return string
+
     return app
