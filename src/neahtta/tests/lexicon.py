@@ -20,7 +20,12 @@ class YamlTests(object):
         if hasattr(self, '_parsed_yaml'):
             return self._parsed_yaml
         with open(self.yaml_file, 'r') as F:
-            _p = yaml.load(F.read().decode('utf-8'))
+            _raw_str = F.read()
+            try:
+                _raw = _raw_str.decode("utf-8")
+            except AttributeError:
+                _raw = _raw_str
+            _p = yaml.load(_raw)
         self._parsed_yaml = _p
         return self._parsed_yaml
 

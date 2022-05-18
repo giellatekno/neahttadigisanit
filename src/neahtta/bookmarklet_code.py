@@ -4,7 +4,10 @@
 
 from __future__ import absolute_import
 import os
-from urllib import quote, quote_plus
+try:
+    from urllib import quote, quote_plus
+except ImportError:
+    from urllib.parse import quote, quote_plus
 
 cwd = lambda x: os.path.join(os.path.dirname(__file__), x)
 

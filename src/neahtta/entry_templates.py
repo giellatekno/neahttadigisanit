@@ -493,7 +493,11 @@ class TemplateConfig(object):
     def read_template_file(self, path):
         if path not in parsed_template_cache:
             with open(path, 'r') as F:
-                _raw = F.read().decode('utf-8')
+                _raw_str = F.read()
+                try:
+                    _raw = _raw_str.decode('utf-8')
+                except AttributeError: #py3
+                    _raw = _raw_str
             return self.parse_template_string(_raw, path)
         else:
             return parsed_template_cache.get(path)

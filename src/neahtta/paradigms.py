@@ -298,7 +298,7 @@ class ParadigmRuleSet(object):
         """
 
         if self.debug:
-            print(analysis, file=sys.stderr)
+            print(analyses, file=sys.stderr)
 
         self._evals = [comp.compare(node, analyses) for comp in self.comps]
 
@@ -623,12 +623,20 @@ class ParadigmConfig(object):
 
     def read_paradigm_file(self, jinja_env, path):
         with open(path, 'r') as F:
-            _raw = F.read().decode('utf-8')
+            _raw_str = F.read()
+            try:
+                _raw = _raw_str.decode('utf-8')
+            except AttributeError: #py3
+                _raw = _raw_str
         return self.parse_paradigm_string(jinja_env, _raw, path)
 
     def read_paradigm_layout_file(self, jinja_env, path, lang):
         with open(path, 'r') as F:
-            _raw = F.read().decode('utf-8')
+            _raw_str = F.read()
+            try:
+                _raw = _raw_str.decode('utf-8')
+            except AttributeError: #py3
+                _raw = _raw_str
         return self.parse_paradigm_layout_string(_raw, path, lang)
 
     def parse_paradigm_layout_string(self, p_string, path, lang):
