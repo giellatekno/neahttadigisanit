@@ -6,6 +6,11 @@ from flask import (abort, current_app, g, redirect, render_template,
                    request, session, url_for)
 from flask_babel import gettext as _
 from flask.views import MethodView
+import json
+try:
+    from urllib import urlopen
+except ImportError: # py3
+    from urllib.request import urlopen
 
 from i18n.utils import get_locale
 from nds_lexicon import FrontPageFormat
@@ -665,7 +670,6 @@ class SearcherMixin(object):
             else:
                 res_par.append(item)
 
-        import json, urllib
         def korp_query(lemma):
             current_pair_settings, orig_pair_opts = current_app.config.resolve_original_pair(g._from, g._to)
             o_pair = orig_pair_opts.get('orig_pair')
@@ -694,7 +698,7 @@ class SearcherMixin(object):
                         url_json = korp_query(res_par[k][1][0].lemma)
                         url_json = url_json.encode('utf8')
                         if url_json:
-                            response = urllib.urlopen(url_json)
+                            response = urlopen(url_json)
                             data = json.loads(response.read())
                             korp_hits = data["hits"]
                             #korp_hits = 0
@@ -743,7 +747,7 @@ class SearcherMixin(object):
             url_json = korp_query(lemma)
             url_json = url_json.encode('utf8')
             if url_json:
-                response = urllib.urlopen(url_json)
+                response = urlopen(url_json)
                 data = json.loads(response.read())
                 korp_hits = data["hits"]
                 #korp_hits = ''
