@@ -11,7 +11,7 @@ def remove_blank(generated_result, *generation_input_args, **kwargs):
             return False
         return True
 
-    return filter(_strip, generated_result)
+    return list(filter(_strip, generated_result))
 
 
 def match_homonymy_entries(entries_and_tags):

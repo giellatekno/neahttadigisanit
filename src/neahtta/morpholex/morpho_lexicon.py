@@ -432,7 +432,7 @@ class MorphoLexicon(object):
                     return hash_node(x) == entry_hash_filter
                 return True
 
-            entries_and_tags = filter(filt, entries_and_tags)
+            entries_and_tags = list(filter(filt, entries_and_tags))
 
         # group by entry
 

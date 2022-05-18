@@ -43,8 +43,8 @@ def resolve_original_pair(config, _from, _to):
     has_mobile_variant = False
 
     if has_variant:
-        _mobile_variants = filter(lambda x: x.get('type', '') == 'mobile',
-                                  current_pair_variants)
+        _mobile_variants = list(filter(lambda x: x.get('type', '') == 'mobile',
+                                  current_pair_variants))
         if len(_mobile_variants) > 0:
             has_mobile_variant = _mobile_variants[0]
 
@@ -74,10 +74,10 @@ def resolve_original_pair(config, _from, _to):
     _reverse_variants = reverse_pair.get('input_variants', False)
 
     if _reverse_variants:
-        _mobile_variants = filter(lambda x: x.get('type', '') == 'mobile',
-                                  _reverse_variants)
-        _standard_variants = filter(lambda x: x.get('type', '') == 'standard',
-                                    _reverse_variants)
+        _mobile_variants = list(filter(lambda x: x.get('type', '') == 'mobile',
+                                  _reverse_variants))
+        _standard_variants = list(filter(lambda x: x.get('type', '') == 'standard',
+                                    _reverse_variants))
         if mobile and len(_mobile_variants) > 0:
             _preferred_swap = _mobile_variants[0]
             _short_name = _preferred_swap.get('short_name')

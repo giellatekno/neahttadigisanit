@@ -1078,7 +1078,7 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
         def filter_entries_for_view(entries):
             _entries = []
             for entry_filter in entry_filters:
-                _entries = filter(entry_filter, entries)
+                _entries = list(filter(entry_filter, entries))
             return _entries
 
         return filter_entries_for_view(entries)

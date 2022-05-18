@@ -359,11 +359,11 @@ class TemplateConfig(object):
             return (f, os.path.join(p, f))
 
         def scan_path_dirs(_p):
-            return filter(_dirs, os.listdir(_p))
+            return list(filter(_dirs, os.listdir(_p)))
 
         def template_dict_for_path(p):
             _join_path = partial(join_path, p)
-            return dict(map(_join_path, filter(_templates, os.listdir(p))))
+            return dict(map(_join_path, list(filter(_templates, os.listdir(p)))))
 
         # We only want the ones that exist for this instance.
         proj_directories = scan_path_dirs(_path)

@@ -1062,7 +1062,7 @@ class Config(Config):
 
         # Couldn't help myself.
         return map(strip_line_end_comment,
-                   filter(drop_line_comment, map(clean_line, multiword_list)))
+                   list(filter(drop_line_comment, map(clean_line, multiword_list))))
 
     @property
     def reader_options(self):
@@ -1205,8 +1205,8 @@ class Config(Config):
         has_mobile_variant = False
 
         if has_variant:
-            _mobile_variants = filter(lambda x: x.get('type', '') == 'mobile',
-                                      current_pair_variants)
+            _mobile_variants = list(filter(lambda x: x.get('type', '') == 'mobile',
+                                      current_pair_variants))
             if len(_mobile_variants) > 0:
                 has_mobile_variant = _mobile_variants[0]
 
@@ -1237,10 +1237,10 @@ class Config(Config):
         _reverse_variants = reverse_pair.get('input_variants', False)
 
         if _reverse_variants:
-            _mobile_variants = filter(lambda x: x.get('type', '') == 'mobile',
-                                      _reverse_variants)
-            _standard_variants = filter(
-                lambda x: x.get('type', '') == 'standard', _reverse_variants)
+            _mobile_variants = list(filter(lambda x: x.get('type', '') == 'mobile',
+                                      _reverse_variants))
+            _standard_variants = list(filter(
+                lambda x: x.get('type', '') == 'standard', _reverse_variants))
             if mobile and len(_mobile_variants) > 0:
                 _preferred_swap = _mobile_variants[0]
                 _short_name = _preferred_swap.get('short_name')
@@ -1255,13 +1255,13 @@ class Config(Config):
         variant_options = False
         if is_variant:
             orig_pair_variants = pair_settings.get('input_variants')
-            variant_opts = filter( lambda x: x.get('short_name') == _from and not x.get('display_variant', False)
+            variant_opts = list(filter( lambda x: x.get('short_name') == _from and not x.get('display_variant', False))
                                  , orig_pair_variants
                                  )
             if len(variant_opts) > 0:
                 variant_options = variant_opts[0]
 
-            d_variant_opts = filter( lambda x: x.get('short_name') == _to and x.get('display_variant', False)
+            d_variant_opts = list(filter( lambda x: x.get('short_name') == _to and x.get('display_variant', False))
                                    , orig_pair_variants
                                    )
             if len(d_variant_opts) > 0:
@@ -1271,9 +1271,9 @@ class Config(Config):
             if pair_settings:
                 orig_pair_variants = pair_settings.get('input_variants')
                 if orig_pair_variants:
-                    variant_opts = filter(
+                    variant_opts = list(filter(
                         lambda x: x.get('short_name') == _from,
-                        orig_pair_variants)
+                        orig_pair_variants))
                     if len(variant_opts) > 0:
                         variant_options = variant_opts[0]
 
