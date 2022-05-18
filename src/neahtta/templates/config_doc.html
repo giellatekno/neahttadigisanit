@@ -34,7 +34,7 @@
             </div>
         </div>
 
-        {% for pos, tags in paradigms.iteritems() %}
+        {% for pos, tags in paradigms.items() %}
         <div class="row-fluid">
             <div class="span2">
                 <strong>{{ pos }}</strong>
@@ -70,14 +70,14 @@
             <div class="span6">
                 <strong>Rule formulation</strong>
                 <ul>
-                    {% for k, v in paradigm.condition.rule_def.iteritems() %}
+                    {% for k, v in paradigm.condition.rule_def.items() %}
                         {% if k == 'name' %}
                             {% continue %}
                         {% endif %}
                         {% if v is mapping %}
                             <li>{{ k }}: 
                                 <ul>
-                                    {% for kk, vv in v.iteritems() %}
+                                    {% for kk, vv in v.items() %}
                                         <li>{{ kk }}: {{ vv }}</li>
                                     {% endfor %}
                                 </ul>
@@ -186,7 +186,7 @@
             <p>To include documentation in a template, define it: <code>{% raw %}{% block template_doc %}Blah blah blah{% endblock %}{% endraw %}</code></p>
 
             <h4>{{ lang_name }}-specific overrides</h4>
-            {% for lang, templates in app.lexicon_templates.language_templates.iteritems() %}
+            {% for lang, templates in app.lexicon_templates.language_templates.items() %}
                 {% if lang != lang_name %}
                     {% continue %}
                 {% endif %}
@@ -195,7 +195,7 @@
                     {% for t in app.lexicon_templates.project_templates.values() %}
                         {% do proj_templates.append(t.path) %}
                     {% endfor %}
-                    {% for ttkey, tmpl in templates.iteritems() %}
+                    {% for ttkey, tmpl in templates.items() %}
                         {% if tmpl.path not in proj_templates %}
                         <li>{{ app_short_name }}/{{ lang_name }}/{{ ttkey }}
                                 {% if 'template_doc' in tmpl.blocks %}
@@ -218,14 +218,14 @@
         </div>
     </div>
 
-    {% for langpair, tags in tag_transforms.iteritems() %}
+    {% for langpair, tags in tag_transforms.items() %}
     <div class="row-fluid">
         <div class="span2">
             <strong><a href="#">{{ langpair[0] }} &rarr; {{ langpair[1] }}</a></strong>
         </div>
         <div class="span10">
             <ul>
-                {% for d, t in tags.iteritems() %}
+                {% for d, t in tags.items() %}
                 <li>{{ d }} &rarr; {{ t }}
                 </li>
                 {% endfor %}

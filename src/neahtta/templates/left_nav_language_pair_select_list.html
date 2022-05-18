@@ -9,7 +9,7 @@
 {% endmacro -%}
 <ul class="nav nav-collapse nav-tabs nav-stacked">
 
-{% for iso_group, grouped_items in language_pairs_grouped_by_source.iteritems() %}
+{% for iso_group, grouped_items in language_pairs_grouped_by_source.items() %}
     {% for iso_pair, pair_options in grouped_items %}
 
     {%- if pair_options.input_variants -%}

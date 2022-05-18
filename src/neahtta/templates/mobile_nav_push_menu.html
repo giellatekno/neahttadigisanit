@@ -44,7 +44,7 @@
                     <h2 class="icon icon-display" lang="{{ current_locale }}">{% trans %}Dictionaries{% endtrans %}</h2>
                     <a class="mp-back" href="#" lang="{{ current_locale }}">{% trans %}Back{% endtrans %}</a>
                     <ul>
-                        {% for iso_group, grouped_items in language_pairs_grouped_by_source.iteritems() %}
+                        {% for iso_group, grouped_items in language_pairs_grouped_by_source.items() %}
                         <li class="icon icon-arrow-left">
                             <a class="icon icon-arrow-left" href="#">{{ iso_group|iso_to_language_own_name }}</a>
  

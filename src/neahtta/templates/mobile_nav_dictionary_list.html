@@ -1,7 +1,7 @@
 <li class="display-phone hidden-tablet visible-mid hidden-desktop"><span lang="{{ current_locale }}">{% trans %}Dictionaries{% endtrans %}</span></li>
 
 {%- if grouped_nav -%}
-    {% for iso_group, grouped_items in language_pairs_grouped_by_source.iteritems() %}
+    {% for iso_group, grouped_items in language_pairs_grouped_by_source.items() %}
         <li class="display-phone hidden-tablet visible-mid hidden-desktop language-group"><span lang="{{ iso_group }}">{{ iso_group|iso_to_language_own_name }}</span></li>
 
         {%- for l_iso_pair, l_pair_options in grouped_items -%}
@@ -28,7 +28,7 @@
         {% endfor %}
     {% endfor %}
 {% else %}
-    {% for l_iso_pair, l_pair_options in language_pairs.iteritems() %}
+    {% for l_iso_pair, l_pair_options in language_pairs.items() %}
         <li class="visible-thin visible-mid hidden-desktop hidden-tablet {%- if l_iso_pair[0] == _from and l_iso_pair[1] == _to %} active{% endif -%}">
             <a href="{{ url_for('.canonical_root_search_pair', _from=l_iso_pair[0], _to=l_iso_pair[1]) }}">
                 <span>{{ l_iso_pair[0]|iso_to_i18n }} {% if l_pair_options.search_variants %}({% trans %}Word search{% endtrans %}) {% endif %} → {{ l_iso_pair[1]|iso_to_i18n }}</span>

@@ -279,7 +279,7 @@
 
                     {% set dict_prs = {'1.p.ent.': 'V.Ind.Prs.Sg1', '2.p.ent.': 'V.Ind.Prs.Sg2', '3.p.ent.': 'V.Ind.Prs.Sg3', '1.p.tot.': 'V.Ind.Prs.Du1', '2.p.tot.': 'V.Ind.Prs.Du2', '3.p.tot.': 'V.Ind.Prs.Du3', '1.p.flt.': 'V.Ind.Prs.Pl1', '2.p.flt.': 'V.Ind.Prs.Pl2', '3.p.flt.': 'V.Ind.Prs.Pl3'} %}
                     {% set msd_var_prs = [] %}
-                    {% for key, value in dict_prs.iteritems() %}
+                    {% for key, value in dict_prs.items() %}
                       {% if key|string in tag_display|string %}
                         {% do msd_var_prs.append(value|string) %}
                       {% endif %}
@@ -287,7 +287,7 @@
 
                     {% set dict_prt = {'1.p.ent.': 'V.Ind.Prt.Sg1', '2.p.ent.': 'V.Ind.Prt.Sg2', '3.p.ent.': 'V.Ind.Prt.Sg3', '1.p.tot.': 'V.Ind.Prt.Du1', '2.p.tot.': 'V.Ind.Prt.Du2', '3.p.tot.': 'V.Ind.Prt.Du3', '1.p.flt.': 'V.Ind.Prt.Pl1', '2.p.flt.': 'V.Ind.Prt.Pl2', '3.p.flt.': 'V.Ind.Prt.Pl3'} %}
                     {% set msd_var_prt = [] %}
-                    {% for key, value in dict_prt.iteritems() %}
+                    {% for key, value in dict_prt.items() %}
                       {% if key|string in tag_display|string %}
                         {% do msd_var_prt.append(value|string) %}
                       {% endif %}
