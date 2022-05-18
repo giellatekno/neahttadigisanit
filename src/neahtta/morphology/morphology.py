@@ -75,6 +75,9 @@ class TagPart(object):
     def __repr__(self):
         return self.val
 
+    def __hash__(self):
+        return hash(self._t)
+
     def __eq__(self, other):
         if self.regex:
             m = self._re.match(other)
@@ -116,8 +119,9 @@ class Tagsets(object):
         self.sets[name] = tagset
 
     def all_tags(self):
-        _all = list(
-            set(sum([v.members for k, v in iteritems(self.sets)], [])))
+        list_of_lists = [list(v.members) for k, v in iteritems(self.sets)]
+        flattened_list = list(item for sublist in list_of_lists for item in sublist)
+        _all = list(set(flattened_list))
         return _all
 
 
