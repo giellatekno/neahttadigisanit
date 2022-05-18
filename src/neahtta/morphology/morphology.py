@@ -306,6 +306,9 @@ class Lemma(object):
             self.pos = self.tag['pos']
         else:
             self.pos = self.tag.parts[0]
+        # Letting pos be None is problematic when sorting or grouping by pos
+        if self.pos is None:
+            self.pos = "Unknown"
         self.input = _input
         self.form = _input
 
