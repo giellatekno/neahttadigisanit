@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from __future__ import absolute_import
 from logging import getLogger
+import sys
 
 from flask import (abort, current_app, g, redirect, render_template,
                    request, session, url_for)
@@ -696,7 +697,8 @@ class SearcherMixin(object):
 
                     if res_par[k][1]:
                         url_json = korp_query(res_par[k][1][0].lemma)
-                        url_json = url_json.encode('utf8')
+                        if sys.version[0] == 2:
+                            url_json = url_json.encode('utf8')
                         if url_json:
                             response = urlopen(url_json)
                             data = json.loads(response.read())
@@ -745,7 +747,8 @@ class SearcherMixin(object):
         if all_analyses:
             lemma = all_analyses[0].lemma
             url_json = korp_query(lemma)
-            url_json = url_json.encode('utf8')
+            if sys.version[0] == 2 :
+                url_json = url_json.encode('utf8')
             if url_json:
                 response = urlopen(url_json)
                 data = json.loads(response.read())
