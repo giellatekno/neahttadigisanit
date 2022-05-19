@@ -398,6 +398,9 @@ SANJ_LANGS_ANALYSERS           :=   sjd-x-private
 #sanj-lexica: LEX_COMPILE_WORDS_DICTS := $(SANJ_WORDS_DICTS_LEXICA)
 #sanj-lexica: compile_langs_lexicon \
 			  compile_words_dicts_lexicon
+
+# Custom compile script because the xml files are in lang-sjd-x-private/misc, which is not the case in any other dicts.
+# Remember to extract xml files from source xlsx files using the scripts in lang-sjd-x-private/src/scripts
 sanj-lexica: 
 	@echo $*
 	@echo "***********************"
