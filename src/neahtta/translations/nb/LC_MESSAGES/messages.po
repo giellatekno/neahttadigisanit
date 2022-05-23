@@ -61,7 +61,7 @@ msgstr "Nordsamisk"
 #: configs/language_names.yaml:35
 #, fuzzy
 msgid "North Sámi (tolerant)"
-msgstr "Nordsamisk (#SoMe)"
+msgstr "Nordsamisk (tolerant))"
 
 #: configs/language_names.yaml:36 configs/language_names.yaml:114
 #: configs/language_names.yaml:132 configs/language_names.yaml:133
@@ -98,7 +98,7 @@ msgstr "Udmurtisk"
 
 #: configs/language_names.yaml:49
 msgid "Udmurt (tolerant)"
-msgstr ""
+msgstr "Udmurtisk (tolerant)"
 
 #: configs/language_names.yaml:50
 msgid "Komi-Permyak"
@@ -126,7 +126,7 @@ msgstr "Livisk"
 
 #: configs/language_names.yaml:60
 msgid "Livonian (tolerant)"
-msgstr ""
+msgstr "Livisk (tolerant)"
 
 #: configs/language_names.yaml:61
 msgid "Izhorian"
@@ -182,16 +182,15 @@ msgstr "Østsamisk"
 
 #: configs/language_names.yaml:84
 msgid "Skolt Sami (tolerant)"
-msgstr ""
+msgstr "Østsamisk (tolerant)"
 
 #: configs/language_names.yaml:85
-#, fuzzy
 msgid "Kildin Saami"
-msgstr "Østsamisk"
+msgstr "Kildinsamisk"
 
 #: configs/language_names.yaml:88
 msgid "Kildin Saami (tolerant)"
-msgstr ""
+msgstr "Kildinsamisk (tolerant)"
 
 #: configs/language_names.yaml:89
 msgid "Plains Cree"
@@ -220,7 +219,7 @@ msgstr "Nord-haida"
 #: configs/language_names.yaml:106
 #, fuzzy
 msgid "Northern Haida (tolerant)"
-msgstr "Nord-haida"
+msgstr "Nord-haida (tolerant)"
 
 #: configs/language_names.yaml:107 templates/more_dictionaries.html:34
 msgid "Inari Saami"
@@ -228,7 +227,7 @@ msgstr "Enaresamisk"
 
 #: configs/language_names.yaml:110
 msgid "Inari Saami (tolerant)"
-msgstr ""
+msgstr "Enaresamisk (tolerant)"
 
 #: configs/language_names.yaml:111
 msgid "Pite Saami"
