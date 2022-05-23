@@ -32,7 +32,7 @@ isos_to_names:
   # sanit
   "sme": !gettext "North Sámi"
   "se": !gettext "North Sámi"
-  "SoMe": !gettext "North Sámi (#SoMe)"
+  "SoMe": !gettext "North Sámi (tolerant)"
   "en": !gettext "English"
   "hun": !gettext "Hungarian"
   "smj": !gettext "Lule Sámi"
@@ -44,11 +44,11 @@ isos_to_names:
   # kyv
   "kpv": !gettext "Komi"
   "kpvS": !gettext "Komi"
-  "kpvM": !gettext "Komi"
+  "kpvM": !gettext "Komi (tolerant)"
   "udm": !gettext "Udmurt"
-  "udmM": !gettext "Udmurt"
+  "udmM": !gettext "Udmurt (tolerant)"
   "koi": !gettext "Komi-Permyak"
-  "koiM": !gettext "Komi-Permyak"
+  "koiM": !gettext "Komi-Permyak (tolerant)"
 
   # sanat
   "fkv": !gettext "Kven"
@@ -57,7 +57,7 @@ isos_to_names:
 
   # sonad
   "liv": !gettext "Livonian"
-  "livM": !gettext "Livonian"
+  "livM": !gettext "Livonian (tolerant)"
   "izh": !gettext "Izhorian"
   "vep": !gettext "Veps"
   "vro": !gettext "Võro"
@@ -79,15 +79,15 @@ isos_to_names:
 
   # saan
   "sms": !gettext "Skolt Sami"
-  "smsM": !gettext "Skolt Sami"
+  "smsM": !gettext "Skolt Sami (tolerant)"
 
   # sanj
   "sjd": !gettext "Kildin Saami"
-  "sjdM": !gettext "Kildin Saami"
+  "sjdM": !gettext "Kildin Saami (tolerant)"
 
   # itwewina
   "crk": !gettext "Plains Cree"
-  "crkM": !gettext "Plains Cree"
+  "crkM": !gettext "Plains Cree (tolerant)"
 
   # gunaha
   "srs": !gettext "Tsuut'ina"
@@ -101,10 +101,11 @@ isos_to_names:
 
   # guusaaw
   "hdn": !gettext "Northern Haida"
-  "hdnM": !gettext "Northern Haida"
+  "hdnM": !gettext "Northern Haida (tolerant)"
 
   # saanih
   "smn": !gettext "Inari Saami"
+  "smnM": !gettext "Inari Saami (tolerant)"
 
   # bahkogirrje
   "sje": !gettext "Pite Saami"
@@ -176,7 +177,7 @@ isos_to_demonym:
   "sms": "sääʹmǩiõll"
   "smn": "Anarâškielâ"
   "hdn": "X̲aat Kíl"
-  "hdnM": "X̲aat Kíl"
+  "hdnM": "X̲aat Kíl (tolerant)"
   "en": "English"
   "fr": "Français"
   "hun": "Magyar"
