@@ -12,6 +12,10 @@ try:
     from urllib import urlopen
 except ImportError: # py3
     from urllib.request import urlopen
+try:
+    from urllib import quote
+except ImportError: # py3
+    from urllib.parse import quote
 
 from i18n.utils import get_locale
 from nds_lexicon import FrontPageFormat
@@ -685,7 +689,7 @@ class SearcherMixin(object):
             k_query = ''
 
             if (korp_opts.get('lemma_search_path') and lemma and start_query and corpora):
-                k_query = start_query + corpora + '&cqp=%5Blemma+%3D+%22' + lemma + '%22%5D&start=0&end=99'
+                k_query = start_query + corpora + '&cqp=%5Blemma+%3D+%22' + quote(lemma) + '%22%5D&start=0&end=99'
             return k_query
 
         korp_hits = 0
