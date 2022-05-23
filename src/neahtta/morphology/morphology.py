@@ -1176,7 +1176,7 @@ class Morphology(object):
                     "%s: %s" % (k, v)
                     for (k, v) in iteritems(_extra_log_info)
                 ])
-                extra_log_info = extra_log_info.encode('utf-8')
+                extra_log_info = extra_log_info
                 logg_args.append(extra_log_info)
 
             logg = "\t".join([a for a in logg_args if a])
