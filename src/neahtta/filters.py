@@ -14,7 +14,10 @@ def file_exists(path):
 def register_filters(app):
 
     from flask import render_template, send_from_directory, request
-    import urllib as urllib
+    try:
+        from urllib import quote, quote_plus
+    except ImportError:
+        from urllib.parse import quote, quote_plus # py3
     from markupsafe import Markup
 
     @app.route('/robots.txt')
@@ -134,7 +137,7 @@ def register_filters(app):
         if type(s) == 'Markup':
             s = s.unescape()
         s = s.encode('utf8')
-        s = urllib.quote_plus(s)
+        s = quote_plus(s)
         return Markup(s)
 
     @app.template_filter('urlencode_quote')
@@ -142,7 +145,7 @@ def register_filters(app):
         if type(s) == 'Markup':
             s = s.unescape()
         s = s.encode('utf8')
-        s = urllib.quote(s, safe=safe)
+        s = quote(s, safe=safe)
         return Markup(s)
 
     @app.template_filter('uniq')

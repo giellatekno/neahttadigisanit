@@ -32,7 +32,10 @@ DEFAULT_WORD_REGEX_OPTS = 'g'
 
 
 def external_korp_url(pair_details, user_input):
-    import urllib
+    try: 
+        from urllib import quote
+    except ImportError:
+        from urllib.parse import quote
 
     from flask import redirect
     from flask import g
@@ -62,7 +65,7 @@ def external_korp_url(pair_details, user_input):
                                               'mode=parallel_fin')
         url_pattern = url_pattern.replace(
             'SEARCH_QUERY',
-            urllib.quote(
+            quote(
                 korp_opts.get('bilingual_wordform_search_query'), safe="#&/"))
 
     delimiter_pattern = korp_opts.get('lemma_multiword_delimeter')
