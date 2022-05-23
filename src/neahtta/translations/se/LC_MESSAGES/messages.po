@@ -61,7 +61,7 @@ msgstr "Davvisámegiella"
 #: configs/language_names.yaml:35
 #, fuzzy
 msgid "North Sámi (tolerant)"
-msgstr "Davvisámegiella"
+msgstr "Davvisámegiella (toleránta)"
 
 #: configs/language_names.yaml:36 configs/language_names.yaml:114
 #: configs/language_names.yaml:132 configs/language_names.yaml:133
@@ -89,9 +89,8 @@ msgid "Komi"
 msgstr ""
 
 #: configs/language_names.yaml:47
-#, fuzzy
 msgid "Komi (tolerant)"
-msgstr "toleránta"
+msgstr ""
 
 #: configs/language_names.yaml:48
 msgid "Udmurt"
@@ -127,7 +126,7 @@ msgstr "Liivigiella"
 
 #: configs/language_names.yaml:60
 msgid "Livonian (tolerant)"
-msgstr ""
+msgstr "Liivigiella (toleránta)"
 
 #: configs/language_names.yaml:61
 msgid "Izhorian"
@@ -220,7 +219,7 @@ msgstr "Davvihaida"
 #: configs/language_names.yaml:106
 #, fuzzy
 msgid "Northern Haida (tolerant)"
-msgstr "Davvihaida"
+msgstr "Davvihaida (toleránta)"
 
 #: configs/language_names.yaml:107 templates/more_dictionaries.html:34
 msgid "Inari Saami"
@@ -228,7 +227,7 @@ msgstr "Anárašgiella"
 
 #: configs/language_names.yaml:110
 msgid "Inari Saami (tolerant)"
-msgstr ""
+msgstr "Anárašgiella (toleránta)"
 
 #: configs/language_names.yaml:111
 msgid "Pite Saami"
