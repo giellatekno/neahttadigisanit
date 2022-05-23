@@ -27,6 +27,7 @@
 
 from __future__ import absolute_import
 from functools import partial
+import types
 
 
 class memoize(object):
@@ -157,7 +158,7 @@ class Trie(object):
 
     def _smash(self, iterable):
         for i in iterable:
-            if getattr(i, '__iter__', False):
+            if isinstance(i, types.GeneratorType):
                 for j in self._smash(i):
                     yield j
             else:  # base case
@@ -165,7 +166,7 @@ class Trie(object):
 
     def autocomplete(self, prefix):
         """ 
-        returns all licit completions of the prefix iterable
+        returns all licit completions of the prefix iterable as a list of strings
         """
         # traverse down to the prefix
         curr_node = self.root
