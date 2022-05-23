@@ -245,7 +245,7 @@ class MorphoLexicon(object):
                     entries_and_tags[entry] = []
 
         if entry_hash_filter:
-            for node in entries_and_tags.keys():
+            for node in entries_and_tags.copy().keys(): # Copy as we cannot modify a dict during iteration
                 if node is None or hash_node(node) != entry_hash_filter:
                     del entries_and_tags[node]
 
