@@ -123,8 +123,6 @@
     {# Render all the texts as individual links, prefaced by a potential
     annotation and potential other preface. #}
 
-    {{- render_annotation(tg) -}}
-
     {{ render_preface(tg) }}
 
     {# Aspects б and в should be inside brackets #}
@@ -135,6 +133,8 @@
             {{ render_link(tg, t) }}{%- if not loop.last -%},{%- endif -%}
         {%- if loop.last and (aspect == "б" or aspect == "в") -%}){%- endif -%}
     {% endfor %}
+
+    {{- render_annotation(tg) -}}
 
 {%- endmacro -%}
 

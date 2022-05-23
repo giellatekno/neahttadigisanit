@@ -375,6 +375,72 @@ saanih-install: install_langs_fsts
 ##### #/saanihtargets
 #####
 
+#####
+##### #sanjtargets
+#####
+
+# These are the ISOs of the languages to compile from GTLANGS/lang-xxx/
+SANJ_LANGS_ANALYSERS           :=   sjd-x-private
+
+# OPTIONAL: enable miscellaneous ./configure flags
+# SANJ_LANGS_FLAGS             :=   --with-hfst
+
+# Compile the lexicon from within GTLANGS/lang-xxx/src/fst/stems/*.xml
+
+# SANJ_LANGS_LEXICA              :=   smn
+
+# Compile the lexicon from a directory within GTHOME/words/dicts/
+# SANJ_WORDS_DICTS_LEXICA        :=   smnfin finsmn smnsme smesmn
+# finsmn
+
+.PHONY: sanj-lexica
+#sanj-lexica: LEX_COMPILE_LANGS := $(SANJ_LANGS_LEXICA)
+#sanj-lexica: LEX_COMPILE_WORDS_DICTS := $(SANJ_WORDS_DICTS_LEXICA)
+#sanj-lexica: compile_langs_lexicon \
+			  compile_words_dicts_lexicon
+
+# Custom compile script because the xml files are in lang-sjd-x-private/misc, which is not the case in any other dicts.
+# Remember to extract xml files from source xlsx files using the scripts in lang-sjd-x-private/src/scripts
+sanj-lexica: 
+	@echo $*
+	@echo "***********************"
+	@echo "** Copying to target for: sjdrus russjd **"
+	@echo "***********************"
+	@echo ""
+	echo " * Compiling langs lexica for sjdrus" ; \
+	if ! test -e "sjd-rus.xml " ; then \
+		echo " * Backing up to sjd-rus.xml.$(shell date +%s).bak"  ; \
+		cp -R sjd-rus.xml sjd-rus.xml.$(shell date +%s).bak ; \
+	fi ; \
+	$(SAXON) inDir=$(GTLANGS)/lang-sjd-x-private/misc/xml_sjdrus > sjd-rus.xml ; \
+	echo " * Compiling resulted in: " ; \
+	wc -l sjd-rus.xml ; \
+	echo " * Compiling langs lexica for russjd" ; \
+	if ! test -e "rus-sjd.xml " ; then \
+		echo " * Backing up to rus-sjd.xml.$(shell date +%s).bak"  ; \
+		cp -R sjd-rus.xml rus-sjd.xml.$(shell date +%s).bak ; \
+	fi ; \
+	$(SAXON) inDir=$(GTLANGS)/lang-sjd-x-private/misc/xml_russjd > rus-sjd.xml ; \
+	echo " * Compiling resulted in: " ; \
+	wc -l rus-sjd.xml ;
+
+.PHONY: sanj
+sanj: GT_COMPILE_LANGS := $(SANJ_LANGS_ANALYSERS)
+sanj: LEX_COMPILE_LANGS := $(SANJ_LANGS_LEXICA)
+sanj: LEX_COMPILE_WORDS_DICTS := $(SANJ_WORDS_DICTS_LEXICA)
+sanj: sanj-lexica compile_langs_fsts print_complete_message
+
+rm-sanj-lexica: 
+	@rm -f sjd-rus.xml rus-sjd.xml
+
+.PHONY: sanj-install
+sanj-install: GT_COMPILE_LANGS := $(SANJ_LANGS_ANALYSERS)
+sanj-install: install_langs_fsts
+
+#####
+##### #/sanjtargets
+#####
+
 
 #####
 ##### #guusaawtargets
