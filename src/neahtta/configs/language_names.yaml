@@ -44,9 +44,11 @@ isos_to_names:
   # kyv
   "kpv": !gettext "Komi"
   "kpvS": !gettext "Komi"
+  "kpvM": !gettext "Komi"
   "udm": !gettext "Udmurt"
   "udmM": !gettext "Udmurt"
   "koi": !gettext "Komi-Permyak"
+  "koiM": !gettext "Komi-Permyak"
 
   # sanat
   "fkv": !gettext "Kven"
