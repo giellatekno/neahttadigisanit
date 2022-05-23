@@ -872,15 +872,26 @@ class Config(Config):
             a_min = a_source_iso in self.minority_languages
             b_min = b_source_iso in self.minority_languages
 
+            def error_string(iso):
+                return("The name corresponding to iso {} is missing from language_names.yaml".format(iso))
+
             # TODO: Also sort reverse pairs together somehow.
             reverse_pairs = ((a_source_iso, a_target_iso) == (b_target_iso, b_source_iso)) or \
                             ((a_target_iso, a_source_iso) == (b_source_iso, b_target_iso))
 
             a_source_name = NAMES.get(a_source_iso)
+            if a_source_name is None:
+                raise NameError(error_string(a_source_iso))
             b_source_name = NAMES.get(b_source_iso)
+            if b_source_name is None:
+                raise NameError(error_string(b_source_iso))
 
             a_target_name = NAMES.get(a_target_iso)
+            if a_target_name is None:
+                raise NameError(error_string(a_target_iso))
             b_target_name = NAMES.get(b_target_iso)
+            if b_target_name is None:
+                raise NameError(error_string(b_target_iso))
 
             def gt_return(a, b):
                 if a > b: return -2
