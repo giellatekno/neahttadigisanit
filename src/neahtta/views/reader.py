@@ -198,7 +198,7 @@ def lookupWord(from_language, to_language):
         # (both here and in morpholex)
         #This is a quick fix, but TODO: maybe rethink the structure of new code?
         analyses = morpholexicon_lookup.analyses
-        tags = map(filterPOSAndTag, analyses)
+        tags = list(map(filterPOSAndTag, analyses))
 
         if multiword:
             _u_in = lookup

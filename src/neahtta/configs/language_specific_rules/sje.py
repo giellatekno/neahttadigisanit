@@ -105,7 +105,7 @@ def pregenerate_sje(form, tags, node, **kwargs):
 
         return (form, tag, wfs)
 
-    analyses = map(analysis_node, mp.xpath('.//analysis'))
+    analyses = list(map(analysis_node, mp.xpath('.//analysis')))
 
     return form, tags, node, analyses
 

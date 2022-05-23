@@ -58,7 +58,7 @@ def register_template_filters(app):
 
         tag_by_form = [(g.tag.tag_string, g) for g in forms]
         groups = groupby(tag_by_form, itemgetter(0))
-        forms = [map(itemgetter(1), b) for a, b in groups]
+        forms = [list(map(itemgetter(1), b)) for a, b in groups]
 
         return forms
 

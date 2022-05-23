@@ -34,7 +34,7 @@ class YamlTests(object):
         def parse_item(i):
             return ((i[0], i[1]), i[2])
 
-        return map(parse_item, self.parsed_yaml.get('LookupTests'))
+        return list(map(parse_item, self.parsed_yaml.get('LookupTests')))
 
     @property
     def paradigm_generation_tests(self):
@@ -60,8 +60,8 @@ class YamlTests(object):
             else:
                 return ()
 
-        self._paradigm_generation_tests = map(
-            read_test_item, self.parsed_yaml.get('ParadigmGeneration'))
+        self._paradigm_generation_tests = list(map(
+            read_test_item, self.parsed_yaml.get('ParadigmGeneration')))
 
         return self._paradigm_generation_tests
 

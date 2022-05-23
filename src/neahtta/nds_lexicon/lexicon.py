@@ -768,7 +768,7 @@ class Lexicon(object):
 
         _look = partial(self.lookup, _from=_from, _to=_to, *args, **kwargs)
 
-        results = zip(lookups, map(lambda x: _look(lemma=x), lookups))
+        results = zip(lookups, list(map(lambda x: _look(lemma=x), lookups)))
 
         success = any([res for l, res in results])
 

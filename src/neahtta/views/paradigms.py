@@ -90,7 +90,7 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
         if paradigms is None:
             paradigms = self.search_to_paradigm(lemma)
 
-        return [map(self.clean_lemma, paradigm) for paradigm in paradigms]
+        return [list(map(self.clean_lemma, paradigm)) for paradigm in paradigms]
 
     def search_to_paradigm(self, lookup_value):
         """Really generate the paradigm from a lemma.

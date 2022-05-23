@@ -35,7 +35,7 @@ def _getlangs(app):
         if f.endswith('.py') and not f.startswith(('.', '__'))
     ]
 
-    return map(_popname, filenames)
+    return list(map(_popname, filenames))
 
 
 def _import(app, m):

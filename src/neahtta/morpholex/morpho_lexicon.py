@@ -78,13 +78,13 @@ class MorphoLexiconResult(list):
     def analyses(self):
         """ Return a list of Lemma objects for each entry result
         """
-        return sum(map(itemgetter(1), self), [])
+        return sum(list(map(itemgetter(1), self)), [])
 
     @property
     def entries(self):
         """ Return a list of entry objects for each entry result
         """
-        return map(itemgetter(0), self)
+        return list(map(itemgetter(0), self))
 
 
 class MorphoLexicon(object):

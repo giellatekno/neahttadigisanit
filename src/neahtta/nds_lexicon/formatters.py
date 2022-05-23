@@ -218,7 +218,7 @@ class SimpleJSON(EntryNodeIterator):
 
             return fixTag(r)
 
-        return map(filterPOS, list(self))
+        return list(map(filterPOS, list(self)))
 
     def clean(self, e):
         lemma, lemma_pos, lemma_context, _, lemma_hid = self.l_node(e)
@@ -341,11 +341,11 @@ class FrontPageFormat(EntryNodeIterator):
         target_formatted = []
         if len(texts) > 0:
             # TODO: does this not actually pass texts ?
-            target_formatted = map(target_formatter, texts)
+            target_formatted = list(map(target_formatter, texts))
         elif len(annotations) > 0:
             # target_formatter expects some default text to be passed in
             # the event that no formatting is able to be made
-            target_formatted = map(target_formatter, annotations)
+            target_formatted = list(map(target_formatter, annotations))
 
         # If there were changes, then we want to give absolute control
         # on this string to the formatter.
@@ -354,7 +354,7 @@ class FrontPageFormat(EntryNodeIterator):
             target_reformatted = True
 
         target_formatted_unlinked = target_formatted
-        target_formatted = map(add_link, target_formatted)
+        target_formatted = list(map(add_link, target_formatted))
 
         right_node = {
             'tx': ', '.join(texts),
@@ -373,7 +373,7 @@ class FrontPageFormat(EntryNodeIterator):
 
         ui_lang = self.query_kwargs.get('ui_lang')
 
-        _right = map(lambda tg: self.clean_tg_node(e, tg), tgs)
+        _right = list(map(lambda tg: self.clean_tg_node(e, tg), tgs))
 
         right_langs = [lang for _, lang in _right]
         right_nodes = [fmt_node for fmt_node, _ in _right]
@@ -459,7 +459,7 @@ class DetailedFormat(FrontPageFormat):
 
         ui_lang = self.query_kwargs.get('ui_lang')
 
-        _right = map(lambda tg: self.clean_tg_node(e, tg), tgs)
+        _right = list(map(lambda tg: self.clean_tg_node(e, tg), tgs))
 
         right_langs = [lang for _, lang in _right]
         right_nodes = [fmt_node for fmt_node, _ in _right]

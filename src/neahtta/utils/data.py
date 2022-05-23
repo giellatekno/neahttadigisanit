@@ -11,4 +11,4 @@ def zipNoTruncate(a, b):
     def tup(*bbq):
         return tuple(bbq)
 
-    return map(tup, a, b)
+    return list(map(tup, a, b))

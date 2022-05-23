@@ -89,7 +89,7 @@ class TagPart(object):
 class Tagset(object):
     def __init__(self, name, members):
         self.name = name
-        self.members = map(TagPart, members)
+        self.members = list(map(TagPart, members))
 
     def __str__(self):
         return '<Tagset: "%s">' % self.name
@@ -291,8 +291,8 @@ class Lemma(object):
             try:
                 self.pos = self.tag['pos']
             except:
-                    self.tag.encode('utf-8')
-                    self.pos = self.tag['pos']
+                self.tag.encode('utf-8')
+                self.pos = self.tag['pos']
 
             self.tag_raw = tag
 
@@ -407,7 +407,7 @@ def word_generation_context(generated_result, *generation_input_args,
 
         return (tag, formatted_forms)
 
-    return map(apply_context, generated_result)
+    return list(map(apply_context, generated_result))
 
 
 class GenerationOverrides(object):
@@ -1047,7 +1047,7 @@ class Morphology(object):
             return lems
 
         generate_out, stdin, stderr = self.generate(*args, **kwargs)
-        generated = sum(map(make_lemma, generate_out), [])
+        generated = sum(list(map(make_lemma, generate_out)), [])
 
         return_raw_data = kwargs.get('return_raw_data', False)
         if return_raw_data:
@@ -1336,7 +1336,7 @@ class Morphology(object):
 
     def split_on_compounds(self, analyses, split_compounds):
         if split_compounds:
-            analyses = sum(map(self.tool.splitTagByCompound, analyses), [])
+            analyses = sum(list(map(self.tool.splitTagByCompound, analyses)), [])
         return analyses
 
     @staticmethod

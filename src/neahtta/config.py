@@ -1066,8 +1066,8 @@ class Config(Config):
         multiword_list = [l.strip() for l in lines if l.strip()]
 
         # Couldn't help myself.
-        return map(strip_line_end_comment,
-                   list(filter(drop_line_comment, map(clean_line, multiword_list))))
+        return list(map(strip_line_end_comment,
+                   list(filter(drop_line_comment, list(map(clean_line, multiword_list))))))
 
     @property
     def reader_options(self):
