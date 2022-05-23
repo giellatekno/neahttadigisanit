@@ -1260,15 +1260,15 @@ class Config(Config):
         variant_options = False
         if is_variant:
             orig_pair_variants = pair_settings.get('input_variants')
-            variant_opts = list(filter( lambda x: x.get('short_name') == _from and not x.get('display_variant', False))
+            variant_opts = list(filter( lambda x: x.get('short_name') == _from and not x.get('display_variant', False)
                                  , orig_pair_variants
-                                 )
+                                 ))
             if len(variant_opts) > 0:
                 variant_options = variant_opts[0]
 
-            d_variant_opts = list(filter( lambda x: x.get('short_name') == _to and x.get('display_variant', False))
+            d_variant_opts = list(filter( lambda x: x.get('short_name') == _to and x.get('display_variant', False)
                                    , orig_pair_variants
-                                   )
+                                   ))
             if len(d_variant_opts) > 0:
                 variant_options = d_variant_opts[0]
 
