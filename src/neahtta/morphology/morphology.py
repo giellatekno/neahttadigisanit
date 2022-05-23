@@ -1388,11 +1388,12 @@ class Morphology(object):
             _cache_tags = generation_tags
 
         _cache_key = hashlib.md5()
-        _cache_key.update('generation-%s-' % self.langcode)
+        genstr = 'generation-%s-' % self.langcode
+        _cache_key.update(genstr.encode('utf-8'))
         _cache_key.update(lemma.encode('utf-8'))
         if node is not None:
             node_hash = node.__hash__()
-            _cache_key.update(str(node_hash))
+            _cache_key.update(str(node_hash).encode('utf-8'))
         _cache_key.update(_cache_tags.encode('utf-8'))
         return _cache_key.hexdigest()
 
