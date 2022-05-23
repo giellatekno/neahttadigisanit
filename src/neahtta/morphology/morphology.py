@@ -813,13 +813,13 @@ class XFST(object):
 
         output, err = lookup_proc.communicate(_input)
 
-        if output:
+        if output is not None:
             try:
                 output = output.decode('utf-8')
             except:
                 pass
 
-        if err:
+        if err is not None:
             try:
                 err = err.decode('utf-8')
             except:
