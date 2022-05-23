@@ -328,68 +328,68 @@
             {% if lemma != "лӣннче" %}
                 <tr>
                     <th class="tag" lang="{{ _from }}">мунн</th>
-                    <td lang="{{ _from }}">{{ prs_sg1|uniq|join("<br />", attribute="form") }}</td>
-                    <td lang="{{ _from }}">{{ prt_sg1|uniq|join("<br />", attribute="form") }}</td>
+                    <td lang="{{ _from }}">{{ prs_sg1|uniq|join("<br />", attribute="form")|safe }}</td>
+                    <td lang="{{ _from }}">{{ prt_sg1|uniq|join("<br />", attribute="form")|safe }}</td>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">то̄нн</th>
-                    <td lang="{{ _from }}">{{ prs_sg2|uniq|join("<br />", attribute="form") }}</td>
-                    <td lang="{{ _from }}">{{ prt_sg2|uniq|join("<br />", attribute="form") }}</td>
+                    <td lang="{{ _from }}">{{ prs_sg2|uniq|join("<br />", attribute="form")|safe }}</td>
+                    <td lang="{{ _from }}">{{ prt_sg2|uniq|join("<br />", attribute="form")|safe }}</td>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">со̄нн</th>
-                    <td lang="{{ _from }}">{{ prs_sg3|uniq|join("<br />", attribute="form") }}</td>
-                    <td lang="{{ _from }}">{{ prt_sg3|uniq|join("<br />", attribute="form") }}</td>
+                    <td lang="{{ _from }}">{{ prs_sg3|uniq|join("<br />", attribute="form")|safe }}</td>
+                    <td lang="{{ _from }}">{{ prt_sg3|uniq|join("<br />", attribute="form")|safe }}</td>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">мыйй</th>
-                    <td lang="{{ _from }}">{{ prs_pl1|uniq|join("<br />", attribute="form") }}</td>
-                    <td lang="{{ _from }}">{{ prt_pl1|uniq|join("<br />", attribute="form") }}</td>
+                    <td lang="{{ _from }}">{{ prs_pl1|uniq|join("<br />", attribute="form")|safe }}</td>
+                    <td lang="{{ _from }}">{{ prt_pl1|uniq|join("<br />", attribute="form")|safe }}</td>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">тыйй</th>
-                    <td lang="{{ _from }}">{{ prs_pl2|uniq|join("<br />", attribute="form") }}</td>
-                    <td lang="{{ _from }}">{{ prt_pl2|uniq|join("<br />", attribute="form") }}</td>
+                    <td lang="{{ _from }}">{{ prs_pl2|uniq|join("<br />", attribute="form")|safe }}</td>
+                    <td lang="{{ _from }}">{{ prt_pl2|uniq|join("<br />", attribute="form")|safe }}</td>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">сыйй</th>
-                    <td lang="{{ _from }}">{{ prs_pl3|uniq|join("<br />", attribute="form") }}</td>
-                    <td lang="{{ _from }}">{{ prt_pl3|uniq|join("<br />", attribute="form") }}</td>
+                    <td lang="{{ _from }}">{{ prs_pl3|uniq|join("<br />", attribute="form")|safe }}</td>
+                    <td lang="{{ _from }}">{{ prt_pl3|uniq|join("<br />", attribute="form")|safe }}</td>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">безлич</th>
-                    <td lang="{{ _from }}">{{ prs_sg4|uniq|join("<br />", attribute="form") }}</td>
-                    <td lang="{{ _from }}">{{ prt_sg4|uniq|join("<br />", attribute="form") }}</td>
+                    <td lang="{{ _from }}">{{ prs_sg4|uniq|join("<br />", attribute="form")|safe }}</td>
+                    <td lang="{{ _from }}">{{ prt_sg4|uniq|join("<br />", attribute="form")|safe }}</td>
                 </tr>
 
             {% else %} {# if lemma == лӣннче, only show present forms #}
                 <tr>
                     <th class="tag" lang="{{ _from }}">мунн</th>
-                    <td lang="{{ _from }}">{{ prs_sg1|uniq|join("<br />", attribute="form") }}</td>
+                    <td lang="{{ _from }}">{{ prs_sg1|uniq|join("<br />", attribute="form")|safe }}</td>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">то̄нн</th>
-                    <td lang="{{ _from }}">{{ prs_sg2|uniq|join("<br />", attribute="form") }}</td>
+                    <td lang="{{ _from }}">{{ prs_sg2|uniq|join("<br />", attribute="form")|safe }}</td>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">со̄нн</th>
-                    <td lang="{{ _from }}">{{ prs_sg3|uniq|join("<br />", attribute="form") }}</td>
+                    <td lang="{{ _from }}">{{ prs_sg3|uniq|join("<br />", attribute="form")|safe }}</td>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">мыйй</th>
-                    <td lang="{{ _from }}">{{ prs_pl1|uniq|join("<br />", attribute="form") }}</td>
+                    <td lang="{{ _from }}">{{ prs_pl1|uniq|join("<br />", attribute="form")|safe }}</td>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">тыйй</th>
-                    <td lang="{{ _from }}">{{ prs_pl2|uniq|join("<br />", attribute="form") }}</td>
+                    <td lang="{{ _from }}">{{ prs_pl2|uniq|join("<br />", attribute="form")|safe }}</td>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">сыйй</th>
-                    <td lang="{{ _from }}">{{ prs_pl3|uniq|join("<br />", attribute="form") }}</td>
+                    <td lang="{{ _from }}">{{ prs_pl3|uniq|join("<br />", attribute="form")|safe }}</td>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">безлич</th>
-                    <td lang="{{ _from }}">{{ prs_sg4|uniq|join("<br />", attribute="form") }}</td>
+                    <td lang="{{ _from }}">{{ prs_sg4|uniq|join("<br />", attribute="form")|safe }}</td>
                 </tr>
             {% endif %}
         </table>
@@ -427,50 +427,50 @@
 
             <tr>
                 <th lang="{{ _to }}">{% if nom_sg|length > 0 %}{{ clean_tag(nom_sg[0].tag) }}{% endif %}</th>
-                <td lang="{{ _from }}">{% if nom_sg|length > 0 %}{{ nom_sg|uniq|join("<br />", attribute="form") }}{% else %}&mdash;{% endif %}</td>
-                <td lang="{{ _from }}">{% if nom_pl|length > 0 %}{{ nom_pl|uniq|join("<br />", attribute="form") }}{% else %}&mdash;{% endif %}</td>
+                <td lang="{{ _from }}">{% if nom_sg|length > 0 %}{{ nom_sg|uniq|join("<br />", attribute="form")|safe }}{% else %}&mdash;{% endif %}</td>
+                <td lang="{{ _from }}">{% if nom_pl|length > 0 %}{{ nom_pl|uniq|join("<br />", attribute="form")|safe }}{% else %}&mdash;{% endif %}</td>
             </tr>
             <tr>
                 <th lang="{{ _to }}">{% if gen_sg|length > 0 %}{{ clean_tag(gen_sg[0].tag) }}{% endif %}</th>
-                <td lang="{{ _from }}">{% if gen_sg|length > 0 %}{{ gen_sg|uniq|join("<br />", attribute="form") }}{% else %}&mdash;{% endif %}</td>
-                <td lang="{{ _from }}">{% if gen_pl|length > 0 %}{{ gen_pl|uniq|join("<br />", attribute="form") }}{% else %}&mdash;{% endif %}</td>
+                <td lang="{{ _from }}">{% if gen_sg|length > 0 %}{{ gen_sg|uniq|join("<br />", attribute="form")|safe }}{% else %}&mdash;{% endif %}</td>
+                <td lang="{{ _from }}">{% if gen_pl|length > 0 %}{{ gen_pl|uniq|join("<br />", attribute="form")|safe }}{% else %}&mdash;{% endif %}</td>
             </tr>
             <tr>
                 <th lang="{{ _to }}">{% if acc_sg|length > 0 %}{{ clean_tag(acc_sg[0].tag) }}{% endif %}</th>
-                <td lang="{{ _from }}">{% if acc_sg|length > 0 %}{{ acc_sg|uniq|join("<br />", attribute="form") }}{% else %}&mdash;{% endif %}</td>
-                <td lang="{{ _from }}">{% if acc_pl|length > 0 %}{{ acc_pl|uniq|join("<br />", attribute="form") }}{% else %}&mdash;{% endif %}</td>
+                <td lang="{{ _from }}">{% if acc_sg|length > 0 %}{{ acc_sg|uniq|join("<br />", attribute="form")|safe }}{% else %}&mdash;{% endif %}</td>
+                <td lang="{{ _from }}">{% if acc_pl|length > 0 %}{{ acc_pl|uniq|join("<br />", attribute="form")|safe }}{% else %}&mdash;{% endif %}</td>
             </tr>
             <tr>
                 <th lang="{{ _to }}">{% if ill_sg|length > 0 %}{{ clean_tag(ill_sg[0].tag) }}{% endif %}</th>
-                <td lang="{{ _from }}">{% if ill_sg|length > 0 %}{{ ill_sg|uniq|join("<br />", attribute="form") }}{% else %}&mdash;{% endif %}</td>
-                <td lang="{{ _from }}">{% if ill_pl|length > 0 %}{{ ill_pl|uniq|join("<br />", attribute="form") }}{% else %}&mdash;{% endif %}</td>
+                <td lang="{{ _from }}">{% if ill_sg|length > 0 %}{{ ill_sg|uniq|join("<br />", attribute="form")|safe }}{% else %}&mdash;{% endif %}</td>
+                <td lang="{{ _from }}">{% if ill_pl|length > 0 %}{{ ill_pl|uniq|join("<br />", attribute="form")|safe }}{% else %}&mdash;{% endif %}</td>
             </tr>
             <tr>
                 <th lang="{{ _to }}">{% if loc_sg|length > 0 %}{{ clean_tag(loc_sg[0].tag) }}{% endif %}</th>
-                <td lang="{{ _from }}">{% if loc_sg|length > 0 %}{{ loc_sg|uniq|join("<br />", attribute="form") }}{% else %}&mdash;{% endif %}</td>
-                <td lang="{{ _from }}">{% if loc_pl|length > 0 %}{{ loc_pl|uniq|join("<br />", attribute="form") }}{% else %}&mdash;{% endif %}</td>
+                <td lang="{{ _from }}">{% if loc_sg|length > 0 %}{{ loc_sg|uniq|join("<br />", attribute="form")|safe }}{% else %}&mdash;{% endif %}</td>
+                <td lang="{{ _from }}">{% if loc_pl|length > 0 %}{{ loc_pl|uniq|join("<br />", attribute="form")|safe }}{% else %}&mdash;{% endif %}</td>
             </tr>
             <tr>
                 <th lang="{{ _to }}">{% if com_sg|length > 0 %}{{ clean_tag(com_sg[0].tag) }}{% endif %}</th>
-                <td lang="{{ _from }}">{% if com_sg|length > 0 %}{{ com_sg|uniq|join("<br />", attribute="form") }}{% else %}&mdash;{% endif %}</td>
-                <td lang="{{ _from }}">{% if com_pl|length > 0 %}{{ com_pl|uniq|join("<br />", attribute="form") }}{% else %}&mdash;{% endif %}</td>
+                <td lang="{{ _from }}">{% if com_sg|length > 0 %}{{ com_sg|uniq|join("<br />", attribute="form")|safe }}{% else %}&mdash;{% endif %}</td>
+                <td lang="{{ _from }}">{% if com_pl|length > 0 %}{{ com_pl|uniq|join("<br />", attribute="form")|safe }}{% else %}&mdash;{% endif %}</td>
             </tr>
             <tr>
                 <th lang="{{ _to }}">{% if abe_sg|length > 0 %}{{ clean_tag(abe_sg[0].tag) }}{% endif %}</th>
-                <td lang="{{ _from }}">{% if abe_sg|length > 0 %}{{ abe_sg|uniq|join("<br />", attribute="form") }}{% else %}&mdash;{% endif %}</td>
-                <td lang="{{ _from }}">{% if abe_pl|length > 0 %}{{ abe_pl|uniq|join("<br />", attribute="form") }}{% else %}&mdash;{% endif %}</td>
+                <td lang="{{ _from }}">{% if abe_sg|length > 0 %}{{ abe_sg|uniq|join("<br />", attribute="form")|safe }}{% else %}&mdash;{% endif %}</td>
+                <td lang="{{ _from }}">{% if abe_pl|length > 0 %}{{ abe_pl|uniq|join("<br />", attribute="form")|safe }}{% else %}&mdash;{% endif %}</td>
             </tr>
             {% if ess|length > 0 %}
             <tr>
                 <th lang="{{ _to }}">{{ clean_tag(ess[0].tag) }}</th>
-                <td lang="{{ _from }}">{{ ess|uniq|join("<br />", attribute="form") }}</td>
+                <td lang="{{ _from }}">{{ ess|uniq|join("<br />", attribute="form")|safe }}</td>
                 <td></td>
             </tr>
             {% endif %}
             {% if par|length > 0 %}
             <tr>
                 <th lang="{{ _to }}">{{ clean_tag(par[0].tag) }}</th>
-                <td lang="{{ _from }}">{{ par|uniq|join("<br />", attribute="form") }}</td>
+                <td lang="{{ _from }}">{{ par|uniq|join("<br />", attribute="form")|safe }}</td>
                 <td></td>
             </tr>
             {% endif %}
