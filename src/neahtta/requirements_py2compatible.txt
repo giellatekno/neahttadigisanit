@@ -19,7 +19,7 @@ invocations==2.6.0
 itsdangerous==1.1.0
 jedi==0.17.2
 Jinja2==2.8.1
-jsmin==3.0.1
+jsmin==2.2.2
 limits==1.6
 lxml==4.8.0
 MarkupSafe==1.1.1
@@ -35,7 +35,6 @@ pytz==2015.7
 pywatch==0.4
 PyYAML==3.13
 requests==2.27.1
-setproctitle==1.2.3
 simplejson==3.17.6
 six==1.16.0
 slimit==0.8.1
