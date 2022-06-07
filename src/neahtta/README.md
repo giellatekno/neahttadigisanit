@@ -24,9 +24,9 @@ webserver to direct requests to neahttadigisanit.fcgi. The virtualenv could
 really go anywhere, but I find it useful to keep it in a local directory so
 that I always know where it is.
 
-    virtualenv .env
+    python3 -m virtualenv -p /usr/local/bin/python3.7.env
     . .env/bin/activate
-    pip install -r requirements.txt
+    python -m pip install -r requirements.txt
 
 If more requirements become necessary, be sure to update the file and check it
 in.
@@ -38,8 +38,7 @@ in.
 ### Lexical and linguistic dependencies to check
 
  * svn up main/words/dicts/
- * svn up main/gt/
- * svn up main/langs
+ * git pull giellalt/lang-xxx
 
 #### Makefile
 
