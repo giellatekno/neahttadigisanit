@@ -59,7 +59,6 @@ msgid "North Sámi"
 msgstr "Davvisámegiella"
 
 #: configs/language_names.yaml:35
-#, fuzzy
 msgid "North Sámi (tolerant)"
 msgstr "Davvisámegiella (toleránta)"
 
