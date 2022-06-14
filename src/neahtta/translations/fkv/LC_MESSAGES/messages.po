@@ -24,7 +24,7 @@ msgstr ""
 #: configs/sanit.config.yaml.in:135 configs/sanj.config.yaml.in:86
 #: configs/sonad.config.yaml.in:155 tests/configs/sanit.config.yaml:122
 msgid "Standard"
-msgstr "Tavallinen"
+msgstr "Tavalinen"
 
 #: configs/kyv.config.yaml.in:179 configs/kyv.config.yaml.in:256
 msgid "Social media"
@@ -317,7 +317,7 @@ msgstr "(myös <em>ио</em>)"
 
 #: configs/sonad.config.yaml.in:160
 msgid "mobile friendly"
-msgstr "(... ja on kännykkä-ystävällinen!)"
+msgstr "(... ja oon käsifuuni- eli mobiiliystävällinen)"
 
 #: configs/language_specific_rules/templates/about.template:5
 #: configs/language_specific_rules/templates/baakoeh/about.template:6
@@ -356,7 +356,7 @@ msgstr "Meistä"
 #: configs/language_specific_rules/templates/vada/about.template:17
 #: configs/language_specific_rules/templates/valks/about.template:17
 msgid "A dictionary that understands what you're looking for."
-msgstr "Sanakirja, joka ymmärtää, mitä etsit."
+msgstr "Nettidigisanat. Sanakirja joka ymmärttää mitä hajet."
 
 #: configs/language_specific_rules/templates/about.template:15
 #: configs/language_specific_rules/templates/baakoeh/about.template:16
@@ -375,7 +375,7 @@ msgstr "Sanakirja, joka ymmärtää, mitä etsit."
 #: configs/language_specific_rules/templates/vada/about.template:18
 #: configs/language_specific_rules/templates/valks/about.template:18
 msgid "(... And is mobile-friendly!)"
-msgstr "(... ja on kännykkä-ystävällinen!)"
+msgstr "(... ja oon käsifuuni- eli mobiiliystävällinen)"
 
 #: configs/language_specific_rules/templates/about.template:19
 #: configs/language_specific_rules/templates/gunaha/about.template:20
@@ -462,7 +462,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/vada/about.template:38
 #: configs/language_specific_rules/templates/valks/about.template:38
 msgid "Linguistic basis"
-msgstr "Kielitieteellinen perusta"
+msgstr "Kielitietheelinen tavusta"
 
 #: configs/language_specific_rules/templates/about.template:36
 #: configs/language_specific_rules/templates/baakoeh/about.template:32
@@ -482,8 +482,8 @@ msgid ""
 "Write what you wish, and the dictionary will analyze it to break apart "
 "compound words and find base forms."
 msgstr ""
-"Kirjoita mitä haluat, ja sanakirjaa analysoi sitä löytääkseensä "
-"yhdyssanojen ja taivutettujen muotojen vartalot."
+"Kirjoita mitä halluut, ja sanakirja analyseeraa sitä niin ette löyttäät "
+"yhđyssannoin ja sujutettuitten haamuin rangat."
 
 #: configs/language_specific_rules/templates/about.template:42
 #: configs/language_specific_rules/templates/baakoeh/about.template:38
@@ -607,7 +607,7 @@ msgstr "Molemmat sanakirjat sisältyvät noin 11 000 hakusanaa."
 #: configs/language_specific_rules/templates/vada/about.template:80
 #: configs/language_specific_rules/templates/valks/about.template:87
 msgid "Find a problem?"
-msgstr "Törmäsitkö ongelmaan?"
+msgstr "Kohtasitko probleemhiin?"
 
 #: configs/language_specific_rules/templates/about.template:73
 #: configs/language_specific_rules/templates/baakoeh/about.template:60
@@ -631,8 +631,8 @@ msgid ""
 "using, or what word you\n"
 "                were searching for when you encountered the problem."
 msgstr ""
-"Ota yhteyttä meihin, jos löydät ongelman. Kuvaile ongelma, ja kerro "
-"meille mitä sanaa etsit, kun löysit ongelman."
+"Jos löyđät feilii tahi probleemii, ota yhtheyđen meihin. Selitä ja kuvvailee assiin "
+"ja muistele meile mitä nettilukkiijaa olit pitämässä tahi mitä sannaa olit hakemassa ko löysit feilin."
 
 #: configs/language_specific_rules/templates/about.template:78
 #: configs/language_specific_rules/templates/about.template:83
@@ -671,7 +671,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/valks/about.template:93
 #: configs/language_specific_rules/templates/valks/about.template:98
 msgid "Contact us"
-msgstr "Ota yhteyttä meihin"
+msgstr "Ota yhtheyttä meihin"
 
 #: configs/language_specific_rules/templates/about.template:88
 #: configs/language_specific_rules/templates/baakoeh/about.template:75
@@ -732,8 +732,8 @@ msgid ""
 " what word you\n"
 "          were searching for when you encountered the problem."
 msgstr ""
-"Ota yhteyttä meihin, jos löydät ongelman. Kuvaile ongelma, ja kerro "
-"meille mitä sanaa etsit, kun löysit ongelman."
+"Jos löyđät feilii tahi probleemii, ota yhtheyđen meihin. Selitä ja kuvvailee assiin "
+"ja muistele meile mitä nettilukkiijaa olit pitämässä tahi mitä sannaa olit hakemassa ko löysit feilin."
 
 #: configs/language_specific_rules/templates/footer.template:9
 #: configs/language_specific_rules/templates/gunaha/footer.template:13
@@ -751,11 +751,11 @@ msgid ""
 "Technology group at the <a href=\"http://uit.no\">University of "
 "Tromsø</a>."
 msgstr ""
-"<em> <a href=\"http://uit.no\">UiT Norjan arktisen yliopiston</a> "
-"tutkimusryhmä<a "
-"href=\"http://giellatekno.uit.no/index.fin.html\">Giellatekno</a></em> on"
-" tehnyt nämä sanakirjaohjelmat vapaiden ja avoimella lähdekoodilla "
-"laadittujen kieliohjelmien avulla."
+"<em> <a href=\"http://uit.no\">UiT Norjan arktisen universiteetin</a> "
+"tutkimusroikka<a "
+"href=\"http://giellatekno.uit.no/index.fin.html\">Giellatekno</a></em> oon"
+" laittanu nämät sanakirjaprogramit vaphaan ja avvoimen kalttiikoodin "
+"kieliprogramiila."
 
 #: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:44
 #: configs/language_specific_rules/templates/index_search_form.template:41
@@ -763,7 +763,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:43
 #: configs/language_specific_rules/templates/sanj/index_search_form.template:42
 msgid "Press TAB (&#8677;) or touch screen to select"
-msgstr ""
+msgstr "Paina TAB (&#8677;) tahi kosketa särmii niin ette valita"
 
 #: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:51
 #: configs/language_specific_rules/templates/gunaha/index_search_form.template:58
@@ -813,7 +813,7 @@ msgstr "hakusana"
 #: templates/index_search_form.html:26 templates/index_search_form.html:49
 #: templates/index_search_form.html:53 templates/keyword_search_form.html:29
 msgid "Search"
-msgstr "Etsi"
+msgstr "Haje"
 
 #: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:68
 #: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:91
@@ -834,7 +834,7 @@ msgstr "Etsi"
 #: configs/language_specific_rules/templates/sanj/index_search_form.template:89
 #: templates/index_search_form.html:39 templates/index_search_form.html:64
 msgid "Search texts"
-msgstr "Etsi teksteistä"
+msgstr "Haje tekstiistä"
 
 #: configs/language_specific_rules/templates/notice.template:5
 #: configs/language_specific_rules/templates/sanit/notice.template:6
@@ -865,7 +865,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanit/search_info.template:9
 #: configs/language_specific_rules/templates/search_info.template:3
 msgid "Search for a word, or a word form for a word analysis and definition."
-msgstr "Etsi sanaa tai sanamuotoa analysoitavaksi tai määriteltäväksi."
+msgstr "Haje sannaa tahi sananhaamuu johon halluut analyysin tahi määrittelyn."
 
 #: configs/language_specific_rules/templates/baakoeh/about.template:20
 #: configs/language_specific_rules/templates/bahkogirrje/about.template:19
@@ -906,8 +906,8 @@ msgid ""
 "Write whatever you want in Pite Saami, and the dictionary will analyze it"
 " to break apart compound words and find base forms."
 msgstr ""
-"Kirjoita mitä haluat, ja sanakirjaa analysoi sitä löytääkseensä "
-"yhdyssanojen ja taivutettujen muotojen vartalot."
+"Kirjoita mitä halluut, ja sanakirja analyseeraa sitä niin ette löyttäät "
+"yhđyssannoin ja sujutettuitten haamuin rangat."
 
 #: configs/language_specific_rules/templates/bahkogirrje/about.template:43
 msgid "fara, gå"
@@ -1025,7 +1025,7 @@ msgstr "Vaihda"
 #: templates/word_detail.html:67 templates/word_detail.html:108
 #: views/reader.py:234
 msgid " is a possible form of ... "
-msgstr " on mahdollinen muoto sanasta ..."
+msgstr " oon mahđolinen haamu sanasta ..."
 
 #: configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:93
 #: configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:115
@@ -1176,7 +1176,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/saan/about.template:72
 #, fuzzy
 msgid "Dictionaries:"
-msgstr "Sanakirjoja"
+msgstr "Sanakirjoi"
 
 #: configs/language_specific_rules/templates/saan/about.template:73
 msgid ""
@@ -1280,7 +1280,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sonad/about.template:21
 #, fuzzy
 msgid "How to quote the dictionaries"
-msgstr "Muita sanakirjoja"
+msgstr "Muita sanakirjoi"
 
 #: configs/language_specific_rules/templates/saanih/about.template:26
 #, fuzzy
@@ -1374,8 +1374,8 @@ msgid ""
 "We have moved some languages to <a "
 "href=\"http://sonad.oahpa.no/\">Sonad</a>, please update your bookmarks."
 msgstr ""
-"Olemme siirtäneet joitakin kieliä osoitteeseen <a "
-"href=\"http://sonad.oahpa.no/\">Sonad</a>, päivitä kirjamerkkiäsi."
+"Olema siirtänheet joitaki kielii adresshiin <a "
+"href=\"http://sonad.oahpa.no/\">Sonad</a>, ylösdateeraa sinun kirjamerkin."
 
 #: configs/language_specific_rules/templates/sanit/about.template:56
 msgid ""
@@ -1455,7 +1455,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanj/about.template:28
 #, fuzzy
 msgid "About the dictionary"
-msgstr "Muita sanakirjoja"
+msgstr "Muita sanakirjoi"
 
 #: configs/language_specific_rules/templates/sanj/about.template:29
 msgid ""
@@ -1763,7 +1763,7 @@ msgstr "Hupsis! Nyt kyllä tapahtui jotain kummallista..."
 
 #: templates/base.html:159 templates/mobile_nav_push_menu.html:6
 msgid "Home"
-msgstr "Etusivu"
+msgstr "Etulaita"
 
 #: templates/base.html:163 templates/mobile_nav_push_menu.html:10
 msgid "Plugins"
@@ -1819,7 +1819,7 @@ msgstr "Kieli"
 #: templates/mobile_nav_push_menu.html:41
 #: templates/mobile_nav_push_menu.html:44
 msgid "Dictionaries"
-msgstr "Sanakirjoja"
+msgstr "Sanakirjoi"
 
 #: templates/left_dictionary_list.html:17
 msgid "Escape Text-TV mode"
@@ -1855,7 +1855,7 @@ msgstr "Takaisin"
 
 #: templates/more_dictionaries.html:4
 msgid "More dictionaris"
-msgstr "Lisää sanakirjoja"
+msgstr "Lissää sanakirjoi"
 
 #: templates/more_dictionaries.html:24
 msgid ""
@@ -1905,7 +1905,7 @@ msgstr ""
 
 #: templates/more_dictionaries.html:44
 msgid "Even more dictionaries..."
-msgstr "Vielä enemmän sanakirjoja..."
+msgstr "Vielä enämen sanakirjoi..."
 
 #: templates/more_dictionaries.html:45
 msgid ""
@@ -2082,7 +2082,7 @@ msgstr ""
 
 #: templates/word_detail.html:35
 msgid "is a possible form of ... "
-msgstr " on mahdollinen muoto sanasta ..."
+msgstr " oon mahđolinen haamu sanasta ..."
 
 #: views/search.py:1101
 msgid "Invalid format. Only json and html allowed."
