@@ -232,7 +232,7 @@ msgstr ""
 
 #: configs/language_names.yaml:111
 msgid "Pite Saami"
-msgstr ""
+msgstr "Pitesamiska"
 
 #: configs/language_names.yaml:116
 msgid "Khanty"
