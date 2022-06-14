@@ -111,7 +111,7 @@ msgstr ""
 
 #: configs/language_names.yaml:54
 msgid "Kven"
-msgstr "Kveeni"
+msgstr "Kvääni"
 
 #: configs/language_names.yaml:55
 msgid "Olonetsian"
