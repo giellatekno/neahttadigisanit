@@ -1,0 +1,24 @@
+[Unit]
+Description=gunicorn daemon
+Requires=nds-sanit.socket
+After=network.target
+
+[Service]
+Type=notify
+# the specific user that our service will run as
+User=neahtta
+Group=neahtta
+# another option for an even more restricted service is
+# DynamicUser=yes
+# see http://0pointer.net/blog/dynamic-users-with-systemd.html
+RuntimeDirectory=nds-sanit
+WorkingDirectory=/home/path/to/proj/dir/
+Environment=NDS_CONFIG=configs/sanit.config.yaml
+ExecStart=/home/USER/env/bin/gunicorn --preload -n nds-sanit --workers 6 neahtta:app
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+TimeoutStopSec=5
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

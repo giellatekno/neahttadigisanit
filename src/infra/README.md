@@ -9,7 +9,13 @@ Here are some example files to help the process.
  * nds.nginx.conf - An example config file that connects to a flup fastcgi
    process launched by manage.py runfcgi
 
- * nds-sanit - An example init.d service definition
+ * nds-sanit - An example init.d service definition using fastcgi in manage.py (python2)
+ 
+ * nds-sanit-gunicorn - An example init.d service definition using gunicorn
+
+ * nds-sanit.service - An example systemd service definition
+
+ * nds-sanit.socket - An example systemd socket definition
 
  * nginx/ - contains include files required for nds.nginx.conf, but be sure to
    check everything before implementing it in an actual installation. Some
