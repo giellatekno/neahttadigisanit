@@ -421,7 +421,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/vada/about.template:29
 #: configs/language_specific_rules/templates/valks/about.template:29
 msgid "Open-Source"
-msgstr "Avoin lähdekoodi"
+msgstr "Avvoin kalttiikoodi"
 
 #: configs/language_specific_rules/templates/about.template:27
 #: configs/language_specific_rules/templates/bahkogirrje/about.template:28
@@ -631,8 +631,10 @@ msgid ""
 "using, or what word you\n"
 "                were searching for when you encountered the problem."
 msgstr ""
-"Jos löyđät feilii tahi probleemii, ota yhtheyđen meihin. Selitä ja kuvvailee assiin "
-"ja muistele meile mitä nettilukkiijaa olit pitämässä tahi mitä sannaa olit hakemassa ko löysit feilin."
+"Jos löyđät feilii tahi probleemii, ota yhtheyđen meihin. Selitä ja kuvvailee assiin,\n"
+"                ja muistele meile mitä nettilukkiijaa olit "
+"pitämässä tahi mitä sannaa olit\n"
+"                hakemassa ko löysit feilin."
 
 #: configs/language_specific_rules/templates/about.template:78
 #: configs/language_specific_rules/templates/about.template:83
@@ -732,8 +734,10 @@ msgid ""
 " what word you\n"
 "          were searching for when you encountered the problem."
 msgstr ""
-"Jos löyđät feilii tahi probleemii, ota yhtheyđen meihin. Selitä ja kuvvailee assiin "
-"ja muistele meile mitä nettilukkiijaa olit pitämässä tahi mitä sannaa olit hakemassa ko löysit feilin."
+"Jos löyđät feilii tahi probleemii, ota yhtheyđen meihin. Selitä ja kuvvailee assiin,\n"
+"                ja muistele meile mitä nettilukkiijaa olit "
+"pitämässä tahi mitä sannaa olit\n"
+"                hakemassa ko löysit feilin."
 
 #: configs/language_specific_rules/templates/footer.template:9
 #: configs/language_specific_rules/templates/gunaha/footer.template:13
@@ -752,7 +756,7 @@ msgid ""
 "Tromsø</a>."
 msgstr ""
 "<em> <a href=\"http://uit.no\">UiT Norjan arktisen universiteetin</a> "
-"tutkimusroikka<a "
+"tutkimusroikka <a "
 "href=\"http://giellatekno.uit.no/index.fin.html\">Giellatekno</a></em> oon"
 " laittanu nämät sanakirjaprogramit vaphaan ja avvoimen kalttiikoodin "
 "kieliprogramiila."
