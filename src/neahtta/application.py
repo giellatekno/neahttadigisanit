@@ -18,6 +18,7 @@ from config import Config
 from flask import Flask, request, session
 from flask_babel import Babel
 from flask_limiter import Limiter
+from flask_assets import Environment, Bundle
 
 # Configure user_log
 user_log = getLogger("user_log")
@@ -136,8 +137,6 @@ def prepare_assets(app):
             'css/test_palette.css',
         ]
 
-    from flask_assets import Environment, Bundle
-
     assets = Environment(app)
     app.assets = assets
 
@@ -241,7 +240,6 @@ def register_assets(app):
       * css/nav-menu-compiled-PROJNAME.css
 
     """
-    from flask_assets import Environment, Bundle
 
     # TODO: register output including proj name
 
