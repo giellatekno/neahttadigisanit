@@ -12,7 +12,7 @@ Flask==0.12.5
 Flask-Assets==2.0
 Flask-Babel==1.0.0
 Flask-Caching==1.6.0
-Flask-Limiter==1.1.0
+Flask-Limiter==1.5
 flup6==1.1.1
 gunicorn==19.9.0
 invocations==2.6.0 
