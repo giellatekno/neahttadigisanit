@@ -9,7 +9,7 @@ ecdsa==0.17.0
 Fabric==2.7.0
 Flask==0.12.5
 #Flask-Actions==0.6.6
-Flask-Assets==0.10
+Flask-Assets==2.0
 Flask-Babel==1.0.0
 Flask-Caching==1.6.0
 Flask-Limiter==1.1.0
@@ -45,5 +45,5 @@ sphinxcontrib-httpdomain==1.1.8
 termcolor>=1.1.0
 virtualenv==20.14.1
 wcwidth==0.2.5
-webassets==0.10.1
+webassets==2.0
 Werkzeug==0.16.1
