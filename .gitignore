@@ -15,6 +15,7 @@ node_modules/
 .env/
 src/neahtta/dicts/*.xml
 src/neahtta/dicts/*.xml.bak
+src/neahtta/dicts/*.xml.bak-before-stem
 src/neahtta/dicts/*.log
 src/neahtta/dicts/test_lexica
 static/
