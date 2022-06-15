@@ -1042,7 +1042,7 @@ msgstr ""
 #: templates/index.html:102
 #, python-format
 msgid "Other analyses for <em>%(user_input)s</em> without a translation."
-msgstr "Muita analyyseja sanalle <em>%(user_input)s</em> ilman käännöstä."
+msgstr "Muita analyysii sanale <em>%(user_input)s</em> ilman käänöstä."
 
 #: configs/language_specific_rules/templates/kyv/examples.template:76
 msgid "saying"
