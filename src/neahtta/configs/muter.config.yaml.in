@@ -25,7 +25,7 @@ ApplicationSettings:
 
 Tools:
   xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
-  hfst_lookup: &HFST-LOOKUP '/bin/hfst-optimized-lookup'
+  hfst_lookup: &HFST-LOOKUP '/bin/hfst-optimized-lookup -q'
   opt: &OPT '/opt/smi/'
 
 Morphology:
