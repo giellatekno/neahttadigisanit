@@ -333,16 +333,14 @@ def restart_service(ctx, dictionary=False):
         print((colored("** Restarting service for <%s> **" % dictionary, "cyan")))
         restart = ctx.run("sudo service nds-%s restart" % dictionary)
         if not restart.failed:
-            print((
-                colored("** <%s> Service has restarted successfully **" %
-                      dictionary), "green"))
+            print(colored("** <%s> Service has restarted successfully **" % dictionary, "green"))
         else:
             fail = True
 
     if fail:
-        print((
+        print(
             colored("** something went wrong while restarting <%s> **" %
-                dictionary), "red"))
+                dictionary, "red"))
 
 
 @task
