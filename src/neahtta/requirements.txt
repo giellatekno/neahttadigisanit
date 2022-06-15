@@ -18,7 +18,7 @@ gunicorn==19.9.0
 invocations==2.6.0 
 itsdangerous==1.1.0
 jedi==0.17.2
-Jinja2==2.9.6
+Jinja2==2.10.3
 jsmin==3.0.1
 limits==1.6
 lxml==4.8.0
