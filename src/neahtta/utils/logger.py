@@ -7,7 +7,10 @@ def get_time():
 
 
 def get_ip(request):
-    return request.remote_addr or ''
+    if request.environ.get("HTTP_X_FORWARDED_FOR") is None:
+        return request.remote_addr or ''
+    else:    
+        return request.environ["HTTP_X_FORWARDED_FOR"]
 
 
 def logIndexLookups(user_input, results, from_language, to_language):
