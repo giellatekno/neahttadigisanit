@@ -2,12 +2,13 @@ ApplicationSettings:
   app_name: "Nettidigisanat"
   app_meta_title: "Neahttadigisánit"
   short_name: "sanat"
-  default_locale: "fi"
+  default_locale: "fkv"
   default_pair: ["fkv", "nob"] # ten times as used as olo, fin
   mobile_default_pair: false
   grouped_nav: true
   new_mobile_nav: true
   locales_available:
+    - "fkv"
     - "fi"
     - "nb"
     - "lv"
