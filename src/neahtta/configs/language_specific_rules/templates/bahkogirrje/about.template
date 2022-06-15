@@ -17,11 +17,11 @@
         <div class="row-fluid">
             <span class="span4">
                 <h3 class="red">{% trans %}How to quote the dictionary{% endtrans %}</h3>
-<p><ul>
-<li>Wilbur, Joshua 2013-2022: <em>Nähttadigibáhko Pite Saami-English dictionary</em>. Tromsø: UiT. URL: http://bahkogirrje.oahpa.no</li>
-<li>Wilbur, Joshua 2013-2022: <em>Nähttadigibáhko Pitesamisk-norsk</em>. Tromsø: UiT. URL: http://bahkogirrje.oahpa.no</li>
-<li>Wilbur, Joshua 2022: <em>Nähttadigibáhko Pitesamiska-svenska</em>. Tromsø: UiT. URL: http://bahkogirrje.oahpa.no</li>
-</ul>.</p>
+                <p><ul>
+                    <li>Wilbur, Joshua 2013-2022: <em>Nähttadigibáhko Pite Saami-English dictionary</em>. Tromsø: UiT. URL: http://bahkogirrje.oahpa.no</li>
+                    <li>Wilbur, Joshua 2013-2022: <em>Nähttadigibáhko Pitesamisk-norsk</em>. Tromsø: UiT. URL: http://bahkogirrje.oahpa.no</li>
+                    <li>Wilbur, Joshua 2022: <em>Nähttadigibáhko Pitesamiska-svenska</em>. Tromsø: UiT. URL: http://bahkogirrje.oahpa.no</li>
+                </ul>.</p>
             </span>
             <span class="span4">
             <h3 class="blue">{% trans %}Open-Source{% endtrans %}</h3>
