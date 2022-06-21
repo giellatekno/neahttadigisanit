@@ -607,7 +607,7 @@ msgstr "Molemmat sanakirjat sisältyvät noin 11 000 hakusanaa."
 #: configs/language_specific_rules/templates/vada/about.template:80
 #: configs/language_specific_rules/templates/valks/about.template:87
 msgid "Find a problem?"
-msgstr "Kohtasitko probleemhiin?"
+msgstr "Kohtasitko probleemin?"
 
 #: configs/language_specific_rules/templates/about.template:73
 #: configs/language_specific_rules/templates/baakoeh/about.template:60
@@ -1036,7 +1036,7 @@ msgstr " oon mahđolinen haamu sanasta ..."
 #: templates/index.html:94 templates/index.html:121
 #, python-format
 msgid "Word <span lang=\"%(_from)s\">%(input)s</span> not found."
-msgstr ""
+msgstr "Sannaa <span lang=\"%(_from)s\">%(input)s</span> ei löytyny."
 
 #: configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:101
 #: templates/index.html:102
