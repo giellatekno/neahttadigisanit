@@ -356,7 +356,7 @@ msgstr "Meistä"
 #: configs/language_specific_rules/templates/vada/about.template:17
 #: configs/language_specific_rules/templates/valks/about.template:17
 msgid "A dictionary that understands what you're looking for."
-msgstr "Nettidigisanat. Sanakirja joka ymmärttää mitä hajet."
+msgstr "Sanakirja joka ymmärttää mitä hajet."
 
 #: configs/language_specific_rules/templates/about.template:15
 #: configs/language_specific_rules/templates/baakoeh/about.template:16
