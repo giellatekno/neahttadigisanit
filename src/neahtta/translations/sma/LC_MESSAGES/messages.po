@@ -767,7 +767,7 @@ msgstr "ohtsemebaakoe"
 #: templates/index_search_form.html:26 templates/index_search_form.html:49
 #: templates/index_search_form.html:53 templates/keyword_search_form.html:29
 msgid "Search"
-msgstr ""
+msgstr "Ohtsh"
 
 #: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:68
 #: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:91
@@ -788,7 +788,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanj/index_search_form.template:89
 #: templates/index_search_form.html:39 templates/index_search_form.html:64
 msgid "Search texts"
-msgstr ""
+msgstr "Ohtsh tekstijste"
 
 #: configs/language_specific_rules/templates/notice.template:5
 #: configs/language_specific_rules/templates/sanit/notice.template:6
@@ -796,7 +796,7 @@ msgstr ""
 #: templates/mobile_nav_dictionary_list.html:61
 #: templates/more_dictionaries.html:21
 msgid "Other dictionaries"
-msgstr ""
+msgstr "Jeatjah baakoegærjah"
 
 #: configs/language_specific_rules/templates/baakoeh/sma/paradigm.template:188
 #: configs/language_specific_rules/templates/bahkogirrje/sje/paradigm.template:121
@@ -819,7 +819,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanit/search_info.template:9
 #: configs/language_specific_rules/templates/search_info.template:3
 msgid "Search for a word, or a word form for a word analysis and definition."
-msgstr ""
+msgstr "Ohtsh baakoem jallh baakoehaamoem, mïsse syjjedimmiem jallh analyjsem sïjhth."
 
 #: configs/language_specific_rules/templates/baakoeh/about.template:20
 #: configs/language_specific_rules/templates/bahkogirrje/about.template:19
@@ -1710,7 +1710,7 @@ msgstr ""
 #: templates/mobile_nav_push_menu.html:41
 #: templates/mobile_nav_push_menu.html:44
 msgid "Dictionaries"
-msgstr ""
+msgstr "Baakoegærjah"
 
 #: templates/left_dictionary_list.html:17
 msgid "Escape Text-TV mode"
