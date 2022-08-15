@@ -349,7 +349,7 @@ msgstr "Baakoegærjan bïjre"
 #: configs/language_specific_rules/templates/vada/about.template:17
 #: configs/language_specific_rules/templates/valks/about.template:17
 msgid "A dictionary that understands what you're looking for."
-msgstr ""
+msgstr "Baakoegærja mij guarkoe maam datne ohtseminie."
 
 #: configs/language_specific_rules/templates/about.template:15
 #: configs/language_specific_rules/templates/baakoeh/about.template:16
@@ -368,7 +368,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/vada/about.template:18
 #: configs/language_specific_rules/templates/valks/about.template:18
 msgid "(... And is mobile-friendly!)"
-msgstr ""
+msgstr "(... jïh mobïjletelefovnesne jåhta!)"
 
 #: configs/language_specific_rules/templates/about.template:19
 #: configs/language_specific_rules/templates/gunaha/about.template:20
@@ -573,7 +573,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/vada/about.template:80
 #: configs/language_specific_rules/templates/valks/about.template:87
 msgid "Find a problem?"
-msgstr ""
+msgstr "Mij joem båajhtode?"
 
 #: configs/language_specific_rules/templates/about.template:73
 #: configs/language_specific_rules/templates/baakoeh/about.template:60
@@ -635,7 +635,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/valks/about.template:93
 #: configs/language_specific_rules/templates/valks/about.template:98
 msgid "Contact us"
-msgstr ""
+msgstr "Gaskesadth mijjine"
 
 #: configs/language_specific_rules/templates/about.template:88
 #: configs/language_specific_rules/templates/baakoeh/about.template:75
@@ -663,7 +663,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/analyses.template:65
 #: configs/language_specific_rules/templates/sanj/analyses.template:69
 msgid "Word history"
-msgstr ""
+msgstr "Baakoehistovrije"
 
 #: configs/language_specific_rules/templates/analyses.template:84
 msgid " (Not found in our corpus)"
@@ -824,7 +824,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanit/search_info.template:9
 #: configs/language_specific_rules/templates/search_info.template:3
 msgid "Search for a word, or a word form for a word analysis and definition."
-msgstr "Ohtsh baakoem jallh baakoehaamoem, mïsse syjjedimmiem jallh analyjsem sïjhth."
+msgstr "Ohtsh baakoem jallh baakoehaamoem, mïsse syjjehtimmiem jallh analyjsem sïjhth."
 
 #: configs/language_specific_rules/templates/baakoeh/about.template:20
 #: configs/language_specific_rules/templates/bahkogirrje/about.template:19
@@ -970,7 +970,7 @@ msgstr ""
 #: templates/word_detail.html:67 templates/word_detail.html:108
 #: views/reader.py:234
 msgid " is a possible form of ... "
-msgstr ""
+msgstr " maahta årrodh:"
 
 #: configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:93
 #: configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:115
@@ -1739,7 +1739,7 @@ msgstr ""
 
 #: templates/macros.html:5 templates/macros.html:13
 msgid "Texts"
-msgstr ""
+msgstr "Teksth"
 
 #: templates/mobile_nav_push_menu.html:26
 #: templates/mobile_nav_push_menu.html:45
@@ -1946,7 +1946,7 @@ msgstr ""
 
 #: templates/word_detail.html:35
 msgid "is a possible form of ... "
-msgstr ""
+msgstr "maahta årrodh:"
 
 #: views/search.py:1101
 msgid "Invalid format. Only json and html allowed."
