@@ -419,7 +419,7 @@ def compile(ctx, dictionary=False, restart=False):
 
             result = ctx.run(config.make_cmd + " %s" % dictionary)
 
-        if not result.succeeded:
+        if not skip_fst and not result.succeeded:
             print((
                 colored("** There was some problem building the FSTs for this dictionary.",
                     "red")))
