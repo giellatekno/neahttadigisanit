@@ -17,6 +17,8 @@ try:
 except ImportError: # py3
     from urllib.parse import quote
 
+from urllib.error import HTTPError
+
 from i18n.utils import get_locale
 from nds_lexicon import FrontPageFormat
 from utils.encoding import decode_or_fail
@@ -704,10 +706,13 @@ class SearcherMixin(object):
                         if sys.version[0] == 2:
                             url_json = url_json.encode('utf8')
                         if url_json:
-                            response = urlopen(url_json)
-                            data = json.loads(response.read())
-                            korp_hits = data["hits"]
-                            #korp_hits = 0
+                            try:
+                                response = urlopen(url_json)
+                            except HTTPError:
+                                korp_hits = 0
+                            else:
+                                data = json.loads(response.read())
+                                korp_hits = data["hits"]
 
                     tplkwargs = {
                         'lexicon_entry':
@@ -754,10 +759,13 @@ class SearcherMixin(object):
             if sys.version[0] == 2 :
                 url_json = url_json.encode('utf8')
             if url_json:
-                response = urlopen(url_json)
-                data = json.loads(response.read())
-                korp_hits = data["hits"]
-                #korp_hits = ''
+                try:
+                    response = urlopen(url_json)
+                except HTTPError:
+                    korp_hits = 0
+                else:
+                    data = json.loads(response.read())
+                    korp_hits = data["hits"]
         else:
             korp_hits = ''
 
