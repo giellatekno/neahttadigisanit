@@ -2,7 +2,7 @@ Relabel:
   - source_morphology: 'spa'
     target_ui_language: 'sme'
     tags: &spatagrelabels
-      "N": "noun"
+      "N": "subst."
       "A": "adj."
       "Adv": "adv."
       "V": "verbo"
