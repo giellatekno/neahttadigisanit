@@ -160,7 +160,7 @@
             {# URLFOR #}
     <a class="full-paradigm-link"
        style="opacity: .8;"
-       href="https://es.wiktionary.org/wiki/{{ lemma }}#Conjugación">
+       href="https://dle.rae.es/{{ lemma }}?m=form#conjugacion">
         {%- trans -%}Full paradigm{%- endtrans -%} &nbsp;&rarr;
     </a>
 {% endmacro -%}
