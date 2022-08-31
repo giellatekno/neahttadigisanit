@@ -136,8 +136,7 @@ Relabel:
       "Der/InchL": "begynne å"
       "Der/laakan": "liknende"
       "Der/vuota": "avledning: -vuota"
-
-      "IV": ""
+      
       "LEFT": ""
       "RIGHT": ""
       "Cmp/SgNom": ""
@@ -147,7 +146,8 @@ Relabel:
       "Cmp/Hyph": ""
       "Cmp/SplitR": ""
       "Cmp/Attr": ""
-      "TV": ""
+      "TV": "transitiv"
+      "IV": "intransitiv"
       "Sem/Ani": ""
       "Sem/Fem": ""
       "Sem/Mal": ""
