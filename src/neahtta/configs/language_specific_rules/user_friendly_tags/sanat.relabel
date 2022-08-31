@@ -242,18 +242,12 @@ Relabel:
   - source_morphology: 'nob'
     target_ui_language: 'fkv'
     tags:
-      V: "v."
-      N: "s."
-      A: "adj."
-      NomAg: "handlernomen"
       G3: ""
       G7: ""
       "Use/NGminip": ""
       "Err/Orth": ""
       "Err/Lex": ""
       "Allegro": ""
-
-      Adv: "adv."
 
       v: "v."
       n: "s."
