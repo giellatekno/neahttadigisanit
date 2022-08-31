@@ -195,9 +195,9 @@ Relabel:
   - source_morphology: 'fkv'
     target_ui_language: 'nob'
     tags:
-      V: "v."
-      N: "s."
-      A: "adj."
+      "V": "v."
+      "N": "subst."
+      "A": "adj."
       "Prs": "presens"
       "ConNeg": "nektingsform"
       "Prt": "preteritum"
@@ -216,9 +216,20 @@ Relabel:
       "Compar": "komparativ"
       "Superl": "superlativ"
       "Sg": "ent."
-
-
-
+      "Pl": "flt."
+      "nom": "nominatiivi"
+      "gen": "genitiivi"
+      "par": "partitiivi"
+      "ine": "inessiivi"
+      "ill": "illatiivi"
+      "ela": "elatiivi"
+      "ade": "adessiivi"
+      "abe": "abessiivi"
+      "all": "allatiivi"
+      "abl": "ablatiivi"
+      "ess": "essiivi"
+      "tra": "translatiivi"
+      "com": "komitatiivi"
 
   - source_morphology: 'izh'
     target_ui_language: 'fin'
