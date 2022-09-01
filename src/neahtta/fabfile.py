@@ -715,8 +715,6 @@ def restart_running(ctx):
 def runserver(ctx):
     """ Run the development server."""
 
-    cmd = "pybabel compile -d translations"
-
     _path = 'configs/%s.config.yaml' % config.current_dict
 
     try:
