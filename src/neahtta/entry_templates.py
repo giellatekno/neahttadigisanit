@@ -108,6 +108,7 @@ class TemplateConfig(object):
 
     def process_template_paths(self):
         from jinja2 import ChoiceLoader, FileSystemLoader
+        import pprint
 
         # A choice loader for the deepest potential directory first,
         # so when the template loader is used to select a template
@@ -127,6 +128,10 @@ class TemplateConfig(object):
             [FileSystemLoader(p) for p in reversed_priority])
 
         def process_template_set(ts):
+            """
+            Replace paths as values by
+            loaded template files.
+            """
             _ts = {}
             for k, path in iteritems(ts):
                 _ts[k] = self.read_template_file(path)
