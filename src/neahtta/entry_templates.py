@@ -33,6 +33,7 @@ TODO: sme pregenerated forms don't really work without sme.py
 from __future__ import print_function
 from __future__ import absolute_import
 import os
+from re import T
 import sys
 from jinja2 import TemplateSyntaxError
 from six import iteritems
@@ -162,7 +163,7 @@ class TemplateConfig(object):
             return False
 
     def has_local_override(self, language, template):
-        """ Returns a boolean value for the source language iso and teh
+        """ Returns a boolean value for the source language iso and the
         template name, but only if the project short name is found in
         the template path (meaning a local override exists).
         """
@@ -186,7 +187,7 @@ class TemplateConfig(object):
         Render a paradigm if one exists for language.
 
         :param str language: The 3-character ISO for the language.
-        :param str template: The  template name
+        :param str template: The template name
 
         :return Template: Parsed template object
 
@@ -201,6 +202,15 @@ class TemplateConfig(object):
         return self.language_templates[language][template]
 
     def render_individual_template(self, language, template, **kwargs):
+        # Used to render at least 
+        # search_info.template
+        # index_search_form.template
+        # notice.template
+        # footer.template
+        # analyses.template
+        # includes.template
+        # find_problem.template
+
 
         tpl = self.get_template(language, template)
 
@@ -242,6 +252,9 @@ class TemplateConfig(object):
         Then at the end, a fully rendered result is returned.
 
         """
+        # Seems to only be used to render:
+        # entry.template
+        # detail_entry.template
 
         from flask import g
 
@@ -321,9 +334,9 @@ class TemplateConfig(object):
         return tpl.render(**context)
 
     def read_templates_directory(self):
-        """ .. py:method:: read_paradigm_directory()
+        """ .. py:method:: read_templates_directory()
 
-        Read through the paradigm directory, and read .paradigm files
+        Read through the template directory, and read .template and .macros files
 
         In running contexts, this expects a Flask app instance to be
         passed. For testing purposes, None may be passed.
