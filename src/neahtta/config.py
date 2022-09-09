@@ -83,7 +83,7 @@ def external_korp_url(pair_details, user_input):
     except UnicodeError as e:
         print('Error in url_pattern:', e)
 
-    url_pattern = url_pattern.replace('USER_INPUT', user_input)
+    url_pattern = url_pattern.replace(b'USER_INPUT', user_input)
 
     try:
         url_pattern = url_pattern.decode("utf-8")
