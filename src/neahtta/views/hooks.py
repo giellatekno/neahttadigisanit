@@ -18,7 +18,7 @@ def set_pair_request_globals():
         g._from = request.view_args.get('from_language')
         g._to = request.view_args.get('to_language')
     else:
-        if request.url_rule == '/':
+        if str(request.url_rule) == '/':
             g._from, g._to = current_app.config.default_language_pair
             _from, _to = current_app.config.default_language_pair
 
