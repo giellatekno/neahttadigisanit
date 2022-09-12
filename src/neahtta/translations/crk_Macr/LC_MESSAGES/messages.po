@@ -7,19 +7,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-23 19:19+0200\n"
+"POT-Creation-Date: 2022-09-12 14:29+0200\n"
 "PO-Revision-Date: 2014-09-24 18:20-0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: crk_Macr\n"
 "Language-Team: crk <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
 
 #: configs/kyv.config.yaml.in:170 configs/kyv.config.yaml.in:245
-#: configs/saan.config.yaml.in:96 configs/saanih.config.yaml.in:82
-#: configs/saanih.config.yaml.in:112 configs/sanat.config.yaml.in:136
+#: configs/saan.config.yaml:96 configs/saan.config.yaml.in:96
+#: configs/saanih.config.yaml.in:82 configs/saanih.config.yaml.in:112
+#: configs/sanat.config.yaml.in:137 configs/sanit.config.yaml:135
 #: configs/sanit.config.yaml.in:135 configs/sanj.config.yaml.in:86
 #: configs/sonad.config.yaml.in:155 tests/configs/sanit.config.yaml:122
 msgid "Standard"
@@ -271,8 +273,9 @@ msgstr ""
 msgid "Swedish"
 msgstr ""
 
-#: configs/saan.config.yaml.in:119 configs/saanih.config.yaml.in:86
-#: configs/saanih.config.yaml.in:116 configs/sanj.config.yaml.in:90
+#: configs/saan.config.yaml:119 configs/saan.config.yaml.in:119
+#: configs/saanih.config.yaml.in:86 configs/saanih.config.yaml.in:116
+#: configs/sanj.config.yaml.in:90
 msgid "Mobile friendly"
 msgstr "wēhci-masinahikēwin"
 
@@ -284,19 +287,23 @@ msgstr ""
 msgid "(incl. <em>aaacdnsz</em>)"
 msgstr ""
 
-#: configs/sanit.config.yaml.in:150 tests/configs/sanit.config.yaml:137
+#: configs/sanit.config.yaml:150 configs/sanit.config.yaml.in:150
+#: tests/configs/sanit.config.yaml:137
 msgid "Tolerant"
 msgstr ""
 
-#: configs/sanit.config.yaml.in:151 tests/configs/sanit.config.yaml:138
+#: configs/sanit.config.yaml:151 configs/sanit.config.yaml.in:151
+#: tests/configs/sanit.config.yaml:138
 msgid "(incl. <em>acdnstz</em>)"
 msgstr ""
 
-#: configs/sanit.config.yaml.in:190 tests/configs/sanit.config.yaml:173
+#: configs/sanit.config.yaml:190 configs/sanit.config.yaml.in:190
+#: tests/configs/sanit.config.yaml:173
 msgid "Standard (<em>áčđŋšŧž</em>)"
 msgstr ""
 
-#: configs/sanit.config.yaml.in:194 tests/configs/sanit.config.yaml:177
+#: configs/sanit.config.yaml:194 configs/sanit.config.yaml.in:194
+#: tests/configs/sanit.config.yaml:177
 msgid "Tolerant (also <em>acdnstz</em>)"
 msgstr ""
 
@@ -408,7 +415,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/saanih/about.template:25
 #: configs/language_specific_rules/templates/sanat/about.template:32
 #: configs/language_specific_rules/templates/sanit/about.template:27
-#: configs/language_specific_rules/templates/sonad/about.template:37
+#: configs/language_specific_rules/templates/sonad/about.template:36
 #: configs/language_specific_rules/templates/vada/about.template:29
 #: configs/language_specific_rules/templates/valks/about.template:29
 msgid "Open-Source"
@@ -419,7 +426,6 @@ msgstr ""
 #: configs/language_specific_rules/templates/guusaaw/about.template:28
 #: configs/language_specific_rules/templates/muter/about.template:28
 #: configs/language_specific_rules/templates/saan/about.template:30
-#: configs/language_specific_rules/templates/sonad/about.template:38
 #: configs/language_specific_rules/templates/vada/about.template:30
 #: configs/language_specific_rules/templates/valks/about.template:30
 msgid ""
@@ -444,7 +450,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/saanih/about.template:32
 #: configs/language_specific_rules/templates/sanat/about.template:39
 #: configs/language_specific_rules/templates/sanit/about.template:34
-#: configs/language_specific_rules/templates/sonad/about.template:46
+#: configs/language_specific_rules/templates/sonad/about.template:45
 #: configs/language_specific_rules/templates/vada/about.template:38
 #: configs/language_specific_rules/templates/valks/about.template:38
 msgid "Linguistic basis"
@@ -461,7 +467,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/saanih/about.template:33
 #: configs/language_specific_rules/templates/sanat/about.template:40
 #: configs/language_specific_rules/templates/sanit/about.template:35
-#: configs/language_specific_rules/templates/sonad/about.template:47
+#: configs/language_specific_rules/templates/sonad/about.template:46
 #: configs/language_specific_rules/templates/vada/about.template:39
 #: configs/language_specific_rules/templates/valks/about.template:39
 msgid ""
@@ -492,7 +498,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/saanih/about.template:46
 #: configs/language_specific_rules/templates/sanat/about.template:53
 #: configs/language_specific_rules/templates/sanit/about.template:48
-#: configs/language_specific_rules/templates/sonad/about.template:60
+#: configs/language_specific_rules/templates/sonad/about.template:59
 #: configs/language_specific_rules/templates/vada/about.template:52
 #: configs/language_specific_rules/templates/valks/about.template:52
 msgid "Source material"
@@ -569,7 +575,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanat/find_problem.template:3
 #: configs/language_specific_rules/templates/sanit/about.template:67
 #: configs/language_specific_rules/templates/sanj/about.template:82
-#: configs/language_specific_rules/templates/sonad/about.template:93
+#: configs/language_specific_rules/templates/sonad/about.template:92
 #: configs/language_specific_rules/templates/vada/about.template:80
 #: configs/language_specific_rules/templates/valks/about.template:87
 msgid "Find a problem?"
@@ -588,7 +594,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanat/about.template:87
 #: configs/language_specific_rules/templates/sanit/about.template:68
 #: configs/language_specific_rules/templates/sanj/about.template:83
-#: configs/language_specific_rules/templates/sonad/about.template:94
+#: configs/language_specific_rules/templates/sonad/about.template:93
 #: configs/language_specific_rules/templates/vada/about.template:81
 #: configs/language_specific_rules/templates/valks/about.template:88
 msgid ""
@@ -628,8 +634,8 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanit/about.template:78
 #: configs/language_specific_rules/templates/sanj/about.template:88
 #: configs/language_specific_rules/templates/sanj/about.template:93
-#: configs/language_specific_rules/templates/sonad/about.template:99
-#: configs/language_specific_rules/templates/sonad/about.template:104
+#: configs/language_specific_rules/templates/sonad/about.template:98
+#: configs/language_specific_rules/templates/sonad/about.template:103
 #: configs/language_specific_rules/templates/vada/about.template:86
 #: configs/language_specific_rules/templates/vada/about.template:91
 #: configs/language_specific_rules/templates/valks/about.template:93
@@ -650,7 +656,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanat/about.template:102
 #: configs/language_specific_rules/templates/sanit/about.template:83
 #: configs/language_specific_rules/templates/sanj/about.template:98
-#: configs/language_specific_rules/templates/sonad/about.template:109
+#: configs/language_specific_rules/templates/sonad/about.template:108
 #: configs/language_specific_rules/templates/vada/about.template:96
 #: configs/language_specific_rules/templates/valks/about.template:103
 msgid ""
@@ -703,6 +709,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/itwewina/footer.template:39
 #: configs/language_specific_rules/templates/kidwinan/footer.template:13
 #: configs/language_specific_rules/templates/kidwinan/footer.template:35
+#: configs/language_specific_rules/templates/sanit/footer.template:10
 #: templates/default_footer.html:9
 msgid ""
 "Created with free and open-source language tools from <em><a "
@@ -820,8 +827,8 @@ msgstr ""
 #: configs/language_specific_rules/templates/search_info.template:3
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
-"nitona nēhiyaw-itwēwin ta-miskaman ākayāsiwascikēwin (ēkwa mīna tānisi "
-"kā-isi-āniskōpitamihk)."
+"nitona nēhiyaw-itwēwin ta-miskaman ākayāsiwascikēwin (ēkwa mīna tānisi kā"
+"-isi-āniskōpitamihk)."
 
 #: configs/language_specific_rules/templates/baakoeh/about.template:20
 #: configs/language_specific_rules/templates/bahkogirrje/about.template:19
@@ -915,7 +922,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/itwewina/about.template:87
 #: configs/language_specific_rules/templates/kidwinan/about.template:99
 #: configs/language_specific_rules/templates/muter/about.template:101
-#: configs/language_specific_rules/templates/sonad/about.template:118
+#: configs/language_specific_rules/templates/sonad/about.template:117
 #: configs/language_specific_rules/templates/vada/about.template:105
 #: configs/language_specific_rules/templates/valks/about.template:112
 msgid "More to come..."
@@ -1215,7 +1222,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/saanih/about.template:19
 #: configs/language_specific_rules/templates/sanat/about.template:20
 #: configs/language_specific_rules/templates/sanit/about.template:20
-#: configs/language_specific_rules/templates/sonad/about.template:21
+#: configs/language_specific_rules/templates/sonad/about.template:20
 #, fuzzy
 msgid "How to quote the dictionaries"
 msgstr "kotaka itwēwasinahikana"
@@ -1251,17 +1258,17 @@ msgid ""
 msgstr ""
 
 #: configs/language_specific_rules/templates/sanat/about.template:46
-#: configs/language_specific_rules/templates/sonad/about.template:53
+#: configs/language_specific_rules/templates/sonad/about.template:52
 msgid "mennä, tapahtua, viedä, johtaa, edistyä"
 msgstr ""
 
 #: configs/language_specific_rules/templates/sanat/about.template:60
-#: configs/language_specific_rules/templates/sonad/about.template:67
+#: configs/language_specific_rules/templates/sonad/about.template:66
 msgid "liv ↔ fin"
 msgstr ""
 
 #: configs/language_specific_rules/templates/sanat/about.template:61
-#: configs/language_specific_rules/templates/sonad/about.template:68
+#: configs/language_specific_rules/templates/sonad/about.template:67
 msgid ""
 "Dictionaries for Livonian and Finnish are based\n"
 "                on the lexical materials and scientific research behind "
@@ -1276,12 +1283,12 @@ msgid ""
 msgstr ""
 
 #: configs/language_specific_rules/templates/sanat/about.template:70
-#: configs/language_specific_rules/templates/sonad/about.template:77
+#: configs/language_specific_rules/templates/sonad/about.template:76
 msgid "olo ↔ fin"
 msgstr ""
 
 #: configs/language_specific_rules/templates/sanat/about.template:71
-#: configs/language_specific_rules/templates/sonad/about.template:78
+#: configs/language_specific_rules/templates/sonad/about.template:77
 msgid ""
 "Dictionaries for Livvi Karelian (Olonets) and\n"
 "                Finnish are based on lexical material from the Livvi "
@@ -1326,6 +1333,12 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/sanit/about.template:62
 msgid "In both directions there are about 11,000 entries."
+msgstr ""
+
+#: configs/language_specific_rules/templates/sanit/footer.template:13
+msgid ""
+"This dictionary has been coauthored by Kjell Kemi (Tromsø University) and"
+" Ángel Díaz de Rada (UNED)."
 msgstr ""
 
 #: configs/language_specific_rules/templates/sanit/notice.template:5
@@ -1574,6 +1587,19 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanj/sjd/detail_search_form.template:9
 #: configs/language_specific_rules/templates/sanj/sjd/detail_search_form.template:11
 msgid "sjd"
+msgstr ""
+
+#: configs/language_specific_rules/templates/sonad/about.template:37
+msgid ""
+"Everything here is based on open-source tools. Do you\n"
+"                    have an idea for an app or research project that "
+"needs\n"
+"                    linguistic resources? Visit <a class=\"blue\"\n"
+"                        "
+"href=\"http://giellatekno.uit.no/\">Giellatekno</a>'s\n"
+"                    website for information on how to get access to "
+"lexicon\n"
+"                    files, and morphological and syntactic analyzers."
 msgstr ""
 
 #: configs/language_specific_rules/templates/vada/about.template:59
@@ -1950,7 +1976,7 @@ msgstr ""
 msgid "is a possible form of ... "
 msgstr ""
 
-#: views/search.py:1101
+#: views/search.py:1109
 msgid "Invalid format. Only json and html allowed."
 msgstr ""
 
