@@ -1418,9 +1418,9 @@ msgstr "Hver av ordbøkene inneholder omtrent 11.000 søkeord"
 
 #: configs/language_specific_rules/templates/sanit/footer.template:13
 msgid ""
-"This dictionary has been coauthored by Kjell Kemi (Tromsø University) and"
+"This dictionary has been coauthored by Kjell Kemi (UiT) and"
 " Ángel Díaz de Rada (UNED)."
-msgstr ""
+msgstr "Denne ordboka er skrevet av Kjell Kemi (UiT) og Ángel Díaz de Rada (UNED)."
 
 #: configs/language_specific_rules/templates/sanit/notice.template:5
 msgid "Other North Saami dictionaries"
