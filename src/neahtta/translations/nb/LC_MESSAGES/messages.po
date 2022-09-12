@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-12 14:29+0200\n"
+"POT-Creation-Date: 2022-09-12 15:48+0200\n"
 "PO-Revision-Date: 2019-08-06 12:19+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: nb\n"
@@ -1418,9 +1418,9 @@ msgstr "Hver av ordbøkene inneholder omtrent 11.000 søkeord"
 
 #: configs/language_specific_rules/templates/sanit/footer.template:13
 msgid ""
-"This dictionary has been coauthored by Kjell Kemi (UiT) and"
-" Ángel Díaz de Rada (UNED)."
-msgstr "Denne ordboka er skrevet av Kjell Kemi (UiT) og Ángel Díaz de Rada (UNED)."
+"This dictionary has been coauthored by Kjell Kemi (UiT) and Ángel Díaz de"
+" Rada (UNED)."
+msgstr "Denne ordboka er skrevet av Kjell Kemi (UiT) og Ángel Díaz de Rada (UNED)"
 
 #: configs/language_specific_rules/templates/sanit/notice.template:5
 msgid "Other North Saami dictionaries"

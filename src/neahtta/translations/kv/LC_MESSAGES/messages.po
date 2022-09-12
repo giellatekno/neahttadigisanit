@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-12 14:29+0200\n"
+"POT-Creation-Date: 2022-09-12 15:48+0200\n"
 "PO-Revision-Date: 2013-03-17 12:21+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language: kv\n"
@@ -1349,8 +1349,8 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/sanit/footer.template:13
 msgid ""
-"This dictionary has been coauthored by Kjell Kemi (Tromsø University) and"
-" Ángel Díaz de Rada (UNED)."
+"This dictionary has been coauthored by Kjell Kemi (UiT) and Ángel Díaz de"
+" Rada (UNED)."
 msgstr ""
 
 #: configs/language_specific_rules/templates/sanit/notice.template:5
@@ -2490,5 +2490,11 @@ msgstr ""
 #~ "нӣйт соа̄гк эхтнэг лыгк баяс кӯххт "
 #~ "тоа̄фант  не̄лльемплоагант ыгесьт кӯххт "
 #~ "тоа̄фант ка̄ххцэмплоагант ыгке</i>.</li>"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "This dictionary has been coauthored by"
+#~ " Kjell Kemi (Tromsø University) and "
+#~ "Ángel Díaz de Rada (UNED)."
 #~ msgstr ""
 
