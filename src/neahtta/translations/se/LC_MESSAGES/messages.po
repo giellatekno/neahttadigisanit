@@ -1435,9 +1435,9 @@ msgstr "Juohke sátnegirjjis leat su. 11000 vuođđosáni. "
 
 #: configs/language_specific_rules/templates/sanit/footer.template:13
 msgid ""
-"This dictionary has been coauthored by Kjell Kemi (Tromsø University) and"
+"This dictionary has been coauthored by Kjell Kemi (UiT) and"
 " Ángel Díaz de Rada (UNED)."
-msgstr ""
+msgstr "Dán sátnegirjji leaba čállán Kjell Kemi (UiT) ja Ángel Díaz de Rada (UNED)."
 
 #: configs/language_specific_rules/templates/sanit/notice.template:5
 msgid "Other North Saami dictionaries"

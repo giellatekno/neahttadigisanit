@@ -10,7 +10,7 @@
                         {% trans %}Created with free and open-source language tools from <em><a href="http://giellatekno.uit.no">Giellatekno</a></em>, a Sámi Language Technology group at the <a href="http://uit.no">University of Tromsø</a>.{% endtrans %}
                         {% if _to == "spa" or _from == "spa" %}
                         <br/>
-                        {% trans %}This dictionary has been coauthored by Kjell Kemi (Tromsø University) and Ángel Díaz de Rada (UNED).{% endtrans %}
+                        {% trans %}This dictionary has been coauthored by Kjell Kemi (UiT) and Ángel Díaz de Rada (UNED).{% endtrans %}
                         {% endif %}
                     </span>
                 </p>
