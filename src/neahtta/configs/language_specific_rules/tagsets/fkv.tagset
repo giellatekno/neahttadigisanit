@@ -1,4 +1,16 @@
-﻿pos: ["N", "V", "A", "Pr", "Po", "Num", "Pron"]
+﻿pos: 
+ - "N"
+ - "V" 
+ - "A" 
+ - "Pr" 
+ - "Po"
+ - "Num"
+ - "Pron"
+ - "Adv"
+ - "CC"
+ - "CS"
+ - "Interj"
+ - "Pcle"
 tense:
  - Prt
  - Prs
