@@ -70,7 +70,7 @@ morpholex_overrides = MorphoLexiconOverrides()
 
 
 class MorphoLexiconResult(list):
-    """ A subcalss of the List object meant to make sorting through
+    """ A subclass of the List object meant to make sorting through
     results more readable.
     """
 
