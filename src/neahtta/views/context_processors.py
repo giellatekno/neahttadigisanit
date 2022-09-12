@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+from xml.dom.minidom import Attr
 from flask import current_app, g, request, session
 from i18n.utils import get_locale
 
@@ -166,10 +167,13 @@ def detect_mobile_variables():
 
 @blueprint.context_processor
 def footer_template():
-    if g._from and g._to:
-        _from, _to = g._from, g._to
-    else:
+    try:
+        g._from
+        g._to
+    except AttributeError:
         _from, _to = current_app.config.default_language_pair
+    else:
+        _from, _to = g._from, g._to
     footer_template = current_app.lexicon_templates.render_individual_template(
         _from, 'footer.template', **{'current_locale': get_locale(), '_from': _from, '_to': _to})
     return {'footer_template': footer_template}
