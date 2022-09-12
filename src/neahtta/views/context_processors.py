@@ -167,9 +167,9 @@ def detect_mobile_variables():
 @blueprint.context_processor
 def footer_template():
 
-    _from, _to = current_app.config.default_language_pair
+    _from, _to = g._from, g._to
     footer_template = current_app.lexicon_templates.render_individual_template(
-        _from, 'footer.template', **{'current_locale': get_locale()})
+        _from, 'footer.template', **{'current_locale': get_locale(), '_from': g._from, '_to': g._to})
     return {'footer_template': footer_template}
 
 
