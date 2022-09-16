@@ -103,6 +103,6 @@
     </div>
 </div>
 
-<p>Download <a href=https://gtweb.uit.no/Abbreviations.docx>abbreviations document</a>.</p>
+<p>{% trans %}The abbreviations used in the dictionary are{% endtrans %} <a href=https://gtweb.uit.no/Abbreviations.docx>{% trans %}explained here{% endtrans %}</a>.</p>
 
 {# vim: set ts=4 sw=4 tw=0 syntax=htmljinja : #}
