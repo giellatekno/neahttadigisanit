@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-16 09:59+0200\n"
+"POT-Creation-Date: 2022-09-16 15:41+0200\n"
 "PO-Revision-Date: 2013-08-26 23:23+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: sms\n"
@@ -723,6 +723,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/index_search_form.template:41
 #: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:42
 #: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:43
+#: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:41
 #: configs/language_specific_rules/templates/sanj/index_search_form.template:42
 msgid "Press TAB (&#8677;) or touch screen to select"
 msgstr ""
@@ -735,6 +736,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/kidwinan/index_search_form.template:58
 #: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:49
 #: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:50
+#: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:48
 #: configs/language_specific_rules/templates/sanj/index_search_form.template:49
 #: templates/index_search_form.html:21
 msgid "ohcansátni"
@@ -766,6 +768,9 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:75
 #: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:79
 #: configs/language_specific_rules/templates/sanit/spa/detail_search_form.template:42
+#: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:53
+#: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:73
+#: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:77
 #: configs/language_specific_rules/templates/sanj/index_search_form.template:54
 #: configs/language_specific_rules/templates/sanj/index_search_form.template:74
 #: configs/language_specific_rules/templates/sanj/index_search_form.template:78
@@ -792,6 +797,8 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:89
 #: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:67
 #: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:90
+#: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:65
+#: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:88
 #: configs/language_specific_rules/templates/sanj/index_search_form.template:66
 #: configs/language_specific_rules/templates/sanj/index_search_form.template:89
 #: templates/index_search_form.html:39 templates/index_search_form.html:64
@@ -1355,6 +1362,14 @@ msgid ""
 "You selected tolerant mode, the variant which accepts the letters acdnstz"
 "\n"
 " as áčđŋšŧž in addition to their usual values."
+msgstr ""
+
+#: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:106
+msgid "The abbreviations used in the dictionary are"
+msgstr ""
+
+#: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:106
+msgid "explained here"
 msgstr ""
 
 #: configs/language_specific_rules/templates/sanj/about.template:26
