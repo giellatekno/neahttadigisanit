@@ -57,7 +57,7 @@
                         {%- for l_ref in l_refs -%}
                             {%- set l_ref_text = l_ref|text -%}
                             <a href="./?lookup={{l_ref_text.split("_")[0]}}">
-                            {{ l_ref_text.split("_")[0]|safe}}</a>{%- if not loop.last -%},{%- endif -%}
+                            {{- l_ref_text.split("_")[0]|safe -}}</a>{% if not loop.last %}, {% endif %}
                         {%- endfor -%}
                     </p>
                 {% endif %}
