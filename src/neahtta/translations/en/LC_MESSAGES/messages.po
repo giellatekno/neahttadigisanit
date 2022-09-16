@@ -1604,15 +1604,15 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/sanj/rus/entry.template:50
 msgid "тж. см."
-msgstr ""
+msgstr "see also"
 
 #: configs/language_specific_rules/templates/sanj/rus/entry.template:52
 msgid "подр. см."
-msgstr ""
+msgstr "see also"
 
 #: configs/language_specific_rules/templates/sanj/rus/entry.template:54
 msgid "см."
-msgstr ""
+msgstr "see"
 
 #: configs/language_specific_rules/templates/sonad/about.template:37
 msgid ""
