@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-12 15:48+0200\n"
+"POT-Creation-Date: 2022-09-16 09:59+0200\n"
 "PO-Revision-Date: 2013-11-07 11:33+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language: ru\n"
@@ -698,7 +698,6 @@ msgid "Paradigm"
 msgstr "Таблица формообразования"
 
 #: configs/language_specific_rules/templates/entry.template:29
-#: configs/language_specific_rules/templates/sanj/rus/entry.template:48
 #: configs/language_specific_rules/templates/sanj/sjd/entry.template:53
 msgid "see also"
 msgstr "тж. см."
@@ -1651,6 +1650,18 @@ msgstr "рус"
 #: configs/language_specific_rules/templates/sanj/sjd/detail_search_form.template:11
 msgid "sjd"
 msgstr "саам"
+
+#: configs/language_specific_rules/templates/sanj/rus/entry.template:50
+msgid "тж. см."
+msgstr ""
+
+#: configs/language_specific_rules/templates/sanj/rus/entry.template:52
+msgid "подр. см."
+msgstr ""
+
+#: configs/language_specific_rules/templates/sanj/rus/entry.template:54
+msgid "см."
+msgstr ""
 
 #: configs/language_specific_rules/templates/sonad/about.template:37
 #, fuzzy
