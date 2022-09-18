@@ -104,5 +104,6 @@
 </div>
 
 <p>{% trans %}The abbreviations used in the dictionary are{% endtrans %} <a href=https://gtweb.uit.no/Abbreviations.docx>{% trans %}explained here{% endtrans %}</a>.</p>
+<p>{% trans %}The abbreviations refer to the uses in Spanish.{% endtrans %}</p>
 
 {# vim: set ts=4 sw=4 tw=0 syntax=htmljinja : #}
