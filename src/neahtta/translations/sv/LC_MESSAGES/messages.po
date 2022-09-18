@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-16 15:41+0200\n"
+"POT-Creation-Date: 2022-09-18 16:37+0200\n"
 "PO-Revision-Date: 2013-02-01 01:55-0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: sv\n"
@@ -1379,6 +1379,10 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:106
 msgid "explained here"
+msgstr ""
+
+#: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:107
+msgid "The abbreviations refer to the uses in Spanish."
 msgstr ""
 
 #: configs/language_specific_rules/templates/sanj/about.template:26
