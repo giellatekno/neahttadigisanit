@@ -1456,7 +1456,7 @@ msgstr "forklarte her"
 
 #: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:107
 msgid "The abbreviations refer to the uses in Spanish."
-msgstr ""
+msgstr "Forkortelsene gjelder de spanske orda."
 
 #: configs/language_specific_rules/templates/sanj/about.template:26
 msgid ""

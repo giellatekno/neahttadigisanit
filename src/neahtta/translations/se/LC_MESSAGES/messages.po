@@ -1481,7 +1481,7 @@ msgstr "čilgejuvvon dás"
 
 #: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:107
 msgid "The abbreviations refer to the uses in Spanish."
-msgstr ""
+msgstr "Oanádusat gusket spánskagiela sániide."
 
 #: configs/language_specific_rules/templates/sanj/about.template:26
 msgid ""
