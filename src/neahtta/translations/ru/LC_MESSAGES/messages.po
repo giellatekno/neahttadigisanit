@@ -193,7 +193,7 @@ msgstr "Саамский"
 
 #: configs/language_names.yaml:88
 msgid "Kildin Saami (tolerant)"
-msgstr ""
+msgstr "Саамский (без саамских букв)"
 
 #: configs/language_names.yaml:89
 msgid "Plains Cree"

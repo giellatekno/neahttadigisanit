@@ -190,7 +190,7 @@ msgstr "Са̄мь"
 
 #: configs/language_names.yaml:88
 msgid "Kildin Saami (tolerant)"
-msgstr ""
+msgstr "Са̄мь (са̄мь тӣтэха)"
 
 #: configs/language_names.yaml:89
 msgid "Plains Cree"
