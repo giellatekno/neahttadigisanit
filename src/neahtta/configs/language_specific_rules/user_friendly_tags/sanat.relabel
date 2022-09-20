@@ -231,6 +231,11 @@ Relabel:
       "tra": "translatiivi"
       "com": "komitatiivi"
 
+      "Hom1": ""
+      "Hom2": ""
+      "v1": ""
+      "v2": ""
+
   - source_morphology: 'izh'
     target_ui_language: 'fin'
     tags:
