@@ -9,7 +9,7 @@
    - t_pref preface text
 
  #}
-
+{%- import "lexicon.macros" as macros with context -%}
 {%- macro render_annotation(tg) -%}
     {# Render the annotation (<re />) node, unless it has a @fra_ref. #}
     {%- set annotations = tg.xpath('./re') %}
@@ -119,6 +119,18 @@
 
 {%- endmacro -%}
 
+{%- macro render_audio(t) -%}
+  {% set has_audio = t.xpath('@audio')|count > 0 %}
+  {% if has_audio %}
+    {%- set audio_text = t.get('audio', '') %}
+    {%- set audio_ref = 'audio/sjd/' ~  audio_text  -%}
+    {%- set audio_url = url_for('static', filename=audio_ref) -%}
+    <div class="btn-group">
+        <a class="btn btn-mini audio-link" data-audio-player data-audio-target="{{ audio_url }}" target="blank" href="#"><i class="icon-volume-up"></i></a>
+    </div>
+  {% endif %}
+{%- endmacro -%}
+
 {%- macro render_tg(tg) -%}
     {# Render all the texts as individual links, prefaced by a potential
     annotation and potential other preface. #}
@@ -130,7 +142,7 @@
     {% for t in tg.xpath('./t') %}
         {% set aspect = t.attrib.get('aspect', '') %}
         {%- if firstTime and (aspect == "б" or aspect == "в") -%}({%- set firstTime = false %}{%- endif -%}
-            {{ render_link(tg, t) }}{%- if not loop.last -%},{%- endif -%}
+            {{ render_link(tg, t) }}{{- render_audio(t) -}}{%- if not loop.last -%},{%- endif -%}
         {%- if loop.last and (aspect == "б" or aspect == "в") -%}){%- endif -%}
     {% endfor %}
 
