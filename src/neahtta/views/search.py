@@ -712,7 +712,8 @@ class SearcherMixin(object):
                                 korp_hits = 0
                             else:
                                 data = json.loads(response.read())
-                                korp_hits = data["hits"]
+                                if data.get("hits", None) is not None:
+                                    korp_hits = data["hits"]
 
                     tplkwargs = {
                         'lexicon_entry':
@@ -765,7 +766,9 @@ class SearcherMixin(object):
                     korp_hits = 0
                 else:
                     data = json.loads(response.read())
-                    korp_hits = data["hits"]
+                    if data.get("hits", None) is not None:
+                        korp_hits = data["hits"]
+            
         else:
             korp_hits = ''
 
