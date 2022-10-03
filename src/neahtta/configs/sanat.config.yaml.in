@@ -131,7 +131,7 @@ Dictionaries:
     korp_search_host: &F_KORP "http://gtweb.uit.no/f_korp"
     is_korp_default_lang: True
     corpora: 'FKV_ADMIN_20181106,FKV_BIBLE_20181106,FKV_FACTA_20181106,FKV_FICTI_20181106,FKV_NEWS_20181106,FKV_RUIJAN_KAIKU_20140418'
-    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
     input_variants: &spell_relax_fkv
       - type: "standard"
         description: !gettext "Standard"
@@ -150,7 +150,7 @@ Dictionaries:
     korp_parallel: True
     korp_search_host: *F_KORP
     corpora: 'NOB_RUIJAN_KAIKU_20140418'
-    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
 
   # vep
   - source: vep
@@ -159,7 +159,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: *F_KORP
     corpora: 'VEP_WIKI_20150101'
-    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
 
   - source: vep
     target: est
@@ -167,7 +167,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: *F_KORP
     corpora: 'VEP_WIKI_20150101'
-    start_query: 'http://gtweb.uit.no/cgi-bin/korp/korp.cgi?command=query&corpus='
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
 
   - source: nob
     target: fin
