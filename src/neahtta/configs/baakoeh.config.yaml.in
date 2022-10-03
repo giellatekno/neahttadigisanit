@@ -76,7 +76,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
     path: 'dicts/sma-nob.all.xml'
-    corpora: 'SMA_ADMIN_20181106,SMA_BIBLE_20181106,SMA_FACTA_20181106,SMA_FICTI_20181106,SMA_LAWS_20181106,SMA_NEWS_20181106,SMA_SCIENCE_20181106'
+    corpora: 'SMA_ADMIN_20211118,SMA_BIBLE_20211118,SMA_FACTA_20211118,SMA_FICTI_20211118,SMA_LAWS_20211118,SMA_NEWS_20211118,SMA_SCIENCE_20211118'
     start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
 
   - source: nob
