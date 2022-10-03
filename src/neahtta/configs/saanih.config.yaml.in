@@ -75,7 +75,7 @@ Dictionaries:
     path: 'dicts/smnfin.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
-    corpora: 'SMN_ADMIN_20181106,SMN_BIBLE_20181106,SMN_FACTA_20181106,SMN_NEWS_20181106,SMN_SCIENCE_20181106'
+    corpora: 'SMN_ADMIN_20211118,SMN_BIBLE_20211118,SMN_BLOGS_20211118,SMN_FACTA_20211118,SMN_FICTI_20211118,SMN_NEWS_20211118,SMN_SCIENCE_20211118,SMN_WIKIPEDIA_20211118'
     start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
     input_variants: &spell_relax_smn
       - type: "standard"
@@ -105,7 +105,7 @@ Dictionaries:
     path: 'dicts/smnsme.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
-    corpora: 'SMN_ADMIN_20181106,SMN_BIBLE_20181106,SMN_FACTA_20181106,SMN_NEWS_20181106,SMN_SCIENCE_20181106'
+    corpora: 'SMN_ADMIN_20211118,SMN_BIBLE_20211118,SMN_BLOGS_20211118,SMN_FACTA_20211118,SMN_FICTI_20211118,SMN_NEWS_20211118,SMN_SCIENCE_20211118,SMN_WIKIPEDIA_20211118'
     start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
     input_variants:
       - type: "standard"
@@ -120,8 +120,11 @@ Dictionaries:
 
   - source: sme
     target: smn
-    korp_search_host: "http://gtweb.uit.no/korp"
     path: 'dicts/smesmn.xml'
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/korp"
+    corpora: 'NOB2SME_ADMIN_20191210-NOB,NOB2SME_BIBLE_20191210-NOB,NOB2SME_FACTA_20191210-NOB,NOB2SME_SCIENCE_20191210-NOB,NOB2SME_LAWS_20191210-NOB,NOB2SME_MIXED_20191210-NOB,NOB2SME_ADMIN_20191210-SME,NOB2SME_BIBLE_20191210-SME,NOB2SME_FACTA_20191210-SME,NOB2SME_SCIENCE_20191210-SME,NOB2SME_LAWS_20191210-SME,NOB2SME_MIXED_20191210-SME'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
 
   - source: smnM
     target: sme
