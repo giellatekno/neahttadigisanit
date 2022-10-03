@@ -89,7 +89,7 @@ Dictionaries:
     path: 'dicts/sms-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
-    corpora: 'SMS_ADMIN_20181106,SMS_FACTA_20181106,SMS_FICTI_20181106,SMS_LAWS_20181106,SMS_LITERATURE_20171108,SMS_SCIENCE_20181106'
+    corpora: 'SMS_ADMIN_20211118,SMS_BLOGS_20211118,SMS_FACTA_20211118,SMS_LAWS_20211118,SMS_LITERATURE_20211118,SMS_NEWS_20211118,SMS_SCIENCE_20211118'
     start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
     input_variants: &spell_relax_sms
       - type: "standard"
@@ -128,7 +128,7 @@ Dictionaries:
     path: 'dicts/sms-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
-    corpora: 'SMS_ADMIN_20181106,SMS_FACTA_20181106,SMS_FICTI_20181106,SMS_LAWS_20181106,SMS_LITERATURE_20171108,SMS_SCIENCE_20181106'
+    corpora: 'SMS_ADMIN_20211118,SMS_BLOGS_20211118,SMS_FACTA_20211118,SMS_LAWS_20211118,SMS_LITERATURE_20211118,SMS_NEWS_20211118,SMS_SCIENCE_20211118'
     start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
     input_variants: *spell_relax_sms
 
@@ -137,7 +137,7 @@ Dictionaries:
     path: 'dicts/sms-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
-    corpora: 'SMS_ADMIN_20181106,SMS_FACTA_20181106,SMS_FICTI_20181106,SMS_LAWS_20181106,SMS_LITERATURE_20171108,SMS_SCIENCE_20181106'
+    corpora: 'SMS_ADMIN_20211118,SMS_BLOGS_20211118,SMS_FACTA_20211118,SMS_LAWS_20211118,SMS_LITERATURE_20211118,SMS_NEWS_20211118,SMS_SCIENCE_20211118'
     start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
     input_variants: *spell_relax_sms
 
@@ -146,7 +146,7 @@ Dictionaries:
     path: 'dicts/sms-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
-    corpora: 'SMS_ADMIN_20181106,SMS_FACTA_20181106,SMS_FICTI_20181106,SMS_LAWS_20181106,SMS_LITERATURE_20171108,SMS_SCIENCE_20181106'
+    corpora: 'SMS_ADMIN_20211118,SMS_BLOGS_20211118,SMS_FACTA_20211118,SMS_LAWS_20211118,SMS_LITERATURE_20211118,SMS_NEWS_20211118,SMS_SCIENCE_20211118'
     start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
     input_variants: *spell_relax_sms
 
