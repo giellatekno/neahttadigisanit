@@ -1248,7 +1248,6 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanat/about.template:20
 #: configs/language_specific_rules/templates/sanit/about.template:20
 #: configs/language_specific_rules/templates/sonad/about.template:20
-#, fuzzy
 msgid "How to quote the dictionaries"
 msgstr "Как цитировать словарь"
 
@@ -1413,7 +1412,6 @@ msgid "About the dictionary"
 msgstr "О словаре"
 
 #: configs/language_specific_rules/templates/sanj/about.template:29
-#, fuzzy
 msgid ""
 "The vocabulary of the electronic dictionary belongs to the Kildin Saami "
 "language. The dictionary consists of four parts:"
@@ -1931,7 +1929,6 @@ msgid "We're also working on new language pairs."
 msgstr "Мы также работаем над новыми языковыми парами."
 
 #: templates/more_dictionaries.html:44
-#, fuzzy
 msgid "Even more dictionaries..."
 msgstr "Еще больше словарей"
 
