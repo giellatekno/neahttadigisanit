@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-07 12:59+0200\n"
+"POT-Creation-Date: 2022-10-07 15:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1386,7 +1386,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanj/about.template:29
 msgid ""
 "The vocabulary of the electronic dictionary belongs to the Kildin Saami "
-"language. The dictionary consists of three parts:"
+"language. The dictionary consists of four parts:"
 msgstr ""
 
 #: configs/language_specific_rules/templates/sanj/about.template:30
@@ -1572,17 +1572,9 @@ msgid ""
 "                <li>Линдгрен Астрид, са̄мь кӣлле пые Са̄нндрэ Антонова "
 "(ред. Э. Шеллер) 2013. <i>Та̄рьенч Кукесьсуххк</i>. Мурманск "
 "«Рекорд».</li>\n"
-"                <li><i>Ма̄ххьтвесьт Пассь Евангеле кӣллт кӣлл</i>. Са̄мь "
-"кӣлле пые Са̄нндрэ Антонова, (ред. Э. Шеллер). <i>"
-msgstr ""
-
-#: configs/language_specific_rules/templates/sanj/about.template:75
-msgid "In preparation for print"
-msgstr ""
-
-#: configs/language_specific_rules/templates/sanj/about.template:75
-msgid ""
-"\n"
+"                <li><i>Ма̄ххьтвесьт пассь евангеле</i> 2022. Рӯшш кӣлэсьт"
+" кӣллт са̄мь кӣлле пые Антонова Са̄нндрэ, Редактор лыххк: Шеллер Элизабет"
+" я Галкина Эльвира. Библия нымьп кӣлле пыйей Институт, Стокгольм.</li>\n"
 "                <li>Юрьев Павел Поликарпович & Юрьева Марина Поликарповна"
 " 2017. <i>Богатырь Ляйнэ – Тоавас олма Ля̄йнэ. Книга на русском и "
 "саамском языках</i>. Мурманск.</li>\n"
