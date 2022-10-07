@@ -1519,7 +1519,7 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/sanj/about.template:36
 msgid "4. Audio files"
-msgstr ""
+msgstr "4. Аудиофайл"
 
 #: configs/language_specific_rules/templates/sanj/about.template:37
 msgid ""
@@ -1528,6 +1528,9 @@ msgid ""
 "Elisabeth Scheller. Trond Tynnøl integrated the audio files into the "
 "electronic dictionary."
 msgstr ""
+"Аудиофайл ле̄в лыххкма Антонова Са̄нндрэ ӣн кырьйхэмужэ куськэнҍ со̄н ӣжесь архивэсьт. "
+"Компьютрэ пыйймуж я е̄дтмуж ӣллькъе Элизабет Шеллер. Тронд Тюннэл пые аудиофайлэтҍ "
+"электроннэ са̄ннҍнэххькэ."
 
 #: configs/language_specific_rules/templates/sanj/about.template:40
 msgid "Lexicographic resources"
