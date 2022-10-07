@@ -26,7 +26,7 @@
                 <p>{% trans %}Antonova Aleksandra Andreevna & Scheller Elisabeth 2021. <i>Saamsko-russkij i Russko-saamskij slovar' (okolo 16 000 slov)</i>. UiT The Arctic University of Norway, Tromsø.{% endtrans %}</p>
                 </br></br>
                 <h3><b>{% trans %}About the dictionary{% endtrans %}</b></h3>
-                <p>{% trans %}The vocabulary of the electronic dictionary belongs to the Kildin Saami language. The dictionary consists of three parts:{% endtrans %}</p>
+                <p>{% trans %}The vocabulary of the electronic dictionary belongs to the Kildin Saami language. The dictionary consists of four parts:{% endtrans %}</p>
                 <h4>{% trans %}1. Kildin Saami-Russian dictionary{% endtrans %}</h4>
                 <p>{% trans %}This dictionary is an adapted, corrected and completed version of <a href="https://en.wikipedia.org/wiki/Aleksandra_Andreevna_Antonova">Aleksandra Andreevna Antonova's</a> (1932-2014) <i>Kildin Saami-Russian dictionary</i> from 2014. The <i>Kildin Saami-Russian dictionary</i> also contains vocabulary from A. A. Anonova's and E. Scheller's <i>Russian-Kildin Saami dictionary</i> from 2021.{% endtrans %}</p>
                 <h4>{% trans %}2. Russian-Kildin Saami dictionary{% endtrans %}</h4>
@@ -72,7 +72,7 @@
               <ul>{% trans %}
                 <li>Балакина Дарья С., Большакова Надежда П., Агеева Анфиса, Антонова (Юрьева) Антонина, Галкина Эльвира, Заборщикова Светлана, Коркина Екатерина, Лукин Геннадий, Матрёхин Иван, Медведева Мария, Медведева (Данилова) Полина, Перепелица Ольга, Сапельникова Анна, Хомюк Домна, Юрьева Марина, Юрьев Павел, Фенина Надя, Миронова Нина, Воронова Октябрина, Антонова Александра, Бажанов Аскольд, Якимович Софья, Виноградова Ираида, Яковлев Лазарь Д., Чернышихин Михаил, Fredriksen Lill Tove, Buljo Karen Anne, Westerås Lene E., Paltto Kirsi-Máret, Risvik Inga Marie 2019: <i>Aльманах саамской литературы</i>. Издательский дом «Живая классика». Москва.</li>
                 <li>Линдгрен Астрид, са̄мь кӣлле пые Са̄нндрэ Антонова (ред. Э. Шеллер) 2013. <i>Та̄рьенч Кукесьсуххк</i>. Мурманск «Рекорд».</li>
-                <li><i>Ма̄ххьтвесьт Пассь Евангеле кӣллт кӣлл</i>. Са̄мь кӣлле пые Са̄нндрэ Антонова, (ред. Э. Шеллер). <i>{% endtrans %}{% trans %}In preparation for print{% endtrans %}</i>.</li>{%trans %}
+                <li><i>Ма̄ххьтвесьт пассь евангеле</i> 2022. Рӯшш кӣлэсьт кӣллт са̄мь кӣлле пые Антонова Са̄нндрэ, Редактор лыххк: Шеллер Элизабет я Галкина Эльвира. Библия нымьп кӣлле пыйей Институт, Стокгольм.</li>
                 <li>Юрьев Павел Поликарпович & Юрьева Марина Поликарповна 2017. <i>Богатырь Ляйнэ – Тоавас олма Ля̄йнэ. Книга на русском и саамском языках</i>. Мурманск.</li>
                 <li>Яковлева Е. С. 2021. <i>Кэ̄жьнэг па̄ррнэ гуэйкэ / Вопросы для детей</i>. ООО «Чемпион», Воронеж.</li>
                 <li>Я̄ххк О̄ленк Сымман нӣййт 2018. <i>Мӯрман е̄ммьне «Куэлнэгк Соа̄ме Эхтнэг» шурьмуз Я̄ххк О̄ленк Сымман нӣйт соа̄гк эхтнэг лыгк баяс кӯххт тоа̄фант  не̄лльемплоагант ыгесьт кӯххт тоа̄фант ка̄ххцэмплоагант ыгке</i>.</li>{% endtrans %}
