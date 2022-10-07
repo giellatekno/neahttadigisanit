@@ -1419,7 +1419,7 @@ msgid ""
 "language. The dictionary consists of four parts:"
 msgstr ""
 "Лексика электронного словаря относится к кильдинскому диалекту саамского "
-"языка. Словарь состоит из трёх частей:"
+"языка. Словарь состоит из четырёх частей:"
 
 #: configs/language_specific_rules/templates/sanj/about.template:30
 msgid "1. Kildin Saami-Russian dictionary"

@@ -1413,7 +1413,7 @@ msgid ""
 "language. The dictionary consists of four parts:"
 msgstr ""
 "Электроннэ са̄ннҍнэгкь са̄нҍ ле̄в кӣллт са̄мь кӣл са̄нҍ. Са̄ннҍнэгкесьт "
-"ле̄в ко̄ллм куськ:"
+"ле̄в не̄лльй куськ:"
 
 #: configs/language_specific_rules/templates/sanj/about.template:30
 msgid "1. Kildin Saami-Russian dictionary"
