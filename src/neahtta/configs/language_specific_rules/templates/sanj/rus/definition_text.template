@@ -123,7 +123,7 @@
   {% set has_audio = t.xpath('@audio')|count > 0 %}
   {% if has_audio %}
     {%- set audio_text = t.get('audio', '') %}
-    {{ macros.audio_link(audio_text, 'sjd') }}
+    {{ macros.audio_link(audio_text, 'sjd')|safe }}
   {% endif %}
 {%- endmacro -%}
 
