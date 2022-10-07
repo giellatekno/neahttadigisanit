@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-18 16:37+0200\n"
+"POT-Creation-Date: 2022-10-07 12:59+0200\n"
 "PO-Revision-Date: 2013-03-14 16:53-0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: yrk\n"
@@ -578,7 +578,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanat/about.template:86
 #: configs/language_specific_rules/templates/sanat/find_problem.template:3
 #: configs/language_specific_rules/templates/sanit/about.template:67
-#: configs/language_specific_rules/templates/sanj/about.template:82
+#: configs/language_specific_rules/templates/sanj/about.template:84
 #: configs/language_specific_rules/templates/sonad/about.template:92
 #: configs/language_specific_rules/templates/vada/about.template:80
 #: configs/language_specific_rules/templates/valks/about.template:87
@@ -597,7 +597,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/saanih/about.template:60
 #: configs/language_specific_rules/templates/sanat/about.template:87
 #: configs/language_specific_rules/templates/sanit/about.template:68
-#: configs/language_specific_rules/templates/sanj/about.template:83
+#: configs/language_specific_rules/templates/sanj/about.template:85
 #: configs/language_specific_rules/templates/sonad/about.template:93
 #: configs/language_specific_rules/templates/vada/about.template:81
 #: configs/language_specific_rules/templates/valks/about.template:88
@@ -636,8 +636,8 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanat/find_problem.template:24
 #: configs/language_specific_rules/templates/sanit/about.template:73
 #: configs/language_specific_rules/templates/sanit/about.template:78
-#: configs/language_specific_rules/templates/sanj/about.template:88
-#: configs/language_specific_rules/templates/sanj/about.template:93
+#: configs/language_specific_rules/templates/sanj/about.template:90
+#: configs/language_specific_rules/templates/sanj/about.template:95
 #: configs/language_specific_rules/templates/sonad/about.template:98
 #: configs/language_specific_rules/templates/sonad/about.template:103
 #: configs/language_specific_rules/templates/vada/about.template:86
@@ -659,7 +659,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/saanih/about.template:75
 #: configs/language_specific_rules/templates/sanat/about.template:102
 #: configs/language_specific_rules/templates/sanit/about.template:83
-#: configs/language_specific_rules/templates/sanj/about.template:98
+#: configs/language_specific_rules/templates/sanj/about.template:100
 #: configs/language_specific_rules/templates/sonad/about.template:108
 #: configs/language_specific_rules/templates/vada/about.template:96
 #: configs/language_specific_rules/templates/valks/about.template:103
@@ -1458,11 +1458,23 @@ msgid ""
 "collaboration with Trond Trosterud and Elisabeth Scheller."
 msgstr ""
 
-#: configs/language_specific_rules/templates/sanj/about.template:38
+#: configs/language_specific_rules/templates/sanj/about.template:36
+msgid "4. Audio files"
+msgstr ""
+
+#: configs/language_specific_rules/templates/sanj/about.template:37
+msgid ""
+"The audio files are fragments from recordings of Aleksandra Antonova’s "
+"voice from her private archive. The digitalization and cut done by "
+"Elisabeth Scheller. Trond Tynnøl integrated the audio files into the "
+"electronic dictionary."
+msgstr ""
+
+#: configs/language_specific_rules/templates/sanj/about.template:40
 msgid "Lexicographic resources"
 msgstr ""
 
-#: configs/language_specific_rules/templates/sanj/about.template:39
+#: configs/language_specific_rules/templates/sanj/about.template:41
 msgid ""
 "\n"
 "                <li>Антонова Александра Андреевна (ред.: Агеева А. М., "
@@ -1494,11 +1506,11 @@ msgid ""
 "svensk-nordsamisk</i>. Karasjok: Čálliid Lágádus.</li>"
 msgstr ""
 
-#: configs/language_specific_rules/templates/sanj/about.template:49
+#: configs/language_specific_rules/templates/sanj/about.template:51
 msgid "Internet resources"
 msgstr ""
 
-#: configs/language_specific_rules/templates/sanj/about.template:50
+#: configs/language_specific_rules/templates/sanj/about.template:52
 msgid ""
 "\n"
 "                <li>Викисловарь – <a "
@@ -1518,11 +1530,11 @@ msgid ""
 "href=\"https://sanit.oahpa.no\">https://sanit.oahpa.no</a></li>"
 msgstr ""
 
-#: configs/language_specific_rules/templates/sanj/about.template:60
+#: configs/language_specific_rules/templates/sanj/about.template:62
 msgid "Grammatical resources"
 msgstr ""
 
-#: configs/language_specific_rules/templates/sanj/about.template:61
+#: configs/language_specific_rules/templates/sanj/about.template:63
 msgid ""
 "\n"
 "                <li>Керт Г. М. 1971. <i>Саамкий язык (кильдинский "
@@ -1545,11 +1557,11 @@ msgid ""
 "grammatik</i>. Ravda Lágádus.</li>"
 msgstr ""
 
-#: configs/language_specific_rules/templates/sanj/about.template:69
+#: configs/language_specific_rules/templates/sanj/about.template:71
 msgid "Text resources"
 msgstr ""
 
-#: configs/language_specific_rules/templates/sanj/about.template:70
+#: configs/language_specific_rules/templates/sanj/about.template:72
 msgid ""
 "\n"
 "                <li>Балакина Дарья С., Большакова Надежда П., Агеева "
@@ -1569,11 +1581,11 @@ msgid ""
 "кӣлле пые Са̄нндрэ Антонова, (ред. Э. Шеллер). <i>"
 msgstr ""
 
-#: configs/language_specific_rules/templates/sanj/about.template:73
+#: configs/language_specific_rules/templates/sanj/about.template:75
 msgid "In preparation for print"
 msgstr ""
 
-#: configs/language_specific_rules/templates/sanj/about.template:73
+#: configs/language_specific_rules/templates/sanj/about.template:75
 msgid ""
 "\n"
 "                <li>Юрьев Павел Поликарпович & Юрьева Марина Поликарповна"
@@ -2005,7 +2017,7 @@ msgstr ""
 msgid "is a possible form of ... "
 msgstr ""
 
-#: views/search.py:1109
+#: views/search.py:1112
 msgid "Invalid format. Only json and html allowed."
 msgstr ""
 
