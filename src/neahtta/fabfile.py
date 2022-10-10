@@ -462,7 +462,7 @@ def compile(ctx, dictionary=False, restart=False):
 def compile_fst(ctx, iso='x'):
     """ Compile a dictionary project on the server.
 
-        $ fab compile_dictionary [-i DICT]
+        $ fab compile_dictionary [-i ISO]
     """
 
     hup = False
