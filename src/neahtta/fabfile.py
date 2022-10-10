@@ -893,7 +893,9 @@ def test_running(ctx):
 
 @task
 def add_stem2dict(ctx):
-    """ This function makes a backup of sme-nob dict.
+    """ Runs the script add_stemtype2xml.py to add stem type in sme-nob dict. 
+        
+        This function makes a backup of sme-nob dict.
         Runs the script add_stemtype2xml.py to add stem type in sme-nob dict.
         Overwrite the current xml with the new one with stem type.
 

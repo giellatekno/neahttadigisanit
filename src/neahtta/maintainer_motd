@@ -22,9 +22,9 @@
     
         $ fab PROJECT restart-service
 
-    Adding stem information to dictionary xml
+    Adding stem information to sme-nob.all.xml 
 
-        $ fab PROJECT add-stem2dict
+        $ fab add-stem2dict
     
     Find a language
     
