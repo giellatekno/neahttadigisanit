@@ -306,7 +306,11 @@ def restart_service(ctx, dictionary=False):
     """ Restarts the service. """
 
     if not dictionary:
-        dictionary = config.current_dict
+        try:
+            dictionary = config.current_dict
+        except AttributeError:
+            print(colored("Error: Remember to specify a project", "red"))
+            sys.exit()
 
     fail = False
 
@@ -351,7 +355,11 @@ def compile_dictionary(ctx, dictionary=False, restart=False):
     failed = False
 
     if not dictionary:
-        dictionary = config.current_dict
+        try:
+            dictionary = config.current_dict
+        except AttributeError:
+            print(colored("Error: Remember to specify a project", "red"))
+            sys.exit()
 
     update_gtsvn(ctx)
 
@@ -389,7 +397,11 @@ def compile(ctx, dictionary=False, restart=False):
     print((colored("Executing on <%s>" % config.real_hostname, "cyan")))
 
     if not dictionary:
-        dictionary = config.current_dict
+        try:
+            dictionary = config.current_dict
+        except AttributeError:
+            print(colored("Error: Remember to specify a project", "red"))
+            sys.exit()
 
     update_repo(ctx)
     update_gtsvn(ctx)
@@ -464,7 +476,11 @@ def compile_fst(ctx, iso='x'):
 
     hup = False
 
-    dictionary = config.current_dict
+    try:
+        dictionary = config.current_dict
+    except AttributeError:
+        print(colored("Error: Remember to specify a project", "red"))
+        sys.exit()
 
     update_gtsvn(ctx)
 
@@ -488,7 +504,11 @@ def compile_fst(ctx, iso='x'):
 def test_configuration(ctx):
     """ Test the configuration and check language files for errors. """
 
-    _path = 'configs/%s.config.yaml' % config.current_dict
+    try:
+        _path = 'configs/%s.config.yaml' % config.current_dict
+    except AttributeError:
+        print(colored("Error: Remember to specify a project", "red"))
+        sys.exit()
 
     try:
         open(_path, 'r').read()
@@ -555,7 +575,11 @@ def compile_strings(ctx):
     """ Compile .po strings to .mo strings for use in the live server. """
 
     if hasattr(config, 'current_dict'):
-        config_file = 'configs/%s.config.yaml.in' % config.current_dict
+        try:
+            config_file = 'configs/%s.config.yaml.in' % config.current_dict
+        except AttributeError:
+            print(colored("Error: Remember to specify a project", "red"))
+            sys.exit()
         with open(config_file, 'r') as F:
             _y = yaml.load(F.read())
             langs = _y.get('ApplicationSettings', {}).get('locales_available')
@@ -706,7 +730,11 @@ def restart_running(ctx):
 def runserver(ctx):
     """ Run the development server."""
 
-    _path = 'configs/%s.config.yaml' % config.current_dict
+    try:
+        _path = 'configs/%s.config.yaml' % config.current_dict
+    except AttributeError:
+        print(colored("Error: Remember to specify a project", "red"))
+        sys.exit()
 
     try:
         open(_path, 'r').read()
@@ -749,7 +777,11 @@ def doctest(ctx):
 def test_project(ctx):
     """ Test the configuration and check language files for errors. """
 
-    yaml_path = 'configs/%s.config.yaml.in' % config.current_dict
+    try:
+        yaml_path = 'configs/%s.config.yaml.in' % config.current_dict
+    except AttributeError:
+        print(colored("Error: Remember to specify a project", "red"))
+        sys.exit()
 
     _dict = config.current_dict
     with ctx.cd(config.dict_path):
@@ -769,7 +801,11 @@ def unittests(ctx):
         TODO: this is going away in favor of the better new thing: `test_project`, `doctest`, and `test`
     """
 
-    yaml_path = 'tests/configs/%s.config.yaml' % config.current_dict
+    try:
+        yaml_path = 'tests/configs/%s.config.yaml' % config.current_dict
+    except AttributeError:
+        print(colored("Error: Remember to specify a project", "red"))
+        sys.exit()
 
     try:
         with open(yaml_path, 'r') as F:
