@@ -21,6 +21,10 @@
     Restarting services
     
         $ fab PROJECT restart-service
+
+    Adding stem information to dictionary xml
+
+        $ fab PROJECT add-stem2dict
     
     Find a language
     
