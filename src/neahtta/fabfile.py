@@ -348,7 +348,7 @@ def compile_dictionary(ctx, dictionary=False, restart=False):
     """ Compile a dictionary project on the server, and restart the
     corresponding service.
 
-        $ fab compile-dictionary:DICT
+        $ fab compile-dictionary [-d DICT]
     """
 
     failed = False
@@ -379,7 +379,7 @@ def compile_dictionary(ctx, dictionary=False, restart=False):
 def compile(ctx, dictionary=False, restart=False):
     """ Compile a dictionary, fsts and lexica, on the server.
 
-        $ fab compile:DICT
+        $ fab compile [-d DICT]
 
         NB: if the hostname is gtdict.uit.no (set in no_fst_install
         list above), only the lexicon will be compiled, FSTs will not be
@@ -462,7 +462,7 @@ def compile(ctx, dictionary=False, restart=False):
 def compile_fst(ctx, iso='x'):
     """ Compile a dictionary project on the server.
 
-        $ fab compile_dictionary:DICT
+        $ fab compile_dictionary [-i DICT]
     """
 
     hup = False
