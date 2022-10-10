@@ -212,8 +212,8 @@ def gtdict(ctx):
 
 
 @task
-def update_configs(ctx):
-    """ Pull repository to update the config files """
+def update_repo(ctx):
+    """ Pull repository to update files """
     if config.no_svn_up:
         print((colored("** skipping git pull **", "yellow")))
         return
@@ -270,14 +270,11 @@ def update_gtsvn(ctx):
             l.get('iso') for l in config_file.get('Languages')
             if not l.get('variant', False)
         ]
-        svn_lang_paths = ['giellalt/lang-%s' % l for l in svn_langs]
         # TODO: replace langs with specific list of langs from config
         # file
         paths = [
-            #'giella-core/', no need to svn up giella-core since no compile giella-core
-            'words/',
-            #'art/dicts/', does not exist
-        ] # + svn_lang_paths not in svn anymore
+            'words/'
+        ] 
         print((colored("** svn up **", "cyan")))
         for p in paths:
             _p = os.path.join(config.svn_path, p)
@@ -394,7 +391,7 @@ def compile(ctx, dictionary=False, restart=False):
     if not dictionary:
         dictionary = config.current_dict
 
-    update_configs(ctx)
+    update_repo(ctx)
     update_gtsvn(ctx)
 
     with ctx.cd(config.dict_path):
@@ -540,13 +537,7 @@ def extract_strings(ctx):
 @task
 def update_strings(ctx):
     """Must pull entire repo as we have moved to git"""
-    if config.no_svn_up:
-        print((colored("** skipping git pull **", "yellow")))
-        compile_strings(ctx)
-        return
-
-    with ctx.cd(config.i18n_path):
-        ctx.run("git pull")
+    update_repo(ctx)
 
     compile_strings(ctx)
 
