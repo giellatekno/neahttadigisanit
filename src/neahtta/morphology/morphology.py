@@ -11,6 +11,7 @@ import os
 import re
 from xmlrpc.client import TRANSPORT_ERROR
 from six import iteritems
+from termcolor import colored
 
 from cache import cache
 
@@ -314,6 +315,8 @@ class Lemma(object):
                 self.pos = 'V'
             else:
                 self.pos = "Unknown"
+                error_msg = "No part of speech found for lemma \"{}\". Make sure it is listed in the appropriate tagset file".format(self.lemma)
+                print(colored(error_msg,"yellow"), flush=True)
         self.input = _input
         self.form = _input
 
