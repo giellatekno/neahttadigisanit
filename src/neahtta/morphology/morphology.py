@@ -9,6 +9,7 @@ import heapq
 import imp
 import os
 import re
+from xmlrpc.client import TRANSPORT_ERROR
 from six import iteritems
 
 from cache import cache
@@ -296,7 +297,7 @@ class Lemma(object):
 
             self.tag_raw = tag
 
-    def __init__(self, tag=[''], _input=False, tool=False, tagsets={}):
+    def __init__(self, tag=[''], _input=False, tool=False, tagsets={}):     
         self.tagsets = tagsets
         self.tool = tool
 
@@ -308,7 +309,10 @@ class Lemma(object):
             self.pos = self.tag.parts[0]
         # Letting pos be None is problematic when sorting or grouping by pos
         if self.pos is None:
-            self.pos = "Unknown"
+            if self.lemma in tagsets['verb_derivations']: # e.g. VAbess does not have a marked pos
+                self.pos = 'V'
+            else:
+                self.pos = "Unknown"
         self.input = _input
         self.form = _input
 
