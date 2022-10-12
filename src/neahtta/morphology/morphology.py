@@ -308,10 +308,15 @@ class Lemma(object):
         else:
             self.pos = self.tag.parts[0]
         # Letting pos be None is problematic when sorting or grouping by pos
+        print(tag, flush=True)
+        print(self.pos)
         if self.pos is None:
-            if self.lemma in tagsets['verb_derivations']: # e.g. VAbess does not have a marked pos
-                self.pos = 'V'
-            else:
+            try:
+                if self.lemma in tagsets['verb_derivations']: # e.g. VAbess does not have a marked pos
+                  self.pos = 'V'
+                else:
+                    self.pos = "Unknown"
+            except:
                 self.pos = "Unknown"
         self.input = _input
         self.form = _input
