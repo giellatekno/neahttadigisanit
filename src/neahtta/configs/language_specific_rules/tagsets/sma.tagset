@@ -1,11 +1,17 @@
 ﻿pos:
  - "N"
- - "V"
  - "A"
- - "Pr"
- - "Po"
- - "Num"
+ - "Adv"
+ - "V"
  - "Pron"
+ - "CS"
+ - "CC"
+ - "Po"
+ - "Pr"
+ - "Interj"
+ - "Pcle"
+ - "Num"
+ - "Subqst"
 type: ["NomAg", "aktor", "Prop", "Ord"]
 homonyms: ["Hom1", "Hom2"]
 number:

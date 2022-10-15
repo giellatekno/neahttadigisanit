@@ -2,10 +2,15 @@
  - "N"
  - "V"
  - "A"
+ - "Adv"
+ - "CC"
+ - "CS"
+ - "Interj"
+ - "Pron"
+ - "Num"
+ - "Pcle"
  - "Pr"
  - "Po"
- - "Num"
- - "Pron"
 type: ["NomAg", "aktor", "Prop"]
 homonyms: ["Hom1", "Hom2"]
 number:
