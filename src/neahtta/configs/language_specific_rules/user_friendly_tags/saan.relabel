@@ -6,6 +6,8 @@ Relabel:
       N: "n."
       A: "adj."
       "Sem/Plc": ""
+      "Hom1": ""
+      "Hom2": ""
 
   - source_morphology: 'sms'
     target_ui_language: 'fin'
@@ -89,6 +91,8 @@ Relabel:
       "Prop": "erisnimi"
 
       "Sem/Plc": ""
+      "Hom1": ""
+      "Hom2": ""
 
   - source_morphology: 'sms'
     target_ui_language: 'rus'
@@ -98,6 +102,8 @@ Relabel:
       A: "прил."
 
       "Sem/Plc": ""
+      "Hom1": ""
+      "Hom2": ""
 
   - source_morphology: 'sms'
     target_ui_language: 'sms'
@@ -107,3 +113,5 @@ Relabel:
       A: "adj."
 
       "Sem/Plc": ""
+      "Hom1": ""
+      "Hom2": ""
