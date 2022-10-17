@@ -225,9 +225,11 @@ class MorphoLexicon(object):
             analyses = analyses
 
         # Lookup capitalized variant as well
-        if not wordform.istitle(): 
+        # Cannot use title() because it thinks all non-alphabet characters are word boundaries,
+        # including hyphens, apostrophes and combining macrons
+        if not wordform[0].isupper(): 
             try:
-                uppercase_analyses = analyzer.lemmatize(wordform.title(), **morph_kwargs)
+                uppercase_analyses = analyzer.lemmatize(wordform[0].upper() + wordform[1:], **morph_kwargs)
             except AttributeError:
                 uppercase_analyses = []
 
