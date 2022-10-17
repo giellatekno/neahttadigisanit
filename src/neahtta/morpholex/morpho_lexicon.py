@@ -224,6 +224,26 @@ class MorphoLexicon(object):
         else:
             analyses = analyses
 
+        # Lookup capitalized variant as well
+        if not wordform.istitle(): 
+            try:
+                uppercase_analyses = analyzer.lemmatize(wordform.title(), **morph_kwargs)
+            except AttributeError:
+                uppercase_analyses = []
+
+            if analyses:
+                if return_raw_data and uppercase_analyses:
+                    analyses.extend(uppercase_analyses[0])
+                    raw_output += uppercase_analyses[1]
+                    raw_errors += uppercase_analyses[2]
+                else:
+                    analyses.extend(uppercase_analyses)
+            else:
+                if return_raw_data and uppercase_analyses:
+                    analyses, raw_output, raw_errors = uppercase_analyses
+                else:
+                    analyses = uppercase_analyses
+
         entries_and_tags = OrderedDict()
         if analyses:
             all_lex_kwargs = (self.make_lex_kwargs(wordform, analysis) for
