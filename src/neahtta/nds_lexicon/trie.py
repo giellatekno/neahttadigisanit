@@ -134,7 +134,7 @@ class Trie(object):
         """
         curr_node = self.root
         for char in word:
-            # Do not care about capitalization: "kár" can return "Kárášjohka"
+            # Ignore capitalization: "kár" can return "Kárášjohka"
             try:
                 char_low = char.lower()
             except:
@@ -178,6 +178,7 @@ class Trie(object):
         """
         # traverse down to the prefix
         curr_node = self.root
+        prefix = prefix.lower() # ignore capitalization
         for char in prefix:
             # try/except is faster than checking for key membership
             try:
