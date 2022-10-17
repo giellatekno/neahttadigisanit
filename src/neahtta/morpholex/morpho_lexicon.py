@@ -233,10 +233,11 @@ class MorphoLexicon(object):
 
             if analyses:
                 if return_raw_data and uppercase_analyses:
-                    analyses.extend(uppercase_analyses[0])
+                    if uppercase_analyses[0]:
+                        analyses.extend(uppercase_analyses[0])
                     raw_output += uppercase_analyses[1]
                     raw_errors += uppercase_analyses[2]
-                else:
+                elif uppercase_analyses:
                     analyses.extend(uppercase_analyses)
             else:
                 if return_raw_data and uppercase_analyses:
