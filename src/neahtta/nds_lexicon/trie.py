@@ -134,6 +134,14 @@ class Trie(object):
         """
         curr_node = self.root
         for char in word:
+            # Do not care about capitalization: "kár" can return "Kárášjohka"
+            try:
+                char_low = char.lower()
+            except:
+                char_low = char
+                print("Could not run lower() on {}".format(char), flush=True)
+            finally:
+                char = char_low
             # try/except is faster than checking for key membership
             try:
                 curr_node = curr_node[char]
