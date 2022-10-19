@@ -1,7 +1,10 @@
-name: "General adverb paradigm, lemma is the adj. from which the adverb i derived"
+name: "General adverb paradigm, ader is the adj. from which the adverb is derived"
 morphology:
   pos: Adv
+lexicon:
+  XPATH:
+    ader: ".//l/@ader"
 --
-{{ lemma }}+A+Der/AAdv+Adv
-{{ lemma }}+A+Der/Comp+A+Der/AAdv+Adv
-{{ lemma }}+A+Der/Superl+A+Der/AAdv+Adv
+{{ ader }}+A+Der/AAdv+Adv
+{{ ader }}+A+Der/Comp+A+Der/AAdv+Adv
+{{ ader }}+A+Der/Superl+A+Der/AAdv+Adv
