@@ -136,7 +136,6 @@
     {% macro clean_tag(tag_input) %}
         {{ tag_input|tagfilter(_from, _to)
                     |replace(der_text, "")
-                    |replace(adv_text, "")
                     |replace(adj_text, "") }}
     {% endmacro %}
 
