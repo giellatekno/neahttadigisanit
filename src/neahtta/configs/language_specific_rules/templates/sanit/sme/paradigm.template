@@ -127,6 +127,21 @@
 
 {% endif -%}
 
+{%- if pos|upper == 'ADV'  %}
+
+    {% set adj_text = "A"|tagfilter(_from, _to) %}
+    {% set adv_text = "Adv"|tagfilter(_from, _to) %}
+    {% set der_text = "Der/AAdv"|tagfilter(_from, _to) %}
+
+    {% macro clean_tag(tag_input) %}
+        {{ tag_input|tagfilter(_from, _to)
+                    |replace(der_text, "")
+                    |replace(adv_text, "")
+                    |replace(adj_text, "") }}
+    {% endmacro %}
+
+{% endif -%}
+
 {%- if pos|upper == 'PRON'  %}
 
     {% set pron_text  = "Pron"|tagfilter(_from, _to) %}
@@ -137,7 +152,7 @@
     {% set pron_type = lexicon_entry|xpath('./lg/l/@type')|first %}
     {% set pron_type_text = pron_type|tagfilter(_from, _to) %}
 
-    {# If there are nomainal number markings, then we'll split these
+    {# If there are nominal number markings, then we'll split these
        into two columns. Must determine this by checking the tagsets.
 
        Works for words like eará, soames, etc.
@@ -410,6 +425,22 @@
         </tr>  
       {% endfor %}
     </table>
+
+{% elif pos|upper == 'ADV' %}
+    <dl class="dl-horizontal miniparadigm">
+      {%- for form in paradigm -%}
+
+          {% if form.tag %}
+              <dt>{{ clean_tag(form.tag)  }}</dt>
+          {% endif %}
+
+          {% if form.form %}
+              <dd lang="{{ _from }}">{{ form.form }}</dd>
+          {% else %}
+              <dd lang="{{ _from }}">?</dd>
+          {% endif %}
+      {%- endfor -%}
+    </dl>
 
 {% elif pos|upper == 'PRON' %}
 
