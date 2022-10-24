@@ -86,11 +86,29 @@ Dictionaries:
         description: !gettext "Standard"
         example: !gettext "(<em>а̄е̄ӣо̄ӯӎӊӈҏ</em>)"
         short_name: "sjd"
+        onscreen_keyboard: &SJD_KEYS
+        - "ӓ"
+        - "ӭ"
+        - "а̄"
+        - "е̄"
+        - "ӣ"
+        - "о̄"
+        - "ӯ"
+        - "э̄"
+        - "ю̄"
+        - "я̄"
+        - "ӈ"
+        - "ҋ"
+        - "ӆ"
+        - "ӎ"
+        - "ӊ"
+        - "ҏ"
+        - "ҍ"
       - type: "mobile"
         description: !gettext "Mobile friendly"
         example: !gettext "(incl. <em>аеиоумннр</em>)"
         short_name: "sjdM"
-        # onscreen_keyboard: *SJD_KEYS
+        onscreen_keyboard: *SJD_KEYS
 
   - source: rus
     target: sjd
