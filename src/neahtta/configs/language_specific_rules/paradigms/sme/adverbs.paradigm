@@ -1,0 +1,11 @@
+name: "Adverbs which may have case-like forms"
+morphology:
+  pos: Adv
+lexicon:
+  XPATH:
+    case: ".//l/@case"
+--
+{{ lemma }}+Adv+Gen
+{{ lemma }}+Adv+Ill
+{{ lemma }}+Adv+Loc
+{{ lemma }}+Adv+Pl+Ill
