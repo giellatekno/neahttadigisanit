@@ -133,6 +133,8 @@
 
     {{ render_preface(tg) }}
 
+    {{- render_annotation(tg) -}}
+
     {# Aspects б and в should be inside brackets #}
     {% set firstTime = true %}
     {% for t in tg.xpath('./t') %}
@@ -141,8 +143,6 @@
             {{ render_link(tg, t) }}{{- render_audio(t) -}}{%- if not loop.last -%},{%- endif -%}
         {%- if loop.last and (aspect == "б" or aspect == "в") -%}){%- endif -%}
     {% endfor %}
-
-    {{- render_annotation(tg) -}}
 
 {%- endmacro -%}
 
