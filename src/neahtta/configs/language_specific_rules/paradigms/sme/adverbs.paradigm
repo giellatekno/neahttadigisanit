@@ -3,7 +3,7 @@ morphology:
   pos: Adv
 lexicon:
   XPATH:
-    case: ".//l/@case"
+    par: ".//l/@par"
 --
 {{ lemma }}+Adv+Gen
 {{ lemma }}+Adv+Ill
