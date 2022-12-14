@@ -411,7 +411,7 @@ autocomplete_filters = AutocompleteFilters()
 def autocompleteKey(word):
     """ Propernouns should be placed after all other words.
     To do this, the Unicode character U+FFFD � REPLACEMENT CHARACTER
-    is added to the start of propernouns whe sorting, as this is 
+    is added to the start of propernouns when sorting, as this is 
     the last character in the Default Unicode Collation Element Table.
     """
     if word[0] and word[0].isupper():
