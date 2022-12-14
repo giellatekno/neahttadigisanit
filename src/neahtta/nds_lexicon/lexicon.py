@@ -408,7 +408,16 @@ class AutocompleteFilters(object):
 
 autocomplete_filters = AutocompleteFilters()
 
-
+def autocompleteKey(word):
+    """ Propernouns should be placed after all other words.
+    To do this, the Unicode character U+FFFD � REPLACEMENT CHARACTER
+    is added to the start of propernouns whe sorting, as this is 
+    the last character in the Default Unicode Collation Element Table.
+    """
+    if word[0] and word[0].isupper():
+        return "\uFFFD" + word
+    else:
+        return word
 class AutocompleteTrie(XMLDict):
     @property
     def allLemmas(self):
@@ -425,7 +434,7 @@ class AutocompleteTrie(XMLDict):
     def autocomplete(self, query):
         if self.trie:
             if hasattr(self.trie, 'autocomplete'):
-                return sorted(list(self.trie.autocomplete(query)))
+                return sorted(list(self.trie.autocomplete(query)), key=autocompleteKey)
         return []
 
     def __init__(self, *args, **kwargs):
