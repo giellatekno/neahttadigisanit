@@ -11,9 +11,13 @@ endpoint functionality.
 from __future__ import absolute_import
 from __future__ import print_function
 from application import create_app
+#from werkzeug.middleware.profiler import ProfilerMiddleware
 import sys
 
 app = create_app()
+#app.wsgi_app = ProfilerMiddleware(app.wsgi_app,
+#        stream=None,
+#        profile_dir="profiling")
 config = app.config
 
 if __name__ == "__main__":
