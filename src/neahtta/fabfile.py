@@ -364,7 +364,7 @@ def compile_dictionary(ctx, dictionary=False, restart=False):
     update_gtsvn(ctx)
 
     with ctx.cd(config.dict_path):
-        ctx.run("git pull")
+        #ctx.run("git pull")
 
         result = ctx.run(config.make_cmd + " %s-lexica" % dictionary)
 
