@@ -11,7 +11,6 @@ import os
 import sys
 import urllib
 from logging import getLogger
-#import scalene
 
 from cache import cache
 # from   werkzeug.contrib.cache         import SimpleCache
@@ -22,7 +21,6 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 
 # Configure user_log
-#scalene.scalene_profiler.start()
 user_log = getLogger("user_log")
 useLogFile = logging.FileHandler('user_log.txt')
 user_log.addHandler(useLogFile)
@@ -106,26 +104,19 @@ def prepare_assets(app):
     """ Prepare asset registries, collect and combine them into several lists.
 
         Prepare template tags for collecting additional assets along the way.
-
     """
-
     # TODO: how to collect additional assets called in templates?
 
-    import socket
-
-    real_hostname = socket.gethostname()
+    from socket import gethostname
 
     prod_hosts = [
         'gtweb.uit.no',
         'gtlab.uit.no',
-        'gtoahpa.uit.no'
-        'gtdict.uit.no'
+        'gtoahpa.uit.no',
+        'gtdict.uit.no',
     ]
 
-    if real_hostname in prod_hosts:
-        dev = False
-    else:
-        dev = True
+    dev = gethostname() not in prod_hosts
 
     js_dev_assets = []
     css_dev_assets = []
@@ -259,33 +250,36 @@ def register_assets(app):
         *app.assets.main_js_assets,
         filters=js_filters,
         output="js/app-compiled-%s.js" % PROJ)
+    app.assets.register("main_js", main_js)
+
     main_css = Bundle(
         *app.assets.main_css_assets,
         filters=css_filters,
         output="css/app-compiled-%s.css" % PROJ)
-    app.assets.register('main_js', main_js)
     app.assets.register('main_css', main_css)
 
     main_t_js = Bundle(
         *app.assets.t_js_assets,
         filters=js_filters,
         output="js/app-t-compiled-%s.js" % PROJ)
+    app.assets.register('main_t_js', main_t_js)
+
     main_t_css = Bundle(
         *app.assets.t_css_assets,
         filters=css_filters,
         output="css/app-t-compiled-%s.css" % PROJ)
-    app.assets.register('main_t_js', main_t_js)
     app.assets.register('main_t_css', main_t_css)
 
     nav_menu_js = Bundle(
         *app.assets.nav_menu_js,
         filters=js_filters,
         output="js/nav-menu-compiled-%s.js" % PROJ)
+    app.assets.register('nav_menu_js', nav_menu_js)
+
     nav_menu_css = Bundle(
         *app.assets.nav_menu_css,
         filters=css_filters,
         output="css/nav-menu-compiled-%s.css" % PROJ)
-    app.assets.register('nav_menu_js', nav_menu_js)
     app.assets.register('nav_menu_css', nav_menu_css)
 
     # Trigger this to prevent stuff from being reregistered on each
@@ -329,10 +323,10 @@ def create_app():
     # curframe = inspect.currentframe()
     # calframe = inspect.getouterframes(curframe, 2)
     # print "caller name", calframe[1]
-    import yaml
-    with open(os.environ['NDS_CONFIG'], 'r') as F:
-        static_prefix = yaml.load(F, yaml.Loader).get('ApplicationSettings').get(
-            'fcgi_script_path', '')
+    #import yaml
+    #with open(os.environ['NDS_CONFIG'], 'r') as F:
+    #    static_prefix = yaml.load(F, yaml.Loader).get('ApplicationSettings').get(
+    #        'fcgi_script_path', '')
 
     os.environ['PATH'] += os.pathsep + os.path.join(
         os.path.dirname(__file__), 'node_modules/.bin')
@@ -340,7 +334,8 @@ def create_app():
 
     app = Flask(
         __name__,
-        static_url_path=static_prefix + '/static',
+        #static_url_path=static_prefix + '/static',
+        static_url_path="/static",
         template_folder=cwd('templates'))
 
     app = jinja_options_and_filters(app)

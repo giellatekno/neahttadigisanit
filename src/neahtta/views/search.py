@@ -104,26 +104,16 @@ class DictionaryView(MethodView):
                 current_search_variant = variants[0]
 
         shared_context = {
-            'display_swap':
-            self.get_reverse_pair(_from, _to),
-            'current_pair_settings':
-            current_pair_settings,
-            'current_variant_options':
-            orig_pair_opts.get('variant_options'),
-            'current_search_variant':
-            current_search_variant,
-            'current_locale':
-            get_locale(),
-            '_from':
-            _from,
-            '_to':
-            _to,
-            'orig_from':
-            orig_from,
-            'orig_to':
-            orig_to,
-            'last_searches':
-            session.get('last_searches-' + current_app.config.short_name, []),
+            'display_swap': self.get_reverse_pair(_from, _to),
+            'current_pair_settings': current_pair_settings,
+            'current_variant_options': orig_pair_opts.get('variant_options'),
+            'current_search_variant': current_search_variant,
+            'current_locale': get_locale(),
+            '_from': _from,
+            '_to': _to,
+            'orig_from': orig_from,
+            'orig_to': orig_to,
+            'last_searches': session.get('last_searches-' + current_app.config.short_name, []),
         }
 
         shared_context.update(**kwargs)
