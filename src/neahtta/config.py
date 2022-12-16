@@ -140,7 +140,7 @@ class Config(Config):
         language_configs_path = os.path.join(
             self.get('NDS_CONFDIR'), 'language_names.yaml')
         with open(language_configs_path, 'r') as F:
-            config = yaml.load(F)
+            config = yaml.load(F, yaml.Loader)
 
         self._language_configs_yaml = config
         return self._language_configs_yaml
@@ -498,7 +498,7 @@ class Config(Config):
                 tagset_path = os.path.join(_p, f)
                 if os.path.exists(tagset_path):
                     try:
-                        file_context_set = yaml.load(open(tagset_path, 'r').read())
+                        file_context_set = yaml.load(open(tagset_path, 'r'), yaml.Loader)
                     except Exception as e:
                         print(" * YAML parsing error in <%s>\n\n" % tagset_path)
                         print(e)
@@ -709,7 +709,7 @@ class Config(Config):
                     relabel_path = os.path.join(_p, f)
                     try:
                         relabel_yaml = format_yaml(
-                            yaml.load(open(relabel_path, 'r').read()))
+                            yaml.load(open(relabel_path, 'r'), yaml.Loader))
                     except Exception as e:
                         print(" * YAML parsing error in <%s>\n\n" % relabel_path)
                         print(e)
@@ -742,7 +742,7 @@ class Config(Config):
                     language = f.partition('.')[0]
                     tagset_path = os.path.join(_p, f)
                     try:
-                        tagset_yaml = yaml.load(open(tagset_path, 'r').read())
+                        tagset_yaml = yaml.load(open(tagset_path, 'r'), yaml.Loader)
                     except Exception as e:
                         print(" * YAML parsing error in <%s>\n\n" % tagset_path)
                         print(e)
@@ -1167,7 +1167,7 @@ class Config(Config):
         self._morphologies = False
 
         with open(filename, 'r') as F:
-            config = yaml.load(F)
+            config = yaml.load(F, yaml.Loader)
         self.yaml = config
         self.filename = filename
         self.test(silent=True)

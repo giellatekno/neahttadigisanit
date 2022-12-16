@@ -251,7 +251,7 @@ def read_config(proj):
             sys.exit()
 
     with open(_path, 'r') as F:
-        config_file = yaml.load(F)
+        config_file = yaml.load(F, yaml.Loader)
 
     return config_file
 
@@ -581,7 +581,7 @@ def compile_strings(ctx):
             print(colored("Error: Remember to specify a project", "red"))
             sys.exit()
         with open(config_file, 'r') as F:
-            _y = yaml.load(F.read())
+            _y = yaml.load(F, yaml.Loader)
             langs = _y.get('ApplicationSettings', {}).get('locales_available')
 
         for lang in langs:
@@ -650,7 +650,7 @@ def where(iso):
     locations = []
     for config_file in configs:
         with open(config_file, 'r') as F:
-            _y = yaml.load(F.read())
+            _y = yaml.load(F, yaml.Loader)
             short_name = _y.get('ApplicationSettings', {}).get('short_name')
             langs = filter(test_lang, _y.get('Languages'))
 
@@ -809,7 +809,7 @@ def unittests(ctx):
 
     try:
         with open(yaml_path, 'r') as F:
-            _y = yaml.load(F)
+            _y = yaml.load(F, yaml.Loader)
     except IOError:
         if config.real_hostname not in running_service:
             yaml_path = 'configs/%s.config.yaml.in' % config.current_dict
@@ -818,7 +818,7 @@ def unittests(ctx):
                     "** Production config not found, using development (*.in)", "yellow")
             ))
             with open(yaml_path, 'r') as F:
-                _y = yaml.load(F)
+                _y = yaml.load(F, yaml.Loader)
         else:
             print((
                 colored("** Production config not found, and on a production "

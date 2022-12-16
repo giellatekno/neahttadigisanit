@@ -33,6 +33,9 @@ morph_log.txt
 user_log.txt
 package-lock.json
 
+# for pyenv
+.python-version
+
 # Compiled translations (.mo)
 *.mo
 

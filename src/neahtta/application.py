@@ -11,6 +11,7 @@ import os
 import sys
 import urllib
 from logging import getLogger
+#import scalene
 
 from cache import cache
 # from   werkzeug.contrib.cache         import SimpleCache
@@ -18,8 +19,10 @@ from config import Config
 from flask import Flask, request, session
 from flask_babel import Babel
 from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 
 # Configure user_log
+#scalene.scalene_profiler.start()
 user_log = getLogger("user_log")
 useLogFile = logging.FileHandler('user_log.txt')
 user_log.addHandler(useLogFile)
@@ -328,7 +331,7 @@ def create_app():
     # print "caller name", calframe[1]
     import yaml
     with open(os.environ['NDS_CONFIG'], 'r') as F:
-        static_prefix = yaml.load(F).get('ApplicationSettings').get(
+        static_prefix = yaml.load(F, yaml.Loader).get('ApplicationSettings').get(
             'fcgi_script_path', '')
 
     os.environ['PATH'] += os.pathsep + os.path.join(
@@ -363,7 +366,7 @@ def create_app():
     app = prepare_assets(app)
 
     # Register rate limiter
-    limiter = Limiter(app, global_limits=["120/minute"])
+    limiter = Limiter(app, key_func=get_remote_address, default_limits=["120/minute"])
     app.limiter = limiter
     app.config['APPLICATION_ROOT'] = app.config.fcgi_script_path
 

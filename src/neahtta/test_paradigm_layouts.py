@@ -11,7 +11,7 @@ def read_layout_file(fname):
 
     opts, _, data = data.partition('--')
 
-    options = yaml.load(opts)
+    options = yaml.load(opts, yaml.Loader)
 
     return (options, data)
 

@@ -40,7 +40,7 @@ class YamlTests(object):
         self.filename = path
 
         with open(self.filename, 'r') as F:
-            self.yaml = yaml.load(F)
+            self.yaml = yaml.load(F, yaml.Loader)
 
     @property
     def request_tests(self):

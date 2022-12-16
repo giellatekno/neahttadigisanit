@@ -645,7 +645,7 @@ class ParadigmConfig(object):
         parsed_condition = False
         if condition_yaml and paradigm_string_txt:
             try:
-                condition_yaml = yaml.load(condition_yaml)
+                condition_yaml = yaml.load(condition_yaml, yaml.Loader)
             except Exception as e:
                 print("\n** Problem reading paradigm rule condition at: ", file=sys.stderr)
                 print(e, file=sys.stderr)
@@ -710,7 +710,7 @@ class ParadigmConfig(object):
         parsed_condition = False
         if condition_yaml and paradigm_string_txt:
             try:
-                condition_yaml = yaml.load(condition_yaml)
+                condition_yaml = yaml.load(condition_yaml, yaml.Loader)
             except Exception as e:
                 print("\n** Problem reading paradigm rule condition at: ", file=sys.stderr)
                 print(e, file=sys.stderr)
