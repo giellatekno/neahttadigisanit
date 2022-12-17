@@ -914,7 +914,7 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
         if 'lookup' in request.args:
             user_input = request.args.get('lookup')
 
-            if current_app.config.strip_spaces:
+            if current_app.config.strip_spaces and user_input is not None:
                 user_input = user_input.strip()
             # This performs lots of the work...
             search_result_context = self.search_to_context(
@@ -935,7 +935,7 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
 
         user_input = request.form.get('lookup', False)
 
-        if current_app.config.strip_spaces:
+        if current_app.config.strip_spaces and user_input is not None:
             user_input = user_input.strip()
 
         if user_input in ['teksti-tv', 'tekst tv', 'teaksta tv']:
@@ -971,7 +971,7 @@ class ReferredLanguagePairSearchView(LanguagePairSearchView):
 
         user_input = request.form.get('lookup', False)
 
-        if current_app.config.strip_spaces:
+        if current_app.config.strip_spaces and user_input is not None:
             user_input = user_input.strip()
 
         if not user_input:
@@ -1129,7 +1129,7 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
 
         user_input = wordform = decode_or_fail(wordform)
 
-        if current_app.config.strip_spaces:
+        if current_app.config.strip_spaces and user_input is not None:
             user_input = user_input.strip()
 
         self.user_input = user_input
