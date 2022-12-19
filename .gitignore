@@ -13,18 +13,29 @@ __pycache__/
 *.DS_Store
 node_modules/
 .env/
+.venv/
+
 src/neahtta/dicts/*.xml
 src/neahtta/dicts/*.xml.bak
 src/neahtta/dicts/*.xml.bak-before-stem
 src/neahtta/dicts/*.log
 src/neahtta/dicts/test_lexica
-static/
+
+# ignore everything in any static/vendor folder
+**/static/vendor/
+**/static/.webassets-cache/
+
+# and anything inside a static folder which includes the word "compiled"
+**/static/**/*compiled*.*
+
 secret_key.do.not.check.in
 morph_log.txt
 user_log.txt
 package-lock.json
+
 # Compiled translations (.mo)
 *.mo
+
 # Production server files
 src/neahtta/configs/*.config.yaml
 *.pid

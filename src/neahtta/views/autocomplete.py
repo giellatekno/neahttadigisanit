@@ -8,21 +8,25 @@ __all__ = ["autocomplete"]
 
 
 def autocomplete(from_language, to_language):
+    has_callback = request.args.get('callback', False)
+    lemmatize = request.args.get('lemmatize', False)
+
+    try:
+        lookup_key = request.args["lookup"]
+    except KeyError:
+        return fmtForCallback(json.dumps(" * autocomplete requires lookup query param"), has_callback)
 
     autocomplete_tries = current_app.config.lexicon.autocomplete_tries
-    # URL parameters
-    lookup_key = request.args.get('lookup', False)
-    lemmatize = request.args.get('lemmatize', False)
-    has_callback = request.args.get('callback', False)
-
-    autocompleter = autocomplete_tries.get((from_language, to_language), False)
-
-    if not autocompleter:
+    try:
+        autocompleter = autocomplete_tries[from_language, to_language]
+    except KeyError:
         return fmtForCallback(
             json.dumps(" * No autocomplete for this language pair."),
             has_callback)
 
     autos = autocompleter.autocomplete(lookup_key)
+    if not autos:
+        autos = autocompleter.autocomplete(lookup_key.strip())
 
     # Only lemmatize if nothing returned from autocompleter?
     return Response(
