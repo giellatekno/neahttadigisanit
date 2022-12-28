@@ -20,6 +20,13 @@ try:
 except NameError:
     unicode = str
 
+try:
+    import hfst
+except ModuleNotFoundError as e:
+    HAVE_PYHFST = False
+else:
+    HAVE_PYHFST = True
+
 # TODO: get from global path
 configs_path = os.path.join(os.path.dirname(__file__), '../')
 
@@ -789,6 +796,8 @@ class XFST(object):
         import subprocess
         from threading import Timer
 
+        print(f"_exec(), {cmd=}", flush=True)
+
         try:
             _input = _input.encode('utf-8')
         except:
@@ -813,7 +822,6 @@ class XFST(object):
                 raise Exception("Process for %s took too long." % cmd)
             except OSError:
                 pass
-            return
 
         if not timeout:
             t = Timer(5, kill_proc)
@@ -876,8 +884,13 @@ class XFST(object):
         return morph
 
     def lookup(self, lookups_list, raw=False):
+        print("lookup()", flush=True)
         lookup_string = '\n'.join(lookups_list)
+
+        print(f"{lookup_string=}", flush=True)
         output, err = self._exec(lookup_string, cmd=self.cmd)
+        print(f"{output=}", flush=True)
+        print(f"{err=}", flush=True)
         if len(output) == 0 and len(err) > 0:
             name = self.__class__.__name__
             msg = """%s - %s: %s""" % (self.langcode, name, err)
@@ -967,6 +980,7 @@ class XFST(object):
 
 class HFST(XFST):
     def __init__(self, lookup_tool, fst_file, ifst_file=False, options={}):
+        print(f"HFST.__init__({lookup_tool=}, {fst_file=})", flush=True)
         self.cmd = "%s %s" % (lookup_tool, fst_file)
         self.options = options
 
@@ -977,6 +991,25 @@ class HFST(XFST):
 
         if 'tagProcessor' in self.options:
             self.load_tag_processor()
+
+
+class PyHFST(XFST):
+    def __new__(cls, *args, **kwargs):
+        if not HAVE_PYHFST:
+            from textwrap import dedent
+            msg = dedent(f"""
+                warning: pyhfst morphology tool requires python hfst package,
+                (pip install hfst)
+                  (just note when you do: it takes a while to compile, and you may
+                   need some libraries and such...)
+                falling back to HFST
+            """)
+            print(msg, flush=True)
+            return HFST(*args, **kwargs)
+
+    def __init__(self, lookup_tool, fst_file, ifst_file=None, options={}):
+        self.options = options
+        print("ABOUT TO USE PYHFST!", flush=True)
 
 
 class OBT(XFST):

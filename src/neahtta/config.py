@@ -958,12 +958,13 @@ class Config(Config):
 
         self._morphologies = {}
 
-        from morphology import XFST, OBT, Morphology, HFST
+        from morphology import XFST, OBT, Morphology, HFST, PyHFST
         morph_cache = self.get('cache', False)
 
         formats = {
             'xfst': XFST,
             'hfst': HFST,
+            'pyhfst': PyHFST,
             'obt': OBT,
         }
 
@@ -987,8 +988,10 @@ class Config(Config):
                     _kwt = _kwargs_in['tool']
                 kwargs['lookup_tool'] = _kwt
             else:
-                print("Lookup tool missing")
-                sys.exit()
+                # pyhfst does not rely on external tools
+                if m_format != "pyhfst":
+                    print("Lookup tool missing")
+                    sys.exit()
 
             if 'file' in _kwargs_in:
                 if isinstance(_kwargs_in['file'], list):
