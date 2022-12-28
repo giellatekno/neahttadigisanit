@@ -120,7 +120,7 @@
     {{- render_annotation(tg) -}}
 
     {% for t in tg.xpath('./t') %}
-        {{ render_link(tg, t) -}}{% if not loop.last %}, {% endif %}
+        {{ render_link(tg, t) -}}{% if not loop.last %}; {% endif %}
     {% endfor %}
 {%- endmacro -%}
 
