@@ -29,7 +29,7 @@ idna==3.4
 importlib-metadata==5.1.0
 invocations==2.6.0
 invoke==1.7.3
-itsdangerous==1.1.0
+itsdangerous==2.1.2
 jaraco.classes==3.2.3
 jedi==0.17.2
 jeepney==0.8.0
@@ -38,7 +38,7 @@ jsmin==3.0.1
 keyring==23.11.0
 limits==1.6
 lxml==4.9.0
-MarkupSafe==1.1.1
+MarkupSafe==2.1.1
 more-itertools==9.0.0
 odict==1.8.1
 paramiko==2.11.0
@@ -82,7 +82,7 @@ twine==4.0.2
 urllib3==1.26.13
 virtualenv==20.14.1
 wcwidth==0.2.5
-webassets==0.10.1
+webassets==2.0
 webencodings==0.5.1
-Werkzeug==0.16.1
+Werkzeug==2.2.2
 zipp==3.11.0
