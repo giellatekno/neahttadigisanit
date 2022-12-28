@@ -1,7 +1,17 @@
 #!/bin/env python
-from __future__ import absolute_import
-from __future__ import print_function
-import binascii
-import os
+from secrets import token_hex
+from sys import exit, argv
 
-print(binascii.hexlify(os.urandom(24)))
+filename = "secret_key.do.not.check.in"
+
+quiet = "-q" in argv
+
+try:
+    with open(filename, "x") as f:
+        f.write(token_hex(24))
+except FileExistsError:
+    if not quiet:
+        print(f"file {filename} already exists")
+    exit(1)
+else:
+    exit(0)
