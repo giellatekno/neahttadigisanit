@@ -1012,12 +1012,8 @@ class Config(Config):
 
             tagsets = self.tagset_definitions.get(iso, {})
 
-            self._morphologies[iso] = \
-                m_format(**kwargs).applyMorph(Morphology( iso
-                                                        , cache=morph_cache
-                                                        , tagsets=tagsets
-                                                        )
-                                             )
+            self._morphologies[iso] = m_format(**kwargs).applyMorph(Morphology(
+                iso, cache=morph_cache, tagsets=tagsets))
 
         return self._morphologies
 

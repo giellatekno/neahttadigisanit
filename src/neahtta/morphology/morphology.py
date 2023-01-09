@@ -3,8 +3,6 @@
 """
 Morphological tools
 """
-from __future__ import absolute_import
-from __future__ import print_function
 import heapq
 import imp
 import os
@@ -15,17 +13,14 @@ from termcolor import colored
 
 from cache import cache
 
+import hfst
+from hfst.exceptions import NotTransducerStreamException
+
 try:
     unicode
 except NameError:
     unicode = str
 
-try:
-    import hfst
-except ModuleNotFoundError as e:
-    HAVE_PYHFST = False
-else:
-    HAVE_PYHFST = True
 
 # TODO: get from global path
 configs_path = os.path.join(os.path.dirname(__file__), '../')
@@ -425,7 +420,7 @@ def word_generation_context(generated_result, *generation_input_args,
     return list(map(apply_context, generated_result))
 
 
-class GenerationOverrides(object):
+class GenerationOverrides:
     """ Class for collecting functions marked with decorators that
     provide special handling of tags. One class instantiated in
     morphology module: `generation_overrides`.
@@ -618,7 +613,7 @@ class GenerationOverrides(object):
 generation_overrides = GenerationOverrides()
 
 
-class XFST(object):
+class XFST:
     def splitTagByCompound(self, analysis):
         _cmp = self.options.get('compoundBoundary', False)
         is_cmp = False
@@ -796,8 +791,6 @@ class XFST(object):
         import subprocess
         from threading import Timer
 
-        print(f"_exec(), {cmd=}", flush=True)
-
         try:
             _input = _input.encode('utf-8')
         except:
@@ -884,13 +877,9 @@ class XFST(object):
         return morph
 
     def lookup(self, lookups_list, raw=False):
-        print("lookup()", flush=True)
         lookup_string = '\n'.join(lookups_list)
 
-        print(f"{lookup_string=}", flush=True)
         output, err = self._exec(lookup_string, cmd=self.cmd)
-        print(f"{output=}", flush=True)
-        print(f"{err=}", flush=True)
         if len(output) == 0 and len(err) > 0:
             name = self.__class__.__name__
             msg = """%s - %s: %s""" % (self.langcode, name, err)
@@ -980,7 +969,6 @@ class XFST(object):
 
 class HFST(XFST):
     def __init__(self, lookup_tool, fst_file, ifst_file=False, options={}):
-        print(f"HFST.__init__({lookup_tool=}, {fst_file=})", flush=True)
         self.cmd = "%s %s" % (lookup_tool, fst_file)
         self.options = options
 
@@ -994,22 +982,59 @@ class HFST(XFST):
 
 
 class PyHFST(XFST):
-    def __new__(cls, *args, **kwargs):
-        if not HAVE_PYHFST:
-            from textwrap import dedent
-            msg = dedent(f"""
-                warning: pyhfst morphology tool requires python hfst package,
-                (pip install hfst)
-                  (just note when you do: it takes a while to compile, and you may
-                   need some libraries and such...)
-                falling back to HFST
-            """)
-            print(msg, flush=True)
-            return HFST(*args, **kwargs)
-
     def __init__(self, lookup_tool, fst_file, ifst_file=None, options={}):
         self.options = options
-        print("ABOUT TO USE PYHFST!", flush=True)
+
+        # normally this is done in a loop, as in
+        # https://hfst.github.io/python/3.11.0/classhfst_1_1HfstInputStream.html
+        # but we know that there's only one transducer
+        self.tr = hfst.HfstInputStream(fst_file).read()
+
+        try:
+            self.itr = hfst.HfstInputStream(ifst_file).read()
+        except NotTransducerStreamException:
+            self.itr = None
+
+    def remove_flag_diacritics(self, line):
+        return re.sub("@[^@]*@", "", line)
+
+    def lookup(self, lookups_list, raw=False):
+        lookup_string = "\n".join(lookups_list)
+        output = self.tr.lookup(lookup_string)
+        lines = ""
+        for line, weight in output:
+            lines += lookup_string + "\t" + self.remove_flag_diacritics(line) + "\n\n"
+        clean = self.clean(lines)
+        if raw:
+            return clean, lines, ""
+        return clean
+
+    def inverselookup_by_string(self, lookup_string, raw=False):
+        if self.itr is None:
+            print(" * Inverse lookups not available.")
+            return False
+
+        lines = ""
+        for line in lookup_string.split("\n"):
+            output = self.itr.lookup(line)
+            if output:
+                output, _weight = output[0]
+                lines += line + "\t" + self.remove_flag_diacritics(output) + "\n\n"
+        clean = self.clean(lines)
+        if raw:
+            return clean, lookup_string, ""
+
+        return clean
+
+    def inverselookup(self, lemma, tags, raw=False,
+                      no_preprocess_paradigm=False):
+        """Do an inverse lookup."""
+        if not no_preprocess_paradigm:
+            lookup_string = self.get_inputstring(lemma, tags)
+        else:
+            lookup_string = tags
+
+        return self.inverselookup_by_string(lookup_string, raw=raw)
 
 
 class OBT(XFST):
