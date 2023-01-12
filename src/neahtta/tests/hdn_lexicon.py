@@ -2,7 +2,6 @@
 
 # gatáa.ang ñasa'áa
 
-from __future__ import absolute_import
 import os
 import tempfile
 import unittest

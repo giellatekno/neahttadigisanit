@@ -2,7 +2,6 @@
 # however in order for it to work as a bookmarklet, it must be URL
 # encoded.
 
-from __future__ import absolute_import
 import os
 try:
     from urllib import quote, quote_plus

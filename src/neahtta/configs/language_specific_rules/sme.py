@@ -9,8 +9,6 @@ connecting FST to Lexicon.
 # * paradigm documentation here:
 #   https://giellalt.github.io/dicts/dictionarywork.html
 
-from __future__ import absolute_import
-from __future__ import print_function
 from logging import getLogger
 
 from nds_lexicon import autocomplete_filters as autocomplete_filters

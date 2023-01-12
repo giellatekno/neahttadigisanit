@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from .lexicon import Lexicon, lexicon_overrides, LexiconOverrides, autocomplete_filters, search_types, XMLDict
 
 from .lookups import SearchTypes

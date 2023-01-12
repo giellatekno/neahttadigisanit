@@ -1,7 +1,6 @@
 # Some misc test functions that need to be rewritten into actual tests
 
 
-from __future__ import print_function
 def sme_test():
     sme_options = {
         'compoundBoundary': "  + #",

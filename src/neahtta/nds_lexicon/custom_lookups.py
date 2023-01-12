@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from lxml import etree
 
 from .lexicon import XMLDict, regexpNS

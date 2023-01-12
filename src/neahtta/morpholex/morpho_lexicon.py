@@ -7,8 +7,6 @@
 # Will need to operate on the output of lookup(), and this is language
 # specific, so decorator registry thing is probably good here.
 
-from __future__ import absolute_import
-from __future__ import print_function
 from collections import defaultdict, OrderedDict
 from itertools import groupby
 from operator import itemgetter

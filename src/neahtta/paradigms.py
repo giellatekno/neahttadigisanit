@@ -36,8 +36,6 @@ comparison types are needed (beyond X == Y and X is in list Y).
 TODO: allow user-defined global XPATH context.
 """
 
-from __future__ import absolute_import
-from __future__ import print_function
 import os
 import sys
 

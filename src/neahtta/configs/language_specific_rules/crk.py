@@ -1,6 +1,4 @@
-﻿from __future__ import absolute_import
-from __future__ import print_function
-from morphology import generation_overrides as morphology
+﻿from morphology import generation_overrides as morphology
 from lxml import etree
 
 from flask import current_app, g

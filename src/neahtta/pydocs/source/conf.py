@@ -14,7 +14,6 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 
-from __future__ import absolute_import
 import os
 import sys
 

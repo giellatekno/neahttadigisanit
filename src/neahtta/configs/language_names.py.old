@@ -17,7 +17,6 @@ their names will need to be here too.
 
 """
 
-from __future__ import absolute_import
 from flask_babel import lazy_gettext as _
 NAMES = dict([
     # sanit

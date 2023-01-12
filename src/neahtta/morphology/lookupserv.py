@@ -5,8 +5,6 @@ A lookup server that uses threads to handle multiple clients at a time.
 Called from the ped-interface (forms.py)
 """
 
-from __future__ import absolute_import
-from __future__ import print_function
 import os
 import re
 import select

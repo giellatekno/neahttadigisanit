@@ -1,6 +1,4 @@
 # -*- encoding: utf-8 -*-
-from __future__ import absolute_import, unicode_literals
-from __future__ import print_function
 from datetime import timedelta
 from functools import update_wrapper
 from tokenize import Name

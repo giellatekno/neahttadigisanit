@@ -18,8 +18,6 @@ Options:
 #
 # python tools/extract_audio.py dicts/sms-all.xml static/aud/sms --verbose > test_aud.xml
 
-from __future__ import absolute_import
-from __future__ import print_function
 import os
 import sys
 

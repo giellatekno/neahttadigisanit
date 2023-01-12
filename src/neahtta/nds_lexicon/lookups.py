@@ -27,7 +27,6 @@ NB: you can also override default lookup types in this way, since they are simpl
 """
 
 
-from __future__ import print_function
 class SearchTypes(object):
     """ An object for collecting search types. Initialize with:
 

@@ -1,6 +1,4 @@
-﻿from __future__ import absolute_import
-from __future__ import print_function
-from lxml import etree
+﻿from lxml import etree
 import sys
 
 from six import iteritems

@@ -1,5 +1,4 @@
-﻿from __future__ import absolute_import
-from flask import current_app, g
+﻿from flask import current_app, g
 
 
 def register_template_filters(app):

@@ -1,8 +1,6 @@
 # manage.py
 # -*- encoding:utf-8 -*-
 
-from __future__ import absolute_import
-from __future__ import print_function
 from termcolor import colored
 from flask import Flask
 from flaskext.actions import Manager

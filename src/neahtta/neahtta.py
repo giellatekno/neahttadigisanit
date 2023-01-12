@@ -8,8 +8,6 @@ This is the main file which handles initializing the app and providing
 endpoint functionality.
 
 """
-from __future__ import absolute_import
-from __future__ import print_function
 from application import create_app
 #from werkzeug.middleware.profiler import ProfilerMiddleware
 import sys

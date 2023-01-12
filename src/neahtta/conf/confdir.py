@@ -15,8 +15,6 @@ importing the following module to produce replacement functions.
 
 """
 
-from __future__ import absolute_import
-from __future__ import print_function
 import imp
 import os
 import sys

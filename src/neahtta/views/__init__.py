@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from flask import Blueprint
 
 blueprint = Blueprint('views', __name__, template_folder='templates')

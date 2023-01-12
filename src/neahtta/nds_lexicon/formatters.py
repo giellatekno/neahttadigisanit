@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from flask import current_app
 from .lexicon import lexicon_overrides
 from morphology.utils import tagfilter

@@ -17,7 +17,6 @@ History:
 
 """
 
-from __future__ import absolute_import
 from flask import current_app, json, request
 from morphology.utils import tagfilter
 from utils.encoding import decode_or_fail

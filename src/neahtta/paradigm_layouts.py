@@ -101,7 +101,6 @@ Ideas:
 # there's a package for that, supports combined cells-- alternatively
 # mediawiki format could be used
 
-from __future__ import absolute_import
 import os
 import sys
 

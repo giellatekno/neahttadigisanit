@@ -30,8 +30,6 @@ TODO: generated context accessible with new templates? is the way it's
 TODO: sme pregenerated forms don't really work without sme.py
 
 """
-from __future__ import print_function
-from __future__ import absolute_import
 import os
 from re import T
 import sys

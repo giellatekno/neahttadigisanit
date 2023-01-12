@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 """Test classes from morphology/morphology.py"""
-from __future__ import absolute_import
 
 import unittest
 

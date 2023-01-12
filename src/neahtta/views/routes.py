@@ -1,5 +1,4 @@
-﻿from __future__ import absolute_import
-from . import blueprint
+﻿from . import blueprint
 
 from .paradigms import ParadigmLanguagePairSearchView
 from .search import (DetailedLanguagePairSearchView, IndexSearchPage,
