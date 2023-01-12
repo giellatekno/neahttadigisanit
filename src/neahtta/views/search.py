@@ -7,14 +7,8 @@ from flask import (abort, current_app, g, redirect, render_template,
 from flask_babel import gettext as _
 from flask.views import MethodView
 import json
-try:
-    from urllib import urlopen
-except ImportError: # py3
-    from urllib.request import urlopen
-try:
-    from urllib import quote
-except ImportError: # py3
-    from urllib.parse import quote
+from urllib.request import urlopen
+from urllib.parse import quote
 
 from urllib.error import HTTPError
 

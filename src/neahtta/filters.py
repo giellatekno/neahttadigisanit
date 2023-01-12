@@ -13,10 +13,7 @@ def file_exists(path):
 def register_filters(app):
 
     from flask import render_template, send_from_directory, request
-    try:
-        from urllib import quote, quote_plus
-    except ImportError:
-        from urllib.parse import quote, quote_plus # py3
+    from urllib.parse import quote, quote_plus
     from markupsafe import Markup
 
     @app.route('/robots.txt')
