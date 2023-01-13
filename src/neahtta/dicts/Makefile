@@ -1382,7 +1382,9 @@ all: vada  \
 	 valks \
 	 sanat \
 	 saan \
+	 saanih \
 	 sanit \
+	 sonad \
 	 baakoeh \
 	 kyv \
 	 muter \
@@ -1394,6 +1396,7 @@ all-lexica: baakoeh-lexica \
 	kyv-lexica \
 	muter-lexica \
 	saan-lexica \
+	saanih-lexica \
 	sanat-lexica \
 	sonad-lexica \
 	sanit-lexica \
