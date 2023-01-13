@@ -28,6 +28,9 @@ src/neahtta/dicts/test_lexica
 # and anything inside a static folder which includes the word "compiled"
 **/static/**/*compiled*.*
 
+# and audio files
+**/static/audio/**/*.flac
+
 secret_key.do.not.check.in
 morph_log.txt
 user_log.txt
