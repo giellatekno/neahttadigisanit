@@ -1386,22 +1386,18 @@ all: vada  \
 	 baakoeh \
 	 kyv \
 	 muter \
-	 cuvantul \
 	 bahkogirrje
 	@echo $(TARGET_DIR)
 
 .PHONY: all-lexica
 all-lexica: baakoeh-lexica \
-	guusaaw-lexica \
 	kyv-lexica \
 	muter-lexica \
-	itwewina-lexica \
 	saan-lexica \
 	sanat-lexica \
 	sonad-lexica \
 	sanit-lexica \
 	vada-lexica \
-	cuvantul-lexica \
 	valks-lexica \
 	bahkogirrje-lexica
 	@echo $(TARGET_DIR)
