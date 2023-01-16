@@ -109,6 +109,25 @@ class MorphoLexicon(object):
         self.lookup = morpholex_overrides.override_results(self.lookup)
 
     @staticmethod
+    def make_unique_lexc_kwargs(all_lex_kwargs):
+        unique_kwargs_dict = {}
+        for lexc_kwargs, analysis in all_lex_kwargs:
+            # ad hoc hashing
+            id = lexc_kwargs["lemma"] + lexc_kwargs["pos"] \
+                + str(lexc_kwargs["pos_type"]) + lexc_kwargs["user_input"]
+            if unique_kwargs_dict.get(id) is None:
+                unique_kwargs_dict[id] = {}
+                unique_kwargs_dict[id]["lexc_kwargs"] = lexc_kwargs
+                unique_kwargs_dict[id]["analyses"] = [analysis]
+            else:
+                unique_kwargs_dict[id]["analyses"].append(analysis)
+        unique_kwargs = []
+        for id in unique_kwargs_dict:
+            unique_kwargs.append((unique_kwargs_dict[id]["lexc_kwargs"], 
+                                  unique_kwargs_dict[id]["analyses"]))
+        return unique_kwargs
+
+    @staticmethod
     def make_lex_kwargs(wordform, analysis):
         if isinstance(analysis, list):
             if analysis[0].lemma:
@@ -128,21 +147,22 @@ class MorphoLexicon(object):
                        }, analysis
 
     @staticmethod
-    def add_to_dict(entries_and_tags, entry, analysis):
+    def add_to_dict(entries_and_tags, entry, analyses):
         if not entries_and_tags.get(entry):
             entries_and_tags[entry] = list()
-        if analysis not in entries_and_tags[entry]:
-            entries_and_tags[entry].append(analysis)
+        for analysis in analyses:
+            if analysis not in entries_and_tags[entry]:
+                entries_and_tags[entry].append(analysis)
 
-    def make_xml_result(self, source_lang, target_lang, lex_kwargs, analysis,
+    def make_xml_result(self, source_lang, target_lang, lex_kwargs, analyses,
                         entries_and_tags):
         xml_result = self.lexicon.lookup(source_lang, target_lang,
                                          **lex_kwargs)
         if xml_result:
             for entry in xml_result:
-                self.add_to_dict(entries_and_tags, entry, analysis)
+                self.add_to_dict(entries_and_tags, entry, analyses)
         else:
-            self.add_to_dict(entries_and_tags, None, analysis)
+            self.add_to_dict(entries_and_tags, None, analyses)
 
     def lookup(self, wordform, **kwargs):
         """ Performs a lookup with morphology and lexicon working
@@ -245,14 +265,18 @@ class MorphoLexicon(object):
                 else:
                     analyses = uppercase_analyses
 
+        # Lookup of lemmas returned from fst lookup
         entries_and_tags = OrderedDict()
+        from time import time
         if analyses:
             all_lex_kwargs = (self.make_lex_kwargs(wordform, analysis) for
                               analysis in list(analyses))
-            for lexc_kwargs, analysis in all_lex_kwargs:
+            unique_lexc_kwargs = self.make_unique_lexc_kwargs(all_lex_kwargs)
+            for lexc_kwargs, analyses in unique_lexc_kwargs:
                 self.make_xml_result(source_lang, target_lang, lexc_kwargs,
-                                     analysis, entries_and_tags)
+                                     analyses, entries_and_tags)
 
+        # Lookup of plain input form
         no_analysis_xml = self.lexicon.lookup(
             source_lang,
             target_lang,
