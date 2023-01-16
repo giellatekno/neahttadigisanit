@@ -108,6 +108,9 @@ class MorphoLexicon(object):
 
         self.lookup = morpholex_overrides.override_results(self.lookup)
 
+    # Create a list where the lexc_kwargs are unique
+    # all_lex_kwargs is a generator of tuples ({**lexc_kwargs}, Lemma())
+    # Returns a list of tuples ({**lexckwargs}, [Lemma(), Lemma(), ...])
     @staticmethod
     def make_unique_lexc_kwargs(all_lex_kwargs):
         unique_kwargs_dict = {}
