@@ -49,6 +49,9 @@ Morphology:
     tool: *HFST-LOOKUP
     file: [*OPT, '/sme/bin/analyser-dict-gt-desc.hfstol']
     inverse_file: [*OPT, '/sme/bin/generator-dict-gt-norm.hfstol']
+    # An alternate new format 'pyhfst' uses the python hfst library and 
+    # preloads the FSTs. This uses more memory when the lookup is not 
+    # running, but reduces processing time significantly.
     format: 'hfst'
     options: &sme_fst_options
       compoundBoundary: "+Cmp#"
@@ -56,10 +59,6 @@ Morphology:
       tagsep: '+'
       inverse_tagsep: '+'
   SoMe:
-    #tool: *LOOKUP
-    #file: [*OPT, '/sme/bin/analyser-dict-gt-desc-mobile.xfst']
-    #inverse_file: [*OPT, '/sme/bin/generator-dict-gt-norm.xfst']
-    #format: 'xfst'
     tool: *HFST-LOOKUP
     file: [*OPT, '/sme/bin/analyser-dict-gt-desc-mobile.hfstol']
     inverse_file: [*OPT, '/sme/bin/generator-dict-gt-norm.hfstol']
@@ -67,10 +66,6 @@ Morphology:
     options:
       <<: *sme_fst_options
   nob:
-    #tool: *LOOKUP
-    #file: [*OPT, '/nob/bin/analyser-dict-gt-desc.xfst']
-    #inverse_file: [*OPT, '/nob/bin/generator-dict-gt-norm.xfst']
-    #format: 'xfst'
     tool: *HFST-LOOKUP
     file: [*OPT, '/nob/bin/analyser-dict-gt-desc-mobile.hfstol']
     inverse_file: [*OPT, '/nob/bin/generator-dict-gt-norm.hfstol']
@@ -81,10 +76,6 @@ Morphology:
       tagsep: '+'
       inverse_tagsep: '+'
   fin:
-    #tool: *LOOKUP
-    #file: [*OPT, '/fin/bin/analyser-dict-gt-desc.xfst']
-    #inverse_file: [*OPT, '/fin/bin/generator-dict-gt-norm.xfst']
-    #format: 'xfst'
     tool: *HFST-LOOKUP
     file: [*OPT, '/fin/bin/analyser-dict-gt-desc.hfstol']
     inverse_file: [*OPT, '/fin/bin/generator-dict-gt-norm.hfstol']
