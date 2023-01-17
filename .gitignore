@@ -29,6 +29,7 @@ src/neahtta/dicts/test_lexica
 **/static/**/*compiled*.*
 
 # and audio files
+**/static/audio/*
 **/static/audio/**/*.flac
 
 secret_key.do.not.check.in
