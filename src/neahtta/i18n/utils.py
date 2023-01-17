@@ -25,6 +25,8 @@ def copy_custom_locales():
 
 def get_locale():
     """ Always return the three character locales
+    The return value of flask_babel's get_locale() depends on
+    the return value of application.py's get_locale()
     """
     from flask_babel import get_locale as get_
 
