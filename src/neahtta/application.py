@@ -370,6 +370,9 @@ def create_app():
     app.register_blueprint(
         configs.blueprint, url_prefix=app.config['APPLICATION_ROOT'])
 
+    # Set session cookie path to root, so it can be accessed from all paths
+    app.config['SESSION_COOKIE_PATH'] = '/'
+
     # Prepare cache
     cache_path = os.path.join(
         os.path.dirname(__file__),
