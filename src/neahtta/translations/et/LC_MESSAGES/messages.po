@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-07 15:27+0200\n"
+"POT-Creation-Date: 2023-01-31 22:37+0100\n"
 "PO-Revision-Date: 2014-01-18 16:52+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language: et\n"
@@ -18,44 +18,44 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
 
-#: configs/kyv.config.yaml.in:170 configs/kyv.config.yaml.in:245
-#: configs/saan.config.yaml:96 configs/saan.config.yaml.in:96
-#: configs/saanih.config.yaml.in:82 configs/saanih.config.yaml.in:112
-#: configs/sanat.config.yaml.in:137 configs/sanit.config.yaml:135
-#: configs/sanit.config.yaml.in:135 configs/sanj.config.yaml.in:86
-#: configs/sonad.config.yaml.in:155 tests/configs/sanit.config.yaml:122
+#: configs/kyv.config.yaml.in:171 configs/kyv.config.yaml.in:246
+#: configs/saan.config.yaml:96 configs/saan.config.yaml.in:97
+#: configs/saanih.config.yaml.in:83 configs/saanih.config.yaml.in:113
+#: configs/sanat.config.yaml.in:138 configs/sanit.config.yaml:136
+#: configs/sanit.config.yaml.in:127 configs/sanj.config.yaml.in:87
+#: configs/sonad.config.yaml.in:156 tests/configs/sanit.config.yaml:122
 msgid "Standard"
 msgstr "Standard"
 
-#: configs/kyv.config.yaml.in:179 configs/kyv.config.yaml.in:256
+#: configs/kyv.config.yaml.in:180 configs/kyv.config.yaml.in:257
 msgid "Social media"
 msgstr ""
 
-#: configs/kyv.config.yaml.in:180
+#: configs/kyv.config.yaml.in:181
 #, fuzzy
 msgid "(incl. <em>ио</em>)"
 msgstr "Social media (incl. <em>acdnstz</em>)"
 
-#: configs/kyv.config.yaml.in:184
+#: configs/kyv.config.yaml.in:185
 #, fuzzy
 msgid "Molodtsov orthography"
 msgstr "Molotsovi ortograafia"
 
-#: configs/kyv.config.yaml.in:201
+#: configs/kyv.config.yaml.in:202
 msgid "Zyrian for Permyak"
 msgstr ""
 
-#: configs/kyv.config.yaml.in:257
+#: configs/kyv.config.yaml.in:258
 #, fuzzy
 msgid "(incl. <em>жзиоч</em>)"
 msgstr "Social media (incl. <em>acdnstz</em>)"
 
-#: configs/kyv.config.yaml.in:272 configs/kyv.config.yaml.in:301
+#: configs/kyv.config.yaml.in:273 configs/kyv.config.yaml.in:302
 #, fuzzy
 msgid "Standard (<em>ӝӟӥӧӵ</em>)"
 msgstr "Standard (<em>áčđŋšŧž</em>)"
 
-#: configs/kyv.config.yaml.in:276 configs/kyv.config.yaml.in:305
+#: configs/kyv.config.yaml.in:277 configs/kyv.config.yaml.in:306
 #, fuzzy
 msgid "Social media (incl. <em>жзиоч</em>)"
 msgstr "Social media (incl. <em>acdnstz</em>)"
@@ -174,7 +174,7 @@ msgstr "mäemari"
 msgid "Eastern Mari"
 msgstr "niidumari"
 
-#: configs/language_names.yaml:77 templates/more_dictionaries.html:37
+#: configs/language_names.yaml:77 templates/more_dictionaries.html:38
 msgid "Nenets"
 msgstr "neenetsi"
 
@@ -191,7 +191,7 @@ msgstr "koltasaami"
 msgid "Skolt Sami (tolerant)"
 msgstr ""
 
-#: configs/language_names.yaml:85
+#: configs/language_names.yaml:85 templates/more_dictionaries.html:34
 #, fuzzy
 msgid "Kildin Saami"
 msgstr "koltasaami"
@@ -229,7 +229,7 @@ msgstr "põhjahaida"
 msgid "Northern Haida (tolerant)"
 msgstr "põhjahaida"
 
-#: configs/language_names.yaml:107 templates/more_dictionaries.html:34
+#: configs/language_names.yaml:107 templates/more_dictionaries.html:33
 msgid "Inari Saami"
 msgstr ""
 
@@ -237,7 +237,7 @@ msgstr ""
 msgid "Inari Saami (tolerant)"
 msgstr ""
 
-#: configs/language_names.yaml:111
+#: configs/language_names.yaml:111 templates/more_dictionaries.html:35
 msgid "Pite Saami"
 msgstr ""
 
@@ -284,56 +284,56 @@ msgstr ""
 msgid "Swedish"
 msgstr "rootsi"
 
-#: configs/saan.config.yaml:119 configs/saan.config.yaml.in:119
-#: configs/saanih.config.yaml.in:86 configs/saanih.config.yaml.in:116
-#: configs/sanj.config.yaml.in:90
+#: configs/saan.config.yaml:119 configs/saan.config.yaml.in:120
+#: configs/saanih.config.yaml.in:87 configs/saanih.config.yaml.in:117
+#: configs/sanj.config.yaml.in:108
 #, fuzzy
 msgid "Mobile friendly"
 msgstr "telefonisõbralik"
 
-#: configs/saanih.config.yaml.in:83 configs/saanih.config.yaml.in:113
+#: configs/saanih.config.yaml.in:84 configs/saanih.config.yaml.in:114
 #, fuzzy
 msgid "(<em>âäáčđŋšž</em>)"
 msgstr "Standard (<em>áčđŋšŧž</em>)"
 
-#: configs/saanih.config.yaml.in:87 configs/saanih.config.yaml.in:117
+#: configs/saanih.config.yaml.in:88 configs/saanih.config.yaml.in:118
 #, fuzzy
 msgid "(incl. <em>aaacdnsz</em>)"
 msgstr "Social media (incl. <em>acdnstz</em>)"
 
-#: configs/sanit.config.yaml:150 configs/sanit.config.yaml.in:150
+#: configs/sanit.config.yaml:151 configs/sanit.config.yaml.in:142
 #: tests/configs/sanit.config.yaml:137
 msgid "Tolerant"
 msgstr ""
 
-#: configs/sanit.config.yaml:151 configs/sanit.config.yaml.in:151
+#: configs/sanit.config.yaml:152 configs/sanit.config.yaml.in:143
 #: tests/configs/sanit.config.yaml:138
 #, fuzzy
 msgid "(incl. <em>acdnstz</em>)"
 msgstr "Social media (incl. <em>acdnstz</em>)"
 
-#: configs/sanit.config.yaml:190 configs/sanit.config.yaml.in:190
+#: configs/sanit.config.yaml:191 configs/sanit.config.yaml.in:182
 #: tests/configs/sanit.config.yaml:173
 #, fuzzy
 msgid "Standard (<em>áčđŋšŧž</em>)"
 msgstr "Standard (<em>áčđŋšŧž</em>)"
 
-#: configs/sanit.config.yaml:194 configs/sanit.config.yaml.in:194
+#: configs/sanit.config.yaml:195 configs/sanit.config.yaml.in:186
 #: tests/configs/sanit.config.yaml:177
 #, fuzzy
 msgid "Tolerant (also <em>acdnstz</em>)"
 msgstr "Social media (incl. <em>acdnstz</em>)"
 
-#: configs/sanj.config.yaml.in:87
+#: configs/sanj.config.yaml.in:88
 msgid "(<em>а̄е̄ӣо̄ӯӎӊӈҏ</em>)"
 msgstr ""
 
-#: configs/sanj.config.yaml.in:91
+#: configs/sanj.config.yaml.in:109
 #, fuzzy
 msgid "(incl. <em>аеиоумннр</em>)"
 msgstr "Social media (incl. <em>acdnstz</em>)"
 
-#: configs/sonad.config.yaml.in:160
+#: configs/sonad.config.yaml.in:161
 msgid "mobile friendly"
 msgstr "telefonisõbralik"
 
@@ -706,7 +706,7 @@ msgid "Paradigm"
 msgstr ""
 
 #: configs/language_specific_rules/templates/entry.template:29
-#: configs/language_specific_rules/templates/sanj/sjd/entry.template:53
+#: configs/language_specific_rules/templates/sanj/sjd/entry.template:63
 msgid "see also"
 msgstr ""
 
@@ -840,11 +840,12 @@ msgstr "Muud sõnaraamatud"
 #: configs/language_specific_rules/templates/muter/mhr/paradigm.template:117
 #: configs/language_specific_rules/templates/muter/mrj/paradigm.template:117
 #: configs/language_specific_rules/templates/paradigm_layouts.template:11
+#: configs/language_specific_rules/templates/saan/fin/paradigm.template:220
 #: configs/language_specific_rules/templates/saan/sms/paradigm.template:117
 #: configs/language_specific_rules/templates/saanih/smn/paradigm.template:186
 #: configs/language_specific_rules/templates/sanat/fkv/paradigm.template:173
 #: configs/language_specific_rules/templates/sanit/fin/paradigm.template:220
-#: configs/language_specific_rules/templates/sanit/sme/paradigm.template:186
+#: configs/language_specific_rules/templates/sanit/sme/paradigm.template:200
 #: configs/language_specific_rules/templates/sanit/spa/paradigm.template:164
 #: configs/language_specific_rules/templates/sanj/rus/paradigm.template:196
 #: configs/language_specific_rules/templates/sanj/sjd/paradigm.template:301
@@ -1000,7 +1001,7 @@ msgstr "Vaheta"
 #: configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:149
 #: templates/index.html:76 templates/index.html:155
 #: templates/word_detail.html:67 templates/word_detail.html:108
-#: views/reader.py:234
+#: views/reader.py:232
 msgid " is a possible form of ... "
 msgstr " võib olla vorm sõnast ... "
 
@@ -1861,44 +1862,40 @@ msgid "South Saami"
 msgstr "lõunasaami"
 
 #: templates/more_dictionaries.html:30
-msgid "Cherokee "
-msgstr ""
-
-#: templates/more_dictionaries.html:31
 msgid "Komi and Udmurt"
 msgstr ""
 
-#: templates/more_dictionaries.html:32
+#: templates/more_dictionaries.html:31
 msgid "Mari"
 msgstr ""
 
-#: templates/more_dictionaries.html:33
+#: templates/more_dictionaries.html:32
 #, fuzzy
 msgid "Skolt Saami"
 msgstr "koltasaami"
 
-#: templates/more_dictionaries.html:35
+#: templates/more_dictionaries.html:36
 msgid "Finnish, Kven, Karelian, Veps"
 msgstr ""
 
-#: templates/more_dictionaries.html:36
+#: templates/more_dictionaries.html:37
 msgid "Livonian, Estonian, Vot"
 msgstr ""
 
-#: templates/more_dictionaries.html:38
+#: templates/more_dictionaries.html:39
 #, fuzzy
 msgid "Mordvinian"
 msgstr "Mordva keeled"
 
-#: templates/more_dictionaries.html:41
+#: templates/more_dictionaries.html:42
 msgid "We're also working on new language pairs."
 msgstr ""
 
-#: templates/more_dictionaries.html:44
+#: templates/more_dictionaries.html:45
 msgid "Even more dictionaries..."
 msgstr "ja veel sõnaraamatuid..."
 
-#: templates/more_dictionaries.html:45
+#: templates/more_dictionaries.html:46
 msgid ""
 "<a href=\"http://giellatekno.uit.no/\">Giellatekno</a> also has\n"
 "                other languages and dictionaries that are not yet "
@@ -2065,7 +2062,7 @@ msgstr ""
 msgid "is a possible form of ... "
 msgstr " võib olla vorm sõnast ... "
 
-#: views/search.py:1112
+#: views/search.py:1085
 msgid "Invalid format. Only json and html allowed."
 msgstr "Vigane formaat. Ainult json ja html on lubatud."
 
@@ -2454,5 +2451,8 @@ msgstr "Vigane formaat. Ainult json ja html on lubatud."
 #~ "нӣйт соа̄гк эхтнэг лыгк баяс кӯххт "
 #~ "тоа̄фант  не̄лльемплоагант ыгесьт кӯххт "
 #~ "тоа̄фант ка̄ххцэмплоагант ыгке</i>.</li>"
+#~ msgstr ""
+
+#~ msgid "Cherokee "
 #~ msgstr ""
 
