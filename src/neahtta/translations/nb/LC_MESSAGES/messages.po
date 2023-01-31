@@ -175,7 +175,7 @@ msgstr "Nenetsisk"
 
 #: configs/language_names.yaml:80
 msgid "Northern Mansi"
-msgstr ""
+msgstr "Nordmansi"
 
 #: configs/language_names.yaml:81
 msgid "Skolt Sami"
@@ -1919,11 +1919,11 @@ msgstr "Sørsamisk"
 
 #: templates/more_dictionaries.html:30
 msgid "Komi and Udmurt"
-msgstr ""
+msgstr "Komi og udmurtisk"
 
 #: templates/more_dictionaries.html:31
 msgid "Mari"
-msgstr ""
+msgstr "Marisk"
 
 #: templates/more_dictionaries.html:32
 msgid "Skolt Saami"
@@ -1931,19 +1931,19 @@ msgstr "Østsamisk"
 
 #: templates/more_dictionaries.html:36
 msgid "Finnish, Kven, Karelian, Veps"
-msgstr ""
+msgstr "Finsk, kvensk, karelsk, vepsisk"
 
 #: templates/more_dictionaries.html:37
 msgid "Livonian, Estonian, Vot"
-msgstr ""
+msgstr "Livisk, estisk, votisk, sørestisk"
 
 #: templates/more_dictionaries.html:39
 msgid "Mordvinian"
-msgstr ""
+msgstr "Mordvinsk"
 
 #: templates/more_dictionaries.html:42
 msgid "We're also working on new language pairs."
-msgstr ""
+msgstr "Vi arbeider også med nye språkpar"
 
 #: templates/more_dictionaries.html:45
 msgid "Even more dictionaries..."

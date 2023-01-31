@@ -178,19 +178,19 @@ msgstr "Davvimansi"
 
 #: configs/language_names.yaml:81
 msgid "Skolt Sami"
-msgstr ""
+msgstr "Nuortalašgiella"
 
 #: configs/language_names.yaml:84
 msgid "Skolt Sami (tolerant)"
-msgstr ""
+msgstr "Nuortalašgiella (toleránta)"
 
 #: configs/language_names.yaml:85 templates/more_dictionaries.html:34
 msgid "Kildin Saami"
-msgstr ""
+msgstr "Gielddasámegiella"
 
 #: configs/language_names.yaml:88
 msgid "Kildin Saami (tolerant)"
-msgstr ""
+msgstr "Gielddasámegiella (toleránta)"
 
 #: configs/language_names.yaml:89
 msgid "Plains Cree"
@@ -217,7 +217,6 @@ msgid "Northern Haida"
 msgstr "Davvihaida"
 
 #: configs/language_names.yaml:106
-#, fuzzy
 msgid "Northern Haida (tolerant)"
 msgstr "Davvihaida (toleránta)"
 
@@ -231,7 +230,7 @@ msgstr "Anárašgiella (toleránta)"
 
 #: configs/language_names.yaml:111 templates/more_dictionaries.html:35
 msgid "Pite Saami"
-msgstr ""
+msgstr "Biŧonsámegiella"
 
 #: configs/language_names.yaml:116
 msgid "Khanty"
@@ -313,9 +312,8 @@ msgid "(<em>а̄е̄ӣо̄ӯӎӊӈҏ</em>)"
 msgstr ""
 
 #: configs/sanj.config.yaml.in:109
-#, fuzzy
 msgid "(incl. <em>аеиоумннр</em>)"
-msgstr "(maiddái <em>acdnstz</em>)"
+msgstr "(maiddái <em>аеиоумннр</em>)"
 
 #: configs/sonad.config.yaml.in:161
 msgid "mobile friendly"
@@ -715,7 +713,6 @@ msgid " (Not found in our corpus)"
 msgstr " (Ii gávdno min teakstakorpusis)"
 
 #: configs/language_specific_rules/templates/analyses.template:94
-#, fuzzy
 msgid " (No corpus available)"
 msgstr " (Ii gávdno teakstakorpus dán gillii)"
 
@@ -732,7 +729,6 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/find_problem.template:4
 #: configs/language_specific_rules/templates/sanat/find_problem.template:4
-#, fuzzy
 msgid ""
 "If you find any bugs, please get in touch with us. Describe the problem,\n"
 "          and tell us what web browser or mobile phone you were using, or"
@@ -896,7 +892,6 @@ msgid "How to quote the dictionary"
 msgstr ""
 
 #: configs/language_specific_rules/templates/baakoeh/about.template:25
-#, fuzzy
 msgid ""
 "Everything here is based on open-source tools and free to use.\n"
 "\t    Visit <a class=\"blue\" "
@@ -1179,9 +1174,8 @@ msgid ""
 msgstr ""
 
 #: configs/language_specific_rules/templates/saan/about.template:69
-#, fuzzy
 msgid "sms ↔ fin"
-msgstr "Davvisámegiella ↔ suomagiella"
+msgstr "Nuortalašgiella ↔ suomagiella"
 
 #: configs/language_specific_rules/templates/saan/about.template:70
 msgid ""
@@ -1194,7 +1188,6 @@ msgid "Satu & Jouni Moshnikoff sanasto"
 msgstr ""
 
 #: configs/language_specific_rules/templates/saan/about.template:72
-#, fuzzy
 msgid "Dictionaries:"
 msgstr "Sátnegirjjit"
 
@@ -1303,7 +1296,6 @@ msgid "How to quote the dictionaries"
 msgstr "Eará gielat"
 
 #: configs/language_specific_rules/templates/saanih/about.template:26
-#, fuzzy
 msgid ""
 "Everything here is based on open-source tools and is free to use.\n"
 "\t    Visit <a class=\"blue\" "
@@ -1331,7 +1323,6 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/sanat/about.template:33
 #: configs/language_specific_rules/templates/sanit/about.template:28
-#, fuzzy
 msgid ""
 "Everything here is based on open-source tools and free to use. Visit <a "
 "class=\"blue\"\n"
@@ -1935,7 +1926,7 @@ msgstr "Eanet sátnegirjjit"
 msgid ""
 "Neahttadigisánit is available for the following\n"
 "                language groups."
-msgstr ""
+msgstr "Neahttadigisánit gávdno čuovvovaš giellajoavkkuid várás."
 
 #: templates/more_dictionaries.html:28
 msgid "North Saami"
@@ -1947,15 +1938,15 @@ msgstr "Lullisámegiella"
 
 #: templates/more_dictionaries.html:30
 msgid "Komi and Udmurt"
-msgstr ""
+msgstr "Komigiella ja udmurtagiella"
 
 #: templates/more_dictionaries.html:31
 msgid "Mari"
-msgstr ""
+msgstr "Marigiella"
 
 #: templates/more_dictionaries.html:32
 msgid "Skolt Saami"
-msgstr ""
+msgstr "Nuortalašgiella"
 
 #: templates/more_dictionaries.html:36
 msgid "Finnish, Kven, Karelian, Veps"
@@ -1963,7 +1954,7 @@ msgstr ""
 
 #: templates/more_dictionaries.html:37
 msgid "Livonian, Estonian, Vot"
-msgstr ""
+msgstr "Liivigiella, esttegiella, vatjagiella"
 
 #: templates/more_dictionaries.html:39
 msgid "Mordvinian"

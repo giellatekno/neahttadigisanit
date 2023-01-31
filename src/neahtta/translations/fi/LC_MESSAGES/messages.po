@@ -188,9 +188,8 @@ msgid "Skolt Sami (tolerant)"
 msgstr ""
 
 #: configs/language_names.yaml:85 templates/more_dictionaries.html:34
-#, fuzzy
 msgid "Kildin Saami"
-msgstr "Koltansaame"
+msgstr "Kiltinänsaame"
 
 #: configs/language_names.yaml:88
 msgid "Kildin Saami (tolerant)"
@@ -231,11 +230,11 @@ msgstr ""
 
 #: configs/language_names.yaml:110
 msgid "Inari Saami (tolerant)"
-msgstr ""
+msgstr "Inarinsaame"
 
 #: configs/language_names.yaml:111 templates/more_dictionaries.html:35
 msgid "Pite Saami"
-msgstr ""
+msgstr "Piitimensaame"
 
 #: configs/language_names.yaml:116
 msgid "Khanty"
@@ -1939,11 +1938,11 @@ msgstr "Eteläsaame"
 
 #: templates/more_dictionaries.html:30
 msgid "Komi and Udmurt"
-msgstr ""
+msgstr "Komi ja udmurtti"
 
 #: templates/more_dictionaries.html:31
 msgid "Mari"
-msgstr ""
+msgstr "Mari"
 
 #: templates/more_dictionaries.html:32
 msgid "Skolt Saami"
@@ -1951,11 +1950,11 @@ msgstr "Koltansaame"
 
 #: templates/more_dictionaries.html:36
 msgid "Finnish, Kven, Karelian, Veps"
-msgstr ""
+msgstr "Suomi, kveeni, karjala, vepsä"
 
 #: templates/more_dictionaries.html:37
 msgid "Livonian, Estonian, Vot"
-msgstr ""
+msgstr "Liivi, viro, vatja"
 
 #: templates/more_dictionaries.html:39
 msgid "Mordvinian"

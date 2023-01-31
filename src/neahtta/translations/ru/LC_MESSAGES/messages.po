@@ -187,7 +187,7 @@ msgstr "Сколт-саамский"
 msgid "Skolt Sami (tolerant)"
 msgstr ""
 
-#: configs/language_names.yaml:85 templates/more_dictionaries.html:34
+#: configs/language_names.yaml:85 
 msgid "Kildin Saami"
 msgstr "Саамский"
 
@@ -1908,6 +1908,10 @@ msgstr "Марийские языки"
 #: templates/more_dictionaries.html:32
 msgid "Skolt Saami"
 msgstr "Сколт-саамский язык"
+
+#: templates/more_dictionaries.html:34
+msgid "Kildin Saami"
+msgstr "Кильдин-саамский язык"
 
 #: templates/more_dictionaries.html:36
 msgid "Finnish, Kven, Karelian, Veps"
