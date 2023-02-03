@@ -128,6 +128,7 @@ def config_local(*args, **kwargs):
     config.user = None
 
     config.path_base = os.getcwd()
+    config.svn_path = os.environ["GTHOME"]
 
     config.dict_path = os.path.join(config.path_base, 'dicts')
     config.neahtta_path = config.path_base
@@ -160,6 +161,19 @@ def gtdict(ctx):
     config.remote_no_fst = True
 
 
+def update_gtsvn(ctx):
+    print(colored("** svn up **", "cyan"))
+
+    with ctx.cd(config.svn_path):
+        p = os.path.join(config.svn_path, "words")
+        try:
+            ctx.run(f"svn up {p}")
+        except Exception:
+            return False
+
+    return True
+
+
 @task
 def update_repo(ctx):
     """ Pull repository to update files """
@@ -172,7 +186,6 @@ def read_config(proj):
     import yaml
 
     def gettext_yaml_wrapper(loader, node):
-        from flask_babel import lazy_gettext as _
         return node.value
 
     yaml.add_constructor('!gettext', gettext_yaml_wrapper)
@@ -229,6 +242,8 @@ def compile_dictionary(ctx):
     failed = False
     dictionary = config.project
 
+    update_gtsvn(ctx)
+
     with ctx.cd(config.dict_path):
         result = ctx.run(f"{config.make_cmd} {dictionary}-lexica")
 
@@ -253,6 +268,8 @@ def compile(ctx):
 
     print(colored(f"Executing on <{config.real_hostname}>", "cyan"))
 
+    update_gtsvn(ctx)
+
     with ctx.cd(config.dict_path):
         if config.real_hostname in no_fst_install or config.remote_no_fst:
             print((colored("** Skip FST compile for gtdict **", "yellow")))
@@ -270,7 +287,7 @@ def compile(ctx):
 
             result = ctx.run(config.make_cmd + " %s" % dictionary)
 
-        if not skip_fst and not result.succeeded:
+        if not skip_fst and not result.ok:
             print((
                 colored("** There was some problem building the FSTs for this dictionary.",
                     "red")))
