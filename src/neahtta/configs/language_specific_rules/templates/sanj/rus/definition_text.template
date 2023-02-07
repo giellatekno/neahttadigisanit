@@ -136,11 +136,11 @@
     {{- render_annotation(tg) -}}
 
     {# Aspects б and в should be inside brackets #}
-    {% set firstTime = true %}
+    {% set ns = namespace(firstTime = true) %}
     {% for t in tg.xpath('./t') %}
         {% set aspect = t.attrib.get('aspect', '') %}
-        {%- if firstTime and (aspect == "б" or aspect == "в") -%}({%- set firstTime = false %}{%- endif -%}
-            {{ render_link(tg, t) }}{{- render_audio(t) -}}{%- if not loop.last -%},{%- endif -%}
+        {%- if ns.firstTime and (aspect == "б" or aspect == "в") -%}({%- set ns.firstTime = false %}{%- endif -%}
+            {{- render_link(tg, t) -}}{{- render_audio(t) -}}{%- if not loop.last -%}, {% endif -%}
         {%- if loop.last and (aspect == "б" or aspect == "в") -%}){%- endif -%}
     {% endfor %}
 
