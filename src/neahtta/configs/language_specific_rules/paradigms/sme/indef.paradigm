@@ -4,6 +4,7 @@ morphology:
   pron_type: Indef
 --
 {{ lemma }}+Pron+Indef+Sg+Nom
+{{ lemma }}+Pron+Indef+Sg+Gen
 {{ lemma }}+Pron+Indef+Sg+Acc
 {{ lemma }}+Pron+Indef+Sg+Ill
 {{ lemma }}+Pron+Indef+Sg+Loc
