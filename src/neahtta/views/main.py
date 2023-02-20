@@ -177,7 +177,11 @@ def config_doc(from_language):
 
 
 def escape_tv():
-    del session['text_tv']
+    """Delete text_tv key in session cookie if it exists"""
+    try:
+        del session['text_tv']
+    except KeyError:
+        pass
     return redirect(url_for('views.canonical-root'))
 
 
