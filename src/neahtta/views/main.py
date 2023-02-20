@@ -181,10 +181,6 @@ def config_doc(from_language):
         lang_name=from_language)
 
 
-def plugins():
-    return render_template('plugins.html')
-
-
 def escape_tv():
     del session['text_tv']
     return redirect(url_for('views.canonical-root'))

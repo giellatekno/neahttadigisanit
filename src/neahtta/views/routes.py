@@ -8,7 +8,7 @@ from .variant_search import LanguagePairSearchVariantView
 from .autocomplete import autocomplete
 from .locale import set_locale
 from .main import (about, about_sources, config_doc, config_docs, escape_tv,
-                   externalFormSearch, more_dictionaries, plugins,
+                   externalFormSearch, more_dictionaries,
                    session_clear)
 from .reader import (bookmarklet, bookmarklet_configs, ie8_instrux, lookupWord,
                      reader_test_page, reader_update, reader_update_json)
@@ -117,8 +117,6 @@ blueprint.add_url_rule(
     methods=['GET'],
     endpoint='about_sources',
     view_func=about_sources)
-
-blueprint.add_url_rule('/plugins/', methods=['GET'], view_func=plugins)
 
 blueprint.add_url_rule(
     '/escape/text-tv/',
