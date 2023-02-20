@@ -82,7 +82,7 @@ class ParadigmLanguagePairSearchView(DictionaryView, SearcherMixin):
         cache_key = '+'.join(
             [key for key in [_from, lemma, pos_filter, e_node] if key])
 
-        paradigms = current_app.cache.get(cache_key.encode('utf-8'))
+        paradigms = current_app.cache.get(cache_key)
 
         # Lag paradigmer om de ikke er mellomlagret
         if paradigms is None:
