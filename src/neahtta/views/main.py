@@ -12,11 +12,6 @@ from six import iteritems
 
 from . import blueprint
 
-try:
-    unicode
-except NameError:
-    unicode = str
-
 user_log = getLogger("user_log")
 
 
@@ -102,7 +97,7 @@ def gen_doc(from_language, docs_list):
             continue
 
         keys = ('name', 'doc')
-        functions = [(fx, unicode(d.decode('utf-8')).strip()) for fx, d in fxs]
+        functions = [(fx, d.strip()) for fx, d in fxs]
 
         functions = [dict(zip(keys, d)) for d in functions]
 
