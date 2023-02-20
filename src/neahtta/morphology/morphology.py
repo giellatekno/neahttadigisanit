@@ -762,19 +762,13 @@ class XFST:
             lemmas = []
             analyses = []
             weights = []
-            updated_lemmas = []
 
             for part in chunk.split('\n'):
-                try:
-                    (lemma, analysis, weight) = self.tag_processor(part)
-                except:
-                    (lemma, analysis) = self.tag_processor(part)
+                (lemma, analysis, *weight) = self.tag_processor(part)
                 lemmas.append(lemma)
                 analyses.append(analysis)
-                try:
-                    weights.append(weight)
-                except:
-                    print("not using weights")
+                if weight:
+                    weights.append(weight[0])
 
             lemma = list(set(lemmas))[0]
 
@@ -789,19 +783,15 @@ class XFST:
         we expect small things here, not big things.
         """
         import subprocess
-        from threading import Timer
-
-        try:
-            _input = _input.encode('utf-8')
-        except:
-            pass
 
         try:
             lookup_proc = subprocess.Popen(
                 cmd.split(' '),
                 stdin=subprocess.PIPE,
                 stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE)
+                stderr=subprocess.PIPE,
+                text=True,
+                )
         except OSError:
             raise Exception(
                 "Error executing lookup command for this request, confirm that lookup utilities and analyzer files are present."
@@ -809,32 +799,9 @@ class XFST:
         except Exception as e:
             raise Exception("Unhandled exception <%s> in lookup request" % e)
 
-        def kill_proc(proc=lookup_proc):
-            try:
-                proc.kill()
-                raise Exception("Process for %s took too long." % cmd)
-            except OSError:
-                pass
+        output, err = lookup_proc.communicate(_input, timeout=timeout)
 
-        if not timeout:
-            t = Timer(5, kill_proc)
-            t.start()
-
-        output, err = lookup_proc.communicate(_input)
-
-        if output is not None:
-            try:
-                output = output.decode('utf-8')
-            except:
-                pass
-
-        if err is not None:
-            try:
-                err = err.decode('utf-8')
-            except:
-                pass
-
-        return (output, err)
+        return output, err
 
     def load_tag_processor(self):
         import sys
@@ -988,7 +955,10 @@ class PyHFST(XFST):
         # normally this is done in a loop, as in
         # https://hfst.github.io/python/3.11.0/classhfst_1_1HfstInputStream.html
         # but we know that there's only one transducer
-        self.tr = hfst.HfstInputStream(fst_file).read()
+        try:
+            self.tr = hfst.HfstInputStream(fst_file).read()
+        except NotTransducerStreamException:
+            exit(f"fst_file {fst_file} not found, cannot continue")
 
         try:
             self.itr = hfst.HfstInputStream(ifst_file).read()
@@ -1001,10 +971,12 @@ class PyHFST(XFST):
     def lookup(self, lookups_list, raw=False):
         lookup_string = "\n".join(lookups_list)
         output = self.tr.lookup(lookup_string)
+
         lines = ""
-        for line, weight in output:
-            lines += lookup_string + "\t" + self.remove_flag_diacritics(line) + "\n\n"
-        clean = self.clean(lines)
+        for line, _weight in output:
+            lines += f"{lookup_string}\t{self.remove_flag_diacritics(line)}\n"
+
+        clean = self.clean(lines + "\n\n")
         if raw:
             return clean, lines, ""
         return clean
@@ -1019,8 +991,8 @@ class PyHFST(XFST):
             output = self.itr.lookup(line)
             if output:
                 output, _weight = output[0]
-                lines += line + "\t" + self.remove_flag_diacritics(output) + "\n\n"
-        clean = self.clean(lines)
+                lines += f"{line}\t{self.remove_flag_diacritics(output)}\n"
+        clean = self.clean(lines + "\n\n")
         if raw:
             return clean, lookup_string, ""
 
