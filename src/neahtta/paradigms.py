@@ -387,8 +387,7 @@ class ParadigmConfig(object):
         possible_matches = sorted(
             possible_matches, key=itemgetter(0), reverse=True)
         if debug:
-            print(" - Possible matches: %d" % len(
-                possible_matches), file=sys.stderr)
+            print(f" - Possible matches: {len(possible_matches)}", file=sys.stderr)
 
         def paradigm_ordering(match):
             """ Sort by type if it exists, otherwise sort by
@@ -494,8 +493,7 @@ class ParadigmConfig(object):
         possible_matches = sorted(
             possible_matches, key=itemgetter(0), reverse=True)
         if self.debug:
-            print(" - Possible matches: %d" % len(
-                possible_matches), file=sys.stderr)
+            print(f" - Possible matches: {len(possible_matches)}", file=sys.stderr)
 
         if len(possible_matches) > 0:
             count, context, template, path = possible_matches[0]
