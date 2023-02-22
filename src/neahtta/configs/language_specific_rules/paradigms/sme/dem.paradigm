@@ -11,6 +11,7 @@ morphology:
 {{ lemma }}+Pron+Dem+Sg+Com
 {{ lemma }}+Pron+Dem+Ess
 {{ lemma }}+Pron+Dem+Pl+Nom
+{{ lemma }}+Pron+Dem+Pl+Gen
 {{ lemma }}+Pron+Dem+Pl+Acc
 {{ lemma }}+Pron+Dem+Pl+Ill
 {{ lemma }}+Pron+Dem+Pl+Loc
