@@ -210,7 +210,7 @@ Dictionaries:
   - source: sme
     target: spa
     path: 'dicts/smespa.xml'
-    autocomplete: false
+    autocomplete: true
 
 ReaderConfig:
   Settings:
