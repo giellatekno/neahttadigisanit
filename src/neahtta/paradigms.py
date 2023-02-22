@@ -45,11 +45,6 @@ from lxml import etree
 from paradigm_layouts import parse_table
 from six import iteritems
 
-try:
-    unicode
-except NameError:
-    unicode = str
-
 __all__ = ['ParadigmConfig']
 
 
@@ -61,11 +56,11 @@ class TagRule(object):
     def __init__(self, tag):
 
         if isinstance(tag, str):
-            tag = unicode(tag)
+            tag = str(tag)
 
         self.tag = tag
 
-        if isinstance(tag, str) or isinstance(tag, unicode):
+        if isinstance(tag, str):
             self.cmp = lambda x, y: (x == y, x)
         elif isinstance(tag, list):
             self.cmp = lambda x, y: (x in y, x)
@@ -96,10 +91,10 @@ class LexRule(object):
     def __init__(self, lex_key, lex_value):
         self.key = lex_key
         if isinstance(lex_value, str):
-            tag = unicode(lex_value)
+            tag = str(lex_value)
         self.value = lex_value
 
-        if isinstance(lex_value, str) or isinstance(lex_value, unicode):
+        if isinstance(lex_value, str):
             self.cmp = lambda x, y: (x == y, x)
         elif isinstance(lex_value, list):
             self.cmp = lambda x, y: (x in y, x)
@@ -201,14 +196,14 @@ class TagSetRule(object):
 
     def __init__(self, tagset, value):
         self.tagset = tagset
-        if isinstance(value, unicode):
-            value = unicode(value)
+        if isinstance(value, str):
+            value = str(value)
         self.tagset_value = value
 
         # in cmp functions
         # x = whatever value the tagset turns up (ex. 'Inf'), y = the
         # expected set of values that are defined in YAML
-        if isinstance(value, str) or isinstance(value, unicode):
+        if isinstance(value, str):
             self.cmp = lambda x, y: (x == y, x)
         elif isinstance(value, list):
             self.cmp = lambda x, y: (x in y, x)
