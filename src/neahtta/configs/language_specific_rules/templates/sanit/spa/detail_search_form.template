@@ -1,4 +1,3 @@
-{% if not _to == "spa" %} {# do not show smespa before it is finished #}
   <form id="neahttadigisanit" class="form-inline pull-left"
     method="post"
     action="{{ url_for('.canonical_root_search_pair', _from=_from, _to=_to) }}">
@@ -14,7 +13,6 @@
       {# TODO: i18n #}
       {# TODO: dropdown select to language pair for form submit #}
       {% for iso_pair, pair_options in language_pairs.items() %}
-        {% if iso_pair[1] != "spa" %} {# do not show smespa dict before it is finished #}
           <li class="selected{%- if iso_pair[0] == _from and iso_pair[1] == _to %} active{% endif -%}"><a tabindex="-1" href="#"
                   data-value="{{ iso_pair[0]}}-{{ iso_pair[1] }}">
                   <span lang="{{ current_locale }}">{{ iso_pair[0]|iso_to_i18n }} ↔ {{ iso_pair[1]|iso_to_i18n }}</span>
@@ -29,7 +27,6 @@
                       {% endif %}
                   {% endfor %}
               {% endif %}
-          {% endif %} {# smespa #}
         {% endfor %}
     </ul>
   </div>
@@ -45,4 +42,3 @@
   </div>
   <div id="results"></div>
   </form><!-- ./form -->
-{% endif %} {# smespa #}
