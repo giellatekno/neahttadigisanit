@@ -4,6 +4,7 @@ morphology:
 lexicon:
   XPATH:
     ader: ".//l/@ader"
+  ader: true
 --
 {{ ader }}+A+Der/AAdv+Adv
 {{ ader }}+A+Der/Comp+A+Der/AAdv+Adv

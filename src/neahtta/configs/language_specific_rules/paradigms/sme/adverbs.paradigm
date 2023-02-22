@@ -4,6 +4,7 @@ morphology:
 lexicon:
   XPATH:
     par: ".//l/@par"
+  par: "yes"
 --
 {{ lemma }}+Adv+Gen
 {{ lemma }}+Adv+Ill
