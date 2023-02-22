@@ -138,9 +138,8 @@ class LexiconRuleSet(object):
         self.xpath.update(DEFAULT_RULES)
         self.xpath_contexts = {}
 
-        _str_norm = 'string(normalize-space(%s))'
         for k, v in iteritems(self.xpath):
-            self.xpath_contexts[k] = etree.XPath(_str_norm % v)
+            self.xpath_contexts[k] = etree.XPath(f'string(normalize-space({v}))')
 
         for k, v in iteritems(lex_rules):
 
@@ -264,7 +263,7 @@ class ParadigmRuleSet(object):
         self.comps = []
 
         if not lex and not morph:
-            print("Missing morphology or lexicon rule context in <%s>" % self.name, file=sys.stderr)
+            print(f"Missing morphology or lexicon rule context in <{self.name}>", file=sys.stderr)
             self.comps = [NullRule()]
             lex = {}
             morph = {}
@@ -300,7 +299,7 @@ class ParadigmRuleSet(object):
 
         context = dict(sum(contexts, []))
         if self.debug and truth:
-            print("Found matching paradigm in %s." % self.name, file=sys.stderr)
+            print(f"Found matching paradigm in {self.name}.", file=sys.stderr)
 
         return truth, context
 
@@ -591,7 +590,7 @@ class ParadigmConfig(object):
                 if paradigm_rule:
                     _lang_paradigms[lang].append(paradigm_rule)
                     _file_successes.append(
-                        ' - %s: %s' % (lang, paradigm_rule.get('name')))
+                        f" - {lang}: {paradigm_rule.get('name')}")
 
         self.paradigm_rules = _lang_paradigms
 
@@ -603,10 +602,10 @@ class ParadigmConfig(object):
                 if paradigm_rule:
                     _lang_paradigm_layouts[lang].append(paradigm_rule)
                     _file_successes.append(
-                        ' - LAYOUT %s: %s' % (lang, paradigm_rule.get('name')))
+                        f" - LAYOUT {lang}: {paradigm_rule.get('name')}")
                 else:
                     _file_successes.append(
-                        ' ERROR: - LAYOUT %s: %s' % (lang, f))
+                        f" ERROR: - LAYOUT {lang}: {f}")
 
         self.paradigm_layout_rules = _lang_paradigm_layouts
 
@@ -654,7 +653,7 @@ class ParadigmConfig(object):
                     if p['basename'] == paradigm_rule
                 ]
                 if len(matching_p) == 0:
-                    print("\n** References a paradigm file (%s) that does not exist" % paradigm_rule, file=sys.stderr)
+                    print(f"\n** References a paradigm file ({paradigm_rule}) that does not exist", file=sys.stderr)
                     print(" in:", file=sys.stderr)
                     _, lx, path = path.partition('language_specific_rules')
                     print("    " + lx + path, file=sys.stderr)
