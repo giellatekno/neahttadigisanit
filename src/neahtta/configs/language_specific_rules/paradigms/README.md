@@ -104,6 +104,16 @@ to use XPATH statements to test against individual XML entries.
         - "Plc"
         - "Something"
 
+    lexicon:
+      XPATH:
+        ader: ".//l/@ader"
+      ader: true
+
+  Either a value may be specified, or boolean 'true', which stands for
+  'the attribute is defined on the lemma node'. A list may also be specified.
+  Only specifying the XPATH is possible, but does not help NDS pick the correct
+  paradigm file. For that to work, possible values must be specified.
+
 ## Conditions together
 
 Operating together, what the conditions say is that for any

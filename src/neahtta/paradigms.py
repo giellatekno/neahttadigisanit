@@ -98,6 +98,8 @@ class LexRule(object):
             self.cmp = lambda x, y: (x == y, x)
         elif isinstance(lex_value, list):
             self.cmp = lambda x, y: (x in y, x)
+        elif isinstance(lex_value, bool):
+            self.cmp = lambda x, y: (bool(x) == y, x)
 
     def compare(self, node, analyses, xpath_context={}):
         """ Compare takes analyses and node, and returns a boolean.
