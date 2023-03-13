@@ -41,6 +41,14 @@ vmax:
  - "v3"
  - "v4"
  - "v5"
+verb_derivations:
+ - "VAbess"
+ - "Actio+Nom"
+ - "Actio+Gen"
+ - "Actio+Loc"
+ - "Actio+Ess"
+ - "VGen"
+ - "Ger"
 semantics:
  - "Sem/Act"
  - "Sem/Ani"
