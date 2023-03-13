@@ -58,6 +58,12 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
+      # Grammatical tags which have their own lexicon entries
+      # that should be presented if they are part of the analysis
+      tags_in_lexicon: ['Der', 'VAbess', 'VGen', 'Ger', 'Comp', 'Superl', 'Actio']
+      # We remove the tag separator after the actio tag to present
+      # lexicon entries like ActioNom, ActioLoc etc.
+      actio_tag: "Actio"
   SoMe:
     tool: *HFST-LOOKUP
     file: [*OPT, '/sme/bin/analyser-dict-gt-desc-mobile.hfstol']
