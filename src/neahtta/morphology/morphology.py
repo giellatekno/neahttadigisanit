@@ -1360,7 +1360,7 @@ class Morphology(object):
 
     def make_analyses_der_fin(self, analyses):
         analyses_der_fin = []
-        default_tags = ('Der', 'VAbess', 'VGen', 'Ger', 'Comp', 'Superl', 'Actio')
+        default_tags = ("Dummy1", "Dummy2")
         tags = tuple(self.tool.options.get("tags_in_lexicon", default_tags))
         actio_tag = self.tool.options.get("actio_tag", "Actio")
         tagsep = self.tool.options.get("tagsep", "+")
