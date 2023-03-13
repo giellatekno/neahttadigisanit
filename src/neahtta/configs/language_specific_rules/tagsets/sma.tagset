@@ -49,6 +49,9 @@ verb_derivations:
  - "Actio+Ess"
  - "VGen"
  - "Ger"
+adjective_derivations:
+ - "Comp"
+ - "Superl"
 semantics:
  - "Sem/Act"
  - "Sem/Ani"

@@ -317,6 +317,8 @@ class Lemma(object):
             if tagsets['verb_derivations'] and self.lemma in tagsets['verb_derivations']:
                 # e.g. VAbess does not have a marked pos
                 self.pos = 'V'
+            elif tagsets['adjective_derivations'] and self.lemma in tagsets['adjective_derivations']:
+                self.pos = 'A'
             else:
                 self.pos = "Unknown"
                 error_msg = "No part of speech found for lemma \"{}\". Make sure it is listed in the appropriate tagset file".format(self.lemma)

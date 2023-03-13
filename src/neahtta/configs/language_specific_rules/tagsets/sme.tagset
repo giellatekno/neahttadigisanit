@@ -154,3 +154,6 @@ verb_derivations:
  - "Actio+Ess"
  - "VGen"
  - "Ger"
+adjective_derivations:
+ - "Der/Comp"
+ - "Der/Superl"
