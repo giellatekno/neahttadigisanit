@@ -267,13 +267,15 @@ class Lemma(object):
         all_tags = tagsets.all_tags()
         self.tag = self.tool.tagStringToTag(tag, tagsets=tagsets)
 
+        actio_with_tagsep = self.tool.options.get("actio_tag", "Actio") + self.tool.options.get("tagsep", "+")
+
         # Best guess is the first item, otherwise...
         lemma = tag[0]
         # Best guess is the first item, otherwise...
         #self.lemma = tag[0]
         #del tag[0]
         actio = False
-        if "Actio+" in tag:
+        if actio_with_tagsep in tag:
             lemma = tag
             self.lemma = lemma
             actio = True
@@ -903,12 +905,14 @@ class XFST:
             return False
 
     def tagStringToTag(self, parts, tagsets={}, inverse=False):
+        actio_with_tagsep = self.options.get("actio_tag", "Actio") + self.options.get("tagsep", "+")
+
         if inverse:
             delim = self.options.get('inverse_tagsep',
                                      self.options.get('tagsep', '+'))
         else:
             delim = self.options.get('tagsep', '+')
-        if "Actio+" in parts:
+        if actio_with_tagsep in parts:
             tag = parts
             return Tag(tag, delim, tagsets=tagsets)
         else:
@@ -1339,9 +1343,13 @@ class Morphology(object):
     def analysis_to_lemma(self, analysis, wordform):
         analysis_parts = self.tool.splitAnalysis(analysis)
         lemma = ""
+        actio_tag = self.tool.options.get("actio_tag", "Actio")
+        actio_with_tagsep = actio_tag + self.tool.options.get("tagsep", "+")
+        tagsep = self.tool.options.get("tagsep", "+")
+
         if len(analysis_parts) == 1:
-            if "Actio" in analysis_parts[0]:
-                analysis_parts = ["Actio+"+analysis_parts[0].split("Actio")[1]]
+            if actio_tag in analysis_parts[0]:
+                analysis_parts = [actio_with_tagsep + analysis_parts[0].split(actio_tag)[1]]
                 lemma = analysis_parts
         else:
             lemma = analysis_parts[0] if len(analysis_parts) == 1 else wordform
@@ -1350,14 +1358,19 @@ class Morphology(object):
 
     def make_analyses_der_fin(self, analyses):
         analyses_der_fin = []
-        tags = ('Der', 'VAbess', 'VGen', 'Ger', 'Comp', 'Superl', 'Actio')
+        default_tags = ('Der', 'VAbess', 'VGen', 'Ger', 'Comp', 'Superl', 'Actio')
+        tags = tuple(self.tool.options.get("tags_in_lexicon", default_tags))
+        actio_tag = self.tool.options.get("actio_tag", "Actio")
+        tagsep = self.tool.options.get("tagsep", "+")
+        actio_with_tagsep = actio_tag + tagsep
+
         for analysis in analyses:
-            if "Actio" in analysis:
-                analysis = analysis.split("Actio")[0]+"Actio"+analysis.split("Actio+")[1]
-            analysis_parts = analysis.split('+')
+            if actio_tag in analysis:
+                analysis = analysis.split(actio_tag)[0] + actio_tag + analysis.split(actio_with_tagsep)[1]
+            analysis_parts = analysis.split(tagsep)
             index = [index1 for index1, part in enumerate(analysis_parts[1:], start=1)
                      if part.startswith(tags)]
-            s = '+'
+            s = tagsep
             b = []
             if index:
                 b.append(s.join(analysis_parts[:index[0]]))
