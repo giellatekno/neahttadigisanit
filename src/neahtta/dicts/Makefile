@@ -401,6 +401,8 @@ SANJ_LANGS_ANALYSERS           :=   sjd-x-private
 
 # Custom compile script because the xml files are in lang-sjd-x-private/misc, which is not the case in any other dicts.
 # Remember to extract xml files from source xlsx files using the scripts in lang-sjd-x-private/src/scripts
+SJDRUS_LEXICON_INDIR = $(GTLANGS)/lang-sjd-x-private/misc/xml_sjdrus
+RUSSJD_LEXICON_INDIR = $(GTLANGS)/lang-sjd-x-private/misc/xml_russjd
 sanj-lexica: 
 	@echo $*
 	@echo "***********************"
@@ -412,17 +414,25 @@ sanj-lexica:
 		echo " * Backing up to sjd-rus.xml.$(shell date +%s).bak"  ; \
 		cp -R sjd-rus.xml sjd-rus.xml.$(shell date +%s).bak ; \
 	fi ; \
-	$(SAXON) inDir=$(GTLANGS)/lang-sjd-x-private/misc/xml_sjdrus > sjd-rus.xml ; \
-	echo " * Compiling resulted in: " ; \
-	wc -l sjd-rus.xml ; \
+	if test -d "$(SJDRUS_LEXICON_INDIR)"  ; then \
+		$(SAXON) inDir=$(SJDRUS_LEXICON_INDIR) > sjd-rus.xml ; \
+		echo " * Compiling resulted in: " ; \
+		wc -l sjd-rus.xml ;\
+	else \
+		echo "Error: The directory $(SJDRUS_LEXICON_INDIR) does not exist. Cannot compile dictionary." ;\
+	fi ; \
 	echo " * Compiling langs lexica for russjd" ; \
 	if ! test -e "rus-sjd.xml " ; then \
 		echo " * Backing up to rus-sjd.xml.$(shell date +%s).bak"  ; \
 		cp -R sjd-rus.xml rus-sjd.xml.$(shell date +%s).bak ; \
 	fi ; \
-	$(SAXON) inDir=$(GTLANGS)/lang-sjd-x-private/misc/xml_russjd > rus-sjd.xml ; \
-	echo " * Compiling resulted in: " ; \
-	wc -l rus-sjd.xml ;
+	if test -d "$(RUSSJD_LEXICON_INDIR)" ; then \
+		$(SAXON) inDir=$(RUSSJD_LEXICON_INDIR) > rus-sjd.xml ; \
+		echo " * Compiling resulted in: " ; \
+		wc -l rus-sjd.xml ;\
+	else \
+		echo "Error: The directory $(RUSSJD_LEXICON_INDIR) does not exist. Cannot compile dictionary." ;\
+	fi ; \
 
 .PHONY: sanj
 sanj: GT_COMPILE_LANGS := $(SANJ_LANGS_ANALYSERS)
