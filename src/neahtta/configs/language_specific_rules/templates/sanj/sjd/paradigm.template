@@ -494,7 +494,6 @@
 
 {% elif pos|upper == 'PRON' %}
     {% set contexts = ["Кто? Что?", "Чей?", "Кого? Чего?", "кому? чему? куда?", "У (от) кого? У (от) чего?", "С кем? С чем?", "Без кого? Без чего?", "В кого? Во что?", "много, мало, при сравн."] %}
-    {% set i=0 %}
 
     {% if two_columns %}
 
@@ -509,8 +508,7 @@
 
             {%- for sgs, pls in zipped_numbers -%}
                 <tr>
-                <th class="tag" lang="{{ _to }}">{{ contexts[i] }}</th>
-                {% set i = i+1 %}
+                <th class="tag" lang="{{ _to }}">{{ contexts[loop.index - 1] }}</th>
 
                 {% if sgs and sgs != '-' %}
                     <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form')|safe }}</td>
@@ -528,13 +526,11 @@
             {%- endfor -%}  
             {%- if numberless_forms|length > 0 -%}
                 {%- for form in numberless_forms -%}
-                    {% set i = 7 %}
                     <tr>
-                        <th class="tag" lang="{{ _to }}">{{ contexts[i] }}</th>
+                        <th class="tag" lang="{{ _to }}">{{ contexts[loop.index + 6] }}</th>
                         <td lang="{{ _to }}">{{ form|join('<br />', attribute='form')|safe }}</td>
                         <td></td>
                     </tr>
-                    {% set i = i+1 %}
                 {%- endfor -%}
             {%- endif -%}
             </table>
