@@ -43,7 +43,7 @@
             <p>
                 <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
                     {{- rendered_templates.entry_text|safe -}}</a>
-                    {%- if pos_text -%}<span class=pos_text>{{ pos_text }}</span>{% endif %}
+                    {%- if pos_text -%}<span class=pos_text> {{ pos_text }}</span>{% endif %}
                 {% if l_ref_g %}
                     <p class="l_ref"><span class="se_også">
                         {%- if l_ref_type == 'тж. см.' %}
