@@ -1,4 +1,4 @@
-﻿from morphology import generation_overrides as morphology
+from morphology import generation_overrides as morphology
 from lxml import etree
 
 from flask import current_app, g

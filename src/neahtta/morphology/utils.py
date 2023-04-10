@@ -1,4 +1,4 @@
-﻿from morphology import Tag
+from morphology import Tag
 from flask import current_app
 from six import iteritems
 

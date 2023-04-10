@@ -1,4 +1,4 @@
-﻿""" A view for generating paradigms for a JSON api.
+""" A view for generating paradigms for a JSON api.
 
 Usage:
     HTTP GET /PROJNAME/from_lang/to_lang/lemma/?params

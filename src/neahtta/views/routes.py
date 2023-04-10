@@ -1,4 +1,4 @@
-﻿from . import blueprint
+from . import blueprint
 
 from .paradigms import ParadigmLanguagePairSearchView
 from .search import (DetailedLanguagePairSearchView, IndexSearchPage,

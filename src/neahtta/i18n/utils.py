@@ -1,4 +1,4 @@
-﻿from flask import current_app
+from flask import current_app
 import babel
 from babel.core import UnknownLocaleError
 import os

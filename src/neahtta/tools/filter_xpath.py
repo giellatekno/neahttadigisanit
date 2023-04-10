@@ -1,4 +1,4 @@
-﻿""" Filter the results of an XPath query through a command.
+""" Filter the results of an XPath query through a command.
 
 Usage: tools/filter_xpath.py <xpath_node> <xpath_statement> <commandline_tool> <commandline_tool_args>
 

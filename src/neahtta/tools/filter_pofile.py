@@ -1,4 +1,4 @@
-﻿""" Filter the results of an XPath query through a command.
+""" Filter the results of an XPath query through a command.
 
 Usage: tools/filter_pofile.py <in_path> <out_path>
 

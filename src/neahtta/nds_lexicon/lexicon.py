@@ -1,4 +1,4 @@
-﻿from lxml import etree
+from lxml import etree
 import sys
 
 from six import iteritems

@@ -1,4 +1,4 @@
-﻿from paradigm_layouts import *
+from paradigm_layouts import *
 
 
 def read_layout_file(fname):
