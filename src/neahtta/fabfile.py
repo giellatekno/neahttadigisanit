@@ -115,7 +115,7 @@ def __set_proj(ctx):
                 if config.project not in host_rest:
                     print(colored(
                         f"{config.project} is not on the current host <{host}>.", "red"), file=sys.stderr)
-                    cont = raw_input(colored('Continue anyway? [y/N] \n', "red"))
+                    cont = input(colored('Continue anyway? [y/N] \n', "red"))
                     if not (cont == 'Y' or cont == "y"):
                         sys.exit()
 
