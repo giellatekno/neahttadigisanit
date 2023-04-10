@@ -604,12 +604,11 @@ def test_project(ctx):
     """ Test the configuration and check language files for errors. """
 
     config_path = f"configs/{config.project}.config.yaml.in"
-    with ctx.cd(config.config_path):
-        print(colored(f"** Running tests for {config.project}", "cyan"))
+    print(colored(f"** Running tests for {config.project}", "cyan"))
 
-        test_cmd = ctx.run(f"NDS_CONFIG={config_path} python -m unittest tests.yaml_tests")
-        if test_cmd.failed:
-            print(colored(f"** Something went wrong while testing <{config.project}> **", "red"))
+    test_cmd = ctx.run(f"NDS_CONFIG={config_path} python -m unittest tests.yaml_tests")
+    if test_cmd.failed:
+        print(colored(f"** Something went wrong while testing <{config.project}> **", "red"))
 
 
 @task
