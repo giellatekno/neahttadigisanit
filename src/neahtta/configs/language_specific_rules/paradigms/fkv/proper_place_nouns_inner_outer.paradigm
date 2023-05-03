@@ -6,10 +6,12 @@ lexicon:
   XPATH:
     sem_type: ".//l/@sem_type"
     type: ".//l/@type"
+    outer_cases: ".//l/@outer_cases"
   type: Prop
   sem_type: 
     - "Plc"
     - "plc"
+  outer_cases: "True"
 --
 {{ lemma }}+N+Prop+Sem/Plc+Sg+Nom
 {{ lemma }}+N+Prop+Sem/Plc+Sg+Gen
