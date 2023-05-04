@@ -235,6 +235,7 @@ Relabel:
       "Hom2": ""
       "v1": ""
       "v2": ""
+      "Sem/Plc": ""
 
   - source_morphology: 'izh'
     target_ui_language: 'fin'
