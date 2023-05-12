@@ -251,9 +251,9 @@ class Lemma(object):
 
     def __repr__(self):
         _lem, _pos, _tag = self.__key()
-        _lem = unicode(_lem).encode('utf-8')
-        _pos = unicode(_pos).encode('utf-8')
-        _tag = unicode(_tag).encode('utf-8')
+        _lem = str(_lem)
+        _pos = str(_pos)
+        _tag = str(_tag)
         cls = self.__class__.__name__
         return '<%s: %s, %s, %s>' % (cls, _lem, _pos, _tag)
 
@@ -891,10 +891,12 @@ class XFST:
         """
         lookups_list = []
         for tag in tags:
+            if isinstance(tag, str):
+                tag = self.splitAnalysis(tag, inverse=True)
             if lemma in tag:
-                combine = self.splitAnalysis(tag, inverse=True)
+                combine = tag
             else:
-                combine = [lemma] + self.splitAnalysis(tag, inverse=True)
+                combine = [lemma] + tag
             lookups_list.append(self.formatTag(combine))
 
         return '\n'.join(lookups_list)
@@ -936,7 +938,6 @@ class XFST:
                                      self.options.get('tagsep', '+'))
         else:
             delim = self.options.get('tagsep', '+')
-
         return analysis.split(delim)
 
 
