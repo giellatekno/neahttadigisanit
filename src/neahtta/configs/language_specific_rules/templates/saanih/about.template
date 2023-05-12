@@ -17,8 +17,8 @@
         <div class="row-fluid">
             <span class="span4">
                 <h3 class="red">{% trans %}How to quote the dictionaries{% endtrans %}</h3>
-                <p><ul><li>Olthuis, Marja-Liisa, Taarna Valtonen, Miina Seurujärvi and Trond Trosterud 2015-2022: <em>Nettidigisäänih Anarâškiela-suomakielâ-anarâškielâ sänikirje.</em> Tromsø, UiT. URL: http://saanih.oahpa.no</li>
-<li>Trosterud, Trond, Marja-Liisa Olthuis, Lene Antonsen and Erika Sarivaara 2015-2022: <em>Nettidigisäänih Anarâškiela-orjâlâškielâ-anarâškielâ sänikirje.</em> Tromsø, UiT. URL: http://saanih.oahpa.no</li></ul>
+                <p><ul><li>Olthuis, Marja-Liisa, Taarna Valtonen, Miina Seurujärvi and Trond Trosterud 2015-2022: <em>Nettidigisäänih Anarâškiela-suomakielâ-anarâškielâ sänikirje.</em> Tromsø, UiT. (22000 inarinsaamen sanaa, 18000 suomen kielen sanaa) URL: http://saanih.oahpa.no</li>
+<li>Trosterud, Trond, Marja-Liisa Olthuis, Lene Antonsen and Erika Sarivaara 2015-2022: <em>Nettidigisäänih Anarâškiela-orjâlâškielâ-anarâškielâ sänikirje.</em> Tromsø, UiT. (9300 dávvisámegiela sáni, 7700 anárášgiela sáni) URL: http://saanih.oahpa.no</li></ul>
 .</p>
             </span>
             <span class="span4">
