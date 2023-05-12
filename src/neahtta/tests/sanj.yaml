@@ -82,7 +82,7 @@ MorpholexicalGeneration:
    tests:
      - input: "о̄дзэ"
        expected_forms:
-         - "о̄дзэ"
+         - "о̄за"
 
      - input: "са̄ннҍ"
        expected_forms:
