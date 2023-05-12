@@ -156,15 +156,9 @@ class RequestTest(NDSInstance):
             print("  result:  " + colored(' '.join(selected), "magenta"))
 
             for e in expected:
-                passed = True
                 try:
                     self.assertIn(e, selected)
                 except Exception as exc:
-                    passed = False
-
-                if passed:
-                    print("    " + colored("PASSED", "green") + ' (' + e + ')')
-                else:
                     print("    " + colored("FAILED", "red") + ': ' + e)
                     print("     > " + colored("Values not found in selector", "yellow"))
                     failuretrack.add(
@@ -175,6 +169,8 @@ class RequestTest(NDSInstance):
                         ' '.join(selected),
                         "Values not found in selector",
                     )
+                else:
+                    print("    " + colored("PASSED", "green") + ' (' + e + ')')
 
             print('')
 
@@ -224,18 +220,10 @@ class MorpholexicalAnalysis(NDSInstance):
                 print("  result:  " + colored(' '.join(lemmas), "magenta"))
 
                 for e in expect:
-                    passed = True
-
                     try:
                         self.assertIn(e, lemmas)
                     except Exception as exc:
-                        passed = False
-
-                    if passed:
-                        print("    " + colored("PASSED", "green") + " (" + e + ")")
-                    else:
                         print("    " + colored("FAILED", "red") + ': ' + e)
-                        print("     > " + colored(msg, "yellow"))
                         failuretrack.add(
                             "MorphologicalAnalysis",
                             exc,
@@ -243,6 +231,8 @@ class MorpholexicalAnalysis(NDSInstance):
                             ' '.join(expect),
                             ' '.join(lemmas),
                         )
+                    else:
+                        print("    " + colored("PASSED", "green") + " (" + e + ")")
 
                 print('')
 
@@ -432,15 +422,9 @@ class LexiconDefinitions(NDSInstance):
                 print("    " + colored("PASSED", "green"))
 
             for _i in _in:
-                passed = True
                 try:
                     test_func(_i, result)
                 except Exception as exc:
-                    passed = False
-
-                if passed:
-                    print("    " + colored("PASSED", "green"))
-                else:
                     print("    " + colored("FAILED", "red") + ': ' + repr(_i))
                     if err_msg:
                         print("     > " + colored(err_msg, "yellow"))
@@ -452,6 +436,9 @@ class LexiconDefinitions(NDSInstance):
                         ' '.join(result),
                         err_msg,
                     )
+                else:
+                    print("    " + colored("PASSED", "green"))
+                    
 
         with self.context():
 
