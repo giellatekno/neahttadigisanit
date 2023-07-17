@@ -21,7 +21,6 @@
             {% endif %}
             {% if not _to == "spa" %} {# do not show smespa before it is finished #}
             <form id="neahttasaanit" class="form-inline"
-                method="post"
                 action="{{ url_for('.canonical_root_search_pair', _from=_from, _to=_to) }}">
 
                 {%- if keyboard %}
