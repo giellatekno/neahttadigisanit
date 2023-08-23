@@ -17,3 +17,4 @@ morphology:
 {{ lemma }}+N+Pl+Ela
 {{ lemma }}+N+Pl+Com
 {{ lemma }}+N+Ess
+{{ lemma }}+N+Der/Dimin+N+Sg+Nom
