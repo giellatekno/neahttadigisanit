@@ -22,6 +22,20 @@ tense:
  - Prt
 nominals_null_number:
  - Ess
+
+# Paradigm tables for N: Ess should immediately follow the numerous forms.
+# After that, a blank line is in the template for the others.
+# If the others also are numerous, they would have been included above,
+# so this group exists to specifically target those that have a numerous,
+# but that we don't want in the top part of the table.
+# For now, it checks for "Der/Dimin". The full tag for the one we want on it's
+# own line is: {{ lemma }}+N+Der/Dimin+N+Sg+Nom
+# It includes "Sg", and so would be captured by the "number" group.
+# So, if we want more rows, and those rows do _not_ have a number, we'll
+# need to figure that out using additional filtering/grouping.
+nominals_null_number_other:
+ - "Der/Dimin"
+
 # Selecting Negative and Supinum forms in paradigm files
 supinum:
  - "Sup"

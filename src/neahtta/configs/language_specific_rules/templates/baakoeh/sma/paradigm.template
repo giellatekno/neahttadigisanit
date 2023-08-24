@@ -87,8 +87,10 @@
 
 {%- if pos|upper == 'N' or pos|upper == 'NUM' %}
 
-    {% set sg_forms = paradigm|by_tagset_value("number", "Sg")|group_by_tag %}
-    {% set pl_forms = paradigm|by_tagset_value("number", "Pl")|group_by_tag %}
+    {% set sg_forms = paradigm|by_tagset_value("number",
+    "Sg")|without_tagset("nominals_null_number_other")|group_by_tag %}
+    {% set pl_forms = paradigm|by_tagset_value("number",
+    "Pl")|without_tagset("nominals_null_number_other")|group_by_tag %}
 
     {# Use izip_longest to fill in the extra blanks spaces when one list
        ends first #}
@@ -97,6 +99,7 @@
     {% set paradigm_exists = zipped_numbers|length > 0 %}
 
     {% set numberless_forms = paradigm|by_tagset("nominals_null_number") %}
+    {% set numberless_forms_other = paradigm|by_tagset("nominals_null_number_other") %}
 
     {% set sg_text = "Sg"|tagfilter(_from, _to) %}
     {% set pl_text = "Pl"|tagfilter(_from, _to) %}
@@ -261,45 +264,54 @@
                 <th lang="{{ _to }}">{{ pl_text }}</th>
             </tr>
 
-        {%- for sgs, pls in zipped_numbers -%}
-            <tr>
+            {%- for sgs, pls in zipped_numbers -%}
+                <tr>
 
-            {% if sgs[0].tag %}
-                {% set tag_display = clean_tag(sgs[0].tag) %}
-            {% elif pls[0].tag %}
-                {% set tag_display = clean_tag(pls[0].tag) %}
-            {% endif %}
-
-            <th class="tag" lang="{{ _to }}">{{ tag_display }}</th>
-
-            {% if sgs and sgs != '-' %}
-                <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form')|safe }}</td>
-            {% else %}
-                <td lang="{{ _from }}" class="center">&mdash;</td>
-            {% endif %}
-
-            {% if pls and pls != '-' %}
-                <td lang="{{ _from }}">{{ pls|join('<br />', attribute='form')|safe }}</td>
-            {% else %}
-                <td lang="{{ _from }}" class="center">&mdash;</td>
-            {% endif %}
-
-            </tr>
-
-        {%- endfor -%}
-
-        {% set numb_forms = numberless_forms|group_by_tag %}
-        {% for var in numb_forms %}
-            <tr>
-                {% if var[0].tag %}
-                    <th class="tag" lang="{{ _to }}">{{ clean_tag(var[0].tag) }}</th>
+                {% if sgs[0].tag %}
+                    {% set tag_display = clean_tag(sgs[0].tag) %}
+                {% elif pls[0].tag %}
+                    {% set tag_display = clean_tag(pls[0].tag) %}
                 {% endif %}
-                <td colspan="2" lang="{{ _from }}" class="center">{{ var|join('<br />', attribute='form')|safe }}</td>
-            </tr>
-        {% endfor %}
 
+                <th class="tag" lang="{{ _to }}">{{ tag_display }}</th>
+
+                {% if sgs and sgs != '-' %}
+                    <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form')|safe }}</td>
+                {% else %}
+                    <td lang="{{ _from }}" class="center">&mdash;</td>
+                {% endif %}
+
+                {% if pls and pls != '-' %}
+                    <td lang="{{ _from }}">{{ pls|join('<br />', attribute='form')|safe }}</td>
+                {% else %}
+                    <td lang="{{ _from }}" class="center">&mdash;</td>
+                {% endif %}
+
+                </tr>
+            {%- endfor -%}
+
+            {% set numb_forms = numberless_forms|group_by_tag %}
+            {% for var in numb_forms %}
+                <tr>
+                    {% if var[0].tag %}
+                        <th class="tag" lang="{{ _to }}">{{ clean_tag(var[0].tag) }}</th>
+                    {% endif %}
+                    <td colspan="2" lang="{{ _from }}" class="center">{{ var|join('<br />', attribute='form')|safe }}</td>
+                </tr>
+            {% endfor %}
+
+            <tr><th>&nbsp;</th></tr>
+
+            {% set numb_forms = numberless_forms_other|group_by_tag %}
+            {% for var in numb_forms %}
+                <tr>
+                    {% if var[0].tag %}
+                        <th class="tag" lang="{{ _to }}">{{ clean_tag(var[0].tag) }}</th>
+                    {% endif %}
+                    <td colspan="2" lang="{{ _from }}" class="center">{{ var|join('<br />', attribute='form')|safe }}</td>
+                </tr>
+            {% endfor %}
         </table>
-
     {% endif %}
 
 {% elif pos|upper == 'A' %}
