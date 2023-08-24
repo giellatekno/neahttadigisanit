@@ -2,7 +2,6 @@
  #}
 
 <form id="neahttasaanit" class="form-inline"
-    method="post"
     action="{{ url_for('.canonical_root_search_pair', _from=_from, _to=_to) }}"> 
     
     <div class="input-append">
@@ -32,7 +31,6 @@
                                    type="submit"
                                    class="btn"
                                    formaction="{{ url_for('.external_form_search', _from=_from, _to=_to, _search_type="korp_wordform") }}"
-                                   formmethod="post"
                                    lang="{{ current_locale }}"
                                    formtarget="_blank">{% trans %}Search texts{% endtrans %} (Korp)</button></li>
                         </ul>

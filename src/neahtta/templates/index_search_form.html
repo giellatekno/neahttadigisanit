@@ -34,7 +34,6 @@
                                    {# URLFOR #}
                                    formaction="/extern/{{ _from }}/{{ _to }}/korp_wordform/"
                                    lang="{{ current_locale }}"
-                                   formmethod="post"
                                    formtarget="_blank">{% trans %}Search texts{% endtrans %} (Korp)</button></li>
                         </ul>
                    </div>
@@ -43,7 +42,6 @@
                            {# URLFOR #}
                            formaction="/{{ _from }}/{{ _to }}/"
                            lang="{{ current_locale }}"
-                           formmethod="post"
                            name="search">
                        <span lang="{{ current_locale }}">{% trans %}Search{% endtrans %}</span>
                    </button>
@@ -55,7 +53,6 @@
        {% if current_pair_settings.wordform_search_url %}
            <button type="submit"
                    formaction="{{ url_for('.external_form_search', _from=_from, _to=_to, _search_type="korp_wordform") }}"
-                   formmethod="post"
                    lang="{{ current_locale }}"
                    formtarget="_blank"
                    class="btn hidden-phone display-tablet korp_search" 

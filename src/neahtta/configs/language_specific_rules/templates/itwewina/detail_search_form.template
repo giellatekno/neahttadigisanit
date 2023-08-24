@@ -39,7 +39,6 @@ This template has the following customizations:
     </div>
 {% endif %}
 <form id="neahttadigisanit" class="form-inline pull-left"
-   method="post"
    data-url-base="/itwewina"
    action="{{ url_for('.canonical_root_search_pair', _from=_from, _to=_to) }}">
 <div class="input-prepend input-append">

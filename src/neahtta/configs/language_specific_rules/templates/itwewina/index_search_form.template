@@ -27,7 +27,6 @@ Customizations here:
             {# TODO: KeywordSearch this change will need ot be passed up to the
             parent template at some point#}
             <form id="neahttasaanit" class="form-inline"
-                method="post"
                 {%- if search_form_action %}
                 action="{{ search_form_action }}"
                 {%- else -%}
@@ -81,7 +80,6 @@ Customizations here:
                                <button type="submit" class="btn hidden-phone" 
                                        formtarget="_self"
                                        formaction="{{ url_for('.canonical_root_search_pair', _from=_from, _to=_to) }}"
-                                       formmethod="post"
                                        name="search">
                                    <span lang="{{ current_locale }}">{% trans %}Search{% endtrans %}</span>
                                </button>
@@ -93,7 +91,6 @@ Customizations here:
                    {% if current_pair_settings.show_korp_search %}
                        <button type="submit"
                                formaction="{{ url_for('.external_form_search', _from=_from, _to=_to, _search_type="korp_wordform") }}"
-                               formmethod="post"
                                formtarget="_blank"
                                lang="{{ current_locale }}"
                                class="btn hidden-phone display-tablet korp_search" 
