@@ -63,7 +63,7 @@
                 {% endif %}
                 <span>  &mdash; {{ gettext(current_search_variant.description) }}</span>
                 {% if display_swap %}
-                <span class="swaplink" style="font-size: 80%">(<a href="{{ url_for('.canonical_root_search_pair', _from=swap_from, _to=swap_to) }}">⇄ <span lang="{{ current_locale }}">{% trans %}Swap{% endtrans %}</span></a>)</span>
+                <span class="swaplink">(<a href="{{ url_for('.canonical_root_search_pair', _from=swap_from, _to=swap_to) }}">⇄ <span lang="{{ current_locale }}">{% trans %}Swap{% endtrans %}</span></a>)</span>
                 {% endif %}
             </h4>
 
