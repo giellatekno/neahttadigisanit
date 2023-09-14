@@ -111,16 +111,11 @@ class LexiconOverrides(object):
         def wrapper(formatter_function):
             for language_iso in language_isos:
                 if language_iso in self.source_formatters:
-                    print(' * OBS! Source formatter already registered for %s.' % \
-                        language_iso)
-                    print('   ignoring redefinition on <%s>.' % \
-                        restrictor_function.__name__)
+                    print(f' * OBS! Source formatter already registered for {language_iso}.')
+                    print(f'   ignoring redefinition on <{restrictor_function.__name__}>.')
                 else:
                     self.source_formatters[language_iso] = formatter_function
-                    print('%s formatter: entry formatter for source - %s' %\
-                          ( language_iso
-                          , formatter_function.__name__
-                          ))
+                    print(f'{language_iso} formatter: entry formatter for source - {formatter_function.__name__}')
 
         return wrapper
 
@@ -131,17 +126,12 @@ class LexiconOverrides(object):
         def wrapper(formatter_function):
             for (src_iso, targ_iso) in iso_pairs:
                 if (src_iso, targ_iso) in self.target_formatters:
-                    print(' * OBS! Target formatter already registered for %s.' % \
-                        repr((src_iso, targ_iso)))
-                    print('   ignoring redefinition on <%s>.' % \
-                        formatter_function.__name__)
+                    print(f' * OBS! Target formatter already registered for {repr((src_iso, targ_iso))}.')
+                    print(f'   ignoring redefinition on <{formatter_function.__name__}>.')
                 else:
                     self.target_formatters[(src_iso,
                                             targ_iso)] = formatter_function
-                    print('%s formatter: entry formatter for target - %s' %\
-                          ( '%s - %s' % (src_iso, targ_iso)
-                          , formatter_function.__name__
-                          ))
+                    print(f'{src_iso} - {targ_iso} formatter: entry formatter for target - {formatter_function.__name__}')
 
         return wrapper
 
@@ -174,10 +164,7 @@ class LexiconOverrides(object):
             for language_iso in language_isos:
                 self.prelookup_processors[language_iso]\
                     .append(restrictor_function)
-                print('%s overrides: lexicon pre-lookup arg rewriter - %s' %\
-                      ( language_iso
-                      , restrictor_function.__name__
-                      ))
+                print(f'{language_iso} overrides: lexicon pre-lookup arg rewriter - {restrictor_function.__name__}')
 
         return wrapper
 
@@ -198,10 +185,7 @@ class LexiconOverrides(object):
             for lexicon in lexica:
                 self.postlookup_filters[lexicon]\
                     .append(restrictor_function)
-                print('%s overrides: lexicon lookup filter - %s' %\
-                      ( lexicon
-                      , restrictor_function.__name__
-                      ))
+                print(f'{lexicon} overrides: lexicon lookup filter - {restrictor_function.__name__}')
 
         return wrapper
 
@@ -222,10 +206,7 @@ class LexiconOverrides(object):
             for shortcut_name, source, target in lexica:
                 self.external_search_redirect[(shortcut_name, source, target)] = \
                     search_function
-                print('%s->%s overrides: lexicon lookup filter - %s' %\
-                      ( source, target
-                      , shortcut_name
-                      ))
+                print(f'{source}->{target} overrides: lexicon lookup filter - {shortcut_name}')
 
         return wrapper
 
@@ -266,14 +247,14 @@ class XMLDict(object):
 
         if not tree:
             if filename not in PARSED_TREES:
-                print("parsing %s" % filename)
+                print(f"parsing {filename}")
                 try:
                     self.tree = etree.parse(filename)
                     PARSED_TREES[filename] = self.tree
                 except Exception as e:
                     print()
                     print(" *** ** ** ** ** ** * ***")
-                    print(" *** ERROR parsing %s" % filename)
+                    print(f" *** ERROR parsing {filename}")
                     print(" *** ** ** ** ** ** * ***")
                     print()
                     print(" Check the compilation process... ")
@@ -289,10 +270,10 @@ class XMLDict(object):
 
         # Initialize XPath queries
 
-        _re_pos_match = """re:match(%(pos)s, $pos, "i")""" % xpaths
+        _re_pos_match = f"""re:match({xpaths['pos']}, $pos, "i")"""
 
         self.lemmaStartsWith = etree.XPath(
-            ".//e[starts-with(%(pos)s, $lemma)]" % xpaths)
+            f".//e[starts-with({xpaths['pos']}, $lemma)]")
 
         self.lemma = etree.XPath('.//e[lg/l/text() = $lemma]')
 
@@ -319,11 +300,11 @@ class XMLDict(object):
     def lookupLemmaPOS(self, lemma, pos):
         # Can't insert variables in EXSLT expressions within a compiled
         # xpath statement, so doing this.
-        pos = "^%s$" % pos
+        pos = f"^{pos}$"
         return self.XPath(self.lemmaPOS, lemma=lemma, pos=pos)
 
     def lookupLemmaPOSAndType(self, lemma, pos, _type):
-        pos = "^%s$" % pos
+        pos = f"^{pos}$"
         return self.XPath(
             self.lemmaPOSAndType, lemma=lemma, pos=pos, _type=_type)
 
@@ -339,8 +320,7 @@ class XMLDict(object):
             return ws
         else:
             if end:
-                _xp = etree.XPath(".//e[position() >= %s and position() < %s]"
-                                  % (start, end))
+                _xp = etree.XPath(f".//e[position() >= {start} and position() < {end}]")
             else:
                 _xp = etree.XPath(".//e")
 
@@ -380,10 +360,10 @@ class XMLDict(object):
     def lookupOtherLemmaAttr(self, **attrs):
         attr_conditions = []
         for k, v in iteritems(attrs):
-            attr_conditions.append("lg/l/@%s = '%s'" % (k, v))
+            attr_conditions.append(f"lg/l/@{k} = '{v}'")
         attr_conditions = ' and '.join(attr_conditions)
 
-        _xpath_expr = ".//e[%s]" % attr_conditions
+        _xpath_expr = f".//e[{attr_conditions}]"
         _xp = etree.XPath(_xpath_expr, namespaces={'re': regexpNS})
         return _xp(self.tree)
 
@@ -392,10 +372,7 @@ class AutocompleteFilters(object):
     def autocomplete_filter_for_lang(self, language_iso):
         def wrapper(filter_function):
             self._filters[language_iso].append(filter_function)
-            print('%s filter: autocomplete entry filter for language - %s' % \
-                  ( language_iso
-                  , filter_function.__name__
-                  ))
+            print(f'{language_iso} filter: autocomplete entry filter for language - {filter_function.__name__}')
 
         return wrapper
 
@@ -481,19 +458,19 @@ class ReverseLookups(XMLDict):
         return {'left': ts_text, 'pos': ts_pos, 'right': right_text}
 
     def lookupLemmaStartsWith(self, lemma):
-        _xpath = './/e[mg/tg/t/starts-with(text(), "%s")]' % lemma
+        _xpath = f'.//e[mg/tg/t/starts-with(text(), "{lemma}")]'
         return self.XPath(_xpath)
 
     def lookupLemma(self, lemma):
-        _xpath = ['.//e[mg/tg/t/text() = "%s"' % lemma, 'not(@reverse)]']
+        _xpath = [f'.//e[mg/tg/t/text() = "{lemma}"', 'not(@reverse)]']
         _xpath = ' and '.join(_xpath)
         nodes = self.XPath(_xpath)
         return self.modifyNodes(nodes)
 
     def lookupLemmaPOS(self, lemma, pos):
         _xpath = ' and '.join([
-            './/e[mg/tg/t/text() = "%s"' % lemma, 'not(@reverse)',
-            'mg/tg/t/@pos = "%s"]' % pos.lower()
+            f'.//e[mg/tg/t/text() = "{lemma}"', 'not(@reverse)',
+            f'mg/tg/t/@pos = "{pos.lower()}"]'
         ])
         return self.XPath(_xpath)
 
@@ -604,7 +581,7 @@ class Lexicon(object):
         _dict = self.language_pairs.get((_from, _to), False)
 
         if not _dict:
-            raise Exception("Undefined language pair %s %s" % (_from, _to))
+            raise Exception(f"Undefined language pair {_from} {_to}")
 
         start = count * page
         end = count * (page + 1)
@@ -624,7 +601,7 @@ class Lexicon(object):
         _dict = self.language_pairs.get((_from, _to), False)
 
         if not _dict:
-            raise Exception("Undefined language pair %s %s" % (_from, _to))
+            raise Exception(f"Undefined language pair {_from} {_to}")
 
         result = _dict.iterate_entries(start, end, words=True)
 
@@ -641,7 +618,7 @@ class Lexicon(object):
         _dict = self.language_pairs.get((_from, _to), False)
 
         if not _dict:
-            raise Exception("Undefined language pair %s %s" % (_from, _to))
+            raise Exception(f"Undefined language pair {_from} {_to}")
 
         result = _dict.iterate_letter_pages()
 
@@ -685,7 +662,7 @@ class Lexicon(object):
         _dict = self.language_pairs.get((_from, _to), False)
 
         if not _dict:
-            raise Exception("Undefined language pair %s %s" % (_from, _to))
+            raise Exception(f"Undefined language pair {_from} {_to}")
 
         # Guard against empty lemmas which may e.g. happen if a bad compounding rule
         # leaves only tags between two compounding signs (usually '#')
@@ -697,8 +674,8 @@ class Lexicon(object):
 
         if not _lookup_func and lemma is not None:
             raise Exception(
-                "Unknown lookup type for <%s> (lemma: %s, pos: %s, pos_type: %s, lemma_attrs: %s)"
-                % (user_input, lemma, pos, pos_type, repr(lemma_attrs)))
+                f"Unknown lookup type for <{user_input}> (lemma: {lemma}, pos: {pos}, pos_type: {pos_type}, lemma_attrs: {repr(lemma_attrs)})"
+                )
 
         if lemma_attrs:
             result = _lookup_func(**lemma_attrs)
@@ -752,15 +729,15 @@ class Lexicon(object):
             search_type, False)
 
         if not _dict:
-            raise Exception("Undefined language pair %s %s" % (_from, _to))
+            raise Exception(f"Undefined language pair {_from} {_to}")
 
         _lookup_func, largs = self.get_lookup_type(_dict, lemma, pos, pos_type,
                                                    lemma_attrs)
 
         if not _lookup_func:
             raise Exception(
-                "Unknown lookup type for <%s> (lemma: %s, pos: %s, pos_type: %s, lemma_attrs: %s)"
-                % (user_input, lemma, pos, pos_type, repr(lemma_attrs)))
+                f"Unknown lookup type for <{user_input}> (lemma: {lemma}, pos: {pos}, pos_type: {pos_type}, lemma_attrs: {repr(lemma_attrs)})"
+            )
 
         if lemma_attrs:
             result = _lookup_func(**lemma_attrs)
