@@ -664,11 +664,6 @@ class Lexicon(object):
         if not _dict:
             raise Exception(f"Undefined language pair {_from} {_to}")
 
-        # Guard against empty lemmas which may e.g. happen if a bad compounding rule
-        # leaves only tags between two compounding signs (usually '#')
-        if lemma == "":
-            return False
-
         _lookup_func, largs = self.get_lookup_type(_dict, lemma, pos, pos_type,
                                                    lemma_attrs)
 
