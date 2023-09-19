@@ -13,25 +13,35 @@
 
 {%- import "lexicon.macros" as macros with context -%}
 {%- set l_ref = lexicon_entry|xpath('mg/l_ref') %}
+{%- set l = lexicon_entry.xpath('lg/l')|first %}
 
 {% if l_ref %}
   {%- set l_ref_first = lexicon_entry|xpath('mg/l_ref')|first %}
   {%- set l_ref_text = l_ref_first|text %}
 {% endif %}
 
+{%- set pos = l.attrib.get('pos', '') -%}
+{%- if pos == 'Phrase'-%}
+        {%- set pos_is_phrase = True -%}
+{%- endif -%}
+
 <div class="row-fluid entry_row">
     <div class="span8 lexeme">
         {% if lexicon_entry|count > 0 %}
             <p>
-                <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
+                {% if pos_is_phrase %}
+                    {{- rendered_templates.entry_text|safe -}}
+                {% else %}
+                    <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
                     {{- rendered_templates.entry_text|safe -}}</a>
+                {% endif %}
                 {% if l_ref_text %}
-                <p class="l_ref"><span class="se_også">{% trans %}see also{% endtrans %} </span><a href="./?lookup={{l_ref_text.split("_")[0]}}">
+                    <p class="l_ref"><span class="se_også">{% trans %}see also{% endtrans %} </span><a href="./?lookup={{l_ref_text.split("_")[0]}}">
                     {{ l_ref_text.split("_")[0]}}</a></p>
                 {% endif %}
-            <ul class="meanings">
-                {{- rendered_templates.definition|safe -}}
-            </ul>
+                <ul class="meanings">
+                    {{- rendered_templates.definition|safe -}}
+                </ul>
         {% else %}&nbsp;{% endif %}
     </div>
     <div class="span4 hidden-phone lexeme_analyses">
