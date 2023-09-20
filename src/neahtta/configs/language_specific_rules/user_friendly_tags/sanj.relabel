@@ -54,6 +54,8 @@ Relabel:
       "Interr": ""
       "Dem": ""
       "Indef": ""
+      "Hom1": ""
+      "Hom2": ""
 
   - source_morphology: 'sjdM'
     target_ui_language: 'rus'
