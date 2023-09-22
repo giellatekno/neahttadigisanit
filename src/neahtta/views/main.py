@@ -61,6 +61,11 @@ def externalFormSearch(_from, _to, _search_type):
         abort(404)
 
     user_input = request.form.get('lookup')
+    if user_input is None:
+        # anders: after using only GET for lookups to prevent
+        # the dreaded 'expired document' after searching, we now
+        # also have to check the query params
+        user_input = request.args.get("lookup")
     pair_config, _ = current_app.config.resolve_original_pair(_from, _to)
 
     return func(pair_config, user_input)

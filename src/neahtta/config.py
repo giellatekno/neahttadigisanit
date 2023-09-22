@@ -30,7 +30,7 @@ DEFAULT_WORD_REGEX_OPTS = 'g'
 
 
 def external_korp_url(pair_details, user_input):
-    try: 
+    try:
         from urllib import quote
     except ImportError:
         from urllib.parse import quote
