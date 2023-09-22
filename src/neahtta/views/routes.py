@@ -105,7 +105,7 @@ blueprint.add_url_rule(
 
 blueprint.add_url_rule(
     '/extern/<_from>/<_to>/<_search_type>/',
-    methods=['POST'],
+    methods=['GET', 'POST'],
     view_func=externalFormSearch,
     endpoint='external_form_search')
 
