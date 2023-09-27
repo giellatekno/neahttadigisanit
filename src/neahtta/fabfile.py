@@ -52,17 +52,16 @@ import socket
 import sys
 
 from pathlib import Path
+import xml.etree.ElementTree as ET
 
 from invocations.console import confirm
 from termcolor import colored
 
 from fabric import task
 from fabric.config import Config
-from invoke import Exit
 
 from configtesters import chk_fst_paths
 from config import yaml
-# Note: underscores in task names are converted to hyphens for commandline invokation, e.g. "fab sanit restart-service"
 
 # Hosts that have an nds- init.d script
 running_service = [
@@ -80,6 +79,104 @@ location_restriction_notice = {
     ]
 }
 
+# anders: when switching over to having giella dictionaries on github
+# github.com/giellalt/dict-xxx-yyy - I want to know which git repos to
+# pull when doing an update
+# This list is from dicts/Makefile
+# see also https://giellalt.github.io/dicts/nds/NeahttadigisanitLanguagePairs.html
+PROJECT_TO_DICTS = {
+    # South Saami (sma)
+    "baakoeh": ["dict-sma-nob", "dict-nob-sma"],
+    # Komi (kpv)
+    "kyv": [
+        "dict-fin-kpv",
+        "dict-udm-kpv",
+        "dict-kpv-udm",
+        "dict-udm-fin",
+        "dict-fin-udm",
+        "dict-udm-hun",
+        "dict-hun-udm",
+        "dict-koi-kpv",
+        "dict-kpv-koi",
+        "dict-kpv-rus",
+        "dict-rus-kpv",
+        "dict-est-udm",
+    ],
+    # Mari (mrj, mrh)
+    "muter": [
+        "dict-fin-mrj",
+        "dict-mhr-eng",
+        "dict-mhr-rus",
+        "dict-mrj-mhr",
+        "dict-mhr-mrj",
+        "dict-mrj-rus",
+    ],
+    # Skolt Saami (sms)
+    "saan": ["dict-fin-sms", "dict-nob-sms", "dict-rus-sms"],
+    # Inari Saami (smn)
+    "saanih": ["dict-smn-fin", "dict-fin-smn", "dict-smn-sme", "dict-sme-smn"],
+    # Baltic Finnic languages (fkv, izh, liv, olo)
+    "sanat": [
+        "dict-nob-fkv",
+        "dict-fkv-nob",
+        "dict-fin-olo",
+        "dict-rus-olo",
+        "dict-olo-rus",
+        "dict-nob-fin",
+        "dict-fin-nob",
+    ],
+    # North Saami (sme)
+    "sanit": [
+        "dict-fin-sme",
+        "dict-nob-sme",
+        "dict-sme-fin",
+        "dict-sme-nob",
+        "dict-sme-sma",
+        "dict-sma-sme",
+        "dict-sme-smj",
+        "dict-smj-sme",
+        "dict-spa-sme",
+        "dict-sme-spa",
+    ],
+    # Kildin Saami (sjd)
+    "sanj": [
+        # TODO, see comment in task update_dicts
+    ],
+    # Votic, Võru, Ingrian (vot, vro, izh)
+    "sonad": [
+        "dict-fin-liv",
+        "dict-fin-izh",
+        "dict-lav-liv",
+        "dict-fin-lav",
+        "dict-lav-fin",
+        "dict-rus-vot",
+        "dict-vot-rus",
+    ],
+    # Nenets (yrk)
+    "vada": ["dict-fin-yrk", "dict-mns-hun"],
+    # Erzya and Moksha (mdf, myv)
+    "valks": [
+        "dict-fin-myv",
+        "dict-fin-mdf",
+        "dict-myv-deu",
+        "dict-deu-myv",
+        "dict-eng-myv",
+        "dict-myv-eng",
+        "dict-eng-mdf",
+        "dict-mdf-eng",
+        "dict-mdf-rus",
+        "dict-rus-myv",
+        "dict-rus-mdf",
+        "dict-mdf-myv",
+        "dict-est-myv",
+        "dict-myv-est",
+    ],
+    # Pite Saami (sje)
+    "bahkogirrje": [
+        # TODO: it's dictionary sje2X
+    ],
+}
+
 config = Config()
 
 config.load_ssh_configs = True
@@ -87,13 +184,46 @@ config.load_ssh_configs = True
 
 config.real_hostname = socket.gethostname()
 
+
+def merge_giella_dicts(folder, out_file):
+    """Read all giella-style *.xml dictionary files in the folder `folder`,
+        Extract all <e> elements from all files, and put them in one giant
+        tree, then write out the tree to the file `out_file`.
+
+    This does the same as (and hence replaces) collect-dict-parts.xsl"""
+    # strict=True raises FileNotFoundError if the resolved path doesn't exist
+    folder = Path(folder).resolve(strict=True)
+    input_files = list(folder.glob("*.xml"))
+    if not input_files:
+        raise FileNotFoundError("no input files found")
+
+    r = ET.Element("r")
+    n_entries = 0
+    for file in input_files:
+        with open(file) as f:
+            text = f.read()
+        tree = ET.fromstring(text)
+        if tree.tag != "r":
+            # root node not <r>, not a giella xml dictionary
+            continue
+        es = list(tree.iter("e"))
+        n_entries += len(es)
+        r.extend(es)
+
+    merged_tree_s = ET.tostring(r, encoding="unicode", xml_declaration=True)
+    with open(out_file, "w") as f:
+        f.write(merged_tree_s)
+
+    return n_entries
+
+
 def available_projects():
     """ Find all existing projects which can be included as an env
     argument. That is, "sanit", "sanat", "baakoeh", etc... """
     conf_suffix = ".config.yaml.in"
 
     return [
-        p.name[0 : -len(conf_suffix)]
+        p.name[0:-len(conf_suffix)]
         for p in Path("configs").glob(f"*{conf_suffix}")
     ]
 
@@ -122,15 +252,13 @@ def __set_proj(ctx):
 
 def config_local(*args, **kwargs):
     """ Run a command using the local environment. """
-    import os
-
     config.host = "localhost"
     config.user = None
 
     config.path_base = os.getcwd()
     config.svn_path = os.environ["GTHOME"]
-
     config.dict_path = os.path.join(config.path_base, 'dicts')
+    config.new_dict_path = os.path.join(os.environ["GUTHOME"], "giellalt")
     config.neahtta_path = config.path_base
     config.i18n_path = os.path.join(config.path_base, 'translations')
 
@@ -139,6 +267,7 @@ def config_local(*args, **kwargs):
     config.make_cmd = "make -C %s -f %s" % (
         config.dict_path, os.path.join(config.dict_path, 'Makefile'))
     config.remote_no_fst = False
+
 
 config_local()
 
@@ -153,6 +282,12 @@ def gtdict(ctx):
 
     config.svn_path = config.path_base + '/gtsvn'
     config.dict_path = config.path_base + '/neahtta/dicts'
+    try:
+        config.new_dict_path = os.environ["GUTHOME"] + "/giellalt/"
+    except KeyError:
+        config.new_dict_path = None
+        print("WARN: GUTHOME environment variable not set, cannot yet use"
+              "git dictionaries")
     config.neahtta_path = config.path_base + '/neahtta'
     config.i18n_path = config.path_base + '/neahtta/translations'
 
@@ -239,7 +374,6 @@ def compile_dictionary(ctx):
         $ fab compile-dictionary [-d DICT]
     """
 
-    failed = False
     dictionary = config.project
 
     update_gtsvn(ctx)
@@ -249,6 +383,73 @@ def compile_dictionary(ctx):
 
         if result.failed:
             print(colored(f"** Something went wrong while compiling <{dictionary}> **"), "red")
+
+
+def gut_pull_dicts(ctx):
+    import shutil
+    if shutil.which("gut") is None:
+        print(colored("** Notice: `gut` command not installed, using git directly instead", "yellow"))
+        return False
+
+    dicts = "|".join(PROJECT_TO_DICTS[config.project])
+    cmd = f"gut pull --organisation giellalt --regex \"{dicts}\""
+    with open(os.devnull, "w") as devnull:
+        # The streams are still captured, but we say devnull here because
+        # we don't want them printed to the process' streams
+        result = ctx.run(cmd, err_stream=devnull, out_stream=devnull)
+
+    # TODO read out the result to see the status of each individual
+    # dictionary. We don't need to build the dictionaries when there have
+    # been no updates.
+    # print(result.stdout)
+
+    return True
+
+
+@task
+def update_dicts(ctx):
+    """Update all dictionaries (git pull <all dictionaries>), then create
+    the merged dictionary files, and finally restart the service."""
+    # git pull on all dict-xxx-yyy that's in this project
+    print(colored("** Updating dictionaries...", "green"))
+
+    # COMMENT FROM THE MAKEFILE (see dicts/Makefile line 402 - ~430)
+    # Custom compile script because the xml files are in
+    # lang-sjd-x-private/misc, which is not the case in any other dicts.
+    # Remember to extract xml files from source xlsx files using the scripts
+    # in lang-sjd-x-private/src/scripts
+    if config.project == "sanj":
+        raise NotImplementedError("custom script needed to compile sanj")
+    if config.project == "bahkogirrje":
+        raise NotImplementedError("dictionary sje2X - must be handled")
+
+    did_gut_pull = gut_pull_dicts(ctx)
+
+    for dictionary in PROJECT_TO_DICTS[config.project]:
+        dict_name = dictionary[5:]
+        dictionary_path = Path(config.new_dict_path) / dictionary / "src"
+        with ctx.cd(dictionary_path):
+            if not did_gut_pull:
+                ctx.run("git pull")
+
+            out_file = Path(config.dict_path) / f"{dict_name}.all.xml"
+            print(f"** Merge dictionary {colored(dict_name, 'cyan')} > dicts/"
+                  f"{out_file.name}... ",
+                  end="")
+            try:
+                n_entries = merge_giella_dicts(dictionary_path, out_file)
+            except FileNotFoundError as e:
+                print(colored(f"failed ({e})", "red"))
+            else:
+                print(colored("done", "green"), f"({n_entries} entries total)")
+
+    if config.real_hostname in running_service:
+        print("Restarting service...", end="")
+        ok = ctx.run(f"sudo systemctl restart nds-{config.project}")
+        if ok:
+            print(colored("Done", "green"))
+        else:
+            print(colored("Failed", "red"))
 
 
 @task
@@ -262,7 +463,6 @@ def compile(ctx):
         compiled or installed.
     """
 
-    hup = False
     failed = False
     dictionary = config.project
 
@@ -304,7 +504,6 @@ def compile(ctx):
             if confirm('Do you want to continue?'):
                 compile(ctx, dictionary, restart)
             failed = True
-                
 
         if not skip_fst:
             print((colored("** Installing FSTs for <%s> **" % dictionary, "cyan")))
@@ -329,8 +528,6 @@ def compile_fst(ctx, iso='x'):
 
         $ fab compile_dictionary [-i ISO]
     """
-    dictionary = config.project
-
     # TODO: need a make path to clean existing dictionary
     with ctx.cd(config.dict_path):
         print((colored(f"** Compiling FST for <{iso}> **", "cyan")))
@@ -343,6 +540,7 @@ def compile_fst(ctx, iso='x'):
             print(colored(f"** Something went wrong while compiling <{iso}> **", "red"))
         else:
             print(colored(f"** FST <{iso}> compiled **", "cyan"))
+
 
 @task
 def test_configuration(ctx):
@@ -563,7 +761,8 @@ def restart_running(ctx):
             print((s, pid))
 
 
-def run_development_server(ctx):
+@task(aliases=["dev"])
+def runserver(ctx):
     """ Run the development server."""
     config_path = Path(f"configs/{config.project}.config.yaml")
 
@@ -579,10 +778,6 @@ def run_development_server(ctx):
     if run_cmd.failed:
         print((colored("** Starting failed for some reason.", "red")))
 
-
-@task(aliases=["dev"])
-def runserver(ctx):
-    run_development_server(ctx)
 
 @task
 def doctest(ctx):
@@ -657,47 +852,70 @@ def test_running(ctx):
 
 
 @task
-def add_stem2dict(ctx):
-    """ Runs the script add_stemtype2xml.py to add stem type in sme-nob dict. 
-        
+def add_stem2dict(ctx, use_git_dict=False):
+    """ Runs the script add_stemtype2xml.py to add stem type in sme-nob dict.
+
         This function makes a backup of sme-nob dict.
         Runs the script add_stemtype2xml.py to add stem type in sme-nob dict.
         Overwrite the current xml with the new one with stem type.
 
-        To make sure changes are made on the latest version of the dictionary, you have to run first
-        fab sanit compile
+        To make sure changes are made on the latest version of the dictionary,
+        you have to run first fab sanit compile
     """
-    cmd = 'cp dicts/sme-nob.all.xml dicts/sme-nob.all.xml.bak-before-stem'
-    cp_cmd = ctx.run(cmd)
+    # anders: we probably don't need to back it up (it takes 5 seconds to
+    # regenerate it)
+    # print(colored("** Backing up xml", "cyan"), end="")
+    # cp_cmd = ctx.run("cp dicts/sme-nob.all.xml dicts/sme-nob.all.xml.bak-before-stem")
+    # if cp_cmd.failed:
+    #     print(colored("failed, aborting.", "red"))
+    #     return
+    # else:
+    #     print(colored("done", "green"))
 
-    if cp_cmd.failed:
-        print((colored("** Backup xml failed, aborting.", "red")))
-        return
+    # TODO after the switch to git, remove the old
+    if use_git_dict:
+        add_stemtype2xml_path = "$GUTHOME/giellalt/giella-core/dicts/add_stemtype2xml.py"
     else:
-        print((colored("** Backing up xml" , "cyan")))
+        add_stemtype2xml_path = "$GTHOME/words/dicts/scripts/add_stemtype2xml.py"
 
-    lexc_list = ['nouns', 'adjectives', 'verbs', 'prop']
-
-    for lexc in lexc_list:
-        if not lexc == 'prop':
-            lexc_cmd = 'python $GTHOME/words/dicts/scripts/add_stemtype2xml.py ' + lexc + ' $GTHOME/words/dicts/smenob/scripts/' + lexc + '_stemtypes.txt dicts/sme-nob.all.xml $GTLANGS/lang-sme/src/fst/stems/' + lexc + '.lexc'
+    def stemtypes_txt(lexc):
+        # TODO after the switch to git, remove the old
+        if use_git_dict:
+            return f"$GUTHOME/giellalt/dict-sme-nob/scripts/{lexc}_stemtypes.txt"
         else:
-            lexc_cmd = 'python $GTHOME/words/dicts/scripts/add_stemtype2xml.py prop $GTHOME/words/dicts/smenob/scripts/' + lexc + '_stemtypes.txt dicts/sme-nob.all.xml $GTLANGS/lang-sme/src/fst/stems/sme-propernouns.lexc $GTLANGS/giella-shared/smi/src/fst/stems/smi-propernouns.lexc'
+            return f"$GTHOME/words/dicts/smenob/scripts/{lexc}_stemtypes.txt"
 
+    for lexc in "nouns", "adjectives", "verbs", "prop":
+        cmd = f"python {add_stemtype2xml_path} {lexc} {stemtypes_txt(lexc)} "
+        if lexc != 'prop':
+            cmd += (
+                f"dicts/sme-nob.all.xml "
+                f"$GTLANGS/lang-sme/src/fst/stems/{lexc}.lexc"
+            )
+        else:
+            cmd += (
+                f"$GTHOME/words/dicts/smenob/scripts/{lexc}_stemtypes.txt "
+                "dicts/sme-nob.all.xml "
+                "$GTLANGS/lang-sme/src/fst/stems/sme-propernouns.lexc "
+                "$GTLANGS/giella-shared/smi/src/fst/stems/smi-propernouns.lexc"
+            )
 
-        add_cmd = ctx.run(lexc_cmd)
+        add_cmd = ctx.run(cmd)
 
         if add_cmd.failed:
-            print((colored("** Add stem type for %s to xml failed, aborting." %lexc, "red")))
+            print(colored(f"** Adding stem type for {lexc} to xml failed, aborting", "red"))
             return
         else:
-            print((colored("** Successfully added stem type for %s to xml"  %lexc, "green")))
+            print(colored(f"** Added stem type for {lexc} to xml", "green"))
 
-        cmd = 'cp dicts/sme-nob.all.xml.stem.xml dicts/sme-nob.all.xml'
-        overwrite_cmd = ctx.run(cmd)
+        ctx.run("cp dicts/sme-nob.all.xml.stem.xml dicts/sme-nob.all.xml")
 
-        if overwrite_cmd.failed:
-            print((colored("** Overwrite xml failed, aborting.", "red")))
-            return
-        else:
-            print((colored("** Overwriting xml" , "cyan")))
+        # anders: overwriting the file shouldn't really fail
+        # cmd = "cp dicts/sme-nob.all.xml.stem.xml dicts/sme-nob.all.xml"
+        # overwrite_cmd = ctx.run(cmd)
+        #
+        # if overwrite_cmd.failed:
+        #     print(colored("** Overwrite xml failed, aborting.", "red"))
+        #     return
+        # else:
+        #     print(colored("** Overwriting xml", "cyan"))
