@@ -373,16 +373,36 @@ def pull_git_dictionaries(ctx, project):
     updates."""
     print("** Checking for dictionary updates... ", end="", flush=True)
     import shutil
+    import json
     gut = shutil.which("gut")
     dictionaries = PROJECT_TO_DICTS[project]
+    updated_dicts = []
+    use_updated_dicts = False
+
     if gut is not None:
+        use_updated_dicts = True
         dicts_regex = "|".join(dictionaries)
-        cmd = f"gut pull --organisation giellalt --regex \"{dicts_regex}\""
+        # cmd = f"gut pull --organisation giellalt --regex \"{dicts_regex}\""
+
+        # TODO just for testing against my implementation of gut --format=json
+        cmd = (f"/home/anders/projects/gut/target/release/gut --format=json "
+               f"pull --organisation giellalt --regex \"{dicts_regex}\"")
 
         with open(os.devnull, "w") as devnull:
             # The streams are still captured, but we say devnull here because
             # we don't want them printed to the process' streams
-            ctx.run(cmd, err_stream=devnull, out_stream=devnull)
+            result = ctx.run(cmd, err_stream=devnull, out_stream=devnull)
+            for repo in json.loads(result.stdout):
+                status = repo["status"]
+
+                # I am not sure that this is sufficient to determine that
+                # the repo was updated - and is in a state that I can use
+                # (.. though there shouldn't be any potential for conflicts,
+                # as the checkout of the dictionary repository on the server
+                # shouldn't be used as a working repository)
+                was_updated = status == "FastForward"
+                if was_updated:
+                    updated_dicts.append(repo["repo"])
     else:
         for dictionary in dictionaries:
             path = Path(config.new_dict_path) / dictionary / "src"
@@ -392,7 +412,7 @@ def pull_git_dictionaries(ctx, project):
     # TODO read the output of git/gut to determine which dictionaries
     # actually had updates, and return only those
     print(colored("done", "green"))
-    return dictionaries
+    return updated_dicts if use_updated_dicts else dictionaries
 
 
 @task
@@ -411,6 +431,12 @@ def update_dicts(ctx, no_git=True):
 
     # git pull on all dict-xxx-yyy that's in this project
     updated_dicts = pull_git_dictionaries(ctx, config.project)
+
+    # TODO actually, even if the dictionary is not updated, it could have been
+    # recently cloned, because it's a new language. If so, the built (merged)
+    # dictionary has not been built yet, and we should also check that.
+    if not updated_dicts:
+        print(colored("** All up to date (nothing to do)", "green"))
 
     for dictionary in updated_dicts:
         name = dictionary[5:]
