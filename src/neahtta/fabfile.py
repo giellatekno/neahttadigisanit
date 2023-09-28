@@ -52,7 +52,6 @@ import socket
 import sys
 
 from pathlib import Path
-import xml.etree.ElementTree as ET
 
 from invocations.console import confirm
 from termcolor import colored
@@ -62,6 +61,21 @@ from fabric.config import Config
 
 from configtesters import chk_fst_paths
 from config import yaml
+
+try:
+    # if GUTHOME (the gut directory) environment variable is set...
+    GUTHOME = os.environ["GUTHOME"]
+    script_directory = os.path.join(GUTHOME, "giellalt", "giella-core", "dicts")
+    # ...and the scripts directory have been moved to git ...
+    if not os.path.isdir(script_directory):
+        raise KeyError
+except KeyError:
+    # assuming that GTHOME is set
+    GTHOME = os.environ["GTHOME"]
+    script_directory = os.path.join(GTHOME, "words", "dicts", "scripts")
+finally:
+    sys.path.append(script_directory)
+    from merge_giella_dicts import merge_giella_dicts
 
 # Hosts that have an nds- init.d script
 running_service = [
@@ -183,38 +197,6 @@ config.load_ssh_configs = True
 # config.connect_kwargs.key_filename = '~/.ssh/neahtta'
 
 config.real_hostname = socket.gethostname()
-
-
-def merge_giella_dicts(folder, out_file):
-    """Read all giella-style *.xml dictionary files in the folder `folder`,
-        Extract all <e> elements from all files, and put them in one giant
-        tree, then write out the tree to the file `out_file`.
-
-    This does the same as (and hence replaces) collect-dict-parts.xsl"""
-    # strict=True raises FileNotFoundError if the resolved path doesn't exist
-    folder = Path(folder).resolve(strict=True)
-    input_files = list(folder.glob("*.xml"))
-    if not input_files:
-        raise FileNotFoundError("no input files found")
-
-    r = ET.Element("r")
-    n_entries = 0
-    for file in input_files:
-        with open(file) as f:
-            text = f.read()
-        tree = ET.fromstring(text)
-        if tree.tag != "r":
-            # root node not <r>, not a giella xml dictionary
-            continue
-        es = list(tree.iter("e"))
-        n_entries += len(es)
-        r.extend(es)
-
-    merged_tree_s = ET.tostring(r, encoding="unicode", xml_declaration=True)
-    with open(out_file, "w") as f:
-        f.write(merged_tree_s)
-
-    return n_entries
 
 
 def available_projects():
@@ -385,34 +367,38 @@ def compile_dictionary(ctx):
             print(colored(f"** Something went wrong while compiling <{dictionary}> **"), "red")
 
 
-def gut_pull_dicts(ctx):
+def pull_git_dictionaries(ctx, project):
+    """Use gut if available (and git if not) to pull all
+    giellalt/dict-xxx-yyy dictionaries, and return a list of which ones had
+    updates."""
+    print("** Checking for dictionary updates... ", end="", flush=True)
     import shutil
-    if shutil.which("gut") is None:
-        print(colored("** Notice: `gut` command not installed, using git directly instead", "yellow"))
-        return False
+    gut = shutil.which("gut")
+    dictionaries = PROJECT_TO_DICTS[project]
+    if gut is not None:
+        dicts_regex = "|".join(dictionaries)
+        cmd = f"gut pull --organisation giellalt --regex \"{dicts_regex}\""
 
-    dicts = "|".join(PROJECT_TO_DICTS[config.project])
-    cmd = f"gut pull --organisation giellalt --regex \"{dicts}\""
-    with open(os.devnull, "w") as devnull:
-        # The streams are still captured, but we say devnull here because
-        # we don't want them printed to the process' streams
-        result = ctx.run(cmd, err_stream=devnull, out_stream=devnull)
+        with open(os.devnull, "w") as devnull:
+            # The streams are still captured, but we say devnull here because
+            # we don't want them printed to the process' streams
+            ctx.run(cmd, err_stream=devnull, out_stream=devnull)
+    else:
+        for dictionary in dictionaries:
+            path = Path(config.new_dict_path) / dictionary / "src"
+            with ctx.cd(path):
+                ctx.run("git pull")
 
-    # TODO read out the result to see the status of each individual
-    # dictionary. We don't need to build the dictionaries when there have
-    # been no updates.
-    # print(result.stdout)
-
-    return True
+    # TODO read the output of git/gut to determine which dictionaries
+    # actually had updates, and return only those
+    print(colored("done", "green"))
+    return dictionaries
 
 
 @task
-def update_dicts(ctx):
+def update_dicts(ctx, no_git=True):
     """Update all dictionaries (git pull <all dictionaries>), then create
     the merged dictionary files, and finally restart the service."""
-    # git pull on all dict-xxx-yyy that's in this project
-    print(colored("** Updating dictionaries...", "green"))
-
     # COMMENT FROM THE MAKEFILE (see dicts/Makefile line 402 - ~430)
     # Custom compile script because the xml files are in
     # lang-sjd-x-private/misc, which is not the case in any other dicts.
@@ -423,33 +409,30 @@ def update_dicts(ctx):
     if config.project == "bahkogirrje":
         raise NotImplementedError("dictionary sje2X - must be handled")
 
-    did_gut_pull = gut_pull_dicts(ctx)
+    # git pull on all dict-xxx-yyy that's in this project
+    updated_dicts = pull_git_dictionaries(ctx, config.project)
 
-    for dictionary in PROJECT_TO_DICTS[config.project]:
-        dict_name = dictionary[5:]
-        dictionary_path = Path(config.new_dict_path) / dictionary / "src"
-        with ctx.cd(dictionary_path):
-            if not did_gut_pull:
-                ctx.run("git pull")
-
-            out_file = Path(config.dict_path) / f"{dict_name}.all.xml"
-            print(f"** Merge dictionary {colored(dict_name, 'cyan')} > dicts/"
-                  f"{out_file.name}... ",
-                  end="")
-            try:
-                n_entries = merge_giella_dicts(dictionary_path, out_file)
-            except FileNotFoundError as e:
-                print(colored(f"failed ({e})", "red"))
-            else:
-                print(colored("done", "green"), f"({n_entries} entries total)")
+    for dictionary in updated_dicts:
+        name = dictionary[5:]
+        path = Path(config.new_dict_path) / dictionary / "src"
+        out_file = Path(config.dict_path) / f"{name}.all.xml"
+        print(f"** Merge dictionary {colored(name, 'cyan')} > dicts/"
+              f"{out_file.name}... ",
+              end="", flush=True)
+        try:
+            n_entries = merge_giella_dicts(path, out_file)
+        except (FileNotFoundError, NotADirectoryError) as e:
+            print(colored(f"failed ({e})", "red"))
+        else:
+            print(colored("done", "green"), f"({n_entries} entries total)")
 
     if config.real_hostname in running_service:
         print("Restarting service...", end="")
         ok = ctx.run(f"sudo systemctl restart nds-{config.project}")
         if ok:
-            print(colored("Done", "green"))
+            print(colored("done", "green"))
         else:
-            print(colored("Failed", "red"))
+            print(colored("failed", "red"))
 
 
 @task
