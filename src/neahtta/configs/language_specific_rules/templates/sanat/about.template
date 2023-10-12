@@ -88,7 +88,15 @@
                 and tell us what web browser or mobile phone you were using, or what word you
                 were searching for when you encountered the problem.{% endtrans %}</p>
 
-                <div class="visible-phone">
+                <p>{% trans %}Contact us{% endtrans %}:<br>
+                Aili Eriksen (<a href="mailto:aili.eriksen@kvenskinstitutt.no">aili.eriksen@kvenskinstitutt.no</a>)
+                <br>
+                Thomas Kjærstad (<a href="mailto:thomaskjaerstad@gmail.com">thomaskjaerstad@gmail.com</a>)
+                <br>
+                Tobias Kvalness (<a href="mailto:tobiaskvalness@gmail.com">tobiaskvalness@gmail.com</a>)
+                </p>
+
+                <!--<div class="visible-phone">
                     <a class="btn btn-large btn-block" type="button" href="mailto:post@kvenskinstitutt.no" >{% trans %}Contact us{% endtrans %}</a>
                     <br />
                 </div>
@@ -98,6 +106,7 @@
                     <br />
                     <br />
                 </div>
+                -->
 
                 <p>{% trans %}Need more dictionaries? <a href="http://dicts.uit.no/">Here's our full list</a>, and more
                 resources.{% endtrans %}</p>
