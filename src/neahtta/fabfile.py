@@ -240,7 +240,10 @@ def config_local(*args, **kwargs):
     config.path_base = os.getcwd()
     config.svn_path = os.environ["GTHOME"]
     config.dict_path = os.path.join(config.path_base, 'dicts')
-    config.new_dict_path = os.path.join(os.environ["GUTHOME"], "giellalt")
+    try:
+        config.new_dict_path = os.path.join(os.environ["GUTHOME"], "giellalt")
+    except KeyError:
+        config.new_dict_path = None
     config.neahtta_path = config.path_base
     config.i18n_path = os.path.join(config.path_base, 'translations')
 
