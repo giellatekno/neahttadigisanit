@@ -52,6 +52,7 @@ import socket
 import sys
 
 from pathlib import Path
+import shutil
 
 from invocations.console import confirm
 from termcolor import colored
@@ -62,20 +63,47 @@ from fabric.config import Config
 from configtesters import chk_fst_paths
 from config import yaml
 
-try:
-    # if GUTHOME (the gut directory) environment variable is set...
-    GUTHOME = os.environ["GUTHOME"]
-    script_directory = os.path.join(GUTHOME, "giellalt", "giella-core", "dicts")
-    # ...and the scripts directory have been moved to git ...
-    if not os.path.isdir(script_directory):
-        raise KeyError
-except KeyError:
-    # assuming that GTHOME is set
-    GTHOME = os.environ["GTHOME"]
-    script_directory = os.path.join(GTHOME, "words", "dicts", "scripts")
-finally:
-    sys.path.append(script_directory)
-    from merge_giella_dicts import merge_giella_dicts
+
+def require_gut():
+    # anders: the version of gut I have installed globally has not yet been
+    # updated to support --format=json, so to run it locally, I need to be
+    # able to give fab the path to my gut binary
+    if custom_gut_binary := os.environ.get("GUT_BINARY"):
+        gut_path = Path(custom_gut_binary).resolve()
+        if not gut_path.exists():
+            print("custom gut path given in environment variable GUT_BINARY "
+                  "points to a file that does not exist", file=sys.stderr)
+            exit(1)
+    else:
+        gut_path = shutil.which("gut")
+        if gut_path is None:
+            print("`gut` is not installed on this system, aborting.", file=sys.stderr)
+            sys.exit(1)
+
+    gut_app_toml_path = Path.home() / ".config" / "gut" / "app.toml"
+    gut_app_toml_path = gut_app_toml_path.resolve()
+    gutroot = None
+    try:
+        with open(gut_app_toml_path) as gut_app_toml:
+            for line in gut_app_toml:
+                if line.startswith("root"):
+                    _, gutroot = line.split("=")
+                    gutroot = Path(gutroot.strip()[1:-1]).resolve()
+                    break
+        if gutroot is None:
+            print("cannot parse app.toml gut config file, try to reinitialize gut", file=sys.stderr)
+    except FileNotFoundError:
+        print("gut is not initialized on this system, aborting.", file=sys.stderr)
+        sys.exit(1)
+
+    return gutroot, gut_path
+
+
+GUTROOT, GUT_BINARY = require_gut()
+
+script_directory = GUTROOT / "giellalt" / "giella-core" / "dicts" / "scripts"
+sys.path.append(str(script_directory))
+from merge_giella_dicts import merge_giella_dicts
 
 # Hosts that have an nds- init.d script
 running_service = [
@@ -375,42 +403,40 @@ def pull_git_dictionaries(ctx, project):
     giellalt/dict-xxx-yyy dictionaries, and return a list of which ones had
     updates."""
     print("** Checking for dictionary updates... ", end="", flush=True)
-    import shutil
     import json
-    gut = shutil.which("gut")
     dictionaries = PROJECT_TO_DICTS[project]
     updated_dicts = []
     use_updated_dicts = False
 
-    if gut is not None:
-        use_updated_dicts = True
-        dicts_regex = "|".join(dictionaries)
-        # cmd = f"gut pull --organisation giellalt --regex \"{dicts_regex}\""
+    use_updated_dicts = True
+    dicts_regex = "|".join(dictionaries)
 
-        # TODO just for testing against my implementation of gut --format=json
-        cmd = (f"/home/anders/projects/gut/target/release/gut --format=json "
-               f"pull --organisation giellalt --regex \"{dicts_regex}\"")
+    cmd = (f"{GUT_BINARY} --format=json pull --organisation giellalt --regex "
+           f"\"{dicts_regex}\"")
+    print(cmd)
+    print(type(ctx))
 
-        with open(os.devnull, "w") as devnull:
-            # The streams are still captured, but we say devnull here because
-            # we don't want them printed to the process' streams
+    import invoke
+    with open(os.devnull, "w") as devnull:
+        # The streams are still captured, but we say devnull here because
+        # we don't want them printed to the process' streams
+        try:
             result = ctx.run(cmd, err_stream=devnull, out_stream=devnull)
-            for repo in json.loads(result.stdout):
-                status = repo["status"]
+        except invoke.exceptions.UnexpectedExit as e:
+            print(f"fatal error: error running command: {cmd}\nRaw error: {e}", file=sys.stderr)
+            exit(2)
 
-                # I am not sure that this is sufficient to determine that
-                # the repo was updated - and is in a state that I can use
-                # (.. though there shouldn't be any potential for conflicts,
-                # as the checkout of the dictionary repository on the server
-                # shouldn't be used as a working repository)
-                was_updated = status == "FastForward"
-                if was_updated:
-                    updated_dicts.append(repo["repo"])
-    else:
-        for dictionary in dictionaries:
-            path = Path(config.new_dict_path) / dictionary / "src"
-            with ctx.cd(path):
-                ctx.run("git pull")
+        for repo in json.loads(result.stdout):
+            status = repo["status"]
+
+            # I am not sure that this is sufficient to determine that
+            # the repo was updated - and is in a state that I can use
+            # (.. though there shouldn't be any potential for conflicts,
+            # as the checkout of the dictionary repository on the server
+            # shouldn't be used as a working repository)
+            was_updated = status == "FastForward"
+            if was_updated:
+                updated_dicts.append(repo["repo"])
 
     # TODO read the output of git/gut to determine which dictionaries
     # actually had updates, and return only those
