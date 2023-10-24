@@ -413,8 +413,6 @@ def pull_git_dictionaries(ctx, project):
 
     cmd = (f"{GUT_BINARY} --format=json pull --organisation giellalt --regex "
            f"\"{dicts_regex}\"")
-    print(cmd)
-    print(type(ctx))
 
     import invoke
     with open(os.devnull, "w") as devnull:
