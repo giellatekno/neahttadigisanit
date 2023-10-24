@@ -22,9 +22,8 @@ ApplicationSettings:
   meta_keywords: >
      kven, olonets, olonetsian, karelian, russian
   admins_to_email:
-    - "rueter.jack@gmail.com"
+    - "anders.lorentsen@uit.no"
     - "trond.trosterud@uit.no"
-    - "tty001@uit.no"
 
 Tools:
   xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
@@ -153,6 +152,10 @@ Dictionaries:
     link_corpus_parameter: "nob2fkv_admin_20210319-nob,nob2fkv_bible_20210319-nob,nob2fkv_facta_20210319-nob,nob2fkv_ficti_20210319-nob,nob2fkv_news_20210319-nob"
     corpora: 'NOB2FKV_ADMIN_20210319-NOB,NOB2FKV_BIBLE_20210319-NOB,NOB2FKV_FACTA_20210319-NOB,NOB2FKV_FICTI_20210319-NOB,NOB2FKV_NEWS_20210319-NOB'
     start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+
+  - source: fit
+    target: swe
+    path: "dicts/fit-swe.xml"
 
   # vep
   - source: vep

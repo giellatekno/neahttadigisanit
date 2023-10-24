@@ -126,98 +126,103 @@ location_restriction_notice = {
 # pull when doing an update
 # This list is from dicts/Makefile
 # see also https://giellalt.github.io/dicts/nds/NeahttadigisanitLanguagePairs.html
-PROJECT_TO_DICTS = {
-    # South Saami (sma)
-    "baakoeh": ["dict-sma-nob", "dict-nob-sma"],
-    # Komi (kpv)
-    "kyv": [
-        "dict-fin-kpv",
-        "dict-udm-kpv",
-        "dict-kpv-udm",
-        "dict-udm-fin",
-        "dict-fin-udm",
-        "dict-udm-hun",
-        "dict-hun-udm",
-        "dict-koi-kpv",
-        "dict-kpv-koi",
-        "dict-kpv-rus",
-        "dict-rus-kpv",
-        "dict-est-udm",
-    ],
-    # Mari (mrj, mrh)
-    "muter": [
-        "dict-fin-mrj",
-        "dict-mhr-eng",
-        "dict-mhr-rus",
-        "dict-mrj-mhr",
-        "dict-mhr-mrj",
-        "dict-mrj-rus",
-    ],
-    # Skolt Saami (sms)
-    "saan": ["dict-fin-sms", "dict-nob-sms", "dict-rus-sms"],
-    # Inari Saami (smn)
-    "saanih": ["dict-smn-fin", "dict-fin-smn", "dict-smn-sme", "dict-sme-smn"],
-    # Baltic Finnic languages (fkv, izh, liv, olo)
-    "sanat": [
-        "dict-nob-fkv",
-        "dict-fkv-nob",
-        "dict-fin-olo",
-        "dict-rus-olo",
-        "dict-olo-rus",
-        "dict-nob-fin",
-        "dict-fin-nob",
-    ],
-    # North Saami (sme)
-    "sanit": [
-        "dict-fin-sme",
-        "dict-nob-sme",
-        "dict-sme-fin",
-        "dict-sme-nob",
-        "dict-sme-sma",
-        "dict-sma-sme",
-        "dict-sme-smj",
-        "dict-smj-sme",
-        "dict-spa-sme",
-        "dict-sme-spa",
-    ],
-    # Kildin Saami (sjd)
-    "sanj": [
-        # TODO, see comment in task update_dicts
-    ],
-    # Votic, Võru, Ingrian (vot, vro, izh)
-    "sonad": [
-        "dict-fin-liv",
-        "dict-fin-izh",
-        "dict-lav-liv",
-        "dict-fin-lav",
-        "dict-lav-fin",
-        "dict-rus-vot",
-        "dict-vot-rus",
-    ],
-    # Nenets (yrk)
-    "vada": ["dict-fin-yrk", "dict-mns-hun"],
-    # Erzya and Moksha (mdf, myv)
-    "valks": [
-        "dict-fin-myv",
-        "dict-fin-mdf",
-        "dict-myv-deu",
-        "dict-deu-myv",
-        "dict-eng-myv",
-        "dict-myv-eng",
-        "dict-eng-mdf",
-        "dict-mdf-eng",
-        "dict-mdf-rus",
-        "dict-rus-myv",
-        "dict-rus-mdf",
-        "dict-mdf-myv",
-        "dict-est-myv",
-        "dict-myv-est",
-    ],
-    # Pite Saami (sje)
-    "bahkogirrje": [
-        # TODO: it's dictionary sje2X
-    ],
-}
+# ---
+# anders #2: This information is basically also stored in each project's
+# yaml config. No need to duplicate it here. A single source of truth is better.
+# ---
+# PROJECT_TO_DICTS = {
+#     # South Saami (sma)
+#     "baakoeh": ["dict-sma-nob", "dict-nob-sma"],
+#     # Komi (kpv)
+#     "kyv": [
+#         "dict-fin-kpv",
+#         "dict-udm-kpv",
+#         "dict-kpv-udm",
+#         "dict-udm-fin",
+#         "dict-fin-udm",
+#         "dict-udm-hun",
+#         "dict-hun-udm",
+#         "dict-koi-kpv",
+#         "dict-kpv-koi",
+#         "dict-kpv-rus",
+#         "dict-rus-kpv",
+#         "dict-est-udm",
+#     ],
+#     # Mari (mrj, mrh)
+#     "muter": [
+#         "dict-fin-mrj",
+#         "dict-mhr-eng",
+#         "dict-mhr-rus",
+#         "dict-mrj-mhr",
+#         "dict-mhr-mrj",
+#         "dict-mrj-rus",
+#     ],
+#     # Skolt Saami (sms)
+#     "saan": ["dict-fin-sms", "dict-nob-sms", "dict-rus-sms"],
+#     # Inari Saami (smn)
+#     "saanih": ["dict-smn-fin", "dict-fin-smn", "dict-smn-sme", "dict-sme-smn"],
+#     # Baltic Finnic languages (fkv, izh, liv, olo)
+#     "sanat": [
+#         "dict-nob-fkv",
+#         "dict-fkv-nob",
+#         "dict-fin-olo",
+#         "dict-rus-olo",
+#         "dict-olo-rus",
+#         "dict-nob-fin",
+#         "dict-fin-nob",
+#         "dict-fit-swe",
+#     ],
+#     # North Saami (sme)
+#     "sanit": [
+#         "dict-fin-sme",
+#         "dict-nob-sme",
+#         "dict-sme-fin",
+#         "dict-sme-nob",
+#         "dict-sme-sma",
+#         "dict-sma-sme",
+#         "dict-sme-smj",
+#         "dict-smj-sme",
+#         "dict-spa-sme",
+#         "dict-sme-spa",
+#     ],
+#     # Kildin Saami (sjd)
+#     "sanj": [
+#         # TODO, see comment in task update_dicts
+#     ],
+#     # Votic, Võru, Ingrian (vot, vro, izh)
+#     "sonad": [
+#         "dict-fin-liv",
+#         "dict-fin-izh",
+#         "dict-lav-liv",
+#         "dict-fin-lav",
+#         "dict-lav-fin",
+#         "dict-rus-vot",
+#         "dict-vot-rus",
+#     ],
+#     # Nenets (yrk)
+#     "vada": ["dict-fin-yrk", "dict-mns-hun"],
+#     # Erzya and Moksha (mdf, myv)
+#     "valks": [
+#         "dict-fin-myv",
+#         "dict-fin-mdf",
+#         "dict-myv-deu",
+#         "dict-deu-myv",
+#         "dict-eng-myv",
+#         "dict-myv-eng",
+#         "dict-eng-mdf",
+#         "dict-mdf-eng",
+#         "dict-mdf-rus",
+#         "dict-rus-myv",
+#         "dict-rus-mdf",
+#         "dict-mdf-myv",
+#         "dict-est-myv",
+#         "dict-myv-est",
+#     ],
+#     # Pite Saami (sje)
+#     "bahkogirrje": [
+#         # TODO: it's dictionary sje2X
+#     ],
+# }
 
 config = Config()
 
@@ -373,13 +378,12 @@ def restart_service(ctx):
         print(colored("failed", "red"))
 
 
-def pull_git_dictionaries(ctx, project):
+def pull_git_dictionaries(ctx, dictionaries):
     """Use gut if available (and git if not) to pull all
     giellalt/dict-xxx-yyy dictionaries, and return a list of which ones had
     updates."""
     print("** Checking for dictionary updates... ", end="", flush=True)
     import json
-    dictionaries = PROJECT_TO_DICTS[project]
     updated_dicts = []
     use_updated_dicts = False
 
@@ -391,13 +395,13 @@ def pull_git_dictionaries(ctx, project):
 
     import invoke
     with open(os.devnull, "w") as devnull:
-        # The streams are still captured, but we say devnull here because
-        # we don't want them printed to the process' streams
         try:
+            # The streams are still captured, but we say devnull here because
+            # we don't want them printed to this process' streams
             result = ctx.run(cmd, err_stream=devnull, out_stream=devnull)
         except invoke.exceptions.UnexpectedExit as e:
             print(colored("failed", "red"))
-            print(f"Fatal error: error running command: {cmd}\nRaw error: {e}", file=sys.stderr)
+            print(f"Fatal: Error running command: {cmd}\nRaw error: {e}", file=sys.stderr)
             exit(2)
 
         for repo in json.loads(result.stdout):
@@ -429,7 +433,7 @@ UPDATE_DICTS_ALIASES = [
     "update-dictionaries",
 ]
 @task(aliases=UPDATE_DICTS_ALIASES)
-def update_dicts(ctx):
+def update_dicts(ctx, force_recreate=None):
     """Update all dictionaries for this project (using gut), then rebuild the
     merged dictionary files for the dictionaries that had any updates."""
     # COMMENT FROM THE MAKEFILE (see dicts/Makefile line 402 - ~430)
@@ -442,7 +446,15 @@ def update_dicts(ctx):
     if config.project == "bahkogirrje":
         raise NotImplementedError("dictionary sje2X - must be handled")
 
-    updated_dicts = pull_git_dictionaries(ctx, config.project)
+    yaml_config = read_config(config.project)
+    dictionaries = [
+        f"dict-{d['source']}-{d['target']}"
+        for d in yaml_config["Dictionaries"]
+    ]
+
+    force_recreate = match_dicts(force_recreate, dictionaries, config.project)
+
+    updated_dicts = pull_git_dictionaries(ctx, dictionaries)
 
     # TODO actually, even if the dictionary is not updated, it could have been
     # recently cloned, because it's a new language. If so, the built (merged)
@@ -455,6 +467,26 @@ def update_dicts(ctx):
         path = Path(config.new_dict_path) / dictionary / "src"
         out_file = Path(config.dict_path) / f"{name}.all.xml"
         print(f"** Merge dictionary {colored(name, 'cyan')} > dicts/"
+              f"{out_file.name}... ",
+              end="", flush=True)
+        try:
+            n_entries = merge_giella_dicts(path, out_file)
+        except (FileNotFoundError, NotADirectoryError) as e:
+            print(colored(f"failed ({e})", "red"))
+        else:
+            print(colored("done", "green"), f"({n_entries} entries total)")
+
+    # don't do forced recreation of the ones that happened to also have
+    # an update (because it'll already be done)
+    force_recreate = set(force_recreate) - set(updated_dicts)
+
+    for dictionary in force_recreate:
+        name = dictionary[5:]
+        path = Path(config.new_dict_path) / dictionary / "src"
+        out_file = Path(config.dict_path) / f"{name}.all.xml"
+        forced_s = colored("forced recreation", "yellow")
+        dictname_s = colored(name, "cyan")
+        print(f"** ({forced_s}) Merge dictionary {dictname_s} > dicts/"
               f"{out_file.name}... ",
               end="", flush=True)
         try:
@@ -783,6 +815,45 @@ def runserver(ctx):
     run_cmd = ctx.run(f"NDS_CONFIG={config_path} python neahtta.py dev")
     if run_cmd.failed:
         print((colored("** Starting failed for some reason.", "red")))
+
+
+def match_dicts(s, dictionaries, project):
+    """Matches a comma-separeted string of dictionaries to the dictionary
+    dictionary."""
+    if s is None:
+        return []
+    if s == "*":
+        return dictionaries
+
+    out = []
+    to_check = s.split(",")
+    for s in to_check:
+        if len(s) == 6:
+            # assume aaabbb
+            a, b = s[0:3], s[3:6]
+        elif len(s) == 7:
+            # assume aaa-bbb
+            a, b = s[0:3], s[4:7]
+        elif len(s) == 12 and s.startswith("dict-"):
+            # assuming dict-xxx-yyy
+            a, b = s[5:8], s[9:12]
+        else:
+            print("Fatal: Error in --force-recreate: can't understand which "
+                  f"dictionary '{s}' is referring to",
+                  file=sys.stderr)
+            exit(2)
+        target_dict = f"dict-{a}-{b}"
+        if target_dict not in dictionaries:
+            print(f"{target_dict} not found in dictionary list for project "
+                  f"{project}. Maybe it needs to be added to the configuration"
+                  " file", file=sys.stderr)
+            exit(2)
+        out.append(target_dict)
+
+    # just in case of duplicates given. Yes, we lose the order, but that's not
+    # important
+    out = list(set(out))
+    return out
 
 
 @task
