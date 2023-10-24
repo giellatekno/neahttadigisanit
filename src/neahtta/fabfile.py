@@ -295,12 +295,7 @@ def gtdict(ctx):
 
     config.svn_path = config.path_base + '/gtsvn'
     config.dict_path = config.path_base + '/neahtta/dicts'
-    try:
-        config.new_dict_path = os.environ["GUTHOME"] + "/giellalt/"
-    except KeyError:
-        config.new_dict_path = None
-        print("WARN: GUTHOME environment variable not set, cannot yet use"
-              "git dictionaries")
+    config.new_dict_path = GUTROOT / "giellalt"
     config.neahtta_path = config.path_base + '/neahtta'
     config.i18n_path = config.path_base + '/neahtta/translations'
 
@@ -309,17 +304,19 @@ def gtdict(ctx):
     config.remote_no_fst = True
 
 
-def update_gtsvn(ctx):
-    print(colored("** svn up **", "cyan"))
-
-    with ctx.cd(config.svn_path):
-        p = os.path.join(config.svn_path, "words")
-        try:
-            ctx.run(f"svn up {p}")
-        except Exception:
-            return False
-
-    return True
+# Anders: after moving the dictionaries to git, I don't think we need the
+# svn stuff anymore (all the scripts are in giella-core)
+# def update_gtsvn(ctx):
+#     print(colored("** svn up **", "cyan"))
+#
+#     with ctx.cd(config.svn_path):
+#         p = os.path.join(config.svn_path, "words")
+#         try:
+#             ctx.run(f"svn up {p}")
+#         except Exception:
+#             return False
+#
+#     return True
 
 
 @task
@@ -364,38 +361,16 @@ def read_config(proj):
 @task
 def restart_service(ctx):
     """ Restarts the service. """
-    dictionary = config.project
-
     if config.real_hostname not in running_service:
         print(colored("Services only available live on gtdict.uit.no", "green"))
         sys.exit()
 
-    with ctx.cd(config.neahtta_path):
-        print(colored(f"** Restarting service for <{dictionary}> **", "cyan"))
-        restart = ctx.run(f"sudo service nds-{dictionary} restart")
-        if restart.failed:
-            print(colored(f"** Something went wrong while restarting <{dictionary}> **", "red"))
-        else:
-            print(colored("** <{dictionary}> Service restarted successfully **", "green"))
-
-
-@task
-def compile_dictionary(ctx):
-    """ Compile a dictionary project on the server, and restart the
-    corresponding service.
-
-        $ fab compile-dictionary [-d DICT]
-    """
-
-    dictionary = config.project
-
-    update_gtsvn(ctx)
-
-    with ctx.cd(config.dict_path):
-        result = ctx.run(f"{config.make_cmd} {dictionary}-lexica")
-
-        if result.failed:
-            print(colored(f"** Something went wrong while compiling <{dictionary}> **"), "red")
+    print("Restarting service...", end="")
+    ok = ctx.run(f"sudo systemctl restart nds-{config.project}")
+    if ok:
+        print(colored("done", "green"))
+    else:
+        print(colored("failed", "red"))
 
 
 def pull_git_dictionaries(ctx, project):
@@ -421,7 +396,8 @@ def pull_git_dictionaries(ctx, project):
         try:
             result = ctx.run(cmd, err_stream=devnull, out_stream=devnull)
         except invoke.exceptions.UnexpectedExit as e:
-            print(f"fatal error: error running command: {cmd}\nRaw error: {e}", file=sys.stderr)
+            print(colored("failed", "red"))
+            print(f"Fatal error: error running command: {cmd}\nRaw error: {e}", file=sys.stderr)
             exit(2)
 
         for repo in json.loads(result.stdout):
@@ -442,10 +418,20 @@ def pull_git_dictionaries(ctx, project):
     return updated_dicts if use_updated_dicts else dictionaries
 
 
-@task
-def update_dicts(ctx, no_git=True):
-    """Update all dictionaries (git pull <all dictionaries>), then create
-    the merged dictionary files, and finally restart the service."""
+# I can never remember which one it is.. so just make all of these work
+UPDATE_DICTS_ALIASES = [
+    "compile-dict",
+    "compile-dicts",
+    "compile-dictionary",
+    "compile-dictionaries",
+    "update-dict",
+    "update-dictionary",
+    "update-dictionaries",
+]
+@task(aliases=UPDATE_DICTS_ALIASES)
+def update_dicts(ctx):
+    """Update all dictionaries for this project (using gut), then rebuild the
+    merged dictionary files for the dictionaries that had any updates."""
     # COMMENT FROM THE MAKEFILE (see dicts/Makefile line 402 - ~430)
     # Custom compile script because the xml files are in
     # lang-sjd-x-private/misc, which is not the case in any other dicts.
@@ -456,7 +442,6 @@ def update_dicts(ctx, no_git=True):
     if config.project == "bahkogirrje":
         raise NotImplementedError("dictionary sje2X - must be handled")
 
-    # git pull on all dict-xxx-yyy that's in this project
     updated_dicts = pull_git_dictionaries(ctx, config.project)
 
     # TODO actually, even if the dictionary is not updated, it could have been
@@ -479,14 +464,6 @@ def update_dicts(ctx, no_git=True):
         else:
             print(colored("done", "green"), f"({n_entries} entries total)")
 
-    if config.real_hostname in running_service:
-        print("Restarting service...", end="")
-        ok = ctx.run(f"sudo systemctl restart nds-{config.project}")
-        if ok:
-            print(colored("done", "green"))
-        else:
-            print(colored("failed", "red"))
-
 
 @task
 def compile(ctx):
@@ -504,7 +481,7 @@ def compile(ctx):
 
     print(colored(f"Executing on <{config.real_hostname}>", "cyan"))
 
-    update_gtsvn(ctx)
+    #update_gtsvn(ctx)
 
     with ctx.cd(config.dict_path):
         if config.real_hostname in no_fst_install or config.remote_no_fst:
@@ -562,7 +539,7 @@ def compile(ctx):
 def compile_fst(ctx, iso='x'):
     """ Compile a dictionary project on the server.
 
-        $ fab compile_dictionary [-i ISO]
+        $ fab compile_fst [-i ISO]
     """
     # TODO: need a make path to clean existing dictionary
     with ctx.cd(config.dict_path):
@@ -632,12 +609,6 @@ def update_strings(ctx):
     update_repo(ctx)
 
     compile_strings(ctx)
-
-
-@task
-def find_babel(ctx):
-    import babel
-    print (babel)
 
 
 # TODO: handle babel.core.UnknownLocaleError: unknown locale 'hdn', with
@@ -770,7 +741,6 @@ def find_running(ctx):
 
 @task
 def restart_running(ctx):
-    hostname = config.real_hostname
     find_running(ctx)
 
     with ctx.cd(config.neahtta_path):
@@ -783,16 +753,16 @@ def restart_running(ctx):
             if not stop.failed:
                 start = ctx.run("sudo service nds-%s start" % s)
                 if not start.failed:
-                    print((
-                        colored("** <%s> Service has restarted successfully **" %
-                              s, "green")))
+                    print(colored(f"** <{s}> Service has restarted "
+                                  "successfully **", "green"))
                 else:
                     failures.append((s, pid))
             else:
                 failures.append((s, pid))
 
     if len(failures) > 0:
-        print((colored("** something went wrong while restarting the following **", "red")))
+        print((colored("** something went wrong while restarting the "
+                       "following **", "red")))
         for f in failures:
             print((s, pid))
 
