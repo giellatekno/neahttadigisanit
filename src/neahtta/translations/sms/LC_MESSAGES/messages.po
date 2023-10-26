@@ -8,11 +8,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-31 22:37+0100\n"
+"POT-Creation-Date: 2023-10-26 17:03+0300\n"
 "PO-Revision-Date: 2013-08-26 23:23+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: sms\n"
 "Language-Team: sms <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,9 +22,9 @@ msgstr ""
 #: configs/kyv.config.yaml.in:171 configs/kyv.config.yaml.in:246
 #: configs/saan.config.yaml:96 configs/saan.config.yaml.in:97
 #: configs/saanih.config.yaml.in:83 configs/saanih.config.yaml.in:113
-#: configs/sanat.config.yaml.in:138 configs/sanit.config.yaml:136
-#: configs/sanit.config.yaml.in:127 configs/sanj.config.yaml.in:87
-#: configs/sonad.config.yaml.in:156 tests/configs/sanit.config.yaml:122
+#: configs/sanat.config.yaml.in:137 configs/sanit.config.yaml.in:133
+#: configs/sanj.config.yaml.in:87 configs/sonad.config.yaml.in:156
+#: tests/configs/sanit.config.yaml:122
 msgid "Standard"
 msgstr ""
 
@@ -287,23 +288,19 @@ msgstr ""
 msgid "(incl. <em>aaacdnsz</em>)"
 msgstr ""
 
-#: configs/sanit.config.yaml:151 configs/sanit.config.yaml.in:142
-#: tests/configs/sanit.config.yaml:137
+#: configs/sanit.config.yaml.in:148 tests/configs/sanit.config.yaml:137
 msgid "Tolerant"
 msgstr ""
 
-#: configs/sanit.config.yaml:152 configs/sanit.config.yaml.in:143
-#: tests/configs/sanit.config.yaml:138
+#: configs/sanit.config.yaml.in:149 tests/configs/sanit.config.yaml:138
 msgid "(incl. <em>acdnstz</em>)"
 msgstr ""
 
-#: configs/sanit.config.yaml:191 configs/sanit.config.yaml.in:182
-#: tests/configs/sanit.config.yaml:173
+#: configs/sanit.config.yaml.in:188 tests/configs/sanit.config.yaml:173
 msgid "Standard (<em>áčđŋšŧž</em>)"
 msgstr ""
 
-#: configs/sanit.config.yaml:195 configs/sanit.config.yaml.in:186
-#: tests/configs/sanit.config.yaml:177
+#: configs/sanit.config.yaml.in:192 tests/configs/sanit.config.yaml:177
 msgid "Tolerant (also <em>acdnstz</em>)"
 msgstr ""
 
@@ -624,8 +621,9 @@ msgstr ""
 #: configs/language_specific_rules/templates/saan/about.template:107
 #: configs/language_specific_rules/templates/saanih/about.template:65
 #: configs/language_specific_rules/templates/saanih/about.template:70
-#: configs/language_specific_rules/templates/sanat/about.template:92
-#: configs/language_specific_rules/templates/sanat/about.template:97
+#: configs/language_specific_rules/templates/sanat/about.template:91
+#: configs/language_specific_rules/templates/sanat/about.template:100
+#: configs/language_specific_rules/templates/sanat/about.template:105
 #: configs/language_specific_rules/templates/sanat/find_problem.template:9
 #: configs/language_specific_rules/templates/sanat/find_problem.template:13
 #: configs/language_specific_rules/templates/sanat/find_problem.template:20
@@ -653,7 +651,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/muter/about.template:92
 #: configs/language_specific_rules/templates/saan/about.template:112
 #: configs/language_specific_rules/templates/saanih/about.template:75
-#: configs/language_specific_rules/templates/sanat/about.template:102
+#: configs/language_specific_rules/templates/sanat/about.template:111
 #: configs/language_specific_rules/templates/sanit/about.template:83
 #: configs/language_specific_rules/templates/sanj/about.template:100
 #: configs/language_specific_rules/templates/sonad/about.template:108
@@ -686,7 +684,7 @@ msgstr " (Tälle kielelle ei ole tekstikokoelma)"
 msgid "Paradigm"
 msgstr ""
 
-#: configs/language_specific_rules/templates/entry.template:29
+#: configs/language_specific_rules/templates/entry.template:39
 #: configs/language_specific_rules/templates/sanj/sjd/entry.template:63
 msgid "see also"
 msgstr ""
@@ -718,89 +716,89 @@ msgid ""
 "Tromsø</a>."
 msgstr ""
 
-#: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:44
-#: configs/language_specific_rules/templates/index_search_form.template:41
-#: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:42
-#: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:43
-#: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:41
-#: configs/language_specific_rules/templates/sanj/index_search_form.template:42
+#: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:43
+#: configs/language_specific_rules/templates/index_search_form.template:40
+#: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:41
+#: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:42
+#: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:40
+#: configs/language_specific_rules/templates/sanj/index_search_form.template:41
 msgid "Press TAB (&#8677;) or touch screen to select"
 msgstr ""
 
-#: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:51
-#: configs/language_specific_rules/templates/gunaha/index_search_form.template:58
-#: configs/language_specific_rules/templates/guusaaw/index_search_form.template:20
-#: configs/language_specific_rules/templates/index_search_form.template:48
-#: configs/language_specific_rules/templates/itwewina/index_search_form.template:61
-#: configs/language_specific_rules/templates/kidwinan/index_search_form.template:58
-#: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:49
-#: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:50
-#: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:48
-#: configs/language_specific_rules/templates/sanj/index_search_form.template:49
-#: templates/index_search_form.html:21
+#: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:50
+#: configs/language_specific_rules/templates/gunaha/index_search_form.template:57
+#: configs/language_specific_rules/templates/guusaaw/index_search_form.template:19
+#: configs/language_specific_rules/templates/index_search_form.template:47
+#: configs/language_specific_rules/templates/itwewina/index_search_form.template:60
+#: configs/language_specific_rules/templates/kidwinan/index_search_form.template:57
+#: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:48
+#: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:49
+#: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:47
+#: configs/language_specific_rules/templates/sanj/index_search_form.template:48
+#: templates/index_search_form.html:20
 msgid "ohcansátni"
 msgstr ""
 
-#: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:56
-#: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:76
-#: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:80
-#: configs/language_specific_rules/templates/gunaha/index_search_form.template:63
-#: configs/language_specific_rules/templates/gunaha/index_search_form.template:83
-#: configs/language_specific_rules/templates/gunaha/index_search_form.template:87
-#: configs/language_specific_rules/templates/guusaaw/index_search_form.template:25
-#: configs/language_specific_rules/templates/guusaaw/index_search_form.template:42
-#: configs/language_specific_rules/templates/index_search_form.template:53
-#: configs/language_specific_rules/templates/index_search_form.template:73
-#: configs/language_specific_rules/templates/index_search_form.template:77
-#: configs/language_specific_rules/templates/itwewina/detail_search_form.template:79
-#: configs/language_specific_rules/templates/itwewina/index_search_form.template:66
-#: configs/language_specific_rules/templates/itwewina/index_search_form.template:86
-#: configs/language_specific_rules/templates/itwewina/index_search_form.template:90
-#: configs/language_specific_rules/templates/kidwinan/index_search_form.template:63
-#: configs/language_specific_rules/templates/kidwinan/index_search_form.template:83
-#: configs/language_specific_rules/templates/kidwinan/index_search_form.template:87
-#: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:54
-#: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:74
-#: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:78
-#: configs/language_specific_rules/templates/sanit/sme/detail_search_form.template:42
-#: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:55
-#: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:75
-#: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:79
-#: configs/language_specific_rules/templates/sanit/spa/detail_search_form.template:42
-#: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:53
-#: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:73
-#: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:77
-#: configs/language_specific_rules/templates/sanj/index_search_form.template:54
-#: configs/language_specific_rules/templates/sanj/index_search_form.template:74
-#: configs/language_specific_rules/templates/sanj/index_search_form.template:78
-#: configs/language_specific_rules/templates/sanj/rus/detail_search_form.template:46
-#: configs/language_specific_rules/templates/sanj/sjd/detail_search_form.template:46
-#: templates/default_detail_search_form.html:39
-#: templates/index_search_form.html:26 templates/index_search_form.html:49
-#: templates/index_search_form.html:53 templates/keyword_search_form.html:29
+#: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:55
+#: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:74
+#: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:78
+#: configs/language_specific_rules/templates/gunaha/index_search_form.template:62
+#: configs/language_specific_rules/templates/gunaha/index_search_form.template:81
+#: configs/language_specific_rules/templates/gunaha/index_search_form.template:85
+#: configs/language_specific_rules/templates/guusaaw/index_search_form.template:24
+#: configs/language_specific_rules/templates/guusaaw/index_search_form.template:40
+#: configs/language_specific_rules/templates/index_search_form.template:52
+#: configs/language_specific_rules/templates/index_search_form.template:71
+#: configs/language_specific_rules/templates/index_search_form.template:75
+#: configs/language_specific_rules/templates/itwewina/detail_search_form.template:78
+#: configs/language_specific_rules/templates/itwewina/index_search_form.template:65
+#: configs/language_specific_rules/templates/itwewina/index_search_form.template:84
+#: configs/language_specific_rules/templates/itwewina/index_search_form.template:88
+#: configs/language_specific_rules/templates/kidwinan/index_search_form.template:62
+#: configs/language_specific_rules/templates/kidwinan/index_search_form.template:81
+#: configs/language_specific_rules/templates/kidwinan/index_search_form.template:85
+#: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:53
+#: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:72
+#: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:76
+#: configs/language_specific_rules/templates/sanit/sme/detail_search_form.template:41
+#: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:54
+#: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:73
+#: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:77
+#: configs/language_specific_rules/templates/sanit/spa/detail_search_form.template:41
+#: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:52
+#: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:71
+#: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:75
+#: configs/language_specific_rules/templates/sanj/index_search_form.template:53
+#: configs/language_specific_rules/templates/sanj/index_search_form.template:72
+#: configs/language_specific_rules/templates/sanj/index_search_form.template:76
+#: configs/language_specific_rules/templates/sanj/rus/detail_search_form.template:45
+#: configs/language_specific_rules/templates/sanj/sjd/detail_search_form.template:45
+#: templates/default_detail_search_form.html:38
+#: templates/index_search_form.html:25 templates/index_search_form.html:46
+#: templates/index_search_form.html:50 templates/keyword_search_form.html:29
 msgid "Search"
 msgstr ""
 
-#: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:68
-#: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:91
-#: configs/language_specific_rules/templates/gunaha/index_search_form.template:75
-#: configs/language_specific_rules/templates/gunaha/index_search_form.template:98
-#: configs/language_specific_rules/templates/guusaaw/index_search_form.template:37
-#: configs/language_specific_rules/templates/index_search_form.template:65
-#: configs/language_specific_rules/templates/index_search_form.template:88
-#: configs/language_specific_rules/templates/itwewina/index_search_form.template:78
-#: configs/language_specific_rules/templates/itwewina/index_search_form.template:101
-#: configs/language_specific_rules/templates/kidwinan/index_search_form.template:75
-#: configs/language_specific_rules/templates/kidwinan/index_search_form.template:98
-#: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:66
-#: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:89
-#: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:67
-#: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:90
-#: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:65
-#: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:88
-#: configs/language_specific_rules/templates/sanj/index_search_form.template:66
-#: configs/language_specific_rules/templates/sanj/index_search_form.template:89
-#: templates/index_search_form.html:39 templates/index_search_form.html:64
+#: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:67
+#: configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:88
+#: configs/language_specific_rules/templates/gunaha/index_search_form.template:74
+#: configs/language_specific_rules/templates/gunaha/index_search_form.template:95
+#: configs/language_specific_rules/templates/guusaaw/index_search_form.template:35
+#: configs/language_specific_rules/templates/index_search_form.template:64
+#: configs/language_specific_rules/templates/index_search_form.template:85
+#: configs/language_specific_rules/templates/itwewina/index_search_form.template:77
+#: configs/language_specific_rules/templates/itwewina/index_search_form.template:98
+#: configs/language_specific_rules/templates/kidwinan/index_search_form.template:74
+#: configs/language_specific_rules/templates/kidwinan/index_search_form.template:95
+#: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:65
+#: configs/language_specific_rules/templates/sanit/nob/index_search_form.template:86
+#: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:66
+#: configs/language_specific_rules/templates/sanit/sme/index_search_form.template:87
+#: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:64
+#: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:85
+#: configs/language_specific_rules/templates/sanj/index_search_form.template:65
+#: configs/language_specific_rules/templates/sanj/index_search_form.template:86
+#: templates/index_search_form.html:37 templates/index_search_form.html:60
 msgid "Search texts"
 msgstr ""
 
@@ -812,7 +810,7 @@ msgstr ""
 msgid "Other dictionaries"
 msgstr ""
 
-#: configs/language_specific_rules/templates/baakoeh/sma/paradigm.template:188
+#: configs/language_specific_rules/templates/baakoeh/sma/paradigm.template:191
 #: configs/language_specific_rules/templates/bahkogirrje/sje/paradigm.template:121
 #: configs/language_specific_rules/templates/muter/mhr/paradigm.template:117
 #: configs/language_specific_rules/templates/muter/mrj/paradigm.template:117
@@ -934,24 +932,24 @@ msgstr ""
 msgid "More to come..."
 msgstr ""
 
-#: configs/language_specific_rules/templates/gunaha/index_search_form.template:51
-#: configs/language_specific_rules/templates/guusaaw/index_search_form.template:15
-#: configs/language_specific_rules/templates/itwewina/index_search_form.template:54
-#: configs/language_specific_rules/templates/kidwinan/index_search_form.template:51
+#: configs/language_specific_rules/templates/gunaha/index_search_form.template:50
+#: configs/language_specific_rules/templates/guusaaw/index_search_form.template:14
+#: configs/language_specific_rules/templates/itwewina/index_search_form.template:53
+#: configs/language_specific_rules/templates/kidwinan/index_search_form.template:50
 msgid "Select a word, and press Tab"
 msgstr ""
 
-#: configs/language_specific_rules/templates/gunaha/index_search_form.template:105
-#: configs/language_specific_rules/templates/guusaaw/index_search_form.template:49
-#: configs/language_specific_rules/templates/itwewina/index_search_form.template:108
-#: configs/language_specific_rules/templates/kidwinan/index_search_form.template:105
+#: configs/language_specific_rules/templates/gunaha/index_search_form.template:102
+#: configs/language_specific_rules/templates/guusaaw/index_search_form.template:47
+#: configs/language_specific_rules/templates/itwewina/index_search_form.template:105
+#: configs/language_specific_rules/templates/kidwinan/index_search_form.template:102
 msgid "Previous:"
 msgstr ""
 
-#: configs/language_specific_rules/templates/gunaha/index_search_form.template:109
-#: configs/language_specific_rules/templates/guusaaw/index_search_form.template:53
-#: configs/language_specific_rules/templates/itwewina/index_search_form.template:112
-#: configs/language_specific_rules/templates/kidwinan/index_search_form.template:109
+#: configs/language_specific_rules/templates/gunaha/index_search_form.template:106
+#: configs/language_specific_rules/templates/guusaaw/index_search_form.template:51
+#: configs/language_specific_rules/templates/itwewina/index_search_form.template:109
+#: configs/language_specific_rules/templates/kidwinan/index_search_form.template:106
 msgid "clear"
 msgstr ""
 
@@ -1364,15 +1362,15 @@ msgid ""
 " as áčđŋšŧž in addition to their usual values."
 msgstr ""
 
-#: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:106
+#: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:103
 msgid "The abbreviations used in the dictionary are"
 msgstr ""
 
-#: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:106
+#: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:103
 msgid "explained here"
 msgstr ""
 
-#: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:107
+#: configs/language_specific_rules/templates/sanit/spa/index_search_form.template:104
 msgid "The abbreviations refer to the uses in Spanish."
 msgstr ""
 
@@ -1594,17 +1592,17 @@ msgstr ""
 msgid "Antonova A. A. & Scheller E. 2021 <i>(appr. 16000 words)</i>."
 msgstr ""
 
-#: configs/language_specific_rules/templates/sanj/rus/detail_search_form.template:9
-#: configs/language_specific_rules/templates/sanj/rus/detail_search_form.template:11
-#: configs/language_specific_rules/templates/sanj/sjd/detail_search_form.template:9
-#: configs/language_specific_rules/templates/sanj/sjd/detail_search_form.template:11
+#: configs/language_specific_rules/templates/sanj/rus/detail_search_form.template:8
+#: configs/language_specific_rules/templates/sanj/rus/detail_search_form.template:10
+#: configs/language_specific_rules/templates/sanj/sjd/detail_search_form.template:8
+#: configs/language_specific_rules/templates/sanj/sjd/detail_search_form.template:10
 msgid "rus"
 msgstr ""
 
-#: configs/language_specific_rules/templates/sanj/rus/detail_search_form.template:9
-#: configs/language_specific_rules/templates/sanj/rus/detail_search_form.template:11
-#: configs/language_specific_rules/templates/sanj/sjd/detail_search_form.template:9
-#: configs/language_specific_rules/templates/sanj/sjd/detail_search_form.template:11
+#: configs/language_specific_rules/templates/sanj/rus/detail_search_form.template:8
+#: configs/language_specific_rules/templates/sanj/rus/detail_search_form.template:10
+#: configs/language_specific_rules/templates/sanj/sjd/detail_search_form.template:8
+#: configs/language_specific_rules/templates/sanj/sjd/detail_search_form.template:10
 msgid "sjd"
 msgstr ""
 
@@ -1752,7 +1750,7 @@ msgstr ""
 msgid "Neahttadigisánit"
 msgstr ""
 
-#: templates/index_search_form.html:15
+#: templates/index_search_form.html:14
 msgid "Press Tab to select a word"
 msgstr ""
 
