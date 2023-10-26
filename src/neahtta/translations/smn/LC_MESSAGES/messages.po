@@ -57,11 +57,11 @@ msgstr ""
 
 #: configs/language_names.yaml:33 configs/language_names.yaml:34
 msgid "North Sámi"
-msgstr ""
+msgstr "Orjâlâškielâ"
 
 #: configs/language_names.yaml:35
 msgid "North Sámi (tolerant)"
-msgstr ""
+msgstr "Orjâlâškielâ (tolerant)"
 
 #: configs/language_names.yaml:36 configs/language_names.yaml:114
 #: configs/language_names.yaml:132 configs/language_names.yaml:133
@@ -222,11 +222,11 @@ msgstr ""
 
 #: configs/language_names.yaml:107 templates/more_dictionaries.html:33
 msgid "Inari Saami"
-msgstr ""
+msgstr "Anarâškielâ"
 
 #: configs/language_names.yaml:110
 msgid "Inari Saami (tolerant)"
-msgstr ""
+msgstr "Anarâškielâ (tolerant)"
 
 #: configs/language_names.yaml:111 templates/more_dictionaries.html:35
 msgid "Pite Saami"
@@ -242,7 +242,7 @@ msgstr ""
 
 #: configs/language_names.yaml:120 configs/language_names.yaml:127
 msgid "Finnish"
-msgstr ""
+msgstr "Suomâkielâ"
 
 #: configs/language_names.yaml:121 configs/language_names.yaml:122
 #: configs/language_names.yaml:128 configs/language_names.yaml:129
@@ -1239,7 +1239,7 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/saanih/about.template:53
 msgid "Inari Saami ↔ Finnish"
-msgstr ""
+msgstr "Anarâškielâ ↔ Suomâkielâ"
 
 #: configs/language_specific_rules/templates/saanih/about.template:54
 msgid ""
@@ -1815,7 +1815,7 @@ msgstr ""
 
 #: templates/more_dictionaries.html:28
 msgid "North Saami"
-msgstr ""
+msgstr "Orjâlâškielâ"
 
 #: templates/more_dictionaries.html:29
 msgid "South Saami"

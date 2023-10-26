@@ -60,7 +60,6 @@ msgid "North Sámi"
 msgstr "Pohjoissaame"
 
 #: configs/language_names.yaml:35
-#, fuzzy
 msgid "North Sámi (tolerant)"
 msgstr "Pohjoissaame (#SoMe)"
 
@@ -225,11 +224,11 @@ msgstr "Pohjoishaida"
 
 #: configs/language_names.yaml:107 templates/more_dictionaries.html:33
 msgid "Inari Saami"
-msgstr ""
+msgstr "Inarinsaame"
 
 #: configs/language_names.yaml:110
 msgid "Inari Saami (tolerant)"
-msgstr "Inarinsaame"
+msgstr "Inarinsaame (suvaitsevainen)"
 
 #: configs/language_names.yaml:111 templates/more_dictionaries.html:35
 msgid "Pite Saami"
@@ -906,7 +905,6 @@ msgid ""
 msgstr ""
 
 #: configs/language_specific_rules/templates/bahkogirrje/about.template:37
-#, fuzzy
 msgid ""
 "Write whatever you want in Pite Saami, and the dictionary will analyze it"
 " to break apart compound words and find base forms."
@@ -1281,7 +1279,6 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanat/about.template:20
 #: configs/language_specific_rules/templates/sanit/about.template:20
 #: configs/language_specific_rules/templates/sonad/about.template:20
-#, fuzzy
 msgid "How to quote the dictionaries"
 msgstr ""
 
@@ -1301,7 +1298,7 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/saanih/about.template:53
 msgid "Inari Saami ↔ Finnish"
-msgstr ""
+msgstr "Inarinsaame ↔ Suomi"
 
 #: configs/language_specific_rules/templates/saanih/about.template:54
 msgid ""
@@ -1311,7 +1308,6 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/sanat/about.template:33
 #: configs/language_specific_rules/templates/sanit/about.template:28
-#, fuzzy
 msgid ""
 "Everything here is based on open-source tools and free to use. Visit <a "
 "class=\"blue\"\n"
@@ -1473,9 +1469,8 @@ msgid ""
 msgstr ""
 
 #: configs/language_specific_rules/templates/sanj/about.template:28
-#, fuzzy
 msgid "About the dictionary"
-msgstr "Muita sanakirjoja"
+msgstr ""
 
 #: configs/language_specific_rules/templates/sanj/about.template:29
 msgid ""
@@ -1498,9 +1493,8 @@ msgid ""
 msgstr ""
 
 #: configs/language_specific_rules/templates/sanj/about.template:32
-#, fuzzy
 msgid "2. Russian-Kildin Saami dictionary"
-msgstr "Lisää odawa-sanakirjoja"
+msgstr ""
 
 #: configs/language_specific_rules/templates/sanj/about.template:33
 msgid ""

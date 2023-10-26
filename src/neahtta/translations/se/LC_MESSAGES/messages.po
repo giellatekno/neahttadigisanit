@@ -916,7 +916,6 @@ msgid ""
 msgstr ""
 
 #: configs/language_specific_rules/templates/bahkogirrje/about.template:37
-#, fuzzy
 msgid ""
 "Write whatever you want in Pite Saami, and the dictionary will analyze it"
 " to break apart compound words and find base forms."
@@ -1288,7 +1287,6 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanat/about.template:20
 #: configs/language_specific_rules/templates/sanit/about.template:20
 #: configs/language_specific_rules/templates/sonad/about.template:20
-#, fuzzy
 msgid "How to quote the dictionaries"
 msgstr ""
 
@@ -1480,9 +1478,8 @@ msgid ""
 msgstr ""
 
 #: configs/language_specific_rules/templates/sanj/about.template:28
-#, fuzzy
 msgid "About the dictionary"
-msgstr "Eará gielat"
+msgstr ""
 
 #: configs/language_specific_rules/templates/sanj/about.template:29
 msgid ""
@@ -1505,9 +1502,8 @@ msgid ""
 msgstr ""
 
 #: configs/language_specific_rules/templates/sanj/about.template:32
-#, fuzzy
 msgid "2. Russian-Kildin Saami dictionary"
-msgstr "Eanet sátnegirjjit"
+msgstr ""
 
 #: configs/language_specific_rules/templates/sanj/about.template:33
 msgid ""
