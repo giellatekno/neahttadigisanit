@@ -1283,7 +1283,7 @@ msgstr ""
 #: configs/language_specific_rules/templates/sonad/about.template:20
 #, fuzzy
 msgid "How to quote the dictionaries"
-msgstr "Muita sanakirjoja"
+msgstr ""
 
 #: configs/language_specific_rules/templates/saanih/about.template:26
 msgid ""
