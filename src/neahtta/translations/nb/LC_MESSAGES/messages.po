@@ -60,9 +60,8 @@ msgid "North Sámi"
 msgstr "Nordsamisk"
 
 #: configs/language_names.yaml:35
-#, fuzzy
 msgid "North Sámi (tolerant)"
-msgstr "Nordsamisk (tolerant))"
+msgstr "Nordsamisk (tolerant)"
 
 #: configs/language_names.yaml:36 configs/language_names.yaml:114
 #: configs/language_names.yaml:132 configs/language_names.yaml:133
@@ -218,7 +217,6 @@ msgid "Northern Haida"
 msgstr "Nord-haida"
 
 #: configs/language_names.yaml:106
-#, fuzzy
 msgid "Northern Haida (tolerant)"
 msgstr "Nord-haida (tolerant)"
 
@@ -730,7 +728,6 @@ msgstr "se også"
 
 #: configs/language_specific_rules/templates/find_problem.template:4
 #: configs/language_specific_rules/templates/sanat/find_problem.template:4
-#, fuzzy
 msgid ""
 "If you find any bugs, please get in touch with us. Describe the problem,\n"
 "          and tell us what web browser or mobile phone you were using, or"
@@ -1286,12 +1283,10 @@ msgstr ""
 #: configs/language_specific_rules/templates/sanat/about.template:20
 #: configs/language_specific_rules/templates/sanit/about.template:20
 #: configs/language_specific_rules/templates/sonad/about.template:20
-#, fuzzy
 msgid "How to quote the dictionaries"
-msgstr "Andre ordbøker"
+msgstr ""
 
 #: configs/language_specific_rules/templates/saanih/about.template:26
-#, fuzzy
 msgid ""
 "Everything here is based on open-source tools and is free to use.\n"
 "\t    Visit <a class=\"blue\" "
@@ -1317,7 +1312,6 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/sanat/about.template:33
 #: configs/language_specific_rules/templates/sanit/about.template:28
-#, fuzzy
 msgid ""
 "Everything here is based on open-source tools and free to use. Visit <a "
 "class=\"blue\"\n"

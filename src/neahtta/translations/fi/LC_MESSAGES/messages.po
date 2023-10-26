@@ -175,7 +175,6 @@ msgid "Nenets"
 msgstr "Nenetsi"
 
 #: configs/language_names.yaml:80
-#, fuzzy
 msgid "Northern Mansi"
 msgstr "Pohjoishaida"
 
@@ -316,9 +315,8 @@ msgid "(<em>а̄е̄ӣо̄ӯӎӊӈҏ</em>)"
 msgstr ""
 
 #: configs/sanj.config.yaml.in:109
-#, fuzzy
 msgid "(incl. <em>аеиоумннр</em>)"
-msgstr "(myös <em>ио</em>)"
+msgstr "(myös <em>аеиоумннр</em>)"
 
 #: configs/sonad.config.yaml.in:161
 msgid "mobile friendly"
@@ -728,7 +726,6 @@ msgstr ""
 
 #: configs/language_specific_rules/templates/find_problem.template:4
 #: configs/language_specific_rules/templates/sanat/find_problem.template:4
-#, fuzzy
 msgid ""
 "If you find any bugs, please get in touch with us. Describe the problem,\n"
 "          and tell us what web browser or mobile phone you were using, or"
@@ -887,7 +884,6 @@ msgid "How to quote the dictionary"
 msgstr ""
 
 #: configs/language_specific_rules/templates/baakoeh/about.template:25
-#, fuzzy
 msgid ""
 "Everything here is based on open-source tools and free to use.\n"
 "\t    Visit <a class=\"blue\" "
@@ -1171,9 +1167,8 @@ msgid ""
 msgstr ""
 
 #: configs/language_specific_rules/templates/saan/about.template:69
-#, fuzzy
 msgid "sms ↔ fin"
-msgstr "Pohjoissaame ↔ suomi"
+msgstr "Koltansaame ↔ suomi"
 
 #: configs/language_specific_rules/templates/saan/about.template:70
 msgid ""
@@ -1186,9 +1181,8 @@ msgid "Satu & Jouni Moshnikoff sanasto"
 msgstr ""
 
 #: configs/language_specific_rules/templates/saan/about.template:72
-#, fuzzy
 msgid "Dictionaries:"
-msgstr "Sanakirjoja"
+msgstr "Sanakirjoja:"
 
 #: configs/language_specific_rules/templates/saan/about.template:73
 msgid ""
@@ -1295,7 +1289,6 @@ msgid "How to quote the dictionaries"
 msgstr "Muita sanakirjoja"
 
 #: configs/language_specific_rules/templates/saanih/about.template:26
-#, fuzzy
 msgid ""
 "Everything here is based on open-source tools and is free to use.\n"
 "\t    Visit <a class=\"blue\" "
@@ -1722,7 +1715,6 @@ msgid "см."
 msgstr ""
 
 #: configs/language_specific_rules/templates/sonad/about.template:37
-#, fuzzy
 msgid ""
 "Everything here is based on open-source tools. Do you\n"
 "                    have an idea for an app or research project that "

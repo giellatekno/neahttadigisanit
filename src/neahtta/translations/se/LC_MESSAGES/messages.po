@@ -1722,7 +1722,6 @@ msgid "см."
 msgstr ""
 
 #: configs/language_specific_rules/templates/sonad/about.template:37
-#, fuzzy
 msgid ""
 "Everything here is based on open-source tools. Do you\n"
 "                    have an idea for an app or research project that "
