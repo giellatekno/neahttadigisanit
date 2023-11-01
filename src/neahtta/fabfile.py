@@ -378,22 +378,16 @@ def restart_service(ctx):
         print(colored("failed", "red"))
 
 
-def pull_git_dictionaries(ctx, dictionaries):
-    """Use gut if available (and git if not) to pull all
-    giellalt/dict-xxx-yyy dictionaries, and return a list of which ones had
-    updates."""
+def pull_git_dictionaries(ctx):
+    """Use `gut` to pull all giellalt/dict-* dictionaries.
+    Returns a list of the ones which ones had updates."""
     print("** Checking for dictionary updates... ", end="", flush=True)
     import json
-    updated_dicts = []
-    use_updated_dicts = False
-
-    use_updated_dicts = True
-    dicts_regex = "|".join(dictionaries)
-
-    cmd = (f"{GUT_BINARY} --format=json pull --organisation giellalt --regex "
-           f"\"{dicts_regex}\"")
-
     import invoke
+    updated_dicts = []
+
+    cmd = f"{GUT_BINARY} --format=json pull -r dict-"
+
     with open(os.devnull, "w") as devnull:
         try:
             # The streams are still captured, but we say devnull here because
@@ -419,7 +413,7 @@ def pull_git_dictionaries(ctx, dictionaries):
     # TODO read the output of git/gut to determine which dictionaries
     # actually had updates, and return only those
     print(colored("done", "green"))
-    return updated_dicts if use_updated_dicts else dictionaries
+    return updated_dicts
 
 
 # I can never remember which one it is.. so just make all of these work
@@ -446,15 +440,12 @@ def update_dicts(ctx, force_recreate=None):
     if config.project == "bahkogirrje":
         raise NotImplementedError("dictionary sje2X - must be handled")
 
-    yaml_config = read_config(config.project)
-    dictionaries = [
-        f"dict-{d['source']}-{d['target']}"
-        for d in yaml_config["Dictionaries"]
-    ]
+    if force_recreate is None:
+        force_recreate = set()
+    else:
+        force_recreate = force_recreate.split(",")
 
-    force_recreate = match_dicts(force_recreate, dictionaries, config.project)
-
-    updated_dicts = pull_git_dictionaries(ctx, dictionaries)
+    updated_dicts = pull_git_dictionaries(ctx)
 
     # TODO actually, even if the dictionary is not updated, it could have been
     # recently cloned, because it's a new language. If so, the built (merged)
