@@ -400,15 +400,34 @@ def pull_git_dictionaries(ctx):
 
         for repo in json.loads(result.stdout):
             status = repo["status"]
+            reponame = repo["repo"]
 
             # I am not sure that this is sufficient to determine that
             # the repo was updated - and is in a state that I can use
             # (.. though there shouldn't be any potential for conflicts,
             # as the checkout of the dictionary repository on the server
             # shouldn't be used as a working repository)
-            was_updated = status == "FastForward"
-            if was_updated:
-                updated_dicts.append(repo["repo"])
+            if status == "FastForward":
+                # fast forwards are what we normally expect, so this is all good
+                updated_dicts.append(reponame)
+            elif status == "Normal":
+                # normal merge - should be ok.. right?
+                updated_dicts.append(reponame)
+            elif status == "Nothing":
+                # it was already up to date - nothing to do
+                pass
+            elif status == "WithConflict":
+                msg = (f"repo {reponame} merged with conflict, check it "
+                       "manually, then re-run update-dicts!")
+                print(colored(msg, "yellow"))
+            elif status == "SkipConflict":
+                msg = (f"Conflict in repo: {repo['repo']} - manually "
+                       "check/fix it, then re-run update-dicts!")
+                print(colored(msg, "red"))
+            else:
+                msg = (f"unexpected pull status for repo {reponame}! "
+                       f"(\"{status}\")")
+                print(colored(msg, "red"))
 
     # TODO read the output of git/gut to determine which dictionaries
     # actually had updates, and return only those
