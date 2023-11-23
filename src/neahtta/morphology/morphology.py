@@ -1352,7 +1352,11 @@ class Morphology(object):
 
         if len(analysis_parts) == 1:
             if actio_tag in analysis_parts[0]:
-                analysis_parts = [actio_with_tagsep + analysis_parts[0].split(actio_tag)[1]]
+                try:
+                    right_of_actio = analysis_parts[0].split(actio_tag)[1]
+                except IndexError: # An analysis might end in "+Actio"
+                    right_of_actio = ""
+                analysis_parts = [actio_with_tagsep + right_of_actio]
                 lemma = analysis_parts
         else:
             lemma = analysis_parts[0] if len(analysis_parts) == 1 else wordform
@@ -1369,7 +1373,11 @@ class Morphology(object):
 
         for analysis in analyses:
             if actio_tag in analysis:
-                analysis = analysis.split(actio_tag)[0] + actio_tag + analysis.split(actio_with_tagsep)[1]
+                try:
+                    right_of_actio = analysis.split(actio_with_tagsep)[1]
+                except IndexError: # An analysis might end in "+Actio"
+                    right_of_actio = ""
+                analysis = analysis.split(actio_tag)[0] + actio_tag + right_of_actio
             analysis_parts = analysis.split(tagsep)
             index = [index1 for index1, part in enumerate(analysis_parts[1:], start=1)
                      if part.startswith(tags)]
