@@ -1,7 +1,0 @@
-{%- macro audio_link(audio_text, language) -%}
-    {%- set audio_ref = 'audio/' ~ language ~ '/' ~ audio_text  -%}
-    {%- set audio_url = url_for('static', filename=audio_ref) -%}
-    <div class="btn-group">
-        <a class="btn btn-mini audio-link" data-audio-player data-audio-target="{{ audio_url }}" target="blank" href="#"><i class="icon-volume-up"></i></a>
-    </div>
-{%- endmacro -%}

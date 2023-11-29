@@ -1,0 +1,9 @@
+name: "General adjective paradigm"
+morphology:
+  pos: A
+--
+{{ lemma }}+A+Attr
+{{ lemma }}+A+Pl+Nom
+{{ lemma }}+A+Comp+Attr
+{{ lemma }}+A+Comp+Sg+Nom
+{{ lemma }}+A+Superl+Sg+Nom

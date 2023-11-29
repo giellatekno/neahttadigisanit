@@ -1,0 +1,20 @@
+name: "basic paradigm"
+paradigm: 'verbs.paradigm'
+layout:
+  type: "basic"
+--
+|                            |  "Positive"          |    "Negative"           |
+| "Present Statement"        | +V+Simp+Pres         | +V+Neg+Simp+Pres        |
+| "Present Content Question" | +V+Simp+Pres         | +V+Neg+Simp+Pres        |
+| "Present Y/N Question"     | +V+Interr+Simp+Pres  | +V+Neg+Interr+Simp+Pres | 
+|----------------------------|----------------------|-------------------------| 
+| "Past Statement"           | +V+Dir+Past          | +V+Neg+Dir+Past         |
+| "Past Content Question"    | +V+Interr+Past       | +V+Neg+Interr+Past      |
+| "Past Y/N Question"        | +V+Interr+Past       | +V+Neg+Interr+Past      |
+|----------------------------|----------------------|-------------------------| 
+| "Future Statement"         | +V+Simp+Fut          | +V+Neg+Simp+Fut         |
+| "Future Content Question"  | +V+Simp+Fut          | +V+Neg+Simp+Fut         |
+| "Future Y/N Question"      | +V+Interr+Fut+Long   | +V+Neg+Interr+Fut+Long  |
+|----------------------------|----------------------|-------------------------| 
+| "Singular Command"         | +V+Sg+Impv           | +V+Neg+Sg+Impv          |
+| "Plural Command"           | +V+Pl+Impv           | +V+Neg+Pl+Impv          |

@@ -1,0 +1,18 @@
+name: "Negative verb paradigm"
+morphology:
+  pos: V
+  negative:
+    - "Neg"
+--
+{{ lemma }}+V+Neg+Ind+Sg1
+{{ lemma }}+V+Neg+Ind+Sg2
+{{ lemma }}+V+Neg+Ind+Sg3
+{{ lemma }}+V+Neg+Ind+Du1
+{{ lemma }}+V+Neg+Ind+Du2
+{{ lemma }}+V+Neg+Ind+Du3
+{{ lemma }}+V+Neg+Ind+Pl1
+{{ lemma }}+V+Neg+Ind+Pl2
+{{ lemma }}+V+Neg+Ind+Pl3
+{{ lemma }}+V+Neg+Ind+Prs+ConNeg
+{{ lemma }}+V+Neg+Ind+Prt+ConNeg
+{{ lemma }}+V+Neg+PrfPrc

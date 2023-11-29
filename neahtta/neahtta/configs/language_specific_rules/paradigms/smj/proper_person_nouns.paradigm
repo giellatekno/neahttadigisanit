@@ -1,0 +1,69 @@
+name: "Proper person nouns"
+description: "Generates a paradigm for proper nouns."
+morphology:
+  pos: N
+lexicon:
+  XPATH:
+    sem_type: ".//l/@sem_type"
+    type: ".//l/@type"
+  type: Prop
+  sem_type: 
+    - "mal"
+    - "Mal"
+    - "fem"
+    - "Fem"
+    - "Ani"
+    - "ani"
+    - "Org"
+    - "org"
+
+--
+{{ lemma }}+N+Prop+Sem/Mal+Sg+Nom
+{{ lemma }}+N+Prop+Sem/Mal+Sg+Acc
+{{ lemma }}+N+Prop+Sem/Mal+Sg+Gen
+{{ lemma }}+N+Prop+Sem/Mal+Sg+Loc
+{{ lemma }}+N+Prop+Sem/Mal+Sg+Ill
+{{ lemma }}+N+Prop+Sem/Mal+Sg+Com
+{{ lemma }}+N+Prop+Sem/Mal+Pl+Nom
+{{ lemma }}+N+Prop+Sem/Mal+Pl+Acc
+{{ lemma }}+N+Prop+Sem/Mal+Pl+Gen
+{{ lemma }}+N+Prop+Sem/Mal+Pl+Loc
+{{ lemma }}+N+Prop+Sem/Mal+Pl+Ill
+{{ lemma }}+N+Prop+Sem/Mal+Pl+Com
+{{ lemma }}+N+Prop+Sem/Mal+Ess
+
+{{ lemma }}+N+Prop+Sem/Fem+Sg+Nom
+{{ lemma }}+N+Prop+Sem/Fem+Sg+Acc
+{{ lemma }}+N+Prop+Sem/Fem+Sg+Gen
+{{ lemma }}+N+Prop+Sem/Fem+Sg+Loc
+{{ lemma }}+N+Prop+Sem/Fem+Sg+Ill
+{{ lemma }}+N+Prop+Sem/Fem+Sg+Com
+{{ lemma }}+N+Prop+Sem/Fem+Pl+Nom
+{{ lemma }}+N+Prop+Sem/Fem+Pl+Acc
+{{ lemma }}+N+Prop+Sem/Fem+Pl+Gen
+{{ lemma }}+N+Prop+Sem/Fem+Pl+Loc
+{{ lemma }}+N+Prop+Sem/Fem+Pl+Ill
+{{ lemma }}+N+Prop+Sem/Fem+Pl+Com
+{{ lemma }}+N+Prop+Sem/Fem+Ess
+
+{{ lemma }}+N+Prop+Sem/Ani+Sg+Nom
+{{ lemma }}+N+Prop+Sem/Ani+Sg+Acc
+{{ lemma }}+N+Prop+Sem/Ani+Sg+Gen
+{{ lemma }}+N+Prop+Sem/Ani+Sg+Loc
+{{ lemma }}+N+Prop+Sem/Ani+Sg+Ill
+{{ lemma }}+N+Prop+Sem/Ani+Sg+Com
+{{ lemma }}+N+Prop+Sem/Ani+Pl+Nom
+{{ lemma }}+N+Prop+Sem/Ani+Pl+Acc
+{{ lemma }}+N+Prop+Sem/Ani+Pl+Gen
+{{ lemma }}+N+Prop+Sem/Ani+Pl+Loc
+{{ lemma }}+N+Prop+Sem/Ani+Pl+Ill
+{{ lemma }}+N+Prop+Sem/Ani+Pl+Com
+{{ lemma }}+N+Prop+Sem/Ani+Ess
+
+
+{{ lemma }}+N+Prop+Sem/Org+Sg+Nom
+{{ lemma }}+N+Prop+Sem/Org+Sg+Acc
+{{ lemma }}+N+Prop+Sem/Org+Sg+Gen
+{{ lemma }}+N+Prop+Sem/Org+Sg+Loc
+{{ lemma }}+N+Prop+Sem/Org+Sg+Ill
+{{ lemma }}+N+Prop+Sem/Org+Sg+Com

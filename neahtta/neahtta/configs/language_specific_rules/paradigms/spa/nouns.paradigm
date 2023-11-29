@@ -1,0 +1,8 @@
+name: "nouns"
+morphology:
+  pos: N
+--
+{{ lemma }}+N+Msc+Sg
+{{ lemma }}+N+Msc+Pl
+{{ lemma }}+N+Fem+Sg
+{{ lemma }}+N+Fem+Pl

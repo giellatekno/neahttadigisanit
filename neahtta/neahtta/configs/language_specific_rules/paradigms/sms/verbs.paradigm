@@ -1,0 +1,29 @@
+﻿name: "verbs"
+morphology:
+  pos: V
+--
+{{ lemma }}+V+Ind+Prs+Sg1
+{{ lemma }}+V+Ind+Prs+Sg2
+{{ lemma }}+V+Ind+Prs+Sg3
+{{ lemma }}+V+Ind+Prs+Pl1
+{{ lemma }}+V+Ind+Prs+Pl2
+{{ lemma }}+V+Ind+Prs+Pl3
+{{ lemma }}+V+Ind+Prs+Sg4
+{{ lemma }}+V+Ind+Prt+Sg1
+{{ lemma }}+V+Ind+Prt+Sg2
+{{ lemma }}+V+Ind+Prt+Sg3
+{{ lemma }}+V+Ind+Prt+Pl1
+{{ lemma }}+V+Ind+Prt+Pl2
+{{ lemma }}+V+Ind+Prt+Pl3
+{{ lemma }}+V+Ind+Prt+Sg4
+{{ lemma }}+V+Ind+Prs+ConNeg
+{{ lemma }}+V+Ind+Prt+ConNeg
+{{ lemma }}+V+PrfPrc
+{#  we could also add ... 
+{{ lemma }}+V+Pass+PrfPrc
+{{ lemma }}+V+ActEss
+{{ lemma }}+V+VAbess
+{{ lemma }}+V+GerTemp
+{{ lemma }}+V+GerInstr
+{{ lemma }}+V+Actio
+#}

@@ -1,0 +1,36 @@
+name: "Transitive animate verb basic paradigm"
+paradigm: 'verb-ta.paradigm'
+layout:
+  type: "basic"
+tooltips: 
+  eng:
+    "Independent": "I/you/we VERB"
+    "Conjunct": "...that I/you/we VERB"
+    "2s → 1s": "You VERB me" 
+    "1s → 2s": "I VERB you"
+    "1s → 3s": "I VERB her/him"
+    "2s → 3s": "You VERB her/him"
+    "3s → 1s": "S/he VERBs me"
+    "3s → 2s": "S/he VERBs you"
+    "3s → 4":  "S/he VERBs him/her"
+    "4 → 3s":  "S/he VERBs him/her"
+--
+|                             | "PRESENT TENSE"             |                             |
+| "Speech Act Participants"   | : "Independent"             | : "Conjunct"                |
+| "2s → 1s"                   | Ind+Prs+2Sg+1SgO            | PV/e+*+Cnj+Prs+2Sg+1SgO     |
+| "1s → 2s"                   | Ind+Prs+1Sg+2SgO            | PV/e+*+Cnj+Prs+1Sg+2SgO     |
+|                             |                             |                             |
+| "Mixed participants"        | : "Independent"             | : "Conjunct"                |
+| "1s → 3s"                   | Ind+Prs+1Sg+3SgO            | PV/e+*+Cnj+Prs+1Sg+3SgO     |
+| "2s → 3s"                   | Ind+Prs+2Sg+3SgO            | PV/e+*+Cnj+Prs+2Sg+3SgO     |
+| "3s → 1s"                   | Ind+Prs+3Sg+1SgO            | PV/e+*+Cnj+Prs+3Sg+1SgO     |
+| "3s → 2s"                   | Ind+Prs+3Sg+2SgO            | PV/e+*+Cnj+Prs+3Sg+2SgO     |
+|                             |                             |                             |
+| "Third person participants" | : "Independent"             | : "Conjunct"                |
+| "3s → 4"                    | Ind+Prs+3Sg+4Sg/PlO         | PV/e+*+Cnj+Prs+3Sg+4Sg/PlO  |
+| "4 → 3s"                    | Ind+Prs+4Sg/Pl+3SgO         | PV/e+*+Cnj+Prs+4Sg/Pl+3SgO  |
+|                             |                             |                             |
+|                             | "IMPERATIVE"                |                             |
+|                             | "Immediate"                 |                             |
+| "2s → 1s"                   | Imp+Imm+2Sg+1SgO            |                             |
+| "2s → 3s"                   | Imp+Imm+2Sg+3SgO            |                             |

@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block bodyclass %}about{% endblock %}
+
+{% block title %}{% trans %}About{% endtrans %} :: {% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="marketing">
+        <div class="hero-unit">
+          {# Hide this on mobiles, because it is too big, and the name
+             is in the header anyway #}
+          <h1 class="hidden-phone">{{ app_name }}</h1>
+          <p class="lead" style="margin-bottom: .25em;">{% trans %}A dictionary that understands what you're looking for.{% endtrans %}</p>
+          <p style="font-size: 80%; margin-top: .5em;"><em>{% trans %}(... And is mobile-friendly!){% endtrans %}</em></p>
+        </div>
+        <div class="row-fluid">
+            <span class="span4">
+                <h3 class="red">{% trans %}How to quote the dictionary{% endtrans %}</h3>
+                <p><ul>
+                    <li>Wilbur, Joshua 2013-2022: <em>Nähttadigibáhko Pite Saami-English dictionary</em>. Tromsø: UiT. URL: http://bahkogirrje.oahpa.no</li>
+                    <li>Wilbur, Joshua 2013-2022: <em>Nähttadigibáhko Pitesamisk-norsk</em>. Tromsø: UiT. URL: http://bahkogirrje.oahpa.no</li>
+                    <li>Wilbur, Joshua 2022: <em>Nähttadigibáhko Pitesamiska-svenska</em>. Tromsø: UiT. URL: http://bahkogirrje.oahpa.no</li>
+                </ul>.</p>
+            </span>
+            <span class="span4">
+            <h3 class="blue">{% trans %}Open-Source{% endtrans %}</h3>
+            <p>{% trans %}Everything here is based on open-source tools. Do you
+                have an idea for an app or research project that needs
+                linguistic resources? Visit <a class="blue"
+                    href="http://giellatekno.uit.no/">Giellatekno</a>'s
+                website for information on how to get access to lexicon
+                files, and morphological and syntactic analyzers.{% endtrans %}</p>
+            </span>
+            <span class="span4">
+                <h3 class="green">{% trans %}Linguistic basis{% endtrans %}</h3>
+                <p>{% trans %}Write whatever you want in Pite Saami, and the dictionary will analyze it to break apart compound words and find base forms.{% endtrans %}</p>
+                <p>«manaj» <br />
+                    → «manaj» <span class="label label-success">V</span> <span class="label label-success">Ind</span> <span class="label label-success">Prt</span> <span class="label label-success">Sg3</span>
+                    <br />
+                    → «mannat»
+                    <br />
+                    → {% trans %}fara, gå{% endtrans %}</p>
+            </span>
+        </div>
+        <div class="row-fluid">
+            <blockquote></blockquote>
+        </div>
+        <div class="row-fluid">
+            <h2 style="font-weight:300;">{% trans %}Source material{% endtrans %}</h2>
+        </div>
+        <div class="row-fluid">
+            <blockquote></blockquote>
+        </div>
+        <div class="row-fluid">
+            <span class="span4">
+                <p>The Pite Saami dictionaries are primarily based on <em><a class="blue" href="http://saami.uni-freiburg.de/samica/">Pitesamisk ordbok samt stavningsregler</a></em> (2016, edited by J. Wilbur), which itself is essentially a revised and edited version of the wordlist collected by the project <em><a class="blue" href="http://2007-2013.interregnord.com/sv/beviljade-projekt/sapmi/4-graensloes-utveckling/insamling-av-pitesamiska-ord.aspx">Insamling av pitesamiska ord</a></em> between 2008 and 2012 by N.-H. Bengtsson, M. Eriksson, I. Fjällås, E.-K. Rosenberg, G. H. Sivertsen, V. Sjaggo, D. Skaile and P. Steggo. However, these online dictionaries are being corrected, updated and improved, and new entries are being added as well, all on a regular, ongoing basis by J. Wilbur in partial collaboration with P. Steggo and O. Utne, and of course thanks to infrastructure support by Giellatekno. Rules for wordform analyses and generation are maintained by J. Wilbur. Another searchable version of the same database but including grammatical information, many audio files and some entries containing phrases or wordforms can be accessed at the website <a class="blue" href="http://saami.uni-freiburg.de/psdp/pite-lex/">Bidumsáme Báhkogirrje</a>.</p>
+            </span>
+        </div>
+        <div class="row-fluid">
+            <span class="span4">
+                <h2 style="font-weight:300;">{% trans %}Find a problem?{% endtrans %}</h2>
+                <p>{% trans %}If you find any bugs, please get in touch with us. Describe the problem,
+                and tell us what web browser or mobile phone you were using, or what word you
+                were searching for when you encountered the problem.{% endtrans %}</p>
+
+                <div class="visible-phone">
+                    <a class="btn btn-large btn-block" type="button" href="mailto:giellatekno@uit.no" >{% trans %}Contact us{% endtrans %}</a>
+                    <br />
+                </div>
+                <div class="hidden-phone">
+                    <br />
+                    <a class="btn-contact-thing btn btn-large btn-primary" type="button" href="mailto:giellatekno@uit.no">{% trans %}Contact us{% endtrans %}</a>
+                    <br />
+                    <br />
+                </div>
+
+                <p>{% trans %}Need more dictionaries? <a href="http://dicts.uit.no/">Here's our full list</a>, and more
+                resources.{% endtrans %}</p>
+            </span>
+        </div>
+        <div class="row-fluid">
+            <blockquote></blockquote>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{# vim: set ts=4 sw=4 tw=0 syntax=htmljinja : #}

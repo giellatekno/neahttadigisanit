@@ -1,0 +1,21 @@
+name: "verbs"
+morphology:
+  pos: V
+  valency: true
+--
+{{ lemma }}+{{ valency }}+V+Simp+Pres
+{{ lemma }}+{{ valency }}+V+Interr+Simp+Pres
+{{ lemma }}+{{ valency }}+V+Dir+Past
+{{ lemma }}+{{ valency }}+V+Interr+Past
+{{ lemma }}+{{ valency }}+V+Simp+Fut
+{{ lemma }}+{{ valency }}+V+Interr+Fut+Long
+{{ lemma }}+{{ valency }}+V+Sg+Impv
+{{ lemma }}+{{ valency }}+V+Pl+Impv
+{{ lemma }}+{{ valency }}+V+Neg+Simp+Pres
+{{ lemma }}+{{ valency }}+V+Neg+Interr+Simp+Pres
+{{ lemma }}+{{ valency }}+V+Neg+Dir+Past
+{{ lemma }}+{{ valency }}+V+Neg+Interr+Past
+{{ lemma }}+{{ valency }}+V+Neg+Simp+Fut
+{{ lemma }}+{{ valency }}+V+Neg+Interr+Fut+Long
+{{ lemma }}+{{ valency }}+V+Neg+Sg+Impv
+{{ lemma }}+{{ valency }}+V+Neg+Pl+Impv

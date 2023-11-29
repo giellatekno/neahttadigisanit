@@ -1,0 +1,26 @@
+{# Here we render only what should appear as the entry text, but try to
+   avoid any additional HTML formatting.
+
+   NB: you probably need tag filters `text`.
+#}
+{%- import "lexicon.macros" as macros with context -%}
+
+{%- set first_l = lexicon_entry|xpath('lg/l')|first -%}
+
+{%- set pos = first_l|xpath('@pos')|first -%}
+
+{%- if first_l|xpath('@type') -%}
+  {%- set pos_type = first_l|xpath('@type')|tagfilter(_from, _to) -%}
+{%- endif -%}
+
+{%- if pos == 'N' and pos_type and not first_l.attrib.get('type') == 'Prop' -%}
+  {%- set pos_type = '' -%}
+{%- endif -%}
+
+{%- if pos_type -%}
+  {%- set pos_text = pos|tagfilter(_from, _to) + " " + pos_type -%}
+{%- else -%}
+  {%- set pos_text = pos|tagfilter(_from, _to) -%}
+{%- endif -%}
+
+<span lang="{{ _from }}">{{- first_l|text -}}</span>

@@ -1,0 +1,23 @@
+name: "Adjective paradigm with cases"
+morphology:
+  pos: A
+lexicon:
+  XPATH:
+    context: './/l/@paradigme'
+  context:
+    - "cases"
+--
+{{ lemma }}+A+Attr
+{{ lemma }}+A+Sg+Nom
+{{ lemma }}+A+Sg+Acc
+{{ lemma }}+A+Sg+Gen
+{{ lemma }}+A+Sg+Ill
+{{ lemma }}+A+Sg+Loc
+{{ lemma }}+A+Sg+Com
+{{ lemma }}+A+Ess
+{{ lemma }}+A+Pl+Nom
+{{ lemma }}+A+Pl+Acc
+{{ lemma }}+A+Pl+Gen
+{{ lemma }}+A+Pl+Ill
+{{ lemma }}+A+Pl+Loc
+{{ lemma }}+A+Pl+Com

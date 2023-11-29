@@ -1,0 +1,3 @@
+# Dev only, used in testing
+cssselect
+beautifulsoup4

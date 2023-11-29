@@ -1,0 +1,60 @@
+﻿{% extends 'base.html' %}
+
+{% block title %}
+ - {% trans %}More dictionaris{% endtrans %}
+{% endblock %}
+
+{% block meta_title %}
+{% endblock %}
+
+{% block meta_description %}
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span5 offset1">
+
+            <h3 lang="{{ current_locale }}">{% trans %}Other dictionaries{% endtrans %}</h3>
+
+            {# NB: this hard-coded use of Neahttadigisánit is alright. #}
+            <p lang="{{ current_locale }}">{% trans %}Neahttadigisánit is available for the following
+                language groups.{% endtrans %}</p>
+
+            <ul>
+                <li><a href="http://sánit.oahpa.no/" lang="{{ current_locale }}">{% trans %}North Saami{% endtrans %}</a></li>
+                <li><a href="http://baakoeh.oahpa.no/" lang="{{ current_locale }}">{% trans %}South Saami{% endtrans %}</a></li>
+                <li><a href="http://kyv.oahpa.no/" lang="{{ current_locale }}">{% trans %}Komi and Udmurt{% endtrans %}</a></li>
+                <li><a href="http://muter.oahpa.no/" lang="{{ current_locale }}">{% trans %}Mari{% endtrans %}</a></li>
+                <li><a href="http://saan.oahpa.no/" lang="{{ current_locale }}">{% trans %}Skolt Saami{% endtrans %}</a></li>
+                <li><a href="http://saanih.oahpa.no/" lang="{{ current_locale }}">{% trans %}Inari Saami{% endtrans %}</a></li>
+                <li><a href="http://sanj.oahpa.no/" lang="{{ current_locale }}">{% trans %}Kildin Saami{% endtrans %}</a></li>
+                <li><a href="http://bahkogirrje.oahpa.no/" lang="{{ current_locale }}">{% trans %}Pite Saami{% endtrans %}</a></li>
+                <li><a href="http://sanat.oahpa.no/" lang="{{ current_locale }}">{% trans %}Finnish, Kven, Karelian, Veps{% endtrans %}</a></li>
+                <li><a href="http://sonad.oahpa.no/" lang="{{ current_locale }}">{% trans %}Livonian, Estonian, Vot{% endtrans %}</a></li>
+                <li><a href="http://vada.oahpa.no/" lang="{{ current_locale }}">{% trans %}Nenets{% endtrans %}</a></li>
+                <li><a href="http://valks.oahpa.no/" lang="{{ current_locale }}">{% trans %}Mordvinian{% endtrans %}</a></li>
+            </ul>
+
+            <p lang="{{ current_locale }}">{% trans %}We're also working on new language pairs.{% endtrans %}
+            </p>
+
+            <h4 lang="{{ current_locale }}">{% trans %}Even more dictionaries...{% endtrans %}</h4>
+            <p lang="{{ current_locale }}">{% trans %}<a href="http://giellatekno.uit.no/">Giellatekno</a> also has
+                other languages and dictionaries that are not yet available in
+                Neahttadigisánit. For a list of all other online dictionaries
+                built with our tools, <a href="http://dicts.uit.no/">see this
+                    list</a>.{% endtrans %}</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+{# vim: set ts=4 sw=4 tw=72 syntax=jinja : #}

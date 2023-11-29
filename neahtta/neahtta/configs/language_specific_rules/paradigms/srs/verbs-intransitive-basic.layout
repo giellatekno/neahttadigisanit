@@ -1,0 +1,16 @@
+name: "Intransitive verb full paradigm"
+paradigm: "verbs-intransitive.paradigm"
+layout:
+  type: "basic"
+--
+| "Person/"  | "Non-past" |
+| "Number"   | "aspect"   |
+| "Singular" |            |
+| "1"        | Ipfv+Sg1   |
+| "2"        | Ipfv+Sg2   |
+| "3"        | Ipfv+Sg3   |
+| "4"        | Ipfv+Sg4   |
+| "Plural"   |            |
+| "1"        | Ipfv+Pl1   |
+| "2"        | Ipfv+Pl2   |
+| "3"        | Ipfv+Pl3   |

@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block extra_css %}
+    <link href="{{url_for('static', filename='css/about.css')}}" rel="stylesheet" />
+{% endblock %}
+
+{% block title -%}{% trans %}About{% endtrans %} :: {% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="marketing">
+        <div class="hero-unit">
+          {# Hide this on mobiles, because it is too big, and the name
+             is in the header anyway #}
+          <h1 class="hidden-phone">{{ app_name }}</h1>
+          <p class="lead" style="margin-bottom: .25em;">{% trans %}A dictionary that understands what you're looking for.{% endtrans %}</p>
+          <p style="font-size: 80%; margin-top: .5em;"><em>{% trans %}(... And is mobile-friendly!){% endtrans %}</em></p>
+        </div>
+        <div class="row-fluid">
+            <span class="span4">
+                <h3 class="red">{# NOTE: Free as in gratis #}{% trans %}Free{% endtrans %}</h3>
+                <p>{% trans %}Everything (or, well, almost everything) that
+                    concerns minority languages should be free. Here
+                    you'll find free dictionaries, and other analytical
+                    tools.{% endtrans %}</p>
+            </span>
+            <span class="span4">
+            <h3 class="blue">{% trans %}Open-Source{% endtrans %}</h3>
+            <p>{% trans %}Everything here is based on open-source tools. Do you
+                have an idea for an app or research project that needs
+                linguistic resources? Visit the <a class="blue"
+                    href="http://altlab.artsrn.ualberta.ca/">ALTLab</a> and
+                    <a class="blue"
+                    href="http://giellatekno.uit.no/">Giellatekno</a>
+                websites for information on how to get access to lexicon
+                files, and morphological and syntactic analyzers.{% endtrans %}</p>
+            </span>
+            <span class="span4">
+                <h3 class="green">{% trans %}Linguistic basis{% endtrans %}</h3>
+                <p>{% trans %}Write what you wish, and the dictionary will analyze it to break apart compound words and find base forms.{% endtrans %}</p>
+                <p>«kinêhiyawânâwâw» <br />
+                    → «nêhiyawêw» <span class="label label-success">Verb</span> <span class="label label-success">Animate Intransitive</span> <span class="label label-success">Independent</span> <span class="label label-success">Present</span> <span class="label label-success">1st Person Plural Inclusive</span>
+                    <br />
+<!--                    → «lǟʼdõ» 
+                    <br /> -->
+                    → {% trans %}s/he speaks Cree{% endtrans %}</p>
+            </span>
+        </div>
+        <div class="row-fluid">
+            <blockquote></blockquote>
+        </div>
+        <div class="row-fluid">
+            <h2 style="font-weight:300;">{% trans %}Source material{% endtrans %}</h2>
+        </div>
+        <div class="row-fluid">
+            <blockquote></blockquote>
+        </div>
+        <div class="row-fluid">
+            <span class="span4">
+                <h3 class="red smaller">{% trans %}crk ↔ eng{% endtrans %}</h3>
+
+                <p>{% trans %}Dictionaries for Plains Cree and English are based
+                on the lexical materials and scientific research in <a href="http://uofrpress.ca/publications/cree-words"><em>nêhiyawêwin : itwêwina / Cree: Words</em></a>.
+                 Compiled by Arok Wolvengrey.  Regina: Canadian Plains Research Center, 2001.{% endtrans
+                %}</p>
+
+            </span>
+            <span class="span4">
+                <h3 class="blue smaller">Neahttadigisánit</h3>
+                <p>{% trans %}The dictionary software behind itwêwina is Neahttadigisánit, originally created for North Saami and South Saami at the University of Tromsø. New languages always present new challenges for the software, so be sure to get in touch with us if you have questions or comments.{% endtrans %}</p>
+            </span>
+        </div>
+        <div class="row-fluid">
+            <span class="span4">
+                <h2 style="font-weight:300;">{% trans %}Find a problem?{% endtrans %}</h2>
+                <p>{% trans %}If you find any bugs, please get in touch with us. Describe the problem,
+                and tell us what web browser or mobile phone you were using, or what word you
+                were searching for when you encountered the problem.{% endtrans %}</p>
+                <p>{% trans %}Need more dictionaries? <a href="http://dicts.uit.no/">Here's our full list</a>, and more
+                resources.{% endtrans %}</p>
+            </span>
+        </div>
+        <div class="row-fluid">
+            <blockquote></blockquote>
+        </div>
+        <div class="row-fluid">
+            <span class="span4"><h3 class="red">&nbsp;</h3></span>
+            <span class="span4"><h3 class="blue">{% trans %}More to come...{% endtrans %}</h3></span>
+        </div>
+        <div class="row-fluid">
+            <blockquote></blockquote>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

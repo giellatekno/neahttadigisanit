@@ -12,14 +12,27 @@ tmp/
 __pycache__/
 *.DS_Store
 node_modules/
+
+# virtual environment folders
 .env/
 .venv/
+venv/
 
-src/neahtta/dicts/*.xml
-src/neahtta/dicts/*.xml.bak
-src/neahtta/dicts/*.xml.bak-before-stem
-src/neahtta/dicts/*.log
-src/neahtta/dicts/test_lexica
+# what are these "build" folders?
+neahtta/build/
+neahtta/neahtta/build/
+
+neahtta/neahtta/dicts/*.xml
+neahtta/neahtta/dicts/*.xml.bak
+neahtta/neahtta/dicts/*.xml.bak-before-stem
+neahtta/neahtta/dicts/*.xml.log
+neahtta/neahtta/dicts/test_lexica
+
+# This folder appeared after switching to pyproject.toml
+neahttadigisanit.egg-info
+
+# Configuration files
+neahtta/neahtta/configs/*.config.yaml
 
 # ignore everything in any static/vendor folder
 **/static/vendor/
@@ -43,6 +56,4 @@ package-lock.json
 # Compiled translations (.mo)
 *.mo
 
-# Production server files
-src/neahtta/configs/*.config.yaml
 *.pid

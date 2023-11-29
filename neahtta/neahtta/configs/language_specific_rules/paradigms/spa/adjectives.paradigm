@@ -1,0 +1,16 @@
+name: "adjectives"
+morphology:
+  pos: A
+--
+{{ lemma }}+A+Msc+Sg
+{{ lemma }}+A+Msc+Pl
+{{ lemma }}+A+Fem+Sg
+{{ lemma }}+A+Fem+Pl
+{{ lemma }}+A+MF+Sg
+{{ lemma }}+A+MF+Pl
+{{ lemma }}+A+Superl+Msc+Sg
+{{ lemma }}+A+Superl+Msc+Pl
+{{ lemma }}+A+Superl+Fem+Sg
+{{ lemma }}+A+Superl+Fem+Pl
+{{ lemma }}+A+Superl+MF+Sg
+{{ lemma }}+A+Superl+MF+Pl

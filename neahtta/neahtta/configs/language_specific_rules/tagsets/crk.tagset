@@ -1,0 +1,74 @@
+pos: 
+ - "N"
+ - "V"
+ - "Num"
+ - "Ipc"
+animacy: 
+ - "TA"
+ - "TI"
+ - "AI"
+ - "II"
+noun_animacy:
+ - "IN"
+ - "AN"
+type: 
+ - "Interr"
+indicative:
+ - "Ind"
+conjunct:
+ - "Cnj"
+tense:
+ - "Fut"
+ - "Prs"
+ - "Prt"
+person:
+ - "1Sg"
+ - "2Sg"
+ - "3Sg"
+ - "4Sg/Pl"
+ - "4Sg/PlO"
+ - "5Sg"
+ - "5Sg/PlO"
+ - "1Pl"
+ - "2Pl"
+ - "3Pl"
+ - "4Pl"
+ - "12Pl"
+ - "1SgO"
+ - "2SgO"
+ - "3SgO"
+ - "SgO"
+ - "4SgO"
+ - "1PlO"
+ - "P2lO"
+ - "3PlO"
+ - "PlO"
+ - "4PlO"
+# These are the tag parts to hide in the paradigm tags.
+#     NB: This problem has mostly been fixed by paradigm layout files, however
+#     these will be used in the fallback paradigm file
+invisible_in_paradigms:
+ - "V"
+ - "TA"
+ - "TI"
+ - "AI"
+ - "II"
+ - "Cnj"
+ - "Ind"
+ - "Prs"
+# this set is used with configs.language_specific_rules.crk and
+# .crk_tags. NB, these can be regex. The order of this list determines
+# the ordering of the processed tag.
+prelemma_tags:
+ - "RdplW"
+ - "RdplS"
+ - match: "^PV"
+   regex: true
+preverbs:
+ - "RdplW"
+ - "RdplS"
+ - "PV/ka"
+ - "PV/ta"
+ - "PV/e"
+nds_dummy_tags:
+ - "Tpl/Lemma"

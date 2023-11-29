@@ -1,0 +1,96 @@
+ApplicationSettings:
+  app_name: "Neahttadigisánit"
+  short_name: "erey"
+  default_locale: "en"
+  default_pair: ["som", "eng"]
+  mobile_default_pair: false
+  locales_available:
+    - en
+  meta_description: >
+      Free online, mobile friendly dictionaries for Nenets
+  meta_keywords: >
+      somali, somali english, english, dictionaries
+
+Tools:
+  xfst_lookup: &LOOKUP '/usr/bin/lookup'
+  opt: &OPT '/opt/smi/'
+
+Morphology:
+  som:
+    tool: *LOOKUP
+    file: [*OPT, '/som/bin/dict-som.fst']
+    inverse_file: [*OPT, '/som/bin/dict-isom-norm.fst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  fin:
+    tool: *LOOKUP
+    file: [*OPT, '/fin/bin/dict-fin.fst']
+    inverse_file: [*OPT, '/fin/bin/dict-ifin-norm.fst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+
+Languages:
+  - iso: som
+    minority_lang: true
+  - iso: eng
+  - iso: fin
+
+Dictionaries:
+  - source: som
+    target: eng
+    path: 'dicts/som.all.xml'
+  - source: som
+    target: fin
+    path: 'dicts/som.all.xml'
+
+Paradigms:
+  som:
+      # PRON:
+      #   - "Pregenerate"
+    N:
+      - "Masc+Sg+Def+Abs+Prox"
+      - "Fem+Sg+Def+Abs+Prox"
+
+      - "Masc+Pl+Indef+Abs"
+      - "Fem+Pl+Indef+Abs"
+    V:
+      - "Inf"
+      - "Imper+Sg"
+      - "Imper+Pl"
+      - "1Sg+Ind+Past"
+      - "2Sg+Ind+Past"
+      - "Prog+1Sg+Ind+Past"
+      - "Prog+2Sg+Ind+Past"
+    A:
+      - "Pres+1Sg"
+      - "Pres+2Sg"
+
+TagSets:
+  som:
+    pos: ["N", "V", "A", "Adp", "Num"]
+    type: ["Attr", "Coll"]
+
+
+# (sourcelang, targlang)
+# V: "v."
+# FST format: "user friendly"
+TagTransforms:
+
+  (som, eng):
+    V: "v."
+    N: "n."
+    A: "adj."
+
+  (som, fin):
+    V: "v."
+    N: "n."
+    A: "adj."
+

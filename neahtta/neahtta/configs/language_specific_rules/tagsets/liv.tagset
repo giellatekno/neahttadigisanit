@@ -1,0 +1,14 @@
+﻿pos: 
+ - "N"
+ - "V"
+ - "A"
+ - "Pr"
+ - "Po"
+ - "Num"
+ - "CS"
+ - "CC"
+type: 
+ - "NomAg"
+ - "G3"
+ - "aktor"
+ - "res."

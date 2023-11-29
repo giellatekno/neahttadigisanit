@@ -1,0 +1,274 @@
+make[1]: Entering directory '/home/anders/giellalt/lang-sme'
+
+*** Compiling sme - North Sami. ***
+
+CDPATH="${ZSH_VERSION+.}:" && cd . && /bin/bash '/home/anders/giellalt/lang-sme/build-aux/missing' autoconf
+Making all in .
+make[2]: Entering directory '/home/anders/giellalt/lang-sme'
+
+*** Compiling sme - North Sami. ***
+
+CDPATH="${ZSH_VERSION+.}:" && cd . && /bin/bash '/home/anders/giellalt/lang-sme/build-aux/missing' autoconf
+make[2]: Nothing to be done for 'all-am'.
+make[2]: Leaving directory '/home/anders/giellalt/lang-sme'
+Making all in src
+make[2]: Entering directory '/home/anders/giellalt/lang-sme/src'
+Making all in fst
+make[3]: Entering directory '/home/anders/giellalt/lang-sme/src/fst'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/home/anders/giellalt/lang-sme/src/fst'
+Making all in filters
+make[3]: Entering directory '/home/anders/giellalt/lang-sme/src/filters'
+make  all-am
+make[4]: Entering directory '/home/anders/giellalt/lang-sme/src/filters'
+make[4]: Nothing to be done for 'all-am'.
+make[4]: Leaving directory '/home/anders/giellalt/lang-sme/src/filters'
+make[3]: Leaving directory '/home/anders/giellalt/lang-sme/src/filters'
+Making all in phonetics
+make[3]: Entering directory '/home/anders/giellalt/lang-sme/src/phonetics'
+Making all in .
+make[4]: Entering directory '/home/anders/giellalt/lang-sme/src/phonetics'
+make[4]: Nothing to be done for 'all-am'.
+make[4]: Leaving directory '/home/anders/giellalt/lang-sme/src/phonetics'
+Making all in tests
+make[4]: Entering directory '/home/anders/giellalt/lang-sme/src/phonetics/tests'
+make[4]: Nothing to be done for 'all'.
+make[4]: Leaving directory '/home/anders/giellalt/lang-sme/src/phonetics/tests'
+make[3]: Leaving directory '/home/anders/giellalt/lang-sme/src/phonetics'
+Making all in hyphenation
+make[3]: Entering directory '/home/anders/giellalt/lang-sme/src/hyphenation'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/home/anders/giellalt/lang-sme/src/hyphenation'
+Making all in orthography
+make[3]: Entering directory '/home/anders/giellalt/lang-sme/src/orthography'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/home/anders/giellalt/lang-sme/src/orthography'
+Making all in cg3
+make[3]: Entering directory '/home/anders/giellalt/lang-sme/src/cg3'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/home/anders/giellalt/lang-sme/src/cg3'
+Making all in transcriptions
+make[3]: Entering directory '/home/anders/giellalt/lang-sme/src/transcriptions'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/home/anders/giellalt/lang-sme/src/transcriptions'
+Making all in tagsets
+make[3]: Entering directory '/home/anders/giellalt/lang-sme/src/tagsets'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/home/anders/giellalt/lang-sme/src/tagsets'
+Making all in .
+make[3]: Entering directory '/home/anders/giellalt/lang-sme/src'
+make[3]: Nothing to be done for 'all-am'.
+make[3]: Leaving directory '/home/anders/giellalt/lang-sme/src'
+make[2]: Leaving directory '/home/anders/giellalt/lang-sme/src'
+Making all in tools
+make[2]: Entering directory '/home/anders/giellalt/lang-sme/tools'
+Making all in tokenisers
+make[3]: Entering directory '/home/anders/giellalt/lang-sme/tools/tokenisers'
+Making all in filters
+make[4]: Entering directory '/home/anders/giellalt/lang-sme/tools/tokenisers/filters'
+make[4]: Nothing to be done for 'all'.
+make[4]: Leaving directory '/home/anders/giellalt/lang-sme/tools/tokenisers/filters'
+Making all in .
+make[4]: Entering directory '/home/anders/giellalt/lang-sme/tools/tokenisers'
+make[4]: Nothing to be done for 'all-am'.
+make[4]: Leaving directory '/home/anders/giellalt/lang-sme/tools/tokenisers'
+Making all in tests
+make[4]: Entering directory '/home/anders/giellalt/lang-sme/tools/tokenisers/tests'
+make[4]: Nothing to be done for 'all'.
+make[4]: Leaving directory '/home/anders/giellalt/lang-sme/tools/tokenisers/tests'
+make[3]: Leaving directory '/home/anders/giellalt/lang-sme/tools/tokenisers'
+Making all in analysers
+make[3]: Entering directory '/home/anders/giellalt/lang-sme/tools/analysers'
+Making all in .
+make[4]: Entering directory '/home/anders/giellalt/lang-sme/tools/analysers'
+make[4]: Nothing to be done for 'all-am'.
+make[4]: Leaving directory '/home/anders/giellalt/lang-sme/tools/analysers'
+make[3]: Leaving directory '/home/anders/giellalt/lang-sme/tools/analysers'
+Making all in shellscripts
+make[3]: Entering directory '/home/anders/giellalt/lang-sme/tools/shellscripts'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/home/anders/giellalt/lang-sme/tools/shellscripts'
+Making all in spellcheckers
+make[3]: Entering directory '/home/anders/giellalt/lang-sme/tools/spellcheckers'
+Making all in filters
+make[4]: Entering directory '/home/anders/giellalt/lang-sme/tools/spellcheckers/filters'
+make[4]: Nothing to be done for 'all'.
+make[4]: Leaving directory '/home/anders/giellalt/lang-sme/tools/spellcheckers/filters'
+Making all in weights
+make[4]: Entering directory '/home/anders/giellalt/lang-sme/tools/spellcheckers/weights'
+make[4]: Nothing to be done for 'all'.
+make[4]: Leaving directory '/home/anders/giellalt/lang-sme/tools/spellcheckers/weights'
+Making all in neural
+make[4]: Entering directory '/home/anders/giellalt/lang-sme/tools/spellcheckers/neural'
+make[4]: Nothing to be done for 'all'.
+make[4]: Leaving directory '/home/anders/giellalt/lang-sme/tools/spellcheckers/neural'
+Making all in .
+make[4]: Entering directory '/home/anders/giellalt/lang-sme/tools/spellcheckers'
+make[4]: Nothing to be done for 'all-am'.
+make[4]: Leaving directory '/home/anders/giellalt/lang-sme/tools/spellcheckers'
+make[3]: Leaving directory '/home/anders/giellalt/lang-sme/tools/spellcheckers'
+Making all in hyphenators
+make[3]: Entering directory '/home/anders/giellalt/lang-sme/tools/hyphenators'
+Making all in filters
+make[4]: Entering directory '/home/anders/giellalt/lang-sme/tools/hyphenators/filters'
+make[4]: Nothing to be done for 'all'.
+make[4]: Leaving directory '/home/anders/giellalt/lang-sme/tools/hyphenators/filters'
+Making all in .
+make[4]: Entering directory '/home/anders/giellalt/lang-sme/tools/hyphenators'
+make[4]: Nothing to be done for 'all-am'.
+make[4]: Leaving directory '/home/anders/giellalt/lang-sme/tools/hyphenators'
+make[3]: Leaving directory '/home/anders/giellalt/lang-sme/tools/hyphenators'
+Making all in grammarcheckers
+make[3]: Entering directory '/home/anders/giellalt/lang-sme/tools/grammarcheckers'
+Making all in filters
+make[4]: Entering directory '/home/anders/giellalt/lang-sme/tools/grammarcheckers/filters'
+make[4]: Nothing to be done for 'all'.
+make[4]: Leaving directory '/home/anders/giellalt/lang-sme/tools/grammarcheckers/filters'
+Making all in .
+make[4]: Entering directory '/home/anders/giellalt/lang-sme/tools/grammarcheckers'
+make[4]: Nothing to be done for 'all-am'.
+make[4]: Leaving directory '/home/anders/giellalt/lang-sme/tools/grammarcheckers'
+Making all in tests
+make[4]: Entering directory '/home/anders/giellalt/lang-sme/tools/grammarcheckers/tests'
+make[4]: Nothing to be done for 'all'.
+make[4]: Leaving directory '/home/anders/giellalt/lang-sme/tools/grammarcheckers/tests'
+make[3]: Leaving directory '/home/anders/giellalt/lang-sme/tools/grammarcheckers'
+Making all in mt
+make[3]: Entering directory '/home/anders/giellalt/lang-sme/tools/mt'
+Making all in filters
+make[4]: Entering directory '/home/anders/giellalt/lang-sme/tools/mt/filters'
+make[4]: Nothing to be done for 'all'.
+make[4]: Leaving directory '/home/anders/giellalt/lang-sme/tools/mt/filters'
+Making all in .
+make[4]: Entering directory '/home/anders/giellalt/lang-sme/tools/mt'
+make[4]: Nothing to be done for 'all-am'.
+make[4]: Leaving directory '/home/anders/giellalt/lang-sme/tools/mt'
+Making all in apertium
+make[4]: Entering directory '/home/anders/giellalt/lang-sme/tools/mt/apertium'
+Making all in filters
+make[5]: Entering directory '/home/anders/giellalt/lang-sme/tools/mt/apertium/filters'
+make[5]: Nothing to be done for 'all'.
+make[5]: Leaving directory '/home/anders/giellalt/lang-sme/tools/mt/apertium/filters'
+Making all in tagsets
+make[5]: Entering directory '/home/anders/giellalt/lang-sme/tools/mt/apertium/tagsets'
+make[5]: Nothing to be done for 'all'.
+make[5]: Leaving directory '/home/anders/giellalt/lang-sme/tools/mt/apertium/tagsets'
+Making all in .
+make[5]: Entering directory '/home/anders/giellalt/lang-sme/tools/mt/apertium'
+make[5]: Nothing to be done for 'all-am'.
+make[5]: Leaving directory '/home/anders/giellalt/lang-sme/tools/mt/apertium'
+make[4]: Leaving directory '/home/anders/giellalt/lang-sme/tools/mt/apertium'
+Making all in cgbased
+make[4]: Entering directory '/home/anders/giellalt/lang-sme/tools/mt/cgbased'
+Making all in .
+make[5]: Entering directory '/home/anders/giellalt/lang-sme/tools/mt/cgbased'
+make[5]: Nothing to be done for 'all-am'.
+make[5]: Leaving directory '/home/anders/giellalt/lang-sme/tools/mt/cgbased'
+make[4]: Leaving directory '/home/anders/giellalt/lang-sme/tools/mt/cgbased'
+make[3]: Leaving directory '/home/anders/giellalt/lang-sme/tools/mt'
+Making all in tts
+make[3]: Entering directory '/home/anders/giellalt/lang-sme/tools/tts'
+Making all in .
+make[4]: Entering directory '/home/anders/giellalt/lang-sme/tools/tts'
+make[4]: Nothing to be done for 'all-am'.
+make[4]: Leaving directory '/home/anders/giellalt/lang-sme/tools/tts'
+Making all in test
+make[4]: Entering directory '/home/anders/giellalt/lang-sme/tools/tts/test'
+make[4]: Nothing to be done for 'all'.
+make[4]: Leaving directory '/home/anders/giellalt/lang-sme/tools/tts/test'
+make[3]: Leaving directory '/home/anders/giellalt/lang-sme/tools/tts'
+make[3]: Entering directory '/home/anders/giellalt/lang-sme/tools'
+make[3]: Nothing to be done for 'all-am'.
+make[3]: Leaving directory '/home/anders/giellalt/lang-sme/tools'
+make[2]: Leaving directory '/home/anders/giellalt/lang-sme/tools'
+Making all in docs
+make[2]: Entering directory '/home/anders/giellalt/lang-sme/docs'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/home/anders/giellalt/lang-sme/docs'
+Making all in test
+make[2]: Entering directory '/home/anders/giellalt/lang-sme/test'
+Making all in src
+make[3]: Entering directory '/home/anders/giellalt/lang-sme/test/src'
+Making all in phonology
+make[4]: Entering directory '/home/anders/giellalt/lang-sme/test/src/phonology'
+make[4]: Nothing to be done for 'all'.
+make[4]: Leaving directory '/home/anders/giellalt/lang-sme/test/src/phonology'
+Making all in orthography
+make[4]: Entering directory '/home/anders/giellalt/lang-sme/test/src/orthography'
+make[4]: Nothing to be done for 'all'.
+make[4]: Leaving directory '/home/anders/giellalt/lang-sme/test/src/orthography'
+Making all in morphology
+make[4]: Entering directory '/home/anders/giellalt/lang-sme/test/src/morphology'
+make[4]: Nothing to be done for 'all'.
+make[4]: Leaving directory '/home/anders/giellalt/lang-sme/test/src/morphology'
+Making all in syntax
+make[4]: Entering directory '/home/anders/giellalt/lang-sme/test/src/syntax'
+make[4]: Nothing to be done for 'all'.
+make[4]: Leaving directory '/home/anders/giellalt/lang-sme/test/src/syntax'
+make[4]: Entering directory '/home/anders/giellalt/lang-sme/test/src'
+make[4]: Nothing to be done for 'all-am'.
+make[4]: Leaving directory '/home/anders/giellalt/lang-sme/test/src'
+make[3]: Leaving directory '/home/anders/giellalt/lang-sme/test/src'
+Making all in tools
+make[3]: Entering directory '/home/anders/giellalt/lang-sme/test/tools'
+Making all in spellcheckers
+make[4]: Entering directory '/home/anders/giellalt/lang-sme/test/tools/spellcheckers'
+Making all in fstbased
+make[5]: Entering directory '/home/anders/giellalt/lang-sme/test/tools/spellcheckers/fstbased'
+Making all in desktop
+make[6]: Entering directory '/home/anders/giellalt/lang-sme/test/tools/spellcheckers/fstbased/desktop'
+Making all in hfst
+make[7]: Entering directory '/home/anders/giellalt/lang-sme/test/tools/spellcheckers/fstbased/desktop/hfst'
+make[7]: Nothing to be done for 'all'.
+make[7]: Leaving directory '/home/anders/giellalt/lang-sme/test/tools/spellcheckers/fstbased/desktop/hfst'
+make[7]: Entering directory '/home/anders/giellalt/lang-sme/test/tools/spellcheckers/fstbased/desktop'
+make[7]: Nothing to be done for 'all-am'.
+make[7]: Leaving directory '/home/anders/giellalt/lang-sme/test/tools/spellcheckers/fstbased/desktop'
+make[6]: Leaving directory '/home/anders/giellalt/lang-sme/test/tools/spellcheckers/fstbased/desktop'
+Making all in mobile
+make[6]: Entering directory '/home/anders/giellalt/lang-sme/test/tools/spellcheckers/fstbased/mobile'
+make[7]: Entering directory '/home/anders/giellalt/lang-sme/test/tools/spellcheckers/fstbased/mobile'
+make[7]: Nothing to be done for 'all-am'.
+make[7]: Leaving directory '/home/anders/giellalt/lang-sme/test/tools/spellcheckers/fstbased/mobile'
+make[6]: Leaving directory '/home/anders/giellalt/lang-sme/test/tools/spellcheckers/fstbased/mobile'
+make[6]: Entering directory '/home/anders/giellalt/lang-sme/test/tools/spellcheckers/fstbased'
+make[6]: Nothing to be done for 'all-am'.
+make[6]: Leaving directory '/home/anders/giellalt/lang-sme/test/tools/spellcheckers/fstbased'
+make[5]: Leaving directory '/home/anders/giellalt/lang-sme/test/tools/spellcheckers/fstbased'
+make[5]: Entering directory '/home/anders/giellalt/lang-sme/test/tools/spellcheckers'
+make[5]: Nothing to be done for 'all-am'.
+make[5]: Leaving directory '/home/anders/giellalt/lang-sme/test/tools/spellcheckers'
+make[4]: Leaving directory '/home/anders/giellalt/lang-sme/test/tools/spellcheckers'
+Making all in mt
+make[4]: Entering directory '/home/anders/giellalt/lang-sme/test/tools/mt'
+Making all in apertium
+make[5]: Entering directory '/home/anders/giellalt/lang-sme/test/tools/mt/apertium'
+make[5]: Nothing to be done for 'all'.
+make[5]: Leaving directory '/home/anders/giellalt/lang-sme/test/tools/mt/apertium'
+make[5]: Entering directory '/home/anders/giellalt/lang-sme/test/tools/mt'
+make[5]: Nothing to be done for 'all-am'.
+make[5]: Leaving directory '/home/anders/giellalt/lang-sme/test/tools/mt'
+make[4]: Leaving directory '/home/anders/giellalt/lang-sme/test/tools/mt'
+Making all in hyphenators
+make[4]: Entering directory '/home/anders/giellalt/lang-sme/test/tools/hyphenators'
+Making all in fstbased
+make[5]: Entering directory '/home/anders/giellalt/lang-sme/test/tools/hyphenators/fstbased'
+make[5]: Nothing to be done for 'all'.
+make[5]: Leaving directory '/home/anders/giellalt/lang-sme/test/tools/hyphenators/fstbased'
+Making all in patternbased
+make[5]: Entering directory '/home/anders/giellalt/lang-sme/test/tools/hyphenators/patternbased'
+make[5]: Nothing to be done for 'all'.
+make[5]: Leaving directory '/home/anders/giellalt/lang-sme/test/tools/hyphenators/patternbased'
+make[5]: Entering directory '/home/anders/giellalt/lang-sme/test/tools/hyphenators'
+make[5]: Nothing to be done for 'all-am'.
+make[5]: Leaving directory '/home/anders/giellalt/lang-sme/test/tools/hyphenators'
+make[4]: Leaving directory '/home/anders/giellalt/lang-sme/test/tools/hyphenators'
+make[4]: Entering directory '/home/anders/giellalt/lang-sme/test/tools'
+make[4]: Nothing to be done for 'all-am'.
+make[4]: Leaving directory '/home/anders/giellalt/lang-sme/test/tools'
+make[3]: Leaving directory '/home/anders/giellalt/lang-sme/test/tools'
+make[3]: Entering directory '/home/anders/giellalt/lang-sme/test'
+make[3]: Nothing to be done for 'all-am'.
+make[3]: Leaving directory '/home/anders/giellalt/lang-sme/test'
+make[2]: Leaving directory '/home/anders/giellalt/lang-sme/test'
+make[1]: Leaving directory '/home/anders/giellalt/lang-sme'

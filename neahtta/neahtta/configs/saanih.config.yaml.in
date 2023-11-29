@@ -1,0 +1,144 @@
+ApplicationSettings:
+  # TODO: group smn<->fin and smn<->sme  ?
+  app_name: "Nettidigisäänih"
+  app_meta_title: "Nettidigisäänih"
+  short_name: "saanih"
+  default_locale: "smn"
+  default_pair: ["smn", "fin"]
+  mobile_default_pair: ["smnM", "fin"]
+  strip_spaces: true
+  locales_available:
+    - "smn"
+    - "fi"
+    - "en"
+  meta_description: >
+      Free online, mobile friendly dictionaries for Inari Saami
+  meta_keywords: >
+      inari saami, inarisaame, enare samisk, mobile, dictionary, free
+
+Tools:
+  xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
+  hfst_lookup: &HFST-LOOKUP '/bin/hfst-lookup'
+  opt: &OPT '/opt/smi/'
+
+Morphology:
+  smn:
+    tool: *HFST-LOOKUP
+    file: [*OPT, '/smn/bin/analyser-dict-gt-desc.hfstol']
+    inverse_file: [*OPT, '/smn/bin/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
+    options:
+      compoundBoundary: "+Cmp#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  smnM:
+    tool: *HFST-LOOKUP
+    file: [*OPT, '/smn/bin/analyser-dict-gt-desc-mobile.hfstol']
+    inverse_file: [*OPT, '/smn/bin/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  fin:
+    tool: *HFST-LOOKUP
+    file: [*OPT, '/fin/bin/analyser-dict-gt-desc.hfstol']
+    inverse_file: [*OPT, '/fin/bin/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
+    options:
+      compoundBoundary: ["#", "+Cmp#"]
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  sme:
+    tool: *HFST-LOOKUP
+    file: [*OPT, '/sme/bin/analyser-dict-gt-desc.hfstol']
+    inverse_file: [*OPT, '/sme/bin/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
+    options: &sme_fst_options
+      compoundBoundary: "+Cmp#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+
+Languages:
+  - iso: smn
+    minority_lang: true
+  - iso: fin
+  - iso: sme
+  - iso: smnM
+
+Dictionaries:
+  - source: smn
+    target: fin
+    path: 'dicts/smnfin.xml'
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/korp"
+    corpora: 'SMN_ADMIN_20211118,SMN_BIBLE_20211118,SMN_BLOGS_20211118,SMN_FACTA_20211118,SMN_FICTI_20211118,SMN_NEWS_20211118,SMN_SCIENCE_20211118,SMN_WIKIPEDIA_20211118'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    input_variants: &spell_relax_smn
+      - type: "standard"
+        description: !gettext "Standard"
+        example: !gettext "(<em>âäáčđŋšž</em>)"
+        short_name: "smn"
+      - type: "mobile"
+        description: !gettext "Mobile friendly"
+        example: !gettext "(incl. <em>aaacdnsz</em>)"
+        short_name: "smnM"
+        # onscreen_keyboard: *SMN_KEYS
+
+  - source: fin
+    target: smn
+    path: 'dicts/finsmn.xml'
+    autocomplete: true
+    show_korp_search: True
+    is_korp_default_lang: True
+    korp_parallel: True
+    korp_search_host: "http://gtweb.uit.no/korp"
+    link_corpus_parameter: 'fin2smn_20170828-fin%,fin2smn_20170828-smn'
+    corpora: 'FIN2SMN_20170828-FIN,FIN2SMN_20170828-SMN'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+
+  - source: smn
+    target: sme
+    path: 'dicts/smnsme.xml'
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/korp"
+    corpora: 'SMN_ADMIN_20211118,SMN_BIBLE_20211118,SMN_BLOGS_20211118,SMN_FACTA_20211118,SMN_FICTI_20211118,SMN_NEWS_20211118,SMN_SCIENCE_20211118,SMN_WIKIPEDIA_20211118'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    input_variants:
+      - type: "standard"
+        description: !gettext "Standard"
+        example: !gettext "(<em>âäáčđŋšž</em>)"
+        short_name: "smn"
+      - type: "mobile"
+        description: !gettext "Mobile friendly"
+        example: !gettext "(incl. <em>aaacdnsz</em>)"
+        short_name: "smnM"
+        # onscreen_keyboard: *SMN_KEYS
+
+  - source: sme
+    target: smn
+    path: 'dicts/smesmn.xml'
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/korp"
+    corpora: 'NOB2SME_ADMIN_20191210-NOB,NOB2SME_BIBLE_20191210-NOB,NOB2SME_FACTA_20191210-NOB,NOB2SME_SCIENCE_20191210-NOB,NOB2SME_LAWS_20191210-NOB,NOB2SME_MIXED_20191210-NOB,NOB2SME_ADMIN_20191210-SME,NOB2SME_BIBLE_20191210-SME,NOB2SME_FACTA_20191210-SME,NOB2SME_SCIENCE_20191210-SME,NOB2SME_LAWS_20191210-SME,NOB2SME_MIXED_20191210-SME'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+
+  - source: smnM
+    target: sme
+    path: 'dicts/smnsme.xml'
+
+  - source: smnM
+    target: fin
+    path: 'dicts/smnfin.xml'
+
+ReaderConfig:
+  Settings:
+    # host path without scheme (https, http) to reader lookup API, no trailing
+    # slash.
+    api_host: "saanih.oahpa.no"
+    # URL to serve media from, minus scheme, and no trailing slash.
+    media_host: "saanih.oahpa.no"

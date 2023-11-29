@@ -1,0 +1,47 @@
+{# 
+   Overrides contained within:
+     * lemma_ref - link to a different entry ("see also")
+
+   This is the main entry template that is called each time in the loop
+   of main page entry results. Variables are passed in for the
+   `lexicon_entry`, and morphological `analyses`.
+
+   Some of the work here is sent out to `definition.template`.
+
+   If you need to override this template, keep in mind that there is a
+   somewhat specific structure as relates to Twitter Bootstrap, however
+   the freedom that is available is that everything must be within:
+
+       <div class="row-fluid entry_row" />
+#}
+
+{%- macro reference_link(has_reference) -%}
+    {{- rendered_templates.entry_text|safe -}} &rarr; <a href="{{ url_for('.detailed_language_pair_search', _from=_from, _to=_to, wordform=has_reference, format='html') }}"><span class="see_also">{{ has_reference }}</span></a>
+{%- endmacro -%}
+
+{%- import "lexicon.macros" as macros with context -%}
+<div class="row-fluid entry_row">
+    <div class="span8 lexeme">
+        {% if lexicon_entry|count > 0 %}
+            {% set has_reference = lexicon_entry.xpath('./lg/lemma_ref/text()')|first %}
+            <p>
+              	{%- if has_reference -%}
+              	    {{ reference_link(has_reference) }}
+              	{%- else -%}
+            {# URLFOR #}
+                    <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
+                        {{- rendered_templates.entry_text|safe -}}</a>
+                {% endif %}
+            <ul class="meanings">
+                {{- rendered_templates.definition|safe -}}
+            </ul>
+        {% else %}&nbsp;{% endif %}
+    </div>
+    <div class="span4 hidden-phone lexeme_analyses">
+        {{- rendered_templates.analyses|safe -}}
+    </div>
+</div>
+
+{# vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}
+
+

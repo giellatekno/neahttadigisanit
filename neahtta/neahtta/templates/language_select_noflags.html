@@ -1,0 +1,19 @@
+﻿
+    <ul id="i18n_translations" class="nav nav-pills pull-right hidden-phone">
+      <li class="dropdown">
+        <a class="dropdown-toggle"
+           data-toggle="dropdown"
+           href="#">
+            {% trans %}Language{% endtrans %}
+            <b class="caret"></b>
+          </a>
+        <ul class="dropdown-menu">
+            {% for iso in internationalizations %}
+            <li><a href="{{ url_for('.set_locale', iso=iso) }}" lang="{{ current_locale }}">
+                {{ iso|iso_to_language_own_name }}</a></li>
+            {% endfor %}
+        </ul>
+      </li>
+    </ul>
+
+

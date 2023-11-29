@@ -1,0 +1,20 @@
+﻿name: "nouns"
+morphology:
+  pos: N
+--
+{{ lemma }}+N+Sg+Nom
+{{ lemma }}+N+Sg+Loc
+{{ lemma }}+N+Sg+Lat
+{{ lemma }}+N+Sg+Abl
+{{ lemma }}+N+Sg+Ins
+{{ lemma }}+N+Sg+Tra
+{{ lemma }}+N+Du+Nom
+{{ lemma }}+N+Du+Loc
+{{ lemma }}+N+Du+Lat
+{{ lemma }}+N+Du+Abl
+{{ lemma }}+N+Du+Ins
+{{ lemma }}+N+Pl+Nom
+{{ lemma }}+N+Pl+Loc
+{{ lemma }}+N+Pl+Lat
+{{ lemma }}+N+Pl+Abl
+{{ lemma }}+N+Pl+Ins

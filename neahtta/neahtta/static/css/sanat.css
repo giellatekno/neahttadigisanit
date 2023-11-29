@@ -1,0 +1,16 @@
+/* grammar links
+ *
+ */
+
+span.grammar_link_text {
+    font-style: italic;
+    font-weight: 400;
+}
+
+em.grammar_link {
+    font-style: italic;
+}
+
+span.word_not_translated {
+    color: #D8525B;
+}

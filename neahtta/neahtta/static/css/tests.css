@@ -1,0 +1,24 @@
+#tests ul li {
+    list-style-type: none;
+    margin-bottom: .25em;
+}
+
+#tests p {
+    font-size: 130%;
+    font-weight: 300;
+}
+
+#browser_version {
+    font-size: 90%;
+    font-weight: 400;
+    font-family: monospace;
+}
+
+#tests .span3 h3 {
+    font-size: 120%;
+    text-transform: uppercase;
+}
+
+#tests ul ~ p {
+    margin-top: 1.25em;
+}

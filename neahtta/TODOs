@@ -1,0 +1,330 @@
+Nyerste øverst
+
+
+
+
+Bugs i restructuring:
+
+# 1  (FIXED)
+  vuovdi -> trykk på "selger", alt ok. men tilbake:
+  øverste vuovdi har ingen paradigme
+  i tillegg:
+  noen treff har mistet analysen - "vuovdi" har mistet analysen på første
+  - altså ingen paradigmer som vises når man trykker på det.
+
+# 2 (FIXED)
+  beassi -> den andre ordboksartikkenlen, "never", kommer ikke opp!
+
+# 3 (FIXED)
+  skog -> mangler egennavnet Skog som analyse uten treff i ordboka
+
+# 4 (FIXED - tror jeg!)
+  hverandre og trykk på linken -> error 500
+  -> kan være at scriptet som generere ordboka ikke tar med de attributtene,
+  fordi den ligger ikke i den kompilerte ordboka
+
+# 5: FIXED
+  paradigme for vuovdi (subst, ="selger"): kun én paradigmeform som vises,
+  det skal være flere former av hver
+
+
+
+
+
+
+# -- fra møte Jan 2024
+
+NDS-møte
+
+# Evaluering av Anders sine oppdateringar
+
+Vi kan teste dei på [gtdict.uit.no](http://gtdict.uit.no)
+
+## Paradigme for substantiv med tilleggs
+
+```
+vuovdi+N+NomAg... # fungerer
+vuovdi+N+Sg+..    # fungerer ikkje
+viessu+N+Sg+...   #
+``` 
+
+## G3 manglar i ordbokssvaret
+
+Her gjeld det taggen +G3.
+
+Søk **beassi**, og få *reir* men ikkje "never"
+Søk **never** og få *beassi*, med referanse til beassi utan G3
+
+## ord med to paradigme får begge
+
+**skog** gjev *vuovdi*, men gjev paradigme på begge *vuovdi*.
+
+## hverandre
+
+Her får vi **500**.
+
+Lemmaet **hverandre** ligg i `dict-nob-sme/src/Pron_nobsme.xml`
+
+Det som må fungere her er attributta `til_ref fra_ref`.
+
+
+## amas
+
+Vi har to lemmaartiklar for amas, **ii** og **amas**. Viss vi går til den 
+
+# Nye ting
+
+## Ekstrabokstavane hoppar ned til under forklaringsboksen
+
+For å repetere: 
+1. Trykk på knappen `á` til venstre for søkefeltet 
+2. ekstrabokstavene (for sme: 7 bokstavar) dukkar opp over søkefeltet
+3. Skriv ein vanleg bokstav eller to
+4. Deretter ser du at ekstrabokstavane hoppar ned til under forklaringsfeltet
+
+# Prioriter lemmaet som er identisk med søkeordet
+
+Døme: *amas, amat, amamet*
+
+Desse har **ii** som lemma i fst-en, men i tillegg har vi *amas, amat, amamet*, ... som lemma i **ordboka**. 
+
+Det vi vil ha: 
+    1. Oppslaget må finne lemmaet i ordboka
+    2. Presentasjonen må prioritere  lemmaet som er identisk med søkeordet over alle lemma
+
+# Tidlegare ting
+
+- https://giellalt.github.io/dicts/NewFeatures.html
+
+- https://github.com/giellatekno/neahttadigisanit/issues
+
+# Legge til stavekontroll i framleggsvindauget
+
+TODO (Trontr): Sjå på loggen, finne nob-skrivefeil og legge inn som Err/Orth i nobfst.
+
+kommag* vs. komag*. Løysing: ha komag som lemma og kommag som err/orth eller noko slikt.
+
+Evt. 
+<e><l til_ref="komagbånd">kommagbånd</l></e>
+
+lexc 
+komagbånd+v2:kommagbånd n1 ;
+komagbånd+Err/Orth:kommagbånd n1 ;
+komagbånd+Use/NG:kommagbånd n1 ;
+
+Vi bør ikkje gløyme stavekontroll-framlegget:
+    
+    1. viss ordforma ikkje får treff, så
+    2. send til stavekontroll og
+    3. (evt. med fuzzymatch
+    3. returner topp-5 som framlegg (?)
+Sjå t.d. https://ordbokene.no/bm,nn/search?q=barrn&scope=ei
+
+
+## Nummerering
+
+писать
+писать    писать¹+V+Impf+IV+Inf    4,125921
+писать    писать¹+V+Impf+TV+Inf    4,125921
+писать    писать²+V+Impf+IV+Inf    4,125976
+
+
+пи́сать
+пи́сать    писать²+V+Impf+IV+Inf    4,125976
+
+писа́ть
+писа́ть    писать¹+V+Impf+IV+Inf    4,125921
+писа́ть    писать¹+V+Impf+TV+Inf    4,125921
+
+
+
+
+
+
+
+
+
+
+
+
+=========================================================================
+                     OLD CONTENTS BELOW
+=========================================================================
+
+
+
+
+
+
+
+
+
+* tests should be yamlized too, and need clearer error messages. 
+
+* need to hide 'more information' link when there isn't actually more information
+  - probably slightly easier now
+  - TODO 2024: check
+
+# General design stuff
+
+  example from detailed view:
+    - lexicon( xml -> parser )
+                + language specific formatting (chance for markup)
+    -
+
+    - user query -> view -> lexicon lookup results -> formatter ->
+      view does some more things, sorting, object manipulation
+      -> templates
+
+    - templates obviously handle markup
+
+  this is too much, but it happened because a lot of functionality was
+  developed on the fly. now that all the needs from the lexicon and
+  morphology are clear, it needs to be improved and simplified.
+
+   - morphology needs:
+     -
+
+   - lexicon needs:
+
+     - lexicon-specific formatting must be turned into something the
+     application can display.
+
+     - lexicon-specific tags must be turned into something morphology
+     can operate on without much effort from a programmer
+
+     - room for entry/word-class specific formatting stuff
+
+   - linguist needs:
+
+     - choose how to display a specific entry type based on knowledge of
+       lexicon and morphology, without much effort from the programmer
+
+        - pos=N, type=Prop and has @reg; -> display l/text() with l/@reg
+        - pos=N, type=Prop and has @reg; -> display l/text() with l/@reg
+
+     - able to programmatically define links to other entries
+
+     - able to define what paradigm to generate and show with the entry
+       - interact with morphology and tags without having to know how
+         all the (python) code works
+
+# Misc
+
+ * update reversed to work with new structures -> fin-kpv
+
+ * detail view, include generation info in opt+shift+? debug
+
+ * change cache settings for plugin js in nginx configs, some browsers are
+   unwilling to get a new version even when it exists.
+
+ * refresh settings button in plugin
+
+ * cakefile include build bookmark.min.js
+
+ * a little advertising and such for the reader and page with content in specific languages 
+   see script in misc/o
+
+   Add text to reader page: "Here are the top websites that people are reading, did you know you can read them too?"
+
+     14 www.ntfk.no
+     14 www.skogholt.org
+     15 yle.fi
+     16 www.sametinget.se
+     17 fi.wikipedia.org
+     19 dagogtid.no
+     20 www.facebook.com
+     23 www.samediggi.no
+     25 samediggi.fi
+     25 sametinget.se
+     28 samisk.karasjok.kommune.no
+     29 www.nrk.no
+     30 www.hs.fi
+     44 sanit.oahpa.no
+     46 giellatekno.uit.no
+     46 www.regjeringen.no
+     56 se.wikipedia.org
+     63 nrk.no
+    161 avvir.no
+    277 skuvla.info
+    582 www.avvir.no
+   3429 kursa.oahpa.no
+
+  For privacy concerns, only include top _domains_ not individual pages. Also,
+  split these out by language pair used in the lookup. above list is just
+  everything in access logs.
+
+## post launch TODOs:
+
+ * bookmark icon for iOS
+
+    /apple-touch-icon-57x57-precomposed.png
+    /apple-touch-icon-57x57.png 
+    /apple-touch-icon-precomposed.png 
+    /apple-touch-icon.png 
+
+ * translate the mobile bookmark bubble, maybe modify/write one for
+   android, where the process is a little more complex
+ 
+ * Link til read i selve ordbok-grensesnittet -- kor?
+   -- "Vil du ha oversatt ord i en tekst?" 
+   -- "Háliidatgo jorgalahttit sániid teavsttas?"
+   -- "Haluatko käännöksen tekstissä esiintyvään sanaan?"
+
+ * autocomplete SoMe variant
+
+## Next:
+
+ * Glossary page explaining each tag part. (anders 2024: exists somewhere)
+
+ * bookmarklet unloads on additional click (anders 2024: known)
+   
+ * word test-list - https://giellalt.github.io/dicts/checklist.html
+
+ * dropdown events on mobile are a bit funny for the menu on the
+   detailed view, and it is impossible to select a new language pair
+
+ * use logger's own log message formatter
+
+ -- 
+
+ * Once all this is together, optimize memory usage, with specific
+   attention to gtlab / gtoahpa, may be a better way to have multiple
+   threads/greenlets/etc running while parsing trees into only one
+   thread.
+
+   Note: http://blog.pythonisito.com/2012/07/gevent-and-greenlets.html
+
+## Would be nice
+
+ * developer- and linguist-friendly templates for editing how words are
+  presented ; multimethods + jinja - prefer more templates instead of many
+  if/else statements for attributes?
+
+ * tagsets for selecting POS from analyses & specifying what parts of
+   tags should be used for lookups, with fallbacks if they don't exist.
+   (i.e., take POS and Valence if both exist in analysis, if only POS, use
+   that)
+
+   - sma: +1+V, +2+V; one fix is to remove from FST, so that +V is first
+          element, other option would be to improve the lookup system.
+
+   - maybe thinking about a solution to this will help generalise other
+     things for more languages, allowing language-specific configuration
+     of what elements from the analysis must be used to look up words in
+     the lexicon
+
+ * advanced search form: here we get to have some nerdy linguistic fun.
+
+## Features to develop at some point:
+
+ * Use something other than werkzeug's default cache
+
+ * Maybe should provide an individual process for each language pair?
+   Should be easy to split off new processes by pair/endpoint. Note also
+   werkzeug DispatcherMiddleware and PathDispatcher:
+   http://flask.pocoo.org/docs/patterns/appdispatch/
+
+ * getting near the time to adapt version of lookupserv.py that is checked in
+   for actual use. spawn it on process run, so that no one needs to think/worry
+   that it exists aside from looking at process hierarchy in htop

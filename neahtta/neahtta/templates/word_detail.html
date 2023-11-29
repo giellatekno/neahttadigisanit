@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% import 'macros.html' as macros with context %}
+{%- import 'template_settings.html' as template_settings with context -%}
+
+{% block bodyclass %}word_detail{% endblock %}
+
+{% block extra_js %}
+    {{ entry_template_header_includes|safe }}
+{% endblock %}
+
+{# Construct some useful share information for the meta title #}
+{% macro definition_string(r) -%}
+    {%- for lexeme in r -%}
+        {%- set context = lexeme.context -%}
+        {{ lexeme.source_formatted|safe }} &mdash; {% for tx in lexeme.right -%}
+            {%- if tx.target_formatted_unlinked -%}
+                {%- for t in tx.target_formatted_unlinked -%}{{ t }}{% if not loop.last %}, {% endif %}{% endfor -%}
+            {%- else -%}{%- if tx.re %} ({% for annotation in tx.re %}{{ annotation }}{% endfor %}){% endif -%}{% endif -%}
+        {%- endfor -%}
+    {%- if not loop.last %}; {% endif %}
+    {%- endfor -%}
+{%- endmacro -%}
+
+{% block og_meta_description -%}
+    <meta property="og:description" content="{{ definition_string(result) }}" />
+{%- endblock %}
+
+{% block og_url_path %}/detail/{{ _from }}/{{ _to }}/{{ user_input }}.html{% endblock %}
+
+{% block float_right %}
+    {%- if result.analyses %}
+    <div class="well">
+        {% if not template_settings.hide_possible_form_text %}
+            <strong>{{ result.input }} {% trans %}is a possible form of ... {% endtrans %}</strong>
+        {% endif %}
+        <dl class="possible_analyses">
+            {% for grouper, forms in result.analyses|groupby(0) %}
+                <dt>{{ grouper }}</dt>
+                <dd>
+                    <ul class="possible_forms">
+                        {% for lemma, pos, tag in forms %}
+                            <li>{{ tag|tagfilter(_from, _to) }}</li>
+                        {% endfor %}
+                    </ul>
+                </dd>
+            {% endfor %}
+        </dl>
+    </div>
+    {%- endif -%}
+{% endblock %}
+
+{% block content %}
+    <div class="row-fluid">
+       <div class="span8">
+
+            {# use a custom template if it exists #}
+            {% if has_detail_page_search_form %}
+                {% include 'detail_search_form.template' %}
+            {% else %}
+                {% include 'default_detail_search_form.html' %}
+            {% endif %}
+
+       </div>
+       <div class="span3 offset1 hidden-phone valign_block">
+           {% if has_analyses and not template_settings.hide_possible_form_text %}
+               <p class="analysis_note"><em lang="{{ _from }}">{{ user_input }}</em><span lang="{{ current_locale }}">{% trans user_input=user_input %} is a possible form of ... {% endtrans %}</span></p>
+           {% endif %}
+       </div>
+       <br />
+    </div>
+
+    {% if current_pair_settings.asynchronous_paradigms %}
+        <div ng-app="NDS">
+    {% else %}
+        <div>
+    {% endif %}
+
+        {% for tpl in entry_templates %}
+            {{ tpl|safe }}
+        {% endfor %}
+        <div class="row-fluid entry_row">
+            <div class="span3 offset9 hidden-phone">
+               {% if analyses_without_entry %}
+                   {{ analyses_without_entry|safe }}
+               {% endif %}
+           </div>
+       </div>
+
+    {% if current_pair_settings.asynchronous_paradigms %}
+        </div>
+    {% else %}
+        </div>
+    {% endif %}
+
+
+    <div class="find_problem">
+      {% block find_problem %}
+        {{ find_problem|safe }}
+      {% endblock %}
+    </div>
+
+    {%- if analyses %}
+      {%- if not template_settings.hide_possible_form_text%}
+      <div class="visible-phone">
+          <div class="well">
+              {% if app_short_name != 'itwewina' %}
+                  <p style="font-size: 95%;"><em lang="{{ _from }}">{{ user_input }}</em><span lang="{{ current_locale }}">{% trans user_input=user_input %} is a possible form of ... {% endtrans %}</span></p>
+              {%- endif -%}
+
+              {{ all_analysis_template|safe }}
+          </div>
+      </div>
+      {%- endif -%}
+    {%- endif -%}
+
+
+{% endblock %}

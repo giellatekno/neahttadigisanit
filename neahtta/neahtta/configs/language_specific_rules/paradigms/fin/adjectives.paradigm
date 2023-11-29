@@ -1,0 +1,42 @@
+name: "adjectives"
+morphology:
+  pos: A
+--
+{{ lemma }}+A+Sg+Nom
+{{ lemma }}+A+Sg+Gen
+{{ lemma }}+A+Sg+Par
+{{ lemma }}+A+Sg+Ine
+{{ lemma }}+A+Sg+Ill
+{{ lemma }}+A+Sg+Ela
+{{ lemma }}+A+Sg+Ade
+{{ lemma }}+A+Sg+All
+{{ lemma }}+A+Sg+Abl
+{{ lemma }}+A+Sg+Ess
+{{ lemma }}+A+Sg+Tra
+{{ lemma }}+A+Sg+Ins
+{{ lemma }}+A+Sg+Com
+{{ lemma }}+A+Pl+Nom
+{{ lemma }}+A+Pl+Gen
+{{ lemma }}+A+Pl+Par
+{{ lemma }}+A+Pl+Ine
+{{ lemma }}+A+Pl+Ill
+{{ lemma }}+A+Pl+Ela
+{{ lemma }}+A+Pl+Ade
+{{ lemma }}+A+Pl+All
+{{ lemma }}+A+Pl+Abl
+{{ lemma }}+A+Pl+Ess
+{{ lemma }}+A+Pl+Tra
+{{ lemma }}+A+Pl+Ins
+{{ lemma }}+A+Pl+Com
+{{ lemma }}+A+Comp+Sg+Nom
+{{ lemma }}+A+Comp+Sg+Gen
+{{ lemma }}+A+Comp+Sg+Ill
+{{ lemma }}+A+Comp+Pl+Nom
+{{ lemma }}+A+Comp+Pl+Gen
+{{ lemma }}+A+Comp+Pl+Ill
+{{ lemma }}+A+Superl+Sg+Nom
+{{ lemma }}+A+Superl+Sg+Gen
+{{ lemma }}+A+Superl+Sg+Ill
+{{ lemma }}+A+Superl+Pl+Nom
+{{ lemma }}+A+Superl+Pl+Gen
+{{ lemma }}+A+Superl+Pl+Ill

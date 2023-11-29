@@ -1,0 +1,62 @@
+{# TODO: link that includes lookup, need to allow GET requests with ?lookup param #}
+{%- macro check_result_count(f, t) %}
+    {% if language_pairs_other_results %}
+        {% set entry_count = language_pairs_other_results.get((f, t)) %}
+        {% if entry_count > 0 -%}
+            <span class="badge badge-info pull-right">{{ entry_count }}</span>
+        {%- endif %}
+    {% endif %}
+{% endmacro -%}
+<ul class="nav nav-collapse nav-tabs nav-stacked">
+
+{% for iso_group, grouped_items in language_pairs_grouped_by_source.items() %}
+    {% for iso_pair, pair_options in grouped_items %}
+
+    {%- if pair_options.input_variants -%}
+        {% set pair_has_variant = true  %}
+    {%- else -%}
+        {% set pair_has_variant = false %}
+    {%- endif -%}
+
+    {% if not (iso_pair[1] == "spa" and iso_pair[0] == "sme") %} {# Do not show empty smespa dict. Remove this if statement when the smespa dictionary is finished! #}
+        {% if not is_variant %}
+            {%- if iso_pair[0] == _from and iso_pair[1] == _to %}
+                <li class="active">
+            {% else -%}
+                <li>
+            {% endif -%}
+        {% elif is_variant -%}
+            {%- if iso_pair[1] == orig_pair[1] and iso_pair[0] == orig_pair[0] %}
+                <li class="active">
+            {% else -%}
+                <li>
+            {% endif -%}
+        {% else -%}
+            <li>
+        {% endif %}
+
+            {% if iso_pair[0] == _from and user_input %}
+                {% set params = "?lookup=" + user_input %}
+            {% else %}
+                {% set params = "" %}
+            {% endif %}
+                {# URLFOR: test #}
+            <a href="{{ url_for('.canonical_root_search_pair', _from=iso_pair[0], _to=iso_pair[1]) }}{{ params }}">
+            <span>{{ iso_pair[0]|iso_to_i18n }} &rarr; {{ iso_pair[1]|iso_to_i18n }}</span>
+            {%- if iso_pair[1] != _to %}
+            {{ check_result_count(iso_pair[0], iso_pair[1]) }}
+            {% endif -%}
+            </a>
+        </li>
+    {% endif %} {# smespa if #}
+
+    {# Start a new nav if there are variants #}
+
+    {% include 'left_nav_input_variants.html' %}
+    {% include 'left_nav_search_variants.html' %}
+
+    {% endfor %}
+{% endfor %}
+</ul>
+
+{# vim: set ts=4 sw=4 tw=0 syntax=htmljinja : #}

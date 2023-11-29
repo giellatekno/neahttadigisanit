@@ -1,0 +1,31 @@
+# EX: heittot
+
+- entry_context: None
+  tag_context: "A+Attr"
+  template: "{{ word_form }} {% if context|string() == 'None' %} {% else %} ({{ context }}) {% endif %}"
+
+- entry_context: "olmmoš"
+  tag_context: "A+Pl+Nom"
+  template: "(olbmot leat) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "A+Pl+Nom"
+  template: "(dat leat) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "A+Comp+Attr"
+  template: "(vel) {{ word_form }} {% if context|string() == 'None' %} {% else %} ({{ context }}) {% endif %}"
+
+- entry_context: None
+  tag_context: "A+Der/Comp+A+Sg+Nom"
+  template: "(vel) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "A+Der/Superl+A+Sg+Nom"
+  template: "(buot) {{ word_form }}"
+
+# attr. boares (olmmoš)
+# flt. nom. (olbmot leat) boarrásat
+# komparativ attr. (vel) boarrásat, boarráset (olmmoš)
+# komparativ ent. nom. (vel) boarráseabbo, boarrásabbo
+# superlativ ent. nom. (buot) boarráseamos, boarrásamos

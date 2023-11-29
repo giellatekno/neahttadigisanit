@@ -1,0 +1,7 @@
+name: "adjectives"
+morphology:
+  pos: A
+--
+{{ lemma }}+A+Der/MWN+N+Sg+Nom+Indef
+{{ lemma }}+A+Der/MWN+N+Pl+Gen+Indef
+{{ lemma }}+A+Der/MWN+N+Sg+Ela+Indef

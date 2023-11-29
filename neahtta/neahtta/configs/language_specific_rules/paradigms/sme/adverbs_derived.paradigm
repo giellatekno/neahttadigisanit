@@ -1,0 +1,11 @@
+name: "General adverb paradigm, ader is the adj. from which the adverb is derived"
+morphology:
+  pos: Adv
+lexicon:
+  XPATH:
+    ader: ".//l/@ader"
+  ader: true
+--
+{{ ader }}+A+Der/AAdv+Adv
+{{ ader }}+A+Der/Comp+A+Der/AAdv+Adv
+{{ ader }}+A+Der/Superl+A+Der/AAdv+Adv

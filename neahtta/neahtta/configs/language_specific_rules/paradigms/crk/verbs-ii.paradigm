@@ -1,0 +1,18 @@
+﻿name: "verbs - inanimate intransitive"
+morphology:
+  pos: V
+  animacy: II
+lexicon:
+  XPATH:
+    lc: ".//lg/lc/text()"
+  lc:
+    - "VII-v"
+--
+{{ lemma }}+V+II+Ind+Prs+3Sg
+{{ lemma }}+V+II+Ind+Prs+3Pl
+PV/e+{{ lemma }}+V+II+Cnj+Prs+3Sg
+PV/e+{{ lemma }}+V+II+Cnj+Prs+3Pl
+{{ lemma }}+V+II+Ind+Prt+3Sg
+{{ lemma }}+V+II+Ind+Prt+3Pl
+PV/e+{{ lemma }}+V+II+Cnj+Prt+3Sg
+PV/e+{{ lemma }}+V+II+Cnj+Prt+3Pl

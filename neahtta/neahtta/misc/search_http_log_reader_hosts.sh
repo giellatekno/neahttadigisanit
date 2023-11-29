@@ -1,0 +1,1 @@
+cat /home/neahtta/logs/access*log | grep '\/lookup\/' | grep 'callback' | grep -o '\"http:\/\/[a-z_-\\\.0-9]*' | sed 's/"//g' | sed -nr "s|(http://)?(www\.)?([^.]*)\.(.*\.?)*|\2\3.\4|p" | cut -d '/' -f 1 | sort | uniq -c  | sort -n

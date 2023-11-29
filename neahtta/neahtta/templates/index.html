@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+
+{%- import 'template_settings.html' as template_settings with context -%}
+
+{% block extra_js %}
+    {{ entry_template_header_includes|safe }}
+{% endblock %}
+
+{% block footer_js %}
+        {# TODO: conditionally display with some developer setting #}
+
+        {# include 'developer_test_palette.html' #}
+{% endblock %}
+
+{% block search_li %}
+{% endblock %}
+
+{% block search_li_form %}
+{% endblock %}
+
+{% block extra_nav %}
+    {# Dictionaries #}
+    {% include 'mobile_nav_dictionary_list.html' %}
+{% endblock %}
+
+{% block bodyclass %}main_search{% endblock %}
+
+{%- set keyboard = false %}
+{% if current_variant_options %}
+    {% set keyboard = current_variant_options.onscreen_keyboard %}
+{% endif -%}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row-fluid">
+        {% if grouped_nav %}
+            {% set nav_width = "span3" %}
+            {% set dict_width = "span9" %}
+        {% else %}
+            {% set nav_width = "span4" %}
+            {% set dict_width = "span8" %}
+        {% endif %}
+        <div class="{{ nav_width }}  hidden-phone hidden-mid" id="left_nav">
+            {% include 'left_dictionary_list.html' %}
+        </div>
+        <div class="{{ dict_width }}">
+            <h4 class="dict_title">
+              {% if not display_swap %}
+                {% if current_variant_options %}
+                    <span>{{ _from|iso_to_i18n }} ({{ gettext(current_variant_options.description) }}) → {{ _to|iso_to_i18n }}</span>
+                {% else %}
+                    <span>{{ _from|iso_to_i18n }} → {{ _to|iso_to_i18n }}</span>
+                {% endif %}
+              {% elif display_swap %}
+                  {% if not (_from == "spa" and _to == "sme") or (_from == "sme" and _to == "spa") %} {# do not show smespa before it is finished (exists to show paradigms) #}
+                      <span>{{ _from|iso_to_i18n }} </span>
+                      <span class="swaplink"><a href="{{ url_for('.canonical_root_search_pair', _from=swap_from, _to=swap_to) }}">⇄</a></span>
+                      <span> {{ _to|iso_to_i18n }}</span>
+                  {% else %} {# spasme #}
+                      <span>{{ _from|iso_to_i18n }} → {{ _to|iso_to_i18n }}</span>
+                  {% endif %} 
+              {% endif %}
+            </h4>
+
+            {# figure out if there's a variant, and if the reverse has
+            variants, because if mobile, we want to force mobile variant in
+            swap #}
+
+            <div class="row-fluid form-row">
+                <div class="span8">
+                    {{ index_search_form|safe }}
+                </div>
+                <div class="span4 hidden-phone valign_block">
+                    {# TODO: template here? #}
+                    {% if analyses and not template_settings.hide_possible_form_text %}
+                        <p class="analysis_note"><em lang="{{ _from }}">{{ user_input }}</em><span lang="{{ current_locale }}">{% trans user_input=user_input %} is a possible form of ... {% endtrans %}</span></p>
+                    {% endif %}
+                </div>
+            </div>
+
+            {# TODO: deep link needs to go to specific lexeme when it comes from the front page #}
+            {% if successful_entry_exists %}
+                <div class="results" translate="no">
+                    <p class="user_input_text">{{user_input}}</p>
+                    {% for tpl in entry_templates %}
+                        {{ tpl|safe }}
+                    {% endfor %}
+                    {% if leftover_analyses_template %}
+                        <div class="row-fluid entry_row">
+                            <div class="span8 lexeme">
+                                {% if entry_templates|length == 0 %}
+                                    <div class="alert alert-warning">
+                                        <p>
+                                            <span lang="{{ current_locale }}">{% trans input=user_input %}Word <span lang="{{ _from }}">{{ input }}</span> not found.{% endtrans %}</span>
+                                        </p>
+                                    </div>
+                                {% else %}
+                                    &nbsp;
+                                {% endif %}
+                            </div>
+                            <div class="span4 hidden-phone lexeme_analyses">
+                                <p class="leftover">{% trans user_input=user_input %}Other analyses for <em>{{ user_input }}</em> without a translation.{% endtrans %}</p>
+                                {{- leftover_analyses_template|safe -}}
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="find_problem">
+                  {% block find_problem %}
+                      {{ find_problem|safe }}
+                  {% endblock %}
+                </div>
+
+            {% else %}
+                {% if not show_info %}
+                        <div class="row-fluid entry_row">
+                            <div class="span8 lexeme">
+                                {% if entry_templates|length == 0 %}
+                                    <div class="alert alert-error">
+                                        <p>
+                                            <span lang="{{ current_locale }}">{% trans input=user_input %}Word <span lang="{{ _from }}">{{ input }}</span> not found.{% endtrans %}</span>
+                                        </p>
+                                    </div>
+                                {% else %}
+                                    &nbsp;
+                                {% endif %}
+                            </div>
+                            <div class="span4 hidden-phone lexeme_analyses">
+                                {% if analyses %}
+                                    {{- leftover_analyses_template|safe -}}
+                                {% endif %}
+                            </div>
+                        </div>
+
+                {#
+                    <div class="alert alert-error">
+                        <p>
+                            <span lang="{{ current_locale }}">{% trans input=user_input %}Word <span lang="{{ _from }}">{{ input }}</span> not found.{% endtrans %}</span>
+                        </p>
+                    </div>
+                #}
+                {% endif %}
+            {% endif %}
+            {% if show_info %}
+                {{ search_info_template|safe }}
+            {% endif %}
+        </div>
+
+    </div>
+
+    {%- if analyses %}
+    <div class="visible-phone">
+        <div class="well">
+            {% if not template_settings.hide_possible_form_text %}
+            <p style="font-size: 95%;"><em lang="{{ _from }}">{{ user_input }}</em><span lang="{{ current_locale }}">{% trans user_input=user_input %} is a possible form of ... {% endtrans %}</span></p>
+            {% endif %}
+
+            {{ all_analysis_template|safe }}
+        </div>
+    </div>
+    {%- endif -%}
+
+</div>
+
+{% endblock %}

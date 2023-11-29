@@ -1,0 +1,36 @@
+##
+### Standard verb context
+##
+
+
+- entry_context: None
+  tag_context: "1Sg"
+  template: "(nîya) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "2Sg"
+  template: "(kîya) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "3Sg"
+  template: "(wîya) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "4Sg"
+  template: "(wîya) {{ word_form }}"
+ 
+- entry_context: None
+  tag_context: "1Pl"
+  template: "(nîyanân) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "12Pl"
+  template: "(kîyânaw) {{ word_form }}"
+ 
+- entry_context: None
+  tag_context: "2Pl"
+  template: "(kîyawâw) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "3Pl"
+  template: "(wîyawâw) {{ word_form }}"

@@ -1,0 +1,22 @@
+{# Here we render only what should appear as the entry text, but try to
+   avoid any additional HTML formatting.
+
+   NB: you probably need tag filters `text`.
+
+   --
+
+   Overrides here:
+    - display lg/lc/text() alongside entry POS
+#}
+{%- import "lexicon.macros" as macros with context -%}
+{%- set first_l = lexicon_entry|xpath('lg/l')|first %}
+{% set lc_text = lexicon_entry|xpath('lg/lc/text()')|first|tagfilter(_from, _to) %}
+{% set pos_text = first_l|xpath('@pos')|tagfilter(_from, _to) %}
+{%- if lc_text %}
+  {% set pos_text = "%s, %s" % (pos_text, lc_text) %}
+{% endif -%}
+
+<span lang="{{ _from }}">{{ first_l|text }}</span> (<span lang="{{ _to }}">{{ pos_text }}</span>)
+
+{# vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}
+

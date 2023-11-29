@@ -1,0 +1,80 @@
+{# This is just an example of how this might work, but not fully
+implemented. it uses tagsets in myv.tagset to filter stuff. Will await
+further instruction from myv people.
+
+Example tagsets follow, but naturally forms containing these tags need
+to be generated for this to work.
+
+    # Testing a new tag paradigm template that uses these tagsets to
+    # filter forms
+
+    subject_conjugation_person: 
+     - "ScPl1"
+     - "ScPl2"
+     - "ScPl3"
+     - "ScSg1"
+     - "ScSg2"
+     - "ScSg3"
+    object_conjugation_person:
+     - "OcPl1"
+     - "OcPl2"
+     - "OcPl3"
+     - "OcSg1"
+     - "OcSg2"
+     - "OcSg3"
+    obj_conjugation_tab_one:
+     - "ScPl1"
+    obj_conjugation_tab_two:
+     - "ScPl2"
+    obj_conjugation_tab_three:
+     - "ScPl3"
+
+#}
+tab one
+<dl class="dl-horizontal miniparadigm">
+    {%- for form in paradigm|by_tagset_value("subject_conjugation_person", "ScPl1") -%}
+
+        {% if form.tag %}
+            <dt>{{ form.tag|tagfilter(_from, _to)  }}</dt>
+        {% endif %}
+
+        {% if form.form %}
+        <dd>{{ form.form }}</dd>
+        {% else %}
+            <dd>?</dd>
+        {% endif %}
+    {%- endfor -%}
+</dl>
+tab two
+
+<dl class="dl-horizontal miniparadigm">
+    {%- for form in paradigm|by_tagset_value("subject_conjugation_person", "ScPl2") -%}
+
+        {% if form.tag %}
+            <dt>{{ form.tag|tagfilter(_from, _to)  }}</dt>
+        {% endif %}
+
+        {% if form.form %}
+        <dd>{{ form.form }}</dd>
+        {% else %}
+            <dd>?</dd>
+        {% endif %}
+    {%- endfor -%}
+</dl>
+
+tab three
+<dl class="dl-horizontal miniparadigm">
+    {%- for form in paradigm|by_tagset_value("subject_conjugation_person", "ScPl3") -%}
+
+        {% if form.tag %}
+            <dt>{{ form.tag|tagfilter(_from, _to)  }}</dt>
+        {% endif %}
+
+        {% if form.form %}
+        <dd>{{ form.form }}</dd>
+        {% else %}
+            <dd>?</dd>
+        {% endif %}
+    {%- endfor -%}
+</dl>
+{# vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}

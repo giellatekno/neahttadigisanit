@@ -1,0 +1,24 @@
+name: "basic paradigm"
+paradigm: 'verbs-ai-ti.paradigm'
+layout:
+  type: "basic"
+tooltips: 
+  eng:
+    "Ind": "I/you/we VERB"
+    "Cnj": "...that I/you/we VERB"
+    "1s": "I VERB"
+    "2s": "You VERB"
+    "1p inclusive": "We all VERB"
+    "1p exclusive": "We (not you) all VERB"
+    "2p": "You all VERB"
+    "3s": "s/he VERBs"
+    "3p": "They VERB"
+--
+|                | _"Ind"          | _"Cnj"          |
+| "1s"           | +Ind+Prs+1Sg$   | +Cnj+Prs+1Sg$   |
+| "2s"           | +Ind+Prs+2Sg$   | +Cnj+Prs+2Sg$   |
+| "1p exclusive" | +Ind+Prs+1Pl$   | +Cnj+Prs+1Pl$   |
+| "1p inclusive" | +Ind+Prs+12Pl$  | +Cnj+Prs+12Pl$  |
+| "2p"           | +Ind+Prs+2Pl$   | +Cnj+Prs+2Pl$   |
+| "3s"           | +Ind+Prs+3Sg$   | +Cnj+Prs+3Sg$   |
+| "3p"           | +Ind+Prs+3Pl$   | +Cnj+Prs+3Pl$   |

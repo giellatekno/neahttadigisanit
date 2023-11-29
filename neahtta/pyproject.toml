@@ -1,0 +1,77 @@
+[project]
+name = "neahttadigisanit"
+version = "2023.11.28"
+
+# maintainers, as in "currently maintained by"
+maintainers = [
+    {name = "Anders Lorentsen", email = "anders.lorentsen@uit.no"},
+    {name = "Trond Tynnøl", email = "tty001@uit.no"},
+    {name = "Trond Trosterud", email = "trond.trosterud@uit.no"},
+    {name = "Lene Antonsen", email = "lene.antonsen@uit.no"}
+]
+
+# All historical authors
+authors = [
+    {name = "Anders Lorentsen", email = "anders.lorentsen@uit.no"},
+    {name = "Trond Tynnøl", email = "tty001@uit.no"},
+    {name = "Trond Trosterud", email = "trond.trosterud@uit.no"},
+    {name = "Lene Antonsen", email = "lene.antonsen@uit.no"},
+    {name = "Børre Gaup", email = "borre.gaup@uit.no"},
+    {name = "Chiara Argese"},
+    {name = "Ciprian Gerstenberger"},
+    {name = "Ryan Johnson"},
+    {name = "Jack Rueter"},
+    {name = "Antti Arppe"},
+]
+requires-python = ">= 3.9"
+dependencies = [
+    "Flask==3.0.0",
+    "Flask-Caching==2.1.0",
+    "Flask-Babel==4.0.0",
+    "Flask-Limiter==3.5.0",
+    "Flask-Assets==2.1.0",
+
+    "Babel==2.14.0",
+    # Abondoned. Last release on pypi oct 14, 2013. A package called
+    # "webassets" depends on it (crashes if it's not installed), but does
+    # not install it themselves. Which package of our direct dependencies
+    # that depends on "webassets" is unknown at this point
+    "cssmin==0.2.0",
+
+    "PyYAML==6.0.1",
+    "lxml==4.9.3",
+    "termcolor==2.3.0",
+
+    # for extracting translation strings from yaml files
+    # specifying an exact commit hash here
+    "babel_yaml @ git+https://github.com/giellatekno/babel-yaml@590a04339b536cc45aa2ff359284b5ec945ce456",
+
+    # for validating configurations
+    "jsonschema==4.20.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff==0.1.6"
+]
+pyhfst = [
+    "hfst==3.16.0.1",
+]
+server = [
+    "gunicorn==21.2.0"
+]
+
+[project.scripts]
+fab = "neahtta.fab_commands:main"
+
+[tool.ruff]
+target-version = "py39"
+exclude = [
+    ".*venv"
+]
+
+[tool.setuptools]
+# without this, doing "pip install ." gives error
+# "Multiple top-level packages discovered in a flat-layout"
+# see https://stackoverflow.com/questions/72294299/multiple-top-level-packages-discovered-in-a-flat-layout
+py-modules = ["neahtta"]

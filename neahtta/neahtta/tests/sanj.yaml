@@ -1,0 +1,110 @@
+﻿## 
+## Testing the NDS paradigm selection and generation machinery
+## 
+
+##
+##   Here we test two main things: FST + NDS interactions, and NDS
+## rendering. Any tests that can be seen to be only for FSTs should be
+## left in the langs infrastructure.
+##
+##   NDS + FST interactions:
+##    
+##    - Generation of paradigms corresponding to specific lexical
+##      entries
+##
+##    - Analysis of wordforms resulting in entries
+##       - has entry
+##       - does not have entry
+##   
+##  NDS rendering:
+##   
+##    - Lookup pages
+##    - Regeneration of analyzed wordforms
+
+# Given a uri, test that `expected_values` occur within a list generated
+# by `value_selector`. uri_args are formatted into the uri for each
+# test.
+# 
+# This could be used for writing a test to check that the basic lookup
+# page is returning canonical forms in the analysis side, checking that
+# localization renders, etc.
+#
+
+RequestTests:
+
+ # This searches the analyses on the side to confirm that all options
+ # are present
+ #
+ - uri: "/sjd/rus/?lookup=%(input)s"
+   tests:
+    - uri_args:
+        input: "са̄ннҍ"
+      value_selector: &CANONICAL_FORMS ".lexeme span[lang=sjd]"
+      expected_values: 
+        - "са̄ннҍ"
+
+    - uri_args:
+        input: "са̄нҍ"
+      value_selector: *CANONICAL_FORMS
+      expected_values: 
+        - "са̄ннҍ"
+
+ # for a given uri pattern, run the tests
+ - uri: "/detail/sjd/rus/%(input)s.html?lemma_match=true"
+   tests:
+    - uri_args:
+        input: "са̄ннҍ"
+      value_selector: &MINIPARADIGM ".miniparadigm tr td[lang=sjd]"
+      expected_values: 
+        - "са̄ннҍ"
+
+    - uri_args:
+        input: "о̄дзэ"
+      value_selector: *MINIPARADIGM
+      expected_values: 
+        - "о̄за"
+
+# Ensure that analysis of forms works without the interface
+MorpholexicalAnalysis:
+ - morpholexicon: [sjd, rus]
+   tests:
+     # Fail if all of these are not present
+     - input: "са̄нҍ"
+       expected_lemmas: ["са̄ннҍ"]
+       description: "is the analyzer working?"
+
+# Ensure that generation works through the morphology, without the user
+# interface. Analyzes the input form, and generates returned lemmas,
+# then compare forms against `expected_forms`.
+#
+MorpholexicalGeneration:
+ - morpholexicon: [sjd, rus]
+   tests:
+     - input: "о̄дзэ"
+       expected_forms:
+         - "о̄за"
+
+     - input: "са̄ннҍ"
+       expected_forms:
+         - "са̄ннҍ"
+
+     - input: "са̄ннҍ"
+       unexpected_forms:
+         - "do"
+         - "not"
+         - "want"
+
+# Ensure that analysis of user input results in the following
+# definitions
+Lexicon:
+ - lexicon: ["sjd", "rus"]
+   # TODO: sublexicon: "keyword"
+   tests:
+     - input: "са̄ннҍ"
+       expected_definitions: 
+        - "слово; речь; совет; разговор; заговор"
+
+     - input: "са̄ннҍ"
+       unexpected_definitions: 
+        - "tullball"
+

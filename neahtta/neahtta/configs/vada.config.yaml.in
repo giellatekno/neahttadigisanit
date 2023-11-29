@@ -1,0 +1,121 @@
+ApplicationSettings:
+  app_name: "Neahttadigisánit"
+  app_meta_title: "Neahttadigisánit"
+  short_name: "vada"
+  default_locale: "yrk"
+  default_pair: ["yrk", "fin"]
+  mobile_default_pair: false
+  strip_spaces: true
+  locales_available:
+    - yrk
+    - mns
+    - ru
+    - fi
+    - hu
+    - en
+  meta_description: >
+      Free online, mobile friendly dictionaries for Nenets and Mansi
+  meta_keywords: >
+      nenets, nenetsi, mobile, dictionary, free, russian, mansi
+  admins_to_email:
+    - "rueter.jack@gmail.com"
+    - "trond.trosterud@uit.no"
+
+Tools:
+  xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
+  hfst_lookup: &HFST-LOOKUP '/bin/hfst-lookup'
+  opt: &OPT '/opt/smi/'
+
+Morphology:
+  yrk:
+    tool: *HFST-LOOKUP
+    file: [*OPT, '/yrk/bin/analyser-dict-gt-desc.hfstol']
+    inverse_file: [*OPT, '/yrk/bin/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  mns:
+    tool: *HFST-LOOKUP
+    file: [*OPT, '/mns/bin/analyser-dict-gt-desc.hfstol']
+    inverse_file: [*OPT, '/mns/bin/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  fin:
+    tool: *HFST-LOOKUP
+    file: [*OPT, '/fin/bin/analyser-dict-gt-desc.hfstol']
+    inverse_file: [*OPT, '/fin/bin/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+
+Languages:
+  - iso: yrk
+    minority_lang: true
+  - iso: mns
+    minority_lang: true
+  - iso: eng
+  - iso: fin
+  - iso: rus
+  - iso: hun
+
+Dictionaries:
+  - source: yrk
+    target: eng
+    path: 'dicts/yrk-all.xml'
+
+  - source: yrk
+    target: fin
+    path: 'dicts/yrk-all.xml'
+
+  - source: fin
+    target: yrk
+    path: 'dicts/finyrk.xml'
+
+  - source: mns
+    target: hun
+    path: 'dicts/mnshun.xml'
+
+  - source: mns
+    target: rus
+    path: 'dicts/mnshun.xml'
+
+ReaderConfig:
+  Settings:
+    # host path without scheme (https, http) to reader lookup API, no trailing
+    # slash.
+    api_host: "vada.oahpa.no"
+    # URL to serve media from, minus scheme, and no trailing slash.
+    media_host: "vada.oahpa.no"
+  yrk:
+    multiword_lookups: false
+    # multiword_list:
+    #   # File format-- plain text, but line coments allowed:
+    #   # Use %WORD% as a marker for any word these may co-occur with, i.e., if
+    #   # the user clicks on a %WORD%, then search for these environments too.
+    #   file: "configs/language_specific_rules/reader/hdn_multiwords.txt"
+    # NB: this is JavaScript format, since it will be sent to the reader via
+    # config. It must also be stored as a string.
+    #
+    # JavaScript is problematic with unicode, and \w in a regex ends up meaning
+    # just the ASCII range, thus it's necessary to be very explicit.
+    #
+    # Also this example shows how to include periods and apostrophes in
+    # word unit detection.
+    #
+    # http://regexpal.com/
+    #
+    # apostrophes don't yet want to work on a word boundary, but also
+    # http://nvinder.ru/rubric/yalumd uses different characters.
+    word_regex: |
+      [\u00C0-\u1FFF\u2C00-\uD7FF\w\"\'’’]+
+    word_regex_opts: "g"

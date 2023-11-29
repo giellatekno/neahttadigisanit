@@ -1,0 +1,808 @@
+# PREVERBS
+!xál %WORD%
+'láa %WORD%
+'láadiyaa %WORD%
+'láaganang %WORD%
+'láanaa %WORD%
+'láanuu %WORD%
+'wa %WORD%
+'wagä %WORD%
+'wáa %WORD%
+'wáadaa %WORD%
+'wáahlaa %WORD%
+'wáajaaw %WORD%
+'wáayaadä %WORD%
+git'áns %WORD%
+k'udáagws %WORD%
+k'udéeg %WORD%
+sdast'a %WORD%
+stl'ang %WORD%
+sçajúugaahl %WORD%
+tlagadáad %WORD%
+ts'aahl %WORD%
+V %WORD%
+X %WORD%
+yahgw %WORD%
+yáats' %WORD%
+agáng %WORD%
+ak'aanáa %WORD%
+aláan %WORD%
+an %WORD%
+aw %WORD%
+báadaa %WORD%
+bíid %WORD%
+cha %WORD%
+chaa %WORD%
+chaaw %WORD%
+chagánsaan %WORD%
+chan %WORD%
+chiyä %WORD%
+chán %WORD%
+chánaang %WORD%
+da %WORD%
+da.a %WORD%
+daa %WORD%
+dadáal %WORD%
+daguyée.eehl %WORD%
+dagw %WORD%
+dah %WORD%
+dahl %WORD%
+dasgad %WORD%
+daçangä %WORD%
+di.íng %WORD%
+dla'áaw %WORD%
+dla.agad %WORD%
+dlaa %WORD%
+dlaagad %WORD%
+dlagä %WORD%
+dlajúu %WORD%
+dlasdlä %WORD%
+dlat'as %WORD%
+dláay %WORD%
+dláayä %WORD%
+dlán %WORD%
+du.úng %WORD%
+dáa %WORD%
+dáadä %WORD%
+dáal %WORD%
+dáalaa %WORD%
+dáan %WORD%
+dáang %WORD%
+dáayang %WORD%
+dáaçangad %WORD%
+dáaçangiid %WORD%
+dáng %WORD%
+dánggad %WORD%
+dánguhlä %WORD%
+dánsgad %WORD%
+dúu %WORD%
+dúun %WORD%
+ga %WORD%
+gab %WORD%
+gatáa %WORD%
+gi %WORD%
+gid %WORD%
+gid'ahl %WORD%
+gidalä %WORD%
+gigugä %WORD%
+gihlgahl %WORD%
+giidä %WORD%
+gijgad %WORD%
+gijgíihlda %WORD%
+gin %WORD%
+gist'ä %WORD%
+gisúu %WORD%
+giwahl %WORD%
+gu %WORD%
+gud %WORD%
+gudaawhl %WORD%
+gudahla.áa %WORD%
+gudahldä %WORD%
+gudáang %WORD%
+gudáng %WORD%
+gudúu %WORD%
+gugä %WORD%
+gujáang %WORD%
+guláa %WORD%
+gunsdláa %WORD%
+guwä %WORD%
+gwáan %WORD%
+gwáawa %WORD%
+gya'ándä %WORD%
+gyaa %WORD%
+gyaahlándä %WORD%
+gyaaláa %WORD%
+gyaanáa %WORD%
+gyahsdla %WORD%
+gyahsdlä %WORD%
+gyuudáan %WORD%
+gyáa %WORD%
+gyáadä %WORD%
+gyáajuug %WORD%
+gyáak'uyang %WORD%
+gyúu %WORD%
+gyúudaang %WORD%
+gáwdä %WORD%
+gíi %WORD%
+gíihlä %WORD%
+gíinang %WORD%
+gíit'wa %WORD%
+gín %WORD%
+gíng %WORD%
+gúul %WORD%
+gúusuu %WORD%
+gúusuuhlalaa %WORD%
+hat'án %WORD%
+hit'áadä %WORD%
+hlangä %WORD%
+hldán %WORD%
+hlgahl %WORD%
+hlgún %WORD%
+hlk'i %WORD%
+hlk'id %WORD%
+hlk'yáan %WORD%
+hlk'yáaw %WORD%
+hlk'ún %WORD%
+hlki %WORD%
+hlku %WORD%
+hlkwiida %WORD%
+hlkwiidä %WORD%
+hlkáay %WORD%
+hltah %WORD%
+hltahl %WORD%
+hltaht'agúng %WORD%
+hltánhlk'ä %WORD%
+hláay %WORD%
+hlángä %WORD%
+hlçahl %WORD%
+hlçahlwä %WORD%
+hlçi %WORD%
+hlçu %WORD%
+hlçáa %WORD%
+hlçáan %WORD%
+hlñ'a %WORD%
+hlñ'ut'úu %WORD%
+hlñ'ín %WORD%
+hlñáam %WORD%
+háadä %WORD%
+háagaang %WORD%
+híiluu %WORD%
+híldang %WORD%
+ihlíidang %WORD%
+ináa %WORD%
+is %WORD%
+isdáal %WORD%
+isdä %WORD%
+ja %WORD%
+jaa %WORD%
+jad %WORD%
+jad'wä %WORD%
+jagíi.a %WORD%
+jahl %WORD%
+jangaa %WORD%
+juunáan %WORD%
+juuyáay %WORD%
+jáad %WORD%
+jáad'anaa %WORD%
+jáadgal %WORD%
+jáagä %WORD%
+jáam %WORD%
+jáasä %WORD%
+júu %WORD%
+júugä %WORD%
+k'a %WORD%
+k'a.áat'ä %WORD%
+k'aa %WORD%
+k'ad %WORD%
+k'adangáa %WORD%
+k'adlägáa %WORD%
+k'adáang %WORD%
+k'ah %WORD%
+k'ajáaw %WORD%
+k'ajúu %WORD%
+k'asgad %WORD%
+k'asgíid %WORD%
+k'i %WORD%
+k'ihl %WORD%
+k'ihlä %WORD%
+k'its'ä %WORD%
+k'u %WORD%
+k'ud %WORD%
+k'udlán %WORD%
+k'udä %WORD%
+k'ugwdáng %WORD%
+k'ujgw %WORD%
+k'ut'ahl %WORD%
+k'uyáang %WORD%
+k'uyáng %WORD%
+k'wáay %WORD%
+k'wáayan %WORD%
+k'wíi %WORD%
+k'wíidä %WORD%
+k'yáaluu %WORD%
+k'yáang %WORD%
+k'áaw %WORD%
+k'án %WORD%
+k'ánhlahl %WORD%
+k'áw %WORD%
+k'áywaal %WORD%
+k'íng %WORD%
+k'úug %WORD%
+k'úugä %WORD%
+kagan %WORD%
+ki %WORD%
+kid %WORD%
+kid'wä %WORD%
+kidgad %WORD%
+kihl %WORD%
+kihldáang %WORD%
+kihlgadáang %WORD%
+kihlgulä %WORD%
+kilúu %WORD%
+kingáa %WORD%
+kit'ajáa %WORD%
+ku %WORD%
+kus %WORD%
+kusad %WORD%
+kusadáng %WORD%
+kuu %WORD%
+kuwä %WORD%
+kwah %WORD%
+kwáan %WORD%
+kya.a %WORD%
+kyah %WORD%
+kyáa %WORD%
+kyáagaang %WORD%
+kyáambda %WORD%
+kyúu %WORD%
+káa.aydä %WORD%
+kám %WORD%
+kíihlahl %WORD%
+kíihljaaw %WORD%
+kíilaa %WORD%
+kíl %WORD%
+kíluhlä %WORD%
+kíndaang %WORD%
+kíndä %WORD%
+kíng %WORD%
+kíngwaang %WORD%
+kún %WORD%
+kúnhlalandä %WORD%
+kúugaa %WORD%
+lableed %WORD%
+láam %WORD%
+láamgaa %WORD%
+lóo.o %WORD%
+masmúus %WORD%
+máasdas %WORD%
+na %WORD%
+na.áng %WORD%
+naa %WORD%
+naawhlä %WORD%
+nan %WORD%
+nats'ä %WORD%
+ngáa %WORD%
+ngáay %WORD%
+náadä %WORD%
+náan %WORD%
+náang %WORD%
+náangisälang %WORD%
+páabaa %WORD%
+s'áadä %WORD%
+saa %WORD%
+sagä %WORD%
+sahl %WORD%
+sak'ä %WORD%
+sasä %WORD%
+satáw %WORD%
+sda %WORD%
+sdahla %WORD%
+sdahlä %WORD%
+sdaláa %WORD%
+sdlagw %WORD%
+sdíihl %WORD%
+sgadáang %WORD%
+sgi %WORD%
+sgid %WORD%
+sgidä %WORD%
+sginguhl %WORD%
+sgujúu %WORD%
+sgunáa %WORD%
+sgwah %WORD%
+sgyáalaa %WORD%
+sgíilaa %WORD%
+sgíndä %WORD%
+sgún %WORD%
+sgún.gwdang %WORD%
+sgúnwalä %WORD%
+sgúusiid %WORD%
+sk'alda %WORD%
+sk'as %WORD%
+sk'wah %WORD%
+sk'ál %WORD%
+sk'álda %WORD%
+sk'ángad %WORD%
+sk'ánhlaaw %WORD%
+sk'áws %WORD%
+sk'índä %WORD%
+sk'ínggaang %WORD%
+skahl %WORD%
+skas %WORD%
+skayáadä %WORD%
+skidä %WORD%
+skihl %WORD%
+skis %WORD%
+skyáadä %WORD%
+skyáanaa %WORD%
+skyúu %WORD%
+skáa %WORD%
+skáak'adaangaa %WORD%
+skáawnang %WORD%
+skál %WORD%
+skándä %WORD%
+skánts'alaang %WORD%
+skíi %WORD%
+skínts'ä %WORD%
+skún %WORD%
+st'a %WORD%
+st'i %WORD%
+st'igahl %WORD%
+st'álaa %WORD%
+st'íi %WORD%
+sta %WORD%
+stl'a %WORD%
+stl'uu %WORD%
+stl'uuhl %WORD%
+stla %WORD%
+stlan %WORD%
+stluwán %WORD%
+stlán %WORD%
+stáw %WORD%
+sáa %WORD%
+sáagaa %WORD%
+sáal %WORD%
+sáan %WORD%
+sáanangaa %WORD%
+sáandlaan %WORD%
+sáanä %WORD%
+sáaw %WORD%
+sáawaan %WORD%
+sálda %WORD%
+sáldä %WORD%
+sán %WORD%
+sándiigaa %WORD%
+sáng %WORD%
+sángaang %WORD%
+sángangee %WORD%
+sánggaa %WORD%
+sánggä %WORD%
+sángya %WORD%
+sáns %WORD%
+sánst'ä %WORD%
+sçaa %WORD%
+sçaayláangaa %WORD%
+sçaláang %WORD%
+sçanä %WORD%
+sçat'as %WORD%
+sçat'sä %WORD%
+sçats'ä %WORD%
+sçi %WORD%
+sçid %WORD%
+sçidáng %WORD%
+sçuluwáa %WORD%
+sçwáanaa %WORD%
+sçáa %WORD%
+sçáadang %WORD%
+sçáan %WORD%
+sçáaw %WORD%
+sçáay %WORD%
+sçál %WORD%
+sçán %WORD%
+sçáw %WORD%
+sçáygä %WORD%
+sçáyhla %WORD%
+sçáyhlä %WORD%
+sçíl %WORD%
+sçíw %WORD%
+sçúnggaa.aa %WORD%
+síigaa %WORD%
+sñ'a %WORD%
+sñ'ad %WORD%
+sñ'ihl %WORD%
+sñ'áwaan %WORD%
+sñ'ín %WORD%
+sñu %WORD%
+sñáan %WORD%
+sñáang %WORD%
+sñál %WORD%
+súgaa %WORD%
+súu %WORD%
+súub %WORD%
+súudä %WORD%
+t'a %WORD%
+t'aa %WORD%
+t'ad %WORD%
+t'agúng %WORD%
+t'ak'an %WORD%
+t'am %WORD%
+t'áahlaa %WORD%
+t'áalaa %WORD%
+t'áangahl %WORD%
+t'áangal %WORD%
+t'áas %WORD%
+t'án %WORD%
+t'áng %WORD%
+t'ánsgad %WORD%
+t'éel %WORD%
+ta %WORD%
+tadä %WORD%
+tahl %WORD%
+tang %WORD%
+taw %WORD%
+tii %WORD%
+tiyáang %WORD%
+tiyä %WORD%
+tl'a %WORD%
+tl'ah %WORD%
+tl'ak'ä %WORD%
+tl'ast'ä %WORD%
+tl'áang %WORD%
+tl'ánts'uud %WORD%
+tl'ánu %WORD%
+tl'íi %WORD%
+tl'úudaangaa %WORD%
+tla %WORD%
+tlaawhlä %WORD%
+tlagas %WORD%
+tlagw %WORD%
+tlagwdáng %WORD%
+tlagáng %WORD%
+tlagä %WORD%
+tlah %WORD%
+tlask'ud %WORD%
+tluwä %WORD%
+tláahlahl %WORD%
+tláajuu %WORD%
+tláal %WORD%
+tláalaay %WORD%
+tláasgad %WORD%
+tláawaa %WORD%
+tláng %WORD%
+tlúu %WORD%
+ts'a %WORD%
+ts'a.an %WORD%
+ts'a.án %WORD%
+ts'aa %WORD%
+ts'adä %WORD%
+ts'ah %WORD%
+ts'ahl %WORD%
+ts'at'as %WORD%
+ts'áa %WORD%
+ts'áanuu %WORD%
+ts'ál %WORD%
+ts'áng %WORD%
+ts'ánguhl %WORD%
+ts'úu %WORD%
+tsaa %WORD%
+tsiyä %WORD%
+táa %WORD%
+táagaa %WORD%
+táan %WORD%
+táanaa %WORD%
+táanaa.aa %WORD%
+táayaa %WORD%
+tál %WORD%
+táng %WORD%
+táw %WORD%
+táwk'a %WORD%
+táwk'aa %WORD%
+táwk'aan %WORD%
+tíi %WORD%
+wah %WORD%
+wahl %WORD%
+waswan %WORD%
+xa %WORD%
+xahl %WORD%
+xanagalä %WORD%
+xangahl %WORD%
+xangalä %WORD%
+xi %WORD%
+xid %WORD%
+xidä %WORD%
+xu %WORD%
+xud %WORD%
+xudä %WORD%
+xwaadúu %WORD%
+xwíi %WORD%
+xyáahl %WORD%
+xyáang %WORD%
+xáahldä %WORD%
+xáahlts'uu %WORD%
+xáamdä %WORD%
+xál %WORD%
+xálsgad %WORD%
+xálsgiid %WORD%
+xáy %WORD%
+xíl %WORD%
+xúndä %WORD%
+ya'áats' %WORD%
+ya'áaw %WORD%
+yah %WORD%
+yahgwdáng %WORD%
+yáa %WORD%
+yáadgaang %WORD%
+yáan %WORD%
+yáang %WORD%
+ýaadláa %WORD%
+áahljuu %WORD%
+áahljuwaay %WORD%
+áahljuwee %WORD%
+áanii %WORD%
+áng %WORD%
+ça %WORD%
+çaa %WORD%
+çaayhldáa %WORD%
+çad %WORD%
+çad'wä %WORD%
+çadaa %WORD%
+çadgáa %WORD%
+çadwä %WORD%
+çadä %WORD%
+çagán %WORD%
+çagánjuu %WORD%
+çahlä %WORD%
+çaláng %WORD%
+çalánsdlaa %WORD%
+ças %WORD%
+çasä %WORD%
+çat'án %WORD%
+çatl'aa %WORD%
+çatl'ä %WORD%
+çayáaw %WORD%
+çayúu %WORD%
+çi %WORD%
+çu %WORD%
+çud %WORD%
+çudä %WORD%
+çugä %WORD%
+çuhlahl %WORD%
+çuláang %WORD%
+çung %WORD%
+çwáang %WORD%
+çwíi %WORD%
+çwíihlgahl %WORD%
+çáal %WORD%
+çáalgaa %WORD%
+çáam %WORD%
+çáan %WORD%
+çáandang %WORD%
+çáandangee %WORD%
+çáayuu %WORD%
+çál %WORD%
+çálun %WORD%
+çán %WORD%
+çándl %WORD%
+çándä %WORD%
+çáw %WORD%
+çáywä %WORD%
+çíid %WORD%
+çúng %WORD%
+çúuduu %WORD%
+íinaa %WORD%
+íisaan %WORD%
+íits'ahl %WORD%
+ñ'a %WORD%
+ñ'aa %WORD%
+ñ'aad %WORD%
+ñ'aahl %WORD%
+ñ'ahl %WORD%
+ñ'ahljúu %WORD%
+ñ'i %WORD%
+ñ'idä %WORD%
+ñ'ii %WORD%
+ñ'iyáa %WORD%
+ñ'iyáagang %WORD%
+ñ'u %WORD%
+ñ'ud %WORD%
+ñ'udä %WORD%
+ñ'uhldáa %WORD%
+ñ'uhldä %WORD%
+ñ'ul %WORD%
+ñ'ulúu %WORD%
+ñ'unanáng %WORD%
+ñ'usáang %WORD%
+ñ'wáang %WORD%
+ñ'wáant'uugä %WORD%
+ñ'wíi %WORD%
+ñ'áa %WORD%
+ñ'áalang %WORD%
+ñ'áamdäga %WORD%
+ñ'áangahlt'ajaay %WORD%
+ñ'áas %WORD%
+ñ'áasdä %WORD%
+ñ'áaw %WORD%
+ñ'álud %WORD%
+ñ'álwiid %WORD%
+ñ'ándä %WORD%
+ñ'áng %WORD%
+ñ'áw %WORD%
+ñ'áwaang %WORD%
+ñ'íi %WORD%
+ñ'íigaa %WORD%
+ñ'íinaang %WORD%
+ñ'íit'as %WORD%
+ñ'íits'iid %WORD%
+ñ'íiyid %WORD%
+ñ'ín %WORD%
+ñ'índä %WORD%
+ñ'úl %WORD%
+ña %WORD%
+ñadä %WORD%
+ñagan %WORD%
+ñagán %WORD%
+ñagándä %WORD%
+ñahl %WORD%
+ñas %WORD%
+ñasa.a %WORD%
+ñasaa %WORD%
+ñasán %WORD%
+ñat'úu %WORD%
+ñe.egáay %WORD%
+ñee %WORD%
+ñeegée %WORD%
+ñeh %WORD%
+ñi %WORD%
+ñu %WORD%
+ñu.áan %WORD%
+ñunaa %WORD%
+ñuuhlä %WORD%
+ñuyáadä %WORD%
+ñwa.án %WORD%
+ñwah %WORD%
+ñwahjuwée %WORD%
+ñwiiga %WORD%
+ñáa %WORD%
+ñáahlii %WORD%
+ñáajaaw %WORD%
+ñáajuu %WORD%
+ñán %WORD%
+ñáng %WORD%
+ñánga %WORD%
+ñángä %WORD%
+ñáw %WORD%
+ñáy %WORD%
+ñée %WORD%
+ñéeng %WORD%
+ñéenggee %WORD%
+ñíi %WORD%
+ñíidad %WORD%
+ñíiduu %WORD%
+ñíihlgaa %WORD%
+ñíiya %WORD%
+ñíiyä %WORD%
+ñíng %WORD%
+ñúunaang %WORD%
+ñúunang %WORD%
+ún %WORD%
+únsad %WORD%
+ýa %WORD%
+ýaa %WORD%
+ýaad %WORD%
+ýaadas %WORD%
+ýagw %WORD%
+ýagwdáng %WORD%
+ýahl %WORD%
+ýahldä %WORD%
+ýas %WORD%
+ýee %WORD%
+ýi %WORD%
+ýáa.ad'wä %WORD%
+ýáadä %WORD%
+ýáldaang %WORD%
+ýáng %WORD%
+ýánggä %WORD%
+ýángul %WORD%
+ýángw %WORD%
+ýángwaal %WORD%
+ýánts'ä %WORD%
+ýáw %WORD%
+ýáwälaa %WORD%
+ýáy %WORD%
+ýíihl %WORD%
+ýíl %WORD%
+ýúudaang %WORD%
+ýúugaang %WORD%
+stl'ang 'Láanaas %WORD%
+stl'áng 'Láanaas %WORD%
+sçajúugaahl 'Láanaas %WORD%
+sáng 'lagáa %WORD%
+sáng 'láa %WORD%
+ga 'láagä %WORD%
+ñagán 'yáan %WORD%
+chíij Git'anée %WORD%
+sahgwáa Git'anée %WORD%
+kyáanuu Salíi %WORD%
+ta aláan %WORD%
+tla chaa %WORD%
+ñ'u chaa %WORD%
+ýa chaa %WORD%
+sçats'ä da %WORD%
+ta da %WORD%
+gyáa dah %WORD%
+is dluunáang %WORD%
+sçats'ä dáng %WORD%
+ts'at'as dáng %WORD%
+kín dúu %WORD%
+gu ga %WORD%
+chíigaang gudä %WORD%
+chíigang gudä %WORD%
+skis guwä %WORD%
+t'a'áaw guwä %WORD%
+ta gíng %WORD%
+ñ'íi gún %WORD%
+tám hl'áan %WORD%
+kíl hldán %WORD%
+sgánsgunaa hlçahl %WORD%
+gíng ináa %WORD%
+tla júugä %WORD%
+da k'usgad %WORD%
+tlagä k'wíidaa %WORD%
+ja kíl %WORD%
+ta kíl %WORD%
+kihl náang %WORD%
+gyáa sahl %WORD%
+ta sahl %WORD%
+ña sgún %WORD%
+t'a skáawnang %WORD%
+tla skúnagahl %WORD%
+ña sán %WORD%
+ga sçagáang %WORD%
+gin sñ'at'adáa %WORD%
+sçats'ä sñu %WORD%
+kíl súu %WORD%
+ta súudä %WORD%
+gyáa t'aahl %WORD%
+çadgáats'aaw t'áahl %WORD%
+ýánjaangw t'áahl %WORD%
+ta tl'ándä %WORD%
+ta tl'íi %WORD%
+ýáng tla %WORD%
+búud tlaahláa %WORD%
+na tlaahláa %WORD%
+ts'áng tlaahláa %WORD%
+tlúu tláay %WORD%
+jaa xilándä %WORD%
+sgidáa Ñáw %WORD%
+tla ça %WORD%
+tla çad'wä %WORD%
+gyáa çadúu %WORD%
+ináa çat'ahl %WORD%
+tla çu %WORD%
+tlúu çut'íisaa %WORD%
+da çuuhlä %WORD%
+da çuwáansdla %WORD%
+da çwa'áaw %WORD%
+agáng çáandangee %WORD%
+xáwsda ñ'uhldä %WORD%
+çad ñ'uhldä %WORD%
+ta ñ'áalaang %WORD%
+'láaganang ña %WORD%
+skis ñáa %WORD%
+ýas ñáa %WORD%
+st'íi ñéeng %WORD%
+ja ñíng %WORD%
+da únaaw %WORD%
+da únwaansdla %WORD%
+ta ýáng %WORD%
+tla ýáng %WORD%
+
+# POSTVERBS
+%WORD% ñasa'áa
+%WORD% ñasa'áang
+%WORD% ñasaa'áng
+%WORD% ñasaa'ánggang
+%WORD% ñasaasdláa
+%WORD% ñasaasdláang
+%WORD% ñasaasdlä'áng
+%WORD% ñasaasdlä'ánggang
+

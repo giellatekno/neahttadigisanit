@@ -1,0 +1,111 @@
+{%- macro check_result_count(f, t) %}
+    {% if language_pairs_other_results %}
+        {% set entry_count = language_pairs_other_results.get((f, t)) %}
+        {% if entry_count > 0 -%}
+            <span class="badge badge-info pull-right">{{ entry_count }}</span>
+        {%- endif %}
+    {% endif %}
+{% endmacro -%}
+
+{%- macro render_pair_blocks(grouped_items) -%}
+    {%- for iso_pair, pair_options in grouped_items -%}
+            {%- if pair_options.input_variants -%}
+                {% set pair_has_variant = true  %}
+            {%- else -%}
+                {% set pair_has_variant = false %}
+            {%- endif -%}
+
+            {% set active_pair = false %}
+            {%- if not is_variant %}
+                {%- if iso_pair[0] == _from and iso_pair[1] == _to %}
+                    {% set active_pair = true %}
+                    {% set nav_classes = "active nav nav-collapse nav-tabs nav-stacked" %}
+                {% else -%}
+                    {% set nav_classes = "nav nav-collapse nav-tabs nav-stacked" %}
+                {% endif -%}
+            {% elif is_variant -%}
+                {%- if iso_pair[1] == orig_pair[1] and iso_pair[0] == orig_pair[0] %}
+                    {% set nav_classes = "active nav nav-collapse nav-tabs nav-stacked" %}
+                    {% set active_pair = true %}
+                {% else -%}
+                    {% set nav_classes = "nav nav-collapse nav-tabs nav-stacked" %}
+                {% endif -%}
+            {% else -%}
+                {% set nav_classes = "nav nav-collapse nav-tabs nav-stacked" %}
+            {% endif -%}
+
+
+            <ul class="{{ nav_classes }}">
+                {% if iso_pair[0] == _from and user_input %}
+                    {% set params = "?lookup=" + user_input %}
+                {% else %}
+                    {% set params = "" %}
+                {% endif %}
+
+                {% if not (iso_pair[1] == "spa" and iso_pair[0] == "sme") %} {# Do not show empty smespa dict. Remove this if statement when the smespa dictionary is finished! #}
+                    {% if not is_variant %}
+                        {%- if iso_pair[0] == _from and iso_pair[1] == _to %}
+                            <li class="active">
+                        {% else -%}
+                            <li>
+                        {% endif -%}
+                    {% elif is_variant -%}
+                        {%- if iso_pair[1] == orig_pair[1] and iso_pair[0] == orig_pair[0] %}
+                            <li class="active">
+                        {% else -%}
+                            <li>
+                        {% endif -%}
+                    {% else -%}
+                        <li>
+                    {% endif %}
+                {# URLFOR: test #}
+                        <a href="{{ url_for('.canonical_root_search_pair', _from=iso_pair[0], _to=iso_pair[1]) }}{{ params }}" class="block_title">
+                            <span lang="{{ current_locale }}">{{ iso_pair[0]|iso_to_i18n }} &rarr; {{ iso_pair[1]|iso_to_i18n }}</span>
+                            {%- if iso_pair[1] != _to %}
+                            {{ check_result_count(iso_pair[0], iso_pair[1]) }}
+                            {% endif -%}
+                        </a>
+                    </li>
+                {% endif %}{# smespa if #}
+
+                {% include 'left_nav_input_variants.html' %}
+                {% include 'left_nav_search_variants.html' %}
+
+
+                {# TODO: input variants go here too #}
+
+    {% endfor %}
+    </ul>
+{%- endmacro -%}
+
+{#  <div class="container-fluid" id="language_grouped_nav"> #}
+<div class="container-fluid" id="language_grouped_nav">
+    {% for iso_group, grouped_items in language_pairs_grouped_by_source.items() %}
+        {# TODO: active pair bug for _from lang when _from is a variant #}
+        {% if iso_group == _from or iso_group == _to or _from|is_variant_of(grouped_items) %}
+            {% set active_group = "active-group" %}
+        {% else %}
+            {% set active_group = "inactive-group" %}
+        {% endif %}
+        <h5 class="{{ active_group }}-title"><span class="inactive-placeholder label label-grey">+</span><a href="#" data-iso-group="{{ iso_group }}" class="expander" lang="{{ iso_group }}">{{ iso_group|iso_to_language_own_name }}</a> </h5>
+        <div class="expander-group row-fluid {{ active_group }}" data-iso-expander="{{ iso_group }}">
+        {{ render_pair_blocks(grouped_items) }}
+        </div>
+    {% endfor %}
+</div>
+<script type="text/javascript">
+    $(document).ready( function(){
+    	$('h5.inactive-group-title a.expander').click( function(e) {
+    		var expander_group = $(e.target).attr('data-iso-group');
+    		var expander_target = "div.expander-group[data-iso-expander='" + expander_group + "']" ;
+    		$('h5.inactive-group-title .inactive-placeholder').fadeIn(50);
+    		$('div.expander-group.inactive-group').slideUp();
+    		$(e.target).parents('h5').find('.inactive-placeholder').fadeOut(100);
+    		$(expander_target).slideToggle();
+
+    	    e.preventDefault();
+    	});
+    });
+</script>
+
+{# vim: set ts=4 sw=4 tw=0 syntax=htmljinja : #}
