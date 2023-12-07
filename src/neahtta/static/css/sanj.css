@@ -7,6 +7,13 @@ body{
   font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 }
 
+input,
+button,
+select,
+textarea {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
 /* Style for user_input text */
 p.user_input_text {
   font-style: italic;
