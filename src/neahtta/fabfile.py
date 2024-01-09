@@ -121,115 +121,48 @@ location_restriction_notice = {
     ]
 }
 
-# anders: when switching over to having giella dictionaries on github
-# github.com/giellalt/dict-xxx-yyy - I want to know which git repos to
-# pull when doing an update
-# This list is from dicts/Makefile
-# see also https://giellalt.github.io/dicts/nds/NeahttadigisanitLanguagePairs.html
-# ---
-# anders #2: This information is basically also stored in each project's
-# yaml config. No need to duplicate it here. A single source of truth is better.
-# ---
-# PROJECT_TO_DICTS = {
-#     # South Saami (sma)
-#     "baakoeh": ["dict-sma-nob", "dict-nob-sma"],
-#     # Komi (kpv)
-#     "kyv": [
-#         "dict-fin-kpv",
-#         "dict-udm-kpv",
-#         "dict-kpv-udm",
-#         "dict-udm-fin",
-#         "dict-fin-udm",
-#         "dict-udm-hun",
-#         "dict-hun-udm",
-#         "dict-koi-kpv",
-#         "dict-kpv-koi",
-#         "dict-kpv-rus",
-#         "dict-rus-kpv",
-#         "dict-est-udm",
-#     ],
-#     # Mari (mrj, mrh)
-#     "muter": [
-#         "dict-fin-mrj",
-#         "dict-mhr-eng",
-#         "dict-mhr-rus",
-#         "dict-mrj-mhr",
-#         "dict-mhr-mrj",
-#         "dict-mrj-rus",
-#     ],
-#     # Skolt Saami (sms)
-#     "saan": ["dict-fin-sms", "dict-nob-sms", "dict-rus-sms"],
-#     # Inari Saami (smn)
-#     "saanih": ["dict-smn-fin", "dict-fin-smn", "dict-smn-sme", "dict-sme-smn"],
-#     # Baltic Finnic languages (fkv, izh, liv, olo)
-#     "sanat": [
-#         "dict-nob-fkv",
-#         "dict-fkv-nob",
-#         "dict-fin-olo",
-#         "dict-rus-olo",
-#         "dict-olo-rus",
-#         "dict-nob-fin",
-#         "dict-fin-nob",
-#         "dict-fit-swe",
-#     ],
-#     # North Saami (sme)
-#     "sanit": [
-#         "dict-fin-sme",
-#         "dict-nob-sme",
-#         "dict-sme-fin",
-#         "dict-sme-nob",
-#         "dict-sme-sma",
-#         "dict-sma-sme",
-#         "dict-sme-smj",
-#         "dict-smj-sme",
-#         "dict-spa-sme",
-#         "dict-sme-spa",
-#     ],
-#     # Kildin Saami (sjd)
-#     "sanj": [
-#         # TODO, see comment in task update_dicts
-#     ],
-#     # Votic, Võru, Ingrian (vot, vro, izh)
-#     "sonad": [
-#         "dict-fin-liv",
-#         "dict-fin-izh",
-#         "dict-lav-liv",
-#         "dict-fin-lav",
-#         "dict-lav-fin",
-#         "dict-rus-vot",
-#         "dict-vot-rus",
-#     ],
-#     # Nenets (yrk)
-#     "vada": ["dict-fin-yrk", "dict-mns-hun"],
-#     # Erzya and Moksha (mdf, myv)
-#     "valks": [
-#         "dict-fin-myv",
-#         "dict-fin-mdf",
-#         "dict-myv-deu",
-#         "dict-deu-myv",
-#         "dict-eng-myv",
-#         "dict-myv-eng",
-#         "dict-eng-mdf",
-#         "dict-mdf-eng",
-#         "dict-mdf-rus",
-#         "dict-rus-myv",
-#         "dict-rus-mdf",
-#         "dict-mdf-myv",
-#         "dict-est-myv",
-#         "dict-myv-est",
-#     ],
-#     # Pite Saami (sje)
-#     "bahkogirrje": [
-#         # TODO: it's dictionary sje2X
-#     ],
-# }
-
 config = Config()
 
 config.load_ssh_configs = True
 # config.connect_kwargs.key_filename = '~/.ssh/neahtta'
 
 config.real_hostname = socket.gethostname()
+
+
+def available_projects_dict(include_inactive=False, include_dicts=False):
+    """Find active projects (projects with a config file
+    'configs/<project>.config.yaml')."""
+
+    suffix = ".config.yaml"
+    configs_folder = Path(__file__).parent / "configs"
+    projects = {n: [] for n in configs_folder.glob(f"*{suffix}")}
+    print(projects)
+
+    if include_inactive:
+        suffix += ".in"
+        projects.update({n: [] for n in configs_folder.glob(f"*{suffix}")})
+
+    if include_dicts:
+        import yaml
+        for yaml_config_file, dicts in projects.items():
+            with open(yaml_config_file) as f:
+                conf = yaml.load(f, Loader=yaml.Loader)
+
+            for d in conf.get("Dictionaries", []):
+                src = d["source"]
+                trg = d["target"]
+                if src.lower() == "some" or trg.lower() == "some":
+                    # skip "SoMe"
+                    continue
+                dicts.append(f"dict-{src}-{trg}")
+
+    without_suffixes = {}
+    for project, dictionaries in projects.items():
+        stem = project.stem
+        real_stem = stem[0 : stem.index(".")]
+        without_suffixes[real_stem] = dictionaries
+
+    return without_suffixes
 
 
 def available_projects():
@@ -437,18 +370,13 @@ def pull_git_dictionaries(ctx):
 
 # I can never remember which one it is.. so just make all of these work
 UPDATE_DICTS_ALIASES = [
-    "compile-dict",
-    "compile-dicts",
-    "compile-dictionary",
-    "compile-dictionaries",
     "update-dict",
     "update-dictionary",
     "update-dictionaries",
 ]
 @task(aliases=UPDATE_DICTS_ALIASES)
-def update_dicts(ctx, force_recreate=None):
-    """Update all dictionaries for this project (using gut), then rebuild the
-    merged dictionary files for the dictionaries that had any updates."""
+def update_dicts(ctx):
+    """Update all dictionaries for this project (using gut)"""
     # COMMENT FROM THE MAKEFILE (see dicts/Makefile line 402 - ~430)
     # Custom compile script because the xml files are in
     # lang-sjd-x-private/misc, which is not the case in any other dicts.
@@ -459,11 +387,6 @@ def update_dicts(ctx, force_recreate=None):
     if config.project == "bahkogirrje":
         raise NotImplementedError("dictionary sje2X - must be handled")
 
-    if force_recreate is None:
-        force_recreate = set()
-    else:
-        force_recreate = force_recreate.split(",")
-
     updated_dicts = pull_git_dictionaries(ctx)
 
     # TODO actually, even if the dictionary is not updated, it could have been
@@ -472,31 +395,26 @@ def update_dicts(ctx, force_recreate=None):
     if not updated_dicts:
         print(colored("** All up to date (nothing to do)", "green"))
 
-    for dictionary in updated_dicts:
+
+COMPILE_DICTS_ALIASES = [
+    "compile-dict",
+    "compile-dictionary",
+    "compile-dictionaries",
+]
+@task(aliases=COMPILE_DICTS_ALIASES)
+def compile_dicts(ctx):
+    projects = available_projects_dict(include_dicts=True)
+    print(projects)
+    try:
+        dictionaries = projects[config.project]
+    except KeyError:
+        exit(colored("project not found", "red"))
+
+    for dictionary in dictionaries:
         name = dictionary[5:]
         path = Path(config.new_dict_path) / dictionary / "src"
         out_file = Path(config.dict_path) / f"{name}.all.xml"
         print(f"** Merge dictionary {colored(name, 'cyan')} > dicts/"
-              f"{out_file.name}... ",
-              end="", flush=True)
-        try:
-            n_entries = merge_giella_dicts(path, out_file)
-        except (FileNotFoundError, NotADirectoryError) as e:
-            print(colored(f"failed ({e})", "red"))
-        else:
-            print(colored("done", "green"), f"({n_entries} entries total)")
-
-    # don't do forced recreation of the ones that happened to also have
-    # an update (because it'll already be done)
-    force_recreate = set(force_recreate) - set(updated_dicts)
-
-    for dictionary in force_recreate:
-        name = dictionary[5:]
-        path = Path(config.new_dict_path) / dictionary / "src"
-        out_file = Path(config.dict_path) / f"{name}.all.xml"
-        forced_s = colored("forced recreation", "yellow")
-        dictname_s = colored(name, "cyan")
-        print(f"** ({forced_s}) Merge dictionary {dictname_s} > dicts/"
               f"{out_file.name}... ",
               end="", flush=True)
         try:
