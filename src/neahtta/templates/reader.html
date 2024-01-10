@@ -18,6 +18,10 @@
     <div class="row-fluid">
         <div class="span5 offset1">
         <h3 lang="{{ current_locale }}">{% trans project_name=app_name %}{{ project_name }} Reader{% endtrans %}</h3>
+            <div style="border: 1px solid #ff8a23; padding: 8px; background-color:rgb(255, 239, 202); border-radius: 2px;">
+                <h5 style="margin: 0">Notice (2024-01-10):</h5>
+                <p style="margin: 0">{% trans %}Some websites have a security feature enabled that prevents the bookmarklet from working.{% endtrans %}</p>
+            </div>
             <h4 lang="{{ current_locale }}">{% trans %}Bookmarklet{% endtrans %}</h4>
             <p lang="{{ current_locale }}">{% trans %}Drag and drop the following link to your Bookmark toolbar, then click it when you are on a page you wish to read. The service will automatically be installed, and you will see a menu icon on the left-hand side of the page.{% endtrans %}</p>
             <p lang="{{ current_locale }}" class="label" id="bookmarklet"><a href="javascript:{{- bookmarklet|safe -}}">{% trans project_name=app_name %}Read with {{ project_name }}{% endtrans %}</a></p>
