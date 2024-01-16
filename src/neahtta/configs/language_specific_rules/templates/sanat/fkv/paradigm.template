@@ -279,7 +279,7 @@
         {%- endfor -%}
 
 
-        {%- for form in numberless_forms|uniq -%}
+        {%- for form in numberless_forms -%}
             <tr>
             {% if form.tag %}
                 <th class="tag" lang="{{ _to }}">{{ clean_tag(form.tag)  }}</th>
@@ -336,7 +336,7 @@
         {%- endfor -%}
 
 
-        {%- for form in numberless_forms|uniq -%}
+        {%- for form in numberless_forms -%}
             <tr>
             {% if form.tag %}
                 <th class="tag" lang="{{ _to }}">{{ clean_tag(form.tag)  }}</th>
