@@ -11,9 +11,9 @@ lexicon:
     - "Plc"
     - "plc"
 --
-{{ lemma }}+N+Prop+Sem/Plc+Sg+Nom
-{{ lemma }}+N+Prop+Sem/Plc+Sg+Gen
-{{ lemma }}+N+Prop+Sem/Plc+Sg+Par
-{{ lemma }}+N+Prop+Sem/Plc+Sg+Ill
-{{ lemma }}+N+Prop+Sem/Plc+Sg+Ine
-{{ lemma }}+N+Prop+Sem/Plc+Sg+Ela
+{{ lemma }}+N+Prop+Sg+Nom
+{{ lemma }}+N+Prop+Sg+Gen
+{{ lemma }}+N+Prop+Sg+Par
+{{ lemma }}+N+Prop+Sg+Ill
+{{ lemma }}+N+Prop+Sg+Ine
+{{ lemma }}+N+Prop+Sg+Ela
