@@ -225,14 +225,14 @@
                 <dt>{{ nonfinite_header }}</dt><dd>&nbsp;</dd>
             {% endif %}
 
-            {%- for form in nonfinite_forms -%}
+            {%- for form in nonfinite_forms|uniq -%}
 
                 {% if form.tag %}
                     <dt>{{ clean_tag(form.tag)  }}</dt>
                 {% endif %}
 
                 {% if form.form %}
-                <dd lang="{{ _from }}">{{ form.form|uniq }}</dd>
+                <dd lang="{{ _from }}">{{ form.form }}</dd>
                 {% else %}
                     <dd lang="{{ _from }}">?</dd>
                 {% endif %}
@@ -279,14 +279,14 @@
         {%- endfor -%}
 
 
-        {%- for form in numberless_forms -%}
+        {%- for form in numberless_forms|uniq -%}
             <tr>
             {% if form.tag %}
                 <th class="tag" lang="{{ _to }}">{{ clean_tag(form.tag)  }}</th>
             {% endif %}
 
             {% if form.form %}
-                <td colspan="2" lang="{{ _from }}" class="center">{{ form.form|uniq }}</td>
+                <td colspan="2" lang="{{ _from }}" class="center">{{ form.form }}</td>
             {% else %}
                 <td colspan="2" lang="{{ _from }}">?</td>
             {% endif %}
@@ -336,14 +336,14 @@
         {%- endfor -%}
 
 
-        {%- for form in numberless_forms -%}
+        {%- for form in numberless_forms|uniq -%}
             <tr>
             {% if form.tag %}
                 <th class="tag" lang="{{ _to }}">{{ clean_tag(form.tag)  }}</th>
             {% endif %}
 
             {% if form.form %}
-                <td colspan="2" lang="{{ _from }}" class="center">{{ form.form|uniq }}</td>
+                <td colspan="2" lang="{{ _from }}" class="center">{{ form.form }}</td>
             {% else %}
                 <td colspan="2" lang="{{ _from }}">?</td>
             {% endif %}
@@ -393,14 +393,14 @@
             {%- endfor -%}
 
 
-            {%- for form in numberless_forms -%}
+            {%- for form in numberless_forms|uniq -%}
                 <tr>
                 {% if form.tag %}
                     <th class="tag" lang="{{ _to }}">{{ clean_tag(form.tag)  }}</th>
                 {% endif %}
 
                 {% if form.form %}
-                    <td colspan="2" lang="{{ _from }}" class="center">{{ form.form|uniq }}</td>
+                    <td colspan="2" lang="{{ _from }}" class="center">{{ form.form }}</td>
                 {% else %}
                     <td colspan="2" lang="{{ _from }}">?</td>
                 {% endif %}
