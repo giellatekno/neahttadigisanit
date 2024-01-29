@@ -3,8 +3,8 @@ morphology:
   pos: N
 --
 {{ lemma }}+N+Sg+Nom
-{{ lemma }}+N+Sg+Acc
 {{ lemma }}+N+Sg+Gen
+{{ lemma }}+N+Sg+Acc
 {{ lemma }}+N+Sg+Ill
 {{ lemma }}+N+Sg+Loc
 {{ lemma }}+N+Sg+Com
@@ -12,8 +12,8 @@ morphology:
 {{ lemma }}+N+Ess
 {{ lemma }}+N+Par
 {{ lemma }}+N+Pl+Nom
-{{ lemma }}+N+Pl+Acc
 {{ lemma }}+N+Pl+Gen
+{{ lemma }}+N+Pl+Acc
 {{ lemma }}+N+Pl+Ill
 {{ lemma }}+N+Pl+Loc
 {{ lemma }}+N+Pl+Com
