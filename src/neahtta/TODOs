@@ -5,18 +5,93 @@
 
 * tests should be yamlized too, and need clearer error messages. 
 
-* mobile width - detail - paradigm disappears
-
 * need to hide 'more information' link when there isn't actually more information
   - probably slightly easier now
+  - TODO 2024: check
 
-* some tags are too long for the field, but overflow is hidden
-  - f.eks.)
-      http://localhost:5000/detail/sme/nob/goabbat%20guoibm%C3%A1me.html?no_compounds=true&lemma_match=true
 
-     --
-      pron. resipr. 1.p.tot. Acc/G ...
-     --
+# Misc
+
+ * update reversed to work with new structures -> fin-kpv
+
+ * ie8 rendering bug on flag lists in header on main page, but not on about page
+
+ * detail view, include generation info in opt+shift+? debug
+
+ * change cache settings for plugin js in nginx configs, some browsers are
+   unwilling to get a new version even when it exists.
+
+ * refresh settings button in plugin
+
+ * cakefile include build bookmark.min.js
+
+ * a little advertising and such for the reader and page with content in specific languages 
+   see script in misc/o
+
+   Add text to reader page: "Here are the top websites that people are reading, did you know you can read them too?"
+
+     14 www.ntfk.no
+     14 www.skogholt.org
+     15 yle.fi
+     16 www.sametinget.se
+     17 fi.wikipedia.org
+     20 www.facebook.com
+     23 www.samediggi.no
+     25 samediggi.fi
+     25 sametinget.se
+     28 samisk.karasjok.kommune.no
+     29 www.nrk.no
+     30 www.hs.fi
+     44 sanit.oahpa.no
+     46 giellatekno.uit.no
+     46 www.regjeringen.no
+     56 se.wikipedia.org
+     63 nrk.no
+    161 avvir.no
+    277 skuvla.info
+    582 www.avvir.no
+   3429 kursa.oahpa.no
+
+  For privacy concerns, only include top _domains_ not individual pages. Also,
+  split these out by language pair used in the lookup. above list is just
+  everything in access logs.
+
+## post launch TODOs:
+
+ * bookmark icon for iOS
+
+    /apple-touch-icon-57x57-precomposed.png
+    /apple-touch-icon-57x57.png 
+    /apple-touch-icon-precomposed.png 
+    /apple-touch-icon.png 
+
+ * translate the mobile bookmark bubble, maybe modify/write one for
+   android, where the process is a little more complex
+ 
+ * Link til read i selve ordbok-grensesnittet -- kor?
+   -- "Vil du ha oversatt ord i en tekst?" 
+   -- "Háliidatgo jorgalahttit sániid teavsttas?"
+   -- "Haluatko käännöksen tekstissä esiintyvään sanaan?"
+
+ * autocomplete SoMe variant
+
+## Next:
+
+ * word test-list - https://giellalt.github.io/dicts/checklist.html
+
+ -- 
+
+
+## Would be nice
+
+
+## One page for each language
+
+
+
+
+Probably fixed
+==============
 
 # General design stuff
 
@@ -61,136 +136,4 @@
      - able to define what paradigm to generate and show with the entry
        - interact with morphology and tags without having to know how
          all the (python) code works
-
-# Misc
-
- * update reversed to work with new structures -> fin-kpv
-
- * ie8 rendering bug on flag lists in header on main page, but not on about page
-
- * detail view, include generation info in opt+shift+? debug
-
- * See bugs 
- 
- * change cache settings for plugin js in nginx configs, some browsers are
-   unwilling to get a new version even when it exists.
-
- * refresh settings button in plugin
-
- * cakefile include build bookmark.min.js
-
- * a little advertising and such for the reader and page with content in specific languages 
-   see script in misc/o
-
-   Add text to reader page: "Here are the top websites that people are reading, did you know you can read them too?"
-
-     14 www.ntfk.no
-     14 www.skogholt.org
-     15 yle.fi
-     16 www.sametinget.se
-     17 fi.wikipedia.org
-     19 dagogtid.no
-     20 www.facebook.com
-     23 www.samediggi.no
-     25 samediggi.fi
-     25 sametinget.se
-     28 samisk.karasjok.kommune.no
-     29 www.nrk.no
-     30 www.hs.fi
-     44 sanit.oahpa.no
-     46 giellatekno.uit.no
-     46 www.regjeringen.no
-     56 se.wikipedia.org
-     63 nrk.no
-    161 avvir.no
-    277 skuvla.info
-    582 www.avvir.no
-   3429 kursa.oahpa.no
-
-  For privacy concerns, only include top _domains_ not individual pages. Also,
-  split these out by language pair used in the lookup. above list is just
-  everything in access logs.
-
-## post launch TODOs:
-
- * bookmark icon for iOS
-
-    /apple-touch-icon-57x57-precomposed.png
-    /apple-touch-icon-57x57.png 
-    /apple-touch-icon-precomposed.png 
-    /apple-touch-icon.png 
-
- * gtweb: certificates
-
- * translate the mobile bookmark bubble, maybe modify/write one for
-   android, where the process is a little more complex
- 
- * Link til read i selve ordbok-grensesnittet -- kor?
-   -- "Vil du ha oversatt ord i en tekst?" 
-   -- "Háliidatgo jorgalahttit sániid teavsttas?"
-   -- "Haluatko käännöksen tekstissä esiintyvään sanaan?"
-
- * autocomplete SoMe variant
-
-## Next:
-
- * Glossary page explaining each tag part. 
-
- * mobile menu language variant display (e.g. SoMe vs. Norm)
-
- * bookmarklet unload on additional click
-   
- * word test-list - https://giellalt.github.io/dicts/checklist.html
-
- * dropdown events on mobile are a bit funny for the menu on the
-   detailed view, and it is impossible to select a new language pair
-
- * use logger's own log message formatter
-
- -- 
-
- * Once all this is together, optimize memory usage, with specific
-   attention to gtlab / gtoahpa, may be a better way to have multiple
-   threads/greenlets/etc running while parsing trees into only one
-   thread.
-
-   Note: http://blog.pythonisito.com/2012/07/gevent-and-greenlets.html
-
-## Would be nice
-
- * Makefile: check which FST and lexica are updated on svn up, and then
-   automatically rebuild all
-
- * developer- and linguist-friendly templates for editing how words are
-  presented ; multimethods + jinja - prefer more templates instead of many
-  if/else statements for attributes?
-
- * tagsets for selecting POS from analyses & specifying what parts of
-   tags should be used for lookups, with fallbacks if they don't exist.
-   (i.e., take POS and Valence if both exist in analysis, if only POS, use
-   that)
-
-   - sma: +1+V, +2+V; one fix is to remove from FST, so that +V is first
-          element, other option would be to improve the lookup system.
-
-   - maybe thinking about a solution to this will help generalise other
-     things for more languages, allowing language-specific configuration
-     of what elements from the analysis must be used to look up words in
-     the lexicon
-
- * advanced search form: here we get to have some nerdy linguistic fun.
-
-## Features to develop at some point:
-
- * Use something other than werkzeug's default cache
-
- * Maybe should provide an individual process for each language pair?
-   Should be easy to split off new processes by pair/endpoint. Note also
-   werkzeug DispatcherMiddleware and PathDispatcher:
-   http://flask.pocoo.org/docs/patterns/appdispatch/
-
- * getting near the time to adapt version of lookupserv.py that is checked in
-   for actual use. spawn it on process run, so that no one needs to think/worry
-   that it exists aside from looking at process hierarchy in htop
-
 
