@@ -2,10 +2,15 @@
     ###  Neahttadigisánit maintainer tasks
     ###
 
-    Updating dictionaries & FSTs
+    Updating dictionaries
     
         $ fab PROJECT compile
+
+    Updating FSTs
     
+        compile FSTs for the relevant languages locally
+	copy to the relevant bin catalogue under opt
+
     Updating just the lexicon
     
         $ fab PROJECT compile-dictionary
