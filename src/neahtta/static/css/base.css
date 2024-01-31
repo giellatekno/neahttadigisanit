@@ -1076,3 +1076,27 @@ span.not_found {
   font-size: 85%;
   margin-left: 4em;
 }
+
+/* anders: temporary maintainance notice */
+div.tnn-container {
+    padding: 6px 10px;
+    background-color: #e3bb90;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Verdana;
+    border-bottom: 2px solid #c8741b;
+}
+@media (max-width: 767px) {
+    div.tnn-container {
+        margin-left: -20px;
+        margin-right: -20px;
+    }
+}
+span.tnn-link {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    cursor: pointer;
+    color: blue;
+}
+/* anders: END temporary maintainance notice */
