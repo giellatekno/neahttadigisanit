@@ -41,10 +41,10 @@ window.getViewport = function (elem) {
 
 // anders: temporary maintainance notice
 var tnn_current_lang = "en";
-var tnn_notice_ru = "извещение";
-var tnn_notice_en = "Notice";
-var tnn_message_en = "Neahttadigisanit will be unavailable on the evening of DATE.";
-var tnn_message_ru = "Neahttadigisanit будет недоступен вечером DATE.";
+var tnn_notice_ru = "ВНИМАНИЕ";
+var tnn_notice_en = "NOTICE";
+var tnn_message_en = "The dictionary will be down on the evening of Monday, Feb 5th.";
+var tnn_message_ru = "Словарь будет недоступен в понедельник, 5 февраля вечером.";
 var tnn_in_english = "English";
 var tnn_in_russian = "на русском";
 // https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
