@@ -40,13 +40,17 @@ window.getViewport = function (elem) {
 }
 
 // anders: temporary maintainance notice
-var tnn_current_lang = "en";
-var tnn_notice_ru = "ВНИМАНИЕ";
-var tnn_notice_en = "NOTICE";
-var tnn_message_en = "The dictionary will be down on the evening of Monday, Feb 5th.";
-var tnn_message_ru = "Словарь будет недоступен в понедельник, 5 февраля вечером.";
-var tnn_in_english = "English";
+var tnn_current_lang = "nob";
+var tnn_in_norwegian = "På norsk";
+var tnn_notice_nob = "Notis";
+var tnn_message_nob = "Ordboka blir utilgjengelig på kvelden, mandag 5. februar.";
+var tnn_in_english = "In english";
+var tnn_notice_eng = "Notice";
+var tnn_message_eng = "The dictionary will be down on the evening of Monday, Feb 5th.";
+var tnn_notice_rus = "ВНИМАНИЕ";
 var tnn_in_russian = "на русском";
+var tnn_message_rus = "Словарь будет недоступен в понедельник, 5 февраля вечером.";
+
 // https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
 function tnn_storageAvailable(type) {
   var storage;
@@ -87,15 +91,15 @@ function tnn_change_lang() {
     var notice = document.getElementById("tnn-notice-notice");
     var in_lang = document.getElementById("tnn-notice-changelang-btn");
 
-    if (tnn_current_lang == "en") {
-        tnn_current_lang = "ru";
-        msg.innerText = tnn_message_ru;
-        notice.innerText = tnn_notice_ru;
-        in_lang.innerText = tnn_in_english;
+    if (tnn_current_lang == "nob") {
+        tnn_current_lang = "rus";
+        msg.innerText = tnn_message_rus;
+        notice.innerText = tnn_notice_rus;
+        in_lang.innerText = tnn_in_norwegian;
     } else {
-        tnn_current_lang = "en";
-        msg.innerText = tnn_message_en;
-        notice.innerText = tnn_notice_en;
+        tnn_current_lang = "nob";
+        msg.innerText = tnn_message_nob;
+        notice.innerText = tnn_notice_nob;
         in_lang.innerText = tnn_in_russian;
     }
 }

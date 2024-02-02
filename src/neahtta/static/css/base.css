@@ -1082,10 +1082,11 @@ div.tnn-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #fff132;
+    background-color: #f4ff7f;
     padding: 14px 18px;
     font-family: sans-serif;
     font-size: 18px;
+    border-bottom: 1px solid #c8741b;
 }
 @media (max-width: 767px) {
     div.tnn-container {
