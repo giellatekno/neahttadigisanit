@@ -11,8 +11,8 @@ connecting FST to Lexicon.
 
 from logging import getLogger
 
-from nds_lexicon import autocomplete_filters as autocomplete_filters
-from morphology import generation_overrides as morphology
+from neahtta.nds_lexicon import autocomplete_filters as autocomplete_filters
+from neahtta.morphology import generation_overrides as morphology
 
 morph_log = getLogger("morphology")
 
