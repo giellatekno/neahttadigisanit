@@ -3,7 +3,7 @@
 connecting FST to Lexicon.
 """
 
-from morphology import generation_overrides as morphology
+from neahtta.morphology import generation_overrides as morphology
 
 
 @morphology.pregenerated_form_selector(*["sms", "smsM"])
