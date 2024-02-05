@@ -1,5 +1,3 @@
-Many changes, see full commit message.
-
 Quick summary:
 
 Update and compile dictionary, restart server:
