@@ -42,8 +42,8 @@ window.getViewport = function (elem) {
 // anders: temporary maintainance notice
 var tnn_current_lang = "nob";
 var tnn_in_norwegian = "På norsk";
-var tnn_notice_nob = "Notis";
-var tnn_message_nob = "Ordboka blir utilgjengelig på kvelden, mandag 5. februar.";
+var tnn_notice_nob = "Merk";
+var tnn_message_nob = "Ordboka blir midlertidig nede på kvelden, mandag 5. februar.";
 var tnn_in_english = "In english";
 var tnn_notice_eng = "Notice";
 var tnn_message_eng = "The dictionary will be down on the evening of Monday, Feb 5th.";
