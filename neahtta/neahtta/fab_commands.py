@@ -366,11 +366,11 @@ def add_stem():
     for lexc in "nouns", "adjectives", "verbs", "prop":
         cmd = ["python", str(script_path), lexc, str(stemtypes_txt_path(lexc))]
         if lexc != "prop":
-            cmd.append("dicts/sme-nob.all.xml")
+            cmd.append("neahtta/dicts/sme-nob.all.xml")
             cmd.append(str(_find_in_repo(f"lang-sme/src/fst/stems/{lexc}.lexc")))
         else:
             cmd.append(str(stemtypes_txt_path(lexc)))
-            cmd.append("dicts/sme-nob.all.xml")
+            cmd.append("neahtta/dicts/sme-nob.all.xml")
             cmd.append(
                 str(_find_in_repo("lang-sme/src/fst/stems/sme-propernouns.lexc"))
             )
@@ -390,7 +390,9 @@ def add_stem():
 
         # this happens on every iteration of the loop, but that's how
         # the original code had it
-        shutil.copy2("dicts/sme-nob.all.xml.stem.xml", "dicts/sme-nob.all.xml")
+        shutil.copy2(
+            "neahtta/dicts/sme-nob.all.xml.stem.xml", "neahtta/dicts/sme-nob.all.xml"
+        )
 
 
 def strings_compile(project=None):
