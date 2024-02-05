@@ -316,7 +316,7 @@ def update_dicts(project):
         )
 
 
-def run_dev_server(project, trace=False):
+def run_dev_server(project, trace=False, port=5000):
     print(f"Running development server for {project}")
     os.environ["NDS_CONFIG"] = f"neahtta/configs/{project}.config.yaml"
     if trace:
@@ -326,7 +326,7 @@ def run_dev_server(project, trace=False):
 
     app.caching_enabled = True
     app.production = False
-    app.run(debug=True, use_reloader=True)
+    app.run(debug=True, port=port, use_reloader=True)
 
 
 def _find_in_repo(path, org="giellalt"):
@@ -804,6 +804,12 @@ def parse_args():
             "running the dev server. It is very verbose, and slows it down "
             "a lot!"
         ),
+    )
+    dev_parser.add_argument(
+        "-p",
+        "--port",
+        default=5000,
+        help=("run the development server on a custom port (default 5000)"),
     )
     dev_parser.set_defaults(func=run_dev_server)
 
