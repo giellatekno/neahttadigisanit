@@ -653,7 +653,7 @@ def image_import():
 
 
 def _restart_systemd_service(project):
-    print(f"Restarting systemd service 'nds-{project}'...", end="")
+    print(f"Restarting systemd service 'nds-{project}'...", end="", flush=True)
     proc = subprocess.run(["sudo", "systemctl", "restart", f"nds-{project}"])
     if proc.returncode == 0:
         print(colored("done", "green"))
