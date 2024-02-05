@@ -29,16 +29,16 @@ Example target string formatting function:
 # NOTE: if copying this for a new language, remember to make sure that
 # it's being imported in __init__.py
 
-from configs.language_specific_rules.common import match_homonymy_entries
+from neahtta.configs.language_specific_rules.common import match_homonymy_entries
 from flask import current_app
-from nds_lexicon import lexicon_overrides as lexicon
-from morpholex import morpholex_overrides as morpholex
-from morphology import generation_overrides as morphology
+from neahtta.nds_lexicon import lexicon_overrides as lexicon
+from neahtta.morpholex import morpholex_overrides as morpholex
+from neahtta.morphology import generation_overrides as morphology
 
 
 @lexicon.entry_source_formatter("sma")
 def format_source_sma(ui_lang, e, target_lang):
-    from morphology.utils import tagfilter_conf
+    from neahtta.morphology.utils import tagfilter_conf
 
     paren_args = []
 
