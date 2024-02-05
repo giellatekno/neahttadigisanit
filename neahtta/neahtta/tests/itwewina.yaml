@@ -1,0 +1,151 @@
+﻿## 
+## Testing the NDS paradigm selection and generation machinery
+## 
+
+##
+##   Here we test two main things: FST + NDS interactions, and NDS
+## rendering. Any tests that can be seen to be only for FSTs should be
+## left in the langs infrastructure.
+##
+##   NDS + FST interactions:
+##    
+##    - Generation of paradigms corresponding to specific lexical
+##      entries
+##
+##    - Analysis of wordforms resulting in entries
+##       - has entry
+##       - does not have entry
+##   
+##  NDS rendering:
+##   
+##    - Lookup pages
+##    - Regeneration of analyzed wordforms
+
+# Given a uri, test that `expected_values` occur within a list generated
+# by `value_selector`. uri_args are formatted into the uri for each
+# test.
+# 
+# This could be used for writing a test to check that the basic lookup
+# page is returning canonical forms in the analysis side, checking that
+# localization renders, etc.
+#
+
+RequestTests:
+
+ # This searches the analyses on the side to confirm that all options
+ # are present
+ #
+ - uri: "/crk/eng/?lookup=%(input)s"
+   tests:
+    - uri_args:
+        input: "nipihk"
+      value_selector: &CANONICAL_FORMS ".lexeme_analyses dl dt span[lang=crk]"
+      expected_values: 
+        - "nipihk"
+        - "nipîhk"
+        - "nîpîhk"
+
+    - uri_args:
+        input: "ninipân"
+      value_selector: *CANONICAL_FORMS
+      expected_values: 
+        - "ninipân"
+
+ # for a given uri pattern, run the tests
+ - uri: "/detail/crk/eng/%(input)s.html?lemma_match=true"
+   tests:
+    - uri_args:
+        input: "nipâw"
+      value_selector: &MINIPARADIGM ".miniparadigm tr td[lang=crk]"
+      expected_values: 
+        - "ninipân"
+        - "kinipân"
+        - "kinipânânaw"
+        # TODO: encoding of html is causing this error ? 
+        - "nêpât"
+
+    - uri_args:
+        input: "wâpamêw"
+      value_selector: *MINIPARADIGM
+      expected_values: 
+        - "niwâpamâw"
+        - "niwâpamânân"
+        # TODO: encoding of html is causing this error ? 
+        - "ê-wâpamak"
+
+# Ensure that analysis of forms works without the interface
+MorpholexicalAnalysis:
+ - morpholexicon: [crk, eng]
+   tests:
+     # Fail if all of these are not present
+     - input: "ninipân"
+       expected_lemmas: ["nipâw"]
+       description: "is the analyzer working?"
+
+     - input: "nipihk"
+       expected_lemmas: ["nipiw", "nipiy", "nîpiy"]
+       description: "can we recognize variant spellings?"
+
+     - input: "ninanahnipan"
+       expected_lemmas: ["nipâw"]
+       description: "is the lemma able to be isolated from pretags?"
+
+# Ensure that generation works through the morphology, without the user
+# interface. Analyzes the input form, and generates returned lemmas,
+# then compare forms against `expected_forms`.
+#
+MorpholexicalGeneration:
+ - morpholexicon: [crk, eng]
+   tests:
+     - input: "ê-wâpamâyâhk"
+       expected_forms:
+         - "niwâpamâw"
+         - "niwâpamânân"
+         - "ê-wâpamak"
+
+     - input: "ninipân"
+       expected_forms:
+         - "ê-nipâyân"
+         - "ninipân"
+         - "kinipânaw"
+
+     - input: "ninipân"
+       unexpected_forms:
+         - "do"
+         - "not"
+         - "want"
+
+     # NA-1
+     - input: "acâhkos"
+       expected_forms:
+         - "acâhkos"
+         - "acâhkosak"
+         - "acâhkosa"
+         - "nitacâhkos"
+
+     # NI-1
+     - input: "acimomêyisimin"
+       expected_forms:
+         - "acimomêyisimin"
+         - "acimomêyisimina"
+         - "acimomêyisiminihk"
+         - "nitacimomêyisimin"
+         - "otacimomêyisimin"
+
+# Ensure that analysis of user input results in the following
+# definitions
+Lexicon:
+ - lexicon: ["crk", "eng"]
+   # TODO: sublexicon: "keyword"
+   tests:
+     - input: "nipâw"
+       expected_definitions: 
+        - "s/he sleeps"
+        - "s/he is asleep"
+        - "s/he eats"
+
+     - input: "nipâw"
+       unexpected_definitions: 
+        - "s/he eats"
+        - "s/he is eating"
+

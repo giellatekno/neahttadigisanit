@@ -1,0 +1,26 @@
+name: "Noun+NomAg paradigms"
+morphology:
+  pos: N
+lexicon:
+  XPATH:
+    nom_type: ".//l/@type"
+  nom_type:
+    - "NomAg"
+--
+
+{{ lemma }}+N+{{ nom_type }}+Sg+Nom
+{{ lemma }}+N+{{ nom_type }}+Sg+Gen
+{{ lemma }}+N+{{ nom_type }}+Sg+Acc
+{{ lemma }}+N+{{ nom_type }}+Sg+Ill
+{{ lemma }}+N+{{ nom_type }}+Sg+Loc
+{{ lemma }}+N+{{ nom_type }}+Sg+Com
+{{ lemma }}+N+{{ nom_type }}+Sg+Abe
+{{ lemma }}+N+{{ nom_type }}+Pl+Nom
+{{ lemma }}+N+{{ nom_type }}+Pl+Gen
+{{ lemma }}+N+{{ nom_type }}+Pl+Acc
+{{ lemma }}+N+{{ nom_type }}+Pl+Ill
+{{ lemma }}+N+{{ nom_type }}+Pl+Loc
+{{ lemma }}+N+{{ nom_type }}+Pl+Com
+{{ lemma }}+N+{{ nom_type }}+Pl+Abe
+{{ lemma }}+N+{{ nom_type }}+Ess
+{{ lemma }}+N+{{ nom_type }}+Par

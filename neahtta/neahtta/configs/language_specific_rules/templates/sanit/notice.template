@@ -1,0 +1,8 @@
+{# This template is for displaying messages and other information below the
+   left navigation menu.
+ #}
+
+<p><a href="http://dicts.uit.no/smedicts.nob.html" class="other_link" lang="{{ current_locale }}">{% trans %}Other North Saami dictionaries{% endtrans %}</a></p>
+<p><a href="{{ url_for('.more_dictionaries') }}" class="other_link" lang="{{ current_locale }}">{% trans %}Other dictionaries{% endtrans %}</a></p>
+
+{# vim: set ts=4 sw=4 tw=0 syntax=htmljinja : #}

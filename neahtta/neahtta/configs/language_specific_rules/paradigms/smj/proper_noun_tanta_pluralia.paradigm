@@ -1,0 +1,31 @@
+name: "Proper nouns tanta pluralia"
+morphology:
+  pos: "N"
+  type: "Prop"
+  number: "Pl"
+  semantics:
+    - "Sem/Plc"
+    - "Sem/Obj"
+lexicon:
+  XPATH:
+    type: ".//l/@type"
+    nr: ".//l/@nr"
+    sem_type: ".//l/@sem_type"
+  type: "Prop"
+  nr:
+    - "Pl"
+    - "pl"
+--
+{% if sem_type %}
+{{ lemma }}+N+Prop+{{ sem_type }}+Pl+Gen
+{{ lemma }}+N+Prop+{{ sem_type }}+Pl+Loc
+{{ lemma }}+N+Prop+{{ sem_type }}+Pl+Ill
+{% elif semantics %}
+{{ lemma }}+N+Prop+{{ semantics }}+Pl+Gen
+{{ lemma }}+N+Prop+{{ semantics }}+Pl+Loc
+{{ lemma }}+N+Prop+{{ semantics }}+Pl+Ill
+{% else %}
+{{ lemma }}+N+Prop+Pl+Gen
+{{ lemma }}+N+Prop+Pl+Loc
+{{ lemma }}+N+Prop+Pl+Ill
+{% endif %}

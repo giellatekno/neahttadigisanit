@@ -1,0 +1,111 @@
+programmer
+
+* Identify itwêwina-specific features and implement them for guusaaw,
+  kidwinan and gunaha
+   - TODO: crk.py
+   - korp integration
+     - TODO: which langs?
+   - audio_links.template
+     - TODO: integrate with parent templates
+   - analyses contain root
+     - TODO: roots need to be in the lexicon for this to work, could
+       enable feature if this is the plan otherwise
+
+* linguists: add sources to various project sources templates
+* linguists: add paradigms and layouts
+
+* Lexicon result sorting for itwêwina
+  - some of this is carried out in definition template, which sorts
+    meanings by @rank
+* kidwinan/otw - glossing FSTs going away?
+
+
+
+__Done__
+
+* Identify itwêwina-specific features and implement them for guusaaw,
+  kidwinan and gunaha
+   - about.template
+     - DONE: copied for each project so that relevant examples can be
+       added
+   - relabel settings
+     - DONE: added basic files
+   - keyboard input
+     - DONE: add as a comment, antti can add letters
+   - entry_text.template: include PoS and inflectional type from lc
+     - DONE: kidwinan - conditional, so only displayed if not the same
+     - DONE: gunaha (in the lexicon?)
+   - paradigm CSS fixes
+     - DONE: kidwinan, gunaha, guusaaw
+   - paradigm layouts
+     - DONE: this is available for all langs now, just need to add
+       templates (for linguists to do)
+   - sources.template
+     - DONE: copied
+   - hide text "possible form of ... "
+     - DONE: added setting in template_settings.html
+
+* sound files in itwêwina are not playing, problem appears to be URLs
+  - JS dependencies were missing on sapir, fixed now
+  - DONE: ffmpeg on sapir, audio files not being transcoded and thus not
+    found
+
+        https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
+
+                sudo apt-get install libmp3lame-dev
+
+                --enable-libmp3lame
+
+                sudo apt-get install autoconf automake build-essential libass-dev libfreetype6-dev \
+                    libtheora-dev libtool libvorbis-dev pkg-config texinfo zlib1g-dev
+
+                sudo apt-get install yasm
+
+        config options i used:
+
+            PATH="$HOME/bin:$PATH" PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./configure \
+              --prefix="$HOME/ffmpeg_build" \
+              --pkg-config-flags="--static" \
+              --extra-cflags="-I$HOME/ffmpeg_build/include" \
+              --extra-ldflags="-L$HOME/ffmpeg_build/lib" \
+              --bindir="$HOME/bin" \
+              --enable-gpl \
+              --enable-libass \
+              --enable-libfreetype \
+              --enable-libmp3lame \
+              --enable-libtheora \
+              --enable-libvorbis \
+              --enable-nonfree
+
+    - soundmanager problems: problem was that links contain <span>, and
+      click target is sometimes <span />, sometimes <a />, fixed in
+      sound_links.js
+
+* FSTs: capitalization: Xaní and xaní should both be recognized as lemma
+  xaní; orthographical capitalization on first word of sentence, etc
+
+* the reader icon is coming from localizations, which is resulting in
+  the wrong symbol rendering. move it to YAML ReaderConfig settings
+
+* add UofA logos to kidwinan and gunaha
+
+* itwêwina, generalizing lemma recognition etc seems to be including the
+  full lemma in the analysis view, so: 
+
+    ← mowêw + √mow- + Verb + ...
+
+  instead of
+
+    ← √mow- + Verb + ...
+
+* crk occasionally redirects to wrong urls /crk/eng/ after form submission, some weird cache interaction
+  1. mobile layout doesn't seem to have url_for yet
+    - problem was missing url_for on mobile redirect
+  2. when landing at /itwewina/ from elsewhere, sometimes /itwewina/ isn't
+     included on first search, check referrer handling
+* gunaha [] deletion (check infra)
+* fix DSt cache location in JS, seems to be using itwewina for gunaha, etc.
+  - not the problem, problem was updating config files
+* srs localization for Á character
+* gunaha spell relax - implemented mobile spellrelax, uncertain how to get
+  normal one included? 

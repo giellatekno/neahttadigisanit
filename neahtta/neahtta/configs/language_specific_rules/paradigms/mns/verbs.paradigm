@@ -1,0 +1,23 @@
+name: "verbs"
+morphology:
+  pos: V
+--
+{{ lemma }}+V+Inf
+{{ lemma }}+V+Ind+Prs+ScSg1
+{{ lemma }}+V+Ind+Prs+ScSg2
+{{ lemma }}+V+Ind+Prs+ScSg3
+{{ lemma }}+V+Ind+Prs+ScDu1
+{{ lemma }}+V+Ind+Prs+ScDu2
+{{ lemma }}+V+Ind+Prs+ScDu3
+{{ lemma }}+V+Ind+Prs+ScPl1
+{{ lemma }}+V+Ind+Prs+ScPl2
+{{ lemma }}+V+Ind+Prs+ScPl3
+{{ lemma }}+V+Ind+Prt+ScSg1
+{{ lemma }}+V+Ind+Prt+ScSg2
+{{ lemma }}+V+Ind+Prt+ScSg3
+{{ lemma }}+V+Ind+Prt+ScDu1
+{{ lemma }}+V+Ind+Prt+ScDu2
+{{ lemma }}+V+Ind+Prt+ScDu3
+{{ lemma }}+V+Ind+Prt+ScPl1
+{{ lemma }}+V+Ind+Prt+ScPl2
+{{ lemma }}+V+Ind+Prt+ScPl3

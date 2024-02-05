@@ -1,0 +1,240 @@
+Many changes, see full commit message.
+
+Quick summary:
+
+Update and compile dictionary, restart server:
+
+  # (on the server, in folder: neahttadigisanit/neahtta)
+  $ fab update sanit
+  $ fab compile sanit
+  $ fab restart sanit
+
+Add stems to smenob:
+
+  $ fab add-stem
+  $ fab restart sanit
+
+Remove stems from smenob:
+
+  $ fab compile sanit --force      (forces re-creation of dictionary, even if
+                                    there has been no changes)
+  $ fab restart sanit
+
+How to get help:
+
+  $ fab --help
+  Shows top-level help, listing available commands, and showing a few examples.
+
+  $ fab update --help
+  Shows help on the update command.
+
+
+----
+
+
+# Summary of changes:
+  1: Restructure folders 
+  2: New command structure
+  3: Split update and compilation
+  4: Switch to pyproject.toml
+  5: Updated dependencies
+  6: Removed old code, and updating code
+  7: Removed the Fabric library
+  8: Introduce ruff as code formatter
+  9: How fsts are found, and config file change
+
+
+# 1: Restructure folders
+
+The directory structure has been changed. Here is how it is now:
+
+    neahttadigisanit/
+      src/               - old src/ folder (except neahtta), and unused things removed
+      neahtta/           - root folder for the neahttadigisanit app
+        pyproject.toml   - project meta, replaces requirements.txt
+        neahtta/         - source code of neahttadigisanit app
+
+'fab' commands are now executed standing in the "neahttadigisanit/neahtta"
+folder.
+
+
+
+# 2: New fab command structure
+
+Previously, the structure was `fab [<server>] <project> <command>` (see (1)),
+and this is now reversed to `fab <command> [<project>]`. So for example, the old
+`fab sanit update` is now `fab update sanit`. (but see below, about splits)
+
+This was done for two reasons:
+  1: Simpler implementation. Less code, fits easier into argparse.
+  2: Not all commands need a project, for example the command `add-stem`,
+     which is only relevant for the sme-nob dictionary.
+
+(1): The old script (with Fabric) could optionally accept a server before the
+project (either "gtdict" or "local"), and if "gtdict", it would run the
+<command> on the server. If omitted, or "local", it would run locally.
+Additionally, Fabric would accept more than one "task" (command) at a time,
+so one could run `fab gtdict sanit compile-dictionary restart-service`,
+from the local machine, and it would update, compile and then restart the
+sanit service. It is my understanding that we did not really use this
+functionality.
+
+
+# 3: Split update and compilation
+
+There are now two distinct commands for updating and compiling dictionaries:
+
+   $ fab update <project>
+
+   Under the hood, this runs `git pull` on all dictionaries (meaning the
+   giellalt/dict-xxx-yyy repositories) that the given <project> has on it's list.
+   (actually: `gut` is used to easily do `git pull` in parallel)
+
+   $ fab compile <project>
+
+   Creates the merged .xml dictionary file (stored in configs/XXX-YYY.all.xml)
+   for each dictionary that the <project> needs. By default this command will
+   not compile dictionaries when the source .xml files in the repositories
+   are older than the outputted merge file. This is just a preformance
+   optimization. There will be output messages about "skipped" dictionaries
+   when this happens.
+
+   Use
+
+     $ fab compile <project> --force
+
+   to force re-creation of dictionaries, even if there has been no updates.
+   This is useful for for example removing stem info from sme-nob.
+
+Of course, now you will then have to remember to do "update" before "compile".
+To prevent this becoming an issue, the commands will print hints based on
+what happened, and what the status is. For example, if `compile` is run, and
+it was detected that no dictionaries needed to be compiled, because they were
+all newer than their sources, it will print a hint to the user that maybe
+they wanted to run `update` before `compile`. Similarly, `update` will hint
+about running `compile` and `restart` if it detects that there were new updates.
+
+A side note: the 'fab' script does _NOT_ do anything related to actually
+updating or compliling the fsts themselves. This has been disabled for quite
+some time already (the code of the old fabfile essentially disabled it). It's
+possible to re-enable / re-implement functionality to do this, since such a
+command (maybe `fab compile-fsts sanit`) would essentially just call into the
+makefiles that still has code for doing such compliation.
+
+
+# 4: Switch to pyproject.toml
+
+Dependencies are now located in the pyproject.toml file, instead of
+requirements.txt files. The pyproject.toml file also contains some more
+meta data.
+
+
+# 5: Update dependencies
+
+Dependencies have been updated to their newest versions. They have been added
+from scratch to the pyproject.toml file, meaning that initially I started with
+no dependencies listed, and tried to run the code. As it crashed on missing
+dependencies, they were added, and the code was updated to be compatible with
+the newer version of the dependency (where required). Fortunately only minor
+changes were needed. This means that hopefully, the list in pyproject.toml is
+now a complete list of our direct dependencies.
+
+Transitive dependencies (dependencies of our dependencies) are not listed
+in pyproject.toml directly, but can always be found with `pip freeze`.
+
+The python version is still 3.9. (Primarily because that is what the server
+runs).
+
+
+# 6: Removed old code, and updating code
+
+- remove references to unicode/basestring, replaced with str
+- Remove OrderedDict (normal dicts are ordered by default since 3.3 or so)
+- x.items() over iteritems(x)
+- classes don't need to explicitly derive from object
+- Remove unnecessary temporary lists in comprehensions
+- prefer looping or simple comprehensions over filter, map
+  (easier to read when the filter/map stuff gets too complicated)
+
+
+# 7: Removed the Fabric library
+
+The main purpose of the Fabric library is to be able to run commands locally,
+that should apply to a server. It was my understanding that this was not used;
+we just ssh into the server, and run the commands there. As such, Fabric is
+not needed anymore.
+
+Even though Fabric has been removed, "fabfile.py" has been only been rewritten,
+not removed, and the command name will still be "fab".
+
+
+# 8: Introduce ruff as code formatter
+
+'ruff' has been added under the "dev" optional dependency in the pyproject.toml
+file. To install it, run `pip install -e ".[dev]"`. Usage is simple: just run
+`ruff format .` while standing in neahttadigisanit/neahtta/src, and all files
+will be formatted. This has been done in this update, which is why there are
+changes to pretty much all files in the project.
+
+
+# 9: How fsts are found, and config file change
+
+Before, paths to language model files ("fsts") were given absolutely in the
+configuration file. In preparation for moving to Azure, this was problematic:
+
+In Azure, NDS will run in a container. When running the image locally, each
+individual "fst" file can be bound from the host system, into the container.
+This makes it possible to run the image locally, even if we had fst files
+spread accross multiple folders. (Which in practice we do not, which is
+important, see below).
+
+On Azure, however, we can only mount in entire folders. Therefore, to run on
+Azure, we need all fsts to be located in the same folder (or a least in some
+set of folders).
+
+A technique was being used in the config file, that let you avoid having to
+type an entire path as a single string, but instead specify a path as an array,
+and the first part of that array could be a "variable" defined earlier in the
+config file. Specifically, what was being done, in _every_ config file, was
+this:
+
+    Tools:
+      opt: &OPT '/opt/smi'
+
+...and then, each 'file' and 'inverse_file' made use of the array, and
+yaml-reference, to write them like this:
+
+    Morphology:
+      sme:
+        file: [*OPT, '/sme/bin/analyser-dict-gt-desc.hfstol']
+
+...so the `sme.file` would be concatenated to
+
+    "/opt/smi/sme/bin/analyser-dict-gt-desc.hfstol"
+
+Having inspected _all_ config files, _none_ of them did anything differently.
+They had all files located in the same folder.
+
+The change:
+
+paths must now be being strings. The 'tool' field expects an absolute path to
+the binary file (which is already the case).
+
+For the 'file' and 'inverse_file' fields, now the config expects a
+_relative_ path, and will search through some pre-defined folders (/opt/smi,
+then /usr/share/giella, then /usr/local/share/giella), to find the specified
+file. The search paths are overridable using the `LANGMODELS` environment
+variable.
+
+When running on Azure, I will mount in the "langmodels" File Share (an SMB
+file share, which contains the compiled language model files), under the
+"/usr/share/giella" path. Conceptually, the mount will be:
+
+   outside: "langmodels" azure file share
+   mapped to: /usr/share/giella
+
+That is, the directory structure in "langmodels" (which will be a folder for
+each languge, and the compiled language model files directly under that folder),
+will be visible to the running container, under /usr/share/giella.
+
+All configuration files templates have been updated according to this change.

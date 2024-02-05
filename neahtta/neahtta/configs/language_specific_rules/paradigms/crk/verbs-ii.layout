@@ -1,0 +1,10 @@
+name: "inanimate intransitive paradigm"
+paradigm: 'verbs-ii.paradigm'
+layout:
+  type: "basic"
+--
+|                | _"Ind"          | _"Cnj"          |
+| "3s"           | +Ind+Prs+3Sg$   | +Cnj+Prs+3Sg$   |
+| "3p"           | +Ind+Prs+3Pl$   | +Cnj+Prs+3Pl$   |
+| "past 3s"      | +Ind+Prt+3Sg$   | +Cnj+Prt+3Sg$   |
+| "past 3p"      | +Ind+Prt+3Pl$   | +Cnj+Prt+3Pl$   |

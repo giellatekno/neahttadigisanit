@@ -1,0 +1,273 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "",
+  "title": "Config",
+  "description": "A configuration file for an NDS instance",
+  "type": "object",
+  "properties": {
+      "ApplicationSettings": {
+          "type": "object",
+          "properties": {
+              "app_name": {
+                  "description": "Application name, usually Neahttadigisánit",
+                  "type": "string"
+              },
+              "short_name": {
+                  "type": "string"
+              },
+              "default_locale": {
+                  "type": "string"
+              },
+              "default_pair": {
+                  "type": "array",
+                  "items": {
+                      "type": "string"
+                  },
+                  "min_items": 2,
+                  "max_items": 2
+              },
+              "mobile_default_pair": {
+                  "type": ["array", "boolean", "null"],
+                  "items": {
+                      "type": "string"
+                  },
+                  "min_items": 2,
+                  "max_items": 2
+              },
+              "strip_spaces": {
+                  "description": "Strip spaces from the beginning and end of inputs, before doing search",
+                  "type": "boolean"
+              },
+              "locales_available": {
+                  "type": "array",
+                  "items": {
+                      "type": "string"
+                  }
+              },
+              "hidden_locales": {
+                  "description": "Hidden locales, not shown in the UI (?)",
+                  "type": "array",
+                  "items": {
+                      "type": "string"
+                  }
+              },
+              "app_meta_title": {
+                  "type": "string"
+              },
+              "meta_description": {
+                  "type": "string"
+              },
+              "meta_keywords": {
+                  "type": "string"
+              },
+              "admins_to_email": {
+                  "type": "array",
+                  "items": {
+                      "type": "string"
+                  }
+              }
+          },
+          "required": [
+              "app_name",
+              "short_name",
+              "default_locale",
+              "default_pair",
+              "mobile_default_pair",
+              "app_meta_title",
+              "meta_description",
+              "meta_keywords"
+          ]
+      },
+      "Languages": {
+          "type": "array",
+          "items": {
+              "type": "object",
+              "properties": {
+                  "iso": {
+                      "description": "3-letter ISO-639-3 language code",
+                      "type": "string"
+                  },
+                  "minority_lang": {
+                      "description": "anders: what is this?",
+                      "type": "boolean"
+                  },
+                  "variant": {
+                      "description": "anders: what is this?",
+                      "type": "boolean"
+                  }
+              },
+              "required": [
+                  "iso"
+              ]
+          }
+      },
+      "Dictionaries": {
+          "type": "array",
+          "items": {
+              "type": "object",
+              "properties": {
+                  "source": {
+                      "description": "Source language of the dictionary. That is, in 'xxx->yyy' notation, the 'xxx' language.",
+                      "type": "string"
+                  },
+                  "target": {
+                      "description": "Target language of the dictionary. That is, in 'xxx -> yyy' notation, the 'yyy' language.",
+                      "type": "string"
+                  },
+                  "path": {
+                      "description": "Path to the fully merged dictionary, in xml format.",
+                      "type": "string",
+                      "examples": [
+                          "dicts/sme-nob.all.xml"
+                      ]
+                  },
+                  "autocomplete": {
+                      "type": "boolean"
+                  },
+                  "show_korp_search": {
+                      "type": "boolean"
+                  },
+                  "is_korp_default_lang": {
+                      "description": "anders: what is this?",
+                      "type": "boolean"
+                  },
+                  "corpora": {
+                      "description": "Comma-separated string of korp names.",
+                      "type": "string",
+                      "examples": [
+                          "SME_ADMIN_20181106,SME_ASSU_20181106"
+                      ]
+                  },
+                  "start_query": {
+                      "type": "string",
+                      "examples": [
+                          "http://gtweb.uit.no/ws/gt_korp?command=query&corpus="
+                      ]
+                  },
+                  "input_variants": {
+                      "type": "array",
+                      "items": {
+                          "type": "object",
+                          "properties": {
+                              "type": {
+                                  "type": "string",
+                                  "examples": [
+                                      "standard"
+                                  ]
+                              },
+                              "description": {
+                                  "description": "Description. Can use !gettext",
+                                  "type": "string",
+                                  "examples": [
+                                      "!gettext \"Standard\""
+                                  ]
+                              },
+                              "example": {
+                                  "type": "string",
+                                  "examples": [
+                                      "(<em>áčđŋšŧž</em>)"
+                                  ]
+                              },
+                              "short_name": {
+                                  "type": "string",
+                                  "examples": [
+                                      "sme"
+                                  ]
+                              },
+                              "onscreen_keyboard": {
+                                  "type": "array",
+                                  "items": {
+                                      "type": "string"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              },
+              "required": [
+                  "source", "target", "path"
+              ]
+          }
+      },
+      "Morphology": {
+          "type": "object",
+          "patternProperties": {
+              "[a-zA-Z]{3,4}": {
+                  "type": "object",
+                  "properties": {
+                      "tool": {
+                          "description": "Path to the executable program of the tool",
+                          "type": "string"
+                      },
+                      "file": {
+                          "description": "Path to the analyser language model file.",
+                          "type": [
+                              "array",
+                              "string"
+                          ],
+                          "items": {
+                              "type": "string"
+                          },
+                          "examples": [
+                              "/sme/src/analyser-dict-gt-desc-mobile.hfstol"
+                          ]
+                      },
+                      "inverse_file": {
+                          "description": "Path to the generator language model file.",
+                          "type": [
+                              "array",
+                              "string"
+                          ],
+                          "items": {
+                              "type": "string"
+                          },
+                          "examples": [
+                              "/sme/src/generator-dict-gt-norm.hfstol"
+                          ]
+                      },
+                      "format": {
+                          "description": "Which technology the `file` uses",
+                          "type": "string",
+                          "enum": ["hfst", "pyhfst", "xfst"]
+                      },
+                      "options": {
+                          "type": "object",
+                          "properties": {
+                              "compoundBoundary": {
+                                  "type": ["array", "string"],
+                                  "items": {
+                                      "type": "string"
+                                  }
+                              },
+                              "derivationMarker": {
+                                  "type": "string"
+                              },
+                              "tagsep": {
+                                  "type": "string"
+                              },
+                              "inverse_tagsep": {
+                                  "type": "string"
+                              }
+                          },
+                          "$comment": "ARE THESE ALL REQUIRED?",
+                          "required": [
+                              "compoundBoundary",
+                              "derivationMarker",
+                              "tagsep",
+                              "inverse_tagsep"
+                          ]
+                      }
+                  },
+                  "required": [
+                      "file", "format"
+                  ]
+              }
+          }
+      }
+  },
+  "required": [
+      "ApplicationSettings",
+      "Dictionaries"
+  ]
+}
+

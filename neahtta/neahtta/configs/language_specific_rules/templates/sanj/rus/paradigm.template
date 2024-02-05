@@ -1,0 +1,425 @@
+{# This is the paradigm template for Kildin Sámi.
+
+ * Nouns: Display everything in the paradigm in a definition list
+ * Verbs: Display a table with one column for present tense, and one for
+   preterite tense; then display a separate definition list for
+   nonfinite forms. For the negative verb and supinum negative verb, we
+   also add a title on the table.
+
+   - These are controlled by tagsets. Including more forms for verbs can
+   	 be handled by adding more tags to the file `tagsets/sjd.tagset`
+
+ #}
+
+{%- set first_l = lexicon_entry|xpath('lg/l')|first %}
+{% set lemma = first_l|text %}
+{% set pos = first_l|xpath('@pos')|first %}
+{% set has_forms = paradigm and paradigm|length > 0 -%}
+{% set paradigm_exists = paradigm|length > 0 %}
+
+{%- if pos|upper == 'V' %}
+    {% set verbs = true %}
+
+    {% set present_verbs   = paradigm|by_tagset_value("tense", "Prs")
+                                     |without_tagset("negation")
+                                     |group_by_tag %}
+
+    {% set preterite_verbs = paradigm|by_tagset_value("tense", "Prt")
+                                     |without_tagset("negation")
+                                     |group_by_tag %}
+
+    {# This variable is used to insert an extra empty entry in the preterite 
+       list when there are two prs pl2 forms (which are generated from different strings) #}
+    {% set prs_pl2 = paradigm|by_tagset_value("tense", "Prs")
+                             |by_tagset_value("number", "Pl2")
+                             |without_tagset("negation")|count %}
+
+    {% if prs_pl2 == 2 %}
+        {% set _ = preterite_verbs.insert(6, "") %}
+    {% endif %}
+
+    {% set nonfinite_forms = paradigm|by_tagset("nonfinite_paradigm") %}
+
+    {# As long as the paradigm files are in order, this will zip
+    accurately. If not we need to manually select each form and display
+    it. #}
+
+    {# Use izip_longest to fill in the extra blanks spaces when one list
+       ends first #}
+
+    {% set zipped_verbs = izip_longest(present_verbs, preterite_verbs, fillvalue='-')|list %}
+
+    {% set paradigm_exists = zipped_verbs|length > 0 or nonfinite_forms|length > 0 %}
+
+    {# strip some parts of the tags that we don't need #}
+
+    {% set prs_text      = "Prs"|tagfilter(_from, _to) %}
+    {% set prt_text      = "Prt"|tagfilter(_from, _to) %}
+    {% set conneg_text   = "ConNeg"|tagfilter(_from, _to) %}
+    {% set verb_text     = "V"|tagfilter(_from, _to) %}
+    {% set verb_text_ind = "Ind"|tagfilter(_from, _to) %}
+    {% set prfprc_text   = "PrfPrc"|tagfilter(_from, _to) %}
+    {% set neg_text      = "Neg"|tagfilter(_from, _to) %}
+
+    {% set nonfinite_header = False %}
+    {% set is_perfect = nonfinite_forms|by_tagset("perfect_prc")|length > 0 %}
+    {# we'll know this isn't just a normal verb with a couple negative
+        forms because there are 9 #}
+    {% set is_negative = nonfinite_forms|by_tagset("negative")|length == 9 %}
+
+    {% if is_negative %}
+        {% set nonfinite_header = neg_text %}
+    {% endif %}
+
+    {% if is_perfect %}
+        {% set nonfinite_header = prfprc_text %}
+    {% endif %}
+
+    {% macro clean_tag(tag_input) -%}
+        {% set filtered_tag = tag_input|tagfilter(_from, _to) %}
+        {% if nonfinite_header and (is_supinum or is_negative) %}
+            {% set filtered_tag = filtered_tag|replace(sup_text, "")
+                                              |replace(neg_text, "") %}
+        {% endif %}
+
+        {% if conneg_text in filtered_tag %}
+            {{ filtered_tag|replace(verb_text, "")
+                           |replace(verb_text_ind, "") }}
+        {% else %}
+            {{ filtered_tag|replace(prs_text, "")
+                           |replace(prt_text, "")
+                           |replace(verb_text, "")
+                           |replace(verb_text_ind, "") }}
+        {% endif %}
+    {%- endmacro %}
+
+{%- endif %}
+
+{%- if pos|upper == 'N' or pos|upper == 'NUM' %}
+
+    {% set sg_forms = paradigm|by_tagset_value("number", "Sg")|group_by_tag %}
+    {% set pl_forms = paradigm|by_tagset_value("number", "Pl")|group_by_tag %}
+
+    {# Use izip_longest to fill in the extra blanks spaces when one list
+       ends first #}
+
+    {% set zipped_numbers = izip_longest(sg_forms, pl_forms, fillvalue='-')|list %}
+    {% set paradigm_exists = zipped_numbers|length > 0 %}
+
+    {% set numberless_forms = paradigm|by_tagset("nouns_null_number") %}
+
+    {% set sg_text = "Sg"|tagfilter(_from, _to) %}
+    {% set pl_text = "Pl"|tagfilter(_from, _to) %}
+
+    {% if pos|upper == 'N' %}
+        {% set pos_text = pos|upper|tagfilter(_from, _to) %}
+    {% elif pos|upper == 'NUM' %}
+        {% set pos_text = 'Num'|tagfilter(_from, _to) %}
+    {% endif %}
+
+    {% macro clean_tag(tag_input) %}
+        {{ tag_input|tagfilter(_from, _to)
+                    |replace(pos_text, "")
+                    |replace(sg_text, "")
+                    |replace(pl_text, "") }}
+    {% endmacro %}
+
+{% endif -%}
+
+{%- if pos|upper == 'A'  %}
+
+    {% set adj_text = "A"|tagfilter(_from, _to) %}
+
+    {% macro clean_tag(tag_input) %}
+        {{ tag_input|tagfilter(_from, _to)
+                    |replace(adj_text, "") }}
+    {% endmacro %}
+
+{% endif -%}
+
+{%- if pos|upper == 'PRON'  %}
+
+    {% set pron_text  = "Pron"|tagfilter(_from, _to) %}
+    {% set indef_text = "Indef"|tagfilter(_from, _to) %}
+    {% set sg_text    = "Sg"|tagfilter(_from, _to) %}
+    {% set pl_text    = "Pl"|tagfilter(_from, _to) %}
+
+
+    {% set pron_type = lexicon_entry|xpath('./lg/l/@type')|first %}
+    {% set pron_type_text = pron_type|tagfilter(_from, _to) %}
+
+    {# If there are nominal number markings, then we'll split these
+       into two columns. Must determine this by checking the tagsets.
+
+       Works for words like eará, soames, etc.
+
+       TODO: mii +Rel
+             gii +Rel
+             makkár +Rel / +Interr
+             dat nr="Sg", type="Dem"
+             dat nr="Pl", type="Dem"
+
+             recipr is broken
+                /detail/smn/nob/goabbat%20guoimmisteame.html
+    #}
+
+    {% set two_columns = False %}
+    {% set sg_forms = paradigm|by_tagset_value("number", "Sg")|group_by_tag %}
+    {% set pl_forms = paradigm|by_tagset_value("number", "Pl")|group_by_tag %}
+
+    {% if sg_forms|length > 0 and pl_forms|length > 0 %}
+        {% set two_columns = True %}
+        {% set zipped_numbers = izip_longest(sg_forms, pl_forms, fillvalue='-')|list %}
+        {% set numberless_forms = paradigm|by_tagset("nouns_null_number") %}
+    {% endif %}
+
+    {% macro clean_tag(tag_input) %}
+        {% if two_columns %}
+            {{ tag_input|tagfilter(_from, _to)
+                        |replace(pron_text, "")
+                        |replace(sg_text, "")
+                        |replace(pl_text, "")
+                        |replace(pron_type_text, "") }}
+        {% else %}
+            {{ tag_input|tagfilter(_from, _to)
+                        |replace(pron_text, "")
+                        |replace(pron_type_text, "") }}
+        {% endif %}
+    {% endmacro %}
+
+{% endif -%}
+
+{%- macro full_paradigm_link() %}
+    <a class="full-paradigm-link"
+       style="opacity: .8;"
+       href="http://gtweb.uit.no/cgi-bin/smi/smi.cgi?text={{ lemma }}&pos={{ pos }}&mode=full&action=paradigm&lang=sjd&plang=sjd">
+        {%- trans -%}Full paradigm{%- endtrans -%} &nbsp;&rarr;
+    </a>
+{% endmacro -%}
+
+{%- if has_forms %}
+
+{%- if pos|upper == 'V' %}
+
+    {% if paradigm_exists %}
+        {% if zipped_verbs %}
+
+        <table class="tableparadigm miniparadigm">
+          {% set contexts = ["мунн", "то̄нн", "", "со̄нн", "мыйй", "тыйй", "сыйй", "безлич"] %}
+          {% if prs_pl2 == 2 %} {% set _ = contexts.insert(6, "") %}{% endif %}
+          {% set i=0 %}
+
+            {# This is the two-column tense paradigm #}
+
+                <tr>
+                    <th></th>
+                    <th lang="{{ _to }}">{{ prs_text }} <em>(та̄рьм)</em></th>
+                    <th lang="{{ _to }}">{{ prt_text }} <em>(еххта)</em></th>
+                </tr>
+
+                {%- for present_forms, preterite_forms in zipped_verbs -%}
+                    <tr>
+
+                    <th class="tag" lang="{{ _to }}">{{ contexts[i] }}</th>
+                    {% set i = i+1 %}
+
+                    {% if present_forms and present_forms != '-' %}
+                        <td lang="{{ _from }}">{{ present_forms|uniq|join('<br />', attribute='form')|safe }}</td>
+                    {% else %}
+                        <td lang="{{ _from }}">&mdash;</td>
+                    {% endif %}
+
+                    {% if preterite_forms and preterite_forms != '-' %}
+                        <td lang="{{ _from }}">{{ preterite_forms|uniq|join('<br />', attribute='form')|safe }}</td>
+                    {% else %}
+                        <td lang="{{ _from }}">&mdash;</td>
+                    {% endif %}
+
+                    </tr>
+
+                {%- endfor -%}
+        </table>
+        {% endif %}
+
+        <dl class="dl-horizontal miniparadigm">
+            {% if nonfinite_header %}
+                <dt>{{ nonfinite_header }}</dt><dd>&nbsp;</dd>
+            {% endif %}
+
+            {% set noninf_forms = nonfinite_forms|group_by_tag %}
+            {% set textshown = 0 %} {# to only show "мунн ля̄" once #}
+            {% for var in noninf_forms %}
+                {% if var[0].tag and textshown == 0 %}
+                    {% set textshown = 1 %}
+                    <dt>{{ "мунн ля̄" }}</dt>
+                {% endif %}
+                <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form')|safe }}</dd>
+            {% endfor %}
+        </dl>
+    {% endif %}
+
+{% elif pos|upper == 'N' or pos|upper == 'NUM' %}
+
+    {% if paradigm_exists %}
+
+        <table class="tableparadigm miniparadigm">
+          {% set contexts = ["Кто? Что?", "Чей?", "Кого? Чего?", "Кому? Чему?", "У (от) кого? У (от) чего?", "С кем? С чем?", "Без кого? Без чего?", "В кого? В чего?", "Много, мало"] %}
+          {% set i=0 %}
+
+            <tr>
+                <th></th>
+                <th lang="{{ _to }}">{{ sg_text }}</th>
+                <th lang="{{ _to }}">{{ pl_text }}</th>
+            </tr>
+
+        {%- for sgs, pls in zipped_numbers -%}
+            <tr>
+
+            <th class="tag" lang="{{ _to }}">{{ contexts[i] }}</th>
+            {% set i = i+1 %}
+
+            {% if sgs and sgs != '-' %}
+                <td lang="{{ _from }}">{{ sgs|uniq|join('<br />', attribute='form')|safe }}</td>
+            {% else %}
+                <td lang="{{ _from }}" class="center">&mdash;</td>
+            {% endif %}
+
+            {% if pls and pls != '-' %}
+                <td lang="{{ _from }}">{{ pls|uniq|join('<br />', attribute='form')|safe }}</td>
+            {% else %}
+                <td lang="{{ _from }}" class="center">&mdash;</td>
+            {% endif %}
+
+            </tr>
+
+        {%- endfor -%}
+
+        {% set numb_forms = numberless_forms|group_by_tag %}
+        {% set i=7 %}
+        {% for var in numb_forms %}
+            <tr>
+                {% if var[0].tag %}
+                    <th class="tag" lang="{{ _to }}">{{ contexts[i] }}</th>
+                    {% set i = i+1 %}
+                {% endif %}
+                <td colspan="2" lang="{{ _from }}" class="center">{{ var|join('<br />', attribute='form')|safe }}</td>
+            </tr>
+        {% endfor %}
+
+        </table>
+
+    {% endif %}
+
+{% elif pos|upper == 'A' %}
+
+    <dl class="dl-horizontal miniparadigm">
+        {% set adj_forms = paradigm|group_by_tag %}
+
+        {% for var in adj_forms %}
+            {% if var[0].tag %}
+                <dt>{{ clean_tag(var[0].tag) }}</dt>
+            {% endif %}
+            <dd lang="{{ _from }}">{{ var|uniq|join('<br />', attribute='form')|safe }}</dd>
+        {% endfor %}
+    </dl>
+
+{% elif pos|upper == 'PRON' %}
+
+    {% if pron_type|upper == 'INDEF' and two_columns %}
+        {% if paradigm_exists %}
+
+            <table class="tableparadigm miniparadigm">
+                <tr>
+                    <th></th>
+                    <th lang="{{ _to }}">{{ sg_text }}</th>
+                    <th lang="{{ _to }}">{{ pl_text }}</th>
+                </tr>
+
+            {%- for sgs, pls in zipped_numbers -%}
+                <tr>
+
+                {% if sgs[0].tag %}
+                    {% set tag_display = clean_tag(sgs[0].tag) %}
+                {% elif pls[0].tag %}
+                    {% set tag_display = clean_tag(pls[0].tag) %}
+                {% endif %}
+
+                <th class="tag" lang="{{ _to }}">{{ tag_display }}</th>
+
+                {% if sgs and sgs != '-' %}
+                    <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form')|safe }}</td>
+                {% else %}
+                    <td lang="{{ _from }}" class="center">&mdash;</td>
+                {% endif %}
+
+                {% if pls and pls != '-' %}
+                    <td lang="{{ _from }}">{{ pls|join('<br />', attribute='form')|safe }}</td>
+                {% else %}
+                    <td lang="{{ _from }}" class="center">&mdash;</td>
+                {% endif %}
+
+                </tr>
+
+            {%- endfor -%}
+
+
+            {%- for form in numberless_forms -%}
+                <tr>
+                {% if form.tag %}
+                    <th class="tag" lang="{{ _to }}">{{ clean_tag(form.tag)  }}</th>
+                {% endif %}
+
+                {% if form.form %}
+                    <td colspan="2" lang="{{ _from }}" class="center">{{ form.form }}</td>
+                {% else %}
+                    <td colspan="2" lang="{{ _from }}">?</td>
+                {% endif %}
+
+                </tr>
+            {%- endfor -%}
+            </table>
+
+        {% endif %}
+    {% else %}
+        <dl class="dl-horizontal miniparadigm">
+            <dt>{{ pron_text }} {{ pron_type_text }}</dt>
+            <dd>&nbsp;</dd>
+            {%- for form in paradigm -%}
+
+                {% if form.tag %}
+                    <dt>{{ clean_tag(form.tag) }}</dt>
+                {% endif %}
+
+                {% if form.form %}
+                <dd lang="{{ _from }}">{{ form.form }}</dd>
+                {% else %}
+                    <dd lang="{{ _from }}">?</dd>
+                {% endif %}
+            {%- endfor -%}
+        </dl>
+    {% endif %}
+
+{% else %}
+    <dl class="dl-horizontal miniparadigm">
+        {%- for form in paradigm -%}
+
+            {% if form.tag %}
+                <dt>{{ form.tag|tagfilter(_from, _to)  }}</dt>
+            {% endif %}
+
+            {% if form.form %}
+            <dd lang="{{ _from }}">{{ form.form }}</dd>
+            {% else %}
+                <dd lang="{{ _from }}">?</dd>
+            {% endif %}
+        {%- endfor -%}
+    </dl>
+
+{% endif %}
+{# if paradigm_exists %}
+    {{ full_paradigm_link() }}
+{% endif #}
+{% endif -%}
+
+
+{# vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}

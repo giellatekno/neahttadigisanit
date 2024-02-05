@@ -1,0 +1,23 @@
+# - entry_context: None
+#   tag_context: "V+Ind+Prs+Sg1"
+#   template: "(now I) {{ word_form }}"
+# 
+# - entry_context: None
+#   tag_context: "V+Ind+Prs+Sg2"
+#   template: "{{ word_form }}"
+# 
+# - entry_context: None
+#   tag_context: "V+Ind+Prs+Sg3"
+#   template: "{{ word_form }}"
+# 
+# - entry_context: None
+#   tag_context: "V+Ind+Prs+Pl1"
+#   template: "{{ word_form }}"
+# 
+# - entry_context: None
+#   tag_context: "V+Ind+Prs+Pl2"
+#   template: "{{ word_form }}"
+# 
+# - entry_context: None
+#   tag_context: "V+Ind+Prs+Pl3"
+#   template: "{{ word_form }}"

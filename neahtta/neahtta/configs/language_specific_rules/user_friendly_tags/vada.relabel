@@ -1,0 +1,27 @@
+﻿Relabel:
+  - source_morphology: 'yrk'
+    target_ui_language: 'eng'
+    tags:
+      V: "v."
+      N: "n."
+      A: "adj."
+
+  - source_morphology: 'yrk'
+    target_ui_language: 'fin'
+    tags: &FIN_TAGS
+      V: "v."
+      N: "s."
+      A: "adj."
+
+  - source_morphology: 'fin'
+    target_ui_language: 'fin'
+    tags: 
+      <<: *FIN_TAGS
+
+  - source_morphology: 'yrk'
+    target_ui_language: 'yrk'
+    tags:
+      V: "v."
+      N: "s."
+      A: "adj."
+

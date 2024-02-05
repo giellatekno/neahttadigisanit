@@ -1,0 +1,18 @@
+# Neahttadigisánit fab cheat sheet:
+
+Command                    What it does
+-------------------------------------------------------------
+fab update PROJECT         Updates dictionaries sources
+                           (pulls from github)
+fab compile PROJECT        Compiles dictionary from sources
+                           (do this after update)
+fab restart PROJECT        Restarts the server for PROJECT
+                           (do this after compiling dictionaries)
+fab compile-strings PROJ   Compile translation strings
+                           (do this after adding translations)
+fab test PROJECT           Checks configuration and FST files
+fab add-stem               Adds stem information to smenob
+fab ls                     List projects (baakoeh, sanit, sanat, etc)
+                           (use fab ls --help for more info)
+fab --help                 Shows commands, general info
+fab compile --help         Shows help on "compile" command

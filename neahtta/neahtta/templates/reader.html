@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title -%}{% trans project_name=app_name %}{{ project_name }} Reader{% endtrans %} :: {% endblock %}
+
+{% block meta_title %}
+<meta name="title" content="Neahttadigisánit Reader">
+{% endblock %}
+
+{% block meta_description %}
+    <meta name="description" content="Gratis lesehjelp til nordsamisk, sørsamisk, finsk og norsk. Slå opp ord uten å måtte forlate sida som du leser.">
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span5 offset1">
+        <h3 lang="{{ current_locale }}">{% trans project_name=app_name %}{{ project_name }} Reader{% endtrans %}</h3>
+            <div style="border: 1px solid #ff8a23; padding: 8px; background-color:rgb(255, 239, 202); border-radius: 2px;">
+                <h5 style="margin: 0">Notice (2024-01-10):</h5>
+                <p style="margin: 0">{% trans %}Some websites have a security feature enabled that prevents the bookmarklet from working.{% endtrans %}</p>
+            </div>
+            <h4 lang="{{ current_locale }}">{% trans %}Bookmarklet{% endtrans %}</h4>
+            <p lang="{{ current_locale }}">{% trans %}Drag and drop the following link to your Bookmark toolbar, then click it when you are on a page you wish to read. The service will automatically be installed, and you will see a menu icon on the left-hand side of the page.{% endtrans %}</p>
+            <p lang="{{ current_locale }}" class="label" id="bookmarklet"><a href="javascript:{{- bookmarklet|safe -}}">{% trans project_name=app_name %}Read with {{ project_name }}{% endtrans %}</a></p>
+            <p lang="{{ current_locale }}">{% trans %}In order to look up a word, hold Alt or Option (⌥) and double click the word. The service will will connect to this website and return dictionary entries after a brief pause.{% endtrans %}</p>
+            <p lang="{{ current_locale }}">{% trans %}To change the dictionary, click the menu icon.{% endtrans %}</p>
+            <h4 lang="{{ current_locale }}">{% trans %}Installing on a website{% endtrans %}</h4>
+            <p lang="{{ current_locale }}">
+                {% trans %}It is also possible to install the reader plugin on a website, so that users will have access to dictionaries without the bookmarklet.{% endtrans %}
+
+            </p>
+            <p lang="{{ current_locale }}">{% trans %}To do so, <a href="https://giellalt.github.io/dicts/nds/AddingNDSPluginToOtherSites.html">follow our documentation</a>.{% endtrans %}</p>
+            <h4 lang="{{ current_locale }}">{% trans %}Browser support{% endtrans %}</h4>
+            <p lang="{{ current_locale }}">{% trans %}The reader is supported in the following browsers:{% endtrans %}</p>
+            <ul>
+                <li lang="{{ current_locale }}">{% trans %}Chrome (version 20 and newer){% endtrans %}</li>
+                <li lang="{{ current_locale }}">{% trans %}Internet Explorer (version 9 and newer){% endtrans %}</li>
+                <li lang="{{ current_locale }}">{% trans %}Firefox (version 18 and newer){% endtrans %}</li>
+                <li lang="{{ current_locale }}">{% trans %}Opera (version 16 and newer){% endtrans %}</li>
+            </ul>
+            <h4 lang="{{ current_locale }}">{% trans %}Bugs?{% endtrans %}</h4>
+            <p lang="{{ current_locale }}">{% trans %}If you encounter bugs, or the bookmarklet does not work on a particular page, contact us with the page URL or details of what you were reading when you encountered the problem.{% endtrans %}</p>
+            <p lang="{{ current_locale }}">{% trans %}We do not store any private data, but we do collect individual dictionary lookups for statistics and to improve the dictionary.{% endtrans %}</p>
+        </div>
+        <div class="span4">
+            <h3>&nbsp;</h3>
+            <img id="reader_screenshot" src="{{url_for('static', filename='img/reader_example.png')}}" id="uitlogo"></img>
+            <br />
+            <br />
+            <h4 lang="{{ current_locale }}">{% trans %}Includes{% endtrans %}</h4>
+            <ul>
+                {% for iso_pair, names in language_pairs.items() %}
+                    <li class="">
+                        <em lang="{{ current_locale }}">{{ iso_pair[0]|iso_to_i18n }} → {{ iso_pair[1]|iso_to_i18n }}</em>
+                    </li>
+                {% endfor %}
+            </ul>
+            <p lang="{{ current_locale }}">{% trans more_dictionary_link=url_for('.more_dictionaries') %}If you are looking for other languages, please see our <a href="{{ more_dictionaries_link }}">other dictionaries</a>.{% endtrans %}</p>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,6 @@
+﻿# EX: эн кугу
+
+- entry_context: None
+  tag_context: "A+Superl"
+  template: "эн {{ word_form }}"
+

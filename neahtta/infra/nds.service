@@ -1,0 +1,31 @@
+# https://docs.gunicorn.org/en/latest/deploy.html#systemd
+
+[Unit]
+Description=NDS-sanit
+After=network.target
+
+[Service]
+Type=notify
+User=USER
+Group=USER
+# RuntimeDirectory=nds-sanit
+WorkingDirectory=/[...]/neahttadigisanit/neahtta
+# Environment=PATH=/home/anders/.nvm/versions/node/v19.4.0/bin:/home/anders/.pyenv/shims:/usr/local/bin NDS_CONFIG=/home/anders/projects/neahttadigisanit/neahtta/src/configs/sanit.config.yaml
+Environment=NDS_CONFIG=/[...]/neahttadigisanit/neahtta/neahtta/configs/PROJ.config.yaml
+ExecStart=/[...]/neahttadigisanit/neahtta/.venv/bin/gunicorn --preload --bind 0.0.0.0:5000 --name nds-PROJ --workers 4 neahtta:app
+# Cannot use, systemd version on server too low (requires 244, server has 219)
+#RestartKillSignal=SIGHUP
+ExecReload=/bin/kill -s HUP $MAINPID
+
+# This means: send SIGTERM, wait, then send SIGKILL after 5 seconds
+KillMode=mixed
+TimeoutStopSec=5
+
+PrivateTmp=true
+
+# Turn off timeouts for the Exec operations
+TimeoutStopSec=0
+ExecStart=
+
+[Install]
+WantedBy=multi-user.target

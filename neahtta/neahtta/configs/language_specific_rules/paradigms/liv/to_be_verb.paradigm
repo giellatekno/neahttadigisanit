@@ -1,0 +1,15 @@
+﻿name: "verbs"
+morphology:
+  pos: V
+lexicon:
+  lemma: "vȱlda"
+--
+{{ lemma }}+V+Ind+Prs+Sg1
+{{ lemma }}+V+Ind+Prs+Sg2
+{{ lemma }}+V+Ind+Prs+Sg3
+{{ lemma }}+V+Ind+Prs+Pl1
+{{ lemma }}+V+Ind+Prs+Pl2
+{{ lemma }}+V+Ind+Prs+Pl3
+{{ lemma }}+V+Ind+ConNeg+Sg
+{{ lemma }}+V+Ind+Prt+Sg1
+

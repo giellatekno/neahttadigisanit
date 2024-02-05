@@ -1,0 +1,98 @@
+﻿pos: 
+ - N
+ - V
+ - A
+ - Adp
+ - Adv
+ - CC
+ - CS
+ - Det
+ - Interj
+ - Pr
+ - Po
+ - Num
+ - Pcle
+ - Aux
+ - Pron
+homonyms: 
+ - "Hom1"
+ - "Hom2"
+noun_type:
+ - Prop
+pron_type:
+ - Pers
+ - Dem
+ - Refl
+number:
+ - "Sg"
+ - "Pl"
+ - "Du"
+semantics:
+ - "Sem/Plc"
+ - "Sem/Obj"
+person_number:
+ - "Sg1"
+ - "Sg2"
+ - "Sg3"
+ - "Pl1"
+ - "Pl2"
+ - "Pl3"
+case:
+ - Nom
+ - Gen
+ - Acc
+ - Ill
+ - Loc
+ - Com
+ - Abe
+nonfinite_paradigm:
+ - ActEss
+ - Actio
+ - PrsPrc
+ - PrfPrc
+ - VAbess
+ - GerTemp
+ - GerInstr
+ - ConNeg
+verbs_null_number:
+ - Sg4
+nouns_null_number:
+ - "Ess"
+ - "Par"
+tense:
+ - "Prs"
+ - "Prt"
+finite:
+ - "Ind"
+ - "Pot"
+imperative:
+ - "Imprt"
+negative:
+ - "Neg"
+negation:
+ - "Neg"
+ - "ConNeg"
+nonfinite:
+  - ConNeg
+  - Imprt
+connegative:
+  - ConNeg
+invisible_in_adj_paradigms:
+ - "A"
+invisible_in_noun_paradigms:
+ - "N"
+ - "Sg"
+ - "Pl"
+ - "Prop"
+invisible_in_verb_nonfinite_paradigms:
+ - "V"
+ - "Ind"
+invisible_in_verb_paradigms:
+ - "V"
+ - "Prs"
+ - "Prt"
+ - "Ind"
+invisible_in_pron_paradigms:
+ - "Pron"
+ - "Pers"
+ - "Sg"

@@ -1,0 +1,43 @@
+name: "Proper nouns tanta pluralia"
+morphology:
+  pos: "N"
+  noun_type: "Prop"
+  number: "Pl"
+  semantics:
+    - "Sem/Plc"
+    - "Sem/Obj"
+lexicon:
+  XPATH:
+    type: ".//l/@type"
+    nr: ".//l/@nr"
+    sem_type: ".//l/@sem_type"
+  type: "Prop"
+  nr:
+    - "Pl"
+    - "pl"
+--
+{% if sem_type %}
+{{ lemma }}+N+Prop+{{ sem_type }}+Sg+Nom
+{{ lemma }}+N+Prop+{{ sem_type }}+Sg+Acc
+{{ lemma }}+N+Prop+{{ sem_type }}+Sg+Gen
+{{ lemma }}+N+Prop+{{ sem_type }}+Sg+Ill
+{{ lemma }}+N+Prop+{{ sem_type }}+Sg+Loc
+{{ lemma }}+N+Prop+{{ sem_type }}+Sg+Abe
+{
+{% elif semantics %}
+{{ lemma }}+N+Prop+{{ semantics }}+Sg+Nom
+{{ lemma }}+N+Prop+{{ semantics }}+Sg+Acc
+{{ lemma }}+N+Prop+{{ semantics }}+Sg+Gen
+{{ lemma }}+N+Prop+{{ semantics }}+Sg+Ill
+{{ lemma }}+N+Prop+{{ semantics }}+Sg+Loc
+{{ lemma }}+N+Prop+{{ semantics }}+Sg+Abe
+{% else %}
+{{ lemma }}+N+Prop+Sg+Nom
+{{ lemma }}+N+Prop+Sg+Acc
+{{ lemma }}+N+Prop+Sg+Gen
+{{ lemma }}+N+Prop+Sg+Ill
+{{ lemma }}+N+Prop+Sg+Loc
+{{ lemma }}+N+Prop+Sg+Abe
+{% endif %}
+
+

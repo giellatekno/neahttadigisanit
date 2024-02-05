@@ -1,0 +1,5 @@
+pos: [N, V, A, Adj]
+number: [Sg, Pl]
+tense: [Prs, PrtIndef]
+mode: [Ind, Imp, Sbj]
+nonfinite_paradigm: [Ger, PrfPrc]

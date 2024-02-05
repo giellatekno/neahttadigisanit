@@ -1,0 +1,34 @@
+﻿Relabel:
+
+  - source_morphology: 'mrj'
+    target_ui_language: 'eng'
+    tags:
+      V: "v."
+      N: "n."
+      A: "adj."
+      Hom1: ""
+      Hom2: ""
+
+  - source_morphology: 'mrj'
+    target_ui_language: 'fin'
+    tags:
+      V: "v."
+      N: "s."
+      A: "adj."
+      Hom1: ""
+      Hom2: ""
+
+  - source_morphology: 'mhr'
+    target_ui_language: 'eng'
+    tags:
+      V: "v."
+      N: "n."
+      A: "adj."
+
+  - source_morphology: 'mhr'
+    target_ui_language: 'fin'
+    tags:
+      V: "v."
+      N: "s."
+      A: "adj."
+

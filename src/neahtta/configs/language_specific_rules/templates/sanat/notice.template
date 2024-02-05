@@ -1,5 +1,0 @@
-<div class="alert alert-error">
-    <p>
-        <span lang="{{ current_locale }}">{% trans %}We have moved some languages to <a href="http://sonad.oahpa.no/">Sonad</a>, please update your bookmarks.{% endtrans %}</span>
-    </p>
-</div>

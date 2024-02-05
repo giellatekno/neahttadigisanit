@@ -1,0 +1,195 @@
+ApplicationSettings:
+  app_name: "Neahttadigisánit"
+  app_meta_title: "Neahttadigisánit"
+  short_name: "saan"
+  default_locale: "sms"
+  default_pair: ["sms", "fin"]
+  mobile_default_pair: false
+  polyglot_lookup: true
+  strip_spaces: true
+  locales_available:
+    - "fi"
+    - "en"
+    - "nb"
+    - "ru"
+  # TODO: language-specific sets
+  meta_description: >
+      Free online, mobile friendly dictionaries for Skolt Saami
+  meta_keywords: >
+      skolt saami, koltansaame, mobile, dictionary, free, russian
+
+Tools:
+  xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
+  hfst_lookup: &HFST-LOOKUP '/bin/hfst-optimized-lookup'
+  opt: &OPT '/opt/smi/'
+
+Morphology:
+  sms:
+    tool: *HFST-LOOKUP
+    file: [*OPT, '/sms/bin/analyser-dict-gt-desc.hfstol']
+    inverse_file: [*OPT, '/sms/bin/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
+    options:
+      compoundBoundary: "+Cmp#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  smsM:
+    tool: *HFST-LOOKUP
+    file: [*OPT, '/sms/bin/analyser-dict-gt-desc-mobile.hfstol']
+    inverse_file: [*OPT, '/sms/bin/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
+    options:
+      compoundBoundary: "+Cmp#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  fin:
+    tool: *HFST-LOOKUP
+    file: [*OPT, '/fin/bin/analyser-dict-gt-desc.hfstol']
+    inverse_file: [*OPT, '/fin/bin/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
+    options:
+      compoundBoundary: "#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  nob:
+    tool: *HFST-LOOKUP
+    file: [*OPT, '/nob/bin/analyser-dict-gt-desc.hfstol']
+    inverse_file: [*OPT, '/nob/bin/generator-dict-gt-norm.hfstol']
+    format: 'hfst'
+    options:
+      compoundBoundary: ["#", "#+Cmp+", "#+CmpS+", "+Use/Circ#"]
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  rus:
+    tool: *HFST-LOOKUP
+    file: [*OPT, '/rus/bin/analyser-gt-desc.hfstol']
+    inverse_file: [*OPT, '/rus/bin/generator-gt-norm.hfstol']
+    format: 'hfst'
+    options:
+      compoundBoundary: "+Use/Circ#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+
+Languages:
+  - iso: sms
+    minority_lang: true
+  - iso: eng
+  - iso: fin
+  - iso: rus
+  - iso: nob
+  - iso: smsM
+
+Dictionaries:
+  - source: sms
+    target: fin
+    path: 'dicts/sms-all.xml'
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/korp"
+    corpora: 'SMS_ADMIN_20211118,SMS_BLOGS_20211118,SMS_FACTA_20211118,SMS_LAWS_20211118,SMS_LITERATURE_20211118,SMS_NEWS_20211118,SMS_SCIENCE_20211118'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    input_variants: &spell_relax_sms
+      - type: "standard"
+        description: !gettext "Standard"
+        example: "(ǩ)"
+        onscreen_keyboard: &SMS_KEYS
+          - "ʹ"
+          - "ʼ"
+          - "â"
+          - "č"
+          - "ʒ"
+          - "ǯ"
+          - "đ"
+          - "ǧ"
+          - "ǥ"
+          - "ǩ"
+          - "ŋ"
+          - "õ"
+          - "š"
+          - "ž"
+          - "å"
+          - "ä"
+          - "ö"
+        # NB: must be same as analyser name
+        short_name: "sms"
+      - type: "mobile"
+        description: !gettext "Mobile friendly"
+        example: "(k &rarr; k ~ ǩ)"
+        short_name: "smsM"
+        onscreen_keyboard: *SMS_KEYS
+        # aczdggknsz
+        # âčǯđǧǥǩŋ̌šž
+
+  - source: sms
+    target: eng
+    path: 'dicts/sms-all.xml'
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/korp"
+    corpora: 'SMS_ADMIN_20211118,SMS_BLOGS_20211118,SMS_FACTA_20211118,SMS_LAWS_20211118,SMS_LITERATURE_20211118,SMS_NEWS_20211118,SMS_SCIENCE_20211118'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    input_variants: *spell_relax_sms
+
+  - source: sms
+    target: rus
+    path: 'dicts/sms-all.xml'
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/korp"
+    corpora: 'SMS_ADMIN_20211118,SMS_BLOGS_20211118,SMS_FACTA_20211118,SMS_LAWS_20211118,SMS_LITERATURE_20211118,SMS_NEWS_20211118,SMS_SCIENCE_20211118'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    input_variants: *spell_relax_sms
+
+  - source: sms
+    target: nob
+    path: 'dicts/sms-all.xml'
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/korp"
+    corpora: 'SMS_ADMIN_20211118,SMS_BLOGS_20211118,SMS_FACTA_20211118,SMS_LAWS_20211118,SMS_LITERATURE_20211118,SMS_NEWS_20211118,SMS_SCIENCE_20211118'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    input_variants: *spell_relax_sms
+
+  - source: fin
+    target: sms
+    path: 'dicts/finsms.xml'
+
+  - source: nob
+    target: sms
+    path: 'dicts/nobsms.xml'
+
+  - source: rus
+    target: sms
+    path: 'dicts/russms.xml'
+
+  - source: smsM
+    target: fin
+    path: 'dicts/sms-all.xml'
+
+  - source: smsM
+    target: nob
+    path: 'dicts/sms-all.xml'
+
+  - source: smsM
+    target: rus
+    path: 'dicts/sms-all.xml'
+
+ReaderConfig:
+  Settings:
+    # host path without scheme (https, http) to reader lookup API, no trailing
+    # slash.
+    api_host: "saan.oahpa.no"
+    # URL to serve media from, minus scheme, and no trailing slash.
+    media_host: "saan.oahpa.no"
+  sms:
+    multiword_lookups: false
+    # NB: this is JavaScript format, since it will be sent to the reader via
+    # config. It must also be stored as a string.
+    #
+    # JavaScript is problematic with unicode, and \w in a regex ends up meaning
+    # just the ASCII range, thus it's necessary to be very explicit.
+    #
+    word_regex: |
+      [\u00C0-\u1FFF\u2C00-\uD7FF\w´]+
+    word_regex_opts: "g"

@@ -1,0 +1,11 @@
+{% if render_template_errors %}
+<div class="alert alert-error">
+<p><em>Template error</em>: {{ message }}</p>
+<p>{{ exception }}</p>
+</div>
+{% endif %}
+<script type="text/javascript">
+    console.log("Error in template: {{ template_name }}");
+    console.log("    {{ message|escape }}");
+    console.log("    {{ exception|escape }}");
+</script>

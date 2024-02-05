@@ -1,0 +1,12 @@
+name: "nouns"
+morphology:
+  pos: Noun
+  noun_gender:
+    - Masc
+    - Fem
+--
+{{ lemma }}+Noun+{{ noun_gender }}+Com+Sg
+{{ lemma }}+Noun+{{ noun_gender }}+Com+Pl
+{{ lemma }}+Noun+{{ noun_gender }}+Gen+Sg
+{{ lemma }}+Noun+{{ noun_gender }}+Gen+Pl
+{{ lemma }}+Noun+{{ noun_gender }}+Voc+Sg

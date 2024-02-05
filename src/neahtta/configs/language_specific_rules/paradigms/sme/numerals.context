@@ -1,9 +1,0 @@
-# EX: guokte
-
-- entry_context: "gápmagat"
-  tag_context: "Num+Pl+Nom"
-  template: "{{ word_form }} (gápmagat)"
-
-- entry_context: "gápmagat"
-  tag_context: "Num+Pl+Gen"
-  template: "{{ word_form }}"

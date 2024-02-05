@@ -1,0 +1,120 @@
+{# NB! This is disabled because itwewina is using the new paradigm
+       layout module
+
+  This is the paradigm template for Plains Cree
+
+ * Verbs: Display a table with one column for indicative, and one for
+   conjunct forms. 
+
+   - If extra tags are appearing that shouldn't, they can be filtered
+     out with: `invisible_in_paradigms` in `tagsets/crk.tagset`
+
+   - If the translations that are shown to the end user are incorrect or
+     inaccurate, these should be edited in `user_friendly_tags/itwewina.relabel`
+
+ * General: 
+   - remove full paradigm link
+
+ #}
+
+{%- set first_l = lexicon_entry|xpath('lg/l')|first %}
+
+{% set lemma = first_l|text %}
+{% set pos = first_l|xpath('@pos')|first %}
+{% set has_forms = paradigm and paradigm|length > 0 -%}
+{% set paradigm_exists = paradigm|length > 0 %}
+
+{%- if pos|upper == 'V' %}
+
+    {% set indicative_v    = paradigm|by_tagset("indicative")
+                                     |group_by_tag %}
+
+    {% set conjunct_v      = paradigm|by_tagset("conjunct")
+                                     |group_by_tag %}
+
+    {% set nonfinite_forms = [] %}
+
+    {# As long as the paradigm files are in order, this will zip
+    accurately. If not we need to manually select each form and display
+    it. #}
+
+    {# Use izip_longest to fill in the extra blanks spaces when one list
+       ends first #}
+    {% set zipped_verbs = izip_longest(indicative_v, conjunct_v, fillvalue='-')|list %}
+    
+    {% set paradigm_exists = zipped_verbs|length > 0 or nonfinite_forms|length > 0 %}
+
+    {% set ind_text      = "Ind"|tagfilter_generation(_from, _to) %}
+    {% set cnj_text      = "Cnj"|tagfilter_generation(_from, _to) %}
+
+    {% macro clean_tag(tag_input) -%}
+        {{ tag_input|remove_by_tagset('invisible_in_paradigms')
+                    |tagfilter_generation(_from, _to) }}
+    {%- endmacro %}
+
+{%- endif %}
+
+{%- if has_forms %}
+
+{%- if pos|upper == 'V' %}
+    {% if paradigm_exists %}
+        {% if zipped_verbs %}
+        <table class="tableparadigm miniparadigm">
+
+            {# This is the two-column tense paradigm #}
+
+                <tr>
+                    <th></th>
+                    <th lang="{{ _to }}">{{ ind_text }}</th>
+                    <th lang="{{ _to }}">{{ cnj_text }}</th>
+                </tr>
+
+                {%- for present_forms, preterite_forms in zipped_verbs -%}
+                    <tr>
+
+                    {% if present_forms[0].tag %}
+                        {% set tag_display = clean_tag(present_forms[0].tag) %}
+                    {% elif preterite_forms[0].tag %}
+                        {% set tag_display = clean_tag(preterite_forms[0].tag) %}
+                    {% endif %}
+
+                    <th class="tag" lang="{{ _to }}">{{ tag_display }}</th>
+
+                    {% if present_forms and present_forms != '-' %}
+                        <td lang="{{ _from }}">{{ present_forms|join('<br />', attribute='form') }}</td>
+                    {% else %}
+                        <td lang="{{ _from }}">&mdash;</td>
+                    {% endif %}
+
+                    {% if preterite_forms and preterite_forms != '-' %}
+                        <td lang="{{ _from }}">{{ preterite_forms|join('<br />', attribute='form') }}</td>
+                    {% else %}
+                        <td lang="{{ _from }}">&mdash;</td>
+                    {% endif %}
+
+                    </tr>
+
+                {%- endfor -%}
+        </table>
+        {% endif %}
+    {% endif %}
+{% else %}
+    <dl class="dl-horizontal miniparadigm">
+        {%- for form in paradigm -%}
+
+            {% if form.tag %}
+                <dt>{{ form.tag|tagfilter_generation(_from, _to)  }}</dt>
+            {% endif %}
+
+            {% if form.form %}
+            <dd lang="{{ _from }}">{{ form.form }}</dd>
+            {% else %}
+                <dd lang="{{ _from }}">?</dd>
+            {% endif %}
+        {%- endfor -%}
+    </dl>
+{% endif %}
+
+{% endif -%}
+
+{# vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}

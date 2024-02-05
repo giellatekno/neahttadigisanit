@@ -1,0 +1,55 @@
+##
+### Standard verb context
+##
+
+- entry_context: None
+  tag_context: "V+Ind+Prs+Sg1"
+  template: "(mon) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+Ind+Prs+Sg2"
+  template: "(ton) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+Ind+Prs+Sg3"
+  template: "(son) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+Ind+Prs+Pl1"
+  template: "(mij) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+Ind+Prs+Pl2"
+  template: "(tij) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+Ind+Prs+Pl3"
+  template: "(sij) {{ word_form }}"
+
+# 2 years after: r114757 | ryan | 2015-06-02
+# 2017-10-09 this showed up
+# problem dual/plural pronouns with shared verbal forms.  Markus Juutinen noticed!
+#- entry_context: None
+#  tag_context: "V+Ind+Prs+Pl1"
+#  template: "(muäna/mij) {{ word_form }}"
+#
+#- entry_context: None
+#  tag_context: "V+Ind+Prs+Pl2"
+#  template: "(tuäna/tij) {{ word_form }}"
+#
+#- entry_context: None
+#  tag_context: "V+Ind+Prs+Pl3"
+#  template: "(suäna/sij) {{ word_form }}"
+#
+- entry_context: None
+  tag_context: "V+PrfPrc"
+  template: "(lij) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+Ind+Prs+ConNeg"
+  template: "(täʹbbe jiõm) {{ word_form }}"
+
+- entry_context: None
+  tag_context: "V+Ind+Prt+ConNeg"
+  template: "(jåhtta jiõm) {{ word_form }}"
+

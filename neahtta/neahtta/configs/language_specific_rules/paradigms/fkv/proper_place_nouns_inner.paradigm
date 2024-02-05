@@ -1,0 +1,19 @@
+name: "Proper place nouns inner"
+description: "Generates a paradigm for proper nouns."
+morphology:
+  pos: N
+lexicon:
+  XPATH:
+    sem_type: ".//l/@sem_type"
+    type: ".//l/@type"
+  type: Prop
+  sem_type: 
+    - "Plc"
+    - "plc"
+--
+{{ lemma }}+N+Prop+Sg+Nom
+{{ lemma }}+N+Prop+Sg+Gen
+{{ lemma }}+N+Prop+Sg+Par
+{{ lemma }}+N+Prop+Sg+Ill
+{{ lemma }}+N+Prop+Sg+Ine
+{{ lemma }}+N+Prop+Sg+Ela

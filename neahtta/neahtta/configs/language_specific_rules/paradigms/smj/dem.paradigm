@@ -1,0 +1,16 @@
+name: "Pronoun dem paradigm"
+morphology:
+  pos: Pron
+  pron_type: Dem
+--
+{{ lemma }}+Pron+Dem+Sg+Nom
+{{ lemma }}+Pron+Dem+Sg+Acc
+{{ lemma }}+Pron+Dem+Sg+Ill
+{{ lemma }}+Pron+Dem+Sg+Loc
+{{ lemma }}+Pron+Dem+Sg+Com
+{{ lemma }}+Pron+Dem+Ess
+{{ lemma }}+Pron+Dem+Pl+Nom
+{{ lemma }}+Pron+Dem+Pl+Acc
+{{ lemma }}+Pron+Dem+Pl+Ill
+{{ lemma }}+Pron+Dem+Pl+Loc
+{{ lemma }}+Pron+Dem+Pl+Com

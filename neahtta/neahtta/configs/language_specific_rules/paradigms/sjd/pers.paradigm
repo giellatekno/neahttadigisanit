@@ -1,0 +1,67 @@
+name: "Pronoun pers paradigm"
+morphology:
+  pos: Pron
+  pron_type: Pers
+--
+{{ lemma }}+Pron+Pers+Sg1+Nom
+{{ lemma }}+Pron+Pers+Sg1+Gen
+{{ lemma }}+Pron+Pers+Sg1+Acc
+{{ lemma }}+Pron+Pers+Sg1+Ill
+{{ lemma }}+Pron+Pers+Sg1+Loc
+{{ lemma }}+Pron+Pers+Sg1+Com
+{{ lemma }}+Pron+Pers+Sg1+Abe
+{{ lemma }}+Pron+Pers+Sg1+Ess
+{{ lemma }}+Pron+Pers+Sg1+Par
+
+{{ lemma }}+Pron+Pers+Sg2+Nom
+{{ lemma }}+Pron+Pers+Sg2+Gen
+{{ lemma }}+Pron+Pers+Sg2+Acc
+{{ lemma }}+Pron+Pers+Sg2+Ill
+{{ lemma }}+Pron+Pers+Sg2+Loc
+{{ lemma }}+Pron+Pers+Sg2+Com
+{{ lemma }}+Pron+Pers+Sg2+Abe
+{{ lemma }}+Pron+Pers+Sg2+Ess
+{{ lemma }}+Pron+Pers+Sg2+Par
+
+{{ lemma }}+Pron+Pers+Sg3+Nom
+{{ lemma }}+Pron+Pers+Sg3+Gen
+{{ lemma }}+Pron+Pers+Sg3+Acc
+{{ lemma }}+Pron+Pers+Sg3+Ill
+{{ lemma }}+Pron+Pers+Sg3+Loc
+{{ lemma }}+Pron+Pers+Sg3+Com
+{{ lemma }}+Pron+Pers+Sg3+Abe
+{{ lemma }}+Pron+Pers+Sg3+Ess
+{{ lemma }}+Pron+Pers+Sg3+Par
+
+
+{{ lemma }}+Pron+Pers+Pl1+Nom
+{{ lemma }}+Pron+Pers+Pl1+Gen
+{{ lemma }}+Pron+Pers+Pl1+Acc
+{{ lemma }}+Pron+Pers+Pl1+Ill
+{{ lemma }}+Pron+Pers+Pl1+Loc
+{{ lemma }}+Pron+Pers+Pl1+Com
+{{ lemma }}+Pron+Pers+Pl1+Abe
+{{ lemma }}+Pron+Pers+Pl1+Ess
+{{ lemma }}+Pron+Pers+Pl1+Par
+
+{{ lemma }}+Pron+Pers+Pl2+Nom
+{{ lemma }}+Pron+Pers+Pl2+Gen
+{{ lemma }}+Pron+Pers+Pl2+Acc
+{{ lemma }}+Pron+Pers+Pl2+Ill
+{{ lemma }}+Pron+Pers+Pl2+Loc
+{{ lemma }}+Pron+Pers+Pl2+Com
+{{ lemma }}+Pron+Pers+Pl2+Abe
+{{ lemma }}+Pron+Pers+Pl2+Ess
+{{ lemma }}+Pron+Pers+Pl2+Par
+
+{{ lemma }}+Pron+Pers+Pl3+Nom
+{{ lemma }}+Pron+Pers+Pl3+Gen
+{{ lemma }}+Pron+Pers+Pl3+Acc
+{{ lemma }}+Pron+Pers+Pl3+Ill
+{{ lemma }}+Pron+Pers+Pl3+Loc
+{{ lemma }}+Pron+Pers+Pl3+Com
+{{ lemma }}+Pron+Pers+Pl3+Abe
+{{ lemma }}+Pron+Pers+Pl3+Ess
+{{ lemma }}+Pron+Pers+Pl3+Par
+
+

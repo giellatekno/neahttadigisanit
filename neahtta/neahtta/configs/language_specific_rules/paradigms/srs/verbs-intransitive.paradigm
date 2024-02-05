@@ -1,0 +1,32 @@
+name: "verbs - intransitive"
+morphology:
+  pos: V
+  transitivity: I
+--
+{# Imperfective #}
+{{ lemma }}+V+I+Ipfv+Sg1
+{{ lemma }}+V+I+Ipfv+Sg2
+{{ lemma }}+V+I+Ipfv+Sg3
+{{ lemma }}+V+I+Ipfv+Sg4
+{{ lemma }}+V+I+Ipfv+Pl1
+{{ lemma }}+V+I+Ipfv+Pl2
+{{ lemma }}+V+I+Ipfv+Pl3
+
+{# Perfective #}
+
+{{ lemma }}+V+I+Pfv+Sg1
+{{ lemma }}+V+I+Pfv+Sg2
+{{ lemma }}+V+I+Pfv+Sg3
+{{ lemma }}+V+I+Pfv+Sg4
+{{ lemma }}+V+I+Pfv+Pl1
+{{ lemma }}+V+I+Pfv+Pl2
+{{ lemma }}+V+I+Pfv+Pl3
+
+{# Progressive #}
+{{ lemma }}+V+I+Prog+Sg1
+{{ lemma }}+V+I+Prog+Sg2
+{{ lemma }}+V+I+Prog+Sg3
+{{ lemma }}+V+I+Prog+Sg4
+{{ lemma }}+V+I+Prog+Pl1
+{{ lemma }}+V+I+Prog+Pl2
+{{ lemma }}+V+I+Prog+Pl3

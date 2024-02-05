@@ -1,0 +1,256 @@
+# Default locale, but use ISO 2 code or whatever corresponds to what is
+# in the translations directory.
+
+ApplicationSettings:
+  app_name: "Neahttadigisánit"
+  short_name: "sanit"
+  default_locale: "se"
+  default_pair: ["sme", "nob"]
+  mobile_default_pair: ["SoMe", "nob"]
+  # admins_to_email:
+  #   - "someone.goes.here@email.com"
+  locales_available:
+    - "se"
+#$#    - "sma"
+    - "nb"
+    - "fi"
+    - "en"
+  app_meta_title: >
+     Nordsamiske ordbøker
+  meta_description: >
+     Gratis online mobilvennlige nordsamiske ordbøker 
+  meta_keywords: >
+     samisk ordbok, på nett, mobil ordbok, ordbok app, sanakirjat,
+     sanakirja, sátnegirjjit, sátnegirji, nordsamisk, finsk, norsk,
+     pohjoissaame, davvisámegiella north sámi, norwegian, finnish,
+     sámegiella, sámi language, mobil ordbok
+  admins_to_email:
+    - "trond.trosterud@uit.no"
+    - "lene.antonsen@uit.no"
+    - "ciprian.gerstenberger@uit.no"
+
+UnitTests:
+  - "tests.test_morphology"
+  - "tests.sme_lexicon"
+  - "tests.fin_lexicon"
+
+# This option set is not used outside of providing shortcuts for
+# following settings.
+Tools:
+  xfst_lookup: &LOOKUP 'lookup'
+  opt: &OPT 'tests/fsts'
+
+# Morphological system definitions. Since YAML variables aren't able to
+# be used in concatenating strings, certain paths with references must
+# be lists. These are concatenated automatically.
+Morphology:
+  sme:
+    tool: *LOOKUP
+    file: [*OPT, '/sme/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/sme/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options: &sme_fst_options
+      compoundBoundary: "+Cmp#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  SoMe:
+    tool: *LOOKUP
+    file: [*OPT, '/sme/analyser-dict-gt-desc-mobile.xfst']
+    inverse_file: [*OPT, '/sme/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options:
+      <<: *sme_fst_options
+  nob:
+    tool: *LOOKUP
+    file: [*OPT, '/nob/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/nob/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "#+Cmp+"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+  fin:
+    tool: *LOOKUP
+    file: [*OPT, '/fin/analyser-dict-gt-desc.xfst']
+    inverse_file: [*OPT, '/fin/generator-dict-gt-norm.xfst']
+    format: 'xfst'
+    options:
+      compoundBoundary: "#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
+#$#  sma:
+#$#    tool: *LOOKUP
+#$#    file: [*OPT, '/sma/bin/analyser-dict-gt-desc.xfst']
+#$#    inverse_file: [*OPT, '/sma/bin/generator-dict-gt-norm.xfst']
+#$#    format: 'xfst'
+#$#    options: 
+#$#      compoundBoundary: "+Cmp#"
+#$#      derivationMarker: "+Der"
+#$#      tagsep: '+'
+#$#      inverse_tagsep: '+'
+
+Languages:
+  - iso: sme
+    minority_lang: true
+  - iso: SoMe
+    variant: True # this makes the fab process skip attempting `svn up` here.
+#$#  - iso: sma
+#    minority_lang: true
+  - iso: nob
+  - iso: fin
+  - iso: eng
+
+# This also dictates the order of the dictionaries in the UI for now.
+Dictionaries:
+
+  - source: sme
+    target: nob
+    path: 'dicts/sme-nob.all.xml'
+    autocomplete: true
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/korp"
+    is_korp_default_lang: True
+
+    input_variants:
+      # "mobile" is important, otherwise templates and swapping won't
+      # work
+      - type: "standard"
+        description: !gettext "Standard"
+        # description: !gettext "Standárda"
+        example: "(<em>áčđŋšŧž</em>)"
+        short_name: "sme"
+        onscreen_keyboard: &SME_KEYS
+          - "á"
+          - "č"
+          - "đ"
+          - "ŋ"
+          - "š"
+          - "ŧ"
+          - "ž"
+        # NB: must be same as analyser name
+      - type: "mobile"
+        description: !gettext "Tolerant"
+        # description: !gettext "Sosiála media"
+        # example: !gettext "(maiddái <em>acdnstz</em>)"
+        example: !gettext "(incl. <em>acdnstz</em>)"
+        short_name: "SoMe"
+        onscreen_keyboard: *SME_KEYS
+
+  - source: nob
+    target: sme
+    path: 'dicts/nob-sme.all.xml'
+    autocomplete: true
+    show_korp_search: True
+    is_korp_default_lang: True
+    korp_parallel: True
+    korp_search_host: "http://gtweb.uit.no/korp"
+    link_corpus_parameter: "fad_corpus_sme"
+
+  - source: nob
+    target: SoMe
+    path: 'dicts/nob-sme.all.xml'
+    autocomplete: true
+    show_korp_search: True
+    is_korp_default_lang: True
+    korp_parallel: True
+    korp_search_host: "http://gtweb.uit.no/korp"
+    link_corpus_parameter: "fad_corpus_sme"
+
+  - source: sme
+    target: fin
+    path: 'dicts/sme-fin.all.xml'
+    autocomplete: true
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/korp"
+    is_korp_default_lang: True
+    input_variants:
+      # "mobile" is important, otherwise templates and swapping won't
+      # work
+      - type: "standard"
+        description: !gettext "Standard (<em>áčđŋšŧž</em>)"
+        short_name: "sme"
+        onscreen_keyboard: *SME_KEYS
+      - type: "mobile"
+        description: !gettext "Tolerant (also <em>acdnstz</em>)"
+        short_name: "SoMe"
+        onscreen_keyboard: *SME_KEYS
+
+  - source: fin
+    target: sme
+    path: 'dicts/fin-sme.all.xml'
+    autocomplete: true
+
+  - source: fin
+    target: SoMe
+    path: 'dicts/fin-sme.all.xml'
+    autocomplete: true
+
+#$#  - source: sme
+#$#    target: sma
+#$#    path: 'dicts/smesma.xml'
+#$#    autocomplete: false
+#$#    show_korp_search: True
+#$#    korp_search_host: "http://gtweb.uit.no/korp"
+#$#    is_korp_default_lang: True
+#$#
+#$#    input_variants:
+#$#      # "mobile" is important, otherwise templates and swapping won't
+#$#      # work
+#$#      - type: "standard"
+#$#        description: !gettext "Standard"
+#$#        # description: !gettext "Standárda"
+#$#        example: "(<em>áčđŋšŧž</em>)"
+#$#        short_name: "sme"
+#$#        onscreen_keyboard: *SME_KEYS
+#$#      - type: "mobile"
+#$#        description: !gettext "Tolerant"
+#$#        # description: !gettext "Sosiála media"
+#$#        # example: !gettext "(maiddái <em>acdnstz</em>)"
+#$#        example: !gettext "(incl. <em>acdnstz</em>)"
+#$#        short_name: "SoMe"
+#$#        onscreen_keyboard: *SME_KEYS
+#$#
+#$#  - source: sma
+#$#    target: sme
+#$#    autocomplete: false
+#$#    show_korp_search: True
+#$#    korp_search_host: "http://gtweb.uit.no/korp"
+#$#    path: 'dicts/smasme.xml'
+#$#
+#$## smesmj
+#$#
+#$#  - source: sme
+#$#    target: smj
+#$#    path: 'dicts/smesmj.xml'
+#$#    autocomplete: false
+#$#    show_korp_search: True
+#$#    korp_search_host: "http://gtweb.uit.no/korp"
+#$#    is_korp_default_lang: True
+#$#
+#$#    input_variants:
+#$#      # "mobile" is important, otherwise templates and swapping won't
+#$#      # work
+#$#      - type: "standard"
+#$#        description: !gettext "Standard"
+#$#        # description: !gettext "Standárda"
+#$#        example: "(<em>áčđŋšŧž</em>)"
+#$#        short_name: "sme"
+#$#        onscreen_keyboard: *SME_KEYS
+#$#      - type: "mobile"
+#$#        description: !gettext "Tolerant"
+#$#        # description: !gettext "Sosiála media"
+#$#        # example: !gettext "(maiddái <em>acdnstz</em>)"
+#$#        example: !gettext "(incl. <em>acdnstz</em>)"
+#$#        short_name: "SoMe"
+#$#        onscreen_keyboard: *SME_KEYS
+#$#
+#$#  - source: smj
+#$#    target: sme
+#$#    autocomplete: false
+#$#    show_korp_search: True
+#$#    korp_search_host: "http://gtweb.uit.no/korp"
+#$#    path: 'dicts/smjsme.xml'
+

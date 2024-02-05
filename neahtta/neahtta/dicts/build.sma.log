@@ -1,0 +1,32 @@
+make[1]: Entering directory '/home/anders/giellalt/lang-sma'
+
+*** Compiling sma - South Sami. ***
+
+CDPATH="${ZSH_VERSION+.}:" && cd . && /bin/bash '/home/anders/giellalt/lang-sma/build-aux/missing' autoconf
+Making all in .
+make[2]: Entering directory '/home/anders/giellalt/lang-sma'
+
+*** Compiling sma - South Sami. ***
+
+CDPATH="${ZSH_VERSION+.}:" && cd . && /bin/bash '/home/anders/giellalt/lang-sma/build-aux/missing' autoconf
+make[2]: Nothing to be done for 'all-am'.
+make[2]: Leaving directory '/home/anders/giellalt/lang-sma'
+Making all in src
+make[2]: Entering directory '/home/anders/giellalt/lang-sma/src'
+ cd .. && /bin/bash /home/anders/giellalt/lang-sma/build-aux/missing automake-1.16 --foreign src/Makefile
+ cd .. && /bin/bash ./config.status src/Makefile 
+config.status: creating src/Makefile
+Making all in fst
+make[3]: Entering directory '/home/anders/giellalt/lang-sma/src/fst'
+ cd ../.. && /bin/bash /home/anders/giellalt/lang-sma/build-aux/missing automake-1.16 --foreign src/fst/Makefile
+ cd ../.. && /bin/bash ./config.status src/fst/Makefile 
+config.status: creating src/fst/Makefile
+  GEN      generated_files/smi-sma-acronyms.lexc
+  GEN      generated_files/smi-sma-acronyms.lexc
+  GEN      generated_files/smi-sma-arabic_roman_digits.lexc
+  GEN      lexicon.tmp.lexc
+  HLEXC    lexicon.tmp.hfst
+make[3]: *** Deleting file 'lexicon.tmp.hfst'
+make[3]: *** [Makefile:1189: lexicon.tmp.hfst] Interrupt
+make[2]: *** [Makefile:1211: all-recursive] Interrupt
+make[1]: *** [Makefile:541: all-recursive] Interrupt
