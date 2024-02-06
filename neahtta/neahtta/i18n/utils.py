@@ -21,7 +21,7 @@ def copy_custom_locales():
     babel_locale_data_dir = babel_dir + "/locale-data/"
 
     current_dir = os.path.dirname(os.path.realpath(__file__))
-    custom_locale_data_files = current_dir + "/../../localedata/*"
+    custom_locale_data_files = current_dir + "/../locale-data/*"
 
     os.system(f"cp {custom_locale_data_files} {babel_locale_data_dir}")
 
