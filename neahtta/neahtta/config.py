@@ -875,13 +875,12 @@ class Config(Config):
         )
 
     @cached_property
+    def reader_settings(self):
+        return self.yaml.get("ReaderConfig", {}).get("Settings", {})
+
+    @cached_property
     def reader_options(self):
         reader_options = self.yaml.get("ReaderConfig", {})
-
-        try:
-            self.reader_settings = reader_options.pop("Settings")
-        except KeyError:
-            self.reader_settings = {}
 
         reader_defaults = {
             "word_regex": DEFAULT_WORD_REGEX,
@@ -890,6 +889,8 @@ class Config(Config):
         }
 
         for L, conf in reader_options.items():
+            if L == "Settings":
+                continue
             wr = conf.get("word_regex", False)
             wro = conf.get("word_regex_opts", False)
             if wr:
