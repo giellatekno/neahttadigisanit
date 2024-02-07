@@ -24,12 +24,13 @@ ApplicationSettings:
   admins_to_email:
     - "trond.trosterud@uit.no"
     - "lene.antonsen@uit.no"
+    - "anders.lorentsen@uit.no"
 
 
 # This option set is not used outside of providing shortcuts for
 # following settings.
 Tools:
-  hfst_lookup: &LOOKUP '/usr/bin/hfst-optimised-lookup'
+  hfst_lookup: &HFST-LOOKUP '/usr/bin/hfst-lookup'
   opt: &OPT '/opt/smi'
 
 # Morphological system definitions. Since YAML variables aren't able to
@@ -37,9 +38,9 @@ Tools:
 # be lists. These are concatenated automatically.
 Morphology:
   sje:
-    tool: *LOOKUP
-    file: [*OPT, '/sje/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/sje/bin/generator-dict-gt-norm.hfstol']
+    tool: *HFST-LOOKUP
+    file: '/opt/smi/sje/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/sje/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
 
 Languages:
@@ -49,24 +50,30 @@ Languages:
   - iso: swe
   - iso: eng
 
-# This also dictates the order of the dictionaries in the UI for now.
 Dictionaries:
-
-
   - source: sje
     target: nob
+    # tells the dictionary builder in fab_commands.py (function compile_dicts)
+    # that the sources are in dict-<source>-mul (and not dict-<source>-<target>)
+    dict_source: multi
     path: 'dicts/sje2X.xml'
     autocomplete: true
     show_korp_search: False
 
   - source: sje
     target: swe
+    # tells the dictionary builder in fab_commands.py (function compile_dicts)
+    # that the sources are in dict-<source>-mul (and not dict-<source>-<target>)
+    dict_source: multi
     path: 'dicts/sje2X.xml'
     autocomplete: true
     show_korp_search: False
 
   - source: sje
     target: eng
+    # tells the dictionary builder in fab_commands.py (function compile_dicts)
+    # that the sources are in dict-<source>-mul (and not dict-<source>-<target>)
+    dict_source: multi
     path: 'dicts/sje2X.xml'
     autocomplete: true
     show_korp_search: False

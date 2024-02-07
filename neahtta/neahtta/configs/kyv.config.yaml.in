@@ -25,15 +25,13 @@ ApplicationSettings:
     - "trond.trosterud@uit.no"
 
 Tools:
-  xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
   hfst_lookup: &HFST-LOOKUP '/bin/hfst-lookup'
-  opt: &OPT '/opt/smi/'
 
 Morphology:
   kpv:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/kpv/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/kpv/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/kpv/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/kpv/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Cmp#"
@@ -42,8 +40,8 @@ Morphology:
       inverse_tagsep: '+'
   kpvM:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/kpv/bin/analyser-dict-gt-desc-mobile.hfstol']
-    inverse_file: [*OPT, '/kpv/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/kpv/bin/analyser-dict-gt-desc-mobile.hfstol'
+    inverse_file: '/opt/smi/kpv/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Cmp#"
@@ -52,8 +50,8 @@ Morphology:
       inverse_tagsep: '+'
   udm:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/udm/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/udm/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/udm/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/udm/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -62,8 +60,8 @@ Morphology:
       inverse_tagsep: '+'
   udmM:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/udm/bin/analyser-dict-gt-desc-mobile.hfstol']
-    inverse_file: [*OPT, '/udm/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/udm/bin/analyser-dict-gt-desc-mobile.hfstol'
+    inverse_file: '/opt/smi/udm/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -72,8 +70,8 @@ Morphology:
       inverse_tagsep: '+'
   koi:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/koi/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/koi/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/koi/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/koi/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -82,8 +80,8 @@ Morphology:
       inverse_tagsep: '+'
   kpvS:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/kpv/bin/analyser-dict-gt-desc-molodtsov.hfst']
-    inverse_file: [*OPT, '/kpv/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/kpv/bin/analyser-dict-gt-desc-molodtsov.hfst'
+    inverse_file: '/opt/smi/kpv/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Cmp#"
@@ -92,8 +90,8 @@ Morphology:
       inverse_tagsep: '+'
   kpvP:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/kpv/bin/analyser-dict-gt-desc-permyak.hfst']
-    inverse_file: [*OPT, '/kpv/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/kpv/bin/analyser-dict-gt-desc-permyak.hfst'
+    inverse_file: '/opt/smi/kpv/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Cmp#"
@@ -102,8 +100,8 @@ Morphology:
       inverse_tagsep: '+'
   est:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/est/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/est/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/est/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/est/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "#"
@@ -112,8 +110,8 @@ Morphology:
       inverse_tagsep: '+'
   fin:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/fin/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/fin/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/fin/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/fin/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "#"
@@ -122,8 +120,8 @@ Morphology:
       inverse_tagsep: '+'
   hun:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/hun/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/hun/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/hun/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/hun/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -132,8 +130,8 @@ Morphology:
       inverse_tagsep: '+'
   rus:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/rus/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/rus/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/rus/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/rus/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -160,6 +158,7 @@ Languages:
 Dictionaries:
   - source: kpv
     target: eng
+    dict_source: multi
     path: 'dicts/kpv-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
@@ -206,6 +205,7 @@ Dictionaries:
 
   - source: kpv
     target: fin
+    dict_source: multi
     path: 'dicts/kpv-all.xml'
     input_variants: *KOMI_VARIANTS
     show_korp_search: True
@@ -216,11 +216,11 @@ Dictionaries:
 
   - source: fin
     target: kpv
-    path: 'dicts/finkpv.xml'
+    path: 'dicts/fin-kpv.xml'
 
   - source: kpv
     target: rus
-    path: 'dicts/kpvrus.xml'
+    path: 'dicts/kpv-rus.xml'
     show_korp_search: True
     is_korp_default_lang: True
     input_variants: *KOMI_VARIANTS
@@ -230,11 +230,11 @@ Dictionaries:
 
   - source: rus
     target: kpv
-    path: 'dicts/ruskpv.xml'
+    path: 'dicts/rus-kpv.xml'
 
   - source: udm
     target: hun
-    path: 'dicts/udmhun.xml'
+    path: 'dicts/udm-hun.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'UDM_WIKIPEDIA_20201209'
@@ -261,7 +261,7 @@ Dictionaries:
 
   - source: udm
     target: kpv
-    path: 'dicts/udmkpv.xml'
+    path: 'dicts/udm-kpv.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'UDM_WIKIPEDIA_20201209'
@@ -290,7 +290,7 @@ Dictionaries:
 
   - source: udm
     target: fin
-    path: 'dicts/udmfin.xml'
+    path: 'dicts/udm-fin.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'UDM_WIKIPEDIA_20201209'
@@ -309,20 +309,20 @@ Dictionaries:
 
   - source: est
     target: udm
-    path: 'dicts/estudm.xml'
+    path: 'dicts/est-udm.xml'
 
   - source: fin
     target: udm
-    path: 'dicts/finudm.xml'
+    path: 'dicts/fin-udm.xml'
 
   - source: hun
     target: udm
-    path: 'dicts/hunudm.xml'
+    path: 'dicts/hun-udm.xml'
 
   # koi
   - source: koi
     target: kpv
-    path: 'dicts/koikpv.xml'
+    path: 'dicts/koi-kpv.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     is_korp_default_lang: True
@@ -341,35 +341,36 @@ Dictionaries:
 
   - source: kpvM
     target: fin
+    dict_source: multi
     path: 'dicts/kpv-all.xml'
 
   - source: kpvM
     target: rus
-    path: 'dicts/kpvrus.xml'
+    path: 'dicts/kpv-rus.xml'
 
   - source: udmM
     target: hun
-    path: 'dicts/udmhun.xml'
+    path: 'dicts/udm-hun.xml'
 
   - source: kpvM
     target: udm
-    path: 'dicts/kpvudm.xml'
+    path: 'dicts/kpv-udm.xml'
 
   - source: udmM
     target: kpv
-    path: 'dicts/udmkpv.xml'
+    path: 'dicts/udm-kpv.xml'
 
   - source: udmM
     target: fin
-    path: 'dicts/udmfin.xml'
+    path: 'dicts/udm-fin.xml'
 
   - source: kpvM
     target: koi
-    path: 'dicts/kpvkoi.xml'
+    path: 'dicts/kpv-koi.xml'
 
   - source: koiM
     target: kpv
-    path: 'dicts/koikpv.xml'
+    path: 'dicts/koi-kpv.xml'
 
 ReaderConfig:
   Settings:

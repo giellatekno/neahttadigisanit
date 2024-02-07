@@ -22,19 +22,18 @@ ApplicationSettings:
   meta_keywords: >
      kven, olonets, olonetsian, karelian, russian
   admins_to_email:
-    - "anders.lorentsen@uit.no"
     - "trond.trosterud@uit.no"
+    - "anders.lorentsen@uit.no"
 
 Tools:
-  xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
   hfst_lookup: &HFST-LOOKUP '/bin/hfst-lookup'
-  opt: &OPT '/opt/smi/'
+  xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
 
 Morphology:
   olo:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/olo/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/olo/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/olo/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/olo/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -43,8 +42,8 @@ Morphology:
       inverse_tagsep: '+'
   fin:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/fin/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/fin/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/fin/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/fin/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "#"
@@ -53,8 +52,8 @@ Morphology:
       inverse_tagsep: '+'
   vep:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/vep/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/vep/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/vep/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/vep/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -63,8 +62,8 @@ Morphology:
       inverse_tagsep: '+'
   fkv:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/fkv/bin/analyser-gt-desc.hfstol']
-    inverse_file: [*OPT, '/fkv/bin/generator-gt-norm-dial_Por.hfstol']
+    file: '/opt/smi/fkv/bin/analyser-gt-desc.hfstol'
+    inverse_file: '/opt/smi/fkv/bin/generator-gt-norm-dial_Por.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Cmp#"
@@ -73,8 +72,8 @@ Morphology:
       inverse_tagsep: '+'
   nob:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/nob/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/nob/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/nob/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/nob/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "#"
@@ -83,8 +82,8 @@ Morphology:
       inverse_tagsep: '+'
   rus:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/rus/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/rus/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/rus/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/rus/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "#"
@@ -111,22 +110,25 @@ Dictionaries:
   # olo
   - source: olo
     target: fin
+    dict_source: multi
     path: 'dicts/olo-all.xml'
+
   - source: fin
     target: olo
-    path: 'dicts/finolo.xml'
+    path: 'dicts/fin-olo.xml'
 
   - source: olo
     target: rus
-    path: 'dicts/olorus.xml'
+    path: 'dicts/olo-rus.xml'
+
   - source: rus
     target: olo
-    path: 'dicts/rusolo.xml'
+    path: 'dicts/rus-olo.xml'
 
   # fkv
   - source: fkv
     target: nob
-    path: 'dicts/fkvnob.xml'
+    path: 'dicts/fkv-nob.xml'
     show_korp_search: True
     korp_search_host: &F_KORP "http://gtweb.uit.no/f_korp"
     is_korp_default_lang: True
@@ -144,7 +146,7 @@ Dictionaries:
 
   - source: nob
     target: fkv
-    path: 'dicts/nobfkv.xml'
+    path: 'dicts/nob-fkv.xml'
     show_korp_search: True
     is_korp_default_lang: True
     korp_parallel: True
@@ -160,6 +162,7 @@ Dictionaries:
   # vep
   - source: vep
     target: fin
+    dict_source: multi
     path: 'dicts/vep-all.xml'
     show_korp_search: True
     korp_search_host: *F_KORP
@@ -168,6 +171,7 @@ Dictionaries:
 
   - source: vep
     target: est
+    dict_source: multi
     path: 'dicts/vep-all.xml'
     show_korp_search: True
     korp_search_host: *F_KORP
@@ -176,12 +180,12 @@ Dictionaries:
 
   - source: nob
     target: fin
-    path: 'dicts/nobfin.xml'
+    path: 'dicts/nob-fin.xml'
     show_korp_search: False
 
   - source: fin
     target: nob
-    path: 'dicts/finnob.xml'
+    path: 'dicts/fin-nob.xml'
     show_korp_search: False
 
 ReaderConfig:

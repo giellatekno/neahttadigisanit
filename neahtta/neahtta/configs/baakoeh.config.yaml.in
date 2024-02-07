@@ -24,15 +24,17 @@ ApplicationSettings:
   admins_to_email:
     - "trond.trosterud@uit.no"
     - "lene.antonsen@uit.no"
+    - "anders.lorentsen@uit.no"
 
 # This option set is not used outside of providing shortcuts for
 # following settings.
 Tools:
   xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
-  hfst_lookup: &HFST-LOOKUP '/bin/hfst-lookup --beam=0' 
   # --beam=0 makes sure forms only the lowest weighted forms are generated 
   # This prevents forms with hyphens like åssjalommes+N+Sg+Acc åssja-lommesem
   # Make sure the generator is compiled with a backend supporting weights (openfst-tropical)
+  #hfst_lookup: &HFST-LOOKUP '/bin/hfst-lookup --beam=0' 
+  hfst_lookup: &HFST-LOOKUP '/bin/hfst-lookup'   # anders: bugged, tries to use whole string as cmd
   gthome: &GTHOME '/home/neahtta/gtsvn'
   opt: &OPT '/opt/smi'
 
@@ -42,8 +44,8 @@ Tools:
 Morphology:
   sma:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/sma/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/sma/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/sma/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/sma/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Cmp#"
@@ -58,8 +60,8 @@ Morphology:
       actio_tag: "Actio"
   nob:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/nob/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/nob/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/nob/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/nob/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: ["#", "#+Cmp+", "#+CmpS+"]
@@ -73,22 +75,20 @@ Languages:
   - iso: sma
     minority_lang: true
 
-
 # This also dictates the order of the dictionaries in the UI for now.
 Dictionaries:
-
   - source: sma
     target: nob
+    path: 'dicts/sma-nob.xml'
     autocomplete: true
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
-    path: 'dicts/sma-nob.all.xml'
     corpora: 'SMA_ADMIN_20211118,SMA_BIBLE_20211118,SMA_FACTA_20211118,SMA_FICTI_20211118,SMA_LAWS_20211118,SMA_NEWS_20211118,SMA_SCIENCE_20211118'
     start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
 
   - source: nob
     target: sma
-    path: 'dicts/nob-sma.all.xml'
+    path: 'dicts/nob-sma.xml'
     autocomplete: true
     show_korp_search: True
     is_korp_default_lang: True

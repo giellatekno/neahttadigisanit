@@ -17,15 +17,14 @@ ApplicationSettings:
       inari saami, inarisaame, enare samisk, mobile, dictionary, free
 
 Tools:
-  xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
   hfst_lookup: &HFST-LOOKUP '/bin/hfst-lookup'
-  opt: &OPT '/opt/smi/'
+  xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
 
 Morphology:
   smn:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/smn/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/smn/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/smn/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/smn/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Cmp#"
@@ -34,8 +33,8 @@ Morphology:
       inverse_tagsep: '+'
   smnM:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/smn/bin/analyser-dict-gt-desc-mobile.hfstol']
-    inverse_file: [*OPT, '/smn/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/smn/bin/analyser-dict-gt-desc-mobile.hfstol'
+    inverse_file: '/opt/smi/smn/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -44,8 +43,8 @@ Morphology:
       inverse_tagsep: '+'
   fin:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/fin/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/fin/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/fin/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/fin/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: ["#", "+Cmp#"]
@@ -54,8 +53,8 @@ Morphology:
       inverse_tagsep: '+'
   sme:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/sme/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/sme/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/sme/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/sme/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options: &sme_fst_options
       compoundBoundary: "+Cmp#"
@@ -73,7 +72,7 @@ Languages:
 Dictionaries:
   - source: smn
     target: fin
-    path: 'dicts/smnfin.xml'
+    path: 'dicts/smn-fin.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
     corpora: 'SMN_ADMIN_20211118,SMN_BIBLE_20211118,SMN_BLOGS_20211118,SMN_FACTA_20211118,SMN_FICTI_20211118,SMN_NEWS_20211118,SMN_SCIENCE_20211118,SMN_WIKIPEDIA_20211118'
@@ -91,7 +90,7 @@ Dictionaries:
 
   - source: fin
     target: smn
-    path: 'dicts/finsmn.xml'
+    path: 'dicts/fin-smn.xml'
     autocomplete: true
     show_korp_search: True
     is_korp_default_lang: True
@@ -103,7 +102,7 @@ Dictionaries:
 
   - source: smn
     target: sme
-    path: 'dicts/smnsme.xml'
+    path: 'dicts/smn-sme.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
     corpora: 'SMN_ADMIN_20211118,SMN_BIBLE_20211118,SMN_BLOGS_20211118,SMN_FACTA_20211118,SMN_FICTI_20211118,SMN_NEWS_20211118,SMN_SCIENCE_20211118,SMN_WIKIPEDIA_20211118'
@@ -121,7 +120,7 @@ Dictionaries:
 
   - source: sme
     target: smn
-    path: 'dicts/smesmn.xml'
+    path: 'dicts/sme-smn.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
     corpora: 'NOB2SME_ADMIN_20191210-NOB,NOB2SME_BIBLE_20191210-NOB,NOB2SME_FACTA_20191210-NOB,NOB2SME_SCIENCE_20191210-NOB,NOB2SME_LAWS_20191210-NOB,NOB2SME_MIXED_20191210-NOB,NOB2SME_ADMIN_20191210-SME,NOB2SME_BIBLE_20191210-SME,NOB2SME_FACTA_20191210-SME,NOB2SME_SCIENCE_20191210-SME,NOB2SME_LAWS_20191210-SME,NOB2SME_MIXED_20191210-SME'
@@ -129,11 +128,11 @@ Dictionaries:
 
   - source: smnM
     target: sme
-    path: 'dicts/smnsme.xml'
+    path: 'dicts/smn-sme.xml'
 
   - source: smnM
     target: fin
-    path: 'dicts/smnfin.xml'
+    path: 'dicts/smn-fin.xml'
 
 ReaderConfig:
   Settings:

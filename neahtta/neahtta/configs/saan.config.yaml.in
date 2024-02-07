@@ -17,18 +17,20 @@ ApplicationSettings:
       Free online, mobile friendly dictionaries for Skolt Saami
   meta_keywords: >
       skolt saami, koltansaame, mobile, dictionary, free, russian
+  admins_to_email:
+    - "trond.trosterud@uit.no"
+    - "anders.lorentsen@uit.no"
 
 Tools:
+  hfst_lookup: &HFST-LOOKUP '/bin/hfst-lookup'
   xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
-  hfst_lookup: &HFST-LOOKUP '/bin/hfst-optimized-lookup'
-  opt: &OPT '/opt/smi/'
 
 Morphology:
   sms:
-    tool: *HFST-LOOKUP
-    file: [*OPT, '/sms/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/sms/bin/generator-dict-gt-norm.hfstol']
-    format: 'hfst'
+    tool: *HFST_LOOKUP
+    file: "/opt/smi/sms/bin/analyser-dict-gt-desc.hfstol"
+    inverse_file: "/opt/smi/sms/bin/generator-dict-gt-norm.hfstol"
+    format: "hfst"
     options:
       compoundBoundary: "+Cmp#"
       derivationMarker: "+Der"
@@ -36,8 +38,8 @@ Morphology:
       inverse_tagsep: '+'
   smsM:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/sms/bin/analyser-dict-gt-desc-mobile.hfstol']
-    inverse_file: [*OPT, '/sms/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/sms/bin/analyser-dict-gt-desc-mobile.hfstol'
+    inverse_file: '/opt/smi/sms/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Cmp#"
@@ -46,8 +48,8 @@ Morphology:
       inverse_tagsep: '+'
   fin:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/fin/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/fin/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/fin/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/fin/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "#"
@@ -56,8 +58,8 @@ Morphology:
       inverse_tagsep: '+'
   nob:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/nob/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/nob/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/nob/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/nob/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: ["#", "#+Cmp+", "#+CmpS+", "+Use/Circ#"]
@@ -66,8 +68,8 @@ Morphology:
       inverse_tagsep: '+'
   rus:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/rus/bin/analyser-gt-desc.hfstol']
-    inverse_file: [*OPT, '/rus/bin/generator-gt-norm.hfstol']
+    file: '/opt/smi/rus/bin/analyser-gt-desc.hfstol'
+    inverse_file: '/opt/smi/rus/bin/generator-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -87,6 +89,7 @@ Languages:
 Dictionaries:
   - source: sms
     target: fin
+    dict_source: multi
     path: 'dicts/sms-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
@@ -126,6 +129,7 @@ Dictionaries:
 
   - source: sms
     target: eng
+    dict_source: multi
     path: 'dicts/sms-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
@@ -135,6 +139,7 @@ Dictionaries:
 
   - source: sms
     target: rus
+    dict_source: multi
     path: 'dicts/sms-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
@@ -144,6 +149,7 @@ Dictionaries:
 
   - source: sms
     target: nob
+    dict_source: multi
     path: 'dicts/sms-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
@@ -153,26 +159,29 @@ Dictionaries:
 
   - source: fin
     target: sms
-    path: 'dicts/finsms.xml'
+    path: 'dicts/fin-sms.xml'
 
   - source: nob
     target: sms
-    path: 'dicts/nobsms.xml'
+    path: 'dicts/nob-sms.xml'
 
   - source: rus
     target: sms
-    path: 'dicts/russms.xml'
+    path: 'dicts/rus-sms.xml'
 
   - source: smsM
     target: fin
+    dict_source: multi
     path: 'dicts/sms-all.xml'
 
   - source: smsM
     target: nob
+    dict_source: multi
     path: 'dicts/sms-all.xml'
 
   - source: smsM
     target: rus
+    dict_source: multi
     path: 'dicts/sms-all.xml'
 
 ReaderConfig:

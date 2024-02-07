@@ -1,5 +1,7 @@
 # About configs
 
+**Obsolete!**: Anders: A lot of information in this file is obsolete / unusued!
+
 Because paths in the configs likely must change depending on the place the
 service is running, the .in files are the only things checked in. Make a copy
 and change the necessary paths to FSTs and such, and run the service with that.
@@ -23,7 +25,6 @@ to which a new language pair is being added.
 **Intended**: Programmers
 
 #### FSTs
-
 
 
 All languages are in github, and use the `$GTLANGS/lang-LANG`

@@ -24,13 +24,12 @@ ApplicationSettings:
   admins_to_email:
     - "trond.trosterud@uit.no"
     - "tty001@uit.no"
+    - "anders.lorentsen@uit.no"
 
 # This option set is not used outside of providing shortcuts for
 # following settings.
 Tools:
-  xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
   hfst_lookup: &HFST-LOOKUP '/bin/hfst-lookup'
-  opt: &OPT '/opt/smi'
 
 # Morphological system definitions. Since YAML variables aren't able to
 # be used in concatenating strings, certain paths with references must
@@ -38,8 +37,8 @@ Tools:
 Morphology:
   sjd:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/sjd/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/sjd/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/sjd/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/sjd/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: ["#", "+Cmp#"]
@@ -48,8 +47,8 @@ Morphology:
       inverse_tagsep: '+'
   sjdM:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/sjd/bin/analyser-dict-gt-desc-mobile.hfstol']
-    inverse_file: [*OPT, '/sjd/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/sjd/bin/analyser-dict-gt-desc-mobile.hfstol'
+    inverse_file: '/opt/smi/sjd/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: ["#", "+Cmp#"]
@@ -58,8 +57,8 @@ Morphology:
       inverse_tagsep: '+'
   rus:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/rus/bin/analyser-gt-desc-only_base_forms.hfstol']
-    inverse_file: [*OPT, '/rus/dummy/generator-gt-norm.hfstol']
+    file: '/opt/smi/rus/bin/analyser-gt-desc-only_base_forms.hfstol'
+    inverse_file: '/opt/smi/rus/dummy/generator-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -79,9 +78,9 @@ Dictionaries:
 
   - source: sjd
     target: rus
+    path: 'dicts/sjd-rus.xml'
     autocomplete: true
     show_korp_search: False
-    path: 'dicts/sjd-rus.xml'
     input_variants: &spell_relax_sjd
       - type: "standard"
         description: !gettext "Standard"
@@ -112,15 +111,15 @@ Dictionaries:
 
   - source: rus
     target: sjd
+    path: 'dicts/rus-sjd.xml'
     autocomplete: true
     show_korp_search: False
-    path: 'dicts/rus-sjd.xml'
 
   - source: sjdM
     target: rus
+    path: 'dicts/sjd-rus.xml'
     autocomplete: true
     show_korp_search: False
-    path: 'dicts/sjd-rus.xml'
 
 ReaderConfig:
   Settings:

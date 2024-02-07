@@ -25,15 +25,13 @@ ApplicationSettings:
     - "trond.trosterud@uit.no"
 
 Tools:
-  xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
-  hfst_lookup: &HFST-LOOKUP '/bin/hfst-optimized-lookup'
-  opt: &OPT '/opt/smi/'
+  hfst_lookup: &HFST-LOOKUP '/bin/hfst-lookup'
 
 Morphology:
   fin:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/fin/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/fin/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/fin/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/fin/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "#"
@@ -42,8 +40,8 @@ Morphology:
       inverse_tagsep: '+'
   est:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/est/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/est/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/est/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/est/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "#"
@@ -52,8 +50,8 @@ Morphology:
       inverse_tagsep: '+'
   liv:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/liv/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/liv/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/liv/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/liv/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -62,8 +60,8 @@ Morphology:
       inverse_tagsep: '+'
   lav:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/lav/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/lav/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/lav/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/lav/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -72,8 +70,8 @@ Morphology:
       inverse_tagsep: '+'
   livM:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/liv/bin/analyser-dict-gt-desc-mobile.hfstol']
-    inverse_file: [*OPT, '/liv/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/liv/bin/analyser-dict-gt-desc-mobile.hfstol'
+    inverse_file: '/opt/smi/liv/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -82,8 +80,8 @@ Morphology:
       inverse_tagsep: '+'
   izh:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/izh/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/izh/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/izh/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/izh/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -92,8 +90,8 @@ Morphology:
       inverse_tagsep: '+'
   vro:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/vro/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/vro/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/vro/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/vro/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Cmp#"
@@ -102,8 +100,8 @@ Morphology:
       inverse_tagsep: '+'
   vot:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/vot/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/vot/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/vot/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/vot/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -112,8 +110,8 @@ Morphology:
       inverse_tagsep: '+'
   rus:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/rus/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/rus/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/rus/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/rus/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -150,6 +148,7 @@ Dictionaries:
   # liv
   - source: liv
     target: fin
+    dict_source: multi
     path: 'dicts/liv-all.xml'
     input_variants: &liv_variants
       - type: "standard"
@@ -164,34 +163,38 @@ Dictionaries:
 
   - source: fin
     target: liv
-    path: 'dicts/finliv.xml'
+    path: 'dicts/fin-liv.xml'
 
   - source: liv
     target: est
+    dict_source: multi
     path: 'dicts/liv-all.xml'
     input_variants: *liv_variants
 
   - source: liv
     target: lav
+    dict_source: multi
     path: 'dicts/liv-all.xml'
     input_variants: *liv_variants
 
   - source: lav
     target: liv
-    path: 'dicts/lavliv.xml'
+    path: 'dicts/lav-liv.xml'
 
   # izh
   - source: izh
     target: fin
+    dict_source: multi
     path: 'dicts/izh-all.xml'
 
   - source: fin
     target: izh
-    path: 'dicts/finizh.xml'
+    path: 'dicts/fin-izh.xml'
 
   # vro
   - source: vro
     target: est
+    dict_source: multi
     path: 'dicts/vro-all.xml'
     show_korp_search: True
     korp_search_host: &F_KORP "http://gtweb.uit.no/f_korp"
@@ -200,6 +203,7 @@ Dictionaries:
 
   - source: vro
     target: fin
+    dict_source: multi
     path: 'dicts/vro-all.xml'
     show_korp_search: True
     korp_search_host: *F_KORP
@@ -209,30 +213,31 @@ Dictionaries:
   # vot
   - source: vot
     target: est
+    dict_source: multi
     path: 'dicts/vot-all.xml'
 
   - source: vot
     target: fin
+    dict_source: multi
     path: 'dicts/vot-all.xml'
 
   - source: vot
     target: rus
-    path: 'dicts/votrus.xml'
+    path: 'dicts/vot-rus.xml'
 
   - source: rus
     target: vot
-    path: 'dicts/rusvot.xml'
+    path: 'dicts/rus-vot.xml'
 
 
   # lav
   - source: lav
     target: fin
-    path: 'dicts/lavfin.xml'
+    path: 'dicts/lav-fin.xml'
 
   - source: fin
     target: lav
-    path: 'dicts/finlav.xml'
-
+    path: 'dicts/fin-lav.xml'
 
 
 ReaderConfig:

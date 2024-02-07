@@ -14,6 +14,7 @@ import subprocess
 import sys
 from datetime import datetime
 from pathlib import Path
+from functools import partial
 
 from termcolor import colored
 
@@ -34,6 +35,10 @@ Update a dictionary:
 Adding stem to smenob:
     $ fab add-stem
 """
+
+RED = partial(colored, color="red")
+GREEN = partial(colored, color="green")
+CYAN = partial(colored, color="cyan")
 
 PROD_HOSTNAME = "gtdict.uit.no"
 HOSTNAME = socket.gethostname()
@@ -190,53 +195,78 @@ def compile_dicts(project, force=None):
 
     print(f"** Compiling dictionaries for {project}...")
     config = Config(".")
-    # anders: path change
     config.from_yamlfile(f"neahtta/configs/{project}.config.yaml")
 
     # see comment in update_dicts()
     if project == "sanj":
         raise NotImplementedError("custom script needed to compile sanj")
     if project == "bahkogirrje":
-        raise NotImplementedError("dictionary sje-mul - must be handled")
+        raise NotImplementedError("custom needed to compile bahkogirrje?")
 
-    dictionaries = dicts_from_config(config)
+    giellalt_dir = Path(GUTROOT) / "giellalt"
 
+    processed = []
     n = 0
+    n_no_updates = 0
+    not_found = []
 
-    for name in dictionaries:
-        sources = Path(GUTROOT) / "giellalt" / f"dict-{name}" / "src"
-        # anders: path change
-        compiled_file = Path("neahtta") / "dicts" / f"{name}.all.xml"
+    for dict_entry in config.yaml["Dictionaries"]:
+        source = dict_entry["source"]
+        target = dict_entry["target"]
+        is_multi = dict_entry.get("dict_source", "") == "multi"
+        compiled_file = Path("neahtta") / Path(dict_entry["path"])
+
+        if is_multi:
+            sources = giellalt_dir / f"dict-{source}-mul" / "src"
+        else:
+            sources = giellalt_dir / f"dict-{source}-{target}" / "src"
+
+        print(
+            f"** Merge dictionary {source}-{target} > {compiled_file}... ",
+            flush=True,
+            end="",
+        )
+
+        if compiled_file in processed:
+            print(CYAN("skipped"), "(already processed)")
+            continue
+
+        processed.append(compiled_file)
+
+        if not sources.is_dir():
+            print(RED("failed"), "(source directory not found)")
+            not_found.append(sources.resolve())
+            continue
 
         if not needs_update(sources, compiled_file) and not force:
-            print(
-                f"** Skipping merge of dictionary {colored(name, 'cyan')} "
-                "(existing file is newer than sources, use --force to "
-                "force re-creation regardless)"
-            )
+            print(CYAN("skipped"), "(no updates)")
+            n_no_updates += 1
         elif force or needs_update(sources, compiled_file):
-            n += 1
-            print(
-                f"** Merge dictionary {colored(name, 'cyan')} > dicts/"
-                f"{compiled_file.name}... ",
-                end="",
-                flush=True,
-            )
             try:
-                n_entries = merge_giella_dicts(sources, compiled_file)
+                n_entries = merge_giella_dicts(sources, compiled_file.resolve())
             except (FileNotFoundError, NotADirectoryError) as e:
-                print(colored(f"failed ({e})", "red"))
+                print(RED(f"failed ({e})"))
             else:
-                print(colored("done", "green"), f"({n_entries} entries total)")
+                n += 1
+                print(GREEN("done"), f"({n_entries} entries total)")
 
-    if n == 0:
+    if not_found:
+        print("\n" + RED("Errors:"))
+        print("The following source directories were not found:")
+        for directory in not_found:
+            print(directory)
+
+    if n_no_updates > 0:
         print(
-            "No dictionaries were compiled (all existing built files were "
-            "newer than the sources)\n"
-            "Hint: If you recently pushed new dictionary sources, remember "
-            "to do an `update` here, before compiling.\n"
-            "Hint: If you want to force re-creation without checking "
-            "modification times, do `fab compile <project> --force"
+            f"\n{n_no_updates} dictionaries were skipped because the existing "
+            "built dictionary file is newer than the xml source files.\n\n"
+            "Hint: To force rebuilding all dictionaries without checking "
+            "modification times, run:\n"
+            f"  fab compile {project} -f    (or: fab compile {project} --force)\n"
+            f"Hint: If you expected updates to happen, try to update the "
+            "underlying git repositories of the dictionaries, by running:\n"
+            f"  fab update {project}\n"
+            f"...then re-run this command (fab compile {project})"
         )
 
 

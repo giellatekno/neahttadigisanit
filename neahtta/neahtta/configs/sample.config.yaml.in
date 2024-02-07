@@ -1,5 +1,9 @@
 # This is a sample configuration file, with some actual values to give a
 # sense of what should be provided.
+#
+# It is the (more) human-readable version of the same descriptions as is
+# found in config_schema.json (but config_schema is used for programmatically
+# verifying configuration files).
 
 # As a general note, if any strings provided here need to be localized
 # to individual project locales, they must be marked with the !gettext
@@ -98,22 +102,42 @@ Tools:
 Morphology:
   # This is the default setup for sme.
   sme:
+    # String.
+    # When format (below) is "hfst" or "xfst", NDS uses an external program
+    # to do queries against the language model files (field "file" and
+    # "inverse_file"). If the format is selected as "pyhfst", this field is
+    # ignored.
     tool: *LOOKUP
-    file: [*OPT, '/sme/bin/analyser-dict-gt-desc.xfst']
-    inverse_file: [*OPT, '/sme/bin/generator-dict-gt-norm.xfst']
-    format: 'xfst'
+    # String. Absolute path to the analysis file
+    file: '/opt/smi/sme/bin/analyser-dict-gt-desc.xfst'
+    # String. Absolute path to the generator file
+    inverse_file: [*OPT, '/sme/bin/generator-dict-gt-norm.xfst'
+    # String. Either "hfst", "xfst", or "pyhfst". Using "pyhfst" requires that
+    # the package is installed with the "pyhfst" extra dependency (see readme).
+    # "pyhfst" uses the native python bindings to the hfst library directly,
+    # to do queries against the language model files, instead of shelling out.
+    # Therefore, if "pyhfst" is selected, the "tool" field is ignored. Note
+    # that using "pyhfst" will use more memory, but that queries against
+    # language models will be quite significantly faster. "pyhfst" cannot be
+    # used on the server, for now (python bindings to libhfst aren't built for
+    # targets with an old libc version, like our server...)
+    format: 'hfst'
     options: &sme_fst_options
-      compoundBoundary: "+Cmp#"     # A string that separates compounds in analyses
-      derivationMarker: "+Der"      # A string that marks words as derivations
-      tagsep: '+'                   # The character that separates parts of a tag
-      inverse_tagsep: '+'           # The character that separates parts of a tag in the inverse analyser
+      # A string that separates compounds in analyses
+      compoundBoundary: "+Cmp#"
+      # A string that marks words as derivations
+      derivationMarker: "+Der"
+      # The character that separates parts of a tag
+      tagsep: '+'
+      # The character that separates parts of a tag in the inverse analyser
+      inverse_tagsep: '+'
 
   # This is an example of an input variant. Here we use a different analyzer,
   # but the same generator. Also, `options` are copied from above.
   SoMe:
     tool: *LOOKUP
-    file: [*OPT, '/sme/bin/analyser-dict-gt-desc-mobile.xfst']
-    inverse_file: [*OPT, '/sme/bin/generator-dict-gt-norm.xfst']
+    file: '/opt/smi/sme/bin/analyser-dict-gt-desc-mobile.xfst'
+    inverse_file: '/opt/smi/sme/bin/generator-dict-gt-norm.xfst'
     format: 'xfst'
     options:
       <<: *sme_fst_options
@@ -154,9 +178,13 @@ Languages:
 # and Korp integration. A minimal example follows in the next definition.
 #
 Dictionaries:
+  # notice the starting "-" "Dictionaries" is an array of objects.
+    # String. Source language of the dictionary. 3-letter iso-code.
   - source: sme
+    # String. Target language of the dictionary. 3-letter iso-code.
     target: nob
-    path: 'dicts/sme-nob.all.xml'
+    # String. Relative path to the built dictionary file.
+    path: 'dicts/sme-nob.xml'
     input_variants:
       # "standard" and "mobile" are special values, otherwise templates and
       # swapping on mobile devices won't work
@@ -174,8 +202,6 @@ Dictionaries:
         example: !gettext "(incl. <em>acdnstz</em>)"
         # This is the name for the analyzer (defined in Morphology)
         short_name: "SoMe"
-
-        # "
 
     # Following are some optional settings for integration with Korp.
     # default is False
@@ -209,7 +235,18 @@ Dictionaries:
   # This is the most minimal example of what is needed.
   - source: nob
     target: sme
-    path: 'dicts/nob-sme.all.xml'
+    path: 'dicts/nob-sme.xml'
+
+  # Some dictionaries are built from dict-SOURCE-mul, instead of
+  # dict-SOURCE-TARGET. They start with the same source and target language
+  # codes.
+  - source: kpv
+    target: eng
+    # They then have this key, with this exact string value, to indicate that
+    # they are built from dict-SOURCE-mul, instead of dict-SOURCE-TARGET.
+    dict_source: multi
+    # They are conventially given the name "SOURCE-all.xml"
+    path: "dicts/kpv-all.xml"
 
 # Everything after this point is optional. You may delete them if you do not
 # need them.

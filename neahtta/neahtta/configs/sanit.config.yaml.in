@@ -25,6 +25,7 @@ ApplicationSettings:
   admins_to_email:
     - "trond.trosterud@uit.no"
     - "lene.antonsen@uit.no"
+    - "anders.lorentsen@uit.no"
 
 UnitTests:
  - "tests.sme_lexicon"
@@ -33,25 +34,17 @@ UnitTests:
 # This option set is not used outside of providing shortcuts for
 # following settings.
 Tools:
-  xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
   hfst_lookup: &HFST-LOOKUP '/bin/hfst-lookup'
-  opt: &OPT '/opt/smi'
 
-# Morphological system definitions. Since YAML variables aren't able to
-# be used in concatenating strings, certain paths with references must
-# be lists. These are concatenated automatically.
+# Morphological system definitions. (anders: compiled language model files
 Morphology:
   sme:
-    #tool: *LOOKUP
-    #file: [*OPT, '/sme/bin/analyser-dict-gt-desc.xfst']
-    #inverse_file: [*OPT, '/sme/bin/generator-dict-gt-norm.xfst']
-    #format: 'xfst'
     tool: *HFST-LOOKUP
-    file: [*OPT, '/sme/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/sme/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/sme/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/sme/bin/generator-dict-gt-norm.hfstol'
     # An alternate new format 'pyhfst' uses the python hfst library and 
     # preloads the FSTs. This uses more memory when the lookup is not 
-    # running, but reduces processing time significantly.
+    # running, but reduces processing time quite a bit.
     format: 'hfst'
     options: &sme_fst_options
       compoundBoundary: "+Cmp#"
@@ -66,15 +59,15 @@ Morphology:
       actio_tag: "Actio"
   SoMe:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/sme/bin/analyser-dict-gt-desc-mobile.hfstol']
-    inverse_file: [*OPT, '/sme/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/sme/bin/analyser-dict-gt-desc-mobile.hfstol'
+    inverse_file: '/opt/smi/sme/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       <<: *sme_fst_options
   nob:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/nob/bin/analyser-dict-gt-desc-mobile.hfstol']
-    inverse_file: [*OPT, '/nob/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/nob/bin/analyser-dict-gt-desc-mobile.hfstol'
+    inverse_file: '/opt/smi/nob/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: ["#", "#+Cmp+", "#+CmpS+", "+Cmp#"]
@@ -83,8 +76,8 @@ Morphology:
       inverse_tagsep: '+'
   fin:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/fin/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/fin/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/fin/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/fin/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: ["#", "+Cmp#"]
@@ -93,8 +86,8 @@ Morphology:
       inverse_tagsep: '+'
   spa:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/spa/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/spa/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/spa/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/spa/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "#"
@@ -117,7 +110,7 @@ Dictionaries:
 
   - source: sme
     target: nob
-    path: 'dicts/sme-nob.all.xml'
+    path: 'dicts/sme-nob.xml'
     autocomplete: true
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
@@ -152,7 +145,7 @@ Dictionaries:
 
   - source: SoMe
     target: nob
-    path: 'dicts/sme-nob.all.xml'
+    path: 'dicts/sme-nob.xml'
     autocomplete: true
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
@@ -162,7 +155,7 @@ Dictionaries:
 
   - source: nob
     target: sme
-    path: 'dicts/nob-sme.all.xml'
+    path: 'dicts/nob-sme.xml'
     autocomplete: true
     show_korp_search: True
     is_korp_default_lang: True
@@ -174,7 +167,7 @@ Dictionaries:
 
   - source: sme
     target: fin
-    path: 'dicts/sme-fin.all.xml'
+    path: 'dicts/sme-fin.xml'
     autocomplete: true
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
@@ -195,7 +188,7 @@ Dictionaries:
 
   - source: SoMe
     target: fin
-    path: 'dicts/sme-fin.all.xml'
+    path: 'dicts/sme-fin.xml'
     autocomplete: True
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
@@ -205,17 +198,18 @@ Dictionaries:
 
   - source: fin
     target: sme
-    path: 'dicts/fin-sme.all.xml'
+    path: 'dicts/fin-sme.xml'
     autocomplete: true
 
-  - source: spa
-    target: sme
-    path: 'dicts/spasme.xml'
-    autocomplete: true
+  # anders: Need custom script to build this from excel source file!
+  #- source: spa
+  #  target: sme
+  #  path: 'dicts/spasme.xml'
+  #  autocomplete: true
 
   - source: sme
     target: spa
-    path: 'dicts/smespa.xml'
+    path: 'dicts/sme-spa.xml'
     autocomplete: false
 
 ReaderConfig:

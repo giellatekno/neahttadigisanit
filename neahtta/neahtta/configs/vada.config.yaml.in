@@ -22,15 +22,13 @@ ApplicationSettings:
     - "trond.trosterud@uit.no"
 
 Tools:
-  xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
   hfst_lookup: &HFST-LOOKUP '/bin/hfst-lookup'
-  opt: &OPT '/opt/smi/'
 
 Morphology:
   yrk:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/yrk/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/yrk/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/yrk/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/yrk/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -39,8 +37,8 @@ Morphology:
       inverse_tagsep: '+'
   mns:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/mns/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/mns/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/mns/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/mns/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -49,8 +47,8 @@ Morphology:
       inverse_tagsep: '+'
   fin:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/fin/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/fin/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/fin/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/fin/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -71,23 +69,25 @@ Languages:
 Dictionaries:
   - source: yrk
     target: eng
+    dict_source: multi
     path: 'dicts/yrk-all.xml'
 
   - source: yrk
     target: fin
+    dict_source: multi
     path: 'dicts/yrk-all.xml'
 
   - source: fin
     target: yrk
-    path: 'dicts/finyrk.xml'
+    path: 'dicts/fin-yrk.xml'
 
   - source: mns
     target: hun
-    path: 'dicts/mnshun.xml'
+    path: 'dicts/mns-hun.xml'
 
   - source: mns
     target: rus
-    path: 'dicts/mnshun.xml'
+    path: 'dicts/mns-hun.xml'
 
 ReaderConfig:
   Settings:

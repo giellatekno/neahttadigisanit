@@ -23,17 +23,19 @@ ApplicationSettings:
   admins_to_email:
     - "rueter.jack@gmail.com"
     - "trond.trosterud@uit.no"
+    - "anders.lorentsen@uit.no"
 
 Tools:
   xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
-  hfst_lookup: &HFST-LOOKUP '/bin/hfst-optimized-lookup -q'
+  #hfst_lookup: &HFST-LOOKUP '/bin/hfst-optimized-lookup -q'
+  hfst_lookup: &HFST-LOOKUP '/bin/hfst-lookup'
   opt: &OPT '/opt/smi/'
 
 Morphology:
   mrj:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/mrj/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/mrj/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/mrj/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/mrj/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -42,8 +44,8 @@ Morphology:
       inverse_tagsep: '+'
   mhr:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/mhr/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/mhr/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/mhr/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/mhr/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -52,8 +54,8 @@ Morphology:
       inverse_tagsep: '+'
   fin:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/fin/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/fin/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/fin/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/fin/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "#"
@@ -63,9 +65,9 @@ Morphology:
 
   rus:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/rus/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/rus/bin/generator-dict-gt-norm.hfstol']
-    format: 'xfst'
+    file: '/opt/smi/rus/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/rus/bin/generator-dict-gt-norm.hfstol'
+    format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
       derivationMarker: "+Der"
@@ -84,10 +86,11 @@ Languages:
 Dictionaries:
   - source: fin
     target: mrj
-    path: 'dicts/finmrj.xml'
+    path: 'dicts/fin-mrj.xml'
 
   - source: mrj
     target: fin
+    dict_source: multi
     path: 'dicts/mrj-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
@@ -96,7 +99,7 @@ Dictionaries:
 
   - source: mrj
     target: mhr
-    path: 'dicts/mrjmhr.xml'
+    path: 'dicts/mrj-mhr.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'MRJ_FACTA_20201209,MRJ_NEWS_20201209,MRJ_WIKIPEDIA_20201209,MRJ_LAWS_20201209,MRJ_SCIENCE_20201209'
@@ -104,7 +107,7 @@ Dictionaries:
 
   - source: mrj
     target: rus
-    path: 'dicts/mrjrus.xml'
+    path: 'dicts/mrj-rus.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'MRJ_FACTA_20201209,MRJ_NEWS_20201209,MRJ_WIKIPEDIA_20201209,MRJ_LAWS_20201209,MRJ_SCIENCE_20201209'
@@ -112,7 +115,7 @@ Dictionaries:
 
   - source: mhr
     target: mrj
-    path: 'dicts/mhrmrj.xml'
+    path: 'dicts/mhr-mrj.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora:
@@ -121,6 +124,7 @@ Dictionaries:
 
   - source: mhr
     target: fin
+    dict_source: multi
     path: 'dicts/mhr-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
@@ -129,7 +133,7 @@ Dictionaries:
 
   - source: mhr
     target: rus
-    path: 'dicts/mhrrus.xml'
+    path: 'dicts/mhr-rus.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'MHR_FACTA_20201209,MHR_LAWS_20201209,MHR_SCIENCE_20201209,MHR_FICTI_20201209,MHR_NEWS_20201209,MHR_WIKIPEDIA_20201209'
@@ -137,6 +141,7 @@ Dictionaries:
 
   - source: mhr
     target: eng
+    dict_source: multi
     path: 'dicts/mhr-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"

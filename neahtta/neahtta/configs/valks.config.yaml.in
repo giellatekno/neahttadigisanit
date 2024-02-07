@@ -28,15 +28,13 @@ ApplicationSettings:
     - "trond.trosterud@uit.no"
 
 Tools:
-  xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
-  hfst_lookup: &HFST-LOOKUP '/bin/hfst-optimized-lookup'
-  opt: &OPT '/opt/smi/'
+  hfst_lookup: &HFST-LOOKUP '/bin/hfst-lookup'
 
 Morphology:
   myv:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/myv/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/myv/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/myv/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/myv/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Cmp#"
@@ -45,8 +43,8 @@ Morphology:
       inverse_tagsep: '+'
   mdf:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/mdf/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/mdf/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/mdf/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/mdf/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -55,8 +53,8 @@ Morphology:
       inverse_tagsep: '+'
   est:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/est/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/est/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/est/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/est/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "#"
@@ -65,8 +63,8 @@ Morphology:
       inverse_tagsep: '+'
   fin:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/fin/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/fin/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/fin/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/fin/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -75,8 +73,8 @@ Morphology:
       inverse_tagsep: '+'
   deu:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/deu/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/deu/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/deu/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/deu/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -85,8 +83,8 @@ Morphology:
       inverse_tagsep: '+'
   rus:
     tool: *HFST-LOOKUP
-    file: [*OPT, '/rus/bin/analyser-dict-gt-desc.hfstol']
-    inverse_file: [*OPT, '/rus/bin/generator-dict-gt-norm.hfstol']
+    file: '/opt/smi/rus/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/rus/bin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -111,6 +109,7 @@ Languages:
 Dictionaries:
   - source: myv
     target: fin
+    dict_source: multi
     path: 'dicts/myv-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
@@ -119,11 +118,11 @@ Dictionaries:
 
   - source: fin
     target: myv
-    path: 'dicts/finmyv.xml'
+    path: 'dicts/fin-myv.xml'
 
   - source: myv
     target: est
-    path: 'dicts/myvest.xml'
+    path: 'dicts/myv-est.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'MYV_WIKIPEDIA_20201209,MYV_FICTI_20201209,MYV_NEWS_20201209'
@@ -131,10 +130,11 @@ Dictionaries:
 
   - source: est
     target: myv
-    path: 'dicts/estmyv.xml'
+    path: 'dicts/est-myv.xml'
 
   - source: myv
     target: rus
+    dict_source: multi
     path: 'dicts/myv-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
@@ -143,7 +143,7 @@ Dictionaries:
 
   - source: myv
     target: eng
-    path: 'dicts/myveng.xml'
+    path: 'dicts/myv-eng.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'MYV_WIKIPEDIA_20201209,MYV_FICTI_20201209,MYV_NEWS_20201209'
@@ -151,7 +151,7 @@ Dictionaries:
 
   - source: myv
     target: deu
-    path: 'dicts/myvdeu.xml'
+    path: 'dicts/myv-deu.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'MYV_WIKIPEDIA_20201209,MYV_FICTI_20201209,MYV_NEWS_20201209'
@@ -159,6 +159,7 @@ Dictionaries:
 
   - source: myv
     target: fra
+    dict_source: multi
     path: 'dicts/myv-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
@@ -167,6 +168,7 @@ Dictionaries:
 
   - source: mdf
     target: fin
+    dict_source: multi
     path: 'dicts/mdf-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
@@ -175,7 +177,7 @@ Dictionaries:
 
   - source: mdf
     target: rus
-    path: 'dicts/mdfrus.xml'
+    path: 'dicts/mdf-rus.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'MDF_WIKIPEDIA_20201209,MDF_NEWS_20201209'
@@ -183,7 +185,7 @@ Dictionaries:
 
   - source: mdf
     target: myv
-    path: 'dicts/mdfmyv.xml'
+    path: 'dicts/mdf-myv.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'MDF_WIKIPEDIA_20201209,MDF_NEWS_20201209'
@@ -191,31 +193,31 @@ Dictionaries:
 
   - source: deu
     target: myv
-    path: 'dicts/deumyv.xml'
+    path: 'dicts/deu-myv.xml'
 
   - source: eng
     target: myv
-    path: 'dicts/engmyv.xml'
+    path: 'dicts/eng-myv.xml'
 
   - source: rus
     target: myv
-    path: 'dicts/rusmyv.xml'
+    path: 'dicts/rus-myv.xml'
 
   - source: eng
     target: mdf
-    path: 'dicts/engmdf.xml'
+    path: 'dicts/eng-mdf.xml'
 
   - source: fin
     target: mdf
-    path: 'dicts/finmdf.xml'
+    path: 'dicts/fin-mdf.xml'
 
   - source: rus
     target: mdf
-    path: 'dicts/rusmdf.xml'
+    path: 'dicts/rus-mdf.xml'
 
   - source: mdf
     target: eng
-    path: 'dicts/mdfeng.xml'
+    path: 'dicts/mdf-eng.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'MDF_WIKIPEDIA_20201209,MDF_NEWS_20201209'
@@ -223,6 +225,7 @@ Dictionaries:
 
   - source: mdf
     target: fra
+    dict_source: multi
     path: 'dicts/mdf-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"

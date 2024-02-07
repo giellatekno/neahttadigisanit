@@ -114,11 +114,16 @@
                       "description": "Target language of the dictionary. That is, in 'xxx -> yyy' notation, the 'yyy' language.",
                       "type": "string"
                   },
+                  "dict_source": {
+                      "description": "If the dictionary source xml files reside in dict-SOURCE-mul, instead of dict-SOURCE-TARGET, set this field to 'multi'. Otherwise, leave out the field completely.",
+                      "type": "string"
+                  },
                   "path": {
-                      "description": "Path to the fully merged dictionary, in xml format.",
+                      "description": "Path to the built merged dictionary, in xml format. The convention we use, is that dictionaries built from dict-SOURCE-TARGET will be named SOURCE-TARGET.xml, while dictionaries with dict_source: 'multi', is called 'SOURCE-all.xml'",
                       "type": "string",
                       "examples": [
-                          "dicts/sme-nob.all.xml"
+                          "dicts/sme-nob.xml",
+                          "dicts/mhr-all.xml"
                       ]
                   },
                   "autocomplete": {
