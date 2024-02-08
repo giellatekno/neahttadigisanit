@@ -159,6 +159,10 @@ Dictionaries:
   - source: fit
     target: swe
     path: "dicts/fit-swe.xml"
+    show_korp_search: True
+    korp_search_host: *F_KORP
+    corpora: "fit_admin_20210319,fit_bible_20210319,fit_facta_20210319,fit_ficti_20210319,fit_news_20210319,fit_laws_20210319,fit_science_20210319"
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?mode=fit,command=query&corpus='
 
   - source: swe
     target: fit
