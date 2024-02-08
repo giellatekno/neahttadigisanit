@@ -15,7 +15,7 @@
 
   {% if _from == 'sme' or _from == 'SoMe'%}
     {% set lang_code = 45 %}
-  {% elif _from == 'fin' %}
+  {% elif _from == 'fin' or _from == 'fit' %}
     {% set lang_code = 29 %}
   {% elif _from == 'sma' %}
     {% set lang_code = 41 %}
