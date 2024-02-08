@@ -181,7 +181,11 @@ def needs_update(sources: Path, compiled_file: Path):
     if not compiled_file.exists():
         return True
 
-    last_source_mtime = max(file.stat().st_mtime for file in sources.iterdir())
+    last_source_mtime = max(
+        file.stat(follow_symlinks=False).st_mtime
+        for file in sources.iterdir()
+        if file.suffix == ".xml"
+    )
     last_compiled_file_mtime = compiled_file.stat().st_mtime
 
     return last_source_mtime > last_compiled_file_mtime
@@ -193,6 +197,18 @@ def compile_dicts(project, force=None):
     the source directory, that dictionary will be skipped. Use --force to
     override this, and always generate new dictionaries."""
 
+    if project == "all":
+        for project in sorted(available_projects()):
+            try:
+                _compile_dicts(project, force=force)
+                print()
+            except NotImplementedError:
+                print("TODO!")
+    else:
+        _compile_dicts(project, force=force)
+
+
+def _compile_dicts(project, force=None):
     print(f"** Compiling dictionaries for {project}...")
     config = Config(".")
     config.from_yamlfile(f"neahtta/configs/{project}.config.yaml")
@@ -398,11 +414,11 @@ def add_stem():
     for lexc in "nouns", "adjectives", "verbs", "prop":
         cmd = ["python", str(script_path), lexc, str(stemtypes_txt_path(lexc))]
         if lexc != "prop":
-            cmd.append("neahtta/dicts/sme-nob.all.xml")
+            cmd.append("neahtta/dicts/sme-nob.xml")
             cmd.append(str(_find_in_repo(f"lang-sme/src/fst/stems/{lexc}.lexc")))
         else:
             cmd.append(str(stemtypes_txt_path(lexc)))
-            cmd.append("neahtta/dicts/sme-nob.all.xml")
+            cmd.append("neahtta/dicts/sme-nob.xml")
             cmd.append(
                 str(_find_in_repo("lang-sme/src/fst/stems/sme-propernouns.lexc"))
             )
@@ -422,9 +438,7 @@ def add_stem():
 
         # this happens on every iteration of the loop, but that's how
         # the original code had it
-        shutil.copy2(
-            "neahtta/dicts/sme-nob.all.xml.stem.xml", "neahtta/dicts/sme-nob.all.xml"
-        )
+        shutil.copy2("neahtta/dicts/sme-nob.xml.stem.xml", "neahtta/dicts/sme-nob.xml")
 
 
 def strings_compile(project=None):
@@ -792,7 +806,7 @@ def parse_args():
     compile_parser.add_argument(
         "project",
         metavar="PROJECT",
-        choices=available_projects(),
+        choices=["all", *available_projects()],
         help="The project to compile dictionaries for. Run `fab ls` "
         "to see the list of project names.",
     )
