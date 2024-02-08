@@ -99,6 +99,8 @@ Languages:
     minority_lang: true
 
   - iso: fin
+  - iso: fit
+  - iso: swe
   - iso: nob
   - iso: rus
   - iso: lav
@@ -157,6 +159,10 @@ Dictionaries:
   - source: fit
     target: swe
     path: "dicts/fit-swe.xml"
+
+  - source: swe
+    target: fit
+    path: "dicts/swe-fit.xml"
 
   # vep
   - source: vep
