@@ -14,5 +14,7 @@ morphology:
 {{ lemma }}+V+Act+Ind+Prt+Pl1
 {{ lemma }}+V+Act+Ind+Prt+Pl2
 {{ lemma }}+V+Act+Ind+Prt+Pl3
-{{ lemma }}+V+Ind+Prs+ConNeg
-{{ lemma }}+V+PrfPrc
+{{ lemma }}+V+Act+Ind+Prs+ConNeg
+{{ lemma }}+V+Act+Ind+Prt+ConNeg+Sg
+{{ lemma }}+V+Act+PrfPrc+Sg+Nom
+{{ lemma }}+V+Act+Cond+Sg3

@@ -1,0 +1,39 @@
+name: "noun homonymy"
+morphology:
+  pos: N
+lexicon:
+  XPATH:
+    homonymy: ".//l/@hid"
+  homonymy:
+    - "Hom1"
+    - "Hom2"
+--
+
+{{ lemma }}+{{ homonymy }}+N+Sg+Nom
+{{ lemma }}+{{ homonymy }}+N+Sg+Gen
+{{ lemma }}+{{ homonymy }}+N+Sg+Par
+{{ lemma }}+{{ homonymy }}+N+Sg+Ine
+{{ lemma }}+{{ homonymy }}+N+Sg+Ill
+{{ lemma }}+{{ homonymy }}+N+Sg+Ela
+{{ lemma }}+{{ homonymy }}+N+Sg+Ade
+{{ lemma }}+{{ homonymy }}+N+Sg+Abe
+{{ lemma }}+{{ homonymy }}+N+Sg+All
+{{ lemma }}+{{ homonymy }}+N+Sg+Abl
+{{ lemma }}+{{ homonymy }}+N+Sg+Ess
+{{ lemma }}+{{ homonymy }}+N+Sg+Tra
+{{ lemma }}+{{ homonymy }}+N+Sg+Ins
+{{ lemma }}+{{ homonymy }}+N+Sg+Com
+{{ lemma }}+{{ homonymy }}+N+Pl+Nom
+{{ lemma }}+{{ homonymy }}+N+Pl+Gen
+{{ lemma }}+{{ homonymy }}+N+Pl+Par
+{{ lemma }}+{{ homonymy }}+N+Pl+Ine
+{{ lemma }}+{{ homonymy }}+N+Pl+Ill
+{{ lemma }}+{{ homonymy }}+N+Pl+Ela
+{{ lemma }}+{{ homonymy }}+N+Pl+Ade
+{{ lemma }}+{{ homonymy }}+N+Pl+Abe
+{{ lemma }}+{{ homonymy }}+N+Pl+All
+{{ lemma }}+{{ homonymy }}+N+Pl+Abl
+{{ lemma }}+{{ homonymy }}+N+Pl+Ess
+{{ lemma }}+{{ homonymy }}+N+Pl+Tra
+{{ lemma }}+{{ homonymy }}+N+Pl+Ins
+{{ lemma }}+{{ homonymy }}+N+Pl+Com

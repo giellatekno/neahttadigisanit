@@ -1,0 +1,28 @@
+name: "Pronoun Indef paradigm"
+morphology:
+  pos: Pron
+  pron_type: Indef
+--
+{{ lemma }}+Pron+Indef+Sg+Nom
+{{ lemma }}+Pron+Indef+Sg+Gen
+{{ lemma }}+Pron+Indef+Sg+Par
+{{ lemma }}+Pron+Indef+Sg+Ine
+{{ lemma }}+Pron+Indef+Sg+Ill
+{{ lemma }}+Pron+Indef+Sg+Ela
+{{ lemma }}+Pron+Indef+Sg+Ade
+{{ lemma }}+Pron+Indef+Sg+All
+{{ lemma }}+Pron+Indef+Sg+Abl
+{{ lemma }}+Pron+Indef+Sg+Ess
+{{ lemma }}+Pron+Indef+Sg+Tra
+
+{{ lemma }}+Pron+Indef+Pl+Nom
+{{ lemma }}+Pron+Indef+Pl+Gen
+{{ lemma }}+Pron+Indef+Pl+Par
+{{ lemma }}+Pron+Indef+Pl+Ine
+{{ lemma }}+Pron+Indef+Pl+Ill
+{{ lemma }}+Pron+Indef+Pl+Ela
+{{ lemma }}+Pron+Indef+Pl+Ade
+{{ lemma }}+Pron+Indef+Pl+All
+{{ lemma }}+Pron+Indef+Pl+Abl
+{{ lemma }}+Pron+Indef+Pl+Ess
+{{ lemma }}+Pron+Indef+Pl+Tra

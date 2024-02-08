@@ -1,0 +1,24 @@
+name: "Proper place nouns inner outer"
+description: "Generates a paradigm for proper nouns."
+morphology:
+  pos: N
+lexicon:
+  XPATH:
+    sem_type: ".//l/@sem_type"
+    type: ".//l/@type"
+    outer_cases: ".//l/@outer_cases"
+  type: Prop
+  sem_type: 
+    - "Plc"
+    - "plc"
+  outer_cases: "True"
+--
+{{ lemma }}+N+Prop+Sg+Nom
+{{ lemma }}+N+Prop+Sg+Gen
+{{ lemma }}+N+Prop+Sg+Par
+{{ lemma }}+N+Prop+Sg+Ill
+{{ lemma }}+N+Prop+Sg+Ine
+{{ lemma }}+N+Prop+Sg+Ela
+{{ lemma }}+N+Prop+Sg+All
+{{ lemma }}+N+Prop+Sg+Ade
+{{ lemma }}+N+Prop+Sg+Abl
