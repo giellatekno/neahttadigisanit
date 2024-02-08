@@ -181,10 +181,9 @@ def needs_update(sources: Path, compiled_file: Path):
     if not compiled_file.exists():
         return True
 
+    # anders: follow_symlinks argument of Path.stat() added in 3.10
     last_source_mtime = max(
-        file.stat(follow_symlinks=False).st_mtime
-        for file in sources.iterdir()
-        if file.suffix == ".xml"
+        file.stat().st_mtime for file in sources.iterdir() if file.suffix == ".xml"
     )
     last_compiled_file_mtime = compiled_file.stat().st_mtime
 
