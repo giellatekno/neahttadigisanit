@@ -90,7 +90,7 @@ Dictionaries:
 
   - source: mrj
     target: fin
-    dict_source: multi
+    dict_source: lang
     path: 'dicts/mrj-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
@@ -124,7 +124,7 @@ Dictionaries:
 
   - source: mhr
     target: fin
-    dict_source: multi
+    dict_source: lang
     path: 'dicts/mhr-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
@@ -141,7 +141,7 @@ Dictionaries:
 
   - source: mhr
     target: eng
-    dict_source: multi
+    dict_source: lang
     path: 'dicts/mhr-all.xml'
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
