@@ -27,7 +27,6 @@ ApplicationSettings:
 
 Tools:
   hfst_lookup: &HFST-LOOKUP '/bin/hfst-lookup'
-  xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
 
 Morphology:
   olo:

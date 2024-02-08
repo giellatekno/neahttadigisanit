@@ -23,7 +23,6 @@ ApplicationSettings:
 
 Tools:
   hfst_lookup: &HFST-LOOKUP '/bin/hfst-lookup'
-  xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
 
 Morphology:
   sms:
@@ -169,6 +168,9 @@ Dictionaries:
     target: sms
     path: 'dicts/rus-sms.xml'
 
+  # the build script will not find these ones, because the name ends with
+  # "M", and no such dictionaries exist - but that's fine, because the build
+  # script will see that the path referenced is already built
   - source: smsM
     target: fin
     dict_source: multi

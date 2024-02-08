@@ -1,8 +1,6 @@
 # Default locale, but use ISO 2 code or whatever corresponds to what is
 # in the translations directory.
 
-#$# include for sme-sma
-
 ApplicationSettings:
   app_name: "Nedtedigibaakoeh"
   short_name: "baakoeh"
@@ -29,14 +27,11 @@ ApplicationSettings:
 # This option set is not used outside of providing shortcuts for
 # following settings.
 Tools:
-  xfst_lookup: &LOOKUP '/usr/local/bin/lookup'
   # --beam=0 makes sure forms only the lowest weighted forms are generated 
   # This prevents forms with hyphens like åssjalommes+N+Sg+Acc åssja-lommesem
   # Make sure the generator is compiled with a backend supporting weights (openfst-tropical)
   #hfst_lookup: &HFST-LOOKUP '/bin/hfst-lookup --beam=0' 
   hfst_lookup: &HFST-LOOKUP '/bin/hfst-lookup'   # anders: bugged, tries to use whole string as cmd
-  gthome: &GTHOME '/home/neahtta/gtsvn'
-  opt: &OPT '/opt/smi'
 
 # Morphological system definitions. Since YAML variables aren't able to
 # be used in concatenating strings, certain paths with references must

@@ -331,7 +331,7 @@ Dictionaries:
 
   - source: kpv
     target: koi
-    path: 'dicts/kpvkoi.xml'
+    path: 'dicts/kpv-koi.xml'
     input_variants: *KOMI_VARIANTS
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
@@ -339,6 +339,9 @@ Dictionaries:
     corpora: 'KPV_FICTI_20201209,KPV_LAWS_20201209,KPV_WIKIPEDIA_20201209,KPV_FACTA_20201209'
     start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
 
+  # the build script will not find these ones, because the name ends with
+  # "M", and no such dictionaries exist - but that's fine, because the build
+  # script will see that the path referenced is already built
   - source: kpvM
     target: fin
     dict_source: multi

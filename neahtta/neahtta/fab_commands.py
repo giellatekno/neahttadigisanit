@@ -200,8 +200,6 @@ def compile_dicts(project, force=None):
     # see comment in update_dicts()
     if project == "sanj":
         raise NotImplementedError("custom script needed to compile sanj")
-    if project == "bahkogirrje":
-        raise NotImplementedError("custom needed to compile bahkogirrje?")
 
     giellalt_dir = Path(GUTROOT) / "giellalt"
 
@@ -213,11 +211,15 @@ def compile_dicts(project, force=None):
     for dict_entry in config.yaml["Dictionaries"]:
         source = dict_entry["source"]
         target = dict_entry["target"]
-        is_multi = dict_entry.get("dict_source", "") == "multi"
         compiled_file = Path("neahtta") / Path(dict_entry["path"])
+        dict_source = dict_entry.get("dict_source", "")
 
-        if is_multi:
+        if dict_source == "multi":
             sources = giellalt_dir / f"dict-{source}-mul" / "src"
+        elif dict_source == "lang":
+            sources = (
+                giellalt_dir / f"lang-{source}" / "src" / "fst" / "morphology" / "stems"
+            )
         else:
             sources = giellalt_dir / f"dict-{source}-{target}" / "src"
 

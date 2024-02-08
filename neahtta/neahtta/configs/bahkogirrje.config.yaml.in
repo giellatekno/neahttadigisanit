@@ -26,12 +26,10 @@ ApplicationSettings:
     - "lene.antonsen@uit.no"
     - "anders.lorentsen@uit.no"
 
-
 # This option set is not used outside of providing shortcuts for
 # following settings.
 Tools:
   hfst_lookup: &HFST-LOOKUP '/usr/bin/hfst-lookup'
-  opt: &OPT '/opt/smi'
 
 # Morphological system definitions. Since YAML variables aren't able to
 # be used in concatenating strings, certain paths with references must

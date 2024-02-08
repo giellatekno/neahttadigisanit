@@ -229,7 +229,6 @@ Dictionaries:
     target: vot
     path: 'dicts/rus-vot.xml'
 
-
   # lav
   - source: lav
     target: fin
