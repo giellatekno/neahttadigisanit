@@ -42,7 +42,7 @@ def format_source_sje(ui_lang, e, target_lang):
 
     paren_args = []
 
-    lemma = e.xpath("string(normalize-space(lg/l/text())")
+    lemma = e.xpath("string(normalize-space(lg/l/text()))")
     klass = e.xpath("string(normalize-space(lg/l/@class))")
     pos = e.xpath("string(normalize-space(lg/l/@pos))")
 
