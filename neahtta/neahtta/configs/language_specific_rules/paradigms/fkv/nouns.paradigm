@@ -9,9 +9,9 @@ morphology:
 {{ lemma }}+N+Sg+Ill
 {{ lemma }}+N+Sg+Ela
 {{ lemma }}+N+Sg+Ade
-{{ lemma }}+N+Sg+Abe
 {{ lemma }}+N+Sg+All
 {{ lemma }}+N+Sg+Abl
+{{ lemma }}+N+Sg+Abe
 {{ lemma }}+N+Sg+Ess
 {{ lemma }}+N+Sg+Tra
 {{ lemma }}+N+Sg+Ins
@@ -23,9 +23,9 @@ morphology:
 {{ lemma }}+N+Pl+Ill
 {{ lemma }}+N+Pl+Ela
 {{ lemma }}+N+Pl+Ade
-{{ lemma }}+N+Pl+Abe
 {{ lemma }}+N+Pl+All
 {{ lemma }}+N+Pl+Abl
+{{ lemma }}+N+Pl+Abe
 {{ lemma }}+N+Pl+Ess
 {{ lemma }}+N+Pl+Tra
 {{ lemma }}+N+Pl+Ins
