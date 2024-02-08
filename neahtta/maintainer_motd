@@ -8,7 +8,9 @@ fab compile PROJECT        Compiles dictionary from sources
                            (do this after update)
 fab restart PROJECT        Restarts the server for PROJECT
                            (do this after compiling dictionaries)
-fab compile-strings PROJ   Compile translation strings
+fab strings extract        Compile translation strings
+                           (do this after adding translations)
+fab strings compile        Compile .po to .mo (all dictionaries)
                            (do this after adding translations)
 fab test PROJECT           Checks configuration and FST files
 fab add-stem               Adds stem information to smenob
@@ -16,3 +18,5 @@ fab ls                     List projects (baakoeh, sanit, sanat, etc)
                            (use fab ls --help for more info)
 fab --help                 Shows commands, general info
 fab compile --help         Shows help on "compile" command
+
+The commands are defined in neahtta/fab_commands.py.
