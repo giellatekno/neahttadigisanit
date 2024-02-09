@@ -148,7 +148,7 @@ Dictionaries:
   # liv
   - source: liv
     target: fin
-    dict_source: multi
+    dict_source: lang
     path: 'dicts/liv-all.xml'
     input_variants: &liv_variants
       - type: "standard"
@@ -184,7 +184,7 @@ Dictionaries:
   # izh
   - source: izh
     target: fin
-    dict_source: multi
+    dict_source: lang
     path: 'dicts/izh-all.xml'
 
   - source: fin
@@ -194,7 +194,7 @@ Dictionaries:
   # vro
   - source: vro
     target: est
-    dict_source: multi
+    dict_source: lang
     path: 'dicts/vro-all.xml'
     show_korp_search: True
     korp_search_host: &F_KORP "http://gtweb.uit.no/f_korp"
@@ -203,7 +203,7 @@ Dictionaries:
 
   - source: vro
     target: fin
-    dict_source: multi
+    dict_source: lang
     path: 'dicts/vro-all.xml'
     show_korp_search: True
     korp_search_host: *F_KORP
@@ -213,12 +213,12 @@ Dictionaries:
   # vot
   - source: vot
     target: est
-    dict_source: multi
+    dict_source: lang
     path: 'dicts/vot-all.xml'
 
   - source: vot
     target: fin
-    dict_source: multi
+    dict_source: lang
     path: 'dicts/vot-all.xml'
 
   - source: vot
