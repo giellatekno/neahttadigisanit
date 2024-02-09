@@ -280,7 +280,7 @@ Dictionaries:
 
   - source: kpv
     target: udm
-    path: 'dicts/kpvudm.xml'
+    path: 'dicts/kpv-udm.xml'
     input_variants: *KOMI_VARIANTS
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
