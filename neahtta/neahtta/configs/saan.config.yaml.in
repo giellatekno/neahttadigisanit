@@ -26,7 +26,7 @@ Tools:
 
 Morphology:
   sms:
-    tool: *HFST_LOOKUP
+    tool: *HFST-LOOKUP
     file: "/opt/smi/sms/bin/analyser-dict-gt-desc.hfstol"
     inverse_file: "/opt/smi/sms/bin/generator-dict-gt-norm.hfstol"
     format: "hfst"
