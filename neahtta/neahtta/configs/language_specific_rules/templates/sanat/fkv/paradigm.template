@@ -138,6 +138,9 @@
     {% set pron_type = lexicon_entry|xpath('./lg/l/@type')|first %}
     {% set pron_type_text = pron_type|tagfilter(_from, _to) %}
 
+    {% set sg_text = "Sg"|tagfilter(_from, _to) %}
+    {% set pl_text = "Pl"|tagfilter(_from, _to) %}
+
     {# If there are nomainal number markings, then we'll split these
        into two columns. Must determine this by checking the tagsets. 
 
@@ -150,6 +153,7 @@
     {% if sg_forms|length > 0 and pl_forms|length > 0 %}
         {% set two_columns = True %}
         {% set zipped_numbers = izip_longest(sg_forms, pl_forms, fillvalue='-')|list %}
+        {% set paradigm_exists = zipped_numbers|length > 0 %}
         {% set numberless_forms = paradigm|by_tagset("nouns_null_number") %}
     {% endif %}
 
@@ -355,7 +359,7 @@
     {% endif %}
 {% elif pos|upper == 'PRON' %}
 
-    {% if pron_type|upper == 'INDEF' and two_columns %}
+    {% if two_columns %}
         {% if paradigm_exists %}
 
             <table class="tableparadigm miniparadigm">
@@ -377,13 +381,13 @@
                 <th class="tag" lang="{{ _to }}">{{ tag_display }}</th>
 
                 {% if sgs and sgs != '-' %}
-                    <td lang="{{ _from }}">{{ sgs|uniq|join('<br />', attribute='form')|safe }}</td>
+                    <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form')|safe }}</td>
                 {% else %}
                     <td lang="{{ _from }}" class="center">&mdash;</td>
                 {% endif %}
 
                 {% if pls and pls != '-' %}
-                    <td lang="{{ _from }}">{{ pls|uniq|join('<br />', attribute='form')|safe }}</td>
+                    <td lang="{{ _from }}">{{ pls|join('<br />', attribute='form')|safe }}</td>
                 {% else %}
                     <td lang="{{ _from }}" class="center">&mdash;</td>
                 {% endif %}
@@ -393,7 +397,7 @@
             {%- endfor -%}
 
 
-            {%- for form in numberless_forms|uniq -%}
+            {%- for form in numberless_forms -%}
                 <tr>
                 {% if form.tag %}
                     <th class="tag" lang="{{ _to }}">{{ clean_tag(form.tag)  }}</th>
