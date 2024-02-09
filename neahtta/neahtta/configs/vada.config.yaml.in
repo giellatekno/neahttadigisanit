@@ -69,12 +69,12 @@ Languages:
 Dictionaries:
   - source: yrk
     target: eng
-    dict_source: multi
+    dict_source: lang
     path: 'dicts/yrk-all.xml'
 
   - source: yrk
     target: fin
-    dict_source: multi
+    dict_source: lang
     path: 'dicts/yrk-all.xml'
 
   - source: fin
