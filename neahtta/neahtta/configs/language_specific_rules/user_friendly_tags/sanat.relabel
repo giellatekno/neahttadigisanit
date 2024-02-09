@@ -236,6 +236,7 @@ Relabel:
       "v1": ""
       "v2": ""
       "Sem/Plc": ""
+      "Qu": ""
 
   - source_morphology: 'izh'
     target_ui_language: 'fin'
