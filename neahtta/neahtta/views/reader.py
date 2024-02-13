@@ -118,7 +118,7 @@ def lookupWord(from_language, to_language):
            JSON data is returned with the help of the formatter
            :py:class:`lexicon.formatters.SimpleJSON`
     """
-    from nds_lexicon import SimpleJSON
+    from neahtta.nds_lexicon import SimpleJSON
 
     current_app.limiter.check()
 
@@ -275,7 +275,7 @@ def reader_update_json():
 
 
 def fetch_messages(locale):
-    from i18n.polib import pofile
+    from neahtta.i18n.polib import pofile
 
     try:
         _pofile = pofile(f"translations/{locale}/LC_MESSAGES/messages.po")

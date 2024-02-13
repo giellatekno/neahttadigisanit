@@ -1,11 +1,11 @@
 import sys
 
-from morphology import generation_overrides as morphology
 from lxml import etree
-
 from flask import g
-from nds_lexicon import CustomLookupType, search_types
-from views.custom_rendering import template_rendering_overrides
+
+from neahtta.morphology import generation_overrides as morphology
+from neahtta.nds_lexicon import CustomLookupType, search_types
+from neahtta.views.custom_rendering import template_rendering_overrides
 
 
 @template_rendering_overrides.register_custom_sort(
