@@ -46,7 +46,7 @@ def externalFormSearch(_from, _to, _search_type):
 
     """
 
-    from nds_lexicon import lexicon_overrides
+    from neahtta.nds_lexicon import lexicon_overrides
 
     if (_from, _to) not in current_app.config.dictionaries and (
         _from,
@@ -121,7 +121,7 @@ def config_docs():
 
 def config_doc(from_language):
     """Quick overview of language-specific details."""
-    from morphology import generation_overrides
+    from neahtta.morphology import generation_overrides
 
     generation_docs = gen_doc(from_language, generation_overrides.tag_filter_doc)
     pregen_doc = gen_doc(from_language, generation_overrides.pregenerators_doc)
