@@ -99,6 +99,9 @@ class Tagsets:
     def __getitem__(self, key) -> Tagset:
         return self.sets[key]
 
+    def __contains__(self, key) -> bool:
+        return key in self.sets
+
     def all_tags(self) -> list[str]:
         """All unique tags found over all sets. For example, the tag "Indef"
         is listed under both the "pron_type" set, and the "type" set.
@@ -353,13 +356,13 @@ class Lemma:
             # -list.
             # assert False, "self.pos is never None"
             if (
-                tagsets["verb_derivations"]
+                "verb_derivations" in tagsets
                 and self.lemma in tagsets["verb_derivations"]
             ):
                 # e.g. VAbess does not have a marked pos
                 self.pos = "V"
             elif (
-                tagsets["adjective_derivations"]
+                "adjective_derivations" in tagsets
                 and self.lemma in tagsets["adjective_derivations"]
             ):
                 self.pos = "A"
