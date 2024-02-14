@@ -222,6 +222,7 @@ def _compile_dicts(project, force=None):
     n = 0
     n_no_updates = 0
     not_found = []
+    did_smenob = False
 
     for dict_entry in config.yaml["Dictionaries"]:
         source = dict_entry["source"]
@@ -266,6 +267,7 @@ def _compile_dicts(project, force=None):
             else:
                 n += 1
                 print(GREEN("done"), f"({n_entries} entries total)")
+                did_smenob = True
 
     if not_found:
         print("\n" + RED("Errors:"))
@@ -284,6 +286,12 @@ def _compile_dicts(project, force=None):
             "underlying git repositories of the dictionaries, by running:\n"
             f"  fab update {project}\n"
             f"...then re-run this command (fab compile {project})"
+        )
+
+    if did_smenob:
+        print(
+            "\n!! sme-nob: dictionary has been updated, you probably want "
+            "to add stems to it. If so, run:\n  fab add-stem"
         )
 
 
