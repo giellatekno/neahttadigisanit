@@ -235,8 +235,6 @@ class Lemma:
     def __init__(self, tag, _input, tool, tagsets):
         self.tool = tool
 
-        # self.prepare_tag(tag, tagsets)
-        # prepare_tag() start
         self.tag = self.tool.tagStringToTag(tag, tagsets=tagsets)
 
         actio_with_tagsep = self.tool.options.get(
