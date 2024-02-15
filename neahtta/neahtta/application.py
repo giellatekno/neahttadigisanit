@@ -10,6 +10,8 @@ from flask_babel import Babel
 from neahtta.config import Config
 from neahtta.utils.chdir import working_directory
 
+from webassets.filter import Filter, register_filter
+
 __all__ = ["create_app"]
 
 ADMINS = ["anders.lorentsen@uit.no"]
@@ -114,10 +116,11 @@ def prepare_assets(app):
         "js/bootstrap-dropdown.js",
         "js/bootstrap-tooltip.js",
         "js/standalone-app.js",
-        "js/bootstrap-typeahead-fork.js",
-        "js/base.js",
-        "js/index.js",
-        "js/detail.js",
+        "js/autocomplete.js",
+        # "js/bootstrap-typeahead-fork.js",
+        # "js/base.js",
+        # "js/index.js",
+        # "js/detail.js",
         # TODO: underscore? angular? async_paradigms?
     ] + js_dev_assets
 
@@ -162,6 +165,42 @@ def prepare_assets(app):
     app.assets.prepared = False
 
 
+class ESBuildFilter(Filter):
+    "Minify and bundle Javascript using esbuild."
+
+    name = "esbuild"
+
+    def input(self, _in, out, source_path=None, **kwargs):
+        import subprocess
+        from pathlib import Path
+        from neahtta.utils.chdir import working_directory
+
+        print("--------- BUILDING JS FILE --------------")
+        cwd = Path(source_path).parent
+        # cmd = ["npm", "exec", "esbuild", "--bundle", "--outfile",
+        with working_directory("neahtta"):
+            proc = subprocess.run(
+                ["npm", "exec", "esbuild", "--", "--format=iife", "--target=es5"],
+                cwd=cwd,
+                text=True,
+                input=_in.read(),
+                capture_output=True,
+            )
+            print("BUILT JS!")
+            print(proc.stdout)
+            print(" // BUILT JS!")
+            if proc.stderr:
+                print(proc.stderr, file=sys.stderr)
+        # outputs, errors = p.communicate(_in.read().encode('utf-8'))
+        out.write(proc.stdout)
+
+    def output(self, _in, out, **kwargs):
+        out.write(_in.read())
+
+
+register_filter(ESBuildFilter)
+
+
 def register_assets(app):
     """After all assets have been collected from parsed templates...
 
@@ -183,7 +222,7 @@ def register_assets(app):
 
     main_js = Bundle(
         *app.assets.main_js_assets,
-        filters=js_filters,
+        filters="esbuild",
         output=f"js/app-compiled-{PROJ}.js",
     )
     app.assets.register("main_js", main_js)
@@ -197,7 +236,7 @@ def register_assets(app):
 
     main_t_js = Bundle(
         *app.assets.t_js_assets,
-        filters=js_filters,
+        # filters=js_filters,
         output=f"js/app-t-compiled-{PROJ}.js",
     )
     app.assets.register("main_t_js", main_t_js)
@@ -211,7 +250,7 @@ def register_assets(app):
 
     nav_menu_js = Bundle(
         *app.assets.nav_menu_js,
-        filters=js_filters,
+        # filters=js_filters,
         output=f"js/nav-menu-compiled-{PROJ}.js",
     )
     app.assets.register("nav_menu_js", nav_menu_js)

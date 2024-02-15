@@ -31,6 +31,10 @@ dependencies = [
     "Flask-Limiter==3.5.0",
     "Flask-Assets==2.1.0",
 
+    # we need to add our own filter to Flask-Assets, in order to get esbuild
+    # to bundle our js.
+    "webassets==2.0",
+
     "Babel==2.14.0",
     # Abondoned. Last release on pypi oct 14, 2013. A package called
     # "webassets" depends on it (crashes if it's not installed), but does
