@@ -166,7 +166,7 @@ def lookupWord(from_language, to_language):
     multi_tags = []
 
     for lookup in lookups:
-        morpholexicon_lookup = mlex.lookup(
+        morpholexicon_lookup, _raw_output, __raw_errors = mlex.lookup(
             lookup,
             source_lang=from_language,
             target_lang=to_language,
