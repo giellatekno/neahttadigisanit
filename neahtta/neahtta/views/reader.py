@@ -275,6 +275,7 @@ def reader_update_json():
 
 
 def fetch_messages(locale):
+    # anders: debug: path doesn't start with "neahtta." here?
     from neahtta.i18n.polib import pofile
 
     try:

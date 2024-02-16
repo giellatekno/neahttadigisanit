@@ -1,37 +1,6 @@
 Nyerste øverst
 
 
-
-
-Bugs i restructuring:
-
-# 1  (FIXED)
-  vuovdi -> trykk på "selger", alt ok. men tilbake:
-  øverste vuovdi har ingen paradigme
-  i tillegg:
-  noen treff har mistet analysen - "vuovdi" har mistet analysen på første
-  - altså ingen paradigmer som vises når man trykker på det.
-
-# 2 (FIXED)
-  beassi -> den andre ordboksartikkenlen, "never", kommer ikke opp!
-
-# 3 (FIXED)
-  skog -> mangler egennavnet Skog som analyse uten treff i ordboka
-
-# 4 (FIXED - tror jeg!)
-  hverandre og trykk på linken -> error 500
-  -> kan være at scriptet som generere ordboka ikke tar med de attributtene,
-  fordi den ligger ikke i den kompilerte ordboka
-
-# 5: FIXED
-  paradigme for vuovdi (subst, ="selger"): kun én paradigmeform som vises,
-  det skal være flere former av hver
-
-
-
-
-
-
 # -- fra møte Jan 2024
 
 NDS-møte

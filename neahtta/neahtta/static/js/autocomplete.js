@@ -9,7 +9,6 @@
 
 var lang_from;
 var lang_to;
-var b;
 
 function Autocomplete(anchor) {
     this.visible = false;

@@ -111,12 +111,13 @@ def prepare_assets(app):
 
     # assets
     app.assets.main_js_assets = [
-        "js/DSt.js",
-        "js/bootstrap-collapse.js",
-        "js/bootstrap-dropdown.js",
-        "js/bootstrap-tooltip.js",
-        "js/standalone-app.js",
-        "js/autocomplete.js",
+        "js/index_new.js",
+        # "js/DSt.js",
+        # "js/bootstrap-collapse.js",
+        # "js/bootstrap-dropdown.js",
+        # "js/bootstrap-tooltip.js",
+        # "js/standalone-app.js",
+        # "js/autocomplete.js",
         # "js/bootstrap-typeahead-fork.js",
         # "js/base.js",
         # "js/index.js",
@@ -171,16 +172,31 @@ class ESBuildFilter(Filter):
     name = "esbuild"
 
     def input(self, _in, out, source_path=None, **kwargs):
+        # docs are confusing and/or wrong:
+        # this DOES get called one for each file that is changed, BUT
+        # no concatenation seems to take place. So instead, we bundle it
+        # all with esbuild instead, compiling the "index_new.js" (index.js
+        # already existed), which imports all files we need
         import subprocess
         from pathlib import Path
         from neahtta.utils.chdir import working_directory
 
         print("--------- BUILDING JS FILE --------------")
         cwd = Path(source_path).parent
-        # cmd = ["npm", "exec", "esbuild", "--bundle", "--outfile",
+        cmd = [
+            "npm",
+            "exec",
+            "--",
+            "esbuild",
+            "--bundle",
+            "--format=iife",
+            "--target=es5",
+            "index_new.js",
+            # "--outfile",
+        ]
         with working_directory("neahtta"):
             proc = subprocess.run(
-                ["npm", "exec", "--", "esbuild", "--format=iife", "--target=es5"],
+                cmd,
                 cwd=cwd,
                 text=True,
                 input=_in.read(),
@@ -193,8 +209,10 @@ class ESBuildFilter(Filter):
                 print(proc.stderr, file=sys.stderr)
         # outputs, errors = p.communicate(_in.read().encode('utf-8'))
         out.write(proc.stdout)
+        # out.write(_in.read())
 
     def output(self, _in, out, **kwargs):
+        # docs are confusing/wrong: this function appears to never be called
         out.write(_in.read())
 
 
@@ -225,6 +243,7 @@ def register_assets(app):
         filters="esbuild",
         output=f"js/app-compiled-{PROJ}.js",
     )
+    print("application.py::register_assets(): bundled main_js")
     app.assets.register("main_js", main_js)
 
     main_css = Bundle(
