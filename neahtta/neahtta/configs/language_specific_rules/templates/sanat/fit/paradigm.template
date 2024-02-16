@@ -1,4 +1,4 @@
-{# This is the paradigm template for Kven.
+{# This is the paradigm template for Meänkieli.
 
  * Nouns: Display everything in the paradigm in a definition list
  * Verbs: Display a table with one column for present tense, and one for
@@ -173,7 +173,7 @@
 {%- macro full_paradigm_link() %}
     <a class="full-paradigm-link"
        style="opacity: .8;"
-       href="http://gtweb.uit.no/cgi-bin/smi/smi.cgi?text={{ lemma }}&pos={{ pos }}&mode=full&action=paradigm&lang=fkv&plang=nob">
+       href="http://gtweb.uit.no/cgi-bin/smi/smi.cgi?text={{ lemma }}&pos={{ pos }}&mode=full&action=paradigm&lang=fit&plang=nob">
         {%- trans -%}Full paradigm{%- endtrans -%} &nbsp;&rarr;
     </a>
 {% endmacro -%}
