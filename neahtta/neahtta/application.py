@@ -180,7 +180,7 @@ class ESBuildFilter(Filter):
         # cmd = ["npm", "exec", "esbuild", "--bundle", "--outfile",
         with working_directory("neahtta"):
             proc = subprocess.run(
-                ["npm", "exec", "esbuild", "--", "--format=iife", "--target=es5"],
+                ["npm", "exec", "--", "esbuild", "--format=iife", "--target=es5"],
                 cwd=cwd,
                 text=True,
                 input=_in.read(),
