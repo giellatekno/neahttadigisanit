@@ -54,10 +54,10 @@
     <div class="span8 lexeme">
         {%- if lexicon_entry|count > 0 -%}
             
+              {%- if dialect_text -%}<span class=dial_text>({{- dialect_text -}}) </span>{% endif -%}
               <span><a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
                 {{- rendered_templates.entry_text|safe -}}</a>
               {%- if pos_text -%}<span class=pos_text> {{ pos_text -}}</span>{%- endif -%}
-              {%- if dialect_text -%}<span class=dial_text> {{- dialect_text -}}</span>{%- endif -%}
               {{- render_audio(first_l)|safe -}}</span>{# Using span instead of p to get the div on the same line (p cannot contain div) #}
             {%- if l_ref_text -%}
             <p class="l_ref"><span class="se_også">{%- trans -%}see also{%- endtrans -%} </span><a href="./?lookup={{l_ref_text.split("_")[0]}}">
