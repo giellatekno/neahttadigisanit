@@ -110,7 +110,7 @@
     {%- else -%}
         {%- if text != 'word_not _yet_translated' -%}
         {# Show explanation information if present (sjd-specific) #}
-            {%- if explanation -%}<span class=expl>{{ explanation }}</span>{%- endif -%}
+            {%- if explanation -%}<span class=expl>{{ explanation }} </span>{% endif -%}
             <a href="{{ url_for('.detailed_language_pair_search', _from=dict_to, _to=_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
                 {{- text -}}
             </a>
