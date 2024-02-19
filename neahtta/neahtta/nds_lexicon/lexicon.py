@@ -440,22 +440,6 @@ def autocompleteKey(word):
 
 
 class AutocompleteTrie(XMLDict):
-    @property
-    def allLemmas(self):
-        """Returns iterator for all lemmas."""
-        entries = self.tree.findall("e/lg/l")
-        filters = autocomplete_filters._filters.get(self.language_pair, [])
-        for f in filters:
-            entries = f(entries)
-        lemma_strings = (e.text for e in entries if e.text)
-        return lemma_strings
-
-    def autocomplete(self, query):
-        if self.trie:
-            if hasattr(self.trie, "autocomplete"):
-                return sorted(list(self.trie.autocomplete(query)), key=autocompleteKey)
-        return []
-
     def __init__(self, *args, **kwargs):
         if "language_pair" in kwargs:
             self.language_pair = kwargs.pop("language_pair")
@@ -474,6 +458,54 @@ class AutocompleteTrie(XMLDict):
             PARSED_TREES[parsed_key] = self.trie
         else:
             self.trie = PARSED_TREES[parsed_key]
+
+    @property
+    def allLemmas(self):
+        """Returns iterator for all lemmas."""
+        entries = self.tree.findall("e/lg/l")
+        filters = autocomplete_filters._filters.get(self.language_pair, [])
+        for f in filters:
+            entries = f(entries)
+        lemma_strings = (e.text for e in entries if e.text)
+        return lemma_strings
+
+    def autocomplete(self, query):
+        from unicodedata import combining
+
+        if not self.trie:
+            return []
+
+        if not hasattr(self.trie, "autocomplete"):
+            # anders: only if explicitly turned off autocompletions?
+            return []
+
+        qlen = len(query)
+        result = []
+        for candidate in self.trie.autocomplete(query):
+            if len(candidate) == qlen:
+                # candidate is query exactly, so there is no "next" character
+                # to check - it is always a candidate we want to show
+                result.append(candidate)
+                continue
+
+            if len(candidate) > qlen:
+                # candidate has longer length than query, so check if the
+                # character immediately following the common start of
+                # candidate and query is a combining character. if it is, we
+                # do not want to show that as a valid candidate.
+                # For example, if the query is "мо", a candidate can be
+                # "мо<COMBINING MACRON>[...]", which really means that
+                # the candidate is actually "мо̄[...]" (the COMBINING MACRON
+                # makes the "о" an "о̄", which are two different characters).
+                # so we ignore that candidate completely.
+                if combining(candidate[qlen]):
+                    pass
+                else:
+                    result.append(candidate)
+
+            assert None, "candidate is never shorter than query"
+
+        return sorted(result, key=autocompleteKey)
 
 
 class ReverseLookups(XMLDict):
