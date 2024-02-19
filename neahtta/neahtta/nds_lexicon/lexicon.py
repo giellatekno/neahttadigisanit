@@ -317,16 +317,24 @@ class XMLDict:
             f".//e[starts-with({xpaths['pos']}, $lemma)]"
         )
 
-        self.lemma = etree.XPath(".//e[lg/l/text() = $lemma]")
+        self.lemma = etree.XPath(
+            ".//e[re:test(lg/l/text(), $lemma, 'i')]",
+            namespaces={"re": regexpNS},
+        )
 
         self.lemmaPOS = etree.XPath(
-            ".//e[lg/l/text() = $lemma and " + _re_pos_match + "]",
+            ".//e[re:test(lg/l/text(), $lemma, 'i') and " + _re_pos_match + "]",
+            # ".//e[lg/l/text() = $lemma and " + _re_pos_match + "]",
             namespaces={"re": regexpNS},
         )
 
         self.lemmaPOSAndType = etree.XPath(
             " and ".join(
-                [".//e[lg/l/text() = $lemma", _re_pos_match, "lg/l/@type = $_type]"]
+                [
+                    ".//e[re:test(lg/l/text(), $lemma, 'i')",
+                    _re_pos_match,
+                    "lg/l/@type = $_type]",
+                ]
             ),
             namespaces={"re": regexpNS},
         )
@@ -338,17 +346,19 @@ class XMLDict:
         return self.XPath(self.lemmaStartsWith, lemma=lemma)
 
     def lookupLemma(self, lemma):
-        return self.XPath(self.lemma, lemma=lemma)
+        return self.XPath(self.lemma, lemma=f"^{lemma}$")
 
     def lookupLemmaPOS(self, lemma, pos):
         # Can't insert variables in EXSLT expressions within a compiled
         # xpath statement, so doing this.
         pos = f"^{pos}$"
-        return self.XPath(self.lemmaPOS, lemma=lemma, pos=pos)
+        return self.XPath(self.lemmaPOS, lemma=f"^{lemma}$", pos=pos)
 
     def lookupLemmaPOSAndType(self, lemma, pos, _type):
         pos = f"^{pos}$"
-        return self.XPath(self.lemmaPOSAndType, lemma=lemma, pos=pos, _type=_type)
+        return self.XPath(
+            self.lemmaPOSAndType, lemma=f"^{lemma}$", pos=pos, _type=_type
+        )
 
     def iterate_entries(self, start=0, end=20, words=False):
         if words:
