@@ -486,9 +486,7 @@ class AutocompleteTrie(XMLDict):
                 # candidate is query exactly, so there is no "next" character
                 # to check - it is always a candidate we want to show
                 result.append(candidate)
-                continue
-
-            if len(candidate) > qlen:
+            elif len(candidate) > qlen:
                 # candidate has longer length than query, so check if the
                 # character immediately following the common start of
                 # candidate and query is a combining character. if it is, we
@@ -502,10 +500,10 @@ class AutocompleteTrie(XMLDict):
                     pass
                 else:
                     result.append(candidate)
-
-            assert (
-                None
-            ), f"candidate (={candidate}) is never shorter than query (={query})"
+            else:
+                assert (
+                    None
+                ), f"candidate (={candidate}) is never shorter than query (={query})"
 
         return sorted(result, key=autocompleteKey)
 
