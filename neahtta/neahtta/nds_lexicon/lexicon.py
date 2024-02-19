@@ -505,7 +505,7 @@ class AutocompleteTrie(XMLDict):
 
             assert (
                 None
-            ), f"candidate (={candidate}) is never shorter than query (={candidate}):"
+            ), f"candidate (={candidate}) is never shorter than query (={query})"
 
         return sorted(result, key=autocompleteKey)
 
