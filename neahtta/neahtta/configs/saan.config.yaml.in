@@ -6,7 +6,6 @@ ApplicationSettings:
   default_pair: ["sms", "fin"]
   mobile_default_pair: false
   polyglot_lookup: true
-  strip_spaces: true
   locales_available:
     - "fi"
     - "en"

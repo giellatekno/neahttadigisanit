@@ -329,10 +329,6 @@ class Config(Config):
         return self.yaml["ApplicationSettings"].get("render_template_errors", False)
 
     @cached_property
-    def strip_spaces(self):
-        return self.yaml["ApplicationSettings"].get("strip_spaces", False)
-
-    @cached_property
     def app_mobile_bookmark_name(self):
         p = self.yaml["ApplicationSettings"].get("mobile_bookmark_name", False)
         return p if p else self.app_meta_title

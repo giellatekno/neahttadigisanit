@@ -7,7 +7,6 @@ ApplicationSettings:
   default_locale: "sv"
   default_pair: ["sje", "swe"]
   mobile_default_pair: false
-  strip_spaces: true
   locales_available:
     - "nb"
     - "sv"

@@ -34,10 +34,6 @@
                   "min_items": 2,
                   "max_items": 2
               },
-              "strip_spaces": {
-                  "description": "Strip spaces from the beginning and end of inputs, before doing search",
-                  "type": "boolean"
-              },
               "locales_available": {
                   "type": "array",
                   "items": {

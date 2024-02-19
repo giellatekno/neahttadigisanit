@@ -9,7 +9,6 @@ ApplicationSettings:
   default_locale: "sjd"
   default_pair: ["sjd", "rus"]
   mobile_default_pair: ["sjdM", "rus"]
-  strip_spaces: true
   locales_available:
     - sjd
     - ru

@@ -873,8 +873,7 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
             default_context.update(**self.get_shared_context(_from, _to))
             return render_template(self.template_name, **default_context)
 
-        if current_app.config.strip_spaces:
-            user_input = user_input.strip()
+        user_input = user_input.strip()
 
         # This performs lots of the work...
         search_result_context = self.search_to_context(
@@ -890,16 +889,11 @@ class LanguagePairSearchView(DictionaryView, SearcherMixin):
         self.check_pair_exists_or_abort(_from, _to)
         self.force_locale(_from, _to)
 
-        user_input = request.form.get("lookup", False)
-
-        if current_app.config.strip_spaces and user_input:
-            user_input = user_input.strip()
+        user_input = request.form.get("lookup", "")
+        user_input = user_input.strip()
 
         if user_input in ["teksti-tv", "tekst tv", "teaksta tv"]:
             session["text_tv"] = True
-
-        if not user_input:
-            user_input = ""
 
         self.log_in_session(user_input)
 
@@ -926,14 +920,8 @@ class ReferredLanguagePairSearchView(LanguagePairSearchView):
     def get(self, _from, _to):
         self.check_pair_exists_or_abort(_from, _to)
 
-        user_input = request.form.get("lookup", False)
-
-        if current_app.config.strip_spaces and user_input:
-            user_input = user_input.strip()
-
-        if not user_input:
-            user_input = ""
-            # TODO: return an error.
+        user_input = request.form.get("lookup", "")
+        user_input = user_input.strip()
 
         lookup_context = self.get_shared_context(_from, _to)
         lookup_context["lemma_attrs"] = self.get_lemma_lookup_args()
@@ -1064,12 +1052,7 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
 
     def get(self, _from, _to, wordform, format):
         self.check_pair_exists_or_abort(_from, _to)
-
-        user_input = wordform
-
-        if current_app.config.strip_spaces and user_input:
-            user_input = user_input.strip()
-
+        user_input = wordform.strip()
         self.user_input = user_input
 
         # Analyzer arguments

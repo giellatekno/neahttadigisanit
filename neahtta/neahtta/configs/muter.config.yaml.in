@@ -7,7 +7,6 @@ ApplicationSettings:
   mobile_default_pair: false
   grouped_nav: true
   new_mobile_nav: true
-  strip_spaces: true
   locales_available:
     - mrj
     - mhr
