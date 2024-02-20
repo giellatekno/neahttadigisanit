@@ -637,11 +637,19 @@ class Lexicon:
 
         args = (bool(lemma), bool(pos), bool(pos_type), bool(lem_args))
 
+        def no_dictionary_results(*_args, **_kwargs):
+            return []
+
         funcs = {
             (True, False, False, False): lexicon.lookupLemma,
             (True, True, False, False): lexicon.lookupLemmaPOS,
             (True, True, True, False): lexicon.lookupLemmaPOSAndType,
             (False, False, False, True): lexicon.lookupOtherLemmaAttr,
+            # unknown lookup type, just make it so that the dictionary lookup
+            # returns an empty list
+            # should fix https://github.com/giellatekno/neahttadigisanit/issues/13
+            (False, True, False, False): no_dictionary_results,
+            (False, False, False, False): no_dictionary_results,
         }
 
         try:
