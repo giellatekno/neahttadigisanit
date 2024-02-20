@@ -22,7 +22,7 @@ function Autocomplete(anchor) {
     this.anchor.addEventListener("input", this.on_input.bind(this));
     window.addEventListener("keydown", on_keydown.bind(this));
     window.addEventListener("click", on_window_click.bind(this));
-    window.addEventListener("resize", this.show.bind(this));
+    window.addEventListener("resize", this.place.bind(this));
 }
 
 function on_window_click(ev) {
@@ -88,7 +88,15 @@ Autocomplete.prototype = {
             request.open("GET", url);
             request.onreadystatechange = function (ev) {
                 if (request.readyState !== XMLHttpRequest.DONE) return;
-                var items = JSON.parse(request.responseText);
+                var items;
+                try {
+                    items = JSON.parse(request.responseText);
+                } catch (e) {
+                    console.error(e);
+                    console.error("Could not parse json");
+                    return;
+                }
+
                 if (items.length === 0) {
                     self.hide();
                     return;
@@ -98,7 +106,9 @@ Autocomplete.prototype = {
                 // when showing autocomplete suggestions, alter tabindexes
                 // so that tab works intuitively
                 self.anchor.tabIndex = 1;
-                self.element.appendChild(self.search_note);
+                if (self.search_note !== null) {
+                    self.element.appendChild(self.search_note);
+                }
                 self.append_items(text, items);
                 self.show();
             };
@@ -159,22 +169,54 @@ Autocomplete.prototype = {
     },
 
     _create_search_note_element: function() {
+        var text = this.anchor.getAttribute("data-autocomplete-text");
+        if (text === null) {
+            // on the details side, the anchor doesn't have the same data
+            // attached to it
+            return null;
+        }
         var li = document.createElement("li");
         var a = document.createElement("a");
         var span = document.createElement("span");
         li.classList.add("search_note");
         a.href = "#";
-        span.innerText = this.anchor.dataset.autocompleteText;
+        span.innerText = text;
         a.appendChild(span);
         li.appendChild(a);
         return li;
     }
 };
 
+function find_dict_langs(input_element) {
+    if (input_element) {
+        var l1 = input_element.getAttribute("data-language-from");
+        var l2 = input_element.getAttribute("data-language-to");
+        if (l1 && l2) {
+            return [l1, l2];
+        }
+    }
+
+    // didn't find dict langs from input element, try from url
+    var re = /^\/detail\/([a-z]{3})\/([a-z]{3}).*/ig;
+    var matches;
+    if ((matches = re.exec(window.location.pathname)) !== null) {
+        return [matches[1], matches[2]];
+    }
+    
+    return [undefined, undefined];
+}
+
 document.addEventListener("DOMContentLoaded", function() {
+    console.log("autocomplete startup");
     var input_element = document.querySelector('input[name="lookup"]');
-    lang_from = input_element.dataset.languageFrom;
-    lang_to = input_element.dataset.languageTo;
+    var dict_langs = find_dict_langs(input_element);
+    lang_from = dict_langs[0];
+    lang_to = dict_langs[1];
+
+    if (!lang_from || !lang_to) {
+        console.error("Could not determine dict langs, disabling autocomplete");
+        return;
+    }
 
     var ac = new Autocomplete(input_element);
 

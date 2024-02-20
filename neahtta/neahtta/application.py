@@ -95,29 +95,38 @@ def prepare_assets(app):
         css_dev_assets = ["css/test_palette.css"]
 
     assets = Environment(app)
+
+    # anders: since we're using just 1 index.js file which imports all
+    # other files, and using esbuild to bundle it, that index file never
+    # changes, and so, flask never picks up any changes to our bundle.
+    # We explicitly tell webassets to instead of looking at the contents
+    # of that one file, to look at the last modified time. So now, we
+    # can `touch` the index file when we have js updates.
+    assets.versions = "timestamp"
+
+    # don't add the query param
+    assets.url_expire = False
     app.assets = assets
 
     # assumes you've npm install uglify
     # anders: path change
-    if not os.path.exists("./neahtta/node_modules/uglify-js/bin/uglifyjs"):
-        sys.exit("Couldn't find uglify js: `npm install uglify-js`")
+    # if not os.path.exists("./neahtta/node_modules/uglify-js/bin/uglifyjs"):
+    #    sys.exit("Couldn't find uglify js: `npm install uglify-js`")
 
-    app.assets.config["UGLIFYJS_BIN"] = "./neahtta/node_modules/uglify-js/bin/uglifyjs"
+    # app.assets.config["UGLIFYJS_BIN"] = "./neahtta/node_modules/uglify-js/bin/uglifyjs"
     app.assets.init_app(app)
 
     proj_css = []
     if app.config.has_project_css:
         proj_css.append(app.config.has_project_css.replace("static/", ""))
 
-    # assets
     app.assets.main_js_assets = [
-        "js/index_new.js",
-        # "js/DSt.js",
-        # "js/bootstrap-collapse.js",
-        # "js/bootstrap-dropdown.js",
-        # "js/bootstrap-tooltip.js",
-        # "js/standalone-app.js",
-        # "js/autocomplete.js",
+        "js/DSt.js",
+        "js/bootstrap-collapse.js",
+        "js/bootstrap-dropdown.js",
+        "js/bootstrap-tooltip.js",
+        "js/standalone-app.js",
+        "js/autocomplete.js",
         # "js/bootstrap-typeahead-fork.js",
         # "js/base.js",
         # "js/index.js",
@@ -171,18 +180,21 @@ class ESBuildFilter(Filter):
 
     name = "esbuild"
 
-    def input(self, _in, out, source_path=None, **kwargs):
-        # docs are confusing and/or wrong:
-        # this DOES get called one for each file that is changed, BUT
-        # no concatenation seems to take place. So instead, we bundle it
-        # all with esbuild instead, compiling the "index_new.js" (index.js
-        # already existed), which imports all files we need
-        import subprocess
-        from pathlib import Path
-        from neahtta.utils.chdir import working_directory
+    # def input(self, _in, out, source_path=None, **kwargs):
+    # docs are confusing and/or wrong:
+    # this DOES get called one for each file that is changed, BUT
+    # no concatenation seems to take place. So instead, we bundle it
+    # all with esbuild instead, compiling the "index_new.js" (index.js
+    # already existed), which imports all files we need
+    # from neahtta.utils.chdir import working_directory
+    # from pathlib import Path
+    # cwd = Path(source_path).parent
 
-        print("--------- BUILDING JS FILE --------------")
-        cwd = Path(source_path).parent
+    #    pass
+
+    def output(self, _in, out, **kwargs):
+        import subprocess
+
         cmd = [
             "npm",
             "exec",
@@ -191,29 +203,21 @@ class ESBuildFilter(Filter):
             "--bundle",
             "--format=iife",
             "--target=es5",
-            "index_new.js",
+            # "index_new.js",
             # "--outfile",
         ]
-        with working_directory("neahtta"):
+        with working_directory("neahtta/static/js"):
             proc = subprocess.run(
                 cmd,
-                cwd=cwd,
+                # cwd=cwd,
                 text=True,
                 input=_in.read(),
                 capture_output=True,
             )
-            print("BUILT JS!")
-            print(proc.stdout)
-            print(" // BUILT JS!")
             if proc.stderr:
                 print(proc.stderr, file=sys.stderr)
-        # outputs, errors = p.communicate(_in.read().encode('utf-8'))
+            print("BUILT JS!")
         out.write(proc.stdout)
-        # out.write(_in.read())
-
-    def output(self, _in, out, **kwargs):
-        # docs are confusing/wrong: this function appears to never be called
-        out.write(_in.read())
 
 
 register_filter(ESBuildFilter)
@@ -233,15 +237,17 @@ def register_assets(app):
     """
     from flask_assets import Bundle
 
-    js_filters = "uglifyjs"
+    # js_filters = "uglifyjs"
     css_filters = "cssmin"
 
     PROJ = app.config.short_name
 
     main_js = Bundle(
+        "js/index_new.js",
         *app.assets.main_js_assets,
         filters="esbuild",
         output=f"js/app-compiled-{PROJ}.js",
+        depends=app.assets.main_js_assets,
     )
     print("application.py::register_assets(): bundled main_js")
     app.assets.register("main_js", main_js)
@@ -289,30 +295,19 @@ def register_assets(app):
 
 def check_js_dependencies():
     from shutil import which
-    from neahtta.utils.chdir import additional_paths
 
     if not which("node"):
         print(os.environ["PATH"], file=sys.stderr)
         sys.exit("nodejs not found in PATH, aborting (`which node`)")
 
-    # os.environ["PATH"] += os.pathsep + os.path.join(
-    #     os.path.dirname(__file__), "src/node_modules/.bin"
-    # )
-
     node_bin_path = os.path.join(os.path.dirname(__file__), "node_modules", ".bin")
 
-    # changing to src/ directory, because nodejs needs to see a node_modules
-    # folder where it is run from
-    with working_directory("neahtta"):
-        # additionally, the path to the nodejs bin directory must be on the
-        # path, for us to see uglifyjs. Alternatively, maybe it would be
-        # possible to just check for the existence of this file directly.
-        with additional_paths(node_bin_path):
-            if not which("uglifyjs"):
-                print("javascript dependencies not installed")
-                print("running: npm install")
-                # TODO check if success, abort if not
-                os.system("npm install")
+    esbuild_path = os.path.join(node_bin_path, "esbuild")
+    if not os.path.exists(esbuild_path):
+        print("javascript dependencies not installed")
+        print("running: npm install")
+        # TODO check if succesful or not (and if it works at all, or not)
+        os.system("npm install")
 
 
 def create_app():
