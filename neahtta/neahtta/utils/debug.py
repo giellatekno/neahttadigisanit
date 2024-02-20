@@ -120,6 +120,22 @@ def _call(frame):
             return
         elif qualname.endswith("iso_has_flag"):
             return
+        elif qualname.endswith("<listcomp>"):
+            return
+        elif qualname.startswith("splitTagByCompound"):
+            return
+        elif qualname.startswith("register_babel"):
+            return
+        elif qualname.startswith("root"):
+            return
+        elif qualname.startswith("hash_node"):
+            return
+        elif qualname.startswith("iso_filter"):
+            return
+        elif qualname.startswith("urlencode_filter_quote"):
+            return
+        elif qualname.startswith("register_template_filters.<locals>"):
+            return
         elif qualname.startswith("Tag."):
             return
         elif qualname.endswith("iso_to_language_own_name"):
