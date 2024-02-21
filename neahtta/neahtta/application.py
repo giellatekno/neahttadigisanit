@@ -244,7 +244,7 @@ def register_assets(app):
 
     main_js = Bundle(
         "js/index_new.js",
-        *app.assets.main_js_assets,
+        # *app.assets.main_js_assets,
         filters="esbuild",
         output=f"js/app-compiled-{PROJ}.js",
         depends=app.assets.main_js_assets,
