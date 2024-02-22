@@ -1,6 +1,4 @@
-"""
-Morphological tools
-"""
+"""Morphological tools"""
 
 import heapq
 
@@ -387,53 +385,6 @@ class Lemma:
         lem, pos, tag = self.__key()
         return f"<{self.__class__.__name__}: {self.form}, {lem}, {pos}, {tag}>"
 
-    # def prepare_tag(self, tag, tagsets):
-    #     """Clean up the tag, lemma, and POS, make adjustments depending
-    #     on whether the langauge has tags before the lemma.
-
-    #     NB: if there's a problem here, make sure any possible tags
-    #     before the lemma are defined as some member of any tagset.
-    #     """
-    #     self.tag = self.tool.tagStringToTag(tag, tagsets=tagsets)
-
-    #     actio_with_tagsep = self.tool.options.get(
-    #         "actio_tag", "Actio"
-    #     ) + self.tool.options.get("tagsep", "+")
-
-    #     # Best guess is the first item, otherwise...
-    #     # anders: I'm getting that this makes the pos the lemma, presumably
-    #     # because it's already been stripped out somewhere before
-    #     lemma = tag[0]
-    #     # Best guess is the first item, otherwise...
-    #     # self.lemma = tag[0]
-    #     # del tag[0]
-    #     actio = False
-    #     if actio_with_tagsep in tag:
-    #         lemma = tag
-    #         self.lemma = lemma
-    #         actio = True
-    #         self.pos = ""
-    #         self.tag_raw = [tag]
-    #     else:
-    #         all_tags = tagsets.all_tags()
-    #         if lemma not in all_tags:
-    #             self.lemma = lemma
-    #         else:
-    #             # corner-case, the lemma is precisely (case sensitively)
-    #             # exactly a tag, such as e.g. "Ord", "Dem", "Aktor", "Ess", ..
-
-    #             # Separate out items that are not values in a tagset, these
-    #             # are probably the lemma.
-    #             not_tags = [t for t in tag if t not in all_tags]
-    #             if len(not_tags) > 0:
-    #                 self.lemma = not_tags[0]
-    #             else:
-    #                 self.lemma = tag[0]
-
-    #     if not actio:
-    #         self.pos = self.tag["pos"]
-    #         self.tag_raw = tag
-
 
 class GeneratedForm(Lemma):
     """Helper class for generated forms, adds attribute `self.form`,
@@ -755,44 +706,6 @@ class XFST:
                     )
             return analysis
 
-    # anders: unused
-    # def splitTagByString(self, analysis, tag_input):
-    #     def splitTag(item, tag_string):
-    #         if tag_string in item:
-    #             res = []
-    #             while tag_string in item:
-    #                 fa = re.findall(tag_string, item)
-    #                 if len(fa) == 1:
-    #                     res.append(item[0 : item.find("+" + tag_string)])
-    #                     res.append(item[item.find("+" + tag_string) + 1 : len(item)])
-    #                     break
-    #                 else:
-    #                     result = item[0 : item.find("+" + tag_string)]
-    #                     result2 = item[item.find("+" + tag_string) + 1 : len(item)]
-    #                     res.append(result)
-    #                     item = result2
-    #             myres_array.append(res)
-    #         else:
-    #             myres_array.append(item)
-    #         return
-
-    #     global myres_array
-    #     myres_array = []
-    #     if isinstance(analysis, list):
-    #         for var in analysis:
-    #             splitTag(var, tag_input)
-    #     else:
-    #         splitTag(analysis, tag_input)
-
-    #     fin_res = []
-    #     for item in myres_array:
-    #         if isinstance(item, list):
-    #             for var in item:
-    #                 fin_res.append(var)
-    #         else:
-    #             fin_res.append(item)
-    #     return fin_res
-
     def tag_processor(self, analysis_line):
         """This is a default tag processor which just returns the
         wordform separated from the tag for a given line of analysis.
@@ -1105,63 +1018,6 @@ class PyHFST(XFST):
         return self.inverselookup_by_string(lookup_string)
 
 
-# class OBT(XFST):
-#     """TODO: this is almost like CG, so separate out those things if
-#     necessary.
-#     """
-#
-#     def clean(self, _output):
-#         """Clean CG lookup text into
-#
-#         [('keenaa', ['keen+V+1Sg+Ind+Pres', 'keen+V+3SgM+Ind+Pres']),
-#          ('keentaa', ['keen+V+2Sg+Ind+Pres', 'keen+V+3SgF+Ind+Pres'])]
-#
-#         """
-#
-#         analysis_chunks = []
-#
-#         chunk = []
-#         for line in _output.splitlines():
-#             if line.startswith('"<'):
-#                 if len(chunk) > 0:
-#                     analysis_chunks.append(chunk)
-#                 chunk = [line]
-#                 continue
-#             elif line.startswith('\t"'):
-#                 chunk.append(line.strip())
-#         else:
-#             analysis_chunks.append(chunk)
-#
-#         cleaned = []
-#         for chunk in analysis_chunks:
-#             form, analyses = chunk[0], chunk[1::]
-#
-#             lemmas = []
-#             tags = []
-#             for part in analyses:
-#                 tagparts = part.split(" ")
-#                 lemma = tagparts[0]
-#                 lemma = lemma.replace('"', "")
-#                 lemmas.append(lemma)
-#                 tags.append(" ".join([lemma] + tagparts[1::]))
-#
-#             lemma = list(set(lemmas))[0]
-#
-#             form = form[2 : len(form) - 2]
-#             append_ = (form, tags)
-#
-#             cleaned.append(append_)
-#
-#         return cleaned
-#
-#     def splitAnalysis(self, analysis):
-#         return analysis.split(" ")
-#
-#     def __init__(self, lookup_tool, options={}):
-#         self.cmd = lookup_tool
-#         self.options = options
-
-
 class Morphology:
     def __init__(self, languagecode, tagsets=None):
         tagsets = {} if tagsets is None else tagsets
@@ -1182,8 +1038,6 @@ class Morphology:
         self.lemmatize = generation_overrides.process_analysis_output(
             languagecode, self.morph_lemmatize
         )
-
-        # self.cache = cache
 
         import logging
 
@@ -1334,10 +1188,6 @@ class Morphology:
 
             logg = "\t".join(a for a in logg_args if a).strip()
             self.logger.error(logg)
-
-        # _is_cached = self.cache.set(key, reformatted)
-        # _is_cached_out = self.cache.set(stdout_key, raw_output)
-        # _is_cached_ert = self.cache.set(stderr_key, raw_errors)
 
         return reformatted, raw_output, raw_errors
 
@@ -1673,22 +1523,3 @@ class Morphology:
 
         assert result == former_result, "new code does the same as old code"
         return result
-
-    # def generate_cache_key(self, lemma, generation_tags, node=False):
-    #     """key is something like generation-LANG-nodehash-TAG|TAG|TAG"""
-    #     import hashlib
-
-    #     if type(generation_tags) == list:
-    #         _cache_tags = "|".join("+".join(a) for a in generation_tags)
-    #     else:
-    #         _cache_tags = generation_tags
-
-    #     _cache_key = hashlib.md5()
-    #     genstr = f"generation-{self.langcode}-"
-    #     _cache_key.update(genstr.encode("utf-8"))
-    #     _cache_key.update(lemma.encode("utf-8"))
-    #     if node is not None:
-    #         node_hash = node.__hash__()
-    #         _cache_key.update(str(node_hash).encode("utf-8"))
-    #     _cache_key.update(_cache_tags.encode("utf-8"))
-    #     return _cache_key.hexdigest()
