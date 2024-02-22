@@ -20,6 +20,7 @@ except ImportError:
     HAVE_PYHFST = False
 
 from neahtta.utils.remove_duplicates import remove_duplicates
+from neahtta.utils.partition import partition_in_place
 
 
 # TODO: get from global path
@@ -1192,67 +1193,59 @@ class Morphology:
         return reformatted, raw_output, raw_errors
 
     # start: morph_lemmatizer internal functions
-    def remove_compound_analyses(self, analyses, non_compound_only):
-        cmp = self.tool.options.get("compoundBoundary", False)
-        if non_compound_only and cmp:
-            return [analysis for analysis in analyses if cmp not in analysis]
+    def remove_compound_analyses(self, analyses):
+        cmp = self.tool.options.get("compoundBoundary")
+        if cmp:
+            indexes = [i for i, analysis in enumerate(analyses) if cmp in analysis]
+            for index in reversed(indexes):
+                del analyses[index]
 
-        return analyses
-
-    def remove_derivations(self, analyses, no_derivations):
-        der = self.tool.options.get("derivationMarker", False)
-        if no_derivations and der:
-            return [analysis for analysis in analyses if der not in analysis]
-
-        return analyses
-
-    @staticmethod
-    def maybe_filter(function, iterable):
-        return list(filter(function, iterable))
+    def remove_derivations(self, analyses):
+        der = self.tool.options.get("derivationMarker")  # "Der/"
+        if der:
+            indexes = [i for i, analysis in enumerate(analyses) if der in analysis]
+            for index in reversed(indexes):
+                del analyses[index]
 
     @staticmethod
-    def check_if_lexicalized(form, array):
-        """If the user input is lexicalized then put it as the first element
-        in analyses"""
-        for index in range(0, len(array)):
-            if form == array[index].split("+")[0]:
-                array.insert(0, array[index])
-                del array[index + 1]
-                return array
-        else:
-            # If the user input is not in the base form, the for above doesn't find the analyses
-            # so find the longest analyses and put it/them in the first/s element/s
-            # in analyses if it is not one of the single parts
-            mystr = [
-                len(array[index][0 : array[index].find("+")])
-                for index in range(0, len(array))
-            ]
-            indmax = [index for index, j in enumerate(mystr) if j == max(mystr)]
-            if max(mystr) <= len(form):
-                index2 = 0
-                for index in range(0, len(indmax)):
-                    array.insert(index2, array.pop(indmax[index]))
-                    index2 += 1
-            return array
+    def place_exact_lemmas_first(form: str, analyses: list[str]):
+        # old code: (this only moved the first exact lemma)
+        # for index in range(0, len(array)):
+        #     if form == array[index].split("+")[0]:
+        #         array.insert(0, array[index])
+        #         del array[index + 1]
+        #         return array
+        def lemma_eq_form(lemma):
+            return lemma[0 : lemma.find("+")] == form
+
+        n_exact_lemmas = partition_in_place(analyses, lemma_eq_form)
+        return n_exact_lemmas
 
     @staticmethod
-    def fix_nested_array(nested_array, analyses):
-        if not nested_array:
-            return analyses
+    def place_longest_lemmas_first(form: str, analyses: list[str]):
+        """Given a list of analyses on the form "lemma+tag+tag+tag+...",
+        re-arrange the list so that the analysis with the longest lemma
+        comes first, before all other lemmas."""
 
-        if isinstance(nested_array[0], list):
-            return [var for item in nested_array for var in item]
+        def lemma_len(line):
+            i = line.find("+")
+            return i if i >= 0 else len(line)
 
-        return []
+        longest = max(lemma_len(line) for line in analyses)
+        partition_in_place(analyses, lambda line: lemma_len(line) == longest)
 
-    # anders: generic function. moved to utils
-    # @staticmethod
-    # def remove_duplicates(array_var):
-    #     newlist = []
-    #     for item in array_var:
-    #         if item not in newlist:
-    #             newlist.append(item)
-    #     return newlist
+        # old code:
+        # mystr = [
+        #     len(analysis_line[0:analysis_line.find("+")])
+        #     for analysis_line in analyses
+        # ]
+        # indmax = [index for index, j in enumerate(mystr) if j == max(mystr)]
+        # if max(mystr) <= len(form):
+        #     index2 = 0
+        #     for index in range(0, len(indmax)):
+        #         analyses.insert(index2, analyses.pop(indmax[index]))
+        #         index2 += 1
+        # return analyses
 
     # end: morph_lemmatizer internal functions
 
@@ -1285,12 +1278,22 @@ class Morphology:
         self, form, lookups, no_derivations, non_compound_only, split_compounds
     ):
         for _, analyses, _ in lookups:
-            analyses = self.remove_compound_analyses(analyses, non_compound_only)
-            analyses = self.remove_derivations(analyses, no_derivations)
+            if non_compound_only:
+                self.remove_compound_analyses(analyses)
 
-            analyses = self.check_if_lexicalized(form, analyses)
+            if no_derivations:
+                self.remove_derivations(analyses)
+
+            n_exact = self.place_exact_lemmas_first(form, analyses)
+
+            if n_exact == 0:
+                # no analyses lines had lemma exactly equal to the word form
+                self.place_longest_lemmas_first(form, analyses)
+
             analyses = self.rearrange_on_count(analyses)
-            analyses = self.split_on_compounds(analyses, split_compounds)
+
+            if split_compounds:
+                analyses = self.split_on_compounds(analyses)
 
             analyses_der_fin = self.make_analyses_der_fin(analyses)
 
@@ -1415,10 +1418,8 @@ class Morphology:
         # same?
         return remove_duplicates(analyses_der_fin, keep_order=True)
 
-    def split_on_compounds(self, analyses, split_compounds):
-        if split_compounds:
-            analyses = sum(list(map(self.tool.splitTagByCompound, analyses)), [])
-        return analyses
+    def split_on_compounds(self, analyses):
+        return sum(list(map(self.tool.splitTagByCompound, analyses)), [])
 
     @staticmethod
     def rearrange_on_count(analyses: list[str]):
@@ -1427,68 +1428,40 @@ class Morphology:
         each line has, and then how many Der each line has"""
         errorth_count = [analysis.count("Err/Orth") for analysis in analyses]
 
-        if (min(errorth_count) == 0 and max(errorth_count) == 1) or (
-            min(errorth_count) == 0 and max(errorth_count) == 0
-        ):
-            # at least 1 line is without Err/Orth, and at least 1 line has
-            # Err/Orth, with at most 1 Err/Orth on that line
-            # OR
-            # no lines has any Err/Orth
-            der_count = [analysis.count("Der") for analysis in analyses]
-            if (
-                len(der_count) > 1
-                and min(der_count) == 0
-                and heapq.nsmallest(2, der_count)[-1] != 0
-            ):
-                # code analysis:
-                # If these 3 conditions hold:
-                # - more than 1 line  (len(der_count) > 1)
-                # - at least 1 line has no Der   (min(der_count) == 0)
-                # - when sorted by der_count, the line with the
-                #   second-to-smallest amount of Der, does not have 0 Der.
-                # in other words: at least 2 lines,
-                # exactly 1 line is without a Der,
-                # all other lines has at least 1 Der,
-                # then:
-                #   analysis gets reassigned to an array of two elements:
-                #   element 1: the first line without Der,
-                #   element 2: the first line among the other lines that has
-                #   at least 1 Der, but choose one that has the minimum number
-                #   of Der's
-                analyses = [
-                    analyses[der_count.index(min(der_count))],
-                    analyses[der_count.index(heapq.nsmallest(2, der_count)[-1])],
-                ]
-            else:
-                if (
-                    min(errorth_count) == 0
-                    and max(errorth_count) == 0
-                    and not max(der_count) > 1
-                ):
-                    # code analysis:
-                    #   if no lines has Err/Orth, and
-                    #   and no lines has more than 1 Der,
-                    #   then do nothing
-                    analyses = analyses
-                elif min(der_count) != 0:
-                    # code analysis:
-                    #   if all lines has Der,
-                    #   then analyses will be reassigned to only 1 analyses:
-                    #   the first in the list which has the lowest amount
-                    #   of Der's.
-                    analyses = [analyses[der_count.index(min(der_count))]]
-                elif min(errorth_count) == 0 and max(errorth_count) > 0:
-                    # code analysis:
-                    #   if at least 1 line is without Err/Orth, and
-                    #   at least 1 line has at least 1 Err/Orth,
-                    #   then
-                    #   basically, remove the ones with Err/Orth
-                    idx = [i for i, x in enumerate(errorth_count) if x == 0]
-                    analyses = [analyses[item] for item in idx]
-        else:
-            # anders: ???
-            if min(errorth_count) == 1 and max(errorth_count) == 1:
-                analyses = analyses
+        any_without_errorth = min(errorth_count) == 0
+        any_with_errorth = max(errorth_count) > 0
+        max_1_errorth = max(errorth_count) == 1
+        no_errorth = max(errorth_count) == 0
+
+        if not (no_errorth or (any_without_errorth and max_1_errorth)):
+            return analyses
+
+        der_count = [analysis.count("Der") for analysis in analyses]
+        any_without_der = min(der_count) == 0
+        most_1_without_der = heapq.nsmallest(2, der_count)[-1] > 0
+        all_has_der = min(der_count) > 0
+
+        if len(analyses) >= 2 and any_without_der and most_1_without_der:
+            line_without_der = analyses[der_count.index(0)]
+            first_line_with_least_amount_of_der = analyses[
+                der_count.index(heapq.nsmallest(2, der_count)[-1])
+            ]
+            return [line_without_der, first_line_with_least_amount_of_der]
+
+        if no_errorth and max(der_count) <= 1:
+            return analyses
+
+        if all_has_der:
+            first_line_with_least_amount_of_der = analyses[
+                der_count.index(min(der_count))
+            ]
+            return [first_line_with_least_amount_of_der]
+
+        if any_without_errorth and any_with_errorth:
+            # remove the ones with Err/Orth
+            idx = [i for i, x in enumerate(errorth_count) if x == 0]
+            return [analyses[item] for item in idx]
+
         return analyses
 
     def has_unknown(self, lookups):

@@ -1,4 +1,5 @@
 from logging import getLogger
+from functools import cached_property
 
 from flask import (
     abort,
@@ -256,6 +257,11 @@ class IndexSearchPage(DictionaryView, AppViewSettingsMixin):
         return render_template(self.template_name, **template_context)
 
 
+def entry_sorter_key(req):
+    """ "left" is the lemma."""
+    return req.get("left")
+
+
 class SearchResult:
     """This object is the lexicon lookup search result. It mostly
     provides readability conveniences.
@@ -267,33 +273,47 @@ class SearchResult:
         self.successful_entry_exists
     """
 
-    def entry_sorter_key(self, req):
-        return req.get("left")
+    def __init__(
+        self,
+        _from,
+        _to,
+        user_input,
+        entries_and_tags,
+        formatter,
+        generate,
+        sorter=entry_sorter_key,
+        filterer=None,
+        debug_text=False,
+        other_counts={},
+    ):
+        self.user_input = user_input
+        self.search_term = user_input
+        self.entries_and_tags = entries_and_tags
+        # When to display unknowns
+        self.successful_entry_exists = False
+        self._from = _from
+        self._to = _to
+        self.formatter = formatter
+        self.generate = generate
+        self.debug_text = debug_text
+        self.other_results = other_counts
+        self.entry_sorter_key = sorter
+
+        if filterer is not None:
+            self.entry_filterer = filterer
+
+        self.analyses = [
+            (lem.input, lem.lemma, list(lem.tag)) for lem in entries_and_tags.analyses
+        ]
+
+        if self.formatted_results:
+            self.successful_entry_exists = True
 
     @property
     def formatted_results_sorted(self):
         """Formatted results sorted by entry_sorter_key"""
+        return self.formatted_results
         return sorted(self.formatted_results, key=self.entry_sorter_key)
-
-    @property
-    def formatted_results_pickleable(self):
-        # TODO: implement
-        def pickleable_result(results):
-            """Pop the various keys that need to be removed."""
-            pickleable = []
-            for result in [result.copy() for result in results]:
-                result.pop("node")
-                analyses = []
-                for ana in result.get("analyses", []):
-                    # TODO: tag formatter
-                    analyses.append((ana.lemma, ana.tag.tag_string))
-                result["analyses"] = analyses
-                pickleable.append(result)
-            return pickleable
-
-        pickle_result = pickleable_result(self.formatted_results_sorted)
-
-        return pickle_result
 
     def generate_paradigm(self, node, morph_analyses):
         from neahtta.morpholex import MorphoLexicon
@@ -301,7 +321,9 @@ class SearchResult:
         try:
             morph = current_app.config.morphologies[g._from]
         except KeyError:
-            # anders: no morphology found for language in g._from
+            # the config is checked when starting up, so this should never
+            # happen
+            print(f"no morphology found for language {g._from}")
             return []
 
         mlex: MorphoLexicon = current_app.morpholexicon
@@ -331,12 +353,9 @@ class SearchResult:
 
         return generated
 
-    @property
+    @cached_property
     def formatted_results(self):
-        if hasattr(self, "_formatted_results"):
-            return self._formatted_results
-
-        self._formatted_results = []
+        results = []
 
         fmtkwargs = {
             "target_lang": self._to,
@@ -358,17 +377,13 @@ class SearchResult:
                 if self.entry_filterer:
                     _formatted = self.entry_filterer(_formatted)
 
-                self._formatted_results.extend(_formatted)
+                results.extend(_formatted)
 
-        return self._formatted_results
+        return results
 
-    @property
+    @cached_property
     def entries(self):
-        if hasattr(self, "_entries"):
-            return self._entries
-
-        self._entries = [a for a, _ in self.entries_and_tags]
-        return self._entries
+        return [entry for entry, _tags in self.entries_and_tags]
 
     def sort_entries_and_tags_and_paradigm(
         self, unsorted_entries_and_tags_and_paradigms
@@ -381,12 +396,9 @@ class SearchResult:
         else:
             return sorter(self, unsorted_entries_and_tags_and_paradigms)
 
-    @property
+    @cached_property
     def entries_and_tags_and_paradigms(self):
-        if hasattr(self, "_entries_and_tags_and_paradigms"):
-            return self._entries_and_tags_and_paradigms
-
-        self._entries_and_tags_and_paradigms = []
+        etp = []
 
         # Formatting of this stuff should be moved somewhere more reasonable
         for result, morph_analyses in self.entries_and_tags:
@@ -417,15 +429,11 @@ class SearchResult:
             else:
                 paradigm = []
 
-            self._entries_and_tags_and_paradigms.append(
-                (result, morph_analyses, paradigm, has_layout)
-            )
+            etp.append((result, morph_analyses, paradigm, has_layout))
 
         # TODO: custom alphabetical order.
         # TODO: sorting_problem
-        return self.sort_entries_and_tags_and_paradigm(
-            self._entries_and_tags_and_paradigms
-        )
+        return self.sort_entries_and_tags_and_paradigm(etp)
 
     @property
     def analyses_without_lex(self):
@@ -439,43 +447,26 @@ class SearchResult:
 
             return self._analyses_without_lex
 
-    def __init__(
-        self,
-        _from,
-        _to,
-        user_input,
-        entries_and_tags,
-        formatter,
-        generate,
-        sorter=None,
-        filterer=None,
-        debug_text=False,
-        other_counts={},
-    ):
-        self.user_input = user_input
-        self.search_term = user_input
-        self.entries_and_tags = entries_and_tags
-        # When to display unknowns
-        self.successful_entry_exists = False
-        self._from = _from
-        self._to = _to
-        self.formatter = formatter
-        self.generate = generate
-        self.debug_text = debug_text
-        self.other_results = other_counts
+    # anders: seems unused
+    # @property
+    # def formatted_results_pickleable(self):
+    #     # TODO: implement
+    #     def pickleable_result(results):
+    #         """Pop the various keys that need to be removed."""
+    #         pickleable = []
+    #         for result in [result.copy() for result in results]:
+    #             result.pop("node")
+    #             analyses = []
+    #             for ana in result.get("analyses", []):
+    #                 # TODO: tag formatter
+    #                 analyses.append((ana.lemma, ana.tag.tag_string))
+    #             result["analyses"] = analyses
+    #             pickleable.append(result)
+    #         return pickleable
 
-        if sorter is not None:
-            self.entry_sorter_key = sorter
+    #     pickle_result = pickleable_result(self.formatted_results_sorted)
 
-        if filterer is not None:
-            self.entry_filterer = filterer
-
-        self.analyses = [
-            (lem.input, lem.lemma, list(lem.tag)) for lem in entries_and_tags.analyses
-        ]
-
-        if self.formatted_results:
-            self.successful_entry_exists = True
+    #     return pickle_result
 
 
 class SearcherMixin:
@@ -610,10 +601,7 @@ class SearcherMixin:
                 lookup_value, generate=generate, lemma_attrs=lemma_attrs
             )
 
-        if detailed:
-            template = "detail_entry.template"
-        else:
-            template = "entry.template"
+        template = "detail_entry.template" if detailed else "entry.template"
 
         _rendered_entry_templates = []
 
@@ -638,12 +626,13 @@ class SearcherMixin:
         # If in the results there is a 'None' entry followed by der tag/s those are removed
         # and are not shown in the results (e.g. "bagoheapmi")
         for item in search_result_obj.entries_and_tags:
-            if item[1]:
-                if if_none and item[1][0].lemma.startswith(tags):
+            dict_entry, analyses = item
+            if analyses:
+                if if_none and analyses[0].lemma.startswith(tags):
                     if_next_der = True
-                if item[0] is not None and not item[1][0].lemma.startswith(tags):
+                if dict_entry is not None and not analyses[0].lemma.startswith(tags):
                     if_next_der = False
-                if item[0] is not None and not if_next_der:
+                if dict_entry is not None and not if_next_der:
                     res_par.append(item)
                     if_none = False
                 else:
@@ -677,32 +666,16 @@ class SearcherMixin:
                 )
             return k_query
 
-        for (
-            _,
-            analyses,
-            paradigm,
-            has_layout,
-        ) in search_result_obj.entries_and_tags_and_paradigms:
+        etp = search_result_obj.entries_and_tags_and_paradigms
+        for _dict_entry, analyses, paradigm, has_layout in etp:
+            # anders:
+            # this "picks" res_par[k] instead of going in the order of `etp` !
+            # which in turn gets its order directly from entries_and_tags,
+            # which is the order that we get from the analyser
             if k < len(res_par):
                 if res_par[k][0] is not None:
                     if not analyses:
                         analyses = "az"
-
-                    # this takes seconds to complete. we don't want to wait
-                    # for it on every search
-                    # if res_par[k][1]:
-                    #    url_json = korp_query(res_par[k][1][0].lemma)
-                    #    if sys.version[0] == 2:
-                    #        url_json = url_json.encode('utf8')
-                    #    if url_json:
-                    #        try:
-                    #            response = urlopen(url_json)
-                    #        except HTTPError:
-                    #            korp_hits = 0
-                    #        else:
-                    #            data = json.loads(response.read())
-                    #            if data.get("hits", None) is not None:
-                    #                korp_hits = data["hits"]
 
                     tplkwargs = {
                         "lexicon_entry": res_par[k][0],
