@@ -134,7 +134,7 @@ class MorphoLexicon:
         return unique_kwargs
 
     @staticmethod
-    def make_lex_kwargs(wordform, analysis):
+    def make_lex_kwargs(wordform, analysis: Lemma):
         assert isinstance(analysis, Lemma)
         if isinstance(analysis, list):
             if analysis[0].lemma:
@@ -155,7 +155,6 @@ class MorphoLexicon:
                 }
                 return d, analysis
 
-    # -------
     @staticmethod
     def add_to_dict(entries_and_tags, entry, analyses):
         if not entries_and_tags.get(entry):
@@ -173,8 +172,6 @@ class MorphoLexicon:
                 self.add_to_dict(entries_and_tags, entry, analyses)
         else:
             self.add_to_dict(entries_and_tags, None, analyses)
-
-    # -------
 
     def lookup(
         self,
@@ -282,7 +279,6 @@ class MorphoLexicon:
                 self.make_xml_result(
                     source_lang, target_lang, lexc_kwargs, analyses, entries_and_tags
                 )
-        # ----
 
         plain_input_lookup_results = self.lexicon.lookup(
             source_lang,

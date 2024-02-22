@@ -1,4 +1,3 @@
-# -*- encoding: utf-8 -*-
 from logging import getLogger
 
 from flask import (
@@ -734,24 +733,6 @@ class SearcherMixin:
         all_analyses = sum(
             [analyses for _, analyses in search_result_obj.entries_and_tags], []
         )
-
-        # if all_analyses:
-        #    lemma = all_analyses[0].lemma
-        #    url_json = korp_query(lemma)
-        #    if sys.version[0] == 2 :
-        #        url_json = url_json.encode('utf8')
-        #    if url_json:
-        #        try:
-        #            response = urlopen(url_json)
-        #        except HTTPError:
-        #            korp_hits = 0
-        #        else:
-        #            data = json.loads(response.read())
-        #            if data.get("hits", None) is not None:
-        #                korp_hits = data["hits"]
-        #
-        # else:
-        #    korp_hits = ''
 
         indiv_template_kwargs = {
             "analyses": all_analyses,
