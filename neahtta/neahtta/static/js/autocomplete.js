@@ -18,6 +18,9 @@ function Autocomplete(anchor) {
 
     this.search_note = this._create_search_note_element();
 
+    // only have 1 autocomplete request in progress at one time
+    this.autocomplete_request = null;
+
     document.body.append(this.element);
     this.anchor.addEventListener("input", this.on_input.bind(this));
     window.addEventListener("keydown", on_keydown.bind(this));
@@ -79,18 +82,28 @@ Autocomplete.prototype = {
 
         var text = element.value;
 
+        if (this.autocomplete_request) {
+            // fix for #28
+            // already an autocomplete in progress, which means user typed
+            // really quickly, before the autocomplete request finished,
+            // so cancel the old one
+            this.autocomplete_request.abort();
+            this.autocomplete_request = null;
+        }
+
         this.clear();
         if (text.length >= 2) {
             var url = "/autocomplete/" + lang_from + "/" + lang_to + "/?lookup=" + text;
-            var request = new XMLHttpRequest();
+            this.autocomplete_request = new XMLHttpRequest();
 
             var self = this;
-            request.open("GET", url);
-            request.onreadystatechange = function (ev) {
-                if (request.readyState !== XMLHttpRequest.DONE) return;
+            self.autocomplete_request.open("GET", url);
+            self.autocomplete_request.onreadystatechange = function (ev) {
+                if (self.autocomplete_request.readyState !== XMLHttpRequest.DONE) return;
+
                 var items;
                 try {
-                    items = JSON.parse(request.responseText);
+                    items = JSON.parse(self.autocomplete_request.responseText);
                 } catch (e) {
                     console.error(e);
                     console.error("Could not parse json");
@@ -111,8 +124,9 @@ Autocomplete.prototype = {
                 }
                 self.append_items(text, items);
                 self.show();
+                self.autocomplete_request = null;
             };
-            request.send();
+            self.autocomplete_request.send();
         } else {
             this.hide();
         }
