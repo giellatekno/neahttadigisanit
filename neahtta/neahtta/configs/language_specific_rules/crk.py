@@ -265,7 +265,7 @@ class KeywordLookups(CustomLookupType):
         l = e.find("lg/l")
         right_text = [l.text]
 
-        return {"left": ts_text, "pos": ts_pos, "right": right_text}
+        return {"lemma": ts_text, "pos": ts_pos, "right": right_text}
 
     def filterNodes(self, nodes, lemma):
         """

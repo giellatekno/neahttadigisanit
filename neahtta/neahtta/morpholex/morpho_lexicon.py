@@ -173,6 +173,51 @@ class MorphoLexicon:
         else:
             self.add_to_dict(entries_and_tags, None, analyses)
 
+    def _analyze(
+        self,
+        lang,
+        wordform,
+        morph_kwargs,
+        also_capitalized=True,
+    ):
+        """Call the underlying analyzer for language `lang` on the input
+        `wordform`. Additional arguments to the analyzer is in `morph_kwargs`.
+        Returns a 3-tuple of (analyses, stdout, stderr), where
+          analyses is ... (what?)
+          stdout is a string of the "raw output" from the analysis tool
+          stderr is a string of the standard error from the analysis tool
+        """
+        wordform = wordform.strip()
+        if not wordform:
+            return [], "", ""
+
+        try:
+            analyzer = self.analyzers[lang]
+        except KeyError:
+            print(f"NO ANALYSER FOUND FOR LANGUAGE {lang}")
+            return [], "", ""
+
+        analyses, raw_output, raw_errors = analyzer.lemmatize(wordform, **morph_kwargs)
+
+        # Lookup capitalized variant as well
+        # Cannot use title() because it thinks all non-alphabet characters are
+        # word boundaries (hyphens, apostrophes and combining macrons)
+        if also_capitalized and not wordform[0].isupper():
+            wordform = wordform[0].upper() + wordform[1:]
+            uppercase_analysis = analyzer.lemmatize(wordform, **morph_kwargs)
+            up_analyses, up_raw_output, up_raw_errors = uppercase_analysis
+
+            if analyses:
+                analyses.extend(up_analyses)
+                raw_output += up_raw_output
+                raw_errors += up_raw_errors
+            else:
+                analyses = up_analyses
+                raw_output = up_raw_output
+                raw_errors = up_raw_errors
+
+        return analyses, raw_output, raw_errors
+
     def lookup(
         self,
         wordform: str,
@@ -215,7 +260,7 @@ class MorphoLexicon:
             the configuration for `derivationMarker`
         """
         lemma_attrs = kwargs.pop("lemma_attrs", {})
-        entry_hash_filter = lemma_attrs.pop("entry_hash", False)
+        entry_hash_filter = lemma_attrs.pop("entry_hash", None)
         morph_kwargs = {
             key: value
             for key, value in kwargs.items()
@@ -315,41 +360,6 @@ class MorphoLexicon:
 
         return _ret, raw_output, raw_errors
 
-    def _analyze(self, lang, wordform, morph_kwargs):
-        """Call the underlying analyzer for language `lang` on the input
-        `wordform`. Additional arguments to the analyzer is in `morph_kwargs`.
-        Returns a 3-tuple of (analyses, stdout, stderr), where
-          analyses is ... (what?)
-          stdout is a string of the "raw output" from the analysis tool
-          stderr is a string of the standard error from the analysis tool
-        """
-        try:
-            analyzer = self.analyzers[lang]
-        except KeyError:
-            print(f"NO ANALYSER FOUND FOR LANGUAGE {lang}")
-            return [], "", ""
-
-        analyses, raw_output, raw_errors = analyzer.lemmatize(wordform, **morph_kwargs)
-
-        # Lookup capitalized variant as well
-        # Cannot use title() because it thinks all non-alphabet characters are
-        # word boundaries (hyphens, apostrophes and combining macrons)
-        if wordform and not wordform[0].isupper():
-            wordform = wordform[0].upper() + wordform[1:]
-            uppercase_analysis = analyzer.lemmatize(wordform, **morph_kwargs)
-            up_analyses, up_raw_output, up_raw_errors = uppercase_analysis
-
-            if analyses:
-                analyses.extend(up_analyses)
-                raw_output += up_raw_output
-                raw_errors += up_raw_errors
-            else:
-                analyses = up_analyses
-                raw_output = up_raw_output
-                raw_errors = up_raw_errors
-
-        return analyses, raw_output, raw_errors
-
     def variant_lookup(
         self, search_type, wordform, source_lang: str, target_lang: str, **kwargs
     ):
@@ -390,7 +400,7 @@ class MorphoLexicon:
             the configuration for `derivationMarker`
         """
         lemma_attrs = kwargs.pop("lemma_attrs", {})
-        entry_hash_filter = lemma_attrs.pop("entry_hash", False)
+        entry_hash_filter = lemma_attrs.pop("entry_hash", None)
         morph_kwargs = {
             key: value
             for key, value in kwargs.items()
@@ -408,6 +418,13 @@ class MorphoLexicon:
         # twice, which might take too much time if someone's hitting
         # detail frequently.
 
+        # lookup() does this:
+        # analyses, raw_output, raw_errors = self._analyze(
+        #     source_lang,
+        #     wordform,
+        #     morph_kwargs,
+        #     also_capitalized=False,
+        # )
         analyzer = self.analyzers.get(source_lang)
         try:
             analyses, raw_output, raw_errors = analyzer.lemmatize(
@@ -507,6 +524,11 @@ class MorphoLexicon:
                 entries_and_tags_right.append((entry, None))
 
         if entry_hash_filter:
+            # for node in list(entries_and_tags.keys()):
+            #     if node is None:
+            #         continue
+            #     if hash_node(node) != entry_hash_filter:
+            #         del entries_and_tags[node]
 
             def filt(tuple_to_unpack):
                 (x, _) = tuple_to_unpack

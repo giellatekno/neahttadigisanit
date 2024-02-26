@@ -19,31 +19,17 @@ class EntryNodeIterator:
     """
 
     def __init__(self, nodes, *query_args, **query_kwargs):
-        # anders: all standard collections evaluate to False when empty,
-        # so this check is only relevant for internal objects that has a
-        # __len__, and does not evaluate to False when empty. Do we have
-        # any?
-        # if not nodes or len(nodes) == 0:
-        if not nodes:
-            self.nodes = []
-        else:
-            self.nodes = [a for a in nodes if a is not None]
+        self.nodes = [] if not nodes else [a for a in nodes if a is not None]
         self.query_args = query_args
         self.query_kwargs = query_kwargs
-        self.additional_template_kwargs = {}
-
-        if "additional_template_kwargs" in query_kwargs:
-            self.additional_template_kwargs = query_kwargs.get(
-                "additional_template_kwargs"
-            )
-            query_kwargs.pop("additional_template_kwargs")
+        self.additional_template_kwargs = query_kwargs.pop(
+            "additional_template_kwargs",
+            {},
+        )
 
     def l_node(self, entry):
         L = entry.find("lg/l")
-        try:
-            lemma = L.text
-        except AttributeError:
-            lemma = ""
+        lemma = getattr(L, "text", "")
         pos = L.get("pos")
         context = L.get("context", False)
         typ = L.get("type", False)
@@ -124,10 +110,7 @@ class EntryNodeIterator:
                 % error_xml.strip()
             )
 
-        if len(_ex) == 0:
-            return False
-        else:
-            return _ex
+        return _ex if _ex else False
 
     def find_translation_text(self, tg):
         """This parses a <tg /> node and returns text, annotations, xml:lang.
@@ -191,18 +174,13 @@ class EntryNodeIterator:
         for node in self.nodes:
             try:
                 yield self.clean(node)
-            except Exception as e:
+            except Exception:
                 import traceback
                 import sys
 
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 tb_str = traceback.format_exception(exc_type, exc_value, exc_traceback)
-                if node is not None:
-                    error_xml = etree.tostring(
-                        node, pretty_print=True, encoding="utf-8"
-                    )
-                else:
-                    error_xml = "No entry for lookup"
+                error_xml = etree.tostring(node, pretty_print=True, encoding="utf-8")
                 msg_args = (
                     error_xml.strip(),
                     "".join(tb_str),
@@ -213,7 +191,6 @@ class EntryNodeIterator:
                     "Potential XML formatting problem somewhere in... \n\n%s\n\n%s\n\n%s\n\n%s"
                     % msg_args
                 )
-                continue
 
 
 class SimpleJSON(EntryNodeIterator):
@@ -270,7 +247,7 @@ class SimpleJSON(EntryNodeIterator):
             right_langs = flatten([c for a, b, c in translations])
 
         return {
-            "left": lemma,
+            "lemma": lemma,
             "context": lemma_context,
             "pos": lemma_pos,
             "right": right_text,
@@ -461,7 +438,7 @@ class FrontPageFormat(EntryNodeIterator):
         source_formatted = add_link(source_formatted_unlinked)
 
         formatted_dict = {
-            "left": lemma,
+            "lemma": lemma,
             "source_formatted": source_formatted,
             "source_unlinked": source_formatted_unlinked,
             "context": lemma_context,
@@ -487,14 +464,10 @@ class DetailedFormat(FrontPageFormat):
         lemma, lemma_pos, lemma_context, lemma_type, lemma_hid = self.l_node(e)
         tgs, ts = self.tg_nodes(e)
 
-        ui_lang = self.query_kwargs.get("ui_lang")
-
         _right = list(map(lambda tg: self.clean_tg_node(e, tg), tgs))
 
         right_langs = [lang for _, lang in _right]
         right_nodes = [fmt_node for fmt_node, _ in _right]
-
-        entry_hash = hash_node(e)
 
         # node, and default format for if a formatter doesn't exist for
         # iso
@@ -519,6 +492,7 @@ class DetailedFormat(FrontPageFormat):
             """
             return _p
 
+        ui_lang = self.query_kwargs.get("ui_lang")
         source_formatted_unlinked = lexicon_overrides.format_source(
             source_lang, ui_lang, e, target_lang, default_format
         )
@@ -526,7 +500,7 @@ class DetailedFormat(FrontPageFormat):
         source_formatted = add_link(source_formatted_unlinked)
 
         formatted_dict = {
-            "left": lemma,
+            "lemma": lemma,
             "source_formatted": source_formatted,
             "source_unlinked": source_formatted_unlinked,
             "context": lemma_context,
@@ -534,7 +508,7 @@ class DetailedFormat(FrontPageFormat):
             "right": right_nodes,
             "lang": right_langs,
             "hid": lemma_hid,
-            "entry_hash": entry_hash,
+            "entry_hash": hash_node(e),
             "input": (lemma, lemma_pos, "", lemma_type),
             "node": e,
         }

@@ -12,11 +12,11 @@ from flask import (
     url_for,
 )
 from flask.views import MethodView
-from urllib.parse import quote
 
 from neahtta.i18n.utils import get_locale
 from neahtta.nds_lexicon import FrontPageFormat
 from neahtta.utils.logger import logIndexLookups
+from neahtta.utils.flatten import list_flat
 
 from .custom_rendering import template_rendering_overrides
 
@@ -41,8 +41,6 @@ user_log = getLogger("user_log")
 
 class AppViewSettingsMixin:
     def __init__(self, *args, **kwargs):
-        # Apply some default values for the present application
-
         self.default_from, self.default_to = current_app.config.default_language_pair
         self.default_pair_settings = current_app.config.pair_definitions[
             (self.default_from, self.default_to)
@@ -257,9 +255,8 @@ class IndexSearchPage(DictionaryView, AppViewSettingsMixin):
         return render_template(self.template_name, **template_context)
 
 
-def entry_sorter_key(req):
-    """ "left" is the lemma."""
-    return req.get("left")
+def entry_sorter_key(d):
+    return d["lemma"]
 
 
 class SearchResult:
@@ -364,8 +361,7 @@ class SearchResult:
             "user_input": self.user_input,
         }
 
-        # Formatting of this stuff should be moved somewhere more
-        # reasonable.
+        # Formatting of this stuff should be moved somewhere more reasonable
         for result, morph_analyses in self.entries_and_tags:
             if result is not None:
                 _formatted = self.formatter(
@@ -431,55 +427,24 @@ class SearchResult:
 
             etp.append((result, morph_analyses, paradigm, has_layout))
 
-        # TODO: custom alphabetical order.
-        # TODO: sorting_problem
         return self.sort_entries_and_tags_and_paradigm(etp)
 
-    @property
+    @cached_property
     def analyses_without_lex(self):
-        try:
-            return self._analyses_without_lex
-        except AttributeError:
-            self._analyses_without_lex = []
-            for result, morph_analyses in self.entries_and_tags:
-                if result is None:
-                    self._analyses_without_lex.extend(morph_analyses)
-
-            return self._analyses_without_lex
-
-    # anders: seems unused
-    # @property
-    # def formatted_results_pickleable(self):
-    #     # TODO: implement
-    #     def pickleable_result(results):
-    #         """Pop the various keys that need to be removed."""
-    #         pickleable = []
-    #         for result in [result.copy() for result in results]:
-    #             result.pop("node")
-    #             analyses = []
-    #             for ana in result.get("analyses", []):
-    #                 # TODO: tag formatter
-    #                 analyses.append((ana.lemma, ana.tag.tag_string))
-    #             result["analyses"] = analyses
-    #             pickleable.append(result)
-    #         return pickleable
-
-    #     pickle_result = pickleable_result(self.formatted_results_sorted)
-
-    #     return pickle_result
+        results = []
+        for entry, analyses in self.entries_and_tags:
+            if entry is None:
+                results.extend(analyses)
+        return results
 
 
 class SearcherMixin:
     """This mixin provides common methods for performing the search,
-    and returning view-ready results.
-    """
+    and returning view-ready results."""
 
     entr_r = []
 
-    def do_search_to_obj(self, lookup_value, **kwargs):
-        """Run the search, and provide a result object."""
-        mlex = current_app.morpholexicon
-
+    def do_search_to_obj(self, lookup_value, **kwargs) -> SearchResult:
         search_kwargs = {
             "split_compounds": kwargs.get("split_compounds", True),
             "non_compounds_only": kwargs.get("non_compounds_only", False),
@@ -487,9 +452,10 @@ class SearcherMixin:
             "lemma_attrs": kwargs.get("lemma_attrs", {}),
         }
 
+        mlex = current_app.morpholexicon
         variant_type = kwargs.get("variant_type", False)
         if variant_type:
-            morpholex_result = mlex.variant_lookup(
+            entries_and_tags, stdout, stderr = mlex.variant_lookup(
                 variant_type,
                 lookup_value,
                 source_lang=g._from,
@@ -497,92 +463,80 @@ class SearcherMixin:
                 **search_kwargs,
             )
         else:
-            morpholex_result = mlex.lookup(
+            entries_and_tags, stdout, stderr = mlex.lookup(
                 lookup_value, source_lang=g._from, target_lang=g._to, **search_kwargs
             )
 
-        entries_and_tags, raw_output, raw_error = morpholex_result
-        fst_text = raw_error + "\n--\n" + raw_output
-
-        generate = kwargs.get("generate", False)
-        search_result_obj = SearchResult(
+        return SearchResult(
             g._from,
             g._to,
             lookup_value,
             entries_and_tags,
             self.formatter,
-            generate=generate,
+            generate=kwargs.get("generate"),
             filterer=self.entry_filterer,
-            debug_text=fst_text,
+            debug_text=f"{stdout}\n--\n{stderr}",
             other_counts={},
         )
 
-        return search_result_obj
-
+    # anders: unused
     def search_to_detailed_context(self, lookup_value, **search_kwargs):
-        # TODO: There's a big mess contained here, and part of it
-        # relates to lexicon formatters. Slowly working on unravelling
-        # it.
+        assert False, "unused function"
 
-        # TODO: this can probably be generalized to be part of the last
-        # function.
+    # def search_to_detailed_context(self, lookup_value, **search_kwargs):
+    #     # TODO: There's a big mess contained here, and part of it
+    #     # relates to lexicon formatters. Slowly working on unravelling
+    #     # it.
 
-        errors = False
+    #     # TODO: this can probably be generalized to be part of the last
+    #     # function.
 
-        search_result_obj = self.do_search_to_obj(
-            lookup_value, generate=True, **search_kwargs
-        )
+    #     errors = False
 
-        template_results = [
-            {
-                "input": search_result_obj.search_term,
-                "lookups": search_result_obj.formatted_results_sorted,
-                # 'analyses': search_result_obj.analyses
-            }
-        ]
+    #     search_result_obj = self.do_search_to_obj(
+    #         lookup_value, generate=True, **search_kwargs
+    #     )
 
-        logIndexLookups(
-            search_result_obj.search_term,
-            template_results,
-            g._from,
-            g._to,
-        )
+    #     template_results = [
+    #         {
+    #             "input": search_result_obj.search_term,
+    #             "lookups": search_result_obj.formatted_results_sorted,
+    #             # 'analyses': search_result_obj.analyses
+    #         }
+    #     ]
 
-        show_info = False
+    #     logIndexLookups(
+    #         search_result_obj.search_term,
+    #         template_results,
+    #         g._from,
+    #         g._to,
+    #     )
 
-        # Here analyses_right related to the same variable in morphology.py
-        search_context = {
-            "result": search_result_obj.formatted_results_sorted,
-            # These variables can be turned into something more general
-            "successful_entry_exists": search_result_obj.successful_entry_exists,
-            "word_searches": template_results,
-            "analyses": search_result_obj.analyses,
-            "analyses_right": search_result_obj.analyses,
-            "analyses_without_lex": search_result_obj.analyses_without_lex,
-            "user_input": search_result_obj.search_term,
-            "current_locale": get_locale(),
-            "errors": errors,  # is this actually getting set?
-            "show_info": show_info,
-            "language_pairs_other_results": search_result_obj.other_results,
-            "debug_text": search_result_obj.debug_text,
-        }
+    #     show_info = False
 
-        return search_context
+    #     # Here analyses_right related to the same variable in morphology.py
+    #     search_context = {
+    #         "result": search_result_obj.formatted_results_sorted,
+    #         # These variables can be turned into something more general
+    #         "successful_entry_exists": search_result_obj.successful_entry_exists,
+    #         "word_searches": template_results,
+    #         "analyses": search_result_obj.analyses,
+    #         "analyses_right": search_result_obj.analyses,
+    #         "analyses_without_lex": search_result_obj.analyses_without_lex,
+    #         "user_input": search_result_obj.search_term,
+    #         "current_locale": get_locale(),
+    #         "errors": errors,  # is this actually getting set?
+    #         "show_info": show_info,
+    #         "language_pairs_other_results": search_result_obj.other_results,
+    #         "debug_text": search_result_obj.debug_text,
+    #     }
 
-    # TODO: NST removal
+    #    return search_context
+
     def search_to_context(self, lookup_value, detailed=False, **default_context_kwargs):
-        """This needs a big redo.
-
-        Note however: new-style templates require similar input
+        """Note: new-style templates require similar input
         across Detail/main page view, so can really refactor and
-        chop stuff down.
-
-        TODO: inclusion of context_processors ?
-
-        TODO: And the big mess is:
-          * do_search_to_obj
-          * search_context - simplify
-        """
+        chop stuff down."""
         current_pair, _ = current_app.config.resolve_original_pair(g._from, g._to)
         async_paradigm = current_pair.get("asynchronous_paradigms", False)
         lemma_attrs = default_context_kwargs.get("lemma_attrs", {})
@@ -590,14 +544,14 @@ class SearcherMixin:
 
         if "variant_type" in default_context_kwargs:
             variant_type = default_context_kwargs.get("variant_type")
-            search_result_obj = self.do_search_to_obj(
+            search_result: SearchResult = self.do_search_to_obj(
                 lookup_value,
                 generate=generate,
                 lemma_attrs=lemma_attrs,
                 variant_type=variant_type,
             )
         else:
-            search_result_obj = self.do_search_to_obj(
+            search_result: SearchResult = self.do_search_to_obj(
                 lookup_value, generate=generate, lemma_attrs=lemma_attrs
             )
 
@@ -607,25 +561,50 @@ class SearcherMixin:
 
         template_results = [
             {
-                "input": search_result_obj.search_term,
-                "lookups": search_result_obj.formatted_results_sorted,
+                "input": search_result.search_term,
+                "lookups": search_result.formatted_results_sorted,
             }
         ]
 
-        logIndexLookups(search_result_obj.search_term, template_results, g._from, g._to)
+        logIndexLookups(search_result.search_term, template_results, g._from, g._to)
 
         show_info = False
-
-        # TODO: sorting_problem
 
         k = 0
         res_par = []
         if_none = False
         if_next_der = False
         tags = ("Der", "VAbess", "VGen", "Ger", "Comp", "Superl")
+
+        fmtkwargs = {
+            "target_lang": g._to,
+            "source_lang": g._from,
+            "ui_lang": g.ui_lang,
+            "user_input": lookup_value,
+        }
+
+        # anders: hack to get lemma_match respected.
+        # this is the same code as in formatted_results(), which _does_ do
+        # entry filtering based on lemma_match. So we run the same filter
+        # here, and update `entries_and_tags` accordingly (discarding the
+        # actual "results" from the filtering)
+        entries_and_tags = []
+        for item in search_result.entries_and_tags:
+            # same code as formatted_results()
+            if item[0] is not None:
+                _formatted = self.formatter(
+                    [item[0]],
+                    additional_template_kwargs={"analyses": item[1]},
+                    **fmtkwargs,
+                )
+                if self.entry_filterer:
+                    _filtered = self.entry_filterer(_formatted)
+                    if _filtered:
+                        entries_and_tags.append(item)
+
         # If in the results there is a 'None' entry followed by der tag/s those are removed
         # and are not shown in the results (e.g. "bagoheapmi")
-        for item in search_result_obj.entries_and_tags:
+        for item in entries_and_tags:
             dict_entry, analyses = item
             if analyses:
                 if if_none and analyses[0].lemma.startswith(tags):
@@ -640,33 +619,7 @@ class SearcherMixin:
             else:
                 res_par.append(item)
 
-        def korp_query(lemma):
-            (
-                current_pair_settings,
-                orig_pair_opts,
-            ) = current_app.config.resolve_original_pair(g._from, g._to)
-            o_pair = orig_pair_opts.get("orig_pair")
-            if orig_pair_opts.get("orig_pair") != ():
-                orig_from, orig_to = o_pair
-            else:
-                orig_from, orig_to = g._from, g._to
-
-            korp_opts = current_pair_settings.get("korp_options")
-            start_query = korp_opts.get("start_query")
-            corpora = korp_opts.get("corpora")
-            k_query = ""
-
-            if korp_opts.get("lemma_search_path") and lemma and start_query and corpora:
-                k_query = (
-                    start_query
-                    + corpora
-                    + "&cqp=%5Blemma+%3D+%22"
-                    + quote(lemma)
-                    + "%22%5D&start=0&end=99"
-                )
-            return k_query
-
-        etp = search_result_obj.entries_and_tags_and_paradigms
+        etp = search_result.entries_and_tags_and_paradigms
         for _dict_entry, analyses, paradigm, has_layout in etp:
             # anders:
             # this "picks" res_par[k] instead of going in the order of `etp` !
@@ -684,11 +637,11 @@ class SearcherMixin:
                         "korp_hits": 1,  # we assume it exists
                         "paradigm": paradigm,
                         "layout": has_layout,
-                        "user_input": search_result_obj.search_term,
+                        "user_input": search_result.search_term,
                         "word_searches": template_results,
                         "errors": False,
                         "show_info": show_info,
-                        "successful_entry_exists": search_result_obj.successful_entry_exists,
+                        "successful_entry_exists": search_result.successful_entry_exists,
                     }
 
                     tplkwargs.update(**default_context_kwargs)
@@ -703,8 +656,8 @@ class SearcherMixin:
                     )
                 k += 1
 
-        all_analyses = sum(
-            [analyses for _, analyses in search_result_obj.entries_and_tags], []
+        all_analyses = list_flat(
+            analyses for _, analyses in search_result.entries_and_tags
         )
 
         indiv_template_kwargs = {
@@ -727,10 +680,10 @@ class SearcherMixin:
             g._from, "includes.template", **indiv_template_kwargs
         )
 
-        if search_result_obj.analyses_without_lex:
+        if search_result.analyses_without_lex:
             leftover_tpl_kwargs = {
-                "analyses": search_result_obj.analyses_without_lex,
-                "analyses_right": search_result_obj.analyses_without_lex,
+                "analyses": search_result.analyses_without_lex,
+                "analyses_right": search_result.analyses_without_lex,
                 "korp_hits": 1,
             }
             leftover_tpl_kwargs.update(**default_context_kwargs)
@@ -757,23 +710,23 @@ class SearcherMixin:
             "all_analysis_template": all_analysis_template,
             "find_problem": find_problem,
             # These variables can be turned into something more general
-            "successful_entry_exists": search_result_obj.successful_entry_exists,
+            "successful_entry_exists": search_result.successful_entry_exists,
             "word_searches": template_results,
-            "analyses": search_result_obj.analyses,
-            "analyses_right": search_result_obj.analyses,
-            "analyses_without_lex": search_result_obj.analyses_without_lex,
-            "user_input": search_result_obj.search_term,
+            "analyses": search_result.analyses,
+            "analyses_right": search_result.analyses,
+            "analyses_without_lex": search_result.analyses_without_lex,
+            "user_input": search_result.search_term,
             "last_searches": session.get(
                 "last_searches-" + current_app.config.short_name, []
             ),
             "errors": False,  # where should we expect errors?
-            "language_pairs_other_results": search_result_obj.other_results,
-            "debug_text": search_result_obj.debug_text,
+            "language_pairs_other_results": search_result.other_results,
+            "debug_text": search_result.debug_text,
         }
 
         search_context.update(**default_context_kwargs)
 
-        return self.post_search_context_modification(search_result_obj, search_context)
+        return self.post_search_context_modification(search_result, search_context)
 
 
 class LanguagePairSearchView(DictionaryView, SearcherMixin):
@@ -943,7 +896,6 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
             Data is looked up and formatted using
             :py:class:`lexicon.formatters.DetailedFormat`, and returned
             in `html` using the template `word_detail.html`
-
     """
 
     from neahtta.nds_lexicon import DetailedFormat as formatter
@@ -961,90 +913,52 @@ class DetailedLanguagePairSearchView(DictionaryView, SearcherMixin):
         return "word_detail.html"
 
     def entry_filterer(self, entries):
-        """Runs on formatted result from DetailedFormat thing.
-
-        Determine the ways that entries will be filtered, and run
-        them in sequence.
-        """
+        """Runs on formatted result from DetailedFormat."""
+        # anders: entries is a neahtta.nds_lexicon.DetailedFormat,
+        # which inherits from EntryNodeIterator, which is an iterator
+        # that calls self.clean() on every element of self.nodes.
+        # DetailedFormat.clean() returns a dictionary, so in this function,
+        # entries is essentially an iterator over dictionaries.
+        # see line 507 in nds_lexicon/formatters.py
 
         # Post-analysis filter arguments, defined in query parameters
-        pos_filter = request.args.get("pos_filter", False)
-        lemma_match = request.args.get("lemma_match", False)
-        e_node = request.args.get("e_node", False)
+        pos_filter = request.args.get("pos_filter")
+        lemma_match = request.args.get("lemma_match")
+        e_node = request.args.get("e_node")
 
-        def by_pos(req):
-            return req.get("input")[1].upper() == pos_filter.upper()
-
-        def by_lemma(req):
-            return req.get("input")[0] == self.user_input
-
-        def by_node_hash(req):
-            node = req.get("entry_hash")
-            return node == e_node
-
-        def default_result(req):
-            return req
-
-        entry_filters = [default_result]
-
+        entries = iter(entries)
         if e_node:
-            entry_filters.append(by_node_hash)
-
+            entries = filter(lambda d: d["entry_hash"] == e_node, entries)
         if pos_filter:
-            entry_filters.append(by_pos)
-
+            pos_up = pos_filter.upper()
+            entries = filter(lambda d: d["pos"].upper() == pos_up, entries)
         if lemma_match:
-            entry_filters.append(by_lemma)
+            entries = filter(lambda d: d["lemma"] == self.user_input, entries)
 
-        def filter_entries_for_view(entries):
-            _entries = []
-            for entry_filter in entry_filters:
-                _entries = list(filter(entry_filter, entries))
-            return _entries
-
-        return filter_entries_for_view(entries)
+        return list(entries)
 
     def get(self, _from, _to, wordform, format):
         self.check_pair_exists_or_abort(_from, _to)
-        user_input = wordform.strip()
-        self.user_input = user_input
-
-        # Analyzer arguments
+        self.user_input = wordform.strip()
         no_compounds = request.args.get("no_compounds", False)
-
-        # Determine whether to display the more detail link
         lemma_match = request.args.get("lemma_match", False)
         e_node = request.args.get("e_node", False)
 
-        want_more_detail = no_compounds or lemma_match or e_node
-
-        # Set up morphology arguments
-        if no_compounds:
-            _split = True
-            _non_c = True
-            _non_d = False
-        else:
-            _split = True
-            _non_c = False
-            _non_d = False
-
         search_kwargs = {
-            "split_compounds": _split,
-            "non_compounds_only": _non_c,
-            "no_derivations": _non_d,
+            "split_compounds": True,
+            "non_compounds_only": no_compounds,
+            "no_derivations": False,
         }
 
         search_kwargs["lemma_attrs"] = self.get_lemma_lookup_args()
 
-        has_analyses = False
-
         search_result_context = self.search_to_context(
-            user_input, detailed=True, **search_kwargs
+            self.user_input, detailed=True, **search_kwargs
         )
 
-        has_analyses = search_result_context.get("successful_entry_exists")
+        has_analyses = search_result_context.get("successful_entry_exists", False)
+        want_more_detail = no_compounds or lemma_match or e_node
 
-        # TODO: cache search result here
         search_result_context["has_analyses"] = has_analyses
         search_result_context["more_detail_link"] = want_more_detail
 

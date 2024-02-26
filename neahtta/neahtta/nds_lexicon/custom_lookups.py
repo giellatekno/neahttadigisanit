@@ -42,7 +42,7 @@ class CustomLookupType(XMLDict):
         """This function provides some basic parsing of each `<e />`
         node, returning a dictionary:
 
-            Ex.) {'left': 'kissa', 'pos': 'N', 'right': 'cat'}
+            Ex.) {'lemma': 'kissa', 'pos': 'N', 'right': 'cat'}
 
         """
         ts = e.findall("mg/tg/t")
@@ -52,7 +52,7 @@ class CustomLookupType(XMLDict):
         L = e.find("lg/l")
         right_text = [L.text]
 
-        return {"left": ts_text, "pos": ts_pos, "right": right_text}
+        return {"lemma": ts_text, "pos": ts_pos, "right": right_text}
 
     def lookupLemma(self, lemma):
         """When the morpholexicon does not analyze anything and only

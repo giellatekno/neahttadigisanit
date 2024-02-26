@@ -532,7 +532,7 @@ class ReverseLookups(XMLDict):
         L = e.find("lg/l")
         right_text = [L.text]
 
-        return {"left": ts_text, "pos": ts_pos, "right": right_text}
+        return {"lemma": ts_text, "pos": ts_pos, "right": right_text}
 
     def lookupLemmaStartsWith(self, lemma):
         _xpath = f'.//e[mg/tg/t/starts-with(text(), "{lemma}")]'
