@@ -267,7 +267,8 @@ def _compile_dicts(project, force=None):
             else:
                 n += 1
                 print(GREEN("done"), f"({n_entries} entries total)")
-                did_smenob = True
+                if source == "sme" and target == "nob":
+                    did_smenob = True
 
     if not_found:
         print("\n" + RED("Errors:"))
