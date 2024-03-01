@@ -7,7 +7,7 @@
    also add a title on the table.
 
    - These are controlled by tagsets. Including more forms for verbs can
-   	 be handled by adding more tags to the file `tagsets/fit.tagset`
+   	 be handled by adding more tags to the file `tagsets/fkv.tagset`
 
  #}
 
@@ -141,7 +141,7 @@
     {% set sg_text = "Sg"|tagfilter(_from, _to) %}
     {% set pl_text = "Pl"|tagfilter(_from, _to) %}
 
-    {# If there are nomainal number markings, then we'll split these
+    {# If there are nominal number markings, then we'll split these
        into two columns. Must determine this by checking the tagsets. 
 
     #}
@@ -173,7 +173,7 @@
 {%- macro full_paradigm_link() %}
     <a class="full-paradigm-link"
        style="opacity: .8;"
-       href="http://gtweb.uit.no/cgi-bin/smi/smi.cgi?text={{ lemma }}&pos={{ pos }}&mode=full&action=paradigm&lang=fit&plang=nob">
+       href="http://gtweb.uit.no/cgi-bin/smi/smi.cgi?text={{ lemma }}&pos={{ pos }}&mode=full&action=paradigm&lang=fkv&plang=nob">
         {%- trans -%}Full paradigm{%- endtrans -%} &nbsp;&rarr;
     </a>
 {% endmacro -%}
