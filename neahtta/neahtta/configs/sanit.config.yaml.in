@@ -200,11 +200,10 @@ Dictionaries:
     path: 'dicts/fin-sme.xml'
     autocomplete: true
 
-  # anders: Need custom script to build this from excel source file!
-  #- source: spa
-  #  target: sme
-  #  path: 'dicts/spasme.xml'
-  #  autocomplete: true
+  - source: spa
+    target: sme
+    path: 'dicts/spa-sme.xml'
+    autocomplete: true
 
   - source: sme
     target: spa
