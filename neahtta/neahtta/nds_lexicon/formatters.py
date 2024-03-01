@@ -248,6 +248,10 @@ class SimpleJSON(EntryNodeIterator):
 
         return {
             "lemma": lemma,
+            # anders: NDS-reader uses this endpoint, and the javascript
+            # code refers to this.
+            # TODO if fixing the reader js-code, this can be removed
+            "left": lemma,
             "context": lemma_context,
             "pos": lemma_pos,
             "right": right_text,
