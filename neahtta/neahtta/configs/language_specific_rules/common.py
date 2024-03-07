@@ -53,7 +53,12 @@ def match_homonymy_entries(entries_and_tags):
     entries_lemmaID_pos = []
     lemma_pos_array = []
     for entry, analyses in filtered_results:
-        if entry:
+        # anders: lxml changed: needs explicitly checking len(element) if we
+        # want to know if it has children or not. "if element" used to do that,
+        # but some users of xml found it confusing, because it was not always
+        # perfectly clear if that meant "did we find an element at all?", or
+        # "does the element we found have any children?"
+        if len(entry) > 0:
             has_lemma_ref = entry.find("lg/lemma_ref")
         else:
             has_lemma_ref = None

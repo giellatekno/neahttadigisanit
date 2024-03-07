@@ -194,6 +194,7 @@ class MorphoLexicon:
         try:
             analyzer = self.analyzers[lang]
         except KeyError:
+            # anders: this shouldn't happen, because it's checked at startup
             print(f"NO ANALYSER FOUND FOR LANGUAGE {lang}")
             return [], "", ""
 

@@ -328,6 +328,15 @@ class SearchResult:
         lemma_elt = node.xpath("./lg/l")[0]
         lemma = lemma_elt.xpath("string(normalize-space(./text()))")
 
+        # anders: for gåetie, there were more analyses, and the first one was
+        # correct, but then it included many Lemmas which were for the
+        # Capitalized version of the word, Gåetie (which is a different word,
+        # and a proper noun). This somehow caused the the other ones to be
+        # "mixed" into this one, and lead to finding no paradigms
+        # hence why this hack is here (hopefully not too long)
+        if morph_analyses:
+            morph_analyses = [morph_analyses[0]]
+
         paradigm_from_file, paradigm_template = mlex.paradigms.get_paradigm(
             g._from, node, morph_analyses, return_template=True
         )
@@ -583,11 +592,16 @@ class SearcherMixin:
             "user_input": lookup_value,
         }
 
+        # anders: update: This causes words that are not lexicalized to
+        # disappear, because it filters based on a lemma match from the
+        # dictionary! Therefore, temporarily disabled
+
         # anders: hack to get lemma_match respected.
         # this is the same code as in formatted_results(), which _does_ do
         # entry filtering based on lemma_match. So we run the same filter
         # here, and update `entries_and_tags` accordingly (discarding the
         # actual "results" from the filtering)
+
         entries_and_tags = []
         for item in search_result.entries_and_tags:
             # same code as formatted_results()

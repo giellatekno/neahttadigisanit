@@ -732,23 +732,11 @@ class XFST:
         example, re-order tags, or relabel them, but whateve the output
         is, it must be a string.
 
-        Ex.)
-
-            'wordform\tlemma+Tag+Tag+Tag'
-
-            ->
-
-            ('wordform', 'lemma+Tag+Tag+Tag')
-
+        For example:
+            'wordform\tlemma+Tag+Tag+Tag' -> ('wordform', 'lemma+Tag+Tag+Tag')
         """
 
         wordform, lemma_tags, *weight = analysis_line.split("\t")
-
-        # weight = []
-        # try:
-        #     wordform, lemma_tags, weight = analysis_line.split("\t")[:3]
-        # except ValueError:
-        #     wordform, lemma_tags = analysis_line.split("\t")[:2]
 
         if "?" in analysis_line:
             lemma_tags += "\t+?"
@@ -756,6 +744,7 @@ class XFST:
         if weight:
             return wordform, lemma_tags, weight
         else:
+            assert False, "all analysis lines in all the ways we do an analysis always contains the weight"
             return wordform, lemma_tags
 
     def clean(self, _output):
@@ -764,7 +753,6 @@ class XFST:
 
         [('keenaa', ['keen+V+1Sg+Ind+Pres', 'keen+V+3SgM+Ind+Pres']),
          ('keentaa', ['keen+V+2Sg+Ind+Pres', 'keen+V+3SgF+Ind+Pres'])]
-
         """
 
         analysis_chunks = [a for a in _output.split("\n\n") if a.strip()]
@@ -776,7 +764,7 @@ class XFST:
             weights = []
 
             for part in chunk.split("\n"):
-                (lemma, analysis, *weight) = self.tag_processor(part)
+                lemma, analysis, *weight = self.tag_processor(part)
                 lemmas.append(lemma)
                 analyses.append(analysis)
                 if weight:
@@ -860,6 +848,7 @@ class XFST:
             print(f"error when running tool:\n---\n{err}\n---")
             msg = f"{self.langcode} - {name}: {err}"
             self.logger.error(msg.strip())
+
         return self.clean(output), output, err
 
     def inverselookup_by_string(self, lookup_string):
@@ -901,6 +890,7 @@ class XFST:
         return "\n".join(lookups_list)
 
     def tagUnknown(self, analysis):
+        assert False, "unused?"
         return "+?" in analysis
 
     def tagStringToTag(self, parts, tagsets=None, inverse=False) -> Tag:
@@ -1048,6 +1038,11 @@ class Morphology:
         self.logger.addHandler(logfile)
 
     def generate_to_objs(self, *args, **kwargs):
+        # anders: args is (lemma, tagsets, lxml_element) ... right?
+        # kwargs is {'extra_log_info':
+        #   {'template_path': '/paradigms/sma/proper_nouns.paradigm'},
+        #   'no_preprocess_paradigm': True}
+
         # TODO: occasionally lemma is not lemma, but first part of a
         # tag, need to fix with the tagsets
         # anders: yes! exactly what I'm running into now!
@@ -1080,39 +1075,6 @@ class Morphology:
         language, and we want to allow processing for that to occur
         elsewhere.
         """
-
-        # tagsets as passed in include the lemma and do not require
-        # preprocessing to add it in
-        # if no_preprocess_paradigm:
-
-        # anders: potential bug: Node is optionally None, but here len(node)
-        # is checked. Either node is always something with a length, or the
-        # exception is silently caught somewhere
-        # if len(node) > 0:
-        #     key = self.generate_cache_key(lemma, tagsets, node)
-        # else:
-        #     key = self.generate_cache_key(lemma, tagsets)
-
-        # stdout_key = key + "stdout"
-        # stderr_key = key + "stderr"
-
-        # _is_cached = self.cache.get(key)
-
-        # if _is_cached:
-        #     if return_raw_data:
-        #         cache_stdout = self.cache.get(stdout_key)
-        #         cache_stderr = self.cache.get(stdout_key)
-        #         if cache_stdout is None:
-        #             cache_stdout = "no cache data"
-        #         if cache_stderr is None:
-        #             cache_stderr = "no cache data"
-        #         return (
-        #             _is_cached,
-        #             "stdout cached: " + cache_stdout,
-        #             "stderr cached: " + cache_stderr,
-        #         )
-        #     else:
-        #         return _is_cached
 
         if pregenerated:
             return pregenerated, "pregenerated", ""
