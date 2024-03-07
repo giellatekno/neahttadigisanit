@@ -149,7 +149,7 @@ def register_filters(app):
         """Returns a list of GeneratedForm objects with unique forms"""
         from neahtta.morphology.morphology import GeneratedForm
 
-        if isinstance(s[0], GeneratedForm):
+        if len(s) > 0 and isinstance(s[0], GeneratedForm):
             forms_list = []
             return_list = []
             for form_obj in s:

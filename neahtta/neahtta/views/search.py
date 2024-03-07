@@ -602,23 +602,23 @@ class SearcherMixin:
         # here, and update `entries_and_tags` accordingly (discarding the
         # actual "results" from the filtering)
 
-        entries_and_tags = []
-        for item in search_result.entries_and_tags:
-            # same code as formatted_results()
-            if item[0] is not None:
-                _formatted = self.formatter(
-                    [item[0]],
-                    additional_template_kwargs={"analyses": item[1]},
-                    **fmtkwargs,
-                )
-                if self.entry_filterer:
-                    _filtered = self.entry_filterer(_formatted)
-                    if _filtered:
-                        entries_and_tags.append(item)
+        # entries_and_tags = []
+        # for item in search_result.entries_and_tags:
+        #     # same code as formatted_results()
+        #     if item[0] is not None:
+        #         _formatted = self.formatter(
+        #             [item[0]],
+        #             additional_template_kwargs={"analyses": item[1]},
+        #             **fmtkwargs,
+        #         )
+        #         if self.entry_filterer:
+        #             _filtered = self.entry_filterer(_formatted)
+        #             if _filtered:
+        #                 entries_and_tags.append(item)
 
         # If in the results there is a 'None' entry followed by der tag/s those are removed
         # and are not shown in the results (e.g. "bagoheapmi")
-        for item in entries_and_tags:
+        for item in search_result.entries_and_tags:
             dict_entry, analyses = item
             if analyses:
                 if if_none and analyses[0].lemma.startswith(tags):
