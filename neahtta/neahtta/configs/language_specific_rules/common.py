@@ -58,7 +58,7 @@ def match_homonymy_entries(entries_and_tags):
         # but some users of xml found it confusing, because it was not always
         # perfectly clear if that meant "did we find an element at all?", or
         # "does the element we found have any children?"
-        if len(entry) > 0:
+        if entry is not None and len(entry) > 0:
             has_lemma_ref = entry.find("lg/lemma_ref")
         else:
             has_lemma_ref = None
