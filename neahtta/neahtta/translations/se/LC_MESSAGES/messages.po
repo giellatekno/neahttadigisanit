@@ -750,7 +750,7 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/analyses.template:65
 #: neahtta/configs/language_specific_rules/templates/sanj/analyses.template:69
 msgid "Word history"
-msgstr ""
+msgstr "Sátnehistorjá"
 
 #: neahtta/configs/language_specific_rules/templates/analyses.template:84
 msgid " (Not found in our corpus)"
@@ -1094,7 +1094,7 @@ msgstr "Sátni <span lang=\"%(_from)s\">%(input)s</span> ii gávdnon."
 #: neahtta/templates/index.html:102
 #, python-format
 msgid "Other analyses for <em>%(user_input)s</em> without a translation."
-msgstr ""
+msgstr "Eará analysat sátnái <em>%(user_input)s</em> jorgalusa haga."
 
 #: neahtta/configs/language_specific_rules/templates/kyv/examples.template:76
 msgid "saying"
