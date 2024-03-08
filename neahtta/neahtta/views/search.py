@@ -328,15 +328,6 @@ class SearchResult:
         lemma_elt = node.xpath("./lg/l")[0]
         lemma = lemma_elt.xpath("string(normalize-space(./text()))")
 
-        # anders: for gåetie, there were more analyses, and the first one was
-        # correct, but then it included many Lemmas which were for the
-        # Capitalized version of the word, Gåetie (which is a different word,
-        # and a proper noun). This somehow caused the the other ones to be
-        # "mixed" into this one, and lead to finding no paradigms
-        # hence why this hack is here (hopefully not too long)
-        if morph_analyses:
-            morph_analyses = [morph_analyses[0]]
-
         paradigm_from_file, paradigm_template = mlex.paradigms.get_paradigm(
             g._from, node, morph_analyses, return_template=True
         )
@@ -415,6 +406,7 @@ class SearchResult:
                 paradigm = self.generate_paradigm(result, morph_analyses)
 
                 if current_app.config.paradigm_layouts and paradigm:
+                    assert False, "unreachable. no config files have 'paradigm_layouts'"
                     layouts = current_app.morpholexicon.paradigms.get_paradigm_layout(
                         g._from,
                         result,

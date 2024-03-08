@@ -1,4 +1,3 @@
-# -*- encoding: utf-8 -*-
 """
 Testing ideas:
 
@@ -46,6 +45,16 @@ from neahtta.paradigm_layouts import parse_table
 
 __all__ = ["ParadigmConfig"]
 
+# TODO: read from user defined file elsewhere
+DEFAULT_RULES = {
+    "lemma": ".//l/text()",
+}
+
+
+class NullRule:
+    def compare(self, node, analyses):
+        return False, []
+
 
 class TagRule:
     """Compares a whole tag, either checking that it is contained in a
@@ -53,9 +62,6 @@ class TagRule:
     """
 
     def __init__(self, tag):
-        if isinstance(tag, str):
-            tag = str(tag)
-
         self.tag = tag
 
         if isinstance(tag, str):
@@ -77,7 +83,7 @@ class TagRule:
         evals = [self.cmp(lemma.tag.tag_string, self.tag) for lemma in analyses]
 
         # Include what was matched.
-        truth = any([t for t, c in evals])
+        truth = any(t for t, c in evals)
         context = [("tag", c) for t, c in evals if t]
 
         return truth, context
@@ -115,12 +121,6 @@ class LexRule:
         context = (self.key, val)
 
         return truth, context
-
-
-# TODO: read from user defined file elsewhere
-DEFAULT_RULES = {
-    "lemma": ".//l/text()",
-}
 
 
 class LexiconRuleSet:
@@ -167,16 +167,11 @@ class LexiconRuleSet:
                 comp.compare(node, analyses, xpath_context) for comp in self.comps
             ]
 
-            truth = all([t for t, c in self._evals])
+            truth = all(t for t, c in self._evals)
             contexts = [c for t, c in self._evals if t] + list(xpath_context.items())
 
             return truth, contexts
-        return (False, [])
-
-
-class NullRule:
-    def compare(self, node, analyses):
-        return (False, [])
+        return False, []
 
 
 class TagSetRule:
@@ -202,11 +197,7 @@ class TagSetRule:
             def _cmp(x, y):
                 # when tag contains a value from this tagset, x is true,
                 # otherwise x is None
-                if x is None:
-                    return (False, x)
-                else:
-                    return (True, x)
-                return (False, x)
+                return (x is not None, x)
 
             self.cmp = _cmp
 
@@ -215,7 +206,7 @@ class TagSetRule:
             self.cmp(lemma.tag[self.tagset], self.tagset_value) for lemma in analyses
         ]
 
-        truth = any([t for t, c in evals])
+        truth = any(t for t, c in evals)
         context = [(self.tagset, c) for t, c in evals if t]
 
         return truth, context
@@ -226,28 +217,19 @@ class ParadigmRuleSet:
     paradigm file. It provides a way of turning the rule definition into
     an instance that can evaluate lexicon nodes and analyses."""
 
-    # def __repr__(self):
-    #     print self.rule_def
-    #     return super(ParadigmRuleSet, self).__repr__()
-
-    def __init__(self, rule_def, debug=False):
-        """.. py:function:: __init__(self, rule_def)
-
-        Parses a python dict of the rule definition, and returns
+    def __init__(self, rule_def):
+        """Parses a python dict of the rule definition, and returns
         a function that returns True or False. Function takes analysis
         output, and xml nodes.
 
-        :param dict rule_def: Parsed YAML rule definition
+        Args:
+            rule_def (dict): Parsed YAML rule definition
         """
-
-        self.debug = debug
 
         self.rule_def = rule_def
 
         lex = rule_def.get("lexicon", False)
-        morph = rule_def.get(
-            "morphology",
-        )
+        morph = rule_def.get("morphology")
         self.name = rule_def.get("name", "NO NAME")
 
         # List of functions, for which all() must return True or False
@@ -278,22 +260,17 @@ class ParadigmRuleSet:
             lex_rule = LexiconRuleSet()
         self.comps.append(lex_rule)
 
-    def evaluate(self, node, analyses, debug=False):
+    def evaluate(self, node, analyses):
         """Run all the comparators, and collect the context.
         Returns a tuple (Truth, Context); Context is a dict
         """
 
-        if self.debug:
-            print(analyses, file=sys.stderr)
-
         self._evals = [comp.compare(node, analyses) for comp in self.comps]
 
-        truth = all([t for t, c in self._evals])
+        truth = all(t for t, c in self._evals)
         contexts = [c for t, c in self._evals if t]
 
         context = dict(sum(contexts, []))
-        if self.debug and truth:
-            print(f"Found matching paradigm in {self.name}.", file=sys.stderr)
 
         return truth, context
 
@@ -304,30 +281,23 @@ class ParadigmConfig:
     available, and provides a general method for resolving the proper
     paradigm from dictionary entry nodes and morphological analyses."""
 
-    def __init__(self, app=None, debug=False):
-        self.debug = debug
+    def __init__(self, app=None):
         self._app = app
         self.read_paradigm_directory()
 
     def check_updates(self, language):
-        updates = []
-        for ind, paradigm_rule in enumerate(
-            self.paradigm_layout_rules.get(language, [])
-        ):
+        for paradigm_rule in self.paradigm_layout_rules.get(language, []):
             if os.path.getmtime(paradigm_rule.get("path")) != paradigm_rule.get(
                 "updated"
             ):
-                updates.append(ind)
-
-        if len(updates) > 0:
-            self.read_paradigm_directory()
+                self.read_paradigm_directory()
+                return
 
     def get_paradigm_layout(
         self,
         language,
         node,
         analyses,
-        debug=False,
         return_template=False,
         multiple=False,
     ):
@@ -361,10 +331,7 @@ class ParadigmConfig:
             _, _, path = paradigm_rule.get("path").partition("language_specific_rules")
 
             try:
-                truth, context = condition.evaluate(node, analyses, debug=debug)
-                if debug:
-                    print(truth, file=sys.stderr)
-                    print(context, file=sys.stderr)
+                truth, context = condition.evaluate(node, analyses)
             except Exception as e:
                 print(e)
                 print("Exception in compiling rule or evaluating.")
@@ -381,8 +348,6 @@ class ParadigmConfig:
 
         # Sort by count, and pick the first
         possible_matches = sorted(possible_matches, key=itemgetter(0), reverse=True)
-        if debug:
-            print(f" - Possible matches: {len(possible_matches)}", file=sys.stderr)
 
         def paradigm_ordering(match):
             """Sort by type if it exists, otherwise sort by
@@ -393,15 +358,6 @@ class ParadigmConfig:
                 return _type
             else:
                 return _path
-
-        # def paradigm_ordering_cmp(a, b):
-        #     print a
-        #     print b
-        #     if a in ['basic', 'simple']:
-        #         return 0
-        #     if b in ['basic', 'simple']:
-        #         return 0
-        #     return a > b
 
         if len(possible_matches) > 0:
             if multiple:
@@ -418,9 +374,6 @@ class ParadigmConfig:
                 return _matches
             else:
                 count, context, layout, path = possible_matches[0]
-                if debug:
-                    print(context, file=sys.stderr)
-                    print(path, file=sys.stderr)
                 if return_template:
                     return layout, path
                 else:
@@ -434,9 +387,7 @@ class ParadigmConfig:
         else:
             return False
 
-    def get_paradigm(
-        self, language, node, analyses, debug=False, return_template=False
-    ):
+    def get_paradigm(self, language, node, analyses, return_template=False):
         """Render a paradigm if one exists for language.
 
         Args:
@@ -481,13 +432,9 @@ class ParadigmConfig:
 
         # Sort by count, and pick the first
         possible_matches = sorted(possible_matches, key=itemgetter(0), reverse=True)
-        if self.debug:
-            print(f" - Possible matches: {len(possible_matches)}", file=sys.stderr)
 
         if possible_matches:
             count, context, template, path = possible_matches[0]
-            if debug:
-                print(context, file=sys.stderr)
 
             template_context = {}
             template_context.update(context)
@@ -616,15 +563,14 @@ class ParadigmConfig:
             try:
                 condition_yaml = yaml.load(condition_yaml, yaml.Loader)
             except Exception as e:
-                print(
-                    "\n** Problem reading paradigm rule condition at: ", file=sys.stderr
-                )
-                print(e, file=sys.stderr)
-                print(" in:", file=sys.stderr)
                 _, lx, path = path.partition("language_specific_rules")
-                print("    " + lx + path, file=sys.stderr)
-                print("\n** Could not start service.", file=sys.stderr)
-                sys.exit()
+                sys.exit(
+                    "\n** Problem reading paradigm rule condition at:\n"
+                    f"{e}\n"
+                    " in:"
+                    f"    {lx}{path}\n"
+                    "** Could not start service."
+                )
 
             name = condition_yaml.get("name")
             desc = condition_yaml.get("desc", "")
@@ -641,14 +587,13 @@ class ParadigmConfig:
                     if p["basename"] == paradigm_rule
                 ]
                 if len(matching_p) == 0:
-                    print(
-                        f"\n** References a paradigm file ({paradigm_rule}) that does not exist",
-                        file=sys.stderr,
-                    )
-                    print(" in:", file=sys.stderr)
                     _, lx, path = path.partition("language_specific_rules")
-                    print("    " + lx + path, file=sys.stderr)
-                    sys.exit()
+                    sys.exit(
+                        f"\n** References a paradigm file ({paradigm_rule}) "
+                        "that does not exist\n"
+                        " in:\n"
+                        f"    {lx}{path}"
+                    )
 
                 # Copy from the parsed condition's rule definiton so
                 # that we can create a new ParadigmRuleSet
@@ -668,7 +613,7 @@ class ParadigmConfig:
                 return False
 
             parsed_condition = {
-                "condition": ParadigmRuleSet(condition_yaml, debug=self.debug),
+                "condition": ParadigmRuleSet(condition_yaml),
                 "template": parsed_template,
                 "name": name,
                 "description": desc,
@@ -700,7 +645,7 @@ class ParadigmConfig:
             desc = condition_yaml.get("desc", "")
             parsed_template = jinja_env.from_string(paradigm_string_txt.strip())
             parsed_condition = {
-                "condition": ParadigmRuleSet(condition_yaml, debug=self.debug),
+                "condition": ParadigmRuleSet(condition_yaml),
                 "template": parsed_template,
                 "name": name,
                 "description": desc,
