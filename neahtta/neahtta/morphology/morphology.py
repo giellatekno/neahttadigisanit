@@ -744,7 +744,8 @@ class XFST:
         if weight:
             return wordform, lemma_tags, weight
         else:
-            assert False, "all analysis lines in all the ways we do an analysis always contains the weight"
+            # not true for saan - on the server (but not locally)
+            # assert False, "all analysis lines in all the ways we do an analysis always contains the weight"
             return wordform, lemma_tags
 
     def clean(self, _output):
