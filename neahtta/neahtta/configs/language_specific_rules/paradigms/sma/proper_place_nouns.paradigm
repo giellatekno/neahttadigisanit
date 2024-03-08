@@ -4,13 +4,15 @@ morphology:
   type: Prop
 lexicon:
   XPATH:
+    type: ".//l/@type"
     sem_type: ".//l/@sem_type"
+  type: "Prop"
   sem_type: 
     - "Plc"
     - "Org"
     - "Obj"
 --
-{{ lemma }}+N+Prop+Sem/{{ sem_type }}+Sg+Gen
-{{ lemma }}+N+Prop+Sem/{{ sem_type }}+Sg+Ill
-{{ lemma }}+N+Prop+Sem/{{ sem_type }}+Sg+Ine
-{{ lemma }}+N+Prop+Sem/{{ sem_type }}+Sg+Ela
+{{ lemma }}+N+Prop+Sg+Gen
+{{ lemma }}+N+Prop+Sg+Ill
+{{ lemma }}+N+Prop+Sg+Ine
+{{ lemma }}+N+Prop+Sg+Ela

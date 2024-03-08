@@ -2,6 +2,10 @@ name: "proper nouns"
 morphology:
   pos: N
   type: Prop
+lexicon:
+  XPATH:
+    type: ".//l/@type"
+  type: "Prop"
 --
 {{ lemma }}+N+Prop+Sg+Gen
 {{ lemma }}+N+Prop+Sg+Acc	
