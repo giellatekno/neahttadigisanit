@@ -3005,6 +3005,7 @@ table th[class*="span"],
   position: relative;
   height: 0;
   overflow: hidden;
+  overflow-x: scroll;
   -webkit-transition: height 0.35s ease;
      -moz-transition: height 0.35s ease;
        -o-transition: height 0.35s ease;
