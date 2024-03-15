@@ -172,16 +172,67 @@ blueprint.add_url_rule(
 
 # anders: there is no "browse.py" in the current folder, so
 # this doens't do anything - what is it used for? can we remove?
-try:
-    from .browse import *
+# anders (updated): now commented out
+# try:
+#     from .browse import *
+#
+#     browse = True
+# except ImportError:
+#     browse = False
+#
+# if browse:
+#     blueprint.add_url_rule(
+#         "/browse/<_from>/<_to>/",
+#         view_func=BrowseView.as_view("word_browser"),
+#         endpoint="browse_pair",
+#     )
 
-    browse = True
-except ImportError:
-    browse = False
 
-if browse:
-    blueprint.add_url_rule(
-        "/browse/<_from>/<_to>/",
-        view_func=BrowseView.as_view("word_browser"),
-        endpoint="browse_pair",
-    )
+# uncomment these to enable the route /tracemalloc/, which gives some kind
+# of memory usage output - but only while developing
+
+# import linecache
+# import tracemalloc
+# def display_top(snapshot, key_type='lineno', limit=10):
+#     snapshot = snapshot.filter_traces((
+#         tracemalloc.Filter(False, "<frozen importlib._bootstrap>"),
+#         tracemalloc.Filter(False, "<unknown>"),
+#     ))
+#     top_stats = snapshot.statistics(key_type)
+#
+#     out = "Top %s lines<br>" % limit
+#     for index, stat in enumerate(top_stats[:limit], 1):
+#         frame = stat.traceback[0]
+#         out += "#%s: %s:%s: %.1f KiB<br>" % (index, frame.filename, frame.lineno, stat.size / 1024)
+#         line = linecache.getline(frame.filename, frame.lineno).strip()
+#         if line:
+#             out += '    %s<br>' % line
+#
+#     other = top_stats[limit:]
+#     if other:
+#         size = sum(stat.size for stat in other)
+#         out += "%s other: %.1f KiB<br>" % (len(other), size / 1024)
+#     total = sum(stat.size for stat in top_stats)
+#     out += "Total allocated size: %.1f KiB<br>" % (total / 1024)
+#     return out
+#
+#
+# def show_mem_usage():
+#     snapshot = tracemalloc.take_snapshot()
+#     lineno = display_top(snapshot)
+#     k = snapshot.statistics("filename")
+#
+#     s = ""
+#     for index, stat in enumerate(k[:15], 1):
+#         frame = stat.traceback[0]
+#         filename = frame.filename
+#         s += f"{stat.count=}, {stat.size=}, {filename=}<br>"
+#
+#     return lineno + "<br><br><br>" + s
+#
+#
+# blueprint.add_url_rule(
+#     "/tracemalloc/",
+#     view_func=show_mem_usage,
+#     endpoint="tracemalloc",
+# )

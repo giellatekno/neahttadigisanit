@@ -456,7 +456,7 @@ class AutocompleteTrie(XMLDict):
 
         super().__init__(*args, **kwargs)
 
-        from .trie import Trie
+        from .new_trie import Trie
 
         print("Building autocomplete trie...")
         filename = kwargs["filename"]

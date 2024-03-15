@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- encoding: utf-8 -*-
 """
 A service that provides JSON and RESTful lookups to GT-style XML lexica,
 with preprocessing from morphological analysers implemented as FSTs.
@@ -11,6 +10,11 @@ import sys
 from neahtta.application import create_app
 
 # from werkzeug.middleware.profiler import ProfilerMiddleware
+
+# tracing memory usage, only when debugging locally, because it slows
+# the whole thing down to a crawl
+# import tracemalloc
+# tracemalloc.start()
 
 app = create_app()
 # app.wsgi_app = ProfilerMiddleware(app.wsgi_app,
