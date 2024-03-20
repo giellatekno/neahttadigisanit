@@ -1,26 +1,22 @@
 name: "Noun+NomAg paradigms"
 morphology:
   pos: N
-lexicon:
-  XPATH:
-    nom_type: ".//l/@type"
-  nom_type:
-    - "NomAg"
+  noun_type: NomAg
 --
 
-{{ lemma }}+N+{{ nom_type }}+Sg+Nom
-{{ lemma }}+N+{{ nom_type }}+Sg+Gen
-{{ lemma }}+N+{{ nom_type }}+Sg+Acc
-{{ lemma }}+N+{{ nom_type }}+Sg+Ill
-{{ lemma }}+N+{{ nom_type }}+Sg+Loc
-{{ lemma }}+N+{{ nom_type }}+Sg+Com
-{{ lemma }}+N+{{ nom_type }}+Sg+Abe
-{{ lemma }}+N+{{ nom_type }}+Pl+Nom
-{{ lemma }}+N+{{ nom_type }}+Pl+Gen
-{{ lemma }}+N+{{ nom_type }}+Pl+Acc
-{{ lemma }}+N+{{ nom_type }}+Pl+Ill
-{{ lemma }}+N+{{ nom_type }}+Pl+Loc
-{{ lemma }}+N+{{ nom_type }}+Pl+Com
-{{ lemma }}+N+{{ nom_type }}+Pl+Abe
-{{ lemma }}+N+{{ nom_type }}+Ess
-{{ lemma }}+N+{{ nom_type }}+Par
+{{ lemma }}+N+NomAg+Sg+Nom
+{{ lemma }}+N+NomAg+Sg+Gen
+{{ lemma }}+N+NomAg+Sg+Acc
+{{ lemma }}+N+NomAg+Sg+Ill
+{{ lemma }}+N+NomAg+Sg+Loc
+{{ lemma }}+N+NomAg+Sg+Com
+{{ lemma }}+N+NomAg+Sg+Abe
+{{ lemma }}+N+NomAg+Pl+Nom
+{{ lemma }}+N+NomAg+Pl+Gen
+{{ lemma }}+N+NomAg+Pl+Acc
+{{ lemma }}+N+NomAg+Pl+Ill
+{{ lemma }}+N+NomAg+Pl+Loc
+{{ lemma }}+N+NomAg+Pl+Com
+{{ lemma }}+N+NomAg+Pl+Abe
+{{ lemma }}+N+NomAg+Ess
+{{ lemma }}+N+NomAg+Par

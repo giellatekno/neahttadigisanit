@@ -19,6 +19,7 @@ homonyms:
  - "Hom2"
 noun_type:
  - Prop
+ - NomAg
 pron_type:
  - Pers
  - Dem
