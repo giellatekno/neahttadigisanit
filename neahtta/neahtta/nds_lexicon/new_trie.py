@@ -18,8 +18,7 @@ class Trie:
 
     def add(self, word):
         node = self.root
-        # ignores capitalization of word
-        for char in word.lower():
+        for char in word:
             node = node.setdefault(char, {})
 
         added = node.setdefault("", True)
@@ -31,7 +30,7 @@ class Trie:
             self.add(word)
 
     def autocomplete(self, prefix):
-        node = Trie._find(self.root, prefix)
+        node = Trie._find(self.root, prefix.lower())
         if not node:
             return
 
