@@ -423,12 +423,12 @@ def add_stem():
         cmd = ["python", str(script_path), lexc, str(stemtypes_txt_path(lexc))]
         if lexc != "prop":
             cmd.append("neahtta/dicts/sme-nob.xml")
-            cmd.append(str(_find_in_repo(f"lang-sme/src/fst/stems/{lexc}.lexc")))
+            cmd.append(str(_find_in_repo(f"lang-sme/src/fst/morphology/stems/{lexc}.lexc")))
         else:
             cmd.append(str(stemtypes_txt_path(lexc)))
             cmd.append("neahtta/dicts/sme-nob.xml")
             cmd.append(
-                str(_find_in_repo("lang-sme/src/fst/stems/sme-propernouns.lexc"))
+                str(_find_in_repo("lang-sme/src/fst/morphology/stems/sme-propernouns.lexc"))
             )
             cmd.append(smi_propernouns)
 
