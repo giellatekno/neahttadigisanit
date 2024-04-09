@@ -19,10 +19,10 @@
             <span class="span4">
                 <h3 class="red">{% trans %}How to quote the dictionaries{% endtrans %}</h3>
                 <p><ul>
-		    <li>Aili Eriksen, Tobias Kvalness, Thomas Kjærstad, Trond Trosterud, Mari Keränen, Anna-Kaisa Räisänen, Verena Schall, Tove Reibo 2013-2024: <em>Nettidigisanat Kvääni–ruija–kvääni-nettisanakirja</em>. Tromsø: UiT. URL: http://sanat.oahpa.no</li>
+		    <li>Aili Eriksen, Mervi Haavisto, Mari Keränen, Tobias Kvalness, Thomas Kjærstad, Tove Reibo, Anna-Kaisa Räisänen, Verena Schall, Sindre Reino Trosterud, Trond Trosterud 2013-2024: <em>Nettidigisanat Kvääni–ruija–kvääni-nettisanakirja</em>. Tromsø: UiT. URL: http://sanat.oahpa.no</li>
 <li>Trosterud, Trond  2013-2024: <em>Nettidigisanat Suomi-norja-suomi sanakirja</em>. Tromsø: UiT. URL: http://sanat.oahpa.no</li>
-<li>NN 2024: <em>Nettidigisanat Livvi-suomi-livvi sanakirja</em>. Tromsø: UiT. URL: http://sanit.oahpa.no</li>
-<li>NN 2024: <em>Nettidigisanat Livvi-venäjä-livvi sanakirja</em>. Tromsø: UiT. URL: http://sanat.oahpa.no</li>
+<li>Timo Rantakaulio, Jack Rueter 2024: <em>Nettidigisanat Livvi-suomi-livvi sanakirja</em>. Tromsø: UiT. URL: http://sanit.oahpa.no</li>
+<li>Timo Rantakaulio, Jack Rueter 2024: <em>Nettidigisanat Livvi-venäjä-livvi sanakirja</em>. Tromsø: UiT. URL: http://sanat.oahpa.no</li>
 <li>NN 2024: <em>Nettidigisanat Vepsä-viro sanakirja</em>. Tromsø: UiT. URL: http://sanat.oahpa.no</li>
 <li>NN 2024: <em>Nettidigisanat Vepsä-suomi sanakirja</em>. Tromsø: UiT. URL: http://sanat.oahpa.no</li>
 </ul>.</p>
