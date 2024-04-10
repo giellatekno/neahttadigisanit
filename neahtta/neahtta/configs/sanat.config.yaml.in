@@ -177,14 +177,15 @@ Dictionaries:
     corpora: 'VEP_WIKIPEDIA_20210319'
     start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
 
-  - source: vep
-    target: est
-    dict_source: lang
-    path: 'dicts/vep-all.xml'
-    show_korp_search: True
-    korp_search_host: *F_KORP
-    corpora: 'VEP_WIKIPEDIA_20210319'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+  # This dictionary does not seem to exist?
+  # - source: vep
+  #   target: est
+  #   dict_source: multi
+  #   path: 'dicts/vep-all.xml'
+  #   show_korp_search: True
+  #   korp_search_host: *F_KORP
+  #   corpora: 'VEP_WIKIPEDIA_20210319'
+  #   start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
 
   - source: nob
     target: fin
