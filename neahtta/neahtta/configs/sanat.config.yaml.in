@@ -179,7 +179,7 @@ Dictionaries:
 
   - source: vep
     target: est
-    dict_source: multi
+    dict_source: lang
     path: 'dicts/vep-all.xml'
     show_korp_search: True
     korp_search_host: *F_KORP
