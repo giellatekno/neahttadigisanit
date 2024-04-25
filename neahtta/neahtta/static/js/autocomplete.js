@@ -63,7 +63,7 @@ Autocomplete.prototype = {
             // tabindex 1)
             var li = this._create_item(item, search_term.length, i + 2);
             li.addEventListener("click", function(ev) {
-                self.anchor.value = ev.target.innerText;
+                self.anchor.value = ev.target.dataset.value;
                 self.hide();
                 self.anchor.focus();
                 //window.location.href = `/${lang_from}/${lang_to}/?lookup=${word}`;
@@ -163,13 +163,11 @@ Autocomplete.prototype = {
 
     _create_item: function(text, highlight_length, index) {
         var li = document.createElement("li");
+        li.dataset.value = text;
         var a = document.createElement("a");
         a.href = "#";
         a.tabIndex = index;
         a.dataset.value = text;
-        a.addEventListener("click", () => {
-            this.hide();
-        });
 
         var strong_el = document.createElement("strong");
         strong_el.innerText = text.slice(0, highlight_length);
