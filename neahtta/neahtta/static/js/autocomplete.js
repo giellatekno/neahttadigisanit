@@ -63,7 +63,12 @@ Autocomplete.prototype = {
             // tabindex 1)
             var li = this._create_item(item, search_term.length, i + 2);
             li.addEventListener("click", function(ev) {
-                self.anchor.value = ev.target.dataset.value;
+                var value = ev.target.dataset.value;
+                // if clicked on the <a> inside the <li>
+                if (typeof value === "undefined") {
+                    value = ev.target.parentNode.dataset.value;
+                }
+                self.anchor.value = value;
                 self.hide();
                 self.anchor.focus();
                 //window.location.href = `/${lang_from}/${lang_to}/?lookup=${word}`;
