@@ -1,28 +1,46 @@
-// deliberately written so it can be built with --target=es5 in esbuild,
+// Deliberately written so it can be built with --target=es5 in esbuild,
 // to be able to support as many old systems as we can (and we have potentially
 // at least some users of old systems (I have seen old internet explorer in the
-// logs, for example).... so, that means:
-// only "var", no classes, no template strings, no async, no "for of",
-// no arrow functions, no fetch() - only XMLHttpRequest (but only the old parts!), 
-// no element.classlist (use classname and do it yourself), no element.dataset
-// (use element.getAttribute("data-xxx"))
+// logs, for example).... So, that means:
+// no let/const - use var
+// no classes - use prototypes
+// no template strings - use string concatenation
+// no "for of" - use index and retrieve elements
+// no async - (no alternatives, promises can't be used either)
+// no arrow functions - use normal functions
+// no fetch() - use XMLHttpRequest (but only the old parts!)
+// no element.classlist - use classname and do it yourself)
+// no element.dataset - use element.getAttribute("data-xxx")
 
 var lang_from;
 var lang_to;
+
+function throttle_time(fn, time) {
+    var timer = null;
+
+    return function(args) {
+        if (timer) {
+            window.clearTimeout(timer);
+        }
+
+        timer = window.setTimeout(function () {
+            fn(args);
+        }, time);
+    };
+}
 
 function Autocomplete(anchor) {
     this.visible = false;
     this.anchor = anchor;
     this.element = document.createElement("ul");
     this.element.classList.add("typeahead", "dropdown-menu");
-
     this.search_note = this._create_search_note_element();
 
     // only have 1 autocomplete request in progress at one time
     this.autocomplete_request = null;
 
     document.body.append(this.element);
-    this.anchor.addEventListener("input", this.on_input.bind(this));
+    this.anchor.addEventListener("input", throttle_time(this.on_input.bind(this), 100));
     window.addEventListener("keydown", on_keydown.bind(this));
     window.addEventListener("click", on_window_click.bind(this));
     window.addEventListener("resize", this.place.bind(this));
@@ -63,16 +81,17 @@ Autocomplete.prototype = {
             // tabindex 1)
             var li = this._create_item(item, search_term.length, i + 2);
             li.addEventListener("click", function(ev) {
-                var value = ev.target.dataset.value;
+                var value = ev.target.getAttribute("data-value");
                 // if clicked on the <a> inside the <li>
-                if (typeof value === "undefined") {
-                    value = ev.target.parentNode.dataset.value;
+                if (typeof value == "undefined") {
+                    value = ev.target.parentNode.getAttribute("data-value");
                 }
                 self.anchor.value = value;
                 self.hide();
                 self.anchor.focus();
+
+                // If we want to navigate to the article on click
                 //window.location.href = `/${lang_from}/${lang_to}/?lookup=${word}`;
-                
                 // experimental web api
                 //window.navigate(`/${lang_from}/${lang_to}/?lookup=${word}`);
             });
@@ -106,13 +125,12 @@ Autocomplete.prototype = {
             self.autocomplete_request.onreadystatechange = function (ev) {
                 if (self.autocomplete_request.readyState !== XMLHttpRequest.DONE) return;
 
-                var items;
+                var items = [];
                 try {
                     items = JSON.parse(self.autocomplete_request.responseText);
                 } catch (e) {
-                    console.error(e);
                     console.error("Could not parse json");
-                    return;
+                    console.error(e);
                 }
 
                 if (items.length === 0) {
