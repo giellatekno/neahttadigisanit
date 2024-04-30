@@ -1,4 +1,5 @@
-"""Simple Trie of strings, with no data."""
+"""Simple Trie of strings, where paths are stored lower-cased, and the end
+node contains the original string (with capitalization)."""
 
 
 class Trie:
@@ -7,7 +8,7 @@ class Trie:
         self.root = {}
 
     def __contains__(self, word):
-        node = Trie._find(self.root, word)
+        node = self._find(word)
         if not node:
             return False
 
@@ -18,10 +19,11 @@ class Trie:
 
     def add(self, word):
         node = self.root
-        for char in word:
+        for char in word.lower():
             node = node.setdefault(char, {})
 
-        added = node.setdefault("", True)
+        # store the original, non-lowercased word under the "" key
+        added = node.setdefault("", word)
         if added:
             self.len += 1
 
@@ -30,37 +32,58 @@ class Trie:
             self.add(word)
 
     def autocomplete(self, prefix):
-        node = Trie._find(self.root, prefix.lower())
+        node = self._find(prefix.lower())
         if not node:
             return
 
         yield from Trie._recurse(node, prefix)
 
-    @staticmethod
-    def _find(node, word):
+    def _find(self, word):
+        node = self.root
         for char in word:
             try:
                 node = node[char]
             except KeyError:
-                return
+                try:
+                    node = node[char.lower()]
+                except KeyError:
+                    return
         return node
 
     @staticmethod
     def _recurse(node, val):
         for k, v in node.items():
             if k == "":
-                yield val
+                # reached terminal node, return the value
+                yield v
             elif isinstance(v, dict):
                 yield from Trie._recurse(v, val + k)
 
 
 if __name__ == "__main__":
-    words = ["per", "perra", "perkele", "perkka", "p"]
-    trie = Trie()
-    trie.update(words)
-    assert len(words) == len(trie), f"{len(words)=}, {len(trie)=}"
-    for word in words:
-        assert word in trie
+    import unittest
 
-    prefix_per = list(trie.autocomplete("per"))
-    assert set(prefix_per) == set(["per", "perra", "perkele", "perkka"])
+    class Tests(unittest.TestCase):
+        def test_basic(self):
+            trie = Trie()
+            words = ["per", "perra", "perkele", "perkka", "p"]
+            trie.update(words)
+            self.assertEqual(len(set(words)), len(trie))
+            for word in words:
+                self.assertIn(word, trie)
+
+            prefix_per = list(trie.autocomplete("per"))
+            self.assertEqual(
+                set(prefix_per), set(["per", "perra", "perkele", "perkka"])
+            )
+
+        def test_propernoun(self):
+            words = ["Trond", "Tromsø", "tromme", "trommehinne", "Troms", "tro"]
+            trie = Trie()
+            trie.update(words)
+            self.assertEqual(len(words), len(trie))
+            expected = set(["tro", "tromme", "trommehinne", "Troms", "Tromsø", "Trond"])
+            actual = set(trie.autocomplete("tro"))
+            self.assertEqual(expected, actual)
+
+    unittest.main()
