@@ -51,8 +51,12 @@ function on_window_click(ev) {
     // autosuggestions
     if (ev.target.tagName == "A" && ev.target.classname == "key") {
         // this is handled below, but crucially we don't hide() here
-    } else if (ev.target.tagName == "input" && ev.target.getAttribute("name") == "lookup") {
-        // clicked on input element, do nothing
+    } else if (ev.target.tagName == "INPUT" && ev.target.getAttribute("name") == "lookup") {
+        // clicked on input element, show it again if search field contains
+        // 2 or more characters
+        if (!this.visible && ev.target.value.length >= 2) {
+            this.show();
+        }
     } else {
         // otherwise, hide the autosuggestions
         this.hide();
@@ -83,8 +87,13 @@ Autocomplete.prototype = {
             li.addEventListener("click", function(ev) {
                 var value = ev.target.getAttribute("data-value");
                 // if clicked on the <a> inside the <li>
-                if (typeof value == "undefined") {
+                if (value == null || typeof value == "undefined") {
                     value = ev.target.parentNode.getAttribute("data-value");
+                }
+                if (value == null || typeof value == "undefined") {
+                    console.error("could not find which word to fill in");
+                    console.error(ev);
+                    console.error(this);
                 }
                 self.anchor.value = value;
                 self.hide();
@@ -185,12 +194,27 @@ Autocomplete.prototype = {
     },
 
     _create_item: function(text, highlight_length, index) {
+        if (text == "") {
+            console.error("_create_item(): text is empty string");
+        }
+        if (text == null) {
+            console.error("_create_item(): text is null");
+        }
+        if (typeof text == "undefined") {
+            console.error("_create_item(): text is undefined");
+        }
+        if (!text) {
+            console.error("_create_item(): text is false-ish");
+        }
+        if (typeof text != "string") {
+            console.error("typeof text is not 'string'");
+        }
         var li = document.createElement("li");
-        li.dataset.value = text;
+        li.setAttribute("data-value", text);
         var a = document.createElement("a");
         a.href = "#";
         a.tabIndex = index;
-        a.dataset.value = text;
+        a.setAttribute("data-value", text);
 
         var strong_el = document.createElement("strong");
         strong_el.innerText = text.slice(0, highlight_length);
@@ -242,7 +266,6 @@ function find_dict_langs(input_element) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    console.log("autocomplete startup");
     var input_element = document.querySelector('input[name="lookup"]');
     var dict_langs = find_dict_langs(input_element);
     lang_from = dict_langs[0];
