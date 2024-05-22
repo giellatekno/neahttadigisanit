@@ -1,0 +1,42 @@
+name: "General verb paradigm"
+morphology:
+  pos: V
+lexicon:
+  XPATH:
+    homonymy: ".//l/@hid"
+  homonymy:
+    - "Hom1"
+    - "Hom2"
+--
+{{ lemma }}+{{ homonymy }}+V+Ind+Prs+Sg1
+{{ lemma }}+{{ homonymy }}+V+Ind+Prs+Sg2+Var/Ant
+{{ lemma }}+{{ homonymy }}+V+Ind+Prs+Sg2+Var/Af
+{{ lemma }}+{{ homonymy }}+V+Ind+Prs+Sg3
+{{ lemma }}+{{ homonymy }}+V+Ind+Prs+Pl1
+{{ lemma }}+{{ homonymy }}+V+Ind+Prs+Pl2+Var/Std
+{{ lemma }}+{{ homonymy }}+V+Ind+Prs+Pl2+Var/Koard
+{{ lemma }}+{{ homonymy }}+V+Ind+Prs+Pl3
+{{ lemma }}+{{ homonymy }}+V+Ind+Prs+Sg4
+{{ lemma }}+{{ homonymy }}+V+Ind+Prt+Sg1
+{{ lemma }}+{{ homonymy }}+V+Var/VCH+Ind+Prt+Sg1
+{{ lemma }}+{{ homonymy }}+V+Var/NoVCH+Ind+Prt+Sg1
+{{ lemma }}+{{ homonymy }}+V+Ind+Prt+Sg2+Var/Ant
+{{ lemma }}+{{ homonymy }}+V+Var/VCH+Ind+Prt+Sg2+Var/Ant
+{{ lemma }}+{{ homonymy }}+V+Var/NoVCH+Ind+Prt+Sg2+Var/Ant
+{{ lemma }}+{{ homonymy }}+V+Ind+Prt+Sg2+Var/Af
+{{ lemma }}+{{ homonymy }}+V+Var/VCH+Ind+Prt+Sg2+Var/Af
+{{ lemma }}+{{ homonymy }}+V+Var/NoVCH+Ind+Prt+Sg2+Var/Af
+{{ lemma }}+{{ homonymy }}+V+Ind+Prt+Sg3
+{{ lemma }}+{{ homonymy }}+V+Ind+Prt+Pl1
+{{ lemma }}+{{ homonymy }}+V+Ind+Prt+Pl2
+{{ lemma }}+{{ homonymy }}+V+Ind+Prt+Pl3
+{{ lemma }}+{{ homonymy }}+V+Var/VCH+Ind+Prt+Pl3
+{{ lemma }}+{{ homonymy }}+V+Var/NoVCH+Ind+Prt+Pl3
+{{ lemma }}+{{ homonymy }}+V+Ind+Prt+Sg4
+{{ lemma }}+{{ homonymy }}+V+Var/VCH+Ind+Prt+Sg4
+{{ lemma }}+{{ homonymy }}+V+Var/NoVCH+Ind+Prt+Sg4
+{{ lemma }}+{{ homonymy }}+V+PrfPrc+Var/Std1
+{{ lemma }}+{{ homonymy }}+V+PrfPrc+Var/Std2
+{{ lemma }}+{{ homonymy }}+V+PrfPrc+Var/Kld1
+{{ lemma }}+{{ homonymy }}+V+PrfPrc+Var/Kld2
+
