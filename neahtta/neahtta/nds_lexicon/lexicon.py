@@ -456,7 +456,9 @@ class AutocompleteTrie(XMLDict):
 
         super().__init__(*args, **kwargs)
 
-        from .new_trie import Trie
+        # Try to use old trie to see if memory usage decreases over time
+        # from .new_trie import Trie
+        from .trie import Trie
 
         print("Building autocomplete trie...")
         filename = kwargs["filename"]
