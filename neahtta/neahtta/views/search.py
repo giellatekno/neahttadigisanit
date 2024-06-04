@@ -480,10 +480,6 @@ class SearcherMixin:
             other_counts={},
         )
 
-    # anders: unused
-    def search_to_detailed_context(self, lookup_value, **search_kwargs):
-        assert False, "unused function"
-
     # def search_to_detailed_context(self, lookup_value, **search_kwargs):
     #     # TODO: There's a big mess contained here, and part of it
     #     # relates to lexicon formatters. Slowly working on unravelling
@@ -555,6 +551,7 @@ class SearcherMixin:
             search_result: SearchResult = self.do_search_to_obj(
                 lookup_value, generate=generate, lemma_attrs=lemma_attrs
             )
+            print("DEBUG", f"{search_result.entries_and_tags=}")
 
         template = "detail_entry.template" if detailed else "entry.template"
 
@@ -577,36 +574,14 @@ class SearcherMixin:
         if_next_der = False
         tags = ("Der", "VAbess", "VGen", "Ger", "Comp", "Superl")
 
+        # same arguments as in the search_result.entry_filterer() is needed here,
+        # because we apply the same formatter - to be able to run the filterer
         fmtkwargs = {
             "target_lang": g._to,
             "source_lang": g._from,
             "ui_lang": g.ui_lang,
             "user_input": lookup_value,
         }
-
-        # anders: update: This causes words that are not lexicalized to
-        # disappear, because it filters based on a lemma match from the
-        # dictionary! Therefore, temporarily disabled
-
-        # anders: hack to get lemma_match respected.
-        # this is the same code as in formatted_results(), which _does_ do
-        # entry filtering based on lemma_match. So we run the same filter
-        # here, and update `entries_and_tags` accordingly (discarding the
-        # actual "results" from the filtering)
-
-        # entries_and_tags = []
-        # for item in search_result.entries_and_tags:
-        #     # same code as formatted_results()
-        #     if item[0] is not None:
-        #         _formatted = self.formatter(
-        #             [item[0]],
-        #             additional_template_kwargs={"analyses": item[1]},
-        #             **fmtkwargs,
-        #         )
-        #         if self.entry_filterer:
-        #             _filtered = self.entry_filterer(_formatted)
-        #             if _filtered:
-        #                 entries_and_tags.append(item)
 
         # If in the results there is a 'None' entry followed by der tag/s those are removed
         # and are not shown in the results (e.g. "bagoheapmi")
@@ -625,6 +600,26 @@ class SearcherMixin:
             else:
                 res_par.append(item)
 
+        # This loop actually applies the entry_filterer() code, so that when
+        # searching in nob-sme for "spraglet", and clicking on "girjái",
+        # _only_ "girjái" is shown, not also the article for "girji"
+        entries_and_tags = []
+        for item in res_par:
+            result, morph_analyses = item
+            if result is not None:
+                _formatted = search_result.formatter(
+                    [result],
+                    additional_template_kwargs={"analyses": morph_analyses},
+                    **fmtkwargs,
+                )
+
+                if search_result.entry_filterer:
+                    _formatted = search_result.entry_filterer(_formatted)
+                    if _formatted:
+                        entries_and_tags.append((result, morph_analyses))
+        res_par = entries_and_tags
+
+        # this loop renders the templates, after having been filtered, above
         etp = search_result.entries_and_tags_and_paradigms
         for _dict_entry, analyses, paradigm, has_layout in etp:
             # anders:
@@ -636,7 +631,7 @@ class SearcherMixin:
                     if not analyses:
                         analyses = "az"
 
-                    tplkwargs = {
+                    template_kwargs = {
                         "lexicon_entry": res_par[k][0],
                         "analyses": analyses,
                         "analyses_right": res_par[k][1],
@@ -650,16 +645,17 @@ class SearcherMixin:
                         "successful_entry_exists": search_result.successful_entry_exists,
                     }
 
-                    tplkwargs.update(**default_context_kwargs)
+                    template_kwargs.update(**default_context_kwargs)
 
                     # Process all the context processors
-                    current_app.update_template_context(tplkwargs)
+                    current_app.update_template_context(template_kwargs)
 
-                    _rendered_entry_templates.append(
+                    rendered_entry_template = (
                         current_app.lexicon_templates.render_template(
-                            g._from, template, **tplkwargs
+                            g._from, template, **template_kwargs
                         )
                     )
+                    _rendered_entry_templates.append(rendered_entry_template)
                 k += 1
 
         all_analyses = list_flat(
