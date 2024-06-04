@@ -1223,7 +1223,7 @@ class Morphology:
         lookups, raw_output, raw_errors = self.tool.lookup([form])
 
         if self.has_unknown(lookups):
-            return False, raw_output, raw_errors
+            return [], raw_output, raw_errors
 
         lemmas = list(
             self.lookups_to_lemma(
