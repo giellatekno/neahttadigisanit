@@ -1301,7 +1301,7 @@ class Morphology:
         # [
         #   'beaggin+N+Sg+Gen+Allegro',
         #   'beaggit+V+IV',
-        #   'ActioGen',      # <- and crashes on this (assertion pos is never none)
+        #   'ActioGen',
         #   'ActioNom',
         #   'beaggit+V+TV',
         #   'Der/NomAct+N+Sg+Gen+Allegro',
@@ -1309,53 +1309,28 @@ class Morphology:
         #   'beaggin+N+Sg+Nom',
         #   'beaggi+N+NomAg+Ess',
         # ]
-        # BUT, ONLY ON THE SERVER
 
         analyses_der_fin = []
         default_tags = ("Dummy1", "Dummy2")
         tags = tuple(self.tool.options.get("tags_in_lexicon", default_tags))
         actio_tag = self.tool.options.get("actio_tag", "Actio")
         tagsep = self.tool.options.get("tagsep", "+")
-        actio_with_tagsep = actio_tag + tagsep
+        actio_with_tagsep = actio_tag + tagsep  # == "Actio+"
 
         for analysis in analyses:
-            if actio_tag in analysis:
-                try:
-                    right_of_actio = analysis.split(actio_with_tagsep)[1]
-                except IndexError:  # An analysis might end in "+Actio"
-                    # anders: incorrect comment. This will not IndexError
-                    # if the string ends with "Actio+", but if the "Actio+"
-                    # substring is not found at all in the string.
-                    # >>> "a,b".split(",")
-                    # >>> ['a', 'b']
-                    # >>> >>> "a,".split(",")
-                    # >>> ['a', '']
-                    # >>> >>> "a".split(",")
-                    # >>> ['a']
-                    # ... but, we know that "Actio+" is a substring,
-                    # because of the `actio_tag in analysis` above, so this
-                    # never happens.
-                    # ... but then again, this doesn't matter at all,
-                    # because the code sets the value to the empty string,
-                    # which it would have done anyway.
-                    # the cleanup is to just remove the entire try/except.
-                    assert False, "unreachable"
-                    right_of_actio = ""
-
-                # anders:
-                # is this correct? or what we want?
-                # e.g.
-                #   'beaggit+V+IV+Actio+Gen',
-                # analysis = "beaggit+V+IV+" + "Actio" + "Gen"
-                #   (= "beaggit+V+IV+ActioGen")
-                # .. no "+" between Actio and Gen, because `right_of_actio`
-                # is a result of splitting WITH the tagsep (the "+")
-                analysis = analysis.split(actio_tag)[0] + actio_tag + right_of_actio
-
-            # then here, we split again by "+", meaning we get
-            # ["beaggit", "V", "IV", "Actio"]
+            print(analysis)
+            # replace "Actio+" with "Actio", to enable separate entries for
+            # e.g. "Actio+Nom" and "Actio+Ess" in the dictionary
+            analysis = analysis.replace(actio_with_tagsep, actio_tag)
             analysis_parts = analysis.split(tagsep)
 
+            # Create list of analyses.
+            # Each "tag", as in "tags_in_lexicon" (e.g. ["Der", "Comp", ...] in
+            # sanit/sme), is a break point for creating a new analysis.
+            # e.g. An analysis line such as
+            #   "beaggit+V+TV+Der/NomAct+N+Sg+Gen+Allegro"
+            # becomes
+            #   ["beaggit+V+TV", "Der/NomAct+N+Sg+Gen+Allegro"]
             index = [
                 index1
                 for index1, part in enumerate(analysis_parts[1:], start=1)
@@ -1373,12 +1348,6 @@ class Morphology:
 
             analyses_der_fin.extend(b)
 
-        # Remove duplicates due to append if entry with analyses or not
-        # (in collect_same_lemma in morpho_lexicon.py)
-
-        # anders: the original function did a manual loop. Is this because
-        # the items are not hashable, or possibly to keep the ordering the
-        # same?
         return remove_duplicates(analyses_der_fin, keep_order=True)
 
     def split_on_compounds(self, analyses):
