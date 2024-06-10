@@ -61,6 +61,15 @@
                 <p>{% trans %}Dictionaries for North Saami and Finnish are based on lexical material from the <a class="green" href="http://kotus.fi">Institute for the Languages of Finland</a>, and from Giellatekno's work with the North Saami  <a class="green" href="http://oahpa.no">Oahpa</a>. In addition, we have included frequent words from North Saami, but especially from Finnish.{% endtrans %}</p>
                 <p>{% trans %}In both directions there are about 11,000 entries.{% endtrans %}</p>
             </span>
+            <span class="span4">
+                <h3 class="green smaller">{% trans %}sme ↔ spa{% endtrans %}</h3>
+                <p>{% trans %}These are the three main sources used for the elaboration of this dictionary:{% endtrans %}</p>
+                <ul>
+                    <li>{% trans %}Hytönen, Ahti, and Jyrki K. Talvitie, 2003, Suomi-espanja suursanakirja. WSOY suursanakirja. 1. painos.{% endtrans %}</li>
+                    <li>{% trans %}Nielsen, Konrad, 1932, Lappisk ordbok. Vols. 1-3. Oslo: Universitetsforlaget.{% endtrans %}</li>
+                    <li>{% trans %}Real Academia Española, Diccionario de la Lengua Española. Edición tricentenario. Última actualización: <a href="https://dle.rae.es/diccionario">https://dle.rae.es/diccionario</a>{% endtrans %}</li>
+                </ul>
+            </span>
         </div>
         <div class="row-fluid">
             <span class="span4">
