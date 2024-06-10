@@ -1486,20 +1486,20 @@ msgid "In both directions there are about 11,000 entries."
 msgstr "Juohke sátnegirjjis leat su. 11000 vuođđosáni. "
 
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:65
-#, fuzzy
 msgid "sme ↔ spa"
-msgstr "Davvisámegiella ↔ dárogiella"
+msgstr "Davvisámegiella ↔ spánskagiella"
 
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:66
 msgid ""
 "These are the three main sources used for the elaboration of this "
 "dictionary:"
 msgstr ""
+"Dát golbma váldogáldu geavahuvvojedje go sátnegirji čállojuvvui:"
 
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:68
 msgid ""
-"Hytönen, Ahti, and Jyrki K. Talvitie, 2003, Suomi-espanja suursanakirja. "
-"WSOY suursanakirja. 1. painos."
+"Hytönen, Ahti, ja Jyrki K. Talvitie, 2003, Suomi-espanja suursanakirja. "
+"WSOY suursanakirja. 1. prentehus."
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:69
@@ -1507,6 +1507,8 @@ msgid ""
 "Nielsen, Konrad, 1932, Lappisk ordbok. Vols. 1-3. Oslo: "
 "Universitetsforlaget."
 msgstr ""
+"Nielsen, Konrad, 1932, Lappisk ordbok. Vols. 1-3. Oslo: "
+"Universitetsforlaget."
 
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:70
 msgid ""
@@ -1514,6 +1516,9 @@ msgid ""
 "tricentenario. Última actualización: <a "
 "href=\"https://dle.rae.es/diccionario\">https://dle.rae.es/diccionario</a>"
 msgstr ""
+"Real Academia Española, Diccionario de la Lengua Española. Edición "
+"tricentenario. Última actualización: <a "
+"href=\"https://dle.rae.es/diccionario\">https://dle.rae.es/diccionario</a>"
 
 #: neahtta/configs/language_specific_rules/templates/sanit/footer.template:13
 msgid ""
