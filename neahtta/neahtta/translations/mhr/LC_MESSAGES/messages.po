@@ -7,68 +7,65 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-05 21:35+0100\n"
+"POT-Creation-Date: 2024-06-10 15:25+0200\n"
 "PO-Revision-Date: 2013-04-24 16:42-0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: mhr\n"
 "Language-Team: mhr <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.14.0\n"
 
-#: build/lib/neahtta/views/reader.py:217
-#: neahtta/configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:76
-#: neahtta/configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:149
-#: neahtta/templates/index.html:76 neahtta/templates/index.html:155
-#: neahtta/templates/word_detail.html:67 neahtta/templates/word_detail.html:108
-#: neahtta/views/reader.py:218
-msgid " is a possible form of ... "
-msgstr ""
-
-#: neahtta/configs/kyv.config.yaml.in:171
-#: neahtta/configs/kyv.config.yaml.in:246
-#: neahtta/configs/saan.config.yaml.in:97
-#: neahtta/configs/saanih.config.yaml.in:83
-#: neahtta/configs/saanih.config.yaml.in:113
-#: neahtta/configs/sanat.config.yaml:146
-#: neahtta/configs/sanat.config.yaml.in:137
-#: neahtta/configs/sanit.config.yaml:126
-#: neahtta/configs/sanit.config.yaml.in:133 neahtta/configs/sanj.config.yaml:87
-#: neahtta/configs/sanj.config.yaml.in:87
-#: neahtta/configs/sonad.config.yaml.in:156
+#: neahtta/configs/kyv.config.yaml:170 neahtta/configs/kyv.config.yaml:246
+#: neahtta/configs/kyv.config.yaml.in:169
+#: neahtta/configs/kyv.config.yaml.in:245 neahtta/configs/saan.config.yaml:98
+#: neahtta/configs/saan.config.yaml.in:98 neahtta/configs/saanih.config.yaml:81
+#: neahtta/configs/saanih.config.yaml:111
+#: neahtta/configs/saanih.config.yaml.in:80
+#: neahtta/configs/saanih.config.yaml.in:110
+#: neahtta/configs/sanat.config.yaml:139
+#: neahtta/configs/sanat.config.yaml.in:139
+#: neahtta/configs/sanit.config.yaml:125
+#: neahtta/configs/sanit.config.yaml.in:125 neahtta/configs/sanj.config.yaml:86
+#: neahtta/configs/sanj.config.yaml.in:85 neahtta/configs/sonad.config.yaml:155
+#: neahtta/configs/sonad.config.yaml.in:154
 #: neahtta/tests/configs/sanit.config.yaml:122
 msgid "Standard"
 msgstr ""
 
-#: neahtta/configs/kyv.config.yaml.in:180
-#: neahtta/configs/kyv.config.yaml.in:257
+#: neahtta/configs/kyv.config.yaml:179 neahtta/configs/kyv.config.yaml:257
+#: neahtta/configs/kyv.config.yaml.in:178
+#: neahtta/configs/kyv.config.yaml.in:256
 msgid "Social media"
 msgstr ""
 
-#: neahtta/configs/kyv.config.yaml.in:181
+#: neahtta/configs/kyv.config.yaml:180 neahtta/configs/kyv.config.yaml.in:179
 msgid "(incl. <em>ио</em>)"
 msgstr ""
 
-#: neahtta/configs/kyv.config.yaml.in:185
+#: neahtta/configs/kyv.config.yaml:184 neahtta/configs/kyv.config.yaml.in:183
 msgid "Molodtsov orthography"
 msgstr ""
 
-#: neahtta/configs/kyv.config.yaml.in:202
+#: neahtta/configs/kyv.config.yaml:201 neahtta/configs/kyv.config.yaml.in:200
 msgid "Zyrian for Permyak"
 msgstr ""
 
-#: neahtta/configs/kyv.config.yaml.in:258
+#: neahtta/configs/kyv.config.yaml:258 neahtta/configs/kyv.config.yaml.in:257
 msgid "(incl. <em>жзиоч</em>)"
 msgstr ""
 
-#: neahtta/configs/kyv.config.yaml.in:273
-#: neahtta/configs/kyv.config.yaml.in:302
+#: neahtta/configs/kyv.config.yaml:273 neahtta/configs/kyv.config.yaml:302
+#: neahtta/configs/kyv.config.yaml.in:272
+#: neahtta/configs/kyv.config.yaml.in:301
 msgid "Standard (<em>ӝӟӥӧӵ</em>)"
 msgstr ""
 
-#: neahtta/configs/kyv.config.yaml.in:277
-#: neahtta/configs/kyv.config.yaml.in:306
+#: neahtta/configs/kyv.config.yaml:277 neahtta/configs/kyv.config.yaml:306
+#: neahtta/configs/kyv.config.yaml.in:276
+#: neahtta/configs/kyv.config.yaml.in:305
 msgid "Social media (incl. <em>жзиоч</em>)"
 msgstr ""
 
@@ -307,56 +304,68 @@ msgstr ""
 msgid "Swedish"
 msgstr ""
 
-#: neahtta/configs/saan.config.yaml.in:120
-#: neahtta/configs/saanih.config.yaml.in:87
-#: neahtta/configs/saanih.config.yaml.in:117
-#: neahtta/configs/sanj.config.yaml:108 neahtta/configs/sanj.config.yaml.in:108
+#: neahtta/configs/saan.config.yaml:121 neahtta/configs/saan.config.yaml.in:121
+#: neahtta/configs/saanih.config.yaml:85 neahtta/configs/saanih.config.yaml:115
+#: neahtta/configs/saanih.config.yaml.in:84
+#: neahtta/configs/saanih.config.yaml.in:114
+#: neahtta/configs/sanj.config.yaml:107 neahtta/configs/sanj.config.yaml.in:106
 msgid "Mobile friendly"
 msgstr ""
 
-#: neahtta/configs/saanih.config.yaml.in:84
-#: neahtta/configs/saanih.config.yaml.in:114
+#: neahtta/configs/saanih.config.yaml:82 neahtta/configs/saanih.config.yaml:112
+#: neahtta/configs/saanih.config.yaml.in:81
+#: neahtta/configs/saanih.config.yaml.in:111
 msgid "(<em>âäáčđŋšž</em>)"
 msgstr ""
 
-#: neahtta/configs/saanih.config.yaml.in:88
-#: neahtta/configs/saanih.config.yaml.in:118
+#: neahtta/configs/saanih.config.yaml:86 neahtta/configs/saanih.config.yaml:116
+#: neahtta/configs/saanih.config.yaml.in:85
+#: neahtta/configs/saanih.config.yaml.in:115
 msgid "(incl. <em>aaacdnsz</em>)"
 msgstr ""
 
-#: neahtta/configs/sanit.config.yaml:141
-#: neahtta/configs/sanit.config.yaml.in:148
+#: neahtta/configs/sample.config.yaml.in:249
+#, python-format
+msgid ""
+"Standardhttp://gtweb.uit.no/korp/#search=word%7CUSER_INPUT&page=0http://gtweb.uit.no/korp/#page=0"
+"&search-"
+"tab=2&search=cqp%7C%5Blemma%20%3D%20%22INPUT_LEMMA%22%5D%22%5D%20%5Bword%20%3D%20%22"
+msgstr ""
+
+#: neahtta/configs/sanit.config.yaml:140
+#: neahtta/configs/sanit.config.yaml.in:140
 #: neahtta/tests/configs/sanit.config.yaml:137
 msgid "Tolerant"
 msgstr ""
 
-#: neahtta/configs/sanit.config.yaml:142
-#: neahtta/configs/sanit.config.yaml.in:149
+#: neahtta/configs/sanit.config.yaml:141
+#: neahtta/configs/sanit.config.yaml.in:141
 #: neahtta/tests/configs/sanit.config.yaml:138
 msgid "(incl. <em>acdnstz</em>)"
 msgstr ""
 
-#: neahtta/configs/sanit.config.yaml:181
-#: neahtta/configs/sanit.config.yaml.in:188
+#: neahtta/configs/sanit.config.yaml:180
+#: neahtta/configs/sanit.config.yaml.in:180
 #: neahtta/tests/configs/sanit.config.yaml:173
 msgid "Standard (<em>áčđŋšŧž</em>)"
 msgstr ""
 
-#: neahtta/configs/sanit.config.yaml:185
-#: neahtta/configs/sanit.config.yaml.in:192
+#: neahtta/configs/sanit.config.yaml:184
+#: neahtta/configs/sanit.config.yaml.in:184
 #: neahtta/tests/configs/sanit.config.yaml:177
 msgid "Tolerant (also <em>acdnstz</em>)"
 msgstr ""
 
-#: neahtta/configs/sanj.config.yaml:88 neahtta/configs/sanj.config.yaml.in:88
+#: neahtta/configs/sanj.config.yaml:87 neahtta/configs/sanj.config.yaml.in:86
 msgid "(<em>а̄е̄ӣо̄ӯӎӊӈҏ</em>)"
 msgstr ""
 
-#: neahtta/configs/sanj.config.yaml:109 neahtta/configs/sanj.config.yaml.in:109
+#: neahtta/configs/sanj.config.yaml:108 neahtta/configs/sanj.config.yaml.in:107
 msgid "(incl. <em>аеиоумннр</em>)"
 msgstr ""
 
-#: neahtta/configs/sonad.config.yaml.in:161
+#: neahtta/configs/sonad.config.yaml:160
+#: neahtta/configs/sonad.config.yaml.in:159
 msgid "mobile friendly"
 msgstr ""
 
@@ -615,7 +624,7 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/saanih/about.template:59
 #: neahtta/configs/language_specific_rules/templates/sanat/about.template:86
 #: neahtta/configs/language_specific_rules/templates/sanat/find_problem.template:3
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:67
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:76
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:84
 #: neahtta/configs/language_specific_rules/templates/sonad/about.template:92
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:80
@@ -634,7 +643,7 @@ msgstr "Вы видели ошибку?"
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:97
 #: neahtta/configs/language_specific_rules/templates/saanih/about.template:60
 #: neahtta/configs/language_specific_rules/templates/sanat/about.template:87
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:68
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:77
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:85
 #: neahtta/configs/language_specific_rules/templates/sonad/about.template:93
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:81
@@ -677,8 +686,8 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/sanat/find_problem.template:13
 #: neahtta/configs/language_specific_rules/templates/sanat/find_problem.template:20
 #: neahtta/configs/language_specific_rules/templates/sanat/find_problem.template:24
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:73
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:78
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:82
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:87
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:90
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:95
 #: neahtta/configs/language_specific_rules/templates/sonad/about.template:98
@@ -701,7 +710,7 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:112
 #: neahtta/configs/language_specific_rules/templates/saanih/about.template:75
 #: neahtta/configs/language_specific_rules/templates/sanat/about.template:111
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:83
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:92
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:100
 #: neahtta/configs/language_specific_rules/templates/sonad/about.template:108
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:96
@@ -875,7 +884,8 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/saan/fin/paradigm.template:220
 #: neahtta/configs/language_specific_rules/templates/saan/sms/paradigm.template:117
 #: neahtta/configs/language_specific_rules/templates/saanih/smn/paradigm.template:186
-#: neahtta/configs/language_specific_rules/templates/sanat/fkv/paradigm.template:173
+#: neahtta/configs/language_specific_rules/templates/sanat/fit/paradigm.template:177
+#: neahtta/configs/language_specific_rules/templates/sanat/fkv/paradigm.template:177
 #: neahtta/configs/language_specific_rules/templates/sanit/fin/paradigm.template:220
 #: neahtta/configs/language_specific_rules/templates/sanit/sme/paradigm.template:200
 #: neahtta/configs/language_specific_rules/templates/sanit/spa/paradigm.template:164
@@ -1027,6 +1037,14 @@ msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:61
 msgid "Swap"
+msgstr ""
+
+#: neahtta/configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:76
+#: neahtta/configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:149
+#: neahtta/templates/index.html:76 neahtta/templates/index.html:155
+#: neahtta/templates/word_detail.html:67 neahtta/templates/word_detail.html:108
+#: neahtta/views/reader.py:218
+msgid " is a possible form of ... "
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:93
@@ -1384,6 +1402,35 @@ msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:62
 msgid "In both directions there are about 11,000 entries."
+msgstr ""
+
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:65
+msgid "sme ↔ spa"
+msgstr ""
+
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:66
+msgid ""
+"These are the three main sources used for the elaboration of this "
+"dictionary:"
+msgstr ""
+
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:68
+msgid ""
+"Hytönen, Ahti, and Jyrki K. Talvitie, 2003, Suomi-espanja suursanakirja. "
+"WSOY suursanakirja. 1. painos."
+msgstr ""
+
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:69
+msgid ""
+"Nielsen, Konrad, 1932, Lappisk ordbok. Vols. 1-3. Oslo: "
+"Universitetsforlaget."
+msgstr ""
+
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:70
+msgid ""
+"Real Academia Española, Diccionario de la Lengua Española. Edición "
+"tricentenario. Última actualización: <a "
+"href=\"https://dle.rae.es/diccionario\">https://dle.rae.es/diccionario</a>"
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/sanit/footer.template:13
@@ -2058,266 +2105,6 @@ msgstr ""
 msgid "is a possible form of ... "
 msgstr ""
 
-#: venv/lib/python3.11/site-packages/click/_termui_impl.py:518
-msgid "{editor}: Editing failed"
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/_termui_impl.py:522
-msgid "{editor}: Editing failed: {e}"
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/core.py:1120
-msgid "Aborted!"
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/core.py:1309
-#: venv/lib/python3.11/site-packages/click/decorators.py:559
-msgid "Show this message and exit."
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/core.py:1340
-#: venv/lib/python3.11/site-packages/click/core.py:1370
-msgid "(Deprecated) {text}"
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/core.py:1387
-msgid "Options"
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/core.py:1415
-msgid "Got unexpected extra argument ({args})"
-msgid_plural "Got unexpected extra arguments ({args})"
-msgstr[0] ""
-msgstr[1] ""
-
-#: venv/lib/python3.11/site-packages/click/core.py:1428
-msgid "DeprecationWarning: The command {name!r} is deprecated."
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/core.py:1636
-msgid "Commands"
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/core.py:1668
-msgid "Missing command."
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/core.py:1746
-msgid "No such command {name!r}."
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/core.py:2310
-msgid "Value must be an iterable."
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/core.py:2333
-msgid "Takes {nargs} values but 1 was given."
-msgid_plural "Takes {nargs} values but {len} were given."
-msgstr[0] ""
-msgstr[1] ""
-
-#: venv/lib/python3.11/site-packages/click/core.py:2778
-msgid "env var: {var}"
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/core.py:2808
-msgid "(dynamic)"
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/core.py:2821
-msgid "default: {default}"
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/core.py:2834
-msgid "required"
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/decorators.py:465
-#, python-format
-msgid "%(prog)s, version %(version)s"
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/decorators.py:528
-msgid "Show the version and exit."
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/exceptions.py:44
-#: venv/lib/python3.11/site-packages/click/exceptions.py:80
-msgid "Error: {message}"
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/exceptions.py:72
-msgid "Try '{command} {option}' for help."
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/exceptions.py:121
-msgid "Invalid value: {message}"
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/exceptions.py:123
-msgid "Invalid value for {param_hint}: {message}"
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/exceptions.py:179
-msgid "Missing argument"
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/exceptions.py:181
-msgid "Missing option"
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/exceptions.py:183
-msgid "Missing parameter"
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/exceptions.py:185
-msgid "Missing {param_type}"
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/exceptions.py:192
-msgid "Missing parameter: {param_name}"
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/exceptions.py:212
-msgid "No such option: {name}"
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/exceptions.py:226
-msgid "Did you mean {possibility}?"
-msgid_plural "(Possible options: {possibilities})"
-msgstr[0] ""
-msgstr[1] ""
-
-#: venv/lib/python3.11/site-packages/click/exceptions.py:262
-msgid "unknown error"
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/exceptions.py:269
-msgid "Could not open file {filename!r}: {message}"
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/parser.py:231
-msgid "Argument {name!r} takes {nargs} values."
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/parser.py:413
-msgid "Option {name!r} does not take a value."
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/parser.py:473
-msgid "Option {name!r} requires an argument."
-msgid_plural "Option {name!r} requires {nargs} arguments."
-msgstr[0] ""
-msgstr[1] ""
-
-#: venv/lib/python3.11/site-packages/click/shell_completion.py:318
-msgid "Shell completion is not supported for Bash versions older than 4.4."
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/shell_completion.py:326
-msgid "Couldn't detect Bash version, shell completion is not supported."
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/termui.py:158
-msgid "Repeat for confirmation"
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/termui.py:174
-msgid "Error: The value you entered was invalid."
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/termui.py:176
-msgid "Error: {e.message}"
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/termui.py:187
-msgid "Error: The two entered values do not match."
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/termui.py:243
-msgid "Error: invalid input"
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/termui.py:773
-msgid "Press any key to continue..."
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/types.py:266
-msgid ""
-"Choose from:\n"
-"\t{choices}"
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/types.py:300
-msgid "{value!r} is not {choice}."
-msgid_plural "{value!r} is not one of {choices}."
-msgstr[0] ""
-msgstr[1] ""
-
-#: venv/lib/python3.11/site-packages/click/types.py:394
-msgid "{value!r} does not match the format {format}."
-msgid_plural "{value!r} does not match the formats {formats}."
-msgstr[0] ""
-msgstr[1] ""
-
-#: venv/lib/python3.11/site-packages/click/types.py:414
-msgid "{value!r} is not a valid {number_type}."
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/types.py:470
-msgid "{value} is not in the range {range}."
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/types.py:611
-msgid "{value!r} is not a valid boolean."
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/types.py:635
-msgid "{value!r} is not a valid UUID."
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/types.py:822
-msgid "file"
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/types.py:824
-msgid "directory"
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/types.py:826
-msgid "path"
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/types.py:877
-msgid "{name} {filename!r} does not exist."
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/types.py:886
-msgid "{name} {filename!r} is a file."
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/types.py:894
-msgid "{name} '{filename}' is a directory."
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/types.py:903
-msgid "{name} {filename!r} is not readable."
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/types.py:912
-msgid "{name} {filename!r} is not writable."
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/types.py:921
-msgid "{name} {filename!r} is not executable."
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/click/types.py:987
-msgid "{len_type} values are required, but {len_value} was given."
-msgid_plural "{len_type} values are required, but {len_value} were given."
-msgstr[0] ""
-msgstr[1] ""
-
 #~ msgid "Standard (äǟ)"
 #~ msgstr ""
 
@@ -2843,4 +2630,197 @@ msgstr[1] ""
 
 #~ msgid "Invalid format. Only json and html allowed."
 #~ msgstr ""
+
+#~ msgid "{editor}: Editing failed"
+#~ msgstr ""
+
+#~ msgid "{editor}: Editing failed: {e}"
+#~ msgstr ""
+
+#~ msgid "Aborted!"
+#~ msgstr ""
+
+#~ msgid "Show this message and exit."
+#~ msgstr ""
+
+#~ msgid "(Deprecated) {text}"
+#~ msgstr ""
+
+#~ msgid "Got unexpected extra argument ({args})"
+#~ msgid_plural "Got unexpected extra arguments ({args})"
+#~ msgstr[0] ""
+#~ msgstr[1] ""
+
+#~ msgid "DeprecationWarning: The command {name!r} is deprecated."
+#~ msgstr ""
+
+#~ msgid "Commands"
+#~ msgstr ""
+
+#~ msgid "Missing command."
+#~ msgstr ""
+
+#~ msgid "No such command {name!r}."
+#~ msgstr ""
+
+#~ msgid "Value must be an iterable."
+#~ msgstr ""
+
+#~ msgid "Takes {nargs} values but 1 was given."
+#~ msgid_plural "Takes {nargs} values but {len} were given."
+#~ msgstr[0] ""
+#~ msgstr[1] ""
+
+#~ msgid "env var: {var}"
+#~ msgstr ""
+
+#~ msgid "(dynamic)"
+#~ msgstr ""
+
+#~ msgid "default: {default}"
+#~ msgstr ""
+
+#~ msgid "required"
+#~ msgstr ""
+
+#~ msgid "%(prog)s, version %(version)s"
+#~ msgstr ""
+
+#~ msgid "Show the version and exit."
+#~ msgstr ""
+
+#~ msgid "Error: {message}"
+#~ msgstr ""
+
+#~ msgid "Try '{command} {option}' for help."
+#~ msgstr ""
+
+#~ msgid "Invalid value: {message}"
+#~ msgstr ""
+
+#~ msgid "Invalid value for {param_hint}: {message}"
+#~ msgstr ""
+
+#~ msgid "Missing argument"
+#~ msgstr ""
+
+#~ msgid "Missing option"
+#~ msgstr ""
+
+#~ msgid "Missing parameter"
+#~ msgstr ""
+
+#~ msgid "Missing {param_type}"
+#~ msgstr ""
+
+#~ msgid "Missing parameter: {param_name}"
+#~ msgstr ""
+
+#~ msgid "No such option: {name}"
+#~ msgstr ""
+
+#~ msgid "Did you mean {possibility}?"
+#~ msgid_plural "(Possible options: {possibilities})"
+#~ msgstr[0] ""
+#~ msgstr[1] ""
+
+#~ msgid "unknown error"
+#~ msgstr ""
+
+#~ msgid "Could not open file {filename!r}: {message}"
+#~ msgstr ""
+
+#~ msgid "Argument {name!r} takes {nargs} values."
+#~ msgstr ""
+
+#~ msgid "Option {name!r} does not take a value."
+#~ msgstr ""
+
+#~ msgid "Option {name!r} requires an argument."
+#~ msgid_plural "Option {name!r} requires {nargs} arguments."
+#~ msgstr[0] ""
+#~ msgstr[1] ""
+
+#~ msgid "Shell completion is not supported for Bash versions older than 4.4."
+#~ msgstr ""
+
+#~ msgid "Couldn't detect Bash version, shell completion is not supported."
+#~ msgstr ""
+
+#~ msgid "Repeat for confirmation"
+#~ msgstr ""
+
+#~ msgid "Error: The value you entered was invalid."
+#~ msgstr ""
+
+#~ msgid "Error: {e.message}"
+#~ msgstr ""
+
+#~ msgid "Error: The two entered values do not match."
+#~ msgstr ""
+
+#~ msgid "Error: invalid input"
+#~ msgstr ""
+
+#~ msgid "Press any key to continue..."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Choose from:\n"
+#~ "\t{choices}"
+#~ msgstr ""
+
+#~ msgid "{value!r} is not {choice}."
+#~ msgid_plural "{value!r} is not one of {choices}."
+#~ msgstr[0] ""
+#~ msgstr[1] ""
+
+#~ msgid "{value!r} does not match the format {format}."
+#~ msgid_plural "{value!r} does not match the formats {formats}."
+#~ msgstr[0] ""
+#~ msgstr[1] ""
+
+#~ msgid "{value!r} is not a valid {number_type}."
+#~ msgstr ""
+
+#~ msgid "{value} is not in the range {range}."
+#~ msgstr ""
+
+#~ msgid "{value!r} is not a valid boolean."
+#~ msgstr ""
+
+#~ msgid "{value!r} is not a valid UUID."
+#~ msgstr ""
+
+#~ msgid "file"
+#~ msgstr ""
+
+#~ msgid "directory"
+#~ msgstr ""
+
+#~ msgid "path"
+#~ msgstr ""
+
+#~ msgid "{name} {filename!r} does not exist."
+#~ msgstr ""
+
+#~ msgid "{name} {filename!r} is a file."
+#~ msgstr ""
+
+#~ msgid "{name} '{filename}' is a directory."
+#~ msgstr ""
+
+#~ msgid "{name} {filename!r} is not readable."
+#~ msgstr ""
+
+#~ msgid "{name} {filename!r} is not writable."
+#~ msgstr ""
+
+#~ msgid "{name} {filename!r} is not executable."
+#~ msgstr ""
+
+#~ msgid "{len_type} values are required, but {len_value} was given."
+#~ msgid_plural "{len_type} values are required, but {len_value} were given."
+#~ msgstr[0] ""
+#~ msgstr[1] ""
 
