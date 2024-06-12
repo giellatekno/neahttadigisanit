@@ -95,6 +95,10 @@ vmax:
  - "v3"
  - "v4"
  - "v5"
+homonyms:
+ - "Hom1"
+ - "Hom2"
+ - "Hom3"
 semantics:
  - "Sem/Act"
  - "Sem/Ani"
