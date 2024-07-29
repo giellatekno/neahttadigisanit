@@ -317,11 +317,11 @@ def update_dicts(project):
 
     dicts_regex = f"dict-({'|'.join(dictionaries)})"
     cmd = [GUT_BINARY, "--format=json", "pull", "-o", "giellalt", "-r", dicts_regex]
+    cmd_s = " ".join(str(element) for element in cmd)
 
     proc = subprocess.run(cmd, capture_output=True, text=True)
     if proc.returncode != 0:
         print(colored("failed", "red"))
-        cmd_s = " ".join(str(element) for element in cmd)
         sys.exit(f"Fatal: Error running command: {cmd_s}\nstderr: {proc.stderr}")
 
     try:
@@ -423,12 +423,18 @@ def add_stem():
         cmd = ["python", str(script_path), lexc, str(stemtypes_txt_path(lexc))]
         if lexc != "prop":
             cmd.append("neahtta/dicts/sme-nob.xml")
-            cmd.append(str(_find_in_repo(f"lang-sme/src/fst/morphology/stems/{lexc}.lexc")))
+            cmd.append(
+                str(_find_in_repo(f"lang-sme/src/fst/morphology/stems/{lexc}.lexc"))
+            )
         else:
             cmd.append(str(stemtypes_txt_path(lexc)))
             cmd.append("neahtta/dicts/sme-nob.xml")
             cmd.append(
-                str(_find_in_repo("lang-sme/src/fst/morphology/stems/sme-propernouns.lexc"))
+                str(
+                    _find_in_repo(
+                        "lang-sme/src/fst/morphology/stems/sme-propernouns.lexc"
+                    )
+                )
             )
             cmd.append(smi_propernouns)
 
