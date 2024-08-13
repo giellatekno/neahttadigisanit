@@ -1,5 +1,5 @@
 {# This template renders the search form on the main page.
-    - Differences: autocomplete result number
+    - Differences: autocomplete result number, notice about smespa dict
  #}
 {%- set keyboard = false %}
 {% if current_variant_options %}
@@ -91,5 +91,8 @@
         </div>
     </div>
 </div>
+
+{% if _to == 'spa' %}<p style="color: red">{% trans %}The North Saami → Spanish dictionary is provided as a working copy for the development of the dictionary <b>only</b>. It is not published for general use.{% endtrans %}</p>{% endif %}
+
 
 {# vim: set ts=4 sw=4 tw=0 syntax=htmljinja : #}
