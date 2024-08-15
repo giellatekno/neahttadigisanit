@@ -133,6 +133,14 @@
 
 {%- if translation_group -%}
     <span lang="{{ _to }}">{{- render_region(translation_group) -}}{{ render_tg(translation_group) }}</span>
+    {% set expl = translation_group.xpath('./expl') %} {# In use in smespa #}
+    {% if expl %}
+        <span class="expl">
+        {%- for elem in expl %}
+        ({{elem|text}}{{", " if not loop.last}})
+        {% endfor %}
+        </span>
+    {%- endif %}
 {%- endif -%}
 
 {#  vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}
