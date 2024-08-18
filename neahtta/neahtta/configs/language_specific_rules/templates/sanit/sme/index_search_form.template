@@ -95,7 +95,7 @@
 {% if _to == 'spa' %}
 <p style="color: red">{% trans %}The North Saami → Spanish dictionary is provided as a working copy for the development of the dictionary <b>only</b>. It is not published for general use.{% endtrans %}</p>
 <p>{% trans %}The abbreviations used in the dictionary are{% endtrans %} <a href=https://gtweb.uit.no/Abbreviations.docx>{% trans %}explained here{% endtrans %}</a>.</p>
-<p>{% trans %}The abbreviations refer to the uses in Spanish.{% endtrans %}</p>
+<p>{% trans %}The abbreviations refer to the uses in North Saami.{% endtrans %}</p>
 {% endif %}
 
 {# vim: set ts=4 sw=4 tw=0 syntax=htmljinja : #}
