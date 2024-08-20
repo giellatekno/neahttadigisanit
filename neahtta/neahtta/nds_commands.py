@@ -1,7 +1,5 @@
 """Neahttadigisanit management tool for updating dictionaries, restarting the
-server, running the development server, and such things. The script name is
-reminiscent of 'fabfile' (but we are no longer using Fabric, so it's not a
-fabfile)."""
+server, running the development server, and such things."""
 
 # See the EXAMPLES below the imports
 
@@ -24,16 +22,16 @@ EXAMPLES = """Examples:
 
 Update a dictionary:
     # 1: update dictionary sources  (pulls dict repositories from github)
-    $ fab update sanit
+    $ nds update sanit
 
     # 2: compile new dictionary   (merges dictionary src/ into final .xml file)
-    $ fab compile sanit
+    $ nds compile sanit
 
     # 3: update the service to reflect the changes
-    $ fab restart sanit
+    $ nds restart sanit
 
 Adding stem to smenob:
-    $ fab add-stem
+    $ nds add-stem
 """
 
 RED = partial(colored, color="red")
@@ -66,7 +64,7 @@ COMPILE_DICTS_ALIASES = [
 def require_gut():
     # anders: the version of gut I have installed locally on my machine has
     # not yet been updated to support --format=json, so to run it
-    # locally, I need to be able to give fab the path to my gut binary
+    # locally, I need to be able to pass path to my gut binary
     if custom_gut_binary := os.environ.get("GUT_BINARY"):
         gut_path = Path(custom_gut_binary).resolve()
         if not gut_path.exists():
@@ -282,17 +280,17 @@ def _compile_dicts(project, force=None):
             "built dictionary file is newer than the xml source files.\n\n"
             "Hint: To force rebuilding all dictionaries without checking "
             "modification times, run:\n"
-            f"  fab compile {project} -f    (or: fab compile {project} --force)\n"
+            f"  nds compile {project} -f    (or: nds compile {project} --force)\n"
             f"Hint: If you expected updates to happen, try to update the "
             "underlying git repositories of the dictionaries, by running:\n"
-            f"  fab update {project}\n"
-            f"...then re-run this command (fab compile {project})"
+            f"  nds update {project}\n"
+            f"...then re-run this command (nds compile {project})"
         )
 
     if did_smenob:
         print(
             "\n!! sme-nob: dictionary has been updated, you probably want "
-            "to add stems to it. If so, run:\n  fab add-stem"
+            "to add stems to it. If so, run:\n  nds add-stem"
         )
 
 
@@ -367,8 +365,8 @@ def update_dicts(project):
         print(colored("** New updates pulled", "green"))
         print(
             "Hint: To update the live site, remember to compile and restart.\n"
-            f"fab compile {project}\n"
-            f"fab restart {project}"
+            f"nds compile {project}\n"
+            f"nds restart {project}"
         )
 
 
@@ -490,7 +488,7 @@ def strings_compile(project=None):
                 print()
                 print("hint: Either...")
                 print("(1) rerun the command with the project name, i.e.")
-                print("    fab strings compile -l PROJECT")
+                print("    nds strings compile -l PROJECT")
                 print("...or...")
                 print("(2) Troubleshoot missing locale. (See Troubleshooting doc)")
 
@@ -536,10 +534,10 @@ def strings_extract():
 
 def strings_update():
     """Update strings. This function does nothing now. In the old code, it
-    did 'git pull', followed by 'fab strings compile'."""
+    did 'git pull', followed by 'nds strings compile'."""
     print(
         "strings_update(): kept for backwards-compliance, but this does "
-        "nothing here now.\nThe old code did two things:\ngit pull\nfab "
+        "nothing here now.\nThe old code did two things:\ngit pull\nnds "
         "strings compile\nThis is simple enough to do by hand."
     )
 
@@ -657,7 +655,7 @@ def image_run_command(project, port=5000, docker=False):
         print("Error: Missing dictionaries on the host system, cannot run image")
         print()
         print("Hint: Maybe try to compile dictionaries, using this command:")
-        print(f"  fab compile {project}")
+        print(f"  nds compile {project}")
         print()
         for missing_dict in missing_dicts:
             print(f"missing: {missing_dict}")
@@ -748,8 +746,8 @@ def parse_args():
     list_parser = subparsers.add_parser(
         "list-projects",
         aliases=["ls"],
-        # help is text that will be shown on `fab --help`,
-        # description is for `fab ls --help`
+        # help is text that will be shown on `nds --help`,
+        # description is for `nds ls --help`
         help="list projects (-i also shows inactive. -d also shows dicts)",
         description=(
             "list projects (-i also shows inactive. -d also shows " "dictionaries)"
@@ -777,8 +775,8 @@ def parse_args():
     restart_parser = subparsers.add_parser(
         "restart",
         aliases=["restart-service"],
-        # help is text that will be shown on `fab --help`,
-        # description is for `fab restart --help`
+        # help is text that will be shown on `nds --help`,
+        # description is for `nds restart --help`
         help="Restart the production server for a project (only on server!)",
         description="Restart the server for a project (only on gtdict.uit.no)",
     )
@@ -805,7 +803,7 @@ def parse_args():
         "project",
         metavar="PROJECT",
         choices=available_projects(),
-        help="The project whose dictionaries should be updated. Run `fab ls` "
+        help="The project whose dictionaries should be updated. Run `nds ls` "
         "to see the list of project names.",
     )
     update_parser.set_defaults(func=update_dicts)
@@ -821,7 +819,7 @@ def parse_args():
         "project",
         metavar="PROJECT",
         choices=["all", *available_projects()],
-        help="The project to compile dictionaries for. Run `fab ls` "
+        help="The project to compile dictionaries for. Run `nds ls` "
         "to see the list of project names.",
     )
     compile_parser.add_argument(
@@ -884,7 +882,7 @@ def parse_args():
         "project",
         metavar="PROJECT",
         choices=available_projects(),
-        help="The project to test. Run `fab ls` list project names.",
+        help="The project to test. Run `nds ls` list project names.",
     )
     test_configuration_parser.set_defaults(func=test_configuration)
 
@@ -929,7 +927,7 @@ def parse_args():
     # command: strings update
     strings_extract_parser = strings_parser.add_parser(
         "update",
-        help="update strings (removed. it's just git pull && fab strings compile)",
+        help="update strings (removed. it's just git pull && nds strings compile)",
         description=strings_update.__doc__,
     )
     strings_extract_parser.set_defaults(func=strings_update)
@@ -974,7 +972,7 @@ def parse_args():
         "project",
         metavar="PROJECT",
         choices=available_projects(),
-        help="The project config to run inside the image. Run `fab ls` list "
+        help="The project config to run inside the image. Run `nds ls` list "
         "project names.",
     )
     image_run_parser.add_argument(
