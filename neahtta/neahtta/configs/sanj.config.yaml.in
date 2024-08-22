@@ -77,9 +77,24 @@ Dictionaries:
 
   - source: sjd
     target: rus
+    dict_source: repo:dict-sjd-rus-x-private
     path: 'dicts/sjd-rus.xml'
     autocomplete: true
     show_korp_search: False
+    # this script will be run by `nds compile` before it merges the src/*.xml
+    # files into dicts/sjd-rus.xml.
+    prepare_script:
+      - /bin/bash
+      - -c
+      - |
+        # if the "PREPARE_SCRIPT_FORCE" env var is blank, then skip=if-newer
+        # otherwise, if the env var is set to anything, then skip=no
+        [[ -z "${PREPARE_SCRIPT_FORCE}" ]] && SKIP=if-newer || SKIP=no
+        GUT_DIR=`gut show config 2>/dev/null | grep -i "root directory" | cut -d ":" -f2 | sed 's/\s*//'`
+        cd $GUT_DIR/giellalt/dict-sjd-rus-x-private
+        source scripts/venv/bin/activate
+        NEWEST_SOURCE=`find inc -maxdepth 1 -name "*.xlsx"`
+        python3 scripts/xslx2gtxml_sjdrus.py $NEWEST_SOURCE src/sjd-rus.xml --skip=$SKIP --audio-folder $GUT_DIR/giellatekno/audio-sjd/flac
     input_variants: &spell_relax_sjd
       - type: "standard"
         description: !gettext "Standard"
@@ -110,9 +125,25 @@ Dictionaries:
 
   - source: rus
     target: sjd
+    dict_source: repo:dict-rus-sjd-x-private
     path: 'dicts/rus-sjd.xml'
     autocomplete: true
     show_korp_search: False
+    # custom script to build the src/*.xml file(s) before we merge them
+    prepare_script:
+      - /bin/bash
+      - -c
+      - |
+        # if the "PREPARE_SCRIPT_FORCE" env var is blank, then skip=if-newer
+        # otherwise, if the env var is set to anything, then skip=no
+        [[ -z "${PREPARE_SCRIPT_FORCE}" ]] && SKIP=if-newer || SKIP=no
+        GUT_DIR=`gut show config 2>/dev/null | grep -i "root directory" | cut -d ":" -f2 | sed 's/\s*//'`
+        cd $GUT_DIR/giellalt/dict-rus-sjd-x-private
+        source scripts/venv/bin/activate
+        NEWEST_SOURCE=`find inc -maxdepth 1 -name "*.xlsx"`
+        # TODO this invocation fails to load openpyxl, as if the venv isn't
+        # activated. but for the other script above, this works just fine..
+        python3 scripts/xlsx2xml_russjd.py $NEWEST_SOURCE src/rus-sjd.xml --skip=$SKIP --audio-folder $GUT_DIR/giellatekno/audio-sjd/flac
 
   - source: sjdM
     target: rus

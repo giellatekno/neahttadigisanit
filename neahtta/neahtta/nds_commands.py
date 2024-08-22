@@ -173,16 +173,14 @@ def list_projects(project="all", include_inactive=False, include_dicts=False):
             print()
 
 
-def needs_update(sources: Path, compiled_file: Path):
+def needs_update(xml_files: list[Path], compiled_file: Path):
     """Check if dictionary sources are newer than the compiled_file. If the
     compiled file does not exist, this function will also return True."""
     if not compiled_file.exists():
         return True
 
     # anders: follow_symlinks argument of Path.stat() added in 3.10
-    last_source_mtime = max(
-        file.stat().st_mtime for file in sources.iterdir() if file.suffix == ".xml"
-    )
+    last_source_mtime = max(file.stat().st_mtime for file in xml_files)
     last_compiled_file_mtime = compiled_file.stat().st_mtime
 
     return last_source_mtime > last_compiled_file_mtime
@@ -205,74 +203,85 @@ def compile_dicts(project, force=None):
         _compile_dicts(project, force=force)
 
 
+def _run_prepare_script(script, msg, force=False):
+    print(msg, end="", flush=True)
+    env = dict(os.environ)
+    if force:
+        # Tell the prepare script to force running (even if it for example
+        # by default skips running if output is newer than sources)
+        env["PREPARE_SCRIPT_FORCE"] = "yes"
+    proc = subprocess.run(script, text=True, capture_output=True, env=env)
+    ok = proc.returncode == 0
+    if ok:
+        print(GREEN("done"))
+    else:
+        print(RED("failed"), "(script finished with non-0 exit code)")
+
+    if proc.stdout:
+        print(f"prepare_script wrote to stdout:\n{proc.stdout}")
+
+    if proc.stderr:
+        print(f"prepare_script wrote to stderr:\n{proc.stderr}")
+
+    return ok
+
+
 def _compile_dicts(project, force=None):
     print(f"** Compiling dictionaries for {project}...")
     config = Config(".")
     config.from_yamlfile(f"neahtta/configs/{project}.config.yaml")
-
-    # see comment in update_dicts()
-    if project == "sanj":
-        raise NotImplementedError("custom script needed to compile sanj")
 
     giellalt_dir = Path(GUTROOT) / "giellalt"
 
     processed = []
     n = 0
     n_no_updates = 0
-    not_found = []
     did_smenob = False
 
-    for dict_entry in config.yaml["Dictionaries"]:
-        source = dict_entry["source"]
-        target = dict_entry["target"]
-        compiled_file = Path("neahtta") / Path(dict_entry["path"])
-        dict_source = dict_entry.get("dict_source", "")
+    for d in config.dict_entries():
+        source, target, compiled_file = d.source, d.target, d.compiled_file
 
-        if dict_source == "multi":
-            sources = giellalt_dir / f"dict-{source}-mul" / "src"
-        elif dict_source == "lang":
-            sources = (
-                giellalt_dir / f"lang-{source}" / "src" / "fst" / "morphology" / "stems"
-            )
-        else:
-            sources = giellalt_dir / f"dict-{source}-{target}" / "src"
+        if d.prepare_script:
+            if compiled_file not in processed:
+                msg = f"** Run prepare_script of {source}-{target}... "
+                ok = _run_prepare_script(d.prepare_script, msg, force=force)
+                if not ok:
+                    continue
 
-        print(
-            f"** Merge dictionary {source}-{target} > {compiled_file}... ",
-            flush=True,
-            end="",
-        )
+        msg = f"** Merge dictionary {source}-{target} > {compiled_file}... "
+        print(msg, end="", flush=True)
 
         if compiled_file in processed:
             print(CYAN("skipped"), "(already processed)")
             continue
 
-        processed.append(compiled_file)
+        src_dir = d.src_dir(giellalt_dir)
 
-        if not sources.is_dir():
-            print(RED("failed"), "(source directory not found)")
-            not_found.append(sources.resolve())
+        try:
+            source_files = [f for f in src_dir.iterdir() if f.suffix == ".xml"]
+        except OSError as e:
+            # not a directory, no such file or directory, permission error, etc
+            print(RED("failed"), f"({e})")
             continue
 
-        if not needs_update(sources, compiled_file) and not force:
+        if not source_files:
+            print(RED("failed"), "(no source files)")
+            n_no_updates += 1
+            continue
+
+        processed.append(compiled_file)
+
+        need = needs_update(source_files, compiled_file)
+
+        if not need and not force:
             print(CYAN("skipped"), "(no updates)")
             n_no_updates += 1
-        elif force or needs_update(sources, compiled_file):
-            try:
-                n_entries = merge_giella_dicts(sources, compiled_file.resolve())
-            except (FileNotFoundError, NotADirectoryError) as e:
-                print(RED(f"failed ({e})"))
-            else:
-                n += 1
-                print(GREEN("done"), f"({n_entries} entries total)")
-                if source == "sme" and target == "nob":
-                    did_smenob = True
-
-    if not_found:
-        print("\n" + RED("Errors:"))
-        print("The following source directories were not found:")
-        for directory in not_found:
-            print(directory)
+        else:
+            n_entries = merge_giella_dicts(src_dir, compiled_file.resolve())
+            n += 1
+            print(GREEN("done"), f"({n_entries} entries total)")
+            if source == "sme" and target == "nob":
+                did_smenob = True
 
     if n_no_updates > 0:
         print(
