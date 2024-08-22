@@ -9,6 +9,9 @@
 
 {%- set pos = first_l|xpath('@pos')|first -%}
 
+{%- set variant = first_l|xpath('@var') -%}
+{%- set meaning_num = first_l|xpath('@meaning_num')|first %}
+
 {%- if first_l|xpath('@type') -%}
   {%- set pos_type = first_l|xpath('@type')|tagfilter(_from, _to) -%}
 {%- endif -%}
@@ -23,4 +26,4 @@
   {%- set pos_text = pos|tagfilter(_from, _to) -%}
 {%- endif -%}
 
-<span lang="{{ _from }}">{{- first_l|text -}}</span>
+<span lang="{{ _from }}">{{- first_l|text -}}{%- if variant -%}<sup>{{ meaning_num }}</sup>{%- endif -%}</span>
