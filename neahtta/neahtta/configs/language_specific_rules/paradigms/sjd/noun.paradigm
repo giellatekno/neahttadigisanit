@@ -11,6 +11,7 @@ morphology:
 {{ lemma }}+N+Sg+Com
 {{ lemma }}+N+Sg+Abe
 {{ lemma }}+N+Sg+Abe+Var/Secondary
+{{ lemma }}+N+Prop+Sg+Abe+Var/Parenthesis
 {{ lemma }}+N+Ess
 {{ lemma }}+N+Par
 {{ lemma }}+N+Pl+Nom
