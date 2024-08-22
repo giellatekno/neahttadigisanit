@@ -85,3 +85,16 @@ pron_type:
 homonyms:
  - "Hom1"
  - "Hom2"
+variants:
+ - "Af"
+ - "Ant"
+ - "Std"
+ - "Koard"
+ - "Std1"
+ - "Std2"
+ - "Kld1"
+ - "Kld2"
+ - "VCH"
+ - "NoVCH"
+ - "SecondaryIll"
+ - "Secondary"
