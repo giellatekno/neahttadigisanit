@@ -452,19 +452,21 @@ class Config(Config):
 
         for language, files in _lang_files.items():
             for f in files:
-                tagset_path = os.path.join(_p, f)
-                if os.path.exists(tagset_path):
-                    try:
-                        file_context_set = yaml.load(
-                            open(tagset_path, "r"), yaml.Loader
-                        )
-                    except Exception as e:
-                        print(f"YAML parsing error in <{tagset_path}>\n\n")
-                        print(e)
-                        sys.exit()
-                    paradigm_contexts[language].update(
-                        reformat_context_set(tagset_path, file_context_set)
-                    )
+                # anders: this path was wrong
+                # tagset_path = os.path.join(_p, f)
+                try:
+                    with open(f) as fp:
+                        file_context_set = yaml.load(fp, yaml.Loader)
+                except OSError as e:
+                    print(f"open {f} failed: {e}")
+                    continue
+                except yaml.YAMLError as e:
+                    print(f"reading {f} failed: {e}")
+                    continue
+
+                paradigm_contexts[language].update(
+                    reformat_context_set(f, file_context_set)
+                )
 
         return paradigm_contexts
 
