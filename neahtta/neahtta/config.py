@@ -136,25 +136,40 @@ class DictionaryEntry:
         self.dict_source = d.get("dict_source", "")
         self.prepare_script = d.get("prepare_script")
 
+    @property
+    def repo(self):
+        """Get the repository name where this dictionary is located."""
+        source, target = self.source, self.target
+        if source == "SoMe" or target == "SoMe":
+            # Unsure how to determine where this repo is. During building they
+            # will be skipped, because there's always a dictionary with the
+            # source and target lang that builds the path for this dictionary
+            return
+        if self.dict_source == "multi":
+            return f"dict-{source}-mul"
+        if self.dict_source == "lang":
+            return f"lang-{source}"
+        if self.dict_source.startswith("repo:"):
+            return self.dict_source[5:]
+        return f"dict-{source}-{target}"
+
     def src_dir(self, giellalt_dir):
         """Full, absolute Path to the directory where the dictionary
         source .xml are stored. All repos are stored in gut, so the root
         directory of gut needs to be passed in to form the full path."""
         assert isinstance(giellalt_dir, Path), "giellalt_dir is a Path"
-        source, target = self.source, self.target
+        repo = self.repo
 
         if self.dict_source == "multi":
-            return giellalt_dir / f"dict-{source}-mul" / "src"
+            return giellalt_dir / repo / "src"
         if self.dict_source == "lang":
-            return (
-                giellalt_dir / f"lang-{source}" / "src" / "fst" / "morphology" / "stems"
-            )
+            return giellalt_dir / repo / "src" / "fst" / "morphology" / "stems"
         if self.dict_source.startswith("repo:"):
-            return giellalt_dir / self.dict_source[5:] / "src"
+            return giellalt_dir / repo / "src"
 
         # config file didn't have a "dict_source" field, so we return the
         # default
-        return giellalt_dir / f"dict-{source}-{target}" / "src"
+        return giellalt_dir / repo / "src"
 
 
 class Config(Config):

@@ -13,6 +13,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 from functools import partial
+from shlex import split as split_cmd
 
 from termcolor import colored
 
@@ -310,26 +311,18 @@ def update_dicts(project):
     config = Config(".")
     config.from_yamlfile(f"neahtta/configs/{project}.config.yaml")
 
-    # COMMENT FROM THE MAKEFILE (see dicts/Makefile line 402 - ~430)
-    # Custom compile script because the xml files are in
-    # lang-sjd-x-private/misc, which is not the case in any other dicts.
-    # Remember to extract xml files from source xlsx files using the scripts
-    # in lang-sjd-x-private/src/scripts
-    if project == "sanj":
-        raise NotImplementedError("custom script needed to compile sanj")
     if project == "bahkogirrje":
         raise NotImplementedError("dictionary sje-mul - must be handled")
 
-    dictionaries = dicts_from_config(config)
+    repos = [d.repo for d in config.dict_entries() if d.repo]
 
-    dicts_regex = f"dict-({'|'.join(dictionaries)})"
-    cmd = [GUT_BINARY, "--format=json", "pull", "-o", "giellalt", "-r", dicts_regex]
-    cmd_s = " ".join(str(element) for element in cmd)
+    repos_regex = f"({'|'.join(repos)})"
+    cmd = f"{GUT_BINARY} --format=json pull -o giellalt -r {repos_regex}"
 
-    proc = subprocess.run(cmd, capture_output=True, text=True)
+    proc = subprocess.run(split_cmd(cmd), capture_output=True, text=True)
     if proc.returncode != 0:
         print(colored("failed", "red"))
-        sys.exit(f"Fatal: Error running command: {cmd_s}\nstderr: {proc.stderr}")
+        sys.exit(f"Fatal: Error running command: {cmd}\nstderr: {proc.stderr}")
 
     try:
         parsed_output = json.loads(proc.stdout)
@@ -337,12 +330,12 @@ def update_dicts(project):
         print(colored("failed", "red"))
         sys.exit(
             f"Fatal: Could not parse json output of gut.\n"
-            f"command: {cmd_s}\n===== stdout =====\n{proc.stdout}"
+            f"command: {cmd}\n===== stdout =====\n{proc.stdout}"
         )
 
-    statuses = dict.fromkeys(dictionaries)
+    statuses = dict.fromkeys(repos)
     for repo in parsed_output:
-        statuses[repo["repo"][5:]] = repo["status"]
+        statuses[repo["repo"]] = repo["status"]
 
     n_errors = 0
     n_updated = 0
