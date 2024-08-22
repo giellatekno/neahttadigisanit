@@ -10,6 +10,7 @@ morphology:
 {{ lemma }}+N+Sg+Loc
 {{ lemma }}+N+Sg+Com
 {{ lemma }}+N+Sg+Abe
+{{ lemma }}+N+Sg+Abe+Var/Secondary
 {{ lemma }}+N+Ess
 {{ lemma }}+N+Par
 {{ lemma }}+N+Pl+Nom
