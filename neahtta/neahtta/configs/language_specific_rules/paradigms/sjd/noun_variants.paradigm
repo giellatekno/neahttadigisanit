@@ -1,0 +1,26 @@
+name: "noun variants"
+morphology:
+  pos: N
+lexicon:
+  XPATH:
+    variant: ".//l/@var"
+  variant:
+    - "v1"
+    - "v2"
+--
+{{ lemma }}+{{ variant }}+N+Sg+Nom
+{{ lemma }}+{{ variant }}+N+Sg+Gen
+{{ lemma }}+{{ variant }}+N+Sg+Acc
+{{ lemma }}+{{ variant }}+N+Sg+Ill
+{{ lemma }}+{{ variant }}+N+Sg+Loc
+{{ lemma }}+{{ variant }}+N+Sg+Com
+{{ lemma }}+{{ variant }}+N+Sg+Abe
+{{ lemma }}+{{ variant }}+N+Ess
+{{ lemma }}+{{ variant }}+N+Par
+{{ lemma }}+{{ variant }}+N+Pl+Nom
+{{ lemma }}+{{ variant }}+N+Pl+Gen
+{{ lemma }}+{{ variant }}+N+Pl+Acc
+{{ lemma }}+{{ variant }}+N+Pl+Ill
+{{ lemma }}+{{ variant }}+N+Pl+Loc
+{{ lemma }}+{{ variant }}+N+Pl+Com
+{{ lemma }}+{{ variant }}+N+Pl+Abe

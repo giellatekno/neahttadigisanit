@@ -56,6 +56,8 @@ Relabel:
       "Indef": ""
       "Hom1": ""
       "Hom2": ""
+      "v1": ""
+      "v2": ""
 
   - source_morphology: 'sjdM'
     target_ui_language: 'rus'
