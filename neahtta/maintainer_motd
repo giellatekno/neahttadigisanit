@@ -1,22 +1,22 @@
-# Neahttadigisánit fab cheat sheet:
+# Neahttadigisánit command cheat sheet:
 
 Command                    What it does
 -------------------------------------------------------------
-fab update PROJECT         Updates dictionaries sources
+nds update PROJECT         Updates dictionaries sources
                            (pulls from github)
-fab compile PROJECT        Compiles dictionary from sources
+nds compile PROJECT        Compiles dictionary from sources
                            (do this after update)
-fab restart PROJECT        Restarts the server for PROJECT
+nds restart PROJECT        Restarts the server for PROJECT
                            (do this after compiling dictionaries)
-fab strings extract        Compile translation strings
+nds strings extract        Compile translation strings
                            (do this after adding translations)
-fab strings compile        Compile .po to .mo (all dictionaries)
+nds strings compile        Compile .po to .mo (all dictionaries)
                            (do this after adding translations)
-fab test PROJECT           Checks configuration and FST files
-fab add-stem               Adds stem information to smenob
-fab ls                     List projects (baakoeh, sanit, sanat, etc)
-                           (use fab ls --help for more info)
-fab --help                 Shows commands, general info
-fab compile --help         Shows help on "compile" command
+nds test PROJECT           Checks configuration and FST files
+nds add-stem               Adds stem information to smenob
+nds ls                     List projects (baakoeh, sanit, sanat, etc)
+                           (use nds ls --help for more info)
+nds --help                 Shows commands, general info
+nds compile --help         Shows help on "compile" command
 
-The commands are defined in neahtta/fab_commands.py.
+The commands are defined in neahtta/nds_commands.py.
