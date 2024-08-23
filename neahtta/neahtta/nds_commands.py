@@ -311,9 +311,6 @@ def update_dicts(project):
     config = Config(".")
     config.from_yamlfile(f"neahtta/configs/{project}.config.yaml")
 
-    if project == "bahkogirrje":
-        raise NotImplementedError("dictionary sje-mul - must be handled")
-
     repos = [d.repo for d in config.dict_entries() if d.repo]
 
     repos_regex = f"({'|'.join(repos)})"
