@@ -50,7 +50,7 @@ Languages:
 Dictionaries:
   - source: sje
     target: nob
-    # tells the dictionary builder in fab_commands.py (function compile_dicts)
+    # tells the dictionary builder in nds_commands.py (function compile_dicts)
     # that the sources are in dict-<source>-mul (and not dict-<source>-<target>)
     dict_source: multi
     path: 'dicts/sje2X.xml'
@@ -59,7 +59,7 @@ Dictionaries:
 
   - source: sje
     target: swe
-    # tells the dictionary builder in fab_commands.py (function compile_dicts)
+    # tells the dictionary builder in nds_commands.py (function compile_dicts)
     # that the sources are in dict-<source>-mul (and not dict-<source>-<target>)
     dict_source: multi
     path: 'dicts/sje2X.xml'
@@ -68,7 +68,7 @@ Dictionaries:
 
   - source: sje
     target: eng
-    # tells the dictionary builder in fab_commands.py (function compile_dicts)
+    # tells the dictionary builder in nds_commands.py (function compile_dicts)
     # that the sources are in dict-<source>-mul (and not dict-<source>-<target>)
     dict_source: multi
     path: 'dicts/sje2X.xml'

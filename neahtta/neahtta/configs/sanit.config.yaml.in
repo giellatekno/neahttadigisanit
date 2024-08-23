@@ -98,7 +98,7 @@ Languages:
   - iso: sme
     minority_lang: true
   - iso: SoMe
-    variant: True # this makes the fab process skip attempting `svn up` here.
+    variant: True # this makes the nds process skip attempting `svn up` here.
   - iso: nob
   - iso: fin
   - iso: eng

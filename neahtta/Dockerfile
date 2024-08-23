@@ -7,17 +7,17 @@ FROM debian:12.4
 # As of right now, dictionaries are also compiled into the image
 # I may want to have those outside, to ease the dictionary update process
 
-# If dictionaries are outside, and mapped in, the fab script still needs
+# If dictionaries are outside, and mapped in, the nds script still needs
 # to work outside
 
 # flow to update dictionaries:
 #   ssh <server>    (I have an alias gtdict=ssh <server>)
 #   sudo su neahtta   (switch to user, venv will be activated)
 #   cd neahttadigisanit  (move to project folder, this is the git repo)
-#   fab update <project>    (pull new dict sources from github)
-#   fab compile <project>   (compile dictionaries for project)
+#   nds update <project>    (pull new dict sources from github)
+#   nds compile <project>   (compile dictionaries for project)
 # ....
-#   here we would do  fab restart <project>
+#   here we would do  nds restart <project>
 #   and maybe we still can - it will restart the systemd service, which
 #   just happens to run a podman image, instead of the raw command
 
@@ -29,8 +29,8 @@ FROM debian:12.4
 #  ...
 #   here I would normally just restart, but before that, a new image needs to
 #   be built
-#   fab rebuild-image
-#   fab restart <project>   (or "fab restart all" probably, because of code change)
+#   nds rebuild-image
+#   nds restart <project>   (or "nds restart all" probably, because of code change)
 
 # IDEALLY
 #   Complete automation when updating dictionaries

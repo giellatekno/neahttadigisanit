@@ -3,27 +3,27 @@ Quick summary:
 Update and compile dictionary, restart server:
 
   # (on the server, in folder: neahttadigisanit/neahtta)
-  $ fab update sanit
-  $ fab compile sanit
-  $ fab restart sanit
+  $ nds update sanit
+  $ nds compile sanit
+  $ nds restart sanit
 
 Add stems to smenob:
 
-  $ fab add-stem
-  $ fab restart sanit
+  $ nds add-stem
+  $ nds restart sanit
 
 Remove stems from smenob:
 
-  $ fab compile sanit --force      (forces re-creation of dictionary, even if
+  $ nds compile sanit --force      (forces re-creation of dictionary, even if
                                     there has been no changes)
-  $ fab restart sanit
+  $ nds restart sanit
 
 How to get help:
 
-  $ fab --help
+  $ nds --help
   Shows top-level help, listing available commands, and showing a few examples.
 
-  $ fab update --help
+  $ nds update --help
   Shows help on the update command.
 
 
@@ -52,16 +52,16 @@ The directory structure has been changed. Here is how it is now:
         pyproject.toml   - project meta, replaces requirements.txt
         neahtta/         - source code of neahttadigisanit app
 
-'fab' commands are now executed standing in the "neahttadigisanit/neahtta"
+'nds' (previously 'fab') commands are now executed standing in the "neahttadigisanit/neahtta"
 folder.
 
 
 
-# 2: New fab command structure
+# 2: New nds (fab) command structure
 
 Previously, the structure was `fab [<server>] <project> <command>` (see (1)),
-and this is now reversed to `fab <command> [<project>]`. So for example, the old
-`fab sanit update` is now `fab update sanit`. (but see below, about splits)
+and this is now reversed to `nds <command> [<project>]`. So for example, the old
+`fab sanit update` is now `nds update sanit`. (but see below, about splits)
 
 This was done for two reasons:
   1: Simpler implementation. Less code, fits easier into argparse.
@@ -82,13 +82,13 @@ functionality.
 
 There are now two distinct commands for updating and compiling dictionaries:
 
-   $ fab update <project>
+   $ nds update <project>
 
    Under the hood, this runs `git pull` on all dictionaries (meaning the
    giellalt/dict-xxx-yyy repositories) that the given <project> has on it's list.
    (actually: `gut` is used to easily do `git pull` in parallel)
 
-   $ fab compile <project>
+   $ nds compile <project>
 
    Creates the merged .xml dictionary file (stored in configs/XXX-YYY.all.xml)
    for each dictionary that the <project> needs. By default this command will
@@ -99,7 +99,7 @@ There are now two distinct commands for updating and compiling dictionaries:
 
    Use
 
-     $ fab compile <project> --force
+     $ nds compile <project> --force
 
    to force re-creation of dictionaries, even if there has been no updates.
    This is useful for for example removing stem info from sme-nob.
@@ -112,11 +112,11 @@ all newer than their sources, it will print a hint to the user that maybe
 they wanted to run `update` before `compile`. Similarly, `update` will hint
 about running `compile` and `restart` if it detects that there were new updates.
 
-A side note: the 'fab' script does _NOT_ do anything related to actually
+A side note: the 'nds' script does _NOT_ do anything related to actually
 updating or compliling the fsts themselves. This has been disabled for quite
 some time already (the code of the old fabfile essentially disabled it). It's
 possible to re-enable / re-implement functionality to do this, since such a
-command (maybe `fab compile-fsts sanit`) would essentially just call into the
+command (maybe `nds compile-fsts sanit`) would essentially just call into the
 makefiles that still has code for doing such compliation.
 
 
@@ -162,8 +162,8 @@ that should apply to a server. It was my understanding that this was not used;
 we just ssh into the server, and run the commands there. As such, Fabric is
 not needed anymore.
 
-Even though Fabric has been removed, "fabfile.py" has been only been rewritten,
-not removed, and the command name will still be "fab".
+Even though Fabric has been removed, "fabfile.py" has been only been rewritten and renamed to nds_commands.py,
+not removed. The command name remained "fab" for a while after restructuring, but is now "nds".
 
 
 # 8: Introduce ruff as code formatter
