@@ -11,6 +11,8 @@
 
     There are rules giving лӣннче a special paradigm based on the preterite.
 
+    There are rules for ordering the variants of abessive singular and place requested forms in parenthesis
+
  #}
 
 {%- set first_l = lexicon_entry|xpath('lg/l')|first %}
@@ -196,8 +198,10 @@
 
     {% set abe_sg_parenthesis = abe_sg|by_tagset_value("variants", "Var/Parenthesis") %}
     
+    {% set abe_sg_vch = abe_sg|by_tagset_value("variants", "Var/VCH") %}
     {% set abe_sg_secondary = abe_sg|by_tagset_value("variants", "Var/Secondary") %}
-    {% set abe_sg = abe_sg|without_tagset("variants") + abe_sg_secondary %}
+
+    {% set abe_sg = abe_sg_vch + abe_sg|without_tagset("variants") + abe_sg_secondary %}
 
     {% set ess      = paradigm|by_tagset_value("case", "Ess") %}
 

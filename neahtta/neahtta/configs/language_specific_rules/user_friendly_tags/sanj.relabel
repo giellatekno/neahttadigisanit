@@ -31,6 +31,7 @@ Relabel:
       Ess: "В кого? Во что?"
       Par: "много, мало, при сравн."
       Var/SecondaryIll: ""
+      Var/VCH: ""
 
       "Inf": "инф."
       "Ind": "изъяв."
