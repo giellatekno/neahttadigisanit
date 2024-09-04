@@ -74,6 +74,7 @@
 {%- if pos == 'Phrase' %}
     {% set pos_is_phrase = True %}
 {%- endif %}
+{%- set ds = lexicon_entry|xpath('mg/dg/d') %}
 
 {# Display #}
 
@@ -108,6 +109,16 @@
         <ul class="meanings">
             {{- rendered_templates.definition|safe -}}
         </ul>
+
+        {% if ds %}
+            <div style="font-size: 0.95em; margin-left: 1em;">
+                {% for d in ds %}
+                    <span style="font-size: 0.9em; font-variant: all-small-caps; color:
+                    gray;">definisjon ({{ loop.index }}): </span>
+                    <span>{{ d|text }}</span>
+                {% endfor %}
+            </div>
+        {% endif %}
       {% else %}&nbsp;{% endif %}
     {% else %}
       {% if ('true' in cmp_list) and (analyses[0].tag_raw[0]|length < user_input|length) %}
