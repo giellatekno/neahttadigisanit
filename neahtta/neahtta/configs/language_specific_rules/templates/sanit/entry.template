@@ -77,7 +77,49 @@
 
 {%- set ds = lexicon_entry|xpath('mg/dg/d') %}
 
-{%- set idioms = lexicon_entry|xpath('ig') %}
+
+{% macro idioms(lexicon_entry) %}
+    {%- set idioms = lexicon_entry|xpath('ig') %}
+    {% if idioms %}
+        <div style="margin-top: 1em;">
+            <h5>Idiomer</h5>
+            {% if idioms|length == 1 %}
+                {% for idiom in idioms %}
+                    {%- set i = idiom.xpath('i/text()') %}
+                    {%- set id = idiom.xpath('id/text()') %}
+                    {%- set it = idiom.xpath('it/text()') %}
+                    <div style="padding-left: 1em;">
+                        <div style="color: #0c5278; font-size: 120%;">
+                            &#x201C;{{ i|first }}&#x201D;
+                        </div>
+                        <div style="color: #333;">{{ id|first }}</div>
+                        <div style="font-style: italic; color: #715754;">
+                            &#x201C;{{ it|first }}&#x201D;
+                        </div>
+                    </div>
+                {% endfor %}
+                </ol>
+            {% else %}
+                <ol>
+                {% for idiom in idioms %}
+                    {%- set i = idiom.xpath('i/text()') %}
+                    {%- set id = idiom.xpath('id/text()') %}
+                    {%- set it = idiom.xpath('it/text()') %}
+                    <li style="padding-left: 1em;">
+                        <div style="color: #0c5278; font-size: 120%;">
+                            &#x201C;{{ i|first }}&#x201D;
+                        </div>
+                        <div style="color: #333;">{{ id|first }}</div>
+                        <div style="font-style: italic; color: #715754;">
+                            &#x201C;{{ it|first }}&#x201D;
+                        </div>
+                    </li>
+                {% endfor %}
+                </ol>
+            {% endif %} {# len(idioms) == 1 #}
+        </div>
+    {% endif %}
+{% endmacro %}
 
 {# Display #}
 
@@ -122,28 +164,7 @@
                         {{- rendered_templates.definition|safe -}}
                     </ul>
 
-                    {% if idioms %}
-                        <div>
-                            <h5>Idiomer</h5>
-                            <ol>
-                            {% for idiom in idioms %}
-                                {%- set i = idiom.xpath('i/text()') %}
-                                {%- set id = idiom.xpath('id/text()') %}
-                                {%- set it = idiom.xpath('it/text()') %}
-                                <li style="padding-left: 1em;">
-                                    <div style="color: #0c5278; font-size: 120%;">
-                                        &#x201C;{{ i|first }}&#x201D;
-                                    </div>
-                                    <div style="color: #333;">{{ id|first }}</div>
-                                    <div style="font-style: italic; color: #715754;">
-                                        &#x201C;{{ it|first }}&#x201D;
-                                    </div>
-                                </li>
-                            {% endfor %}
-                            </ol>
-                        </div>
-                    {% endif %}
-
+                    {{ idioms(lexicon_entry) }}
 
                     {# WAITING ON DOING <dg>s
                     {% if ds %}
@@ -195,27 +216,7 @@
                                 {{- rendered_templates.definition|safe -}}
                             </ul>
 
-                            {% if idioms %}
-                                <div>
-                                    <h5>Idiomer</h5>
-                                    <ol>
-                                    {% for idiom in idioms %}
-                                        {%- set i = idiom.xpath('i/text()') %}
-                                        {%- set id = idiom.xpath('id/text()') %}
-                                        {%- set it = idiom.xpath('it/text()') %}
-                                        <li style="padding-left: 1em;">
-                                            <div style="color: #0c5278; font-size: 120%;">
-                                                &#x201C;{{ i|first }}&#x201D;
-                                            </div>
-                                            <div style="color: #333;">{{ id|first }}</div>
-                                            <div style="font-style: italic; color: #715754;">
-                                                &#x201C;{{ it|first }}&#x201D;
-                                            </div>
-                                        </li>
-                                    {% endfor %}
-                                    </ol>
-                                </div>
-                            {% endif %}
+                            {{ idioms(lexicon_entry) }}
                         {% else %}
                             &nbsp;
                         {% endif %}
@@ -256,27 +257,7 @@
                             {{- rendered_templates.definition|safe -}}
                         </ul>
 
-                        {% if idioms %}
-                            <div>
-                                <h5>Idiomer</h5>
-                                <ol>
-                                {% for idiom in idioms %}
-                                    {%- set i = idiom.xpath('i/text()') %}
-                                    {%- set id = idiom.xpath('id/text()') %}
-                                    {%- set it = idiom.xpath('it/text()') %}
-                                    <li style="padding-left: 1em;">
-                                        <div style="color: #0c5278; font-size: 120%;">
-                                            &#x201C;{{ i|first }}&#x201D;
-                                        </div>
-                                        <div style="color: #333;">{{ id|first }}</div>
-                                        <div style="font-style: italic; color: #715754;">
-                                            &#x201C;{{ it|first }}&#x201D;
-                                        </div>
-                                    </li>
-                                {% endfor %}
-                                </ol>
-                            </div>
-                        {% endif %}
+                        {{ idioms(lexicon_entry) }}
                     {% else %}
                         &nbsp;
                     {% endif %}
@@ -304,27 +285,7 @@
                         {{- rendered_templates.definition|safe -}}
                     </ul>
 
-                    {% if idioms %}
-                        <div>
-                            <h5>Idiomer</h5>
-                            <ol>
-                            {% for idiom in idioms %}
-                                {%- set i = idiom.xpath('i/text()') %}
-                                {%- set id = idiom.xpath('id/text()') %}
-                                {%- set it = idiom.xpath('it/text()') %}
-                                <li style="padding-left: 1em;">
-                                    <div style="color: #0c5278; font-size: 120%;">
-                                        &#x201C;{{ i|first }}&#x201D;
-                                    </div>
-                                    <div style="color: #333;">{{ id|first }}</div>
-                                    <div style="font-style: italic; color: #715754;">
-                                        &#x201C;{{ it|first }}&#x201D;
-                                    </div>
-                                </li>
-                            {% endfor %}
-                            </ol>
-                        </div>
-                    {% endif %}
+                    {{ idioms(lexicon_entry) }}
                 {% else %}
                     &nbsp;
                 {% endif %}
@@ -354,27 +315,7 @@
                         {{- rendered_templates.definition|safe -}}
                     </ul>
 
-                    {% if idioms %}
-                        <div>
-                            <h5>Idiomer</h5>
-                            <ol>
-                            {% for idiom in idioms %}
-                                {%- set i = idiom.xpath('i/text()') %}
-                                {%- set id = idiom.xpath('id/text()') %}
-                                {%- set it = idiom.xpath('it/text()') %}
-                                <li style="padding-left: 1em;">
-                                    <div style="color: #0c5278; font-size: 120%;">
-                                        &#x201C;{{ i|first }}&#x201D;
-                                    </div>
-                                    <div style="color: #333;">{{ id|first }}</div>
-                                    <div style="font-style: italic; color: #715754;">
-                                        &#x201C;{{ it|first }}&#x201D;
-                                    </div>
-                                </li>
-                            {% endfor %}
-                            </ol>
-                        </div>
-                    {% endif %}
+                    {{ idioms(lexicon_entry) }}
                 {% else %}
                     &nbsp;
                 {% endif %}
