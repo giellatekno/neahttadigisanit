@@ -194,6 +194,28 @@
                             <ul class="meanings">
                                 {{- rendered_templates.definition|safe -}}
                             </ul>
+
+                            {% if idioms %}
+                                <div>
+                                    <h5>Idiomer</h5>
+                                    <ol>
+                                    {% for idiom in idioms %}
+                                        {%- set i = idiom.xpath('i/text()') %}
+                                        {%- set id = idiom.xpath('id/text()') %}
+                                        {%- set it = idiom.xpath('it/text()') %}
+                                        <li style="padding-left: 1em;">
+                                            <div style="color: #0c5278; font-size: 120%;">
+                                                &#x201C;{{ i|first }}&#x201D;
+                                            </div>
+                                            <div style="color: #333;">{{ id|first }}</div>
+                                            <div style="font-style: italic; color: #715754;">
+                                                &#x201C;{{ it|first }}&#x201D;
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                    </ol>
+                                </div>
+                            {% endif %}
                         {% else %}
                             &nbsp;
                         {% endif %}
@@ -281,6 +303,28 @@
                     <ul class="meanings">
                         {{- rendered_templates.definition|safe -}}
                     </ul>
+
+                    {% if idioms %}
+                        <div>
+                            <h5>Idiomer</h5>
+                            <ol>
+                            {% for idiom in idioms %}
+                                {%- set i = idiom.xpath('i/text()') %}
+                                {%- set id = idiom.xpath('id/text()') %}
+                                {%- set it = idiom.xpath('it/text()') %}
+                                <li style="padding-left: 1em;">
+                                    <div style="color: #0c5278; font-size: 120%;">
+                                        &#x201C;{{ i|first }}&#x201D;
+                                    </div>
+                                    <div style="color: #333;">{{ id|first }}</div>
+                                    <div style="font-style: italic; color: #715754;">
+                                        &#x201C;{{ it|first }}&#x201D;
+                                    </div>
+                                </li>
+                            {% endfor %}
+                            </ol>
+                        </div>
+                    {% endif %}
                 {% else %}
                     &nbsp;
                 {% endif %}
@@ -309,6 +353,28 @@
                     <ul class="meanings">
                         {{- rendered_templates.definition|safe -}}
                     </ul>
+
+                    {% if idioms %}
+                        <div>
+                            <h5>Idiomer</h5>
+                            <ol>
+                            {% for idiom in idioms %}
+                                {%- set i = idiom.xpath('i/text()') %}
+                                {%- set id = idiom.xpath('id/text()') %}
+                                {%- set it = idiom.xpath('it/text()') %}
+                                <li style="padding-left: 1em;">
+                                    <div style="color: #0c5278; font-size: 120%;">
+                                        &#x201C;{{ i|first }}&#x201D;
+                                    </div>
+                                    <div style="color: #333;">{{ id|first }}</div>
+                                    <div style="font-style: italic; color: #715754;">
+                                        &#x201C;{{ it|first }}&#x201D;
+                                    </div>
+                                </li>
+                            {% endfor %}
+                            </ol>
+                        </div>
+                    {% endif %}
                 {% else %}
                     &nbsp;
                 {% endif %}
