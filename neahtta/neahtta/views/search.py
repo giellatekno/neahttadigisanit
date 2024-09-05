@@ -551,7 +551,6 @@ class SearcherMixin:
             search_result: SearchResult = self.do_search_to_obj(
                 lookup_value, generate=generate, lemma_attrs=lemma_attrs
             )
-            print("DEBUG", f"{search_result.entries_and_tags=}")
 
         template = "detail_entry.template" if detailed else "entry.template"
 
