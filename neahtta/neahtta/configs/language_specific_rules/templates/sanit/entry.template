@@ -29,207 +29,272 @@
 {%- set stem = first_l.xpath('./@stem')|first %}
 
 {% if morph_ex %}
-  {% set morph_ex_text = morph_ex[0]|text %}
+    {% set morph_ex_text = morph_ex[0]|text %}
 {% else %}
     {% set morph_ex_text = 'xxxx' %}
 {% endif %}
 
 {% set cmp_list = [] %}
 {% for item in analyses[0].tag_raw if not 'true' in cmp_list %}
-  {% if 'Cmp' in item or 'ⓓ' in item or 'ⓒ' in item %}
-    {% do cmp_list.append('true') %}
-  {% endif %}
+    {% if 'Cmp' in item or 'ⓓ' in item or 'ⓒ' in item %}
+        {% do cmp_list.append('true') %}
+    {% endif %}
 {% endfor %}
 
 
 {% set der_list = ['Der/', 'VAbess', 'VGen', 'Ger', 'Superl', 'Actio+'] %}
 {% set if_der = [] %}
 {% for item in der_list %}
-  {% if item in first_l|text %}
-    {% do if_der.append('true') %}
-  {% endif %}
+    {% if item in first_l|text %}
+        {% do if_der.append('true') %}
+    {% endif %}
 {% endfor %}
 
 {% if l_ref %}
-  {%- set l_ref_first = lexicon_entry|xpath('mg/l_ref')|first %}
-  {%- set l_ref_text = l_ref_first|text %}
+    {%- set l_ref_first = lexicon_entry|xpath('mg/l_ref')|first %}
+    {%- set l_ref_text = l_ref_first|text %}
 {% endif %}
 
 {% if l_sci %}
-  {%- set l_sci_first = lexicon_entry|xpath('mg/l_sci')|first %}
-  {%- set l_sci_text = l_sci_first|text %}
+    {%- set l_sci_first = lexicon_entry|xpath('mg/l_sci')|first %}
+    {%- set l_sci_text = l_sci_first|text %}
 {% endif %}
 
 {% if stem %}
-  {% if '2syll' in stem %}
-    {% set stem_desc = 'likest.' %}
-  {% elif '3syll' in stem %}
-    {% set stem_desc = 'ulikest.' %}
-  {% else %}
-    {% set stem_desc = 'kontrakt' %}
-  {% endif %}
+    {% if '2syll' in stem %}
+        {% set stem_desc = 'likest.' %}
+    {% elif '3syll' in stem %}
+        {% set stem_desc = 'ulikest.' %}
+    {% else %}
+        {% set stem_desc = 'kontrakt' %}
+    {% endif %}
 {% endif %}
 
 {%- set pos = first_l|xpath('@pos')|first %}
 {%- if pos == 'Phrase' %}
     {% set pos_is_phrase = True %}
 {%- endif %}
+
 {%- set ds = lexicon_entry|xpath('mg/dg/d') %}
+
+{%- set idioms = lexicon_entry|xpath('ig') %}
 
 {# Display #}
 
 <div class="row-fluid entry_row">
-  <div class="span8 lexeme">
-  {% if 'true' not in if_der and 'ⓒ' not in first_l|text %}
-  {# if 'true' not in if_der and 'DCmp' not in first_l|text#}
-    {% if user_input in first_l|text %}
-      {% if lexicon_entry|count > 0 %}
-        {% set has_reference = lexicon_entry.xpath('./lg/lemma_ref/text()')|first %}
-        <p>
-        {%- if has_reference -%}
-          {{ reference_link(has_reference) }}
-        {%- else -%}
-          {% if pos_is_phrase %}
-            {{- rendered_templates.entry_text|safe -}}
-          {% else %}
-            <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
-                {{- rendered_templates.entry_text|safe -}}</a>
-          {% endif %}
-        {% endif %}
-        {% if stem %}
-          <p class="p_stem">(stamme: {{stem_desc}})</p>
-        {% endif %}
-        {% if l_ref_text %}
-          <p class="l_ref"><span class="se_også">se også </span><a href="./?lookup={{l_ref_text.split("_")[0]}}">
-              {{ l_ref_text.split("_")[0]}}</a></p>
-        {% endif %}
-        {% if l_sci_text %}
-          <p class="l_sci"><span class="se_også">({{ l_sci_text.split("_")[0]}})</span></p>
-        {% endif %}
-        <ul class="meanings">
-            {{- rendered_templates.definition|safe -}}
-        </ul>
+    <div class="span8 lexeme">
+        {% if 'true' not in if_der and 'ⓒ' not in first_l|text %}
+        {# if 'true' not in if_der and 'DCmp' not in first_l|text#}
+            {% if user_input in first_l|text %}
+                {% if lexicon_entry|count > 0 %}
+                    {% set has_reference = lexicon_entry.xpath('./lg/lemma_ref/text()')|first %}
+                    <p>
+                    {%- if has_reference -%}
+                        {{ reference_link(has_reference) }}
+                    {%- else -%}
+                        {% if pos_is_phrase %}
+                            {{- rendered_templates.entry_text|safe -}}
+                        {% else %}
+                            <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
+                                {{- rendered_templates.entry_text|safe -}}
+                            </a>
+                        {% endif %}
+                    {% endif %}
 
-        {% if ds %}
-            <div style="font-size: 0.95em; margin-left: 1em;">
-                {% for d in ds %}
-                    <span style="font-size: 0.9em; font-variant: all-small-caps; color:
-                    gray;">definisjon ({{ loop.index }}): </span>
-                    <span>{{ d|text }}</span>
-                {% endfor %}
+                    {% if stem %}
+                        <p class="p_stem">(stamme: {{stem_desc}})</p>
+                    {% endif %}
+
+                    {% if l_ref_text %}
+                        <p class="l_ref">
+                            <span class="se_også">se også </span>
+                            <a href="./?lookup={{l_ref_text.split("_")[0]}}">
+                                {{ l_ref_text.split("_")[0]}}
+                            </a>
+                        </p>
+                    {% endif %}
+
+                    {% if l_sci_text %}
+                        <p class="l_sci"><span class="se_også">({{ l_sci_text.split("_")[0]}})</span></p>
+                    {% endif %}
+
+                    <ul class="meanings">
+                        {{- rendered_templates.definition|safe -}}
+                    </ul>
+
+                    {% if idioms %}
+                        <div>
+                            <h5>Idiomer</h5>
+                            {% for idiom in idioms %}
+                                {%- set i = idiom.xpath('i/text()') %}
+                                {%- set id = idiom.xpath('id/text()') %}
+                                {%- set it = idiom.xpath('it/text()') %}
+                                <div style="padding-left: 1em;">
+                                    <div style="color: #0c5278; font-size: 120%;">
+                                        &#x201C;{{ i|first }}&#x201D;
+                                    </div>
+                                    <div style="font-size: 0.9em; color: gray;">{{ id|first }}</div>
+                                    <div style="font-style: italic; color: #715754;">
+                                        &#x201C;{{ it|first }}&#x201D;
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+
+                    {# WAITING ON DOING <dg>s
+                    {% if ds %}
+                        <div style="font-size: 0.95em; margin-left: 1em;">
+                            {% for d in ds %}
+                                <span style="font-size: 0.9em; font-variant: all-small-caps; color:
+                                gray;">definisjon ({{ loop.index }}): </span>
+                                <span>{{ d|text }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    #}
+                {% else %}
+                    &nbsp;
+                {% endif %}
+            {% else %}
+                {% if ('true' in cmp_list) and (analyses[0].tag_raw[0]|length < user_input|length) %}
+                    <div class="span2">
+                    </div>
+                    <div class="span6">
+                        {% if lexicon_entry|count > 0 %}
+                            {% set has_reference = lexicon_entry.xpath('./lg/lemma_ref/text()')|first %}
+                            <p>
+
+                            {%- if has_reference -%}
+                                {{ reference_link(has_reference) }}
+                            {%- else -%}
+                                <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
+                                    {{- rendered_templates.entry_text|safe -}}
+                                </a>
+                            {% endif %}
+
+                            {% if stem %}
+                                <p class="p_stem">(stamme: {{stem_desc}})</p>
+                            {% endif %}
+
+                            {% if l_ref_text %}
+                                <p class="l_ref">
+                                    se også <a href="./?lookup={{l_ref_text.split("_")[0]}}">
+                                    {{ l_ref_text.split("_")[0]}}</a>
+                                </p>
+                            {% endif %}
+
+                            {% if l_sci_text %}
+                                <p class="l_sci"><span class="se_også">({{ l_sci_text.split("_")[0]}})</span></p>
+                            {% endif %}
+
+                            <ul class="meanings">
+                                {{- rendered_templates.definition|safe -}}
+                            </ul>
+                        {% else %}
+                            &nbsp;
+                        {% endif %}
+
+                        {% if 'ⓒ' in analyses[0].tag_raw|last %}
+                            <p style="color:#666;">-------------------------------</p>
+                        {% endif %}
+                    </div>
+                {% else %}
+                    {% if lexicon_entry|count > 0 %}
+                        {% set has_reference = lexicon_entry.xpath('./lg/lemma_ref/text()')|first %}
+                        <p>
+
+                        {%- if has_reference -%}
+                            {{ reference_link(has_reference) }}
+                        {%- else -%}
+                            <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
+                                {{- rendered_templates.entry_text|safe -}}
+                            </a>
+                        {% endif %}
+
+                        {% if stem %}
+                            <p class="p_stem">(stamme: {{stem_desc}})</p>
+                        {% endif %}
+
+                        {% if l_ref_text %}
+                            <p class="l_ref">
+                                se også <a href="./?lookup={{l_ref_text.split("_")[0]}}">
+                                {{ l_ref_text.split("_")[0]}}</a>
+                            </p>
+                        {% endif %}
+
+                        {% if l_sci_text %}
+                            <p class="l_sci"><span class="se_også">({{ l_sci_text.split("_")[0]}})</span></p>
+                        {% endif %}
+
+                        <ul class="meanings">
+                            {{- rendered_templates.definition|safe -}}
+                        </ul>
+                    {% else %}
+                        &nbsp;
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        {% else %}
+            {% if 'ⓛ' in analyses[0].tag_raw|last %}
+                <div class="span2">
+                </div>
+                <div class="span2">
+                    <p>
+                    <p class="plus_der">+</p>
+                </div>
+                <div class="span4">
+                    {% if lexicon_entry|count > 0 %}
+                        {% set has_reference = lexicon_entry.xpath('./lg/lemma_ref/text()')|first %}
+                        <p>
+                    {%- if has_reference -%}
+                        {{ reference_link(has_reference) }}
+                    {%- else -%}
+                        <p class='plus_der'>{{morph_ex_text}}</p>
+                    {% endif %}
+
+                    <ul class="meanings">
+                        {{- rendered_templates.definition|safe -}}
+                    </ul>
+                {% else %}
+                    &nbsp;
+                {% endif %}
+            </div>
+        {% else %}
+            <div class="span1">
+            </div>
+            <div class="span1">
+                <p>
+                <p class="plus_der">+</p>
+            </div>
+            <div class="span6">
+                {% if lexicon_entry|count > 0 %}
+                    {% set has_reference = lexicon_entry.xpath('./lg/lemma_ref/text()')|first %}
+                    <p>
+                    {%- if has_reference -%}
+                        {{ reference_link(has_reference) }}
+                    {%- else -%}
+                        <p class='plus_der'>{{morph_ex_text}}</p>
+                    {% endif %}
+
+                    {% if stem %}
+                      <p class="p_stem">(stamme: {{stem_desc}})</p>
+                    {% endif %}
+
+                    <ul class="meanings">
+                        {{- rendered_templates.definition|safe -}}
+                    </ul>
+                {% else %}
+                    &nbsp;
+                {% endif %}
             </div>
         {% endif %}
-      {% else %}&nbsp;{% endif %}
-    {% else %}
-      {% if ('true' in cmp_list) and (analyses[0].tag_raw[0]|length < user_input|length) %}
-        <div class="span2">
-        </div>
-        <div class="span6">
-        {% if lexicon_entry|count > 0 %}
-          {% set has_reference = lexicon_entry.xpath('./lg/lemma_ref/text()')|first %}
-          <p>
-          {%- if has_reference -%}
-            {{ reference_link(has_reference) }}
-          {%- else -%}
-            <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
-              {{- rendered_templates.entry_text|safe -}}</a>
-          {% endif %}
-          {% if stem %}
-            <p class="p_stem">(stamme: {{stem_desc}})</p>
-          {% endif %}
-          {% if l_ref_text %}
-          <p class="l_ref">se også <a href="./?lookup={{l_ref_text.split("_")[0]}}">
-              {{ l_ref_text.split("_")[0]}}</a></p>
-          {% endif %}
-          {% if l_sci_text %}
-            <p class="l_sci"><span class="se_også">({{ l_sci_text.split("_")[0]}})</span></p>
-          {% endif %}
-          <ul class="meanings">
-              {{- rendered_templates.definition|safe -}}
-          </ul>
-        {% else %}&nbsp;{% endif %}
-        {% if 'ⓒ' in analyses[0].tag_raw|last %}
-          <p style="color:#666;">-------------------------------</p>
-        {% endif %}
-        </div>
-      {% else %}
-        {% if lexicon_entry|count > 0 %}
-          {% set has_reference = lexicon_entry.xpath('./lg/lemma_ref/text()')|first %}
-          <p>
-          {%- if has_reference -%}
-            {{ reference_link(has_reference) }}
-          {%- else -%}
-            <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
-                {{- rendered_templates.entry_text|safe -}}</a>
-          {% endif %}
-          {% if stem %}
-            <p class="p_stem">(stamme: {{stem_desc}})</p>
-          {% endif %}
-          {% if l_ref_text %}
-            <p class="l_ref">se også <a href="./?lookup={{l_ref_text.split("_")[0]}}">
-              {{ l_ref_text.split("_")[0]}}</a></p>
-          {% endif %}
-          {% if l_sci_text %}
-            <p class="l_sci"><span class="se_også">({{ l_sci_text.split("_")[0]}})</span></p>
-          {% endif %}
-          <ul class="meanings">
-              {{- rendered_templates.definition|safe -}}
-          </ul>
-        {% else %}&nbsp;{% endif %}
-      {% endif %}
     {% endif %}
-  {% else %}
-    {% if 'ⓛ' in analyses[0].tag_raw|last %}
-      <div class="span2">
-      </div>
-      <div class="span2">
-        <p>
-          <p class="plus_der">+</p>
-      </div>
-      <div class="span4">
-      {% if lexicon_entry|count > 0 %}
-        {% set has_reference = lexicon_entry.xpath('./lg/lemma_ref/text()')|first %}
-        <p>
-        {%- if has_reference -%}
-          {{ reference_link(has_reference) }}
-        {%- else -%}
-          <p class='plus_der'>{{morph_ex_text}}</p>
-        {% endif %}
-        <ul class="meanings">
-            {{- rendered_templates.definition|safe -}}
-        </ul>
-      {% else %}&nbsp;{% endif %}
-      </div>
-    {% else %}
-      <div class="span1">
-      </div>
-      <div class="span1">
-        <p>
-          <p class="plus_der">+</p>
-      </div>
-      <div class="span6">
-      {% if lexicon_entry|count > 0 %}
-        {% set has_reference = lexicon_entry.xpath('./lg/lemma_ref/text()')|first %}
-        <p>
-        {%- if has_reference -%}
-          {{ reference_link(has_reference) }}
-        {%- else -%}
-          <p class='plus_der'>{{morph_ex_text}}</p>
-        {% endif %}
-        {% if stem %}
-          <p class="p_stem">(stamme: {{stem_desc}})</p>
-        {% endif %}
-        <ul class="meanings">
-          {{- rendered_templates.definition|safe -}}
-        </ul>
-      {% else %}&nbsp;{% endif %}
-      </div>
-    {% endif %}
-  {% endif %}
-  </div>
-  <div class="span4 hidden-phone lexeme_analyses">
-      {{- rendered_templates.analyses|safe -}}
-  </div>
+    </div>
+    <div class="span4 hidden-phone lexeme_analyses">
+        {{- rendered_templates.analyses|safe -}}
+    </div>
 </div>
 
 {# vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}
