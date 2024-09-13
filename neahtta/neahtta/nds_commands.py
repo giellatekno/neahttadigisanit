@@ -40,6 +40,7 @@ GREEN = partial(colored, color="green")
 CYAN = partial(colored, color="cyan")
 
 PROD_HOSTNAME = "gtdict.uit.no"
+PROD_HOSTNAME_02 = "gtdict-02.uit.no"
 HOSTNAME = socket.gethostname()
 
 # I can never remember which one it is.. so just make all of these work
@@ -719,8 +720,8 @@ def _restart_systemd_service(project):
 
 
 def restart(project):
-    if HOSTNAME != PROD_HOSTNAME:
-        sys.exit(f"This is not {PROD_HOSTNAME}, nothing was done.")
+    if HOSTNAME != PROD_HOSTNAME or HOSTNAME != PROD_HOSTNAME_02:
+        sys.exit("Not on a server, nothing was done.")
 
     if project == "all":
         for project in available_projects():
