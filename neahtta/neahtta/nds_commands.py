@@ -720,8 +720,8 @@ def _restart_systemd_service(project):
 
 
 def restart(project):
-    if HOSTNAME != PROD_HOSTNAME or HOSTNAME != PROD_HOSTNAME_02:
-        sys.exit("Not on a server, nothing was done.")
+    if HOSTNAME != PROD_HOSTNAME and HOSTNAME != PROD_HOSTNAME_02:
+        sys.exit(f"On host {HOSTNAME}, which is not a server, nothing was done.")
 
     if project == "all":
         for project in available_projects():
