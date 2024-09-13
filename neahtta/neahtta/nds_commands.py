@@ -40,7 +40,7 @@ GREEN = partial(colored, color="green")
 CYAN = partial(colored, color="cyan")
 
 PROD_HOSTNAME = "gtdict.uit.no"
-PROD_HOSTNAME_02 = "gtdict-02.uit.no"
+PROD_HOSTNAME_02 = "gtdict-02"
 HOSTNAME = socket.gethostname()
 
 # I can never remember which one it is.. so just make all of these work
