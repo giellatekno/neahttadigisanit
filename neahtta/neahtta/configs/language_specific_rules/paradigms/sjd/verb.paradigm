@@ -6,6 +6,7 @@ morphology:
 {{ lemma }}+V+Ind+Prs+Sg2+Var/Ant
 {{ lemma }}+V+Ind+Prs+Sg2+Var/Af
 {{ lemma }}+V+Ind+Prs+Sg3
+{{ lemma }}+V+Var/NoVCH+Ind+Prs+Sg3
 {{ lemma }}+V+Ind+Prs+Pl1
 {{ lemma }}+V+Ind+Prs+Pl2+Var/Std
 {{ lemma }}+V+Ind+Prs+Pl2+Var/Koard

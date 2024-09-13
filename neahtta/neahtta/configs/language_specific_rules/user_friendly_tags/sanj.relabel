@@ -31,6 +31,7 @@ Relabel:
       Ess: "В кого? Во что?"
       Par: "много, мало, при сравн."
       Var/SecondaryIll: ""
+      Var/VCH: ""
 
       "Inf": "инф."
       "Ind": "изъяв."
@@ -56,6 +57,8 @@ Relabel:
       "Indef": ""
       "Hom1": ""
       "Hom2": ""
+      "v1": ""
+      "v2": ""
 
   - source_morphology: 'sjdM'
     target_ui_language: 'rus'

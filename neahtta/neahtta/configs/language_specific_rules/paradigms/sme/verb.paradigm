@@ -23,3 +23,4 @@ morphology:
 {{ lemma }}+V+Ind+Prs+ConNeg
 {{ lemma }}+V+Ind+Prt+ConNeg
 {{ lemma }}+V+PrfPrc
+{{ lemma }}+V+Der/PassL+V+Inf

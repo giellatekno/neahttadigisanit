@@ -11,6 +11,8 @@
 
     There are rules giving лӣннче a special paradigm based on the preterite.
 
+    There are rules for ordering the variants of abessive singular and place requested forms in parenthesis
+
  #}
 
 {%- set first_l = lexicon_entry|xpath('lg/l')|first %}
@@ -193,6 +195,13 @@
 
     {% set abe_sg   = paradigm|by_tagset_value("number", "Sg")
                               |by_tagset_value("case", "Abe") %}
+
+    {% set abe_sg_parenthesis = abe_sg|by_tagset_value("variants", "Var/Parenthesis") %}
+    
+    {% set abe_sg_vch = abe_sg|by_tagset_value("variants", "Var/VCH") %}
+    {% set abe_sg_secondary = abe_sg|by_tagset_value("variants", "Var/Secondary") %}
+
+    {% set abe_sg = abe_sg_vch + abe_sg|without_tagset("variants") + abe_sg_secondary %}
 
     {% set ess      = paradigm|by_tagset_value("case", "Ess") %}
 
@@ -457,7 +466,7 @@
             </tr>
             <tr>
                 <th lang="{{ _to }}">{% if abe_sg|length > 0 %}{{ clean_tag(abe_sg[0].tag) }}{% elif abe_pl|length > 0 %}{{ clean_tag(abe_pl[0].tag) }}{% endif %}</th>
-                <td lang="{{ _from }}">{% if abe_sg|length > 0 %}{{ abe_sg|uniq|join("<br />", attribute="form")|safe }}{% else %}&mdash;{% endif %}</td>
+                <td lang="{{ _from }}">{% if abe_sg|length > 0 %}{{ abe_sg|uniq|join("<br />", attribute="form")|safe }}{% if abe_sg_parenthesis %}<br/>({{abe_sg_parenthesis|uniq|join("<br />", attribute="form")|safe}}){% endif %}{% else %}&mdash;{% endif %}</td>
                 <td lang="{{ _from }}">{% if abe_pl|length > 0 %}{{ abe_pl|uniq|join("<br />", attribute="form")|safe }}{% else %}&mdash;{% endif %}</td>
             </tr>
             {% if ess|length > 0 %}

@@ -3,19 +3,36 @@ morphology:
   pos: N
 --
 {{ lemma }}+N+Sg+Nom
+{{ lemma }}+N+Var/VCH+Sg+Gen
 {{ lemma }}+N+Sg+Gen
+{{ lemma }}+N+Var/VCH+Sg+Acc
 {{ lemma }}+N+Sg+Acc
+{{ lemma }}+N+Var/VCH+Sg+Ill
 {{ lemma }}+N+Sg+Ill
 {{ lemma }}+N+Sg+Ill+Var/SecondaryIll
+{{ lemma }}+N+Var/VCH+Sg+Loc
 {{ lemma }}+N+Sg+Loc
+{{ lemma }}+N+Var/VCH+Sg+Com
 {{ lemma }}+N+Sg+Com
+{{ lemma }}+N+Var/VCH+Sg+Abe
 {{ lemma }}+N+Sg+Abe
+{{ lemma }}+N+Sg+Abe+Var/Secondary
+{{ lemma }}+N+Sg+Abe+Var/Parenthesis
+{{ lemma }}+N+Var/VCH+Ess
 {{ lemma }}+N+Ess
+{{ lemma }}+N+Var/VCH+Par
 {{ lemma }}+N+Par
+{{ lemma }}+N+Var/VCH+Pl+Nom
 {{ lemma }}+N+Pl+Nom
+{{ lemma }}+N+Var/VCH+Pl+Gen
 {{ lemma }}+N+Pl+Gen
+{{ lemma }}+N+Var/VCH+Pl+Acc
 {{ lemma }}+N+Pl+Acc
+{{ lemma }}+N+Var/VCH+Pl+Ill
 {{ lemma }}+N+Pl+Ill
+{{ lemma }}+N+Var/VCH+Pl+Loc
 {{ lemma }}+N+Pl+Loc
+{{ lemma }}+N+Var/VCH+Pl+Com
 {{ lemma }}+N+Pl+Com
+{{ lemma }}+N+Var/VCH+Pl+Abe
 {{ lemma }}+N+Pl+Abe

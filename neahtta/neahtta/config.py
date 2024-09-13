@@ -117,6 +117,61 @@ def validate_variants(variants, lexicon):
     return variants
 
 
+class DictionaryEntry:
+    """A dictionary entry in a config file."""
+
+    def __init__(self, d):
+        self._d = d
+        # Must be present. 3-letter lang codes
+        self.source = d["source"]
+        self.target = d["target"]
+
+        # Must be present. path to the compiled file, e.g.
+        # "dicts/xxx-yyy.xml" (xxx=source, yyy=target)
+        self.path = d["path"]
+
+        # Path to the compiled file, including the neahtta prefix
+        self.compiled_file = Path("neahtta") / Path(d["path"])
+
+        self.dict_source = d.get("dict_source", "")
+        self.prepare_script = d.get("prepare_script")
+
+    @property
+    def repo(self):
+        """Get the repository name where this dictionary is located."""
+        source, target = self.source, self.target
+        if source == "SoMe" or target == "SoMe":
+            # Unsure how to determine where this repo is. During building they
+            # will be skipped, because there's always a dictionary with the
+            # source and target lang that builds the path for this dictionary
+            return
+        if self.dict_source == "multi":
+            return f"dict-{source}-mul"
+        if self.dict_source == "lang":
+            return f"lang-{source}"
+        if self.dict_source.startswith("repo:"):
+            return self.dict_source[5:]
+        return f"dict-{source}-{target}"
+
+    def src_dir(self, giellalt_dir):
+        """Full, absolute Path to the directory where the dictionary
+        source .xml are stored. All repos are stored in gut, so the root
+        directory of gut needs to be passed in to form the full path."""
+        assert isinstance(giellalt_dir, Path), "giellalt_dir is a Path"
+        repo = self.repo
+
+        if self.dict_source == "multi":
+            return giellalt_dir / repo / "src"
+        if self.dict_source == "lang":
+            return giellalt_dir / repo / "src" / "fst" / "morphology" / "stems"
+        if self.dict_source.startswith("repo:"):
+            return giellalt_dir / repo / "src"
+
+        # config file didn't have a "dict_source" field, so we return the
+        # default
+        return giellalt_dir / repo / "src"
+
+
 class Config(Config):
     """An object for exposing the settings in app.config.yaml in a nice
     objecty way, and validating some of the contents.
@@ -397,19 +452,21 @@ class Config(Config):
 
         for language, files in _lang_files.items():
             for f in files:
-                tagset_path = os.path.join(_p, f)
-                if os.path.exists(tagset_path):
-                    try:
-                        file_context_set = yaml.load(
-                            open(tagset_path, "r"), yaml.Loader
-                        )
-                    except Exception as e:
-                        print(f"YAML parsing error in <{tagset_path}>\n\n")
-                        print(e)
-                        sys.exit()
-                    paradigm_contexts[language].update(
-                        reformat_context_set(tagset_path, file_context_set)
-                    )
+                # anders: this path was wrong
+                # tagset_path = os.path.join(_p, f)
+                try:
+                    with open(f) as fp:
+                        file_context_set = yaml.load(fp, yaml.Loader)
+                except OSError as e:
+                    print(f"open {f} failed: {e}")
+                    continue
+                except yaml.YAMLError as e:
+                    print(f"reading {f} failed: {e}")
+                    continue
+
+                paradigm_contexts[language].update(
+                    reformat_context_set(f, file_context_set)
+                )
 
         return paradigm_contexts
 
@@ -506,6 +563,12 @@ class Config(Config):
                 language_pairs[(source, target)] = input_variants
 
         return language_pairs
+
+    def dict_entries(self):
+        """Iterator of all entries in the "Dictionaries", as
+        DictionaryEntry-wrapped objects."""
+        for d in self.yaml["Dictionaries"]:
+            yield DictionaryEntry(d)
 
     @cached_property
     def dictionaries(self):

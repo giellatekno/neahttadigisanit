@@ -1,7 +1,5 @@
 """Neahttadigisanit management tool for updating dictionaries, restarting the
-server, running the development server, and such things. The script name is
-reminiscent of 'fabfile' (but we are no longer using Fabric, so it's not a
-fabfile)."""
+server, running the development server, and such things."""
 
 # See the EXAMPLES below the imports
 
@@ -15,6 +13,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 from functools import partial
+from shlex import split as split_cmd
 
 from termcolor import colored
 
@@ -24,16 +23,16 @@ EXAMPLES = """Examples:
 
 Update a dictionary:
     # 1: update dictionary sources  (pulls dict repositories from github)
-    $ fab update sanit
+    $ nds update sanit
 
     # 2: compile new dictionary   (merges dictionary src/ into final .xml file)
-    $ fab compile sanit
+    $ nds compile sanit
 
     # 3: update the service to reflect the changes
-    $ fab restart sanit
+    $ nds restart sanit
 
 Adding stem to smenob:
-    $ fab add-stem
+    $ nds add-stem
 """
 
 RED = partial(colored, color="red")
@@ -66,7 +65,7 @@ COMPILE_DICTS_ALIASES = [
 def require_gut():
     # anders: the version of gut I have installed locally on my machine has
     # not yet been updated to support --format=json, so to run it
-    # locally, I need to be able to give fab the path to my gut binary
+    # locally, I need to be able to pass path to my gut binary
     if custom_gut_binary := os.environ.get("GUT_BINARY"):
         gut_path = Path(custom_gut_binary).resolve()
         if not gut_path.exists():
@@ -175,16 +174,14 @@ def list_projects(project="all", include_inactive=False, include_dicts=False):
             print()
 
 
-def needs_update(sources: Path, compiled_file: Path):
+def needs_update(xml_files: list[Path], compiled_file: Path):
     """Check if dictionary sources are newer than the compiled_file. If the
     compiled file does not exist, this function will also return True."""
     if not compiled_file.exists():
         return True
 
     # anders: follow_symlinks argument of Path.stat() added in 3.10
-    last_source_mtime = max(
-        file.stat().st_mtime for file in sources.iterdir() if file.suffix == ".xml"
-    )
+    last_source_mtime = max(file.stat().st_mtime for file in xml_files)
     last_compiled_file_mtime = compiled_file.stat().st_mtime
 
     return last_source_mtime > last_compiled_file_mtime
@@ -207,74 +204,85 @@ def compile_dicts(project, force=None):
         _compile_dicts(project, force=force)
 
 
+def _run_prepare_script(script, msg, force=False):
+    print(msg, end="", flush=True)
+    env = dict(os.environ)
+    if force:
+        # Tell the prepare script to force running (even if it for example
+        # by default skips running if output is newer than sources)
+        env["PREPARE_SCRIPT_FORCE"] = "yes"
+    proc = subprocess.run(script, text=True, capture_output=True, env=env)
+    ok = proc.returncode == 0
+    if ok:
+        print(GREEN("done"))
+    else:
+        print(RED("failed"), "(script finished with non-0 exit code)")
+
+    if proc.stdout:
+        print(f"prepare_script wrote to stdout:\n{proc.stdout}")
+
+    if proc.stderr:
+        print(f"prepare_script wrote to stderr:\n{proc.stderr}")
+
+    return ok
+
+
 def _compile_dicts(project, force=None):
     print(f"** Compiling dictionaries for {project}...")
     config = Config(".")
     config.from_yamlfile(f"neahtta/configs/{project}.config.yaml")
-
-    # see comment in update_dicts()
-    if project == "sanj":
-        raise NotImplementedError("custom script needed to compile sanj")
 
     giellalt_dir = Path(GUTROOT) / "giellalt"
 
     processed = []
     n = 0
     n_no_updates = 0
-    not_found = []
     did_smenob = False
 
-    for dict_entry in config.yaml["Dictionaries"]:
-        source = dict_entry["source"]
-        target = dict_entry["target"]
-        compiled_file = Path("neahtta") / Path(dict_entry["path"])
-        dict_source = dict_entry.get("dict_source", "")
+    for d in config.dict_entries():
+        source, target, compiled_file = d.source, d.target, d.compiled_file
 
-        if dict_source == "multi":
-            sources = giellalt_dir / f"dict-{source}-mul" / "src"
-        elif dict_source == "lang":
-            sources = (
-                giellalt_dir / f"lang-{source}" / "src" / "fst" / "morphology" / "stems"
-            )
-        else:
-            sources = giellalt_dir / f"dict-{source}-{target}" / "src"
+        if d.prepare_script:
+            if compiled_file not in processed:
+                msg = f"** Run prepare_script of {source}-{target}... "
+                ok = _run_prepare_script(d.prepare_script, msg, force=force)
+                if not ok:
+                    continue
 
-        print(
-            f"** Merge dictionary {source}-{target} > {compiled_file}... ",
-            flush=True,
-            end="",
-        )
+        msg = f"** Merge dictionary {source}-{target} > {compiled_file}... "
+        print(msg, end="", flush=True)
 
         if compiled_file in processed:
             print(CYAN("skipped"), "(already processed)")
             continue
 
-        processed.append(compiled_file)
+        src_dir = d.src_dir(giellalt_dir)
 
-        if not sources.is_dir():
-            print(RED("failed"), "(source directory not found)")
-            not_found.append(sources.resolve())
+        try:
+            source_files = [f for f in src_dir.iterdir() if f.suffix == ".xml"]
+        except OSError as e:
+            # not a directory, no such file or directory, permission error, etc
+            print(RED("failed"), f"({e})")
             continue
 
-        if not needs_update(sources, compiled_file) and not force:
+        if not source_files:
+            print(RED("failed"), "(no source files)")
+            n_no_updates += 1
+            continue
+
+        processed.append(compiled_file)
+
+        need = needs_update(source_files, compiled_file)
+
+        if not need and not force:
             print(CYAN("skipped"), "(no updates)")
             n_no_updates += 1
-        elif force or needs_update(sources, compiled_file):
-            try:
-                n_entries = merge_giella_dicts(sources, compiled_file.resolve())
-            except (FileNotFoundError, NotADirectoryError) as e:
-                print(RED(f"failed ({e})"))
-            else:
-                n += 1
-                print(GREEN("done"), f"({n_entries} entries total)")
-                if source == "sme" and target == "nob":
-                    did_smenob = True
-
-    if not_found:
-        print("\n" + RED("Errors:"))
-        print("The following source directories were not found:")
-        for directory in not_found:
-            print(directory)
+        else:
+            n_entries = merge_giella_dicts(src_dir, compiled_file.resolve())
+            n += 1
+            print(GREEN("done"), f"({n_entries} entries total)")
+            if source == "sme" and target == "nob":
+                did_smenob = True
 
     if n_no_updates > 0:
         print(
@@ -282,17 +290,17 @@ def _compile_dicts(project, force=None):
             "built dictionary file is newer than the xml source files.\n\n"
             "Hint: To force rebuilding all dictionaries without checking "
             "modification times, run:\n"
-            f"  fab compile {project} -f    (or: fab compile {project} --force)\n"
+            f"  nds compile {project} -f    (or: nds compile {project} --force)\n"
             f"Hint: If you expected updates to happen, try to update the "
             "underlying git repositories of the dictionaries, by running:\n"
-            f"  fab update {project}\n"
-            f"...then re-run this command (fab compile {project})"
+            f"  nds update {project}\n"
+            f"...then re-run this command (nds compile {project})"
         )
 
     if did_smenob:
         print(
             "\n!! sme-nob: dictionary has been updated, you probably want "
-            "to add stems to it. If so, run:\n  fab add-stem"
+            "to add stems to it. If so, run:\n  nds add-stem"
         )
 
 
@@ -303,26 +311,15 @@ def update_dicts(project):
     config = Config(".")
     config.from_yamlfile(f"neahtta/configs/{project}.config.yaml")
 
-    # COMMENT FROM THE MAKEFILE (see dicts/Makefile line 402 - ~430)
-    # Custom compile script because the xml files are in
-    # lang-sjd-x-private/misc, which is not the case in any other dicts.
-    # Remember to extract xml files from source xlsx files using the scripts
-    # in lang-sjd-x-private/src/scripts
-    if project == "sanj":
-        raise NotImplementedError("custom script needed to compile sanj")
-    if project == "bahkogirrje":
-        raise NotImplementedError("dictionary sje-mul - must be handled")
+    repos = [d.repo for d in config.dict_entries() if d.repo]
 
-    dictionaries = dicts_from_config(config)
+    repos_regex = f"({'|'.join(repos)})"
+    cmd = f"{GUT_BINARY} --format=json pull -o giellalt -r {repos_regex}"
 
-    dicts_regex = f"dict-({'|'.join(dictionaries)})"
-    cmd = [GUT_BINARY, "--format=json", "pull", "-o", "giellalt", "-r", dicts_regex]
-
-    proc = subprocess.run(cmd, capture_output=True, text=True)
+    proc = subprocess.run(split_cmd(cmd), capture_output=True, text=True)
     if proc.returncode != 0:
         print(colored("failed", "red"))
-        cmd_s = " ".join(str(element) for element in cmd)
-        sys.exit(f"Fatal: Error running command: {cmd_s}\nstderr: {proc.stderr}")
+        sys.exit(f"Fatal: Error running command: {cmd}\nstderr: {proc.stderr}")
 
     try:
         parsed_output = json.loads(proc.stdout)
@@ -330,12 +327,12 @@ def update_dicts(project):
         print(colored("failed", "red"))
         sys.exit(
             f"Fatal: Could not parse json output of gut.\n"
-            f"command: {cmd_s}\n===== stdout =====\n{proc.stdout}"
+            f"command: {cmd}\n===== stdout =====\n{proc.stdout}"
         )
 
-    statuses = dict.fromkeys(dictionaries)
+    statuses = dict.fromkeys(repos)
     for repo in parsed_output:
-        statuses[repo["repo"][5:]] = repo["status"]
+        statuses[repo["repo"]] = repo["status"]
 
     n_errors = 0
     n_updated = 0
@@ -367,8 +364,8 @@ def update_dicts(project):
         print(colored("** New updates pulled", "green"))
         print(
             "Hint: To update the live site, remember to compile and restart.\n"
-            f"fab compile {project}\n"
-            f"fab restart {project}"
+            f"nds compile {project}\n"
+            f"nds restart {project}"
         )
 
 
@@ -423,12 +420,18 @@ def add_stem():
         cmd = ["python", str(script_path), lexc, str(stemtypes_txt_path(lexc))]
         if lexc != "prop":
             cmd.append("neahtta/dicts/sme-nob.xml")
-            cmd.append(str(_find_in_repo(f"lang-sme/src/fst/morphology/stems/{lexc}.lexc")))
+            cmd.append(
+                str(_find_in_repo(f"lang-sme/src/fst/morphology/stems/{lexc}.lexc"))
+            )
         else:
             cmd.append(str(stemtypes_txt_path(lexc)))
             cmd.append("neahtta/dicts/sme-nob.xml")
             cmd.append(
-                str(_find_in_repo("lang-sme/src/fst/morphology/stems/sme-propernouns.lexc"))
+                str(
+                    _find_in_repo(
+                        "lang-sme/src/fst/morphology/stems/sme-propernouns.lexc"
+                    )
+                )
             )
             cmd.append(smi_propernouns)
 
@@ -484,7 +487,7 @@ def strings_compile(project=None):
                 print()
                 print("hint: Either...")
                 print("(1) rerun the command with the project name, i.e.")
-                print("    fab strings compile -l PROJECT")
+                print("    nds strings compile -l PROJECT")
                 print("...or...")
                 print("(2) Troubleshoot missing locale. (See Troubleshooting doc)")
 
@@ -530,10 +533,10 @@ def strings_extract():
 
 def strings_update():
     """Update strings. This function does nothing now. In the old code, it
-    did 'git pull', followed by 'fab strings compile'."""
+    did 'git pull', followed by 'nds strings compile'."""
     print(
         "strings_update(): kept for backwards-compliance, but this does "
-        "nothing here now.\nThe old code did two things:\ngit pull\nfab "
+        "nothing here now.\nThe old code did two things:\ngit pull\nnds "
         "strings compile\nThis is simple enough to do by hand."
     )
 
@@ -651,7 +654,7 @@ def image_run_command(project, port=5000, docker=False):
         print("Error: Missing dictionaries on the host system, cannot run image")
         print()
         print("Hint: Maybe try to compile dictionaries, using this command:")
-        print(f"  fab compile {project}")
+        print(f"  nds compile {project}")
         print()
         for missing_dict in missing_dicts:
             print(f"missing: {missing_dict}")
@@ -742,8 +745,8 @@ def parse_args():
     list_parser = subparsers.add_parser(
         "list-projects",
         aliases=["ls"],
-        # help is text that will be shown on `fab --help`,
-        # description is for `fab ls --help`
+        # help is text that will be shown on `nds --help`,
+        # description is for `nds ls --help`
         help="list projects (-i also shows inactive. -d also shows dicts)",
         description=(
             "list projects (-i also shows inactive. -d also shows " "dictionaries)"
@@ -771,8 +774,8 @@ def parse_args():
     restart_parser = subparsers.add_parser(
         "restart",
         aliases=["restart-service"],
-        # help is text that will be shown on `fab --help`,
-        # description is for `fab restart --help`
+        # help is text that will be shown on `nds --help`,
+        # description is for `nds restart --help`
         help="Restart the production server for a project (only on server!)",
         description="Restart the server for a project (only on gtdict.uit.no)",
     )
@@ -799,7 +802,7 @@ def parse_args():
         "project",
         metavar="PROJECT",
         choices=available_projects(),
-        help="The project whose dictionaries should be updated. Run `fab ls` "
+        help="The project whose dictionaries should be updated. Run `nds ls` "
         "to see the list of project names.",
     )
     update_parser.set_defaults(func=update_dicts)
@@ -815,7 +818,7 @@ def parse_args():
         "project",
         metavar="PROJECT",
         choices=["all", *available_projects()],
-        help="The project to compile dictionaries for. Run `fab ls` "
+        help="The project to compile dictionaries for. Run `nds ls` "
         "to see the list of project names.",
     )
     compile_parser.add_argument(
@@ -878,7 +881,7 @@ def parse_args():
         "project",
         metavar="PROJECT",
         choices=available_projects(),
-        help="The project to test. Run `fab ls` list project names.",
+        help="The project to test. Run `nds ls` list project names.",
     )
     test_configuration_parser.set_defaults(func=test_configuration)
 
@@ -923,7 +926,7 @@ def parse_args():
     # command: strings update
     strings_extract_parser = strings_parser.add_parser(
         "update",
-        help="update strings (removed. it's just git pull && fab strings compile)",
+        help="update strings (removed. it's just git pull && nds strings compile)",
         description=strings_update.__doc__,
     )
     strings_extract_parser.set_defaults(func=strings_update)
@@ -968,7 +971,7 @@ def parse_args():
         "project",
         metavar="PROJECT",
         choices=available_projects(),
-        help="The project config to run inside the image. Run `fab ls` list "
+        help="The project config to run inside the image. Run `nds ls` list "
         "project names.",
     )
     image_run_parser.add_argument(

@@ -85,3 +85,17 @@ pron_type:
 homonyms:
  - "Hom1"
  - "Hom2"
+variants:
+ - "Var/Af"
+ - "Var/Ant"
+ - "Var/Std"
+ - "Var/Koard"
+ - "Var/Std1"
+ - "Var/Std2"
+ - "Var/Kld1"
+ - "Var/Kld2"
+ - "Var/VCH"
+ - "Var/NoVCH"
+ - "Var/SecondaryIll"
+ - "Var/Secondary"
+ - "Var/Parenthesis"

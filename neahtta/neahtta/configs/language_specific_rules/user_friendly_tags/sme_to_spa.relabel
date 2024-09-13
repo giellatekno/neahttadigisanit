@@ -5,7 +5,7 @@
       V: "v."
       N: "s."
       A: "adj."
-      NomAg: "handlernomen"
+      NomAg: ""
       G3: ""
       G7: ""
       "Use/NGminip": ""
@@ -51,7 +51,7 @@
 
       # taken from tag-no.regex, these are the things that need relabeling
       # in generation
-      "NomAg": "handlernomen"
+      "NomAg": ""
       "Der/NomAg": "avledet handlernomen"
       "N": "subst."
       "A": "adj."

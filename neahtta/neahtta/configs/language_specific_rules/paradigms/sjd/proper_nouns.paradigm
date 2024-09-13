@@ -10,6 +10,8 @@ morphology:
 {{ lemma }}+N+Prop+Sg+Loc
 {{ lemma }}+N+Prop+Sg+Com
 {{ lemma }}+N+Prop+Sg+Abe
+{{ lemma }}+N+Prop+Sg+Abe+Var/Secondary
+{{ lemma }}+N+Prop+Sg+Abe+Var/Parenthesis
 {{ lemma }}+N+Prop+Ess
 {{ lemma }}+N+Prop+Par
 

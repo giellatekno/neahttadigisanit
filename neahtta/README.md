@@ -49,7 +49,7 @@ yourself. Just remember to place them according to how you set up the
 
 Make sure that the dictionaries that a configuration depends on are installed
 and updated, through gut. Which dictionaries a specific "project" uses, can
-be seen with `fab ls -di`.
+be seen with `nds ls -di`.
 
 
 ## Installing
@@ -91,11 +91,11 @@ On the server, `gunicorn` is needed to run in production.
 
 Run the development server with
 
-    fab dev <project>
+    nds dev <project>
 
 Run it with the call stack tracer with
 
-    fab dev <project> --trace
+    nds dev <project> --trace
 
 The output from the tracer can help you orient yourself in the code, and can
 be helpful when debugging. Note that it slows the dev server down a good bit,
@@ -130,17 +130,17 @@ to this port.
 
 Build a docker/podman image of Neahttadigisánit using
 
-    fab image build
+    nds image build
 
 Run it using
 
-    fab image run <project>
+    nds image run <project>
 
 By default it listens to port `5000`. It is configurable with the `-p`
-argument to `fab image run`. All the required files (_config file_,
+argument to `nds image run`. All the required files (_config file_,
 _compiled dictionaries_, and _language model files ("fsts")_) are mapped in
-from the host system transparently when running the `fab image run` command.
-Basically, if `fab dev <project>` works, then `fab image run <project>`
+from the host system transparently when running the `nds image run` command.
+Basically, if `nds dev <project>` works, then `nds image run <project>`
 should also work.
 
 The image conceptually just contains the code to run the app (although in
@@ -153,7 +153,7 @@ mounted into the container, namely
 
 Append `--help` to any _image_ command to get more help about it.
 
-Use `fab image build` to build an image. Run `fab image build --help` for
+Use `nds image build` to build an image. Run `nds image build --help` for
 additional help and to see available arguments.
 
 

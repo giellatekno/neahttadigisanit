@@ -107,6 +107,8 @@ def _call(frame):
         pass
     elif file.endswith("context_processors.py"):
         pass
+    elif file.endswith("config.py"):
+        pass
     else:
         qualname = frame.f_code.co_qualname
         if qualname == "_tracing_handle_value":
@@ -143,6 +145,39 @@ def _call(frame):
         elif qualname.endswith("append_language_names_i18n"):
             return
         elif qualname == "DEBUG":
+            return
+        # TEMP: ...
+        elif qualname.endswith("resolve_original_pair"):
+            return
+        elif qualname.endswith("render_individual_template"):
+            return
+        elif qualname.endswith("<genexpr>"):
+            return
+        elif qualname.endswith("<lambda>"):
+            return
+        elif qualname.endswith("get_template"):
+            return
+        elif qualname.endswith("has_template"):
+            return
+        elif qualname.endswith("template_name"):
+            return
+        elif qualname.endswith("get_locale"):
+            return
+        elif qualname.endswith("tag_processor"):
+            return
+        elif qualname.endswith("LexRule.compare"):
+            return
+        elif qualname.endswith("splitAnalysis"):
+            return
+        elif qualname.endswith("evaluate"):
+            return
+        elif qualname.endswith("compare"):
+            return
+        elif qualname.endswith("xml_lang"):
+            return
+        elif qualname.endswith("urlencode_filter_quote"):
+            return
+        elif qualname.endswith("minority_langs_first"):
             return
         args = repr_args(frame)
         print("  " * level + f"{file}:{qualname}({args})")
