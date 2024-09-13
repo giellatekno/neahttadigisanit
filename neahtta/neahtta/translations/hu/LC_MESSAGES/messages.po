@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
@@ -1181,9 +1180,8 @@ msgid "Satu & Jouni Moshnikoff sanasto"
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:72
-#, fuzzy
 msgid "Dictionaries:"
-msgstr "Szótárok"
+msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:73
 msgid ""
@@ -1285,9 +1283,8 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/sanat/about.template:20
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:20
 #: neahtta/configs/language_specific_rules/templates/sonad/about.template:20
-#, fuzzy
 msgid "How to quote the dictionaries"
-msgstr "Más szótárok"
+msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/saanih/about.template:26
 msgid ""
@@ -1470,9 +1467,8 @@ msgid ""
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:28
-#, fuzzy
 msgid "About the dictionary"
-msgstr "Más szótárok"
+msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:29
 msgid ""

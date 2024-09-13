@@ -75,9 +75,8 @@ msgid "North Sámi"
 msgstr "Nordsamiska"
 
 #: neahtta/configs/language_names.yaml:35
-#, fuzzy
 msgid "North Sámi (tolerant)"
-msgstr "Nordsamiska (#SoMe)"
+msgstr "Nordsamiska (tolerant)"
 
 #: neahtta/configs/language_names.yaml:36
 #: neahtta/configs/language_names.yaml:114
@@ -208,9 +207,8 @@ msgstr ""
 
 #: neahtta/configs/language_names.yaml:85
 #: neahtta/templates/more_dictionaries.html:34
-#, fuzzy
 msgid "Kildin Saami"
-msgstr "Skoltsamiska"
+msgstr "Kildinsamiska"
 
 #: neahtta/configs/language_names.yaml:88
 msgid "Kildin Saami (tolerant)"
@@ -242,9 +240,8 @@ msgid "Northern Haida"
 msgstr "Nord-haida"
 
 #: neahtta/configs/language_names.yaml:106
-#, fuzzy
 msgid "Northern Haida (tolerant)"
-msgstr "Nord-haida"
+msgstr "Nord-haida (tolerant)"
 
 #: neahtta/configs/language_names.yaml:107
 #: neahtta/templates/more_dictionaries.html:33
@@ -312,9 +309,8 @@ msgstr "Svenska"
 #: neahtta/configs/saanih.config.yaml.in:84
 #: neahtta/configs/saanih.config.yaml.in:114
 #: neahtta/configs/sanj.config.yaml:107 neahtta/configs/sanj.config.yaml.in:106
-#, fuzzy
 msgid "Mobile friendly"
-msgstr "(... Och är mobiltelefon-vänlig!)"
+msgstr "Mobiltelefon-vänlig"
 
 #: neahtta/configs/saanih.config.yaml:82 neahtta/configs/saanih.config.yaml:112
 #: neahtta/configs/saanih.config.yaml.in:81
@@ -734,7 +730,6 @@ msgid " (Not found in our corpus)"
 msgstr " (Finns inte i vår korpus)"
 
 #: neahtta/configs/language_specific_rules/templates/analyses.template:94
-#, fuzzy
 msgid " (No corpus available)"
 msgstr " (Det finns ingen textkorpus för det här språket)"
 
@@ -1294,9 +1289,8 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/sanat/about.template:20
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:20
 #: neahtta/configs/language_specific_rules/templates/sonad/about.template:20
-#, fuzzy
 msgid "How to quote the dictionaries"
-msgstr "Flera ordböcker"
+msgstr "Hur man citerar ordböckerna"
 
 #: neahtta/configs/language_specific_rules/templates/saanih/about.template:26
 msgid ""
@@ -1479,9 +1473,8 @@ msgid ""
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:28
-#, fuzzy
 msgid "About the dictionary"
-msgstr "Flera ordböcker"
+msgstr "Om ordböckerna"
 
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:29
 msgid ""
@@ -1888,9 +1881,8 @@ msgid "Written variant"
 msgstr ""
 
 #: neahtta/templates/left_nav_search_variants.html:14
-#, fuzzy
 msgid "Search type"
-msgstr "Sök i text"
+msgstr "Search type"
 
 #: neahtta/templates/left_nav_search_variants.html:17
 #: neahtta/templates/mobile_nav_dictionary_list.html:34
@@ -1988,7 +1980,6 @@ msgid "Bookmarklet"
 msgstr "Bokmärke"
 
 #: neahtta/templates/reader.html:26
-#, fuzzy
 msgid ""
 "Drag and drop the following link to your Bookmark toolbar, then click it "
 "when you are on a page you wish to read. The service will automatically "
@@ -2006,13 +1997,12 @@ msgid "Read with %(project_name)s"
 msgstr ""
 
 #: neahtta/templates/reader.html:28
-#, fuzzy
 msgid ""
 "In order to look up a word, hold Alt or Option (⌥) and double click the "
 "word. The service will will connect to this website and return dictionary"
 " entries after a brief pause."
 msgstr ""
-"För att slå upp ett ord håller du dere <em>Alt</em> eller <em>Option</em>"
+"För att slå upp ett ord håller du ner <em>Alt</em> eller <em>Option</em>"
 "\n"
 " (⌥) och duppeltklickar på ordet. Tjänsten ansluter till sidan och\n"
 "returnerar inom kort med et uppslag ur ordboken."
@@ -2067,7 +2057,6 @@ msgid "Bugs?"
 msgstr "Fel?"
 
 #: neahtta/templates/reader.html:45
-#, fuzzy
 msgid ""
 "If you encounter bugs, or the bookmarklet does not work on a particular "
 "page, contact us with the page URL or details of what you were reading "
@@ -2078,7 +2067,6 @@ msgstr ""
 "problem."
 
 #: neahtta/templates/reader.html:46
-#, fuzzy
 msgid ""
 "We do not store any private data, but we do collect individual dictionary"
 " lookups for statistics and to improve the dictionary."

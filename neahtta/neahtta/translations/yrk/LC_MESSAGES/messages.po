@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
@@ -136,9 +135,8 @@ msgid "Olonetsian"
 msgstr ""
 
 #: neahtta/configs/language_names.yaml:58
-#, fuzzy
 msgid "Estonian"
-msgstr "Лив"
+msgstr ""
 
 #: neahtta/configs/language_names.yaml:59
 msgid "Livonian"
@@ -192,9 +190,8 @@ msgstr ""
 
 #: neahtta/configs/language_names.yaml:77
 #: neahtta/templates/more_dictionaries.html:38
-#, fuzzy
 msgid "Nenets"
-msgstr "Ненэцяʼ вада"
+msgstr ""
 
 #: neahtta/configs/language_names.yaml:80
 msgid "Northern Mansi"
@@ -295,9 +292,8 @@ msgid "Haida"
 msgstr ""
 
 #: neahtta/configs/language_names.yaml:137
-#, fuzzy
 msgid "Romanian"
-msgstr "Лив"
+msgstr ""
 
 #: neahtta/configs/language_names.yaml:138
 msgid "Meänkieli"
@@ -1832,9 +1828,8 @@ msgid "prev"
 msgstr ""
 
 #: neahtta/templates/browse.html:107
-#, fuzzy
 msgid "next"
-msgstr "Ненэцяʼ вада"
+msgstr ""
 
 #: neahtta/templates/browse.html:116
 msgid "Congratulations! You have read the whole dictionary."
@@ -1888,9 +1883,8 @@ msgid "Word search"
 msgstr ""
 
 #: neahtta/templates/macros.html:5 neahtta/templates/macros.html:13
-#, fuzzy
 msgid "Texts"
-msgstr "Ненэцяʼ вада"
+msgstr ""
 
 #: neahtta/templates/mobile_nav_push_menu.html:26
 #: neahtta/templates/mobile_nav_push_menu.html:45

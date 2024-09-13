@@ -732,7 +732,6 @@ msgid " (Not found in our corpus)"
 msgstr " (Не найден в нашем корпусе)"
 
 #: neahtta/configs/language_specific_rules/templates/analyses.template:94
-#, fuzzy
 msgid " (No corpus available)"
 msgstr " (Нет корпус для этого языка)"
 
@@ -749,7 +748,6 @@ msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/find_problem.template:4
 #: neahtta/configs/language_specific_rules/templates/sanat/find_problem.template:4
-#, fuzzy
 msgid ""
 "If you find any bugs, please get in touch with us. Describe the problem,\n"
 "          and tell us what web browser or mobile phone you were using, or"
