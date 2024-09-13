@@ -166,13 +166,13 @@ Dictionaries:
 
   - source: liv
     target: est
-    dict_source: multi
+    dict_source: lang
     path: 'dicts/liv-all.xml'
     input_variants: *liv_variants
 
   - source: liv
     target: lav
-    dict_source: multi
+    dict_source: lang
     path: 'dicts/liv-all.xml'
     input_variants: *liv_variants
 
