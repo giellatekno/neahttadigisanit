@@ -4,14 +4,22 @@ morphology:
   type: Prop
 --
 {{ lemma }}+N+Prop+Sg+Nom
+{{ lemma }}+N+Prop+Var/VCH+Sg+Gen
 {{ lemma }}+N+Prop+Sg+Gen
+{{ lemma }}+N+Prop+Var/VCH+Sg+Acc
 {{ lemma }}+N+Prop+Sg+Acc
+{{ lemma }}+N+Prop+Var/VCH+Sg+Ill
 {{ lemma }}+N+Prop+Sg+Ill
+{{ lemma }}+N+Prop+Sg+Ill+Var/SecondaryIll
+{{ lemma }}+N+Prop+Var/VCH+Sg+Loc
 {{ lemma }}+N+Prop+Sg+Loc
+{{ lemma }}+N+Prop+Var/VCH+Sg+Com
 {{ lemma }}+N+Prop+Sg+Com
+{{ lemma }}+N+Prop+Var/VCH+Sg+Abe
 {{ lemma }}+N+Prop+Sg+Abe
 {{ lemma }}+N+Prop+Sg+Abe+Var/Secondary
 {{ lemma }}+N+Prop+Sg+Abe+Var/Parenthesis
+{{ lemma }}+N+Prop+Var/VCH+Ess
 {{ lemma }}+N+Prop+Ess
+{{ lemma }}+N+Prop+Var/VCH+Par
 {{ lemma }}+N+Prop+Par
-
