@@ -66,13 +66,12 @@ third_persons:
  - "Sg3"
  - "Du3"
  - "Pl3"
-# Tags for display after the tensed paradigm
-finite:
- - "Imprt"
+# Tags for display after the tensed paradigm. We put also Imprt here for pragramatic reasons.
 nonfinite_paradigm:
  - "ConNeg"
  - "PrfPrc"
  - "Neg"
+ - "Imprt"
 number:
  - "Sg"
  - "Pl"
