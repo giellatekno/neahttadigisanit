@@ -67,6 +67,8 @@ third_persons:
  - "Du3"
  - "Pl3"
 # Tags for display after the tensed paradigm
+finite:
+ - "Imprt"
 nonfinite_paradigm:
  - "ConNeg"
  - "PrfPrc"
