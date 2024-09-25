@@ -52,6 +52,19 @@
   tag_context: "V+PrfPrc"
   template: "(lean) {{ word_form }}"
 
+- entry_context: "mun"
+  tag_context: "V+Imprt+Sg2"
+  template: "(til en person) {{ word_form }}"
+
+- entry_context: "mun"
+  tag_context: "V+Imprt+Du2"
+  template: "(til to personer) {{ word_form }}"
+
+- entry_context: "mun"
+  tag_context: "V+Imprt+Pl2"
+  template: "(til flere personer) {{ word_form }}"
+
+
 # EX: ciellat
 
 - entry_context: "dat"
