@@ -1172,17 +1172,22 @@ class Morphology:
 
     @staticmethod
     def place_exact_lemmas_first(form: str, analyses: list[str]):
-        # old code: (this only moved the first exact lemma)
-        # for index in range(0, len(array)):
-        #     if form == array[index].split("+")[0]:
-        #         array.insert(0, array[index])
-        #         del array[index + 1]
-        #         return array
-        def lemma_eq_form(lemma):
-            return lemma[0 : lemma.find("+")] == form
+        # anders: fix for #40: reintroduce the old code
+        # this is the old code: it only moved the first exact lemma,
+        # even though the function is named "lemmas" (plural
+        # ..hopefully this doesn't break anything else..
+        for index in range(0, len(analyses)):
+            if form == analyses[index].split("+")[0]:
+                analyses.insert(0, analyses[index])
+                del analyses[index + 1]
+                return analyses
 
-        n_exact_lemmas = partition_in_place(analyses, lemma_eq_form)
-        return n_exact_lemmas
+        # new code, for now commented out:
+        # def lemma_eq_form(lemma):
+        #     return lemma[0 : lemma.find("+")] == form
+
+        # n_exact_lemmas = partition_in_place(analyses, lemma_eq_form)
+        # return n_exact_lemmas
 
     @staticmethod
     def place_longest_lemmas_first(form: str, analyses: list[str]):
