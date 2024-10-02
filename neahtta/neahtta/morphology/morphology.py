@@ -20,7 +20,7 @@ except ImportError:
     HAVE_PYHFST = False
 
 from neahtta.utils.remove_duplicates import remove_duplicates
-from neahtta.utils.partition import partition_in_place
+from neahtta.utils.partition import partition_in_place, partition_in_place_stable
 
 
 # TODO: get from global path
@@ -1172,28 +1172,41 @@ class Morphology:
 
     @staticmethod
     def place_exact_lemmas_first(form: str, analyses: list[str]):
-        # anders: fix for #40: reintroduce the old code
-        # this is the old code: it only moved the first exact lemma,
-        # even though the function is named "lemmas" (plural
-        # ..hopefully this doesn't break anything else..
-        for index in range(0, len(analyses)):
-            if form == analyses[index].split("+")[0]:
-                analyses.insert(0, analyses[index])
-                del analyses[index + 1]
-                return analyses
+        """Given a list of analyses on the form "lemma+tag+tag+tag+...",
+        re-arrange the analyses, so that the analyses which has a lemma with
+        the exact form given in `form` is placed _before_ any other analyses.
+        """
+        # anders: A fix for #40 is to use the old code.
 
-        # new code, for now commented out:
-        # def lemma_eq_form(lemma):
-        #     return lemma[0 : lemma.find("+")] == form
+        # Another fix that seems to fix it, is to use
+        # partition_in_place_stable() instead of partition_in_place()
+        # The old code returns the list, which doesn't make sense when looking
+        # at the caller of the code, which checks the return value of this
+        # function for being == 0. That will _never_ happen if this function
+        # returns a list. Using the partition_in_place_stable() fix, the caller
+        # of this function also makes sense. See the lookups_to_lemma() method
 
-        # n_exact_lemmas = partition_in_place(analyses, lemma_eq_form)
-        # return n_exact_lemmas
+        # OLD CODE: it only moves the first exact lemma,
+        # even though the function is named "lemmas" (plural)
+        # It also returns the `analyses` list. The caller of this function
+        # (method lookups_to_lemma()) checks the return value against 0.
+        # for index in range(0, len(analyses)):
+        #     if form == analyses[index].split("+")[0]:
+        #         analyses.insert(0, analyses[index])
+        #         del analyses[index + 1]
+        #         return analyses
+
+        def lemma_eq_form(analysis):
+            return analysis[0 : analysis.find("+")] == form
+
+        n_exact_lemmas = partition_in_place_stable(analyses, lemma_eq_form)
+        return n_exact_lemmas
 
     @staticmethod
     def place_longest_lemmas_first(form: str, analyses: list[str]):
         """Given a list of analyses on the form "lemma+tag+tag+tag+...",
         re-arrange the list so that the analysis with the longest lemma
-        comes first, before all other lemmas."""
+        comes first, before all other analyses."""
 
         def lemma_len(line):
             i = line.find("+")

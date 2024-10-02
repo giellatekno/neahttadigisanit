@@ -52,19 +52,20 @@ def partition_in_place(lst, predicate):
 
 def partition_in_place_stable(lst, predicate):
     """Same as partition_in_place, but maintain relative ordering."""
-    # anders: I may need this if the re-ordering done with
-    # partition_in_place() in morphology/morphology.py breaks
-    # some other ordering that some previous code made!
-    raise NotImplementedError()
+    # Not the best code, but it works..
+    tmp = []
+    n = 0
+    for item in lst:
+        if predicate(item):
+            n += 1
+            tmp.append(item)
+    for item in lst:
+        if not predicate(item):
+            tmp.append(item)
+    for i, item in enumerate(tmp):
+        lst[i] = item
 
-    L = len(lst)
-
-    if L == 0:
-        return 0
-    if L == 1:
-        return int(predicate(lst[0]))
-
-    # ...
+    return n
 
 
 if __name__ == "__main__":
