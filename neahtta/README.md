@@ -102,6 +102,30 @@ be helpful when debugging. Note that it slows the dev server down a good bit,
 and the output is **very** verbose.
 
 
+## e2e testing with Playwright
+
+First make sure you have Playwright installed in the project. Using `pnpm`
+this should be as simple as
+
+```bash
+pnpm i
+```
+
+in the root `neahtta/` directory.
+
+To run the end-to-end (_e2e_) tests, run
+
+    nds e2e <project>
+
+The command will run the dev server for that instance automatically.
+
+Note that as the command is essentially a wrapper around 
+
+    `pnpm exec playwright test --config={config}"`
+
+... it is required to have pnpm installed - at least as of right now.
+
+
 ## Production Server
 
 On `gtdict.uit.no`, nginx is the web server. It proxies to Gunicorn, which is
