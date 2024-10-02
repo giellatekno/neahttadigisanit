@@ -730,6 +730,16 @@ def restart(project):
         _restart_systemd_service(project)
 
 
+def e2e_run(project=None):
+    if project == "all":
+        raise NotImplementedError("running e2e tests for all not implemented")
+
+    print(f"Running e2e tests using playwright for project: {project}")
+    config = f"e2e/playwright.{project}.config.js"
+    cmd = f"pnpm exec playwright test --config={config}"
+    subprocess.run(split_cmd(cmd))
+
+
 def parse_args():
     parser = argparse.ArgumentParser(
         description=__doc__,
@@ -1023,6 +1033,20 @@ def parse_args():
         choices=["gtdict", "azlab"],
     )
     image_upload_parser.set_defaults(func=image_upload)
+
+    # subcommand: e2e
+    e2e_parser = subparsers.add_parser(
+        "e2e",
+        help="subcommands related to running e2e tests",
+        description="Subcommands related to running e2e tests",
+    )
+    e2e_parser.add_argument(
+        "project",
+        nargs="?",
+        choices=["all", *available_projects()],
+        help="which project to run e2e tests for. 'all' runs all",
+    )
+    e2e_parser.set_defaults(func=e2e_run)
 
     args = parser.parse_args()
 
