@@ -104,7 +104,9 @@ class EntryNodeIterator:
         if possible_errors:
             from lxml import etree
 
-            error_xml = etree.tostring(tg, pretty_print=True, encoding="utf-8")
+            error_xml = etree.tostring(tg, pretty_print=True, encoding="utf-8").decode(
+                "utf-8"
+            )
             current_app.logger.error(
                 "Potential XML formatting problem on <xg /> node\n\n%s"
                 % error_xml.strip()
@@ -180,7 +182,9 @@ class EntryNodeIterator:
 
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 tb_str = traceback.format_exception(exc_type, exc_value, exc_traceback)
-                error_xml = etree.tostring(node, pretty_print=True, encoding="utf-8")
+                error_xml = etree.tostring(
+                    node, pretty_print=True, encoding="utf-8"
+                ).decode("utf-8")
                 msg_args = (
                     error_xml.strip(),
                     "".join(tb_str),
@@ -281,7 +285,9 @@ class FrontPageFormat(EntryNodeIterator):
         else:
             from lxml import etree
 
-            error_xml = etree.tostring(e, pretty_print=True, encoding="utf-8")
+            error_xml = etree.tostring(e, pretty_print=True, encoding="utf-8").decode(
+                "utf-8"
+            )
             current_app.logger.error(
                 "Potential XML formatting problem while processing <tg /> nodes.\n\n"
                 + repr(self.query_kwargs)
@@ -380,7 +386,7 @@ class FrontPageFormat(EntryNodeIterator):
 
         ui_lang = self.query_kwargs.get("ui_lang")
 
-        _right = list(map(lambda tg: self.clean_tg_node(e, tg), tgs))
+        _right = [self.clean_tg_node(e, tg) for tg in tgs]
 
         right_langs = [lang for _, lang in _right]
         right_nodes = [fmt_node for fmt_node, _ in _right]
