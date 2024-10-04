@@ -580,9 +580,9 @@ def check_fst_files(app):
 def test_configuration(project):
     """Tries to create the app to see that it works, and runs an existance
     check on the fst files belonging to the project."""
-    import application
+    from neahtta import application
 
-    os.environ["NDS_CONFIG"] = f"src/configs/{project}.config.yaml"
+    os.environ["NDS_CONFIG"] = f"neahtta/configs/{project}.config.yaml"
 
     # this does a lot of the tests
     app = application.create_app()
