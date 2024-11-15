@@ -900,6 +900,7 @@ def parse_args():
     addstem_parser = subparsers.add_parser(
         "add-stem",
         help="Add stem information to smenob",
+        description="Adds stem information to the sme-nob dictionary",
     )
     addstem_parser.set_defaults(func=add_stem)
 
