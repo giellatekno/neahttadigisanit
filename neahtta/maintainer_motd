@@ -1,22 +1,31 @@
-# Neahttadigisánit command cheat sheet:
+###  How-to: Update and restart sanit
+
+     nds update sanit
+     nds compile sanit
+     nds add-stem
+     nds restart sanit
+
+###  How-to: Remove stems from sanit
+
+     nds compile sanit -f
+     nds restart sanit
+
 
 Command                    What it does
 -------------------------------------------------------------
-nds update PROJECT         Updates dictionaries sources
-                           (pulls from github)
-nds compile PROJECT        Compiles dictionary from sources
-                           (do this after update)
+nds update PROJECT         git pull all dict-xxx-yyy that belongs to PROJECT.
+nds compile PROJECT        Compiles (merges) all the dict-xxx-yyy/src/*.xml
+                           files into dict/xxx-yyy.xml that NDS actually uses.
+nds compile PROJECT -f     Force recompilation, even if the source files
+                           has not changed since last compilation.
 nds restart PROJECT        Restarts the server for PROJECT
-                           (do this after compiling dictionaries)
-nds strings extract        Compile translation strings
-                           (do this after adding translations)
-nds strings compile        Compile .po to .mo (all dictionaries)
-                           (do this after adding translations)
 nds test PROJECT           Checks configuration and FST files
+                           (Note: Usually not needed; if anything is wrong
+                           on startup, it won't start)
 nds add-stem               Adds stem information to smenob
-nds ls                     List projects (baakoeh, sanit, sanat, etc)
-                           (use nds ls --help for more info)
-nds --help                 Shows commands, general info
-nds compile --help         Shows help on "compile" command
+                           (remember to do this after compiling sanit!)
+
+nds --help                 Show a list of all commands, and general help
+nds <anything> --help      Show help on that subcommand
 
 The commands are defined in neahtta/nds_commands.py.
