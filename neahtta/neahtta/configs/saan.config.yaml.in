@@ -54,16 +54,16 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
-  # nob:
-  #   tool: *HFST-LOOKUP
-  #   file: '/opt/smi/nob/bin/analyser-dict-gt-desc.hfstol'
-  #   inverse_file: '/opt/smi/nob/bin/generator-dict-gt-norm.hfstol'
-  #   format: 'hfst'
-  #   options:
-  #     compoundBoundary: ["#", "#+Cmp+", "#+CmpS+", "+Use/Circ#"]
-  #     derivationMarker: "+Der"
-  #     tagsep: '+'
-  #     inverse_tagsep: '+'
+  nob:
+    tool: *HFST-LOOKUP
+    file: '/opt/smi/nob/bin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/opt/smi/nob/bin/generator-dict-gt-norm.hfstol'
+    format: 'hfst'
+    options:
+      compoundBoundary: ["#", "#+Cmp+", "#+CmpS+", "+Use/Circ#"]
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
   rus:
     tool: *HFST-LOOKUP
     file: '/opt/smi/rus/bin/analyser-gt-desc.hfstol'
@@ -81,7 +81,7 @@ Languages:
   - iso: eng
   - iso: fin
   - iso: rus
-  # - iso: nob
+  - iso: nob
   - iso: smsM
 
 Dictionaries:
@@ -145,23 +145,23 @@ Dictionaries:
     start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
     input_variants: *spell_relax_sms
 
-  # - source: sms
-  #   target: nob
-  #   dict_source: multi
-  #   path: 'dicts/sms-all.xml'
-  #   show_korp_search: True
-  #   korp_search_host: "http://gtweb.uit.no/korp"
-  #   corpora: 'SMS_ADMIN_20211118,SMS_BLOGS_20211118,SMS_FACTA_20211118,SMS_LAWS_20211118,SMS_LITERATURE_20211118,SMS_NEWS_20211118,SMS_SCIENCE_20211118'
-  #   start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
-  #   input_variants: *spell_relax_sms
+  - source: sms
+    target: nob
+    dict_source: multi
+    path: 'dicts/sms-all.xml'
+    show_korp_search: True
+    korp_search_host: "http://gtweb.uit.no/korp"
+    corpora: 'SMS_ADMIN_20211118,SMS_BLOGS_20211118,SMS_FACTA_20211118,SMS_LAWS_20211118,SMS_LITERATURE_20211118,SMS_NEWS_20211118,SMS_SCIENCE_20211118'
+    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    input_variants: *spell_relax_sms
 
   - source: fin
     target: sms
     path: 'dicts/fin-sms.xml'
 
-  # - source: nob
-  #   target: sms
-  #   path: 'dicts/nob-sms.xml'
+  - source: nob
+    target: sms
+    path: 'dicts/nob-sms.xml'
 
   - source: rus
     target: sms
