@@ -73,6 +73,7 @@ Languages:
 Dictionaries:
   - source: sma
     target: nob
+    dict_source: multi
     path: 'dicts/sma-nob.xml'
     autocomplete: true
     show_korp_search: True
