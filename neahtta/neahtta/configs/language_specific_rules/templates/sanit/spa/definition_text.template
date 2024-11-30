@@ -60,7 +60,6 @@
           <a href="{{ url_for('.search_pair_referred_search', _from=dict_from, _to=dict_to) }}?l_til_ref={{ reference }}">
               <span id="span_t">{{- text -}}</span> &rarr;
           </a>
-        {% endif %}
     {%- else %}
         {% if text.startswith("Usar:") or text.startswith("Geahča") or text.startswith("No se traduce") %}
             <span id="span_t"><i>{{- text -}}</i></span> &rarr;
