@@ -18,10 +18,11 @@ morphology:
 {{ lemma }}+N+Sg+Abe
 {{ lemma }}+N+Sg+Abe+Var/Secondary
 {{ lemma }}+N+Sg+Abe+Var/Parenthesis
-{{ lemma }}+N+Var/VCH+Ess
-{{ lemma }}+N+Ess
+{{ lemma }}+N+Sg+Par
 {{ lemma }}+N+Var/VCH+Par
 {{ lemma }}+N+Par
+{{ lemma }}+N+Var/VCH+Ess
+{{ lemma }}+N+Ess
 {{ lemma }}+N+Var/VCH+Pl+Nom
 {{ lemma }}+N+Pl+Nom
 {{ lemma }}+N+Var/VCH+Pl+Gen
@@ -36,3 +37,4 @@ morphology:
 {{ lemma }}+N+Pl+Com
 {{ lemma }}+N+Var/VCH+Pl+Abe
 {{ lemma }}+N+Pl+Abe
+{{ lemma }}+N+Pl+Par

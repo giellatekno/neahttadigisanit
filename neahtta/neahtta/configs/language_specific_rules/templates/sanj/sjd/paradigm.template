@@ -203,9 +203,13 @@
 
     {% set abe_sg = abe_sg_vch + abe_sg|without_tagset("variants") + abe_sg_secondary %}
 
-    {% set ess      = paradigm|by_tagset_value("case", "Ess") %}
+    {% set par_sg   = paradigm|by_tagset_value("number", "Sg")
+                              |by_tagset_value("case", "Par") %}
 
-    {% set par      = paradigm|by_tagset_value("case", "Par") %}
+    {% set par      = paradigm|by_tagset_value("case", "Par")
+                              |without_tagset("number") %}
+
+    {% set ess      = paradigm|by_tagset_value("case", "Ess") %}
 
     {% set nom_pl   = paradigm|by_tagset_value("number", "Pl")
                               |by_tagset_value("case", "Nom") %}
@@ -228,6 +232,9 @@
     {% set abe_pl   = paradigm|by_tagset_value("number", "Pl")
                               |by_tagset_value("case", "Abe") %}
 
+    {% set par_pl   = paradigm|by_tagset_value("number", "Pl")
+                              |by_tagset_value("case", "Par") %}
+
 {% endif -%}
 
 {%- if pos|upper == 'A'  %}
@@ -249,9 +256,6 @@
     {% set pl_text    = "Pl"|tagfilter(_from, _to) %}
 
 
-    {% set pron_type = lexicon_entry|xpath('lg/l/@type') %}
-    {% set pron_type_text = pron_type|tagfilter(_from, _to) %}
-
     {# If there are nominal number markings, then we'll split these
        into two columns. Must determine this by checking the tagsets.
 
@@ -260,21 +264,23 @@
 
     {% set two_columns = False %}
 
-    
-    {% set sg1_forms = paradigm|by_tagset_value("number", "Sg1")|group_by_tag %}
-    {% set sg2_forms = paradigm|by_tagset_value("number", "Sg2")|group_by_tag %}
-    {% set sg3_forms = paradigm|by_tagset_value("number", "Sg3")|group_by_tag %}
-    {% set sg_forms = paradigm|by_tagset_value("number", "Sg")|group_by_tag %}
-    {% if sg_forms|length == 0 %}
-        {% set sg_forms = sg1_forms + sg2_forms + sg3_forms %}
+    {% if paradigm|by_tagset_value("pron_type", "Pers")|length > 0 %}
+        {% set pers_pron = True %}
     {% endif %}
 
-    {% set pl1_forms = paradigm|by_tagset_value("number", "Pl1")|group_by_tag %}
-    {% set pl2_forms = paradigm|by_tagset_value("number", "Pl2")|group_by_tag %}
-    {% set pl3_forms = paradigm|by_tagset_value("number", "Pl3")|group_by_tag %}
-    {% set pl_forms = paradigm|by_tagset_value("number", "Pl")|group_by_tag %}
-    {% if pl_forms|length == 0 %}
+    {% if pers_pron %}
+        {% set sg1_forms = paradigm|by_tagset_value("number", "Sg1")|group_by_tag %}
+        {% set sg2_forms = paradigm|by_tagset_value("number", "Sg2")|group_by_tag %}
+        {% set sg3_forms = paradigm|by_tagset_value("number", "Sg3")|group_by_tag %}
+        {% set sg_forms = sg1_forms + sg2_forms + sg3_forms %}
+
+        {% set pl1_forms = paradigm|by_tagset_value("number", "Pl1")|group_by_tag %}
+        {% set pl2_forms = paradigm|by_tagset_value("number", "Pl2")|group_by_tag %}
+        {% set pl3_forms = paradigm|by_tagset_value("number", "Pl3")|group_by_tag %}
         {% set pl_forms = pl1_forms + pl2_forms + pl3_forms %}
+    {% else %}
+        {% set sg_forms = paradigm|by_tagset_value("number", "Sg")|group_by_tag %}
+        {% set pl_forms = paradigm|by_tagset_value("number", "Pl")|group_by_tag %}
     {% endif %}
 
     {% set numberless_forms = paradigm|by_tagset("nouns_null_number")|without_tagset("number") %}
@@ -292,12 +298,10 @@
             {{ tag_input|tagfilter(_from, _to)
                         |replace(pron_text, "")
                         |replace(sg_text, "")
-                        |replace(pl_text, "")
-                        |replace(pron_type_text, "") }}
+                        |replace(pl_text, "") }}
         {% else %}
             {{ tag_input|tagfilter(_from, _to)
-                        |replace(pron_text, "")
-                        |replace(pron_type_text, "") }}
+                        |replace(pron_text, "") }}
         {% endif %}
     {% endmacro %}
 
@@ -469,6 +473,20 @@
                 <td lang="{{ _from }}">{% if abe_sg|length > 0 %}{{ abe_sg|uniq|join("<br />", attribute="form")|safe }}{% if abe_sg_parenthesis %}<br/>({{abe_sg_parenthesis|uniq|join("<br />", attribute="form")|safe}}){% endif %}{% else %}&mdash;{% endif %}</td>
                 <td lang="{{ _from }}">{% if abe_pl|length > 0 %}{{ abe_pl|uniq|join("<br />", attribute="form")|safe }}{% else %}&mdash;{% endif %}</td>
             </tr>
+            {% if par_sg|length > 0 %} {# Nouns with partitive singular and plural #}
+            <tr>
+                <th lang="{{ _to }}">при сравнении</th>
+                <td lang="{{ _from }}">{% if par_sg|length > 0 %}{{ par_sg|uniq|join("<br />", attribute="form")|safe }}{% else %}&mdash;{% endif %}</td>
+                <td lang="{{ _from }}">{% if par_pl|length > 0 %}{{ par_pl|uniq|join("<br />", attribute="form")|safe }}{% else %}&mdash;{% endif %}</td>
+            </tr>
+            {% endif %}
+            {% if par|length > 0 %} {# Nouns with numberless partitive #}
+            <tr>
+                <th lang="{{ _to }}">{% if par_sg|length > 0 %}много, мало{% else %}{{ clean_tag(par[0].tag) }}{% endif %}</th>
+                <td lang="{{ _from }}">{{ par|uniq|join("<br />", attribute="form")|safe }}</td>
+                <td></td>
+            </tr>
+            {% endif %}
             {% if ess|length > 0 %}
             <tr>
                 <th lang="{{ _to }}">{{ clean_tag(ess[0].tag) }}</th>
@@ -476,14 +494,6 @@
                 <td></td>
             </tr>
             {% endif %}
-            {% if par|length > 0 %}
-            <tr>
-                <th lang="{{ _to }}">{{ clean_tag(par[0].tag) }}</th>
-                <td lang="{{ _from }}">{{ par|uniq|join("<br />", attribute="form")|safe }}</td>
-                <td></td>
-            </tr>
-            {% endif %}
-
         </table>
 
     {% endif %}
@@ -502,7 +512,11 @@
     </dl>
 
 {% elif pos|upper == 'PRON' %}
-    {% set contexts = ["Кто? Что?", "Чей?", "Кого? Чего?", "кому? чему? куда?", "У (от) кого? У (от) чего?", "С кем? С чем?", "Без кого? Без чего?", "В кого? Во что?", "много, мало, при сравн."] %}
+    {% if pers_pron %}
+        {% set contexts = ["Кто? Что?", "Чей?", "Кого? Чего?", "кому? чему? куда?", "У (от) кого? У (от) чего?", "С кем? С чем?", "Без кого? Без чего?", "при сравн.", "много, мало", "В кого? Во что?"] %}
+    {% else %}
+        {% set contexts = ["Кто? Что?", "Чей?", "Кого? Чего?", "кому? чему? куда?", "У (от) кого? У (от) чего?", "С кем? С чем?", "Без кого? Без чего?", "много, мало, при сравн.", "В кого? Во что?"] %}
+    {% endif %}
 
     {% if two_columns %}
 
