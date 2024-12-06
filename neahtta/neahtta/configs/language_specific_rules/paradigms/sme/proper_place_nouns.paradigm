@@ -14,3 +14,8 @@ lexicon:
 {{ lemma }}+N+Prop+Sem/Plc+Sg+Gen
 {{ lemma }}+N+Prop+Sem/Plc+Sg+Loc
 {{ lemma }}+N+Prop+Sem/Plc+Sg+Ill
+{{ lemma }}+N+Prop+Sg+Gen
+{{ lemma }}+N+Prop+Sg+Loc
+{{ lemma }}+N+Prop+Sg+Ill
+
+
