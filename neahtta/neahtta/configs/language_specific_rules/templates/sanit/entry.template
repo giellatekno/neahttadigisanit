@@ -82,7 +82,7 @@
     {%- set idioms = lexicon_entry|xpath('ig') %}
     {% if idioms %}
         <div style="margin-top: 1em;">
-            <h5>Idiomer</h5>
+            <h5>Faste uttrykk:</h5>
             {% if idioms|length == 1 %}
                 {% for idiom in idioms %}
                     {%- set i = idiom.xpath('i/text()') %}
