@@ -305,35 +305,105 @@ def _compile_dicts(project, force=None):
         )
 
 
-def update_dicts(project):
-    """Use `gut` to pull all giellalt/dict-* dictionaries for this project."""
+def autoupdate(force=False):
+    """For all instances, pull new dictionarie sources from git, and compile
+    and restart the instance if there are updates."""
+    for project in available_projects():
+        print(f"Processing {project}...")
+        statuses = pull_repos_for_project(project, use_gut=False)
+        if all(status == "Nothing" for d, status in statuses.items()):
+            print(f"{project}: all dictionaries up to date")
+            if not force:
+                continue
 
-    print("** Checking for dictionary updates...")
+        if any(status.startswith("error") for d, status in statuses.items()):
+            print(f"{project}: errors during git pull, continuing to next")
+            continue
+
+        # There are some updates, but I need to make sure I can compile
+        compile_dicts(project, force=force)
+
+        if Path("/etc/systemd/system/nds-{project}.service").exists():
+            _restart_systemd_service(project)
+        else:
+            print(f"{project}: No systemd service to restart")
+
+
+def git_pull(repo):
+    cmd = split_cmd(f"git -C {repo} pull")
+    proc = subprocess.run(
+        cmd,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        encoding="utf-8",
+    )
+    stdout = proc.stdout
+
+    if "Already up to date." in stdout:
+        return "Nothing"
+    elif "Fast-forward" in stdout:
+        return "FastForward"
+    else:
+        return "git: other unknown status (cant parse)"
+
+
+def pull_repos_for_project(project, use_gut=True):
     config = Config(".")
     config.from_yamlfile(f"neahtta/configs/{project}.config.yaml")
-
     repos = [d.repo for d in config.dict_entries() if d.repo]
-
-    repos_regex = f"({'|'.join(repos)})"
-    cmd = f"{GUT_BINARY} --format=json pull -o giellalt -r {repos_regex}"
-
-    proc = subprocess.run(split_cmd(cmd), capture_output=True, text=True)
-    if proc.returncode != 0:
-        print(colored("failed", "red"))
-        sys.exit(f"Fatal: Error running command: {cmd}\nstderr: {proc.stderr}")
-
-    try:
-        parsed_output = json.loads(proc.stdout)
-    except json.decoder.JSONDecodeError:
-        print(colored("failed", "red"))
-        sys.exit(
-            f"Fatal: Could not parse json output of gut.\n"
-            f"command: {cmd}\n===== stdout =====\n{proc.stdout}"
-        )
-
     statuses = dict.fromkeys(repos)
-    for repo in parsed_output:
-        statuses[repo["repo"]] = repo["status"]
+
+    if not use_gut:
+        import concurrent.futures
+
+        with concurrent.futures.ThreadPoolExecutor(max_workers=6) as executor:
+            tasks = {}
+            seen_repo_paths = set()
+            for repo in repos:
+                repo_path = GUTROOT / "giellalt" / repo
+                if repo_path in seen_repo_paths:
+                    continue
+                seen_repo_paths.add(repo_path)
+                future = executor.submit(git_pull, repo_path)
+                tasks[future] = repo
+
+            for task in concurrent.futures.as_completed(tasks):
+                repo = tasks[task]
+                try:
+                    result = task.result()
+                except Exception as e:
+                    statuses[repo] = f"error: {e}"
+                    print(repo, "errored:", e)
+                else:
+                    statuses[repo] = result
+    else:
+        repos_regex = f"({'|'.join(repos)})"
+        cmd = f"{GUT_BINARY} --format=json pull -o giellalt -r {repos_regex}"
+
+        proc = subprocess.run(split_cmd(cmd), capture_output=True, text=True)
+        if proc.returncode != 0:
+            print(colored("failed", "red"))
+            sys.exit(f"Fatal: Error running command: {cmd}\nstderr: {proc.stderr}")
+
+        try:
+            parsed_output = json.loads(proc.stdout)
+        except json.decoder.JSONDecodeError:
+            print(colored("failed", "red"))
+            sys.exit(
+                f"Fatal: Could not parse json output of gut.\n"
+                f"command: {cmd}\n===== stdout =====\n{proc.stdout}"
+            )
+
+        for repo in parsed_output:
+            statuses[repo["repo"]] = repo["status"]
+
+    return statuses
+
+
+def do_update(project, no_gut=False):
+    print(f"** Checking for dictionary updates for '{project}'...")
+
+    statuses = pull_repos_for_project(project, use_gut=not no_gut)
 
     n_errors = 0
     n_updated = 0
@@ -368,6 +438,14 @@ def update_dicts(project):
             f"nds compile {project}\n"
             f"nds restart {project}"
         )
+
+
+def update_dicts(project, no_gut=False):
+    """Use `gut` to pull all giellalt/dict-* dictionaries for this project."""
+
+    projects = list(available_projects()) if project == "all" else [project]
+    for project in projects:
+        do_update(project, no_gut)
 
 
 def run_dev_server(project, trace=False, port=5000):
@@ -752,6 +830,8 @@ def parse_args():
         metavar="COMMAND",
     )
 
+    available_projects_and_all = ["all", *available_projects()]
+
     # command: ls
     list_parser = subparsers.add_parser(
         "list-projects",
@@ -798,7 +878,7 @@ def parse_args():
             "the ones which has an existing configuration file "
             "<configs/PROJECT.config.yaml>"
         ),
-        choices=["all", *available_projects()],
+        choices=available_projects_and_all,
     )
     restart_parser.set_defaults(func=restart)
 
@@ -812,9 +892,17 @@ def parse_args():
     update_parser.add_argument(
         "project",
         metavar="PROJECT",
-        choices=available_projects(),
-        help="The project whose dictionaries should be updated. Run `nds ls` "
-        "to see the list of project names.",
+        choices=available_projects_and_all,
+        help=(
+            "The project whose dictionaries should be updated, or 'all' "
+            "to update all dictionaries. Run `nds ls` to see the list of "
+            "project names."
+        ),
+    )
+    update_parser.add_argument(
+        "--no-gut",
+        action="store_true",
+        help="Do NOT use gut when pulling git repositories, instead use git",
     )
     update_parser.set_defaults(func=update_dicts)
 
@@ -843,6 +931,23 @@ def parse_args():
         ),
     )
     compile_parser.set_defaults(func=compile_dicts)
+
+    # command: autoupdate
+    autoupdate_parser = subparsers.add_parser(
+        "autoupdate",
+        description=(
+            "Automatically update dictionaries of all instances, and compile "
+            "and restart the ones that had updates."
+        ),
+        help="Auto update and compile all dicts",
+    )
+    autoupdate_parser.add_argument(
+        "-f",
+        "--force",
+        action="store_true",
+        help=("force compile new dictionaries, even if there weren't any updates"),
+    )
+    autoupdate_parser.set_defaults(func=autoupdate)
 
     # command: dev
     dev_parser = subparsers.add_parser(

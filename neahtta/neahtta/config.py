@@ -140,6 +140,16 @@ class DictionaryEntry:
     def repo(self):
         """Get the repository name where this dictionary is located."""
         source, target = self.source, self.target
+
+        # the repo is never 4 letters, ending with M, that's just a
+        # convention in the settings for "Mobile"
+
+        if len(source) == 4 and source.endswith("M"):
+            source = source[:3]
+
+        if len(target) == 4 and target.endswith("M"):
+            target = target[:3]
+
         if source == "SoMe" or target == "SoMe":
             # Unsure how to determine where this repo is. During building they
             # will be skipped, because there's always a dictionary with the
