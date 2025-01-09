@@ -349,7 +349,7 @@ def autoupdate(force=False):
         # There are some updates, but I need to make sure I can compile
         compile_dicts(project, force=force)
 
-        if Path("/etc/systemd/system/nds-{project}.service").exists():
+        if Path(f"/etc/systemd/system/nds-{project}.service").exists():
             _restart_systemd_service(project)
         else:
             print(f"{project}: No systemd service to restart")
