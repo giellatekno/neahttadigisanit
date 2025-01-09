@@ -221,12 +221,12 @@ def compile_dicts(project, force=None):
     if project == "all":
         for project in sorted(available_projects()):
             try:
-                _compile_dicts(project, force=force)
+                return _compile_dicts(project, force=force)
                 print()
             except NotImplementedError:
                 print("TODO!")
     else:
-        _compile_dicts(project, force=force)
+        return _compile_dicts(project, force=force)
 
 
 def _run_prepare_script(script, msg, force=False):
@@ -328,6 +328,8 @@ def _compile_dicts(project, force=None):
             "to add stems to it. If so, run:\n  nds add-stem"
         )
 
+    return did_smenob
+
 
 def autoupdate(force=False):
     """For all instances, pull new dictionarie sources from git, and compile
@@ -347,7 +349,10 @@ def autoupdate(force=False):
             continue
 
         # There are some updates, but I need to make sure I can compile
-        compile_dicts(project, force=force)
+        did_smenob = compile_dicts(project, force=force)
+
+        if did_smenob:
+            add_stem()
 
         if Path(f"/etc/systemd/system/nds-{project}.service").exists():
             _restart_systemd_service(project)
