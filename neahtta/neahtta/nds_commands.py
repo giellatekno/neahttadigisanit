@@ -105,6 +105,30 @@ def require_gut():
 
 GUTROOT, GUT_BINARY = require_gut()
 
+
+# anders: unused
+# it was meant to only give the token to private repos when required, but they
+# have instead been set in the repo config (in the url directly).
+# But, keeping it for now -- the secret handling is really not good enough,
+# and will have to do something at some point in time!!
+# def gut_user_toml():
+#     config_file_path = Path.home() / ".config" / "gut" / "user.toml"
+#     config_file_path = config_file_path.resolve()
+#     config = {}
+#     with open(config_file_path) as f:
+#         for line in f:
+#             line = line.strip()
+#             if not line or line.startswith("#"):
+#                 continue
+#             key, value = line.split("=")
+#             key = key.strip()
+#             value = value.strip()
+#             if value.startswith("\"") and value.endswith("\""):
+#                 value = value[1:-1]
+#             config[key] = value
+#     return config
+
+
 script_directory = GUTROOT / "giellalt" / "giella-core" / "dicts" / "scripts"
 sys.path.append(str(script_directory))
 from merge_giella_dicts import merge_giella_dicts
@@ -310,7 +334,9 @@ def autoupdate(force=False):
     and restart the instance if there are updates."""
     for project in available_projects():
         print(f"Processing {project}...")
+        print("Pulling git repositories...")
         statuses = pull_repos_for_project(project, use_gut=False)
+        print("Done pulling git repositories...")
         if all(status == "Nothing" for d, status in statuses.items()):
             print(f"{project}: all dictionaries up to date")
             if not force:
@@ -331,12 +357,17 @@ def autoupdate(force=False):
 
 def git_pull(repo):
     cmd = split_cmd(f"git -C {repo} pull")
-    proc = subprocess.run(
-        cmd,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        encoding="utf-8",
-    )
+    try:
+        proc = subprocess.run(
+            cmd,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            encoding="utf-8",
+            timeout=20,
+        )
+    except subprocess.TimeoutExpired:
+        return "git: pull timeout"
+
     stdout = proc.stdout
 
     if "Already up to date." in stdout:
