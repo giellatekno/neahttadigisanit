@@ -150,6 +150,15 @@ When it comes to the `ExecStart` line, take notice of which port you bind to,
 to this port.
 
 
+### autoupdate timer
+
+On the server, dictionaries are updated hourly. A service called
+`autoupdate-nds` is set to by a corresponding *timer* to run hourly, through
+systemd. The service runs `nds autoupdate`, which pulls dictionaries from
+github, compiles new ones, and restarts instances if new dictionaries were
+compiled.
+
+
 ## Alternative production setup: docker/podman image
 
 Build a docker/podman image of Neahttadigisánit using
