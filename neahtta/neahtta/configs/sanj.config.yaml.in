@@ -36,8 +36,8 @@ Tools:
 Morphology:
   sjd:
     tool: *HFST-LOOKUP
-    file: '/opt/smi/sjd/bin/analyser-dict-gt-desc.hfstol'
-    inverse_file: '/opt/smi/sjd/bin/generator-dict-gt-norm.hfstol'
+    file: '/usr/share/giella/sjd/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/usr/share/giella/sjd/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: ["#", "+Cmp#"]
@@ -46,8 +46,8 @@ Morphology:
       inverse_tagsep: '+'
   sjdM:
     tool: *HFST-LOOKUP
-    file: '/opt/smi/sjd/bin/analyser-dict-gt-desc-mobile.hfstol'
-    inverse_file: '/opt/smi/sjd/bin/generator-dict-gt-norm.hfstol'
+    file: '/usr/share/giella/sjd/analyser-dict-gt-desc-mobile.hfstol'
+    inverse_file: '/usr/share/giella/sjd/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: ["#", "+Cmp#"]
@@ -56,7 +56,7 @@ Morphology:
       inverse_tagsep: '+'
   rus:
     tool: *HFST-LOOKUP
-    file: '/opt/smi/rus/bin/analyser-gt-desc-only_base_forms.hfstol'
+    file: '/usr/share/giella/rus/analyser-gt-desc-only_base_forms.hfstol'
     inverse_file: '/opt/smi/rus/dummy/generator-gt-norm.hfstol'
     format: 'hfst'
     options:

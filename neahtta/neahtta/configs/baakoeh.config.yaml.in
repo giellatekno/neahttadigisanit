@@ -38,8 +38,8 @@ Tools:
 Morphology:
   sma:
     tool: *HFST-LOOKUP
-    file: '/opt/smi/sma/bin/analyser-dict-gt-desc.hfstol'
-    inverse_file: '/opt/smi/sma/bin/generator-dict-gt-norm.hfstol'
+    file: '/usr/share/giella/sma/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/usr/share/giella/sma/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Cmp#"
@@ -54,8 +54,8 @@ Morphology:
       actio_tag: "Actio"
   nob:
     tool: *HFST-LOOKUP
-    file: '/opt/smi/nob/bin/analyser-dict-gt-desc.hfstol'
-    inverse_file: '/opt/smi/nob/bin/generator-dict-gt-norm.hfstol'
+    file: '/usr/share/giella/nob/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/usr/share/giella/nob/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: ["#", "#+Cmp+", "#+CmpS+"]

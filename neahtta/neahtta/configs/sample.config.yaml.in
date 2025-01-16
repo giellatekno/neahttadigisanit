@@ -89,8 +89,7 @@ ApplicationSettings:
 # 
 # Some helpful aliases for paths below.
 Tools:
-  xfst_lookup: &LOOKUP '/usr/bin/lookup'
-  opt: &OPT '/opt/smi'
+  hfst_lookup: &LOOKUP '/usr/bin/hfst-lookup'
 
 # Note that YAML doesn't support concatenating strings directly, 
 # so in this case I use list notation. See the examples below.
@@ -109,9 +108,9 @@ Morphology:
     # ignored.
     tool: *LOOKUP
     # String. Absolute path to the analysis file
-    file: '/opt/smi/sme/bin/analyser-dict-gt-desc.xfst'
+    file: '/usr/share/giella/sme/analyser-dict-gt-desc.hfstol'
     # String. Absolute path to the generator file
-    inverse_file: [*OPT, '/sme/bin/generator-dict-gt-norm.xfst'
+    inverse_file: '/usr/share/giella/sme/generator-dict-gt-norm.hfstol'
     # String. Either "hfst", "xfst", or "pyhfst". Using "pyhfst" requires that
     # the package is installed with the "pyhfst" extra dependency (see readme).
     # "pyhfst" uses the native python bindings to the hfst library directly,
@@ -136,16 +135,16 @@ Morphology:
   # but the same generator. Also, `options` are copied from above.
   SoMe:
     tool: *LOOKUP
-    file: '/opt/smi/sme/bin/analyser-dict-gt-desc-mobile.xfst'
-    inverse_file: '/opt/smi/sme/bin/generator-dict-gt-norm.xfst'
-    format: 'xfst'
+    file: '/usr/share/giella/sme/analyser-dict-gt-desc-mobile.xfst'
+    inverse_file: '/usr/share/giella/sme/generator-dict-gt-norm.xfst'
+    format: 'hfst'
     options:
       <<: *sme_fst_options
   nob:
     tool: *LOOKUP
-    file: [*OPT, '/nob/bin/analyser-dict-gt-desc.xfst']
-    inverse_file: [*OPT, '/nob/bin/generator-dict-gt-norm.xfst']
-    format: 'xfst'
+    file: '/usr/share/giella/nob/analyser-dict-gt-desc.xfst'
+    inverse_file: '/usr/share/giella/nob/generator-dict-gt-norm.xfst'
+    format: 'hfst'
     options:
       compoundBoundary: "#+Cmp+"
       derivationMarker: "+Der"
@@ -214,20 +213,20 @@ Dictionaries:
     # Note that it's also a good idea to mark the strings here with
     # the gettext marker, so that they're translated.
     #
-    # use http://meyerweb.com/eric/tools/dencoder/ if things are
+    # use https://meyerweb.com/eric/tools/dencoder/ if things are
     # unreadable or do not work
     #
     # Here, whatever the user input is will be replaced into the
     # following string, marked by USER_INPUT
     wordform_search_url: &alt_korp_search 
-      "http://gtweb.uit.no/korp/#search=word%7CUSER_INPUT&page=0"
+      "https://gtweb.uit.no/korp/#search=word%7CUSER_INPUT&page=0"
     #
     # Here, whatever the input lemma is will be replaced into the
     # following string, marked by INPUT_LEMMA
     #
     # cqp|[lemma = "INPUT_LEMMA"]
     lemma_search_url: &korp_lemma_search 
-      "http://gtweb.uit.no/korp/#page=0&search-tab=2&search=cqp%7C%5Blemma%20%3D%20%22INPUT_LEMMA%22%5D"
+      "https://gtweb.uit.no/korp/#page=0&search-tab=2&search=cqp%7C%5Blemma%20%3D%20%22INPUT_LEMMA%22%5D"
     # "] [word = "
     lemma_multiword_delimiter: &korp_lemma_delim 
       "%22%5D%20%5Bword%20%3D%20%22"
@@ -282,7 +281,7 @@ ReaderConfig:
     # Also this example shows how to include periods and apostrophes in
     # word unit detection.
     #
-    # http://regexpal.com/
+    # https://regexpal.com/
     #
     word_regex: |
       [\u00C0-\u1FFF\u2C00-\uD7FF\w\.']+

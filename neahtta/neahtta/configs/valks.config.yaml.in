@@ -32,8 +32,8 @@ Tools:
 Morphology:
   myv:
     tool: *HFST-LOOKUP
-    file: '/opt/smi/myv/bin/analyser-dict-gt-desc.hfstol'
-    inverse_file: '/opt/smi/myv/bin/generator-dict-gt-norm.hfstol'
+    file: '/usr/share/giella/myv/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/usr/share/giella/myv/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Cmp#"
@@ -42,8 +42,8 @@ Morphology:
       inverse_tagsep: '+'
   mdf:
     tool: *HFST-LOOKUP
-    file: '/opt/smi/mdf/bin/analyser-dict-gt-desc.hfstol'
-    inverse_file: '/opt/smi/mdf/bin/generator-dict-gt-norm.hfstol'
+    file: '/usr/share/giella/mdf/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/usr/share/giella/mdf/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -52,8 +52,8 @@ Morphology:
       inverse_tagsep: '+'
   est:
     tool: *HFST-LOOKUP
-    file: '/opt/smi/est/bin/analyser-dict-gt-desc.hfstol'
-    inverse_file: '/opt/smi/est/bin/generator-dict-gt-norm.hfstol'
+    file: '/usr/share/giella/est/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/usr/share/giella/est/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "#"
@@ -62,8 +62,8 @@ Morphology:
       inverse_tagsep: '+'
   fin:
     tool: *HFST-LOOKUP
-    file: '/opt/smi/fin/bin/analyser-dict-gt-desc.hfstol'
-    inverse_file: '/opt/smi/fin/bin/generator-dict-gt-norm.hfstol'
+    file: '/usr/share/giella/fin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/usr/share/giella/fin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -72,8 +72,8 @@ Morphology:
       inverse_tagsep: '+'
   deu:
     tool: *HFST-LOOKUP
-    file: '/opt/smi/deu/bin/analyser-dict-gt-desc.hfstol'
-    inverse_file: '/opt/smi/deu/bin/generator-dict-gt-norm.hfstol'
+    file: '/usr/share/giella/deu/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/usr/share/giella/deu/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
@@ -82,8 +82,8 @@ Morphology:
       inverse_tagsep: '+'
   rus:
     tool: *HFST-LOOKUP
-    file: '/opt/smi/rus/bin/analyser-dict-gt-desc.hfstol'
-    inverse_file: '/opt/smi/rus/bin/generator-dict-gt-norm.hfstol'
+    file: '/usr/share/giella/rus/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/usr/share/giella/rus/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"

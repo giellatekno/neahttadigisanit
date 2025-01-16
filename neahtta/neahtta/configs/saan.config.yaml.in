@@ -26,8 +26,8 @@ Tools:
 Morphology:
   sms:
     tool: *HFST-LOOKUP
-    file: "/opt/smi/sms/bin/analyser-dict-gt-desc.hfstol"
-    inverse_file: "/opt/smi/sms/bin/generator-dict-gt-norm.hfstol"
+    file: "/usr/share/giella/sms/analyser-dict-gt-desc.hfstol"
+    inverse_file: "/usr/share/giella/sms/generator-dict-gt-norm.hfstol"
     format: "hfst"
     options:
       compoundBoundary: "+Cmp#"
@@ -36,8 +36,8 @@ Morphology:
       inverse_tagsep: '+'
   smsM:
     tool: *HFST-LOOKUP
-    file: '/opt/smi/sms/bin/analyser-dict-gt-desc-mobile.hfstol'
-    inverse_file: '/opt/smi/sms/bin/generator-dict-gt-norm.hfstol'
+    file: '/usr/share/giella/sms/analyser-dict-gt-desc-mobile.hfstol'
+    inverse_file: '/usr/share/giella/sms/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Cmp#"
@@ -46,8 +46,8 @@ Morphology:
       inverse_tagsep: '+'
   fin:
     tool: *HFST-LOOKUP
-    file: '/opt/smi/fin/bin/analyser-dict-gt-desc.hfstol'
-    inverse_file: '/opt/smi/fin/bin/generator-dict-gt-norm.hfstol'
+    file: '/usr/share/giella/fin/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/usr/share/giella/fin/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "#"
@@ -56,8 +56,8 @@ Morphology:
       inverse_tagsep: '+'
   # nob:
   #   tool: *HFST-LOOKUP
-  #   file: '/opt/smi/nob/bin/analyser-dict-gt-desc.hfstol'
-  #   inverse_file: '/opt/smi/nob/bin/generator-dict-gt-norm.hfstol'
+  #   file: '/usr/share/giella/nob/analyser-dict-gt-desc.hfstol'
+  #   inverse_file: '/usr/share/giella/nob/generator-dict-gt-norm.hfstol'
   #   format: 'hfst'
   #   options:
   #     compoundBoundary: ["#", "#+Cmp+", "#+CmpS+", "+Use/Circ#"]
@@ -66,8 +66,8 @@ Morphology:
   #     inverse_tagsep: '+'
   rus:
     tool: *HFST-LOOKUP
-    file: '/opt/smi/rus/bin/analyser-gt-desc.hfstol'
-    inverse_file: '/opt/smi/rus/bin/generator-gt-norm.hfstol'
+    file: '/usr/share/giella/rus/analyser-gt-desc.hfstol'
+    inverse_file: '/usr/share/giella/rus/generator-gt-norm.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"

@@ -36,8 +36,8 @@ Tools:
 Morphology:
   sje:
     tool: *HFST-LOOKUP
-    file: '/opt/smi/sje/bin/analyser-dict-gt-desc.hfstol'
-    inverse_file: '/opt/smi/sje/bin/generator-dict-gt-norm.hfstol'
+    file: '/usr/share/giella/sje/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/usr/share/giella/sje/generator-dict-gt-norm.hfstol'
     format: 'hfst'
 
 Languages:
