@@ -1336,7 +1336,6 @@ class Morphology:
         actio_with_tagsep = actio_tag + tagsep  # == "Actio+"
 
         for analysis in analyses:
-            print(analysis)
             # replace "Actio+" with "Actio", to enable separate entries for
             # e.g. "Actio+Nom" and "Actio+Ess" in the dictionary
             analysis = analysis.replace(actio_with_tagsep, actio_tag)
