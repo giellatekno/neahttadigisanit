@@ -130,7 +130,7 @@ class TemplateConfig:
                     msg = f"Error in template: {path}"
                     if e.lineno:
                         msg += f" (line {e.lineno})"
-                    msg += "\n{e}"
+                    msg += f"\n{e}"
                     sys.exit(msg)
                 parsed_template.path = path
                 replaced[template_name] = parsed_template

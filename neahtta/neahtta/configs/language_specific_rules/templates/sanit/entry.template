@@ -75,8 +75,6 @@
     {% set pos_is_phrase = True %}
 {%- endif %}
 
-{%- set ds = lexicon_entry|xpath('mg/dg/d') %}
-
 
 {% macro idioms(lexicon_entry) %}
     {%- set idioms = lexicon_entry|xpath('ig') %}
@@ -157,18 +155,6 @@
                     </ul>
 
                     {{ idioms(lexicon_entry) }}
-
-                    {# WAITING ON DOING <dg>s
-                    {% if ds %}
-                        <div style="font-size: 0.95em; margin-left: 1em;">
-                            {% for d in ds %}
-                                <span style="font-size: 0.9em; font-variant: all-small-caps; color:
-                                gray;">definisjon ({{ loop.index }}): </span>
-                                <span>{{ d|text }}</span>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                    #}
                 {% else %}
                     &nbsp;
                 {% endif %}

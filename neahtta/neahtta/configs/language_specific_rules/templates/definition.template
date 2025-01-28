@@ -18,9 +18,20 @@
         {% continue %}
     {% endif %}
 
+    {% set dg = meaning_group|xpath('./dg')|first %}
+
     {% for translation_group in translation_groups %}
         {# TODO: is it possible to avoid having to pass the global context variables in here? #}
         {{ templates.definition_text.render(translation_group=translation_group, _from=_from, _to=_to)|safe }}
+
+        {% if dg %}
+            {% set dts = dg|xpath('./dt') %}
+            {% if dts %}
+                {% set dt = dts|first %}
+                <div style="color:#555;margin-top:0.5em;font-style:italic;">Definisjon: {{ dt|text }}</div>
+            {% endif %}
+        {% endif %}
+
 
         {# TODO: examples should move to definition notes template,
            which will need to be rendered for each tg #}
