@@ -9,11 +9,12 @@
 {% import 'lexicon.macros' as macros with context %}
 
 {% for meaning_group in lexicon_entry|xpath('./mg') %}
-
     {% set translation_groups = meaning_group|xpath('./tg')|xml_lang(_to) %}
 
     {% if translation_groups|count > 0 %}
-        <li>
+        <li>{% if lexicon_entry|xpath('./mg')|count > 1 %}
+            {{ loop.index }}.
+            {% endif %}
     {% else %}
         {% continue %}
     {% endif %}
