@@ -28,7 +28,8 @@
             {% set dts = dg|xpath('./dt') %}
             {% if dts %}
                 {% set dt = dts|first %}
-                <div style="color:#555;margin-top:0.5em;font-style:italic;">Definisjon: {{ dt|text }}</div>
+                <div
+                style="color:#555;margin-top:0.5em;font-style:italic;font-size:0.9em;">({{ dt|text }})</div>
             {% endif %}
         {% endif %}
 
