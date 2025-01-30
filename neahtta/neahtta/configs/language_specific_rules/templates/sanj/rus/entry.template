@@ -61,9 +61,9 @@
                         {%- endfor -%}
                     </p>
                 {% endif %}
-            <ol class="meanings">
+            <ul class="meanings">
                 {{- rendered_templates.definition|safe -}}
-            </ol>
+            </ul>
         {% else %}&nbsp;{% endif %}
     </div>
     {#

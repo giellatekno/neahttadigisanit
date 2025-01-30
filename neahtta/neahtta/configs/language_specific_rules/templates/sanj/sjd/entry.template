@@ -63,9 +63,9 @@
             <p class="l_ref"><span class="se_også">{%- trans -%}see also{%- endtrans -%} </span><a href="./?lookup={{l_ref_text.split("_")[0]}}">
                 {{- l_ref_text.split("_")[0]|safe -}}</a></p>
             {%- endif -%}
-            <ol class="meanings">
+            <ul class="meanings">
                 {{- rendered_templates.definition|safe -}}
-            </ol>
+            </ul>
         {%- else -%}&nbsp;{%- endif -%}
     </div>
 </div>
