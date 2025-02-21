@@ -443,7 +443,7 @@
 
 {% elif pos|upper == 'PRON' %}
 
-    {% if pron_type|upper == 'INDEF' and two_columns %}
+    {% if (pron_type|upper == 'INDEF' or pron_type|upper == 'REL') and two_columns %}
         {% if paradigm_exists %}
 
             <table class="tableparadigm miniparadigm">
