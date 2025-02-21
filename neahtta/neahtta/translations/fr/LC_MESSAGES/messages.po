@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-10 15:25+0200\n"
+"POT-Creation-Date: 2025-02-21 11:31+0100\n"
 "PO-Revision-Date: 2013-11-07 11:38+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language: fr\n"
@@ -18,52 +18,48 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.14.0\n"
 
-#: neahtta/configs/kyv.config.yaml:170 neahtta/configs/kyv.config.yaml:246
 #: neahtta/configs/kyv.config.yaml.in:169
 #: neahtta/configs/kyv.config.yaml.in:245 neahtta/configs/saan.config.yaml:98
-#: neahtta/configs/saan.config.yaml.in:98 neahtta/configs/saanih.config.yaml:81
-#: neahtta/configs/saanih.config.yaml:111
+#: neahtta/configs/saan.config.yaml.in:98
 #: neahtta/configs/saanih.config.yaml.in:80
 #: neahtta/configs/saanih.config.yaml.in:110
-#: neahtta/configs/sanat.config.yaml:139
+#: neahtta/configs/sample.config.yaml.in:194
 #: neahtta/configs/sanat.config.yaml.in:139
 #: neahtta/configs/sanit.config.yaml:125
-#: neahtta/configs/sanit.config.yaml.in:125 neahtta/configs/sanj.config.yaml:86
-#: neahtta/configs/sanj.config.yaml.in:85 neahtta/configs/sonad.config.yaml:155
+#: neahtta/configs/sanit.config.yaml.in:125
+#: neahtta/configs/sanj.config.yaml:100 neahtta/configs/sanj.config.yaml.in:100
 #: neahtta/configs/sonad.config.yaml.in:154
 #: neahtta/tests/configs/sanit.config.yaml:122
 msgid "Standard"
 msgstr ""
 
-#: neahtta/configs/kyv.config.yaml:179 neahtta/configs/kyv.config.yaml:257
 #: neahtta/configs/kyv.config.yaml.in:178
 #: neahtta/configs/kyv.config.yaml.in:256
+#: neahtta/configs/sample.config.yaml.in:200
 msgid "Social media"
 msgstr ""
 
-#: neahtta/configs/kyv.config.yaml:180 neahtta/configs/kyv.config.yaml.in:179
+#: neahtta/configs/kyv.config.yaml.in:179
 msgid "(incl. <em>ио</em>)"
 msgstr ""
 
-#: neahtta/configs/kyv.config.yaml:184 neahtta/configs/kyv.config.yaml.in:183
+#: neahtta/configs/kyv.config.yaml.in:183
 msgid "Molodtsov orthography"
 msgstr ""
 
-#: neahtta/configs/kyv.config.yaml:201 neahtta/configs/kyv.config.yaml.in:200
+#: neahtta/configs/kyv.config.yaml.in:200
 msgid "Zyrian for Permyak"
 msgstr ""
 
-#: neahtta/configs/kyv.config.yaml:258 neahtta/configs/kyv.config.yaml.in:257
+#: neahtta/configs/kyv.config.yaml.in:257
 msgid "(incl. <em>жзиоч</em>)"
 msgstr ""
 
-#: neahtta/configs/kyv.config.yaml:273 neahtta/configs/kyv.config.yaml:302
 #: neahtta/configs/kyv.config.yaml.in:272
 #: neahtta/configs/kyv.config.yaml.in:301
 msgid "Standard (<em>ӝӟӥӧӵ</em>)"
 msgstr ""
 
-#: neahtta/configs/kyv.config.yaml:277 neahtta/configs/kyv.config.yaml:306
 #: neahtta/configs/kyv.config.yaml.in:276
 #: neahtta/configs/kyv.config.yaml.in:305
 msgid "Social media (incl. <em>жзиоч</em>)"
@@ -311,43 +307,33 @@ msgid "Swedish"
 msgstr ""
 
 #: neahtta/configs/saan.config.yaml:121 neahtta/configs/saan.config.yaml.in:121
-#: neahtta/configs/saanih.config.yaml:85 neahtta/configs/saanih.config.yaml:115
 #: neahtta/configs/saanih.config.yaml.in:84
 #: neahtta/configs/saanih.config.yaml.in:114
-#: neahtta/configs/sanj.config.yaml:107 neahtta/configs/sanj.config.yaml.in:106
+#: neahtta/configs/sanj.config.yaml:121 neahtta/configs/sanj.config.yaml.in:121
 msgid "Mobile friendly"
 msgstr ""
 
-#: neahtta/configs/saanih.config.yaml:82 neahtta/configs/saanih.config.yaml:112
 #: neahtta/configs/saanih.config.yaml.in:81
 #: neahtta/configs/saanih.config.yaml.in:111
 msgid "(<em>âäáčđŋšž</em>)"
 msgstr ""
 
-#: neahtta/configs/saanih.config.yaml:86 neahtta/configs/saanih.config.yaml:116
 #: neahtta/configs/saanih.config.yaml.in:85
 #: neahtta/configs/saanih.config.yaml.in:115
 msgid "(incl. <em>aaacdnsz</em>)"
 msgstr ""
 
-#: neahtta/configs/sample.config.yaml.in:249
-#, python-format
-msgid ""
-"Standardhttp://gtweb.uit.no/korp/#search=word%7CUSER_INPUT&page=0http://gtweb.uit.no/korp/#page=0"
-"&search-"
-"tab=2&search=cqp%7C%5Blemma%20%3D%20%22INPUT_LEMMA%22%5D%22%5D%20%5Bword%20%3D%20%22"
+#: neahtta/configs/sample.config.yaml.in:202
+#: neahtta/configs/sanit.config.yaml:141
+#: neahtta/configs/sanit.config.yaml.in:141
+#: neahtta/tests/configs/sanit.config.yaml:138
+msgid "(incl. <em>acdnstz</em>)"
 msgstr ""
 
 #: neahtta/configs/sanit.config.yaml:140
 #: neahtta/configs/sanit.config.yaml.in:140
 #: neahtta/tests/configs/sanit.config.yaml:137
 msgid "Tolerant"
-msgstr ""
-
-#: neahtta/configs/sanit.config.yaml:141
-#: neahtta/configs/sanit.config.yaml.in:141
-#: neahtta/tests/configs/sanit.config.yaml:138
-msgid "(incl. <em>acdnstz</em>)"
 msgstr ""
 
 #: neahtta/configs/sanit.config.yaml:180
@@ -362,15 +348,14 @@ msgstr ""
 msgid "Tolerant (also <em>acdnstz</em>)"
 msgstr ""
 
-#: neahtta/configs/sanj.config.yaml:87 neahtta/configs/sanj.config.yaml.in:86
+#: neahtta/configs/sanj.config.yaml:101 neahtta/configs/sanj.config.yaml.in:101
 msgid "(<em>а̄е̄ӣо̄ӯӎӊӈҏ</em>)"
 msgstr ""
 
-#: neahtta/configs/sanj.config.yaml:108 neahtta/configs/sanj.config.yaml.in:107
+#: neahtta/configs/sanj.config.yaml:122 neahtta/configs/sanj.config.yaml.in:122
 msgid "(incl. <em>аеиоумннр</em>)"
 msgstr ""
 
-#: neahtta/configs/sonad.config.yaml:160
 #: neahtta/configs/sonad.config.yaml.in:159
 msgid "mobile friendly"
 msgstr ""
@@ -631,7 +616,7 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/sanat/about.template:86
 #: neahtta/configs/language_specific_rules/templates/sanat/find_problem.template:3
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:76
-#: neahtta/configs/language_specific_rules/templates/sanj/about.template:84
+#: neahtta/configs/language_specific_rules/templates/sanj/about.template:88
 #: neahtta/configs/language_specific_rules/templates/sonad/about.template:92
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:80
 #: neahtta/configs/language_specific_rules/templates/valks/about.template:87
@@ -650,7 +635,7 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/saanih/about.template:60
 #: neahtta/configs/language_specific_rules/templates/sanat/about.template:87
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:77
-#: neahtta/configs/language_specific_rules/templates/sanj/about.template:85
+#: neahtta/configs/language_specific_rules/templates/sanj/about.template:89
 #: neahtta/configs/language_specific_rules/templates/sonad/about.template:93
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:81
 #: neahtta/configs/language_specific_rules/templates/valks/about.template:88
@@ -690,8 +675,8 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/sanat/find_problem.template:24
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:82
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:87
-#: neahtta/configs/language_specific_rules/templates/sanj/about.template:90
-#: neahtta/configs/language_specific_rules/templates/sanj/about.template:95
+#: neahtta/configs/language_specific_rules/templates/sanj/about.template:94
+#: neahtta/configs/language_specific_rules/templates/sanj/about.template:99
 #: neahtta/configs/language_specific_rules/templates/sonad/about.template:98
 #: neahtta/configs/language_specific_rules/templates/sonad/about.template:103
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:86
@@ -713,7 +698,7 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/saanih/about.template:75
 #: neahtta/configs/language_specific_rules/templates/sanat/about.template:111
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:92
-#: neahtta/configs/language_specific_rules/templates/sanj/about.template:100
+#: neahtta/configs/language_specific_rules/templates/sanj/about.template:104
 #: neahtta/configs/language_specific_rules/templates/sonad/about.template:108
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:96
 #: neahtta/configs/language_specific_rules/templates/valks/about.template:103
@@ -779,7 +764,7 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:43
 #: neahtta/configs/language_specific_rules/templates/index_search_form.template:40
 #: neahtta/configs/language_specific_rules/templates/sanit/nob/index_search_form.template:41
-#: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:42
+#: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:41
 #: neahtta/configs/language_specific_rules/templates/sanit/spa/index_search_form.template:40
 #: neahtta/configs/language_specific_rules/templates/sanj/index_search_form.template:41
 msgid "Press TAB (&#8677;) or touch screen to select"
@@ -792,7 +777,7 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/itwewina/index_search_form.template:60
 #: neahtta/configs/language_specific_rules/templates/kidwinan/index_search_form.template:57
 #: neahtta/configs/language_specific_rules/templates/sanit/nob/index_search_form.template:48
-#: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:49
+#: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:48
 #: neahtta/configs/language_specific_rules/templates/sanit/spa/index_search_form.template:47
 #: neahtta/configs/language_specific_rules/templates/sanj/index_search_form.template:48
 #: neahtta/templates/index_search_form.html:20
@@ -821,9 +806,9 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/sanit/nob/index_search_form.template:72
 #: neahtta/configs/language_specific_rules/templates/sanit/nob/index_search_form.template:76
 #: neahtta/configs/language_specific_rules/templates/sanit/sme/detail_search_form.template:41
-#: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:54
-#: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:73
-#: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:77
+#: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:53
+#: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:72
+#: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:76
 #: neahtta/configs/language_specific_rules/templates/sanit/spa/detail_search_form.template:41
 #: neahtta/configs/language_specific_rules/templates/sanit/spa/index_search_form.template:52
 #: neahtta/configs/language_specific_rules/templates/sanit/spa/index_search_form.template:71
@@ -854,8 +839,8 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/kidwinan/index_search_form.template:95
 #: neahtta/configs/language_specific_rules/templates/sanit/nob/index_search_form.template:65
 #: neahtta/configs/language_specific_rules/templates/sanit/nob/index_search_form.template:86
-#: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:66
-#: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:87
+#: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:65
+#: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:86
 #: neahtta/configs/language_specific_rules/templates/sanit/spa/index_search_form.template:64
 #: neahtta/configs/language_specific_rules/templates/sanit/spa/index_search_form.template:85
 #: neahtta/configs/language_specific_rules/templates/sanj/index_search_form.template:65
@@ -887,7 +872,7 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/sanit/sme/paradigm.template:200
 #: neahtta/configs/language_specific_rules/templates/sanit/spa/paradigm.template:164
 #: neahtta/configs/language_specific_rules/templates/sanj/rus/paradigm.template:196
-#: neahtta/configs/language_specific_rules/templates/sanj/sjd/paradigm.template:301
+#: neahtta/configs/language_specific_rules/templates/sanj/sjd/paradigm.template:314
 #: neahtta/configs/language_specific_rules/templates/valks/mdf/paradigm.template:117
 #: neahtta/configs/language_specific_rules/templates/valks/myv/paradigm.template:117
 msgid "Full paradigm"
@@ -1455,12 +1440,25 @@ msgid ""
 " as áčđŋšŧž in addition to their usual values."
 msgstr ""
 
+#: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:96
+msgid ""
+"The North Saami → Spanish dictionary is provided as a working copy for "
+"the development of the dictionary <b>only</b>. It is not published for "
+"general use."
+msgstr ""
+
+#: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:97
 #: neahtta/configs/language_specific_rules/templates/sanit/spa/index_search_form.template:103
 msgid "The abbreviations used in the dictionary are"
 msgstr ""
 
+#: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:97
 #: neahtta/configs/language_specific_rules/templates/sanit/spa/index_search_form.template:103
 msgid "explained here"
+msgstr ""
+
+#: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:98
+msgid "The abbreviations refer to the uses in North Saami."
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/sanit/spa/index_search_form.template:104
@@ -1469,7 +1467,7 @@ msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:26
 msgid ""
-"Antonova Aleksandra Andreevna & Scheller Elisabeth 2021. <i>Saamsko-"
+"Antonova Aleksandra Andreevna & Scheller Elisabeth 2021–2025. <i>Saamsko-"
 "russkij i Russko-saamskij slovar' (okolo 16 000 slov)</i>. UiT The Arctic"
 " University of Norway, Tromsø."
 msgstr ""
@@ -1481,7 +1479,8 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:29
 msgid ""
 "The vocabulary of the electronic dictionary belongs to the Kildin Saami "
-"language. The dictionary consists of four parts:"
+"language. The dictionary is under development and is constantly being "
+"updated and improved. The dictionary consists of four parts:"
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:30
@@ -1495,7 +1494,7 @@ msgid ""
 " Andreevna Antonova's</a> (1932-2014) <i>Kildin Saami-Russian "
 "dictionary</i> from 2014. The <i>Kildin Saami-Russian dictionary</i> also"
 " contains vocabulary from A. A. Anonova's and E. Scheller's <i>Russian-"
-"Kildin Saami dictionary</i> from 2021."
+"Kildin Saami dictionary</i> (2021–2025)."
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:32
@@ -1508,20 +1507,27 @@ msgid ""
 " collected lexicographic materials. The dictionary also includes "
 "vocabulary from A. A. Antonova's <i>Kildin Saami-Russian dictionary</i> "
 "from 2014, and is completed with vocabulary from various Kildin Saami "
-"literary and other texts.The <i>Russian-Kildin Saami dictionary</i> is "
-"under development. Currently about 1500 main entries are presented with "
-"example sentences. A part of the examples are abbreviated and modified "
-"phrases from the book <i>Tār'enč Kukes'suchchk</i> (Lindgren 2013) and "
-"other literary texts."
+"literary and other texts, as well as vocabulary collected during the "
+"proofreading of the dictionary."
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:34
+msgid ""
+"The <i>Russian-Kildin Saami dictionary</i> is under development. "
+"Currently the dictionary is undergoing proofreading and is being "
+"supplemented with the help of native Kildin Sámi speakers. More than 1500"
+" main entries are presented with example sentences. A part of the "
+"examples are abbreviated and modified phrases from the book <i>Tār'enč "
+"Kukes'suchchk</i> (Lindgren 2013) and other literary texts."
+msgstr ""
+
+#: neahtta/configs/language_specific_rules/templates/sanj/about.template:35
 msgid ""
 "3. Tables with paradigms and other grammatical information in the "
 "dictionary"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanj/about.template:35
+#: neahtta/configs/language_specific_rules/templates/sanj/about.template:36
 msgid ""
 "These are based on the grammatical research work of <a "
 "href=\"https://en.wikipedia.org/wiki/Aleksandra_Andreevna_Antonova\">Aleksandra"
@@ -1533,9 +1539,7 @@ msgid ""
 "<i>Divvun</i> – <i>Saami language technology at University of Tromsø – "
 "The Arctic University of Norway</i>: <a "
 "href=\"https://uit.no/ansatte/person?p_document_id=739788\">Trond "
-"Tynnøl</a>, <a "
-"href=\"https://uit.no/ansatte/person?p_document_id=367087&p_dimension_id=210121\">Chiara"
-" Argese</a>, <a "
+"Tynnøl</a>, Chiara Argese, <a "
 "href=\"https://et.wikipedia.org/wiki/Tiina_Puolakainen\">Tiina "
 "Puolakainen</a>, <a "
 "href=\"https://uit.no/ansatte/person?p_document_id=41545\">Trond "
@@ -1548,11 +1552,11 @@ msgid ""
 "collaboration with Trond Trosterud and Elisabeth Scheller."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanj/about.template:36
+#: neahtta/configs/language_specific_rules/templates/sanj/about.template:37
 msgid "4. Audio files"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanj/about.template:37
+#: neahtta/configs/language_specific_rules/templates/sanj/about.template:38
 msgid ""
 "The audio files are fragments from recordings of Aleksandra Antonova’s "
 "voice from her private archive. The digitalization and cut done by "
@@ -1560,13 +1564,15 @@ msgid ""
 "electronic dictionary."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanj/about.template:40
+#: neahtta/configs/language_specific_rules/templates/sanj/about.template:41
 msgid "Lexicographic resources"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanj/about.template:41
+#: neahtta/configs/language_specific_rules/templates/sanj/about.template:42
 msgid ""
 "\n"
+"                <li>Антонова А. А. & Шеллер Э. Русско-саамский словарь, в"
+" стадии разработки.</li>\n"
 "                <li>Антонова Александра Андреевна (ред.: Агеева А. М., "
 "Хомюк Д. М., Галкин С. Н., Шеллер Э.) 2014. <i>Са̄мь-рӯшш са̄ннҍнэххьк, "
 "7500 ве̄ррьт са̄мь са̄ннӭ я 10600 са̄ррнмушшэ. = Саамско-русский словарь,"
@@ -1596,11 +1602,11 @@ msgid ""
 "svensk-nordsamisk</i>. Karasjok: Čálliid Lágádus.</li>"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanj/about.template:51
+#: neahtta/configs/language_specific_rules/templates/sanj/about.template:53
 msgid "Internet resources"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanj/about.template:52
+#: neahtta/configs/language_specific_rules/templates/sanj/about.template:54
 msgid ""
 "\n"
 "                <li>Викисловарь – <a "
@@ -1620,38 +1626,50 @@ msgid ""
 "href=\"https://sanit.oahpa.no\">https://sanit.oahpa.no</a></li>"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanj/about.template:62
+#: neahtta/configs/language_specific_rules/templates/sanj/about.template:64
 msgid "Grammatical resources"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanj/about.template:63
+#: neahtta/configs/language_specific_rules/templates/sanj/about.template:65
 msgid ""
 "\n"
-"                <li>Керт Г. М. 1971. <i>Саамкий язык (кильдинский "
-"диалект) Фонетика, Морфология, Синтаксис</i>. Ленинград «Наука».</li>\n"
-"                <li>Куруч, Р. Д. 1985. Краткий грамматический очерк "
-"саамского языка. – Антонова А. А., Афанасьева Н. Е., Куруч Р. Д., Мечкина"
-" Е. И., Яковлев Л. Д., Глухов Б. А. (под ред. Р. Д. Куруч) 1985. "
-"<i>Са̄мь-рӯшш соагкнэһкь. =  Саамско-русский словарь</i>. Москва «Русский"
-" язык», с. 529-567.</li>\n"
+"                <li>Антонова А. А. & Шеллер Э. Грамматика кильдинского "
+"саамского языка, в стадии разработки.</li>\n"
+"                <li>Керт Г. М. 1971. <i><a "
+"href=\"http://kolanord.ru/html_public/col_avtory/KertGM/KertGM_Saamskij-"
+"yazyk_1971/index.html\">Саамкий язык (кильдинский диалект) Фонетика, "
+"Морфология, Синтаксис</a></i>. Ленинград «Наука».</li>\n"
+"                <li>Куруч, Р. Д. 1985. <a "
+"href=\"https://saamruss.narod.ru/grammatika_saamskogo_jazyka_ver_1_0.pdf\">Краткий"
+" грамматический очерк саамского языка.</a> – Антонова А. А., Афанасьева "
+"Н. Е., Куруч Р. Д., Мечкина Е. И., Яковлев Л. Д., Глухов Б. А. (под ред. "
+"Р. Д. Куруч) 1985. <i>Са̄мь-рӯшш соагкнэһкь. =  Саамско-русский "
+"словарь</i>. Москва «Русский язык», с. 529-567.</li>\n"
 "                <li>Шаршина Н. С., Шеллер Э.  (при сотрудничестве А. А. "
-"Антоновой) 2008. <i>Са̄мькилсыййт (о̄ххпнуввэмтуй). 1 Грамматика</i>. "
-"Луяввьр.</li>\n"
-"                <li>Эндюковский А. Г. 1937. <i>Саамский (лопарский) язык."
-" – Языки и письменность народов Севера. 1. Языки и письменность "
-"самоедских и финно-угорских народов</i>. Ред. Георгий Н. Прокофьев. "
-"Ленинград: Учпедгиз, с. 125–162.</li>\n"
+"Антоновой) 2008. <i><a "
+"href=\"https://saami.su/component/phocadownload/category/1-biblioteka.html?download=62"
+":saamskij-yazyk-grammatika-sharshina-sheller&Itemid=101\">Са̄мькилсыййт "
+"(о̄ххпнуввэмтуй). 1 Грамматика</a></i>. Луяввьр.</li>\n"
+"                <li>Эндюковский А. Г. 1937. <i><a "
+"href=\"https://wikisource.org/wiki/File:Саамский_(лопарский)_язык_1937.pdf\">Саамский"
+" (лопарский) язык.</a> – Языки и письменность народов Севера. 1. Языки и "
+"письменность самоедских и финно-угорских народов</i>. Ред. Георгий Н. "
+"Прокофьев. Ленинград: Учпедгиз, с. 125–162.</li>\n"
 "                <li>Nickel Klaus Peter, Sammallahti Pekka 2011. "
 "<i>Nordsamisk grammatikk</i>. Davvi girji. Karasjok.</li>\n"
+"                <li>Scheller Elisabeth 2024. <a "
+"href=\"https://rodyaz.ru/pdf/24-1/RY_241_4_Scheller.pdf\">Partitive or "
+"genitive plural? Use and formation of the partitive case in Kildin "
+"Saami.</a> – <i>Rodnoy yazyk</i>, 2024, 1: s. 70–130. </li>\n"
 "                <li>Svonni Mikael 2018. <i>Modern nordsamisk "
 "grammatik</i>. Ravda Lágádus.</li>"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanj/about.template:71
+#: neahtta/configs/language_specific_rules/templates/sanj/about.template:75
 msgid "Text resources"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanj/about.template:72
+#: neahtta/configs/language_specific_rules/templates/sanj/about.template:76
 msgid ""
 "\n"
 "                <li>Балакина Дарья С., Большакова Надежда П., Агеева "
@@ -2703,4 +2721,169 @@ msgstr ""
 #~ msgid_plural "{len_type} values are required, but {len_value} were given."
 #~ msgstr[0] ""
 #~ msgstr[1] ""
+
+#~ msgid ""
+#~ "Standardhttp://gtweb.uit.no/korp/#search=word%7CUSER_INPUT&page=0http://gtweb.uit.no/korp/#page=0"
+#~ "&search-"
+#~ "tab=2&search=cqp%7C%5Blemma%20%3D%20%22INPUT_LEMMA%22%5D%22%5D%20%5Bword%20%3D%20%22"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Antonova Aleksandra Andreevna & Scheller "
+#~ "Elisabeth 2021. <i>Saamsko-russkij i "
+#~ "Russko-saamskij slovar' (okolo 16 000 "
+#~ "slov)</i>. UiT The Arctic University of"
+#~ " Norway, Tromsø."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The vocabulary of the electronic "
+#~ "dictionary belongs to the Kildin Saami"
+#~ " language. The dictionary consists of "
+#~ "four parts:"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "This dictionary is an adapted, corrected"
+#~ " and completed version of <a "
+#~ "href=\"https://en.wikipedia.org/wiki/Aleksandra_Andreevna_Antonova\">Aleksandra"
+#~ " Andreevna Antonova's</a> (1932-2014) <i>Kildin"
+#~ " Saami-Russian dictionary</i> from 2014."
+#~ " The <i>Kildin Saami-Russian dictionary</i>"
+#~ " also contains vocabulary from A. A."
+#~ " Anonova's and E. Scheller's <i>Russian-"
+#~ "Kildin Saami dictionary</i> from 2021."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "This dictionary is based on Aleksandra"
+#~ " Antonova's scripts, word lists and "
+#~ "collected lexicographic materials. The "
+#~ "dictionary also includes vocabulary from "
+#~ "A. A. Antonova's <i>Kildin Saami-Russian"
+#~ " dictionary</i> from 2014, and is "
+#~ "completed with vocabulary from various "
+#~ "Kildin Saami literary and other "
+#~ "texts.The <i>Russian-Kildin Saami "
+#~ "dictionary</i> is under development. Currently"
+#~ " about 1500 main entries are "
+#~ "presented with example sentences. A part"
+#~ " of the examples are abbreviated and"
+#~ " modified phrases from the book "
+#~ "<i>Tār'enč Kukes'suchchk</i> (Lindgren 2013) "
+#~ "and other literary texts."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "These are based on the grammatical "
+#~ "research work of <a "
+#~ "href=\"https://en.wikipedia.org/wiki/Aleksandra_Andreevna_Antonova\">Aleksandra"
+#~ " Andreevna Antonova</a> and <a "
+#~ "href=\"https://uit.no/ansatte/elisabeth.scheller\">Elisabeth "
+#~ "Scheller</a>.</br></br><b>Digitalization of the "
+#~ "lexicographical and grammatical "
+#~ "materials</b></br>The digitalization is carried "
+#~ "out by the programmers and computational"
+#~ " linguists at <i>Giellatekno</i> and "
+#~ "<i>Divvun</i> – <i>Saami language technology"
+#~ " at University of Tromsø – The "
+#~ "Arctic University of Norway</i>: <a "
+#~ "href=\"https://uit.no/ansatte/person?p_document_id=739788\">Trond "
+#~ "Tynnøl</a>, <a "
+#~ "href=\"https://uit.no/ansatte/person?p_document_id=367087&p_dimension_id=210121\">Chiara"
+#~ " Argese</a>, <a "
+#~ "href=\"https://et.wikipedia.org/wiki/Tiina_Puolakainen\">Tiina "
+#~ "Puolakainen</a>, <a "
+#~ "href=\"https://uit.no/ansatte/person?p_document_id=41545\">Trond "
+#~ "Trosterud</a>, <a "
+#~ "href=\"https://uit.no/ansatte/person?p_document_id=248638\">Sjur "
+#~ "Nørstebø Moshagen</a> and <a "
+#~ "href=\"https://uit.no/ansatte/person?p_document_id=67155\">Børre "
+#~ "Gaup</a></br></br><b>The grammatical automaton</b></br>The"
+#~ " grammatical automaton for Kildin Saami "
+#~ "has been built by Trond Tynnøl in"
+#~ " collaboration with Trond Trosterud and "
+#~ "Elisabeth Scheller."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "\n"
+#~ "                <li>Антонова Александра Андреевна"
+#~ " (ред.: Агеева А. М., Хомюк Д. "
+#~ "М., Галкин С. Н., Шеллер Э.) 2014."
+#~ " <i>Са̄мь-рӯшш са̄ннҍнэххьк, 7500 ве̄ррьт "
+#~ "са̄мь са̄ннӭ я 10600 са̄ррнмушшэ. = "
+#~ "Саамско-русский словарь, около 7500 саамских"
+#~ " слов и 10600 словосочетаний</i>. "
+#~ "Мурманск.</li>\n"
+#~ "                <li>Антонова А. А., Афанасьева"
+#~ " Н. Е., Куруч Р. Д., Мечкина Е."
+#~ " И., Яковлев Л. Д., Глухов Б. "
+#~ "А. (под ред. Р. Д. Куруч) 1985."
+#~ " <i>Са̄мь-рӯшш соагкнэһкь. =  Саамско-русский "
+#~ "словарь</i>. Москва «Русский язык».</li>\n"
+#~ "                <li>Глинка И. Б., Лейн "
+#~ "К., Лепинг А. А., Лепинг Е. И.,"
+#~ " Липшиц О. Д., Страхова Н. П., "
+#~ "Эккерт Р. 1998. <i>Русско-немецкий словарь "
+#~ "(под. ред. К. Лейна, издание "
+#~ "репринтное)</i>. Издательство «Русский язык» "
+#~ "1991, Фирма «НИК», 1998 г; "
+#~ "оформление.</li>\n"
+#~ "                <li>Керт Г. М. 1986. "
+#~ "<i>Саамско-русский и русско-саамский словарь</i>."
+#~ " Ленинград «Просвещение».</li>\n"
+#~ "                <li>Шаршина Н. С., Шеллер "
+#~ "Э.  (при сотрудничестве А. А. Антоновой)"
+#~ " 2008. Са̄мькилсыййт (о̄ххпнуввэмтуй). 2 "
+#~ "Лексика. Луяввьр.</li>\n"
+#~ "                <li>Birgegård Ulla, Marklund "
+#~ "Sharapova Elisabeth, Bönnemark Maria 2006. "
+#~ "<i>Norstedts ryska ordbok: rysk-svensk, "
+#~ "svensk-rysk = Русский словарь издательства"
+#~ " “Norstedts”: русско-шведский, шведско-русский</i>. "
+#~ "Norstedts Akademiska Förlag.</li>\n"
+#~ "                <li>Sammallahti Pekka & "
+#~ "Хворостухина Анастасия 1991. <i>Unna/удць "
+#~ "sámi-са̄мь са̄мь-sámi sátnegirjjáš/соагкнэгка</i>. "
+#~ "Ohcejohka: Girjegiisá.</li>\n"
+#~ "                <li>Svonni Mikael 2013. "
+#~ "<i>Sátnegirji: davvisámegiela-ruoŧagiela, "
+#~ "ruoŧagiela-davvisámegiela = Ordbok: "
+#~ "nordsamisk-svensk, svensk-nordsamisk</i>. "
+#~ "Karasjok: Čálliid Lágádus.</li>"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "\n"
+#~ "                <li>Керт Г. М. 1971. "
+#~ "<i>Саамкий язык (кильдинский диалект) "
+#~ "Фонетика, Морфология, Синтаксис</i>. Ленинград "
+#~ "«Наука».</li>\n"
+#~ "                <li>Куруч, Р. Д. 1985. "
+#~ "Краткий грамматический очерк саамского языка."
+#~ " – Антонова А. А., Афанасьева Н. "
+#~ "Е., Куруч Р. Д., Мечкина Е. И.,"
+#~ " Яковлев Л. Д., Глухов Б. А. "
+#~ "(под ред. Р. Д. Куруч) 1985. "
+#~ "<i>Са̄мь-рӯшш соагкнэһкь. =  Саамско-русский "
+#~ "словарь</i>. Москва «Русский язык», с. "
+#~ "529-567.</li>\n"
+#~ "                <li>Шаршина Н. С., Шеллер "
+#~ "Э.  (при сотрудничестве А. А. Антоновой)"
+#~ " 2008. <i>Са̄мькилсыййт (о̄ххпнуввэмтуй). 1 "
+#~ "Грамматика</i>. Луяввьр.</li>\n"
+#~ "                <li>Эндюковский А. Г. 1937."
+#~ " <i>Саамский (лопарский) язык. – Языки "
+#~ "и письменность народов Севера. 1. Языки"
+#~ " и письменность самоедских и финно-угорских"
+#~ " народов</i>. Ред. Георгий Н. Прокофьев."
+#~ " Ленинград: Учпедгиз, с. 125–162.</li>\n"
+#~ "                <li>Nickel Klaus Peter, "
+#~ "Sammallahti Pekka 2011. <i>Nordsamisk "
+#~ "grammatikk</i>. Davvi girji. Karasjok.</li>\n"
+#~ "                <li>Svonni Mikael 2018. "
+#~ "<i>Modern nordsamisk grammatik</i>. Ravda "
+#~ "Lágádus.</li>"
+#~ msgstr ""
 
