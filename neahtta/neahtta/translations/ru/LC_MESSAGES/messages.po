@@ -905,14 +905,13 @@ msgid "How to quote the dictionary"
 msgstr "Как цитировать словарь"
 
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:25
-#, fuzzy
 msgid ""
 "Everything here is based on open-source tools and free to use.\n"
 "\t    Visit <a class=\"blue\" "
 "href=\"http://giellatekno.uit.no/\">Giellatekno</a>'s\n"
 "                website for information on how to get access to lexicon\n"
 "                files, and morphological and syntactic analyzers."
-msgstr " "
+msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:53
 msgid ""
@@ -1294,7 +1293,6 @@ msgid "How to quote the dictionaries"
 msgstr "Как цитировать словарь"
 
 #: neahtta/configs/language_specific_rules/templates/saanih/about.template:26
-#, fuzzy
 msgid ""
 "Everything here is based on open-source tools and is free to use.\n"
 "\t    Visit <a class=\"blue\" "
@@ -1315,7 +1313,6 @@ msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/sanat/about.template:33
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:28
-#, fuzzy
 msgid ""
 "Everything here is based on open-source tools and free to use. Visit <a "
 "class=\"blue\"\n"
@@ -1323,7 +1320,7 @@ msgid ""
 "\n"
 "                website for information on how to get access to lexicon\n"
 "                files, and morphological and syntactic analyzers."
-msgstr " "
+msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/sanat/about.template:46
 #: neahtta/configs/language_specific_rules/templates/sonad/about.template:52
@@ -1482,13 +1479,12 @@ msgid "The abbreviations refer to the uses in Spanish."
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:26
-#, fuzzy
 msgid ""
 "Antonova Aleksandra Andreevna & Scheller Elisabeth 2021–2025. <i>Saamsko-"
 "russkij i Russko-saamskij slovar' (okolo 16 000 slov)</i>. UiT The Arctic"
 " University of Norway, Tromsø."
 msgstr ""
-"Антонова Александра Андреевна & Шеллер Элизабет 2021. <i>Саамско-русский "
+"Антонова Александра Андреевна & Шеллер Элизабет 2021–2025. <i>Саамско-русский "
 "и Русско-саамский словарь (около 16000 слов)</i>. Университет Тромсё – "
 "Арктический университет Норвегии."
 
@@ -1497,21 +1493,20 @@ msgid "About the dictionary"
 msgstr "О словаре"
 
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:29
-#, fuzzy
 msgid ""
 "The vocabulary of the electronic dictionary belongs to the Kildin Saami "
 "language. The dictionary is under development and is constantly being "
 "updated and improved. The dictionary consists of four parts:"
 msgstr ""
 "Лексика электронного словаря относится к кильдинскому диалекту саамского "
-"языка. Словарь состоит из четырёх частей:"
+"языка. Словарь находится в стадии разработки и постоянно дополняется и "
+"совершенствуется. Словарь состоит из четырёх частей:"
 
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:30
 msgid "1. Kildin Saami-Russian dictionary"
 msgstr "1. Саамско-русский словарь"
 
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:31
-#, fuzzy
 msgid ""
 "This dictionary is an adapted, corrected and completed version of <a "
 "href=\"https://en.wikipedia.org/wiki/Aleksandra_Andreevna_Antonova\">Aleksandra"
@@ -1525,14 +1520,13 @@ msgstr ""
 "href=\"https://ru.wikipedia.org/wiki/Антонова,_Александра_Андреевна\">Александры"
 " Андреевной Антоновой</a> (1932-2014), который вышел в свет в 2014 году. "
 "В электронный <i>Саамско-русский словарь</i> также включена лексика из "
-"<i>Русско-саамского словаря</i> А. А. Антоновой и Э. Шеллер (2021)."
+"<i>Русско-саамского словаря</i> А. А. Антоновой и Э. Шеллер (2021–2025)."
 
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:32
 msgid "2. Russian-Kildin Saami dictionary"
 msgstr "2. Русско-саамский словарь"
 
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:33
-#, fuzzy
 msgid ""
 "This dictionary is based on Aleksandra Antonova's scripts, word lists and"
 " collected lexicographic materials. The dictionary also includes "
@@ -1543,13 +1537,10 @@ msgid ""
 msgstr ""
 "Этот словарь разработан на основе манускриптов, списков слов и собранных "
 "лексикографических материалов Александры Андреевной Антоновой. В словарь "
-"также входит запас слов из <i>Саамско-русского словаря</i> А. А. "
-"Антоновой 2014 года и внесена лексика из различных саамско-язычных "
-"литературных произведений и других текстов. <i>Русско-саамский "
-"словарь</i> находится в стадии разработки. В настоящее время около 1500 "
-"заглавных слов представлены вместе с примерами. Часть примеров состоит из"
-" сокращённых и модифицированных словосочетаний из книги <i>Та̄рьенч "
-"Кукесьсуххк</i> (Линдгрен 2013) и других литературных произведений."
+"входит запас слов из Саамско-русского словаря А. А. Антоновой 2014 года, "
+"внесена лексика из различных саамско-язычных литературных произведений и "
+"других текстов, а также лексика, собранная во время работы по корректуре "
+"словаря."
 
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:34
 msgid ""
@@ -1560,6 +1551,12 @@ msgid ""
 "examples are abbreviated and modified phrases from the book <i>Tār'enč "
 "Kukes'suchchk</i> (Lindgren 2013) and other literary texts."
 msgstr ""
+"<i>Русско-саамский словарь</i> находится в стадии разработки. В настоящее время "
+"он проходит корректуру и дополняется с помощью носителей кильдинского "
+"диалекта саамского языка. Более 1500 заглавных слов представлены вместе с "
+"примерами. Часть примеров состоит из сокращённых и модифицированных "
+"словосочетаний из книги <i>Та̄рьенч Кукесьсуххк</i> (Линдгрен 2013) и других "
+"литературных произведений."
 
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:35
 msgid ""
@@ -1568,26 +1565,25 @@ msgid ""
 msgstr "3. Таблицы формообразования и другая грамматическая информация в словаре"
 
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:36
-#, fuzzy
 msgid ""
 "These are based on the grammatical research work of <a "
 "href=\"https://en.wikipedia.org/wiki/Aleksandra_Andreevna_Antonova\">Aleksandra"
-" Andreevna Antonova</a> and <a "
-"href=\"https://uit.no/ansatte/elisabeth.scheller\">Elisabeth "
+" Andreevna Antonova</a> and "
+"<a href=\"https://uit.no/ansatte/elisabeth.scheller\">Elisabeth "
 "Scheller</a>.</br></br><b>Digitalization of the lexicographical and "
 "grammatical materials</b></br>The digitalization is carried out by the "
 "programmers and computational linguists at <i>Giellatekno</i> and "
 "<i>Divvun</i> – <i>Saami language technology at University of Tromsø – "
-"The Arctic University of Norway</i>: <a "
-"href=\"https://uit.no/ansatte/person?p_document_id=739788\">Trond "
-"Tynnøl</a>, Chiara Argese, <a "
-"href=\"https://et.wikipedia.org/wiki/Tiina_Puolakainen\">Tiina "
-"Puolakainen</a>, <a "
-"href=\"https://uit.no/ansatte/person?p_document_id=41545\">Trond "
-"Trosterud</a>, <a "
-"href=\"https://uit.no/ansatte/person?p_document_id=248638\">Sjur Nørstebø"
-" Moshagen</a> and <a "
-"href=\"https://uit.no/ansatte/person?p_document_id=67155\">Børre "
+"The Arctic University of Norway</i>: "
+"<a href=\"https://uit.no/ansatte/person?p_document_id=739788\">Trond "
+"Tynnøl</a>, Chiara Argese, "
+"<a href=\"https://et.wikipedia.org/wiki/Tiina_Puolakainen\">Tiina "
+"Puolakainen</a>, "
+"<a href=\"https://uit.no/ansatte/person?p_document_id=41545\">Trond "
+"Trosterud</a>, "
+"<a href=\"https://uit.no/ansatte/person?p_document_id=248638\">Sjur Nørstebø"
+" Moshagen</a> and "
+"<a href=\"https://uit.no/ansatte/person?p_document_id=67155\">Børre "
 "Gaup</a></br></br><b>The grammatical automaton</b></br>The grammatical "
 "automaton for Kildin Saami has been built by Trond Tynnøl in "
 "collaboration with Trond Trosterud and Elisabeth Scheller."
@@ -1601,18 +1597,16 @@ msgstr ""
 "материалов</b></br>Оцифровка осуществлена программистами и компьютерными "
 "лингвистами <i>Giellatekno</i> и <i>Divvun</i> – <i>Саамская языковая "
 "технология при Университете Тромсё – Арктическом университете "
-"Норвегии</i>: <a "
-"href=\"https://uit.no/ansatte/person?p_document_id=739788\">Тронд "
-"Тюннэл</a>, <a "
-"href=\"https://uit.no/ansatte/person?p_document_id=367087&p_dimension_id=210121\">Киара"
-" Арджесэ</a>, <a "
-"href=\"https://et.wikipedia.org/wiki/Tiina_Puolakainen\">Тийна "
-"Пуолакаинэн</a>, <a "
-"href=\"https://uit.no/ansatte/person?p_document_id=41545\">Тронд "
-"Тростерюд</a>, <a "
-"href=\"https://uit.no/ansatte/person?p_document_id=248638\">Шюр Нёрштэбё "
-"Мушхаген</a> и <a "
-"href=\"https://uit.no/ansatte/person?p_document_id=67155\">Бёррэ "
+"Норвегии</i>: "
+"<a href=\"https://uit.no/ansatte/person?p_document_id=739788\">Тронд "
+"Тюннэл</a>, Киара Арджесэ, "
+"<a href=\"https://et.wikipedia.org/wiki/Tiina_Puolakainen\">Тийна "
+"Пуолакаинэн</a>, "
+"<a href=\"https://uit.no/ansatte/person?p_document_id=41545\">Тронд "
+"Тростерюд</a>, "
+"<a href=\"https://uit.no/ansatte/person?p_document_id=248638\">Шюр Нёрштэбё "
+"Мушхаген</a> и "
+"<a href=\"https://uit.no/ansatte/person?p_document_id=67155\">Бёррэ "
 "Гэуп</a>.</br></br><b>Грамматический автомат</b></br>Грамматический "
 "автомат для кильдинского диалекта саамского языка разработал Тронд Тюннэл"
 " в сотрудничестве с Трондом Тростерюдом и Элизабет Шеллер."
@@ -1798,7 +1792,6 @@ msgid "см."
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/sonad/about.template:37
-#, fuzzy
 msgid ""
 "Everything here is based on open-source tools. Do you\n"
 "                    have an idea for an app or research project that "
@@ -1809,7 +1802,7 @@ msgid ""
 "                    website for information on how to get access to "
 "lexicon\n"
 "                    files, and morphological and syntactic analyzers."
-msgstr " "
+msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:59
 msgid "yrk ↔ fin"
