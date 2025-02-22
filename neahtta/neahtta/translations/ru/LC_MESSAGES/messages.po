@@ -1527,7 +1527,6 @@ msgid "2. Russian-Kildin Saami dictionary"
 msgstr "2. Русско-саамский словарь"
 
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:33
-#, fuzzy
 msgid ""
 "This dictionary is based on Aleksandra Antonova's scripts, word lists and"
 " collected lexicographic materials. The dictionary also includes "
