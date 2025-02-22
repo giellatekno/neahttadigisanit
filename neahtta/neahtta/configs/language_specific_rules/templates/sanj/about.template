@@ -21,7 +21,7 @@
             <blockquote></blockquote>
         </div>
         <div class="row-fluid">
-          <span class="span4" style="text-align:justify">
+          <span class="span4">
                 <h3><b>{% trans %}How to quote the dictionary{% endtrans %}</b></h3>
                 <p>{% trans %}Antonova Aleksandra Andreevna & Scheller Elisabeth 2021–2025. <i>Saamsko-russkij i Russko-saamskij slovar' (okolo 16 000 slov)</i>. UiT The Arctic University of Norway, Tromsø.{% endtrans %}</p>
                 </br></br>
@@ -37,7 +37,7 @@
                 <h4>{% trans %}4. Audio files{% endtrans %}</h4>
                 <p>{% trans %}The audio files are fragments from recordings of Aleksandra Antonova’s voice from her private archive. The digitalization and cut done by Elisabeth Scheller. Trond Tynnøl integrated the audio files into the electronic dictionary.{% endtrans %}</p>
             </span>
-            <span class="span4" style="text-align:justify">
+            <span class="span4">
               <h3><b>{% trans %}Lexicographic resources{% endtrans %}</b></h3>
               <ul>{% trans %}
                 <li>Антонова А. А. & Шеллер Э. Русско-саамский словарь, в стадии разработки.</li>
@@ -60,7 +60,7 @@
                 <li>Neahttadigisánit Giellatekno, UiT Norgga árktalaš universitehta – <a href="https://sanit.oahpa.no">https://sanit.oahpa.no</a></li>{% endtrans %}
               </ul>
             </span>
-            <span class="span4" style="text-align:justify">
+            <span class="span4">
               <h3><b>{% trans %}Grammatical resources{% endtrans %}</b></h3>
               <ul>{% trans %}
                 <li>Антонова А. А. & Шеллер Э. Грамматика кильдинского саамского языка, в стадии разработки.</li>
