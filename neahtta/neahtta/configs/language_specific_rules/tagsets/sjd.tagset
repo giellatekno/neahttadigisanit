@@ -64,16 +64,21 @@ case:
  - "Par"
 nonfinite_paradigm:
   - "ConNeg"
+  - "ConNegII"
   - "PrfPrc"
 negation:
   - "Neg"
   - "ConNeg"
+  - "ConNegII"
 negative:
   - "Neg"
 perfect_prc:
   - "PrfPrc"
 mode:
   - "Ind"
+  - "Imprt"
+  - "Cond"
+  - "Pot"
 pron_type:
  - "Dem"
  - "Indef"
