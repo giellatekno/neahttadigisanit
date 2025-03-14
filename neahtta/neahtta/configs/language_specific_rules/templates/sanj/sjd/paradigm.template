@@ -27,79 +27,103 @@
     {% set verbs = true %}
 
     {% set prs_sg1  =   paradigm|by_tagset_value("tense", "Prs")
-                                |by_tagset_value("number", "Sg1")
-                                |without_tagset("negation") %}
+                                |by_tagset_value("number", "Sg1") %}
 
     {% set prs_sg2  =   paradigm|by_tagset_value("tense", "Prs")
                                 |by_tagset_value("number", "Sg2")
                                 |without_tagset("negation") %}
 
     {% set prs_sg3  =   paradigm|by_tagset_value("tense", "Prs")
-                                |by_tagset_value("number", "Sg3")
-                                |without_tagset("negation") %}
+                                |by_tagset_value("number", "Sg3") %}
 
     {% set prs_pl1  =   paradigm|by_tagset_value("tense", "Prs")
-                                |by_tagset_value("number", "Pl1")
-                                |without_tagset("negation") %}
+                                |by_tagset_value("number", "Pl1") %}
 
     {% set prs_pl2  =   paradigm|by_tagset_value("tense", "Prs")
                                 |by_tagset_value("number", "Pl2")
                                 |without_tagset("negation") %}
 
     {% set prs_pl3  =   paradigm|by_tagset_value("tense", "Prs")
-                                |by_tagset_value("number", "Pl3")
-                                |without_tagset("negation") %}
+                                |by_tagset_value("number", "Pl3") %}
 
     {% set prs_sg4  =   paradigm|by_tagset_value("tense", "Prs")
                                 |by_tagset_value("number", "Sg4")
                                 |without_tagset("negation") %}
 
     {% set prt_sg1  =   paradigm|by_tagset_value("tense", "Prt")
-                                |by_tagset_value("number", "Sg1")
-                                |without_tagset("negation") %}
+                                |by_tagset_value("number", "Sg1") %}
 
     {% set prt_sg2  =   paradigm|by_tagset_value("tense", "Prt")
                                 |by_tagset_value("number", "Sg2")
                                 |without_tagset("negation") %}
 
     {% set prt_sg3  =   paradigm|by_tagset_value("tense", "Prt")
-                                |by_tagset_value("number", "Sg3")
-                                |without_tagset("negation") %}
+                                |by_tagset_value("number", "Sg3") %}
 
     {% set prt_pl1  =   paradigm|by_tagset_value("tense", "Prt")
-                                |by_tagset_value("number", "Pl1")
-                                |without_tagset("negation") %}
+                                |by_tagset_value("number", "Pl1") %}
 
     {% set prt_pl2  =   paradigm|by_tagset_value("tense", "Prt")
                                 |by_tagset_value("number", "Pl2")
                                 |without_tagset("negation") %}
 
     {% set prt_pl3  =   paradigm|by_tagset_value("tense", "Prt")
-                                |by_tagset_value("number", "Pl3")
-                                |without_tagset("negation") %}
+                                |by_tagset_value("number", "Pl3") %}
 
     {% set prt_sg4  =   paradigm|by_tagset_value("tense", "Prt")
                                 |by_tagset_value("number", "Sg4")
                                 |without_tagset("negation") %}
+    
+    {% set neg_sg1 = paradigm|by_tagset_value("negation", "Neg")
+                             |by_tagset_value("number", "Sg1") %}
 
-    {% set present_verbs   = paradigm|by_tagset_value("tense", "Prs")
-                                     |without_tagset("negation")
-                                     |group_by_tag %}
+    {% set neg_sg2 = paradigm|by_tagset_value("negation", "Neg")
+                             |by_tagset_value("number", "Sg2")
+                             |by_tagset_value("mode", "Ind") %}
+    
+    {% set neg_sg3 = paradigm|by_tagset_value("negation", "Neg")
+                             |by_tagset_value("number", "Sg3") %}
 
-    {% set preterite_verbs = paradigm|by_tagset_value("tense", "Prt")
-                                     |without_tagset("negation")
-                                     |group_by_tag %}
+    {% set neg_pl1 = paradigm|by_tagset_value("negation", "Neg")
+                             |by_tagset_value("number", "Pl1") %}
 
-    {% set nonfinite_forms = paradigm|by_tagset("nonfinite_paradigm") %}
+    {% set neg_pl2 = paradigm|by_tagset_value("negation", "Neg")
+                             |by_tagset_value("number", "Pl2") 
+                             |by_tagset_value("mode", "Ind") %}
 
+    {% set neg_pl3 = paradigm|by_tagset_value("negation", "Neg")
+                             |by_tagset_value("number", "Pl3") %}
+
+    {% set neg_sg4 = paradigm|by_tagset_value("negation", "Neg")
+                             |by_tagset_value("number", "Sg4") %}
+
+    {% set conneg_prs = paradigm|by_tagset_value("negation", "ConNeg")
+                                |by_tagset_value("tense", "Prs") %}
+
+    {% set conneg_prt = paradigm|by_tagset_value("negation", "ConNeg")
+                                |by_tagset_value("tense", "Prt") %}
+
+    {% set imperative_singular = paradigm|by_tagset_value("mode", "Imprt")
+                                         |by_tagset_value("number", "Sg2") %}
+
+    {% set imperative_plural = paradigm|by_tagset_value("mode", "Imprt")
+                                       |by_tagset_value("number", "Pl2") %}
+
+    {% set imprt_conneg = paradigm|by_tagset_value("negation", "ConNeg")
+                                  |by_tagset_value("mode", "Imprt") %}
+    
+    {% set imprt_connegII = paradigm|by_tagset_value("negation", "ConNegII")
+                                    |by_tagset_value("mode", "Imprt") %}
+
+    
+    {% set perfect_participle = paradigm|by_tagset("perfect_prc") %}
+    
     {# As long as the paradigm files are in order, this will zip
     accurately. If not we need to manually select each form and display
     it. #}
 
     {# Use izip_longest to fill in the extra blanks spaces when one list
        ends first #}
-
-    {# {% set zipped_verbs = izip_longest(present_verbs, preterite_verbs, fillvalue='-')|list %} #}
 
     {# strip some parts of the tags that we don't need #}
 
@@ -112,26 +136,14 @@
     {% set prfprc_text   = "PrfPrc"|tagfilter(_from, _to) %}
     {% set neg_text      = "Neg"|tagfilter(_from, _to) %}
 
-    {% set nonfinite_header = False %}
     {% set is_perfect = nonfinite_forms|by_tagset("perfect_prc")|length > 0 %}
     {# we'll know this isn't just a normal verb with a couple negative
         forms because there are 6 #}
     {% set is_negative = nonfinite_forms|by_tagset("negative")|length == 6 %}
 
-    {% if is_negative %}
-        {% set nonfinite_header = neg_text %}
-    {% endif %}
-
-    {% if is_perfect %}
-        {% set nonfinite_header = prfprc_text %}
-    {% endif %}
 
     {% macro clean_tag(tag_input) -%}
         {% set filtered_tag = tag_input|tagfilter(_from, _to) %}
-        {% if nonfinite_header and (is_supinum or is_negative) %}
-            {% set filtered_tag = filtered_tag|replace(sup_text, "")
-                                              |replace(neg_text, "") %}
-        {% endif %}
 
         {% if conneg_text in filtered_tag %}
             {{ filtered_tag|replace(verb_text, "")
@@ -329,6 +341,11 @@
                 <th></th>
                 <th lang="{{ _to }}">{{ fut_text }} <em>(пуэдтӭм па̄лль)</em></th>
             </tr>
+            {% elif lemma == "эйй" %}
+            <tr>
+                <th></th>
+                <th lang="{{ _to }}"></th>
+            </tr>
             {% else %}
             <tr>
                 <th></th>
@@ -338,7 +355,7 @@
             {% endif %}
 
 
-            {% if lemma != "лӣннче" %}
+            {% if lemma != "лӣннче" and lemma != "эйй" %}
                 <tr>
                     <th class="tag" lang="{{ _from }}">мунн</th>
                     <td lang="{{ _from }}">{{ prs_sg1|uniq|join("<br />", attribute="form")|safe }}</td>
@@ -375,7 +392,7 @@
                     <td lang="{{ _from }}">{{ prt_sg4|uniq|join("<br />", attribute="form")|safe }}</td>
                 </tr>
 
-            {% else %} {# if lemma == лӣннче, only show present forms #}
+            {% elif lemma == "лӣннче" %} {# if lemma == лӣннче, only show present forms #}
                 <tr>
                     <th class="tag" lang="{{ _from }}">мунн</th>
                     <td lang="{{ _from }}">{{ prs_sg1|uniq|join("<br />", attribute="form")|safe }}</td>
@@ -404,25 +421,91 @@
                     <th class="tag" lang="{{ _from }}">безлич</th>
                     <td lang="{{ _from }}">{{ prs_sg4|uniq|join("<br />", attribute="form")|safe }}</td>
                 </tr>
+            {% else %} {# if lemma == эйй, only show one coloumn #}
+                <tr>
+                    <th class="tag" lang="{{ _from }}">мунн</th>
+                    <td lang="{{ _from }}">{{ neg_sg1|uniq|join("<br />", attribute="form")|safe }}</td>
+                </tr>
+                <tr>
+                    <th class="tag" lang="{{ _from }}">то̄нн</th>
+                    <td lang="{{ _from }}">{{ neg_sg2|uniq|join("<br />", attribute="form")|safe }}</td>
+                </tr>
+                <tr>
+                    <th class="tag" lang="{{ _from }}">со̄нн</th>
+                    <td lang="{{ _from }}">{{ neg_sg3|uniq|join("<br />", attribute="form")|safe }}</td>
+                </tr>
+                <tr>
+                    <th class="tag" lang="{{ _from }}">мыйй</th>
+                    <td lang="{{ _from }}">{{ neg_pl1|uniq|join("<br />", attribute="form")|safe }}</td>
+                </tr>
+                <tr>
+                    <th class="tag" lang="{{ _from }}">тыйй</th>
+                    <td lang="{{ _from }}">{{ neg_pl2|uniq|join("<br />", attribute="form")|safe }}</td>
+                </tr>
+                <tr>
+                    <th class="tag" lang="{{ _from }}">сыйй</th>
+                    <td lang="{{ _from }}">{{ neg_pl3|uniq|join("<br />", attribute="form")|safe }}</td>
+                </tr>
+                <tr>
+                    <th class="tag" lang="{{ _from }}">безлич</th>
+                    <td lang="{{ _from }}">{{ neg_sg4|uniq|join("<br />", attribute="form")|safe }}</td>
+                </tr>
             {% endif %}
         </table>
 
         {% if lemma != "лӣннче" %}
-            <dl class="dl-horizontal miniparadigm">
-                {% if nonfinite_header %}
-                    <dt>{{ nonfinite_header }}</dt><dd>&nbsp;</dd>
+            <table class="tableparadigm miniparadigm">
+                <tr/>
+                {% if conneg_prs %}
+                  <tr>
+                    <th>отриц. наст.</th>
+                    <td>(та̄рьм мунн эмм, то̄нн эгк, ...)</td>
+                    <td lang="{{ _from }}">{{ conneg_prs|uniq|join('<br />', attribute='form')|safe }}</td>
+                  </tr>
                 {% endif %}
-
-                {% set noninf_forms = nonfinite_forms|group_by_tag %}
-                {% set textshown = 0 %} {# to only show "мунн ля̄" once #}
-                {% for var in noninf_forms %}
-                    {% if var[0].tag and textshown == 0 %}
-                        {% set textshown = 1 %}
-                        <dt lang="{{ _from }}">мунн ля̄</dt>
-                    {% endif %}
-                    <dd lang="{{ _from }}">{{ var|uniq|join('<br />', attribute='form')|safe }}</dd>
-                {% endfor %}
-            </dl>
+                {% if conneg_prt %}
+                  <tr>
+                    <th>отриц. прош.</th>
+                    <td>(еххта мунн эмм, то̄нн эгк, ...)</td>
+                    <td lang="{{ _from }}">{{ conneg_prt|uniq|join('<br />', attribute='form')|safe }}</td>
+                  </tr>
+                {% endif %}
+                {% if imperative_singular %}
+                  <tr>
+                    <th>пов. ед. ч.</th>
+                    <td>(одному)</td>
+                    <td lang="{{ _from }}">{{ imperative_singular|uniq|join('<br />', attribute='form')|safe }}</td>
+                  </tr>
+                {% endif %}
+                {% if imperative_plural %}
+                  <tr>
+                    <th>пов. мн. ч.</th>
+                    <td>(нескольким)</td>
+                    <td lang="{{ _from }}">{{ imperative_plural|uniq|join('<br />', attribute='form')|safe }}</td>
+                  </tr>
+                {% endif %}
+                {% if imprt_conneg %}
+                  <tr>
+                    <th>пов. ед. ч. отриц.</th>
+                    <td>(одному)</td>
+                    <td lang="{{ _from }}">{{ imprt_conneg|uniq|join('<br />', attribute='form')|safe }}</td>
+                  </tr>
+                {% endif %}
+                {% if imprt_connegII %}
+                  <tr>
+                    <th>пов. мн. ч. отриц.</th>
+                    <td>(нескольким)</td>
+                    <td lang="{{ _from }}">{{ imprt_connegII|uniq|join('<br />', attribute='form')|safe }}</td>
+                  </tr>
+                {% endif %}
+                {% if perfect_participle %}
+                  <tr>
+                    <th>зак. прош. вр.</th>
+                    <td>(мунн ля̄)</td>
+                    <td lang="{{ _from }}">{{ perfect_participle|uniq|join('<br />', attribute='form')|safe }}</td>
+                  </tr>
+                {% endif %}
+            </table>
         {% endif %}
     {% endif %} {# paradigm_exists #}
 
