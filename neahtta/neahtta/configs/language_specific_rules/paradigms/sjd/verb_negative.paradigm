@@ -1,0 +1,16 @@
+name: "General verb paradigm"
+morphology:
+  pos: V
+  negative: Neg
+--
+{{ lemma }}+V+IV+Neg+Ind+Sg1
+{{ lemma }}+V+IV+Neg+Ind+Sg2
+{{ lemma }}+V+IV+Neg+Ind+Sg3
+{{ lemma }}+V+IV+Neg+Ind+Pl1
+{{ lemma }}+V+IV+Neg+Ind+Pl2
+{{ lemma }}+V+IV+Neg+Ind+Pl3
+{{ lemma }}+V+IV+Neg+Ind+Sg4
+{{ lemma }}+V+IV+Neg+Imprt+Sg2
+{{ lemma }}+V+IV+Neg+Imprt+Pl2
+
+
