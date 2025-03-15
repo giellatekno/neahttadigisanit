@@ -348,6 +348,7 @@
             <tr>
                 <th></th>
                 <th lang="{{ _to }}"></th>
+                <th lang="{{ _to }}">повел.</th>
             </tr>
             {% else %}
             <tr>
@@ -457,37 +458,44 @@
                     <td lang="{{ _from }}">{{ prs_pl3|uniq|join("<br />", attribute="form")|safe }}</td>
                 </tr>
                 <tr>
-                    <th class="tag" lang="{{ _from }}">безлич</th>
+                    <th class="tag" lang="{{ _from }}">безлич.</th>
                     <td lang="{{ _from }}">{{ prs_sg4|uniq|join("<br />", attribute="form")|safe }}</td>
                 </tr>
             {% else %} {# if lemma == эйй, only show one coloumn #}
                 <tr>
                     <th class="tag" lang="{{ _from }}">мунн</th>
                     <td lang="{{ _from }}">{{ neg_sg1|uniq|join("<br />", attribute="form")|safe }}</td>
+                    <td class="noborder"/>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">то̄нн</th>
                     <td lang="{{ _from }}">{{ neg_sg2|uniq|join("<br />", attribute="form")|safe }}</td>
+                    <td class="noborder" lang="{{ _from }}">{{ imperative_singular|uniq|join("<br />", attribute="form")|safe }}</td>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">со̄нн</th>
                     <td lang="{{ _from }}">{{ neg_sg3|uniq|join("<br />", attribute="form")|safe }}</td>
+                    <td class="bottomborder"/>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">мыйй</th>
                     <td lang="{{ _from }}">{{ neg_pl1|uniq|join("<br />", attribute="form")|safe }}</td>
+                    <td class="noborder"/>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">тыйй</th>
                     <td lang="{{ _from }}">{{ neg_pl2|uniq|join("<br />", attribute="form")|safe }}</td>
+                    <td class="noborder" lang="{{ _from }}">{{ imperative_plural|uniq|join("<br />", attribute="form")|safe }}</td>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">сыйй</th>
                     <td lang="{{ _from }}">{{ neg_pl3|uniq|join("<br />", attribute="form")|safe }}</td>
+                    <td class="noborder"/>
                 </tr>
                 <tr>
-                    <th class="tag" lang="{{ _from }}">безлич</th>
+                    <th class="tag" lang="{{ _from }}">безлич.</th>
                     <td lang="{{ _from }}">{{ neg_sg4|uniq|join("<br />", attribute="form")|safe }}</td>
+                    <td class="noborder"/>
                 </tr>
             {% endif %}
         </table>
