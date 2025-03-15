@@ -405,6 +405,7 @@
                     <th class="tag" lang="{{ _from }}">мунн эмм</th>
                     <td style="vertical-align: middle;" rowspan="6" lang="{{ _from }}">{{ conneg_prs|uniq|join('<br />', attribute='form')|safe }}</td>
                     <td style="vertical-align: middle;" rowspan="7" lang="{{ _from }}">{{ conneg_prt|uniq|join('<br />', attribute='form')|safe }}</td>
+                    <td class="noborder"/>
                 <tr>
                     <th class="tag" lang="{{ _from }}">то̄нн эгк</th>
                     <td class="noborder" lang="{{ _from }}">{{ imprt_conneg|uniq|join('<br />', attribute='form')|safe }}</td>
@@ -415,6 +416,7 @@
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">мыйй ебпь</th>
+                    <td class="noborder"/>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">тыйй ебпе</th>
@@ -422,10 +424,12 @@
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">сыйй ев</th>
+                    <td class="noborder"/>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">едтҍ</th>
                     <td lang="{{ _from }}">{{ ind_connegII|uniq|join('<br />', attribute='form')|safe }}</td>
+                    <td class="noborder"/>
                 </tr>
             {% elif lemma == "лӣннче" %} {# if lemma == лӣннче, only show present forms #}
                 <tr>
