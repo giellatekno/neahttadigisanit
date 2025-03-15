@@ -39,6 +39,7 @@ morphology:
 {{ lemma }}+V+Imprt+Pl2
 {{ lemma }}+V+Imprt+ConNeg
 {{ lemma }}+V+Imprt+ConNegII
+{{ lemma }}+V+Ind+Prs+ConNegII
 {{ lemma }}+V+PrfPrc+Var/Std1
 {{ lemma }}+V+PrfPrc+Var/Std2
 {{ lemma }}+V+PrfPrc+Var/Kld1
