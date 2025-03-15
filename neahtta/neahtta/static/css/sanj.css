@@ -30,3 +30,22 @@ span.pos_text {
   font-style: italic;
   font-size: 80%;
 }
+
+/* Style for paradigm table */
+table.tableparadigm {
+  border: 1px solid black;
+}
+.tableparadigm td {
+  border: 1px solid black;
+}
+.tableparadigm th {
+  border: 1px solid black;
+  background-color: lightgray;
+}
+td.noborder {
+  border: none;
+}
+td.bottomborder {
+  border: none;
+  border-bottom: 1px solid black;
+}
