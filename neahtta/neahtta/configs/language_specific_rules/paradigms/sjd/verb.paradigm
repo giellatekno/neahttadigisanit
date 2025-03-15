@@ -31,6 +31,7 @@ morphology:
 {{ lemma }}+V+Var/VCH+Ind+Prt+Sg4
 {{ lemma }}+V+Var/NoVCH+Ind+Prt+Sg4
 {{ lemma }}+V+Ind+Prs+ConNeg
+{{ lemma }}+V+Ind+Prt+ConNeg
 {{ lemma }}+V+Ind+Prt+ConNeg+Var/Std1
 {{ lemma }}+V+Ind+Prt+ConNeg+Var/Std2
 {{ lemma }}+V+Ind+Prt+ConNeg+Var/Kld1
