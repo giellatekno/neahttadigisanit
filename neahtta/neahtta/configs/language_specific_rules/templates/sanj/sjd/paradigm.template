@@ -119,6 +119,18 @@
                                   |by_tagset_value("mode", "Ind") %}
     
     {% set perfect_participle = paradigm|by_tagset("perfect_prc") %}
+
+    {% set negative_prs_sg3 = paradigm|by_tagset_value("negative", "Neg")
+                                      |by_tagset_value("tense", "Prs")
+                                      |by_tagset_value("number", "Sg3") %}
+
+    {% set negative_prs_pl3 = paradigm|by_tagset_value("negative", "Neg")
+                                      |by_tagset_value("tense", "Prs")
+                                      |by_tagset_value("number", "Pl3") %}
+
+    {% set negative_prt_sg3 = paradigm|by_tagset_value("negative", "Neg")
+                                      |by_tagset_value("tense", "Prt")
+                                      |by_tagset_value("number", "Sg3") %}
     
     {# As long as the paradigm files are in order, this will zip
     accurately. If not we need to manually select each form and display
@@ -469,6 +481,53 @@
                     <td lang="{{ _from }}">{{ prt_sg4|uniq|join("<br />", attribute="form")|safe }}</td>
                     <td class="bottomrightborder"/>
                 </tr>
+            {% endif %}
+            {# Negative paradigm in two variants #}
+            {% if lemma == "лӣйе" %} {# Special negative paradigm for copula with irregular forms #}
+                <tr><td class="separatingcell" colspan="4">&nbsp;</td></tr>
+                <tr>
+                    <th class="middleleftheader" lang="{{ _from }}">отриц.</th>
+                    <th class="middleheader" lang="{{ _to }}">{{ prs_text }} <em>(та̄рьм)</em></th>
+                    <th class="middleheader" lang="{{ _to }}">{{ prt_text }} <em>(еххта)</em></th>
+                    <th class="middleheader" lang="{{ _to }}">{{ imprt_text }}</th>
+                </tr>
+                <tr>
+                    <th class="tag" lang="{{ _from }}">мунн эмм</th>
+                    <td style="vertical-align: middle;" rowspan="2" lang="{{ _from }}">{{ conneg_prs|uniq|join('<br />', attribute='form')|safe }}</td>
+                    <td style="vertical-align: middle;" rowspan="2" lang="{{ _from }}">{{ conneg_prt|uniq|join('<br />', attribute='form')|safe }}</td>
+                    <td class="rightborder"/>
+                </tr>
+                <tr>
+                    <th class="tag" lang="{{ _from }}">то̄нн эгк</th>
+                    <td class="rightborder" lang="{{ _from }}">{{ imprt_conneg|uniq|join('<br />', attribute='form')|safe }}</td>
+                </tr>
+                <tr>
+                    <th class="tag" lang="{{ _from }}">со̄нн</th>
+                    <td lang="{{ _from }}">{{ negative_prs_sg3|uniq|join('<br />', attribute='form')|safe }}</td>
+                    <td lang="{{ _from }}">{{ negative_prt_sg3|uniq|join('<br />', attribute='form')|safe }}<br/>эйй лӣййма,<br/>эйй лӣйймэнч</td>
+                    <td class="bottomrightborder"></td>
+                </tr>
+                <tr>
+                    <th class="tag" lang="{{ _from }}">мыйй ебпь</th>
+                    <td style="vertical-align: middle;" rowspan="2" lang="{{ _from }}">{{ conneg_prs|uniq|join('<br />', attribute='form')|safe }}</td>
+                    <td style="vertical-align: middle;" rowspan="4" lang="{{ _from }}">{{ conneg_prt|uniq|join('<br />', attribute='form')|safe }}</td>
+                    <td class="rightborder"/>
+                </tr>
+                <tr>
+                    <th class="tag" lang="{{ _from }}">тыйй ебпе</th>
+                    <td class="rightborder" lang="{{ _from }}">{{ imprt_connegII|uniq|join('<br />', attribute='form')|safe }}</td>
+                </tr>
+                <tr>
+                    <th class="tag" lang="{{ _from }}">сыйй</th>
+                    <td lang="{{ _from }}">{{ negative_prs_pl3|uniq|join('<br />', attribute='form')|safe }}</td>
+                    <td class="rightborder"/>
+                </tr>
+                <tr>
+                    <th class="tag" lang="{{ _from }}">едтҍ</th>
+                    <td lang="{{ _from }}">{{ ind_connegII|uniq|join('<br />', attribute='form')|safe }}</td>
+                    <td class="rightborder"/>
+                </tr>
+            {% elif lemma != "лӣннче" and lemma != "эйй" %} {# Standard negative paradigm #}
                 <tr><td class="separatingcell" colspan="4">&nbsp;</td></tr>
                 <tr>
                     <th class="middleleftheader" lang="{{ _from }}">отриц.</th>
