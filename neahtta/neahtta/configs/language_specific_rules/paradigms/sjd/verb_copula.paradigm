@@ -23,6 +23,16 @@ lexicon:
 {{ lemma }}+V+Ind+Prt+Pl2
 {{ lemma }}+V+Ind+Prt+Pl3
 {{ lemma }}+V+Ind+Prt+Sg4
+{{ lemma }}+V+Pot+Prs+Sg1
+{{ lemma }}+V+Pot+Prs+Sg2+Var/Ant
+{{ lemma }}+V+Pot+Prs+Sg2+Var/Af
+{{ lemma }}+V+Pot+Prs+Sg3
+{{ lemma }}+V+Pot+Prs+Pl1
+{{ lemma }}+V+Pot+Prs+Pl2
+{{ lemma }}+V+Pot+Prs+Pl3
+{{ lemma }}+V+Pot+Prs+Sg4
+{{ lemma }}+V+Pot+Prs+ConNeg
+{{ lemma }}+V+Neg+Pot+Prs+Sg3
 {{ lemma }}+V+Ind+Prs+ConNeg
 {{ lemma }}+V+Ind+Prt+ConNeg
 {{ lemma }}+V+Ind+Prt+ConNeg+Var/Std2
