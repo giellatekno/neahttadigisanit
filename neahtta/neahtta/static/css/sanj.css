@@ -32,20 +32,43 @@ span.pos_text {
 }
 
 /* Style for paradigm table */
-table.tableparadigm {
+/* table.miniparadigm {
+  border: 1px solid black;
+} */
+.miniparadigm td {
   border: 1px solid black;
 }
-.tableparadigm td {
+.miniparadigm th {
   border: 1px solid black;
 }
-.tableparadigm th {
-  border: 1px solid black;
-  background-color: lightgray;
-}
-td.noborder {
+table.miniparadigm td.rightborder {
   border: none;
+  border-right: 1px solid black;
 }
-td.bottomborder {
+table.miniparadigm td.bottomrightborder {
   border: none;
   border-bottom: 1px solid black;
+  border-right: 1px solid black;
+}
+table.miniparadigm td.separatingcell {
+  border: none;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+table.miniparadigm th.tag {
+  background-color: lightgray;
+}
+table.miniparadigm th.header {
+  background-color: lightgray;
+}
+table.miniparadigm th.middleleftheader {
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: lightgray;
+}
+table.miniparadigm th.middleheader {
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: white;
+  text-align: center;
 }
