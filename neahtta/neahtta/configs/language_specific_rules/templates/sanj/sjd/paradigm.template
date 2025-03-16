@@ -27,26 +27,35 @@
     {% set verbs = true %}
 
     {% set prs_sg1  =   paradigm|by_tagset_value("tense", "Prs")
+                                |by_tagset_value("mode", "Ind")
                                 |by_tagset_value("number", "Sg1") %}
 
     {% set prs_sg2  =   paradigm|by_tagset_value("tense", "Prs")
+                                |by_tagset_value("mode", "Ind")
                                 |by_tagset_value("number", "Sg2")
                                 |without_tagset("negation") %}
 
     {% set prs_sg3  =   paradigm|by_tagset_value("tense", "Prs")
-                                |by_tagset_value("number", "Sg3") %}
+                                |by_tagset_value("mode", "Ind")
+                                |by_tagset_value("number", "Sg3")
+                                |without_tagset("negation")%}
 
     {% set prs_pl1  =   paradigm|by_tagset_value("tense", "Prs")
+                                |by_tagset_value("mode", "Ind")
                                 |by_tagset_value("number", "Pl1") %}
 
     {% set prs_pl2  =   paradigm|by_tagset_value("tense", "Prs")
+                                |by_tagset_value("mode", "Ind")
                                 |by_tagset_value("number", "Pl2")
                                 |without_tagset("negation") %}
 
     {% set prs_pl3  =   paradigm|by_tagset_value("tense", "Prs")
-                                |by_tagset_value("number", "Pl3") %}
+                                |by_tagset_value("mode", "Ind")
+                                |by_tagset_value("number", "Pl3") 
+                                |without_tagset("negation")%}
 
     {% set prs_sg4  =   paradigm|by_tagset_value("tense", "Prs")
+                                |by_tagset_value("mode", "Ind")
                                 |by_tagset_value("number", "Sg4")
                                 |without_tagset("negation") %}
 
@@ -119,6 +128,7 @@
                              |by_tagset_value("number", "Sg4") %}
 
     {% set conneg_prs = paradigm|by_tagset_value("negation", "ConNeg")
+                                |by_tagset_value("mode", "Ind")
                                 |by_tagset_value("tense", "Prs") %}
 
     {% set conneg_prt = paradigm|by_tagset_value("negation", "ConNeg")
