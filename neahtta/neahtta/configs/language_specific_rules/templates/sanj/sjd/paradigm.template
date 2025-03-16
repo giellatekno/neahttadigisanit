@@ -411,7 +411,7 @@
                 <tr>
                     <th class="tag" lang="{{ _from }}">то̄нн</th>
                     <td lang="{{ _from }}">{{ neg_sg2|uniq|join("<br />", attribute="form")|safe }}</td>
-                    <td class="rightborder" lang="{{ _from }}">{{ imperative_singular|uniq|join("<br />", attribute="form")|safe }}</td>
+                    <td class="rightborder" lang="{{ _from }}">{{ imperative_singular|uniq|join("<br /> ", attribute="form")|title|safe }}</td> {# Space after br is important for title casing to work correctly #}
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">со̄нн</th>
@@ -426,7 +426,7 @@
                 <tr>
                     <th class="tag" lang="{{ _from }}">тыйй</th>
                     <td lang="{{ _from }}">{{ neg_pl2|uniq|join("<br />", attribute="form")|safe }}</td>
-                    <td class="rightborder" lang="{{ _from }}">{{ imperative_plural|uniq|join("<br />", attribute="form")|safe }}</td>
+                    <td class="rightborder" lang="{{ _from }}">{{ imperative_plural|uniq|join("<br /> ", attribute="form")|title|safe }}</td> {# Space after br is important for title casing to work correctly #}
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">сыйй</th>
@@ -449,7 +449,7 @@
                     <th class="tag" lang="{{ _from }}">то̄нн</th>
                     <td lang="{{ _from }}">{{ prs_sg2|uniq|join("<br />", attribute="form")|safe }}</td>
                     <td lang="{{ _from }}">{{ prt_sg2|uniq|join("<br />", attribute="form")|safe }}</td>
-                    <td class="rightborder" lang="{{ _from }}">{{ imperative_singular|uniq|join("<br />", attribute="form")|safe }}</td>
+                    <td class="rightborder" lang="{{ _from }}">{{ imperative_singular|uniq|join("<br /> ", attribute="form")|title|safe }}</td> {# Space after br is important for title casing to work correctly #}
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">со̄нн</th>
@@ -467,7 +467,7 @@
                     <th class="tag" lang="{{ _from }}">тыйй</th>
                     <td lang="{{ _from }}">{{ prs_pl2|uniq|join("<br />", attribute="form")|safe }}</td>
                     <td lang="{{ _from }}">{{ prt_pl2|uniq|join("<br />", attribute="form")|safe }}</td>
-                    <td class="rightborder" lang="{{ _from }}">{{ imperative_plural|uniq|join("<br />", attribute="form")|safe }}</td>
+                    <td class="rightborder" lang="{{ _from }}">{{ imperative_plural|uniq|join("<br /> ", attribute="form")|title|safe }}</td> {# Space after br is important for title casing to work correctly #}
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">сыйй</th>
