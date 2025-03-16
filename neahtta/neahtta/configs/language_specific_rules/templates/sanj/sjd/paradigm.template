@@ -359,8 +359,74 @@
             </tr>
             {% endif %}
 
+            {# Finite paradigm in a couple of variants #}
 
-            {% if lemma != "лӣннче" and lemma != "эйй" %}
+            {% if lemma == "лӣннче" %} {# if lemma == лӣннче, only show present ("future") forms #}
+                <tr>
+                    <th class="tag" lang="{{ _from }}">мунн</th>
+                    <td lang="{{ _from }}">{{ prs_sg1|uniq|join("<br />", attribute="form")|safe }}</td>
+                </tr>
+                <tr>
+                    <th class="tag" lang="{{ _from }}">то̄нн</th>
+                    <td lang="{{ _from }}">{{ prs_sg2|uniq|join("<br />", attribute="form")|safe }}</td>
+                </tr>
+                <tr>
+                    <th class="tag" lang="{{ _from }}">со̄нн</th>
+                    <td lang="{{ _from }}">{{ prs_sg3|uniq|join("<br />", attribute="form")|safe }}</td>
+                </tr>
+                <tr>
+                    <th class="tag" lang="{{ _from }}">мыйй</th>
+                    <td lang="{{ _from }}">{{ prs_pl1|uniq|join("<br />", attribute="form")|safe }}</td>
+                </tr>
+                <tr>
+                    <th class="tag" lang="{{ _from }}">тыйй</th>
+                    <td lang="{{ _from }}">{{ prs_pl2|uniq|join("<br />", attribute="form")|safe }}</td>
+                </tr>
+                <tr>
+                    <th class="tag" lang="{{ _from }}">сыйй</th>
+                    <td lang="{{ _from }}">{{ prs_pl3|uniq|join("<br />", attribute="form")|safe }}</td>
+                </tr>
+                <tr>
+                    <th class="tag" lang="{{ _from }}">безлич.</th>
+                    <td lang="{{ _from }}">{{ prs_sg4|uniq|join("<br />", attribute="form")|safe }}</td>
+                </tr>
+            {% elif lemma == "эйй" %} {# if lemma == эйй, only show two coloumns #}
+                <tr>
+                    <th class="tag" lang="{{ _from }}">мунн</th>
+                    <td lang="{{ _from }}">{{ neg_sg1|uniq|join("<br />", attribute="form")|safe }}</td>
+                    <td class="rightborder"/>
+                </tr>
+                <tr>
+                    <th class="tag" lang="{{ _from }}">то̄нн</th>
+                    <td lang="{{ _from }}">{{ neg_sg2|uniq|join("<br />", attribute="form")|safe }}</td>
+                    <td class="rightborder" lang="{{ _from }}">{{ imperative_singular|uniq|join("<br />", attribute="form")|safe }}</td>
+                </tr>
+                <tr>
+                    <th class="tag" lang="{{ _from }}">со̄нн</th>
+                    <td lang="{{ _from }}">{{ neg_sg3|uniq|join("<br />", attribute="form")|safe }}</td>
+                    <td class="bottomrightborder"/>
+                </tr>
+                <tr>
+                    <th class="tag" lang="{{ _from }}">мыйй</th>
+                    <td lang="{{ _from }}">{{ neg_pl1|uniq|join("<br />", attribute="form")|safe }}</td>
+                    <td class="rightborder"/>
+                </tr>
+                <tr>
+                    <th class="tag" lang="{{ _from }}">тыйй</th>
+                    <td lang="{{ _from }}">{{ neg_pl2|uniq|join("<br />", attribute="form")|safe }}</td>
+                    <td class="rightborder" lang="{{ _from }}">{{ imperative_plural|uniq|join("<br />", attribute="form")|safe }}</td>
+                </tr>
+                <tr>
+                    <th class="tag" lang="{{ _from }}">сыйй</th>
+                    <td lang="{{ _from }}">{{ neg_pl3|uniq|join("<br />", attribute="form")|safe }}</td>
+                    <td class="rightborder"/>
+                </tr>
+                <tr>
+                    <th class="tag" lang="{{ _from }}">безлич.</th>
+                    <td lang="{{ _from }}">{{ neg_sg4|uniq|join("<br />", attribute="form")|safe }}</td>
+                    <td class="bottomrightborder"/>
+                </tr>
+            {% else %} {# Default: sanj standard three-coloumn paradigm #}
                 <tr>
                     <th class="tag" lang="{{ _from }}">мунн</th>
                     <td lang="{{ _from }}">{{ prs_sg1|uniq|join("<br />", attribute="form")|safe }}</td>
@@ -441,74 +507,8 @@
                     <td lang="{{ _from }}">{{ ind_connegII|uniq|join('<br />', attribute='form')|safe }}</td>
                     <td class="rightborder"/>
                 </tr>
-            {% elif lemma == "лӣннче" %} {# if lemma == лӣннче, only show present forms #}
-                <tr>
-                    <th class="tag" lang="{{ _from }}">мунн</th>
-                    <td lang="{{ _from }}">{{ prs_sg1|uniq|join("<br />", attribute="form")|safe }}</td>
-                </tr>
-                <tr>
-                    <th class="tag" lang="{{ _from }}">то̄нн</th>
-                    <td lang="{{ _from }}">{{ prs_sg2|uniq|join("<br />", attribute="form")|safe }}</td>
-                </tr>
-                <tr>
-                    <th class="tag" lang="{{ _from }}">со̄нн</th>
-                    <td lang="{{ _from }}">{{ prs_sg3|uniq|join("<br />", attribute="form")|safe }}</td>
-                </tr>
-                <tr>
-                    <th class="tag" lang="{{ _from }}">мыйй</th>
-                    <td lang="{{ _from }}">{{ prs_pl1|uniq|join("<br />", attribute="form")|safe }}</td>
-                </tr>
-                <tr>
-                    <th class="tag" lang="{{ _from }}">тыйй</th>
-                    <td lang="{{ _from }}">{{ prs_pl2|uniq|join("<br />", attribute="form")|safe }}</td>
-                </tr>
-                <tr>
-                    <th class="tag" lang="{{ _from }}">сыйй</th>
-                    <td lang="{{ _from }}">{{ prs_pl3|uniq|join("<br />", attribute="form")|safe }}</td>
-                </tr>
-                <tr>
-                    <th class="tag" lang="{{ _from }}">безлич.</th>
-                    <td lang="{{ _from }}">{{ prs_sg4|uniq|join("<br />", attribute="form")|safe }}</td>
-                </tr>
-            {% else %} {# if lemma == эйй, only show one coloumn #}
-                <tr>
-                    <th class="tag" lang="{{ _from }}">мунн</th>
-                    <td lang="{{ _from }}">{{ neg_sg1|uniq|join("<br />", attribute="form")|safe }}</td>
-                    <td class="rightborder"/>
-                </tr>
-                <tr>
-                    <th class="tag" lang="{{ _from }}">то̄нн</th>
-                    <td lang="{{ _from }}">{{ neg_sg2|uniq|join("<br />", attribute="form")|safe }}</td>
-                    <td class="rightborder" lang="{{ _from }}">{{ imperative_singular|uniq|join("<br />", attribute="form")|safe }}</td>
-                </tr>
-                <tr>
-                    <th class="tag" lang="{{ _from }}">со̄нн</th>
-                    <td lang="{{ _from }}">{{ neg_sg3|uniq|join("<br />", attribute="form")|safe }}</td>
-                    <td class="bottomrightborder"/>
-                </tr>
-                <tr>
-                    <th class="tag" lang="{{ _from }}">мыйй</th>
-                    <td lang="{{ _from }}">{{ neg_pl1|uniq|join("<br />", attribute="form")|safe }}</td>
-                    <td class="rightborder"/>
-                </tr>
-                <tr>
-                    <th class="tag" lang="{{ _from }}">тыйй</th>
-                    <td lang="{{ _from }}">{{ neg_pl2|uniq|join("<br />", attribute="form")|safe }}</td>
-                    <td class="rightborder" lang="{{ _from }}">{{ imperative_plural|uniq|join("<br />", attribute="form")|safe }}</td>
-                </tr>
-                <tr>
-                    <th class="tag" lang="{{ _from }}">сыйй</th>
-                    <td lang="{{ _from }}">{{ neg_pl3|uniq|join("<br />", attribute="form")|safe }}</td>
-                    <td class="rightborder"/>
-                </tr>
-                <tr>
-                    <th class="tag" lang="{{ _from }}">безлич.</th>
-                    <td lang="{{ _from }}">{{ neg_sg4|uniq|join("<br />", attribute="form")|safe }}</td>
-                    <td class="bottomrightborder"/>
-                </tr>
             {% endif %}
 
-        {% if lemma != "лӣннче" %}
             {% if perfect_participle %}
                   <tr><td class="separatingcell" colspan="4">&nbsp;</td></tr>
                   <tr>
@@ -548,9 +548,8 @@
                     <td lang="{{ _from }}">ле̄в</th>
                     <td lang="{{ _from }}">ле̄йенҍ</th>
                   </tr>
-                </table>
             {% endif %}
-        {% endif %}
+        </table>
     {% endif %} {# paradigm_exists #}
 
 {% elif pos|upper == 'N' or pos|upper == 'NUM' %}
