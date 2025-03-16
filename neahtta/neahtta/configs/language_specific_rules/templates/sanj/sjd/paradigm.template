@@ -67,7 +67,8 @@
                                 |without_tagset("negation") %}
 
     {% set prt_sg3  =   paradigm|by_tagset_value("tense", "Prt")
-                                |by_tagset_value("number", "Sg3") %}
+                                |by_tagset_value("number", "Sg3")
+                                |without_tagset("negation") %}
 
     {% set prt_pl1  =   paradigm|by_tagset_value("tense", "Prt")
                                 |by_tagset_value("number", "Pl1") %}
@@ -90,7 +91,8 @@
                                 |by_tagset_value("number", "Sg2") %}
 
     {% set pot_sg3  =   paradigm|by_tagset_value("mode", "Pot")
-                                |by_tagset_value("number", "Sg3") %}
+                                |by_tagset_value("number", "Sg3")
+                                |without_tagset("negation") %}
 
     {% set pot_pl1  =   paradigm|by_tagset_value("mode", "Pot")
                                 |by_tagset_value("number", "Pl1") %}
@@ -156,6 +158,7 @@
 
     {% set negative_prs_sg3 = paradigm|by_tagset_value("negative", "Neg")
                                       |by_tagset_value("tense", "Prs")
+                                      |by_tagset_value("mode", "Ind")
                                       |by_tagset_value("number", "Sg3") %}
 
     {% set negative_prs_pl3 = paradigm|by_tagset_value("negative", "Neg")
@@ -169,13 +172,6 @@
     {% set negative_pot_sg3 = paradigm|by_tagset_value("negative", "Neg")
                                       |by_tagset_value("mode", "Pot")
                                       |by_tagset_value("number", "Sg3") %}
-    
-    {# As long as the paradigm files are in order, this will zip
-    accurately. If not we need to manually select each form and display
-    it. #}
-
-    {# Use izip_longest to fill in the extra blanks spaces when one list
-       ends first #}
 
     {# strip some parts of the tags that we don't need #}
 
@@ -609,8 +605,8 @@
                 <tr>
                     <th class="tag" lang="{{ _from }}">мыйй ебпь</th>
                     <td style="vertical-align: middle;" rowspan="2" lang="{{ _from }}">{{ conneg_prs|uniq|join('<br />', attribute='form')|safe }}</td>
-                    <td style="vertical-align: middle;" rowspan="4" lang="{{ _from }}">{{ conneg_prt|uniq|join('<br />', attribute='form')|safe }}</td>
-                    <td style="vertical-align: middle;" rowspan="4" lang="{{ _from }}">{{ conneg_pot|uniq|join('<br />', attribute='form')|safe }}</td>
+                    <td style="vertical-align: middle;" rowspan="2" lang="{{ _from }}">{{ conneg_prt|uniq|join('<br />', attribute='form')|safe }}</td>
+                    <td style="vertical-align: middle;" rowspan="2" lang="{{ _from }}">{{ conneg_pot|uniq|join('<br />', attribute='form')|safe }}</td>
                     <td class="rightborder"/>
                 </tr>
                 <tr>
@@ -620,11 +616,15 @@
                 <tr>
                     <th class="tag" lang="{{ _from }}">сыйй</th>
                     <td lang="{{ _from }}">{{ negative_prs_pl3|uniq|join('<br />', attribute='form')|safe }}</td>
+                    <td lang="{{ _from }}">ев {{ conneg_prt|uniq|join('<br />ев ', attribute='form')|safe }}</td>
+                    <td lang="{{ _from }}">ев {{ conneg_pot|uniq|join('<br />ев ', attribute='form')|safe }}</td>
                     <td class="rightborder"/>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">едтҍ</th>
                     <td lang="{{ _from }}">{{ ind_connegII|uniq|join('<br />', attribute='form')|safe }}</td>
+                    <td lang="{{ _from }}">{{ conneg_prt|uniq|join('<br />', attribute='form')|safe }}</td>
+                    <td lang="{{ _from }}">{{ conneg_pot|uniq|join('<br />', attribute='form')|safe }}</td>
                     <td class="bottomrightborder"/>
                 </tr>
             {% elif lemma != "лӣннче" and lemma != "эйй" %} {# Standard negative paradigm #}
