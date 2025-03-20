@@ -480,98 +480,88 @@
                     <td lang="{{ _from }}">{{ neg_sg4|uniq|join("<br />", attribute="form")|safe }}</td>
                     <td class="bottomrightborder"/>
                 </tr>
-            {% elif lemma == "лӣйе" %} {# if lemma == эйй, also show future forms #}
+            {% elif lemma == "лӣйе" %} {# if lemma == лӣйе, also show future forms #}
                 <tr>
                     <th class="tag" lang="{{ _from }}">мунн</th>
                     <td lang="{{ _from }}">{{ prs_sg1|uniq|join("<br />", attribute="form")|safe }}</td>
                     <td lang="{{ _from }}">{{ prt_sg1|uniq|join("<br />", attribute="form")|safe }}</td>
                     <td lang="{{ _from }}">{{ pot_sg1|uniq|join("<br />", attribute="form")|safe }}</td>
-                    <td class="rightborder"/>
+                    <td style="vertical-align: middle;" rowspan="3" lang="{{ _from }}">{{ imperative_singular|uniq|join("<br /> ", attribute="form")|title|safe }}</td> {# Space after br is important for title casing to work correctly #}
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">то̄нн</th>
                     <td lang="{{ _from }}">{{ prs_sg2|uniq|join("<br />", attribute="form")|safe }}</td>
                     <td lang="{{ _from }}">{{ prt_sg2|uniq|join("<br />", attribute="form")|safe }}</td>
                     <td lang="{{ _from }}">{{ pot_sg2|uniq|join("<br />", attribute="form")|safe }}</td>
-                    <td class="rightborder" lang="{{ _from }}">{{ imperative_singular|uniq|join("<br /> ", attribute="form")|title|safe }}</td> {# Space after br is important for title casing to work correctly #}
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">со̄нн</th>
                     <td lang="{{ _from }}">{{ prs_sg3|uniq|join("<br />", attribute="form")|safe }}</td>
                     <td lang="{{ _from }}">{{ prt_sg3|uniq|join("<br />", attribute="form")|safe }}</td>
                     <td lang="{{ _from }}">{{ pot_sg3|uniq|join("<br />", attribute="form")|safe }}</td>
-                    <td class="bottomrightborder"/>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">мыйй</th>
                     <td lang="{{ _from }}">{{ prs_pl1|uniq|join("<br />", attribute="form")|safe }}</td>
                     <td lang="{{ _from }}">{{ prt_pl1|uniq|join("<br />", attribute="form")|safe }}</td>
                     <td lang="{{ _from }}">{{ pot_pl1|uniq|join("<br />", attribute="form")|safe }}</td>
-                    <td class="rightborder"/>
+                    <td style="vertical-align: middle;" rowspan="4" lang="{{ _from }}">{{ imperative_plural|uniq|join("<br /> ", attribute="form")|title|safe }}</td> {# Space after br is important for title casing to work correctly #}
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">тыйй</th>
                     <td lang="{{ _from }}">{{ prs_pl2|uniq|join("<br />", attribute="form")|safe }}</td>
                     <td lang="{{ _from }}">{{ prt_pl2|uniq|join("<br />", attribute="form")|safe }}</td>
                     <td lang="{{ _from }}">{{ pot_pl2|uniq|join("<br />", attribute="form")|safe }}</td>
-                    <td class="rightborder" lang="{{ _from }}">{{ imperative_plural|uniq|join("<br /> ", attribute="form")|title|safe }}</td> {# Space after br is important for title casing to work correctly #}
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">сыйй</th>
                     <td lang="{{ _from }}">{{ prs_pl3|uniq|join("<br />", attribute="form")|safe }}</td>
                     <td lang="{{ _from }}">{{ prt_pl3|uniq|join("<br />", attribute="form")|safe }}</td>
                     <td lang="{{ _from }}">{{ pot_pl3|uniq|join("<br />", attribute="form")|safe }}</td>
-                    <td class="rightborder"/>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">безлич.</th>
                     <td lang="{{ _from }}">{{ prs_sg4|uniq|join("<br />", attribute="form")|safe }}</td>
                     <td lang="{{ _from }}">{{ prt_sg4|uniq|join("<br />", attribute="form")|safe }}</td>
                     <td lang="{{ _from }}">{{ pot_sg4|uniq|join("<br />", attribute="form")|safe }}</td>
-                    <td class="bottomrightborder"/>
                 </tr>
             {% else %} {# Default: sanj standard three-coloumn paradigm #}
                 <tr>
                     <th class="tag" lang="{{ _from }}">мунн</th>
                     <td lang="{{ _from }}">{{ prs_sg1|uniq|join("<br />", attribute="form")|safe }}</td>
                     <td lang="{{ _from }}">{{ prt_sg1|uniq|join("<br />", attribute="form")|safe }}</td>
-                    <td class="rightborder"/>
+                    <td style="vertical-align: middle;" rowspan="3" lang="{{ _from }}">{{ imperative_singular|uniq|join("<br /> ", attribute="form")|title|safe }}</td> {# Space after br is important for title casing to work correctly #}
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">то̄нн</th>
                     <td lang="{{ _from }}">{{ prs_sg2|uniq|join("<br />", attribute="form")|safe }}</td>
                     <td lang="{{ _from }}">{{ prt_sg2|uniq|join("<br />", attribute="form")|safe }}</td>
-                    <td class="rightborder" lang="{{ _from }}">{{ imperative_singular|uniq|join("<br /> ", attribute="form")|title|safe }}</td> {# Space after br is important for title casing to work correctly #}
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">со̄нн</th>
                     <td lang="{{ _from }}">{{ prs_sg3|uniq|join("<br />", attribute="form")|safe }}</td>
                     <td lang="{{ _from }}">{{ prt_sg3|uniq|join("<br />", attribute="form")|safe }}</td>
-                    <td class="bottomrightborder"/>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">мыйй</th>
                     <td lang="{{ _from }}">{{ prs_pl1|uniq|join("<br />", attribute="form")|safe }}</td>
                     <td lang="{{ _from }}">{{ prt_pl1|uniq|join("<br />", attribute="form")|safe }}</td>
-                    <td class="rightborder"/>
+                    <td style="vertical-align: middle;" rowspan="4" lang="{{ _from }}">{{ imperative_plural|uniq|join("<br /> ", attribute="form")|title|safe }}</td> {# Space after br is important for title casing to work correctly #}
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">тыйй</th>
                     <td lang="{{ _from }}">{{ prs_pl2|uniq|join("<br />", attribute="form")|safe }}</td>
                     <td lang="{{ _from }}">{{ prt_pl2|uniq|join("<br />", attribute="form")|safe }}</td>
-                    <td class="rightborder" lang="{{ _from }}">{{ imperative_plural|uniq|join("<br /> ", attribute="form")|title|safe }}</td> {# Space after br is important for title casing to work correctly #}
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">сыйй</th>
                     <td lang="{{ _from }}">{{ prs_pl3|uniq|join("<br />", attribute="form")|safe }}</td>
                     <td lang="{{ _from }}">{{ prt_pl3|uniq|join("<br />", attribute="form")|safe }}</td>
-                    <td class="rightborder"/>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">безлич.</th>
                     <td lang="{{ _from }}">{{ prs_sg4|uniq|join("<br />", attribute="form")|safe }}</td>
                     <td lang="{{ _from }}">{{ prt_sg4|uniq|join("<br />", attribute="form")|safe }}</td>
-                    <td class="bottomrightborder"/>
                 </tr>
             {% endif %}
             {# Negative paradigm in two variants #}
@@ -589,43 +579,38 @@
                     <td style="vertical-align: middle;" rowspan="2" lang="{{ _from }}">{{ conneg_prs|uniq|join('<br />', attribute='form')|safe }}</td>
                     <td style="vertical-align: middle;" rowspan="2" lang="{{ _from }}">{{ conneg_prt|uniq|join('<br />', attribute='form')|safe }}</td>
                     <td style="vertical-align: middle;" rowspan="2" lang="{{ _from }}">{{ conneg_pot|uniq|join('<br />', attribute='form')|safe }}</td>
-                    <td class="rightborder"/>
+                    <td style="vertical-align: middle;" rowspan="3" lang="{{ _from }}">{{ imprt_conneg|uniq|join('<br />', attribute='form')|safe }}</td>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">то̄нн эгк</th>
-                    <td class="rightborder" lang="{{ _from }}">{{ imprt_conneg|uniq|join('<br />', attribute='form')|safe }}</td>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">со̄нн</th>
                     <td lang="{{ _from }}">{{ negative_prs_sg3|uniq|join('<br />', attribute='form')|safe }}</td>
                     <td lang="{{ _from }}">{{ negative_prt_sg3|uniq|join('<br />', attribute='form')|safe }}<br/>эйй лӣййма,<br/>эйй лӣйймэнч</td>
                     <td lang="{{ _from }}">{{ negative_pot_sg3|uniq|join('<br />', attribute='form')|safe }}<br/>эйй лӣннче</td>
-                    <td class="bottomrightborder"></td>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">мыйй ебпь</th>
                     <td style="vertical-align: middle;" rowspan="2" lang="{{ _from }}">{{ conneg_prs|uniq|join('<br />', attribute='form')|safe }}</td>
                     <td style="vertical-align: middle;" rowspan="2" lang="{{ _from }}">{{ conneg_prt|uniq|join('<br />', attribute='form')|safe }}</td>
                     <td style="vertical-align: middle;" rowspan="2" lang="{{ _from }}">{{ conneg_pot|uniq|join('<br />', attribute='form')|safe }}</td>
-                    <td class="rightborder"/>
+                    <td style="vertical-align: middle;" rowspan="4" lang="{{ _from }}">{{ imprt_connegII|uniq|join('<br />', attribute='form')|safe }}</td>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">тыйй ебпе</th>
-                    <td class="rightborder" lang="{{ _from }}">{{ imprt_connegII|uniq|join('<br />', attribute='form')|safe }}</td>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">сыйй</th>
                     <td lang="{{ _from }}">{{ negative_prs_pl3|uniq|join('<br />', attribute='form')|safe }}</td>
                     <td lang="{{ _from }}">ев {{ conneg_prt|uniq|join('<br />ев ', attribute='form')|safe }}</td>
                     <td lang="{{ _from }}">ев {{ conneg_pot|uniq|join('<br />ев ', attribute='form')|safe }}</td>
-                    <td class="rightborder"/>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">едтҍ</th>
                     <td lang="{{ _from }}">{{ ind_connegII|uniq|join('<br />', attribute='form')|safe }}</td>
                     <td lang="{{ _from }}">{{ conneg_prt|uniq|join('<br />', attribute='form')|safe }}</td>
                     <td lang="{{ _from }}">{{ conneg_pot|uniq|join('<br />', attribute='form')|safe }}</td>
-                    <td class="bottomrightborder"/>
                 </tr>
             {% elif lemma != "лӣннче" and lemma != "эйй" %} {# Standard negative paradigm #}
                 <tr><td class="separatingcell" colspan="4">&nbsp;</td></tr>
@@ -639,32 +624,27 @@
                     <th class="tag" lang="{{ _from }}">мунн эмм</th>
                     <td style="vertical-align: middle;" rowspan="6" lang="{{ _from }}">{{ conneg_prs|uniq|join('<br />', attribute='form')|safe }}</td>
                     <td style="vertical-align: middle;" rowspan="7" lang="{{ _from }}">{{ conneg_prt|uniq|join('<br />', attribute='form')|safe }}</td>
-                    <td class="rightborder"/>
+                    <td style="vertical-align: middle;" rowspan="3" lang="{{ _from }}">{{ imprt_conneg|uniq|join('<br />', attribute='form')|safe }}</td>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">то̄нн эгк</th>
-                    <td class="rightborder" lang="{{ _from }}">{{ imprt_conneg|uniq|join('<br />', attribute='form')|safe }}</td>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">со̄нн эйй</th>
-                    <td class="bottomrightborder"></td>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">мыйй ебпь</th>
-                    <td class="rightborder"/>
+                    <td style="vertical-align: middle;" rowspan="4" lang="{{ _from }}">{{ imprt_connegII|uniq|join('<br />', attribute='form')|safe }}</td>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">тыйй ебпе</th>
-                    <td class="rightborder" lang="{{ _from }}">{{ imprt_connegII|uniq|join('<br />', attribute='form')|safe }}</td>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">сыйй ев</th>
-                    <td class="rightborder"/>
                 </tr>
                 <tr>
                     <th class="tag" lang="{{ _from }}">едтҍ</th>
                     <td lang="{{ _from }}">{{ ind_connegII|uniq|join('<br />', attribute='form')|safe }}</td>
-                    <td class="rightborder"/>
                 </tr>
             {% endif %}
 
