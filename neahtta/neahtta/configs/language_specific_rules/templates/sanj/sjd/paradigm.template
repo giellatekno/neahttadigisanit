@@ -783,7 +783,6 @@
     {% if two_columns %}
 
         {% if paradigm_exists %}
-
             <table class="tableparadigm miniparadigm">
                 <tr>
                     <th class="header"></th>
@@ -794,18 +793,21 @@
             {%- for sgs, pls in zipped_numbers -%}
                 <tr>
                 <th class="tag" lang="{{ _to }}">{{ contexts[loop.index - 1] }}</th>
-
-                {% if sgs and sgs != '-' %}
-                    <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form')|safe }}</td>
+                {% if sgs and sgs != '-' and (sgs|first).form==(pls|first).form %} {# if singular and plural are the same, merge into one cell #}
+                    <td colspan="2" style="text-align: center;" lang="{{ _from }}">{{ sgs|join('<br />', attribute='form')|safe }}</td>
                 {% else %}
-                    <td lang="{{ _from }}" class="center">&mdash;</td>
-                {% endif %}
+                    {% if sgs and sgs != '-' %}
+                        <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form')|safe }}</td>
+                    {% else %}
+                        <td lang="{{ _from }}" class="center">&mdash;</td>
+                    {% endif %}
 
-                {% if pls and pls != '-' %}
-                    <td lang="{{ _from }}">{{ pls|join('<br />', attribute='form')|safe }}</td>
-                {% else %}
-                    <td lang="{{ _from }}" class="center">&mdash;</td>
-                {% endif %}
+                    {% if pls and pls != '-' %}
+                        <td lang="{{ _from }}">{{ pls|join('<br />', attribute='form')|safe }}</td>
+                    {% else %}
+                        <td lang="{{ _from }}" class="center">&mdash;</td>
+                    {% endif %}
+                {% endif %} {# sgs == pls #}
 
                 </tr>
             {%- endfor -%}  
@@ -842,7 +844,7 @@
     {% endif %}
 
 
-{% else %}
+{% else %} {# different POS #}
     <dl class="dl-horizontal miniparadigm">
         {%- for form in paradigm -%}
 
