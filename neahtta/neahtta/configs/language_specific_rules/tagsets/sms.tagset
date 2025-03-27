@@ -78,6 +78,15 @@ nonfinite:
   - Imprt
 connegative:
   - ConNeg
+possessives:
+  - PxSg1
+  - PxSg2
+  - PxSg3
+  - PxPl1
+  - PxPl2
+  - PxPl3
+diminutives:
+  - Der/Dimin
 invisible_in_adj_paradigms:
  - "A"
 invisible_in_noun_paradigms:

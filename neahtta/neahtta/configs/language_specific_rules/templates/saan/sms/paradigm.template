@@ -59,16 +59,21 @@
 
 {%- if pos|upper == 'N' or pos|upper == 'NUM' or pos|upper == 'A' and pos_type != 'Prop' %}
 
-    {% set sg_forms = paradigm|by_tagset_value("number", "Sg")|group_by_tag %}
-    {% set pl_forms = paradigm|by_tagset_value("number", "Pl")|group_by_tag %}
+    {% set sg_case_forms = paradigm|by_tagset_value("number", "Sg")|without_tagset("diminutives")|without_tagset("possessives")|group_by_tag %}
+    {% set pl_case_forms = paradigm|by_tagset_value("number", "Pl")|without_tagset("diminutives")|without_tagset("possessives")|group_by_tag %}
+    {% set sg_diminutives = paradigm|by_tagset_value("number", "Sg")|by_tagset("diminutives")|group_by_tag %}
+    {% set pl_diminutives = paradigm|by_tagset_value("number", "Pl")|by_tagset("diminutives")|group_by_tag %}
+    {% set possessives = paradigm|by_tagset("possessives") %}
 
     {# Use izip_longest to fill in the extra blanks spaces when one list
        ends first #}
 
-    {% set zipped_numbers = izip_longest(sg_forms, pl_forms, fillvalue='-')|list %}
+    {% set zipped_numbers = izip_longest(sg_case_forms, pl_case_forms, fillvalue='-')|list %}
     {% set paradigm_exists = zipped_numbers|length > 0 %}
 
-    {% set numberless_forms = paradigm|by_tagset("nouns_null_number") %}
+    {% set numberless_case_forms = paradigm|by_tagset("nouns_null_number")|without_tagset("possessives") %}
+
+    {% set zipped_diminutives = izip_longest(sg_diminutives, pl_diminutives, fillvalue='-')|list %}
 
     {% set sg_text = "Sg"|tagfilter(_from, _to) %}
     {% set pl_text = "Pl"|tagfilter(_from, _to) %}
@@ -163,7 +168,7 @@
                 {%- endfor -%}
 
                 {# sg4? 
-                {%- for form in numberless_forms -%}
+                {%- for form in numberless_case_forms -%}
                     <tr>
                     {% if form.tag %}
                         <th class="tag" lang="{{ _to }}">{{ clean_tag(form.tag)  }}</th>
@@ -242,7 +247,48 @@
             {%- endfor -%}
 
 
-            {%- for form in numberless_forms -%}
+            {%- for form in numberless_case_forms -%}
+                <tr>
+                {% if form.tag %}
+                    <th class="tag" lang="{{ _to }}">{{ clean_tag(form.tag)  }}</th>
+                {% endif %}
+
+                {% if form.form %}
+                    <td colspan="2" lang="{{ _from }}" class="center">{{ form.form }}</td>
+                {% else %}
+                    <td colspan="2" lang="{{ _from }}">?</td>
+                {% endif %}
+
+                </tr>
+            {%- endfor -%}
+
+            {% for sgs, pls in zipped_diminutives %}
+                <tr>
+
+                {% if sgs[0].tag %}
+                    {% set tag_display = clean_tag(sgs[0].tag) %}
+                {% elif pls[0].tag %}
+                    {% set tag_display = clean_tag(pls[0].tag) %}
+                {% endif %}
+
+                <th class="tag" lang="{{ _to }}">{{ tag_display }}</th>
+
+                {% if sgs and sgs != '-' %}
+                    <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form')|safe }}</td>
+                {% else %}
+                    <td lang="{{ _from }}" class="center">&mdash;</td>
+                {% endif %}
+
+                {% if pls and pls != '-' %}
+                    <td lang="{{ _from }}">{{ pls|join('<br />', attribute='form')|safe }}</td>
+                {% else %}
+                    <td lang="{{ _from }}" class="center">&mdash;</td>
+                {% endif %}
+
+                </tr>
+            {% endfor %}
+
+            {%- for form in possessives -%}
                 <tr>
                 {% if form.tag %}
                     <th class="tag" lang="{{ _to }}">{{ clean_tag(form.tag)  }}</th>
