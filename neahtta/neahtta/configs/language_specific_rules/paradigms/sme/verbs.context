@@ -186,39 +186,39 @@
 # negation
 
 - entry_context: "mun"
-  tag_context: "IV+Neg+Ind+Sg1"
+  tag_context: "Neg+Ind+Sg1"
   template: "(mun) {{ word_form }}"
 
 - entry_context: "mun"
-  tag_context: "IV+Neg+Ind+Sg2"
+  tag_context: "Neg+Ind+Sg2"
   template: "(don) {{ word_form }}"
 
 - entry_context: "mun"
-  tag_context: "IV+Neg+Ind+Sg3"
+  tag_context: "Neg+Ind+Sg3"
   template: "(son) {{ word_form }}"
 
 - entry_context: "mun"
-  tag_context: "IV+Neg+Ind+Du1"
+  tag_context: "Neg+Ind+Du1"
   template: "(moai) {{ word_form }}"
 
 - entry_context: "mun"
-  tag_context: "IV+Neg+Ind+Du2"
+  tag_context: "Neg+Ind+Du2"
   template: "(doai) {{ word_form }}"
 
 - entry_context: "mun"
-  tag_context: "IV+Neg+Ind+Du3"
+  tag_context: "Neg+Ind+Du3"
   template: "(soai) {{ word_form }}"
 
 - entry_context: "mun"
-  tag_context: "IV+Neg+Ind+Pl1"
+  tag_context: "Neg+Ind+Pl1"
   template: "(mii) {{ word_form }}"
 
 - entry_context: "mun"
-  tag_context: "IV+Neg+Ind+Pl2"
+  tag_context: "Neg+Ind+Pl2"
   template: "(dii) {{ word_form }}"
 
 - entry_context: "mun"
-  tag_context: "IV+Neg+Ind+Pl3"
+  tag_context: "Neg+Ind+Pl3"
   template: "(sii) {{ word_form }}"
 
 # negative supinum
@@ -227,37 +227,37 @@
 # way: IV_Neg_Sup_Sg1
 
 - entry_context: None
-  tag_context: "IV+Neg+Sup+Sg1"
+  tag_context: "Neg+Sup+Sg1"
   template: "{{ word_form }} (mun)"
 
 - entry_context: None
-  tag_context: "IV+Neg+Sup+Sg2"
+  tag_context: "Neg+Sup+Sg2"
   template: "{{ word_form }} (don)"
 
 - entry_context: None
-  tag_context: "IV+Neg+Sup+Sg3"
+  tag_context: "Neg+Sup+Sg3"
   template: "{{ word_form }} (son)"
 
 - entry_context: None
-  tag_context: "IV+Neg+Sup+Du1"
+  tag_context: "Neg+Sup+Du1"
   template: "{{ word_form }} (moai)"
 
 - entry_context: None
-  tag_context: "IV+Neg+Sup+Du2"
+  tag_context: "Neg+Sup+Du2"
   template: "{{ word_form }} (doai)"
 
 - entry_context: None
-  tag_context: "IV+Neg+Sup+Du3"
+  tag_context: "Neg+Sup+Du3"
   template: "{{ word_form }} (soai)"
 
 - entry_context: None
-  tag_context: "IV+Neg+Sup+Pl1"
+  tag_context: "Neg+Sup+Pl1"
   template: "{{ word_form }} (mii)"
 
 - entry_context: None
-  tag_context: "IV+Neg+Sup+Pl2"
+  tag_context: "Neg+Sup+Pl2"
   template: "{{ word_form }} (dii)"
 
 - entry_context: None
-  tag_context: "IV+Neg+Sup+Pl3"
+  tag_context: "Neg+Sup+Pl3"
   template: "{{ word_form }} (sii)"
