@@ -20,9 +20,13 @@ morphology:
 {{ lemma }}+N+Ess
 {{ lemma }}+N+Par
 {{ lemma }}+N+Der/Dimin+N+Sg+Nom
+{{ lemma }}+N+Der/Dimin+N+Sg+Gen
 {{ lemma }}+N+Der/Dimin+N+Sg+Ill
+{{ lemma }}+N+Der/Dimin+N+Sg+Loc
 {{ lemma }}+N+Der/Dimin+N+Pl+Nom
-{{ lemma }}+N+Der/Dimin+N+Pl+Acc
+{{ lemma }}+N+Der/Dimin+N+Pl+Gen
+{{ lemma }}+N+Der/Dimin+N+Pl+Ill
+{{ lemma }}+N+Der/Dimin+N+Pl+Loc
 {{ lemma }}+N+Sg+Loc+PxSg1
 {{ lemma }}+N+Ess+PxSg1
 {{ lemma }}+N+Sg+Loc+PxSg3

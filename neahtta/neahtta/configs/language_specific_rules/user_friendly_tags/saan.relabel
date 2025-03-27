@@ -70,6 +70,8 @@ Relabel:
       pr: "prep."
       pron: "pron."
       prop: "erisnimi"
+      Der/Comp: "komparatiivi"
+      Der/Superl: "superlatiivi"
 
       # taken from tag-no.regex, these are the things that need relabeling
       # in generation
