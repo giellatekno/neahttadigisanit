@@ -669,10 +669,10 @@ msgid ""
 "using, or what word you\n"
 "                were searching for when you encountered the problem."
 msgstr ""
-"Hvis du finner noe galt, ta kontakt med oss. Bekriv problemet,\n"
+"Hvis du finner noe galt, ta kontakt med oss. Beskriv problemet,\n"
 "                og fortell hvilket internettprogram eller mobiltelefon du"
 " brukte, og hvilket ord du\n"
-"                letet etter da problemet oppsto."
+"                lette etter da problemet oppsto."
 
 #: neahtta/configs/language_specific_rules/templates/about.template:78
 #: neahtta/configs/language_specific_rules/templates/about.template:83
@@ -771,10 +771,10 @@ msgid ""
 " what word you\n"
 "          were searching for when you encountered the problem."
 msgstr ""
-"Hvis du finner noe galt, ta kontakt med oss. Bekriv problemet,\n"
+"Hvis du finner noe galt, ta kontakt med oss. Beskriv problemet,\n"
 "                og fortell hvilket internettprogram eller mobiltelefon du"
 " brukte, og hvilket ord du\n"
-"                letet etter da problemet oppsto."
+"                lette etter da problemet oppsto."
 
 #: neahtta/configs/language_specific_rules/templates/footer.template:9
 #: neahtta/configs/language_specific_rules/templates/gunaha/footer.template:13
@@ -1435,7 +1435,7 @@ msgid ""
 " work was financed by the Ministry of Local Government and Modernisation."
 msgstr ""
 "Omtrent halvparten av innholdet i ordbøkene er hentet fra et "
-"parallelkorpus av administrative tekster, finansiert av Kommunal- og "
+"parallellkorpus av administrative tekster, finansiert av Kommunal- og "
 "administrasjonsdepartementet."
 
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:61
@@ -2215,7 +2215,7 @@ msgid ""
 "options for the %(app_name)s Reader to work.\n"
 msgstr ""
 "Nettleseren din er støttet, men du må endre noen\n"
-"innstillnger for å få  %(app_name)s leseren til å fungere.\n"
+"innstillinger for å få  %(app_name)s leseren til å fungere.\n"
 
 #: neahtta/templates/reader_update.html:1
 msgid ""
