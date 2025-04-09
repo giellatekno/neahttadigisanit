@@ -112,7 +112,7 @@
 
 - entry_context: "net"
   tag_context: "V+Ind+Prt+ConNeg"
-  template: "(ikte eai) {{ word_form }}"
+  template: "(eilen ei) {{ word_form }}"
 
 - entry_context: "net"
   tag_context: "V+PrfPrc"
