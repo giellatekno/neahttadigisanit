@@ -1509,6 +1509,8 @@ msgid ""
 "href=\"/SoMe/nob/\">tolerant mode</a>, which allows you to type "
 "<em>acdnstz</em> for <em>áčđŋšŧž</em>."
 msgstr ""
+"Hvis du leter etter andre språk kan du se våre  <a href=\"/more/\">andre "
+"ordbøker</a>."
 
 #: neahtta/configs/language_specific_rules/templates/sanit/search_info.template:13
 msgid ""
