@@ -84,7 +84,7 @@
                 </div>
                 <div class="hidden-phone">
                     <br />
-                    <a class="btn-contact-thing btn btn-large btn-primary" type="button" href="mailto:giellatekno@uit.no">{% trans %}Contact us{% endtrans %}</a>
+                    <a class="btn-contact-thing btn btn-large btn-primary" type="button" href="mailto:giellatekno@uit.no">{% trans %}Contact us{% endtrans %} (giellatekno@uit.no)</a>
                     <br />
                     <br />
                 </div>
