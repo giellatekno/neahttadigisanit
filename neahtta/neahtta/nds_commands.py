@@ -303,11 +303,23 @@ def _compile_dicts(project, force=None):
             print(CYAN("skipped"), "(no updates)")
             n_no_updates += 1
         else:
-            n_entries = merge_giella_dicts(src_dir, compiled_file.resolve())
-            n += 1
-            print(GREEN("done"), f"({n_entries} entries total)")
-            if source == "sme" and target == "nob":
-                did_smenob = True
+            n_entries, errors = merge_giella_dicts(
+                src_dir,
+                compiled_file.resolve(),
+                return_errors=True,
+                print_errors=False,
+                dtd_validate=True,
+                write_file_on_errors=False,
+            )
+            if errors:
+                print(RED("failed"))
+                for file, error_msg in errors:
+                    print(file, error_msg)
+            else:
+                n += 1
+                print(GREEN("done"), f"({n_entries} entries total)")
+                if source == "sme" and target == "nob":
+                    did_smenob = True
 
     if n_no_updates > 0:
         print(
