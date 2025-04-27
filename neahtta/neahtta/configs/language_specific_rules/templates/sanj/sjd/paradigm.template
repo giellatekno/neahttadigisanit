@@ -685,7 +685,7 @@
                   <tr>
                     <th class="tag" lang="{{ _from }}">сыйй</th>
                     <td lang="{{ _from }}">ле̄в</th>
-                    <td lang="{{ _from }}">ле̄йенҍ</th>
+                    <td lang="{{ _from }}">лӣйенҍ</th>
                   </tr>
             {% endif %}
         </table>
