@@ -212,7 +212,7 @@ def needs_update(xml_files: list[Path], compiled_file: Path):
     return last_source_mtime > last_compiled_file_mtime
 
 
-def compile_dicts(project, force=None):
+def compile_dicts(project, force=None, no_xmllint=False):
     """Compile the merged .xml dictionary file from dictionary sources for
     the given project. By default, if the existing merged file is newer than
     the source directory, that dictionary will be skipped. Use --force to
@@ -221,12 +221,15 @@ def compile_dicts(project, force=None):
     if project == "all":
         for project in sorted(available_projects()):
             try:
-                return _compile_dicts(project, force=force)
-                print()
+                return _compile_dicts(
+                    project,
+                    force=force,
+                    no_xmllint=no_xmllint,
+                )
             except NotImplementedError:
                 print("TODO!")
     else:
-        return _compile_dicts(project, force=force)
+        return _compile_dicts(project, force=force, no_xmllint=no_xmllint)
 
 
 def _run_prepare_script(script, msg, force=False):
@@ -252,7 +255,7 @@ def _run_prepare_script(script, msg, force=False):
     return ok
 
 
-def _compile_dicts(project, force=None):
+def _compile_dicts(project, force=None, no_xmllint=False):
     print(f"** Compiling dictionaries for {project}...")
     config = Config(".")
     config.from_yamlfile(f"neahtta/configs/{project}.config.yaml")
@@ -303,14 +306,25 @@ def _compile_dicts(project, force=None):
             print(CYAN("skipped"), "(no updates)")
             n_no_updates += 1
         else:
-            n_entries, errors = merge_giella_dicts(
-                src_dir,
-                compiled_file.resolve(),
-                return_errors=True,
-                print_errors=False,
-                dtd_validate=True,
-                write_file_on_errors=False,
-            )
+            if not no_xmllint:
+                # double negative, so: do xmllint
+                n_entries, errors = merge_giella_dicts(
+                    src_dir,
+                    compiled_file.resolve(),
+                    return_errors=True,
+                    print_errors=False,
+                    dtd_validate=True,
+                    write_file_on_errors=False,
+                )
+            else:
+                n_entries, errors = merge_giella_dicts(
+                    src_dir,
+                    compiled_file.resolve(),
+                    return_errors=True,
+                    print_errors=False,
+                    dtd_validate=False,
+                    write_file_on_errors=False,
+                )
             if errors:
                 print(RED("failed"))
                 for file, error_msg in errors:
@@ -976,6 +990,14 @@ def parse_args():
             "Always recreate the dictionaries (without this, dictionaries "
             "will only be re-created if sources are newer than the "
             "current dictionary file)."
+        ),
+    )
+    compile_parser.add_argument(
+        "--no-xmllint",
+        action="store_true",
+        help=(
+            "do not run `xmllint --valid` to validate the dictionary "
+            "according to its dtd."
         ),
     )
     compile_parser.set_defaults(func=compile_dicts)
