@@ -17,11 +17,15 @@
     <div class="hidden-phone">
         <br />
         {% if _from == "fkv" or _to == "fkv" %}
-          <a class="btn-contact-thing btn btn-sm btn-primary" type="button" href="mailto:aili.eriksen@kvenskinstitutt.no,thomasbkj@gmail.com">{% trans %}Contact us{% endtrans %}</a>
+          <a class="btn-contact-thing btn btn-sm btn-primary" type="button" href="mailto:aili.eriksen@kvenskinstitutt.no,tobias@kvenskinstitutt.no,anna-kaisa.raisanen@kvenskinstitutt.no">{% trans %}Contact us{% endtrans %}</a>
           <br />
         {% endif %}
         {% if (_from == "fin" and _to == "nob") or (_from == "nob" and _to == "fin") %}
           <a class="btn-contact-thing btn btn-sm btn-primary" type="button" href="mailto:trond.trosterud@uit.no">{% trans %}Contact us{% endtrans %}</a>
+          <br />
+        {% endif %}
+        {% if (_from == "fit" or _to == "fit") %}
+          <a class="btn-contact-thing btn btn-sm btn-primary" type="button" href="mailto:elina.kangas@isof.se">{% trans %}Contact us{% endtrans %}</a>
           <br />
         {% endif %}
         <br />
