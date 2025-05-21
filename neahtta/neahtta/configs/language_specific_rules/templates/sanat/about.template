@@ -91,7 +91,7 @@
                 <p>{% trans %}Contact us{% endtrans %}:<br>
                 Aili Eriksen (<a href="mailto:aili.eriksen@kvenskinstitutt.no">aili.eriksen@kvenskinstitutt.no</a>)
                 <br>
-                Thomas Kjærstad (<a href="mailto:thomas@kvenskinstitutt.no">thomas@kvenskinstitutt.no</a>)
+                Thomas Kjærstad (<a href="mailto:thomas.kjaerstad@uit.no">thomas.kjaerstad@uit.no</a>)
                 <br>
                 Tobias Kvalness (<a href="mailto:tobias@kvenskinstitutt.no">tobias@kvenskinstitutt.no</a>)
                 </p>
