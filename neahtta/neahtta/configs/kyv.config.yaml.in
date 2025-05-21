@@ -163,7 +163,7 @@ Dictionaries:
     korp_search_host: "http://gtweb.uit.no/u_korp"
     is_korp_default_lang: True
     corpora: 'KPV_FICTI_20201209,KPV_LAWS_20201209,KPV_WIKIPEDIA_20201209,KPV_FACTA_20201209'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/kpv?command=query&corpus='
     input_variants: &KOMI_VARIANTS
       - type: "standard"
         description: !gettext "Standard"
@@ -211,7 +211,7 @@ Dictionaries:
     korp_search_host: "http://gtweb.uit.no/u_korp"
     is_korp_default_lang: True
     corpora: 'KPV_FICTI_20201209,KPV_LAWS_20201209,KPV_WIKIPEDIA_20201209,KPV_FACTA_20201209'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/kpv?command=query&corpus='
 
   - source: fin
     target: kpv
@@ -225,7 +225,7 @@ Dictionaries:
     input_variants: *KOMI_VARIANTS
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'KPV_FICTI_20201209,KPV_LAWS_20201209,KPV_WIKIPEDIA_20201209,KPV_FACTA_20201209'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/kpv?command=query&corpus='
 
   - source: rus
     target: kpv
@@ -237,7 +237,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'UDM_WIKIPEDIA_20201209'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/udm?command=query&corpus='
     input_variants:
       # "mobile" is important, otherwise templates and swapping won't
       # work
@@ -264,7 +264,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'UDM_WIKIPEDIA_20201209'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/udm?command=query&corpus='
     input_variants:
       # "mobile" is important, otherwise templates and swapping won't
       # work
@@ -285,7 +285,7 @@ Dictionaries:
     korp_search_host: "http://gtweb.uit.no/u_korp"
     is_korp_default_lang: True
     corpora: 'KPV_FICTI_20201209,KPV_LAWS_20201209,KPV_WIKIPEDIA_20201209,KPV_FACTA_20201209'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/kpv?command=query&corpus='
 
   - source: udm
     target: fin
@@ -293,7 +293,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'UDM_WIKIPEDIA_20201209'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/udm?command=query&corpus='
     input_variants:
       # "mobile" is important, otherwise templates and swapping won't
       # work
@@ -326,7 +326,7 @@ Dictionaries:
     korp_search_host: "http://gtweb.uit.no/u_korp"
     is_korp_default_lang: True
     corpora: 'KOI_WIKIPEDIA_20201209'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/koi?command=query&corpus='
 
   - source: kpv
     target: koi
@@ -336,7 +336,7 @@ Dictionaries:
     korp_search_host: "http://gtweb.uit.no/u_korp"
     is_korp_default_lang: True
     corpora: 'KPV_FICTI_20201209,KPV_LAWS_20201209,KPV_WIKIPEDIA_20201209,KPV_FACTA_20201209'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/kpv?command=query&corpus='
 
   # the build script will not find these ones, because the name ends with
   # "M", and no such dictionaries exist - but that's fine, because the build

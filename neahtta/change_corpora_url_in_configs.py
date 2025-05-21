@@ -83,7 +83,7 @@ def main():
                 # are language codes)
                 lang = dict_settings["path"][6:9]
                 indent = m.group("whitespace")
-                new_url = f"https://gtweb-02.uit.no/korp/{lang}?"
+                new_url = f"https://gtweb.uit.no/korp/{lang}?command=query&corpus="
                 updated_line = f"{indent}start_query: '{new_url}'"
                 lines.append(updated_line)
 

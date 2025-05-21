@@ -74,7 +74,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
     corpora: 'SMN_ADMIN_20211118,SMN_BIBLE_20211118,SMN_BLOGS_20211118,SMN_FACTA_20211118,SMN_FICTI_20211118,SMN_NEWS_20211118,SMN_SCIENCE_20211118,SMN_WIKIPEDIA_20211118'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/smn?command=query&corpus='
     input_variants: &spell_relax_smn
       - type: "standard"
         description: !gettext "Standard"
@@ -96,7 +96,7 @@ Dictionaries:
     korp_search_host: "http://gtweb.uit.no/korp"
     link_corpus_parameter: 'fin2smn_20170828-fin%,fin2smn_20170828-smn'
     corpora: 'FIN2SMN_20170828-FIN,FIN2SMN_20170828-SMN'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/fin?command=query&corpus='
 
   - source: smn
     target: sme
@@ -104,7 +104,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
     corpora: 'SMN_ADMIN_20211118,SMN_BIBLE_20211118,SMN_BLOGS_20211118,SMN_FACTA_20211118,SMN_FICTI_20211118,SMN_NEWS_20211118,SMN_SCIENCE_20211118,SMN_WIKIPEDIA_20211118'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/smn?command=query&corpus='
     input_variants:
       - type: "standard"
         description: !gettext "Standard"
@@ -122,7 +122,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
     corpora: 'NOB2SME_ADMIN_20191210-NOB,NOB2SME_BIBLE_20191210-NOB,NOB2SME_FACTA_20191210-NOB,NOB2SME_SCIENCE_20191210-NOB,NOB2SME_LAWS_20191210-NOB,NOB2SME_MIXED_20191210-NOB,NOB2SME_ADMIN_20191210-SME,NOB2SME_BIBLE_20191210-SME,NOB2SME_FACTA_20191210-SME,NOB2SME_SCIENCE_20191210-SME,NOB2SME_LAWS_20191210-SME,NOB2SME_MIXED_20191210-SME'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/sme?command=query&corpus='
 
   # the build script will not find these ones, because the name ends with
   # "M", and no such dictionaries exist - but that's fine, because the build

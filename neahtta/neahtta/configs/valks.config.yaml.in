@@ -113,7 +113,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'MYV_WIKIPEDIA_20201209,MYV_FICTI_20201209,MYV_NEWS_20201209'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/myv?command=query&corpus='
 
   - source: fin
     target: myv
@@ -125,7 +125,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'MYV_WIKIPEDIA_20201209,MYV_FICTI_20201209,MYV_NEWS_20201209'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/myv?command=query&corpus='
 
   - source: est
     target: myv
@@ -138,7 +138,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'MYV_WIKIPEDIA_20201209,MYV_FICTI_20201209,MYV_NEWS_20201209'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/myv?command=query&corpus='
 
   - source: myv
     target: eng
@@ -146,7 +146,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'MYV_WIKIPEDIA_20201209,MYV_FICTI_20201209,MYV_NEWS_20201209'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/myv?command=query&corpus='
 
   - source: myv
     target: deu
@@ -154,7 +154,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'MYV_WIKIPEDIA_20201209,MYV_FICTI_20201209,MYV_NEWS_20201209'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/myv?command=query&corpus='
 
   - source: myv
     target: fra
@@ -163,7 +163,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'MYV_WIKIPEDIA_20201209,MYV_FICTI_20201209,MYV_NEWS_20201209'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/myv?command=query&corpus='
 
   - source: mdf
     target: fin
@@ -172,7 +172,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'MDF_WIKIPEDIA_20201209,MDF_NEWS_20201209'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/mdf?command=query&corpus='
 
   - source: mdf
     target: rus
@@ -180,7 +180,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'MDF_WIKIPEDIA_20201209,MDF_NEWS_20201209'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/mdf?command=query&corpus='
 
   - source: mdf
     target: myv
@@ -188,7 +188,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'MDF_WIKIPEDIA_20201209,MDF_NEWS_20201209'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/mdf?command=query&corpus='
 
   - source: deu
     target: myv
@@ -220,7 +220,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'MDF_WIKIPEDIA_20201209,MDF_NEWS_20201209'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/mdf?command=query&corpus='
 
   - source: mdf
     target: fra
@@ -229,7 +229,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'MDF_WIKIPEDIA_20201209,MDF_NEWS_20201209'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/mdf?command=query&corpus='
 
 ReaderConfig:
   Settings:

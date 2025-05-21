@@ -79,7 +79,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/korp"
     corpora: 'SMA_ADMIN_20211118,SMA_BIBLE_20211118,SMA_FACTA_20211118,SMA_FICTI_20211118,SMA_LAWS_20211118,SMA_NEWS_20211118,SMA_SCIENCE_20211118'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/sma?command=query&corpus='
 
   - source: nob
     target: sma
@@ -91,7 +91,7 @@ Dictionaries:
     korp_search_host: "http://gtweb.uit.no/korp"
     link_corpus_parameter: 'nob2sma_admin_20190926-nob,nob2sma_bible_20190926-nob,nob2sma_science_20190926-nob,nob2sma_facta_20190926-nob,nob2sma_admin_20190926-sma,nob2sma_bible_20190926-sma,nob2sma_science_20190926-sma,nob2sma_facta_20190926-sma'
     corpora: 'NOB2SMA_ADMIN_20190926-NOB,NOB2SMA_BIBLE_20190926-NOB,NOB2SMA_SCIENCE_20190926-NOB,NOB2SMA_FACTA_20190926-NOB,NOB2SMA_ADMIN_20190926-SMA,NOB2SMA_BIBLE_20190926-SMA,NOB2SMA_SCIENCE_20190926-SMA,NOB2SMA_FACTA_20190926-SMA'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/nob?command=query&corpus='
 
 ReaderConfig:
   Settings:

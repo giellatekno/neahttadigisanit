@@ -133,7 +133,7 @@ Dictionaries:
     korp_search_host: &F_KORP "http://gtweb.uit.no/f_korp"
     is_korp_default_lang: True
     corpora: 'FKV_ADMIN_20210319,FKV_BIBLE_20210319,FKV_FACTA_20210319,FKV_FICTI_20210319,FKV_NEWS_20210319'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/fkv?command=query&corpus='
     input_variants: &spell_relax_fkv
       - type: "standard"
         description: !gettext "Standard"
@@ -153,7 +153,7 @@ Dictionaries:
     korp_search_host: *F_KORP
     link_corpus_parameter: "nob2fkv_admin_20210319-nob,nob2fkv_bible_20210319-nob,nob2fkv_facta_20210319-nob,nob2fkv_ficti_20210319-nob,nob2fkv_news_20210319-nob"
     corpora: 'NOB2FKV_ADMIN_20210319-NOB,NOB2FKV_BIBLE_20210319-NOB,NOB2FKV_FACTA_20210319-NOB,NOB2FKV_FICTI_20210319-NOB,NOB2FKV_NEWS_20210319-NOB'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/nob?command=query&corpus='
 
   - source: fit
     target: swe
@@ -161,7 +161,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: *F_KORP
     corpora: "fit_admin_20210319,fit_bible_20210319,fit_facta_20210319,fit_ficti_20210319,fit_news_20210319,fit_laws_20210319,fit_science_20210319"
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?mode=fit,command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/fit?command=query&corpus='
 
   - source: swe
     target: fit
@@ -175,7 +175,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: *F_KORP
     corpora: 'VEP_WIKIPEDIA_20210319'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/vep?command=query&corpus='
 
   # This dictionary does not seem to exist?
   # - source: vep

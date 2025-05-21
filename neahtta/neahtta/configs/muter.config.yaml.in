@@ -94,7 +94,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'MRJ_FACTA_20201209,MRJ_NEWS_20201209,MRJ_WIKIPEDIA_20201209,MRJ_LAWS_20201209,MRJ_SCIENCE_20201209'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/mrj?command=query&corpus='
 
   - source: mrj
     target: mhr
@@ -102,7 +102,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'MRJ_FACTA_20201209,MRJ_NEWS_20201209,MRJ_WIKIPEDIA_20201209,MRJ_LAWS_20201209,MRJ_SCIENCE_20201209'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/mrj?command=query&corpus='
 
   - source: mrj
     target: rus
@@ -110,7 +110,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'MRJ_FACTA_20201209,MRJ_NEWS_20201209,MRJ_WIKIPEDIA_20201209,MRJ_LAWS_20201209,MRJ_SCIENCE_20201209'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/mrj?command=query&corpus='
 
   - source: mhr
     target: mrj
@@ -119,7 +119,7 @@ Dictionaries:
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora:
       'MHR_FACTA_20201209,MHR_LAWS_20201209,MHR_SCIENCE_20201209,MHR_FICTI_20201209,MHR_NEWS_20201209,MHR_WIKIPEDIA_20201209'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/mhr?command=query&corpus='
 
   - source: mhr
     target: fin
@@ -128,7 +128,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'MHR_FACTA_20201209,MHR_LAWS_20201209,MHR_SCIENCE_20201209,MHR_FICTI_20201209,MHR_NEWS_20201209,MHR_WIKIPEDIA_20201209'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/mhr?command=query&corpus='
 
   - source: mhr
     target: rus
@@ -136,7 +136,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'MHR_FACTA_20201209,MHR_LAWS_20201209,MHR_SCIENCE_20201209,MHR_FICTI_20201209,MHR_NEWS_20201209,MHR_WIKIPEDIA_20201209'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/mhr?command=query&corpus='
 
   - source: mhr
     target: eng
@@ -145,7 +145,7 @@ Dictionaries:
     show_korp_search: True
     korp_search_host: "http://gtweb.uit.no/u_korp"
     corpora: 'MHR_FACTA_20201209,MHR_LAWS_20201209,MHR_SCIENCE_20201209,MHR_FICTI_20201209,MHR_NEWS_20201209,MHR_WIKIPEDIA_20201209'
-    start_query: 'http://gtweb.uit.no/ws/gt_korp?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/korp/mhr?command=query&corpus='
 
 ReaderConfig:
   Settings:
