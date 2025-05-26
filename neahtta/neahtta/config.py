@@ -703,11 +703,11 @@ class Config(Config):
                 sys.exit()
 
             _default_korp = {
-                "lemma_search_path": "/?mode=TARGET_LANG_ISO#page=0&search_tab=1&search=SEARCH_QUERY",
+                "lemma_search_path": "/#/?mode=TARGET_LANG_ISO#page=0&search_tab=1&search=SEARCH_QUERY",
                 "lemma_search_path_default_lang": "/#/?page=0&search_tab=1&search=cqp&cqp=SEARCH_QUERY",
                 "lemma_search_query": '[lemma = "INPUT_LEMMA"]',
-                "wordform_search_path": "/?mode=TARGET_LANG_ISO#search=word|USER_INPUT&page=0",
-                "wordform_search_path_default_lang": "/#search=word|USER_INPUT&page=0",
+                "wordform_search_path": "/#/?search=word|USER_INPUT",
+                "wordform_search_path_default_lang": "/#/?search=word|USER_INPUT&page=0",
                 "bilingual_wordform_search_path": "/?mode=parallel#parallel_corpora=TARGET_LANG_ISO&page=0&search=SEARCH_QUERY",
                 "bilingual_wordform_search_query": 'cqp|[(word = "USER_INPUT")]',
                 "lemma_search_delimiter": "] [lemma = ",
