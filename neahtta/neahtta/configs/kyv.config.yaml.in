@@ -160,7 +160,7 @@ Dictionaries:
     dict_source: multi
     path: 'dicts/kpv-all.xml'
     show_korp_search: True
-    korp_search_host: "http://gtweb.uit.no/u_korp"
+    korp_search_host: "https://gtweb.uit.no/korp/kpv"
     is_korp_default_lang: True
     corpora: 'KPV_FICTI_20201209,KPV_LAWS_20201209,KPV_WIKIPEDIA_20201209,KPV_FACTA_20201209'
     start_query: 'https://gtweb.uit.no/korp/kpv?command=query&corpus='
@@ -208,7 +208,7 @@ Dictionaries:
     path: 'dicts/kpv-all.xml'
     input_variants: *KOMI_VARIANTS
     show_korp_search: True
-    korp_search_host: "http://gtweb.uit.no/u_korp"
+    korp_search_host: "https://gtweb.uit.no/korp/kpv"
     is_korp_default_lang: True
     corpora: 'KPV_FICTI_20201209,KPV_LAWS_20201209,KPV_WIKIPEDIA_20201209,KPV_FACTA_20201209'
     start_query: 'https://gtweb.uit.no/korp/kpv?command=query&corpus='
@@ -223,7 +223,7 @@ Dictionaries:
     show_korp_search: True
     is_korp_default_lang: True
     input_variants: *KOMI_VARIANTS
-    korp_search_host: "http://gtweb.uit.no/u_korp"
+    korp_search_host: "https://gtweb.uit.no/korp/kpv"
     corpora: 'KPV_FICTI_20201209,KPV_LAWS_20201209,KPV_WIKIPEDIA_20201209,KPV_FACTA_20201209'
     start_query: 'https://gtweb.uit.no/korp/kpv?command=query&corpus='
 
@@ -235,7 +235,7 @@ Dictionaries:
     target: hun
     path: 'dicts/udm-hun.xml'
     show_korp_search: True
-    korp_search_host: "http://gtweb.uit.no/u_korp"
+    korp_search_host: "https://gtweb.uit.no/korp/udm"
     corpora: 'UDM_WIKIPEDIA_20201209'
     start_query: 'https://gtweb.uit.no/korp/udm?command=query&corpus='
     input_variants:
@@ -262,7 +262,7 @@ Dictionaries:
     target: kpv
     path: 'dicts/udm-kpv.xml'
     show_korp_search: True
-    korp_search_host: "http://gtweb.uit.no/u_korp"
+    korp_search_host: "https://gtweb.uit.no/korp/udm"
     corpora: 'UDM_WIKIPEDIA_20201209'
     start_query: 'https://gtweb.uit.no/korp/udm?command=query&corpus='
     input_variants:
@@ -282,7 +282,7 @@ Dictionaries:
     path: 'dicts/kpv-udm.xml'
     input_variants: *KOMI_VARIANTS
     show_korp_search: True
-    korp_search_host: "http://gtweb.uit.no/u_korp"
+    korp_search_host: "https://gtweb.uit.no/korp/kpv"
     is_korp_default_lang: True
     corpora: 'KPV_FICTI_20201209,KPV_LAWS_20201209,KPV_WIKIPEDIA_20201209,KPV_FACTA_20201209'
     start_query: 'https://gtweb.uit.no/korp/kpv?command=query&corpus='
@@ -291,7 +291,7 @@ Dictionaries:
     target: fin
     path: 'dicts/udm-fin.xml'
     show_korp_search: True
-    korp_search_host: "http://gtweb.uit.no/u_korp"
+    korp_search_host: "https://gtweb.uit.no/korp/udm"
     corpora: 'UDM_WIKIPEDIA_20201209'
     start_query: 'https://gtweb.uit.no/korp/udm?command=query&corpus='
     input_variants:
@@ -323,7 +323,7 @@ Dictionaries:
     target: kpv
     path: 'dicts/koi-kpv.xml'
     show_korp_search: True
-    korp_search_host: "http://gtweb.uit.no/u_korp"
+    korp_search_host: "https://gtweb.uit.no/korp/koi"
     is_korp_default_lang: True
     corpora: 'KOI_WIKIPEDIA_20201209'
     start_query: 'https://gtweb.uit.no/korp/koi?command=query&corpus='
@@ -333,7 +333,7 @@ Dictionaries:
     path: 'dicts/kpv-koi.xml'
     input_variants: *KOMI_VARIANTS
     show_korp_search: True
-    korp_search_host: "http://gtweb.uit.no/u_korp"
+    korp_search_host: "https://gtweb.uit.no/korp/kpv"
     is_korp_default_lang: True
     corpora: 'KPV_FICTI_20201209,KPV_LAWS_20201209,KPV_WIKIPEDIA_20201209,KPV_FACTA_20201209'
     start_query: 'https://gtweb.uit.no/korp/kpv?command=query&corpus='

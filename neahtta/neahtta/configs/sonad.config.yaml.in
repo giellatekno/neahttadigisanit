@@ -196,7 +196,7 @@ Dictionaries:
     dict_source: lang
     path: 'dicts/vro-all.xml'
     show_korp_search: True
-    korp_search_host: &F_KORP "http://gtweb.uit.no/f_korp"
+    korp_search_host: "https://gtweb.uit.no/korp/vro"
     corpora: 'VRO_WIKIPEDIA_20210319'
     start_query: 'https://gtweb.uit.no/korp/vro?command=query&corpus='
 
@@ -205,7 +205,7 @@ Dictionaries:
     dict_source: lang
     path: 'dicts/vro-all.xml'
     show_korp_search: True
-    korp_search_host: *F_KORP
+    korp_search_host: "https://gtweb.uit.no/korp/vro"
     corpora: 'VRO_WIKIPEDIA_20210319'
     start_query: 'https://gtweb.uit.no/korp/vro?command=query&corpus='
 

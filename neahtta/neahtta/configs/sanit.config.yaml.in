@@ -112,7 +112,7 @@ Dictionaries:
     path: 'dicts/sme-nob.xml'
     autocomplete: true
     show_korp_search: True
-    korp_search_host: "http://gtweb.uit.no/korp"
+    korp_search_host: "https://gtweb.uit.no/korp/sme/"
     is_korp_default_lang: True
     corpora: 'SME_ADMIN_20181106,SME_ASSU_20181106,SME_AVVIR_20181106,SME_BIBLE_20181106,SME_BLOGS_20181106,SME_FACTA_20181106,SME_FICTI_20181106,SME_LAWS_20181106,SME_MINAIGI_20181106,SME_MUITALUS_20170319,SME_NRK_20181106,SME_SCIENCE_20181106'
     start_query: 'https://gtweb.uit.no/korp/sme?command=query&corpus='
@@ -147,7 +147,7 @@ Dictionaries:
     path: 'dicts/sme-nob.xml'
     autocomplete: true
     show_korp_search: True
-    korp_search_host: "http://gtweb.uit.no/korp"
+    korp_search_host: "https://gtweb.uit.no/korp/sme"
     is_korp_default_lang: True
     corpora: 'SME_ADMIN_20181106,SME_ASSU_20181106,SME_AVVIR_20181106,SME_BIBLE_20181106,SME_BLOGS_20181106,SME_FACTA_20181106,SME_FICTI_20181106,SME_LAWS_20181106,SME_MINAIGI_20181106,SME_MUITALUS_20170319,SME_NRK_20181106,SME_SCIENCE_20181106'
     start_query: 'https://gtweb.uit.no/korp/sme?command=query&corpus='
@@ -159,7 +159,7 @@ Dictionaries:
     show_korp_search: True
     is_korp_default_lang: True
     korp_parallel: True
-    korp_search_host: "http://gtweb.uit.no/korp"
+    korp_search_host: "https://gtweb.uit.no/korp/nob"
     link_corpus_parameter: "nob2sme_admin_20191210-nob,nob2sme_bible_20191210-nob,nob2sme_facta_20191210-nob,nob2sme_science_20191210-nob,nob2sme_laws_20191210-nob,nob2sme_mixed_20191210-nob,nob2sme_admin_20191210-sme,nob2sme_bible_20191210-sme,nob2sme_facta_20191210-sme,nob2sme_science_20191210-sme,nob2sme_laws_20191210-sme,nob2sme_mixed_20191210-sme"
     corpora: 'NOB2SME_ADMIN_20191210-NOB,NOB2SME_BIBLE_20191210-NOB,NOB2SME_FACTA_20191210-NOB,NOB2SME_SCIENCE_20191210-NOB,NOB2SME_LAWS_20191210-NOB,NOB2SME_MIXED_20191210-NOB,NOB2SME_ADMIN_20191210-SME,NOB2SME_BIBLE_20191210-SME,NOB2SME_FACTA_20191210-SME,NOB2SME_SCIENCE_20191210-SME,NOB2SME_LAWS_20191210-SME,NOB2SME_MIXED_20191210-SME'
     start_query: 'https://gtweb.uit.no/korp/nob?command=query&corpus='
@@ -169,7 +169,7 @@ Dictionaries:
     path: 'dicts/sme-fin.xml'
     autocomplete: true
     show_korp_search: True
-    korp_search_host: "http://gtweb.uit.no/korp"
+    korp_search_host: "https://gtweb.uit.no/korp/sme"
     is_korp_default_lang: True
     corpora: 'SME_ADMIN_20181106,SME_ASSU_20181106,SME_AVVIR_20181106,SME_BIBLE_20181106,SME_BLOGS_20181106,SME_FACTA_20181106,SME_FICTI_20181106,SME_LAWS_20181106,SME_MINAIGI_20181106,SME_MUITALUS_20170319,SME_NRK_20181106,SME_SCIENCE_20181106'
     start_query: 'https://gtweb.uit.no/korp/sme?command=query&corpus='
@@ -190,7 +190,7 @@ Dictionaries:
     path: 'dicts/sme-fin.xml'
     autocomplete: True
     show_korp_search: True
-    korp_search_host: "http://gtweb.uit.no/korp"
+    korp_search_host: "https://gtweb.uit.no/korp/sme"
     is_korp_default_lang: True
     corpora: 'SME_ADMIN_20181106,SME_ASSU_20181106,SME_AVVIR_20181106,SME_BIBLE_20181106,SME_BLOGS_20181106,SME_FACTA_20181106,SME_FICTI_20181106,SME_LAWS_20181106,SME_MINAIGI_20181106,SME_MUITALUS_20170319,SME_NRK_20181106,SME_SCIENCE_20181106'
     start_query: 'https://gtweb.uit.no/korp/sme?command=query&corpus='

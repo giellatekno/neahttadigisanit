@@ -111,7 +111,7 @@ Dictionaries:
     dict_source: multi
     path: 'dicts/myv-all.xml'
     show_korp_search: True
-    korp_search_host: "http://gtweb.uit.no/u_korp"
+    korp_search_host: "https://gtweb.uit.no/korp/myv"
     corpora: 'MYV_WIKIPEDIA_20201209,MYV_FICTI_20201209,MYV_NEWS_20201209'
     start_query: 'https://gtweb.uit.no/korp/myv?command=query&corpus='
 
@@ -123,7 +123,7 @@ Dictionaries:
     target: est
     path: 'dicts/myv-est.xml'
     show_korp_search: True
-    korp_search_host: "http://gtweb.uit.no/u_korp"
+    korp_search_host: "https://gtweb.uit.no/korp/myv"
     corpora: 'MYV_WIKIPEDIA_20201209,MYV_FICTI_20201209,MYV_NEWS_20201209'
     start_query: 'https://gtweb.uit.no/korp/myv?command=query&corpus='
 
@@ -136,7 +136,7 @@ Dictionaries:
     dict_source: multi
     path: 'dicts/myv-all.xml'
     show_korp_search: True
-    korp_search_host: "http://gtweb.uit.no/u_korp"
+    korp_search_host: "https://gtweb.uit.no/korp/myv"
     corpora: 'MYV_WIKIPEDIA_20201209,MYV_FICTI_20201209,MYV_NEWS_20201209'
     start_query: 'https://gtweb.uit.no/korp/myv?command=query&corpus='
 
@@ -144,7 +144,7 @@ Dictionaries:
     target: eng
     path: 'dicts/myv-eng.xml'
     show_korp_search: True
-    korp_search_host: "http://gtweb.uit.no/u_korp"
+    korp_search_host: "https://gtweb.uit.no/korp/myv"
     corpora: 'MYV_WIKIPEDIA_20201209,MYV_FICTI_20201209,MYV_NEWS_20201209'
     start_query: 'https://gtweb.uit.no/korp/myv?command=query&corpus='
 
@@ -152,7 +152,7 @@ Dictionaries:
     target: deu
     path: 'dicts/myv-deu.xml'
     show_korp_search: True
-    korp_search_host: "http://gtweb.uit.no/u_korp"
+    korp_search_host: "https://gtweb.uit.no/korp/myv"
     corpora: 'MYV_WIKIPEDIA_20201209,MYV_FICTI_20201209,MYV_NEWS_20201209'
     start_query: 'https://gtweb.uit.no/korp/myv?command=query&corpus='
 
@@ -161,7 +161,7 @@ Dictionaries:
     dict_source: multi
     path: 'dicts/myv-all.xml'
     show_korp_search: True
-    korp_search_host: "http://gtweb.uit.no/u_korp"
+    korp_search_host: "https://gtweb.uit.no/korp/myv"
     corpora: 'MYV_WIKIPEDIA_20201209,MYV_FICTI_20201209,MYV_NEWS_20201209'
     start_query: 'https://gtweb.uit.no/korp/myv?command=query&corpus='
 
@@ -170,7 +170,7 @@ Dictionaries:
     dict_source: multi
     path: 'dicts/mdf-all.xml'
     show_korp_search: True
-    korp_search_host: "http://gtweb.uit.no/u_korp"
+    korp_search_host: "https://gtweb.uit.no/korp/mdf"
     corpora: 'MDF_WIKIPEDIA_20201209,MDF_NEWS_20201209'
     start_query: 'https://gtweb.uit.no/korp/mdf?command=query&corpus='
 
@@ -178,7 +178,7 @@ Dictionaries:
     target: rus
     path: 'dicts/mdf-rus.xml'
     show_korp_search: True
-    korp_search_host: "http://gtweb.uit.no/u_korp"
+    korp_search_host: "https://gtweb.uit.no/korp/mdf"
     corpora: 'MDF_WIKIPEDIA_20201209,MDF_NEWS_20201209'
     start_query: 'https://gtweb.uit.no/korp/mdf?command=query&corpus='
 
@@ -186,7 +186,7 @@ Dictionaries:
     target: myv
     path: 'dicts/mdf-myv.xml'
     show_korp_search: True
-    korp_search_host: "http://gtweb.uit.no/u_korp"
+    korp_search_host: "https://gtweb.uit.no/korp/mdf"
     corpora: 'MDF_WIKIPEDIA_20201209,MDF_NEWS_20201209'
     start_query: 'https://gtweb.uit.no/korp/mdf?command=query&corpus='
 
@@ -218,7 +218,7 @@ Dictionaries:
     target: eng
     path: 'dicts/mdf-eng.xml'
     show_korp_search: True
-    korp_search_host: "http://gtweb.uit.no/u_korp"
+    korp_search_host: "https://gtweb.uit.no/korp/mdf"
     corpora: 'MDF_WIKIPEDIA_20201209,MDF_NEWS_20201209'
     start_query: 'https://gtweb.uit.no/korp/mdf?command=query&corpus='
 
@@ -227,7 +227,7 @@ Dictionaries:
     dict_source: multi
     path: 'dicts/mdf-all.xml'
     show_korp_search: True
-    korp_search_host: "http://gtweb.uit.no/u_korp"
+    korp_search_host: "https://gtweb.uit.no/korp/mdf"
     corpora: 'MDF_WIKIPEDIA_20201209,MDF_NEWS_20201209'
     start_query: 'https://gtweb.uit.no/korp/mdf?command=query&corpus='
 
