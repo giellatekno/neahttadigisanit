@@ -357,10 +357,16 @@ def _compile_dicts(project, force=None, no_xmllint=False):
     return did_smenob
 
 
-def autoupdate(force=False):
+def autoupdate(force=False, project="all"):
     """For all instances, pull new dictionarie sources from git, and compile
     and restart the instance if there are updates."""
-    for project in available_projects():
+
+    if project == "all":
+        projects = available_projects()
+    else:
+        projects = [project]
+
+    for project in projects:
         print(f"Processing {project}...")
         print("Pulling git repositories...")
         statuses = pull_repos_for_project(project, use_gut=False)
@@ -1016,6 +1022,10 @@ def parse_args():
         "--force",
         action="store_true",
         help=("force compile new dictionaries, even if there weren't any updates"),
+    )
+    autoupdate_parser.add_argument(
+        "--project",
+        help="which instance to autoupdate, by default 'all'",
     )
     autoupdate_parser.set_defaults(func=autoupdate)
 
