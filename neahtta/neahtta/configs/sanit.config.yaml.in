@@ -204,11 +204,34 @@ Dictionaries:
     target: sme
     path: 'dicts/spa-sme.xml'
     autocomplete: true
+    prepare_script:
+      - /bin/bash
+      - -c
+      - |
+        # if the "PREPARE_SCRIPT_FORCE" env var is blank, then skip=if-newer
+        # otherwise, if the env var is set to anything, then skip=no
+        [[ -z "${PREPARE_SCRIPT_FORCE}" ]] && SKIP=if-newer || SKIP=no
+        GUT_DIR=`gut show config 2>/dev/null | grep -i "root directory" | cut -d ":" -f2 | sed 's/\s*//'`
+        cd $GUT_DIR/giellalt/dict-spa-sme
+        source scripts/venv/bin/activate
+        NEWEST_SOURCE=`find inc/newest_orig -maxdepth 1 -name "*.xlsx"`
+        python3 scripts/xlsx2xml.py $NEWEST_SOURCE src/spa-sme.xml
 
   - source: sme
     target: spa
     path: 'dicts/sme-spa.xml'
     autocomplete: true
+    prepare_script:
+      - /bin/bash
+      - -c
+      - |
+        # if the "PREPARE_SCRIPT_FORCE" env var is blank, then skip=if-newer
+        # otherwise, if the env var is set to anything, then skip=no
+        [[ -z "${PREPARE_SCRIPT_FORCE}" ]] && SKIP=if-newer || SKIP=no
+        GUT_DIR=`gut show config 2>/dev/null | grep -i "root directory" | cut -d ":" -f2 | sed 's/\s*//'`
+        cd $GUT_DIR/giellalt/dict-sme-spa
+        source scripts/venv/bin/activate
+        python3 scripts/xlsx2xml.py inc/A_V_Saami_Spanish.xlsx src/sme-spa.xml
 
 ReaderConfig:
   Settings:
