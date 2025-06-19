@@ -1025,6 +1025,7 @@ def parse_args():
     )
     autoupdate_parser.add_argument(
         "--project",
+        default="all",
         help="which instance to autoupdate, by default 'all'",
     )
     autoupdate_parser.set_defaults(func=autoupdate)
