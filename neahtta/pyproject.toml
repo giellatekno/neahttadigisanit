@@ -1,6 +1,7 @@
 [project]
 name = "neahttadigisanit"
 version = "2024.02.05"
+requires-python = ">=3.9,<=3.10"
 
 # maintainers, as in "currently maintained by"
 maintainers = [
@@ -23,7 +24,6 @@ authors = [
     {name = "Jack Rueter"},
     {name = "Antti Arppe"},
 ]
-requires-python = ">= 3.9"
 dependencies = [
     "Flask==3.0.0",
     "Flask-Caching==2.1.0",
@@ -53,6 +53,10 @@ dependencies = [
     # for validating configurations
     "jsonschema==4.20.0",
 ]
+
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
 
 [project.optional-dependencies]
 dev = [

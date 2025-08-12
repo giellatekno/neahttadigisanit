@@ -19,13 +19,13 @@ documentation.
 
 ### python
 
-Python version 3.9 is required. It may or may not work with older or newer
-versions, but 3.9 is what we target, and have tested for. You can use
+Python version 3.10 is required. It may or may not work with older or newer
+versions, but 3.10 is what we target, and have tested for. You can use
 [pyenv](https://github.com/pyenv/pyenv) or similar tools to install different python versions on your
 system. If you have `pyenv` installed, it will respect the `.python-version`
-file (which is just literally `3.9`), and issuing `python` in the root folder
-will start python 3.9. If not, then make sure that you substitute any `python`
-command with your command that runs python version 3.9.
+file (which is just literally `3.10`), and issuing `python` in the root folder
+will start python 3.10. If not, then make sure that you substitute any `python`
+command with your command that runs python version 3.10.
 
 ### node.js and npm
 
@@ -72,7 +72,7 @@ on if you're on the server, or developing locally.
 
 For the server, use
 
-    (venv) pip install ".[server]"
+    (venv) pip install -e ".[server]"
 
 While for developing locally, use
 
