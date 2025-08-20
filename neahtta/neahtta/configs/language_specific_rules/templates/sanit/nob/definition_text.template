@@ -7,7 +7,16 @@
 
      see: render_link
 
+   This also includes the region attribute
+
  #}
+
+ {%- macro render_region(translation_group) -%}
+    {%- set reg_nodes = translation_group|xpath('./t/@reg') -%}
+    {%- if reg_nodes|count > 0 -%}
+        ({{ reg_nodes|first }})
+    {%- endif -%}
+{%- endmacro -%}
 
 {%- macro render_annotation(tg) -%}
     {# Render the annotation (<re />) node, unless it has a @fra_ref. #}
@@ -125,7 +134,7 @@
 {%- endmacro -%}
 
 {%- if translation_group -%}
-    <span lang="{{ _to }}">{{ render_tg(translation_group) }}</span>
+    <span lang="{{ _to }}">{{- render_region(translation_group) -}}{{ render_tg(translation_group) }}</span>
 {%- endif -%}
 
 {#  vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}
