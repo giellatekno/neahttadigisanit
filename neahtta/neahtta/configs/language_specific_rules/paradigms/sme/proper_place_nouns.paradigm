@@ -7,15 +7,11 @@ lexicon:
     sem_type: ".//l/@sem_type"
     type: ".//l/@type"
   type: Prop
-  sem_type: 
+  sem_type:
     - "Plc"
     - "plc"
 --
-{{ lemma }}+N+Prop+Sem/Plc+Sg+Gen
-{{ lemma }}+N+Prop+Sem/Plc+Sg+Loc
-{{ lemma }}+N+Prop+Sem/Plc+Sg+Ill
 {{ lemma }}+N+Prop+Sg+Gen
 {{ lemma }}+N+Prop+Sg+Loc
 {{ lemma }}+N+Prop+Sg+Ill
-
 
