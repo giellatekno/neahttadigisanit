@@ -1,10 +1,10 @@
 # EX: Ruoŧŧa, Iččát
 
 - entry_context: None
-  tag_context: "N+Prop+Sem/Plc+Pl+Gen"
+  tag_context: "N+Prop+Pl+Gen"
   template: "{{ word_form }} (bokte)"
 
 - entry_context: None
-  tag_context: "N+Prop+Sem/Plc+Sg+Gen"
+  tag_context: "N+Prop+Sg+Gen"
   template: "{{ word_form }} (bokte)"
 
