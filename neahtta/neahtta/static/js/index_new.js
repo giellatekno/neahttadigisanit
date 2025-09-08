@@ -4,4 +4,4 @@ import "./bootstrap-dropdown.js";
 import "./bootstrap-tooltip.js";
 import "./standalone-app.js";
 import "./autocomplete.js";
-
+import "./search_hotkey.js";

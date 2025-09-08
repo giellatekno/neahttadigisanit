@@ -19,7 +19,10 @@
                     </ul>
                 </div>
             {% endif %}
-            <form id="neahttasaanit" class="form-inline"
+            <form
+                id="neahttasaanit"
+                class="form-inline"
+                style="margin: 0;"
                 action="{{ url_for('.canonical_root_search_pair', _from=_from, _to=_to) }}">
 
                 {%- if keyboard %}
@@ -87,6 +90,8 @@
                        </button>
                    {% endif %}
                 </div>
+                <br>
+                <p style="margin-bottom: 1em; font-style: italic; font-size: 12px; border-radius: 1px;">{% trans %}Press s or / to search.{% endtrans %}</p>
             </form>
         </div>
     </div>

@@ -127,6 +127,7 @@ def prepare_assets(app):
         "js/bootstrap-tooltip.js",
         "js/standalone-app.js",
         "js/autocomplete.js",
+        "js/search_hotkey.js",
         # "js/bootstrap-typeahead-fork.js",
         # "js/base.js",
         # "js/index.js",

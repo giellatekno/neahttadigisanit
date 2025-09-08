@@ -87,6 +87,8 @@
                        </button>
                    {% endif %}
                 </div>
+                <br>
+                <p style="margin-bottom: 1em; font-style: italic; font-size: 12px; border-radius: 1px;">{% trans %}Press s or / to search.{% endtrans %}</p>
             </form>
         </div>
     </div>
