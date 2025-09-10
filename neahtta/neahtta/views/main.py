@@ -69,6 +69,11 @@ def externalFormSearch(_from, _to, _search_type):
 
     return func(pair_config, user_input)
 
+def add_to_homescreen():
+    return render_template(
+        "add_to_homescreen.html",
+        language_pairs=current_app.config.pair_definitions,
+    )
 
 def about():
     return render_template("about.template")

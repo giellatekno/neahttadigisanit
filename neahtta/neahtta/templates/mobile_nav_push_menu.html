@@ -10,6 +10,11 @@
                     <span lang="{{ current_locale }}">{% trans %}Plugins{% endtrans %}</span>
                 </a>
             </li>
+            <li>
+                <a href="{{ url_for('.add_to_homescreen') }}">
+                    <span lang="{{ current_locale }}">{% trans %}Smartphone shortcut{% endtrans %}</span>
+                </a>
+            </li>
             <li><a href="{{ url_for('.about') }}">
                     <span lang="{{ current_locale }}">{% trans %}About{% endtrans %}</span>
             </a></li>

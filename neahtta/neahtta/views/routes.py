@@ -14,6 +14,7 @@ from .locale import set_locale
 from .main import (
     about,
     about_sources,
+    add_to_homescreen,
     config_doc,
     config_docs,
     escape_tv,
@@ -113,6 +114,9 @@ blueprint.add_url_rule(
     "/read/", methods=["GET"], endpoint="reader_info", view_func=bookmarklet
 )
 
+blueprint.add_url_rule(
+    "/add-to-homescreen/", methods=["GET"], endpoint="add_to_homescreen", view_func=add_to_homescreen
+)
 
 blueprint.add_url_rule(
     "/session/clear/<sess_key>/",

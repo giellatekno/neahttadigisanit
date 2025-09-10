@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title -%}{% trans project_name=app_name %}Add to Homescreen{% endtrans %} :: {% endblock %}
+
+{% block meta_title %}
+<meta name="title" content="Add to Homescreen">
+{% endblock %}
+
+{% block meta_description %}
+    <meta name="description" content="Add the dictionary to the homescreen of your smartphone.">
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span6 offset2">
+        <h3 lang="{{ current_locale }}">{% trans project_name=app_name %}Add to Homescreen{% endtrans %}</h3>
+            <p lang="{{ current_locale }}">{% trans %}If you wish to have a shortcut to the dictionary on your smartphone homescreen, follow the instructions below.{% endtrans %}</p>
+            <p lang="{{ current_locale }}">{% trans %}The shortcut looks like an app and you can click right into the website without opening your browser.{% endtrans %}</p>
+            <ul>
+                <li lang="{{ current_locale }}">{% trans %}Open the frontpage of the dictionary you want a shortcut to.{% endtrans %}</li>
+                
+                <li lang="{{ current_locale }}"><b>iPhone (Safari, Firefox, Chrome)</b></li>
+                <ol>
+                    <li lang="{{ current_locale }}">{% trans %}Select the share icon in the browser.{% endtrans %}</li>
+                    <li lang="{{ current_locale }}">{% trans %}Scroll down and select "Add to Home Screen". You may need to drag the row from the right to get to the button.{% endtrans %}</li>
+                </ol>
+                <li lang="{{ current_locale }}"><b>Chrome</b></li>
+                <ol>
+                    <li lang="{{ current_locale }}">{% trans %}Open the main menu in the browser{% endtrans %}</li>
+                    <li lang="{{ current_locale }}">{% trans %}A list of options appears. Select "Add to home page", a little down the list{% endtrans %}</li>
+                    <li lang="{{ current_locale }}">{% trans %}A new window appears asking you to add this website to your home screen. Click "Add".{% endtrans %}</li>
+                </ol>
+                <li lang="{{ current_locale }}"><b>{% trans %}Samsung Internet{% endtrans %}</b></li>
+                <ol>
+                    <li lang="{{ current_locale }}">{% trans %}Open the main menu in the browser{% endtrans %}</li>
+                    <li lang="{{ current_locale }}">{% trans %}Click "Add page to" at the top right in the menu{% endtrans %}</li>
+                    <li lang="{{ current_locale }}">{% trans %}Choose "Home screen" in the window that appears.{% endtrans %}</li>
+                </ol>
+            </ul>
+            <p lang="{{ current_locale }}">{% trans %}The shortcut is now on your homescreen, and you can access the dictionary page directly by clicking on it.{% endtrans %}</p>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
