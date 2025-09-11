@@ -1943,7 +1943,7 @@ msgstr "Åpne forsida av ordboka du vil ha en snarveg til."
 
 #: neahtta/templates/add_to_homescreen.html:28
 msgid "Select the share icon in the browser."
-msgstr "Trygg på deleknappen i nettleseren."
+msgstr "Trykk på deleknappen i nettleseren."
 
 #: neahtta/templates/add_to_homescreen.html:29
 msgid ""
