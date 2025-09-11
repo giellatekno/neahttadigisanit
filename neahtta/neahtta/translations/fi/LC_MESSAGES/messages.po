@@ -1944,7 +1944,7 @@ msgstr "Jos haluat älypuhelimen aloitusnäytölle pikanäppäimen sanakirjaan, 
 msgid ""
 "The shortcut looks like an app and you can click right into the website "
 "without opening your browser."
-msgstr "Pikakuvake näyttää sovellukselta ja voit napsauttaa suoraan verkkosivustolle "
+msgstr "Pikakuvake näyttää sovellukselta ja voit klikata suoraan verkkosivustolle "
 "avaamatta selainta."
 
 #: neahtta/templates/add_to_homescreen.html:24
@@ -1979,7 +1979,7 @@ msgid ""
 "A new window appears asking you to add this website to your home screen. "
 "Click \"Add\"."
 msgstr "Uusi ikkuna avautuu, jossa sinua pyydetään lisäämään tämä verkkosivusto "
-"aloitusnäyttöösi. Napsauta \"Lisää\"."
+"aloitusnäyttöösi. Klikkaa \"Lisää\"-painiketta."
 
 #: neahtta/templates/add_to_homescreen.html:37
 msgid "Samsung Internet"
@@ -1998,7 +1998,7 @@ msgid ""
 "The shortcut is now on your homescreen, and you can access the dictionary"
 " page directly by clicking on it."
 msgstr "Pikakuvake on nyt aloitusnäyttölläsi, ja voit käyttää sanakirjasivua "
-"suoraan napsauttamalla sitä."
+"suoraan klikkaamalla sitä."
 
 #: neahtta/templates/base.html:159
 #: neahtta/templates/mobile_nav_push_menu.html:6
