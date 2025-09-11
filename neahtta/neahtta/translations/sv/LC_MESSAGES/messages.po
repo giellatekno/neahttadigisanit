@@ -1835,50 +1835,55 @@ msgstr "Hoppsan! Nu har något gått snett."
 #: neahtta/templates/add_to_homescreen.html:3
 #: neahtta/templates/add_to_homescreen.html:20
 msgid "Add to Homescreen"
-msgstr ""
+msgstr "Lägg till på startskärmen"
 
 #: neahtta/templates/add_to_homescreen.html:21
 msgid ""
 "If you wish to have a shortcut to the dictionary on your smartphone "
 "homescreen, follow the instructions below."
-msgstr ""
+msgstr "Om du vill ha en genväg till ordboken på din smartmobils "
+"startskärm följer du instruktionerna nedan."
 
 #: neahtta/templates/add_to_homescreen.html:22
 msgid ""
 "The shortcut looks like an app and you can click right into the website "
 "without opening your browser."
-msgstr ""
+msgstr "Genvägen ser ut som en app och du kan klicka dig direkt in på "
+"webbplatsen utan att öppna webbläsaren."
 
 #: neahtta/templates/add_to_homescreen.html:24
 msgid "Open the frontpage of the dictionary you want a shortcut to."
-msgstr ""
+msgstr "Öppna förstasidan till den ordbok du vill ha en genväg till."
 
 #: neahtta/templates/add_to_homescreen.html:28
 msgid "Select the share icon in the browser."
-msgstr ""
+msgstr "Välj delningsikonen i webbläsaren.."
 
 #: neahtta/templates/add_to_homescreen.html:29
 msgid ""
 "Scroll down and select \"Add to Home Screen\". You may need to drag the "
 "row from the right to get to the button."
-msgstr ""
+msgstr "Scrolla ner och välj \"Lägg till på startskärmen\". Du kan behöva dra "
+"raden från höger för att komma till knappen."
 
 #: neahtta/templates/add_to_homescreen.html:33
 #: neahtta/templates/add_to_homescreen.html:39
 msgid "Open the main menu in the browser"
-msgstr ""
+msgstr "Öppna huvudmenyn i webbläsaren"
 
 #: neahtta/templates/add_to_homescreen.html:34
 msgid ""
 "A list of options appears. Select \"Add to home page\", a little down the"
 " list"
-msgstr ""
+msgstr "En lista med alternativ visas. Välj \"Lägg till på startsidan\", "
+"lite längre ner i listan."
 
 #: neahtta/templates/add_to_homescreen.html:35
 msgid ""
 "A new window appears asking you to add this website to your home screen. "
 "Click \"Add\"."
-msgstr ""
+msgstr "Ett nytt fönster visas där du blir ombedd att lägga till webbplatsen "
+"på din startskärm. Klicka på \"Lägg till\"."
 
 #: neahtta/templates/add_to_homescreen.html:37
 msgid "Samsung Internet"
@@ -1886,17 +1891,18 @@ msgstr ""
 
 #: neahtta/templates/add_to_homescreen.html:40
 msgid "Click \"Add page to\" at the top right in the menu"
-msgstr ""
+msgstr "Klicka på \"Lägg till sida\" längst upp till höger i menyn"
 
 #: neahtta/templates/add_to_homescreen.html:41
 msgid "Choose \"Home screen\" in the window that appears."
-msgstr ""
+msgstr "Välj \"Hemskärm\" i fönstret som visas."
 
 #: neahtta/templates/add_to_homescreen.html:44
 msgid ""
 "The shortcut is now on your homescreen, and you can access the dictionary"
 " page directly by clicking on it."
-msgstr ""
+msgstr "Genvägen finns nu på din startskärm och du kan komma åt ordbokssidan "
+"direkt genom att klicka på den."
 
 #: neahtta/templates/base.html:159
 #: neahtta/templates/mobile_nav_push_menu.html:6
@@ -1911,7 +1917,7 @@ msgstr "Klicka-i-text"
 #: neahtta/templates/base.html:168
 #: neahtta/templates/mobile_nav_push_menu.html:15
 msgid "Smartphone shortcut"
-msgstr ""
+msgstr "Genväg fõr smartmobil"
 
 #: neahtta/templates/base.html:176
 #: neahtta/templates/mobile_nav_push_menu.html:23
