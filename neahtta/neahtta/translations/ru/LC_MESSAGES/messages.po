@@ -73,9 +73,8 @@ msgid "North Sámi"
 msgstr "Северно-саамский"
 
 #: neahtta/configs/language_names.yaml:35
-#, fuzzy
 msgid "North Sámi (tolerant)"
-msgstr "Северно-саамский (#SoMe)"
+msgstr "Северно-саамский "
 
 #: neahtta/configs/language_names.yaml:36
 #: neahtta/configs/language_names.yaml:131
@@ -141,7 +140,6 @@ msgid "Livonian"
 msgstr "Лив"
 
 #: neahtta/configs/language_names.yaml:60
-#, fuzzy
 msgid "Livonian (tolerant)"
 msgstr "Ливонский, эстонский, водский язык"
 
@@ -239,7 +237,6 @@ msgid "Northern Haida"
 msgstr "Северная хайда"
 
 #: neahtta/configs/language_names.yaml:106
-#, fuzzy
 msgid "Northern Haida (tolerant)"
 msgstr "Северная хайда"
 
