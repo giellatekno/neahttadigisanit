@@ -1898,50 +1898,54 @@ msgstr "Возгласы! Была некоторая ошибка."
 #: neahtta/templates/add_to_homescreen.html:3
 #: neahtta/templates/add_to_homescreen.html:20
 msgid "Add to Homescreen"
-msgstr ""
+msgstr "Добавить на главный экран"
 
 #: neahtta/templates/add_to_homescreen.html:21
 msgid ""
 "If you wish to have a shortcut to the dictionary on your smartphone "
 "homescreen, follow the instructions below."
-msgstr ""
+msgstr "Если вы хотите разместить ярлык словаря на главном экране своего смартфона, "
+"следуйте инструкциям ниже."
 
 #: neahtta/templates/add_to_homescreen.html:22
 msgid ""
 "The shortcut looks like an app and you can click right into the website "
 "without opening your browser."
-msgstr ""
+msgstr "Ярлык выглядит как приложение, и вы можете перейти на сайт, "
+"не открывая браузер."
 
 #: neahtta/templates/add_to_homescreen.html:24
 msgid "Open the frontpage of the dictionary you want a shortcut to."
-msgstr ""
+msgstr "Откройте первую страницу словаря, к которому вы хотите создать ярлык."
 
 #: neahtta/templates/add_to_homescreen.html:28
 msgid "Select the share icon in the browser."
-msgstr ""
+msgstr "Выберите значок «Поделиться» в браузере."
 
 #: neahtta/templates/add_to_homescreen.html:29
 msgid ""
 "Scroll down and select \"Add to Home Screen\". You may need to drag the "
 "row from the right to get to the button."
-msgstr ""
+msgstr "Прокрутите вниз и выберите «Добавить на главный экран». Возможно, "
+"вам придётся перетащить строку справа, чтобы добраться до кнопки."
 
 #: neahtta/templates/add_to_homescreen.html:33
 #: neahtta/templates/add_to_homescreen.html:39
 msgid "Open the main menu in the browser"
-msgstr ""
+msgstr "Открыть главное меню в браузере"
 
 #: neahtta/templates/add_to_homescreen.html:34
 msgid ""
 "A list of options appears. Select \"Add to home page\", a little down the"
 " list"
-msgstr ""
+msgstr "Появится список вариантов. Выберите «Добавить на главную страницу» чуть ниже."
 
 #: neahtta/templates/add_to_homescreen.html:35
 msgid ""
 "A new window appears asking you to add this website to your home screen. "
 "Click \"Add\"."
-msgstr ""
+msgstr "Появится новое окно с предложением добавить этот сайт на главный экран. "
+"Нажмите «Добавить»."
 
 #: neahtta/templates/add_to_homescreen.html:37
 msgid "Samsung Internet"
@@ -1949,17 +1953,18 @@ msgstr ""
 
 #: neahtta/templates/add_to_homescreen.html:40
 msgid "Click \"Add page to\" at the top right in the menu"
-msgstr ""
+msgstr "Нажмите «Добавить страницу» в правом верхнем углу меню."
 
 #: neahtta/templates/add_to_homescreen.html:41
 msgid "Choose \"Home screen\" in the window that appears."
-msgstr ""
+msgstr "В появившемся окне выберите «Главный экран»."
 
 #: neahtta/templates/add_to_homescreen.html:44
 msgid ""
 "The shortcut is now on your homescreen, and you can access the dictionary"
 " page directly by clicking on it."
-msgstr ""
+msgstr "Ярлык теперь находится на вашем рабочем столе, и вы можете перейти "
+"на страницу словаря, щелкнув по нему напрямую."
 
 #: neahtta/templates/base.html:159
 #: neahtta/templates/mobile_nav_push_menu.html:6
@@ -1974,7 +1979,7 @@ msgstr "Кликни-в-тексте"
 #: neahtta/templates/base.html:168
 #: neahtta/templates/mobile_nav_push_menu.html:15
 msgid "Smartphone shortcut"
-msgstr ""
+msgstr "Ярлык на смартфоне"
 
 #: neahtta/templates/base.html:176
 #: neahtta/templates/mobile_nav_push_menu.html:23
