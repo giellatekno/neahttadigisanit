@@ -15,6 +15,7 @@ from .main import (
     about,
     about_sources,
     add_to_homescreen,
+    kildin_keyboards,
     config_doc,
     config_docs,
     escape_tv,
@@ -115,7 +116,17 @@ blueprint.add_url_rule(
 )
 
 blueprint.add_url_rule(
-    "/add-to-homescreen/", methods=["GET"], endpoint="add_to_homescreen", view_func=add_to_homescreen
+    "/add-to-homescreen/",
+    methods=["GET"],
+    endpoint="add_to_homescreen",
+    view_func=add_to_homescreen,
+)
+
+blueprint.add_url_rule(
+    "/kildin_keyboards/",
+    methods=["GET"],
+    endpoint="kildin_keyboards",
+    view_func=kildin_keyboards,
 )
 
 blueprint.add_url_rule(

@@ -43,6 +43,11 @@ def add_current_locale_code():
 
 
 @blueprint.context_processor
+def add_config_short_name():
+    return {"short_name": current_app.config.short_name}
+
+
+@blueprint.context_processor
 def add_current_pair():
     """If the request is for a form or a lookup, we include"""
 

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title -%}{% trans project_name=app_name %}Keyboards{% endtrans %} :: {% endblock %}
+
+{% block meta_title %}
+<meta name="title" content="Kildin Keyboards">
+{% endblock %}
+
+{% block meta_description %}
+    <meta name="description" content="Information on kildin keyboards">
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span8 offset2">
+            <h2 lang="{{ current_locale }}">Ва̄лльтэ кӣллт са̄мь клавиатура:</h3>
+
+            <p><a style="font-size: 1.5em;" href="http://gtdict.uit.no/kildin_keyboards.zip">Кӣллт са̄мь клавиатура (Windows)</a>
+
+            <h2 lang="{{ current_locale }}">Ва̄лльтэ кӣллт са̄мь клавиатура раскладка:</h3>
+
+            <p><a style="font-size: 1.5em;" href="http://gtdict.uit.no/saamskiekomibukvynaklaviature.pdf">Кӣллт са̄мь клавиатура Раскладка (Windows)</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

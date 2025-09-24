@@ -171,6 +171,9 @@
                                 <li><a href="{{ url_for('views.about') }}">
                                         <span lang="{{ current_locale }}">{% trans %}About{% endtrans %}</span>
                                 </a></li>
+                                {% if short_name == "sanj" %}
+                                    <li><a href="{{ url_for('views.kildin_keyboards') }}">Клавиатура</a></li>
+                                {% endif %}
                                 {% if sources_template_exists %}
                                     <li><a href="{{ url_for('views.about_sources') }}">
                                             <span lang="{{ current_locale }}">{% trans %}Sources{% endtrans %}</span>
