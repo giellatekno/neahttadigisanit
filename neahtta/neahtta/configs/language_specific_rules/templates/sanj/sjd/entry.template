@@ -16,7 +16,7 @@
 
 {%- set first_l = lexicon_entry|xpath('lg/l')|first -%}
 
-{%- set pos = first_l|xpath('@pos')|first -%}
+{%- set pos = first_l|xpath('@pos_txt')|first -%}
 
 {%- set dialect = first_l|xpath('@dialect')|first -%}
 {%- set dialect_text = dialect|tagfilter(_from, _to) -%}
