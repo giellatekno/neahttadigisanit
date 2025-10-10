@@ -168,10 +168,10 @@ Dictionaries:
     show_korp_search: True
     is_korp_default_lang: True
     korp_parallel: True
-    korp_search_host: "https://gtweb.uit.no/korp/nob"
+    korp_search_host: "https://gtweb.uit.no/f_korp/"
     link_corpus_parameter: "nob2fkv_admin_20210319-nob,nob2fkv_bible_20210319-nob,nob2fkv_facta_20210319-nob,nob2fkv_ficti_20210319-nob,nob2fkv_news_20210319-nob"
     corpora: 'NOB2FKV_ADMIN_20210319-NOB,NOB2FKV_BIBLE_20210319-NOB,NOB2FKV_FACTA_20210319-NOB,NOB2FKV_FICTI_20210319-NOB,NOB2FKV_NEWS_20210319-NOB'
-    start_query: 'https://gtweb.uit.no/korp/nob?command=query&corpus='
+    start_query: 'https://gtweb.uit.no/f_korp/?mode=parallel'
 
   - source: fit
     target: swe
