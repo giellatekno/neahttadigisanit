@@ -48,6 +48,16 @@ Morphology:
       derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
+  fit:
+    tool: *HFST-LOOKUP
+    file: '/usr/share/giella/fit/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/usr/share/giella/fit/generator-dict-gt-norm.hfstol'
+    format: 'hfst'
+    options:
+      compoundBoundary: "#"
+      derivationMarker: "+Der"
+      tagsep: '+'
+      inverse_tagsep: '+'
   vep:
     tool: *HFST-LOOKUP
     file: '/usr/share/giella/vep/analyser-dict-gt-desc.hfstol'
@@ -113,9 +123,9 @@ Dictionaries:
     dict_source: lang
     path: 'dicts/olo-all.xml'
     show_korp_search: True
-    korp_search_host: "https://gtweb.uit.no/korp/olo"
-    corpora: 'olo_wikipedia_20210319'
-    start_query: 'https://gtweb.uit.no/korp/olo?command=query&corpus='
+    korp_search_host: &OLO_KORP "https://gtweb.uit.no/korp/olo"
+    corpora: &OLO_KORP_C 'olo_wikipedia_20210319'
+    start_query: &OLO_KORP_Q 'https://gtweb.uit.no/korp/olo?command=query&corpus='
 
   - source: fin
     target: olo
@@ -125,9 +135,9 @@ Dictionaries:
     target: rus
     path: 'dicts/olo-rus.xml'
     show_korp_search: True
-    korp_search_host: "https://gtweb.uit.no/korp/olo"
-    corpora: 'olo_wikipedia_20210319'
-    start_query: 'https://gtweb.uit.no/korp/olo?command=query&corpus='
+    korp_search_host: *OLO_KORP
+    corpora: *OLO_KORP_C
+    start_query: *OLO_KORP_Q
 
   - source: rus
     target: olo
@@ -138,7 +148,7 @@ Dictionaries:
     target: nob
     path: 'dicts/fkv-nob.xml'
     show_korp_search: True
-    korp_search_host: &F_KORP "https://gtweb.uit.no/korp/fkv"
+    korp_search_host: "https://gtweb.uit.no/korp/fkv"
     is_korp_default_lang: True
     corpora: 'FKV_ADMIN_20210319,FKV_BIBLE_20210319,FKV_FACTA_20210319,FKV_FICTI_20210319,FKV_NEWS_20210319'
     start_query: 'https://gtweb.uit.no/korp/fkv?command=query&corpus='
