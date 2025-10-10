@@ -112,6 +112,10 @@ Dictionaries:
     target: fin
     dict_source: lang
     path: 'dicts/olo-all.xml'
+    show_korp_search: True
+    korp_search_host: "https://gtweb.uit.no/korp/olo"
+    corpora: 'olo_wikipedia_20210319'
+    start_query: 'https://gtweb.uit.no/korp/olo?command=query&corpus='
 
   - source: fin
     target: olo
@@ -120,6 +124,10 @@ Dictionaries:
   - source: olo
     target: rus
     path: 'dicts/olo-rus.xml'
+    show_korp_search: True
+    korp_search_host: "https://gtweb.uit.no/korp/olo"
+    corpora: 'olo_wikipedia_20210319'
+    start_query: 'https://gtweb.uit.no/korp/olo?command=query&corpus='
 
   - source: rus
     target: olo
