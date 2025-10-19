@@ -94,6 +94,8 @@
 {% endif -%}
 
 {%- if pos|upper == 'N' and pos_type == 'Prop' %}
+    {% set prop_sgs = paradigm|uniq %}
+
     {% macro clean_tag(tag_input) %}
         {{ tag_input|remove_by_tagset('invisible_in_noun_paradigms')
                     |tagfilter(_from, _to) }}
@@ -311,7 +313,7 @@
         {% if paradigm_exists %}
 
             <dl class="dl-horizontal miniparadigm">
-                {%- for form in paradigm -%}
+                {%- for form in prop_sgs -%}
 
                     {% if form.tag %}
                         <dt>{{ clean_tag(form.tag)  }}</dt>
