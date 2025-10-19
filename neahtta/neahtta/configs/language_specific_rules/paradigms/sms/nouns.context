@@ -4,5 +4,5 @@
 
 - entry_context: None
   tag_context: "N+Prop+Sg+Gen"
-  template: "{{ word_form }} pääiʹǩ"
+  template: "{{ word_form }} (pääiʹǩ)"
 

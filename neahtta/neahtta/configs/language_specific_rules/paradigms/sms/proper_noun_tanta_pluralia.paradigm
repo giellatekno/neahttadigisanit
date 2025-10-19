@@ -23,7 +23,7 @@ lexicon:
 {{ lemma }}+N+Prop+{{ sem_type }}+Sg+Ill
 {{ lemma }}+N+Prop+{{ sem_type }}+Sg+Loc
 {{ lemma }}+N+Prop+{{ sem_type }}+Sg+Abe
-{
+
 {% elif semantics %}
 {{ lemma }}+N+Prop+{{ semantics }}+Sg+Nom
 {{ lemma }}+N+Prop+{{ semantics }}+Sg+Acc
