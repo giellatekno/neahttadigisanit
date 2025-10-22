@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-11 07:04+0200\n"
+"POT-Creation-Date: 2025-10-22 21:27+0200\n"
 "PO-Revision-Date: 2013-02-01 01:55-0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: se\n"
@@ -24,8 +24,8 @@ msgstr ""
 #: neahtta/configs/saanih.config.yaml.in:80
 #: neahtta/configs/saanih.config.yaml.in:110
 #: neahtta/configs/sample.config.yaml.in:194
-#: neahtta/configs/sanat.config.yaml:139
-#: neahtta/configs/sanat.config.yaml.in:139
+#: neahtta/configs/sanat.config.yaml:157
+#: neahtta/configs/sanat.config.yaml.in:157
 #: neahtta/configs/sanit.config.yaml:125
 #: neahtta/configs/sanit.config.yaml.in:125
 #: neahtta/configs/sanj.config.yaml:100 neahtta/configs/sanj.config.yaml.in:100
@@ -902,7 +902,7 @@ msgstr "Eará gielat"
 #: neahtta/configs/language_specific_rules/templates/muter/mrj/paradigm.template:117
 #: neahtta/configs/language_specific_rules/templates/paradigm_layouts.template:11
 #: neahtta/configs/language_specific_rules/templates/saan/fin/paradigm.template:220
-#: neahtta/configs/language_specific_rules/templates/saan/sms/paradigm.template:122
+#: neahtta/configs/language_specific_rules/templates/saan/sms/paradigm.template:124
 #: neahtta/configs/language_specific_rules/templates/saanih/smn/paradigm.template:186
 #: neahtta/configs/language_specific_rules/templates/sanat/fit/paradigm.template:177
 #: neahtta/configs/language_specific_rules/templates/sanat/fkv/paradigm.template:177
@@ -1080,7 +1080,7 @@ msgstr "Molsso"
 
 #: neahtta/configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:76
 #: neahtta/configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:149
-#: neahtta/templates/index.html:76 neahtta/templates/index.html:155
+#: neahtta/templates/index.html:76 neahtta/templates/index.html:159
 #: neahtta/templates/word_detail.html:67 neahtta/templates/word_detail.html:108
 #: neahtta/views/reader.py:218
 msgid " is a possible form of ... "
@@ -1538,8 +1538,11 @@ msgstr ""
 "                                dohkkehuvvojit maiddái áčđŋšŧž:n."
 
 #: neahtta/configs/language_specific_rules/templates/sanit/nob/index_search_form.template:94
-#: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:91
 msgid "Press s or / to search."
+msgstr ""
+
+#: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:91
+msgid "Press s or / to go to the search field."
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:98
@@ -1946,15 +1949,17 @@ msgstr "Lasit ruoktosiidui"
 msgid ""
 "If you wish to have a shortcut to the dictionary on your smartphone "
 "homescreen, follow the instructions below."
-msgstr "Jus siđat njulgenluotta sátnegirjái iežat jierbmetelefovnna "
+msgstr ""
+"Jus siđat njulgenluotta sátnegirjái iežat jierbmetelefovnna "
 "ruoktosiiddus, de čuovut vuolábeale bagadeami."
 
 #: neahtta/templates/add_to_homescreen.html:22
 msgid ""
 "The shortcut looks like an app and you can click right into the website "
 "without opening your browser."
-msgstr "Njulgenluodda lea olggosoaidnit dego appa ja go deaddilat dan, beasat njuolga neahttasiidui, "
-"itge dárbbaš rahpat neahttalohkki."
+msgstr ""
+"Njulgenluodda lea olggosoaidnit dego appa ja go deaddilat dan, beasat "
+"njuolga neahttasiidui, itge dárbbaš rahpat neahttalohkki."
 
 #: neahtta/templates/add_to_homescreen.html:24
 msgid "Open the frontpage of the dictionary you want a shortcut to."
@@ -1968,7 +1973,8 @@ msgstr "Deaddil juohkinboalu neahttalohkkis."
 msgid ""
 "Scroll down and select \"Add to Home Screen\". You may need to drag the "
 "row from the right to get to the button."
-msgstr "Bláđe vulos ja deaddil \"Lasit ruoktosiidui\" (\"Add to Home Screen\"). "
+msgstr ""
+"Bláđe vulos ja deaddil \"Lasit ruoktosiidui\" (\"Add to Home Screen\"). "
 "Soaittát fertet geassit boaluid olgeš ravddas gávdnat rivttes boalu."
 
 #: neahtta/templates/add_to_homescreen.html:33
@@ -1980,18 +1986,21 @@ msgstr "Raba neahttalohkki váldofálu."
 msgid ""
 "A list of options appears. Select \"Add to home page\", a little down the"
 " list"
-msgstr "Listu rahpasa. Deaddil \"Lasit ruoktosiidui\" (\"Add to home page\"), "
+msgstr ""
+"Listu rahpasa. Deaddil \"Lasit ruoktosiidui\" (\"Add to home page\"), "
 "maid gávnnat listtu loahpageahčen."
 
 #: neahtta/templates/add_to_homescreen.html:35
 msgid ""
 "A new window appears asking you to add this website to your home screen. "
 "Click \"Add\"."
-msgstr "Ođđa láse rahpasa ja jearrá ahte háliidatgo lasihit dán siiddu iežat ruoktosiidui. "
-"Deaddil \"Lasit\" (\"Add\")."
+msgstr ""
+"Ođđa láse rahpasa ja jearrá ahte háliidatgo lasihit dán siiddu iežat "
+"ruoktosiidui. Deaddil \"Lasit\" (\"Add\")."
 
 #: neahtta/templates/add_to_homescreen.html:37
-msgid "Samsung Internet""
+#, fuzzy
+msgid "Samsung Internet"
 msgstr "Samsung Internet"
 
 #: neahtta/templates/add_to_homescreen.html:40
@@ -2006,8 +2015,9 @@ msgstr "Vállje \"Ruoktosiiddu\" (\"Home screen\") láses mii rahpasa."
 msgid ""
 "The shortcut is now on your homescreen, and you can access the dictionary"
 " page directly by clicking on it."
-msgstr "Njulgenluodda lea dál iežat ruoktosiiddus, ja beasat njuolga sátnegirjesiidui "
-"go deaddilat dan."
+msgstr ""
+"Njulgenluodda lea dál iežat ruoktosiiddus, ja beasat njuolga "
+"sátnegirjesiidui go deaddilat dan."
 
 #: neahtta/templates/base.html:159
 #: neahtta/templates/mobile_nav_push_menu.html:6
@@ -2024,12 +2034,12 @@ msgstr "Deaddilastte-teavsttas"
 msgid "Smartphone shortcut"
 msgstr "Njulgenluodda jierbmetelefovnnas"
 
-#: neahtta/templates/base.html:176
+#: neahtta/templates/base.html:179
 #: neahtta/templates/mobile_nav_push_menu.html:23
 msgid "Sources"
 msgstr ""
 
-#: neahtta/templates/base.html:182
+#: neahtta/templates/base.html:185
 #: neahtta/templates/mobile_nav_push_menu.html:27
 #: neahtta/templates/mobile_nav_push_menu.html:30
 msgid "Interface language"
@@ -2055,12 +2065,23 @@ msgstr ""
 msgid "Neahttadigisánit"
 msgstr "Neahttadigisánit"
 
+#: neahtta/templates/index.html:149
+msgid ""
+"The corpus and full paradigm generator will be temporarily unavailable "
+"for about an hour starting at 09:00 Norwegian time (CEST/UTC+2) on Friday"
+" October 24 2025 due to a server upgrade."
+msgstr ""
+
 #: neahtta/templates/index_search_form.html:14
 msgid "Press Tab to select a word"
 msgstr "Deaddil Tab go válljet sáni"
 
 #: neahtta/templates/keyword_search_form.html:24
 msgid "Enter keyword(s)"
+msgstr ""
+
+#: neahtta/templates/kildin_keyboards.html:3
+msgid "Keyboards"
 msgstr ""
 
 #: neahtta/templates/language_select.html:7
@@ -3237,39 +3258,4 @@ msgstr " lea vejolaččat dán sáni hápmi:"
 #~ "Dárbbašatgo eanet sátnegirjjiid? <a "
 #~ "href=\"http://dicts.uit.no/\">Dás lea olles "
 #~ "listu</a>, ja eanet resurssat."
-
-#~ msgid "Got unexpected extra argument ({args})"
-#~ msgid_plural "Got unexpected extra arguments ({args})"
-#~ msgstr[0] ""
-#~ msgstr[1] ""
-
-#~ msgid "Takes {nargs} values but 1 was given."
-#~ msgid_plural "Takes {nargs} values but {len} were given."
-#~ msgstr[0] ""
-#~ msgstr[1] ""
-
-#~ msgid "Did you mean {possibility}?"
-#~ msgid_plural "(Possible options: {possibilities})"
-#~ msgstr[0] ""
-#~ msgstr[1] ""
-
-#~ msgid "Option {name!r} requires an argument."
-#~ msgid_plural "Option {name!r} requires {nargs} arguments."
-#~ msgstr[0] ""
-#~ msgstr[1] ""
-
-#~ msgid "{value!r} is not {choice}."
-#~ msgid_plural "{value!r} is not one of {choices}."
-#~ msgstr[0] ""
-#~ msgstr[1] ""
-
-#~ msgid "{value!r} does not match the format {format}."
-#~ msgid_plural "{value!r} does not match the formats {formats}."
-#~ msgstr[0] ""
-#~ msgstr[1] ""
-
-#~ msgid "{len_type} values are required, but {len_value} was given."
-#~ msgid_plural "{len_type} values are required, but {len_value} were given."
-#~ msgstr[0] ""
-#~ msgstr[1] ""
 
