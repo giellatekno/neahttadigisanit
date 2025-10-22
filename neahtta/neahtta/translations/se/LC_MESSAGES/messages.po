@@ -2070,7 +2070,9 @@ msgid ""
 "The corpus and full paradigm generator will be temporarily unavailable "
 "for about an hour starting at 09:00 Norwegian time (CEST/UTC+2) on Friday"
 " October 24 2025 due to a server upgrade."
-msgstr ""
+msgstr "Korpus ja eanet-sojahanhámit-siidu eai leat olámuttos sullii diimmu"
+" diibmu 09:00 rájes Norgga áiggi (UTC+2) bearjadaga golggotmánu 24. beaivve 2025."
+" Sivva lea bálvaleaddji (servera) ođasmahttin."
 
 #: neahtta/templates/index_search_form.html:14
 msgid "Press Tab to select a word"

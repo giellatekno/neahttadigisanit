@@ -2060,7 +2060,9 @@ msgid ""
 "The corpus and full paradigm generator will be temporarily unavailable "
 "for about an hour starting at 09:00 Norwegian time (CEST/UTC+2) on Friday"
 " October 24 2025 due to a server upgrade."
-msgstr ""
+msgstr "Korpus ja taivutusparadigmasivu ovat tilapäisesti poissa käytöstä"
+" noin tunnin ajan alkaen klo 9.00 Norjan aikaa (UTC+2) perjantaina 24."
+" lokakuuta 2025 palvelinpäivityksen vuoksi."
 
 #: neahtta/templates/index_search_form.html:14
 msgid "Press Tab to select a word"
