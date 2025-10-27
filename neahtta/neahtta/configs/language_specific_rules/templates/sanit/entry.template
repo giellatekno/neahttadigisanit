@@ -131,6 +131,25 @@
                                 {{- rendered_templates.entry_text|safe -}}
                             </a>
                         {% endif %}
+
+                        <button
+                            onclick="play_tts('{{ lexicon_entry|xpath('lg/l')|first|text }}')"
+                            class="tts"
+                            tabindex="0"
+                            type="button"
+                            title="Listen to pronunciation"
+                            aria-label="speak text"
+                        >
+                            <svg
+                                class=""
+                                focusable="false"
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+                                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z">
+                                </path>
+                            </svg>
+                        </button>
                     {% endif %}
 
                     {% if stem %}
@@ -166,7 +185,6 @@
                         {% if lexicon_entry|count > 0 %}
                             {% set has_reference = lexicon_entry.xpath('./lg/lemma_ref/text()')|first %}
                             <p>
-
                             {%- if has_reference -%}
                                 {{ reference_link(has_reference) }}
                             {%- else -%}
@@ -174,6 +192,25 @@
                                     {{- rendered_templates.entry_text|safe -}}
                                 </a>
                             {% endif %}
+
+                            <button
+                                onclick="play_tts('{{ lexicon_entry|xpath('lg/l')|first|text }}')"
+                                class="tts"
+                                tabindex="0"
+                                type="button"
+                                title="Listen to pronunciation"
+                                aria-label="speak text"
+                            >
+                                <svg
+                                    class=""
+                                    focusable="false"
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                >
+                                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z">
+                                    </path>
+                                </svg>
+                            </button>
 
                             {% if stem %}
                                 <p class="p_stem">(stamme: {{stem_desc}})</p>
@@ -207,6 +244,10 @@
                     {% if lexicon_entry|count > 0 %}
                         {% set has_reference = lexicon_entry.xpath('./lg/lemma_ref/text()')|first %}
                         <p>
+                            {# style="color: rgba(0, 0, 0, 0.54);
+                            transition: background-color 150ms
+                            cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+                            border-radius: 50%;" #}
 
                         {%- if has_reference -%}
                             {{ reference_link(has_reference) }}
@@ -214,6 +255,24 @@
                             <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
                                 {{- rendered_templates.entry_text|safe -}}
                             </a>
+                            <button
+                                onclick="play_tts('{{ lexicon_entry|xpath('lg/l')|first|text }}')"
+                                class="tts"
+                                tabindex="0"
+                                type="button"
+                                title="Listen to pronunciation"
+                                aria-label="speak text"
+                            >
+                                <svg
+                                    class=""
+                                    focusable="false"
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                >
+                                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z">
+                                    </path>
+                                </svg>
+                            </button>
                         {% endif %}
 
                         {% if stem %}
