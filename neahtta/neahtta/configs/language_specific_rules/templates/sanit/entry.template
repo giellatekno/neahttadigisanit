@@ -22,6 +22,8 @@
 {%- endmacro -%}
 
 {%- import "lexicon.macros" as macros with context -%}
+{%- from "tts.macro" import tts_button with context -%}
+
 {%- set first_l = lexicon_entry|xpath('lg/l')|first %}
 {%- set morph_ex = lexicon_entry|xpath('mg/tg/morph_expl') %}
 {%- set l_ref = lexicon_entry|xpath('mg/l_ref') %}
@@ -112,6 +114,8 @@
 
 {# Display #}
 
+{% set lemma = lexicon_entry|xpath('lg/l')|first|text %}
+
 <div class="row-fluid entry_row">
     <div class="span8 lexeme">
         {% if 'true' not in if_der and 'ⓒ' not in first_l|text %}
@@ -131,25 +135,9 @@
                             </a>
                         {% endif %}
 
-                        <button
-                            onclick="play_tts(event, '{{ lexicon_entry|xpath('lg/l')|first|text }}')"
-                            class="tts"
-                            tabindex="0"
-                            type="button"
-                            title="Listen to pronunciation"
-                            aria-label="speak text"
-                        >
-                            <svg
-                                class=""
-                                focusable="false"
-                                viewBox="0 0 24 24"
-                                aria-hidden="true"
-                            >
-                                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z">
-                                </path>
-                            </svg>
-                            <span class="spinner hidden"></span>
-                        </button>
+                        {% if _from == "sme" %}
+                            {{ tts_button(lemma) }}
+                        {% endif %}
                     {% endif %}
 
                     {% if stem %}
@@ -193,25 +181,7 @@
                                 </a>
                             {% endif %}
 
-                            <button
-                                onclick="play_tts(event, '{{ lexicon_entry|xpath('lg/l')|first|text }}')"
-                                class="tts"
-                                tabindex="0"
-                                type="button"
-                                title="Listen to pronunciation"
-                                aria-label="speak text"
-                            >
-                                <svg
-                                    class=""
-                                    focusable="false"
-                                    viewBox="0 0 24 24"
-                                    aria-hidden="true"
-                                >
-                                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z">
-                                    </path>
-                                </svg>
-                                <span class="spinner hidden"></span>
-                            </button>
+                            {{ tts_button(lemma) }}
 
                             {% if stem %}
                                 <p class="p_stem">(stamme: {{stem_desc}})</p>
@@ -256,25 +226,8 @@
                             <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
                                 {{- rendered_templates.entry_text|safe -}}
                             </a>
-                            <button
-                                onclick="play_tts(event, '{{ lexicon_entry|xpath('lg/l')|first|text }}')"
-                                class="tts"
-                                tabindex="0"
-                                type="button"
-                                title="Listen to pronunciation"
-                                aria-label="speak text"
-                            >
-                                <svg
-                                    class=""
-                                    focusable="false"
-                                    viewBox="0 0 24 24"
-                                    aria-hidden="true"
-                                >
-                                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z">
-                                    </path>
-                                </svg>
-                                <span class="spinner hidden"></span>
-                            </button>
+
+                            {{ tts_button(lemma) }}
                         {% endif %}
 
                         {% if stem %}

@@ -30,6 +30,8 @@
     {% set keyboard = current_variant_options.onscreen_keyboard %}
 {% endif -%}
 
+{% from "tts.macro" import tts_button with context %}
+
 {% block content %}
 <div class="container-fluid">
     <div class="row-fluid">
@@ -81,7 +83,12 @@
             {# TODO: deep link needs to go to specific lexeme when it comes from the front page #}
             {% if successful_entry_exists %}
                 <div class="results" translate="no">
-                    <p class="user_input_text">{{user_input}}</p>
+                    <p class="user_input_text">
+                        {{user_input}}
+                        {% if _from == "sme" %}
+                            {{ tts_button(user_input) }}
+                        {% endif %}
+                    </p>
                     {% for tpl in entry_templates %}
                         {{ tpl|safe }}
                     {% endfor %}
