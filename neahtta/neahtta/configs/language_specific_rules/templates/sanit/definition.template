@@ -1,0 +1,82 @@
+{# This template is also rendered with each entry (i.e., `rendered_templates`),
+   and has access to all of the main entry-specific template values.
+
+   Since the goal is definitions, `lexicon_entry` is relevant. Filtering
+   by target languag ehas to happen here, so be sure to use the
+   `xml_lang` filter if overriding.
+#}
+ 
+{% import 'lexicon.macros' as macros with context %}
+{% from 'tts.macro' import tts_button with context %}
+
+{% for meaning_group in lexicon_entry|xpath('./mg') %}
+    {% set translation_groups = meaning_group|xpath('./tg')|xml_lang(_to) %}
+
+    {% if translation_groups|count > 0 %}
+        <li>{% if lexicon_entry|xpath('./mg')|count > 1 %}
+            {{ loop.index }}.
+            {% endif %}
+    {% else %}
+        {% continue %}
+    {% endif %}
+
+    {% set dg = meaning_group|xpath('./dg')|first %}
+
+    {% for translation_group in translation_groups %}
+        {# TODO: is it possible to avoid having to pass the global context variables in here? #}
+        {{ templates.definition_text.render(translation_group=translation_group, _from=_from, _to=_to)|safe }}
+
+        {% if dg %}
+            {% set dts = dg|xpath('./dt') %}
+            {% if dts %}
+                {% set dt = dts|first %}
+                <div
+                style="color:#555;margin-top:0.5em;font-style:italic;font-size:0.9em;">({{ dt|text }})</div>
+            {% endif %}
+        {% endif %}
+
+
+        {# TODO: examples should move to definition notes template,
+           which will need to be rendered for each tg #}
+        {% set examples = meaning_group|xpath('./xg') or translation_group|xpath('./xg') %}
+
+        {% if examples %}
+            <div class="example_set">
+                <blockquote class="examples">
+                    <dl>
+                    {% for example in examples %}
+                        {% set x = example|xpath('./x')|first|text %}
+                        {% set xt = example|xpath('./xt')|first|text %}
+                        {% if example|xpath('@re') %}
+                            <dt lang="{{ _from }}">
+                                {{ x }}
+                                ({{ example|xpath('@re')|first }})
+                                {{ tts_button(x) }}
+                            </dt>
+                        {% else %}
+                            <dt lang="{{ _from }}">
+                                {{ example|xpath('./x')|first|text }}
+                                {% if _from == "sme" %}
+                                    {{ tts_button(x) }}
+                                {% endif %}
+                            </dt>
+                        {% endif %}
+                        <dd lang="{{ _to }}">
+                            {{ xt }}
+                            {% if _to == "sme" %}
+                                {{ tts_button(xt) }}
+                            {% endif %}
+                        </dd>
+                    {% endfor %}
+                    </dl>
+                </blockquote>
+            </div>
+        {% endif %}
+
+    {% endfor %}
+
+    </li>
+
+{% endfor %}
+
+{#  vim: set ts=4 sw=4 tw=72 syntax=htmljinja : #}
