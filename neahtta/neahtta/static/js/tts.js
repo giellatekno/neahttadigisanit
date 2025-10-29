@@ -293,7 +293,12 @@ function cache_set(opts) {
 function localstorage_get_voice(opts) {
     var lang = get_arg(opts, "lang", { validate: is_nonempty_str });
     console.debug("localstorage_get_voice(\"" + lang + "\")");
-    return window.localStorage.getItem("tts-voice-" + lang);
+    var value = window.localStorage.getItem("tts-voice-" + lang);
+    if (value == null) {
+        localstorage_set_voice({ lang, voice: DEFAULT_SME_VOICE });
+        return DEFAULT_SME_VOICE;
+    }
+    return value;
 }
 
 function localstorage_set_voice(opts) {
