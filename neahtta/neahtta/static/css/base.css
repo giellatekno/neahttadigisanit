@@ -12,7 +12,7 @@ html, body {
 }
 
 .dl-horizontal dt {
-  text-overflow: no !important;
+    text-overflow: no !important;
 }
 
 .container-fluid {
@@ -292,22 +292,26 @@ footer {
 }
 
 .footer {
-  text-align: center;
-  padding: 30px 0;
-  margin-top: 20px;
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 20px;
 }
+
 .footer p {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
+
 .footer-links {
-  margin: 10px 0;
+    margin: 10px 0;
 }
+
 .footer-links li {
-  display: inline;
-  padding: 0 2px;
+    display: inline;
+    padding: 0 2px;
 }
+
 .footer-links li:first-child {
-  padding-left: 0;
+    padding-left: 0;
 }
 
 .analysis_grid {
@@ -991,11 +995,11 @@ table.miniparadigm th.tag {
         float: right;
     }
     table.miniparadigm th.tag {
-    font-size: 8.1pt;
-    text-transform: lowercase;
-    text-align: right;
-    padding-right: 8px;
-}
+        font-size: 8.1pt;
+        text-transform: lowercase;
+        text-align: right;
+        padding-right: 8px;
+    }
 }
 
 @media (max-width: 550px) and (min-width: 501px) {
@@ -1015,8 +1019,6 @@ table.miniparadigm th.tag {
         width: 80% !important;
         float: right;
     }
-}
-
 }
 
 table.miniparadigm .center {
@@ -1042,29 +1044,29 @@ table.miniparadigm .double-width {
 
 /* Font color for '+' in case of Der tags */
 p.plus_der {
-  color: #0088cc;
+    color: #0088cc;
 }
 /* Style for user_input text */
 p.user_input_text {
-  font-style: italic;
-  font-size: 150%;
-  color: #0c5278;
+    font-style: italic;
+    font-size: 150%;
+    color: #0c5278;
 }
 /* Style for l_par and r_par */
 span.l-r-par {
-  font-style: italic;
-  color: #0c5278;
-  font-size: 90% !important;
+    font-style: italic;
+    color: #0c5278;
+    font-size: 90% !important;
 }
 /* Style for 'not found' and 'no corpus available' texts */
 span.not_found {
-  font-size:small;
-  color:#d22907;
+    font-size:small;
+    color:#d22907;
 }
 /* Style for l_ref */
 .l_ref {
-  font-weight: 400;
-  font-size: 95% !important;
+    font-weight: 400;
+    font-size: 95% !important;
 }
 .se_også, .p_stem {
   color: #666;
@@ -1103,6 +1105,11 @@ button.tts > svg {
     height: 1em;
 }
 
+button.tts.unavailable {
+    /* setting color directly didn't work, so we have this hack to make it somewhat red-gray-osh to indicate that it doesn't work */
+    filter: invert(100) sepia(1) saturate(5000%) hue-rotate(293deg) saturate(2) grayscale(0.4)
+}
+
 button.tts > svg.hidden {
     display: none;
 }
@@ -1112,8 +1119,8 @@ button.tts:hover {
 }
 
 .spinner {
-    width: 16px;
-    height: 16px;
+    width: 15px;
+    height: 15px;
     border: 3px solid rgba(0, 0, 0, 0.6);
     border-bottom-color: transparent;
     border-radius: 50%;

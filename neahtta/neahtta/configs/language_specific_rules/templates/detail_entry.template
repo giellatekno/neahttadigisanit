@@ -13,6 +13,10 @@
 #}
 
 {%- import "lexicon.macros" as macros with context -%}
+{%- from "tts.macro" import tts_button with context -%}
+
+{% set lemma = lexicon_entry|xpath('lg/l')|first|text %}
+
 <div class="row-fluid entry_row">
     <div class="span9 lexeme">
         {% if lexicon_entry|count > 0 %}
@@ -29,6 +33,7 @@
             </div>
             <p class="lead">
                 {{- rendered_templates.entry_text|safe -}}
+                {{ tts_button(lemma) }}
             </p>
             <ul class="meanings">
                 {{- rendered_templates.definition|safe -}}

@@ -1,0 +1,66 @@
+{% if _from == "sme" %}
+<ul id="tts_settings" class="nav nav-pills pull-right hidden-phone hidden-mid">
+    <li class="dropdown">
+        <a
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            onclick="on_open_tts_settings(event)"
+            data-from-lang="{{ _from }}"
+            style="padding: 0;"
+            href="#"
+        >
+            <span style="display: inline-block; background-color: #cbdce1; border-radius: 50%; margin: 3px; padding: 5px 5px 3px 4px;">
+                <svg
+                    style="display: inline; width: 1.2rem;"
+                    class=""
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                >
+                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z">
+                    </path>
+                </svg>
+            </span>
+        </a>
+        <ul class="dropdown-menu">
+            <li><p style="padding: 4px 12px;">Select syntethic voice</p></li>
+            <li>
+                <a
+                    href="#"
+                    style="display: flex;"
+                    onclick="set_voice(event);"
+                    data-tts-lang="{{ _from }}"
+                    data-tts-voice="Biret"
+                >
+                    <span style="display: inline-block; font-size: 1.6em; min-width: 14px;">&#x2713;</span>
+                    Biret
+                </a>
+            </li>
+            <li>
+                <a
+                    href="#"
+                    style="display: flex;"
+                    onclick="set_voice(event);"
+                    data-tts-lang="{{ _from }}"
+                    data-tts-voice="Mahtte"
+                >
+                    <span style="display: inline-block; font-size: 1.6em; min-width: 14px;"></span>
+                    Mahtte
+                </a>
+            </li>
+            <li>
+                <a
+                    href="#"
+                    style="display: flex;"
+                    onclick="set_voice(event);"
+                    data-tts-lang="{{ _from }}"
+                    data-tts-voice="Sunna"
+                >
+                    <span style="display: inline-block; font-size: 1.6em; min-width: 14px;"></span>
+                    Sunna
+                </a>
+            </li>
+        </ul>
+    </li>
+</ul>
+{% endif %}
