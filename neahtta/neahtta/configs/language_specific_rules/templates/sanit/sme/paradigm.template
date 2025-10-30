@@ -316,6 +316,7 @@
                                 {% if _from == "sme" %}
                                     {{ tts_button(form.form) }}
                                 {% endif %}
+                                <br />
                             {% endfor %}
                         </td>
                       {% else %}
@@ -330,6 +331,7 @@
                                 {% if _from == "sme" %}
                                     {{ tts_button(form.form) }}
                                 {% endif %}
+                                <br />
                             {% endfor %}
                             </td>
                     {% else %}
@@ -358,9 +360,7 @@
     {% endif %}
 
 {% elif pos|upper == 'N' or pos|upper == 'NUM' %}
-
     {% if paradigm_exists %}
-
         <table class="tableparadigm miniparadigm">
             <tr>
                 <th></th>
@@ -380,13 +380,31 @@
             <th class="tag" lang="{{ _to }}">{{ tag_display }}</th>
 
             {% if sgs and sgs != '-' %}
-                <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form')|safe }}</td>
+                <td lang="{{ _from }}">
+                    {% for sg in sgs %}
+                        {% set _sg = sg.form %}
+                        {{ _sg|safe }}
+                        {% if _from == "sme" %}
+                            {{ tts_button(_sg) }}
+                        {% endif %}
+                        <br />
+                    {% endfor %}
+                </td>
             {% else %}
                 <td lang="{{ _from }}" class="center">&mdash;</td>
             {% endif %}
 
             {% if pls and pls != '-' %}
-                <td lang="{{ _from }}">{{ pls|join('<br />', attribute='form')|safe }}</td>
+                <td lang="{{ _from }}">
+                    {% for pl in pls %}
+                        {% set _pl = pl.form %}
+                        {{ _pl|safe }}
+                        {% if _from == "sme" %}
+                            {{ tts_button(_pl) }}
+                        {% endif %}
+                        <br />
+                    {% endfor %}
+                </td>
             {% else %}
                 <td lang="{{ _from }}" class="center">&mdash;</td>
             {% endif %}
@@ -406,9 +424,7 @@
         {% endfor %}
 
         </table>
-
     {% endif %}
-
 {% elif pos|upper == 'A' %}
 
     {% set pos_text = "A"|tagfilter(_from, _to) %}
