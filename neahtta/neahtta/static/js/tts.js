@@ -244,11 +244,9 @@ function set_voice(event) {
 }
 
 function on_open_tts_settings(event) {
+    console.debug("on_open_tts_settings()");
     var lang = event.currentTarget.getAttribute("data-from-lang");
     var voice = localstorage_get_voice({ lang: lang });
-    if (!voice) {
-        voice = DEFAULT_SME_VOICE;
-    }
     var all = document.querySelectorAll("a[data-tts-voice]");
 
     for (var i = 0; i < all.length; i++) {
@@ -259,7 +257,7 @@ function on_open_tts_settings(event) {
         for (var j = 0; j < children.length; j++) {
             var child_node = children[j];
             if (child_node.tagName == "SPAN") {
-                if (voice == this_voice) {
+                if (voice.toLowerCase() == this_voice.toLowerCase()) {
                     child_node.innerHTML = "&#x2713;";
                 } else {
                     child_node.innerHTML = "";
@@ -345,7 +343,6 @@ function get_arg(opts, param_name, argopts) {
         }
     }
 }
-
 
 function type(obj) {
     if (obj === null) return "null";

@@ -121,6 +121,8 @@
         {% if 'true' not in if_der and 'ⓒ' not in first_l|text %}
         {# if 'true' not in if_der and 'DCmp' not in first_l|text#}
             {% if user_input in first_l|text %}
+                {# user_input is contained within first_lemma, e.g.
+                full match? #}
                 {% if lexicon_entry|count > 0 %}
                     {% set has_reference = lexicon_entry.xpath('./lg/lemma_ref/text()')|first %}
                     <p>
@@ -135,7 +137,7 @@
                             </a>
                         {% endif %}
 
-                        {% if _from == "sme" %}
+                        {% if _from == "sme" and _to == "nob" %}
                             {{ tts_button(lemma) }}
                         {% endif %}
                     {% endif %}
@@ -172,7 +174,6 @@
                     <div class="span6">
                         {% if lexicon_entry|count > 0 %}
                             {% set has_reference = lexicon_entry.xpath('./lg/lemma_ref/text()')|first %}
-                            <p>
                             {%- if has_reference -%}
                                 {{ reference_link(has_reference) }}
                             {%- else -%}
@@ -214,11 +215,6 @@
                 {% else %}
                     {% if lexicon_entry|count > 0 %}
                         {% set has_reference = lexicon_entry.xpath('./lg/lemma_ref/text()')|first %}
-                        <p>
-                            {# style="color: rgba(0, 0, 0, 0.54);
-                            transition: background-color 150ms
-                            cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-                            border-radius: 50%;" #}
 
                         {%- if has_reference -%}
                             {{ reference_link(has_reference) }}

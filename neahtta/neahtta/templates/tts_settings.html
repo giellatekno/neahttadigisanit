@@ -1,4 +1,9 @@
-{% if _from == "sme" %}
+{% set is_sme = _from == "sme" or _to == "sme" %}
+{% set is_sma = _from == "sma" or _to == "sma" %}
+
+{% set has_tts = is_sme or is_sma %}
+
+{% if has_tts %}
 <ul id="tts_settings" class="nav nav-pills pull-right hidden-phone hidden-mid">
     <li class="dropdown">
         <a
@@ -24,6 +29,7 @@
         </a>
         <ul class="dropdown-menu">
             <li><p style="padding: 4px 12px;">Select syntethic voice</p></li>
+            {% if is_sme %}
             <li>
                 <a
                     href="#"
@@ -42,10 +48,10 @@
                     style="display: flex;"
                     onclick="set_voice(event);"
                     data-tts-lang="{{ _from }}"
-                    data-tts-voice="Mahtte"
+                    data-tts-voice="Máhtte"
                 >
                     <span style="display: inline-block; font-size: 1.6em; min-width: 14px;"></span>
-                    Mahtte
+                    Máhtte
                 </a>
             </li>
             <li>
@@ -54,12 +60,16 @@
                     style="display: flex;"
                     onclick="set_voice(event);"
                     data-tts-lang="{{ _from }}"
-                    data-tts-voice="Sunna"
+                    data-tts-voice="Sunná"
                 >
                     <span style="display: inline-block; font-size: 1.6em; min-width: 14px;"></span>
-                    Sunna
+                    Sunná
                 </a>
             </li>
+            {% endif %}
+            {% if is_sma %}
+                <p>sma list here</p>
+            {% endif %}
         </ul>
     </li>
 </ul>
