@@ -4,11 +4,6 @@
   tag_context: "A+Attr"
   template: "{{ word_form }} {% if context|string() == 'None' %} {% else %} ({{ context }}) {% endif %}"
 
-- entry_context: "buorre"
-  tag_context: "A+Pl+Nom"
-  template: "{{ word_form }}"
-
-
 - entry_context: "olmmoš"
   tag_context: "A+Pl+Nom"
   template: "(olbmot leat) {{ word_form }}"
