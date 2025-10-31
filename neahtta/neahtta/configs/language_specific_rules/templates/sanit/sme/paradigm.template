@@ -206,18 +206,20 @@
 {%- macro standard_paradigm_link_deriv(deriv_lemma, link_text) %}
             {# URLFOR #}
     <a style="opacity: .8;"
-       href="http://gtweb.uit.no/cgi-bin/smi/smi.cgi?text={{ deriv_lemma }}&pos={{ pos }}&mode=standard&action=paradigm&lang=sme&plang=sme">
+       href="https://gtweb.uit.no/cgi-bin/smi/smi.cgi?text={{ deriv_lemma }}&pos={{ pos }}&mode=standard&action=paradigm&lang=sme&plang=sme">
         {{ link_text }} &nbsp;&rarr;
     </a>
+    {{ tts_button(deriv_lemma) }}
 {% endmacro -%}
 
 {# For use in e.g. adjective positive forms #}
 {%- macro mini_paradigm_link_deriv(deriv_lemma, link_text) %}
             {# URLFOR #}
     <a style="opacity: .8;"
-       href="http://gtweb.uit.no/cgi-bin/smi/smi.cgi?text={{ deriv_lemma }}&pos={{ pos }}&mode=minimal&action=paradigm&lang=sme&plang=sme">
+       href="https://gtweb.uit.no/cgi-bin/smi/smi.cgi?text={{ deriv_lemma }}&pos={{ pos }}&mode=minimal&action=paradigm&lang=sme&plang=sme">
         {{ link_text }} &nbsp;&rarr;
     </a>
+    {{ tts_button(deriv_lemma) }}
 {% endmacro -%}
 
 {% macro link_lemma_paradigm(lemma_par, msd_par) -%}
@@ -426,7 +428,6 @@
         </table>
     {% endif %}
 {% elif pos|upper == 'A' %}
-
     {% set pos_text = "A"|tagfilter(_from, _to) %}
     {% set ord_text = "Ord"|tagfilter(_from, _to) %}
 
@@ -437,25 +438,34 @@
     {% endmacro %}
 
     <table class="tableparadigm miniparadigm">
-      {% set adj_forms = paradigm|group_by_tag %}
-      <tr></tr>
-      {% for var in adj_forms %}
-        <tr>
-          {% if var[0].tag %}
-            <th>{{ clean_tag(var[0].tag) }}</th>
-          {% endif %}
-          {# Link comparative and superlative lemmas to their paradigms #}
-          {% if var|by_tagset("derivations")|by_tagset_value("case", "Nom")|length > 0 %}
-            <td lang="{{ _from }}">{{ standard_paradigm_link_deriv(var|first_form|regex_remove("\([^)]*\) "), var|join('<br />', attribute='form')|safe) }}</td>
-          {% elif var|without_tagset("derivations")|by_tagset_value("case", "Nom")|by_tagset_value("number", "Sg")|length > 0 %}
-            <td lang="{{ _from }}">{{ mini_paradigm_link_deriv(var|first_form, var|join('<br />', attribute='form')|safe) }}</td>
-          {% else %}
-            <td lang="{{ _from }}">{{ var|join('<br />', attribute='form')|safe }}</td>
-          {% endif %}
-        </tr>  
-      {% endfor %}
-    </table>
+        {% set adj_forms = paradigm|group_by_tag %}
+        <tr></tr>
+        {% for var in adj_forms %}
+            <tr>
+                {% if var[0].tag %}
+                    <th>{{ clean_tag(var[0].tag) }}</th>
+                {% endif %}
 
+                {# Link comparative and superlative lemmas to their paradigms #}
+                {% if var|by_tagset("derivations")|by_tagset_value("case", "Nom")|length > 0 %}
+                    <td lang="{{ _from }}">
+                        {{ standard_paradigm_link_deriv(var|first_form|regex_remove("\([^)]*\) "), var|join('<br />', attribute='form')|safe) }}
+                    </td>
+                {% elif var|without_tagset("derivations")|by_tagset_value("case", "Nom")|by_tagset_value("number", "Sg")|length > 0 %}
+                    <td lang="{{ _from }}">
+                        {{ mini_paradigm_link_deriv(var|first_form, var|join('<br />', attribute='form')|safe) }}
+                    </td>
+                {% else %}
+                    <td lang="{{ _from }}">
+                        {% for x in var %}
+                            {% set y = x.form|safe %}
+                            {{ y }} {{ tts_button(y) }}<br/>
+                        {% endfor %}
+                    </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
 {% elif pos|upper == 'ADV' %}
     <dl class="dl-horizontal miniparadigm">
       {%- for form in paradigm -%}
