@@ -1,7 +1,10 @@
 {% set is_sme = _from == "sme" or _to == "sme" %}
 {% set is_sma = _from == "sma" or _to == "sma" %}
+{% set is_smj = _from == "smj" or _to == "smj" %}
 
-{% set has_tts = is_sme or is_sma %}
+{% set has_multiple_tts = is_sme|int + is_sma|int + is_smj|int >= 2 %}
+
+{% set has_tts = is_sme or is_sma or is_smj %}
 
 {% if has_tts %}
 <ul id="tts_settings" class="nav nav-pills pull-right hidden-phone hidden-mid">
@@ -25,62 +28,112 @@
                     <path d="M9 15c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4m7.76-9.64-1.68 1.69c.84 1.18.84 2.71 0 3.89l1.68 1.69c2.02-2.02 2.02-5.07 0-7.27M20.07 2l-1.63 1.63c2.77 3.02 2.77 7.56 0 10.74L20.07 16c3.9-3.89 3.91-9.95 0-14">
                     </path>
                 </svg>
-                <!--
-                <svg
-                    style="display: inline; width: 1.2rem;"
-                    class=""
-                    focusable="false"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                >
-                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z">
-                    </path>
-                </svg>
-                -->
             </span>
         </a>
         <ul class="dropdown-menu">
             <li><p style="padding: 4px 12px;">Select syntethic voice</p></li>
             {% if is_sme %}
-            <li>
-                <a
-                    href="#"
-                    style="display: flex;"
-                    onclick="set_voice(event);"
-                    data-tts-lang="{{ _from }}"
-                    data-tts-voice="Biret"
-                >
-                    <span style="display: inline-block; font-size: 1.6em; min-width: 14px;">&#x2713;</span>
-                    Biret
-                </a>
-            </li>
-            <li>
-                <a
-                    href="#"
-                    style="display: flex;"
-                    onclick="set_voice(event);"
-                    data-tts-lang="{{ _from }}"
-                    data-tts-voice="Máhtte"
-                >
-                    <span style="display: inline-block; font-size: 1.6em; min-width: 14px;"></span>
-                    Máhtte
-                </a>
-            </li>
-            <li>
-                <a
-                    href="#"
-                    style="display: flex;"
-                    onclick="set_voice(event);"
-                    data-tts-lang="{{ _from }}"
-                    data-tts-voice="Sunná"
-                >
-                    <span style="display: inline-block; font-size: 1.6em; min-width: 14px;"></span>
-                    Sunná
-                </a>
-            </li>
+                {% if has_multiple_tts %}
+                    <li><p style="padding: 4px 12px;">North Sámi</p></li>
+                {% endif %}
+
+                <li>
+                    <a
+                        href="#"
+                        style="display: flex;"
+                        onclick="set_voice(event);"
+                        data-tts-lang="sme"
+                        data-tts-voice="biret"
+                    >
+                        <span style="display: inline-block; font-size: 1.6em; min-width: 14px;">&#x2713;</span>
+                        Biret
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="#"
+                        style="display: flex;"
+                        onclick="set_voice(event);"
+                        data-tts-lang="sme"
+                        data-tts-voice="mahtte"
+                    >
+                        <span style="display: inline-block; font-size: 1.6em; min-width: 14px;"></span>
+                        Máhtte
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="#"
+                        style="display: flex;"
+                        onclick="set_voice(event);"
+                        data-tts-lang="sme"
+                        data-tts-voice="sunna"
+                    >
+                        <span style="display: inline-block; font-size: 1.6em; min-width: 14px;"></span>
+                        Sunná
+                    </a>
+                </li>
             {% endif %}
+
             {% if is_sma %}
-                <p>sma list here</p>
+                {% if has_multiple_tts %}
+                    <li><p style="padding: 4px 12px;">South Sámi</p></li>
+                {% endif %}
+                <li>
+                    <a
+                        href="#"
+                        style="display: flex;"
+                        onclick="set_voice(event);"
+                        data-tts-lang="sma"
+                        data-tts-voice="aanna"
+                    >
+                        <span style="display: inline-block; font-size: 1.6em; min-width: 14px;"></span>
+                        Aanna
+                    </a>
+                </li>
+            {% endif %}
+
+            {% if is_smj %}
+                {% if has_multiple_tts %}
+                    <li><p style="padding: 4px 12px;">Lule Sámi</p></li>
+                {% endif %}
+
+                <li>
+                    <a
+                        href="#"
+                        style="display: flex;"
+                        onclick="set_voice(event);"
+                        data-tts-lang="smj"
+                        data-tts-voice="abmut"
+                    >
+                        <span style="display: inline-block; font-size: 1.6em; min-width: 14px;"></span>
+                        Ábmut
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="#"
+                        style="display: flex;"
+                        onclick="set_voice(event);"
+                        data-tts-lang="smj"
+                        data-tts-voice="nihkol"
+                    >
+                        <span style="display: inline-block; font-size: 1.6em; min-width: 14px;"></span>
+                        Nihkol
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="#"
+                        style="display: flex;"
+                        onclick="set_voice(event);"
+                        data-tts-lang="smj"
+                        data-tts-voice="sigga"
+                    >
+                        <span style="display: inline-block; font-size: 1.6em; min-width: 14px;"></span>
+                        Siggá
+                    </a>
+                </li>
             {% endif %}
         </ul>
     </li>

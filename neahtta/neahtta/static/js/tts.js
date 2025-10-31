@@ -1,5 +1,7 @@
 var TTS_API_ROOT = "https://api-giellalt.uit.no/tts";
+var DEFAULT_SMA_VOICE = "aanna";
 var DEFAULT_SME_VOICE = "biret";
+var DEFAULT_SMJ_VOICE = "abmut";
 
 // api requires silly language codes :(
 // (that it accepts them is fine, but they should not be required!)
@@ -60,7 +62,7 @@ function play_tts(event) {
 function query_giellalt_api(opts) {
     var text = get_arg(opts, "text", { validate: is_nonempty_str });
     var voice = get_arg(opts, "voice", { validate: is_nonempty_str, default: DEFAULT_SME_VOICE });
-    var lang = get_arg(opts, "lang", { validate: is_nonempty_str });
+    var lang = get_arg(opts, "lang", { validate: is_lang });
     var timeout = get_arg(opts, "timeout", { default: 10 * 1000 });
     var accept = get_arg(opts, "accept", { validate: is_str });
     var cb_opts = { default: noop, validate: is_fn };
@@ -163,6 +165,7 @@ function on_dom_content_loaded(event) {
             CACHE[text] = { status: "failed", error: "no-audio" };
             add_class(button, "unavailable");
         } else {
+            // TODO: When API can handle multiple requests...
             //start_query(button, { accept: accept_header });
         }
     }
@@ -235,6 +238,7 @@ function remove_class(element, klass) {
     }
 }
 
+// event handler when clicking on the set voice menu
 function set_voice(event) {
     var a_element = event.currentTarget;
     console.assert(a_element.tagName == "A");
@@ -243,6 +247,7 @@ function set_voice(event) {
     localstorage_set_voice({ lang: lang, voice: voice });
 }
 
+// event handler when the user opens the tts settings
 function on_open_tts_settings(event) {
     console.debug("on_open_tts_settings()");
     var lang = event.currentTarget.getAttribute("data-from-lang");
@@ -269,7 +274,7 @@ function on_open_tts_settings(event) {
 
 function cache_get(opts) {
     console.debug("cache_get():" + JSON.stringify(opts));
-    var lang = get_arg(opts, "lang", { validate: is_nonempty_str });
+    var lang = get_arg(opts, "lang", { validate: is_lang });
     var voice = get_arg(opts, "voice", { validate: is_nonempty_str });
     var text = get_arg(opts, "text", { validate: is_nonempty_str });
     var key = lang + "," + voice + "," + text;
@@ -279,7 +284,7 @@ function cache_get(opts) {
 }
 
 function cache_set(opts) {
-    var lang = get_arg(opts, "lang", { validate: is_nonempty_str });
+    var lang = get_arg(opts, "lang", { validate: is_lang });
     var voice = get_arg(opts, "voice", { validate: is_nonempty_str });
     var text = get_arg(opts, "text", { validate: is_nonempty_str });
     var value = get_arg(opts, "value", { validate: is_pojo });
@@ -289,18 +294,37 @@ function cache_set(opts) {
 }
 
 function localstorage_get_voice(opts) {
-    var lang = get_arg(opts, "lang", { validate: is_nonempty_str });
+    var lang = get_arg(opts, "lang", { validate: is_lang });
     console.debug("localstorage_get_voice(\"" + lang + "\")");
-    var value = window.localStorage.getItem("tts-voice-" + lang);
-    if (value == null) {
-        localstorage_set_voice({ lang, voice: DEFAULT_SME_VOICE });
-        return DEFAULT_SME_VOICE;
+
+    var voice;
+    try {
+        voice = window.localStorage.getItem("tts-voice-" + lang);
+    } catch (err) {
+        // error accessing localStorage. can happen if user denies browser
+        // from persisting data
+        return default_voice(lang);
     }
-    return value;
+
+    // no data in localstorage
+    if (voice == null) {
+        return localstorage_set_voice_default(lang);
+    }
+
+    // localstorage content was wrong (somehow)
+    if (lang == "sme" && !is_sme_voice(voice)) {
+        return localstorage_set_voice_default(lang);
+    } else if (lang == "sma" && !is_sma_voice(voice)) {
+        return localstorage_set_voice_default(lang);
+    } else if (lang == "smj" && !is_smj_voice(voice)) {
+        return localstorage_set_voice_default(lang);
+    }
+
+    return voice;
 }
 
 function localstorage_set_voice(opts) {
-    var lang = get_arg(opts, "lang", { validate: is_nonempty_str });
+    var lang = get_arg(opts, "lang", { validate: is_lang });
     var voice = get_arg(opts, "voice", { validate: is_nonempty_str });
     console.debug("localstorage_set_voice(\"" + lang + "\", \"" + voice + "\")");
     window.localStorage.setItem("tts-voice-" + lang, voice);
@@ -344,6 +368,36 @@ function get_arg(opts, param_name, argopts) {
     }
 }
 
+function default_voice(lang) {
+    if (lang == "sma") {
+        return DEFAULT_SMA_VOICE;
+    } else if (lang == "sme") {
+        return DEFAULT_SME_VOICE;
+    } else if (lang == "smj") {
+        return DEFAULT_SMJ_VOICE;
+    }
+    console.assert(false, "default_voice(): arg 'lang' not valid");
+}
+
+function localstorage_set_voice_default(lang) {
+    var voice = default_voice(lang);
+    localstorage_set_voice({ lang, voice });
+    return voice;
+}
+
+function is_sma_voice(x) {
+    return x == "aanna";
+}
+
+function is_sme_voice(x) {
+    return x == "biret" || x == "mahtte" || x == "sunna";
+}
+
+function is_smj_voice(x) {
+    return x == "abmut" || x == "nihkol" || x == "sigga";
+}
+
+function is_lang(x) { return x == "sme" || x == "sma" || x == "smj"; }
 function type(obj) {
     if (obj === null) return "null";
     if (obj === undefined) return "undefined";
