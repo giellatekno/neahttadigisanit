@@ -10,6 +10,7 @@
    	 be handled by adding more tags to the file `tagsets/sma.tagset`
 
  #}
+{% from "tts.macro" import tts_button with context %}
 
 {%- set first_l = lexicon_entry|xpath('lg/l')|first %}
 {% set lemma = first_l|text %}
@@ -221,13 +222,25 @@
                     <th class="tag" lang="{{ _to }}">{{ tag_display }}</th>
 
                     {% if present_forms and present_forms != '-' %}
-                        <td lang="{{ _from }}">{{ present_forms|join('<br />', attribute='form')|safe }}</td>
+                        <td lang="{{ _from }}">
+                            {% for form in present_forms %}
+                                {{ form.form }}
+                                {{ tts_button(form.form, _from) }}
+                                <br />
+                            {% endfor %}
+                        </td>
                     {% else %}
                         <td lang="{{ _from }}">&mdash;</td>
                     {% endif %}
 
                     {% if preterite_forms and preterite_forms != '-' %}
-                        <td lang="{{ _from }}">{{ preterite_forms|join('<br />', attribute='form')|safe }}</td>
+                        <td lang="{{ _from }}">
+                            {% for form in preterite_forms %}
+                                {{ form.form }}
+                                {{ tts_button(form.form, _from) }}
+                                <br />
+                            {% endfor %}
+                        </td>
                     {% else %}
                         <td lang="{{ _from }}">&mdash;</td>
                     {% endif %}
@@ -248,7 +261,13 @@
                 {% if var[0].tag %}
                     <dt>{{ clean_tag(var[0].tag) }}</dt>
                 {% endif %}
-                <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form')|safe }}</dd>
+                <dd lang="{{ _from }}">
+                    {% for form in var %}
+                        {{ form.form }}
+                        {{ tts_button(form.form, _from) }}
+                        <br />
+                    {% endfor %}
+                </dd>
             {% endfor %}
         </dl>
     {% endif %}
@@ -276,13 +295,25 @@
                 <th class="tag" lang="{{ _to }}">{{ tag_display }}</th>
 
                 {% if sgs and sgs != '-' %}
-                    <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form')|safe }}</td>
+                    <td lang="{{ _from }}">
+                        {% for sg in sgs %}
+                            {{ sg.form }}
+                            {{ tts_button(sg.form, _from) }}
+                            <br />
+                        {% endfor %}
+                    </td>
                 {% else %}
                     <td lang="{{ _from }}" class="center">&mdash;</td>
                 {% endif %}
 
                 {% if pls and pls != '-' %}
-                    <td lang="{{ _from }}">{{ pls|join('<br />', attribute='form')|safe }}</td>
+                    <td lang="{{ _from }}">
+                        {% for pl in pls %}
+                            {{ pl.form }}
+                            {{ tts_button(pl.form, _from) }}
+                            <br />
+                        {% endfor %}
+                    </td>
                 {% else %}
                     <td lang="{{ _from }}" class="center">&mdash;</td>
                 {% endif %}
@@ -296,7 +327,13 @@
                     {% if var[0].tag %}
                         <th class="tag" lang="{{ _to }}">{{ clean_tag(var[0].tag) }}</th>
                     {% endif %}
-                    <td colspan="2" lang="{{ _from }}" class="center">{{ var|join('<br />', attribute='form')|safe }}</td>
+                    <td colspan="2" lang="{{ _from }}" class="center">
+                        {% for form in var %}
+                            {{ form.form }}
+                            {{ tts_button(form.form, _from) }}
+                            <br />
+                        {% endfor %}
+                    </td>
                 </tr>
             {% endfor %}
 
@@ -308,7 +345,13 @@
                     {% if var[0].tag %}
                         <th class="tag" lang="{{ _to }}">{{ clean_tag(var[0].tag) }}</th>
                     {% endif %}
-                    <td colspan="2" lang="{{ _from }}" class="center">{{ var|join('<br />', attribute='form')|safe }}</td>
+                    <td colspan="2" lang="{{ _from }}" class="center">
+                        {% for form in var %}
+                            {{ form.form }}
+                            {{ tts_button(form.form, _from) }}
+                            <br />
+                        {% endfor %}
+                    </td>
                 </tr>
             {% endfor %}
         </table>
@@ -323,7 +366,13 @@
           {% if var[0].tag %}
               <dt>{{ clean_tag(var[0].tag) }}</dt>
           {% endif %}
-          <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form')|safe }}</dd>
+          <dd lang="{{ _from }}">
+            {% for form in var %}
+                {{ form.form }}
+                {{ tts_button(form.form, _from) }}
+                <br />
+            {% endfor %}
+          </dd>
       {% endfor %}
     </dl>
 
@@ -351,13 +400,25 @@
                 <th class="tag" lang="{{ _to }}">{{ tag_display }}</th>
 
                 {% if sgs and sgs != '-' %}
-                    <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form')|safe }}</td>
+                    <td lang="{{ _from }}">
+                        {% for form in sgs %}
+                            {{ form.form }}
+                            {{ tts_button(form.form, _from) }}
+                            <br />
+                        {% endfor %}
+                    </td>
                 {% else %}
                     <td lang="{{ _from }}" class="center">&mdash;</td>
                 {% endif %}
 
                 {% if pls and pls != '-' %}
-                    <td lang="{{ _from }}">{{ pls|join('<br />', attribute='form')|safe }}</td>
+                    <td lang="{{ _from }}">
+                        {% for form in pls %}
+                            {{ form.form }}
+                            {{ tts_button(form.form, _from) }}
+                            <br />
+                        {% endfor %}
+                    </td>
                 {% else %}
                     <td lang="{{ _from }}" class="center">&mdash;</td>
                 {% endif %}
@@ -372,7 +433,13 @@
                     {% if var[0].tag %}
                         <th class="tag" lang="{{ _to }}">{{ clean_tag(var[0].tag) }}</th>
                     {% endif %}
-                    <td colspan="2" lang="{{ _from }}" class="center">{{ var|join('<br />', attribute='form')|safe }}</td>
+                    <td colspan="2" lang="{{ _from }}" class="center">
+                        {% for form in var %}
+                            {{ form.form }}
+                            {{ tts_button(form.form, _from) }}
+                            <br />
+                        {% endfor %}
+                    </td>
                 </tr>
             {% endfor %}
 
@@ -389,7 +456,13 @@
                 {% if var[0].tag %}
                     <dt>{{ clean_tag(var[0].tag) }}</dt>
                 {% endif %}
-                <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form')|safe }}</dd>
+                <dd lang="{{ _from }}">
+                    {% for form in var %}
+                        {{ form.form }}
+                        {{ tts_button(form.form, _from) }}
+                        <br />
+                    {% endfor %}
+                </dd>
             {% endfor %}
         </dl>
     {% endif %}
@@ -403,7 +476,7 @@
             {% endif %}
 
             {% if form.form %}
-            <dd lang="{{ _from }}">{{ form.form }}</dd>
+            <dd lang="{{ _from }}">{{ form.form }}{{ tts_button(form.form, _from) }}</dd>
             {% else %}
                 <dd lang="{{ _from }}">?</dd>
             {% endif %}
