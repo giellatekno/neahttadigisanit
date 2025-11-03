@@ -138,7 +138,7 @@
                         {% endif %}
 
                         {% if _from == "sme" %}
-                            {{ tts_button(lemma) }}
+                            {{ tts_button(lemma, _from) }}
                         {% endif %}
                     {% endif %}
 
@@ -182,7 +182,7 @@
                                 </a>
                             {% endif %}
 
-                            {{ tts_button(lemma) }}
+                            {{ tts_button(lemma, _from) }}
 
                             {% if stem %}
                                 <p class="p_stem">(stamme: {{stem_desc}})</p>
@@ -223,7 +223,7 @@
                                 {{- rendered_templates.entry_text|safe -}}
                             </a>
 
-                            {{ tts_button(lemma) }}
+                            {{ tts_button(lemma, _from) }}
                         {% endif %}
 
                         {% if stem %}

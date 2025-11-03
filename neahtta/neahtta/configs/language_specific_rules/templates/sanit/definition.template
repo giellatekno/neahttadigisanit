@@ -51,20 +51,20 @@
                             <dt lang="{{ _from }}">
                                 {{ x }}
                                 ({{ example|xpath('@re')|first }})
-                                {{ tts_button(x) }}
+                                {{ tts_button(x, _from) }}
                             </dt>
                         {% else %}
                             <dt lang="{{ _from }}">
                                 {{ example|xpath('./x')|first|text }}
                                 {% if _from == "sme" %}
-                                    {{ tts_button(x) }}
+                                    {{ tts_button(x, _from) }}
                                 {% endif %}
                             </dt>
                         {% endif %}
                         <dd lang="{{ _to }}">
                             {{ xt }}
                             {% if _to == "sme" %}
-                                {{ tts_button(xt) }}
+                                {{ tts_button(xt, _to) }}
                             {% endif %}
                         </dd>
                     {% endfor %}

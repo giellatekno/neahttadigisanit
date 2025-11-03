@@ -191,7 +191,7 @@
        href="https://gtweb.uit.no/cgi-bin/smi/smi.cgi?text={{ deriv_lemma }}&pos={{ pos }}&mode=standard&action=paradigm&lang=sme&plang=sme">
         {{ link_text }} &nbsp;&rarr;
     </a>
-    {{ tts_button(deriv_lemma) }}
+    {{ tts_button(deriv_lemma, _from) }}
 {% endmacro -%}
 
 {# For use in e.g. adjective positive forms #}
@@ -201,7 +201,7 @@
        href="https://gtweb.uit.no/cgi-bin/smi/smi.cgi?text={{ deriv_lemma }}&pos={{ pos }}&mode=minimal&action=paradigm&lang=sme&plang=sme">
         {{ link_text }} &nbsp;&rarr;
     </a>
-    {{ tts_button(deriv_lemma) }}
+    {{ tts_button(deriv_lemma, _from) }}
 {% endmacro -%}
 
 {% macro link_lemma_paradigm(lemma_par, msd_par) -%}
@@ -298,7 +298,7 @@
                             {% for form in present_forms %}
                                 {{ form.form }}
                                 {% if _from == "sme" %}
-                                    {{ tts_button(form.form) }}
+                                    {{ tts_button(form.form, _from) }}
                                 {% endif %}
                                 <br />
                             {% endfor %}
@@ -313,7 +313,7 @@
                             {% for form in preterite_forms %}
                                 {{ form.form }}
                                 {% if _from == "sme" %}
-                                    {{ tts_button(form.form) }}
+                                    {{ tts_button(form.form, _from) }}
                                 {% endif %}
                                 <br />
                             {% endfor %}
@@ -368,7 +368,7 @@
                         {% set _sg = sg.form %}
                         {{ _sg|safe }}
                         {% if _from == "sme" %}
-                            {{ tts_button(_sg) }}
+                            {{ tts_button(_sg, _from) }}
                         {% endif %}
                         <br />
                     {% endfor %}
@@ -383,7 +383,7 @@
                         {% set _pl = pl.form %}
                         {{ _pl|safe }}
                         {% if _from == "sme" %}
-                            {{ tts_button(_pl) }}
+                            {{ tts_button(_pl, _from) }}
                         {% endif %}
                         <br />
                     {% endfor %}
@@ -440,7 +440,7 @@
                     <td lang="{{ _from }}">
                         {% for x in var %}
                             {% set y = x.form|safe %}
-                            {{ y }} {{ tts_button(y) }}<br/>
+                            {{ y }} {{ tts_button(y, _from) }}<br/>
                         {% endfor %}
                     </td>
                 {% endif %}
@@ -457,7 +457,7 @@
             {% if form.form %}
                 <dd lang="{{ _from }}">
                     {{ form.form }}
-                    {{ tts_button(form.form) }}
+                    {{ tts_button(form.form, _from) }}
                 </dd>
             {% else %}
                 <dd lang="{{ _from }}">?</dd>
@@ -490,7 +490,7 @@
                             {% for sg in sgs %}
                                 {% set _sg = sg.form|safe %}
                                 {{ _sg }}
-                                {{ tts_button(_sg) }}
+                                {{ tts_button(_sg, _from) }}
                                 <br />
                             {% endfor %}
                         </td>
@@ -503,7 +503,7 @@
                             {% for pl in pls %}
                                 {% set _pl = pl.form|safe %}
                                 {{ _pl }}
-                                {{ tts_button(_pl) }}
+                                {{ tts_button(_pl, _from) }}
                             {% endfor %}
                         </td>
                     {% else %}
@@ -522,7 +522,7 @@
                             {% for x in var %}
                                 {% set _x = x.form|safe %}
                                 {{ _x }}
-                                {{ tts_button(_x) }}
+                                {{ tts_button(_x, _from) }}
                                 <br />
                             {% endfor %}
                         </td>
@@ -544,7 +544,7 @@
                     {% for x in var %}
                         {% set _x = x.form|safe %}
                         {{ _x }}
-                        {{ tts_button(_x) }}
+                        {{ tts_button(_x, _from) }}
                         <br />
                     {% endfor %}
                 </dd>

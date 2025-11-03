@@ -34,7 +34,7 @@
             <p class="lead">
                 {{- rendered_templates.entry_text|safe -}}
                 {% if _from == "sme" or _from == "sma" %} {# should be in config #}
-                    {{ tts_button(lemma) }}
+                    {{ tts_button(lemma, _from) }}
                 {% endif %}
             </p>
             <ul class="meanings">

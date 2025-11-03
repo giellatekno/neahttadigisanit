@@ -85,8 +85,8 @@
                 <div class="results" translate="no">
                     <p class="user_input_text">
                         {{user_input}}
-                        {% if _from == "sme" %}
-                            {{ tts_button(user_input) }}
+                        {% if _from == "sme" or _from == "sma" %} {# should be in config #}
+                            {{ tts_button(user_input, _from) }}
                         {% endif %}
                     </p>
                     {% for tpl in entry_templates %}

@@ -1,8 +1,8 @@
-{% macro tts_button(text) %}
+{% macro tts_button(text, lang) %}
     <button
         onclick="play_tts(event)"
         data-tts='{{ text }}'
-        data-lang="{{ _from }}"
+        data-lang="{{ lang }}"
         class="tts"
         tabindex="0"
         type="button"
