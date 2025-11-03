@@ -137,7 +137,7 @@
                             </a>
                         {% endif %}
 
-                        {% if _from == "sme" and _to == "nob" %}
+                        {% if _from == "sme" %}
                             {{ tts_button(lemma) }}
                         {% endif %}
                     {% endif %}
