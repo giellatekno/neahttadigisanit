@@ -81,6 +81,15 @@ Dictionaries:
     corpora: 'SMA_ADMIN_20211118,SMA_BIBLE_20211118,SMA_FACTA_20211118,SMA_FICTI_20211118,SMA_LAWS_20211118,SMA_NEWS_20211118,SMA_SCIENCE_20211118'
     start_query: 'https://gtweb.uit.no/korp/sma?command=query&corpus='
 
+    input_variants:
+    - type: "standard"
+      description: !gettext "Standard"
+      short_name: "sma"
+      onscreen_keyboard:
+          - "ï"
+          - "æ"
+          - "ö"
+
   - source: nob
     target: sma
     path: 'dicts/nob-sma.xml'
