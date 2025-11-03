@@ -7,6 +7,7 @@
 #}
  
 {% import 'lexicon.macros' as macros with context %}
+{% from 'tts.macro' import tts_button with context %}
 
 {% for meaning_group in lexicon_entry|xpath('./mg') %}
     {% set translation_groups = meaning_group|xpath('./tg')|xml_lang(_to) %}
@@ -49,13 +50,25 @@
                             <dt lang="{{ _from }}">
                                 {{ g }}
                                 ({{ example|xpath('@re')|first }})
+                                {% if _from == "sma" %}
+                                    {{ tts_button(g, _from)}}
+                                {% endif %}
                             </dt>
                         {% else %}
                             <dt lang="{{ _from }}">
-                                {{ example|xpath('./x')|first|text }}
+                                {{ g }}
+                                {% if _from == "sma" %}
+                                    {{ tts_button(g, _from)}}
+                                {% endif %}
                             </dt>
                         {% endif %}
-                        <dd lang="{{ _to }}">{{ example|xpath('./xt')|first|text }}</dd>
+                        {% set xtr = example|xpath('./xt')|first|text %}
+                        <dd lang="{{ _to }}">
+                            {{ xtr }}
+                            {% if _to == "sma" %}
+                                    {{ tts_button(xtr, _to)}}
+                            {% endif %}
+                        </dd>
                     {% endfor %}
                     </dl>
                 </blockquote>
