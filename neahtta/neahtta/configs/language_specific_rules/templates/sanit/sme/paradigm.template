@@ -402,7 +402,13 @@
                 {% if var[0].tag %}
                     <th class="tag" lang="{{ _to }}">{{ clean_tag(var[0].tag) }}</th>
                 {% endif %}
-                <td colspan="2" lang="{{ _from }}" class="center">{{ var|join('<br />', attribute='form')|safe }}</td>
+                <td colspan="2" lang="{{ _from }}" class="center">
+                    {% for form in var %}
+                        {{ form.form }}
+                        {{ tts_button(form.form, _from) }}
+                        <br />
+                    {% endfor %}
+                </td>
             </tr>
         {% endfor %}
 
