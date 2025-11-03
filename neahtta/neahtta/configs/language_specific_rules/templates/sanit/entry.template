@@ -29,6 +29,8 @@
 {%- set l_ref = lexicon_entry|xpath('mg/l_ref') %}
 {%- set l_sci = lexicon_entry|xpath('mg/l_sci') %} {# Scientific name #}
 {%- set stem = first_l.xpath('./@stem')|first %}
+{%- set lemma = first_l|text %}
+
 
 {% if morph_ex %}
     {% set morph_ex_text = morph_ex[0]|text %}
@@ -113,8 +115,6 @@
 {% endmacro %}
 
 {# Display #}
-
-{% set lemma = lexicon_entry|xpath('lg/l')|first|text %}
 
 <div class="row-fluid entry_row">
     <div class="span8 lexeme">
