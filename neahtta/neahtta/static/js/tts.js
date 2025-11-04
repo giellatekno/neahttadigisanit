@@ -90,14 +90,35 @@ function query_giellalt_api(opts) {
     req.setRequestHeader("Accept", accept);
     req.setRequestHeader("Content-Type", "application/json");
 
+    // Hack: If the text is just a single word, or two words (if it contains 0
+    // or 1 space), then add a space in front of it, and a comma after, to
+    // improve how the tts sounds.
+    var n_spaces = count_char({ char: " ", text: text });
+    if (n_spaces == 0 || n_spaces == 1) {
+        text = " " + text + ",";
+    }
+
+    var body = '{"text": "' + text + '"}'
     try {
-        req.send('{"text": "' + text + '"}');
+        req.send(body);
     } catch (err) {
         console.error("Couldn't send request", err);
         on_error(2, err);
     }
 
     return req;
+}
+
+function count_char(opts) {
+    var char = get_arg(opts, "char", { validate: is_nonempty_str });
+    var text = get_arg(opts, "text", { validate: is_str });
+    if (char.length != 1) {
+        throw Error("count_char(): argument 'char' must be string of length 1");
+    }
+
+    var i = 0, n = 0, len = text.length;
+    while (i < len) if (text[i++] == char) n++;
+    return n;
 }
 
 function start_query(button, opts) {
