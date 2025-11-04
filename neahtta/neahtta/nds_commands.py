@@ -63,7 +63,7 @@ COMPILE_DICTS_ALIASES = [
 ]
 
 
-def require_gut():
+def require_gut() -> tuple[Path, Path]:
     # anders: the version of gut I have installed locally on my machine has
     # not yet been updated to support --format=json, so to run it
     # locally, I need to be able to pass path to my gut binary
@@ -361,6 +361,10 @@ def autoupdate(force=False, project="all"):
     """For all instances, pull new dictionarie sources from git, and compile
     and restart the instance if there are updates."""
 
+    pull_shared_result = pull_shared_repos()
+    if pull_shared_result is not True:
+        print(f"Warning: failed when pulling shared repos: {pull_shared_result}")
+
     if project == "all":
         projects = available_projects()
     else:
@@ -406,13 +410,19 @@ def git_pull(repo):
         return "git: pull timeout"
 
     stdout = proc.stdout
+    stderr = proc.stderr
+
+    if proc.returncode != 0 and stderr:
+        print(f"cmd: {cmd} returned non-0 with stderr:")
+        print(stderr)
+        return
 
     if "Already up to date." in stdout:
         return "Nothing"
     elif "Fast-forward" in stdout:
         return "FastForward"
     else:
-        return "git: other unknown status (cant parse)"
+        return f"git: other unknown status (cant parse):\n{stdout}"
 
 
 def pull_repos_for_project(project, use_gut=True):
@@ -466,6 +476,17 @@ def pull_repos_for_project(project, use_gut=True):
             statuses[repo["repo"]] = repo["status"]
 
     return statuses
+
+
+def pull_shared_repos(use_gut=False):
+    if use_gut:
+        raise NotImplementedError("can't use gut to pull shared repos")
+
+    print("Pulling giella-core...")
+    result = git_pull(GUTROOT / "giellalt" / "giella-core")
+    if result == "Nothing" or result == "FastForward":
+        return True
+    return result
 
 
 def do_update(project, no_gut=False):
