@@ -370,7 +370,7 @@
                         {% if _from == "sme" %}
                             {{ tts_button(_sg, _from) }}
                         {% endif %}
-                        <br />
+                        {% if not loop.last %}<br />{% endif %}
                     {% endfor %}
                 </td>
             {% else %}
@@ -385,7 +385,7 @@
                         {% if _from == "sme" %}
                             {{ tts_button(_pl, _from) }}
                         {% endif %}
-                        <br />
+                        {% if not loop.last %}<br />{% endif %}
                     {% endfor %}
                 </td>
             {% else %}
@@ -406,7 +406,7 @@
                     {% for form in var %}
                         {{ form.form }}
                         {{ tts_button(form.form, _from) }}
-                        <br />
+                        {% if not loop.last %}<br />{% endif %}
                     {% endfor %}
                 </td>
             </tr>
@@ -497,7 +497,7 @@
                                 {% set _sg = sg.form|safe %}
                                 {{ _sg }}
                                 {{ tts_button(_sg, _from) }}
-                                <br />
+                                {% if not loop.last %}<br />{% endif %}
                             {% endfor %}
                         </td>
                     {% else %}
@@ -529,7 +529,7 @@
                                 {% set _x = x.form|safe %}
                                 {{ _x }}
                                 {{ tts_button(_x, _from) }}
-                                <br />
+                                {% if not loop.last %}<br />{% endif %}
                             {% endfor %}
                         </td>
                     </tr>
@@ -551,7 +551,7 @@
                         {% set _x = x.form|safe %}
                         {{ _x }}
                         {{ tts_button(_x, _from) }}
-                        <br />
+                        {% if not loop.last %}<br />{% endif %}
                     {% endfor %}
                 </dd>
             {% endfor %}
