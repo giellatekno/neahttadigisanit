@@ -300,7 +300,7 @@
                                 {% if _from == "sme" %}
                                     {{ tts_button(form.form, _from) }}
                                 {% endif %}
-                                <br />
+                                {% if not loop.last %}<br />{% endif %}
                             {% endfor %}
                         </td>
                       {% else %}
@@ -315,7 +315,7 @@
                                 {% if _from == "sme" %}
                                     {{ tts_button(form.form, _from) }}
                                 {% endif %}
-                                <br />
+                                {% if not loop.last %}<br />{% endif %}
                             {% endfor %}
                             </td>
                     {% else %}
@@ -446,7 +446,8 @@
                     <td lang="{{ _from }}">
                         {% for x in var %}
                             {% set y = x.form|safe %}
-                            {{ y }} {{ tts_button(y, _from) }}<br/>
+                            {{ y }} {{ tts_button(y, _from) }}
+                            {% if not loop.last %}<br />{% endif %}
                         {% endfor %}
                     </td>
                 {% endif %}
