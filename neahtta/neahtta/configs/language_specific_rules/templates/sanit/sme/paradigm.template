@@ -21,6 +21,7 @@
     {% set verbs = true %}
 
     {% set present_verbs   = paradigm|by_tagset_value("tense", "Prs")
+                                     |by_tagset_value("mode", "Ind")
                                      |without_tagset("negation")
                                      |group_by_tag %}
 
@@ -28,13 +29,17 @@
                                      |without_tagset("negation")
                                      |group_by_tag %}
 
+    {% set conditional_verbs = paradigm|by_tagset_value("mode", "Cond")
+                                       |without_tagset("negation")
+                                       |group_by_tag  %}
+
     {% set nonfinite_forms = paradigm|by_tagset("nonfinite_paradigm") %}
 
     {# As long as the paradigm files are in order, this will zip
     accurately. If not we need to manually select each form and display
     it. #}
 
-    {% set zipped_verbs = izip_longest(present_verbs, preterite_verbs, fillvalue='-')|list %}
+    {% set zipped_verbs = izip_longest(present_verbs, preterite_verbs, conditional_verbs, fillvalue='-')|list %}
 
     {% set paradigm_exists = zipped_verbs|length > 0 or nonfinite_forms|length > 0 %}
 
@@ -42,6 +47,7 @@
 
     {% set prs_text      = "Prs"|tagfilter(_from, _to) %}
     {% set prt_text      = "Prt"|tagfilter(_from, _to) %}
+    {% set cond_text      = "Cond"|tagfilter(_from, _to) %}
     {% set conneg_text   = "ConNeg"|tagfilter(_from, _to) %}
     {% set verb_text     = "V"|tagfilter(_from, _to) %}
     {% set verb_text_ind = "Ind"|tagfilter(_from, _to) %}
@@ -70,11 +76,18 @@
         {% endif %}
 
         {% if conneg_text in filtered_tag %}
-            {{ filtered_tag|replace(verb_text, "")
-                           |replace(verb_text_ind, "") }}
+            {% if cond_text in filtered_tag %}
+                {{ filtered_tag|replace(verb_text, "")
+                               |replace(verb_text_ind, "")
+                               |replace(prs_text, "") }}
+            {% else %}
+                {{ filtered_tag|replace(verb_text, "")
+                               |replace(verb_text_ind, "") }}
+            {% endif %}
         {% else %}
             {{ filtered_tag|replace(prs_text, "")
                            |replace(prt_text, "")
+                           |replace(cond_text, "")
                            |replace(verb_text, "")
                            |replace(verb_text_ind, "") }}
         {% endif %}
@@ -260,22 +273,26 @@
             {# This is the two-column tense paradigm #}
 
                 <tr>
-                    <th></th>
+                    <!--th></th-->
                     <th lang="{{ _to }}">{{ prs_text }} <em>(odne)</em></th>
                     <th lang="{{ _to }}">{{ prt_text }} <em>(ikte)</em></th>
+                    <th lang="{{ _to }}">{{ cond_text }}</th>
                 </tr>
 
-                {%- for present_forms, preterite_forms in zipped_verbs -%}
+                {%- for present_forms, preterite_forms, conditional_forms in zipped_verbs -%}
                     <tr class="POS-V">
 
                     {% if present_forms[0].tag %}
                         {% set tag_display = clean_tag(present_forms[0].tag) %}
                     {% elif preterite_forms[0].tag %}
                         {% set tag_display = clean_tag(preterite_forms[0].tag) %}
+                    {% elif conditional_forms[0].tag %}
+                        {% set tag_display = clean_tag(preterite_forms[0].tag) %}
                     {% endif %}
 
-                    <th class="tag" lang="{{ _to }}">{{ tag_display }}</th>
+                    <!--th class="tag" lang="{{ _to }}">{#{{ tag_display }}#}</th-->
 
+                    {# 2025-11-05: Do we need/use these msd_var things? #}
                     {% set dict_prs = {'1.p.ent.': 'V.Ind.Prs.Sg1', '2.p.ent.': 'V.Ind.Prs.Sg2', '3.p.ent.': 'V.Ind.Prs.Sg3', '1.p.tot.': 'V.Ind.Prs.Du1', '2.p.tot.': 'V.Ind.Prs.Du2', '3.p.tot.': 'V.Ind.Prs.Du3', '1.p.flt.': 'V.Ind.Prs.Pl1', '2.p.flt.': 'V.Ind.Prs.Pl2', '3.p.flt.': 'V.Ind.Prs.Pl3'} %}
                     {% set msd_var_prs = [] %}
                     {% for key, value in dict_prs.items() %}
@@ -311,6 +328,21 @@
                         {% set s_display = link_lemma_paradigm(lemma, msd_var_prt[0]|string) %}
                         <td lang="{{ _from }}">
                             {% for form in preterite_forms %}
+                                {{ form.form }}
+                                {% if _from == "sme" %}
+                                    {{ tts_button(form.form, _from) }}
+                                {% endif %}
+                                {% if not loop.last %}<br />{% endif %}
+                            {% endfor %}
+                            </td>
+                    {% else %}
+                        <td lang="{{ _from }}">&mdash;</td>
+                    {% endif %}
+
+                    {% if conditional_forms and conditional_forms != '-' %}
+                        {% set s_display = link_lemma_paradigm(lemma, msd_var_prt[0]|string) %}
+                        <td lang="{{ _from }}">
+                            {% for form in conditional_forms %}
                                 {{ form.form }}
                                 {% if _from == "sme" %}
                                     {{ tts_button(form.form, _from) }}

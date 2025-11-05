@@ -44,6 +44,11 @@ possessive:
 tense:
  - "Prs"
  - "Prt"
+mode:
+ - "Ind"
+ - "Cond"
+ - "Pot"
+ - "Imprt"
 # Selecting Negative and Supinum forms in paradigm files
 supinum:
  - "Sup"

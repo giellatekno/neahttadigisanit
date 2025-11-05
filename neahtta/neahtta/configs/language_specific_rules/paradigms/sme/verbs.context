@@ -47,6 +47,9 @@
   tag_context: "V+Ind+Prt+ConNeg"
   template: "(ikte in) {{ word_form }}"
 
+- entry_context: "mun"
+  tag_context: "V+Cond+Prs+ConNeg"
+  template: "(in) {{ word_form }}"
 
 - entry_context: "mun"
   tag_context: "V+PrfPrc"
