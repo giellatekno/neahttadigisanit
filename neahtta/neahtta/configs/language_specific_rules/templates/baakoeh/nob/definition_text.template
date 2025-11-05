@@ -8,6 +8,7 @@
      see: render_link
 
  #}
+{% from 'tts.macro' import tts_button with context %}
 
 {%- macro render_annotation(tg) -%}
     {# Render the annotation (<re />) node, unless it has a @fra_ref. #}
@@ -114,7 +115,7 @@
     {{- render_annotation(tg) -}}
 
     {% for t in tg.xpath('./t') %}
-        {{ render_link(tg, t) -}}{% if not loop.last %}, {% endif %}
+        {{ render_link(tg, t) -}}{{- tts_button(t.text, _to) -}}{# if not loop.last %}, {% endif #}
     {% endfor %}
 {%- endmacro -%}
 
