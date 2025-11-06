@@ -509,7 +509,13 @@ def pull_shared_repos(use_gut=False):
         raise NotImplementedError("can't use gut to pull shared repos")
 
     print("Pulling giella-core...")
-    result = git_pull(GUTROOT / "giellalt" / "giella-core")
+    path = GUTROOT / "giellalt" / "giella-core"
+    result = git_pull(path)
+
+    # after an update, giella-core needs: ./autogen.sh && ./configure && make
+    subprocess.run("./autogen.sh", shell=True, cwd=path)
+    subprocess.run("./configure", shell=True, cwd=path)
+    subprocess.run("make", cwd=path)
     if result == "Nothing" or result == "FastForward":
         return True
     return result
