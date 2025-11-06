@@ -357,9 +357,35 @@ def _compile_dicts(project, force=None, no_xmllint=False):
     return did_smenob
 
 
+def update_apnightly_langs():
+    print("Updating giella-* languages with apt...")
+    proc = subprocess.run(
+        "sudo apt-get update",
+        shell=True,
+        encoding="utf-8",
+        timeout=60,
+    )
+    cmd = 'apt list --installed | rg "^giella-.../" | cut -d"/" -f1 | xargs sudo apt-get upgrade --yes --no-install-recommends'
+    try:
+        proc = subprocess.run(
+            cmd,
+            shell=True,
+            encoding="utf-8",
+            timeout=60 * 5,
+        )
+    except subprocess.TimeoutExpired as e:
+        print("Warning: timeout after 5 minutes on updating giella-* packages")
+    else:
+        if proc.returncode != 0:
+            print("Warning: non-0 returncode when upgrading giella-* apt packages")
+        print("Done updating giella-* apt packages")
+
+
 def autoupdate(force=False, project="all"):
     """For all instances, pull new dictionarie sources from git, and compile
     and restart the instance if there are updates."""
+
+    update_apnightly_langs()
 
     pull_shared_result = pull_shared_repos()
     if pull_shared_result is not True:
