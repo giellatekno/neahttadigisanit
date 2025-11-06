@@ -42,32 +42,30 @@
                     {% set params = "" %}
                 {% endif %}
 
-                {% if not (iso_pair[1] == "spa" and iso_pair[0] == "sme") %} {# Do not show empty smespa dict. Remove this if statement when the smespa dictionary is finished! #}
-                    {% if not is_variant %}
-                        {%- if iso_pair[0] == _from and iso_pair[1] == _to %}
-                            <li class="active">
-                        {% else -%}
-                            <li>
-                        {% endif -%}
-                    {% elif is_variant -%}
-                        {%- if iso_pair[1] == orig_pair[1] and iso_pair[0] == orig_pair[0] %}
-                            <li class="active">
-                        {% else -%}
-                            <li>
-                        {% endif -%}
+                {% if not is_variant %}
+                    {%- if iso_pair[0] == _from and iso_pair[1] == _to %}
+                        <li class="active">
                     {% else -%}
                         <li>
-                    {% endif %}
-                {# URLFOR: test #}
-                        <a href="{{ url_for('.canonical_root_search_pair', _from=iso_pair[0], _to=iso_pair[1]) }}{{ params }}" class="block_title">
-                            <span lang="{{ current_locale }}">{{ iso_pair[0]|iso_to_i18n }} &rarr; {{ iso_pair[1]|iso_to_i18n }}</span>
-                            {%- if iso_pair[1] != _to %}
-                            {{ check_result_count(iso_pair[0], iso_pair[1]) }}
-                            {% endif -%}
-                        </a>
-                    </li>
-                {% endif %}{# smespa if #}
-
+                    {% endif -%}
+                {% elif is_variant -%}
+                    {%- if iso_pair[1] == orig_pair[1] and iso_pair[0] == orig_pair[0] %}
+                        <li class="active">
+                    {% else -%}
+                        <li>
+                    {% endif -%}
+                {% else -%}
+                    <li>
+                {% endif %}
+            {# URLFOR: test #}
+                    <a href="{{ url_for('.canonical_root_search_pair', _from=iso_pair[0], _to=iso_pair[1]) }}{{ params }}" class="block_title">
+                        <span lang="{{ current_locale }}">{{ iso_pair[0]|iso_to_i18n }} &rarr; {{ iso_pair[1]|iso_to_i18n }}</span>
+                        {%- if iso_pair[1] != _to %}
+                        {{ check_result_count(iso_pair[0], iso_pair[1]) }}
+                        {% endif -%}
+                    </a>
+                </li>
+   
                 {% include 'left_nav_input_variants.html' %}
                 {% include 'left_nav_search_variants.html' %}
 
