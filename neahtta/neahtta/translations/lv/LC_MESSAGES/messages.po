@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-22 21:27+0200\n"
+"POT-Creation-Date: 2025-11-06 10:35+0100\n"
 "PO-Revision-Date: 2013-03-25 12:21+0200\n"
 "Last-Translator: \n"
 "Language: lv\n"
@@ -19,6 +19,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.14.0\n"
 
+#: neahtta/configs/baakoeh.config.yaml:86
+#: neahtta/configs/baakoeh.config.yaml.in:86
 #: neahtta/configs/kyv.config.yaml.in:169
 #: neahtta/configs/kyv.config.yaml.in:245 neahtta/configs/saan.config.yaml:98
 #: neahtta/configs/saan.config.yaml.in:98
@@ -727,7 +729,7 @@ msgid " (No corpus available)"
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/sje/detail_entry.template:61
-#: neahtta/configs/language_specific_rules/templates/detail_entry.template:47
+#: neahtta/configs/language_specific_rules/templates/detail_entry.template:54
 #: neahtta/configs/language_specific_rules/templates/saan/sms/detail_entry.template:61
 msgid "Paradigm"
 msgstr ""
@@ -866,7 +868,7 @@ msgstr ""
 msgid "Other dictionaries"
 msgstr "Citas vārdnīcas"
 
-#: neahtta/configs/language_specific_rules/templates/baakoeh/sma/paradigm.template:191
+#: neahtta/configs/language_specific_rules/templates/baakoeh/sma/paradigm.template:192
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/sje/paradigm.template:121
 #: neahtta/configs/language_specific_rules/templates/muter/mhr/paradigm.template:117
 #: neahtta/configs/language_specific_rules/templates/muter/mrj/paradigm.template:117
@@ -877,7 +879,7 @@ msgstr "Citas vārdnīcas"
 #: neahtta/configs/language_specific_rules/templates/sanat/fit/paradigm.template:177
 #: neahtta/configs/language_specific_rules/templates/sanat/fkv/paradigm.template:177
 #: neahtta/configs/language_specific_rules/templates/sanit/fin/paradigm.template:220
-#: neahtta/configs/language_specific_rules/templates/sanit/sme/paradigm.template:200
+#: neahtta/configs/language_specific_rules/templates/sanit/sme/paradigm.template:196
 #: neahtta/configs/language_specific_rules/templates/sanit/spa/paradigm.template:164
 #: neahtta/configs/language_specific_rules/templates/sanj/rus/paradigm.template:196
 #: neahtta/configs/language_specific_rules/templates/sanj/sjd/paradigm.template:375
@@ -1031,7 +1033,7 @@ msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:76
 #: neahtta/configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:149
-#: neahtta/templates/index.html:76 neahtta/templates/index.html:159
+#: neahtta/templates/index.html:78 neahtta/templates/index.html:166
 #: neahtta/templates/word_detail.html:67 neahtta/templates/word_detail.html:108
 #: neahtta/views/reader.py:218
 msgid " is a possible form of ... "
@@ -1039,13 +1041,13 @@ msgstr "ir iespējamā forma no vārda …"
 
 #: neahtta/configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:93
 #: neahtta/configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:115
-#: neahtta/templates/index.html:94 neahtta/templates/index.html:121
+#: neahtta/templates/index.html:101 neahtta/templates/index.html:128
 #, python-format
 msgid "Word <span lang=\"%(_from)s\">%(input)s</span> not found."
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:101
-#: neahtta/templates/index.html:102
+#: neahtta/templates/index.html:109
 #, python-format
 msgid "Other analyses for <em>%(user_input)s</em> without a translation."
 msgstr ""
@@ -1459,23 +1461,16 @@ msgid "Press s or / to go to the search field."
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:98
-msgid ""
-"The North Saami → Spanish dictionary is provided as a working copy for "
-"the development of the dictionary <b>only</b>. It is not published for "
-"general use."
-msgstr ""
-
-#: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:99
 #: neahtta/configs/language_specific_rules/templates/sanit/spa/index_search_form.template:103
 msgid "The abbreviations used in the dictionary are"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:99
+#: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:98
 #: neahtta/configs/language_specific_rules/templates/sanit/spa/index_search_form.template:103
 msgid "explained here"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:100
+#: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:99
 msgid "The abbreviations refer to the uses in North Saami."
 msgstr ""
 
@@ -1934,7 +1929,7 @@ msgstr ""
 msgid "Sources"
 msgstr ""
 
-#: neahtta/templates/base.html:185
+#: neahtta/templates/base.html:186
 #: neahtta/templates/mobile_nav_push_menu.html:27
 #: neahtta/templates/mobile_nav_push_menu.html:30
 msgid "Interface language"
@@ -1961,7 +1956,7 @@ msgstr ""
 msgid "Neahttadigisánit"
 msgstr "Neahttadigisánit Reader"
 
-#: neahtta/templates/index.html:149
+#: neahtta/templates/index.html:156
 msgid ""
 "The corpus and full paradigm generator will be temporarily unavailable "
 "for about an hour starting at 09:00 Norwegian time (CEST/UTC+2) on Friday"
