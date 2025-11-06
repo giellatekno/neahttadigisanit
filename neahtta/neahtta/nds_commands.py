@@ -441,7 +441,9 @@ def git_pull(repo):
     if proc.returncode != 0 and stderr:
         print(f"cmd: {cmd} returned non-0 with stderr:")
         print(stderr)
-        return
+        # Has to return a string, because other code depends on the result of
+        # this function being a string...
+        return "Error"
 
     if "Already up to date." in stdout:
         return "Nothing"
