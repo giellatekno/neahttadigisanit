@@ -86,6 +86,7 @@
                        </button>
                    {% endif %}
                 </div>
+                <p style="margin-bottom: 1em; font-style: italic; font-size: 12px; border-radius: 1px;">{% trans %}Press s or / to go to the search field.{% endtrans %}</p>
             </form>
             {# if last_searches %}
                 <ul id="last_searches">
