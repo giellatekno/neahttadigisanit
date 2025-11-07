@@ -93,6 +93,8 @@
                     <ul class="meanings">
                         {{- rendered_templates.definition|safe -}}
                     </ul>
+
+                    {{ idioms(lexicon_entry) }}
                 {% else %}
                     &nbsp;
                 {% endif %}
@@ -134,6 +136,8 @@
                             <ul class="meanings">
                                 {{- rendered_templates.definition|safe -}}
                             </ul>
+
+                            {{ idioms(lexicon_entry) }}
                         {% else %}
                             &nbsp;
                         {% endif %}
@@ -173,6 +177,8 @@
                         <ul class="meanings">
                             {{- rendered_templates.definition|safe -}}
                         </ul>
+
+                        {{ idioms(lexicon_entry) }}
                     {% else %}
                         &nbsp;
                     {% endif %}
@@ -202,7 +208,11 @@
                     <ul class="meanings">
                         {{- rendered_templates.definition|safe -}}
                     </ul>
-                {% else %}&nbsp;{% endif %}
+
+                    {{ idioms(lexicon_entry) }}
+                {% else %}
+                    &nbsp;
+                {% endif %}
             </div>
         </div>
         <div class="span4 hidden-phone lexeme_analyses">
