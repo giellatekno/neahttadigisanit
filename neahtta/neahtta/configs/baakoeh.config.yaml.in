@@ -102,6 +102,14 @@ Dictionaries:
     corpora: 'NOB2SMA_ADMIN_20190926-NOB,NOB2SMA_BIBLE_20190926-NOB,NOB2SMA_SCIENCE_20190926-NOB,NOB2SMA_FACTA_20190926-NOB,NOB2SMA_ADMIN_20190926-SMA,NOB2SMA_BIBLE_20190926-SMA,NOB2SMA_SCIENCE_20190926-SMA,NOB2SMA_FACTA_20190926-SMA'
     start_query: 'https://gtweb.uit.no/korp/nob?command=query&corpus='
 
+    input_variants:
+    - type: "standard"
+      description: !gettext "Standard"
+      short_name: "nob"
+      onscreen_keyboard:
+          - "æ"
+          - "ø"
+
 ReaderConfig:
   Settings:
     api_host: "baakoeh.oahpa.no"
