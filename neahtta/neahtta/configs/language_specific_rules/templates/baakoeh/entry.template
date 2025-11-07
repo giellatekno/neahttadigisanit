@@ -21,6 +21,7 @@
 
 {%- import "lexicon.macros" as macros with context -%}
 {%- from "tts.macro" import tts_button with context -%}
+{% from 'idioms.macro' import idioms with context %}
 
 {%- set first_l = lexicon_entry|xpath('lg/l')|first %}
 {%- set morph_ex = lexicon_entry|xpath('mg/tg/morph_expl') %}

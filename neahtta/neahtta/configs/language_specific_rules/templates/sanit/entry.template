@@ -17,6 +17,7 @@
 
 {# Macros and definitions #}
 
+{% from 'idioms.macro' import idioms with context %}
 {%- macro reference_link(has_reference) -%}
     {{- rendered_templates.entry_text|safe -}} &rarr; <a href="{{ url_for('.detailed_language_pair_search', _from=_from, _to=_to, wordform=has_reference, format='html') }}"><span class="see_also">{{ has_reference }}</span></a>
 {%- endmacro -%}
@@ -79,56 +80,6 @@
     {% set pos_is_phrase = True %}
 {%- endif %}
 
-
-{% macro idioms(lexicon_entry) %}
-    {%- set idioms = lexicon_entry|xpath('ig') %}
-    {% if idioms %}
-        <div style="margin-top: 1em;">
-            <h5>Idiomer og faste uttrykk</h5>
-            {% if idioms|length == 1 %}
-                {% for idiom in idioms %}
-                    {%- set i = idiom.xpath('i/text()') %}
-                    {%- set it = idiom.xpath('it/text()') %}
-                    <div style="padding-left: 1em;">
-                        <div style="color: #0c5278;">
-                            {{ i|first }}
-                            {% if _from == "sme" %}
-                                {{ tts_button(i|first, _from) }}
-                            {% endif %}
-                        </div>
-                        <div style="font-style: italic; color: #715754;">
-                            &#x201C;{{ it|first }}&#x201D;
-                            {% if _to == "sme" %}
-                                {{ tts_button(it|first, _to) }}
-                            {% endif %}
-                        </div>
-                    </div>
-                {% endfor %}
-            {% else %}
-                <ol>
-                {% for idiom in idioms %}
-                    {%- set i = idiom.xpath('i/text()') %}
-                    {%- set it = idiom.xpath('it/text()') %}
-                    <li style="padding-left: 1em;">
-                        <div style="color: #0c5278;">
-                            {{ i|first }}
-                            {% if _from == "sme" %}
-                                {{ tts_button(i|first, _from) }}
-                            {% endif %}
-                        </div>
-                        <div style="font-style: italic; color: #715754;">
-                            &#x201C;{{ it|first }}&#x201D;
-                            {% if _to == "sme" %}
-                                {{ tts_button(it|first, _to) }}
-                            {% endif %}
-                        </div>
-                    </li>
-                {% endfor %}
-                </ol>
-            {% endif %} {# len(idioms) == 1 #}
-        </div>
-    {% endif %}
-{% endmacro %}
 
 {# Display #}
 

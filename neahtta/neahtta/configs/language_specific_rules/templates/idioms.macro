@@ -1,0 +1,54 @@
+{% from 'tts.macro' import tts_button with context %}
+
+{% macro idioms(lexicon_entry) %}
+    {%- set idioms = lexicon_entry|xpath('ig') %}
+    {% set has_tts_to = _to == "sme" or _to == "sma" %}
+    {% set has_tts_from = _from == "sme" or _from == "sma" %}
+
+    {% if idioms %}
+        <div style="margin-top: 1em;">
+            <h5>Idiomer og faste uttrykk</h5>
+            {% if idioms|length == 1 %}
+                {% for idiom in idioms %}
+                    {%- set i = idiom.xpath('i/text()') %}
+                    {%- set it = idiom.xpath('it/text()') %}
+                    <div style="padding-left: 1em;">
+                        <div style="color: #0c5278;">
+                            {{ i|first }}
+                            {% if has_tts_from %}
+                                {{ tts_button(i|first, _from) }}
+                            {% endif %}
+                        </div>
+                        <div style="font-style: italic; color: #715754;">
+                            &#x201C;{{ it|first }}&#x201D;
+                            {% if has_tts_to %}
+                                {{ tts_button(it|first, _to) }}
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <ol>
+                {% for idiom in idioms %}
+                    {%- set i = idiom.xpath('i/text()') %}
+                    {%- set it = idiom.xpath('it/text()') %}
+                    <li style="padding-left: 1em;">
+                        <div style="color: #0c5278;">
+                            {{ i|first }}
+                            {% if has_tts_from %}
+                                {{ tts_button(i|first, _from) }}
+                            {% endif %}
+                        </div>
+                        <div style="font-style: italic; color: #715754;">
+                            &#x201C;{{ it|first }}&#x201D;
+                            {% if has_tts_to %}
+                                {{ tts_button(it|first, _to) }}
+                            {% endif %}
+                        </div>
+                    </li>
+                {% endfor %}
+                </ol>
+            {% endif %} {# len(idioms) == 1 #}
+        </div>
+    {% endif %}
+{% endmacro %}
