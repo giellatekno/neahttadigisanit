@@ -39,7 +39,23 @@
   template: "{{ word_form }}!"
 
 - entry_context: None
+  tag_context: "Hom1+V+Imprt+Sg2"
+  template: "{{ word_form }}!"
+
+- entry_context: None
+  tag_context: "Hom2+V+Imprt+Sg2"
+  template: "{{ word_form }}!"
+
+- entry_context: None
   tag_context: "V+Imprt+Pl2"
+  template: "{{ word_form }}!"
+
+- entry_context: None
+  tag_context: "Hom1+V+Imprt+Pl2"
+  template: "{{ word_form }}!"
+
+- entry_context: None
+  tag_context: "Hom2+V+Imprt+Pl2"
   template: "{{ word_form }}!"
 
 - entry_context: None
@@ -47,7 +63,23 @@
   template: "Ель {{ word_form }}!"
 
 - entry_context: None
+  tag_context: "Hom1+V+Imprt+ConNeg"
+  template: "Ель {{ word_form }}!"
+
+- entry_context: None
+  tag_context: "Hom2+V+Imprt+ConNeg"
+  template: "Ель {{ word_form }}!"
+
+- entry_context: None
   tag_context: "V+Imprt+ConNegII"
+  template: "Елле {{ word_form }}!"
+
+- entry_context: None
+  tag_context: "Hom1+V+Imprt+ConNegII"
+  template: "Елле {{ word_form }}!"
+
+- entry_context: None
+  tag_context: "Hom2+V+Imprt+ConNegII"
   template: "Елле {{ word_form }}!"
 
 # - entry_context: None
