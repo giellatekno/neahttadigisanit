@@ -63,9 +63,10 @@
                         {% endif %}
                         <dd lang="{{ _to }}">
                             {% for xt in xts %}
-                                {{ xt|text }}
+                                {% set xt_text = xt|text %}
+                                {{ xt_text }}
                                 {% if _to == "sme" %}
-                                    {{ tts_button(xt, _to) }}
+                                    {{ tts_button(xt_text, _to) }}
                                 {% endif %}
                                 <br>
                             {% endfor %}
