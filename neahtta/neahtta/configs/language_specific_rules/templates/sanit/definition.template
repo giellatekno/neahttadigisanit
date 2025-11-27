@@ -46,7 +46,7 @@
                     <dl>
                     {% for example in examples %}
                         {% set x = example|xpath('./x')|first|text %}
-                        {% set xt = example|xpath('./xt')|first|text %}
+                        {% set xts = example|xpath('./xt') %}
                         {% if example|xpath('@re') %}
                             <dt lang="{{ _from }}">
                                 {{ x }}
@@ -62,10 +62,13 @@
                             </dt>
                         {% endif %}
                         <dd lang="{{ _to }}">
-                            {{ xt }}
-                            {% if _to == "sme" %}
-                                {{ tts_button(xt, _to) }}
-                            {% endif %}
+                            {% for xt in xts %}
+                                {{ xt|text }}
+                                {% if _to == "sme" %}
+                                    {{ tts_button(xt, _to) }}
+                                {% endif %}
+                                <br>
+                            {% endfor %}
                         </dd>
                     {% endfor %}
                     </dl>
