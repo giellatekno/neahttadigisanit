@@ -1545,7 +1545,7 @@ msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:91
 msgid "Press s or / to go to the search field."
-msgstr ""
+msgstr "Deaddil s dahje / mannat ohcangieddái."
 
 #: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:98
 #: neahtta/configs/language_specific_rules/templates/sanit/spa/index_search_form.template:103
