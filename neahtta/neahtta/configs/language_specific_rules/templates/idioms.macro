@@ -11,7 +11,7 @@
             {% if idioms|length == 1 %}
                 {% for idiom in idioms %}
                     {%- set i = idiom.xpath('i/text()') %}
-                    {%- set it = idiom.xpath('it/text()') %}
+                        
                     <div style="padding-left: 1em;">
                         <div style="color: #0c5278;">
                             {{ i|first }}
@@ -19,12 +19,16 @@
                                 {{ tts_button(i|first, _from) }}
                             {% endif %}
                         </div>
-                        <div style="font-style: italic; color: #715754;">
-                            &#x201C;{{ it|first }}&#x201D;
-                            {% if has_tts_to %}
-                                {{ tts_button(it|first, _to) }}
-                            {% endif %}
-                        </div>
+
+                        {% for idiom_translation in idiom.xpath('it') %}
+                            {%- set it = idiom_translation|text %}
+                            <div style="font-style: italic; color: #715754;">
+                                &#x201C;{{ it }}&#x201D;
+                                {% if has_tts_to %}
+                                    {{ tts_button(it|first, _to) }}
+                                {% endif %}
+                            </div>
+                        {% endfor %}
                     </div>
                 {% endfor %}
             {% else %}
