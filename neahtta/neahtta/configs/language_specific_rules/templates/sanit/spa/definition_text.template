@@ -5,6 +5,7 @@
      - optional existence of tCtn node
 
  #}
+{% from 'tts.macro' import tts_button with context %}
 
 {%- macro render_annotation(tg) -%}
     {# Render the annotation (<re />) node, unless it has a @fra_ref. #}
@@ -76,24 +77,12 @@
     {# Render all the texts as individual links, followed by a potential
     annotation. #}
 
-    {% set tCtns = tg.xpath("./tCtn") %}
-    {% set bare_t = tg.xpath('./t | ./tf') %}
-
-    {# Entries may both have <t /> nodes grouped by tCtns, and
-    free-standing <t /> nodes, so we need to do both. #}
-
+    {% set bare_t = tg.xpath('./t') %}
+    
+    {# TTS for saami translations unless t_type is expl #}
     {% for t in bare_t %}
-        {{ render_link(tg, t) -}}{% if not loop.last or tCtns|length > 0 %}, {% endif %}
+        {{ render_link(tg, t) -}}{% if t.attrib.get('t_type', False) != 'expl' %}{{- tts_button(t.text, _to) -}}{% endif %}{#% if not loop.last %}, {% endif %#}
     {% endfor -%}
-
-    {% if tCtns %}
-        {% for tCtn in tCtns %}
-            {% set tCtn_ts = tCtn.xpath('./t | ./tf') %}
-            {% for t in tCtn_ts %}
-                {{ render_link(tCtn, t) }}{{- render_annotation(tCtn) -}}{% if not loop.last %}, {% endif %}
-            {% endfor %}
-        {% endfor %}
-    {% endif %}
 
 {%- endmacro -%}
 
