@@ -120,6 +120,26 @@
 
 <body lang="{% if session_locale %}{{ session_locale }}{% endif %}"
     class="{% block bodyclass %}{% endblock %}{% if new_mobile_nav %} flyout-nav{% endif %}">
+    <!-- anders: temporary banner about downtime or other messages -->
+    <!-- anders: NOTE: when removing, just comment out, don't delete it! -->
+    <div class="tnn-container" id="tnn-maintainance-notice">
+        <span>
+            <span id="tnn-notice-notice" style="font-weight: bold;">NOTICE</span>
+            <span id="tnn-notice-msg">
+                Neahttadigisanit will be unavailable for around one hour on the morning of Friday, 23rd of January, 2026, due to infrastructure changes.
+            </span>
+            <!--
+                <span id="tnn-notice-changelang-btn" class="tnn-link" onClick="tnn_change_lang()">на русском</span>
+            -->
+        </span>
+        <button style="cursor:pointer;background:transparent;border:none;" height="16" width="16" class="tnn" onClick="window.tnn_close_notice()">
+            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 100 100">
+                <line x1="0" y1="0" x2="100" y2="100" stroke="black" stroke-width="10" />
+                <line x1="100" y1="0" x2="0" y2="100" stroke="black" stroke-width="10" />
+            </svg>
+        </button>
+    </div>
+
 
     <div id="fb-root"></div>
 

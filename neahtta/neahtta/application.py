@@ -129,6 +129,7 @@ def prepare_assets(app):
         "js/autocomplete.js",
         "js/search_hotkey.js",
         "js/tts.js",
+        "js/message_banner.js",
         # "js/bootstrap-typeahead-fork.js",
         # "js/base.js",
         # "js/index.js",
