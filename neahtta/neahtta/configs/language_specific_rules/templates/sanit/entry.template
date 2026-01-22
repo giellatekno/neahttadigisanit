@@ -88,8 +88,9 @@
         {% if 'true' not in if_der and 'ⓒ' not in first_l|text %}
         {# if 'true' not in if_der and 'DCmp' not in first_l|text#}
             {% if user_input in first_l|text %}
-                {# user_input is contained within first_lemma, e.g.
-                full match? #}
+                {# user_input is contained within first_lemma. 
+                Might be full match, "čálistit" in "čálistit", or partial match,
+                "čális" in "čálistit", but not e.g. "čálán" in "čállit"  #}
                 {% if lexicon_entry|count > 0 %}
                     {% set has_reference = lexicon_entry.xpath('./lg/lemma_ref/text()')|first %}
                     <p>
@@ -149,7 +150,9 @@
                                 </a>
                             {% endif %}
 
-                            {{ tts_button(lemma, _from) }}
+                            {% if _from == "sme" %}
+                                {{ tts_button(lemma, _from) }}
+                            {% endif %}
 
                             {% if stem %}
                                 <p class="p_stem">(stamme: {{stem_desc}})</p>
@@ -190,7 +193,9 @@
                                 {{- rendered_templates.entry_text|safe -}}
                             </a>
 
-                            {{ tts_button(lemma, _from) }}
+                            {% if _from == "sme" %}
+                                {{ tts_button(lemma, _from) }}
+                            {% endif %}
                         {% endif %}
 
                         {% if stem %}
