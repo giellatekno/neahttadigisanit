@@ -1,0 +1,28 @@
+name: "numerals"
+morphology:
+  pos: 
+    - Num
+  vmax:
+    - v1
+    - v2
+    - v3
+    - v4
+    - v5
+    - v6
+--
+{{ lemma }}+{{ vmax }}+Num+Sg+Nom
+{{ lemma }}+{{ vmax }}+Num+Sg+Gen
+{{ lemma }}+{{ vmax }}+Num+Sg+Acc
+{{ lemma }}+{{ vmax }}+Num+Sg+Ill
+{{ lemma }}+{{ vmax }}+Num+Sg+Loc
+{{ lemma }}+{{ vmax }}+Num+Sg+Com
+{{ lemma }}+{{ vmax }}+Num+Sg+Abe
+{{ lemma }}+{{ vmax }}+Num+Pl+Nom
+{{ lemma }}+{{ vmax }}+Num+Pl+Gen
+{{ lemma }}+{{ vmax }}+Num+Pl+Acc
+{{ lemma }}+{{ vmax }}+Num+Pl+Ill
+{{ lemma }}+{{ vmax }}+Num+Pl+Loc
+{{ lemma }}+{{ vmax }}+Num+Pl+Com
+{{ lemma }}+{{ vmax }}+Num+Pl+Abe
+{{ lemma }}+{{ vmax }}+Num+Ess
+{{ lemma }}+{{ vmax }}+Num+Par
