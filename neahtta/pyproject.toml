@@ -1,7 +1,7 @@
 [project]
 name = "neahttadigisanit"
 version = "2024.02.05"
-requires-python = ">=3.9,<=3.10.18"
+requires-python = ">=3.9,<=3.10.19"
 
 # maintainers, as in "currently maintained by"
 maintainers = [
