@@ -1,0 +1,25 @@
+name: "adjectives"
+morphology:
+  pos:
+    - A
+  adj_type:
+    - Ord
+--
+{{ lemma }}+A+Ord+Attr
+{{ lemma }}+A+Ord+Sg+Nom
+{{ lemma }}+A+Ord+Sg+Gen
+{{ lemma }}+A+Ord+Sg+Acc
+{{ lemma }}+A+Ord+Sg+Ill
+{{ lemma }}+A+Ord+Sg+Loc
+{{ lemma }}+A+Ord+Sg+Com
+{{ lemma }}+A+Ord+Sg+Abe
+{{ lemma }}+A+Ord+Pl+Nom
+{{ lemma }}+A+Ord+Pl+Gen
+{{ lemma }}+A+Ord+Pl+Acc
+{{ lemma }}+A+Ord+Pl+Ill
+{{ lemma }}+A+Ord+Pl+Loc
+{{ lemma }}+A+Ord+Pl+Com
+{{ lemma }}+A+Ord+Pl+Abe
+{{ lemma }}+A+Ord+Ess
+{{ lemma }}+A+Ord+Par
+

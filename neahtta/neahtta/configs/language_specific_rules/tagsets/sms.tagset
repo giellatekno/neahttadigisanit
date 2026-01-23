@@ -24,6 +24,8 @@ pron_type:
  - Pers
  - Dem
  - Refl
+adj_type:
+ - "Ord"
 number:
  - "Sg"
  - "Pl"
@@ -89,6 +91,7 @@ diminutives:
   - Der/Dimin
 invisible_in_adj_paradigms:
  - "A"
+ - "Ord"
 invisible_in_noun_paradigms:
  - "N"
  - "Sg"

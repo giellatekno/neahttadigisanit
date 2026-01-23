@@ -11,8 +11,6 @@ morphology:
 {{ lemma }}+A+Sg+Loc
 {{ lemma }}+A+Sg+Com
 {{ lemma }}+A+Sg+Abe
-{{ lemma }}+A+Ess
-{{ lemma }}+A+Par
 {{ lemma }}+A+Pl+Nom
 {{ lemma }}+A+Pl+Gen
 {{ lemma }}+A+Pl+Acc
@@ -20,6 +18,8 @@ morphology:
 {{ lemma }}+A+Pl+Loc
 {{ lemma }}+A+Pl+Com
 {{ lemma }}+A+Pl+Abe
+{{ lemma }}+A+Ess
+{{ lemma }}+A+Par
 {{ lemma }}+A+Der/Comp+A+Sg+Nom
 {{ lemma }}+A+Der/Superl+A+Sg+Nom
 

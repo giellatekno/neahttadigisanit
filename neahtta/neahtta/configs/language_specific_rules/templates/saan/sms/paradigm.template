@@ -332,20 +332,25 @@
     {% endif %}
 
 {% elif pos|upper == 'A'  %}
-    <dl class="dl-horizontal miniparadigm">
-        {%- for form in paradigm -%}
+    <table class="tableparadigm miniparadigm">
+        {% set adj_forms = paradigm|group_by_tag %}
+        <tr></tr>
+        {% for var in adj_forms %}
+            <tr>
+                {% if var[0].tag %}
+                    <th>{{ clean_tag(var[0].tag) }}</th>
+                {% endif %}
 
-            {% if form.tag %}
-                <dt>{{ clean_tag(form.tag)  }}</dt>
-            {% endif %}
-
-            {% if form.form %}
-            <dd lang="{{ _from }}">{{ form.form }}</dd>
-            {% else %}
-                <dd lang="{{ _from }}">?</dd>
-            {% endif %}
-        {%- endfor -%}
-    </dl>
+                <td lang="{{ _from }}">
+                    {% for x in var|uniq %}
+                        {% set y = x.form|safe %}
+                        {{ y }}
+                        {% if not loop.last %}<br />{% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
 {% elif pos|upper == 'PRON'  %}
     <dl class="dl-horizontal miniparadigm">
         {%- for form in paradigm -%}
