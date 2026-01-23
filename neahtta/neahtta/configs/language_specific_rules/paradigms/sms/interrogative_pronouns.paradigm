@@ -1,0 +1,22 @@
+name: "Interrogative pronouns"
+morphology:
+  pos: Pron
+  pron_type: 
+    - Interr
+--
+{{ lemma }}+Pron+Interr+Sg+Nom
+{{ lemma }}+Pron+Interr+Sg+Gen
+{{ lemma }}+Pron+Interr+Sg+Acc
+{{ lemma }}+Pron+Interr+Sg+Ill
+{{ lemma }}+Pron+Interr+Sg+Loc
+{{ lemma }}+Pron+Interr+Sg+Com
+{{ lemma }}+Pron+Interr+Sg+Abe
+{{ lemma }}+Pron+Interr+Pl+Nom
+{{ lemma }}+Pron+Interr+Pl+Gen
+{{ lemma }}+Pron+Interr+Pl+Acc
+{{ lemma }}+Pron+Interr+Pl+Ill
+{{ lemma }}+Pron+Interr+Pl+Loc
+{{ lemma }}+Pron+Interr+Pl+Com
+{{ lemma }}+Pron+Interr+Pl+Abe
+{{ lemma }}+Pron+Interr+Ess
+{{ lemma }}+Pron+Interr+Par

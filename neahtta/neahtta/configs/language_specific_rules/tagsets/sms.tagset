@@ -24,6 +24,8 @@ pron_type:
  - Pers
  - Dem
  - Refl
+ - Rel
+ - Interr
 adj_type:
  - "Ord"
 number:
@@ -109,6 +111,9 @@ invisible_in_pron_paradigms:
  - "Pron"
  - "Pers"
  - "Dem"
+ - "Interr"
+ - "Rel"
+ - "Refl"
 vmax:
  - "v1"
  - "v2"
