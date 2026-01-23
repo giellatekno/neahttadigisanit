@@ -71,7 +71,7 @@
     {% set zipped_numbers = izip_longest(sg_case_forms, pl_case_forms, fillvalue='-')|list %}
     {% set paradigm_exists = zipped_numbers|length > 0 %}
 
-    {% set numberless_case_forms = paradigm|by_tagset("nouns_null_number")|without_tagset("possessives") %}
+    {% set numberless_case_forms = paradigm|by_tagset("nouns_null_number")|without_tagset("possessives")|uniq %}
 
     {% set zipped_diminutives = izip_longest(sg_diminutives, pl_diminutives, fillvalue='-')|list %}
 
@@ -208,7 +208,7 @@
         </dl>
     {% endif %}
 
-{% elif pos|upper == 'N' %}
+{% elif pos|upper == 'N' or pos|upper == 'NUM' %}
 
     {% if pos_type != 'Prop' %}
 
@@ -233,13 +233,13 @@
                 <th class="tag" lang="{{ _to }}">{{ tag_display }}</th>
 
                 {% if sgs and sgs != '-' %}
-                    <td lang="{{ _from }}">{{ sgs|join('<br />', attribute='form')|safe }}</td>
+                    <td lang="{{ _from }}">{{ sgs|uniq|join('<br />', attribute='form')|safe }}</td>
                 {% else %}
                     <td lang="{{ _from }}" class="center">&mdash;</td>
                 {% endif %}
 
                 {% if pls and pls != '-' %}
-                    <td lang="{{ _from }}">{{ pls|join('<br />', attribute='form')|safe }}</td>
+                    <td lang="{{ _from }}">{{ pls|uniq|join('<br />', attribute='form')|safe }}</td>
                 {% else %}
                     <td lang="{{ _from }}" class="center">&mdash;</td>
                 {% endif %}
