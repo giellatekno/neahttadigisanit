@@ -108,7 +108,7 @@ invisible_in_verb_paradigms:
 invisible_in_pron_paradigms:
  - "Pron"
  - "Pers"
- - "Sg"
+ - "Dem"
 vmax:
  - "v1"
  - "v2"
