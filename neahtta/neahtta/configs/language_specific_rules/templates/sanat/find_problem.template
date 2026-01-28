@@ -6,7 +6,7 @@
           were searching for when you encountered the problem.{% endtrans %}</p>
     <div class="visible-phone">
       {% if _from == "fkv" or _to == "fkv" %}
-        <a class="btn btn-sm btn-block" type="button" href="mailto:aili.eriksen@kvenskinstitutt.no,thomasbkj@gmail.com" >{% trans %}Contact us{% endtrans %}</a>
+        <a class="btn btn-sm btn-block" type="button" href="mailto:aili.eriksen@kvenskinstitutt.no,tobias@kvenskinstitutt.no,anna-kaisa.raisanen@kvenskinstitutt.no" >{% trans %}Contact us{% endtrans %}</a>
         <br />
       {% endif %}
       {% if (_from == "fin" and _to == "nob") or (_from == "nob" and _to == "fin") %}
