@@ -134,6 +134,7 @@ Dictionaries:
     corpora: 'SMS_ADMIN_20211118,SMS_BLOGS_20211118,SMS_FACTA_20211118,SMS_LAWS_20211118,SMS_LITERATURE_20211118,SMS_NEWS_20211118,SMS_SCIENCE_20211118'
     start_query: 'https://gtweb.uit.no/korp/sms?command=query&corpus='
     input_variants: *spell_relax_sms
+    onscreen_keyboard: *SMS_KEYS
 
   - source: sms
     target: rus

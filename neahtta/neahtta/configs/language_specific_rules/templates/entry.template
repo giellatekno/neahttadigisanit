@@ -21,7 +21,8 @@
 {% endif %}
 
 {%- set pos = l.attrib.get('pos', '') -%}
-{%- if pos == 'Phrase'-%}
+{%- set t_type = l.attrib.get('t_type', '') -%}
+{%- if pos == 'Phrase' or t_type == 'phrase' -%}
         {%- set pos_is_phrase = True -%}
 {%- endif -%}
 

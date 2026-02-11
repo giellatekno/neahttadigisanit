@@ -85,7 +85,7 @@
     {% endif %}
 
     {# Dicts do not always correspond to _from and _to e.g. SoMe. Take that into account when linking.
-      This mapping should probably be moved into a config file #}
+      This mapping should be moved into a config file #}
 
     {% if _from == 'smnM' %}
         {% set dict_from = 'smn' %}

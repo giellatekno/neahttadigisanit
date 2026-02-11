@@ -60,17 +60,13 @@
         {% set pos_text = pos|tagfilter(_from, _to) %}
     {%- endif %}
 
-    {%- if pos == 'Phrase' %}
-        {% set pos_is_phrase = True %}
-    {%- endif %}
-
     {% set pos_text = pos_text|trim %}
 
     {% set link_target = '' %}
     {% set fra_ref = tg.xpath('./re/@fra_ref') %}
 
-    {% set explanation = t.attrib.get('t_type', False) %}
-    {% set explanation_exists = explanation and True %}
+    {% set t_type = t.attrib.get('t_type', False) %}
+    {% set t_type_exists = t_type and True %}
 
     {% if fra_ref|count > 0 %}
         {# If this is a reference link, then there is no data in the
@@ -97,29 +93,25 @@
 
     {% set dict_to = _to %}
 
-    {% if explanation_exists and explanation == 'expl' %}
+    {% if t_type_exists and (t_type == 'expl' or t_type == 'phrase') %}
         {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{{ text -}}
     {% else %}
-        {% if pos_is_phrase %}
-            {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{{ text -}}
-        {% else %}
-            {% if reference %}
-                <a href="{{ url_for('.search_pair_referred_search', _from=dict_from, _to=dict_to) }}?l_til_ref={{ reference }}">
+        {% if reference %}
+            <a href="{{ url_for('.search_pair_referred_search', _from=dict_from, _to=dict_to) }}?l_til_ref={{ reference }}">
+                {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{{ text -}}
+            </a> &rarr;
+        {% elif grammar_link %}
+                <a href="{{ grammar_link }}" target="_blank">
+                    <span class="grammar_link_text">{{ text -}}</span>
+                </a>
+        {%- else %}
+            {% if text.startswith("Usar:") or text.startswith("Geahča") or text.startswith("No se traduce") %} {# sme-spa #}
+                <span id="span_t"><i>{{- text -}}</i></span> &rarr;
+            {% else %}
+                {# NB: swap from and to for these links since these are definitions. #}
+                <a href="{{ url_for('.detailed_language_pair_search', _from=dict_to, _to=dict_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
                     {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{{ text -}}
-                </a> &rarr;
-            {% elif grammar_link %}
-                  <a href="{{ grammar_link }}" target="_blank">
-                      <span class="grammar_link_text">{{ text -}}</span>
-                  </a>
-            {%- else %}
-                {% if text.startswith("Usar:") or text.startswith("Geahča") or text.startswith("No se traduce") %} {# sme-spa #}
-                    <span id="span_t"><i>{{- text -}}</i></span> &rarr;
-                {% else %}
-                    {# NB: swap from and to for these links since these are definitions. #}
-                    <a href="{{ url_for('.detailed_language_pair_search', _from=dict_to, _to=dict_from, wordform=text, format='html') }}?no_compounds=true&lemma_match=true">
-                        {% if pos_text|length > 0 %}({{ pos_text }}) {% endif %}{{ text -}}
-                    </a>
-                {%- endif %}
+                </a>
             {%- endif %}
         {%- endif %}
     {%- endif %}

@@ -56,7 +56,8 @@
 {% endif %}
 
 {%- set pos = first_l|xpath('@pos')|first %}
-{%- if pos == 'Phrase' %}
+{%- set t_type = first_l|xpath('@t_type')|first %}
+{%- if pos == 'Phrase' or t_type == 'phrase' %}
     {% set pos_is_phrase = True %}
 {%- endif %}
 
