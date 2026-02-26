@@ -1,1 +1,10 @@
-pos: [N, V, A, Adj, Adv, CC, CS, Interj, Pcle, Pr, IM, Pers, Dem, Interr, Refl, Recipr, Rel, Qnt]
+pos: [N, V, A, Adj, Adv, CC, CS, Interj, Pcle, Pr, IM, Pers, Det, Interr, Refl, Recipr, Rel, Qnt]
+type:
+ - "Dem"
+ - "Qnt"
+ - "Qst"
+ - "Poss"
+ - "Interr"
+ - "Pers"
+ - "Indef"
+ - "Intens"
