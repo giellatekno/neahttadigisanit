@@ -29,6 +29,9 @@ type:
  - "Aktor"
  - "res."
  - "Prop"
+homonyms: 
+ - "Hom1"
+ - "Hom2"
 possessive:
  - "PxSg2"
 tense:
