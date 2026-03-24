@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-06 10:35+0100\n"
+"POT-Creation-Date: 2026-03-24 14:50+0100\n"
 "PO-Revision-Date: 2014-01-18 16:52+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language: et\n"
@@ -19,7 +19,9 @@ msgstr ""
 "Generated-By: Babel 2.14.0\n"
 
 #: neahtta/configs/baakoeh.config.yaml:86
+#: neahtta/configs/baakoeh.config.yaml:107
 #: neahtta/configs/baakoeh.config.yaml.in:86
+#: neahtta/configs/baakoeh.config.yaml.in:107
 #: neahtta/configs/kyv.config.yaml.in:169
 #: neahtta/configs/kyv.config.yaml.in:245 neahtta/configs/saan.config.yaml:98
 #: neahtta/configs/saan.config.yaml.in:98
@@ -347,14 +349,14 @@ msgstr "Social media (incl. <em>acdnstz</em>)"
 msgid "Tolerant"
 msgstr ""
 
-#: neahtta/configs/sanit.config.yaml:180
+#: neahtta/configs/sanit.config.yaml:181 neahtta/configs/sanit.config.yaml:230
 #: neahtta/configs/sanit.config.yaml.in:180
 #: neahtta/tests/configs/sanit.config.yaml:173
 #, fuzzy
 msgid "Standard (<em>áčđŋšŧž</em>)"
 msgstr "Standard (<em>áčđŋšŧž</em>)"
 
-#: neahtta/configs/sanit.config.yaml:184
+#: neahtta/configs/sanit.config.yaml:185 neahtta/configs/sanit.config.yaml:234
 #: neahtta/configs/sanit.config.yaml.in:184
 #: neahtta/tests/configs/sanit.config.yaml:177
 #, fuzzy
@@ -390,7 +392,7 @@ msgstr "telefonisõbralik"
 #: neahtta/configs/language_specific_rules/templates/sonad/about.template:6
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:7
 #: neahtta/configs/language_specific_rules/templates/valks/about.template:7
-#: neahtta/templates/base.html:172
+#: neahtta/templates/base.html:192
 #: neahtta/templates/mobile_nav_push_menu.html:19
 msgid "About"
 msgstr "Meist"
@@ -745,7 +747,7 @@ msgstr " (Selle keele jaoks pole tekstikogu)"
 msgid "Paradigm"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/entry.template:39
+#: neahtta/configs/language_specific_rules/templates/entry.template:40
 #: neahtta/configs/language_specific_rules/templates/sanj/sjd/entry.template:63
 msgid "see also"
 msgstr ""
@@ -825,19 +827,19 @@ msgstr "otsisõna"
 #: neahtta/configs/language_specific_rules/templates/sanit/nob/index_search_form.template:56
 #: neahtta/configs/language_specific_rules/templates/sanit/nob/index_search_form.template:75
 #: neahtta/configs/language_specific_rules/templates/sanit/nob/index_search_form.template:79
-#: neahtta/configs/language_specific_rules/templates/sanit/sme/detail_search_form.template:41
+#: neahtta/configs/language_specific_rules/templates/sanit/sme/detail_search_form.template:38
 #: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:53
 #: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:72
 #: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:76
-#: neahtta/configs/language_specific_rules/templates/sanit/spa/detail_search_form.template:41
+#: neahtta/configs/language_specific_rules/templates/sanit/spa/detail_search_form.template:38
 #: neahtta/configs/language_specific_rules/templates/sanit/spa/index_search_form.template:52
 #: neahtta/configs/language_specific_rules/templates/sanit/spa/index_search_form.template:71
 #: neahtta/configs/language_specific_rules/templates/sanit/spa/index_search_form.template:75
 #: neahtta/configs/language_specific_rules/templates/sanj/index_search_form.template:53
 #: neahtta/configs/language_specific_rules/templates/sanj/index_search_form.template:72
 #: neahtta/configs/language_specific_rules/templates/sanj/index_search_form.template:76
-#: neahtta/configs/language_specific_rules/templates/sanj/rus/detail_search_form.template:45
-#: neahtta/configs/language_specific_rules/templates/sanj/sjd/detail_search_form.template:45
+#: neahtta/configs/language_specific_rules/templates/sanj/rus/detail_search_form.template:42
+#: neahtta/configs/language_specific_rules/templates/sanj/sjd/detail_search_form.template:42
 #: neahtta/templates/default_detail_search_form.html:38
 #: neahtta/templates/index_search_form.html:25
 #: neahtta/templates/index_search_form.html:46
@@ -1043,7 +1045,7 @@ msgstr "Vaheta"
 
 #: neahtta/configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:76
 #: neahtta/configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:149
-#: neahtta/templates/index.html:78 neahtta/templates/index.html:166
+#: neahtta/templates/index.html:74 neahtta/templates/index.html:162
 #: neahtta/templates/word_detail.html:67 neahtta/templates/word_detail.html:108
 #: neahtta/views/reader.py:218
 msgid " is a possible form of ... "
@@ -1051,13 +1053,13 @@ msgstr " võib olla vorm sõnast ... "
 
 #: neahtta/configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:93
 #: neahtta/configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:115
-#: neahtta/templates/index.html:101 neahtta/templates/index.html:128
+#: neahtta/templates/index.html:97 neahtta/templates/index.html:124
 #, fuzzy, python-format
 msgid "Word <span lang=\"%(_from)s\">%(input)s</span> not found."
 msgstr "Sõna %(input)s ei leitud."
 
 #: neahtta/configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:101
-#: neahtta/templates/index.html:109
+#: neahtta/templates/index.html:105
 #, python-format
 msgid "Other analyses for <em>%(user_input)s</em> without a translation."
 msgstr ""
@@ -1463,20 +1465,18 @@ msgid ""
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/sanit/nob/index_search_form.template:94
-msgid "Press s or / to search."
-msgstr ""
-
 #: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:91
+#: neahtta/configs/language_specific_rules/templates/sanit/spa/index_search_form.template:89
 msgid "Press s or / to go to the search field."
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:98
-#: neahtta/configs/language_specific_rules/templates/sanit/spa/index_search_form.template:103
+#: neahtta/configs/language_specific_rules/templates/sanit/spa/index_search_form.template:104
 msgid "The abbreviations used in the dictionary are"
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:98
-#: neahtta/configs/language_specific_rules/templates/sanit/spa/index_search_form.template:103
+#: neahtta/configs/language_specific_rules/templates/sanit/spa/index_search_form.template:104
 msgid "explained here"
 msgstr ""
 
@@ -1484,7 +1484,7 @@ msgstr ""
 msgid "The abbreviations refer to the uses in North Saami."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanit/spa/index_search_form.template:104
+#: neahtta/configs/language_specific_rules/templates/sanit/spa/index_search_form.template:105
 msgid "The abbreviations refer to the uses in Spanish."
 msgstr ""
 
@@ -1730,17 +1730,17 @@ msgstr ""
 msgid "Antonova A. A. & Scheller E. 2021 <i>(appr. 16000 words)</i>."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanj/rus/detail_search_form.template:8
-#: neahtta/configs/language_specific_rules/templates/sanj/rus/detail_search_form.template:10
-#: neahtta/configs/language_specific_rules/templates/sanj/sjd/detail_search_form.template:8
-#: neahtta/configs/language_specific_rules/templates/sanj/sjd/detail_search_form.template:10
+#: neahtta/configs/language_specific_rules/templates/sanj/rus/detail_search_form.template:7
+#: neahtta/configs/language_specific_rules/templates/sanj/rus/detail_search_form.template:9
+#: neahtta/configs/language_specific_rules/templates/sanj/sjd/detail_search_form.template:7
+#: neahtta/configs/language_specific_rules/templates/sanj/sjd/detail_search_form.template:9
 msgid "rus"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanj/rus/detail_search_form.template:8
-#: neahtta/configs/language_specific_rules/templates/sanj/rus/detail_search_form.template:10
-#: neahtta/configs/language_specific_rules/templates/sanj/sjd/detail_search_form.template:8
-#: neahtta/configs/language_specific_rules/templates/sanj/sjd/detail_search_form.template:10
+#: neahtta/configs/language_specific_rules/templates/sanj/rus/detail_search_form.template:7
+#: neahtta/configs/language_specific_rules/templates/sanj/rus/detail_search_form.template:9
+#: neahtta/configs/language_specific_rules/templates/sanj/sjd/detail_search_form.template:7
+#: neahtta/configs/language_specific_rules/templates/sanj/sjd/detail_search_form.template:9
 msgid "sjd"
 msgstr ""
 
@@ -1919,27 +1919,27 @@ msgid ""
 " page directly by clicking on it."
 msgstr ""
 
-#: neahtta/templates/base.html:159
+#: neahtta/templates/base.html:179
 #: neahtta/templates/mobile_nav_push_menu.html:6
 msgid "Home"
 msgstr "Algus"
 
-#: neahtta/templates/base.html:163
+#: neahtta/templates/base.html:183
 #: neahtta/templates/mobile_nav_push_menu.html:10
 msgid "Plugins"
 msgstr "Pluginad"
 
-#: neahtta/templates/base.html:168
+#: neahtta/templates/base.html:188
 #: neahtta/templates/mobile_nav_push_menu.html:15
 msgid "Smartphone shortcut"
 msgstr ""
 
-#: neahtta/templates/base.html:179
+#: neahtta/templates/base.html:199
 #: neahtta/templates/mobile_nav_push_menu.html:23
 msgid "Sources"
 msgstr ""
 
-#: neahtta/templates/base.html:186
+#: neahtta/templates/base.html:206
 #: neahtta/templates/mobile_nav_push_menu.html:27
 #: neahtta/templates/mobile_nav_push_menu.html:30
 msgid "Interface language"
@@ -1966,7 +1966,7 @@ msgstr ""
 msgid "Neahttadigisánit"
 msgstr "Neahttadigisánit"
 
-#: neahtta/templates/index.html:156
+#: neahtta/templates/index.html:152
 msgid ""
 "The corpus and full paradigm generator will be temporarily unavailable "
 "for about an hour starting at 09:00 Norwegian time (CEST/UTC+2) on Friday"
@@ -3136,5 +3136,8 @@ msgstr " võib olla vorm sõnast ... "
 #~ "href=\"http://dicts.uit.no/\">here's our full "
 #~ "list</a>, and more\n"
 #~ "                resources."
+#~ msgstr ""
+
+#~ msgid "Press s or / to search."
 #~ msgstr ""
 
