@@ -59,7 +59,7 @@
             <span class="span4">
                 <h3 class="green smaller">{% trans %}sme ↔ fin{% endtrans %}</h3>
                 <p>{% trans %}Dictionaries for North Saami and Finnish are based on lexical material from the <a class="green" href="http://kotus.fi">Institute for the Languages of Finland</a>, and from Giellatekno's work with the North Saami  <a class="green" href="http://oahpa.no">Oahpa</a>. In addition, we have included frequent words from North Saami, but especially from Finnish.{% endtrans %}</p>
-                <p>{% trans %}In both directions there are about 11,000 entries.{% endtrans %}</p>
+                <p>{% trans %}North Sámi → Finnish contains about 20,000 entries, and Finnish → North Sámi about 14,500 entries.{% endtrans %}</p>
             </span>
             <span class="span4">
                 <h3 class="green smaller">{% trans %}sme ↔ spa{% endtrans %}</h3>
