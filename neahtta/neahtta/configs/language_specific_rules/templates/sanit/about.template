@@ -19,7 +19,7 @@
             <span class="span4">
                 <h3 class="red">{% trans %}How to quote the dictionaries{% endtrans %}</h3>
                 <p>
-		<ul><li>Antonsen, Lene, Trond Trosterud, Berit Merete Nystad Eskonsipo and Risten Sofie West 2013-2022: <em>Neahttadigisánit Davvisámi-dáru-davvisámi sátnegirji</em>. Tromsø: UiT. URL: http://sanit.oahpa.no  (30000 davvisámegiela ja 26000 darogiela sáni)</li>
+		<ul><li>Antonsen, Lene, Trond Trosterud, Berit Merete Nystad Eskonsipo and Risten Sofie West 2013-2026: <em>Neahttadigisánit Davvisámi-dáru-davvisámi sátnegirji</em>. Tromsø: UiT. URL: http://sanit.oahpa.no  (33.000 davvisámegiela ja 26.000 darogiela sáni, daidda lassin leat namat.)</li>
 <li>Trosterud, Trond  2013-2022: <em>Neahttadigisánit Davvisámi-suoma-davvisámi sátnegirji</em>. Tromsø: UiT. URL: http://sanit.oahpa.no  (13000 davvisámegiela ja 15000 suomagiela sáni)</li>
 <li>Kemi, Kjell and Ángel Díaz de Rada 2024: <em>Neahttadigisánit Spánska-davvisámi sátnegirji</em>. Tromsø: UiT. URL: http://sanit.oahpa.no</li></ul>.</p>
             </span>
