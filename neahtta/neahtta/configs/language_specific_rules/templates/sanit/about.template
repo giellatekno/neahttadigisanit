@@ -19,8 +19,8 @@
             <span class="span4">
                 <h3 class="red">{% trans %}How to quote the dictionaries{% endtrans %}</h3>
                 <p>
-		<ul><li>Antonsen, Lene, Trond Trosterud, Berit Merete Nystad Eskonsipo and Risten Sofie West 2013-2026: <em>Neahttadigisánit Davvisámi-dáru-davvisámi sátnegirji</em>. Tromsø: UiT. URL: http://sanit.oahpa.no  (33.000 davvisámegiela ja 26.000 darogiela sáni, daidda lassin leat namat.)</li>
-<li>Trosterud, Trond  2013-2022: <em>Neahttadigisánit Davvisámi-suoma-davvisámi sátnegirji</em>. Tromsø: UiT. URL: http://sanit.oahpa.no  (13000 davvisámegiela ja 15000 suomagiela sáni)</li>
+		<ul><li>Antonsen, Lene, Trond Trosterud, Berit Merete Nystad Eskonsipo and Risten Sofie West 2013-2026: <em>Neahttadigisánit Davvisámi-dáru-davvisámi sátnegirji</em>. Tromsø: UiT. URL: http://sanit.oahpa.no </li>
+<li>Trosterud, Trond  2013-2022: <em>Neahttadigisánit Davvisámi-suoma-davvisámi sátnegirji</em>. Tromsø: UiT. URL: http://sanit.oahpa.no</li>
 <li>Kemi, Kjell and Ángel Díaz de Rada 2024: <em>Neahttadigisánit Spánska-davvisámi sátnegirji</em>. Tromsø: UiT. URL: http://sanit.oahpa.no</li></ul>.</p>
             </span>
             <span class="span4">
@@ -53,7 +53,7 @@
         <div class="row-fluid">
             <span class="span4">
                 <h3 class="red smaller">{% trans %}sme ↔ nob{% endtrans %}</h3>
-                <p>{% trans %}North Sámi → Norwegian builds on Nils Jernsletten's dictionary <em>Álgosátnegirji</em> (4322 words), but now it contains 30,000 entries, plus 6000 place name entries. Norwegian → North Sámi  is based on the North Sámi → Norwegian dictionary, but we have added frequent Norwegian words. It contains about 26,000 Norwegian entries. {% endtrans %}</p>
+                <p>{% trans %}North Sámi → Norwegian builds on Nils Jernsletten's dictionary <em>Álgosátnegirji</em> (4322 words), but now it contains 33,000 entries, plus 6000 place name entries. Norwegian → North Sámi  is based on the North Sámi → Norwegian dictionary, but we have added frequent Norwegian words. It contains about 27,000 Norwegian entries. {% endtrans %}</p>
                 <p>{% trans %}Approximately half of the content of the dictionaries is taken by searching for parallels in a parallel corpus of administrative text. This work was financed by the Ministry of Local Government and Modernisation.{% endtrans %}</p>
             </span>
             <span class="span4">
