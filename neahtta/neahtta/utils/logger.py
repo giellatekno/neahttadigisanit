@@ -33,14 +33,9 @@ def logIndexLookups(user_input, results, from_language, to_language):
     result_lemmas = ", ".join(list(result_lemmas))
     meanings = "; ".join(list(tx_set))
 
-    user_ip = ""
-
-    if request:
-        user_ip = get_ip(request)
-
     user_log = getLogger("user_log")
     user_log.info(
-        "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s"
+        "%s\t%s\t%s\t%s\t%s\t%s\t%s"
         % (
             user_input,
             str(success),
@@ -49,7 +44,6 @@ def logIndexLookups(user_input, results, from_language, to_language):
             from_language,
             to_language,
             get_time(),
-            user_ip,
         )
     )
 
@@ -75,13 +69,9 @@ def logSimpleLookups(user_input, results, from_language, to_language):
     result_lemmas = ", ".join(result_lemmas)
     meanings = "; ".join(tx_set)
 
-    user_ip = ""
-    if request:
-        user_ip = get_ip(request)
-
     user_log = getLogger("user_log")
     user_log.info(
-        "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s"
+        "%s\t%s\t%s\t%s\t%s\t%s\t%s"
         % (
             user_input,
             str(success),
@@ -90,6 +80,5 @@ def logSimpleLookups(user_input, results, from_language, to_language):
             from_language,
             to_language,
             get_time(),
-            user_ip,
         )
     )
