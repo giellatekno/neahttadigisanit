@@ -1991,7 +1991,7 @@ msgstr "Ярлык на смартфоне"
 #: neahtta/templates/base.html:193
 #: neahtta/templates/mobile_nav_push_menu.html:20
 msgid "Privacy"
-msgstr ""
+msgstr "Конфиденциальность"
 
 #: neahtta/templates/base.html:204
 #: neahtta/templates/mobile_nav_push_menu.html:28
@@ -2162,32 +2162,38 @@ msgstr ""
 #: neahtta/templates/privacy_notice.html:3
 #: neahtta/templates/privacy_notice.html:20
 msgid "Privacy notice"
-msgstr ""
+msgstr "Уведомление о конфиденциальности"
 
 #: neahtta/templates/privacy_notice.html:21
 msgid ""
-"Neahttadigisanit does not store any personally identifiable information. "
+"Neahttadigisánit does not store any personally identifiable information. "
 "Local storage is used to remember your preferred TTS voice."
-msgstr ""
+msgstr "Neahttadigisánit не хранит никакой личной информации, "
+"позволяющей идентифицировать пользователя. Локальное хранилище используется "
+"для запоминания предпочитаемого вами голоса синтеза речи."
 
 #: neahtta/templates/privacy_notice.html:22
 msgid ""
 "We keep logs of the words searched for to improve the dictionaries and "
 "for research purposes."
-msgstr ""
+msgstr "Мы ведем журналы поисковых запросов для улучшения словарей и в "
+"исследовательских целях."
 
 #: neahtta/templates/privacy_notice.html:22
 msgid ""
 "The logs contain searched-for words, the dictionary pair used, and the "
 "date and time the word was searched for."
-msgstr ""
+msgstr "Журналы содержат информацию о поисковых запросах, использованной "
+"паре слов из словаря, а также дате и времени поиска."
 
 #: neahtta/templates/privacy_notice.html:23
 msgid ""
 "Please note that by entering text into the search field an autocomplete "
 "lookup is performed. Thus, such text will also end up in the server logs,"
 " even if the search button was never pressed."
-msgstr ""
+msgstr "Обратите внимание, что при вводе текста в поле поиска выполняется "
+"автозаполнение. Таким образом, этот текст также попадет в журналы сервера, даже "
+"если кнопка поиска никогда не была нажата."
 
 #: neahtta/templates/reader.html:3 neahtta/templates/reader.html:20
 #, python-format

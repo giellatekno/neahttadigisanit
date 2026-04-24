@@ -2016,7 +2016,7 @@ msgstr "Snarveg på smarttelefon"
 #: neahtta/templates/base.html:193
 #: neahtta/templates/mobile_nav_push_menu.html:20
 msgid "Privacy"
-msgstr ""
+msgstr "Personvern"
 
 #: neahtta/templates/base.html:204
 #: neahtta/templates/mobile_nav_push_menu.html:28
@@ -2188,32 +2188,37 @@ msgstr ""
 #: neahtta/templates/privacy_notice.html:3
 #: neahtta/templates/privacy_notice.html:20
 msgid "Privacy notice"
-msgstr ""
+msgstr "Personverninformasjon"
 
 #: neahtta/templates/privacy_notice.html:21
 msgid ""
-"Neahttadigisanit does not store any personally identifiable information. "
+"Neahttadigisánit does not store any personally identifiable information. "
 "Local storage is used to remember your preferred TTS voice."
-msgstr ""
+msgstr "Neahttadigisánit lagrer ingen identifiserende informasjon. "
+"Lokal lagring brukes for å huske hvilken syntetisk stemme du har valgt."
 
 #: neahtta/templates/privacy_notice.html:22
 msgid ""
 "We keep logs of the words searched for to improve the dictionaries and "
 "for research purposes."
-msgstr ""
+msgstr "Vi loggfører hvilke ord det blir søkt på for å forbedre ordbøkene "
+"og for forskningsformål."
 
 #: neahtta/templates/privacy_notice.html:22
 msgid ""
 "The logs contain searched-for words, the dictionary pair used, and the "
 "date and time the word was searched for."
-msgstr ""
+msgstr "Loggene inneholder orda det er søkt på, hvilket ordbokspar som var brukt "
+"og dato og tidspunkt søket ble gjort."
 
 #: neahtta/templates/privacy_notice.html:23
 msgid ""
 "Please note that by entering text into the search field an autocomplete "
 "lookup is performed. Thus, such text will also end up in the server logs,"
 " even if the search button was never pressed."
-msgstr ""
+msgstr "Merk at det å skrive tekst inn i søkefeltet automatisk sender teksten til "
+"ordboka for autofullføring. Derfor vil denne teksten ende opp i serverloggene "
+"sjøl om søkeknappen aldri blei trykt på."
 
 #: neahtta/templates/reader.html:3 neahtta/templates/reader.html:20
 #, python-format
