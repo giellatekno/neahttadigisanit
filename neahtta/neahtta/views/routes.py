@@ -22,6 +22,7 @@ from .main import (
     externalFormSearch,
     more_dictionaries,
     session_clear,
+    privacy_notice,
 )
 from .reader import (
     bookmarklet,
@@ -127,6 +128,13 @@ blueprint.add_url_rule(
     methods=["GET"],
     endpoint="kildin_keyboards",
     view_func=kildin_keyboards,
+)
+
+blueprint.add_url_rule(
+    "/privacy-noticen/",
+    methods=["GET"],
+    endpoint="privacy_notice",
+    view_func=privacy_notice,
 )
 
 blueprint.add_url_rule(

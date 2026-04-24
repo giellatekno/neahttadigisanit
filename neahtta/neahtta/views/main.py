@@ -182,6 +182,12 @@ allowed_keys = [
     "last_searches",
 ]
 
+def privacy_notice():
+    return render_template(
+        "privacy_notice.html",
+        language_pairs=current_app.config.pair_definitions,
+    )
+
 
 def session_clear(sess_key):
     if sess_key in allowed_keys:
