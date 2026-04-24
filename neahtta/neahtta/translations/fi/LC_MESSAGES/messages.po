@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-07 15:29+0200\n"
+"POT-Creation-Date: 2026-04-24 14:08+0200\n"
 "PO-Revision-Date: 2014-02-15 20:48+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language: fi\n"
@@ -374,8 +374,8 @@ msgstr "(... ja on kännykkä-ystävällinen!)"
 #: neahtta/configs/language_specific_rules/templates/sonad/about.template:6
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:7
 #: neahtta/configs/language_specific_rules/templates/valks/about.template:7
-#: neahtta/templates/base.html:192
-#: neahtta/templates/mobile_nav_push_menu.html:19
+#: neahtta/templates/base.html:197
+#: neahtta/templates/mobile_nav_push_menu.html:24
 msgid "About"
 msgstr "Meistä"
 
@@ -2022,14 +2022,19 @@ msgstr "Klikkaa-tekstissä"
 msgid "Smartphone shortcut"
 msgstr "Älypuhelimen pikanäppäin"
 
-#: neahtta/templates/base.html:199
-#: neahtta/templates/mobile_nav_push_menu.html:23
+#: neahtta/templates/base.html:193
+#: neahtta/templates/mobile_nav_push_menu.html:20
+msgid "Privacy"
+msgstr ""
+
+#: neahtta/templates/base.html:204
+#: neahtta/templates/mobile_nav_push_menu.html:28
 msgid "Sources"
 msgstr "Lähteet"
 
-#: neahtta/templates/base.html:206
-#: neahtta/templates/mobile_nav_push_menu.html:27
-#: neahtta/templates/mobile_nav_push_menu.html:30
+#: neahtta/templates/base.html:211
+#: neahtta/templates/mobile_nav_push_menu.html:32
+#: neahtta/templates/mobile_nav_push_menu.html:35
 msgid "Interface language"
 msgstr "Käyttöliittymän kieli"
 
@@ -2085,8 +2090,8 @@ msgstr "Kieli"
 
 #: neahtta/templates/left_dictionary_list.html:1
 #: neahtta/templates/mobile_nav_dictionary_list.html:1
-#: neahtta/templates/mobile_nav_push_menu.html:46
-#: neahtta/templates/mobile_nav_push_menu.html:49
+#: neahtta/templates/mobile_nav_push_menu.html:51
+#: neahtta/templates/mobile_nav_push_menu.html:54
 msgid "Dictionaries"
 msgstr "Sanakirjoja"
 
@@ -2095,8 +2100,8 @@ msgid "Escape Text-TV mode"
 msgstr ""
 
 #: neahtta/templates/left_nav_input_variants.html:7
-#: neahtta/templates/mobile_nav_push_menu.html:68
-#: neahtta/templates/mobile_nav_push_menu.html:88
+#: neahtta/templates/mobile_nav_push_menu.html:73
+#: neahtta/templates/mobile_nav_push_menu.html:93
 msgid "Written variant"
 msgstr "Kirjoitettu variantti"
 
@@ -2106,7 +2111,7 @@ msgstr "Etsi tyyppiä"
 
 #: neahtta/templates/left_nav_search_variants.html:17
 #: neahtta/templates/mobile_nav_dictionary_list.html:34
-#: neahtta/templates/mobile_nav_push_menu.html:92
+#: neahtta/templates/mobile_nav_push_menu.html:97
 msgid "Word search"
 msgstr "Sanahaku"
 
@@ -2114,11 +2119,11 @@ msgstr "Sanahaku"
 msgid "Texts"
 msgstr "Tekstit"
 
-#: neahtta/templates/mobile_nav_push_menu.html:31
-#: neahtta/templates/mobile_nav_push_menu.html:50
-#: neahtta/templates/mobile_nav_push_menu.html:58
-#: neahtta/templates/mobile_nav_push_menu.html:65
-#: neahtta/templates/mobile_nav_push_menu.html:85
+#: neahtta/templates/mobile_nav_push_menu.html:36
+#: neahtta/templates/mobile_nav_push_menu.html:55
+#: neahtta/templates/mobile_nav_push_menu.html:63
+#: neahtta/templates/mobile_nav_push_menu.html:70
+#: neahtta/templates/mobile_nav_push_menu.html:90
 msgid "Back"
 msgstr "Takaisin"
 
@@ -2187,6 +2192,29 @@ msgstr ""
 "kieliä ja sanakirjoja, joilla eivät vielä ole Neahttadigisánit-versiota. "
 "Löydät kokonaisen listan osoitteesta <a "
 "href=\"http://dicts.uit.no/\">dicts.uit.no</a>."
+
+#: neahtta/templates/privacy_notice.html:3
+#: neahtta/templates/privacy_notice.html:20
+msgid "Privacy notice"
+msgstr ""
+
+#: neahtta/templates/privacy_notice.html:21
+msgid ""
+"Neahttadigisanit does not store any personally identifiable information. "
+"Local storage is used to remember your preferred TTS voice."
+msgstr ""
+
+#: neahtta/templates/privacy_notice.html:22
+msgid ""
+"We keep logs of the words searched for to improve the dictionaries and "
+"for research purposes."
+msgstr ""
+
+#: neahtta/templates/privacy_notice.html:22
+msgid ""
+"The logs contain searched-for words, the dictionary pair used, and the "
+"date and time the word was searched for."
+msgstr ""
 
 #: neahtta/templates/reader.html:3 neahtta/templates/reader.html:20
 #, python-format
