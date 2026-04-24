@@ -131,7 +131,7 @@ blueprint.add_url_rule(
 )
 
 blueprint.add_url_rule(
-    "/privacy-noticen/",
+    "/privacy-notice/",
     methods=["GET"],
     endpoint="privacy_notice",
     view_func=privacy_notice,
