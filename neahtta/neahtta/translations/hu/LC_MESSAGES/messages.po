@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-24 14:08+0200\n"
+"POT-Creation-Date: 2026-04-24 14:41+0200\n"
 "PO-Revision-Date: 2016-10-12 17:29-0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: hu\n"
@@ -2090,6 +2090,13 @@ msgstr ""
 msgid ""
 "The logs contain searched-for words, the dictionary pair used, and the "
 "date and time the word was searched for."
+msgstr ""
+
+#: neahtta/templates/privacy_notice.html:23
+msgid ""
+"Please note that by entering text into the search field an autocomplete "
+"lookup is performed. Thus, such text will also end up in the server logs,"
+" even if the search button was never pressed."
 msgstr ""
 
 #: neahtta/templates/reader.html:3 neahtta/templates/reader.html:20
