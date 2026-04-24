@@ -2191,7 +2191,7 @@ msgid ""
 "Please note that by entering text into the search field an autocomplete "
 "lookup is performed. Thus, such text will also end up in the server logs,"
 " even if the search button was never pressed."
-msgstr "Обратите внимание, что при вводе текста в поле поиска выполняется "
+msgstr "Обратите внимание на то, что при вводе текста в поле поиска выполняется "
 "автозаполнение. Таким образом, этот текст также попадет в журналы сервера, даже "
 "если кнопка поиска никогда не была нажата."
 
