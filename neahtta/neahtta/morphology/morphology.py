@@ -229,7 +229,6 @@ class Lemma:
 
     def __init__(self, tag, _input, tool, tagsets):
         self.tool = tool
-
         self.tag = self.tool.tagStringToTag(tag, tagsets=tagsets)
 
         # Best guess is the first item, otherwise...
@@ -239,92 +238,29 @@ class Lemma:
         # because it's already been stripped out somewhere before
         # anders: yeah, sometimes this is literaly "N" (for example)
         lemma = tag[0]
-        # Best guess is the first item, otherwise...
-        # self.lemma = tag[0]
-        # del tag[0]
-        actio = False
-        if "Actio+" in tag:
-            # anders:
-            # - tag is a Tag, which will split by "+",
-            # - Tag.__contains__() just does a __contains__ on the underlying
-            #   .sets dictionary, which is built by splitting the input string
-            #   by "+"
-            # hence: A string which includes "+" is never in tag, and this
-            # branch is never taken.
-            assert False, "unreachable"
-            lemma = tag
+        all_tags = tagsets.all_tags()
+        if lemma not in all_tags:
+            # the first part of the Tag was not a known tag, so we
+            # are certain that it is the lemma
             self.lemma = lemma
-            actio = True
-            self.pos = ""
-            self.tag_raw = [tag]
         else:
-            all_tags = tagsets.all_tags()
-            if lemma not in all_tags:
-                # anders:
-                # the first "part" of the Tag was not a known tag, so we
-                # are certain that the first part is the lemma, such as in
-                # "konspirasjon+N+Sg+Indef" (example tags probably wrong,
-                # but just for demonstrative purposes here)
-                self.lemma = lemma
+            # corner-case, the first tag is precisely (case sensitively)
+            # exactly a tag, such as e.g. "Ord", "Dem", "Aktor", "Ess", ..
+
+            # Try to find the first tag that is not a known tag, and take
+            # that to be the lemma, then.
+            non_tags = [t for t in tag if t not in all_tags]
+            if non_tags:
+                # We found a "tag" that is not a known tag, so we assume it
+                # is the lemma, then
+                self.lemma = non_tags[0]
             else:
-                # anders:
-                # corner-case, the lemma is precisely (case sensitively)
-                # exactly a tag, such as e.g. "Ord", "Dem", "Aktor", "Ess", ..
-                # So what this code does is somehow try to see if this is
-                # the lemma, or the lemma has already been extracted?
+                # All parts were valid tags, so we fall back to the inital
+                # guess that the first tag is the lemma
+                self.lemma = tag[0]
 
-                # Separate out items that are not values in a tagset, these
-                # are probably the lemma.
-                not_tags = [t for t in tag if t not in all_tags]
-                if len(not_tags) > 0:
-                    # anders: so here, we have found a "tag" in the tag list
-                    # that is in fact, not a tag, so the code assumes that
-                    # the lemma is the first such entry
-                    self.lemma = not_tags[0]
-                else:
-                    # anders: but here, logically, len(not_tags) == 0,
-                    # which means all elements of the tag was found to be
-                    # actual tags -- and so it is presumed that the lemma
-                    # must therefore be the first tag anyway?
-                    self.lemma = tag[0]
-
-        if not actio:
-            # anders:
-            # the branch above which sets actio to True is unreachable code,
-            # so this always happens...
-            self.pos = self.tag["pos"]
-            self.tag_raw = tag
-        else:
-            # anders:
-            # ...which means that this should be unreachable, too
-            # (I added this else branch, and placed unreachable)
-            assert False, "unreachable"
-        # self.prepare_tag() ends here
-
-        if "pos" in self.tag:
-            # anders: I checked, every .tagset file has a member "pos",
-            # which is a list of strings. Therefore, this branch is always
-            # taken...
-            # anders: correction: the assumption that the self.tag is always
-            # a full analysis line (like e.g. "beaggit+V+IV+Actio+Gen") is
-            # not true. Sometimes, for some reason which I do not understand
-            # yet, such a string can be split into "beaggit+V+IV" and then
-            # "Actio+Gen" alone. The latter, when it gets run through Tag,
-            # does not have a Pos. Or, rather, self.tag always has a Pos,
-            # but when looking up the Pos, it may be None, because the "tag"
-            # "Actio+Gen" does not have a pos (none of the words, when split
-            # by "+" ("Actio", and "Gen") is a valid pos.
-            # This can be brittle. If another "Actio variant" is introduced,
-            # which collides with any pos, there can be trouble. However,
-            # this is probably something which is already a limitation in
-            # the tag-format, so it's my understanding that there is awareness
-            # of this.
-            self.pos = self.tag["pos"]
-        else:
-            # ... and this never happens (but it's not logically unreachable
-            # code)
-            assert False, "tagset file always has a 'pos'"
-            self.pos = self.tag.parts[0]
+        self.pos = self.tag["pos"]
+        self.tag_raw = tag
 
         # Letting pos be None is problematic when sorting or grouping by pos
         if self.pos is None:
