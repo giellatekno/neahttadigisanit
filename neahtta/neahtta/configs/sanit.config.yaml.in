@@ -47,7 +47,6 @@ Morphology:
     format: 'hfst'
     options: &sme_fst_options
       compoundBoundary: "+Cmp#"
-      tagsep: '+'
       inverse_tagsep: '+'
       # Grammatical tags which have their own lexicon entries
       # that should be presented if they are part of the analysis
@@ -69,7 +68,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: ["#", "#+Cmp+", "#+CmpS+", "+Cmp#"]
-      tagsep: '+'
       inverse_tagsep: '+'
   fin:
     tool: *HFST-LOOKUP
@@ -78,7 +76,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: ["#", "+Cmp#"]
-      tagsep: '+'
       inverse_tagsep: '+'
   spa:
     tool: *HFST-LOOKUP
@@ -87,7 +84,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "#"
-      tagsep: '+'
       inverse_tagsep: '+'
 
 Languages:

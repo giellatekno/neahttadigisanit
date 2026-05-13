@@ -234,7 +234,7 @@ class Lemma:
 
         actio_with_tagsep = self.tool.options.get(
             "actio_tag", "Actio"
-        ) + self.tool.options.get("tagsep", "+")
+        ) + "+"
 
         # Best guess is the first item, otherwise...
         # TODO the assumptions in this file does not always hold,
@@ -826,44 +826,30 @@ class XFST:
         assert False, "unused?"
         return "+?" in analysis
 
-    def tagStringToTag(self, parts, tagsets=None, inverse=False) -> Tag:
+    def tagStringToTag(self, parts, tagsets=None) -> Tag:
         tagsets = {} if tagsets is None else tagsets
-        actio_with_tagsep = self.options.get("actio_tag", "Actio") + self.options.get(
-            "tagsep", "+"
-        )
+        actio_with_tagsep = self.options.get("actio_tag", "Actio") + "+"
 
-        if inverse:
-            delim = self.options.get("inverse_tagsep", self.options.get("tagsep", "+"))
-        else:
-            delim = self.options.get("tagsep", "+")
         if actio_with_tagsep in parts:
             # anders: this essentially checks if ("Actio+" is "in" `parts`),
             # and if it is, then `parts` must be a string already, because
             # otherwise, it would have been split up because of the "+" already
             tag = parts
-            return Tag(tag, delim, tagsets=tagsets)
+            return Tag(tag, "+", tagsets=tagsets)
         else:
             # so, here, "Actio+" was not in `parts`, and therefore it is
             # concluded that we must take the tag delimeter, and join in all
             # the parts.
             # in other words, it has been determined that parts was a list
-            tag = delim.join(parts)
-            return Tag(tag, delim, tagsets=tagsets)
+            tag = "+".join(parts)
+            return Tag(tag, "+", tagsets=tagsets)
 
-    def formatTag(self, parts, inverse=False):
-        if inverse:
-            delim = self.options.get("inverse_tagsep", self.options.get("tagsep", "+"))
-        else:
-            delim = self.options.get("tagsep", "+")
-        return delim.join(parts)
+    def formatTag(self, parts):
+        return "+".join(parts)
 
-    def splitAnalysis(self, analysis: str, inverse=False) -> list[str]:
+    def splitAnalysis(self, analysis: str) -> list[str]:
         """'lemma+Tag+Tag+Tag' -> ['lemma', 'Tag', 'Tag', 'Tag']"""
-        if inverse:
-            delim = self.options.get("inverse_tagsep", self.options.get("tagsep", "+"))
-        else:
-            delim = self.options.get("tagsep", "+")
-        return analysis.split(delim)
+        return analysis.split("+")
 
 
 class HFST(XFST):
@@ -1214,7 +1200,7 @@ class Morphology:
 
         if len(analysis_parts) == 1:
             actio_tag = self.tool.options.get("actio_tag", "Actio")
-            actio_with_tagsep = actio_tag + self.tool.options.get("tagsep", "+")
+            actio_with_tagsep = f"{actio_tag}+"
 
             if actio_tag in analysis_parts[0]:
                 try:
@@ -1259,14 +1245,13 @@ class Morphology:
         default_tags = ("Dummy1", "Dummy2")
         tags = tuple(self.tool.options.get("tags_in_lexicon", default_tags))
         actio_tag = self.tool.options.get("actio_tag", "Actio")
-        tagsep = self.tool.options.get("tagsep", "+")
-        actio_with_tagsep = actio_tag + tagsep  # == "Actio+"
+        actio_with_tagsep = f"{actio_tag}+"  # == "Actio+"
 
         for analysis in analyses:
             # replace "Actio+" with "Actio", to enable separate entries for
             # e.g. "Actio+Nom" and "Actio+Ess" in the dictionary
             analysis = analysis.replace(actio_with_tagsep, actio_tag)
-            analysis_parts = analysis.split(tagsep)
+            analysis_parts = analysis.split("+")
 
             # Create list of analyses.
             # Each "tag", as in "tags_in_lexicon" (e.g. ["Der", "Comp", ...] in
@@ -1280,7 +1265,7 @@ class Morphology:
                 for index1, part in enumerate(analysis_parts[1:], start=1)
                 if part.startswith(tags)
             ]
-            s = tagsep
+            s = "+"
             b = []
             if index:
                 b.append(s.join(analysis_parts[: index[0]]))

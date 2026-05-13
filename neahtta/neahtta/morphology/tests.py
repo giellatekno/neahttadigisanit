@@ -5,7 +5,6 @@ def sme_test():
     sme_options = {
         "compoundBoundary": "  + #",
         "derivationMarker": "suff.",
-        "tagsep": " ",
         "inverse_tagsep": "+",
     }
 
@@ -25,7 +24,6 @@ def sme_test_restrictions():
     sme_options = {
         "compoundBoundary": "  + #",
         "derivationMarker": "suff.",
-        "tagsep": " ",
         "inverse_tagsep": "+",
     }
 

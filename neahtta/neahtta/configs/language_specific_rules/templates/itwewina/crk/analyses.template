@@ -91,13 +91,13 @@ The following customizations have been made:
                             {# Replace the Lemma tag with the actual lemma, then
                                reformat with spaces around the plus #}
                             {% if lt == first_f.lemma %}
-                                {% set lt_r = repl|tagfilter(_from, _to, tagsep='+') %}
+                                {% set lt_r = repl|tagfilter(_from, _to) %}
                                 {% set tooltip = false %}
                             {% elif 'PV/' in lt %}
-                                {% set lt_r = lt|tagfilter(_from, _to, tagsep='+') %}
-                                {% set tooltip = lt|tagfilter_by(_from, _to, tagsep='+', tagset='preverb_definitions') %}
+                                {% set lt_r = lt|tagfilter(_from, _to) %}
+                                {% set tooltip = lt|tagfilter_by(_from, _to, tagset='preverb_definitions') %}
                             {% else %}
-                                {% set lt_r = lt|tagfilter(_from, _to, tagsep='+') %}
+                                {% set lt_r = lt|tagfilter(_from, _to) %}
                                 {% set tooltip = false %}
                             {% endif %}
                             {% do _formatted_tags.append((lt_r, tooltip)) %}

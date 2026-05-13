@@ -18,7 +18,6 @@ def register_template_filters(app):
 
     #     generate_tags = []
     #     for t in tags:
-    #         # use morph tagsep function
     #         generate_tags.append(t.split('+'))
 
     #     morph = current_app.config.morphologies.get(g._from, False)
@@ -160,8 +159,6 @@ def register_template_filters(app):
         if mx is None:
             return lemma, ""
 
-        # anders: unused
-        # tagsep = mx.tool.options.get("inverse_tagsep")
         dummy = mx.tagsets.sets.get("nds_dummy_tags", [])
 
         # TODO: strip nds_dummy_tags

@@ -240,9 +240,6 @@
                                       "type": "string"
                                   }
                               },
-                              "tagsep": {
-                                  "type": "string"
-                              },
                               "inverse_tagsep": {
                                   "type": "string"
                               }
@@ -250,7 +247,6 @@
                           "$comment": "ARE THESE ALL REQUIRED?",
                           "required": [
                               "compoundBoundary",
-                              "tagsep",
                               "inverse_tagsep"
                           ]
                       }

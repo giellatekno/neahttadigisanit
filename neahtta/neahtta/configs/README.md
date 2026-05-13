@@ -134,7 +134,6 @@ following:
       format: 'xfst'
       options:
         compoundBoundary: "+Use/Circ#"
-        tagsep: '+'
         inverse_tagsep: '+'
 
 Where YYY is the language ISO path. Note the weird way that forming

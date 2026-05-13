@@ -31,7 +31,6 @@ Morphology:
     format: "hfst"
     options:
       compoundBoundary: "+Cmp#"
-      tagsep: '+'
       inverse_tagsep: '+'
   smsM:
     tool: *HFST-LOOKUP
@@ -40,7 +39,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "+Cmp#"
-      tagsep: '+'
       inverse_tagsep: '+'
   fin:
     tool: *HFST-LOOKUP
@@ -49,7 +47,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "#"
-      tagsep: '+'
       inverse_tagsep: '+'
   # nob:
   #   tool: *HFST-LOOKUP
@@ -58,7 +55,6 @@ Morphology:
   #   format: 'hfst'
   #   options:
   #     compoundBoundary: ["#", "#+Cmp+", "#+CmpS+", "+Use/Circ#"]
-  #     tagsep: '+'
   #     inverse_tagsep: '+'
   rus:
     tool: *HFST-LOOKUP
@@ -67,7 +63,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
-      tagsep: '+'
       inverse_tagsep: '+'
 
 Languages:
