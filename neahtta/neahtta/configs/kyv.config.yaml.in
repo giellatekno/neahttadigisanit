@@ -34,7 +34,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "+Cmp#"
-      inverse_tagsep: '+'
   kpvM:
     tool: *HFST-LOOKUP
     file: '/usr/share/giella/kpv/analyser-dict-gt-desc-mobile.hfstol'
@@ -42,7 +41,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "+Cmp#"
-      inverse_tagsep: '+'
   udm:
     tool: *HFST-LOOKUP
     file: '/usr/share/giella/udm/analyser-dict-gt-desc.hfstol'
@@ -50,7 +48,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
-      inverse_tagsep: '+'
   udmM:
     tool: *HFST-LOOKUP
     file: '/usr/share/giella/udm/analyser-dict-gt-desc-mobile.hfstol'
@@ -58,7 +55,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
-      inverse_tagsep: '+'
   koi:
     tool: *HFST-LOOKUP
     file: '/usr/share/giella/koi/analyser-dict-gt-desc.hfstol'
@@ -66,7 +62,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
-      inverse_tagsep: '+'
   kpvS:
     tool: *HFST-LOOKUP
     file: '/usr/share/giella/kpv/analyser-dict-gt-desc-molodtsov.hfst'
@@ -74,7 +69,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "+Cmp#"
-      inverse_tagsep: '+'
   kpvP:
     tool: *HFST-LOOKUP
     file: '/usr/share/giella/kpv/analyser-dict-gt-desc-permyak.hfst'
@@ -82,7 +76,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "+Cmp#"
-      inverse_tagsep: '+'
   est:
     tool: *HFST-LOOKUP
     file: '/usr/share/giella/est/analyser-dict-gt-desc.hfstol'
@@ -90,7 +83,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "#"
-      inverse_tagsep: '+'
   fin:
     tool: *HFST-LOOKUP
     file: '/usr/share/giella/fin/analyser-dict-gt-desc.hfstol'
@@ -98,7 +90,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "#"
-      inverse_tagsep: '+'
   hun:
     tool: *HFST-LOOKUP
     file: '/usr/share/giella/hun/analyser-dict-gt-desc.hfstol'
@@ -106,7 +97,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
-      inverse_tagsep: '+'
   rus:
     tool: *HFST-LOOKUP
     file: '/usr/share/giella/rus/analyser-dict-gt-desc.hfstol'
@@ -114,7 +104,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
-      inverse_tagsep: '+'
 
 Languages:
   - iso: kpv

@@ -370,7 +370,7 @@ class Lemma:
         self.form = _input
 
     def __key(self):
-        return (self.lemma, self.pos, self.tool.formatTag(self.tag_raw))
+        return (self.lemma, self.pos, "+".join(self.tag_raw))
 
     def __eq__(x, y):
         return x.__key() == y.__key()
@@ -813,12 +813,12 @@ class XFST:
         lookups_list = []
         for tag in tags:
             if isinstance(tag, str):
-                tag = self.splitAnalysis(tag, inverse=True)
+                tag = tag.split("+")
             if lemma in tag:
                 combine = tag
             else:
                 combine = [lemma] + tag
-            lookups_list.append(self.formatTag(combine))
+            lookups_list.append("+".join(combine))
 
         return "\n".join(lookups_list)
 
@@ -843,13 +843,6 @@ class XFST:
             # in other words, it has been determined that parts was a list
             tag = "+".join(parts)
             return Tag(tag, "+", tagsets=tagsets)
-
-    def formatTag(self, parts):
-        return "+".join(parts)
-
-    def splitAnalysis(self, analysis: str) -> list[str]:
-        """'lemma+Tag+Tag+Tag' -> ['lemma', 'Tag', 'Tag', 'Tag']"""
-        return analysis.split("+")
 
 
 class HFST(XFST):
@@ -1037,9 +1030,9 @@ class Morphology:
                     self.tool.logger.error(msg)
 
             if not unknown:
-                reformatted.append((self.tool.splitAnalysis(tag, inverse=True), forms))
+                reformatted.append((tag.split("+"), forms))
             else:
-                parts = self.tool.splitAnalysis(tag, inverse=True)
+                parts = tag.split("+")
                 forms = False
                 reformatted.append((parts, forms))
 
@@ -1195,7 +1188,7 @@ class Morphology:
                 yield self.analysis_to_lemma(analysis, form)
 
     def analysis_to_lemma(self, analysis, wordform):
-        analysis_parts = self.tool.splitAnalysis(analysis)
+        analysis_parts = analysis.split("+")
         lemma = ""
 
         if len(analysis_parts) == 1:

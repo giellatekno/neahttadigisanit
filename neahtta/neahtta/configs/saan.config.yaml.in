@@ -31,7 +31,6 @@ Morphology:
     format: "hfst"
     options:
       compoundBoundary: "+Cmp#"
-      inverse_tagsep: '+'
   smsM:
     tool: *HFST-LOOKUP
     file: '/usr/share/giella/sms/analyser-dict-gt-desc-mobile.hfstol'
@@ -39,7 +38,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "+Cmp#"
-      inverse_tagsep: '+'
   fin:
     tool: *HFST-LOOKUP
     file: '/usr/share/giella/fin/analyser-dict-gt-desc.hfstol'
@@ -47,7 +45,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "#"
-      inverse_tagsep: '+'
   # nob:
   #   tool: *HFST-LOOKUP
   #   file: '/usr/share/giella/nob/analyser-dict-gt-desc.hfstol'
@@ -55,7 +52,6 @@ Morphology:
   #   format: 'hfst'
   #   options:
   #     compoundBoundary: ["#", "#+Cmp+", "#+CmpS+", "+Use/Circ#"]
-  #     inverse_tagsep: '+'
   rus:
     tool: *HFST-LOOKUP
     file: '/usr/share/giella/rus/analyser-gt-desc.hfstol'
@@ -63,7 +59,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
-      inverse_tagsep: '+'
 
 Languages:
   - iso: sms

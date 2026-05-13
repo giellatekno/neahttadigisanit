@@ -47,7 +47,6 @@ Morphology:
     format: 'hfst'
     options: &sme_fst_options
       compoundBoundary: "+Cmp#"
-      inverse_tagsep: '+'
       # Grammatical tags which have their own lexicon entries
       # that should be presented if they are part of the analysis
       tags_in_lexicon: ['Der', 'VAbess', 'VGen', 'Ger', 'Comp', 'Superl', 'Actio']
@@ -68,7 +67,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: ["#", "#+Cmp+", "#+CmpS+", "+Cmp#"]
-      inverse_tagsep: '+'
   fin:
     tool: *HFST-LOOKUP
     file: '/usr/share/giella/fin/analyser-dict-gt-desc.hfstol'
@@ -76,7 +74,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: ["#", "+Cmp#"]
-      inverse_tagsep: '+'
   spa:
     tool: *HFST-LOOKUP
     file: '/usr/share/giella/spa/analyser-dict-gt-desc.hfstol'
@@ -84,7 +81,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "#"
-      inverse_tagsep: '+'
 
 Languages:
   - iso: sme

@@ -213,20 +213,6 @@ guollái\tguollái+A+Sg+Nom\t0,000000"""
 
             self.assertEqual(got, wanted)
 
-    def test_split_analysis(self):
-        """Test the analysis line splitter."""
-        got = fst_tool().splitAnalysis("guolli+N+Sg+Loc")
-        wanted = ["guolli", "N", "Sg", "Loc"]
-
-        self.assertEqual(got, wanted)
-
-    def test_format_tags(self):
-        """Test the tag formatter."""
-        got = fst_tool().formatTag(fst_tool().splitAnalysis("guolli+N+Sg+Loc"))
-        wanted = "guolli+N+Sg+Loc"
-
-        self.assertEqual(got, wanted)
-
     @parameterized.expand(
         [
             (

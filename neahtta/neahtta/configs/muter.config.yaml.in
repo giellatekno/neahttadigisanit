@@ -38,7 +38,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
-      inverse_tagsep: '+'
   mhr:
     tool: *HFST-LOOKUP
     file: '/usr/share/giella/mhr/analyser-dict-gt-desc.hfstol'
@@ -46,7 +45,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
-      inverse_tagsep: '+'
   fin:
     tool: *HFST-LOOKUP
     file: '/usr/share/giella/fin/analyser-dict-gt-desc.hfstol'
@@ -54,7 +52,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "#"
-      inverse_tagsep: '+'
 
   rus:
     tool: *HFST-LOOKUP
@@ -63,7 +60,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
-      inverse_tagsep: '+'
 
 Languages:
   - iso: mrj

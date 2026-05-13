@@ -51,7 +51,6 @@ Morphology:
     format: 'xfst'
     options: &sme_fst_options
       compoundBoundary: "+Cmp#"
-      inverse_tagsep: '+'
   SoMe:
     tool: *LOOKUP
     file: [*OPT, '/sme/analyser-dict-gt-desc-mobile.xfst']
@@ -66,7 +65,6 @@ Morphology:
     format: 'xfst'
     options:
       compoundBoundary: "#+Cmp+"
-      inverse_tagsep: '+'
   fin:
     tool: *LOOKUP
     file: [*OPT, '/fin/analyser-dict-gt-desc.xfst']
@@ -74,7 +72,6 @@ Morphology:
     format: 'xfst'
     options:
       compoundBoundary: "#"
-      inverse_tagsep: '+'
 #$#  sma:
 #$#    tool: *LOOKUP
 #$#    file: [*OPT, '/sma/bin/analyser-dict-gt-desc.xfst']
@@ -82,7 +79,6 @@ Morphology:
 #$#    format: 'xfst'
 #$#    options: 
 #$#      compoundBoundary: "+Cmp#"
-#$#      inverse_tagsep: '+'
 
 Languages:
   - iso: sme

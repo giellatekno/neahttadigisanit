@@ -5,7 +5,6 @@ def sme_test():
     sme_options = {
         "compoundBoundary": "  + #",
         "derivationMarker": "suff.",
-        "inverse_tagsep": "+",
     }
 
     smexfst = XFST(
@@ -24,7 +23,6 @@ def sme_test_restrictions():
     sme_options = {
         "compoundBoundary": "  + #",
         "derivationMarker": "suff.",
-        "inverse_tagsep": "+",
     }
 
     smexfst = XFST(

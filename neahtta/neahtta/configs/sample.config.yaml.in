@@ -125,7 +125,6 @@ Morphology:
       # A string that separates compounds in analyses
       compoundBoundary: "+Cmp#"
       # The character that separates parts of a tag in the inverse analyser
-      inverse_tagsep: '+'
 
   # This is an example of an input variant. Here we use a different analyzer,
   # but the same generator. Also, `options` are copied from above.
@@ -143,7 +142,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "#+Cmp+"
-      inverse_tagsep: '+'
 
 # For now, make sure that all languages that will be available are
 # defined here.  example, if only one dictionary file is defined,

@@ -35,7 +35,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
-      inverse_tagsep: '+'
   fin:
     tool: *HFST-LOOKUP
     file: '/usr/share/giella/fin/analyser-dict-gt-desc.hfstol'
@@ -43,7 +42,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "#"
-      inverse_tagsep: '+'
   fit:
     tool: *HFST-LOOKUP
     file: '/usr/share/giella/fit/analyser-dict-gt-desc.hfstol'
@@ -51,7 +49,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "#"
-      inverse_tagsep: '+'
   vep:
     tool: *HFST-LOOKUP
     file: '/usr/share/giella/vep/analyser-dict-gt-desc.hfstol'
@@ -59,7 +56,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
-      inverse_tagsep: '+'
   fkv:
     tool: *HFST-LOOKUP
     file: '/usr/share/giella/fkv/analyser-gt-desc.hfstol'
@@ -67,7 +63,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "+Cmp#"
-      inverse_tagsep: '+'
   nob:
     tool: *HFST-LOOKUP
     file: '/usr/share/giella/nob/analyser-dict-gt-desc.hfstol'
@@ -75,7 +70,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "#"
-      inverse_tagsep: '+'
   rus:
     tool: *HFST-LOOKUP
     file: '/usr/share/giella/rus/analyser-dict-gt-desc.hfstol'
@@ -83,7 +77,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "#"
-      inverse_tagsep: '+'
 
 Languages:
   - iso: olo
