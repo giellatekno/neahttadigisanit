@@ -134,25 +134,13 @@ class MorphoLexicon:
 
     @staticmethod
     def make_lex_kwargs(wordform, analysis: Lemma):
-        assert isinstance(analysis, Lemma)
-        if isinstance(analysis, list):
-            if analysis[0].lemma:
-                d = {
-                    "lemma": analysis[0].lemma,
-                    "pos": analysis[0].pos,
-                    "pos_type": False,
-                    "user_input": wordform,
-                }
-                return d, analysis
-        else:
-            if analysis:
-                d = {
-                    "lemma": analysis.lemma,
-                    "pos": analysis.pos,
-                    "pos_type": False,
-                    "user_input": wordform,
-                }
-                return d, analysis
+        d = {
+            "lemma": analysis.lemma,
+            "pos": analysis.pos,
+            "pos_type": False,
+            "user_input": wordform,
+        }
+        return d, analysis
 
     @staticmethod
     def add_to_dict(entries_and_tags, entry, analyses):
