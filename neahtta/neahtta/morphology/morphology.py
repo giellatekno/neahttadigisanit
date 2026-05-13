@@ -727,31 +727,19 @@ class XFST:
 
         return cleaned
 
-    def _exec(self, _input, cmd, timeout=5):
-        """Execute a process, but kill it after 5 seconds. Generally
-        we expect small things here, not big things.
-        """
-        import subprocess
+    def _exec(self, input: str, cmd: str, timeout=5) -> (str, str):
+        from subprocess import run
+        from shlex import split
 
-        try:
-            lookup_proc = subprocess.Popen(
-                cmd.split(" "),
-                stdin=subprocess.PIPE,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                text=True,
-            )
-        except OSError:
-            raise Exception(
-                "Error executing lookup command for this request, confirm "
-                "that lookup utilities and analyzer files are present."
-            )
-        except Exception as e:
-            raise Exception(f"Unhandled exception in lookup request: {e}")
-
-        output, err = lookup_proc.communicate(_input, timeout=timeout)
-
-        return output, err
+        p = run(
+            split(cmd),
+            capture_output=True,
+            text=True,
+            input=input,
+            check=True,
+            timeout=timeout,
+        )
+        return p.stdout, p.stderr
 
     def __init__(self, lookup_tool, fst_file, ifst_file=False, options=None):
         self.cmd = f"{lookup_tool} -flags mbTT {fst_file}"
