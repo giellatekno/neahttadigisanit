@@ -232,10 +232,6 @@ class Lemma:
 
         self.tag = self.tool.tagStringToTag(tag, tagsets=tagsets)
 
-        actio_with_tagsep = self.tool.options.get(
-            "actio_tag", "Actio"
-        ) + "+"
-
         # Best guess is the first item, otherwise...
         # TODO the assumptions in this file does not always hold,
         # something is incorrect somewhere
@@ -247,9 +243,8 @@ class Lemma:
         # self.lemma = tag[0]
         # del tag[0]
         actio = False
-        if actio_with_tagsep in tag:
+        if "Actio+" in tag:
             # anders:
-            # - actio_with_tagsep is essentially always "Actio+" for us
             # - tag is a Tag, which will split by "+",
             # - Tag.__contains__() just does a __contains__ on the underlying
             #   .sets dictionary, which is built by splitting the input string
@@ -828,9 +823,8 @@ class XFST:
 
     def tagStringToTag(self, parts, tagsets=None) -> Tag:
         tagsets = {} if tagsets is None else tagsets
-        actio_with_tagsep = self.options.get("actio_tag", "Actio") + "+"
 
-        if actio_with_tagsep in parts:
+        if "Actio+" in parts:
             # anders: this essentially checks if ("Actio+" is "in" `parts`),
             # and if it is, then `parts` must be a string already, because
             # otherwise, it would have been split up because of the "+" already
@@ -1187,25 +1181,17 @@ class Morphology:
             for analysis in analyses_der_fin:
                 yield self.analysis_to_lemma(analysis, form)
 
-    def analysis_to_lemma(self, analysis, wordform):
+    def analysis_to_lemma(self, analysis: str, wordform):
         analysis_parts = analysis.split("+")
         lemma = ""
 
-        if len(analysis_parts) == 1:
-            actio_tag = self.tool.options.get("actio_tag", "Actio")
-            actio_with_tagsep = f"{actio_tag}+"
-
-            if actio_tag in analysis_parts[0]:
-                try:
-                    right_of_actio = analysis_parts[0].split(actio_tag)[1]
-                except IndexError:  # An analysis might end in "+Actio"
-                    right_of_actio = ""
-                analysis_parts = [actio_with_tagsep + right_of_actio]
-                lemma = analysis_parts
+        if len(analysis_parts) == 1 and "Actio" in analysis_parts[0]:
+            # anders: An assumption here that the tag doesn't have anything
+            # before "Actio", because that part would be lost by this code
+            right_of_actio = analysis_parts[0].split("Actio")[1]
+            analysis_parts = ["Actio+" + right_of_actio]
+            lemma = analysis_parts
         else:
-            # anders: logic: already established that len(analysis_parts) != 1,
-            # so wordform = lemma, always
-            # lemma = analysis_parts[0] if len(analysis_parts) == 1 else wordform
             lemma = wordform
         return Lemma(analysis_parts, _input=lemma, tool=self.tool, tagsets=self.tagsets)
 
@@ -1237,13 +1223,11 @@ class Morphology:
         analyses_der_fin = []
         default_tags = ("Dummy1", "Dummy2")
         tags = tuple(self.tool.options.get("tags_in_lexicon", default_tags))
-        actio_tag = self.tool.options.get("actio_tag", "Actio")
-        actio_with_tagsep = f"{actio_tag}+"  # == "Actio+"
 
         for analysis in analyses:
             # replace "Actio+" with "Actio", to enable separate entries for
             # e.g. "Actio+Nom" and "Actio+Ess" in the dictionary
-            analysis = analysis.replace(actio_with_tagsep, actio_tag)
+            analysis = analysis.replace("Actio+", "Actio")
             analysis_parts = analysis.split("+")
 
             # Create list of analyses.
