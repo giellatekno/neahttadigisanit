@@ -47,7 +47,6 @@ Morphology:
     format: 'hfst'
     options: &sme_fst_options
       compoundBoundary: "+Cmp#"
-      derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
       # Grammatical tags which have their own lexicon entries
@@ -70,7 +69,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: ["#", "#+Cmp+", "#+CmpS+", "+Cmp#"]
-      derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
   fin:
@@ -80,7 +78,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: ["#", "+Cmp#"]
-      derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
   spa:
@@ -90,7 +87,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "#"
-      derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
 

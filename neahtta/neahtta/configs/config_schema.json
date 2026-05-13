@@ -240,9 +240,6 @@
                                       "type": "string"
                                   }
                               },
-                              "derivationMarker": {
-                                  "type": "string"
-                              },
                               "tagsep": {
                                   "type": "string"
                               },
@@ -253,7 +250,6 @@
                           "$comment": "ARE THESE ALL REQUIRED?",
                           "required": [
                               "compoundBoundary",
-                              "derivationMarker",
                               "tagsep",
                               "inverse_tagsep"
                           ]

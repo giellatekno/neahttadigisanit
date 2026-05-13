@@ -1093,11 +1093,9 @@ class Morphology:
                 del analyses[index]
 
     def remove_derivations(self, analyses):
-        der = self.tool.options.get("derivationMarker")  # "Der/"
-        if der:
-            indexes = [i for i, analysis in enumerate(analyses) if der in analysis]
-            for index in reversed(indexes):
-                del analyses[index]
+        indexes = [i for i, analysis in enumerate(analyses) if "+Der" in analysis]
+        for index in reversed(indexes):
+            del analyses[index]
 
     @staticmethod
     def place_exact_lemmas_first(form: str, analyses: list[str]):

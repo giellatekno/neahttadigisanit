@@ -124,8 +124,6 @@ Morphology:
     options: &sme_fst_options
       # A string that separates compounds in analyses
       compoundBoundary: "+Cmp#"
-      # A string that marks words as derivations
-      derivationMarker: "+Der"
       # The character that separates parts of a tag
       tagsep: '+'
       # The character that separates parts of a tag in the inverse analyser
@@ -147,7 +145,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "#+Cmp+"
-      derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
 

@@ -51,7 +51,6 @@ Morphology:
     format: 'xfst'
     options: &sme_fst_options
       compoundBoundary: "+Cmp#"
-      derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
   SoMe:
@@ -68,7 +67,6 @@ Morphology:
     format: 'xfst'
     options:
       compoundBoundary: "#+Cmp+"
-      derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
   fin:
@@ -78,7 +76,6 @@ Morphology:
     format: 'xfst'
     options:
       compoundBoundary: "#"
-      derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
 #$#  sma:
@@ -88,7 +85,6 @@ Morphology:
 #$#    format: 'xfst'
 #$#    options: 
 #$#      compoundBoundary: "+Cmp#"
-#$#      derivationMarker: "+Der"
 #$#      tagsep: '+'
 #$#      inverse_tagsep: '+'
 

@@ -34,7 +34,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "#"
-      derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
   est:
@@ -44,7 +43,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "#"
-      derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
   liv:
@@ -54,7 +52,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
-      derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
   lav:
@@ -64,7 +61,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
-      derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
   livM:
@@ -74,7 +70,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
-      derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
   izh:
@@ -84,7 +79,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
-      derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
   vro:
@@ -94,7 +88,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "+Cmp#"
-      derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
   vot:
@@ -104,7 +97,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
-      derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
   rus:
@@ -114,7 +106,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
-      derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
 

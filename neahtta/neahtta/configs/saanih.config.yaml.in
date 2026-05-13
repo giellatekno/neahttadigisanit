@@ -26,7 +26,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "+Cmp#"
-      derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
   smnM:
@@ -36,7 +35,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
-      derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
   fin:
@@ -46,7 +44,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: ["#", "+Cmp#"]
-      derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
   sme:
@@ -56,7 +53,6 @@ Morphology:
     format: 'hfst'
     options: &sme_fst_options
       compoundBoundary: "+Cmp#"
-      derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
 

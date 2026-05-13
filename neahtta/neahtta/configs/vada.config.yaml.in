@@ -31,7 +31,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
-      derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
   mns:
@@ -41,7 +40,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
-      derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
   fin:
@@ -51,7 +49,6 @@ Morphology:
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
-      derivationMarker: "+Der"
       tagsep: '+'
       inverse_tagsep: '+'
 

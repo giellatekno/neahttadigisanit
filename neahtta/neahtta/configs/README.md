@@ -134,7 +134,6 @@ following:
       format: 'xfst'
       options:
         compoundBoundary: "+Use/Circ#"
-        derivationMarker: "+Der"
         tagsep: '+'
         inverse_tagsep: '+'
 
