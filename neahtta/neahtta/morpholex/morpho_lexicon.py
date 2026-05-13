@@ -42,7 +42,7 @@ class MorphoLexiconOverrides:
                 else:
                     continue
 
-            return MorphoLexiconResult(entries_and_tags), stdout, stderr
+            return MorphoLexiconResults(entries_and_tags), stdout, stderr
 
         return decorate
 
@@ -64,9 +64,8 @@ class MorphoLexiconOverrides:
 morpholex_overrides = MorphoLexiconOverrides()
 
 
-class MorphoLexiconResult(list):
-    """A subclass of the List object meant to make sorting through
-    results more readable."""
+class MorphoLexiconResults(list):
+    """A subclass Listt to make sorting through results more readable."""
 
     @property
     def analyses(self):
@@ -355,9 +354,9 @@ class MorphoLexicon:
             else:
                 _ret = []
         elif not entries_and_tags and not analyses:
-            _ret = MorphoLexiconResult()
+            _ret = MorphoLexiconResults()
         else:
-            _ret = MorphoLexiconResult(entries_and_tags.items())
+            _ret = MorphoLexiconResults(entries_and_tags.items())
 
         return _ret, raw_output, raw_errors
 
@@ -614,9 +613,9 @@ class MorphoLexicon:
             else:
                 _ret = []
         elif (len(entries_and_tags) == 0) and not analyses:
-            _ret = MorphoLexiconResult([])
+            _ret = MorphoLexiconResults([])
         else:
-            _ret = MorphoLexiconResult(entries_and_tags)
+            _ret = MorphoLexiconResults(entries_and_tags)
 
         if (len(entries_and_tags_right) == 0) and ("non_compound_only" in kwargs):
             if kwargs["non_compound_only"]:
@@ -626,8 +625,8 @@ class MorphoLexicon:
             else:
                 ret_right = []
         elif (len(entries_and_tags_right) == 0) and not analyses_right:
-            ret_right = MorphoLexiconResult([])
+            ret_right = MorphoLexiconResults([])
         else:
-            ret_right = MorphoLexiconResult(entries_and_tags_right)
+            ret_right = MorphoLexiconResults(entries_and_tags_right)
 
         return _ret, raw_output, raw_errors, ret_right
