@@ -1,7 +1,7 @@
 [project]
 name = "neahttadigisanit"
 version = "2024.02.05"
-requires-python = ">=3.9,<=3.10.19"
+requires-python = ">=3.13,<3.14"
 
 # maintainers, as in "currently maintained by"
 maintainers = [
@@ -43,7 +43,7 @@ dependencies = [
     "cssmin==0.2.0",
 
     "PyYAML==6.0.1",
-    "lxml==4.9.3",
+    "lxml==6.1.0",
     "termcolor==2.3.0",
 
     # for extracting translation strings from yaml files
@@ -63,6 +63,7 @@ dev = [
     "ruff==0.1.6"
 ]
 pyhfst = [
+    # only works up to python 3.10
     "hfst==3.16.0.1",
 ]
 server = [

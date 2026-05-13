@@ -19,13 +19,12 @@ documentation.
 
 ### python
 
-Python version 3.10 is required. It may or may not work with older or newer
-versions, but 3.10 is what we target, and have tested for. You can use
-[pyenv](https://github.com/pyenv/pyenv) or similar tools to install different python versions on your
+We currently use Python version 3.13. You can use [pyenv](https://github.com/pyenv/pyenv)
+or similar tools to install different python versions on your
 system. If you have `pyenv` installed, it will respect the `.python-version`
-file (which is just literally `3.10`), and issuing `python` in the root folder
-will start python 3.10. If not, then make sure that you substitute any `python`
-command with your command that runs python version 3.10.
+file (which is just literally `3.13`), and issuing `python` in the root folder
+will start python 3.13. If not, then make sure that you substitute any `python`
+command with your command that runs python version 3.13.
 
 ### node.js and npm
 
@@ -76,15 +75,18 @@ For the server, use
 
 While for developing locally, use
 
-    (venv) pip install -e ".[dev,pyhfst]"
+    (venv) pip install -e ".[dev]"
 
 Explanation:
 
-The `-e` flag installs "editable". The `[dev,pyhfst]` indicates installation
-of two optional dependencies. `dev` installs a code formatter, while `pyhfst`
-will install the python bindings to libhfst. On the server, the python bindings
-cannot be installed per now (there is no built distribution for our system).
-On the server, `gunicorn` is needed to run in production.
+The `-e` flag installs "editable". The `.[dev]` indicates installation
+of two the `dev` feature. It just installs a code formatter. On the server, `gunicorn`
+is needed to run in production.
+
+Note:
+
+`pyhfst` exists as an optional dependency, but it does not work with python > 3.10.
+It has never been in use on the server, anyway.
 
 
 ## Development server
@@ -190,31 +192,6 @@ Use `nds image build` to build an image. Run `nds image build --help` for
 additional help and to see available arguments.
 
 
-### Azure setup
-
-(WIP) how i imagine the setup on Azure:
-
-    resource group: neahttadigisanit
-      storage account:
-        file shares:
-          - nds-configs
-            (where we store config files)
-      container app:
-        image: gtcontainerregistry.azurecr.io/neahttadigisanit
-        config files: mounted in from File Share "nds-configs"
-        dictionaries: compiled dictionaries mounted in from File Share "xxx?"
-        language model files ("fsts"): mounted in from File Share "langmodels"
-
-But for now, since the image contains configurations as well as compiled
-dictionaries, it's easier for the container to just use them directly.
-The only thing that I need to map in (because they are not copied in),
-are the langmodels.
-
-The `bicep` file only allows a directory to be mapped in. A full file share
-is mapped in under some given directory path. I will need to map in the
-langmodels file share in its entirety....
-
-
 ## Module overview
 
 For Python-module specific documentation, see the docstrings available in the
@@ -242,7 +219,7 @@ individual Python files. A short overview follows:
 See https://giellalt.github.io/dicts/dictionarywork.html
 
 
-## Memory usage notes
+## Memory usage notes on pyhfst
 
 (Temporary notes regarding memory usage when using 'pyhfst' instead of
 'hfst' format in config files. The former loads in the `.hfstol` files in

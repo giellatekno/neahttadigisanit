@@ -2,10 +2,6 @@
 
 import heapq
 
-# anders: note for the future:
-# the "imp" module was deprecated in python v3.4, and removed since v3.12
-# superseeded by importlib
-import imp
 import os
 import re
 import sys
@@ -707,47 +703,6 @@ class XFST:
                     )
             return analysis
 
-    def tag_processor(self, analysis_line):
-        """This is a default tag processor which just returns the
-        wordform separated from the tag for a given line of analysis.
-
-        You can write a function to replace this for an individual
-        morphology by adding it to a file somewhere in the PYTHONPATH,
-        and then setting the Morphology option `tagProcessor` to this path.
-
-        Ex.)
-
-            Morphology:
-              crk:
-                options:
-                  tagProcessor: "configs/language_specific_rules/file.py:function_name"
-
-        Note the colon. It may also be a good idea to write some tests
-        in the docstring for that function. If these are present they
-        will be quickly tested on launch of the service, and failures
-        will prevent launch.
-
-        A tag processor must accept a string as input, and return a
-        tuple of the wordform and processed tag. You may do this to for
-        example, re-order tags, or relabel them, but whateve the output
-        is, it must be a string.
-
-        For example:
-            'wordform\tlemma+Tag+Tag+Tag' -> ('wordform', 'lemma+Tag+Tag+Tag')
-        """
-
-        wordform, lemma_tags, *weight = analysis_line.split("\t")
-
-        if "?" in analysis_line:
-            lemma_tags += "\t+?"
-
-        if weight:
-            return wordform, lemma_tags, weight
-        else:
-            # not true for saan - on the server (but not locally)
-            # assert False, "all analysis lines in all the ways we do an analysis always contains the weight"
-            return wordform, lemma_tags
-
     def clean(self, _output):
         """
         Clean XFST lookup text into
@@ -765,7 +720,7 @@ class XFST:
             weights = []
 
             for part in chunk.split("\n"):
-                lemma, analysis, *weight = self.tag_processor(part)
+                lemma, analysis, *weight = part.split("\t")
                 lemmas.append(lemma)
                 analyses.append(analysis)
                 if weight:
@@ -803,26 +758,6 @@ class XFST:
 
         return output, err
 
-    def load_tag_processor(self):
-        import sys
-
-        print("Loading the tag processor.")
-
-        _path = self.options.get("tagProcessor")
-        module_path, _, from_list = _path.partition(":")
-
-        try:
-            mod = imp.load_source(".", os.path.join(configs_path, module_path))
-        except:
-            sys.exit(f"Unable to import <{module_path}>")
-
-        try:
-            func = mod.__getattribute__(from_list)
-        except:
-            sys.exit(f"Unable to load <{from_list}> from <{module_path}>")
-
-        self.tag_processor = func
-
     def __init__(self, lookup_tool, fst_file, ifst_file=False, options=None):
         self.cmd = f"{lookup_tool} -flags mbTT {fst_file}"
         self.options = options if isinstance(options, dict) else {}
@@ -831,9 +766,6 @@ class XFST:
             self.icmd = f"{lookup_tool} -flags mbTT {ifst_file}"
         else:
             self.icmd = False
-
-        if "tagProcessor" in self.options:
-            self.load_tag_processor()
 
     def applyMorph(self, morph):
         morph.tool = self
@@ -939,9 +871,6 @@ class HFST(XFST):
         self.cmd = f"{lookup_tool} {fst_file}"
         self.icmd = f"{lookup_tool} {ifst_file}" if ifst_file else False
         self.options = {} if options is None else options
-
-        if "tagProcessor" in self.options:
-            self.load_tag_processor()
 
 
 class PyHFST(XFST):

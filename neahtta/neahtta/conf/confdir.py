@@ -15,7 +15,7 @@ importing the following module to produce replacement functions.
 
 """
 
-import imp
+import importlib
 import os
 import sys
 
@@ -40,7 +40,12 @@ def _import(app, m):
     path = os.path.join(app.config.language_specific_rules_path, m + ".py")
     module_name = "conf." + m
 
-    return imp.load_source(module_name, path)
+    # https://docs.python.org/3.13/library/importlib.html#importing-a-source-file-directly
+    spec = importlib.util.spec_from_file_location(module_name, path)
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[module_name] = module
+    spec.loader.exec_module(module)
+    return module
 
 
 def load_overrides(app):
