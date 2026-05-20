@@ -396,37 +396,12 @@ class SearchResult:
     def entries_and_tags_and_paradigms(self):
         etp = []
 
-        # Formatting of this stuff should be moved somewhere more reasonable
-        for result, morph_analyses in self.entries_and_tags:
+        for result, analyses in self.entries_and_tags:
             if result is None:
                 continue
-            has_layout = False
 
-            if self.generate:
-                paradigm = self.generate_paradigm(result, morph_analyses)
-
-                if current_app.config.paradigm_layouts and paradigm:
-                    assert False, "unreachable. no config files have 'paradigm_layouts'"
-                    layouts = current_app.morpholexicon.paradigms.get_paradigm_layout(
-                        g._from,
-                        result,
-                        morph_analyses,
-                        return_template=True,
-                        multiple=True,
-                    )
-
-                    if layouts:
-                        has_layout = [
-                            L.for_paradigm(paradigm).fill_generation()
-                            for (L, _) in layouts
-                            if L
-                        ]
-                        if not has_layout:
-                            has_layout = False
-            else:
-                paradigm = []
-
-            etp.append((result, morph_analyses, paradigm, has_layout))
+            paradigm = self.generate_paradigm(result, analyses) if self.generate else []
+            etp.append((result, analyses, paradigm, False))
 
         return self.sort_entries_and_tags_and_paradigm(etp)
 
@@ -567,7 +542,6 @@ class SearcherMixin:
 
         show_info = False
 
-        k = 0
         res_par = []
         if_none = False
         if_next_der = False
@@ -619,6 +593,7 @@ class SearcherMixin:
         res_par = entries_and_tags
 
         # this loop renders the templates, after having been filtered, above
+        k = 0
         etp = search_result.entries_and_tags_and_paradigms
         for _dict_entry, analyses, paradigm, has_layout in etp:
             # anders:
