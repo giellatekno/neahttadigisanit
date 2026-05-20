@@ -577,25 +577,29 @@ generation_overrides = GenerationOverrides()
 
 class XFST:
     def splitTagByCompound(self, analysis):
+        """
+        in order to obtain a better display for compounds a "dummy" tag
+        is needed for the last part of the analysis
+        Check if "Cmp" tag and if yes, split analysis and add
+        u'\u24D2'(= ⓒ ) to last part
+        If the last part of the analysis contains "Der" tag, split it
+        and add u'\u24D3'(= ⓓ ) to the first part and
+        u'\u24DB' (= ⓛ ) to the last part
+        Example: miessemánnofeasta
+            "miessemánnu+N+Cmp/SgNom+Cmp#feasta+N+Sg+Nom'
+            becomes ["miessemánnu+N+Cmp/SgNom", "feasta+N+Sg+Nom+\u24d2"]
+        Example: musihkkaalmmuheapmi
+            "musihkka+N+Cmp/SgNom+Cmp#almmuheapmi+N+Sg+Nom"
+            becomes ["musihkka+N+Cmp/SgNom", "almmuheapmi+N+Sg+Nom+\u24d2"]
+            "musihkka+N+Cmp/SgNom+Cmp#almmuhit+V+TV+Der/NomAct+N+Sg+Nom"
+            becomes ["musihkka+N+Cmp/SgNom", "almmuhit+V+TV+\u24d3+Der/NomAct+N+Sg+Nom+\u24db"]
+        """
+
         _cmp = self.options.get("compoundBoundary")
         if not _cmp:
             return [analysis]
         is_cmp = "Cmp" in analysis
-        # in order to obtain a better display for compounds a "dummy" tag
-        # is needed for the last part of the analysis
-        # Check if "Cmp" tag and if yes, split analysis and add
-        # u'\u24D2'(= ⓒ ) to last part
-        # If the last part of the analysis contains "Der" tag, split it
-        # and add u'\u24D3'(= ⓓ ) to the first part and
-        # u'\u24DB' (= ⓛ ) to the last part
-        # Ex_1: miessemánnofeasta
-        #   analysis_1 u'miessem\xe1nnu+N+Cmp/SgNom+Cmp#feasta+N+Sg+Nom'
-        #   becomes: u'miessem\xe1nnu+N+Cmp/SgNom', u'feasta+N+Sg+Nom+\u24d2'
-        # Ex_2: musihkkaalmmuheapmi
-        #   analysis_1 = u'musihkka+N+Cmp/SgNom+Cmp#almmuheapmi+N+Sg+Nom'
-        #   becomes = u'musihkka+N+Cmp/SgNom', u'almmuheapmi+N+Sg+Nom+\u24d2'
-        #   analysis_2 = u'musihkka+N+Cmp/SgNom+Cmp#almmuhit+V+TV+Der/NomAct+N+Sg+Nom'
-        #   becomes = u'musihkka+N+Cmp/SgNom', u'almmuhit+V+TV+\u24d3+Der/NomAct+N+Sg+Nom+\u24db'
+
         if isinstance(_cmp, list):
             for item in _cmp:
                 if item in analysis:
@@ -614,9 +618,9 @@ class XFST:
                                 + "\u24DB"
                             )
             if isinstance(analysis, list):
-                return analysis
+                result1 = analysis
             else:
-                return [analysis]
+                result1 = [analysis]
         else:
             analysis = analysis.split(_cmp)
             if is_cmp:
@@ -632,7 +636,20 @@ class XFST:
                         + "+"
                         + "\u24DB"
                     )
-            return analysis
+            result1 = analysis
+
+        for item in _cmp:
+            if item in analysis:
+                analysis = analysis.split(item)
+                last = analysis[-1]
+                analysis[-1] = f"{last}+\u24D2"
+                if (i := last.find("Der")) >= 0:
+                    analysis[-1] = f"{last[:i]}\u24D3+{last[i:]}+\u24DB"
+        result2 = analysis if isinstance(analysis, list) else [analysis]
+
+        assert result1 == result2, "new code does the same as old code"
+        return result2
+
 
     def clean(self, _output):
         """
