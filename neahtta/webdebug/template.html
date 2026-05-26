@@ -1,0 +1,136 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <title>NDS Debug</title>
+    <script>
+        data = [
+            %%DATA%%
+        ];
+    </script>
+
+    <style>
+        div.item {
+            margin-left: 5px;
+            padding: 3px;
+            border: 1px solid transparent;
+        }
+
+        div.item:hover {
+            border: 1px solid red;
+        }
+
+        div.item:has(div.item:hover) {
+            border: 1px solid transparent;
+        }
+
+        span.file {
+            color: #333;
+            margin: 0 6px;
+            background-color: #bfd7ee;
+            padding: 1px;
+        }
+
+        span.qualname {
+            font-weight: bold;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+
+    <script>
+        let elements = [];
+
+        function for_all_elements(fn) {
+            for (let i = 0; i < elements.length; i++) {
+                fn(elements[i]);
+            }
+        }
+
+        // find the element to attach to
+        function find_element_to_attach_to(elements, item) {
+            if (item.level == 0) {
+                return document.querySelector("body");
+            }
+
+            for (let i = elements.length - 1; i >= 0; i--) {
+                let element = elements[i];
+                let element_level = parseInt(element.dataset.level);
+                if (element_level == item.level - 1) {
+                    return element;
+                }
+            }
+        }
+
+        function create_file_element(text) {
+            let span = document.createElement("span");
+            span.classList.add("file");
+            if (text.startsWith("neahtta/")) {
+                text = text.slice(8);
+            }
+            span.innerText = text;
+            return span;
+        }
+
+        function create_qualname_element(qualname) {
+            let span = document.createElement("span");
+            span.classList.add("qualname");
+            span.innerText = qualname;
+            return span;
+        }
+
+        function create_args_element(args) {
+            let span = document.createElement("span");
+            span.classList.add("arguments");
+            span.innerText = "(" + args + ")";
+            return span;
+        }
+
+        function create_element_for_item(item) {
+            let div = document.createElement("div");
+            div.tabindex = 0;
+            div.classList.add("item");
+            let file_el = create_file_element(item.file);
+            let qualname_el = create_qualname_element(item.qualname);
+            let args_el = create_args_element(item.args);
+            div.append(file_el);
+            div.append(qualname_el);
+            div.append(args_el);
+
+            div.classList.add("function");
+            div.dataset.level = item.level;
+
+            return div;
+        }
+
+        window.addEventListener("load", function() {
+            for (let i = 0; i < data.length; i++) {
+                item = data[i];
+                let new_element = create_element_for_item(item);
+
+                find_element_to_attach_to(elements, item).append(new_element);
+                elements.push(new_element);
+            }
+        });
+
+        window.addEventListener("load", function () {
+            document.getElementById("show_args").addEventListener("click", function (ev) {
+                for_all_elements(el => el.querySelector("span.arguments").classList.toggle("hidden"));
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div>
+        <h2>Controls</h2>
+        <form>
+            <input type="checkbox" id="show_args" checked="checked">
+            <label id="show_args_label" for="show_args">Show arguments</label>
+        </form>
+        <hr>
+    </div>
+</body>
+
+</html> 

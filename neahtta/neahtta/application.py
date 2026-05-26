@@ -400,13 +400,17 @@ def create_app():
 
     print("DEBUG startup complete", ms_since(t0))
 
-    if os.environ.get("NDS_TRACE") == "1":
+    # set by nds_commands.py:run_dev_server()
+    trace = os.environ.get("NDS_TRACE")
+    if trace is not None:
         print("NDS_TRACE env var set, starting tracing")
-        from neahtta.utils.debug import tracefn
+        from neahtta.utils.debug import tracefn, set_trace_options
 
+        # using threading.settrace() so the trace fn gets set in all threads
         # from sys import settrace
         from threading import settrace
 
+        set_trace_options(trace)
         settrace(tracefn)
 
     return app

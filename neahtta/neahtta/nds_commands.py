@@ -571,11 +571,12 @@ def update_dicts(project, no_gut=False):
         do_update(project, no_gut)
 
 
-def run_dev_server(project, trace=False, port=5000):
+def run_dev_server(project, trace=None, port=5000):
     print(f"Running development server for {project}")
     os.environ["NDS_CONFIG"] = f"neahtta/configs/{project}.config.yaml"
+
     if trace:
-        os.environ["NDS_TRACE"] = "1"
+        os.environ["NDS_TRACE"] = str(trace)
 
     from neahtta.neahtta import app
 
@@ -1107,7 +1108,8 @@ def parse_args():
     dev_parser.add_argument(
         "-t",
         "--trace",
-        action="store_true",
+        nargs="?",
+        const=True,
         help=(
             "Enable tracing for *very* detailed call graph tracing while "
             "running the dev server. It is very verbose, and slows it down "
