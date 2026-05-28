@@ -8,6 +8,7 @@
 {%- set first_l = lexicon_entry|xpath('lg/l')|first %}
 
 {%- set pos = first_l|xpath('@pos')|first %}
+{%- set t_type = first_l|xpath('@t_type')|first %}
 
 {% if first_l|xpath('@type') %}
   {% set pos_type = first_l|xpath('@type')|tagfilter(_from, _to) %}
@@ -19,6 +20,8 @@
 
 {% if pos_type %}
   {% set pos_text = pos|tagfilter(_from, _to) + " " + pos_type %}
+{% elif t_type %}
+  {% set pos_text = t_type|tagfilter(_from, _to) %}
 {% else %}
   {% set pos_text = pos|tagfilter(_from, _to) %}
 {%- endif %}
