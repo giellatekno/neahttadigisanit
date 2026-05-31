@@ -567,11 +567,11 @@ msgid ""
 "North Sámi → Norwegian dictionary, but we have adde frequent Norwegian "
 "words. It contains about 26,000 Norwegian entries. "
 msgstr ""
-"Nordsamisk → Norsk ordbok bygger på Nils Jernsletten's ordbok "
-"<em>Álgosátnegirji</em> (4322 ord), men nå inneholder ordboka 30.000 "
-"oppslagsord, pluss 6000 stedsnavn. Norsk → Nordsamisk bygger på "
+"Nordsamisk → Norsk ordbok bygger på Nils Jernslettens ordbok "
+"<em>Álgosátnegirji</em> (4 322 ord), men nå inneholder ordboka 30 000 "
+"oppslagsord, pluss 6 000 stedsnavn. Norsk → Nordsamisk bygger på "
 "Nordsamisk → Norsk ordbok, men vi har i tillegg lagt til vanlige norske "
-"ord. Den inneholder rundt 26.000 norske oppslagsord. "
+"ord. Den inneholder rundt 26 000 norske oppslagsord. "
 
 #: neahtta/configs/language_specific_rules/templates/about.template:58
 msgid ""
@@ -1420,7 +1420,6 @@ msgid ""
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:56
-#, fuzzy
 msgid ""
 "North Sámi → Norwegian builds on Nils Jernsletten's dictionary "
 "<em>Álgosátnegirji</em> (4322 words), but now it contains 33,000 entries,"
@@ -1428,11 +1427,11 @@ msgid ""
 "North Sámi → Norwegian dictionary, but we have added frequent Norwegian "
 "words. It contains about 27,000 Norwegian entries. "
 msgstr ""
-"Nordsamisk → Norsk ordbok bygger på Nils Jernsletten's ordbok "
-"<em>Álgosátnegirji</em> (4322 ord), men nå inneholder ordboka 31.000 "
-"oppslagsord, pluss 6000 stedsnavn. Norsk → Nordsamisk bygger på "
+"Nordsamisk → Norsk ordbok bygger på Nils Jernslettens ordbok "
+"<em>Álgosátnegirji</em> (4 322 ord), men nå inneholder ordboka 33 000 "
+"oppslagsord, pluss 6 000 stedsnavn. Norsk → Nordsamisk bygger på "
 "Nordsamisk → Norsk ordbok, men vi har i tillegg lagt til vanlige norske "
-"ord. Den inneholder rundt 26.000 norske oppslagsord. "
+"ord. Den inneholder rundt 27 000 norske oppslagsord. "
 
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:57
 msgid ""
@@ -1530,9 +1529,8 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/sanit/nob/index_search_form.template:94
 #: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:91
 #: neahtta/configs/language_specific_rules/templates/sanit/spa/index_search_form.template:89
-#, fuzzy
 msgid "Press s or / to go to the search field."
-msgstr "Trykk s eller / for å søke."
+msgstr "Trykk s eller / for å gå til søkefeltet."
 
 #: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:98
 #: neahtta/configs/language_specific_rules/templates/sanit/spa/index_search_form.template:104
