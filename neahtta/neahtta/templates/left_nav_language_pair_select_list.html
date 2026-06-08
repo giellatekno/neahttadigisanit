@@ -18,6 +18,8 @@
         {% set pair_has_variant = false %}
     {%- endif -%}
 
+    {# The quality of nob-sms-nob is not good, but need it available for summer course #}
+    {% if not ((iso_pair[1] == "sms" and iso_pair[0] == "nob") or (iso_pair[1] == "nob" and iso_pair[0] == "sms")) %}
     {% if not is_variant %}
         {%- if iso_pair[0] == _from and iso_pair[1] == _to %}
             <li class="active">
@@ -47,6 +49,7 @@
         {% endif -%}
         </a>
     </li>
+    {% endif %} {# smsnob #}
 
     {# Start a new nav if there are variants #}
 
