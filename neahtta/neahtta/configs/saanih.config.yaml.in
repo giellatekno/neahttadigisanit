@@ -81,7 +81,7 @@ Dictionaries:
     show_korp_search: True
     is_korp_default_lang: True
     korp_parallel: True
-    korp_search_host: "https://gtweb.uit.no/f_korp"
+    korp_search_host: "https://gtweb.uit.no/old_korp"
     link_corpus_parameter: 'fin2smn_20170828-fin%,fin2smn_20170828-smn'
     corpora: 'FIN2SMN_20170828-FIN,FIN2SMN_20170828-SMN'
     start_query: 'https://gtweb.uit.no/korp/fin?command=query&corpus='
