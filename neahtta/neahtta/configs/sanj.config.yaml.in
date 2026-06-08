@@ -51,7 +51,7 @@ Morphology:
   rus:
     tool: *HFST-LOOKUP
     file: '/usr/share/giella/rus/analyser-gt-desc-only_base_forms.hfstol'
-    inverse_file: '/opt/smi/rus/dummy/generator-gt-norm.hfstol'
+    inverse_file: '/usr/share/giella/rus/generator-gt-dummy.hfstol'
     format: 'hfst'
     options:
       compoundBoundary: "+Use/Circ#"
