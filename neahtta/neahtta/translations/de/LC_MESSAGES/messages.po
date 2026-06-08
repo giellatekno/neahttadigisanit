@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
@@ -77,9 +76,8 @@ msgid "North Sámi"
 msgstr "Nordsamisch"
 
 #: neahtta/configs/language_names.yaml:35
-#, fuzzy
 msgid "North Sámi (tolerant)"
-msgstr "Nordsamisch (#SoMe)"
+msgstr "Nordsamisch (tolerant)"
 
 #: neahtta/configs/language_names.yaml:36
 #: neahtta/configs/language_names.yaml:131
@@ -209,9 +207,8 @@ msgstr ""
 
 #: neahtta/configs/language_names.yaml:85
 #: neahtta/templates/more_dictionaries.html:34
-#, fuzzy
 msgid "Kildin Saami"
-msgstr "Skoltsamisch"
+msgstr "Kildinsamisch"
 
 #: neahtta/configs/language_names.yaml:88
 msgid "Kildin Saami (tolerant)"
@@ -721,7 +718,6 @@ msgid " (Not found in our corpus)"
 msgstr " (Nicht in unserem Korpus gefunden)"
 
 #: neahtta/configs/language_specific_rules/templates/analyses.template:94
-#, fuzzy
 msgid " (No corpus available)"
 msgstr " (Für diese Sprache ist kein Korpus verfügbar)"
 
@@ -2022,12 +2018,10 @@ msgid ""
 msgstr ""
 
 #: neahtta/templates/more_dictionaries.html:28
-#, fuzzy
 msgid "North Saami"
 msgstr "Nordsamisch"
 
 #: neahtta/templates/more_dictionaries.html:29
-#, fuzzy
 msgid "South Saami"
 msgstr "Südsamisch"
 
@@ -2040,7 +2034,6 @@ msgid "Mari"
 msgstr ""
 
 #: neahtta/templates/more_dictionaries.html:32
-#, fuzzy
 msgid "Skolt Saami"
 msgstr "Skoltsamisch"
 

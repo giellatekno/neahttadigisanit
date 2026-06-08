@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
@@ -719,9 +718,8 @@ msgid " (Not found in our corpus)"
 msgstr " (ei löydy meidän tekstikokoelmasta)"
 
 #: neahtta/configs/language_specific_rules/templates/analyses.template:94
-#, fuzzy
 msgid " (No corpus available)"
-msgstr " (Tälle kielelle ei ole tekstikokoelma)"
+msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/sje/detail_entry.template:61
 #: neahtta/configs/language_specific_rules/templates/detail_entry.template:54
@@ -1172,7 +1170,6 @@ msgid "Satu & Jouni Moshnikoff sanasto"
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:72
-#, fuzzy
 msgid "Dictionaries:"
 msgstr "Sääʹnnǩeeʹrj"
 
@@ -2021,9 +2018,8 @@ msgid ""
 msgstr ""
 
 #: neahtta/templates/more_dictionaries.html:28
-#, fuzzy
 msgid "North Saami"
-msgstr "Anarâškielâ"
+msgstr ""
 
 #: neahtta/templates/more_dictionaries.html:29
 msgid "South Saami"
