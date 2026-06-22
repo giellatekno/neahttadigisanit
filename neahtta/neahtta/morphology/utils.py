@@ -122,7 +122,7 @@ def tagfilter_conf(filters, s, *args, **kwargs):
             _f_part = filters.get(part, filters.get(part.lower(), part))
             filtered.append(_f_part)
 
-    return "+".join(a for a in filtered if a.strip())
+    return " ".join(a for a in filtered if a.strip())
 
 
 def tagfilter(s, lang_iso, targ_lang, generation=False, tagset=False):
