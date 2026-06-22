@@ -20,18 +20,21 @@ def tagfilter_conf(filters, s, *args, **kwargs):
     Following tests check whether or not various tag substitutions work.
 
         >>> filt = {'Sg+Px1Sg': 'Possessive: 1s'}
-        >>> tagfilter_conf(filt, "N+AN+Sg+Px1Sg")
+        >>> tagsep = '+'
+        >>> tagfilter_conf(filt, "N+AN+Sg+Px1Sg", tagsep='+')
         'N+AN+Possessive: 1s'
 
         >>> filt = {'Sg+Px1Sg': 'Possessive: 1s', 'N': 'Noun', 'AN': 'Animate'}
-        >>> tagfilter_conf(filt, "N+AN+Sg+Px1Sg").replace('+', ' ')
+        >>> tagfilter_conf(filt, "N+AN+Sg+Px1Sg", tagsep='+').replace('+', ' ')
         'Noun Animate Possessive: 1s'
 
         >>> filt = {'N+AN+Sg+Px1Sg': 'Animate Noun Possessive: 1s', 'N': 'Noun', 'AN': 'Animate'}
-        >>> tagfilter_conf(filt, "N+AN+Sg+Px1Sg").replace('+', ' ')
+        >>> tagfilter_conf(filt, "N+AN+Sg+Px1Sg", tagsep='+').replace('+', ' ')
         'Animate Noun Possessive: 1s'
 
     """
+
+    tagsep = kwargs.get("tagsep")
 
     if not s:
         return s
@@ -46,7 +49,11 @@ def tagfilter_conf(filters, s, *args, **kwargs):
         parts = list(s)
         s = string
     else:
-        parts = s.split("+")
+        if tagsep:
+            parts = s.split(tagsep)
+        else:
+            parts = s.split(" ")
+            tagsep = " "
 
     # Find out if the tagset has any tags that count for
     # multi-replacement
@@ -122,10 +129,10 @@ def tagfilter_conf(filters, s, *args, **kwargs):
             _f_part = filters.get(part, filters.get(part.lower(), part))
             filtered.append(_f_part)
 
-    return "+".join(a for a in filtered if a.strip())
+    return tagsep.join([a for a in filtered if a.strip()])
 
 
-def tagfilter(s, lang_iso, targ_lang, generation=False, tagset=False):
+def tagfilter(s, lang_iso, targ_lang, generation=False, tagset=False, tagsep=" "):
     if tagset:
         filters = current_app.config.tag_filters.get(
             (lang_iso, targ_lang, tagset), False
@@ -138,7 +145,7 @@ def tagfilter(s, lang_iso, targ_lang, generation=False, tagset=False):
         filters = current_app.config.tag_filters.get((lang_iso, targ_lang), False)
 
     if filters:
-        return tagfilter_conf(filters, s)
+        return tagfilter_conf(filters, s, tagsep=tagsep)
     else:
         if isinstance(s, Tag):
             return s.sep.join(s)
