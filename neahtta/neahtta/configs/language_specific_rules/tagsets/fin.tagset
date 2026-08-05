@@ -91,3 +91,6 @@ comparative:
  - "Comp"
 superlative:
  - "Superl"
+homonymy:
+ - "Hom1"
+ - "Hom2"
