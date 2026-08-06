@@ -207,6 +207,9 @@
       "Sem/Wpn": ""
       "Sem/Wthr": ""
 
+      "Hom1": ""
+      "Hom2": ""
+
 
   - source_morphology: 'sme'
     target_ui_language: 'fin'
