@@ -104,6 +104,7 @@
       {%- if not template_settings.hide_possible_form_text%}
       <div class="visible-phone">
           <div class="well">
+              <p style="font-size: 95%;"><em lang="{{ _from }}">{{ user_input }}</em><span lang="{{ current_locale }}">{% trans user_input=user_input %} is a possible form of ... {% endtrans %}</span></p>
               {{ all_analysis_template|safe }}
           </div>
       </div>
