@@ -1,6 +1,6 @@
 # About configs
 
-**Obsolete!**: Anders: A lot of information in this file is obsolete / unusued!
+**Partly outdated!**: Trond Ty: I have updated this file in August 2026, but it might still contain some outdated info.
 
 Because paths in the configs likely must change depending on the place the
 service is running, the .in files are the only things checked in. Make a copy
@@ -20,87 +20,39 @@ clearer where work can be shared.
 This following process assumes that there is already a service existing
 to which a new language pair is being added.
 
-### 1.) Establish a build process for the FSTs and lexicon.
+### 1.) Configure FSTs and lexicon.
 
 **Intended**: Programmers
 
 #### FSTs
 
+FSTs are by default installed from Apertium nightly. If one wants to add e.g. South Saami, all that is needed is to install it from apt: `sudo apt install giella-sma`. The server is set up to update these from the Apertium repository every night.
 
-All languages are in github, and use the `$GTLANGS/lang-LANG`
-infrastructure.  (where LANG is the ISO code, note that eventual
-references to a catalogue `*langs/` are obsolete).  Adding another to
-a dictionary set's build process is easy. Find the targets for the
-dictionary set, for example, `kyv` and `kyv-install`, and add the
-language ISO to the variable `GT_COMPILE_LANGS` for these targets.
+The files are located at `/usr/share/giella/<iso>/`. These paths must be added to the Morphology section of the yaml file, see the example:
+```
+sma:
+    tool: *HFST-LOOKUP
+    file: '/usr/share/giella/sma/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/usr/share/giella/sma/generator-dict-gt-norm.hfstol'
+    format: 'hfst'
+    options:
+      compoundBoundary: "+Cmp#"
+      # Grammatical tags which have their own lexicon entries
+      # that should be presented if they are part of the analysis
+      tags_in_lexicon: ['Der', 'VAbess', 'VGen', 'Ger', 'Comp', 'Superl', 'Actio']
+```
 
-    .PHONY: baakoeh-install
-    baakoeh-install: GT_COMPILE_LANGS := sma nob
-    baakoeh-install: install_langs_fsts 
-
-    .PHONY: baakoeh
-    baakoeh: GT_COMPILE_LANGS := sma nob
-    baakoeh: baakoeh-lexica compile_langs_fsts
-    [... snip ...]
-
-The dependencies for these will then automatically build, using as much
-of the `$GTLANGS/lang-` build infrastructure as possible.
-
-These targets will build analysers as usual, but the `*-install` targets
-are there as a convenience for when overwriting the analysers in
-`/opt/smi/` is allowed. **Be careful** with this though, because with
-language sets like `sánit` and `baakoeh` which are very much in
-production mode now, there may be some unintended consequences.
-
-In any case, the targets that these will write to are
-dictionary-specific, and will not overwrite analysers for other
-projects.
-
-    /opt/smi/LANG/bin/analyser-dict-gt-desc.hfstol
-    /opt/smi/LANG/bin/generator-dict-gt-norm.hfstol
-    /opt/smi/LANG/bin/analyser-dict-gt-desc-mobile.hfstol
-
-##### Troubleshooting
-
-If you do not succeed in getting these make targets to work with a new
-language, run the process manually. It might be that `make distclean`
-needs to be run once within the language directory, and then things will
-work.
+If the language does not yet exist in Apertium nightly, consider asking for it to be added. If that is not possible, you may compile the FSTs yourself and place them in a suitable directory pointed to by the `file` and `inverse_file` parameters.
 
 #### Lexicon
 
-Editing the Makefile is a little tricky. You will need to add a target
-for the lexicon file or files. 
+Lexica are compiled using the `merge_giella_dicts.py` script found in `giella-core/dicts/scripts/`. The `nds compile` command figures out the location of the file based on the `source`, `target` and `dict_source` variables in the Dictionaries section of the yaml file.
 
-Lexica are compiled using a `Saxon` process, and the Makefile contains
-some variables that can be used as shortcuts. For languages using
-`langs/` infrastructure for the lexicon, the best option is the
-following:
-
-    ZZZ-all.xml: $(GTHOME)/langs/ZZZ/src/morphology/stems/*.xml
-	    @echo "**************************"
-	    @echo "** Building ZZZ lexicon **"
-	    @echo "**************************"
-	    @echo "** Backup made (.bak)   **"
-	    @echo "**************************"
-	    @echo ""
-	    -@cp $@ $@.$(shell date +%s).bak
-	    mkdir ZZZ
-	    cp $^ ZZZ/
-	    $(SAXON) inDir=$(pwd)/ZZZ/ > ZZZ-all.xml
-	    rm -rf ZZZ/
-
-The above makes a copy of the XML files, and then uses the Saxon process
-to compile them all into one file, with no additional processing.
-
-This process will be the same if the lexica are in `main/words/dicts/`, 
-however some languages there have multiple subdirectories that need to
-be copied before the Saxon process is run.
-
-Make note of the filename that you intend to output this to, and add it
-to the language installation's lexicon target, for example,
-`kyv-lexica`, `muter-lexica`; and also the remove target
-(`rm-kyv-lexica`).
+`dict_source` is set to 
+ - `multi` for `dict-<source-iso>-mul` repos, 
+ - `lang` for `lang-<source-iso>` repos, or
+ - `repo: <repo-name>` for custom repos
+If the source repo is `dict-<source>-<target>`, then `dict_source` can be dropped from the config.
 
 ### 2.) Edit the .yaml file for new FSTs and Dictionaries
 
@@ -127,19 +79,20 @@ one letter appended, i.e., `udm` for mobile would be `udmM`.
 In any case, the morphology section should contain a new entry like the
 following:
 
-    YYY:
-      tool: *LOOKUP
-      file: [*OPT, '/YYY/bin/dict-YYY.fst']
-      inverse_file: [*OPT, '/YYY/bin/dict-iYYY-norm.fst']
-      format: 'xfst'
-      options:
-        compoundBoundary: "+Use/Circ#"
+```
+sma:
+    tool: *HFST-LOOKUP
+    file: '/usr/share/giella/sma/analyser-dict-gt-desc.hfstol'
+    inverse_file: '/usr/share/giella/sma/generator-dict-gt-norm.hfstol'
+    format: 'hfst'
+    options:
+      compoundBoundary: "+Cmp#"
+      # Grammatical tags which have their own lexicon entries
+      # that should be presented if they are part of the analysis
+      tags_in_lexicon: ['Der', 'VAbess', 'VGen', 'Ger', 'Comp', 'Superl', 'Actio']
+```
 
-Where YYY is the language ISO path. Note the weird way that forming
-paths with aliases is handled here in YAML, they may be strings or
-lists, and if they are lists, they will be automatically concatinated
-into strings. This must be done because YAML does not allow string 
-concatenation with aliases/variables.
+Where YYY is the language ISO path.
 
 #### `Languages` section
 
@@ -192,7 +145,7 @@ so, `"sme"`, or `"SoMe"`, or `udmM`.
 
 Open the file `configs/language_names.py`. Here you will need to add the
 language ISO to several variables. Save when done, and be sure to check
-in in SVN.
+in in git.
 
 #### NAMES
 
@@ -242,7 +195,7 @@ The easiest means of course is to look at existing languages and copy
 what they do.
 
 When done with these steps, be sure to add the new files and directories
-to SVN and check them in.
+to git and check them in.
 
 ### 5.) Paradigm bonus material: wordform contexts
 
