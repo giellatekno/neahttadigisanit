@@ -509,22 +509,19 @@ class SearcherMixin:
         """Note: new-style templates require similar input
         across Detail/main page view, so can really refactor and
         chop stuff down."""
-        current_pair, _ = current_app.config.resolve_original_pair(g._from, g._to)
-        async_paradigm = current_pair.get("asynchronous_paradigms", False)
         lemma_attrs = default_context_kwargs.get("lemma_attrs", {})
-        generate = detailed and not async_paradigm
 
         if "variant_type" in default_context_kwargs:
             variant_type = default_context_kwargs.get("variant_type")
             search_result: SearchResult = self.do_search_to_obj(
                 lookup_value,
-                generate=generate,
+                generate=detailed,
                 lemma_attrs=lemma_attrs,
                 variant_type=variant_type,
             )
         else:
             search_result: SearchResult = self.do_search_to_obj(
-                lookup_value, generate=generate, lemma_attrs=lemma_attrs
+                lookup_value, generate=detailed, lemma_attrs=lemma_attrs
             )
 
         template = "detail_entry.template" if detailed else "entry.template"

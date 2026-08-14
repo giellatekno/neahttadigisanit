@@ -30,11 +30,7 @@
 
             {% set has_reference = lexicon_entry.xpath('./lg/lemma_ref/text()')|first %}
             <div class="pull-right hidden-phone floatingparadigm">
-                {% if current_pair_settings.asynchronous_paradigms %}
-                    {{- rendered_templates.asynchronous_paradigm|safe -}}
-                {% else %}
-                    {{- rendered_templates.paradigm|safe -}}
-                {% endif %}
+                {{- rendered_templates.paradigm|safe -}}
             </div>
             <p class="lead">
                 {{- rendered_templates.entry_text|safe -}}
@@ -63,11 +59,7 @@
                     </div>
                     <div class="span6">
                         <div class="paradigm-expanded collapse" id="paradigm-{{ lemma_key }}">
-                        {% if current_pair_settings.asynchronous_paradigms %}
-                            {{- rendered_templates.asynchronous_paradigm|safe -}}
-                        {% else %}
                             {{- rendered_templates.paradigm|safe -}}
-                        {% endif %}
                         </div>
                     </div>
                 </div>

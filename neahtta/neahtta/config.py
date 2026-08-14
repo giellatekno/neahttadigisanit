@@ -719,7 +719,6 @@ class Config(Config):
                 "show_korp_search": dict_def.get("show_korp_search", False),
                 "korp_search_host": dict_def.get("korp_search_host", False),
                 "korp_options": dict_def.get("korp_options", _default_korp),
-                "asynchronous_paradigms": dict_def.get("asynchronous_paradigms", False),
                 "link_corpus_parameter": dict_def.get("link_corpus_parameter", ""),
             }
             for iso in _lang_isos:

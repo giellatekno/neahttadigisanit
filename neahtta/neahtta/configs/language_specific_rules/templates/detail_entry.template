@@ -24,11 +24,7 @@
                 {% if current_app_config.paradigm_layouts and layout %}
                     {{- rendered_templates.paradigm_layouts|safe -}}
                 {% else %}
-                    {% if current_pair_settings.asynchronous_paradigms %}
-                        {{- rendered_templates.asynchronous_paradigm|safe -}}
-                    {% else %}
-                        {{- rendered_templates.paradigm|safe -}}
-                    {% endif %}
+                    {{- rendered_templates.paradigm|safe -}}
                 {% endif %}
             </div>
             <p class="lead">
@@ -59,11 +55,7 @@
                             {% if current_app_config.paradigm_layouts and layout %}
                                 {{- rendered_templates.paradigm_layouts|safe -}}
                             {% else %}
-                                {% if current_pair_settings.asynchronous_paradigms %}
-                                    {{- rendered_templates.asynchronous_paradigm|safe -}}
-                                {% else %}
-                                    {{- rendered_templates.paradigm|safe -}}
-                                {% endif %}
+                                {{- rendered_templates.paradigm|safe -}}
                             {% endif %}
                         </div>
                     </div>

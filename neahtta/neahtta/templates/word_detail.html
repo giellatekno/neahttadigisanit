@@ -70,11 +70,7 @@
        <br />
     </div>
 
-    {% if current_pair_settings.asynchronous_paradigms %}
-        <div ng-app="NDS">
-    {% else %}
-        <div>
-    {% endif %}
+    <div>
 
         {% for tpl in entry_templates %}
             {{ tpl|safe }}
@@ -87,11 +83,7 @@
            </div>
        </div>
 
-    {% if current_pair_settings.asynchronous_paradigms %}
-        </div>
-    {% else %}
-        </div>
-    {% endif %}
+    </div>
 
 
     <div class="find_problem">

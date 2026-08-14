@@ -134,7 +134,7 @@ def prepare_assets(app):
         # "js/base.js",
         # "js/index.js",
         # "js/detail.js",
-        # TODO: underscore? angular? async_paradigms?
+        # TODO: underscore? angular?
     ] + js_dev_assets
 
     app.assets.main_css_assets = (
