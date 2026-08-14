@@ -1,5 +1,0 @@
-name: "verbs"
-morphology:
-  pos: V
---
-{{ lemma }}+V+I+Ipfv+Sg3

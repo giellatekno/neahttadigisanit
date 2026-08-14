@@ -1,8 +1,0 @@
-Relabel:
-  - source_morphology: 'otw'
-    target_ui_language: 'eng'
-    tags: 
-      "NA": "animate noun"
-      "NI": "inanimate noun"
-      "3Pl": "third plural"
-

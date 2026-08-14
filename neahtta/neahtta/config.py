@@ -246,10 +246,6 @@ class Config(Config):
         return self.language_configs_yaml.get("isos_to_demonym", {})
 
     @cached_property
-    def ISO_DISPLAY_RELABELS(self):
-        return self.language_configs_yaml.get("iso_display_relabels", {})
-
-    @cached_property
     def ISO_TRANSFORMS(self):
         return self.language_configs_yaml.get("iso_transforms", {})
 

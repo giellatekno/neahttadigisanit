@@ -18,14 +18,6 @@
 #    2-character version, we need the other as well.
 
 
-# TODO: put these in individual project conf files
-# .py: ISO_DISPLAY_RELABELS
-iso_display_relabels:
-  'crk':      'crk'
-  'crk_Macr': 'āēīō'
-  'crk_Syll': 'ᓀᐦᐃᔭᐍᐏᐣ'
-
-
 # .py: NAMES
 # these names will be used to generate localization files
 isos_to_names:
@@ -85,24 +77,6 @@ isos_to_names:
   "sjd": !gettext "Kildin Saami"
   "sjdM": !gettext "Kildin Saami (tolerant)"
 
-  # itwewina
-  "crk": !gettext "Plains Cree"
-  "crkM": !gettext "Plains Cree (tolerant)"
-
-  # gunaha
-  "srs": !gettext "Tsuut'ina"
-
-  # kidwinan
-  "otw": !gettext "Odawa"
-
-  # dikaneisdi
-  "chr": !gettext "Cherokee"
-  "chrL": !gettext "Cherokee"
-
-  # guusaaw
-  "hdn": !gettext "Northern Haida"
-  "hdnM": !gettext "Northern Haida (tolerant)"
-
   # saanih
   "smn": !gettext "Inari Saami"
   "smnM": !gettext "Inari Saami (tolerant)"
@@ -130,7 +104,6 @@ isos_to_names:
   "lav": !gettext "Latvian"
   "eng": !gettext "English"
   "en": !gettext "English"
-  "hdn": !gettext "Haida"
   "fra": !gettext "French"
   "deu": !gettext "German"
   "ron": !gettext "Romanian"
@@ -169,21 +142,15 @@ isos_to_demonym:
   "izh": "Ižoran keel"
   "fkv": "Kvääni"
   "fi": "Suomi"
-  "crk": "nêhiyawêwin"
-  "crk_Macr": "nēhiyawēwin"
-  "crk_Syll": "ᓀᐦᐃᔭᐍᐏᐣ"
   "eng": "English"
   "et": "Eesti"
   "est": "Eesti"
   "sms": "sääʹmǩiõll"
   "smn": "Anarâškielâ"
-  "hdn": "X̲aat Kíl"
-  "hdnM": "X̲aat Kíl (tolerant)"
   "en": "English"
   "fr": "Français"
   "hun": "Magyar"
   "hu": "Magyar"
-  "chr": "ᏣᎳᎩ ᎦᏬᏂᎯᏍᏗ"
   "sje": "Pite"
 
   "vep": "Vepsän kel’"

@@ -88,11 +88,6 @@ ReaderConfig:
     media_host: "vada.oahpa.no"
   yrk:
     multiword_lookups: false
-    # multiword_list:
-    #   # File format-- plain text, but line coments allowed:
-    #   # Use %WORD% as a marker for any word these may co-occur with, i.e., if
-    #   # the user clicks on a %WORD%, then search for these environments too.
-    #   file: "configs/language_specific_rules/reader/hdn_multiwords.txt"
     # NB: this is JavaScript format, since it will be sent to the reader via
     # config. It must also be stored as a string.
     #
