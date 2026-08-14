@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-24 14:41+0200\n"
+"POT-Creation-Date: 2026-08-14 11:59+0300\n"
 "PO-Revision-Date: 2015-02-14 00:19+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language: myv\n"
@@ -20,367 +20,329 @@ msgstr ""
 
 #: neahtta/configs/baakoeh.config.yaml:86
 #: neahtta/configs/baakoeh.config.yaml:107
-#: neahtta/configs/baakoeh.config.yaml.in:86
-#: neahtta/configs/baakoeh.config.yaml.in:107
-#: neahtta/configs/kyv.config.yaml.in:169
-#: neahtta/configs/kyv.config.yaml.in:245 neahtta/configs/saan.config.yaml:98
-#: neahtta/configs/saan.config.yaml.in:98
-#: neahtta/configs/saanih.config.yaml.in:80
-#: neahtta/configs/saanih.config.yaml.in:110
-#: neahtta/configs/sample.config.yaml.in:194
+#: neahtta/configs/baakoeh.config.yaml.in:77
+#: neahtta/configs/baakoeh.config.yaml.in:98
+#: neahtta/configs/kyv.config.yaml.in:136
+#: neahtta/configs/kyv.config.yaml.in:212 neahtta/configs/saan.config.yaml:83
+#: neahtta/configs/saan.config.yaml.in:83
+#: neahtta/configs/saanih.config.yaml.in:68
+#: neahtta/configs/saanih.config.yaml.in:98
+#: neahtta/configs/sample.config.yaml.in:186
 #: neahtta/configs/sanat.config.yaml:157
-#: neahtta/configs/sanat.config.yaml.in:157
-#: neahtta/configs/sanit.config.yaml:125
-#: neahtta/configs/sanit.config.yaml.in:125
-#: neahtta/configs/sanj.config.yaml:100 neahtta/configs/sanj.config.yaml.in:100
-#: neahtta/configs/sonad.config.yaml.in:154
-#: neahtta/tests/configs/sanit.config.yaml:122
+#: neahtta/configs/sanat.config.yaml.in:136
+#: neahtta/configs/sanit.config.yaml:110
+#: neahtta/configs/sanit.config.yaml.in:110
+#: neahtta/configs/sanj.config.yaml:100 neahtta/configs/sanj.config.yaml.in:91
+#: neahtta/configs/sonad.config.yaml.in:127
+#: neahtta/tests/configs/sanit.config.yaml:110
 msgid "Standard"
 msgstr "Стандарт"
 
-#: neahtta/configs/kyv.config.yaml.in:178
-#: neahtta/configs/kyv.config.yaml.in:256
-#: neahtta/configs/sample.config.yaml.in:200
+#: neahtta/configs/kyv.config.yaml.in:145
+#: neahtta/configs/kyv.config.yaml.in:223
+#: neahtta/configs/sample.config.yaml.in:192
 msgid "Social media"
 msgstr "Соцмедия"
 
-#: neahtta/configs/kyv.config.yaml.in:179
+#: neahtta/configs/kyv.config.yaml.in:146
 #, fuzzy
 msgid "(incl. <em>ио</em>)"
 msgstr "Соцмедия  (<em>acdnstz</em> букватнеяк)"
 
-#: neahtta/configs/kyv.config.yaml.in:183
+#: neahtta/configs/kyv.config.yaml.in:150
 #, fuzzy
 msgid "Molodtsov orthography"
 msgstr "Молодцовонь орфографиясо"
 
-#: neahtta/configs/kyv.config.yaml.in:200
+#: neahtta/configs/kyv.config.yaml.in:167
 msgid "Zyrian for Permyak"
 msgstr ""
 
-#: neahtta/configs/kyv.config.yaml.in:257
+#: neahtta/configs/kyv.config.yaml.in:224
 #, fuzzy
 msgid "(incl. <em>жзиоч</em>)"
 msgstr "Соцмедия  (<em>acdnstz</em> букватнеяк)"
 
-#: neahtta/configs/kyv.config.yaml.in:272
-#: neahtta/configs/kyv.config.yaml.in:301
+#: neahtta/configs/kyv.config.yaml.in:239
+#: neahtta/configs/kyv.config.yaml.in:268
 #, fuzzy
 msgid "Standard (<em>ӝӟӥӧӵ</em>)"
 msgstr "Стардарт (<em>áčđŋšŧž</em>)"
 
-#: neahtta/configs/kyv.config.yaml.in:276
-#: neahtta/configs/kyv.config.yaml.in:305
+#: neahtta/configs/kyv.config.yaml.in:243
+#: neahtta/configs/kyv.config.yaml.in:272
 #, fuzzy
 msgid "Social media (incl. <em>жзиоч</em>)"
 msgstr "Соцмедия  (<em>acdnstz</em> букватнеяк)"
 
-#: neahtta/configs/language_names.yaml:33
-#: neahtta/configs/language_names.yaml:34
+#: neahtta/configs/language_names.yaml:25
+#: neahtta/configs/language_names.yaml:26
 msgid "North Sámi"
 msgstr "Пелевеёнксонь саамонь кель"
 
-#: neahtta/configs/language_names.yaml:35
+#: neahtta/configs/language_names.yaml:27
 #, fuzzy
 msgid "North Sámi (tolerant)"
 msgstr "Пелевеёнксонь саамонь кель (#SoMe)"
 
-#: neahtta/configs/language_names.yaml:36
-#: neahtta/configs/language_names.yaml:131
-#: neahtta/configs/language_names.yaml:132
+#: neahtta/configs/language_names.yaml:28
+#: neahtta/configs/language_names.yaml:105
+#: neahtta/configs/language_names.yaml:106
 msgid "English"
 msgstr "Англань кель"
 
-#: neahtta/configs/language_names.yaml:37
+#: neahtta/configs/language_names.yaml:29
 msgid "Hungarian"
 msgstr "Венгрань кель"
 
-#: neahtta/configs/language_names.yaml:38
+#: neahtta/configs/language_names.yaml:30
 msgid "Lule Sámi"
 msgstr ""
 
-#: neahtta/configs/language_names.yaml:41
+#: neahtta/configs/language_names.yaml:33
 msgid "Spanish"
 msgstr ""
 
-#: neahtta/configs/language_names.yaml:44
+#: neahtta/configs/language_names.yaml:36
 msgid "South Sámi"
 msgstr "Лембе ёнксонь саамонь кель"
 
-#: neahtta/configs/language_names.yaml:45
-#: neahtta/configs/language_names.yaml:46
+#: neahtta/configs/language_names.yaml:37
+#: neahtta/configs/language_names.yaml:38
 msgid "Komi"
 msgstr "Коминь кель"
 
-#: neahtta/configs/language_names.yaml:47
+#: neahtta/configs/language_names.yaml:39
 msgid "Komi (tolerant)"
 msgstr ""
 
-#: neahtta/configs/language_names.yaml:48
+#: neahtta/configs/language_names.yaml:40
 msgid "Udmurt"
 msgstr "Удмуртонь кель"
 
-#: neahtta/configs/language_names.yaml:49
+#: neahtta/configs/language_names.yaml:41
 msgid "Udmurt (tolerant)"
 msgstr ""
 
-#: neahtta/configs/language_names.yaml:50
+#: neahtta/configs/language_names.yaml:42
 msgid "Komi-Permyak"
 msgstr ""
 
-#: neahtta/configs/language_names.yaml:53
+#: neahtta/configs/language_names.yaml:45
 msgid "Komi-Permyak (tolerant)"
 msgstr ""
 
-#: neahtta/configs/language_names.yaml:54
+#: neahtta/configs/language_names.yaml:46
 msgid "Kven"
 msgstr "Квенэнь кель"
 
-#: neahtta/configs/language_names.yaml:55
+#: neahtta/configs/language_names.yaml:47
 msgid "Olonetsian"
 msgstr "Ливвиковской карелень кель"
 
-#: neahtta/configs/language_names.yaml:58
+#: neahtta/configs/language_names.yaml:50
 msgid "Estonian"
 msgstr "Эстэнь кель"
 
-#: neahtta/configs/language_names.yaml:59
+#: neahtta/configs/language_names.yaml:51
 msgid "Livonian"
 msgstr "Ливень кель"
 
-#: neahtta/configs/language_names.yaml:60
+#: neahtta/configs/language_names.yaml:52
 msgid "Livonian (tolerant)"
 msgstr ""
 
-#: neahtta/configs/language_names.yaml:61
+#: neahtta/configs/language_names.yaml:53
 msgid "Izhorian"
 msgstr "Ижорань кель"
 
-#: neahtta/configs/language_names.yaml:62
+#: neahtta/configs/language_names.yaml:54
 msgid "Veps"
 msgstr "Вепс"
 
-#: neahtta/configs/language_names.yaml:63
+#: neahtta/configs/language_names.yaml:55
 msgid "Võro"
 msgstr "Выро"
 
-#: neahtta/configs/language_names.yaml:66
+#: neahtta/configs/language_names.yaml:58
 msgid "Votic"
 msgstr "Водь"
 
-#: neahtta/configs/language_names.yaml:67
+#: neahtta/configs/language_names.yaml:59
 msgid "Erzya"
 msgstr "Эрзя"
 
-#: neahtta/configs/language_names.yaml:68
+#: neahtta/configs/language_names.yaml:60
 msgid "Moksha"
 msgstr "Мокшонь кель"
 
-#: neahtta/configs/language_names.yaml:69
-#: neahtta/configs/language_names.yaml:134
+#: neahtta/configs/language_names.yaml:61
+#: neahtta/configs/language_names.yaml:107
 msgid "French"
 msgstr "Французонь кель"
 
-#: neahtta/configs/language_names.yaml:72
-#: neahtta/configs/language_names.yaml:135
+#: neahtta/configs/language_names.yaml:64
+#: neahtta/configs/language_names.yaml:108
 msgid "German"
 msgstr "Немецень кель"
 
-#: neahtta/configs/language_names.yaml:73
+#: neahtta/configs/language_names.yaml:65
 msgid "Western Mari"
 msgstr "Пандомаринь кель"
 
-#: neahtta/configs/language_names.yaml:76
+#: neahtta/configs/language_names.yaml:68
 msgid "Eastern Mari"
 msgstr "Лугамаринь кель"
 
-#: neahtta/configs/language_names.yaml:77
+#: neahtta/configs/language_names.yaml:69
 #: neahtta/templates/more_dictionaries.html:38
 msgid "Nenets"
 msgstr "Ненецэнь кель"
 
-#: neahtta/configs/language_names.yaml:80
+#: neahtta/configs/language_names.yaml:72
 #, fuzzy
 msgid "Northern Mansi"
 msgstr "Пелевеёнксонь Хаида"
 
-#: neahtta/configs/language_names.yaml:81
+#: neahtta/configs/language_names.yaml:73
 msgid "Skolt Sami"
 msgstr "Сколт саамонь кель"
 
-#: neahtta/configs/language_names.yaml:84
+#: neahtta/configs/language_names.yaml:76
 msgid "Skolt Sami (tolerant)"
 msgstr ""
 
-#: neahtta/configs/language_names.yaml:85
+#: neahtta/configs/language_names.yaml:77
 #: neahtta/templates/more_dictionaries.html:34
 #, fuzzy
 msgid "Kildin Saami"
 msgstr "Сколт саамонь кель"
 
-#: neahtta/configs/language_names.yaml:88
+#: neahtta/configs/language_names.yaml:80
 msgid "Kildin Saami (tolerant)"
 msgstr ""
 
-#: neahtta/configs/language_names.yaml:89
-msgid "Plains Cree"
-msgstr "Степень кринь кель"
-
-#: neahtta/configs/language_names.yaml:92
-msgid "Plains Cree (tolerant)"
-msgstr ""
-
-#: neahtta/configs/language_names.yaml:95
-msgid "Tsuut'ina"
-msgstr ""
-
-#: neahtta/configs/language_names.yaml:98
-msgid "Odawa"
-msgstr "Одавань кель"
-
-#: neahtta/configs/language_names.yaml:99
-#: neahtta/configs/language_names.yaml:102
-msgid "Cherokee"
-msgstr "Черокинь кель"
-
-#: neahtta/configs/language_names.yaml:103
-msgid "Northern Haida"
-msgstr "Пелевеёнксонь Хаида"
-
-#: neahtta/configs/language_names.yaml:106
-#, fuzzy
-msgid "Northern Haida (tolerant)"
-msgstr "Пелевеёнксонь Хаида"
-
-#: neahtta/configs/language_names.yaml:107
+#: neahtta/configs/language_names.yaml:81
 #: neahtta/templates/more_dictionaries.html:33
 msgid "Inari Saami"
 msgstr "Инари саамонь кель"
 
-#: neahtta/configs/language_names.yaml:110
+#: neahtta/configs/language_names.yaml:84
 msgid "Inari Saami (tolerant)"
 msgstr ""
 
-#: neahtta/configs/language_names.yaml:113
+#: neahtta/configs/language_names.yaml:87
 #: neahtta/templates/more_dictionaries.html:35
 msgid "Pite Saami"
 msgstr ""
 
-#: neahtta/configs/language_names.yaml:115
+#: neahtta/configs/language_names.yaml:89
 msgid "Khanty"
 msgstr "Хантинь кель"
 
-#: neahtta/configs/language_names.yaml:118
+#: neahtta/configs/language_names.yaml:92
 #, fuzzy
 msgid "Irish"
 msgstr "Финнэнь кель"
 
-#: neahtta/configs/language_names.yaml:119
-#: neahtta/configs/language_names.yaml:126
+#: neahtta/configs/language_names.yaml:93
+#: neahtta/configs/language_names.yaml:100
 msgid "Finnish"
 msgstr "Финнэнь кель"
 
-#: neahtta/configs/language_names.yaml:120
-#: neahtta/configs/language_names.yaml:121
-#: neahtta/configs/language_names.yaml:127
-#: neahtta/configs/language_names.yaml:128
+#: neahtta/configs/language_names.yaml:94
+#: neahtta/configs/language_names.yaml:95
+#: neahtta/configs/language_names.yaml:101
+#: neahtta/configs/language_names.yaml:102
 msgid "Norwegian"
 msgstr "Норвегень кель"
 
-#: neahtta/configs/language_names.yaml:123
-#: neahtta/configs/language_names.yaml:124
+#: neahtta/configs/language_names.yaml:97
+#: neahtta/configs/language_names.yaml:98
 msgid "Russian"
 msgstr "Рузонь кель"
 
-#: neahtta/configs/language_names.yaml:129
-#: neahtta/configs/language_names.yaml:130
+#: neahtta/configs/language_names.yaml:103
+#: neahtta/configs/language_names.yaml:104
 msgid "Latvian"
 msgstr "Латышень кель"
 
-#: neahtta/configs/language_names.yaml:133
-msgid "Haida"
-msgstr "Хайда"
-
-#: neahtta/configs/language_names.yaml:136
+#: neahtta/configs/language_names.yaml:109
 msgid "Romanian"
 msgstr "Румынень кель"
 
-#: neahtta/configs/language_names.yaml:137
+#: neahtta/configs/language_names.yaml:110
 msgid "Meänkieli"
 msgstr ""
 
-#: neahtta/configs/language_names.yaml:138
-#: neahtta/configs/language_names.yaml:139
+#: neahtta/configs/language_names.yaml:111
+#: neahtta/configs/language_names.yaml:112
 msgid "Swedish"
 msgstr "Шведэнь"
 
-#: neahtta/configs/saan.config.yaml:121 neahtta/configs/saan.config.yaml.in:121
-#: neahtta/configs/saanih.config.yaml.in:84
-#: neahtta/configs/saanih.config.yaml.in:114
-#: neahtta/configs/sanj.config.yaml:121 neahtta/configs/sanj.config.yaml.in:121
+#: neahtta/configs/saan.config.yaml:106 neahtta/configs/saan.config.yaml.in:106
+#: neahtta/configs/saanih.config.yaml.in:72
+#: neahtta/configs/saanih.config.yaml.in:102
+#: neahtta/configs/sanj.config.yaml:121 neahtta/configs/sanj.config.yaml.in:112
 msgid "Mobile friendly"
 msgstr "сотовоень туртов шожда"
 
-#: neahtta/configs/saanih.config.yaml.in:81
-#: neahtta/configs/saanih.config.yaml.in:111
+#: neahtta/configs/saanih.config.yaml.in:69
+#: neahtta/configs/saanih.config.yaml.in:99
 #, fuzzy
 msgid "(<em>âäáčđŋšž</em>)"
 msgstr "Стардарт (<em>áčđŋšŧž</em>)"
 
-#: neahtta/configs/saanih.config.yaml.in:85
-#: neahtta/configs/saanih.config.yaml.in:115
+#: neahtta/configs/saanih.config.yaml.in:73
+#: neahtta/configs/saanih.config.yaml.in:103
 #, fuzzy
 msgid "(incl. <em>aaacdnsz</em>)"
 msgstr "Соцмедия  (<em>acdnstz</em> букватнеяк)"
 
-#: neahtta/configs/sample.config.yaml.in:202
-#: neahtta/configs/sanit.config.yaml:141
-#: neahtta/configs/sanit.config.yaml.in:141
-#: neahtta/tests/configs/sanit.config.yaml:138
+#: neahtta/configs/sample.config.yaml.in:194
+#: neahtta/configs/sanit.config.yaml:126
+#: neahtta/configs/sanit.config.yaml.in:126
+#: neahtta/tests/configs/sanit.config.yaml:126
 #, fuzzy
 msgid "(incl. <em>acdnstz</em>)"
 msgstr "Соцмедия  (<em>acdnstz</em> букватнеяк)"
 
-#: neahtta/configs/sanit.config.yaml:140
-#: neahtta/configs/sanit.config.yaml.in:140
-#: neahtta/tests/configs/sanit.config.yaml:137
+#: neahtta/configs/sanit.config.yaml:125
+#: neahtta/configs/sanit.config.yaml.in:125
+#: neahtta/tests/configs/sanit.config.yaml:125
 msgid "Tolerant"
 msgstr ""
 
-#: neahtta/configs/sanit.config.yaml:181 neahtta/configs/sanit.config.yaml:230
-#: neahtta/configs/sanit.config.yaml.in:180
-#: neahtta/tests/configs/sanit.config.yaml:173
+#: neahtta/configs/sanit.config.yaml:165
+#: neahtta/configs/sanit.config.yaml.in:165
+#: neahtta/tests/configs/sanit.config.yaml:161
 #, fuzzy
 msgid "Standard (<em>áčđŋšŧž</em>)"
 msgstr "Стардарт (<em>áčđŋšŧž</em>)"
 
-#: neahtta/configs/sanit.config.yaml:185 neahtta/configs/sanit.config.yaml:234
-#: neahtta/configs/sanit.config.yaml.in:184
-#: neahtta/tests/configs/sanit.config.yaml:177
+#: neahtta/configs/sanit.config.yaml:169
+#: neahtta/configs/sanit.config.yaml.in:169
+#: neahtta/tests/configs/sanit.config.yaml:165
 #, fuzzy
 msgid "Tolerant (also <em>acdnstz</em>)"
 msgstr "Соцмедия  (<em>acdnstz</em> букватнеяк)"
 
-#: neahtta/configs/sanj.config.yaml:101 neahtta/configs/sanj.config.yaml.in:101
+#: neahtta/configs/sanj.config.yaml:101 neahtta/configs/sanj.config.yaml.in:92
 msgid "(<em>а̄е̄ӣо̄ӯӎӊӈҏ</em>)"
 msgstr ""
 
-#: neahtta/configs/sanj.config.yaml:122 neahtta/configs/sanj.config.yaml.in:122
+#: neahtta/configs/sanj.config.yaml:122 neahtta/configs/sanj.config.yaml.in:113
 #, fuzzy
 msgid "(incl. <em>аеиоумннр</em>)"
 msgstr "Соцмедия  (<em>acdnstz</em> букватнеяк)"
 
-#: neahtta/configs/sonad.config.yaml.in:159
+#: neahtta/configs/sonad.config.yaml.in:132
 msgid "mobile friendly"
 msgstr "сотовойнень шожда"
 
 #: neahtta/configs/language_specific_rules/templates/about.template:5
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:6
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:5
-#: neahtta/configs/language_specific_rules/templates/gunaha/about.template:6
-#: neahtta/configs/language_specific_rules/templates/guusaaw/about.template:6
-#: neahtta/configs/language_specific_rules/templates/itwewina/about.template:6
-#: neahtta/configs/language_specific_rules/templates/kidwinan/about.template:6
 #: neahtta/configs/language_specific_rules/templates/muter/about.template:6
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:6
 #: neahtta/configs/language_specific_rules/templates/saanih/about.template:5
@@ -398,10 +360,6 @@ msgstr "Минденек"
 #: neahtta/configs/language_specific_rules/templates/about.template:14
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:15
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:14
-#: neahtta/configs/language_specific_rules/templates/gunaha/about.template:15
-#: neahtta/configs/language_specific_rules/templates/guusaaw/about.template:15
-#: neahtta/configs/language_specific_rules/templates/itwewina/about.template:15
-#: neahtta/configs/language_specific_rules/templates/kidwinan/about.template:15
 #: neahtta/configs/language_specific_rules/templates/muter/about.template:15
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:15
 #: neahtta/configs/language_specific_rules/templates/saanih/about.template:14
@@ -417,10 +375,6 @@ msgstr "Валкс, кона чарькоди мезе вешнят"
 #: neahtta/configs/language_specific_rules/templates/about.template:15
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:16
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:15
-#: neahtta/configs/language_specific_rules/templates/gunaha/about.template:16
-#: neahtta/configs/language_specific_rules/templates/guusaaw/about.template:16
-#: neahtta/configs/language_specific_rules/templates/itwewina/about.template:16
-#: neahtta/configs/language_specific_rules/templates/kidwinan/about.template:16
 #: neahtta/configs/language_specific_rules/templates/muter/about.template:16
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:16
 #: neahtta/configs/language_specific_rules/templates/saanih/about.template:15
@@ -435,10 +389,6 @@ msgid "(... And is mobile-friendly!)"
 msgstr "... Ды седе башка сотовойнень шожда"
 
 #: neahtta/configs/language_specific_rules/templates/about.template:19
-#: neahtta/configs/language_specific_rules/templates/gunaha/about.template:20
-#: neahtta/configs/language_specific_rules/templates/guusaaw/about.template:20
-#: neahtta/configs/language_specific_rules/templates/itwewina/about.template:20
-#: neahtta/configs/language_specific_rules/templates/kidwinan/about.template:20
 #: neahtta/configs/language_specific_rules/templates/muter/about.template:20
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:22
 #: neahtta/configs/language_specific_rules/templates/valks/about.template:22
@@ -446,10 +396,6 @@ msgid "Free"
 msgstr "Весенень панжадо"
 
 #: neahtta/configs/language_specific_rules/templates/about.template:20
-#: neahtta/configs/language_specific_rules/templates/gunaha/about.template:21
-#: neahtta/configs/language_specific_rules/templates/guusaaw/about.template:21
-#: neahtta/configs/language_specific_rules/templates/itwewina/about.template:21
-#: neahtta/configs/language_specific_rules/templates/kidwinan/about.template:21
 #: neahtta/configs/language_specific_rules/templates/muter/about.template:21
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:23
 #: neahtta/configs/language_specific_rules/templates/valks/about.template:23
@@ -467,10 +413,6 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/about.template:26
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:24
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:27
-#: neahtta/configs/language_specific_rules/templates/gunaha/about.template:27
-#: neahtta/configs/language_specific_rules/templates/guusaaw/about.template:27
-#: neahtta/configs/language_specific_rules/templates/itwewina/about.template:27
-#: neahtta/configs/language_specific_rules/templates/kidwinan/about.template:27
 #: neahtta/configs/language_specific_rules/templates/muter/about.template:27
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:29
 #: neahtta/configs/language_specific_rules/templates/saanih/about.template:25
@@ -484,7 +426,6 @@ msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/about.template:27
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:28
-#: neahtta/configs/language_specific_rules/templates/guusaaw/about.template:28
 #: neahtta/configs/language_specific_rules/templates/muter/about.template:28
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:30
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:30
@@ -502,10 +443,6 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/about.template:35
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:31
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:36
-#: neahtta/configs/language_specific_rules/templates/gunaha/about.template:38
-#: neahtta/configs/language_specific_rules/templates/guusaaw/about.template:36
-#: neahtta/configs/language_specific_rules/templates/itwewina/about.template:38
-#: neahtta/configs/language_specific_rules/templates/kidwinan/about.template:38
 #: neahtta/configs/language_specific_rules/templates/muter/about.template:36
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:38
 #: neahtta/configs/language_specific_rules/templates/saanih/about.template:32
@@ -519,10 +456,6 @@ msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/about.template:36
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:32
-#: neahtta/configs/language_specific_rules/templates/gunaha/about.template:39
-#: neahtta/configs/language_specific_rules/templates/guusaaw/about.template:37
-#: neahtta/configs/language_specific_rules/templates/itwewina/about.template:39
-#: neahtta/configs/language_specific_rules/templates/kidwinan/about.template:39
 #: neahtta/configs/language_specific_rules/templates/muter/about.template:37
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:39
 #: neahtta/configs/language_specific_rules/templates/saanih/about.template:33
@@ -548,14 +481,6 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/about.template:49
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:45
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:50
-#: neahtta/configs/language_specific_rules/templates/gunaha/about.template:52
-#: neahtta/configs/language_specific_rules/templates/gunaha/sources.template:12
-#: neahtta/configs/language_specific_rules/templates/guusaaw/about.template:48
-#: neahtta/configs/language_specific_rules/templates/guusaaw/sources.template:12
-#: neahtta/configs/language_specific_rules/templates/itwewina/about.template:52
-#: neahtta/configs/language_specific_rules/templates/itwewina/sources.template:17
-#: neahtta/configs/language_specific_rules/templates/kidwinan/about.template:52
-#: neahtta/configs/language_specific_rules/templates/kidwinan/sources.template:12
 #: neahtta/configs/language_specific_rules/templates/muter/about.template:50
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:52
 #: neahtta/configs/language_specific_rules/templates/saanih/about.template:46
@@ -627,10 +552,6 @@ msgstr "Эрьва валкссонть апак стакалгавто валт
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:59
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:62
 #: neahtta/configs/language_specific_rules/templates/find_problem.template:3
-#: neahtta/configs/language_specific_rules/templates/gunaha/about.template:74
-#: neahtta/configs/language_specific_rules/templates/guusaaw/about.template:64
-#: neahtta/configs/language_specific_rules/templates/itwewina/about.template:74
-#: neahtta/configs/language_specific_rules/templates/kidwinan/about.template:74
 #: neahtta/configs/language_specific_rules/templates/muter/about.template:76
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:96
 #: neahtta/configs/language_specific_rules/templates/saanih/about.template:59
@@ -647,10 +568,6 @@ msgstr "Проблема муить?"
 #: neahtta/configs/language_specific_rules/templates/about.template:73
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:60
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:63
-#: neahtta/configs/language_specific_rules/templates/gunaha/about.template:75
-#: neahtta/configs/language_specific_rules/templates/guusaaw/about.template:65
-#: neahtta/configs/language_specific_rules/templates/itwewina/about.template:75
-#: neahtta/configs/language_specific_rules/templates/kidwinan/about.template:75
 #: neahtta/configs/language_specific_rules/templates/muter/about.template:77
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:97
 #: neahtta/configs/language_specific_rules/templates/saanih/about.template:60
@@ -679,12 +596,6 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:73
 #: neahtta/configs/language_specific_rules/templates/find_problem.template:8
 #: neahtta/configs/language_specific_rules/templates/find_problem.template:13
-#: neahtta/configs/language_specific_rules/templates/gunaha/about.template:80
-#: neahtta/configs/language_specific_rules/templates/gunaha/about.template:85
-#: neahtta/configs/language_specific_rules/templates/guusaaw/about.template:70
-#: neahtta/configs/language_specific_rules/templates/guusaaw/about.template:75
-#: neahtta/configs/language_specific_rules/templates/kidwinan/about.template:80
-#: neahtta/configs/language_specific_rules/templates/kidwinan/about.template:85
 #: neahtta/configs/language_specific_rules/templates/muter/about.template:82
 #: neahtta/configs/language_specific_rules/templates/muter/about.template:87
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:102
@@ -715,10 +626,6 @@ msgstr "Сёрмадт миненек"
 #: neahtta/configs/language_specific_rules/templates/about.template:88
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:75
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:78
-#: neahtta/configs/language_specific_rules/templates/gunaha/about.template:90
-#: neahtta/configs/language_specific_rules/templates/guusaaw/about.template:80
-#: neahtta/configs/language_specific_rules/templates/itwewina/about.template:78
-#: neahtta/configs/language_specific_rules/templates/kidwinan/about.template:90
 #: neahtta/configs/language_specific_rules/templates/muter/about.template:92
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:112
 #: neahtta/configs/language_specific_rules/templates/saanih/about.template:75
@@ -775,14 +682,6 @@ msgstr ""
 "Вы встретились с проблемой."
 
 #: neahtta/configs/language_specific_rules/templates/footer.template:9
-#: neahtta/configs/language_specific_rules/templates/gunaha/footer.template:13
-#: neahtta/configs/language_specific_rules/templates/gunaha/footer.template:35
-#: neahtta/configs/language_specific_rules/templates/guusaaw/footer.template:13
-#: neahtta/configs/language_specific_rules/templates/guusaaw/footer.template:35
-#: neahtta/configs/language_specific_rules/templates/itwewina/footer.template:17
-#: neahtta/configs/language_specific_rules/templates/itwewina/footer.template:39
-#: neahtta/configs/language_specific_rules/templates/kidwinan/footer.template:13
-#: neahtta/configs/language_specific_rules/templates/kidwinan/footer.template:35
 #: neahtta/configs/language_specific_rules/templates/sanit/footer.template:10
 #: neahtta/templates/default_footer.html:9
 msgid ""
@@ -807,11 +706,7 @@ msgid "Press TAB (&#8677;) or touch screen to select"
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:50
-#: neahtta/configs/language_specific_rules/templates/gunaha/index_search_form.template:57
-#: neahtta/configs/language_specific_rules/templates/guusaaw/index_search_form.template:19
 #: neahtta/configs/language_specific_rules/templates/index_search_form.template:47
-#: neahtta/configs/language_specific_rules/templates/itwewina/index_search_form.template:60
-#: neahtta/configs/language_specific_rules/templates/kidwinan/index_search_form.template:57
 #: neahtta/configs/language_specific_rules/templates/sanit/nob/index_search_form.template:51
 #: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:48
 #: neahtta/configs/language_specific_rules/templates/sanit/spa/index_search_form.template:47
@@ -823,21 +718,9 @@ msgstr "вешнема вал"
 #: neahtta/configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:55
 #: neahtta/configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:74
 #: neahtta/configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:78
-#: neahtta/configs/language_specific_rules/templates/gunaha/index_search_form.template:62
-#: neahtta/configs/language_specific_rules/templates/gunaha/index_search_form.template:81
-#: neahtta/configs/language_specific_rules/templates/gunaha/index_search_form.template:85
-#: neahtta/configs/language_specific_rules/templates/guusaaw/index_search_form.template:24
-#: neahtta/configs/language_specific_rules/templates/guusaaw/index_search_form.template:40
 #: neahtta/configs/language_specific_rules/templates/index_search_form.template:52
 #: neahtta/configs/language_specific_rules/templates/index_search_form.template:71
 #: neahtta/configs/language_specific_rules/templates/index_search_form.template:75
-#: neahtta/configs/language_specific_rules/templates/itwewina/detail_search_form.template:78
-#: neahtta/configs/language_specific_rules/templates/itwewina/index_search_form.template:65
-#: neahtta/configs/language_specific_rules/templates/itwewina/index_search_form.template:84
-#: neahtta/configs/language_specific_rules/templates/itwewina/index_search_form.template:88
-#: neahtta/configs/language_specific_rules/templates/kidwinan/index_search_form.template:62
-#: neahtta/configs/language_specific_rules/templates/kidwinan/index_search_form.template:81
-#: neahtta/configs/language_specific_rules/templates/kidwinan/index_search_form.template:85
 #: neahtta/configs/language_specific_rules/templates/sanit/nob/index_search_form.template:56
 #: neahtta/configs/language_specific_rules/templates/sanit/nob/index_search_form.template:75
 #: neahtta/configs/language_specific_rules/templates/sanit/nob/index_search_form.template:79
@@ -864,15 +747,8 @@ msgstr "Вешнемс"
 
 #: neahtta/configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:67
 #: neahtta/configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:88
-#: neahtta/configs/language_specific_rules/templates/gunaha/index_search_form.template:74
-#: neahtta/configs/language_specific_rules/templates/gunaha/index_search_form.template:95
-#: neahtta/configs/language_specific_rules/templates/guusaaw/index_search_form.template:35
 #: neahtta/configs/language_specific_rules/templates/index_search_form.template:64
 #: neahtta/configs/language_specific_rules/templates/index_search_form.template:85
-#: neahtta/configs/language_specific_rules/templates/itwewina/index_search_form.template:77
-#: neahtta/configs/language_specific_rules/templates/itwewina/index_search_form.template:98
-#: neahtta/configs/language_specific_rules/templates/kidwinan/index_search_form.template:74
-#: neahtta/configs/language_specific_rules/templates/kidwinan/index_search_form.template:95
 #: neahtta/configs/language_specific_rules/templates/sanit/nob/index_search_form.template:68
 #: neahtta/configs/language_specific_rules/templates/sanit/nob/index_search_form.template:89
 #: neahtta/configs/language_specific_rules/templates/sanit/sme/index_search_form.template:65
@@ -959,128 +835,6 @@ msgstr ""
 msgid "fara, gå"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/gunaha/about.template:28
-#: neahtta/configs/language_specific_rules/templates/itwewina/about.template:28
-#: neahtta/configs/language_specific_rules/templates/kidwinan/about.template:28
-msgid ""
-"Everything here is based on open-source tools. Do you\n"
-"                have an idea for an app or research project that needs\n"
-"                linguistic resources? Visit the <a class=\"blue\"\n"
-"                    href=\"http://altlab.artsrn.ualberta.ca/\">ALTLab</a>"
-" and\n"
-"                    <a class=\"blue\"\n"
-"                    href=\"http://giellatekno.uit.no/\">Giellatekno</a>\n"
-"                websites for information on how to get access to lexicon\n"
-"                files, and morphological and syntactic analyzers."
-msgstr ""
-
-#: neahtta/configs/language_specific_rules/templates/gunaha/about.template:45
-#: neahtta/configs/language_specific_rules/templates/guusaaw/about.template:41
-#: neahtta/configs/language_specific_rules/templates/itwewina/about.template:45
-#: neahtta/configs/language_specific_rules/templates/kidwinan/about.template:45
-msgid "s/he speaks Cree"
-msgstr "сон корты креекс"
-
-#: neahtta/configs/language_specific_rules/templates/gunaha/about.template:59
-#: neahtta/configs/language_specific_rules/templates/itwewina/about.template:59
-#: neahtta/configs/language_specific_rules/templates/kidwinan/about.template:59
-msgid "crk ↔ eng"
-msgstr ""
-
-#: neahtta/configs/language_specific_rules/templates/gunaha/about.template:61
-#: neahtta/configs/language_specific_rules/templates/itwewina/about.template:61
-#: neahtta/configs/language_specific_rules/templates/kidwinan/about.template:61
-msgid ""
-"Dictionaries for Plains Cree and English are based\n"
-"                on the lexical materials and scientific research in <a "
-"href=\"http://uofrpress.ca/publications/cree-words\"><em>nêhiyawêwin : "
-"itwêwina / Cree: Words</em></a>.\n"
-"                 Compiled by Arok Wolvengrey.  Regina: Canadian Plains "
-"Research Center, 2001."
-msgstr ""
-
-#: neahtta/configs/language_specific_rules/templates/gunaha/about.template:69
-#: neahtta/configs/language_specific_rules/templates/itwewina/about.template:69
-#: neahtta/configs/language_specific_rules/templates/kidwinan/about.template:69
-msgid ""
-"The dictionary software behind itwêwina is Neahttadigisánit, originally "
-"created for North Saami and South Saami at the University of Tromsø. New "
-"languages always present new challenges for the software, so be sure to "
-"get in touch with us if you have questions or comments."
-msgstr ""
-
-#: neahtta/configs/language_specific_rules/templates/gunaha/about.template:99
-#: neahtta/configs/language_specific_rules/templates/guusaaw/about.template:89
-#: neahtta/configs/language_specific_rules/templates/itwewina/about.template:87
-#: neahtta/configs/language_specific_rules/templates/kidwinan/about.template:99
-#: neahtta/configs/language_specific_rules/templates/muter/about.template:101
-#: neahtta/configs/language_specific_rules/templates/sonad/about.template:117
-#: neahtta/configs/language_specific_rules/templates/vada/about.template:105
-#: neahtta/configs/language_specific_rules/templates/valks/about.template:112
-msgid "More to come..."
-msgstr "Седе товгак ули мезе од..."
-
-#: neahtta/configs/language_specific_rules/templates/gunaha/index_search_form.template:50
-#: neahtta/configs/language_specific_rules/templates/guusaaw/index_search_form.template:14
-#: neahtta/configs/language_specific_rules/templates/itwewina/index_search_form.template:53
-#: neahtta/configs/language_specific_rules/templates/kidwinan/index_search_form.template:50
-msgid "Select a word, and press Tab"
-msgstr "Кочкак вал, ды лепштик «Tab»-енть"
-
-#: neahtta/configs/language_specific_rules/templates/gunaha/index_search_form.template:102
-#: neahtta/configs/language_specific_rules/templates/guusaaw/index_search_form.template:47
-#: neahtta/configs/language_specific_rules/templates/itwewina/index_search_form.template:105
-#: neahtta/configs/language_specific_rules/templates/kidwinan/index_search_form.template:102
-msgid "Previous:"
-msgstr ""
-
-#: neahtta/configs/language_specific_rules/templates/gunaha/index_search_form.template:106
-#: neahtta/configs/language_specific_rules/templates/guusaaw/index_search_form.template:51
-#: neahtta/configs/language_specific_rules/templates/itwewina/index_search_form.template:109
-#: neahtta/configs/language_specific_rules/templates/kidwinan/index_search_form.template:106
-msgid "clear"
-msgstr ""
-
-#: neahtta/configs/language_specific_rules/templates/gunaha/sources.template:6
-#: neahtta/configs/language_specific_rules/templates/guusaaw/sources.template:6
-#: neahtta/configs/language_specific_rules/templates/itwewina/sources.template:11
-#: neahtta/configs/language_specific_rules/templates/kidwinan/sources.template:6
-msgid "Sources and References"
-msgstr ""
-
-#: neahtta/configs/language_specific_rules/templates/guusaaw/about.template:56
-msgid ""
-"The dictionary software behind pîkiskwêwina is Neahttadigisánit, "
-"originally created for North Saami and South Saami at the University of "
-"Tromsø. New languages always present new challenges for the software, so "
-"be sure to get in touch with us if you have questions or comments."
-msgstr ""
-
-#: neahtta/configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:61
-msgid "Swap"
-msgstr "Полавтомс"
-
-#: neahtta/configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:76
-#: neahtta/configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:149
-#: neahtta/templates/index.html:74 neahtta/templates/index.html:162
-#: neahtta/templates/word_detail.html:67 neahtta/templates/word_detail.html:108
-#: neahtta/views/reader.py:218
-msgid " is a possible form of ... "
-msgstr "валпарцунось маштови саемс истямо валсто ..."
-
-#: neahtta/configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:93
-#: neahtta/configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:115
-#: neahtta/templates/index.html:97 neahtta/templates/index.html:124
-#, fuzzy, python-format
-msgid "Word <span lang=\"%(_from)s\">%(input)s</span> not found."
-msgstr "Валтнэ %(input)s эзть муеве."
-
-#: neahtta/configs/language_specific_rules/templates/itwewina/variant_search_substring_match.template:101
-#: neahtta/templates/index.html:105
-#, python-format
-msgid "Other analyses for <em>%(user_input)s</em> without a translation."
-msgstr ""
-
 #: neahtta/configs/language_specific_rules/templates/kyv/examples.template:76
 msgid "saying"
 msgstr ""
@@ -1134,6 +888,13 @@ msgid ""
 "from\n"
 "                the Kone Foundation."
 msgstr ""
+
+#: neahtta/configs/language_specific_rules/templates/muter/about.template:101
+#: neahtta/configs/language_specific_rules/templates/sonad/about.template:117
+#: neahtta/configs/language_specific_rules/templates/vada/about.template:105
+#: neahtta/configs/language_specific_rules/templates/valks/about.template:112
+msgid "More to come..."
+msgstr "Седе товгак ули мезе од..."
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:59
 msgid "sms ↔ xxx"
@@ -1993,6 +1754,22 @@ msgstr ""
 msgid "Neahttadigisánit"
 msgstr "Ловныцянь Neahttadigisánit"
 
+#: neahtta/templates/index.html:74 neahtta/templates/index.html:162
+#: neahtta/templates/word_detail.html:67 neahtta/templates/word_detail.html:108
+#: neahtta/views/reader.py:218
+msgid " is a possible form of ... "
+msgstr "валпарцунось маштови саемс истямо валсто ..."
+
+#: neahtta/templates/index.html:97 neahtta/templates/index.html:124
+#, fuzzy, python-format
+msgid "Word <span lang=\"%(_from)s\">%(input)s</span> not found."
+msgstr "Валтнэ %(input)s эзть муеве."
+
+#: neahtta/templates/index.html:105
+#, python-format
+msgid "Other analyses for <em>%(user_input)s</em> without a translation."
+msgstr ""
+
 #: neahtta/templates/index.html:152
 msgid ""
 "The corpus and full paradigm generator will be temporarily unavailable "
@@ -2141,7 +1918,7 @@ msgstr ""
 
 #: neahtta/templates/privacy_notice.html:21
 msgid ""
-"Neahttadigisanit does not store any personally identifiable information. "
+"Neahttadigisánit does not store any personally identifiable information. "
 "Local storage is used to remember your preferred TTS voice."
 msgstr ""
 
@@ -2346,7 +2123,7 @@ msgstr "валонь форманть маштови саемс истямо в�
 #~ msgstr "Тексттнэ"
 
 #~ msgid "Swap"
-#~ msgstr "Полавтыть"
+#~ msgstr "Полавтомс"
 
 #~ msgid "Definition not found for:"
 #~ msgstr "Смусть эзь муеве те валонтень"
@@ -2481,7 +2258,7 @@ msgstr "валонь форманть маштови саемс истямо в�
 #~ msgstr "Седе тов лиси..."
 
 #~ msgid "s/he speaks Cree"
-#~ msgstr "сон корты крикс"
+#~ msgstr "сон корты креекс"
 
 #~ msgid "Find a problem?"
 #~ msgstr "Проблема муить?"
@@ -2490,7 +2267,7 @@ msgstr "валонь форманть маштови саемс истямо в�
 #~ msgstr "Сюлмавт мартонок"
 
 #~ msgid "crk ↔ eng"
-#~ msgstr "кринь кель ↔ англань кель"
+#~ msgstr ""
 
 #~ msgid "mennä, lähteä, kulkea"
 #~ msgstr "молемс, ютамс"
@@ -3239,4 +3016,95 @@ msgstr "валонь форманть маштови саемс истямо в�
 
 #~ msgid "In both directions there are about 11,000 entries."
 #~ msgstr "Эрьва валкссонть апак стакалгавто валтнэде 11.000 малава."
+
+#~ msgid "Plains Cree"
+#~ msgstr "Степень кринь кель"
+
+#~ msgid "Plains Cree (tolerant)"
+#~ msgstr ""
+
+#~ msgid "Tsuut'ina"
+#~ msgstr ""
+
+#~ msgid "Odawa"
+#~ msgstr "Одавань кель"
+
+#~ msgid "Cherokee"
+#~ msgstr "Черокинь кель"
+
+#~ msgid "Northern Haida"
+#~ msgstr "Пелевеёнксонь Хаида"
+
+#~ msgid "Northern Haida (tolerant)"
+#~ msgstr "Пелевеёнксонь Хаида"
+
+#~ msgid "Haida"
+#~ msgstr "Хайда"
+
+#~ msgid ""
+#~ "Everything here is based on open-source tools. Do you\n"
+#~ "                have an idea for an "
+#~ "app or research project that needs\n"
+#~ ""
+#~ "                linguistic resources? Visit the <a class=\"blue\"\n"
+#~ "                    "
+#~ "href=\"http://altlab.artsrn.ualberta.ca/\">ALTLab</a> and\n"
+#~ ""
+#~ "                    <a class=\"blue\"\n"
+#~ "                    "
+#~ "href=\"http://giellatekno.uit.no/\">Giellatekno</a>\n"
+#~ "                websites for information on"
+#~ " how to get access to lexicon\n"
+#~ "                files, and morphological and syntactic analyzers."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Dictionaries for Plains Cree and English are based\n"
+#~ "                on the lexical materials "
+#~ "and scientific research in <a "
+#~ "href=\"http://uofrpress.ca/publications/cree-"
+#~ "words\"><em>nêhiyawêwin : itwêwina / Cree: "
+#~ "Words</em></a>.\n"
+#~ "                 Compiled by Arok Wolvengrey."
+#~ "  Regina: Canadian Plains Research Center,"
+#~ " 2001."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The dictionary software behind itwêwina "
+#~ "is Neahttadigisánit, originally created for"
+#~ " North Saami and South Saami at "
+#~ "the University of Tromsø. New languages"
+#~ " always present new challenges for "
+#~ "the software, so be sure to get"
+#~ " in touch with us if you have"
+#~ " questions or comments."
+#~ msgstr ""
+
+#~ msgid "Select a word, and press Tab"
+#~ msgstr "Кочкак вал, ды лепштик «Tab»-енть"
+
+#~ msgid "Previous:"
+#~ msgstr ""
+
+#~ msgid "clear"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The dictionary software behind pîkiskwêwina"
+#~ " is Neahttadigisánit, originally created "
+#~ "for North Saami and South Saami at"
+#~ " the University of Tromsø. New "
+#~ "languages always present new challenges "
+#~ "for the software, so be sure to"
+#~ " get in touch with us if you"
+#~ " have questions or comments."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Neahttadigisanit does not store any "
+#~ "personally identifiable information. Local "
+#~ "storage is used to remember your "
+#~ "preferred TTS voice."
+#~ msgstr ""
 
