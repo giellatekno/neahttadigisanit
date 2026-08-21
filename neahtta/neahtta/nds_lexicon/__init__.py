@@ -3,11 +3,9 @@ from .lexicon import (
     lexicon_overrides,
     LexiconOverrides,
     autocomplete_filters,
-    search_types,
     XMLDict,
 )
 
-from .lookups import SearchTypes
 from .custom_lookups import CustomLookupType
 
 from .formatters import *
@@ -22,6 +20,5 @@ __all__ = [
     "lexicon_overrides",
     "autocomplete_filters",
     "DetailedFormat",
-    "search_types",
     "CustomLookupType",
 ]

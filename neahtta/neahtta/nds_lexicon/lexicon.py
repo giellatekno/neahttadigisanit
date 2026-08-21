@@ -2,11 +2,6 @@ from lxml import etree
 import sys
 from hashlib import blake2b
 
-from .lookups import SearchTypes
-
-""" Our project-wide search_types repository. """
-search_types = SearchTypes({})
-
 DEFAULT_XPATHS = {
     "pos": "lg/l/@pos",
 }
@@ -271,7 +266,6 @@ PARSED_TREES = {}
 regexpNS = "http://exslt.org/regular-expressions"
 
 
-# @search_types.add_custom_lookup_type('regular')
 class XMLDict:
     """XML dictionary class. Initiate with a file path or an already parsed
     tree, exposes methods for searching in XML.
@@ -566,14 +560,6 @@ class Lexicon:
         lexicon may have multiple input variants), these will not be
         loaded into memory separately.
         """
-
-        # Initialize variant lookup types
-        lookup_types = {
-            "regular": XMLDict,
-            "test_data": XMLDict,
-        }
-
-        lookup_types.update(search_types.search_types)
 
         language_pairs = {}
         for langpair, path in settings.dictionaries.items():
