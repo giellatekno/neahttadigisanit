@@ -6,7 +6,7 @@ from .lexicon import (
     XMLDict,
 )
 
-from .custom_lookups import CustomLookupType
+# from .custom_lookups import CustomLookupType
 
 from .formatters import *
 
@@ -20,5 +20,5 @@ __all__ = [
     "lexicon_overrides",
     "autocomplete_filters",
     "DetailedFormat",
-    "CustomLookupType",
+#    "CustomLookupType",
 ]
