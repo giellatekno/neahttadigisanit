@@ -56,7 +56,7 @@
                         {% else %}
                             <dt lang="{{ _from }}">
                                 {{ example|xpath('./x')|first|text }}
-                                {% if _from == "sme" %}
+                                {% if _from == "sme" or _from == "SoMe"  %}
                                     {{ tts_button(x, _from) }}
                                 {% endif %}
                             </dt>

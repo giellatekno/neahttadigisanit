@@ -314,7 +314,7 @@
                         <td lang="{{ _from }}">
                             {% for form in present_forms %}
                                 {{ form.form }}
-                                {% if _from == "sme" %}
+                                {% if _from == "sme" or _from == "SoMe" %}
                                     {{ tts_button(form.form, _from) }}
                                 {% endif %}
                                 {% if not loop.last %}<br />{% endif %}
@@ -329,7 +329,7 @@
                         <td lang="{{ _from }}">
                             {% for form in preterite_forms %}
                                 {{ form.form }}
-                                {% if _from == "sme" %}
+                                {% if _from == "sme" or _from == "SoMe"  %}
                                     {{ tts_button(form.form, _from) }}
                                 {% endif %}
                                 {% if not loop.last %}<br />{% endif %}
@@ -344,7 +344,7 @@
                         <td lang="{{ _from }}">
                             {% for form in conditional_forms %}
                                 {{ form.form }}
-                                {% if _from == "sme" %}
+                                {% if _from == "sme" or _from == "SoMe"  %}
                                     {{ tts_button(form.form, _from) }}
                                 {% endif %}
                                 {% if not loop.last %}<br />{% endif %}
@@ -399,7 +399,7 @@
                     {% for sg in sgs %}
                         {% set _sg = sg.form %}
                         {{ _sg|safe }}
-                        {% if _from == "sme" %}
+                        {% if _from == "sme" or _from == "SoMe"  %}
                             {{ tts_button(_sg, _from) }}
                         {% endif %}
                         {% if not loop.last %}<br />{% endif %}
@@ -414,7 +414,7 @@
                     {% for pl in pls %}
                         {% set _pl = pl.form %}
                         {{ _pl|safe }}
-                        {% if _from == "sme" %}
+                        {% if _from == "sme" or _from == "SoMe"  %}
                             {{ tts_button(_pl, _from) }}
                         {% endif %}
                         {% if not loop.last %}<br />{% endif %}

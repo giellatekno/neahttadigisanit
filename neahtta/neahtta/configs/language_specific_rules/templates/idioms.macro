@@ -3,7 +3,7 @@
 {% macro idioms(lexicon_entry) %}
     {%- set idioms = lexicon_entry|xpath('ig') %}
     {% set has_tts_to = _to == "sme" or _to == "sma" %}
-    {% set has_tts_from = _from == "sme" or _from == "sma" %}
+    {% set has_tts_from = _from == "sme"  or _from == "SoMe" or _from == "sma" %}
 
     {% if idioms %}
         <div style="margin-top: 1em;">

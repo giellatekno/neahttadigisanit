@@ -106,7 +106,7 @@
                             </a>
                         {% endif %}
 
-                        {% if _from == "sme" %}
+                        {% if _from == "sme" or _from == "SoMe"  %}
                             {{ tts_button(lemma, _from) }}
                         {% endif %}
                     {% endif %}
@@ -151,7 +151,7 @@
                                 </a>
                             {% endif %}
 
-                            {% if _from == "sme" %}
+                            {% if _from == "sme" or _from == "SoMe"  %}
                                 {{ tts_button(lemma, _from) }}
                             {% endif %}
 
@@ -194,7 +194,7 @@
                                 {{- rendered_templates.entry_text|safe -}}
                             </a>
 
-                            {% if _from == "sme" %}
+                            {% if _from == "sme" or _from == "SoMe"  %}
                                 {{ tts_button(lemma, _from) }}
                             {% endif %}
                         {% endif %}

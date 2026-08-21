@@ -1,4 +1,7 @@
 {% macro tts_button(text, lang) %}
+    {% if lang == "SoMe" %}
+        {% set lang = "sme" %}
+    {% endif %}
     <button
         onclick="play_tts(event)"
         data-tts='{{ text }}'
