@@ -1187,7 +1187,6 @@ msgid ""
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:56
-#, fuzzy
 msgid ""
 "North Sámi → Norwegian builds on Nils Jernsletten's dictionary "
 "<em>Álgosátnegirji</em> (4322 words), but now it contains 33,000 entries,"
@@ -1197,10 +1196,10 @@ msgid ""
 msgstr ""
 "Davvisámi → dáru lea ráhkaduvvon Nils Jernslettena "
 "<em>Álgosátnegirji</em> vuođul (4322 vuođđosáni), muhto dál sátnegirji "
-"sisttisdoallá 30,000 ohcansáni, ja dasa lassin 6000 báikenama. Dáru → "
+"sisttisdoallá 33,000 ohcansáni, ja dasa lassin 6000 báikenama. Dáru → "
 "davvisámi lea vuođđuduvvon Davvisámi → dáru sátnegirjái, muhto das leat "
 "dušše 600 báikenama, muhto leat lasihan dábálaš dáru sániid. Sátnegirjjis"
-" leat oktiibuot 26,000 dáru ohcansáni. "
+" leat oktiibuot 27,000 dáru ohcansáni. "
 
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:57
 msgid ""
@@ -1752,7 +1751,6 @@ msgstr ""
 "ruoktosiidui. Deaddil \"Lasit\" (\"Add\")."
 
 #: neahtta/templates/add_to_homescreen.html:37
-#, fuzzy
 msgid "Samsung Internet"
 msgstr "Samsung Internet"
 

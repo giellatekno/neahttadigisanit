@@ -626,7 +626,6 @@ msgid " (Not found in our corpus)"
 msgstr " (ei löydy meidän tekstikokoelmasta)"
 
 #: neahtta/configs/language_specific_rules/templates/analyses.template:94
-#, fuzzy
 msgid " (No corpus available)"
 msgstr " (Tälle kielelle ei ole tekstikokoelma)"
 

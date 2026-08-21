@@ -76,9 +76,8 @@ msgid "North Sámi"
 msgstr "Pohjoissaame"
 
 #: neahtta/configs/language_names.yaml:27
-#, fuzzy
 msgid "North Sámi (tolerant)"
-msgstr "Pohjoissaame (#SoMe)"
+msgstr "Pohjoissaame (suvaitsevainen)"
 
 #: neahtta/configs/language_names.yaml:28
 #: neahtta/configs/language_names.yaml:105
@@ -108,9 +107,8 @@ msgid "Komi"
 msgstr "Komi"
 
 #: neahtta/configs/language_names.yaml:39
-#, fuzzy
 msgid "Komi (tolerant)"
-msgstr "Suvaitsevainen"
+msgstr "Komi (suvaitsevainen)"
 
 #: neahtta/configs/language_names.yaml:40
 msgid "Udmurt"
@@ -196,9 +194,8 @@ msgid "Nenets"
 msgstr "Nenetsi"
 
 #: neahtta/configs/language_names.yaml:72
-#, fuzzy
 msgid "Northern Mansi"
-msgstr "Pohjoishaida"
+msgstr "Pohjoismansi"
 
 #: neahtta/configs/language_names.yaml:73
 msgid "Skolt Sami"
@@ -210,9 +207,8 @@ msgstr ""
 
 #: neahtta/configs/language_names.yaml:77
 #: neahtta/templates/more_dictionaries.html:34
-#, fuzzy
 msgid "Kildin Saami"
-msgstr "Koltansaame"
+msgstr "Kiltininsaame"
 
 #: neahtta/configs/language_names.yaml:80
 msgid "Kildin Saami (tolerant)"
@@ -322,9 +318,8 @@ msgid "(<em>а̄е̄ӣо̄ӯӎӊӈҏ</em>)"
 msgstr ""
 
 #: neahtta/configs/sanj.config.yaml:122 neahtta/configs/sanj.config.yaml.in:113
-#, fuzzy
 msgid "(incl. <em>аеиоумннр</em>)"
-msgstr "(myös <em>ио</em>)"
+msgstr "(myös <em>аеиоумннр</em>)"
 
 #: neahtta/configs/sonad.config.yaml.in:132
 msgid "mobile friendly"
@@ -681,7 +676,6 @@ msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/find_problem.template:4
 #: neahtta/configs/language_specific_rules/templates/sanat/find_problem.template:4
-#, fuzzy
 msgid ""
 "If you find any bugs, please get in touch with us. Describe the problem,\n"
 "          and tell us what web browser or mobile phone you were using, or"
@@ -816,7 +810,6 @@ msgid "How to quote the dictionary"
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:25
-#, fuzzy
 msgid ""
 "Everything here is based on open-source tools and free to use.\n"
 "\t    Visit <a class=\"blue\" "
@@ -980,9 +973,8 @@ msgid ""
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:69
-#, fuzzy
 msgid "sms ↔ fin"
-msgstr "Pohjoissaame ↔ suomi"
+msgstr "koltansaame ↔ suomi"
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:70
 msgid ""
@@ -995,7 +987,6 @@ msgid "Satu & Jouni Moshnikoff sanasto"
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:72
-#, fuzzy
 msgid "Dictionaries:"
 msgstr "Sanakirjoi"
 

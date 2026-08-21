@@ -1180,7 +1180,6 @@ msgstr ""
 "href=\"http://sonad.oahpa.no/\">Sonad</a>, päivitä kirjamerkkiäsi."
 
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:56
-#, fuzzy
 msgid ""
 "North Sámi → Norwegian builds on Nils Jernsletten's dictionary "
 "<em>Álgosátnegirji</em> (4322 words), but now it contains 33,000 entries,"
@@ -1190,9 +1189,9 @@ msgid ""
 msgstr ""
 "Pohjoissaame → norja perustuu Nils Jernslettenin sanakirjaan "
 "<em>Álgosátnegirji</em> (4322 sanaa), mutta sanavarastossa on nyt n. "
-"30,000 sanaa ynnä 6000 paikannimeä. Norja → pohjoissaame-sanakirja "
+"33 000 sanaa ynnä 6000 paikannimeä. Norja → pohjoissaame-sanakirja "
 "perustuu pohjoissaame-norja-sanakirjaan, mutta me olemme lisänneet paljon"
-" käytettyjä norjankielisiä sanoja.  Sanakirjassa on nyt n. 26000 "
+" käytettyjä norjankielisiä sanoja.  Sanakirjassa on nyt n. 27 000 "
 "norjankielistä hakusanaa."
 
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:57
