@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-14 11:59+0300\n"
+"POT-Creation-Date: 2026-08-21 09:14+0300\n"
 "PO-Revision-Date: 2013-11-07 11:33+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language: ru\n"
@@ -638,9 +638,9 @@ msgstr " (Не найден в нашем корпусе)"
 msgid " (No corpus available)"
 msgstr " (Нет корпус для этого языка)"
 
-#: neahtta/configs/language_specific_rules/templates/bahkogirrje/sje/detail_entry.template:61
-#: neahtta/configs/language_specific_rules/templates/detail_entry.template:54
-#: neahtta/configs/language_specific_rules/templates/saan/sms/detail_entry.template:61
+#: neahtta/configs/language_specific_rules/templates/bahkogirrje/sje/detail_entry.template:57
+#: neahtta/configs/language_specific_rules/templates/detail_entry.template:50
+#: neahtta/configs/language_specific_rules/templates/saan/sms/detail_entry.template:57
 msgid "Paradigm"
 msgstr "Таблица формообразования"
 
@@ -1787,7 +1787,7 @@ msgid "Neahttadigisánit"
 msgstr "Neahttadigisánit программа чтения"
 
 #: neahtta/templates/index.html:74 neahtta/templates/index.html:162
-#: neahtta/templates/word_detail.html:67 neahtta/templates/word_detail.html:108
+#: neahtta/templates/word_detail.html:67 neahtta/templates/word_detail.html:99
 #: neahtta/views/reader.py:218
 msgid " is a possible form of ... "
 msgstr " возможная форма слова ..."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-14 11:59+0300\n"
+"POT-Creation-Date: 2026-08-21 09:14+0300\n"
 "PO-Revision-Date: 2017-12-04 13:52+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: smn\n"
@@ -630,9 +630,9 @@ msgstr " (ei löydy meidän tekstikokoelmasta)"
 msgid " (No corpus available)"
 msgstr " (Tälle kielelle ei ole tekstikokoelma)"
 
-#: neahtta/configs/language_specific_rules/templates/bahkogirrje/sje/detail_entry.template:61
-#: neahtta/configs/language_specific_rules/templates/detail_entry.template:54
-#: neahtta/configs/language_specific_rules/templates/saan/sms/detail_entry.template:61
+#: neahtta/configs/language_specific_rules/templates/bahkogirrje/sje/detail_entry.template:57
+#: neahtta/configs/language_specific_rules/templates/detail_entry.template:50
+#: neahtta/configs/language_specific_rules/templates/saan/sms/detail_entry.template:57
 msgid "Paradigm"
 msgstr ""
 
@@ -1705,7 +1705,7 @@ msgid "Neahttadigisánit"
 msgstr ""
 
 #: neahtta/templates/index.html:74 neahtta/templates/index.html:162
-#: neahtta/templates/word_detail.html:67 neahtta/templates/word_detail.html:108
+#: neahtta/templates/word_detail.html:67 neahtta/templates/word_detail.html:99
 #: neahtta/views/reader.py:218
 msgid " is a possible form of ... "
 msgstr ""
