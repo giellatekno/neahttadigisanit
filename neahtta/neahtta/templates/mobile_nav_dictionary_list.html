@@ -31,7 +31,7 @@
     {% for l_iso_pair, l_pair_options in language_pairs.items() %}
         <li class="visible-thin visible-mid hidden-desktop hidden-tablet {%- if l_iso_pair[0] == _from and l_iso_pair[1] == _to %} active{% endif -%}">
             <a href="{{ url_for('.canonical_root_search_pair', _from=l_iso_pair[0], _to=l_iso_pair[1]) }}">
-                <span>{{ l_iso_pair[0]|iso_to_i18n }} {% if l_pair_options.search_variants %}({% trans %}Word search{% endtrans %}) {% endif %} → {{ l_iso_pair[1]|iso_to_i18n }}</span>
+                <span>{{ l_iso_pair[0]|iso_to_i18n }} → {{ l_iso_pair[1]|iso_to_i18n }}</span>
             </a></li>
             {% if l_pair_options.input_variants %}
                 {% for l_variant in l_pair_options.input_variants %}
@@ -39,17 +39,6 @@
                     <li class="visible-thin visible-mid hidden-desktop hidden-tablet {%- if l_variant.short_name == _from and l_iso_pair[1] == _to %} active{% endif -%}">
                     <a href="{{ url_for('.canonical_root_search_pair', _from=l_variant.short_name, _to=l_iso_pair[1]) }}">
                         <span>{{ l_variant.short_name|iso_to_i18n }} ({{ gettext(l_variant.description) }}) → {{ l_iso_pair[1]|iso_to_i18n }}</span>
-                    </a></li>
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
-
-            {% if l_pair_options.search_variants %}
-                {% for l_variant in l_pair_options.search_variants %}
-                    {% if l_iso_pair != (l_variant.short_name, l_iso_pair[1]) %}
-                    <li class="visible-thin visible-mid hidden-desktop hidden-tablet {%- if l_variant.short_name == _from and l_iso_pair[1] == _to %} active{% endif -%}">
-                    <a href="{{ url_for('.language_pair_variant_search', _from=l_iso_pair[0], _to=l_iso_pair[1], variant_type=l_variant.type) }}">
-                        <span>{{ l_iso_pair[0]|iso_to_i18n }} ({{ gettext(l_variant.description)|safe }}) &rarr; {{ l_iso_pair[1]|iso_to_i18n }}</span>
                     </a></li>
                     {% endif %}
                 {% endfor %}

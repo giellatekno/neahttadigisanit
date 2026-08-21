@@ -7,7 +7,6 @@ from .search import (
     LanguagePairSearchView,
     ReferredLanguagePairSearchView,
 )
-from .variant_search import LanguagePairSearchVariantView
 
 from .autocomplete import autocomplete
 from .locale import set_locale
@@ -55,12 +54,6 @@ blueprint.add_url_rule(
     "/<_from>/<_to>/ref/",
     view_func=ReferredLanguagePairSearchView.as_view("referred_language_pair_search"),
     endpoint="search_pair_referred_search",
-)
-
-blueprint.add_url_rule(
-    "/v/<_from>/<_to>/<variant_type>/",
-    view_func=LanguagePairSearchVariantView.as_view("language_pair_variant_search"),
-    endpoint="language_pair_variant_search",
 )
 
 blueprint.add_url_rule(

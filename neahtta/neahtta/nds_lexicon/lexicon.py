@@ -591,19 +591,6 @@ class Lexicon:
             d = XMLDict(filename=filename, options=options)
             alternate_dicts[langpair] = d
 
-        # run through variant searches for overrides
-        variant_searches = {}
-
-        for k, variants in settings.search_variants.items():
-            pair_variants = {}
-            for var in variants:
-                variant_type = var.get("type", "regular")
-                cls = lookup_types.get(variant_type)
-                variant_search = cls(filename=var.get("path"))
-                pair_variants[variant_type] = variant_search
-            variant_searches[k] = pair_variants
-
-        self.variant_searches = variant_searches
         langs_and_alternates = {}
         langs_and_alternates.update(language_pairs)
         langs_and_alternates.update(alternate_dicts)
@@ -611,11 +598,6 @@ class Lexicon:
         self.lookup = lexicon_overrides.process_postlookups(
             langs_and_alternates,
             lexicon_overrides.process_prelookups(langs_and_alternates, self.lookup),
-        )
-
-        self.variant_lookup = lexicon_overrides.process_postlookups(
-            variant_searches,
-            lexicon_overrides.process_prelookups(variant_searches, self.variant_lookup),
         )
 
         self.language_pairs = langs_and_alternates
@@ -776,70 +758,6 @@ class Lexicon:
             result = list(_format(result))
 
         assert isinstance(result, list)
-        return result
-
-    def variant_lookup(
-        self,
-        _from,
-        _to,
-        search_type,
-        lemma,
-        pos=False,
-        pos_type=False,
-        _format=False,
-        lemma_attrs=False,
-        user_input=False,
-    ):
-        """Perform a lexicon lookup. Depending on the keyword
-        arguments, several types of lookups may be performed.
-
-          * term lookup -
-            `lexicon.lookup(source_lang, target_lang, type, term)`
-
-          TODO: these
-
-          * lemma lookup + POS -
-            `lexicon.lookup(source_lang, target_lang, lemma, pos=POS)`
-
-             This lookup uses the lemma, and the `@pos` attribute on the <l /> node.
-
-          * lemma lookup + POS + Type -
-             `lexicon.lookup(source_lang, target_lang, lemma, pos=POS)`
-
-             This lookup uses the lemma, the `@pos` attribute on the <l /> node,
-             and the `@type` attribute.
-
-          * lemma lookup + other attributes
-            `lexicon.lookup(source_lang, target_lang, lemma, lemma_attrs={'attr_1': asdf, 'attr_2': asdf}`
-
-            A dictionary of arguments may be supplied, matching attributes on the <l /> node.
-        """
-
-        _dict = self.variant_searches.get((_from, _to), {}).get(search_type, False)
-
-        if not _dict:
-            raise Exception(f"Undefined language pair {_from} {_to}")
-
-        _lookup_func, largs = self.get_lookup_type(
-            _dict, lemma, pos, pos_type, lemma_attrs
-        )
-
-        if not _lookup_func:
-            raise Exception(
-                f"Unknown lookup type for <{user_input}> (lemma: {lemma}, pos: {pos}, pos_type: {pos_type}, lemma_attrs: {repr(lemma_attrs)})"
-            )
-
-        if lemma_attrs:
-            result = _lookup_func(**lemma_attrs)
-        else:
-            result = _lookup_func(*largs)
-
-        if len(result) == 0:
-            return False
-
-        if _format:
-            result = list(_format(result))
-
         return result
 
     def lookups(self, _from, _to, lookups, *args, **kwargs):

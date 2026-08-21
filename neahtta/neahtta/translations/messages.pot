@@ -703,7 +703,6 @@ msgstr ""
 #: neahtta/templates/index_search_form.html:25
 #: neahtta/templates/index_search_form.html:46
 #: neahtta/templates/index_search_form.html:50
-#: neahtta/templates/keyword_search_form.html:29
 msgid "Search"
 msgstr ""
 
@@ -1729,10 +1728,6 @@ msgstr ""
 msgid "Press Tab to select a word"
 msgstr ""
 
-#: neahtta/templates/keyword_search_form.html:24
-msgid "Enter keyword(s)"
-msgstr ""
-
 #: neahtta/templates/kildin_keyboards.html:3
 msgid "Keyboards"
 msgstr ""
@@ -1760,16 +1755,6 @@ msgstr ""
 #: neahtta/templates/mobile_nav_push_menu.html:73
 #: neahtta/templates/mobile_nav_push_menu.html:93
 msgid "Written variant"
-msgstr ""
-
-#: neahtta/templates/left_nav_search_variants.html:14
-msgid "Search type"
-msgstr ""
-
-#: neahtta/templates/left_nav_search_variants.html:17
-#: neahtta/templates/mobile_nav_dictionary_list.html:34
-#: neahtta/templates/mobile_nav_push_menu.html:97
-msgid "Word search"
 msgstr ""
 
 #: neahtta/templates/macros.html:5 neahtta/templates/macros.html:13

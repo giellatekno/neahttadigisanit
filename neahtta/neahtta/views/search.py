@@ -85,23 +85,10 @@ class DictionaryView(MethodView):
         else:
             orig_from, orig_to = _from, _to
 
-        current_search_variant = False
-
-        if "search_variant_type" in kwargs:
-            variant_type = kwargs["search_variant_type"]
-            variants = [
-                variant
-                for variant in current_pair_settings.get("search_variants")
-                if variant.get("type") == variant_type
-            ]
-            if variants:
-                current_search_variant = variants[0]
-
         shared_context = {
             "display_swap": self.get_reverse_pair(_from, _to),
             "current_pair_settings": current_pair_settings,
             "current_variant_options": orig_pair_opts.get("variant_options"),
-            "current_search_variant": current_search_variant,
             "current_locale": get_locale(),
             "_from": _from,
             "_to": _to,
@@ -429,19 +416,10 @@ class SearcherMixin:
         }
 
         mlex = current_app.morpholexicon
-        variant_type = kwargs.get("variant_type", False)
-        if variant_type:
-            entries_and_tags, stdout, stderr = mlex.variant_lookup(
-                variant_type,
-                lookup_value,
-                source_lang=g._from,
-                target_lang=g._to,
-                **search_kwargs,
-            )
-        else:
-            entries_and_tags, stdout, stderr = mlex.lookup(
-                lookup_value, source_lang=g._from, target_lang=g._to, **search_kwargs
-            )
+
+        entries_and_tags, stdout, stderr = mlex.lookup(
+            lookup_value, source_lang=g._from, target_lang=g._to, **search_kwargs
+        )
 
         return SearchResult(
             g._from,
@@ -511,18 +489,9 @@ class SearcherMixin:
         chop stuff down."""
         lemma_attrs = default_context_kwargs.get("lemma_attrs", {})
 
-        if "variant_type" in default_context_kwargs:
-            variant_type = default_context_kwargs.get("variant_type")
-            search_result: SearchResult = self.do_search_to_obj(
-                lookup_value,
-                generate=detailed,
-                lemma_attrs=lemma_attrs,
-                variant_type=variant_type,
-            )
-        else:
-            search_result: SearchResult = self.do_search_to_obj(
-                lookup_value, generate=detailed, lemma_attrs=lemma_attrs
-            )
+        search_result: SearchResult = self.do_search_to_obj(
+            lookup_value, generate=detailed, lemma_attrs=lemma_attrs
+        )
 
         template = "detail_entry.template" if detailed else "entry.template"
 

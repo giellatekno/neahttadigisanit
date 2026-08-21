@@ -557,19 +557,6 @@ class Config(Config):
 
         return language_pairs
 
-    @cached_property
-    def search_variants(self):
-        dicts = self.yaml["Dictionaries"]
-        language_pairs = {}
-        for item in dicts:
-            source = item.get("source")
-            target = item.get("target")
-            input_variants = item.get("search_variants", False)
-            if input_variants:
-                language_pairs[(source, target)] = input_variants
-
-        return language_pairs
-
     def dict_entries(self):
         """Iterator of all entries in the "Dictionaries", as
         DictionaryEntry-wrapped objects."""
@@ -727,8 +714,7 @@ class Config(Config):
             _pair_options["input_variants"] = validate_variants(
                 self.input_variants.get(key, False), key
             )
-            _pair_options["search_variants"] = self.search_variants.get(key, False)
-
+            
             if _from == "fin":
                 korp_opts = _pair_options.get("korp_options")
                 korp_opts["bilingual_wordform_search_path"] = (
