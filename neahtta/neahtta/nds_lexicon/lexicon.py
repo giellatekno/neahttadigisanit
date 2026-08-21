@@ -431,18 +431,6 @@ class AutocompleteFilters:
 autocomplete_filters = AutocompleteFilters()
 
 
-def autocompleteKey(word):
-    """Propernouns should be placed after all other words.
-    To do this, the Unicode character U+FFFD � REPLACEMENT CHARACTER
-    is added to the start of propernouns when sorting, as this is
-    the last character in the Default Unicode Collation Element Table.
-    """
-    if word and word[0].isupper():
-        return "\uFFFD" + word
-    else:
-        return word
-
-
 class AutocompleteTrie(XMLDict):
     def __init__(self, *args, **kwargs):
         if "language_pair" in kwargs:
@@ -474,6 +462,17 @@ class AutocompleteTrie(XMLDict):
             entries = f(entries)
         lemma_strings = (e.text for e in entries if e.text)
         return lemma_strings
+
+    def autocomplete_key(self, word):
+        """Propernouns should be placed after all other words.
+        To do this, the Unicode character U+FFFD � REPLACEMENT CHARACTER
+        is added to the start of propernouns when sorting, as this is
+        the last character in the Default Unicode Collation Element Table.
+        """
+        if word and word[0].isupper():
+            return "\uFFFD" + word
+        else:
+            return word
 
     def autocomplete(self, query):
         from unicodedata import combining
@@ -511,7 +510,7 @@ class AutocompleteTrie(XMLDict):
                     None
                 ), f"candidate (={candidate}) is never shorter than query (={query})"
 
-        return sorted(result, key=autocompleteKey)
+        return sorted(result, key=self.autocomplete_key)
 
 
 class ReverseLookups(XMLDict):
