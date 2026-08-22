@@ -94,10 +94,12 @@
 <div class="row-fluid entry_row">
     <div class="span8 lexeme">
         {% if 'true' not in if_der and 'ⓒ' not in first_l|text %}
+        {# Confirm that the entry is not a derivation (trond: or the last part of a compound? Seems strange to test for ⓒ in lemma text, not analysis) #}
             {% if user_input in first_l|text %}
                 {# user_input is contained within first_lemma. 
                 Might be full match, "čálistit" in "čálistit", or partial match,
-                "čális" in "čálistit", but not e.g. "čálán" in "čállit"  #}
+                "čális" in "čálistit", but not e.g. "čálán" in "čállit".
+                trond: This mostly seems to serve to make the text larger.  #}
                 {% if lexicon_entry|count > 0 %}
                     {% set has_reference = lexicon_entry.xpath('./lg/lemma_ref/text()')|first %}
                     <p>
@@ -147,49 +149,53 @@
                     <div class="span2">
                     </div>
                     <div class="span6">
-                        {% if lexicon_entry|count > 0 %}
-                            {% set has_reference = lexicon_entry.xpath('./lg/lemma_ref/text()')|first %}
-                            {%- if has_reference -%}
-                                {{ reference_link(has_reference) }}
-                            {%- else -%}
-                                <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
-                                    {{- rendered_templates.entry_text|safe -}}
-                                </a>
+                {% endif %}
+                {% if lexicon_entry|count > 0 %}
+                    {% set has_reference = lexicon_entry.xpath('./lg/lemma_ref/text()')|first %}
+                    {%- if has_reference -%}
+                        {{ reference_link(has_reference) }}
+                    {%- else -%}
+                        <a href="{{- macros.lemma_detail_link(lexicon_entry, _from, _to) -}}">
+                            {{- rendered_templates.entry_text|safe -}}
+                        </a>
 
-                                {% if _from == "sme" or _from == "SoMe"  %}
-                                    {{ tts_button(lemma, _from) }}
-                                {% endif %}
-                            {% endif %} {#%- if has_reference -%#}
-
-                            {% if stem %}
-                                <p class="p_stem">(stamme: {{stem_desc}})</p>
-                            {% endif %}
-
-                            {% if l_ref_text %}
-                                <p class="l_ref">
-                                    se også <a href="./?lookup={{l_ref_text.split("_")[0]}}">
-                                    {{ l_ref_text.split("_")[0]}}</a>
-                                </p>
-                            {% endif %}
-
-                            {% if l_sci_text %}
-                                <p class="l_sci"><span class="se_også">({{ l_sci_text.split("_")[0]}})</span></p>
-                            {% endif %}
-
-                            <ul class="meanings">
-                                {{- rendered_templates.definition|safe -}}
-                            </ul>
-
-                            {{ idioms(lexicon_entry) }}
-                        {% else %}
-                            &nbsp;
-                        {% endif %} {#% if lexicon_entry|count > 0 %#}
-
-                        {% if 'ⓒ' in analyses[0].tag_raw|last %}
-                            <p style="color:#666;">-------------------------------</p>
+                        {% if _from == "sme" or _from == "SoMe"  %}
+                            {{ tts_button(lemma, _from) }}
                         {% endif %}
+                    {% endif %} {#%- if has_reference -%#}
+
+                    {% if stem %}
+                        <p class="p_stem">(stamme: {{stem_desc}})</p>
+                    {% endif %}
+
+                    {% if l_ref_text %}
+                        <p class="l_ref">
+                            se også <a href="./?lookup={{l_ref_text.split("_")[0]}}">
+                            {{ l_ref_text.split("_")[0]}}</a>
+                        </p>
+                    {% endif %}
+
+                    {% if l_sci_text %}
+                        <p class="l_sci"><span class="se_også">({{ l_sci_text.split("_")[0]}})</span></p>
+                    {% endif %}
+
+                    <ul class="meanings">
+                        {{- rendered_templates.definition|safe -}}
+                    </ul>
+
+                    {{ idioms(lexicon_entry) }}
+                {% else %}
+                    &nbsp;
+                {% endif %} {#% if lexicon_entry|count > 0 %#}
+
+                {% if 'ⓒ' in analyses[0].tag_raw|last %}
+                    <p style="color:#666;">-------------------------------</p>
+                {% endif %}
+                {% if ('true' in cmp_list) and (analyses[0].tag_raw[0]|length < user_input|length) %}
                     </div>
-                {% else %} {#% if ('true' in cmp_list) and (analyses[0].tag_raw[0]|length < user_input|length) %#}
+                {% endif %}
+                {# This branch should not be needed when the div is taken care of by itself instead of causing an entire new branch #}
+                {# else %} {%# if ('true' in cmp_list) and (analyses[0].tag_raw[0]|length < user_input|length) #%}
                     {% if lexicon_entry|count > 0 %}
                         {% set has_reference = lexicon_entry.xpath('./lg/lemma_ref/text()')|first %}
 
@@ -203,7 +209,7 @@
                             {% if _from == "sme" or _from == "SoMe"  %}
                                 {{ tts_button(lemma, _from) }}
                             {% endif %}
-                        {% endif %} {#%- if has_reference -%#}
+                        {% endif %} {%#- if has_reference -#%}
 
                         {% if stem %}
                             <p class="p_stem">(stamme: {{stem_desc}})</p>
@@ -227,12 +233,12 @@
                         {{ idioms(lexicon_entry) }}
                     {% else %}
                         &nbsp;
-                    {% endif %} {#% if lexicon_entry|count > 0 %#}
-                {% endif %} {#% if ('true' in cmp_list) and (analyses[0].tag_raw[0]|length < user_input|length) %#}
+                    {% endif %} {%# if lexicon_entry|count > 0 #%}
+                {% endif %#} {#% if ('true' in cmp_list) and (analyses[0].tag_raw[0]|length < user_input|length) %#}
             {% endif %} {#% if user_input in first_l|text %#}
         {% else %} {#% if 'true' not in if_der and 'ⓒ' not in first_l|text %#}
-            {# This path is taken if the lemma text contains one of the derivation tags or a 'ⓒ' #}
-            {#% if 'ⓛ' in analyses[0].tag_raw|last : Commenting out this branching, it seems to do very little except confusing %#}
+            {# This path is taken if the lemma text contains one of the derivation tags (or a 'ⓒ'?) #}
+            {#% if 'ⓛ' in analyses[0].tag_raw|last : trond: Commenting out this branching, it seems to do very little except confusing %#}
                 <div class="span2">
                 </div>
                 <div class="span2">
