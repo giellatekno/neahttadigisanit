@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-21 09:14+0300\n"
+"POT-Creation-Date: 2026-08-27 11:05+0300\n"
 "PO-Revision-Date: 2014-02-15 20:48+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language: fi\n"
@@ -22,6 +22,7 @@ msgstr ""
 #: neahtta/configs/baakoeh.config.yaml:107
 #: neahtta/configs/baakoeh.config.yaml.in:77
 #: neahtta/configs/baakoeh.config.yaml.in:98
+#: neahtta/configs/kyv.config.yaml:136 neahtta/configs/kyv.config.yaml:212
 #: neahtta/configs/kyv.config.yaml.in:136
 #: neahtta/configs/kyv.config.yaml.in:212 neahtta/configs/saan.config.yaml:83
 #: neahtta/configs/saan.config.yaml.in:83
@@ -38,33 +39,36 @@ msgstr ""
 msgid "Standard"
 msgstr "Tavallinen"
 
+#: neahtta/configs/kyv.config.yaml:145 neahtta/configs/kyv.config.yaml:223
 #: neahtta/configs/kyv.config.yaml.in:145
 #: neahtta/configs/kyv.config.yaml.in:223
 #: neahtta/configs/sample.config.yaml.in:192
 msgid "Social media"
 msgstr "Sosiaalinen media"
 
-#: neahtta/configs/kyv.config.yaml.in:146
+#: neahtta/configs/kyv.config.yaml:146 neahtta/configs/kyv.config.yaml.in:146
 msgid "(incl. <em>ио</em>)"
 msgstr "(myös <em>ио</em>)"
 
-#: neahtta/configs/kyv.config.yaml.in:150
+#: neahtta/configs/kyv.config.yaml:150 neahtta/configs/kyv.config.yaml.in:150
 msgid "Molodtsov orthography"
 msgstr "Molotsovin ortografia"
 
-#: neahtta/configs/kyv.config.yaml.in:167
+#: neahtta/configs/kyv.config.yaml:167 neahtta/configs/kyv.config.yaml.in:167
 msgid "Zyrian for Permyak"
 msgstr ""
 
-#: neahtta/configs/kyv.config.yaml.in:224
+#: neahtta/configs/kyv.config.yaml:224 neahtta/configs/kyv.config.yaml.in:224
 msgid "(incl. <em>жзиоч</em>)"
 msgstr "(myös <em>жзиоч</em>)"
 
+#: neahtta/configs/kyv.config.yaml:239 neahtta/configs/kyv.config.yaml:268
 #: neahtta/configs/kyv.config.yaml.in:239
 #: neahtta/configs/kyv.config.yaml.in:268
 msgid "Standard (<em>ӝӟӥӧӵ</em>)"
 msgstr "Kirjakielen kirjaimet (<em>ӝӟӥӧӵ</em>)"
 
+#: neahtta/configs/kyv.config.yaml:243 neahtta/configs/kyv.config.yaml:272
 #: neahtta/configs/kyv.config.yaml.in:243
 #: neahtta/configs/kyv.config.yaml.in:272
 msgid "Social media (incl. <em>жзиоч</em>)"
@@ -562,7 +566,7 @@ msgstr "Molemmat sanakirjat sisältyvät noin 11 000 hakusanaa."
 #: neahtta/configs/language_specific_rules/templates/saanih/about.template:59
 #: neahtta/configs/language_specific_rules/templates/sanat/about.template:86
 #: neahtta/configs/language_specific_rules/templates/sanat/find_problem.template:3
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:76
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:85
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:88
 #: neahtta/configs/language_specific_rules/templates/sonad/about.template:92
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:80
@@ -577,7 +581,7 @@ msgstr "Törmäsitkö ongelmaan?"
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:97
 #: neahtta/configs/language_specific_rules/templates/saanih/about.template:60
 #: neahtta/configs/language_specific_rules/templates/sanat/about.template:87
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:77
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:86
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:89
 #: neahtta/configs/language_specific_rules/templates/sonad/about.template:93
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:81
@@ -613,8 +617,8 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/sanat/find_problem.template:20
 #: neahtta/configs/language_specific_rules/templates/sanat/find_problem.template:24
 #: neahtta/configs/language_specific_rules/templates/sanat/find_problem.template:28
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:82
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:87
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:91
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:96
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:94
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:99
 #: neahtta/configs/language_specific_rules/templates/sonad/about.template:98
@@ -633,7 +637,7 @@ msgstr "Ota yhteyttä meihin"
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:112
 #: neahtta/configs/language_specific_rules/templates/saanih/about.template:75
 #: neahtta/configs/language_specific_rules/templates/sanat/about.template:111
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:92
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:101
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:104
 #: neahtta/configs/language_specific_rules/templates/sonad/about.template:108
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:96
@@ -742,7 +746,6 @@ msgstr "hakusana"
 #: neahtta/templates/index_search_form.html:25
 #: neahtta/templates/index_search_form.html:46
 #: neahtta/templates/index_search_form.html:50
-#: neahtta/templates/keyword_search_form.html:29
 msgid "Search"
 msgstr "Etsi"
 
@@ -766,7 +769,7 @@ msgstr "Etsi teksteistä"
 #: neahtta/configs/language_specific_rules/templates/notice.template:5
 #: neahtta/configs/language_specific_rules/templates/sanit/notice.template:6
 #: neahtta/templates/left_dictionary_list.html:12
-#: neahtta/templates/mobile_nav_dictionary_list.html:61
+#: neahtta/templates/mobile_nav_dictionary_list.html:50
 #: neahtta/templates/more_dictionaries.html:21
 msgid "Other dictionaries"
 msgstr "Muita sanakirjoja"
@@ -1188,10 +1191,10 @@ msgid ""
 "words. It contains about 27,000 Norwegian entries. "
 msgstr ""
 "Pohjoissaame → norja perustuu Nils Jernslettenin sanakirjaan "
-"<em>Álgosátnegirji</em> (4322 sanaa), mutta sanavarastossa on nyt n. "
-"33 000 sanaa ynnä 6000 paikannimeä. Norja → pohjoissaame-sanakirja "
-"perustuu pohjoissaame-norja-sanakirjaan, mutta me olemme lisänneet paljon"
-" käytettyjä norjankielisiä sanoja.  Sanakirjassa on nyt n. 27 000 "
+"<em>Álgosátnegirji</em> (4322 sanaa), mutta sanavarastossa on nyt n. 33 "
+"000 sanaa ynnä 6000 paikannimeä. Norja → pohjoissaame-sanakirja perustuu "
+"pohjoissaame-norja-sanakirjaan, mutta me olemme lisänneet paljon "
+"käytettyjä norjankielisiä sanoja.  Sanakirjassa on nyt n. 27 000 "
 "norjankielistä hakusanaa."
 
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:57
@@ -1204,13 +1207,23 @@ msgstr ""
 "rinnakkaiskorpuksesta. Tämän työn on rahoittanut Norjan sisäministeriö."
 
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:61
+#, fuzzy
 msgid ""
-"Dictionaries for North Saami and Finnish are based on lexical material "
-"from the <a class=\"green\" href=\"http://kotus.fi\">Institute for the "
-"Languages of Finland</a>, and from Giellatekno's work with the North "
-"Saami  <a class=\"green\" href=\"http://oahpa.no\">Oahpa</a>. In "
-"addition, we have included frequent words from North Saami, but "
-"especially from Finnish."
+"Dictionaries for North Saami and Finnish\n"
+"                are based on lexical material from\n"
+"                the <a class=\"green\" href=\"http://kotus.fi\">Institute"
+"\n"
+"                for the Languages of Finland</a>, from Jouni A. Vest's\n"
+"                <a "
+"href=\"https://dicts.uit.no/dicts/Jouni_A_Vest_nettisanakirja.html\">Sámi"
+" - Suoma neahttasátnegirji</a> and <a "
+"href=\"https://dicts.uit.no/dicts/Jouni_A_Vest_nettisanakirja.html\">Suomi"
+" - Saame\n"
+"                nettisanakirja</a> and from Giellatekno's work with the\n"
+"                North Saami <a class=\"green\"\n"
+"                href=\"http://oahpa.no\">Oahpa</a>. In addition, we have\n"
+"                included frequent words from North Saami, but\n"
+"                especially from Finnish."
 msgstr ""
 "Pohjoissaame-suomi-sanakirjat pohjautuvat Giellateknon <a class=\"green\""
 " href=\"http://oahpa.no\">Oahpa-työhön</a> ja <a class=\"green\" "
@@ -1218,23 +1231,23 @@ msgstr ""
 "\"sanalistoihin. Olemme myös lisäneet tavanomaisia pohjoissaamen ja "
 "erityisesti suomen kielen sanoja."
 
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:62
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:71
 msgid ""
 "North Sámi → Finnish contains about 20,000 entries, and Finnish → North "
 "Sámi about 14,500 entries."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:65
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:74
 msgid "sme ↔ spa"
 msgstr "Pohjoissaame  ↔ espanja"
 
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:66
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:75
 msgid ""
 "These are the three main sources used for the elaboration of this "
 "dictionary:"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:68
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:77
 msgid ""
 "Hytönen, Ahti, and Jyrki K. Talvitie, 2003, Suomi-espanja suursanakirja. "
 "WSOY suursanakirja. 1. painos."
@@ -1242,7 +1255,7 @@ msgstr ""
 "Hytönen, Ahti, ja Jyrki K. Talvitie, 2003, Suomi-espanja suursanakirja. "
 "WSOY suursanakirja. 1. painos."
 
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:69
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:78
 msgid ""
 "Nielsen, Konrad, 1932, Lappisk ordbok. Vols. 1-3. Oslo: "
 "Universitetsforlaget."
@@ -1250,7 +1263,7 @@ msgstr ""
 "Nielsen, Konrad, 1932, Lappisk ordbok. Vols. 1-3. Oslo: "
 "Universitetsforlaget."
 
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:70
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:79
 msgid ""
 "Real Academia Española, Diccionario de la Lengua Española. Edición "
 "tricentenario. Última actualización: <a "
@@ -1844,10 +1857,6 @@ msgstr ""
 msgid "Press Tab to select a word"
 msgstr "Valitse sana painamalla sarkainnäppäintä"
 
-#: neahtta/templates/keyword_search_form.html:24
-msgid "Enter keyword(s)"
-msgstr ""
-
 #: neahtta/templates/kildin_keyboards.html:3
 msgid "Keyboards"
 msgstr ""
@@ -1873,19 +1882,8 @@ msgstr ""
 
 #: neahtta/templates/left_nav_input_variants.html:7
 #: neahtta/templates/mobile_nav_push_menu.html:73
-#: neahtta/templates/mobile_nav_push_menu.html:93
 msgid "Written variant"
 msgstr "Kirjoitettu variantti"
-
-#: neahtta/templates/left_nav_search_variants.html:14
-msgid "Search type"
-msgstr "Etsi tyyppiä"
-
-#: neahtta/templates/left_nav_search_variants.html:17
-#: neahtta/templates/mobile_nav_dictionary_list.html:34
-#: neahtta/templates/mobile_nav_push_menu.html:97
-msgid "Word search"
-msgstr "Sanahaku"
 
 #: neahtta/templates/macros.html:5 neahtta/templates/macros.html:13
 msgid "Texts"
@@ -1895,7 +1893,6 @@ msgstr "Tekstit"
 #: neahtta/templates/mobile_nav_push_menu.html:55
 #: neahtta/templates/mobile_nav_push_menu.html:63
 #: neahtta/templates/mobile_nav_push_menu.html:70
-#: neahtta/templates/mobile_nav_push_menu.html:90
 msgid "Back"
 msgstr "Takaisin"
 
@@ -2927,4 +2924,13 @@ msgstr " on mahdollinen muoto sanasta ..."
 
 #~ msgid "Swap"
 #~ msgstr "Vaihda"
+
+#~ msgid "Enter keyword(s)"
+#~ msgstr ""
+
+#~ msgid "Search type"
+#~ msgstr "Etsi tyyppiä"
+
+#~ msgid "Word search"
+#~ msgstr "Sanahaku"
 
