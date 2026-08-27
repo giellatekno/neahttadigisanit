@@ -840,6 +840,13 @@ msgid ""
 " href=\"http://aajege.no/\">Aajege</a>'s work with the Southern Sámi <a "
 "class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
 msgstr ""
+"Ordbøkene mellom sørsamisk og norsk bygger på materiale utarbeida"
+" av Albert Jåma og Tove Brustad i <a class=\"blue\" "
+"href=\"http://www.ruovatsijte.no/\">Hemnes Sameforening</a>, men "
+"har i tillegg blitt utvida med ord fra <a class=\"blue\" "
+"href=\"http://giellatekno.uit.no/\">Giellatekno</a> og <a class=\"blue\""
+" href=\"http://aajege.no/\">Aajeges</a> arbeid med sørsamisk <a "
+"class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
 
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:37
 msgid ""
