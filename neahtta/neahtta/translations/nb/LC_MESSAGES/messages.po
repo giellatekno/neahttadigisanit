@@ -814,7 +814,7 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:20
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:25
 msgid "How to quote the dictionary"
-msgstr ""
+msgstr "Hvordan sitere ordboka"
 
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:25
 msgid ""
