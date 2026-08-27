@@ -1246,10 +1246,10 @@ msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:71
 msgid ""
-"North Sámi → Finnish contains about 20,000 entries, and Finnish → North "
+"North Sámi → Finnish contains about 42,500 entries, and Finnish → North "
 "Sámi about 14,500 entries."
 msgstr ""
-"Davvisámegiella → suomagiella sisttisdoallá sullii 20 000 vuođđosáni ja "
+"Davvisámegiella → suomagiella sisttisdoallá sullii 42 500 vuođđosáni ja "
 "suomagiella → davvisámegiella sullii 14 500 vuođđosáni."
 
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:74

@@ -1237,10 +1237,10 @@ msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:71
 msgid ""
-"North Sámi → Finnish contains about 20,000 entries, and Finnish → North "
+"North Sámi → Finnish contains about 42,500 entries, and Finnish → North "
 "Sámi about 14,500 entries."
 msgstr ""
-"Pohjoissaame → suomi sisältyy noin 20 000 hakusanaa ja suomi → pohjoissaame "
+"Pohjoissaame → suomi sisältyy noin 42 500 hakusanaa ja suomi → pohjoissaame "
 "noin 14 500 hakusanaa."
 
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:74

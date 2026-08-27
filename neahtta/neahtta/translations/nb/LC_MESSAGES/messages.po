@@ -1240,10 +1240,10 @@ msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:71
 msgid ""
-"North Sámi → Finnish contains about 20,000 entries, and Finnish → North "
+"North Sámi → Finnish contains about 42,500 entries, and Finnish → North "
 "Sámi about 14,500 entries."
 msgstr ""
-"Nordsamisk → finsk inneholder rundt 20 000 oppslagsord og "
+"Nordsamisk → finsk inneholder rundt 42 500 oppslagsord og "
 "finsk → nordsamisk rundt 14 500 oppslagsord."
 
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:74
