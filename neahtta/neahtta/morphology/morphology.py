@@ -88,7 +88,7 @@ class Tagsets:
     Tagset.
     """
 
-    def __init__(self, set_definitions):
+    def __init__(self, set_definitions: dict):
         self.sets = {name: Tagset(name, tags) for name, tags in set_definitions.items()}
 
     def __getitem__(self, key) -> Tagset:
@@ -284,6 +284,7 @@ class Lemma:
                 and self.lemma in tagsets["verb_derivations"]
             ):
                 # e.g. VAbess does not have a marked pos
+                # trond: not true, e.g. borakeahttá	borrat+V+TV+VAbess
                 self.pos = "V"
             elif (
                 "adjective_derivations" in tagsets
@@ -854,7 +855,7 @@ class PyHFST(XFST):
 
 
 class Morphology:
-    def __init__(self, languagecode, tagsets=None):
+    def __init__(self, languagecode, tagsets:dict = None):
         tagsets = {} if tagsets is None else tagsets
         self.tagsets = Tagsets(tagsets)
 

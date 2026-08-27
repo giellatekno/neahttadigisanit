@@ -518,6 +518,7 @@ class ReverseLookups(XMLDict):
     1. don't use entries with reverse="no" at entry level
     2. search by e/mg/tg/t/text() instead of /e/lg/l/text()
     """
+    # trond: this seems unused
 
     def cleanEntry(self, e):
         ts = e.findall("mg/tg/t")
