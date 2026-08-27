@@ -1207,7 +1207,6 @@ msgstr ""
 "rinnakkaiskorpuksesta. Tämän työn on rahoittanut Norjan sisäministeriö."
 
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:61
-#, fuzzy
 msgid ""
 "Dictionaries for North Saami and Finnish\n"
 "                are based on lexical material from\n"
@@ -1225,10 +1224,15 @@ msgid ""
 "                included frequent words from North Saami, but\n"
 "                especially from Finnish."
 msgstr ""
-"Pohjoissaame-suomi-sanakirjat pohjautuvat Giellateknon <a class=\"green\""
-" href=\"http://oahpa.no\">Oahpa-työhön</a> ja <a class=\"green\" "
-"href=\"http://kotus.fi\">Kotimaiste kielten keskuksen</a> \" "
-"\"sanalistoihin. Olemme myös lisäneet tavanomaisia pohjoissaamen ja "
+"Pohjoissaame-suomi-sanakirjat pohjautuvat <a class=\"green\" "
+"href=\"http://kotus.fi\">Kotimaisten kielten keskuksen</a> \" "
+"\"sanalistoihin, Jouni A. Vestin <a "
+"href=\"https://dicts.uit.no/dicts/Jouni_A_Vest_nettisanakirja.html\">Sámi"
+" - Suoma neahttasátnegirji</a> ja <a "
+"href=\"https://dicts.uit.no/dicts/Jouni_A_Vest_nettisanakirja.html\">Suomi"
+" - Saame\n"
+"                nettisanakirja</a> ja Giellateknon <a class=\"green\""
+" href=\"http://oahpa.no\">Oahpa-työhön</a>. Olemme myös lisäneet tavanomaisia pohjoissaamen ja "
 "erityisesti suomen kielen sanoja."
 
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:71
