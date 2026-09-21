@@ -17,6 +17,8 @@
       "Pr": "prep."
       # prop
       "Prop": "erisnimi"
+      # plurale tantum
+      "PlT": "monikollinen"
       # pers
       "Pers": "pers."
       "Dem": "dem."
