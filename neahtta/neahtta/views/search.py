@@ -71,7 +71,7 @@ class DictionaryView(MethodView):
 
     def get_shared_context(self, _from, _to, *args, **kwargs):
         """Return some things that are in all templates. Additional
-        kwargs passed here will end up in the context passed to
+        kwargs passed here will end up in the context passsed to
         templates."""
 
         (
@@ -85,13 +85,6 @@ class DictionaryView(MethodView):
         else:
             orig_from, orig_to = _from, _to
 
-        morphs = current_app.config.morphologies
-        m = morphs.get(_from, False)
-        if m:
-            tags_in_lexicon = m.tool.options.get("tags_in_lexicon", False)
-        else:
-            tags_in_lexicon = []
-
         shared_context = {
             "display_swap": self.get_reverse_pair(_from, _to),
             "current_pair_settings": current_pair_settings,
@@ -104,7 +97,6 @@ class DictionaryView(MethodView):
             "last_searches": session.get(
                 "last_searches-" + current_app.config.short_name, []
             ),
-            "tags_in_lexicon": tags_in_lexicon,
         }
 
         shared_context.update(**kwargs)
