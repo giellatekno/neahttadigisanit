@@ -24,18 +24,15 @@ Morphology:
     file: '/usr/share/giella/smn/analyser-dict-gt-desc.hfstol'
     inverse_file: '/usr/share/giella/smn/generator-dict-gt-norm.hfstol'
     format: 'hfst'
-    options: &smn_fst_options
+    options:
       compoundBoundary: "+Cmp#"
-      # Grammatical tags which have their own lexicon entries
-      # that should be presented if they are part of the analysis
-      tags_in_lexicon: ['Der']
   smnM:
     tool: *HFST-LOOKUP
     file: '/usr/share/giella/smn/analyser-dict-gt-desc-mobile.hfstol'
     inverse_file: '/usr/share/giella/smn/generator-dict-gt-norm.hfstol'
     format: 'hfst'
     options:
-      <<: *smn_fst_options
+      compoundBoundary: "+Use/Circ#"
   fin:
     tool: *HFST-LOOKUP
     file: '/usr/share/giella/fin/analyser-dict-gt-desc.hfstol'
