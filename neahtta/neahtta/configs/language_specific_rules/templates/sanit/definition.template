@@ -20,6 +20,12 @@
         {% continue %}
     {% endif %}
 
+    {% set mg_res = meaning_group|xpath('./re') %}
+    {% if mg_res|count > 0 %}
+        ({{ mg_res|first|text }})
+    {% endif %}
+
+
     {% set dg = meaning_group|xpath('./dg')|first %}
 
     {% for translation_group in translation_groups %}
