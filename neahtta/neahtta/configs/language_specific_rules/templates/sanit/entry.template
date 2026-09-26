@@ -55,11 +55,13 @@
 {#% set der_list = ['Der/', 'VAbess', 'VGen', 'Ger', 'Superl', 'Actio+'] %#}
 {% set der_list = tags_in_lexicon %}
 {% set if_der = [] %}
-{% for item in der_list %}
-    {% if item in first_l|text %}
-        {% do if_der.append('true') %}
-    {% endif %}
-{% endfor %}
+{% if der_list %}
+    {% for item in der_list %}
+        {% if item in first_l|text %}
+            {% do if_der.append('true') %}
+        {% endif %}
+    {% endfor %}
+{% endif %}
 
 {% if l_ref %}
     {%- set l_ref_first = lexicon_entry|xpath('mg/l_ref')|first %}
