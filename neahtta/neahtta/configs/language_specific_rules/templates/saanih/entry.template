@@ -23,11 +23,13 @@
 
 {% set der_list = tags_in_lexicon %}
 {% set if_der = [] %}
-{% for item in der_list %}
-    {% if item in l|text %}
-        {% do if_der.append('true') %}
-    {% endif %}
-{% endfor %}
+{% if der_list %}
+    {% for item in der_list %}
+        {% if item in l|text %}
+            {% do if_der.append('true') %}
+        {% endif %}
+    {% endfor %}
+{% endif %}
 
 {%- set pos = l.attrib.get('pos', '') -%}
 {%- set t_type = l.attrib.get('t_type', '') -%}
