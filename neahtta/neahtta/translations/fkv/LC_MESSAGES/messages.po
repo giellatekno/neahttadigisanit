@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-27 11:05+0300\n"
+"POT-Creation-Date: 2026-10-02 11:04+0300\n"
 "PO-Revision-Date: 2014-02-15 20:48+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language: fi\n"
@@ -25,9 +25,10 @@ msgstr ""
 #: neahtta/configs/kyv.config.yaml:136 neahtta/configs/kyv.config.yaml:212
 #: neahtta/configs/kyv.config.yaml.in:136
 #: neahtta/configs/kyv.config.yaml.in:212 neahtta/configs/saan.config.yaml:83
-#: neahtta/configs/saan.config.yaml.in:83
-#: neahtta/configs/saanih.config.yaml.in:68
-#: neahtta/configs/saanih.config.yaml.in:98
+#: neahtta/configs/saan.config.yaml.in:83 neahtta/configs/saanih.config.yaml:71
+#: neahtta/configs/saanih.config.yaml:101
+#: neahtta/configs/saanih.config.yaml.in:71
+#: neahtta/configs/saanih.config.yaml.in:101
 #: neahtta/configs/sample.config.yaml.in:186
 #: neahtta/configs/sanat.config.yaml:157
 #: neahtta/configs/sanat.config.yaml.in:136
@@ -276,19 +277,22 @@ msgid "Swedish"
 msgstr ""
 
 #: neahtta/configs/saan.config.yaml:106 neahtta/configs/saan.config.yaml.in:106
-#: neahtta/configs/saanih.config.yaml.in:72
-#: neahtta/configs/saanih.config.yaml.in:102
+#: neahtta/configs/saanih.config.yaml:75 neahtta/configs/saanih.config.yaml:105
+#: neahtta/configs/saanih.config.yaml.in:75
+#: neahtta/configs/saanih.config.yaml.in:105
 #: neahtta/configs/sanj.config.yaml:121 neahtta/configs/sanj.config.yaml.in:112
 msgid "Mobile friendly"
 msgstr "Mobiiliystävällinen"
 
-#: neahtta/configs/saanih.config.yaml.in:69
-#: neahtta/configs/saanih.config.yaml.in:99
+#: neahtta/configs/saanih.config.yaml:72 neahtta/configs/saanih.config.yaml:102
+#: neahtta/configs/saanih.config.yaml.in:72
+#: neahtta/configs/saanih.config.yaml.in:102
 msgid "(<em>âäáčđŋšž</em>)"
 msgstr "(<em>âäáčđŋšž</em>)"
 
-#: neahtta/configs/saanih.config.yaml.in:73
-#: neahtta/configs/saanih.config.yaml.in:103
+#: neahtta/configs/saanih.config.yaml:76 neahtta/configs/saanih.config.yaml:106
+#: neahtta/configs/saanih.config.yaml.in:76
+#: neahtta/configs/saanih.config.yaml.in:106
 msgid "(incl. <em>aaacdnsz</em>)"
 msgstr "(myös <em>aaacdnsz</em>)"
 
@@ -674,6 +678,7 @@ msgid "Paradigm"
 msgstr "Paradigma"
 
 #: neahtta/configs/language_specific_rules/templates/entry.template:40
+#: neahtta/configs/language_specific_rules/templates/saanih/entry.template:71
 #: neahtta/configs/language_specific_rules/templates/sanj/sjd/entry.template:63
 msgid "see also"
 msgstr ""
@@ -1227,7 +1232,7 @@ msgid ""
 "\n"
 "                for the Languages of Finland</a>, from Jouni A. Vest's\n"
 "                <a "
-"href=\"https://dicts.uit.no/dicts/Jouni_A_Vest_nettisanakirja.html\">Sámi"
+"href=\"https://dicts.uit.no/dicts/Jouni_A_Vest_neahttasatnegirji.html\">Sámi"
 " - Suoma neahttasátnegirji</a> and <a "
 "href=\"https://dicts.uit.no/dicts/Jouni_A_Vest_nettisanakirja.html\">Suomi"
 " - Saame\n"
@@ -1245,8 +1250,8 @@ msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:71
 msgid ""
-"North Sámi → Finnish contains about 20,000 entries, and Finnish → North "
-"Sámi about 14,500 entries."
+"North Sámi → Finnish contains about 42,500 entries, and Finnish → North "
+"Sámi about 27,500 entries."
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:74
@@ -2927,4 +2932,10 @@ msgstr " oon mahđolinen haamu sanasta ..."
 
 #~ msgid "Word search"
 #~ msgstr "Sanahaku"
+
+#~ msgid ""
+#~ "North Sámi → Finnish contains about "
+#~ "20,000 entries, and Finnish → North "
+#~ "Sámi about 14,500 entries."
+#~ msgstr ""
 
