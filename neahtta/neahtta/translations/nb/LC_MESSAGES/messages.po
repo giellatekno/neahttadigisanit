@@ -1250,13 +1250,12 @@ msgstr ""
 "tillegg har vi lagt til vanlige ord fra nordsamisk og enda mer fra finsk."
 
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:71
-#, fuzzy
 msgid ""
 "North Sámi → Finnish contains about 42,500 entries, and Finnish → North "
 "Sámi about 27,500 entries."
 msgstr ""
 "Nordsamisk → finsk inneholder rundt 42 500 oppslagsord og finsk → "
-"nordsamisk rundt 14 500 oppslagsord."
+"nordsamisk rundt 27 500 oppslagsord."
 
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:74
 msgid "sme ↔ spa"
