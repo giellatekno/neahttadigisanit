@@ -136,6 +136,10 @@ def register_filters(app):
         s = quote(s, safe=safe)
         return Markup(s)
 
+    @app.template_filter("escape_quotes")
+    def escape_quotes(s: str):
+        return s.replace('"', '\\"')
+
     @app.template_filter("uniq")
     def unique_filter(s):
         """Returns a list of GeneratedForm objects with unique forms"""
