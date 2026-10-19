@@ -432,7 +432,10 @@ msgid ""
 "under GPL-3 and \n"
 "                available at <a "
 "href=\"https://github.com/giellatekno/neahttadigisanit\">https://github.com/giellatekno/neahttadigisanit</a>."
-msgstr ""
+msgstr "Neahttadigisánit lea sátnegirjegeavahanvuogádat mii ovdanbuktá "
+"iešguđetlágan sátnegirjjiid. Teknihkalaš gáldokoda liseansa lea GPL-3 "
+"ja dat lea olámuttos neahttasiiddus "
+"<a href=\"https://github.com/giellatekno/neahttadigisanit\">https://github.com/giellatekno/neahttadigisanit</a>."
 
 #: neahtta/configs/language_specific_rules/templates/about.template:30
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:28
@@ -453,7 +456,11 @@ msgid ""
 "href=\"https://giellalt.github.io/DictionaryResources.html\">https://giellalt.github.io/DictionaryResources.html</a>."
 " Certain dictionaries' \n"
 "                source files are closed to the public and thus not listed."
-msgstr ""
+msgstr "Sátnegirjjiin, mat ovdanbuktojit Neahttadigisánit-siidduin, lea "
+"iešguđetlágan liseanssat. Eanetlogus, muhto ii juohke sátnegirjjis, lea rabas gáldokoda. "
+"Listu sátnegirjeresurssain ja daid liseanssain gávdno siiddus "
+"<a href=\"https://giellalt.github.io/DictionaryResources.html\">https://giellalt.github.io/DictionaryResources.html</a>. "
+"Soames sátnegirjjiid gáldokoda ii lea almmolaččat olámuttos, ja danin dat eai leat mielde listtus."
 
 #: neahtta/configs/language_specific_rules/templates/about.template:35
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:33
@@ -475,7 +482,11 @@ msgid ""
 " The respective GitHub \n"
 "                repositories contain information about each model's "
 "license."
-msgstr ""
+msgstr "Neahttadigisánit geavaha morfologalaš analysáhtoriid, maiguin "
+"dat dovdá sojahuvvon hámiid ja generere sojahantabeallaid. Listu "
+"giellamodeallain main analysáhtorat gávdnojit, gávdno siiddus "
+"<a href=\"https://giellalt.github.io/LanguageModels.html\">https://giellalt.github.io/LanguageModels.html</a>. "
+"GitHub-repositoriat sisttisdollet dieđu juohke modealla liseanssas."
 
 #: neahtta/configs/language_specific_rules/templates/about.template:42
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:40

@@ -430,7 +430,9 @@ msgid ""
 "under GPL-3 and \n"
 "                available at <a "
 "href=\"https://github.com/giellatekno/neahttadigisanit\">https://github.com/giellatekno/neahttadigisanit</a>."
-msgstr ""
+msgstr "Neahttadigisánit on sanakirja-alusta, joka tarjoaa useita eri sanakirjoja. "
+"Sen tekninen lähdekoodi on lisensoitu GPL-3-lisenssillä, ja se on saatavilla "
+"osoitteessa <a href=\"https://github.com/giellatekno/neahttadigisanit\">https://github.com/giellatekno/neahttadigisanit</a>."
 
 #: neahtta/configs/language_specific_rules/templates/about.template:30
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:28
@@ -451,7 +453,12 @@ msgid ""
 "href=\"https://giellalt.github.io/DictionaryResources.html\">https://giellalt.github.io/DictionaryResources.html</a>."
 " Certain dictionaries' \n"
 "                source files are closed to the public and thus not listed."
-msgstr ""
+msgstr "Neahttadigisánit-alustalla olevilla sanakirjoilla on erilaisia ​​lisenssejä. "
+"Useimmat niistä ovat avointa lähdekoodia, mutta eivät kaikki. "
+"Luettelo sanakirja-aineistoista ja niiden lisensseistä löytyy osoitteesta "
+"<a href=\"https://giellalt.github.io/DictionaryResources.html\">https://giellalt.github.io/DictionaryResources.html</a>. "
+"Tiettyjen sanakirjojen lähdetiedostot eivät ole julkisesti saatavilla, "
+"minkä vuoksi niitä ei ole luettelossa."
 
 #: neahtta/configs/language_specific_rules/templates/about.template:35
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:33
@@ -473,7 +480,11 @@ msgid ""
 " The respective GitHub \n"
 "                repositories contain information about each model's "
 "license."
-msgstr ""
+msgstr "Neahttadigisánit hyödyntää morfologisia analysaattoreita taivutettujen "
+"muotojen tunnistamiseen ja taivutuskaavioiden muodostamiseen. Luettelo "
+"kielimalleista, jotka sisältävät nämä analysaattorit, löytyy osoitteesta "
+"<a href=\"https://giellalt.github.io/LanguageModels.html\">https://giellalt.github.io/LanguageModels.html</a>. "
+"Kunkin mallin lisenssitiedot löytyvät vastaavista GitHub-arkistoista."
 
 #: neahtta/configs/language_specific_rules/templates/about.template:42
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:40
@@ -1608,7 +1619,9 @@ msgid ""
 "licenced under GPL-3 and \n"
 "                    available at <a "
 "href=\"https://github.com/giellatekno/neahttadigisanit\">https://github.com/giellatekno/neahttadigisanit</a>."
-msgstr ""
+msgstr "Neahttadigisánit on sanakirja-alusta, joka tarjoaa useita eri sanakirjoja. "
+"Sen tekninen lähdekoodi on lisensoitu GPL-3-lisenssillä, ja se on saatavilla "
+"osoitteessa <a href=\"https://github.com/giellatekno/neahttadigisanit\">https://github.com/giellatekno/neahttadigisanit</a>."
 
 #: neahtta/configs/language_specific_rules/templates/sonad/about.template:40
 msgid ""
@@ -1621,7 +1634,12 @@ msgid ""
 " Certain dictionaries' \n"
 "                    source files are closed to the public and thus not "
 "listed."
-msgstr ""
+msgstr "Neahttadigisánit-alustalla olevilla sanakirjoilla on erilaisia ​​lisenssejä. "
+"Useimmat niistä ovat avointa lähdekoodia, mutta eivät kaikki. "
+"Luettelo sanakirja-aineistoista ja niiden lisensseistä löytyy osoitteesta "
+"<a href=\"https://giellalt.github.io/DictionaryResources.html\">https://giellalt.github.io/DictionaryResources.html</a>. "
+"Tiettyjen sanakirjojen lähdetiedostot eivät ole julkisesti saatavilla, "
+"minkä vuoksi niitä ei ole luettelossa."
 
 #: neahtta/configs/language_specific_rules/templates/sonad/about.template:45
 msgid ""
@@ -1634,7 +1652,11 @@ msgid ""
 " The respective GitHub \n"
 "                    repositories contain information about each model's "
 "license."
-msgstr ""
+msgstr "Neahttadigisánit hyödyntää morfologisia analysaattoreita taivutettujen "
+"muotojen tunnistamiseen ja taivutuskaavioiden muodostamiseen. Luettelo "
+"kielimalleista, jotka sisältävät nämä analysaattorit, löytyy osoitteesta "
+"<a href=\"https://giellalt.github.io/LanguageModels.html\">https://giellalt.github.io/LanguageModels.html</a>. "
+"Kunkin mallin lisenssitiedot löytyvät vastaavista GitHub-arkistoista."
 
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:66
 msgid "yrk ↔ fin"

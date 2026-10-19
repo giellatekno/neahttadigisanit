@@ -411,7 +411,7 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:29
 #: neahtta/configs/language_specific_rules/templates/valks/about.template:29
 msgid "Open-Source"
-msgstr " "
+msgstr "Открытый код"
 
 #: neahtta/configs/language_specific_rules/templates/about.template:27
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:25
