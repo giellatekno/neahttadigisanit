@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-02 11:04+0300\n"
+"POT-Creation-Date: 2026-10-19 11:15+0300\n"
 "PO-Revision-Date: 2013-02-01 01:55-0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: sv\n"
@@ -413,77 +413,122 @@ msgid "Open-Source"
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/about.template:27
+#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:25
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:28
 #: neahtta/configs/language_specific_rules/templates/muter/about.template:28
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:30
+#: neahtta/configs/language_specific_rules/templates/saanih/about.template:26
+#: neahtta/configs/language_specific_rules/templates/sanat/about.template:33
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:28
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:30
 #: neahtta/configs/language_specific_rules/templates/valks/about.template:30
 msgid ""
-"Everything here is based on open-source tools. Do you\n"
-"                have an idea for an app or research project that needs\n"
-"                linguistic resources? Visit <a class=\"blue\"\n"
-"                    href=\"http://giellatekno.uit.no/\">Giellatekno</a>'s"
-"\n"
-"                website for information on how to get access to lexicon\n"
-"                files, and morphological and syntactic analyzers."
+"Neahttadigisánit is a dictionary platform presenting a variety \n"
+"                of dictionaries. The technical source code is licenced "
+"under GPL-3 and \n"
+"                available at <a "
+"href=\"https://github.com/giellatekno/neahttadigisanit\">https://github.com/giellatekno/neahttadigisanit</a>."
+msgstr ""
+
+#: neahtta/configs/language_specific_rules/templates/about.template:30
+#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:28
+#: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:31
+#: neahtta/configs/language_specific_rules/templates/muter/about.template:31
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:33
+#: neahtta/configs/language_specific_rules/templates/saanih/about.template:29
+#: neahtta/configs/language_specific_rules/templates/sanat/about.template:36
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:31
+#: neahtta/configs/language_specific_rules/templates/vada/about.template:33
+#: neahtta/configs/language_specific_rules/templates/valks/about.template:33
+msgid ""
+"The dictionaries presented in Neahttadigisánit have different \n"
+"                licences. Most are open source, but not all. A list of "
+"dictionary resources \n"
+"                and their licenses is found at \n"
+"                <a "
+"href=\"https://giellalt.github.io/DictionaryResources.html\">https://giellalt.github.io/DictionaryResources.html</a>."
+" Certain dictionaries' \n"
+"                source files are closed to the public and thus not listed."
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/about.template:35
-#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:31
+#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:33
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:36
 #: neahtta/configs/language_specific_rules/templates/muter/about.template:36
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:38
-#: neahtta/configs/language_specific_rules/templates/saanih/about.template:32
-#: neahtta/configs/language_specific_rules/templates/sanat/about.template:39
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:34
-#: neahtta/configs/language_specific_rules/templates/sonad/about.template:45
+#: neahtta/configs/language_specific_rules/templates/saanih/about.template:34
+#: neahtta/configs/language_specific_rules/templates/sanat/about.template:41
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:36
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:38
 #: neahtta/configs/language_specific_rules/templates/valks/about.template:38
+msgid ""
+"Neahttadigisánit utilizes morphological analyzers to recognize \n"
+"                inflected forms and generate paradigm tables. A list of "
+"language models \n"
+"                containing these analyzers is found at \n"
+"                <a "
+"href=\"https://giellalt.github.io/LanguageModels.html\">https://giellalt.github.io/LanguageModels.html</a>."
+" The respective GitHub \n"
+"                repositories contain information about each model's "
+"license."
+msgstr ""
+
+#: neahtta/configs/language_specific_rules/templates/about.template:42
+#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:40
+#: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:43
+#: neahtta/configs/language_specific_rules/templates/muter/about.template:43
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:45
+#: neahtta/configs/language_specific_rules/templates/saanih/about.template:41
+#: neahtta/configs/language_specific_rules/templates/sanat/about.template:48
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:43
+#: neahtta/configs/language_specific_rules/templates/sonad/about.template:52
+#: neahtta/configs/language_specific_rules/templates/vada/about.template:45
+#: neahtta/configs/language_specific_rules/templates/valks/about.template:45
 msgid "Linguistic basis"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/about.template:36
-#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:32
-#: neahtta/configs/language_specific_rules/templates/muter/about.template:37
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:39
-#: neahtta/configs/language_specific_rules/templates/saanih/about.template:33
-#: neahtta/configs/language_specific_rules/templates/sanat/about.template:40
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:35
-#: neahtta/configs/language_specific_rules/templates/sonad/about.template:46
-#: neahtta/configs/language_specific_rules/templates/vada/about.template:39
-#: neahtta/configs/language_specific_rules/templates/valks/about.template:39
+#: neahtta/configs/language_specific_rules/templates/about.template:43
+#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:41
+#: neahtta/configs/language_specific_rules/templates/muter/about.template:44
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:46
+#: neahtta/configs/language_specific_rules/templates/saanih/about.template:42
+#: neahtta/configs/language_specific_rules/templates/sanat/about.template:49
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:44
+#: neahtta/configs/language_specific_rules/templates/sonad/about.template:53
+#: neahtta/configs/language_specific_rules/templates/vada/about.template:46
+#: neahtta/configs/language_specific_rules/templates/valks/about.template:46
 msgid ""
 "Write what you wish, and the dictionary will analyze it to break apart "
 "compound words and find base forms."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/about.template:42
-#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:38
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:45
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:41
+#: neahtta/configs/language_specific_rules/templates/about.template:49
+#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:47
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:52
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:50
 msgid "gå, dra, reise"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/about.template:49
-#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:45
-#: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:50
-#: neahtta/configs/language_specific_rules/templates/muter/about.template:50
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:52
-#: neahtta/configs/language_specific_rules/templates/saanih/about.template:46
-#: neahtta/configs/language_specific_rules/templates/sanat/about.template:53
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:48
-#: neahtta/configs/language_specific_rules/templates/sonad/about.template:59
-#: neahtta/configs/language_specific_rules/templates/vada/about.template:52
-#: neahtta/configs/language_specific_rules/templates/valks/about.template:52
+#: neahtta/configs/language_specific_rules/templates/about.template:56
+#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:54
+#: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:57
+#: neahtta/configs/language_specific_rules/templates/muter/about.template:57
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:59
+#: neahtta/configs/language_specific_rules/templates/saanih/about.template:55
+#: neahtta/configs/language_specific_rules/templates/sanat/about.template:62
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:57
+#: neahtta/configs/language_specific_rules/templates/sonad/about.template:66
+#: neahtta/configs/language_specific_rules/templates/vada/about.template:59
+#: neahtta/configs/language_specific_rules/templates/valks/about.template:59
 msgid "Source material"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/about.template:56
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:55
+#: neahtta/configs/language_specific_rules/templates/about.template:63
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:64
 msgid "sme ↔ nob"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/about.template:57
+#: neahtta/configs/language_specific_rules/templates/about.template:64
 msgid ""
 "North Sámi → Norwegian builds on Nils Jernsletten's dictionary "
 "<em>Álgosátnegirji</em> (4322 words), but now it contains 30,000 entries,"
@@ -492,19 +537,19 @@ msgid ""
 "words. It contains about 26,000 Norwegian entries. "
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/about.template:58
+#: neahtta/configs/language_specific_rules/templates/about.template:65
 msgid ""
 "Approximately half of the content of the dictionaries is taken from a "
 "parallel corpus of administrative text, financed by the Ministry of Local"
 " Government and Modernisation."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/about.template:61
-#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:52
+#: neahtta/configs/language_specific_rules/templates/about.template:68
+#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:61
 msgid "sma ↔ nob"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/about.template:62
+#: neahtta/configs/language_specific_rules/templates/about.template:69
 msgid ""
 "The dictionaries for South Sámi and Norwegian build on material prepared "
 "by Albert Jåma and Tove Brustad in the <a class=\"blue\" "
@@ -515,12 +560,12 @@ msgid ""
 "class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/about.template:65
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:60
+#: neahtta/configs/language_specific_rules/templates/about.template:72
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:69
 msgid "sme ↔ fin"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/about.template:66
+#: neahtta/configs/language_specific_rules/templates/about.template:73
 msgid ""
 "Dictionaries for North Sámi and Finnish are based on lexical material "
 "from the <a class=\"green\" href=\"http://kotus.fi\">Institute for the "
@@ -530,39 +575,39 @@ msgid ""
 "Finnish."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/about.template:67
+#: neahtta/configs/language_specific_rules/templates/about.template:74
 msgid "Each of the dictionaries contains about 11,000 base words."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/about.template:72
-#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:59
-#: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:62
+#: neahtta/configs/language_specific_rules/templates/about.template:79
+#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:68
+#: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:69
 #: neahtta/configs/language_specific_rules/templates/find_problem.template:3
-#: neahtta/configs/language_specific_rules/templates/muter/about.template:76
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:96
-#: neahtta/configs/language_specific_rules/templates/saanih/about.template:59
-#: neahtta/configs/language_specific_rules/templates/sanat/about.template:86
+#: neahtta/configs/language_specific_rules/templates/muter/about.template:83
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:103
+#: neahtta/configs/language_specific_rules/templates/saanih/about.template:68
+#: neahtta/configs/language_specific_rules/templates/sanat/about.template:95
 #: neahtta/configs/language_specific_rules/templates/sanat/find_problem.template:3
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:85
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:94
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:88
-#: neahtta/configs/language_specific_rules/templates/sonad/about.template:92
-#: neahtta/configs/language_specific_rules/templates/vada/about.template:80
-#: neahtta/configs/language_specific_rules/templates/valks/about.template:87
+#: neahtta/configs/language_specific_rules/templates/sonad/about.template:99
+#: neahtta/configs/language_specific_rules/templates/vada/about.template:87
+#: neahtta/configs/language_specific_rules/templates/valks/about.template:94
 msgid "Find a problem?"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/about.template:73
-#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:60
-#: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:63
-#: neahtta/configs/language_specific_rules/templates/muter/about.template:77
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:97
-#: neahtta/configs/language_specific_rules/templates/saanih/about.template:60
-#: neahtta/configs/language_specific_rules/templates/sanat/about.template:87
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:86
+#: neahtta/configs/language_specific_rules/templates/about.template:80
+#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:69
+#: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:70
+#: neahtta/configs/language_specific_rules/templates/muter/about.template:84
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:104
+#: neahtta/configs/language_specific_rules/templates/saanih/about.template:69
+#: neahtta/configs/language_specific_rules/templates/sanat/about.template:96
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:95
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:89
-#: neahtta/configs/language_specific_rules/templates/sonad/about.template:93
-#: neahtta/configs/language_specific_rules/templates/vada/about.template:81
-#: neahtta/configs/language_specific_rules/templates/valks/about.template:88
+#: neahtta/configs/language_specific_rules/templates/sonad/about.template:100
+#: neahtta/configs/language_specific_rules/templates/vada/about.template:88
+#: neahtta/configs/language_specific_rules/templates/valks/about.template:95
 msgid ""
 "If you find any bugs, please get in touch with us. Describe the problem,\n"
 "                and tell us what web browser or mobile phone you were "
@@ -570,53 +615,53 @@ msgid ""
 "                were searching for when you encountered the problem."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/about.template:78
-#: neahtta/configs/language_specific_rules/templates/about.template:83
-#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:65
-#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:70
-#: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:68
-#: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:73
+#: neahtta/configs/language_specific_rules/templates/about.template:85
+#: neahtta/configs/language_specific_rules/templates/about.template:90
+#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:74
+#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:79
+#: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:75
+#: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:80
 #: neahtta/configs/language_specific_rules/templates/find_problem.template:8
 #: neahtta/configs/language_specific_rules/templates/find_problem.template:13
-#: neahtta/configs/language_specific_rules/templates/muter/about.template:82
-#: neahtta/configs/language_specific_rules/templates/muter/about.template:87
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:102
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:107
-#: neahtta/configs/language_specific_rules/templates/saanih/about.template:65
-#: neahtta/configs/language_specific_rules/templates/saanih/about.template:70
-#: neahtta/configs/language_specific_rules/templates/sanat/about.template:91
+#: neahtta/configs/language_specific_rules/templates/muter/about.template:89
+#: neahtta/configs/language_specific_rules/templates/muter/about.template:94
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:109
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:114
+#: neahtta/configs/language_specific_rules/templates/saanih/about.template:74
+#: neahtta/configs/language_specific_rules/templates/saanih/about.template:79
 #: neahtta/configs/language_specific_rules/templates/sanat/about.template:100
-#: neahtta/configs/language_specific_rules/templates/sanat/about.template:105
+#: neahtta/configs/language_specific_rules/templates/sanat/about.template:109
+#: neahtta/configs/language_specific_rules/templates/sanat/about.template:114
 #: neahtta/configs/language_specific_rules/templates/sanat/find_problem.template:9
 #: neahtta/configs/language_specific_rules/templates/sanat/find_problem.template:13
 #: neahtta/configs/language_specific_rules/templates/sanat/find_problem.template:20
 #: neahtta/configs/language_specific_rules/templates/sanat/find_problem.template:24
 #: neahtta/configs/language_specific_rules/templates/sanat/find_problem.template:28
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:91
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:96
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:100
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:105
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:94
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:99
-#: neahtta/configs/language_specific_rules/templates/sonad/about.template:98
-#: neahtta/configs/language_specific_rules/templates/sonad/about.template:103
-#: neahtta/configs/language_specific_rules/templates/vada/about.template:86
-#: neahtta/configs/language_specific_rules/templates/vada/about.template:91
-#: neahtta/configs/language_specific_rules/templates/valks/about.template:93
-#: neahtta/configs/language_specific_rules/templates/valks/about.template:98
+#: neahtta/configs/language_specific_rules/templates/sonad/about.template:105
+#: neahtta/configs/language_specific_rules/templates/sonad/about.template:110
+#: neahtta/configs/language_specific_rules/templates/vada/about.template:93
+#: neahtta/configs/language_specific_rules/templates/vada/about.template:98
+#: neahtta/configs/language_specific_rules/templates/valks/about.template:100
+#: neahtta/configs/language_specific_rules/templates/valks/about.template:105
 msgid "Contact us"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/about.template:88
-#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:75
-#: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:78
-#: neahtta/configs/language_specific_rules/templates/muter/about.template:92
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:112
-#: neahtta/configs/language_specific_rules/templates/saanih/about.template:75
-#: neahtta/configs/language_specific_rules/templates/sanat/about.template:111
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:101
+#: neahtta/configs/language_specific_rules/templates/about.template:95
+#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:84
+#: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:85
+#: neahtta/configs/language_specific_rules/templates/muter/about.template:99
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:119
+#: neahtta/configs/language_specific_rules/templates/saanih/about.template:84
+#: neahtta/configs/language_specific_rules/templates/sanat/about.template:120
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:110
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:104
-#: neahtta/configs/language_specific_rules/templates/sonad/about.template:108
-#: neahtta/configs/language_specific_rules/templates/vada/about.template:96
-#: neahtta/configs/language_specific_rules/templates/valks/about.template:103
+#: neahtta/configs/language_specific_rules/templates/sonad/about.template:115
+#: neahtta/configs/language_specific_rules/templates/vada/about.template:103
+#: neahtta/configs/language_specific_rules/templates/valks/about.template:110
 msgid ""
 "Need more dictionaries? <a href=\"http://dicts.uit.no/\">Here's our full "
 "list</a>, and more\n"
@@ -779,16 +824,7 @@ msgstr ""
 msgid "How to quote the dictionary"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:25
-msgid ""
-"Everything here is based on open-source tools and free to use.\n"
-"\t    Visit <a class=\"blue\" "
-"href=\"http://giellatekno.uit.no/\">Giellatekno</a>'s\n"
-"                website for information on how to get access to lexicon\n"
-"                files, and morphological and syntactic analyzers."
-msgstr ""
-
-#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:53
+#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:62
 msgid ""
 "The dictionaries for South Saami and Norwegian build on material prepared"
 " by Albert Jåma and Tove Brustad in the <a class=\"blue\" "
@@ -799,13 +835,13 @@ msgid ""
 "class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:37
+#: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:44
 msgid ""
 "Write whatever you want in Pite Saami, and the dictionary will analyze it"
 " to break apart compound words and find base forms."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:43
+#: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:50
 msgid "fara, gå"
 msgstr ""
 
@@ -837,17 +873,17 @@ msgstr ""
 msgid "answer"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/muter/about.template:43
-#: neahtta/configs/language_specific_rules/templates/vada/about.template:45
-#: neahtta/configs/language_specific_rules/templates/valks/about.template:45
+#: neahtta/configs/language_specific_rules/templates/muter/about.template:50
+#: neahtta/configs/language_specific_rules/templates/vada/about.template:52
+#: neahtta/configs/language_specific_rules/templates/valks/about.template:52
 msgid "mennä, lähteä, kulkea"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/muter/about.template:57
+#: neahtta/configs/language_specific_rules/templates/muter/about.template:64
 msgid "mrj ↔ fin"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/muter/about.template:58
+#: neahtta/configs/language_specific_rules/templates/muter/about.template:65
 msgid ""
 "Dictionaries for Hill Mari and Finnish are based\n"
 "                    on lexical material from a large array of "
@@ -863,24 +899,24 @@ msgid ""
 "                the Kone Foundation."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/muter/about.template:101
-#: neahtta/configs/language_specific_rules/templates/sonad/about.template:117
-#: neahtta/configs/language_specific_rules/templates/vada/about.template:105
-#: neahtta/configs/language_specific_rules/templates/valks/about.template:112
+#: neahtta/configs/language_specific_rules/templates/muter/about.template:108
+#: neahtta/configs/language_specific_rules/templates/sonad/about.template:124
+#: neahtta/configs/language_specific_rules/templates/vada/about.template:112
+#: neahtta/configs/language_specific_rules/templates/valks/about.template:119
 msgid "More to come..."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:59
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:66
 msgid "sms ↔ xxx"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:60
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:67
 msgid ""
 "Skolt Sámi → X project contains materials deriving from the research of "
 "numerous projects, dictionaries and word lists."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:61
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:68
 msgid ""
 "The research projects have lead to the merging of several word lists "
 "featuring Skolt Sami as a source language with multiple target languages."
@@ -889,7 +925,7 @@ msgid ""
 "and Russian translations and linking to sound files."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:62
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:69
 msgid ""
 "The creation of this wordlist was related to the Kola Sámi Documentation "
 "Project (<a href=\"https://dobes.mpi.nl/projects/sami/\">KSDP</a>) led by"
@@ -900,24 +936,24 @@ msgid ""
 "Saaʹmi muʹzei by Espen Sommer Eide."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:63
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:70
 msgid ""
 "Other main contributors to these projects were (in alphabetical order) "
 "Katri Jefremoff, Erkki Lumisalmi, Zoja Nosova, Lena Terhart, and Joshua "
 "Wilbur."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:64
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:71
 msgid "The KSDP started in 2005 and in principle is still active."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:65
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:72
 msgid ""
 "Language memory was (officially) installed in 2018, but the project with "
 "the wordlist and recordings by Espen Sommer Eide was begun in 2009."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:66
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:73
 msgid ""
 "The Kone funded project \"Skolt Sami revitalization with language "
 "technology and development of guidelines for transferring these methods "
@@ -931,67 +967,67 @@ msgid ""
 "database from research by others."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:69
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:76
 msgid "sms ↔ fin"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:70
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:77
 msgid ""
 "Dictionaries for Skolt Saami and Finnish consist of materials based on "
 "various sources and research projects:"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:71
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:78
 msgid "Satu & Jouni Moshnikoff sanasto"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:72
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:79
 msgid "Dictionaries:"
 msgstr "Ordböcker:"
 
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:73
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:80
 msgid ""
 "Skolt Sámi lemmas with Finnish translations can also be attributed to "
 "materials in:"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:75
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:82
 msgid "\"Koltan- ja kuolanlapin sanakirja\" (T. I. Itkonen, 1958)"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:76
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:83
 msgid ""
 "\"Suomi-saamski keskeissanasto : Suâma-sââma kôskaldsännôs\" (Sverloff, "
 "1978)"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:77
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:84
 msgid ""
 "\"Suomi-koltansaame-piensanasto : Suáma-sääém-sieǒmsäennös\" (Sverloff, "
 "1989)"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:78
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:85
 msgid "\"Lääʹdd-sääʹm sääʹnnǩeʹrjj \" (Sammallahti & Moshnikoff, 1991)"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:79
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:86
 msgid "\"Mattu saaʹnid\" (Mänty & Fofonoff, 2003)"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:80
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:87
 msgid "\"Kuvitettu käsityösanasto\" (Mettäpuro & Moshnikoff, 2009)"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:81
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:88
 msgid "\"Vuõʹlǧǧe jååʹtted ooudâs\" (Sammallahti, 2012)"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:85
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:92
 msgid "fin ↔ sms"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:86
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:93
 msgid ""
 "The Finnish-to-Skolt Sami dictionary has gone through three phases, "
 "moving from quantity to quality. After original work with in the Skolt "
@@ -1000,7 +1036,7 @@ msgid ""
 "dictionary in 2016."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:87
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:94
 msgid ""
 "This, of course, meant that an extensive amount of non-standard words and"
 " word forms were presented. As more and more students of the language "
@@ -1009,7 +1045,7 @@ msgid ""
 "mistakes and morphological misconceptions."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:88
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:95
 msgid ""
 "In June of 2020, the files generated by Jack Rueter (approximately 30000 "
 "entries) were moved into main/words/dicts/finsms/inc/ for future "
@@ -1020,14 +1056,14 @@ msgid ""
 "Finnish Ministry of Education (2019–2020)."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:89
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:96
 msgid ""
 "Subsequent updating of these files is being continued using the Veʹrdd "
 "dictionary editing platform, which played an instrumental role in the "
 "development of 2020."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:90
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:97
 msgid ""
 "The present Finnish-to-Skolt Sami dictionary consists of approximately "
 "20000 entries, which are derived directly from editing of the Satu & "
@@ -1036,7 +1072,7 @@ msgid ""
 "Finnish Ministry of Education (2019–2020)."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:91
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:98
 msgid ""
 "Subsequent updating of these files is being continued using the Veʹrdd "
 "dictionary editing platform, which played an instrumental role in the "
@@ -1052,48 +1088,28 @@ msgstr ""
 msgid "How to quote the dictionaries"
 msgstr "Hur man citerar ordböckerna"
 
-#: neahtta/configs/language_specific_rules/templates/saanih/about.template:26
-msgid ""
-"Everything here is based on open-source tools and is free to use.\n"
-"\t    Visit <a class=\"blue\" "
-"href=\"http://giellatekno.uit.no/\">Giellatekno</a>'s\n"
-"                website for information on how to get access to lexicon\n"
-"                files, and morphological and syntactic analyzers."
-msgstr ""
-
-#: neahtta/configs/language_specific_rules/templates/saanih/about.template:53
+#: neahtta/configs/language_specific_rules/templates/saanih/about.template:62
 msgid "Inari Saami ↔ Finnish"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/saanih/about.template:54
+#: neahtta/configs/language_specific_rules/templates/saanih/about.template:63
 msgid ""
 "Inari Saami → Finnish and Finnish → Inari Saami builds on the Valtonen "
 "and Olthuis Inarinsaame-suomi-inarinsaame dictionary  (30000 words). "
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanat/about.template:33
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:28
-msgid ""
-"Everything here is based on open-source tools and free to use. Visit <a "
-"class=\"blue\"\n"
-"                    href=\"http://giellatekno.uit.no/\">Giellatekno</a>'s"
-"\n"
-"                website for information on how to get access to lexicon\n"
-"                files, and morphological and syntactic analyzers."
-msgstr ""
-
-#: neahtta/configs/language_specific_rules/templates/sanat/about.template:46
-#: neahtta/configs/language_specific_rules/templates/sonad/about.template:52
+#: neahtta/configs/language_specific_rules/templates/sanat/about.template:55
+#: neahtta/configs/language_specific_rules/templates/sonad/about.template:59
 msgid "mennä, tapahtua, viedä, johtaa, edistyä"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanat/about.template:60
-#: neahtta/configs/language_specific_rules/templates/sonad/about.template:66
+#: neahtta/configs/language_specific_rules/templates/sanat/about.template:69
+#: neahtta/configs/language_specific_rules/templates/sonad/about.template:73
 msgid "liv ↔ fin"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanat/about.template:61
-#: neahtta/configs/language_specific_rules/templates/sonad/about.template:67
+#: neahtta/configs/language_specific_rules/templates/sanat/about.template:70
+#: neahtta/configs/language_specific_rules/templates/sonad/about.template:74
 msgid ""
 "Dictionaries for Livonian and Finnish are based\n"
 "                on the lexical materials and scientific research behind "
@@ -1107,13 +1123,13 @@ msgid ""
 "                Blumberga with funding from the Kone Foundation."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanat/about.template:70
-#: neahtta/configs/language_specific_rules/templates/sonad/about.template:76
+#: neahtta/configs/language_specific_rules/templates/sanat/about.template:79
+#: neahtta/configs/language_specific_rules/templates/sonad/about.template:83
 msgid "olo ↔ fin"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanat/about.template:71
-#: neahtta/configs/language_specific_rules/templates/sonad/about.template:77
+#: neahtta/configs/language_specific_rules/templates/sanat/about.template:80
+#: neahtta/configs/language_specific_rules/templates/sonad/about.template:84
 msgid ""
 "Dictionaries for Livvi Karelian (Olonets) and\n"
 "                Finnish are based on lexical material from the Livvi "
@@ -1130,7 +1146,7 @@ msgid ""
 "href=\"http://sonad.oahpa.no/\">Sonad</a>, please update your bookmarks."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:56
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:65
 msgid ""
 "North Sámi → Norwegian builds on Nils Jernsletten's dictionary "
 "<em>Álgosátnegirji</em> (4322 words), but now it contains 33,000 entries,"
@@ -1139,14 +1155,14 @@ msgid ""
 "words. It contains about 27,000 Norwegian entries. "
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:57
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:66
 msgid ""
 "Approximately half of the content of the dictionaries is taken by "
 "searching for parallels in a parallel corpus of administrative text. This"
 " work was financed by the Ministry of Local Government and Modernisation."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:61
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:70
 msgid ""
 "Dictionaries for North Saami and Finnish\n"
 "                are based on lexical material from\n"
@@ -1165,35 +1181,35 @@ msgid ""
 "                especially from Finnish."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:71
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:80
 msgid ""
 "North Sámi → Finnish contains about 42,500 entries, and Finnish → North "
 "Sámi about 27,500 entries."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:74
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:83
 msgid "sme ↔ spa"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:75
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:84
 msgid ""
 "These are the three main sources used for the elaboration of this "
 "dictionary:"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:77
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:86
 msgid ""
 "Hytönen, Ahti, and Jyrki K. Talvitie, 2003, Suomi-espanja suursanakirja. "
 "WSOY suursanakirja. 1. painos."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:78
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:87
 msgid ""
 "Nielsen, Konrad, 1932, Lappisk ordbok. Vols. 1-3. Oslo: "
 "Universitetsforlaget."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:79
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:88
 msgid ""
 "Real Academia Española, Diccionario de la Lengua Española. Edición "
 "tricentenario. Última actualización: <a "
@@ -1516,22 +1532,44 @@ msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/sonad/about.template:37
 msgid ""
-"Everything here is based on open-source tools. Do you\n"
-"                    have an idea for an app or research project that "
-"needs\n"
-"                    linguistic resources? Visit <a class=\"blue\"\n"
-"                        "
-"href=\"http://giellatekno.uit.no/\">Giellatekno</a>'s\n"
-"                    website for information on how to get access to "
-"lexicon\n"
-"                    files, and morphological and syntactic analyzers."
+"Neahttadigisánit is a dictionary platform presenting a variety \n"
+"                    of dictionaries. The technical source code is "
+"licenced under GPL-3 and \n"
+"                    available at <a "
+"href=\"https://github.com/giellatekno/neahttadigisanit\">https://github.com/giellatekno/neahttadigisanit</a>."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/vada/about.template:59
+#: neahtta/configs/language_specific_rules/templates/sonad/about.template:40
+msgid ""
+"The dictionaries presented in Neahttadigisánit have different \n"
+"                    licences. Most are open source, but not all. A list "
+"of dictionary resources \n"
+"                    and their licenses is found at \n"
+"                    <a "
+"href=\"https://giellalt.github.io/DictionaryResources.html\">https://giellalt.github.io/DictionaryResources.html</a>."
+" Certain dictionaries' \n"
+"                    source files are closed to the public and thus not "
+"listed."
+msgstr ""
+
+#: neahtta/configs/language_specific_rules/templates/sonad/about.template:45
+msgid ""
+"Neahttadigisánit utilizes morphological analyzers to recognize \n"
+"                    inflected forms and generate paradigm tables. A list "
+"of language models \n"
+"                    containing these analyzers is found at \n"
+"                    <a "
+"href=\"https://giellalt.github.io/LanguageModels.html\">https://giellalt.github.io/LanguageModels.html</a>."
+" The respective GitHub \n"
+"                    repositories contain information about each model's "
+"license."
+msgstr ""
+
+#: neahtta/configs/language_specific_rules/templates/vada/about.template:66
 msgid "yrk ↔ fin"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/vada/about.template:60
+#: neahtta/configs/language_specific_rules/templates/vada/about.template:67
 msgid ""
 "Dictionaries for Nenets and Finnish are based on\n"
 "                the lexical materials and scientific research by Natalia "
@@ -1543,21 +1581,21 @@ msgid ""
 "                with funding from the Kone Foundation."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/vada/about.template:67
+#: neahtta/configs/language_specific_rules/templates/vada/about.template:74
 msgid "mns → hun"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/vada/about.template:68
+#: neahtta/configs/language_specific_rules/templates/vada/about.template:75
 msgid ""
 "Dictionary for Northern Mansi - Hungarian is\n"
 "\t\tbased on work in FinUgRevita."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/valks/about.template:59
+#: neahtta/configs/language_specific_rules/templates/valks/about.template:66
 msgid "myv ↔ fin"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/valks/about.template:60
+#: neahtta/configs/language_specific_rules/templates/valks/about.template:67
 msgid ""
 "Dictionaries for Erzya and Finnish are based on\n"
 "                lexical material from a large array of dictionaries and "
@@ -1574,11 +1612,11 @@ msgid ""
 "                of Helsinki."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/valks/about.template:70
+#: neahtta/configs/language_specific_rules/templates/valks/about.template:77
 msgid "mdf ↔ fin"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/valks/about.template:71
+#: neahtta/configs/language_specific_rules/templates/valks/about.template:78
 msgid ""
 "Dictionaries for Moksha and Finnish are based on\n"
 "                lexical material from a large array of dictionaries and "
@@ -3110,5 +3148,60 @@ msgstr " är en möjlig form av ... "
 #~ "North Sámi → Finnish contains about "
 #~ "20,000 entries, and Finnish → North "
 #~ "Sámi about 14,500 entries."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Everything here is based on open-source tools. Do you\n"
+#~ "                have an idea for an "
+#~ "app or research project that needs\n"
+#~ ""
+#~ "                linguistic resources? Visit <a class=\"blue\"\n"
+#~ "                    "
+#~ "href=\"http://giellatekno.uit.no/\">Giellatekno</a>'s\n"
+#~ "                website for information on "
+#~ "how to get access to lexicon\n"
+#~ "                files, and morphological and syntactic analyzers."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Everything here is based on open-source tools and free to use.\n"
+#~ "\t    Visit <a class=\"blue\" "
+#~ "href=\"http://giellatekno.uit.no/\">Giellatekno</a>'s\n"
+#~ "                website for information on "
+#~ "how to get access to lexicon\n"
+#~ "                files, and morphological and syntactic analyzers."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Everything here is based on open-source tools and is free to use.\n"
+#~ "\t    Visit <a class=\"blue\" "
+#~ "href=\"http://giellatekno.uit.no/\">Giellatekno</a>'s\n"
+#~ "                website for information on "
+#~ "how to get access to lexicon\n"
+#~ "                files, and morphological and syntactic analyzers."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Everything here is based on open-"
+#~ "source tools and free to use. "
+#~ "Visit <a class=\"blue\"\n"
+#~ "                    "
+#~ "href=\"http://giellatekno.uit.no/\">Giellatekno</a>'s\n"
+#~ "                website for information on "
+#~ "how to get access to lexicon\n"
+#~ "                files, and morphological and syntactic analyzers."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Everything here is based on open-source tools. Do you\n"
+#~ "                    have an idea for an"
+#~ " app or research project that needs"
+#~ "\n"
+#~ "                    linguistic resources? Visit <a class=\"blue\"\n"
+#~ "                        "
+#~ "href=\"http://giellatekno.uit.no/\">Giellatekno</a>'s\n"
+#~ "                    website for information on"
+#~ " how to get access to lexicon\n"
+#~ "                    files, and morphological and syntactic analyzers."
 #~ msgstr ""
 
