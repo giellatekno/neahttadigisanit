@@ -11,15 +11,13 @@ ApplicationSettings:
     - "fkv"
     - "fi"
     - "nb"
-    - "lv"
     - "ru"
-    - "et"
   # TODO: someone will have to decide on the meta keywords and
   # descriptions for google.
   meta_description: >
-     Free, mobile-friendly dictionaries for Olonetsian, and Kven.
+     Free, mobile-friendly dictionaries for Kven, Meänkieli, Finnish, Olonetsian and Veps.
   meta_keywords: >
-     kven, olonets, olonetsian, karelian, russian
+     kven, olonets, olonetsian, karelian, russian, meänkieli, veps, vepsian, finnish
   admins_to_email:
     - "trond.trosterud@uit.no"
     - "anders.lorentsen@uit.no"
