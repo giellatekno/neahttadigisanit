@@ -66,16 +66,6 @@
         </div>
         <div class="row-fluid">
             <span class="span4">
-                <h3 class="red smaller">{% trans %}liv ↔ fin{% endtrans %}</h3>
-                <p>{% trans %}Dictionaries for Livonian and Finnish are based
-                on the lexical materials and scientific research behind the
-                Livonian-Estonian-Latvian dictionary by Tiit-Rein Viitso and
-                Valts Ernštreits. Finnish translation work, content analysis
-                and coordination is being continued in Helsinki by Renate
-                Blumberga with funding from the Kone Foundation.{% endtrans
-                %}</p>
-            </span>
-            <span class="span4">
                 <h3 class="blue smaller">{% trans %}olo ↔ fin{% endtrans %}</h3>
                 <p>{% trans %}Dictionaries for Livvi Karelian (Olonets) and
                 Finnish are based on lexical material from the Livvi language
@@ -85,6 +75,9 @@
                 Foundation.{% endtrans
                 %}</p>
 
+            </span>
+            <span class="span4">
+                &nbsp;
             </span>
             <span class="span4">
                 &nbsp;

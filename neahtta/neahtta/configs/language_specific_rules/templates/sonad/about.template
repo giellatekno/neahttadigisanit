@@ -80,15 +80,7 @@
                 %}</p>
             </span>
             <span class="span4">
-                <h3 class="blue smaller">{% trans %}olo ↔ fin{% endtrans %}</h3>
-                <p>{% trans %}Dictionaries for Livvi Karelian (Olonets) and
-                Finnish are based on lexical material from the Livvi language
-                newspaper "Oma mua" and a large array of dictionaries.
-                Translation work is being conducted at the University of
-                Helsinki by Timo Rantakaulio with funding from the Kone
-                Foundation.{% endtrans
-                %}</p>
-
+                &nbsp;
             </span>
             <span class="span4">
                 &nbsp;
