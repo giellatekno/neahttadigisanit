@@ -34,12 +34,19 @@
             </span>-->
             <span class="span4"> 
                 <h3 class="blue">{% trans %}Open-Source{% endtrans %}</h3>
-                <p>{% trans %}Everything here is based on open-source tools. Do you
-                    have an idea for an app or research project that needs
-                    linguistic resources? Visit <a class="blue"
-                        href="http://giellatekno.uit.no/">Giellatekno</a>'s
-                    website for information on how to get access to lexicon
-                    files, and morphological and syntactic analyzers.{% endtrans %}</p>
+                <p>{% trans %}Neahttadigisánit is a dictionary platform presenting a variety 
+                    of dictionaries. The technical source code is licenced under GPL-3 and 
+                    available at <a href="https://github.com/giellatekno/neahttadigisanit">https://github.com/giellatekno/neahttadigisanit</a>.{% endtrans %}</p>
+                <p>{% trans %}The dictionaries presented in Neahttadigisánit have different 
+                    licences. Most are open source, but not all. A list of dictionary resources 
+                    and their licenses is found at 
+                    <a href="https://giellalt.github.io/DictionaryResources.html">https://giellalt.github.io/DictionaryResources.html</a>. Certain dictionaries' 
+                    source files are closed to the public and thus not listed.{% endtrans %}</p>
+                <p>{% trans %}Neahttadigisánit utilizes morphological analyzers to recognize 
+                    inflected forms and generate paradigm tables. A list of language models 
+                    containing these analyzers is found at 
+                    <a href="https://giellalt.github.io/LanguageModels.html">https://giellalt.github.io/LanguageModels.html</a>. The respective GitHub 
+                    repositories contain information about each model's license.{% endtrans %}</p>
             </span>
             <span class="span4">
                 <h3 class="green">{% trans %}Linguistic basis{% endtrans %}</h3>
