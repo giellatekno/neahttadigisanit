@@ -514,7 +514,7 @@ msgid ""
 "Write what you wish, and the dictionary will analyze it to break apart "
 "compound words and find base forms."
 msgstr ""
-"Kirjoita mitä haluat, ja sanakirjaa analysoi sitä löytääkseensä "
+"Kirjoita mitä haluat, ja sanakirja analysoi sitä löytääkseensä "
 "yhdyssanojen ja taivutettujen muotojen vartalot."
 
 #: neahtta/configs/language_specific_rules/templates/about.template:49
@@ -878,7 +878,7 @@ msgid ""
 "Write whatever you want in Pite Saami, and the dictionary will analyze it"
 " to break apart compound words and find base forms."
 msgstr ""
-"Kirjoita mitä haluat, ja sanakirjaa analysoi sitä löytääkseensä "
+"Kirjoita mitä haluat, ja sanakirja analysoi sitä löytääkseensä "
 "yhdyssanojen ja taivutettujen muotojen vartalot."
 
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:50
@@ -2151,7 +2151,7 @@ msgid ""
 "when you encountered the problem."
 msgstr ""
 "Jos löydät virheitä, tai jos kirjanmerkki ei toimi tietyllä nettisivulla,"
-" voit otta yhteyttä meihin, ja kertoa mistä URL:stä on kyse, tak mitä "
+" voit ottaa yhteyttä meihin, ja kertoa mistä URL:stä on kyse, tak mitä "
 "teit kun ongelma ilmentyi."
 
 #: neahtta/templates/reader.html:46
