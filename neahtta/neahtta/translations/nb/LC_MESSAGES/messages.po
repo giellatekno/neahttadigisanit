@@ -431,7 +431,9 @@ msgid ""
 "under GPL-3 and \n"
 "                available at <a "
 "href=\"https://github.com/giellatekno/neahttadigisanit\">https://github.com/giellatekno/neahttadigisanit</a>."
-msgstr ""
+msgstr "Neahttadigisánit er en ordboksplattform som presenterer et utvalg ulike ordbøker. "
+"Den tekniske kildekoden er lisensiert under GPL-3 og er tilgjengelig fra adressen "
+"<a href=\"https://github.com/giellatekno/neahttadigisanit\">https://github.com/giellatekno/neahttadigisanit</a>."
 
 #: neahtta/configs/language_specific_rules/templates/about.template:30
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:28
@@ -452,7 +454,10 @@ msgid ""
 "href=\"https://giellalt.github.io/DictionaryResources.html\">https://giellalt.github.io/DictionaryResources.html</a>."
 " Certain dictionaries' \n"
 "                source files are closed to the public and thus not listed."
-msgstr ""
+msgstr "Ordbøkene som vises i Neahttadigisánit har ulike lisenser. Mange har åpen "
+"kildekode, men ikke alle. En liste over ordboksressurser og lisensene deres finnes "
+" på sida <a href=\"https://giellalt.github.io/DictionaryResources.html\">https://giellalt.github.io/DictionaryResources.html</a>. "
+"Kildekoden til visse ordbøker er lukka og de vises derfor ikke på lista."
 
 #: neahtta/configs/language_specific_rules/templates/about.template:35
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:33
@@ -474,7 +479,10 @@ msgid ""
 " The respective GitHub \n"
 "                repositories contain information about each model's "
 "license."
-msgstr ""
+msgstr "Neahttadigisánit bruker morfologiske analyseprogram for å kjenne igjen "
+"bøyde former og generere bøyingstabeller. En liste over språkmodellene som inneholder "
+"disse analyseprogrammene, finnes på sida <a href=\"https://giellalt.github.io/LanguageModels.html\">https://giellalt.github.io/LanguageModels.html</a>. "
+"De respektive GitHub-repositoriene inneholder informasjon om lisensen til hver modell."
 
 #: neahtta/configs/language_specific_rules/templates/about.template:42
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:40
