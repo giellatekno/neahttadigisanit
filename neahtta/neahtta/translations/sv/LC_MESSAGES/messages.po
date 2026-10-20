@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-20 12:29+0300\n"
+"POT-Creation-Date: 2026-10-20 12:57+0300\n"
 "PO-Revision-Date: 2013-02-01 01:55-0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: sv\n"
@@ -42,8 +42,6 @@ msgid "Standard"
 msgstr "Standard"
 
 #: neahtta/configs/kyv.config.yaml:145 neahtta/configs/kyv.config.yaml:223
-#: neahtta/configs/kyv.config.yaml.in:145
-#: neahtta/configs/kyv.config.yaml.in:223
 #: neahtta/configs/sample.config.yaml.in:192
 msgid "Social media"
 msgstr ""
@@ -71,10 +69,21 @@ msgid "Standard (<em>ӝӟӥӧӵ</em>)"
 msgstr "Standard (<em>ӝӟӥӧӵ</em>)"
 
 #: neahtta/configs/kyv.config.yaml:243 neahtta/configs/kyv.config.yaml:272
-#: neahtta/configs/kyv.config.yaml.in:243
-#: neahtta/configs/kyv.config.yaml.in:272
 msgid "Social media (incl. <em>жзиоч</em>)"
 msgstr "Sociala media (också <em>жзиоч</em>)"
+
+#: neahtta/configs/kyv.config.yaml.in:145
+#: neahtta/configs/kyv.config.yaml.in:223 neahtta/configs/sanit.config.yaml:125
+#: neahtta/configs/sanit.config.yaml.in:125
+#: neahtta/tests/configs/sanit.config.yaml:125
+msgid "Tolerant"
+msgstr ""
+
+#: neahtta/configs/kyv.config.yaml.in:243
+#: neahtta/configs/kyv.config.yaml.in:272
+#, fuzzy
+msgid "Tolerant (incl. <em>жзиоч</em>)"
+msgstr "(också <em>жзиоч</em>)"
 
 #: neahtta/configs/language_names.yaml:25
 #: neahtta/configs/language_names.yaml:26
@@ -303,12 +312,6 @@ msgstr "(också <em>aaacdnsz</em>)"
 #: neahtta/tests/configs/sanit.config.yaml:126
 msgid "(incl. <em>acdnstz</em>)"
 msgstr "(också <em>acdnstz</em>)"
-
-#: neahtta/configs/sanit.config.yaml:125
-#: neahtta/configs/sanit.config.yaml.in:125
-#: neahtta/tests/configs/sanit.config.yaml:125
-msgid "Tolerant"
-msgstr ""
 
 #: neahtta/configs/sanit.config.yaml:165
 #: neahtta/configs/sanit.config.yaml.in:165
