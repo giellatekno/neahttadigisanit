@@ -1145,17 +1145,18 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:20
 #: neahtta/configs/language_specific_rules/templates/sonad/about.template:20
 msgid "How to quote the dictionaries"
-msgstr ""
+msgstr "Miten sanakirjoihin viitataan"
 
 #: neahtta/configs/language_specific_rules/templates/saanih/about.template:62
 msgid "Inari Saami ↔ Finnish"
-msgstr "Inarinsaame ↔ Suomi"
+msgstr "Inarinsaame ↔ suomi"
 
 #: neahtta/configs/language_specific_rules/templates/saanih/about.template:63
 msgid ""
 "Inari Saami → Finnish and Finnish → Inari Saami builds on the Valtonen "
 "and Olthuis Inarinsaame-suomi-inarinsaame dictionary  (30000 words). "
-msgstr ""
+msgstr "Inarinsaame → suomi ja suomi → inarinsaame perustuvat Valtosen ja "
+"Olthuisin Inarinsaame–suomi–inarinsaame-sanakirjaan (30 000 sanaa)."
 
 #: neahtta/configs/language_specific_rules/templates/sanat/about.template:55
 #: neahtta/configs/language_specific_rules/templates/sonad/about.template:59
