@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-19 11:15+0300\n"
+"POT-Creation-Date: 2026-10-20 12:09+0300\n"
 "PO-Revision-Date: 2019-08-06 12:19+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: nb\n"
@@ -30,11 +30,12 @@ msgstr ""
 #: neahtta/configs/saanih.config.yaml.in:71
 #: neahtta/configs/saanih.config.yaml.in:101
 #: neahtta/configs/sample.config.yaml.in:186
-#: neahtta/configs/sanat.config.yaml:157
-#: neahtta/configs/sanat.config.yaml.in:136
+#: neahtta/configs/sanat.config.yaml:134
+#: neahtta/configs/sanat.config.yaml.in:134
 #: neahtta/configs/sanit.config.yaml:110
 #: neahtta/configs/sanit.config.yaml.in:110
 #: neahtta/configs/sanj.config.yaml:100 neahtta/configs/sanj.config.yaml.in:91
+#: neahtta/configs/sonad.config.yaml:127
 #: neahtta/configs/sonad.config.yaml.in:127
 #: neahtta/tests/configs/sanit.config.yaml:110
 msgid "Standard"
@@ -329,6 +330,7 @@ msgstr ""
 msgid "(incl. <em>аеиоумннр</em>)"
 msgstr "(forstår <em>acdnstz</em>)"
 
+#: neahtta/configs/sonad.config.yaml:132
 #: neahtta/configs/sonad.config.yaml.in:132
 msgid "mobile friendly"
 msgstr "tilpassa mobiltelefonen"
@@ -431,9 +433,11 @@ msgid ""
 "under GPL-3 and \n"
 "                available at <a "
 "href=\"https://github.com/giellatekno/neahttadigisanit\">https://github.com/giellatekno/neahttadigisanit</a>."
-msgstr "Neahttadigisánit er en ordboksplattform som presenterer et utvalg ulike ordbøker. "
-"Den tekniske kildekoden er lisensiert under GPL-3 og er tilgjengelig fra adressen "
-"<a href=\"https://github.com/giellatekno/neahttadigisanit\">https://github.com/giellatekno/neahttadigisanit</a>."
+msgstr ""
+"Neahttadigisánit er en ordboksplattform som presenterer et utvalg ulike "
+"ordbøker. Den tekniske kildekoden er lisensiert under GPL-3 og er "
+"tilgjengelig fra adressen <a "
+"href=\"https://github.com/giellatekno/neahttadigisanit\">https://github.com/giellatekno/neahttadigisanit</a>."
 
 #: neahtta/configs/language_specific_rules/templates/about.template:30
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:28
@@ -454,10 +458,12 @@ msgid ""
 "href=\"https://giellalt.github.io/DictionaryResources.html\">https://giellalt.github.io/DictionaryResources.html</a>."
 " Certain dictionaries' \n"
 "                source files are closed to the public and thus not listed."
-msgstr "Ordbøkene som vises i Neahttadigisánit har ulike lisenser. Mange har åpen "
-"kildekode, men ikke alle. En liste over ordboksressurser og lisensene deres finnes "
-" på sida <a href=\"https://giellalt.github.io/DictionaryResources.html\">https://giellalt.github.io/DictionaryResources.html</a>. "
-"Kildekoden til visse ordbøker er lukka og de vises derfor ikke på lista."
+msgstr ""
+"Ordbøkene som vises i Neahttadigisánit har ulike lisenser. Mange har åpen"
+" kildekode, men ikke alle. En liste over ordboksressurser og lisensene "
+"deres finnes  på sida <a "
+"href=\"https://giellalt.github.io/DictionaryResources.html\">https://giellalt.github.io/DictionaryResources.html</a>."
+" Kildekoden til visse ordbøker er lukka og de vises derfor ikke på lista."
 
 #: neahtta/configs/language_specific_rules/templates/about.template:35
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:33
@@ -479,10 +485,13 @@ msgid ""
 " The respective GitHub \n"
 "                repositories contain information about each model's "
 "license."
-msgstr "Neahttadigisánit bruker morfologiske analyseprogram for å kjenne igjen "
-"bøyde former og generere bøyingstabeller. En liste over språkmodellene som inneholder "
-"disse analyseprogrammene, finnes på sida <a href=\"https://giellalt.github.io/LanguageModels.html\">https://giellalt.github.io/LanguageModels.html</a>. "
-"De respektive GitHub-repositoriene inneholder informasjon om lisensen til hver modell."
+msgstr ""
+"Neahttadigisánit bruker morfologiske analyseprogram for å kjenne igjen "
+"bøyde former og generere bøyingstabeller. En liste over språkmodellene "
+"som inneholder disse analyseprogrammene, finnes på sida <a "
+"href=\"https://giellalt.github.io/LanguageModels.html\">https://giellalt.github.io/LanguageModels.html</a>."
+" De respektive GitHub-repositoriene inneholder informasjon om lisensen "
+"til hver modell."
 
 #: neahtta/configs/language_specific_rules/templates/about.template:42
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:40
@@ -617,13 +626,13 @@ msgstr "Hver av ordbøkene inneholder omtrent 11.000 lemmaer"
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:69
 #: neahtta/configs/language_specific_rules/templates/find_problem.template:3
 #: neahtta/configs/language_specific_rules/templates/muter/about.template:83
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:103
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:101
 #: neahtta/configs/language_specific_rules/templates/saanih/about.template:68
-#: neahtta/configs/language_specific_rules/templates/sanat/about.template:95
+#: neahtta/configs/language_specific_rules/templates/sanat/about.template:88
 #: neahtta/configs/language_specific_rules/templates/sanat/find_problem.template:3
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:94
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:88
-#: neahtta/configs/language_specific_rules/templates/sonad/about.template:99
+#: neahtta/configs/language_specific_rules/templates/sonad/about.template:91
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:87
 #: neahtta/configs/language_specific_rules/templates/valks/about.template:94
 msgid "Find a problem?"
@@ -633,12 +642,12 @@ msgstr "Fant du et problem?"
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:69
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:70
 #: neahtta/configs/language_specific_rules/templates/muter/about.template:84
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:104
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:102
 #: neahtta/configs/language_specific_rules/templates/saanih/about.template:69
-#: neahtta/configs/language_specific_rules/templates/sanat/about.template:96
+#: neahtta/configs/language_specific_rules/templates/sanat/about.template:89
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:95
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:89
-#: neahtta/configs/language_specific_rules/templates/sonad/about.template:100
+#: neahtta/configs/language_specific_rules/templates/sonad/about.template:92
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:88
 #: neahtta/configs/language_specific_rules/templates/valks/about.template:95
 msgid ""
@@ -662,13 +671,13 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/find_problem.template:13
 #: neahtta/configs/language_specific_rules/templates/muter/about.template:89
 #: neahtta/configs/language_specific_rules/templates/muter/about.template:94
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:109
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:114
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:107
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:112
 #: neahtta/configs/language_specific_rules/templates/saanih/about.template:74
 #: neahtta/configs/language_specific_rules/templates/saanih/about.template:79
-#: neahtta/configs/language_specific_rules/templates/sanat/about.template:100
-#: neahtta/configs/language_specific_rules/templates/sanat/about.template:109
-#: neahtta/configs/language_specific_rules/templates/sanat/about.template:114
+#: neahtta/configs/language_specific_rules/templates/sanat/about.template:93
+#: neahtta/configs/language_specific_rules/templates/sanat/about.template:102
+#: neahtta/configs/language_specific_rules/templates/sanat/about.template:107
 #: neahtta/configs/language_specific_rules/templates/sanat/find_problem.template:9
 #: neahtta/configs/language_specific_rules/templates/sanat/find_problem.template:13
 #: neahtta/configs/language_specific_rules/templates/sanat/find_problem.template:20
@@ -678,8 +687,8 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:105
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:94
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:99
-#: neahtta/configs/language_specific_rules/templates/sonad/about.template:105
-#: neahtta/configs/language_specific_rules/templates/sonad/about.template:110
+#: neahtta/configs/language_specific_rules/templates/sonad/about.template:97
+#: neahtta/configs/language_specific_rules/templates/sonad/about.template:102
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:93
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:98
 #: neahtta/configs/language_specific_rules/templates/valks/about.template:100
@@ -691,12 +700,12 @@ msgstr "Kontakt oss"
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:84
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:85
 #: neahtta/configs/language_specific_rules/templates/muter/about.template:99
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:119
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:117
 #: neahtta/configs/language_specific_rules/templates/saanih/about.template:84
-#: neahtta/configs/language_specific_rules/templates/sanat/about.template:120
+#: neahtta/configs/language_specific_rules/templates/sanat/about.template:113
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:110
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:104
-#: neahtta/configs/language_specific_rules/templates/sonad/about.template:115
+#: neahtta/configs/language_specific_rules/templates/sonad/about.template:107
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:103
 #: neahtta/configs/language_specific_rules/templates/valks/about.template:110
 msgid ""
@@ -954,7 +963,7 @@ msgid ""
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/muter/about.template:108
-#: neahtta/configs/language_specific_rules/templates/sonad/about.template:124
+#: neahtta/configs/language_specific_rules/templates/sonad/about.template:116
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:112
 #: neahtta/configs/language_specific_rules/templates/valks/about.template:119
 msgid "More to come..."
@@ -968,8 +977,9 @@ msgstr "Skoltesamisk ↔ xxx"
 msgid ""
 "Skolt Sámi → X project contains materials deriving from the research of "
 "numerous projects, dictionaries and word lists."
-msgstr "Skoltesamisk → X-prosjektet inneholder materiale som stammer fra forskningen "
-"til en rekke prosjekter, ordbøker og ordlister."
+msgstr ""
+"Skoltesamisk → X-prosjektet inneholder materiale som stammer fra "
+"forskningen til en rekke prosjekter, ordbøker og ordlister."
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:68
 msgid ""
@@ -978,8 +988,9 @@ msgid ""
 " Michael Rießler's contribution mainly consists of the integration of an "
 "earlier created Skolt Saami word list with English, Finnish, Norwegian, "
 "and Russian translations and linking to sound files."
-msgstr "Forskningsprosjektene har ført til en sammenslåing av flere ordlister "
-"med skoltesamisk som kildespråk og flere målspråk. Michael Rießlers bidrag "
+msgstr ""
+"Forskningsprosjektene har ført til en sammenslåing av flere ordlister med"
+" skoltesamisk som kildespråk og flere målspråk. Michael Rießlers bidrag "
 "består hovedsakelig i å integrere en tidligere utarbeidet skoltesamisk "
 "ordliste med engelske, finske, norske og russiske oversettelser, samt å "
 "lenke til lydfiler."
@@ -993,20 +1004,24 @@ msgid ""
 " as the art installation <a href=\"https://samidaiddaguovddas.no/en"
 "/espen-sommer-eide-language-memory/\">\"Language Memory\"</a> at Äʹvv "
 "Saaʹmi muʹzei by Espen Sommer Eide."
-msgstr "Opprettelsen av denne ordlisten var knyttet til Kola Sámi Documentation "
-"Project (<a href=\"https://dobes.mpi.nl/projects/sami/\">KSDP</a>), ledet av "
-"Michael Rießler, til arbeidet Michael Rießler utførte ved "
-"<a href=\"http://www.skoltesamiskmuseum.no\">Äʹvv Saaʹmi muʹzei</a>, samt til "
-"kunstinstallasjonen <a href=\"https://samidaiddaguovddas.no/en/espen-sommer-eide-language-memory/\">"
-"«Language Memory»</a> ved Äʹvv Saaʹmi muʹzei, laget av Espen Sommer Eide."
+msgstr ""
+"Opprettelsen av denne ordlisten var knyttet til Kola Sámi Documentation "
+"Project (<a href=\"https://dobes.mpi.nl/projects/sami/\">KSDP</a>), ledet"
+" av Michael Rießler, til arbeidet Michael Rießler utførte ved <a "
+"href=\"http://www.skoltesamiskmuseum.no\">Äʹvv Saaʹmi muʹzei</a>, samt "
+"til kunstinstallasjonen <a href=\"https://samidaiddaguovddas.no/en/espen-"
+"sommer-eide-language-memory/\">«Language Memory»</a> ved Äʹvv Saaʹmi "
+"muʹzei, laget av Espen Sommer Eide."
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:70
 msgid ""
 "Other main contributors to these projects were (in alphabetical order) "
 "Katri Jefremoff, Erkki Lumisalmi, Zoja Nosova, Lena Terhart, and Joshua "
 "Wilbur."
-msgstr "Andre hovedbidragsytere til disse prosjektene var, i alfabetisk rekkefølge, "
-"Katri Jefremoff, Erkki Lumisalmi, Zoja Nosova, Lena Terhart og Joshua Wilbur."
+msgstr ""
+"Andre hovedbidragsytere til disse prosjektene var, i alfabetisk "
+"rekkefølge, Katri Jefremoff, Erkki Lumisalmi, Zoja Nosova, Lena Terhart "
+"og Joshua Wilbur."
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:71
 msgid "The KSDP started in 2005 and in principle is still active."
@@ -1016,7 +1031,8 @@ msgstr "KSDP startet i 2005 og er i prinsippet fortsatt aktivt."
 msgid ""
 "Language memory was (officially) installed in 2018, but the project with "
 "the wordlist and recordings by Espen Sommer Eide was begun in 2009."
-msgstr "Language Memory ble offisielt installert i 2018, men prosjektet med "
+msgstr ""
+"Language Memory ble offisielt installert i 2018, men prosjektet med "
 "ordlisten og innspillingene av Espen Sommer Eide ble påbegynt i 2009."
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:73
@@ -1031,26 +1047,30 @@ msgid ""
 "Juutinen as well as the invaluable feedback fro the language community, "
 "e.g. Merja Fofonoff, XXX in the establishment of a large morphological "
 "database from research by others."
-msgstr "Det Kone-finansierte prosjektet «Skolt Sami revitalization with language "
-"technology and development of guidelines for transferring these methods to other "
-"endangered languages» [Gjenoppliving av skoltesamisk ved hjelp av "
-"språk­teknologistøttede språklæringsprogrammer, samt utvikling av en modell og "
-"retningslinjer for overføring av metoden til andre truede språk] (2015–2018), "
-"ledet av Jack Rueter, benyttet språkkompetansen til Eino Koponen og kommende "
-"spesialister som Miika Lehtinen og Markus Juutinen, samt de uvurderlige "
-"tilbakemeldingene fra språksamfunnet, blant andre Merja Fofonoff og XXX, i "
-"arbeidet med å etablere en stor morfologisk database basert på andres forskning."
+msgstr ""
+"Det Kone-finansierte prosjektet «Skolt Sami revitalization with language "
+"technology and development of guidelines for transferring these methods "
+"to other endangered languages» [Gjenoppliving av skoltesamisk ved hjelp "
+"av språk­teknologistøttede språklæringsprogrammer, samt utvikling av en "
+"modell og retningslinjer for overføring av metoden til andre truede "
+"språk] (2015–2018), ledet av Jack Rueter, benyttet språkkompetansen til "
+"Eino Koponen og kommende spesialister som Miika Lehtinen og Markus "
+"Juutinen, samt de uvurderlige tilbakemeldingene fra språksamfunnet, blant"
+" andre Merja Fofonoff og XXX, i arbeidet med å etablere en stor "
+"morfologisk database basert på andres forskning."
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:76
-msgid "sms ↔ fin"
+#, fuzzy
+msgid "sms → fin"
 msgstr "Skoltesamisk ↔ finsk"
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:77
 msgid ""
 "Dictionaries for Skolt Saami and Finnish consist of materials based on "
 "various sources and research projects:"
-msgstr "Ordbøkene for skoltesamisk og finsk består av materiale basert på "
-"ulike kilder og forskningsprosjekter:"
+msgstr ""
+"Ordbøkene for skoltesamisk og finsk består av materiale basert på ulike "
+"kilder og forskningsprosjekter:"
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:78
 msgid "Satu & Jouni Moshnikoff sanasto"
@@ -1064,8 +1084,9 @@ msgstr "Ordbøker:"
 msgid ""
 "Skolt Sámi lemmas with Finnish translations can also be attributed to "
 "materials in:"
-msgstr "Skoltesamiske lemmaer med finske oversettelser kan også knyttes "
-"til materiale i:"
+msgstr ""
+"Skoltesamiske lemmaer med finske oversettelser kan også knyttes til "
+"materiale i:"
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:82
 msgid "\"Koltan- ja kuolanlapin sanakirja\" (T. I. Itkonen, 1958)"
@@ -1100,7 +1121,8 @@ msgid "\"Vuõʹlǧǧe jååʹtted ooudâs\" (Sammallahti, 2012)"
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:92
-msgid "fin ↔ sms"
+#, fuzzy
+msgid "fin → sms"
 msgstr "Finsk ↔ skoltesamisk"
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:93
@@ -1110,10 +1132,12 @@ msgid ""
 "Sami-to-X dictionary, a simple flipped dictionary was produced for "
 "providing Finnish-to-Skolt Sami searches in the saan.oahpa.no online "
 "dictionary in 2016."
-msgstr "Den finsk–skoltesamiske ordboken har gjennomgått tre faser, fra "
-"kvantitet til kvalitet. Etter det innledende arbeidet med ordboka "
-"skoltesamisk–til–X ble det i 2016 utarbeidet en enkel omvendt ordbok for å "
-"muliggjøre søk fra finsk til skoltesamisk i nettordboken på saan.oahpa.no."
+msgstr ""
+"Den finsk–skoltesamiske ordboken har gjennomgått tre faser, fra kvantitet"
+" til kvalitet. Etter det innledende arbeidet med ordboka "
+"skoltesamisk–til–X ble det i 2016 utarbeidet en enkel omvendt ordbok for "
+"å muliggjøre søk fra finsk til skoltesamisk i nettordboken på "
+"saan.oahpa.no."
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:94
 msgid ""
@@ -1122,11 +1146,12 @@ msgid ""
 "became aware of the dictionary, it began to serve as a basis of "
 "vocabulary learning and, unfortunately, the source of many spelling "
 "mistakes and morphological misconceptions."
-msgstr "Dette innebar selvsagt at en stor mengde ikke-standardiserte ord og "
-"ordformer ble presentert. Etter hvert som stadig flere språkstudenter ble "
-"kjent med ordboken, begynte den å fungere som grunnlag for innlæring av "
-"ordforråd – og dessverre også som kilde til mange stavefeil og feilaktige "
-"oppfatninger om morfologien."
+msgstr ""
+"Dette innebar selvsagt at en stor mengde ikke-standardiserte ord og "
+"ordformer ble presentert. Etter hvert som stadig flere språkstudenter ble"
+" kjent med ordboken, begynte den å fungere som grunnlag for innlæring av "
+"ordforråd – og dessverre også som kilde til mange stavefeil og feilaktige"
+" oppfatninger om morfologien."
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:95
 msgid ""
@@ -1137,44 +1162,24 @@ msgid ""
 "Moshnikoff dictionary organized by the Oulu University Giellagas "
 "Institute and Saami Parliament in Inari, Finland with funding from the "
 "Finnish Ministry of Education (2019–2020)."
-msgstr "I juni 2020 ble filene som var generert av Jack Rueter (omtrent "
-"30 000 oppføringer), flyttet til main/words/dicts/finsms/inc/ for fremtidig "
-"bruk. Filene er blitt erstattet av et nyere sett (omtrent 20 000 oppføringer), "
-"som stammer direkte fra redigeringen av Satu og Jouni Moshnikoffs ordbok. "
-"Redigeringen ble organisert av Giellagas-instituttet ved Universitetet i Oulu "
-"og Sametinget i Finland, med finansiering fra det finske undervisnings- og "
-"kulturdepartementet (2019–2020)."
+msgstr ""
+"I juni 2020 ble filene som var generert av Jack Rueter (omtrent 30 000 "
+"oppføringer), flyttet til main/words/dicts/finsms/inc/ for fremtidig "
+"bruk. Filene er blitt erstattet av et nyere sett (omtrent 20 000 "
+"oppføringer), som stammer direkte fra redigeringen av Satu og Jouni "
+"Moshnikoffs ordbok. Redigeringen ble organisert av Giellagas-instituttet "
+"ved Universitetet i Oulu og Sametinget i Finland, med finansiering fra "
+"det finske undervisnings- og kulturdepartementet (2019–2020)."
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:96
-msgid ""
-"Subsequent updating of these files is being continued using the Veʹrdd "
-"dictionary editing platform, which played an instrumental role in the "
-"development of 2020."
-msgstr "Den videre oppdateringen av disse filene fortsetter ved hjelp av "
-"ordbokredigeringsplattformen Veʹrdd, som spilte en avgjørende rolle i "
-"utviklingen i 2020."
-
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:97
-msgid ""
-"The present Finnish-to-Skolt Sami dictionary consists of approximately "
-"20000 entries, which are derived directly from editing of the Satu & "
-"Jouni Moshnikoff dictionary organized by the Oulu University Giellagas "
-"Institute and Saami Parliament in Inari, Finland with funding from the "
-"Finnish Ministry of Education (2019–2020)."
-msgstr "Den nåværende finsk–skoltesamiske ordboken består av omtrent 20 000 "
-"oppføringer. Disse stammer direkte fra redigeringen av Satu og Jouni Moshnikoffs "
-"ordbok, som ble organisert av Giellagas-instituttet ved Universitetet i Oulu "
-"og Sametinget i Finland, med finansiering fra det finske undervisnings- "
-"og kulturdepartementet (2019–2020)."
-
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:98
 msgid ""
 "Subsequent updating of these files is being continued using the Veʹrdd "
 "dictionary editing platform, which played an instrumental role in the "
 "development of 2020. Extensive work can be attributed to members of the "
 "language community, language researchers and students at the Giellagas "
 "Institute and language technology researchers."
-msgstr "Den videre oppdateringen av disse filene fortsetter ved hjelp av "
+msgstr ""
+"Den videre oppdateringen av disse filene fortsetter ved hjelp av "
 "ordbokredigeringsplattformen Veʹrdd, som spilte en avgjørende rolle i "
 "utviklingen i 2020. Omfattende arbeid kan tilskrives medlemmer av "
 "språksamfunnet, språkforskere og studenter ved Giellagas-instituttet, "
@@ -1203,32 +1208,10 @@ msgid "mennä, tapahtua, viedä, johtaa, edistyä"
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/sanat/about.template:69
-#: neahtta/configs/language_specific_rules/templates/sonad/about.template:73
-msgid "liv ↔ fin"
-msgstr "Livisk ↔ finsk"
-
-#: neahtta/configs/language_specific_rules/templates/sanat/about.template:70
-#: neahtta/configs/language_specific_rules/templates/sonad/about.template:74
-msgid ""
-"Dictionaries for Livonian and Finnish are based\n"
-"                on the lexical materials and scientific research behind "
-"the\n"
-"                Livonian-Estonian-Latvian dictionary by Tiit-Rein Viitso "
-"and\n"
-"                Valts Ernštreits. Finnish translation work, content "
-"analysis\n"
-"                and coordination is being continued in Helsinki by Renate"
-"\n"
-"                Blumberga with funding from the Kone Foundation."
-msgstr ""
-
-#: neahtta/configs/language_specific_rules/templates/sanat/about.template:79
-#: neahtta/configs/language_specific_rules/templates/sonad/about.template:83
 msgid "olo ↔ fin"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/sanat/about.template:80
-#: neahtta/configs/language_specific_rules/templates/sonad/about.template:84
+#: neahtta/configs/language_specific_rules/templates/sanat/about.template:70
 msgid ""
 "Dictionaries for Livvi Karelian (Olonets) and\n"
 "                Finnish are based on lexical material from the Livvi "
@@ -1693,6 +1676,24 @@ msgid ""
 "license."
 msgstr ""
 
+#: neahtta/configs/language_specific_rules/templates/sonad/about.template:73
+msgid "liv ↔ fin"
+msgstr "Livisk ↔ finsk"
+
+#: neahtta/configs/language_specific_rules/templates/sonad/about.template:74
+msgid ""
+"Dictionaries for Livonian and Finnish are based\n"
+"                on the lexical materials and scientific research behind "
+"the\n"
+"                Livonian-Estonian-Latvian dictionary by Tiit-Rein Viitso "
+"and\n"
+"                Valts Ernštreits. Finnish translation work, content "
+"analysis\n"
+"                and coordination is being continued in Helsinki by Renate"
+"\n"
+"                Blumberga with funding from the Kone Foundation."
+msgstr ""
+
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:66
 msgid "yrk ↔ fin"
 msgstr ""
@@ -2086,12 +2087,18 @@ msgstr ""
 msgid "%(project_name)s Reader"
 msgstr "%(project_name)s Klikk-i-tekst"
 
+#: neahtta/templates/reader.html:22
+#, fuzzy
+msgid "Notice"
+msgstr "Votisk"
+
 #: neahtta/templates/reader.html:23
 msgid ""
 "Some websites have a security feature enabled that prevents the "
 "bookmarklet from working."
-msgstr "Noen sider har en sikkerhetsfunksjon som hindrer Klikk-i-tekst-funksjonen "
-"fra å kjøre."
+msgstr ""
+"Noen sider har en sikkerhetsfunksjon som hindrer Klikk-i-tekst-funksjonen"
+" fra å kjøre."
 
 #: neahtta/templates/reader.html:25
 msgid "Bookmarklet"
@@ -3066,4 +3073,38 @@ msgstr " er en mulig form av ... "
 #~ "og syntaktiske analyseprogram på <a "
 #~ "class=\"blue\\ href=\"http://giellatekno.uit.no/\">Giellateknos"
 #~ " hjemmeside</a>."
+
+#~ msgid ""
+#~ "Subsequent updating of these files is"
+#~ " being continued using the Veʹrdd "
+#~ "dictionary editing platform, which played "
+#~ "an instrumental role in the development"
+#~ " of 2020."
+#~ msgstr ""
+#~ "Den videre oppdateringen av disse filene"
+#~ " fortsetter ved hjelp av "
+#~ "ordbokredigeringsplattformen Veʹrdd, som spilte "
+#~ "en avgjørende rolle i utviklingen i "
+#~ "2020."
+
+#~ msgid ""
+#~ "The present Finnish-to-Skolt Sami "
+#~ "dictionary consists of approximately 20000 "
+#~ "entries, which are derived directly from"
+#~ " editing of the Satu & Jouni "
+#~ "Moshnikoff dictionary organized by the "
+#~ "Oulu University Giellagas Institute and "
+#~ "Saami Parliament in Inari, Finland with"
+#~ " funding from the Finnish Ministry of"
+#~ " Education (2019–2020)."
+#~ msgstr ""
+#~ "Den nåværende finsk–skoltesamiske ordboken "
+#~ "består av omtrent 20 000 oppføringer."
+#~ " Disse stammer direkte fra redigeringen "
+#~ "av Satu og Jouni Moshnikoffs ordbok, "
+#~ "som ble organisert av Giellagas-"
+#~ "instituttet ved Universitetet i Oulu og"
+#~ " Sametinget i Finland, med finansiering "
+#~ "fra det finske undervisnings- og "
+#~ "kulturdepartementet (2019–2020)."
 
