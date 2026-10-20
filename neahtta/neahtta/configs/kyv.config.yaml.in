@@ -142,7 +142,7 @@ Dictionaries:
           - "ӧ"
         # NB: must be same as analyser name
       - type: "mobile"
-        description: !gettext "Social media"
+        description: !gettext "Tolerant"
         example: !gettext "(incl. <em>ио</em>)"
         short_name: "kpvM"
         onscreen_keyboard: *KPV_KEYS
@@ -220,7 +220,7 @@ Dictionaries:
           - "ӵ"
         # NB: must be same as analyser name
       - type: "mobile"
-        description: !gettext "Social media"
+        description: !gettext "Tolerant"
         example: !gettext "(incl. <em>жзиоч</em>)"
         short_name: "udmM"
         onscreen_keyboard: *UDM_KEYS
@@ -240,7 +240,7 @@ Dictionaries:
         short_name: "udm"
         onscreen_keyboard: *UDM_KEYS
       - type: "mobile"
-        description: !gettext "Social media (incl. <em>жзиоч</em>)"
+        description: !gettext "Tolerant (incl. <em>жзиоч</em>)"
         short_name: "udmM"
         onscreen_keyboard: *UDM_KEYS
 
@@ -269,7 +269,7 @@ Dictionaries:
         short_name: "udm"
         onscreen_keyboard: *UDM_KEYS
       - type: "mobile"
-        description: !gettext "Social media (incl. <em>жзиоч</em>)"
+        description: !gettext "Tolerant (incl. <em>жзиоч</em>)"
         short_name: "udmM"
         onscreen_keyboard: *UDM_KEYS
 
