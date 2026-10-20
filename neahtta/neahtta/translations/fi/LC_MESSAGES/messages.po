@@ -83,7 +83,7 @@ msgstr "Pohjoissaame"
 
 #: neahtta/configs/language_names.yaml:27
 msgid "North Sámi (tolerant)"
-msgstr "Pohjoissaame (#SoMe)"
+msgstr "Pohjoissaame (suvaitsevainen)"
 
 #: neahtta/configs/language_names.yaml:28
 #: neahtta/configs/language_names.yaml:105
@@ -122,15 +122,15 @@ msgstr "Udmurtti"
 
 #: neahtta/configs/language_names.yaml:41
 msgid "Udmurt (tolerant)"
-msgstr ""
+msgstr "Udmurtti (suvaitsevainen)"
 
 #: neahtta/configs/language_names.yaml:42
 msgid "Komi-Permyak"
-msgstr ""
+msgstr "Komipermjakki"
 
 #: neahtta/configs/language_names.yaml:45
 msgid "Komi-Permyak (tolerant)"
-msgstr ""
+msgstr "Komipermjakki"
 
 #: neahtta/configs/language_names.yaml:46
 msgid "Kven"
@@ -150,7 +150,7 @@ msgstr "Liivi"
 
 #: neahtta/configs/language_names.yaml:52
 msgid "Livonian (tolerant)"
-msgstr ""
+msgstr "Liivi (suvaitsevainen)"
 
 #: neahtta/configs/language_names.yaml:53
 msgid "Izhorian"
@@ -184,7 +184,7 @@ msgstr "Ranska"
 #: neahtta/configs/language_names.yaml:64
 #: neahtta/configs/language_names.yaml:108
 msgid "German"
-msgstr ""
+msgstr "Saksa"
 
 #: neahtta/configs/language_names.yaml:65
 msgid "Western Mari"
@@ -201,7 +201,7 @@ msgstr "Nenetsi"
 
 #: neahtta/configs/language_names.yaml:72
 msgid "Northern Mansi"
-msgstr "Pohjoishaida"
+msgstr "Pohjoismansi"
 
 #: neahtta/configs/language_names.yaml:73
 msgid "Skolt Sami"
@@ -209,7 +209,7 @@ msgstr "Koltansaame"
 
 #: neahtta/configs/language_names.yaml:76
 msgid "Skolt Sami (tolerant)"
-msgstr ""
+msgstr "Koltansaame (suvaitsevainen)"
 
 #: neahtta/configs/language_names.yaml:77
 #: neahtta/templates/more_dictionaries.html:34
@@ -1303,7 +1303,7 @@ msgid ""
 "<em>acdnstz</em> for <em>áčđŋšŧž</em>."
 msgstr ""
 "Jos käytät puhelinta ilman saamen näppäimistöä voit käyttää <a "
-"href=\"/SoMe/nob/\">sosiaalimedia-modusta</a>, joka mahdollistaa "
+"href=\"/SoMe/nob/\">suvaitsevaisesta modusta</a>, joka mahdollistaa "
 "kirjainten <em>acdnstz</em> kirjoittamiseen <em>áčđŋšŧž</em>-kirjainten "
 "tilalle."
 
@@ -1313,7 +1313,7 @@ msgid ""
 "\n"
 " as áčđŋšŧž in addition to their usual values."
 msgstr ""
-"Valitsit #SoMe, sosiaalisen median lukemista varten. Se tarkoittaa, että "
+"Valitsit suvaitsevaisen mooduksen. Se tarkoittaa, että "
 "myös kirjaimet acdnstz\n"
 "hyväksytään áčđŋšŧž-kirjainten tilalle"
 
@@ -1676,6 +1676,10 @@ msgid ""
 "\n"
 "                Blumberga with funding from the Kone Foundation."
 msgstr ""
+"Liivin ja suomen kielen sanakirjat perustuvat Tiit-Rein Viitson ja Valts "
+"Ernštreitsin liivi–viro–latvia-sanakirjan taustalla olevaan leksikaaliseen "
+"aineistoon ja tieteelliseen tutkimukseen. Renate Blumberga jatkaa Helsingissä "
+"suomennostyötä, sisällönanalyysiä ja koordinointia Koneen Säätiön rahoituksella."
 
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:66
 msgid "yrk ↔ fin"
@@ -1691,21 +1695,24 @@ msgid ""
 "                translation work is being done in Tallinn by Sven-Erik "
 "Soosaar\n"
 "                with funding from the Kone Foundation."
-msgstr ""
+msgstr "Nenetsin ja suomen kielen sanakirjat perustuvat Natalia M. Tereschenkon, "
+"Tapani Salmisen ja Sven-Erik Soosaarin leksikaaliseen aineistoon ja tieteelliseen "
+"tutkimukseen. Sven-Erik Soosaar tekee suomennostyötä Tallinnassa Koneen Säätiön "
+"rahoituksella."
 
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:74
 msgid "mns → hun"
-msgstr ""
+msgstr "Pohjoismansi → Unkari"
 
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:75
 msgid ""
 "Dictionary for Northern Mansi - Hungarian is\n"
 "\t\tbased on work in FinUgRevita."
-msgstr ""
+msgstr "Pohjoismansin–unkarin sanakirja perustuu FinUgRevita-hankkeessa tehtyyn työhön."
 
 #: neahtta/configs/language_specific_rules/templates/valks/about.template:66
 msgid "myv ↔ fin"
-msgstr "ersä ↔ suomi"
+msgstr "Ersä ↔ suomi"
 
 #: neahtta/configs/language_specific_rules/templates/valks/about.template:67
 msgid ""
@@ -1722,7 +1729,12 @@ msgid ""
 "                made on the basis of ongoing translation work at the "
 "University\n"
 "                of Helsinki."
-msgstr ""
+msgstr "Ersä–suomi-sanakirjat perustuvat laajasta joukosta 1900- ja 2000-luvuilla "
+"julkaistuja sanakirjoja ja kirjallisuutta koottuun leksikaaliseen aineistoon. "
+"Alustavat suomennokset on lisätty Jaana Niemen ja Mihail Mosinin Turun ja "
+"Saranskin yliopistoissa laatiman ersä–suomi-sanakirjan sisältöön perustuen. "
+"Sanakirjoihin tehdään parhaillaan täydennyksiä Helsingin yliopistossa käynnissä "
+"olevan käännöstyön pohjalta."
 
 #: neahtta/configs/language_specific_rules/templates/valks/about.template:77
 msgid "mdf ↔ fin"
@@ -1741,7 +1753,12 @@ msgid ""
 "                Translation work is being continued at the University of\n"
 "                Helsinki by Merja Salo with funding from the Kone "
 "Foundation."
-msgstr ""
+msgstr "Mokša–suomi-sanakirjat perustuvat 1900- ja 2000-luvuilla julkaistuista "
+"lukuisista sanakirjoista ja kirjallisista lähteistä koottuun leksikaaliseen "
+"aineistoon. Alustavat suomennokset on lisätty Turun ja Saranskin yliopistoissa "
+"laaditun Eeva Herralan ja Aleksandr Feoktistovin mokša–suomi-sanakirjan sisällön "
+"pohjalta. Käännöstyötä jatkaa Helsingin yliopistossa Merja Salo Koneen Säätiön "
+"rahoituksella."
 
 #: neahtta/templates/404.html:51
 msgid ""
@@ -2005,7 +2022,7 @@ msgstr "Mordvalaiskielet"
 
 #: neahtta/templates/more_dictionaries.html:42
 msgid "We're also working on new language pairs."
-msgstr ""
+msgstr "Työskentelemme myös uusien kieliparien parissa."
 
 #: neahtta/templates/more_dictionaries.html:45
 msgid "Even more dictionaries..."
