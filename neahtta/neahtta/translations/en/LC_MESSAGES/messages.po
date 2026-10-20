@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-20 12:57+0300\n"
+"POT-Creation-Date: 2026-10-20 13:45+0300\n"
 "PO-Revision-Date: 2013-10-16 18:36-0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -34,8 +34,7 @@ msgstr ""
 #: neahtta/configs/sanat.config.yaml.in:134
 #: neahtta/configs/sanit.config.yaml:110
 #: neahtta/configs/sanit.config.yaml.in:110
-#: neahtta/configs/sanj.config.yaml:100 neahtta/configs/sanj.config.yaml.in:91
-#: neahtta/configs/sonad.config.yaml:127
+#: neahtta/configs/sanj.config.yaml:100 neahtta/configs/sonad.config.yaml:127
 #: neahtta/configs/sonad.config.yaml.in:127
 #: neahtta/tests/configs/sanit.config.yaml:110
 msgid "Standard"
@@ -47,9 +46,8 @@ msgid "Social media"
 msgstr ""
 
 #: neahtta/configs/kyv.config.yaml:146 neahtta/configs/kyv.config.yaml.in:146
-#, fuzzy
 msgid "(incl. <em>ио</em>)"
-msgstr "Social media (incl. <em>acdnstz</em>)"
+msgstr "(incl. <em>ио</em>)"
 
 #: neahtta/configs/kyv.config.yaml:150 neahtta/configs/kyv.config.yaml.in:150
 msgid "Molodtsov orthography"
@@ -60,21 +58,18 @@ msgid "Zyrian for Permyak"
 msgstr ""
 
 #: neahtta/configs/kyv.config.yaml:224 neahtta/configs/kyv.config.yaml.in:224
-#, fuzzy
 msgid "(incl. <em>жзиоч</em>)"
-msgstr "Social media (incl. <em>acdnstz</em>)"
+msgstr "(incl. <em>жзиоч</em>)"
 
 #: neahtta/configs/kyv.config.yaml:239 neahtta/configs/kyv.config.yaml:268
 #: neahtta/configs/kyv.config.yaml.in:239
 #: neahtta/configs/kyv.config.yaml.in:268
-#, fuzzy
 msgid "Standard (<em>ӝӟӥӧӵ</em>)"
-msgstr "Standard (<em>áčđŋšŧž</em>)"
+msgstr "Standard (<em>ӝӟӥӧӵ</em>)"
 
 #: neahtta/configs/kyv.config.yaml:243 neahtta/configs/kyv.config.yaml:272
-#, fuzzy
 msgid "Social media (incl. <em>жзиоч</em>)"
-msgstr "Social media (incl. <em>acdnstz</em>)"
+msgstr "Social media (incl. <em>жзиоч</em>)"
 
 #: neahtta/configs/kyv.config.yaml.in:145
 #: neahtta/configs/kyv.config.yaml.in:223 neahtta/configs/sanit.config.yaml:125
@@ -85,9 +80,8 @@ msgstr ""
 
 #: neahtta/configs/kyv.config.yaml.in:243
 #: neahtta/configs/kyv.config.yaml.in:272
-#, fuzzy
 msgid "Tolerant (incl. <em>жзиоч</em>)"
-msgstr "Social media (incl. <em>acdnstz</em>)"
+msgstr "Social media (incl. <em>жзиоч</em>)"
 
 #: neahtta/configs/language_names.yaml:25
 #: neahtta/configs/language_names.yaml:26
@@ -95,9 +89,8 @@ msgid "North Sámi"
 msgstr "North Saami"
 
 #: neahtta/configs/language_names.yaml:27
-#, fuzzy
 msgid "North Sámi (tolerant)"
-msgstr "North Saami (#SoMe)"
+msgstr "North Sámi (tolerant)"
 
 #: neahtta/configs/language_names.yaml:28
 #: neahtta/configs/language_names.yaml:105
@@ -227,9 +220,8 @@ msgstr ""
 
 #: neahtta/configs/language_names.yaml:77
 #: neahtta/templates/more_dictionaries.html:34
-#, fuzzy
 msgid "Kildin Saami"
-msgstr "Skolt Saami"
+msgstr "Kildin Saami"
 
 #: neahtta/configs/language_names.yaml:80
 msgid "Kildin Saami (tolerant)"
@@ -296,54 +288,56 @@ msgstr ""
 #: neahtta/configs/saanih.config.yaml:75 neahtta/configs/saanih.config.yaml:105
 #: neahtta/configs/saanih.config.yaml.in:75
 #: neahtta/configs/saanih.config.yaml.in:105
-#: neahtta/configs/sanj.config.yaml:121 neahtta/configs/sanj.config.yaml.in:112
+#: neahtta/configs/sanj.config.yaml:121
 msgid "Mobile friendly"
 msgstr ""
 
 #: neahtta/configs/saanih.config.yaml:72 neahtta/configs/saanih.config.yaml:102
 #: neahtta/configs/saanih.config.yaml.in:72
 #: neahtta/configs/saanih.config.yaml.in:102
-#, fuzzy
 msgid "(<em>âäáčđŋšž</em>)"
-msgstr "Standard (<em>áčđŋšŧž</em>)"
+msgstr "(<em>âäáčđŋšž</em>)"
 
 #: neahtta/configs/saanih.config.yaml:76 neahtta/configs/saanih.config.yaml:106
 #: neahtta/configs/saanih.config.yaml.in:76
 #: neahtta/configs/saanih.config.yaml.in:106
-#, fuzzy
 msgid "(incl. <em>aaacdnsz</em>)"
-msgstr "Social media (incl. <em>acdnstz</em>)"
+msgstr "(incl. <em>aaacdnsz</em>)"
 
 #: neahtta/configs/sample.config.yaml.in:194
 #: neahtta/configs/sanit.config.yaml:126
 #: neahtta/configs/sanit.config.yaml.in:126
 #: neahtta/tests/configs/sanit.config.yaml:126
-#, fuzzy
 msgid "(incl. <em>acdnstz</em>)"
-msgstr "Social media (incl. <em>acdnstz</em>)"
+msgstr "(incl. <em>acdnstz</em>)"
 
 #: neahtta/configs/sanit.config.yaml:165
 #: neahtta/configs/sanit.config.yaml.in:165
 #: neahtta/tests/configs/sanit.config.yaml:161
-#, fuzzy
 msgid "Standard (<em>áčđŋšŧž</em>)"
 msgstr "Standard (<em>áčđŋšŧž</em>)"
 
 #: neahtta/configs/sanit.config.yaml:169
 #: neahtta/configs/sanit.config.yaml.in:169
 #: neahtta/tests/configs/sanit.config.yaml:165
-#, fuzzy
 msgid "Tolerant (also <em>acdnstz</em>)"
-msgstr "Social media (incl. <em>acdnstz</em>)"
+msgstr "Tolerans (incl. <em>acdnstz</em>)"
 
 #: neahtta/configs/sanj.config.yaml:101 neahtta/configs/sanj.config.yaml.in:92
 msgid "(<em>а̄е̄ӣо̄ӯӎӊӈҏ</em>)"
 msgstr ""
 
 #: neahtta/configs/sanj.config.yaml:122 neahtta/configs/sanj.config.yaml.in:113
-#, fuzzy
 msgid "(incl. <em>аеиоумннр</em>)"
-msgstr "Social media (incl. <em>acdnstz</em>)"
+msgstr "(incl. <em>аеиоумннр</em>)"
+
+#: neahtta/configs/sanj.config.yaml.in:91
+msgid "Standard Kildin"
+msgstr "Standard"
+
+#: neahtta/configs/sanj.config.yaml.in:112
+msgid "Mobile friendly Kildin"
+msgstr "Mobile friendly"
 
 #: neahtta/configs/sonad.config.yaml:132
 #: neahtta/configs/sonad.config.yaml.in:132
@@ -526,77 +520,7 @@ msgstr ""
 msgid "gå, dra, reise"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/about.template:56
-#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:54
-#: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:57
-#: neahtta/configs/language_specific_rules/templates/muter/about.template:57
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:59
-#: neahtta/configs/language_specific_rules/templates/saanih/about.template:55
-#: neahtta/configs/language_specific_rules/templates/sanat/about.template:62
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:57
-#: neahtta/configs/language_specific_rules/templates/sonad/about.template:66
-#: neahtta/configs/language_specific_rules/templates/vada/about.template:59
-#: neahtta/configs/language_specific_rules/templates/valks/about.template:59
-msgid "Source material"
-msgstr ""
-
-#: neahtta/configs/language_specific_rules/templates/about.template:63
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:64
-msgid "sme ↔ nob"
-msgstr ""
-
-#: neahtta/configs/language_specific_rules/templates/about.template:64
-msgid ""
-"North Sámi → Norwegian builds on Nils Jernsletten's dictionary "
-"<em>Álgosátnegirji</em> (4322 words), but now it contains 30,000 entries,"
-" plus 6000 place name entries. Norwegian → North Sámi  is based on the "
-"North Sámi → Norwegian dictionary, but we have adde frequent Norwegian "
-"words. It contains about 26,000 Norwegian entries. "
-msgstr ""
-
-#: neahtta/configs/language_specific_rules/templates/about.template:65
-msgid ""
-"Approximately half of the content of the dictionaries is taken from a "
-"parallel corpus of administrative text, financed by the Ministry of Local"
-" Government and Modernisation."
-msgstr ""
-
-#: neahtta/configs/language_specific_rules/templates/about.template:68
-#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:61
-msgid "sma ↔ nob"
-msgstr ""
-
-#: neahtta/configs/language_specific_rules/templates/about.template:69
-msgid ""
-"The dictionaries for South Sámi and Norwegian build on material prepared "
-"by Albert Jåma and Tove Brustad in the <a class=\"blue\" "
-"href=\"http://www.ruovatsijte.no/\">Hemnes Sámi Organization</a>, but has"
-" in addition gained words from <a class=\"blue\" "
-"href=\"http://giellatekno.uit.no/\">Giellatekno</a> and <a class=\"blue\""
-" href=\"http://aajege.no/\">Aajege</a>'s work with the Southern Sámi <a "
-"class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
-msgstr ""
-
-#: neahtta/configs/language_specific_rules/templates/about.template:72
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:69
-msgid "sme ↔ fin"
-msgstr ""
-
-#: neahtta/configs/language_specific_rules/templates/about.template:73
-msgid ""
-"Dictionaries for North Sámi and Finnish are based on lexical material "
-"from the <a class=\"green\" href=\"http://kotus.fi\">Institute for the "
-"Languages of Finland</a>, and from Giellatekno's work with the North Sámi"
-"  <a class=\"green\" href=\"http://oahpa.no\">Oahpa</a>. In addition, we "
-"have included frequent words from North Sámi, but especially from "
-"Finnish."
-msgstr ""
-
-#: neahtta/configs/language_specific_rules/templates/about.template:74
-msgid "Each of the dictionaries contains about 11,000 base words."
-msgstr ""
-
-#: neahtta/configs/language_specific_rules/templates/about.template:79
+#: neahtta/configs/language_specific_rules/templates/about.template:77
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:68
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:69
 #: neahtta/configs/language_specific_rules/templates/find_problem.template:3
@@ -613,7 +537,7 @@ msgstr ""
 msgid "Find a problem?"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/about.template:80
+#: neahtta/configs/language_specific_rules/templates/about.template:78
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:69
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:70
 #: neahtta/configs/language_specific_rules/templates/muter/about.template:84
@@ -632,8 +556,8 @@ msgid ""
 "                were searching for when you encountered the problem."
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/about.template:85
-#: neahtta/configs/language_specific_rules/templates/about.template:90
+#: neahtta/configs/language_specific_rules/templates/about.template:83
+#: neahtta/configs/language_specific_rules/templates/about.template:88
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:74
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:79
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:75
@@ -667,7 +591,7 @@ msgstr ""
 msgid "Contact us"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/about.template:95
+#: neahtta/configs/language_specific_rules/templates/about.template:93
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:84
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:85
 #: neahtta/configs/language_specific_rules/templates/muter/about.template:99
@@ -841,6 +765,23 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:20
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:25
 msgid "How to quote the dictionary"
+msgstr ""
+
+#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:54
+#: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:57
+#: neahtta/configs/language_specific_rules/templates/muter/about.template:57
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:59
+#: neahtta/configs/language_specific_rules/templates/saanih/about.template:55
+#: neahtta/configs/language_specific_rules/templates/sanat/about.template:62
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:57
+#: neahtta/configs/language_specific_rules/templates/sonad/about.template:66
+#: neahtta/configs/language_specific_rules/templates/vada/about.template:59
+#: neahtta/configs/language_specific_rules/templates/valks/about.template:59
+msgid "Source material"
+msgstr ""
+
+#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:61
+msgid "sma ↔ nob"
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:62
@@ -1151,6 +1092,10 @@ msgid ""
 "href=\"http://sonad.oahpa.no/\">Sonad</a>, please update your bookmarks."
 msgstr ""
 
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:64
+msgid "sme ↔ nob"
+msgstr ""
+
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:65
 msgid ""
 "North Sámi → Norwegian builds on Nils Jernsletten's dictionary "
@@ -1165,6 +1110,10 @@ msgid ""
 "Approximately half of the content of the dictionaries is taken by "
 "searching for parallels in a parallel corpus of administrative text. This"
 " work was financed by the Ministry of Local Government and Modernisation."
+msgstr ""
+
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:69
+msgid "sme ↔ fin"
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:70
@@ -1864,12 +1813,10 @@ msgid ""
 msgstr ""
 
 #: neahtta/templates/more_dictionaries.html:28
-#, fuzzy
 msgid "North Saami"
 msgstr "North Saami"
 
 #: neahtta/templates/more_dictionaries.html:29
-#, fuzzy
 msgid "South Saami"
 msgstr "South Saami"
 
@@ -1882,7 +1829,6 @@ msgid "Mari"
 msgstr ""
 
 #: neahtta/templates/more_dictionaries.html:32
-#, fuzzy
 msgid "Skolt Saami"
 msgstr "Skolt Saami"
 
@@ -3116,5 +3062,56 @@ msgstr ""
 #~ "website <a class=\"blue\" href=\"http://saami"
 #~ ".uni-freiburg.de/psdp/pite-lex/\">Bidumsáme "
 #~ "Báhkogirrje</a>."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "North Sámi → Norwegian builds on "
+#~ "Nils Jernsletten's dictionary "
+#~ "<em>Álgosátnegirji</em> (4322 words), but now"
+#~ " it contains 30,000 entries, plus "
+#~ "6000 place name entries. Norwegian → "
+#~ "North Sámi  is based on the North"
+#~ " Sámi → Norwegian dictionary, but we"
+#~ " have adde frequent Norwegian words. "
+#~ "It contains about 26,000 Norwegian "
+#~ "entries. "
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Approximately half of the content of "
+#~ "the dictionaries is taken from a "
+#~ "parallel corpus of administrative text, "
+#~ "financed by the Ministry of Local "
+#~ "Government and Modernisation."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The dictionaries for South Sámi and "
+#~ "Norwegian build on material prepared by"
+#~ " Albert Jåma and Tove Brustad in "
+#~ "the <a class=\"blue\" "
+#~ "href=\"http://www.ruovatsijte.no/\">Hemnes Sámi "
+#~ "Organization</a>, but has in addition "
+#~ "gained words from <a class=\"blue\" "
+#~ "href=\"http://giellatekno.uit.no/\">Giellatekno</a> and <a"
+#~ " class=\"blue\" href=\"http://aajege.no/\">Aajege</a>'s "
+#~ "work with the Southern Sámi <a "
+#~ "class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Dictionaries for North Sámi and Finnish"
+#~ " are based on lexical material from"
+#~ " the <a class=\"green\" "
+#~ "href=\"http://kotus.fi\">Institute for the Languages"
+#~ " of Finland</a>, and from Giellatekno's "
+#~ "work with the North Sámi  <a "
+#~ "class=\"green\" href=\"http://oahpa.no\">Oahpa</a>. In "
+#~ "addition, we have included frequent "
+#~ "words from North Sámi, but especially"
+#~ " from Finnish."
+#~ msgstr ""
+
+#~ msgid "Each of the dictionaries contains about 11,000 base words."
 #~ msgstr ""
 

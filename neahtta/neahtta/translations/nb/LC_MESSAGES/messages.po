@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-20 12:57+0300\n"
+"POT-Creation-Date: 2026-10-20 13:45+0300\n"
 "PO-Revision-Date: 2019-08-06 12:19+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: nb\n"
@@ -34,8 +34,7 @@ msgstr ""
 #: neahtta/configs/sanat.config.yaml.in:134
 #: neahtta/configs/sanit.config.yaml:110
 #: neahtta/configs/sanit.config.yaml.in:110
-#: neahtta/configs/sanj.config.yaml:100 neahtta/configs/sanj.config.yaml.in:91
-#: neahtta/configs/sonad.config.yaml:127
+#: neahtta/configs/sanj.config.yaml:100 neahtta/configs/sonad.config.yaml:127
 #: neahtta/configs/sonad.config.yaml.in:127
 #: neahtta/tests/configs/sanit.config.yaml:110
 msgid "Standard"
@@ -289,7 +288,7 @@ msgstr "Svensk"
 #: neahtta/configs/saanih.config.yaml:75 neahtta/configs/saanih.config.yaml:105
 #: neahtta/configs/saanih.config.yaml.in:75
 #: neahtta/configs/saanih.config.yaml.in:105
-#: neahtta/configs/sanj.config.yaml:121 neahtta/configs/sanj.config.yaml.in:112
+#: neahtta/configs/sanj.config.yaml:121
 msgid "Mobile friendly"
 msgstr "Tilpassa mobiltelefonen"
 
@@ -331,6 +330,14 @@ msgstr ""
 #: neahtta/configs/sanj.config.yaml:122 neahtta/configs/sanj.config.yaml.in:113
 msgid "(incl. <em>аеиоумннр</em>)"
 msgstr "(forstår <em>acdnstz</em>)"
+
+#: neahtta/configs/sanj.config.yaml.in:91
+msgid "Standard Kildin"
+msgstr ""
+
+#: neahtta/configs/sanj.config.yaml.in:112
+msgid "Mobile friendly Kildin"
+msgstr "tilpassa mobiltelefonen"
 
 #: neahtta/configs/sonad.config.yaml:132
 #: neahtta/configs/sonad.config.yaml.in:132
@@ -533,97 +540,7 @@ msgstr ""
 msgid "gå, dra, reise"
 msgstr ""
 
-#: neahtta/configs/language_specific_rules/templates/about.template:56
-#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:54
-#: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:57
-#: neahtta/configs/language_specific_rules/templates/muter/about.template:57
-#: neahtta/configs/language_specific_rules/templates/saan/about.template:59
-#: neahtta/configs/language_specific_rules/templates/saanih/about.template:55
-#: neahtta/configs/language_specific_rules/templates/sanat/about.template:62
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:57
-#: neahtta/configs/language_specific_rules/templates/sonad/about.template:66
-#: neahtta/configs/language_specific_rules/templates/vada/about.template:59
-#: neahtta/configs/language_specific_rules/templates/valks/about.template:59
-msgid "Source material"
-msgstr "Kildemateriale"
-
-#: neahtta/configs/language_specific_rules/templates/about.template:63
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:64
-msgid "sme ↔ nob"
-msgstr "Nordsamisk ↔ norsk"
-
-#: neahtta/configs/language_specific_rules/templates/about.template:64
-msgid ""
-"North Sámi → Norwegian builds on Nils Jernsletten's dictionary "
-"<em>Álgosátnegirji</em> (4322 words), but now it contains 30,000 entries,"
-" plus 6000 place name entries. Norwegian → North Sámi  is based on the "
-"North Sámi → Norwegian dictionary, but we have adde frequent Norwegian "
-"words. It contains about 26,000 Norwegian entries. "
-msgstr ""
-"Nordsamisk → Norsk ordbok bygger på Nils Jernslettens ordbok "
-"<em>Álgosátnegirji</em> (4 322 ord), men nå inneholder ordboka 30 000 "
-"oppslagsord, pluss 6 000 stedsnavn. Norsk → Nordsamisk bygger på "
-"Nordsamisk → Norsk ordbok, men vi har i tillegg lagt til vanlige norske "
-"ord. Den inneholder rundt 26 000 norske oppslagsord. "
-
-#: neahtta/configs/language_specific_rules/templates/about.template:65
-msgid ""
-"Approximately half of the content of the dictionaries is taken from a "
-"parallel corpus of administrative text, financed by the Ministry of Local"
-" Government and Modernisation."
-msgstr ""
-"Omtrent halvparten av innholdet i ordbøkene er hentet fra et "
-"parallelkorpus av administrative tekster, finansiert av Kommunal- og "
-"administrasjonsdepartementet."
-
-#: neahtta/configs/language_specific_rules/templates/about.template:68
-#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:61
-msgid "sma ↔ nob"
-msgstr "Sørsamisk ↔ norsk"
-
-#: neahtta/configs/language_specific_rules/templates/about.template:69
-msgid ""
-"The dictionaries for South Sámi and Norwegian build on material prepared "
-"by Albert Jåma and Tove Brustad in the <a class=\"blue\" "
-"href=\"http://www.ruovatsijte.no/\">Hemnes Sámi Organization</a>, but has"
-" in addition gained words from <a class=\"blue\" "
-"href=\"http://giellatekno.uit.no/\">Giellatekno</a> and <a class=\"blue\""
-" href=\"http://aajege.no/\">Aajege</a>'s work with the Southern Sámi <a "
-"class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
-msgstr ""
-"Ordbøkene mellom sørsamisk og norsk bygger på Albert Jåma og Tove "
-"Brustads materiale i <a class=\"blue\" "
-"href=\"http://www.ruovatsijte.no/\">Hemnes Sameforening</a>, i tillegg  "
-"til ordpar fra <a class=\"blue\" "
-"href=\"http://giellatekno.uit.no/\">Giellatekno</a> og <a class=\"blue\" "
-"href=\"http://aajege.no/\">Aajege</a> sitt arbeid med sørsamisk <a "
-"class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
-
-#: neahtta/configs/language_specific_rules/templates/about.template:72
-#: neahtta/configs/language_specific_rules/templates/sanit/about.template:69
-msgid "sme ↔ fin"
-msgstr "Nordsamisk ↔ finsk"
-
-#: neahtta/configs/language_specific_rules/templates/about.template:73
-msgid ""
-"Dictionaries for North Sámi and Finnish are based on lexical material "
-"from the <a class=\"green\" href=\"http://kotus.fi\">Institute for the "
-"Languages of Finland</a>, and from Giellatekno's work with the North Sámi"
-"  <a class=\"green\" href=\"http://oahpa.no\">Oahpa</a>. In addition, we "
-"have included frequent words from North Sámi, but especially from "
-"Finnish."
-msgstr ""
-"Ordbøkene mellom nordsamisk og finsk er basert på leksikalsk materiale "
-"fra <a class=\"green\" href=\"http://kotus.fi\">Institute for the "
-"Languages of Finland</a>, og fra Giellatekno's arbeid med nordsamisk  <a "
-"class=\"green\" href=\"http://oahpa.no\">Oahpa</a>. I tillegg har vi tatt"
-" med vanlige ord fra finsk."
-
-#: neahtta/configs/language_specific_rules/templates/about.template:74
-msgid "Each of the dictionaries contains about 11,000 base words."
-msgstr "Hver av ordbøkene inneholder omtrent 11.000 lemmaer"
-
-#: neahtta/configs/language_specific_rules/templates/about.template:79
+#: neahtta/configs/language_specific_rules/templates/about.template:77
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:68
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:69
 #: neahtta/configs/language_specific_rules/templates/find_problem.template:3
@@ -640,7 +557,7 @@ msgstr "Hver av ordbøkene inneholder omtrent 11.000 lemmaer"
 msgid "Find a problem?"
 msgstr "Fant du et problem?"
 
-#: neahtta/configs/language_specific_rules/templates/about.template:80
+#: neahtta/configs/language_specific_rules/templates/about.template:78
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:69
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:70
 #: neahtta/configs/language_specific_rules/templates/muter/about.template:84
@@ -663,8 +580,8 @@ msgstr ""
 " brukte, og hvilket ord du\n"
 "                lette etter da problemet oppsto."
 
-#: neahtta/configs/language_specific_rules/templates/about.template:85
-#: neahtta/configs/language_specific_rules/templates/about.template:90
+#: neahtta/configs/language_specific_rules/templates/about.template:83
+#: neahtta/configs/language_specific_rules/templates/about.template:88
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:74
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:79
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:75
@@ -698,7 +615,7 @@ msgstr ""
 msgid "Contact us"
 msgstr "Kontakt oss"
 
-#: neahtta/configs/language_specific_rules/templates/about.template:95
+#: neahtta/configs/language_specific_rules/templates/about.template:93
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:84
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:85
 #: neahtta/configs/language_specific_rules/templates/muter/about.template:99
@@ -879,6 +796,23 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:25
 msgid "How to quote the dictionary"
 msgstr "Hvordan sitere ordboka"
+
+#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:54
+#: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:57
+#: neahtta/configs/language_specific_rules/templates/muter/about.template:57
+#: neahtta/configs/language_specific_rules/templates/saan/about.template:59
+#: neahtta/configs/language_specific_rules/templates/saanih/about.template:55
+#: neahtta/configs/language_specific_rules/templates/sanat/about.template:62
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:57
+#: neahtta/configs/language_specific_rules/templates/sonad/about.template:66
+#: neahtta/configs/language_specific_rules/templates/vada/about.template:59
+#: neahtta/configs/language_specific_rules/templates/valks/about.template:59
+msgid "Source material"
+msgstr "Kildemateriale"
+
+#: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:61
+msgid "sma ↔ nob"
+msgstr "Sørsamisk ↔ norsk"
 
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:62
 msgid ""
@@ -1272,6 +1206,10 @@ msgid ""
 "href=\"http://sonad.oahpa.no/\">Sonad</a>, please update your bookmarks."
 msgstr ""
 
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:64
+msgid "sme ↔ nob"
+msgstr "Nordsamisk ↔ norsk"
+
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:65
 msgid ""
 "North Sámi → Norwegian builds on Nils Jernsletten's dictionary "
@@ -1295,6 +1233,10 @@ msgstr ""
 "Omtrent halvparten av innholdet i ordbøkene er hentet fra et "
 "parallellkorpus av administrative tekster, finansiert av Kommunal- og "
 "administrasjonsdepartementet."
+
+#: neahtta/configs/language_specific_rules/templates/sanit/about.template:69
+msgid "sme ↔ fin"
+msgstr "Nordsamisk ↔ finsk"
 
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:70
 msgid ""
@@ -3150,4 +3092,87 @@ msgstr " er en mulig form av ... "
 #~ " Sametinget i Finland, med finansiering "
 #~ "fra det finske undervisnings- og "
 #~ "kulturdepartementet (2019–2020)."
+
+#~ msgid ""
+#~ "North Sámi → Norwegian builds on "
+#~ "Nils Jernsletten's dictionary "
+#~ "<em>Álgosátnegirji</em> (4322 words), but now"
+#~ " it contains 30,000 entries, plus "
+#~ "6000 place name entries. Norwegian → "
+#~ "North Sámi  is based on the North"
+#~ " Sámi → Norwegian dictionary, but we"
+#~ " have adde frequent Norwegian words. "
+#~ "It contains about 26,000 Norwegian "
+#~ "entries. "
+#~ msgstr ""
+#~ "Nordsamisk → Norsk ordbok bygger på "
+#~ "Nils Jernslettens ordbok <em>Álgosátnegirji</em> "
+#~ "(4 322 ord), men nå inneholder "
+#~ "ordboka 30 000 oppslagsord, pluss 6 "
+#~ "000 stedsnavn. Norsk → Nordsamisk bygger"
+#~ " på Nordsamisk → Norsk ordbok, men"
+#~ " vi har i tillegg lagt til "
+#~ "vanlige norske ord. Den inneholder rundt"
+#~ " 26 000 norske oppslagsord. "
+
+#~ msgid ""
+#~ "Approximately half of the content of "
+#~ "the dictionaries is taken from a "
+#~ "parallel corpus of administrative text, "
+#~ "financed by the Ministry of Local "
+#~ "Government and Modernisation."
+#~ msgstr ""
+#~ "Omtrent halvparten av innholdet i "
+#~ "ordbøkene er hentet fra et "
+#~ "parallelkorpus av administrative tekster, "
+#~ "finansiert av Kommunal- og "
+#~ "administrasjonsdepartementet."
+
+#~ msgid ""
+#~ "The dictionaries for South Sámi and "
+#~ "Norwegian build on material prepared by"
+#~ " Albert Jåma and Tove Brustad in "
+#~ "the <a class=\"blue\" "
+#~ "href=\"http://www.ruovatsijte.no/\">Hemnes Sámi "
+#~ "Organization</a>, but has in addition "
+#~ "gained words from <a class=\"blue\" "
+#~ "href=\"http://giellatekno.uit.no/\">Giellatekno</a> and <a"
+#~ " class=\"blue\" href=\"http://aajege.no/\">Aajege</a>'s "
+#~ "work with the Southern Sámi <a "
+#~ "class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
+#~ msgstr ""
+#~ "Ordbøkene mellom sørsamisk og norsk "
+#~ "bygger på Albert Jåma og Tove "
+#~ "Brustads materiale i <a class=\"blue\" "
+#~ "href=\"http://www.ruovatsijte.no/\">Hemnes Sameforening</a>, "
+#~ "i tillegg  til ordpar fra <a "
+#~ "class=\"blue\" "
+#~ "href=\"http://giellatekno.uit.no/\">Giellatekno</a> og <a"
+#~ " class=\"blue\" href=\"http://aajege.no/\">Aajege</a> "
+#~ "sitt arbeid med sørsamisk <a "
+#~ "class=\"blue\" href=\"http://oahpa.no\">Oahpa</a>."
+
+#~ msgid ""
+#~ "Dictionaries for North Sámi and Finnish"
+#~ " are based on lexical material from"
+#~ " the <a class=\"green\" "
+#~ "href=\"http://kotus.fi\">Institute for the Languages"
+#~ " of Finland</a>, and from Giellatekno's "
+#~ "work with the North Sámi  <a "
+#~ "class=\"green\" href=\"http://oahpa.no\">Oahpa</a>. In "
+#~ "addition, we have included frequent "
+#~ "words from North Sámi, but especially"
+#~ " from Finnish."
+#~ msgstr ""
+#~ "Ordbøkene mellom nordsamisk og finsk er"
+#~ " basert på leksikalsk materiale fra "
+#~ "<a class=\"green\" href=\"http://kotus.fi\">Institute "
+#~ "for the Languages of Finland</a>, og "
+#~ "fra Giellatekno's arbeid med nordsamisk  "
+#~ "<a class=\"green\" href=\"http://oahpa.no\">Oahpa</a>. "
+#~ "I tillegg har vi tatt med vanlige"
+#~ " ord fra finsk."
+
+#~ msgid "Each of the dictionaries contains about 11,000 base words."
+#~ msgstr "Hver av ordbøkene inneholder omtrent 11.000 lemmaer"
 

@@ -88,7 +88,7 @@ Dictionaries:
         python3 scripts/xslx2gtxml_sjdrus.py $NEWEST_SOURCE src/sjd-rus.xml --skip=$SKIP --audio-folder $GUT_DIR/giellatekno/audio-sjd/flac
     input_variants: &spell_relax_sjd
       - type: "standard"
-        description: !gettext "Standard"
+        description: !gettext "Standard Kildin"
         example: !gettext "(<em>а̄е̄ӣо̄ӯӎӊӈҏ</em>)"
         short_name: "sjd"
         onscreen_keyboard: &SJD_KEYS
@@ -109,7 +109,7 @@ Dictionaries:
         - "ҏ"
         - "ҍ"
       - type: "mobile"
-        description: !gettext "Mobile friendly"
+        description: !gettext "Mobile friendly Kildin"
         example: !gettext "(incl. <em>аеиоумннр</em>)"
         short_name: "sjdM"
         onscreen_keyboard: *SJD_KEYS
