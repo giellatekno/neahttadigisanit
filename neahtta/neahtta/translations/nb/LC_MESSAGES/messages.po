@@ -909,7 +909,6 @@ msgid "fara, gå"
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:64
-#, fuzzy
 msgid ""
 "The Pite Saami dictionaries are primarily based on <em><a class=\"blue\" "
 "href=\"http://saami.uni-freiburg.de/samica/\">Pitesamisk ordbok samt "
@@ -949,8 +948,7 @@ msgstr ""
 " av J. Wilbur. En annen søkbar versjon av den samme databasen, men med "
 "grammatisk informasjon, mange lydfiler og enkelte oppføringer som "
 "inneholder fraser eller ordformer, er tilgjengelig på nettstedet <a "
-"class=\"blue\" href=\"http://saami.uni-freiburg.de/psdp/pite-"
-"lex/\">Bidumsáme Báhkogirrje</a>."
+"class=\"blue\" href=\"https://sjelex.keeleressursid.ee/main.php?searchMode=basic&showAll=off&lang=Swe\">Bidumsáme Báhkogirrje</a>."
 
 #: neahtta/configs/language_specific_rules/templates/kyv/examples.template:76
 msgid "saying"
