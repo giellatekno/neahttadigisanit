@@ -1060,9 +1060,8 @@ msgstr ""
 "morfologisk database basert på andres forskning."
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:76
-#, fuzzy
 msgid "sms → fin"
-msgstr "Skoltesamisk ↔ finsk"
+msgstr "Skoltesamisk → finsk"
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:77
 msgid ""
@@ -1121,9 +1120,8 @@ msgid "\"Vuõʹlǧǧe jååʹtted ooudâs\" (Sammallahti, 2012)"
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:92
-#, fuzzy
 msgid "fin → sms"
-msgstr "Finsk ↔ skoltesamisk"
+msgstr "Finsk → skoltesamisk"
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:93
 msgid ""
@@ -2088,9 +2086,8 @@ msgid "%(project_name)s Reader"
 msgstr "%(project_name)s Klikk-i-tekst"
 
 #: neahtta/templates/reader.html:22
-#, fuzzy
 msgid "Notice"
-msgstr "Votisk"
+msgstr "Varsel"
 
 #: neahtta/templates/reader.html:23
 msgid ""

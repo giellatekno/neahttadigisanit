@@ -1019,9 +1019,8 @@ msgid ""
 msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:76
-#, fuzzy
 msgid "sms → fin"
-msgstr "Koltansaame ↔ suomi"
+msgstr "Koltansaame → suomi"
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:77
 msgid ""
@@ -2049,15 +2048,15 @@ msgid "%(project_name)s Reader"
 msgstr ""
 
 #: neahtta/templates/reader.html:22
-#, fuzzy
 msgid "Notice"
-msgstr "Vatja"
+msgstr "Ilmoitus"
 
 #: neahtta/templates/reader.html:23
 msgid ""
 "Some websites have a security feature enabled that prevents the "
 "bookmarklet from working."
-msgstr ""
+msgstr "Joillakin verkkosivustoilla on käytössä suojausominaisuus, "
+"joka estää kirjanmerkkisovelman toiminnan."
 
 #: neahtta/templates/reader.html:25
 msgid "Bookmarklet"
