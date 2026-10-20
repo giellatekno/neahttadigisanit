@@ -1213,7 +1213,7 @@ msgstr ""
 "oppføringer), som stammer direkte fra redigeringen av Satu og Jouni "
 "Moshnikoffs ordbok. Redigeringen ble organisert av Giellagas-instituttet "
 "ved Universitetet i Oulu og Sametinget i Finland, med finansiering fra "
-"det finske undervisnings- og kulturdepartementet (2019–2020)."
+"det finske undervisningsdepartementet (2019–2020)."
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:96
 msgid ""

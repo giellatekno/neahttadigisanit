@@ -870,7 +870,7 @@ msgstr "Etsi sanaa tai sanamuotoa analysoitavaksi tai määriteltäväksi."
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:20
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:25
 msgid "How to quote the dictionary"
-msgstr ""
+msgstr "Miten sanakirjoihin viitataan"
 
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:62
 msgid ""
@@ -985,13 +985,14 @@ msgstr "Lisää tulossa..."
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:66
 msgid "sms ↔ xxx"
-msgstr ""
+msgstr "Koltansaame ↔ xxx"
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:67
 msgid ""
 "Skolt Sámi → X project contains materials deriving from the research of "
 "numerous projects, dictionaries and word lists."
-msgstr ""
+msgstr "Koltansaame → X -projekti sisältää aineistoa, joka on peräisin "
+"lukuisten hankkeiden tutkimustyöstä, sanakirjoista ja sanalistoista."
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:68
 msgid ""
@@ -1000,7 +1001,11 @@ msgid ""
 " Michael Rießler's contribution mainly consists of the integration of an "
 "earlier created Skolt Saami word list with English, Finnish, Norwegian, "
 "and Russian translations and linking to sound files."
-msgstr ""
+msgstr "Tutkimushankkeet ovat johtaneet useiden sanalistojen yhdistämiseen. "
+"Näissä sanalistoissa koltansaame toimii lähtökielenä ja kohdekielinä on useita "
+"eri kieliä. Michael Rießlerin panos koostuu pääasiassa aiemmin laaditun "
+"koltansaamen sanalistan integroimisesta englannin-, suomen-, norjan- ja "
+"venäjänkielisine käännöksineen sekä linkkien lisäämisestä äänitiedostoihin."
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:69
 msgid ""
@@ -1011,24 +1016,33 @@ msgid ""
 " as the art installation <a href=\"https://samidaiddaguovddas.no/en"
 "/espen-sommer-eide-language-memory/\">\"Language Memory\"</a> at Äʹvv "
 "Saaʹmi muʹzei by Espen Sommer Eide."
-msgstr ""
+msgstr "Tämän sanalistan laatiminen liittyi Michael Rießlerin johtamaan "
+Kola Sámi Documentation Project -hankkeeseen "
+"(<a href=\"https://dobes.mpi.nl/projects/sami/\">KSDP</a>), Michael Rießlerin "
+"<a href=\"http://www.skoltesamiskmuseum.no\">Äʹvv Saaʹmi muʹzei -museossa</a> "
+"tekemään työhön sekä Espen Sommer Eiden Äʹvv Saaʹmi muʹzei -museossa toteuttamaan "
+"<a href=\"https://samidaiddaguovddas.no/en/espen-sommer-eide-language-memory/\">"
+"Language Memory -taideinstallaatioon</a>."
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:70
 msgid ""
 "Other main contributors to these projects were (in alphabetical order) "
 "Katri Jefremoff, Erkki Lumisalmi, Zoja Nosova, Lena Terhart, and Joshua "
 "Wilbur."
-msgstr ""
+msgstr "Näiden hankkeiden muita pääasiallisia osallistujia olivat "
+"aakkosjärjestyksessä Katri Jefremoff, Erkki Lumisalmi, Zoja Nosova, "
+"Lena Terhart ja Joshua Wilbur."
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:71
 msgid "The KSDP started in 2005 and in principle is still active."
-msgstr ""
+msgstr "KSDP käynnistyi vuonna 2005, ja se on periaatteessa edelleen aktiivinen."
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:72
 msgid ""
 "Language memory was (officially) installed in 2018, but the project with "
 "the wordlist and recordings by Espen Sommer Eide was begun in 2009."
-msgstr ""
+msgstr "Language Memory asennettiin (virallisesti) vuonna 2018, mutta "
+"Espen Sommer Eiden sanalista- ja äänityshanke alkoi jo vuonna 2009."
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:73
 msgid ""
@@ -1042,7 +1056,16 @@ msgid ""
 "Juutinen as well as the invaluable feedback fro the language community, "
 "e.g. Merja Fofonoff, XXX in the establishment of a large morphological "
 "database from research by others."
-msgstr ""
+msgstr "Jack Rueterin johtama Koneen Säätiön rahoittama hanke ”Skolt Sami "
+"revitalization with language technology and development of guidelines for "
+"transferring these methods to other endangered languages” [Koltansaamen "
+"elvytys kieliteknologia-avusteisen kielenoppimisohjelmien avulla sekä "
+"mallin ja ohjeiden laatiminen menetelmän siirtämiseksi toisiin uhanalaisiin "
+"kieliin] (2015–2018) hyödynsi Eino Koposen kieliasiantuntemusta sekä "
+"tulevien asiantuntijoiden, kuten Miika Lehtisen ja Markus Juutisen, osaamista. "
+"Lisäksi siinä hyödynnettiin kieliyhteisön, esimerkiksi Merja Fofonoffin ja "
+"XXX:n, arvokasta palautetta, kun muiden tekemän tutkimuksen pohjalta "
+"laadittiin laajaa morfologista tietokantaa."
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:76
 msgid "sms → fin"
@@ -1052,7 +1075,8 @@ msgstr "Koltansaame → suomi"
 msgid ""
 "Dictionaries for Skolt Saami and Finnish consist of materials based on "
 "various sources and research projects:"
-msgstr ""
+msgstr "Koltansaamen ja suomen kielen sanakirjat koostuvat eri lähteisiin ja "
+"tutkimushankkeisiin perustuvista aineistoista:"
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:78
 msgid "Satu & Jouni Moshnikoff sanasto"
@@ -1066,7 +1090,8 @@ msgstr "Sanakirjoja:"
 msgid ""
 "Skolt Sámi lemmas with Finnish translations can also be attributed to "
 "materials in:"
-msgstr ""
+msgstr "Koltansaamen lemmoja ja niiden suomennoksia voidaan jäljittää "
+"myös seuraavissa aineistoissa:"
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:82
 msgid "\"Koltan- ja kuolanlapin sanakirja\" (T. I. Itkonen, 1958)"
@@ -1102,7 +1127,7 @@ msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:92
 msgid "fin → sms"
-msgstr ""
+msgstr "Suomi → koltansaame"
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:93
 msgid ""
@@ -1111,7 +1136,11 @@ msgid ""
 "Sami-to-X dictionary, a simple flipped dictionary was produced for "
 "providing Finnish-to-Skolt Sami searches in the saan.oahpa.no online "
 "dictionary in 2016."
-msgstr ""
+msgstr "Suomi–koltansaame-sanakirja on käynyt läpi kolme vaihetta, "
+"joissa on siirrytty määrästä laatuun. Koltansaame–X-sanakirjan parissa "
+"tehdyn alkuperäisen työn jälkeen laadittiin vuonna 2016 yksinkertainen "
+"käänteissanakirja, jotta suomesta koltansaameen tehdyt haut olisivat "
+"mahdollisia saan.oahpa.no-verkkosanakirjassa."
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:94
 msgid ""
@@ -1120,7 +1149,11 @@ msgid ""
 "became aware of the dictionary, it began to serve as a basis of "
 "vocabulary learning and, unfortunately, the source of many spelling "
 "mistakes and morphological misconceptions."
-msgstr ""
+msgstr "Tämä merkitsi luonnollisesti sitä, että sanakirjassa esitettiin "
+"huomattava määrä epästandardeja sanoja ja sanamuotoja. Kun yhä useammat "
+"kielen opiskelijat tulivat tietoisiksi sanakirjasta, se alkoi toimia "
+"sanaston oppimisen perustana ja valitettavasti myös monien kirjoitusvirheiden "
+"ja morfologisten väärinkäsitysten lähteenä."
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:95
 msgid ""
@@ -1131,7 +1164,12 @@ msgid ""
 "Moshnikoff dictionary organized by the Oulu University Giellagas "
 "Institute and Saami Parliament in Inari, Finland with funding from the "
 "Finnish Ministry of Education (2019–2020)."
-msgstr ""
+msgstr "Kesäkuussa 2020 Jack Rueterin tuottamat tiedostot (noin 30 000 hakusanaa) "
+"siirrettiin hakemistoon main/words/dicts/finsms/inc/ myöhempää tarkastelua varten. "
+"Tiedostot on sittemmin korvattu uudemmalla kokonaisuudella (noin 20 000 hakusanaa), "
+"joka perustuu suoraan Satu ja Jouni Moshnikoffin sanakirjan toimitustyöhön. "
+"Työn järjestivät Oulun yliopiston Giellagas-instituutti ja Suomen Saamelaiskäräjät "
+"Inarissa Suomen opetusministeriön rahoituksella (2019–2020)."
 
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:96
 msgid ""
@@ -1140,7 +1178,10 @@ msgid ""
 "development of 2020. Extensive work can be attributed to members of the "
 "language community, language researchers and students at the Giellagas "
 "Institute and language technology researchers."
-msgstr ""
+msgstr "Näiden tiedostojen päivittämistä jatketaan Veʹrdd-sanakirjantoimitusalustalla, "
+"jolla oli keskeinen rooli vuoden 2020 kehitystyössä. Laajaa työtä ovat tehneet "
+"kieliyhteisön jäsenet, Giellagas-instituutin kielentutkijat ja opiskelijat "
+"sekä kieliteknologian tutkijat."
 
 #: neahtta/configs/language_specific_rules/templates/saanih/about.template:19
 #: neahtta/configs/language_specific_rules/templates/sanat/about.template:20
