@@ -955,7 +955,7 @@ msgstr "mennä, lähteä, kulkea"
 
 #: neahtta/configs/language_specific_rules/templates/muter/about.template:64
 msgid "mrj ↔ fin"
-msgstr "Länsimari ↔ suomi"
+msgstr "Vuorimari ↔ suomi"
 
 #: neahtta/configs/language_specific_rules/templates/muter/about.template:65
 msgid ""
@@ -972,8 +972,8 @@ msgid ""
 "from\n"
 "                the Kone Foundation."
 msgstr ""
-"Länsimari-suomi-sanakirja on laadittu usean sanakirjan, eritoten Anna A. "
-"Savatkovan Länsimari-venäjä-sanakirjan, sekä marinkielisen kirjallisuuden"
+"Vuorimari-suomi-sanakirja on laadittu usean sanakirjan, eritoten Anna A. "
+"Savatkovan Vuorimari-venäjä-sanakirjan, sekä marinkielisen kirjallisuuden"
 " pohjalta. Käännöstyön teki Julia Kuprina Koneen Säätiön tuella."
 
 #: neahtta/configs/language_specific_rules/templates/muter/about.template:108
