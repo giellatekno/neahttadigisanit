@@ -1772,7 +1772,7 @@ msgstr ""
 
 #: neahtta/templates/language_select_noflags.html:7
 msgid "Language"
-msgstr ""
+msgstr "Gïele"
 
 #: neahtta/templates/left_dictionary_list.html:1
 #: neahtta/templates/mobile_nav_dictionary_list.html:1
@@ -1788,7 +1788,7 @@ msgstr ""
 #: neahtta/templates/left_nav_input_variants.html:7
 #: neahtta/templates/mobile_nav_push_menu.html:73
 msgid "Written variant"
-msgstr ""
+msgstr "Tjaelemevuekie"
 
 #: neahtta/templates/macros.html:5 neahtta/templates/macros.html:13
 msgid "Texts"
@@ -2760,6 +2760,10 @@ msgstr "maahta årrodh:"
 #~ "using, or what word you\n"
 #~ "                were searching for when you encountered the problem."
 #~ msgstr ""
+#~ "Jis fïejlem gaavnh, dle maahtah mijjese tjaeledh."
+#~ "Tjaelieh mij dåeriesmoere jïh magkeres viermielohkije dov lea,"
+#~ "jallh magkeres mobijletelefovnem provhkh, jïh aaj"
+#~ "maam datne ohtseminie gosse båajhtode sjædta."
 
 #~ msgid "contact us"
 #~ msgstr "Gaskesadth mijjine"
