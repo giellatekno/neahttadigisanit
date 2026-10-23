@@ -555,6 +555,10 @@ msgid ""
 "using, or what word you\n"
 "                were searching for when you encountered the problem."
 msgstr ""
+"Jis fïejlem gaavnh, dle maahtah mijjese tjaeledh."
+"Tjaelieh mij dåeriesmoere jïh magkeres viermielohkije dov lea,"
+"jallh magkeres mobijletelefovnem provhkh, jïh aaj"
+"maam datne ohtseminie gosse båajhtode sjædta."
 
 #: neahtta/configs/language_specific_rules/templates/about.template:83
 #: neahtta/configs/language_specific_rules/templates/about.template:88
@@ -643,6 +647,10 @@ msgid ""
 " what word you\n"
 "          were searching for when you encountered the problem."
 msgstr ""
+"Jis fïejlem gaavnh, dle maahtah mijjese tjaeledh."
+"Tjaelieh mij dåeriesmoere jïh magkeres viermielohkije dov lea,"
+"jallh magkeres mobijletelefovnem provhkh, jïh aaj"
+"maam datne ohtseminie gosse båajhtode sjædta."
 
 #: neahtta/configs/language_specific_rules/templates/footer.template:9
 #: neahtta/configs/language_specific_rules/templates/sanit/footer.template:10
