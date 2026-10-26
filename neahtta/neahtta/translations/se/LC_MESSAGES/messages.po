@@ -1913,7 +1913,7 @@ msgstr "Nuortalašgiella"
 
 #: neahtta/templates/more_dictionaries.html:36
 msgid "Finnish, Kven, Karelian, Veps"
-msgstr ""
+msgstr "Suomagiella, kveanagiella, gárjilgiella, vepsagiella"
 
 #: neahtta/templates/more_dictionaries.html:37
 msgid "Livonian, Estonian, Vot"
@@ -1942,6 +1942,10 @@ msgid ""
 "href=\"http://dicts.uit.no/\">see this\n"
 "                    list</a>."
 msgstr ""
+"<a href=\"http://giellatekno.uit.no/\">Giellateknos</a> lea maiddái "
+"eará gielat ja sátnegirjjis mat eai vel leat olámuttos Neahttadigisániin. "
+"<a href=\"http://dicts.uit.no/\">Dás</a> gávnnat listtu mas leat visot "
+"neahttasátnegirjjit mat leat ráhkaduvvon min reaidduiguin."
 
 #: neahtta/templates/privacy_notice.html:3
 #: neahtta/templates/privacy_notice.html:20
