@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-26 10:42+0200\n"
+"POT-Creation-Date: 2026-10-26 10:56+0200\n"
 "PO-Revision-Date: 2014-02-15 20:48+0200\n"
 "Last-Translator: Jack Rueter <rueter.jack@gmail.com>\n"
 "Language: fi\n"
@@ -2123,6 +2123,10 @@ msgstr ""
 "olet sivulla, jota haluat lukea sanakirjan avulla. Palvelu asennetaan "
 "automaattisesti ja tulet näkemään valikkokuvakkeen (Á) sivun vasemmalla "
 "puolella."
+
+#: neahtta/templates/tts_settings.html:34
+msgid "Select synthetic voice"
+msgstr ""
 
 #: neahtta/templates/word_detail.html:35
 msgid "is a possible form of ... "
