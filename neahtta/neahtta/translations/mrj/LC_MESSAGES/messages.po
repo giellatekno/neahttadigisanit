@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-26 09:52+0200\n"
+"POT-Creation-Date: 2026-10-26 10:42+0200\n"
 "PO-Revision-Date: 2013-03-05 16:51+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: mrj\n"
@@ -214,7 +214,6 @@ msgid "Skolt Sami (tolerant)"
 msgstr ""
 
 #: neahtta/configs/language_names.yaml:77
-#: neahtta/templates/more_dictionaries.html:34
 #, fuzzy
 msgid "Kildin Saami"
 msgstr "йыдвел саам йӹлмӹ"
@@ -1839,6 +1838,11 @@ msgstr ""
 #: neahtta/templates/more_dictionaries.html:32
 #, fuzzy
 msgid "Skolt Saami"
+msgstr "йыдвел саам йӹлмӹ"
+
+#: neahtta/templates/more_dictionaries.html:34
+#, fuzzy
+msgid "Kildin Saami language"
 msgstr "йыдвел саам йӹлмӹ"
 
 #: neahtta/templates/more_dictionaries.html:36

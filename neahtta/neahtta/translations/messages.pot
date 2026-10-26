@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-26 09:52+0200\n"
+"POT-Creation-Date: 2026-10-26 10:42+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -211,7 +211,6 @@ msgid "Skolt Sami (tolerant)"
 msgstr ""
 
 #: neahtta/configs/language_names.yaml:77
-#: neahtta/templates/more_dictionaries.html:34
 msgid "Kildin Saami"
 msgstr ""
 
@@ -1817,6 +1816,10 @@ msgstr ""
 
 #: neahtta/templates/more_dictionaries.html:32
 msgid "Skolt Saami"
+msgstr ""
+
+#: neahtta/templates/more_dictionaries.html:34
+msgid "Kildin Saami language"
 msgstr ""
 
 #: neahtta/templates/more_dictionaries.html:36

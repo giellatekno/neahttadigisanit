@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-26 09:52+0200\n"
+"POT-Creation-Date: 2026-10-26 10:42+0200\n"
 "PO-Revision-Date: 2019-08-06 12:19+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: nb\n"
@@ -212,7 +212,6 @@ msgid "Skolt Sami (tolerant)"
 msgstr "Østsamisk (tolerant)"
 
 #: neahtta/configs/language_names.yaml:77
-#: neahtta/templates/more_dictionaries.html:34
 msgid "Kildin Saami"
 msgstr "Kildinsamisk"
 
@@ -1987,6 +1986,10 @@ msgstr "Marisk"
 #: neahtta/templates/more_dictionaries.html:32
 msgid "Skolt Saami"
 msgstr "Østsamisk"
+
+#: neahtta/templates/more_dictionaries.html:34
+msgid "Kildin Saami language"
+msgstr "Kildinsamisk"
 
 #: neahtta/templates/more_dictionaries.html:36
 msgid "Finnish, Kven, Karelian, Veps"

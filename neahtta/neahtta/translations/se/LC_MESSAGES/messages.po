@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-26 09:52+0200\n"
+"POT-Creation-Date: 2026-10-26 10:42+0200\n"
 "PO-Revision-Date: 2013-02-01 01:55-0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: se\n"
@@ -212,7 +212,6 @@ msgid "Skolt Sami (tolerant)"
 msgstr "Nuortalašgiella (toleránta)"
 
 #: neahtta/configs/language_names.yaml:77
-#: neahtta/templates/more_dictionaries.html:34
 msgid "Kildin Saami"
 msgstr "Gielddasámegiella"
 
@@ -1911,6 +1910,10 @@ msgstr "Marigiella"
 msgid "Skolt Saami"
 msgstr "Nuortalašgiella"
 
+#: neahtta/templates/more_dictionaries.html:34
+msgid "Kildin Saami language"
+msgstr "Gielddasámegiella"
+
 #: neahtta/templates/more_dictionaries.html:36
 msgid "Finnish, Kven, Karelian, Veps"
 msgstr "Suomagiella, kveanagiella, gárjilgiella, vepsagiella"
@@ -1942,9 +1945,9 @@ msgid ""
 "href=\"http://dicts.uit.no/\">see this\n"
 "                    list</a>."
 msgstr ""
-"<a href=\"http://giellatekno.uit.no/\">Giellateknos</a> lea maiddái "
-"eará gielat ja sátnegirjjis mat eai vel leat olámuttos Neahttadigisániin. "
-"<a href=\"http://dicts.uit.no/\">Dás</a> gávnnat listtu mas leat visot "
+"<a href=\"http://giellatekno.uit.no/\">Giellateknos</a> lea maiddái eará "
+"gielat ja sátnegirjjis mat eai vel leat olámuttos Neahttadigisániin. <a "
+"href=\"http://dicts.uit.no/\">Dás</a> gávnnat listtu mas leat visot "
 "neahttasátnegirjjit mat leat ráhkaduvvon min reaidduiguin."
 
 #: neahtta/templates/privacy_notice.html:3
