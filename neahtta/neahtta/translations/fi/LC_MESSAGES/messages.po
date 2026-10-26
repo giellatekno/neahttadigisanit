@@ -1988,7 +1988,7 @@ msgid "Back"
 msgstr "Takaisin"
 
 #: neahtta/templates/more_dictionaries.html:4
-msgid "More dictionaris"
+msgid "More dictionaries"
 msgstr "Lisää sanakirjoja"
 
 #: neahtta/templates/more_dictionaries.html:24

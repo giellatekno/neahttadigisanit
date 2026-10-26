@@ -1834,7 +1834,7 @@ msgid "Back"
 msgstr ""
 
 #: neahtta/templates/more_dictionaries.html:4
-msgid "More dictionaris"
+msgid "More dictionaries"
 msgstr "Flera ordböcker"
 
 #: neahtta/templates/more_dictionaries.html:24

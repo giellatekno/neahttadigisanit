@@ -1,0 +1,95 @@
+--
+bahkogirrje.config.yaml.in:  locales_available:
+bahkogirrje.config.yaml.in-    - "nb"
+bahkogirrje.config.yaml.in-    - "sv"
+bahkogirrje.config.yaml.in-    - "en"
+--
+saanih.config.yaml.in:  locales_available:
+saanih.config.yaml.in-    - "smn"
+saanih.config.yaml.in-    - "fi"
+saanih.config.yaml.in-    - "en"
+--
+baakoeh.config.yaml.in:  locales_available:
+baakoeh.config.yaml.in-    - "sma"
+baakoeh.config.yaml.in-    - "nb"
+--
+vada.config.yaml.in:  locales_available:
+vada.config.yaml.in-    - yrk
+vada.config.yaml.in-    - mns
+vada.config.yaml.in-    - ru
+vada.config.yaml.in-    - fi
+vada.config.yaml.in-    - hu
+vada.config.yaml.in-    - en
+--
+sanat.config.yaml.in:  locales_available:
+sanat.config.yaml.in-    - "fkv"
+sanat.config.yaml.in-    - "fi"
+sanat.config.yaml.in-    - "nb"
+sanat.config.yaml.in-    - "ru"
+--
+valks.config.yaml.in:  locales_available:
+valks.config.yaml.in-    - myv
+valks.config.yaml.in-    - mdf
+valks.config.yaml.in-    - ru
+valks.config.yaml.in-    - fi
+valks.config.yaml.in-    - fr
+--
+sanit.config.yaml.in:  locales_available:
+sanit.config.yaml.in-    - "se"
+sanit.config.yaml.in-    - "nb"
+sanit.config.yaml.in-    - "fi"
+sanit.config.yaml.in-    - "en"
+--
+sanj.config.yaml.in:  locales_available:
+sanj.config.yaml.in-    - sjd
+sanj.config.yaml.in-    - ru
+sanj.config.yaml.in-    - en
+--
+muter.config.yaml.in:  locales_available:
+muter.config.yaml.in-    - mrj
+muter.config.yaml.in-    - mhr
+muter.config.yaml.in-    - fi
+muter.config.yaml.in-    - en
+muter.config.yaml.in-    - ru
+--
+kyv.config.yaml.in:  locales_available:
+kyv.config.yaml.in-    - kv
+kyv.config.yaml.in-    - fi
+kyv.config.yaml.in-    - ru
+kyv.config.yaml.in-    - hu # TODO: flag, translations catalog
+kyv.config.yaml.in-    - en
+--
+sonad.config.yaml.in:  locales_available:
+sonad.config.yaml.in-    - "et"
+sonad.config.yaml.in-    - "fi"
+sonad.config.yaml.in-    - "lv"
+sonad.config.yaml.in-    - "ru"
+sonad.config.yaml.in-    - "en"
+--
+saan.config.yaml.in:  locales_available:
+saan.config.yaml.in-    - "fi"
+saan.config.yaml.in-    - "en"
+saan.config.yaml.in-    - "nb"
+saan.config.yaml.in-    - "ru"
+
+
+- en (English)
+- et (Estonian)
+- fi (Finnish)
+- fkv (Kven)
+- fr (French)
+- hu (Hungarian)
+- kv (Komi)
+- lv (Latvian)
+- mdf (Moksha)
+- mhr (Eastern Mari)
+- mns (Northern Mansi)
+- mrj (Western Mari)
+- myv (Erzya)
+- nb (Norwegian bokmål)
+- ru (Russian)
+- se (North Saami)
+- sjd (Kildin Saami)
+- sma (South Saami)
+- smn (Inari Saami)
+- sv (Swedish)
