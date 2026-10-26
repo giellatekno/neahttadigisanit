@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-20 13:45+0300\n"
+"POT-Creation-Date: 2026-10-26 09:52+0200\n"
 "PO-Revision-Date: 2017-12-04 13:52+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: smn\n"
@@ -34,15 +34,18 @@ msgstr ""
 #: neahtta/configs/sanat.config.yaml.in:134
 #: neahtta/configs/sanit.config.yaml:110
 #: neahtta/configs/sanit.config.yaml.in:110
-#: neahtta/configs/sanj.config.yaml:100 neahtta/configs/sonad.config.yaml:127
+#: neahtta/configs/sonad.config.yaml:127
 #: neahtta/configs/sonad.config.yaml.in:127
 #: neahtta/tests/configs/sanit.config.yaml:110
 msgid "Standard"
 msgstr ""
 
 #: neahtta/configs/kyv.config.yaml:145 neahtta/configs/kyv.config.yaml:223
-#: neahtta/configs/sample.config.yaml.in:192
-msgid "Social media"
+#: neahtta/configs/kyv.config.yaml.in:145
+#: neahtta/configs/kyv.config.yaml.in:223 neahtta/configs/sanit.config.yaml:125
+#: neahtta/configs/sanit.config.yaml.in:125
+#: neahtta/tests/configs/sanit.config.yaml:125
+msgid "Tolerant"
 msgstr ""
 
 #: neahtta/configs/kyv.config.yaml:146 neahtta/configs/kyv.config.yaml.in:146
@@ -68,16 +71,6 @@ msgid "Standard (<em>ӝӟӥӧӵ</em>)"
 msgstr ""
 
 #: neahtta/configs/kyv.config.yaml:243 neahtta/configs/kyv.config.yaml:272
-msgid "Social media (incl. <em>жзиоч</em>)"
-msgstr ""
-
-#: neahtta/configs/kyv.config.yaml.in:145
-#: neahtta/configs/kyv.config.yaml.in:223 neahtta/configs/sanit.config.yaml:125
-#: neahtta/configs/sanit.config.yaml.in:125
-#: neahtta/tests/configs/sanit.config.yaml:125
-msgid "Tolerant"
-msgstr ""
-
 #: neahtta/configs/kyv.config.yaml.in:243
 #: neahtta/configs/kyv.config.yaml.in:272
 msgid "Tolerant (incl. <em>жзиоч</em>)"
@@ -288,7 +281,6 @@ msgstr ""
 #: neahtta/configs/saanih.config.yaml:75 neahtta/configs/saanih.config.yaml:105
 #: neahtta/configs/saanih.config.yaml.in:75
 #: neahtta/configs/saanih.config.yaml.in:105
-#: neahtta/configs/sanj.config.yaml:121
 msgid "Mobile friendly"
 msgstr ""
 
@@ -302,6 +294,10 @@ msgstr ""
 #: neahtta/configs/saanih.config.yaml.in:76
 #: neahtta/configs/saanih.config.yaml.in:106
 msgid "(incl. <em>aaacdnsz</em>)"
+msgstr ""
+
+#: neahtta/configs/sample.config.yaml.in:192
+msgid "Social media"
 msgstr ""
 
 #: neahtta/configs/sample.config.yaml.in:194
@@ -323,20 +319,20 @@ msgstr ""
 msgid "Tolerant (also <em>acdnstz</em>)"
 msgstr ""
 
-#: neahtta/configs/sanj.config.yaml:101 neahtta/configs/sanj.config.yaml.in:92
-msgid "(<em>а̄е̄ӣо̄ӯӎӊӈҏ</em>)"
-msgstr ""
-
-#: neahtta/configs/sanj.config.yaml:122 neahtta/configs/sanj.config.yaml.in:113
-msgid "(incl. <em>аеиоумннр</em>)"
-msgstr ""
-
-#: neahtta/configs/sanj.config.yaml.in:91
+#: neahtta/configs/sanj.config.yaml:91 neahtta/configs/sanj.config.yaml.in:91
 msgid "Standard Kildin"
 msgstr ""
 
-#: neahtta/configs/sanj.config.yaml.in:112
+#: neahtta/configs/sanj.config.yaml:92 neahtta/configs/sanj.config.yaml.in:92
+msgid "(<em>а̄е̄ӣо̄ӯӎӊӈҏ</em>)"
+msgstr ""
+
+#: neahtta/configs/sanj.config.yaml:112 neahtta/configs/sanj.config.yaml.in:112
 msgid "Mobile friendly Kildin"
+msgstr ""
+
+#: neahtta/configs/sanj.config.yaml:113 neahtta/configs/sanj.config.yaml.in:113
+msgid "(incl. <em>аеиоумннр</em>)"
 msgstr ""
 
 #: neahtta/configs/sonad.config.yaml:132
@@ -1833,7 +1829,7 @@ msgid "Livonian, Estonian, Vot"
 msgstr ""
 
 #: neahtta/templates/more_dictionaries.html:39
-msgid "Mordvinian"
+msgid "Erzya and Moksha"
 msgstr ""
 
 #: neahtta/templates/more_dictionaries.html:42
@@ -1921,8 +1917,8 @@ msgstr ""
 #: neahtta/templates/reader.html:28
 msgid ""
 "In order to look up a word, hold Alt or Option (⌥) and double click the "
-"word. The service will will connect to this website and return dictionary"
-" entries after a brief pause."
+"word. The service will connect to this website and return dictionary "
+"entries after a brief pause."
 msgstr ""
 
 #: neahtta/templates/reader.html:29
@@ -2996,5 +2992,11 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "Each of the dictionaries contains about 11,000 base words."
+#~ msgstr ""
+
+#~ msgid "Social media (incl. <em>жзиоч</em>)"
+#~ msgstr ""
+
+#~ msgid "Mordvinian"
 #~ msgstr ""
 

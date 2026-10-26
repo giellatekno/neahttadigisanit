@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-10-20 13:45+0300\n"
+"POT-Creation-Date: 2026-10-26 09:52+0200\n"
 "PO-Revision-Date: 2013-03-05 16:51+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: mrj\n"
@@ -34,15 +34,18 @@ msgstr ""
 #: neahtta/configs/sanat.config.yaml.in:134
 #: neahtta/configs/sanit.config.yaml:110
 #: neahtta/configs/sanit.config.yaml.in:110
-#: neahtta/configs/sanj.config.yaml:100 neahtta/configs/sonad.config.yaml:127
+#: neahtta/configs/sonad.config.yaml:127
 #: neahtta/configs/sonad.config.yaml.in:127
 #: neahtta/tests/configs/sanit.config.yaml:110
 msgid "Standard"
 msgstr "Стандарт"
 
 #: neahtta/configs/kyv.config.yaml:145 neahtta/configs/kyv.config.yaml:223
-#: neahtta/configs/sample.config.yaml.in:192
-msgid "Social media"
+#: neahtta/configs/kyv.config.yaml.in:145
+#: neahtta/configs/kyv.config.yaml.in:223 neahtta/configs/sanit.config.yaml:125
+#: neahtta/configs/sanit.config.yaml.in:125
+#: neahtta/tests/configs/sanit.config.yaml:125
+msgid "Tolerant"
 msgstr ""
 
 #: neahtta/configs/kyv.config.yaml:146 neahtta/configs/kyv.config.yaml.in:146
@@ -68,16 +71,6 @@ msgid "Standard (<em>ӝӟӥӧӵ</em>)"
 msgstr ""
 
 #: neahtta/configs/kyv.config.yaml:243 neahtta/configs/kyv.config.yaml:272
-msgid "Social media (incl. <em>жзиоч</em>)"
-msgstr ""
-
-#: neahtta/configs/kyv.config.yaml.in:145
-#: neahtta/configs/kyv.config.yaml.in:223 neahtta/configs/sanit.config.yaml:125
-#: neahtta/configs/sanit.config.yaml.in:125
-#: neahtta/tests/configs/sanit.config.yaml:125
-msgid "Tolerant"
-msgstr ""
-
 #: neahtta/configs/kyv.config.yaml.in:243
 #: neahtta/configs/kyv.config.yaml.in:272
 msgid "Tolerant (incl. <em>жзиоч</em>)"
@@ -293,7 +286,6 @@ msgstr ""
 #: neahtta/configs/saanih.config.yaml:75 neahtta/configs/saanih.config.yaml:105
 #: neahtta/configs/saanih.config.yaml.in:75
 #: neahtta/configs/saanih.config.yaml.in:105
-#: neahtta/configs/sanj.config.yaml:121
 #, fuzzy
 msgid "Mobile friendly"
 msgstr "(... Дӓ сотовый телефоныштат кычылташ лиэш!)"
@@ -308,6 +300,10 @@ msgstr ""
 #: neahtta/configs/saanih.config.yaml.in:76
 #: neahtta/configs/saanih.config.yaml.in:106
 msgid "(incl. <em>aaacdnsz</em>)"
+msgstr ""
+
+#: neahtta/configs/sample.config.yaml.in:192
+msgid "Social media"
 msgstr ""
 
 #: neahtta/configs/sample.config.yaml.in:194
@@ -329,23 +325,23 @@ msgstr ""
 msgid "Tolerant (also <em>acdnstz</em>)"
 msgstr ""
 
-#: neahtta/configs/sanj.config.yaml:101 neahtta/configs/sanj.config.yaml.in:92
-msgid "(<em>а̄е̄ӣо̄ӯӎӊӈҏ</em>)"
-msgstr ""
-
-#: neahtta/configs/sanj.config.yaml:122 neahtta/configs/sanj.config.yaml.in:113
-msgid "(incl. <em>аеиоумннр</em>)"
-msgstr ""
-
-#: neahtta/configs/sanj.config.yaml.in:91
+#: neahtta/configs/sanj.config.yaml:91 neahtta/configs/sanj.config.yaml.in:91
 #, fuzzy
 msgid "Standard Kildin"
 msgstr "Стандарт"
 
-#: neahtta/configs/sanj.config.yaml.in:112
+#: neahtta/configs/sanj.config.yaml:92 neahtta/configs/sanj.config.yaml.in:92
+msgid "(<em>а̄е̄ӣо̄ӯӎӊӈҏ</em>)"
+msgstr ""
+
+#: neahtta/configs/sanj.config.yaml:112 neahtta/configs/sanj.config.yaml.in:112
 #, fuzzy
 msgid "Mobile friendly Kildin"
 msgstr "(... Дӓ сотовый телефоныштат кычылташ лиэш!)"
+
+#: neahtta/configs/sanj.config.yaml:113 neahtta/configs/sanj.config.yaml.in:113
+msgid "(incl. <em>аеиоумннр</em>)"
+msgstr ""
 
 #: neahtta/configs/sonad.config.yaml:132
 #: neahtta/configs/sonad.config.yaml.in:132
@@ -1854,7 +1850,7 @@ msgid "Livonian, Estonian, Vot"
 msgstr ""
 
 #: neahtta/templates/more_dictionaries.html:39
-msgid "Mordvinian"
+msgid "Erzya and Moksha"
 msgstr ""
 
 #: neahtta/templates/more_dictionaries.html:42
@@ -1952,8 +1948,8 @@ msgstr "%(project_name)s-лӹмдер доно лыдаш…"
 #, fuzzy
 msgid ""
 "In order to look up a word, hold Alt or Option (⌥) and double click the "
-"word. The service will will connect to this website and return dictionary"
-" entries after a brief pause."
+"word. The service will connect to this website and return dictionary "
+"entries after a brief pause."
 msgstr ""
 "Иктӓ-махань шамакым анжалнет гӹнь,\n"
 "Alt-клавишӹм ӓль альтернативный Option (⌥)-клавишӹм темдӓл шӹнден,\n"
@@ -3307,5 +3303,11 @@ msgstr " техень шамак форма лин кердеш ти шамак 
 #~ "addition, we have included frequent "
 #~ "words from North Sámi, but especially"
 #~ " from Finnish."
+#~ msgstr ""
+
+#~ msgid "Social media (incl. <em>жзиоч</em>)"
+#~ msgstr ""
+
+#~ msgid "Mordvinian"
 #~ msgstr ""
 
