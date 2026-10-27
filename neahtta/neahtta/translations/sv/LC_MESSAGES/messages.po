@@ -223,7 +223,7 @@ msgstr ""
 #: neahtta/configs/language_names.yaml:81
 #: neahtta/templates/more_dictionaries.html:33
 msgid "Inari Saami"
-msgstr ""
+msgstr "Enaresamiska"
 
 #: neahtta/configs/language_names.yaml:84
 msgid "Inari Saami (tolerant)"
@@ -372,7 +372,7 @@ msgstr "Om oss"
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:17
 #: neahtta/configs/language_specific_rules/templates/valks/about.template:17
 msgid "A dictionary that understands what you're looking for."
-msgstr ""
+msgstr "En ordbok som förstår vad du letar efter."
 
 #: neahtta/configs/language_specific_rules/templates/about.template:15
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:16
@@ -510,7 +510,7 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:45
 #: neahtta/configs/language_specific_rules/templates/valks/about.template:45
 msgid "Linguistic basis"
-msgstr ""
+msgstr "Lingvistisk grund"
 
 #: neahtta/configs/language_specific_rules/templates/about.template:43
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:41
@@ -549,7 +549,7 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:87
 #: neahtta/configs/language_specific_rules/templates/valks/about.template:94
 msgid "Find a problem?"
-msgstr ""
+msgstr "Hittade du ett problem?"
 
 #: neahtta/configs/language_specific_rules/templates/about.template:78
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:69
@@ -569,6 +569,9 @@ msgid ""
 "using, or what word you\n"
 "                were searching for when you encountered the problem."
 msgstr ""
+"Om du hittar några fel får du gärna kontakta oss. Beskriv problemet "
+"och berätta vilken webbläsare eller mobiltelefon du använde, eller "
+"vilket ord du sökte efter när du stötte på problemet."
 
 #: neahtta/configs/language_specific_rules/templates/about.template:83
 #: neahtta/configs/language_specific_rules/templates/about.template:88
@@ -603,7 +606,7 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/valks/about.template:100
 #: neahtta/configs/language_specific_rules/templates/valks/about.template:105
 msgid "Contact us"
-msgstr ""
+msgstr "Kontakta oss"
 
 #: neahtta/configs/language_specific_rules/templates/about.template:93
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:84
@@ -691,7 +694,7 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/sanj/index_search_form.template:48
 #: neahtta/templates/index_search_form.html:20
 msgid "ohcansátni"
-msgstr ""
+msgstr "sökord"
 
 #: neahtta/configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:55
 #: neahtta/configs/language_specific_rules/templates/baakoeh/nob/index_search_form.template:74
@@ -745,7 +748,7 @@ msgstr "Sök i text"
 #: neahtta/templates/mobile_nav_dictionary_list.html:50
 #: neahtta/templates/more_dictionaries.html:21
 msgid "Other dictionaries"
-msgstr ""
+msgstr "Andra ordböcker"
 
 #: neahtta/configs/language_specific_rules/templates/baakoeh/sma/paradigm.template:192
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/sje/paradigm.template:121
@@ -770,14 +773,15 @@ msgstr "Fullt paradigm"
 #: neahtta/configs/language_specific_rules/templates/sanit/search_info.template:9
 #: neahtta/configs/language_specific_rules/templates/search_info.template:3
 msgid "Search for a word, or a word form for a word analysis and definition."
-msgstr ""
+msgstr "Sök efter ett ord eller en böjd form. Klicka på ordet för att se en "
+"lista över böjda former."
 
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:20
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:19
 #: neahtta/configs/language_specific_rules/templates/saan/about.template:20
 #: neahtta/configs/language_specific_rules/templates/sanj/about.template:25
 msgid "How to quote the dictionary"
-msgstr ""
+msgstr "Hur man citerar ordboken"
 
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:54
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:57
@@ -790,7 +794,7 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:59
 #: neahtta/configs/language_specific_rules/templates/valks/about.template:59
 msgid "Source material"
-msgstr ""
+msgstr "Källmaterial"
 
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:61
 msgid "sma ↔ nob"
@@ -811,7 +815,8 @@ msgstr ""
 msgid ""
 "Write whatever you want in Pite Saami, and the dictionary will analyze it"
 " to break apart compound words and find base forms."
-msgstr ""
+msgstr "Skriv vad du vill på pitesamiska, så analyserar ordboken texten genom "
+"att dela upp sammansatta ord och hitta grundformer."
 
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:50
 msgid "fara, gå"
@@ -840,6 +845,20 @@ msgid ""
 "href=\"https://sjelex.keeleressursid.ee/main.php?searchMode=basic&showAll=off&lang=Swe\">Bidumsáme"
 " Báhkogirrje</a>."
 msgstr ""
+"De pitesamiska ordböckerna bygger i första hand på "
+"<em><a class=\"blue\" href=\"http://saami.uni-freiburg.de/samica/\">Pitesamisk "
+"ordbok samt stavningsregler</a></em> (2016, redigerad av J. Wilbur), som i sin tur "
+"i huvudsak är en reviderad och redigerad version av den ordlista som samlades in av "
+"projektet <em><a class=\"blue\" href=\"http://2007-2013.interregnord.com/sv/beviljade-projekt/sapmi/4-graensloes-utveckling/insamling-av-pitesamiska-ord.aspx\">Insamling av pitesamiska ord</a></em> "
+"mellan 2008 och 2012 av N.-H. Bengtsson, M. Eriksson, I. Fjällås, E.-K. Rosenberg, "
+"G. H. Sivertsen, V. Sjaggo, D. Skaile och P. Steggo. Dessa nätordböcker korrigeras, "
+"uppdateras och förbättras dock fortlöpande, och nya uppslagsord läggs regelbundet "
+"till av J. Wilbur, delvis i samarbete med P. Steggo och O. Utne, och naturligtvis "
+"med stöd av den infrastruktur som tillhandahålls av Giellatekno. Reglerna för "
+"analys och generering av ordformer underhålls av J. Wilbur. En annan sökbar "
+"version av samma databas, som även innehåller grammatisk information, många "
+"ljudfiler och vissa uppslag med fraser eller ordformer, finns på webbplatsen "
+"<a class=\"blue\" href=\"https://sjelex.keeleressursid.ee/main.php?searchMode=basic&showAll=off&lang=Swe\">Bidumsáme Báhkogirrje.</a>"
 
 #: neahtta/configs/language_specific_rules/templates/kyv/examples.template:76
 msgid "saying"
@@ -1837,6 +1856,7 @@ msgid ""
 "Neahttadigisánit is available for the following\n"
 "                language groups."
 msgstr ""
+"Neahttadigisánit finns tillgängligt för följande språkgrupper."
 
 #: neahtta/templates/more_dictionaries.html:28
 msgid "North Saami"
@@ -1848,11 +1868,11 @@ msgstr "Sydsamiska"
 
 #: neahtta/templates/more_dictionaries.html:30
 msgid "Komi and Udmurt"
-msgstr ""
+msgstr "Komi och udmurtiska"
 
 #: neahtta/templates/more_dictionaries.html:31
 msgid "Mari"
-msgstr ""
+msgstr "Mariska"
 
 #: neahtta/templates/more_dictionaries.html:32
 msgid "Skolt Saami"
@@ -1864,11 +1884,11 @@ msgstr "Kildinsamiska"
 
 #: neahtta/templates/more_dictionaries.html:36
 msgid "Finnish, Kven, Karelian, Veps"
-msgstr ""
+msgstr "Finska, kvänska, karelska, vepsiska"
 
 #: neahtta/templates/more_dictionaries.html:37
 msgid "Livonian, Estonian, Vot"
-msgstr ""
+msgstr "Liviska, estniska, votiska"
 
 #: neahtta/templates/more_dictionaries.html:39
 msgid "Erzya and Moksha"
@@ -1876,7 +1896,7 @@ msgstr "Erzia och moksja"
 
 #: neahtta/templates/more_dictionaries.html:42
 msgid "We're also working on new language pairs."
-msgstr ""
+msgstr "Vi arbetar också med nya språkpar."
 
 #: neahtta/templates/more_dictionaries.html:45
 msgid "Even more dictionaries..."
@@ -1893,6 +1913,10 @@ msgid ""
 "href=\"http://dicts.uit.no/\">see this\n"
 "                    list</a>."
 msgstr ""
+"<a href=\"http://giellatekno.uit.no/\">Giellatekno</a> har även andra "
+"språk och ordböcker som ännu inte är tillgängliga i Neahttadigisánit. "
+"För en lista över alla andra nätordböcker som har skapats med våra verktyg, "
+"se <a href=\"http://dicts.uit.no/\">den här listan</a>."
 
 #: neahtta/templates/privacy_notice.html:3
 #: neahtta/templates/privacy_notice.html:20
