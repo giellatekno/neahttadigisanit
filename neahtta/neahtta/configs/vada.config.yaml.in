@@ -72,11 +72,13 @@ Dictionaries:
 
   - source: mns
     target: hun
-    path: 'dicts/mns-hun.xml'
+    dict_source: multi
+    path: 'dicts/mns-all.xml'
 
   - source: mns
     target: rus
-    path: 'dicts/mns-hun.xml'
+    dict_source: multi
+    path: 'dicts/mns-all.xml'
 
 ReaderConfig:
   Settings:
