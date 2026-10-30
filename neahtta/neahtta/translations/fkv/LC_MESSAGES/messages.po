@@ -275,7 +275,7 @@ msgstr ""
 #: neahtta/configs/language_names.yaml:111
 #: neahtta/configs/language_names.yaml:112
 msgid "Swedish"
-msgstr ""
+msgstr "Ruotti"
 
 #: neahtta/configs/saan.config.yaml:106 neahtta/configs/saan.config.yaml.in:106
 #: neahtta/configs/saanih.config.yaml:75 neahtta/configs/saanih.config.yaml:105
@@ -440,6 +440,11 @@ msgid ""
 "                available at <a "
 "href=\"https://github.com/giellatekno/neahttadigisanit\">https://github.com/giellatekno/neahttadigisanit</a>."
 msgstr ""
+"Nettidigisanat oon sanakirjaplatformi missä oon eri sanakirjoin valikoima. "
+"Teknilisen kalttiikoodin oon lisensieerattu GPL-3 alla ja se oon saantheila "
+"tässä adressissa: "
+"<a href=\"https://github.com/giellatekno/neahttadigisanit\">"
+"https://github.com/giellatekno/neahttadigisanit</a>."
 
 #: neahtta/configs/language_specific_rules/templates/about.template:30
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:28
@@ -461,6 +466,11 @@ msgid ""
 " Certain dictionaries' \n"
 "                source files are closed to the public and thus not listed."
 msgstr ""
+"Nettidigisanoila jokka näkkyyvät, oon kaikila eri lisensit. Monela oon avvoin "
+"kalttiikoodi, mutta ei kaikila. Sanakirjaresursit ja niitten lisensit löyttyyvät "
+"nettilaiđalta: <a href=\"https://giellalt.github.io/DictionaryResources.html\">"
+"https://giellalt.github.io/DictionaryResources.html</a>. "
+"Vissiin sanakirjoin kalttiikoodit oon suljetut ja net ei sen tähđen ole listala."
 
 #: neahtta/configs/language_specific_rules/templates/about.template:35
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:33
@@ -483,6 +493,13 @@ msgid ""
 "                repositories contain information about each model's "
 "license."
 msgstr ""
+"Nettidigisanat pittää morfologista analyysiprogramii siihen ette se tunnistaa "
+"sujutetut haamut ja genereeraa sujutustabelliita. Kielimodelliitten lista jonka "
+"sisälä oon nämät analyysiprogramit, se löyttyy tältä nettilaiđalta: "
+"<a href=\"https://giellalt.github.io/LanguageModels.html\">"
+"https://giellalt.github.io/LanguageModels.html</a>. "
+"Jokhaisen GitHub-repositorin sisälä oon informasuunii jokhaisen modellin "
+"lisensistä."
 
 #: neahtta/configs/language_specific_rules/templates/about.template:42
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:40
@@ -789,7 +806,7 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/vada/about.template:59
 #: neahtta/configs/language_specific_rules/templates/valks/about.template:59
 msgid "Source material"
-msgstr "Lähdemateriaali"
+msgstr "Kalttiimateriaali"
 
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:61
 msgid "sma ↔ nob"
@@ -1104,9 +1121,9 @@ msgid ""
 "                Helsinki by Timo Rantakaulio with funding from the Kone\n"
 "                Foundation."
 msgstr ""
-"Livvi-suomi-sanakirjat perustuvat livvikielisen sanomalehden \"Oma mua\" "
-"sanoihin ja moniin sanakirjoihin. Työn tekee Timo Rantakaulio Helsingin "
-"Yliopistossa Koneen säätiön tuella."
+"Livvi-suomi-sanakirjoin pohjana oon livvinkielisen aviisin "Oma mua" sanat ja "
+"usheita sanakirjoi. Timo Rantakaulio tekkee tämän työn Helsingin Yliopistossa "
+"Konheen säätiön tujela. "
 
 #: neahtta/configs/language_specific_rules/templates/sanat/notice.template:3
 msgid ""
@@ -1676,50 +1693,56 @@ msgstr "Hupsis! Nyt kyllä tapahtui jotain kummallista..."
 #: neahtta/templates/add_to_homescreen.html:3
 #: neahtta/templates/add_to_homescreen.html:20
 msgid "Add to Homescreen"
-msgstr ""
+msgstr "Lissää kotilaithaan"
 
 #: neahtta/templates/add_to_homescreen.html:21
 msgid ""
 "If you wish to have a shortcut to the dictionary on your smartphone "
 "homescreen, follow the instructions below."
 msgstr ""
+"Jos sie halluut oikotien sanakirjhaan sinun smarttitelefuunin kotisärmilä, niin piđä instruksuunii "
+"joka oon alhaala."
 
 #: neahtta/templates/add_to_homescreen.html:22
 msgid ""
 "The shortcut looks like an app and you can click right into the website "
 "without opening your browser."
 msgstr ""
+"Oikotie näyttää äpiltä, ja sie saatat klikata suorhaan nettilaithaan ilman aukaisematta sinun netinlukkiijaa."
 
 #: neahtta/templates/add_to_homescreen.html:24
 msgid "Open the frontpage of the dictionary you want a shortcut to."
-msgstr ""
+msgstr "Aukaise sen sanakirjan etulaiđan mihin halluut oikotien."
 
 #: neahtta/templates/add_to_homescreen.html:28
 msgid "Select the share icon in the browser."
-msgstr ""
+msgstr "Valitte jaja-ikoonin netinlukkiijasta."
 
 #: neahtta/templates/add_to_homescreen.html:29
 msgid ""
 "Scroll down and select \"Add to Home Screen\". You may need to drag the "
 "row from the right to get to the button."
-msgstr ""
+msgstr "Skrollaa alas ja valitte ”Lissää kotisärmhiin.” "
+"Sie piian häyđyt vettäät rivin oikkeelta niin ette sautat knapin."
 
 #: neahtta/templates/add_to_homescreen.html:33
 #: neahtta/templates/add_to_homescreen.html:39
 msgid "Open the main menu in the browser"
-msgstr ""
+msgstr "Aukaise päälistan netinlukkiijassa."
 
 #: neahtta/templates/add_to_homescreen.html:34
 msgid ""
 "A list of options appears. Select \"Add to home page\", a little down the"
 " list"
-msgstr ""
+msgstr "ista vaihtoehđoista tullee näkkyyvhiin. Valitte ”Lissää kotilaithaan,” "
+"vähäisen alempanna listassa."
 
 #: neahtta/templates/add_to_homescreen.html:35
 msgid ""
 "A new window appears asking you to add this website to your home screen. "
 "Click \"Add\"."
-msgstr ""
+msgstr "Uusi ruutu tullee näkösälle ja se kyssyy, halluutko lisätä tämän nettilaiđan "
+"sinun kotisärmhiin. Klikkaa ”Lissää.” "
 
 #: neahtta/templates/add_to_homescreen.html:37
 msgid "Samsung Internet"
@@ -1727,17 +1750,18 @@ msgstr ""
 
 #: neahtta/templates/add_to_homescreen.html:40
 msgid "Click \"Add page to\" at the top right in the menu"
-msgstr ""
+msgstr "Klikkaa ”Lissää laiđan” ylhäälä listassa."
 
 #: neahtta/templates/add_to_homescreen.html:41
 msgid "Choose \"Home screen\" in the window that appears."
-msgstr ""
+msgstr "Valitte ”Kotisärmi” ruuđussa joka tullee näkösälle."
 
 #: neahtta/templates/add_to_homescreen.html:44
 msgid ""
 "The shortcut is now on your homescreen, and you can access the dictionary"
 " page directly by clicking on it."
-msgstr ""
+msgstr "Oikotie oon nyt sinun kotisärmilä, ja sie pääset suorhaan sanakirjhaan "
+"ko klikkaat sitä."
 
 #: neahtta/templates/base.html:179
 #: neahtta/templates/mobile_nav_push_menu.html:6
@@ -1752,12 +1776,12 @@ msgstr "Klikkaa-tekstissä"
 #: neahtta/templates/base.html:188
 #: neahtta/templates/mobile_nav_push_menu.html:15
 msgid "Smartphone shortcut"
-msgstr ""
+msgstr "Lissää kotilaithaan"
 
 #: neahtta/templates/base.html:193
 #: neahtta/templates/mobile_nav_push_menu.html:20
 msgid "Privacy"
-msgstr ""
+msgstr "Persoonansuojelu"
 
 #: neahtta/templates/base.html:204
 #: neahtta/templates/mobile_nav_push_menu.html:28
@@ -1929,37 +1953,43 @@ msgstr ""
 #: neahtta/templates/privacy_notice.html:3
 #: neahtta/templates/privacy_notice.html:20
 msgid "Privacy notice"
-msgstr ""
+msgstr "Persoonansuojelun informasuuni"
 
 #: neahtta/templates/privacy_notice.html:21
 msgid ""
 "Neahttadigisánit does not store any personally identifiable information. "
 "Local storage is used to remember your preferred TTS voice."
-msgstr ""
+msgstr "Neahttadigisánit ei lakraa identifiseeraavaa informasuunii. "
+"Paikalista laakrausta piđethään siksi ette Nettidigisanat muistaa "
+"minkälaisen synteettisen äänen sie olet valinu. "
 
 #: neahtta/templates/privacy_notice.html:22
 msgid ""
 "We keep logs of the words searched for to improve the dictionaries and "
 "for research purposes."
-msgstr ""
+msgstr "Met piđämä loggii siitä mikkä sanat oon hajettu ja se oon sanakirjoin "
+"parantamista ja tutkimamoolii varten."
 
 #: neahtta/templates/privacy_notice.html:22
 msgid ""
 "The logs contain searched-for words, the dictionary pair used, and the "
 "date and time the word was searched for."
-msgstr ""
+msgstr "Loggiin sisälä oon net sanat millä oon "
+"hajettu, net sanakirjaparit joita oon piđetty ja se aika ko havun tehthiin."
 
 #: neahtta/templates/privacy_notice.html:23
 msgid ""
 "Please note that by entering text into the search field an autocomplete "
 "lookup is performed. Thus, such text will also end up in the server logs,"
 " even if the search button was never pressed."
-msgstr ""
+msgstr "Piđä huomiota siihen ette ko kirjoitat tekstin hakualhaan, niin "
+"tekstin lähätethään automaattisesti sanakirjhaan autovalmistumista varten. "
+"Siksi tämä teksti päättyy serverilogghiin vaikka et klikanukhaan hakemaknappii."
 
 #: neahtta/templates/reader.html:3 neahtta/templates/reader.html:20
 #, python-format
 msgid "%(project_name)s Reader"
-msgstr ""
+msgstr "%(project_name)s Reader"
 
 #: neahtta/templates/reader.html:22
 #, fuzzy
@@ -1974,7 +2004,7 @@ msgstr ""
 
 #: neahtta/templates/reader.html:25
 msgid "Bookmarklet"
-msgstr "Kirjanmerkki"
+msgstr "Kirjamerkki"
 
 #: neahtta/templates/reader.html:26
 msgid ""
@@ -1983,15 +2013,14 @@ msgid ""
 "be installed, and you will see a menu icon on the left-hand side of the "
 "page."
 msgstr ""
-"Vedä ja pudota seuraava linkki kirjamerkkipalkkiin ja klikkaa sitä, kun "
-"olet sivulla, jota haluat lukea sanakirjan avulla. Palvelu asennetaan "
-"automaattisesti ja tulet näkemään valikkokuvakkeen (Á) sivun vasemmalla "
-"puolella."
+"Veđä ja puđota tämän linkin kirjamerkkipanelhiin ja klikkaa sitä ko olet "
+"nettilaiđala, jota sie halluut lukkeet sanakirjan avula. Palveluksen "
+"installeerathaan automaattisesti ja näjet symbolin (Á) sinun vasemalla puolela."
 
 #: neahtta/templates/reader.html:27 neahtta/templates/reader_update.html:15
 #, python-format
 msgid "Read with %(project_name)s"
-msgstr "Lue %(project_name)s avulla"
+msgstr "Luje Nettidigisannoin avulla"
 
 #: neahtta/templates/reader.html:28
 msgid ""
@@ -1999,25 +2028,26 @@ msgid ""
 "word. The service will connect to this website and return dictionary "
 "entries after a brief pause."
 msgstr ""
-"Kun haluat käännöksen, pidä Alt tai Optio (⌥)-näppäintä alhaalla, ja "
-"kaksoisklikkaa sanaa. Ohjelma yhdistyy tähän sivuun ja hakee sanakirja-"
-"artikkelin pienen tauon jälkeen."
+"Ko sie halluut käänöksen, niin piđä Alt tahi Option (⌥)-knappii alhaala, "
+"ja tupulttiklikkaa sannaa. Programi oon osa tätä laittaa ja se hakkee "
+"sanakirja-artikkelin pienen pausin jälkhiin."
 
 #: neahtta/templates/reader.html:29
 msgid "To change the dictionary, click the menu icon."
-msgstr "Klikkaa valikon kuvaketta vaihtaaksesi sanakirjaa."
+msgstr "Klikkaa symbolii (Á) niin ette saatat vaihettaat sanakirjan."
 
 #: neahtta/templates/reader.html:30
 msgid "Installing on a website"
-msgstr "Asentaminen verkkosivulla"
+msgstr "Kunka installeerata nettilaithaan"
 
 #: neahtta/templates/reader.html:32
 msgid ""
 "It is also possible to install the reader plugin on a website, so that "
 "users will have access to dictionaries without the bookmarklet."
 msgstr ""
-"On myös mahdollista asentaa selainliitönnöinen verkkosivulla, niin, että "
-"lukijat pääsevät käyttämään sanakirjaa kirjamerkkiä asentamatta."
+"Se oon kans mahđolinen installeerata klikkaa-teksthiin nettilaiđala, "
+"niin ette lukkiijat päässeevät pitämhään sanakirjaa ilman installeeraamatta "
+"kirjamerkkii."
 
 #: neahtta/templates/reader.html:35
 msgid ""
@@ -2025,37 +2055,37 @@ msgid ""
 "href=\"https://giellalt.github.io/dicts/nds/AddingNDSPluginToOtherSites.html\">follow"
 " our documentation</a>."
 msgstr ""
-"Saat palvelun seuraamalla, <a "
+"Saat palveluksen kuoraamalla, <a "
 "href=\"https://giellalt.github.io/dicts/nds/AddingNDSPluginToOtherSites.html\">"
-" dokumentaatiotamme</a>."
+"meiđän dokumentasuunii</a>."
 
 #: neahtta/templates/reader.html:36
 msgid "Browser support"
-msgstr "Selaintuki"
+msgstr "Apu netinlukkiijan kans"
 
 #: neahtta/templates/reader.html:37
 msgid "The reader is supported in the following browsers:"
-msgstr "Lukuohjelmaa tukevat seuraavat selaimet:"
+msgstr "Nämät netinlukkiijat tukkeevat lukemaprogramii:"
 
 #: neahtta/templates/reader.html:39
 msgid "Chrome (version 20 and newer)"
-msgstr "Chrome (versio 20 ja uudemmat)"
+msgstr "Chrome (versuuni 20 ja uuđemat)"
 
 #: neahtta/templates/reader.html:40
 msgid "Internet Explorer (version 9 and newer)"
-msgstr "Internet Explorer (versio 9 ja uudemmat)"
+msgstr "Internet Explorer (versuuni 9 ja uuđemat)"
 
 #: neahtta/templates/reader.html:41
 msgid "Firefox (version 18 and newer)"
-msgstr "Firefox (versio 18 ja uudemmat)"
+msgstr "Firefox (versuuni 18 ja uuđemat)"
 
 #: neahtta/templates/reader.html:42
 msgid "Opera (version 16 and newer)"
-msgstr "Opera (versio 16 ja uudemmat)"
+msgstr "Opera (versuuni 16 ja uuđemat)"
 
 #: neahtta/templates/reader.html:44
 msgid "Bugs?"
-msgstr "Virheitä?"
+msgstr "Feilii?"
 
 #: neahtta/templates/reader.html:45
 msgid ""
@@ -2063,17 +2093,17 @@ msgid ""
 "page, contact us with the page URL or details of what you were reading "
 "when you encountered the problem."
 msgstr ""
-"Jos löydät virheitä, tai jos kirjanmerkki ei toimi tietyllä nettisivulla,"
-" voit otta yhteyttä meihin, ja kertoa mistä URL:stä on kyse, tak mitä "
-"teit kun ongelma ilmentyi."
+"Jos sie löyđät feilii, tahi jos kirjamerkki ei toimi tietylä nettilaiđala, "
+"sie saatat mielelä ottaat yhtheyttä meihin, ja muistela mistä URL:stä eli "
+"nettilaiđasta oon kysymys, tahi mitä tehit ko problemi alkoi."
 
 #: neahtta/templates/reader.html:46
 msgid ""
 "We do not store any private data, but we do collect individual dictionary"
 " lookups for statistics and to improve the dictionary."
 msgstr ""
-"Emme säilytä yksityisiä tietoja, mutta keräämme yksittäisiä sanahakuja "
-"tilastointa ja sanakirjan parantamista varten."
+"Met emmä laakraa privaattii tiettoi, mutta kokkooma yksittäissii sanahakkui "
+"statistikkii ja sanakirjan parantamista varten."
 
 #: neahtta/templates/reader.html:53
 msgid "Includes"
@@ -2344,7 +2374,7 @@ msgstr " oon mahđolinen haamu sanasta ..."
 #~ msgstr ""
 
 #~ msgid "Show the version and exit."
-#~ msgstr "Chrome (versio 20 ja uudemmat)"
+#~ msgstr "Chrome (versuuni 20 ja uuđemat)"
 
 #~ msgid "Error: {message}"
 #~ msgstr ""
