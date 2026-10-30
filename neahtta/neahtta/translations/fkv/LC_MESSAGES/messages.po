@@ -2115,8 +2115,7 @@ msgid ""
 "If you are looking for other languages, please see our <a "
 "href=\"%(more_dictionaries_link)s\">other dictionaries</a>."
 msgstr ""
-"Jos etsit muita kieliä, voit katsoa <a href=\"/more/\">muita "
-"sanakirjoja</a>."
+"Jos hajet muita kielii, saatat kattoot <a href=\"/more/\">muita sanakirjoi</a>."
 
 #: neahtta/templates/reader_example.html:32
 msgid "Additional instructions"
