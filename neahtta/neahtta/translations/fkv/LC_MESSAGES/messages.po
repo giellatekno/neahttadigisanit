@@ -223,7 +223,7 @@ msgstr ""
 #: neahtta/configs/language_names.yaml:81
 #: neahtta/templates/more_dictionaries.html:33
 msgid "Inari Saami"
-msgstr ""
+msgstr "Inarinsaame"
 
 #: neahtta/configs/language_names.yaml:84
 msgid "Inari Saami (tolerant)"
@@ -232,7 +232,7 @@ msgstr ""
 #: neahtta/configs/language_names.yaml:87
 #: neahtta/templates/more_dictionaries.html:35
 msgid "Pite Saami"
-msgstr ""
+msgstr "Piitimensaame"
 
 #: neahtta/configs/language_names.yaml:89
 msgid "Khanty"
@@ -761,7 +761,7 @@ msgstr "Haje tekstiistä"
 #: neahtta/templates/mobile_nav_dictionary_list.html:50
 #: neahtta/templates/more_dictionaries.html:21
 msgid "Other dictionaries"
-msgstr "Muita sanakirjoja"
+msgstr "Lissää sanakirjoi"
 
 #: neahtta/configs/language_specific_rules/templates/baakoeh/sma/paradigm.template:192
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/sje/paradigm.template:121
@@ -1900,7 +1900,7 @@ msgstr "Eteläsaame"
 
 #: neahtta/templates/more_dictionaries.html:30
 msgid "Komi and Udmurt"
-msgstr ""
+msgstr "Komi ja udmurtti"
 
 #: neahtta/templates/more_dictionaries.html:31
 msgid "Mari"
@@ -1916,11 +1916,11 @@ msgstr "Kiltininsaame"
 
 #: neahtta/templates/more_dictionaries.html:36
 msgid "Finnish, Kven, Karelian, Veps"
-msgstr ""
+msgstr "Suomi, kvääni, karjala, vepsä"
 
 #: neahtta/templates/more_dictionaries.html:37
 msgid "Livonian, Estonian, Vot"
-msgstr ""
+msgstr "Liivi, eesti, vatja"
 
 #: neahtta/templates/more_dictionaries.html:39
 msgid "Erzya and Moksha"
