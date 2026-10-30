@@ -1866,7 +1866,7 @@ msgstr ""
 #: neahtta/templates/mobile_nav_push_menu.html:32
 #: neahtta/templates/mobile_nav_push_menu.html:35
 msgid "Interface language"
-msgstr ""
+msgstr "Grensesnittspråk"
 
 #: neahtta/templates/browse.html:24
 msgid "Browse"
