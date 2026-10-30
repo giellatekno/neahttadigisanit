@@ -1888,7 +1888,7 @@ msgstr "Lissää sanakirjoi"
 msgid ""
 "Neahttadigisánit is available for the following\n"
 "                language groups."
-msgstr "Neahttadigisánit on saatavana seuraaville kieliryhmille."
+msgstr "Neahttadigisánit oon saantheila näile kieliroikile."
 
 #: neahtta/templates/more_dictionaries.html:28
 msgid "North Saami"
@@ -1904,7 +1904,7 @@ msgstr "Komi ja udmurtti"
 
 #: neahtta/templates/more_dictionaries.html:31
 msgid "Mari"
-msgstr ""
+msgstr "Mari"
 
 #: neahtta/templates/more_dictionaries.html:32
 msgid "Skolt Saami"
@@ -1928,7 +1928,7 @@ msgstr "Ersa ja mokša"
 
 #: neahtta/templates/more_dictionaries.html:42
 msgid "We're also working on new language pairs."
-msgstr ""
+msgstr "Olema kans työtelemässä toisten kieliparriin kans."
 
 #: neahtta/templates/more_dictionaries.html:45
 msgid "Even more dictionaries..."
@@ -1945,10 +1945,10 @@ msgid ""
 "href=\"http://dicts.uit.no/\">see this\n"
 "                    list</a>."
 msgstr ""
-"<a href=\"http://giellatekno.uit.no/\">Giellatekno</a>lla on myösmuita "
-"kieliä ja sanakirjoja, joilla eivät vielä ole Neahttadigisánit-versiota. "
-"Löydät kokonaisen listan osoitteesta <a "
-"href=\"http://dicts.uit.no/\">dicts.uit.no</a>."
+"<a href=\"http://giellatekno.uit.no/\">Giellatekno</a>lla oon kans muita kielii "
+"ja sanakirjoi, joila ei vielä ole Neahttadigisánit-versuuniita. Löyđät "
+"kokonhaisen listan adressista "
+<a href=\"http://dicts.uit.no/\">dicts.uit.no</a>."
 
 #: neahtta/templates/privacy_notice.html:3
 #: neahtta/templates/privacy_notice.html:20
