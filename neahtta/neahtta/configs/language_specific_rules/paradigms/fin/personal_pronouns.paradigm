@@ -1,0 +1,24 @@
+name: "pron_personal pronouns"
+morphology:
+  pos: Pron
+  pron_type: Pers
+  pron_person: 
+    - Sg1
+    - Sg2
+    - Sg3
+    - Pl1
+    - Pl2
+    - Pl3
+--
+{{ lemma }}+Pron+Pers+{{ pron_person }}+Nom
+{{ lemma }}+Pron+Pers+{{ pron_person }}+Gen
+{{ lemma }}+Pron+Pers+{{ pron_person }}+Par
+{{ lemma }}+Pron+Pers+{{ pron_person }}+Acc
+{{ lemma }}+Pron+Pers+{{ pron_person }}+Ine
+{{ lemma }}+Pron+Pers+{{ pron_person }}+Ela
+{{ lemma }}+Pron+Pers+{{ pron_person }}+Ill
+{{ lemma }}+Pron+Pers+{{ pron_person }}+Ade
+{{ lemma }}+Pron+Pers+{{ pron_person }}+Abl
+{{ lemma }}+Pron+Pers+{{ pron_person }}+All
+{{ lemma }}+Pron+Pers+{{ pron_person }}+Ess
+{{ lemma }}+Pron+Pers+{{ pron_person }}+Tra

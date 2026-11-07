@@ -25,6 +25,13 @@ pron_type:
  - "Recipr"
  - "Refl"
  - "Rel"
+pron_person:
+ - "Sg1"
+ - "Sg2"
+ - "Sg3"
+ - "Pl1"
+ - "Pl2"
+ - "Pl3"
 type:
  - "NomAg"
  - "G3"
