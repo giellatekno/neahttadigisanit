@@ -760,7 +760,7 @@ msgstr ""
 msgid "Search for a word, or a word form for a word analysis and definition."
 msgstr ""
 "Ohtsh baakoem jallh baakoehaamoem, mïsse syjjehtimmiem jallh analyjsem "
-"sïjhth."
+"sïjhth. Gosse ohtseme: Jis baakoem deadtah, dle vuajnah guktie sojjehtåvva."
 
 #: neahtta/configs/language_specific_rules/templates/baakoeh/about.template:20
 #: neahtta/configs/language_specific_rules/templates/bahkogirrje/about.template:19
