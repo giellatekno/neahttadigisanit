@@ -14,6 +14,7 @@
 {%- set first_l = lexicon_entry|xpath('lg/l')|first %}
 {% set lemma = first_l|text %}
 {% set pos = first_l|xpath('@pos')|first %}
+{% set type = first_l|xpath('@type')|first %}
 {% set has_forms = paradigm and paradigm|length > 0 -%}
 {% set paradigm_exists = paradigm|length > 0 %}
 
@@ -190,11 +191,26 @@
 
 {%- macro full_paradigm_link() %}
             {# URLFOR #}
-    <a class="full-paradigm-link"
-       style="opacity: .8;"
-       href="http://gtweb.uit.no/cgi-bin/smi/smi.cgi?text={{ lemma }}&pos={{ pos }}&mode=full&action=paradigm&lang=sme&plang=sme">
-        {%- trans -%}Full paradigm{%- endtrans -%} &nbsp;&rarr;
-    </a>
+    <table>
+        <tr>
+            <td>
+                <a class="full-paradigm-link"
+                style="opacity: .8;"
+                href="http://gtweb.uit.no/cgi-bin/smi/smi.cgi?text={{ lemma }}&pos={{ pos }}&mode=full&action=paradigm&lang=sme&plang=sme">
+                    {%- trans -%}Full paradigm{%- endtrans -%} &nbsp;&rarr;
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="full-paradigm-link"
+                style="opacity: .8;"
+                href="https://gtweb.uit.no/lingtools/sme/paradigms?word={{ lemma }}&pos={{ pos }}{%- if type -%}&subclass={{ type }}{%- endif -%}">
+                    {%- trans -%}Full paradigm (beta){%- endtrans -%} &nbsp;&rarr;
+                </a>
+            </td>
+        </tr>
+    </table>
 {% endmacro -%}
 
 {# For use in derivations and other links which are not from the original lemma #}
