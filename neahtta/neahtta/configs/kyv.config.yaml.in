@@ -8,7 +8,6 @@ ApplicationSettings:
   grouped_nav: true
   new_mobile_nav: true
   locales_available:
-    - kv
     - fi
     - ru
     - en
