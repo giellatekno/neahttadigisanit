@@ -27,7 +27,6 @@ from .reader import (
     bookmarklet_configs,
     ie8_instrux,
     lookupWord,
-    reader_test_page,
     reader_update,
     reader_update_json,
 )
@@ -87,8 +86,6 @@ blueprint.add_url_rule(
 blueprint.add_url_rule(
     "/read/ie8_instructions/", methods=["GET"], view_func=ie8_instrux
 )
-
-blueprint.add_url_rule("/read/test/", methods=["GET"], view_func=reader_test_page)
 
 blueprint.add_url_rule("/read/update/", methods=["GET"], view_func=reader_update)
 

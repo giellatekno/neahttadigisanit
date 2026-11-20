@@ -244,13 +244,6 @@ def ie8_instrux_json():
     return Response(response=formatted, status=200, mimetype="application/json")
 
 
-def reader_test_page():
-    """This is also tied to a context processer making this item
-    visible in the navigational menu if the template is found."""
-
-    return render_template("reader_tests.template")
-
-
 def reader_update():
     reader_settings = current_app.config.reader_settings
 
