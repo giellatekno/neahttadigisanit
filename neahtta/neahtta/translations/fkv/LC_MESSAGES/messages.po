@@ -1088,9 +1088,8 @@ msgstr ""
 #: neahtta/configs/language_specific_rules/templates/sanat/about.template:20
 #: neahtta/configs/language_specific_rules/templates/sanit/about.template:20
 #: neahtta/configs/language_specific_rules/templates/sonad/about.template:20
-#, fuzzy
 msgid "How to quote the dictionaries"
-msgstr "Muita sanakirjoi"
+msgstr ""
 
 #: neahtta/configs/language_specific_rules/templates/saanih/about.template:62
 msgid "Inari Saami ↔ Finnish"
