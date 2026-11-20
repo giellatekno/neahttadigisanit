@@ -1,6 +1,5 @@
 from . import blueprint
 
-from .paradigms import ParadigmLanguagePairSearchView
 from .search import (
     DetailedLanguagePairSearchView,
     IndexSearchPage,
@@ -60,12 +59,6 @@ blueprint.add_url_rule(
     "/detail/<_from>/<_to>/<wordform>.<format>",
     view_func=DetailedLanguagePairSearchView.as_view("detailed_language_pair_search"),
     endpoint="detailed_language_pair_search",
-)
-
-blueprint.add_url_rule(
-    "/paradigm/<_from>/<_to>/<lemma>/",
-    view_func=ParadigmLanguagePairSearchView.as_view("paradigm_generator"),
-    endpoint="paradigm_language_pair",
 )
 
 if LemmatizerView:
