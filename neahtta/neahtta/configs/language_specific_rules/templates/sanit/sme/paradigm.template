@@ -386,7 +386,16 @@
                 {% if var[0].tag %}
                     <dt>{{ clean_tag(var[0].tag) }}</dt>
                 {% endif %}
-                <dd lang="{{ _from }}">{{ var|join('<br />', attribute='form')|safe }}</dd>
+                    <dd lang="{{ _from }}">
+                        {#{ var|join('<br />', attribute='form')|safe }#}
+                        {% for form in var %}
+                            {{ form.form }}
+                            {% if _from == "sme" or _from == "SoMe"  %}
+                                {{ tts_button(form.form|remove_brackets, _from) }}
+                            {% endif %}
+                            {% if not loop.last %}<br />{% endif %}
+                        {% endfor %}
+                    </dd>
             {% endfor %}
         </dl>
     {% endif %}

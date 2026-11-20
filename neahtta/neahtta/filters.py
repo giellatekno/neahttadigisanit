@@ -140,6 +140,25 @@ def register_filters(app):
     def escape_quotes(s: str):
         return s.replace('"', '\\"')
 
+    @app.template_filter("remove_brackets")
+    def remove_brackets(s: str):
+        """
+        Remove brackets and the text they contain,
+        like '(til flere) mannet' > 'mannet'.
+        """
+        while True:
+            start = s.find("(")
+            if start == -1:
+                break
+
+            end = s.find(")", start)
+            if end == -1:
+                break
+
+            s = s[:start] + s[end + 1:]
+
+        return s.strip()
+
     @app.template_filter("uniq")
     def unique_filter(s):
         """Returns a list of GeneratedForm objects with unique forms"""
