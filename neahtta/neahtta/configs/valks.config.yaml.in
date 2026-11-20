@@ -9,7 +9,6 @@ ApplicationSettings:
   new_mobile_nav: true
   locales_available:
     - myv
-    - mdf
     - ru
     - fi
   meta_description: >

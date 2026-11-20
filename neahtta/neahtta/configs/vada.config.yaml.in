@@ -6,8 +6,6 @@ ApplicationSettings:
   default_pair: ["yrk", "fin"]
   mobile_default_pair: false
   locales_available:
-    - yrk
-    - mns
     - ru
     - fi
     - en
