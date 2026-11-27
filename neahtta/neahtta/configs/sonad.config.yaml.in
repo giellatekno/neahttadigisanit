@@ -173,14 +173,15 @@ Dictionaries:
     corpora: 'VRO_WIKIPEDIA_20210319'
     start_query: 'https://gtweb.uit.no/korp/vro?command=query&corpus='
 
-  - source: vro
-    target: fin
-    dict_source: lang
-    path: 'dicts/vro-all.xml'
-    show_korp_search: True
-    korp_search_host: "https://gtweb.uit.no/korp/vro"
-    corpora: 'VRO_WIKIPEDIA_20210319'
-    start_query: 'https://gtweb.uit.no/korp/vro?command=query&corpus='
+  # The source files contain no Finnish translations
+  # - source: vro
+  #   target: fin
+  #   dict_source: lang
+  #   path: 'dicts/vro-all.xml'
+  #   show_korp_search: True
+  #   korp_search_host: "https://gtweb.uit.no/korp/vro"
+  #   corpora: 'VRO_WIKIPEDIA_20210319'
+  #   start_query: 'https://gtweb.uit.no/korp/vro?command=query&corpus='
 
   # vot
   - source: vot
