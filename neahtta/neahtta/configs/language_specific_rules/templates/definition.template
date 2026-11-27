@@ -2,15 +2,15 @@
    and has access to all of the main entry-specific template values.
 
    Since the goal is definitions, `lexicon_entry` is relevant. Filtering
-   by target languag ehas to happen here, so be sure to use the
-   `xml_lang` filter if overriding.
+   by target language has to happen here, so be sure to use the
+   `xml_lang` filter if needed.
 #}
  
 {% import 'lexicon.macros' as macros with context %}
 {% from 'tts.macro' import tts_button with context %}
 
 {% for meaning_group in lexicon_entry|xpath('./mg') %}
-    {% set translation_groups = meaning_group|xpath('./tg')|xml_lang(_to) %}
+    {% set translation_groups = meaning_group|xpath('./tg') %}
 
     {% if translation_groups|count > 0 %}
         <li>{% if lexicon_entry|xpath('./mg')|count > 1 %}
