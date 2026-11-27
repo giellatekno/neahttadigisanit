@@ -128,6 +128,25 @@ Dictionaries:
         example: "(äǟ)"
         # NB: must be same as analyser name
         short_name: "liv"
+        onscreen_keyboard:
+          - "ā"
+          - "ä"
+          - "ǟ"
+          - "d̦"
+          - "ē"
+          - "ī"
+          - "ļ"
+          - "ņ"
+          - "ō"
+          - "ȯ"
+          - "ȱ"
+          - "õ"
+          - "ȭ"
+          - "ŗ"
+          - "š"
+          - "ț"
+          - "ū"
+          - "ž"
       - type: "mobile"
         description: !gettext "mobile friendly"
         example: "(a &rarr; ä ~ ǟ)"
@@ -158,6 +177,16 @@ Dictionaries:
     target: fin
     dict_source: lang
     path: 'dicts/izh-all.xml'
+    input_variants:
+      - type: "standard"
+        description: !gettext "Standard"
+        # NB: must be same as analyser name
+        short_name: "izh"
+        onscreen_keyboard:
+          - "š"
+          - "ž"
+          - "ä"
+          - "ö"
 
   - source: fin
     target: izh
@@ -172,6 +201,18 @@ Dictionaries:
     korp_search_host: "https://gtweb.uit.no/korp/vro"
     corpora: 'VRO_WIKIPEDIA_20210319'
     start_query: 'https://gtweb.uit.no/korp/vro?command=query&corpus='
+    input_variants:
+      - type: "standard"
+        description: !gettext "Standard"
+        # NB: must be same as analyser name
+        short_name: "vro"
+        onscreen_keyboard:
+          - "š"
+          - "õ"
+          - "ä"
+          - "ö"
+          - "ü"
+          - "ž"
 
   # The source files contain no Finnish translations
   # - source: vro
@@ -188,15 +229,31 @@ Dictionaries:
     target: est
     dict_source: lang
     path: 'dicts/vot-all.xml'
+    input_variants: &vot_variants
+      - type: "standard"
+        description: !gettext "Standard"
+        # NB: must be same as analyser name
+        short_name: "vot"
+        onscreen_keyboard:
+        - "č"
+        - "ŋ"
+        - "õ"
+        - "š"
+        - "ü"
+        - "ž"
+        - "ä"
+        - "ö"
 
   - source: vot
     target: fin
     dict_source: lang
     path: 'dicts/vot-all.xml'
+    input_variants: *vot_variants
 
   - source: vot
     target: rus
     path: 'dicts/vot-rus.xml'
+    input_variants: *vot_variants
 
   - source: rus
     target: vot
